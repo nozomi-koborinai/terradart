@@ -9,15 +9,20 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 
 - Dart SDK ≥ 3.6
 - Terraform CLI ≥ 1.11.0
-- A GCP project with Pub/Sub enabled and Application Default Credentials (`gcloud auth application-default login`)
+- Credentials for your target provider (e.g. Google Cloud Application Default Credentials `gcloud auth application-default login`, or provider environment variables)
 
 ## 1. Add dependencies
+
+Choose `terradart_core` along with the provider factory package(s) your stack requires:
 
 ```yaml
 # pubspec.yaml
 dependencies:
   terradart_core: ^0.25.x
-  terradart_google: ^0.25.x
+  terradart_google: ^0.25.x # for Google Cloud (GA)
+  # terradart_google_beta: ^0.25.x # for Google Cloud beta-only resources
+  # terradart_appwrite: ^0.25.x    # for Appwrite
+  # terradart_cloudflare: ^0.25.x  # for Cloudflare edge infrastructure
 ```
 
 Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, then run:
@@ -26,7 +31,7 @@ Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, t
 dart pub get
 ```
 
-The GA `hashicorp/google` catalog is filled. Beta-only types live in [`terradart_google_beta`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_google_beta) (128 resource factories). Types that also exist in GA stay in `terradart_google`.
+The GA `hashicorp/google` catalog is filled. Beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) (128 resource factories). Other official providers like [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) and [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) are also available.
 
 ## 2. Define a Stack
 

@@ -13,7 +13,7 @@ TerraDart is a thin authoring layer that produces standard Terraform JSON. The D
   steps={[
     {
       title: "Author",
-      body: "Write <code>final class XxxStack extends Stack</code> using curated <code>google_*</code> factories from terradart_google.",
+      body: "Write <code>final class XxxStack extends Stack</code> using curated factories from provider packages.",
     },
     {
       title: "Generate Terraform JSON",
@@ -61,9 +61,14 @@ final class AppInfraStack extends Stack { /* ... */ }
 
 ## Provider integration
 
-[`terradart_google`](https://pub.dev/packages/terradart_google) ships typed factories for the **GA** HashiCorp [`google`](https://registry.terraform.io/providers/hashicorp/google/latest) provider catalog. See [status](/docs/status/) and the [package README](https://pub.dev/packages/terradart_google) for counts; the full list is on [Coverage](/docs/coverage/). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook).
+TerraDart supports multiple official Terraform providers with curated, typed Dart factories:
 
-TerraDart depends on the Google Terraform provider via two upstream sources, both reconciled automatically on a weekly cadence.
+- **[`terradart_google`](https://pub.dev/packages/terradart_google)** — **GA** HashiCorp [`google`](https://registry.terraform.io/providers/hashicorp/google/latest) provider catalog. See [status](/docs/status/) and the [package README](https://pub.dev/packages/terradart_google) for counts; the full list is on [Coverage](/docs/coverage/).
+- **[`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)** — **beta-only** types from `hashicorp/google-beta` (128 resource factories at the current pin).
+- **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — official `appwrite/appwrite` provider resources.
+- **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — official `cloudflare/cloudflare` provider resources.
+
+For the Google provider, TerraDart depends on upstream sources reconciled automatically on a weekly cadence:
 
 ```mermaid
 graph LR
@@ -76,9 +81,9 @@ graph LR
   CG --> WR["terradart_google wrappers"]
 ```
 
-The MM YAML overlay carries metadata that the provider schema does not surface — `sensitive_fields`, `force_new`, free-form description text. `terradart_codegen` merges both inputs into typed `<resource>.schema.dart` files that compose into the `terradart_google` package.
+The MM YAML overlay carries metadata that the provider schema does not surface — `sensitive_fields`, `force_new`, free-form description text. `terradart_codegen` merges inputs into typed `<resource>.schema.dart` files that compose into the `terradart_google` package.
 
-Provider tracking is pinned to GA `~> 7.0`. Beta-only types live in `terradart_google_beta` (128 resource factories at the current pin); overlapping GA names stay in `terradart_google`.
+Provider tracking for Google is pinned to GA `~> 7.0`. Beta-only types live in `terradart_google_beta` (128 resource factories at the current pin); overlapping GA names stay in `terradart_google`.
 
 A weekly GitHub Actions workflow (`.github/workflows/schema-bump.yml`) runs every Monday morning JST. It detects new `terraform-provider-google` v7 releases and MM YAML overlay changes, refreshes the local schema + MM fixtures, runs `terradart wrap --check`, and opens a single drift-report PR if anything needs maintainer attention. Quiet weeks produce no PR.
 
@@ -109,7 +114,7 @@ A worked end-to-end example lives in the [cookbook `single-project-app` recipe](
 ## Non-goals
 
 - Not a Terraform replacement — state and apply stay in Terraform.
-- Not multi-cloud yet — the Google provider only.
+- Not a multi-cloud abstraction layer — wrappers faithfully mirror provider schemas rather than imposing cross-cloud abstractions.
 - Not a constructs framework in the pre-1.0 cycle.
 - Not module-block support — compose Terraform modules in HCL alongside TerraDart-generated `*.tf.json`; both feed the same `terraform apply`.
 
@@ -119,6 +124,8 @@ See [README — Non-goals](https://github.com/nozomi-koborinai/terradart#non-goa
 
 - [How it's built](/docs/how-its-built/) — the generation pipeline and verification harness behind these factories.
 - [`terradart_core` on pub.dev](https://pub.dev/packages/terradart_core) — Stack / TfArg / AppExport API reference.
-- [`terradart_google` on pub.dev](https://pub.dev/packages/terradart_google) — the curated factory catalog.
+- [`terradart_google` on pub.dev](https://pub.dev/packages/terradart_google) — the curated Google factory catalog.
+- [`terradart_appwrite` on pub.dev](https://pub.dev/packages/terradart_appwrite) — curated Appwrite factories.
+- [`terradart_cloudflare` on pub.dev](https://pub.dev/packages/terradart_cloudflare) — curated Cloudflare factories.
 - [`terradart_codegen` on pub.dev](https://pub.dev/packages/terradart_codegen) — `wrap` / `codegen` CLI reference.
 - [`examples/` on GitHub](https://github.com/nozomi-koborinai/terradart/tree/main/examples) — runnable quickstart Stacks.

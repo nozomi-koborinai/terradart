@@ -1,18 +1,18 @@
 ---
 title: Why TerraDart
-description: Why Dart teams adopt TerraDart — the infra/app boundary, Terraform-compatible generation, curated Google provider factories, and how it compares to HCL, CDKTF, and Pulumi.
+description: Why Dart teams adopt TerraDart — the infra/app boundary, Terraform-compatible generation, curated provider factories, and how it compares to HCL, CDKTF, and Pulumi.
 ---
 
-If you read the [landing page](/) first: TerraDart keeps **Terraform as the execution layer** while you **author GCP infrastructure in Dart**. This page goes deeper on motivation, the type system, and where TerraDart sits next to other IaC tools.
+If you read the [landing page](/) first: TerraDart keeps **Terraform as the execution layer** while you **author infrastructure in Dart**. This page goes deeper on motivation, the type system, and where TerraDart sits next to other IaC tools.
 
-If your team ships Flutter on the client and Dart on the server (**Cloud Run**, **Cloud Run functions**), there is usually one layer left where Dart's tooling does not reach: **infrastructure definitions** — often maintained in HCL, a Terraform-compatible pipeline, or the GCP console. TerraDart closes that gap without asking you to give up Terraform itself.
+If your team ships Flutter on the client and Dart on the server (**Cloud Run**, **Cloud Run functions**, backend APIs), there is usually one layer left where Dart's tooling does not reach: **infrastructure definitions** — often maintained in HCL, a Terraform-compatible pipeline, or cloud consoles. TerraDart closes that gap without asking you to give up Terraform itself.
 
 ## The last non-Dart layer
 
 | Layer | Already Dart? |
 | --- | --- |
 | Mobile UI (Flutter) | ✅ |
-| Backend handlers (Cloud Run / Cloud Run functions) | ✅ |
+| Backend handlers (Cloud Run / Cloud Run functions / Shelf) | ✅ |
 | Application business logic | ✅ |
 | Infrastructure definitions | ❌ — HCL, Terraform-compatible tooling, or console |
 
@@ -75,13 +75,13 @@ This prevents two foot-guns: forgetting to extend (using `implements` would skip
 
 ## How it fits next to other IaC
 
-TerraDart fits teams already centered on **Dart**, already running **Terraform** (or a compatible pipeline) or managing GCP in the **console**, where the seam between infra and app code hurts.
+TerraDart fits teams already centered on **Dart**, already running **Terraform** (or a compatible pipeline) or managing infrastructure in cloud **consoles**, where the seam between infra and app code hurts.
 
 | | TerraDart | HCL | CDKTF | Pulumi |
 | --- | --- | --- | --- | --- |
 | Dart authoring | Yes | No | No | No |
 | Drop-in for `terraform apply` | Yes | Yes | Yes | Different model |
-| Curated Dart factories for GCP | Yes | No | No | No |
+| Curated Dart factories | Yes | No | No | No |
 | Project status | Alpha | Mature | Archived 2025 | Active |
 
 HCL has provider schema types; CDKTF bindings are typed in TypeScript and other languages. TerraDart's difference is **Dart-native authoring** without replacing your Terraform execution pipeline.
@@ -92,22 +92,27 @@ HCL has provider schema types; CDKTF bindings are typed in TypeScript and other 
 
 **Pulumi** is a different model entirely: its own runtime, its own state, and its own resource graph. If you want a code-first IaC platform and you do not already have Terraform investment, Pulumi is a strong choice. TerraDart is for teams who already use Terraform and do not want to give that up.
 
-**TerraDart** makes sense when you are already centered on Dart (Flutter + Cloud Run / Cloud Run functions), already using Terraform (or heading there), and the gap between those two — IaC stuck outside your Dart repo — is the part that hurts.
+**TerraDart** makes sense when you are already centered on Dart (Flutter + Cloud Run / backend apps), already using Terraform (or heading there), and the gap between those two — IaC stuck outside your Dart repo — is the part that hurts.
 
 ## Curated provider coverage
 
-[`terradart_google`](https://pub.dev/packages/terradart_google) wraps the **GA** HashiCorp `google` provider catalog — **1332 curated resource factories + 461 data sources** (1793 catalog entries). [`terradart_google_beta`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_google_beta) wraps beta-only types (128 resource factories). The full factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook) (both expanding). Upgrading across minors? Read [Migrating](/docs/migrating/) first.
+- [`terradart_google`](https://pub.dev/packages/terradart_google) wraps the **GA** HashiCorp `google` provider catalog — **1332 curated resource factories + 461 data sources** (1793 catalog entries).
+- [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) wraps beta-only types (128 resource factories).
+- [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) wraps official `appwrite/appwrite` provider resources.
+- [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) wraps official `cloudflare/cloudflare` provider resources.
+
+The full factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook). Upgrading across minors? Read [Migrating](/docs/migrating/) first.
 
 ## Non-goals
 
 - Not a Terraform replacement — state and apply stay in Terraform.
-- Not multi-cloud yet — the Google provider only.
+- Not a multi-cloud abstraction layer — wrappers faithfully mirror provider schemas rather than imposing cross-cloud abstractions.
 - Not a constructs framework in the pre-1.0 cycle.
 - Not module-block support — compose Terraform modules in HCL alongside TerraDart-generated `*.tf.json`; both feed the same `terraform apply`.
 
 ## Next steps
 
 - [Architecture](/docs/architecture/) — `synth()` / `writeTo()`, provider integration, AppExport
-- [Getting Started](/docs/getting-started/) — install and first `*.tf.json` output (in progress)
+- [Getting Started](/docs/getting-started/) — install and first `*.tf.json` output
 - [How it's built](/docs/how-its-built/) — generation pipeline, verification, sustainability
 - [Status](/docs/status/) — alpha expectations
