@@ -109,13 +109,15 @@ void main() {
     ..writeln('// ignore_for_file: unused_element')
     ..writeln()
     ..writeln(
-        '/// Coverage stack for leftover Cloudflare factories at pin 5.23.0.')
+      '/// Coverage stack for leftover Cloudflare factories at pin 5.23.0.',
+    )
     ..writeln('/// Dummy constructor values; synth + terraform validate only.')
     ..writeln('/// Never apply.')
     ..writeln('library;')
     ..writeln()
     ..writeln(
-        "import 'package:terradart_cloudflare/terradart_cloudflare.dart';")
+      "import 'package:terradart_cloudflare/terradart_cloudflare.dart';",
+    )
     ..writeln("import 'package:terradart_core/terradart_core.dart';")
     ..writeln()
     ..writeln('final class CloudflareLeftoverStack extends Stack {')
@@ -347,8 +349,13 @@ List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
     out.add(
       _Extra(
         name,
-        _dummy(p, helpers,
-            sensitive: f.sensitiveLeaves, depth: 0, owner: f.className),
+        _dummy(
+          p,
+          helpers,
+          sensitive: f.sensitiveLeaves,
+          depth: 0,
+          owner: f.className,
+        ),
       ),
     );
   }
