@@ -4,6 +4,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
 curatedDoc: |-
   /// Chronicle (Google SecOps) **rule deployment** — enables / archives a
   /// compiled [GoogleChronicleRule] (live detection + alerting).
