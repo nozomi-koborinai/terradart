@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.25.3 - 2026-08-23
 
 - Fill the curated catalog at the `appwrite/appwrite` `2.0.0-beta.1` pin:
   every remaining resource factory and data source (38 resources + 24

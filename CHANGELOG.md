@@ -6,6 +6,10 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+## [0.25.3] - 2026-08-23
+
+Lockstep release across the workspace. **No breaking changes** vs `0.25.2`.
+
 ### Added
 
 - **`terradart_appwrite`** — fill the curated catalog at the `appwrite/appwrite` `2.0.0-beta.1` pin (38 resource factories + 24 data sources). Coverage via [`appwrite_quickstart`](examples/appwrite_quickstart/) (synth + `terraform validate`; apply-smoke skip-listed). `AppwriteProjectKey` is import-only (create endpoint gone upstream) and listed in [`tool/example_debt.yaml`](tool/example_debt.yaml).
@@ -13,6 +17,11 @@ Per-package changelogs live alongside each package and are the system of record 
 ### Removed
 
 - Live GCP apply-smoke CI against `terradart-validate` (per-PR change-gate, monthly sweep, janitor) and the Monday smoke-diagnosis loop. Example verification is synth + `terraform validate` only; `tool/apply_smoke.sh` refuses live apply/destroy.
+
+### Fixed
+
+- **`terradart_cloudflare`** — ship the hand-written `catalog_entry.dart` the generated catalog imports.
+- **`terradart_codegen`** — catalog `constructorParams` includes a required data-source lookup `id`; schema-subset extract accepts `--data-sources=`.
 
 ## [0.25.2] - 2026-08-22
 

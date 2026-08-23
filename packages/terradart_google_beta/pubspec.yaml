@@ -1,6 +1,6 @@
 name: terradart_google_beta
 description: Curated factory wrappers for beta-only Google Cloud resources (hashicorp/google-beta) for Dart-first Terraform stacks.
-version: 0.25.2
+version: 0.25.3
 homepage: https://github.com/nozomi-koborinai/terradart
 repository: https://github.com/nozomi-koborinai/terradart
 issue_tracker: https://github.com/nozomi-koborinai/terradart/issues
@@ -18,7 +18,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  terradart_core: ^0.25.2
+  terradart_core: ^0.25.3
   meta: ^1.15.0
 
 dev_dependencies:
