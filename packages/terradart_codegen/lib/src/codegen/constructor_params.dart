@@ -29,8 +29,11 @@ import '../ir/resource_def.dart';
 ///
 /// **Filtering rules** (applied only when [paramOrder] is null):
 /// - Attributes are excluded if: [Constraints.computedOnly] holds
-///   (computed-only — no input role) or `name == 'id'` (identity field
-///   exposed via TfRef getter, not a constructor arg).
+///   (computed-only — no input role) or `name == 'id'` **and** the slot is
+///   not required (synthetic identity exposed via a TfRef getter). A
+///   **required** `id` stays in the constructor — plugin-framework providers
+///   such as Cloudflare use it as a create-time input (gateway id, image
+///   id, …).
 /// - Nested blocks are excluded if: `name == 'timeouts'` (Terraform-internal
 ///   SDK metadata, not a user-facing input).
 List<String> orderedConstructorParams(
@@ -58,27 +61,24 @@ List<String> _naturalOrderNames(ResourceDef def) {
 /// Returns true when [attr] must be excluded from the constructor / catalog.
 ///
 /// Excludes computed-only attributes ([Constraints.computedOnly] — no input
-/// role) and the synthetic `id` identity field (exposed via a TfRef getter,
-/// not as a constructor arg). Shared with [WrapperEmitter] (and the catalog
-/// metadata emitter) so all surfaces filter identically.
+/// role) and a **synthetic** `id` (optional/computed identity getter). A
+/// required `id` is a user-supplied create/lookup argument and stays in the
+/// constructor. Shared with [WrapperEmitter] / [DataSourceWrapperEmitter]
+/// (and the catalog metadata emitter) so all surfaces filter identically.
 bool skipAttribute(Attribute attr) {
-  final isIdAttribute = attr.name == 'id';
-  return attr.constraints.computedOnly || isIdAttribute;
-}
-
-/// Data-source skip: computed-only attributes, and `id` only when it is
-/// not a required lookup key.
-///
-/// Resource constructors always drop `id` ([skipAttribute]) because it is
-/// the identity getter. Data sources reuse `id` as the lookup argument on
-/// singular reads (e.g. `appwrite_auth_team`, `google_logging_sink`); the
-/// emitter keeps a required `id` so terraform validate can see it. Shared
-/// with [DataSourceWrapperEmitter] and the catalog metadata emitter so
-/// those surfaces cannot drift.
-bool skipDataSourceAttribute(Attribute attr) {
   final isSyntheticId = attr.name == 'id' && !attr.constraints.required;
   return attr.constraints.computedOnly || isSyntheticId;
 }
+
+/// Data-source skip is the same filter as [skipAttribute]: computed-only
+/// attributes, and `id` only when it is not a required lookup key.
+///
+/// Data sources reuse `id` as the lookup argument on singular reads (e.g.
+/// `appwrite_auth_team`); resource wrappers keep a required create-time
+/// `id` the same way (e.g. `cloudflare_ai_gateway`). Shared with
+/// [DataSourceWrapperEmitter] and the catalog metadata emitter so those
+/// surfaces cannot drift.
+bool skipDataSourceAttribute(Attribute attr) => skipAttribute(attr);
 
 /// Ordered snake-case slot names for a **data source** wrapper constructor.
 ///

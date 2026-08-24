@@ -190,7 +190,10 @@ class WrapInitCommand extends Command<int> {
     // 5. Generate + emit.
     final generator = WrapInitGenerator(
       clock: const SystemClock(),
-      outputDirResolver: OutputDirResolver(aliases: rules.outputDirAliases),
+      outputDirResolver: OutputDirResolver(
+        aliases: rules.outputDirAliases,
+        typePrefix: rules.terraformTypePrefix,
+      ),
       providerRules: rules,
     );
     const emitter = WrapInitEmitter();

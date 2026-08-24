@@ -1,0 +1,4 @@
+outputDir: dls
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

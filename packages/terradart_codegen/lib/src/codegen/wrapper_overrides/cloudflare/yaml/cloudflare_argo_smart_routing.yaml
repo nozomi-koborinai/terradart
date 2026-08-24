@@ -1,0 +1,4 @@
+outputDir: argo
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

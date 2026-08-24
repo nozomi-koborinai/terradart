@@ -1,0 +1,4 @@
+outputDir: dns
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

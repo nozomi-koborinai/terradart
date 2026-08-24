@@ -148,6 +148,8 @@ Future<void> main(List<String> args) async {
   String? resourcesFrom;
   var resources = const <String>[];
   var dataSources = const <String>[];
+  var allResources = false;
+  var allDataSources = false;
   for (final a in args) {
     if (a.startsWith('--provider=')) {
       provider = a.substring('--provider='.length);
@@ -167,6 +169,10 @@ Future<void> main(List<String> args) async {
       out = a.substring('--out='.length);
     } else if (a.startsWith('--schema-json=')) {
       schemaJsonPath = a.substring('--schema-json='.length);
+    } else if (a == '--all-resources') {
+      allResources = true;
+    } else if (a == '--all-data-sources') {
+      allDataSources = true;
     } else {
       stderr.writeln('unknown argument: $a');
       exit(_exitUsage);
@@ -186,11 +192,12 @@ Future<void> main(List<String> args) async {
     }.toList()
       ..sort();
   }
-  if (provider == null || out == null || resources.isEmpty) {
+  if (provider == null || out == null || (!allResources && resources.isEmpty)) {
     stderr.writeln(
       'Usage: dart tool/extract_schema_subset.dart --provider=NS/NAME '
       '--version=X.Y.Z (--resources=a,b | --resources-from=FIXTURE.json '
-      '| both) [--data-sources=a,b] --out=DIR [--schema-json=FILE]',
+      '| --all-resources) [--data-sources=a,b | --all-data-sources] '
+      '--out=DIR [--schema-json=FILE]',
     );
     exit(_exitUsage);
   }
@@ -256,10 +263,25 @@ terraform {
     rawSchema = raw;
   }
 
+  final decoded = jsonDecode(rawSchema) as Map<String, dynamic>;
+  if (allResources) {
+    resources = resourceNamesFromFixture(decoded);
+  }
+  if (allDataSources) {
+    dataSources = dataSourceNamesFromFixture(decoded);
+  }
+  if (resources.isEmpty) {
+    stderr.writeln(
+      'extract_schema_subset: no resources selected '
+      '(pass --resources, --resources-from, or --all-resources).',
+    );
+    exit(_exitUsage);
+  }
+
   final Map<String, dynamic> subset;
   try {
     subset = filterSchemaSubset(
-      jsonDecode(rawSchema) as Map<String, dynamic>,
+      decoded,
       providerSource: provider,
       resources: resources,
       dataSources: dataSources,
@@ -298,6 +320,10 @@ To ADD a data source: `--data-sources=<type>` (combined with
 `--resources-from` so the current resource set is kept).
 To REMOVE one, pass an explicit `--resources=` / `--data-sources=` list
 without it.
+
+To extract the FULL catalog at this pin (filled-at-pin providers):
+`--all-resources --all-data-sources` (optionally with `--schema-json=`
+to reuse a dump).
 ''');
   print(
     'extract_schema_subset: wrote ${resources.length} resource(s)'

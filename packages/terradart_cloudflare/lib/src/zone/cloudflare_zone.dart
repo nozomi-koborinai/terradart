@@ -1,10 +1,22 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `cloudflare_zone`.
 const Set<String> _cloudflareZoneSensitive = <String>{};
+
+/// Typed helper for the `account` block of
+/// `cloudflare_zone` (derived from provider schema).
+@immutable
+final class ZoneAccount {
+  const ZoneAccount({this.id});
+
+  final TfArg<String>? id;
+
+  Map<String, Object?> encode() => {if (id != null) 'id': id!.toTfJson()};
+}
 
 /// Factory wrapper for `cloudflare_zone`.
 ///
@@ -27,17 +39,17 @@ const Set<String> _cloudflareZoneSensitive = <String>{};
 /// starting point for pointing a custom domain at a Dart backend
 /// (Cloud Run, Firebase Hosting, ...).
 ///
-/// `account` is the plugin-framework object attribute — pass
-/// `TfArg.literal({'id': '<account id>'})`. Apply authenticates via
-/// `CLOUDFLARE_*` environment variables — see [CloudflareProvider];
-/// synth output never contains credentials.
+/// `account` is a typed [ZoneAccount] helper (`id` is the Cloudflare
+/// account identifier). Apply authenticates via `CLOUDFLARE_*`
+/// environment variables — see [CloudflareProvider]; synth output
+/// never contains credentials.
 final class CloudflareZone extends Resource {
   static const String tfType = 'cloudflare_zone';
 
   CloudflareZone({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<Map<String, dynamic>> account,
+    required ZoneAccount account,
     TfArg<String>? type,
     TfArg<bool>? paused,
     TfArg<List<String>>? vanityNameServers,
@@ -47,7 +59,7 @@ final class CloudflareZone extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'account': account,
+           'account': TfArg.literal(account.encode()),
            if (type != null) 'type': type,
            if (paused != null) 'paused': paused,
            if (vanityNameServers != null)

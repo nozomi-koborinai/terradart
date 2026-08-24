@@ -29,6 +29,12 @@ void main() {
           'AppEngineDomainMapping');
     });
 
+    test('shortResourcePascal strips cloudflare_ and appwrite_ prefixes', () {
+      expect(shortResourcePascal('cloudflare_zone'), 'Zone');
+      expect(shortResourcePascal('cloudflare_dns_record'), 'DnsRecord');
+      expect(shortResourcePascal('appwrite_project'), 'Project');
+    });
+
     test('shortResourcePascal leaves a non-google_ type untouched (Pascal)',
         () {
       expect(shortResourcePascal('foo_bar'), 'FooBar');
@@ -65,6 +71,11 @@ void main() {
       expect(safeDartIdentifier('default'), 'defaultCase');
       expect(safeDartIdentifier('enum'), 'enumCase');
       expect(safeDartIdentifier('displayName'), 'displayName');
+    });
+
+    test('snakeToDartIdent reserves default', () {
+      expect(snakeToDartIdent('default'), 'defaultCase');
+      expect(snakeToDartIdent('zone_id'), 'zoneId');
     });
 
     test('dataSourceClassName prefixes Data except google_project', () {

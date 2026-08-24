@@ -1,6 +1,7 @@
 outputDir: dns
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 curatedDoc: |-
   /// Cloudflare **DNS record** — points a name inside a zone at your
@@ -10,8 +11,9 @@ curatedDoc: |-
   /// Reference the parent zone with `zoneId: TfArg.ref(zone.id)`.
   /// `ttl: 1` means
   /// "automatic" in Cloudflare's API; proxied records always use it.
-  /// The optional `data` / `settings` object attributes are not curated
-  /// slots yet — ask via a feature request if you need them.
+  /// Structured records (MX, SRV, CAA, …) pass a typed [DnsRecordData]
+  /// helper; flattening / IPv4-only / IPv6-only flags live on
+  /// [DnsRecordSettings].
 
 paramOrder:
   - zone_id
@@ -23,3 +25,6 @@ paramOrder:
   - comment
   - priority
   - tags
+  - data
+  - settings
+  - private_routing

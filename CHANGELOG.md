@@ -6,6 +6,20 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+### Added
+
+- **`terradart_cloudflare`** — fill the curated catalog at the
+  `cloudflare/cloudflare` `5.23.0` pin (**257 resource factories + 446
+  data sources**). Nested plugin-framework objects are typed helpers.
+  Coverage via [`cloudflare_dns_quickstart`](examples/cloudflare_dns_quickstart/)
+  and [`cloudflare_leftover_quickstart`](examples/cloudflare_leftover_quickstart/)
+  (synth + `terraform validate`; apply-smoke skip-listed).
+
+### Breaking (next minor)
+
+- `CloudflareZone.account`: `TfArg<Map<String, dynamic>>` → `ZoneAccount`.
+  `CloudflareDnsRecord` gains typed `data` / `settings` / `private_routing`.
+
 ## [0.25.3] - 2026-08-23
 
 Lockstep release across the workspace. **No breaking changes** vs `0.25.2`.

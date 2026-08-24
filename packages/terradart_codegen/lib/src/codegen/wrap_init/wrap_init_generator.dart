@@ -55,6 +55,10 @@ class WrapInitGenerator {
     // commented placeholder for the artisanal remainder. The hand-written
     // classDocComment axis is retired.
     axes.add(const FilledAxis('deriveClassDoc', 'true'));
+    if (providerRules.typedNestedDefaults) {
+      axes.add(const FilledAxis('deriveNestedTypes', 'true'));
+      axes.add(const FilledAxis('deriveOutputGetters', 'true'));
+    }
     axes.add(const TodoAxis('curatedDoc', todoMessage: todoCuratedDoc));
 
     // paramOrder — commented scaffold from schema natural order.

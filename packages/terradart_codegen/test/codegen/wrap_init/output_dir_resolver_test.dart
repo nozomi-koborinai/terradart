@@ -1,3 +1,4 @@
+import 'package:terradart_codegen/src/codegen/providers/cloudflare_provider_rules.dart';
 import 'package:terradart_codegen/src/codegen/providers/google_provider_rules.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/output_dir_resolver.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
@@ -97,6 +98,46 @@ void main() {
         kind: WrapperOverrideKind.resource,
       );
       expect(result, 'iam');
+    });
+  });
+
+  group('OutputDirResolver (cloudflare)', () {
+    final resolver = OutputDirResolver(
+      aliases: const CloudflareProviderRules().outputDirAliases,
+      typePrefix: const CloudflareProviderRules().terraformTypePrefix,
+    );
+
+    test('cloudflare_access_rule stays in access, not zero_trust', () {
+      expect(
+        resolver.resolve(
+          terraformType: 'cloudflare_access_rule',
+          mmProduct: null,
+          kind: WrapperOverrideKind.resource,
+        ),
+        'access',
+      );
+    });
+
+    test('cloudflare_zero_trust_access_application folds to zero_trust', () {
+      expect(
+        resolver.resolve(
+          terraformType: 'cloudflare_zero_trust_access_application',
+          mmProduct: null,
+          kind: WrapperOverrideKind.resource,
+        ),
+        'zero_trust',
+      );
+    });
+
+    test('data sources always resolve to data', () {
+      expect(
+        resolver.resolve(
+          terraformType: 'cloudflare_zone',
+          mmProduct: null,
+          kind: WrapperOverrideKind.dataSource,
+        ),
+        'data',
+      );
     });
   });
 }

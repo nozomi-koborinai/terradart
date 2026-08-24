@@ -1,0 +1,4 @@
+outputDir: pipeline
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

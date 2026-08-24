@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Plugin-framework `nested_type` attributes emit typed nested helper
+  classes (not `TfArg<Map<String, dynamic>>`). Computed-only objects stay
+  skipped. Data-source nested helpers use a `Data` prefix to avoid
+  resource name clashes. Reserved Dart identifiers (e.g. `default`) are
+  escaped. Cloudflare `wrap --check` remains in `tool/agent_verify.sh`.
+
 ## 0.25.3 - 2026-08-23
 
 `extract_schema_subset` accepts `--data-sources=` (and `--resources-from` unions fixture data sources). Catalog `constructorParams` for data sources now includes a required lookup `id`, matching the emitted constructor. No user-facing CLI flag changes.

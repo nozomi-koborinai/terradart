@@ -9,11 +9,11 @@ umbrellaDoc: |-
   /// Curated **Cloudflare** surface for TerraDart (official
   /// `cloudflare/cloudflare` Terraform provider).
   ///
-  /// Cloudflare here is the infrastructure edge around a Dart app — the
-  /// DNS zone and records pointing a custom domain at Cloud Run, Firebase
-  /// Hosting, or wherever the Dart backend lives (not Dart on Workers).
-  /// Curated factories are added on request — open a feature request for
-  /// resources not wrapped yet. Secrets never appear in synth output:
+  /// The catalog at the current provider pin (`5.23.0`) is filled —
+  /// every resource and data source in that schema has a typed factory.
+  /// Nested plugin-framework objects are Dart helper classes, not
+  /// `TfArg<Map<String, dynamic>>`. A later pin that adds names lands
+  /// on request. Credentials never appear in synth output:
   /// authentication happens at apply time via CLOUDFLARE_* environment
   /// variables.
   ///
@@ -24,9 +24,165 @@ umbrellaExtraExports:
   - "export 'provider.dart';"
 
 barrels:
+  access:
+    doc: |-
+      /// Cloudflare zone IP access rules (not Zero Trust Access).
+  account:
+    doc: |-
+      /// Cloudflare accounts, members, tokens, and organization settings.
+  address_map:
+    doc: |-
+      /// Cloudflare address maps (BYOIP advertising).
+  ai:
+    doc: |-
+      /// Cloudflare AI Gateway and AI Search.
+  api_shield:
+    doc: |-
+      /// Cloudflare API Shield, schema validation, and token validation.
+  argo:
+    doc: |-
+      /// Cloudflare Argo Smart Routing and Tiered Caching.
+  byo_ip:
+    doc: |-
+      /// Bring-your-own IP prefixes.
+  cache:
+    doc: |-
+      /// Cloudflare cache reserves, variants, and tiered cache.
+  calls:
+    doc: |-
+      /// Cloudflare Calls (SFU / TURN apps).
+  cloud_connector:
+    doc: |-
+      /// Cloudflare Cloud Connector rules.
+  cloudforce_one:
+    doc: |-
+      /// Cloudforce One requests and assets.
+  connectivity:
+    doc: |-
+      /// Cloudflare Connectivity Directory services.
+  custom_hostname:
+    doc: |-
+      /// Cloudflare for SaaS custom hostnames.
+  d1:
+    doc: |-
+      /// Cloudflare D1 databases.
+  data:
+    doc: |-
+      /// Read-only Cloudflare data sources (no `terraform apply` side effects).
+  dls:
+    doc: |-
+      /// Cloudflare DLS prefix bindings.
+  dns:
+    doc: |-
+      /// Cloudflare DNS records, firewall, and zone transfers.
+  email:
+    doc: |-
+      /// Cloudflare Email Routing and Email Security.
+  flagship:
+    doc: |-
+      /// Cloudflare Flagship apps and flags.
+  google_tag:
+    doc: |-
+      /// Google Tag Gateway for Cloudflare.
+  healthcheck:
+    doc: |-
+      /// Cloudflare standalone health checks.
+  hyperdrive:
+    doc: |-
+      /// Cloudflare Hyperdrive configs.
+  image:
+    doc: |-
+      /// Cloudflare Images and variants.
+  load_balancer:
+    doc: |-
+      /// Cloudflare Load Balancing pools, monitors, and balancers.
+  logs:
+    doc: |-
+      /// Cloudflare Logpush jobs and Logpull retention.
+  magic:
+    doc: |-
+      /// Cloudflare Magic WAN, Magic Transit, and Magic Network Monitoring.
+  moq:
+    doc: |-
+      /// Cloudflare Media over QUIC relays.
+  notifications:
+    doc: |-
+      /// Cloudflare notification policies and webhooks.
+  observatory:
+    doc: |-
+      /// Cloudflare Observatory scheduled tests.
+  origin:
+    doc: |-
+      /// Cloudflare origin cloud regions and related origin settings.
+  pages:
+    doc: |-
+      /// Cloudflare Pages projects and domains.
+  pipeline:
+    doc: |-
+      /// Cloudflare Pipelines (streams and sinks).
+  queues:
+    doc: |-
+      /// Cloudflare Queues and consumers.
+  r2:
+    doc: |-
+      /// Cloudflare R2 buckets, custom domains, and lifecycle.
+  regional:
+    doc: |-
+      /// Cloudflare regional hostnames.
+  registrar:
+    doc: |-
+      /// Cloudflare Registrar domains.
+  rules:
+    doc: |-
+      /// Cloudflare rulesets, page rules, lists, and filters.
+  secrets:
+    doc: |-
+      /// Cloudflare Secrets Store.
+  security:
+    doc: |-
+      /// Cloudflare WAF, bot management, firewall, and related security.
+  share:
+    doc: |-
+      /// Cloudflare resource shares.
+  snippet:
+    doc: |-
+      /// Cloudflare Snippets and snippet rules.
+  spectrum:
+    doc: |-
+      /// Cloudflare Spectrum applications.
+  ssl:
+    doc: |-
+      /// Cloudflare SSL/TLS certificates, packs, and origin pull.
+  stream:
+    doc: |-
+      /// Cloudflare Stream videos, live inputs, and watermarks.
+  transforms:
+    doc: |-
+      /// Cloudflare managed transforms.
+  turnstile:
+    doc: |-
+      /// Cloudflare Turnstile widgets.
+  user:
+    doc: |-
+      /// Cloudflare user account and groups.
+  waiting_room:
+    doc: |-
+      /// Cloudflare Waiting Room.
+  web3:
+    doc: |-
+      /// Cloudflare Web3 hostnames.
+  web_analytics:
+    doc: |-
+      /// Cloudflare Web Analytics sites and rules.
+  workers:
+    doc: |-
+      /// Cloudflare Workers scripts, routes, KV, and Workers for Platforms.
+  workflow:
+    doc: |-
+      /// Cloudflare Workflows.
+  zero_trust:
+    doc: |-
+      /// Cloudflare Zero Trust Access, Gateway, DLP, DEX, and tunnels.
   zone:
     doc: |-
       /// Cloudflare zones (domains under Cloudflare management).
-  dns:
-    doc: |-
-      /// Cloudflare DNS records.

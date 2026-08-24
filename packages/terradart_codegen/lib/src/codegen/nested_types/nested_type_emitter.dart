@@ -50,6 +50,30 @@ String nestedParamType(NestedBlockSpec s) => '${_bareNestedType(s)}?';
 String _bareNestedType(NestedBlockSpec s) =>
     s.repeated ? 'List<${s.className}>' : s.className;
 
+/// Constructor-param + argMap-entry snippets for a TOP-LEVEL derived nested
+/// slot on a resource or data-source wrapper.
+///
+/// The constructor exposes a bare (non-`TfArg`) helper-class reference —
+/// [nestedParamType]'s shape, required-ness stripped per its documented
+/// contract ("a caller rendering a required slot strips the trailing `?`
+/// itself") — and the argMap entry wraps `.encode()` in `TfArg.literal(...)`.
+({String param, String argMapEntry}) nestedTypeConstructorSlot(
+  NestedBlockSpec spec, {
+  required bool isRequired,
+}) {
+  final dartName = snakeToDartIdent(spec.tfName);
+  final nullableType = nestedParamType(spec);
+  final bareType = nullableType.substring(0, nullableType.length - 1);
+  final param =
+      isRequired ? 'required $bareType $dartName' : '$nullableType $dartName';
+  final encodeExpr = spec.repeated
+      ? '[for (final e in $dartName) e.encode()]'
+      : '$dartName.encode()';
+  final entry = "'${spec.tfName}': TfArg.literal($encodeExpr),";
+  final argMapEntry = isRequired ? entry : 'if ($dartName != null) $entry';
+  return (param: param, argMapEntry: argMapEntry);
+}
+
 /// Renders one block's own class, then its attribute enums, then recurses
 /// depth-first into its children — the full subtree [spec] roots, as a
 /// sequence of top-level declarations separated by single blank lines.

@@ -1,0 +1,4 @@
+outputDir: custom_hostname
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

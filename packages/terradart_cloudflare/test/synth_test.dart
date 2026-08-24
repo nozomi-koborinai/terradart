@@ -16,7 +16,7 @@ final class _TestStack extends Stack {
     final zone = CloudflareZone(
       localName: 'main',
       name: TfArg.literal('example.com'),
-      account: TfArg.literal({'id': 'acc-1'}),
+      account: ZoneAccount(id: TfArg.literal('acc-1')),
     );
     add(zone);
     add(

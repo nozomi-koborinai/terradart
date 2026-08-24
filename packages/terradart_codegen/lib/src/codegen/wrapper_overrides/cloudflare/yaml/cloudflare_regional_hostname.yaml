@@ -1,0 +1,4 @@
+outputDir: regional
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

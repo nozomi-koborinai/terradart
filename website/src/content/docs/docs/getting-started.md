@@ -31,7 +31,7 @@ Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, t
 dart pub get
 ```
 
-The GA `hashicorp/google` catalog is filled. Beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) (128 resource factories). Other official providers like [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) and [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) are also available.
+The GA `hashicorp/google` catalog is filled. Beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) (128 resource factories). [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) is filled at the current pin (38 resource factories + 24 data sources). [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) is filled at `cloudflare/cloudflare` `5.23.0` (257 resource factories + 446 data sources).
 
 ## 2. Define a Stack
 

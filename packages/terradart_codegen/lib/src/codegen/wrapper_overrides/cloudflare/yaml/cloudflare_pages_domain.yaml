@@ -1,0 +1,4 @@
+outputDir: pages
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

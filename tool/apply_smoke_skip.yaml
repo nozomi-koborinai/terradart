@@ -117,6 +117,7 @@ appwrite_quickstart: appwrite provider example — the apply-smoke harness is GC
 # does not classify them — the skip here is what keeps them out of apply
 # scope.
 cloudflare_dns_quickstart: cloudflare provider example — the apply-smoke harness is GCP-only and Cloudflare is a separate account/billing surface; synth + terraform validate cover it
+cloudflare_leftover_quickstart: cloudflare leftover catalog fill — the apply-smoke harness is GCP-only and Cloudflare is a separate account/billing surface; synth + terraform validate cover it
 
 # --- google-beta provider lane (apply policy not yet designed) ---
 # The apply-smoke harness targets the GA provider lane; how beta examples

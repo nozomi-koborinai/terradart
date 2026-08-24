@@ -10,6 +10,8 @@ import 'dart_type_writer.dart';
 import 'doc_comment_builder.dart';
 import 'getter_emitter.dart';
 import 'naming.dart';
+import 'nested_types/nested_type_collector.dart';
+import 'nested_types/nested_type_emitter.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
@@ -49,11 +51,19 @@ import 'wrapper_overrides/wrapper_override.dart';
 ///   identical to the resource path for consistency).
 /// - `sensitiveFields` getter references the file-private const.
 class DataSourceWrapperEmitter {
-  DataSourceWrapperEmitter({required this.overrides});
+  DataSourceWrapperEmitter({
+    required this.overrides,
+    this.rawDataSourceSchemas = const {},
+  });
 
   /// `Map<terraformType, override>` for data source entries.
   /// Keys must match [ResourceDef.terraformType].
   final Map<String, WrapperOverride> overrides;
+
+  /// Raw provider-schema JSON `block` maps, keyed by Terraform type — same
+  /// shape [WrapperEmitter.rawResourceSchemas] consumes. Consulted when an
+  /// override sets `deriveNestedTypes: true`.
+  final Map<String, Map<String, dynamic>> rawDataSourceSchemas;
 
   /// Emits the full Dart source string for a single data source wrapper file.
   ///
@@ -98,7 +108,22 @@ class DataSourceWrapperEmitter {
     // Plan 5.X: no `.schema.dart` import (data source Layer 1 retired
     // alongside the resource Layer 1) and no `package:terradart_annotations`
     // import (package deleted).
+    final nestedTypeSpecs = override.deriveNestedTypes
+        ? collectNestedTypes(
+            resourceBlock: _requireRawSchema(def.terraformType),
+            resourcePrefix: 'Data${shortResourcePascal(def.terraformType)}',
+            customSlotKeys: const <String>{},
+            excludedPaths:
+                (override.nestedTypeExcludes ?? const <String>[]).toSet(),
+          )
+        : const <NestedBlockSpec>[];
+
     final extraImports = override.extraImports ?? const <String>[];
+    final needsMeta = nestedTypeSpecs.isNotEmpty &&
+        !extraImports.any((i) => i.contains('package:meta/meta.dart'));
+    if (needsMeta) {
+      buf.writeln("import 'package:meta/meta.dart';");
+    }
     for (final imp in extraImports) {
       buf.writeln(imp);
     }
@@ -140,6 +165,14 @@ class DataSourceWrapperEmitter {
     );
     buf.writeln();
 
+    if (nestedTypeSpecs.isNotEmpty) {
+      buf.write(renderNestedTypes(
+        nestedTypeSpecs,
+        resourceTerraformType: def.terraformType,
+      ));
+      buf.writeln();
+    }
+
     // Class-level doc comment. Phase A4: derived deterministically from the
     // IR (same path as WrapperEmitter), with any artisanal `curatedDoc`
     // appended verbatim. The hand-written `classDocComment` fallback was
@@ -173,6 +206,13 @@ class DataSourceWrapperEmitter {
       dartTypeOverrides,
     );
     final argMapByName = _argMapEntriesByName(def, requiredOverrides);
+    for (final spec in nestedTypeSpecs) {
+      final isRequired =
+          spec.required || requiredOverrides.contains(spec.tfName);
+      final slot = nestedTypeConstructorSlot(spec, isRequired: isRequired);
+      paramsByName[spec.tfName] = slot.param;
+      argMapByName[spec.tfName] = slot.argMapEntry;
+    }
 
     buf.writeln('  $pascal({');
     buf.writeln('    required super.localName,');
@@ -298,7 +338,7 @@ class DataSourceWrapperEmitter {
     required bool isRequired,
     String? typeOverride,
   }) {
-    final dartName = snakeToCamel(attr.name);
+    final dartName = snakeToDartIdent(attr.name);
     final dartType = typeOverride ?? writeDartType(attr.type);
     final modifier = isRequired ? 'required ' : '';
     final nullSuffix = isRequired ? '' : '?';
@@ -309,7 +349,7 @@ class DataSourceWrapperEmitter {
     NestedBlockDef nested, {
     required bool isRequired,
   }) {
-    final dartName = snakeToCamel(nested.name);
+    final dartName = snakeToDartIdent(nested.name);
     final isSingle = nested.nesting == NestingMode.single ||
         (nested.nesting == NestingMode.list && nested.maxItems == 1);
     final innerType =
@@ -320,10 +360,22 @@ class DataSourceWrapperEmitter {
   }
 
   String _argMapEntry(String snakeName, bool isRequired) {
-    final camel = snakeToCamel(snakeName);
+    final camel = snakeToDartIdent(snakeName);
     if (isRequired) {
       return "'$snakeName': $camel,";
     }
     return "if ($camel != null) '$snakeName': $camel,";
+  }
+
+  Map<String, dynamic> _requireRawSchema(String terraformType) {
+    final raw = rawDataSourceSchemas[terraformType];
+    if (raw == null) {
+      throw StateError(
+        'DataSourceWrapperEmitter: deriveNestedTypes is set for '
+        '"$terraformType" but no raw provider-schema block was supplied '
+        '(rawDataSourceSchemas has no entry for this type).',
+      );
+    }
+    return raw;
   }
 }

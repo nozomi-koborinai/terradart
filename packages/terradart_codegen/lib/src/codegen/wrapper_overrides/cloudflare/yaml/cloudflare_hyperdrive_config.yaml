@@ -1,0 +1,4 @@
+outputDir: hyperdrive
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

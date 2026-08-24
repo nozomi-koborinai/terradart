@@ -29,4 +29,13 @@ abstract class ProviderRules {
   /// Google: 0–2 lines for `id` and `nameRef` (from `name` attr).
   /// AWS (Phase 4.5+): will return 0–2 lines for `id` and `arnRef`.
   List<String> universalGetters(ResourceDef def);
+
+  /// Terraform type prefix this provider uses (`google_`, `cloudflare_`, …).
+  /// [OutputDirResolver] strips it before alias / segment matching.
+  String get terraformTypePrefix;
+
+  /// When true, `wrap-init` fills `deriveNestedTypes: true` and
+  /// `deriveOutputGetters: true` so plugin-framework object attributes
+  /// become typed helper classes instead of `TfArg<Map<String, dynamic>>`.
+  bool get typedNestedDefaults => false;
 }
