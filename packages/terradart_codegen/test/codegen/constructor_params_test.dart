@@ -111,12 +111,11 @@ void main() {
       expect(result, isNot(contains('terraform_labels')));
     });
 
-    test('id attribute is always excluded by name (not just computed-only)',
+    test('optional/computed id is excluded by name (not just computed-only)',
         () {
       // `id` is given `optional + computed` constraints so it would NOT be
-      // caught by the computed-only branch — this isolates the by-name
-      // `isIdAttribute` exclusion. A plain `Constraints(computed: true)` would
-      // pass this test even if the id-name check were deleted.
+      // caught by the computed-only branch — this isolates the synthetic-id
+      // exclusion. A required `id` is a create-time input and stays in.
       final def = makeResource(
         attrs: [
           const Attribute(
@@ -134,6 +133,24 @@ void main() {
       final result = orderedConstructorParams(def, null);
       expect(result, ['name']);
       expect(result, isNot(contains('id')));
+    });
+
+    test('required id stays in the resource constructor', () {
+      final def = makeResource(
+        attrs: [
+          const Attribute(
+            name: 'id',
+            type: StringType(),
+            constraints: Constraints(required: true),
+          ),
+          const Attribute(
+            name: 'account_id',
+            type: StringType(),
+            constraints: Constraints(required: true),
+          ),
+        ],
+      );
+      expect(orderedConstructorParams(def, null), ['id', 'account_id']);
     });
 
     test('timeouts nested block is always excluded', () {
@@ -271,8 +288,8 @@ void main() {
         orderedDataSourceConstructorParams(def, null),
         ['id', 'project_id'],
       );
-      // Resource natural order still drops id.
-      expect(orderedConstructorParams(def, null), ['project_id']);
+      // Required `id` is also a resource constructor input.
+      expect(orderedConstructorParams(def, null), ['id', 'project_id']);
     });
 
     test('drops a synthetic optional/computed id', () {

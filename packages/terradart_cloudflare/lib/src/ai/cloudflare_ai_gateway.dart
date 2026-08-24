@@ -405,6 +405,7 @@ final class CloudflareAiGateway extends Resource {
     required TfArg<bool> cacheInvalidateOnUpdate,
     required TfArg<num> cacheTtl,
     required TfArg<bool> collectLogs,
+    required TfArg<String> id,
     TfArg<num>? logManagement,
     TfArg<String>? logManagementStrategy,
     TfArg<bool>? logpush,
@@ -433,6 +434,7 @@ final class CloudflareAiGateway extends Resource {
            'cache_invalidate_on_update': cacheInvalidateOnUpdate,
            'cache_ttl': cacheTtl,
            'collect_logs': collectLogs,
+           'id': id,
            if (logManagement != null) 'log_management': logManagement,
            if (logManagementStrategy != null)
              'log_management_strategy': logManagementStrategy,

@@ -381,6 +381,7 @@ final class CloudflareAiSearchInstance extends Resource {
     TfArg<String>? embeddingModel,
     TfArg<String>? fusionMethod,
     TfArg<bool>? hybridSearchEnabled,
+    required TfArg<String> id,
     TfArg<num>? maxNumResults,
     TfArg<bool>? paused,
     TfArg<bool>? reranking,
@@ -422,6 +423,7 @@ final class CloudflareAiSearchInstance extends Resource {
            if (fusionMethod != null) 'fusion_method': fusionMethod,
            if (hybridSearchEnabled != null)
              'hybrid_search_enabled': hybridSearchEnabled,
+           'id': id,
            if (maxNumResults != null) 'max_num_results': maxNumResults,
            if (paused != null) 'paused': paused,
            if (reranking != null) 'reranking': reranking,

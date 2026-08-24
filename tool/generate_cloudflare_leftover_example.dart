@@ -13,10 +13,6 @@ const _skipResourceTypes = {
   'cloudflare_dns_record',
   // Leftover dummy values cannot satisfy these provider enums / nested
   // schemas; listed in tool/example_debt.yaml with a reason.
-  'cloudflare_ai_gateway',
-  'cloudflare_ai_search_instance',
-  'cloudflare_image',
-  'cloudflare_image_variant',
   'cloudflare_snippet',
   'cloudflare_access_rule',
   'cloudflare_certificate_pack',
@@ -32,8 +28,6 @@ const _skipResourceTypes = {
   'cloudflare_waiting_room_rules',
   'cloudflare_workers_deployment',
   'cloudflare_workers_script',
-  'cloudflare_zero_trust_access_ai_controls_mcp_portal',
-  'cloudflare_zero_trust_access_ai_controls_mcp_server',
   'cloudflare_zero_trust_access_identity_provider',
   'cloudflare_zero_trust_risk_behavior',
   'cloudflare_zone_lockdown',
@@ -367,6 +361,10 @@ List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
     if (!optional.containsKey('accountId')) add('zoneId');
   }
   add('id');
+  // file XOR url (cloudflare_image): emit url so leftover JSON is valid.
+  if (optional.containsKey('file') && optional.containsKey('url')) {
+    add('url');
+  }
   var addedLookupId = out.any((e) => e.name == 'id');
   if (f.kind == _Kind.data) {
     for (final name in optional.keys) {
@@ -664,6 +662,9 @@ const _literalByKey = <String, String>{
   'AiGatewayDynamicRoutingElements.type': "'start'",
   'VulnerabilityScannerTargetEnvironmentTarget.type': "'zone'",
   'R2BucketEventNotificationRules.actions': "'PutObject'",
+  'ImageVariantOptions.fit': "'scale-down'",
+  'ImageVariantOptions.metadata': "'none'",
+  'CloudflareZeroTrustAccessAiControlsMcpServer.authType': "'unauthenticated'",
 };
 
 String _stringLiteral(String name, {String owner = ''}) {
@@ -673,6 +674,7 @@ String _stringLiteral(String name, {String owner = ''}) {
   final n = name.toLowerCase();
   if (n == 'accountid' || n == 'account') return 'accountId';
   if (n == 'zoneid' || n == 'zone') return 'zoneId';
+  if (n == 'id') return "'$_hex32'";
   if (n.contains('email')) return "'leftover@example.com'";
   if (n.endsWith('url') || n.contains('uri')) {
     return "'https://example.com'";

@@ -19,6 +19,7 @@ final class CloudflareImage extends Resource {
     required TfArg<String> accountId,
     TfArg<String>? creator,
     TfArg<String>? file,
+    required TfArg<String> id,
     TfArg<String>? metadata,
     TfArg<bool>? requireSignedUrls,
     TfArg<String>? url,
@@ -30,6 +31,7 @@ final class CloudflareImage extends Resource {
            'account_id': accountId,
            if (creator != null) 'creator': creator,
            if (file != null) 'file': file,
+           'id': id,
            if (metadata != null) 'metadata': metadata,
            if (requireSignedUrls != null)
              'require_signed_urls': requireSignedUrls,

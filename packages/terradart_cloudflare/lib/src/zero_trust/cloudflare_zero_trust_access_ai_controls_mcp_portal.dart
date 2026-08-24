@@ -113,6 +113,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
     TfArg<bool>? allowCodeMode,
     TfArg<String>? description,
     required TfArg<String> hostname,
+    required TfArg<String> id,
     required TfArg<String> name,
     TfArg<bool>? secureWebGateway,
     List<ZeroTrustAccessAiControlsMcpPortalServers>? servers,
@@ -125,6 +126,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
            if (allowCodeMode != null) 'allow_code_mode': allowCodeMode,
            if (description != null) 'description': description,
            'hostname': hostname,
+           'id': id,
            'name': name,
            if (secureWebGateway != null) 'secure_web_gateway': secureWebGateway,
            if (servers != null)

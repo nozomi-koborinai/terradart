@@ -45,6 +45,7 @@ final class CloudflareImageVariant extends Resource {
   CloudflareImageVariant({
     required super.localName,
     required TfArg<String> accountId,
+    required TfArg<String> id,
     TfArg<bool>? neverRequireSignedUrls,
     required ImageVariantOptions options,
     super.lifecycle,
@@ -53,6 +54,7 @@ final class CloudflareImageVariant extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           'id': id,
            if (neverRequireSignedUrls != null)
              'never_require_signed_urls': neverRequireSignedUrls,
            'options': TfArg.literal(options.encode()),

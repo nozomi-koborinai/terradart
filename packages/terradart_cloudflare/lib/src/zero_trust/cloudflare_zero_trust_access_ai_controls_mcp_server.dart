@@ -79,6 +79,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
     TfArg<String>? clientSecret,
     TfArg<String>? description,
     required TfArg<String> hostname,
+    required TfArg<String> id,
     TfArg<bool>? isSharedOauthCallbackEnabled,
     required TfArg<String> name,
     TfArg<bool>? secureWebGateway,
@@ -95,6 +96,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
            if (clientSecret != null) 'client_secret': clientSecret,
            if (description != null) 'description': description,
            'hostname': hostname,
+           'id': id,
            if (isSharedOauthCallbackEnabled != null)
              'is_shared_oauth_callback_enabled': isSharedOauthCallbackEnabled,
            'name': name,

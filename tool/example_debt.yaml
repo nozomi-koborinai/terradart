@@ -928,13 +928,7 @@ AppwriteProjectKey: import-only — appwrite_project_key create endpoint is gone
 # typed factories in terradart_cloudflare; coverage is the Dart constructor
 # plus wrap --check, not leftover synth JSON.
 CloudflareAccessRule: leftover dummy cannot satisfy provider enum/nested-schema constraints (mode/config); not emitted in cloudflare_leftover_quickstart
-CloudflareAiGateway: leftover dummy omits terraform-required id (wrapper treats it as computed); not emitted in cloudflare_leftover_quickstart
-CloudflareAiSearchInstance: leftover dummy omits terraform-required id (wrapper treats it as computed); not emitted in cloudflare_leftover_quickstart
-CloudflareImage: leftover dummy omits terraform-required id (wrapper treats it as computed); not emitted in cloudflare_leftover_quickstart
-CloudflareImageVariant: leftover dummy omits terraform-required id (wrapper treats it as computed); not emitted in cloudflare_leftover_quickstart
 CloudflareSnippet: leftover dummy cannot satisfy files[].name/content nested schema
-CloudflareZeroTrustAccessAiControlsMcpPortal: leftover dummy omits terraform-required id (wrapper treats it as computed)
-CloudflareZeroTrustAccessAiControlsMcpServer: leftover dummy omits terraform-required id (wrapper treats it as computed)
 CloudflareZeroTrustRiskBehavior: leftover dummy cannot satisfy behaviors map-of-object schema
 CloudflareCertificatePack: leftover dummy cannot satisfy certificate_authority/type/validity_days enums
 CloudflareFirewallRule: leftover dummy cannot satisfy deprecated firewall-rule nested schema

@@ -15,9 +15,9 @@ import 'naming.dart';
 /// - A `local_name` attribute → `localNameRef` (bare `localName` would
 ///   override [Resource.localName]'s `String` return type and fail analysis;
 ///   GKE on-prem / GDC cluster CR names hit this).
-/// - An `id` attribute → bare `id`. Special-cased by name (parallel to
-///   `skipAttribute`'s `isIdAttribute` check), so it is exposed as a getter
-///   regardless of how its computed/optional flags would otherwise classify it.
+/// - An `id` attribute → bare `id`. Special-cased by name so it is always
+///   a getter (constructor-only `id` params do not create a field, so a
+///   required create-time `id` can coexist with this getter).
 /// - Every **pure computed-only** attribute (`Constraints.computedOnly`)
 ///   other than `id`/`name`/`kind`/`local_name` → a camelCase getter of its
 ///   rendered Dart type.
@@ -69,8 +69,8 @@ String emitDerivedOutputGetters(
   if (attrNames.contains('local_name')) {
     writeGetter('local_name', 'localNameRef', 'String');
   }
-  // `id` is special-cased by name, parallel to `skipAttribute`'s isIdAttribute
-  // check: always a getter, never a constructor arg, whatever its flags say.
+  // `id` is always a getter. A required create-time `id` constructor param
+  // is not a field (`this.id`), so it does not collide with this getter.
   if (attrNames.contains('id')) {
     writeGetter('id', 'id', 'String');
   }

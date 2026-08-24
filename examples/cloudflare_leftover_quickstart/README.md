@@ -9,6 +9,5 @@ dart run bin/infra.dart
 cd tf-out && terraform init -backend=false && terraform validate
 ```
 
-Factories the leftover dummy cannot satisfy (provider enums, nested JSON,
-or terraform-required ids the wrapper treats as computed) are listed in
-[`tool/example_debt.yaml`](../../tool/example_debt.yaml).
+Factories the leftover dummy cannot satisfy (provider enums or nested JSON)
+are listed in [`tool/example_debt.yaml`](../../tool/example_debt.yaml).
