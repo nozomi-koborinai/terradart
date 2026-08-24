@@ -18,6 +18,8 @@ export 'src/colab/google_colab_notebook_execution.dart'
         ColabNotebookExecutionServiceAccount,
         ColabNotebookExecutionSource,
         ColabNotebookExecutionTemplateCompute,
+        ColabNotebookExecutionWorkbenchRuntime,
+        ColabNotebookExecutionWorkbenchRuntimeVmImage,
         GoogleColabNotebookExecution;
 export 'src/colab/google_colab_runtime.dart'
     show

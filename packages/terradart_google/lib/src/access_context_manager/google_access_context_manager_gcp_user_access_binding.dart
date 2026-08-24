@@ -8,6 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleAccessContextManagerGcpUserAccessBindingSensitive =
     <String>{};
 
+/// Typed helper for the `principal` block of
+/// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
+@immutable
+final class AccessContextManagerGcpUserAccessBindingPrincipal {
+  const AccessContextManagerGcpUserAccessBindingPrincipal({
+    this.serviceAccount,
+    this.serviceAccountProjectNumber,
+  });
+
+  final TfArg<String>? serviceAccount;
+
+  final TfArg<String>? serviceAccountProjectNumber;
+
+  Map<String, Object?> encode() => {
+    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccountProjectNumber != null)
+      'service_account_project_number': serviceAccountProjectNumber!.toTfJson(),
+  };
+}
+
 /// Typed helper for the `scoped_access_settings` block of
 /// `google_access_context_manager_gcp_user_access_binding` (derived from provider schema).
 @immutable
@@ -239,7 +259,7 @@ final class GoogleAccessContextManagerGcpUserAccessBinding extends Resource {
     required super.localName,
     TfArg<List<String>>? accessLevels,
     TfArg<String>? deletionPolicy,
-    required TfArg<String> groupKey,
+    TfArg<String>? groupKey,
     required TfArg<String> organizationId,
     List<AccessContextManagerGcpUserAccessBindingScopedAccessSettings>?
     scopedAccessSettings,
@@ -251,7 +271,7 @@ final class GoogleAccessContextManagerGcpUserAccessBinding extends Resource {
          argMap: {
            if (accessLevels != null) 'access_levels': accessLevels,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           'group_key': groupKey,
+           if (groupKey != null) 'group_key': groupKey,
            'organization_id': organizationId,
            if (scopedAccessSettings != null)
              'scoped_access_settings': TfArg.literal([
