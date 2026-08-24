@@ -25,6 +25,9 @@
 #   - SECURITY.md                                 (supported-versions pin + table)
 #   - packages/terradart_core/README.md           (pubspec sample caret)
 #   - packages/terradart_google/README.md         (pubspec sample carets)
+#   - packages/terradart_google_beta/README.md    (pubspec sample carets)
+#   - packages/terradart_appwrite/README.md       (pubspec sample carets)
+#   - packages/terradart_cloudflare/README.md     (pubspec sample carets)
 #   - packages/terradart_codegen/README.md        (`dart pub global activate` caret)
 #   - website/src/content/docs/docs/getting-started.md  (pubspec sample caret note + version line)
 #   - .github/ISSUE_TEMPLATE/bug.yml              (alpha banner version)
@@ -200,6 +203,9 @@ fi
 # Package READMEs: pubspec caret samples + activate caret.
 for pkg_readme in packages/terradart_core/README.md \
                   packages/terradart_google/README.md \
+                  packages/terradart_google_beta/README.md \
+                  packages/terradart_appwrite/README.md \
+                  packages/terradart_cloudflare/README.md \
                   packages/terradart_codegen/README.md; do
   if [ -f "$pkg_readme" ]; then
     sed_inplace "s#terradart_(core|codegen|google): \\^${OLD_RE}#terradart_\\1: ^${NEW}#g" "$pkg_readme"
@@ -241,6 +247,9 @@ for f in README.md \
          website/src/content/docs/docs/getting-started.md \
          packages/terradart_core/README.md \
          packages/terradart_google/README.md \
+         packages/terradart_google_beta/README.md \
+         packages/terradart_appwrite/README.md \
+         packages/terradart_cloudflare/README.md \
          packages/terradart_codegen/README.md; do
   [ -f "$f" ] || continue
   # Blanket ^X.Y.x replace (like CONTRIBUTING/SECURITY below) covers every
@@ -287,6 +296,9 @@ STALE=$(
     README.md website/src/content/docs/docs/getting-started.md \
     packages/terradart_core/README.md \
     packages/terradart_google/README.md \
+    packages/terradart_google_beta/README.md \
+    packages/terradart_appwrite/README.md \
+    packages/terradart_cloudflare/README.md \
     packages/terradart_codegen/README.md 2>/dev/null
   grep -nE "dart pub global activate terradart_codegen \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     README.md \
@@ -307,6 +319,9 @@ STALE=$(
       README.md website/src/content/docs/docs/getting-started.md \
       packages/terradart_core/README.md \
       packages/terradart_google/README.md \
+      packages/terradart_google_beta/README.md \
+      packages/terradart_appwrite/README.md \
+      packages/terradart_cloudflare/README.md \
       packages/terradart_codegen/README.md 2>/dev/null
     grep -nE "pre-1\\.0 \\(${OLD_MINOR_RE}\\.x\\)" README.md 2>/dev/null
     grep -nE "\\b${OLD_MINOR_RE}\\.x\\b" \

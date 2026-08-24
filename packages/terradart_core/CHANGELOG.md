@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.26.0 - 2026-08-24
+
+Lockstep release with `terradart_cloudflare` 0.26.0 (catalog filled at the `5.23.0` pin). No `terradart_core` API changes.
+
 ## 0.25.3 - 2026-08-23
 
 Lockstep release with `terradart_appwrite` 0.25.3 (catalog filled at the `2.0.0-beta.1` pin). No `terradart_core` API changes.

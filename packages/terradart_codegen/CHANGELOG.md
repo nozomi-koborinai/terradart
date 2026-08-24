@@ -1,12 +1,17 @@
 # Changelog
 
-## Unreleased
+## 0.26.0 - 2026-08-24
 
 - Plugin-framework `nested_type` attributes emit typed nested helper
   classes (not `TfArg<Map<String, dynamic>>`). Computed-only objects stay
   skipped. Data-source nested helpers use a `Data` prefix to avoid
   resource name clashes. Reserved Dart identifiers (e.g. `default`) are
-  escaped. Cloudflare `wrap --check` remains in `tool/agent_verify.sh`.
+  escaped.
+- `skipAttribute` / `skipDataSourceAttribute` keep a **required** `id`
+  (create-time / lookup key). Synthetic optional/computed `id` is still
+  dropped.
+- Wrap fixtures: `hashicorp/google` and `hashicorp/google-beta` **7.45.0**.
+  Cloudflare `wrap --check` remains in `tool/agent_verify.sh`.
 
 ## 0.25.3 - 2026-08-23
 

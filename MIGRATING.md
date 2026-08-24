@@ -1,6 +1,6 @@
 # Migrating terradart
 
-## Unreleased — next minor (`0.25.x` → `0.26.x`)
+## 0.25.3 → 0.26.0
 
 **Breaking (`terradart_cloudflare`)** — `CloudflareZone.account` is a typed
 `ZoneAccount` helper instead of `TfArg<Map<String, dynamic>>`. Nested
@@ -27,8 +27,8 @@ CloudflareZone(
 (`DnsRecordSettings`), and `private_routing` slots that were previously
 omitted from the curated constructor.
 
-This lands on the next **minor** bump; `^0.25.x` patches on pub.dev stay
-compatible with the previous `TfArg<Map>` zone account.
+`^0.25.x` patches on pub.dev stay compatible with the previous
+`TfArg<Map>` zone account.
 
 ---
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.26.0 - 2026-08-24
+
+Lockstep release with the TerraDart workspace. No Appwrite factory or provider changes.
+
 ## 0.25.3 - 2026-08-23
 
 - Fill the curated catalog at the `appwrite/appwrite` `2.0.0-beta.1` pin:
