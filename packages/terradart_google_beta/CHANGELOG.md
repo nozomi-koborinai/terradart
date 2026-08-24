@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.26.0 - 2026-08-24
+
+Lockstep release with the TerraDart workspace. Schema fixture re-extracted at `hashicorp/google-beta` 7.45.0 (same resource set). No factory or provider API changes.
+
 ## 0.25.3 - 2026-08-23
 
 Lockstep release with the TerraDart workspace. No factory or provider changes.

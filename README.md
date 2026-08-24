@@ -11,7 +11,7 @@
 >
 > Cloud infrastructure as real Dart code — typed, refactor-safe, drop-in for `terraform apply`.
 
-**Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.25.x`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
+**Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.26.x`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
 [![CI](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml)
 [![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.6-blue.svg)](https://dart.dev)
@@ -39,8 +39,8 @@ See [terradart.dev](https://terradart.dev) for documentation, guides, and API re
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.25.x
-  terradart_google: ^0.25.x
+  terradart_core: ^0.26.x
+  terradart_google: ^0.26.x
 ```
 
 ```dart
@@ -270,7 +270,7 @@ See the full factory table on [terradart.dev/docs/coverage/](https://terradart.d
 
 ## Status
 
-**Alpha**, pre-1.0 (0.25.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.25.x` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta). Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
+**Alpha**, pre-1.0 (0.26.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.26.x` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta). Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
 
 ---
 

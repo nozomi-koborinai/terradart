@@ -6,6 +6,10 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+## [0.26.0] - 2026-08-24
+
+Lockstep release across the workspace. **Breaking** — see [MIGRATING.md](MIGRATING.md).
+
 ### Added
 
 - **`terradart_cloudflare`** — fill the curated catalog at the
@@ -14,11 +18,21 @@ Per-package changelogs live alongside each package and are the system of record 
   Coverage via [`cloudflare_dns_quickstart`](examples/cloudflare_dns_quickstart/)
   and [`cloudflare_leftover_quickstart`](examples/cloudflare_leftover_quickstart/)
   (synth + `terraform validate`; apply-smoke skip-listed).
+- `CloudflareDnsRecord` typed `data` / `settings` / `private_routing` slots
+  (previously omitted from the curated constructor).
 
-### Breaking (next minor)
+### Breaking
 
 - `CloudflareZone.account`: `TfArg<Map<String, dynamic>>` → `ZoneAccount`.
-  `CloudflareDnsRecord` gains typed `data` / `settings` / `private_routing`.
+
+### Changed
+
+- **`terradart_codegen`** — `skipAttribute` keeps a required `id` (plugin-framework
+  create-time / lookup keys). Synthetic optional/computed `id` is still dropped.
+- Wrap fixtures: `hashicorp/google` and `hashicorp/google-beta` pin **7.45.0**
+  ([#631](https://github.com/nozomi-koborinai/terradart/pull/631)). Generated
+  GA/beta wrappers are unchanged (`wrap --check` clean); two new `google_*`
+  names landed on the curation backlog.
 
 ## [0.25.3] - 2026-08-23
 

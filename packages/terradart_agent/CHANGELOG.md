@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.26.0 - 2026-08-24
+
+Lockstep release with `terradart_cloudflare` 0.26.0. MCP catalog is unchanged (GA `hashicorp/google` only). No MCP protocol or tool changes.
+
 ## 0.25.3 - 2026-08-23
 
 Lockstep release with `terradart_appwrite` 0.25.3. MCP catalog is unchanged (GA `hashicorp/google` only). No MCP protocol or tool changes.
