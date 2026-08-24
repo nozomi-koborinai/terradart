@@ -1,0 +1,123 @@
+outputDir: agentic
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+# The schema documents `role` as a newline-separated "Possible values:" list,
+# which the derivation's enum parser does not recognize; curated here so the
+# 27 analyst roles stay compile-checked.
+prelude: |
+  /// `role` for [GoogleAgenticApplicationsAnalystAgentPersona].
+  enum AgenticApplicationsAnalystAgentPersonaRole implements TerraformEnum {
+    genericFinanceAnalyst('ANALYST_ROLE_GENERIC_FINANCE_ANALYST'),
+    corporateFinanceAnalyst('ANALYST_ROLE_CORPORATE_FINANCE_ANALYST'),
+    crossAssetDerivativesStrategist(
+      'ANALYST_ROLE_CROSS_ASSET_DERIVATIVES_STRATEGIST',
+    ),
+    kycAnalyst('ANALYST_ROLE_KYC_ANALYST'),
+    salesTrader('ANALYST_ROLE_SALES_TRADER'),
+    quantAnalyst('ANALYST_ROLE_QUANT_ANALYST'),
+    exchangeManager('ANALYST_ROLE_EXCHANGE_MANAGER'),
+    portfolioManager('ANALYST_ROLE_PORTFOLIO_MANAGER'),
+    wealthManager('ANALYST_ROLE_WEALTH_MANAGER'),
+    institutionalPortfolioStrategist(
+      'ANALYST_ROLE_INSTITUTIONAL_PORTFOLIO_STRATEGIST',
+    ),
+    mnaExecutionAnalyst('ANALYST_ROLE_MNA_EXECUTION_ANALYST'),
+    ecmOriginationStrategist('ANALYST_ROLE_ECM_ORIGINATION_STRATEGIST'),
+    leveragedFinanceSpecialist('ANALYST_ROLE_LEVERAGED_FINANCE_SPECIALIST'),
+    investmentResearchAnalyst('ANALYST_ROLE_INVESTMENT_RESEARCH_ANALYST'),
+    corporateBankingAnalyst('ANALYST_ROLE_CORPORATE_BANKING_ANALYST'),
+    creditRiskStrategist('ANALYST_ROLE_CREDIT_RISK_STRATEGIST'),
+    behavioralFinancialStrategist(
+      'ANALYST_ROLE_BEHAVIORAL_FINANCIAL_STRATEGIST',
+    ),
+    fundAccountant('ANALYST_ROLE_FUND_ACCOUNTANT'),
+    modelValidationAuditor('ANALYST_ROLE_MODEL_VALIDATION_AUDITOR'),
+    privateEquitySpecialist('ANALYST_ROLE_PRIVATE_EQUITY_SPECIALIST'),
+    treasuryAnalyst('ANALYST_ROLE_TREASURY_ANALYST'),
+    ventureCapitalAnalyst('ANALYST_ROLE_VENTURE_CAPITAL_ANALYST'),
+    amlInvestigator('ANALYST_ROLE_AML_INVESTIGATOR'),
+    dueDiligenceAnalyst('ANALYST_ROLE_DUE_DILIGENCE_ANALYST'),
+    insuranceClaimsAnalyst('ANALYST_ROLE_INSURANCE_CLAIMS_ANALYST'),
+    specialtyLiabilityUnderwriter(
+      'ANALYST_ROLE_SPECIALTY_LIABILITY_UNDERWRITER',
+    ),
+    catastropheExposureModeler('ANALYST_ROLE_CATASTROPHE_EXPOSURE_MODELER');
+
+    const AgenticApplicationsAnalystAgentPersonaRole(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  role: AgenticApplicationsAnalystAgentPersonaRole
+
+curatedDoc: |-
+  /// Agentic Applications **analyst agent persona** — the design-time
+  /// configuration a Gemini Enterprise analyst agent answers with: its
+  /// [role], the data [resources] it may read (BigQuery / Cloud Storage /
+  /// Drive / raw files), [skills] (markdown playbooks), [tables] schema
+  /// overrides, and artifact/visualization examples.
+  ///
+  /// [analystAgentPersonaId] is the id segment of the resource name and is
+  /// immutable; [location] is the regional segment (e.g. `us-central1`).
+  /// Set [geminiEnterpriseEngine] to route one Gemini Enterprise engine's
+  /// requests to this persona — otherwise only personas whose name ends in
+  /// `/default` receive GE traffic.
+  ///
+  /// `mcp_data_sources.api_key` / `client_secret` are marked sensitive:
+  /// pass them from a secret source rather than committing literals.
+  ///
+  /// **Cost:** gcp-cost: Agentic Applications `E4EE-DF31-DCDA` Finance
+  /// Agent Input Tokens Usage SKU `ECEB-E3A9-60D0` **$5/count** (Output
+  /// `8B98-07A1-58AC` **$25/count**; Cached `455D-CE9B-3B9F`
+  /// **$0.5/count**). billing-behavior: every SKU in the service meters
+  /// agent token / chat-session usage — creating a persona is config only
+  /// and runs no inference, so create → destroy accrues nothing.
+  ///
+  /// Enable `agenticapplications.googleapis.com` via [Apis.enable] before
+  /// apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleAgenticApplicationsAnalystAgentPersona(
+  ///   localName: 'analyst',
+  ///   location: TfArg.literal('us-central1'),
+  ///   analystAgentPersonaId: TfArg.literal('terradart-analyst'),
+  ///   displayName: TfArg.literal('TerraDart treasury analyst'),
+  ///   role: TfArg.literal(
+  ///     AgenticApplicationsAnalystAgentPersonaRole.treasuryAnalyst,
+  ///   ),
+  ///   skills: [
+  ///     AgenticApplicationsAnalystAgentPersonaSkills(
+  ///       skillId: TfArg.literal('cash-position'),
+  ///       content: TfArg.literal('# Cash position\nSummarize balances.'),
+  ///     ),
+  ///   ],
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - analyst_agent_persona_id
+  - display_name
+  - role
+  - display_description
+  - model_description
+  - customer_context
+  - gemini_enterprise_engine
+  - resources
+  - tables
+  - skills
+  - artifact_examples
+  - artifacts_config
+  - external_data_sources
+  - mcp_data_sources
+  - deletion_policy
+  - project

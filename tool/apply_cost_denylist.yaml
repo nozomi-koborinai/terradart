@@ -375,6 +375,7 @@ google_compute_commitment: sweep_only        # committed-use discount contract (
 
 # --- safe: no existence billing, cheap, apply→destroy stops charges ---
 # (bulk-registered from existing example tf-outs; verified by apply history)
+google_agentic_applications_analyst_agent_persona: safe  # gcp-cost: Agentic Applications E4EE-DF31-DCDA Finance Agent Input Tokens Usage SKU ECEB-E3A9-60D0 $5/count (Output 8B98-07A1-58AC $25/count; Cached 455D-CE9B-3B9F $0.5/count; Chat Sessions for ShoppingAgent D7A5-F639-C983) — list_skus returns those 4 usage SKUs and no persona/config SKU; billing-behavior: the persona is design-time config that runs no inference — token/session SKUs meter agent usage only, so create → destroy accrues nothing
 google_access_context_manager_access_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus — VPC Service Controls policy metadata); billing-behavior: org policy object only — not existence-billed
 google_access_context_manager_access_level: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus — access level metadata); billing-behavior: policy label only — destroy removes level
 google_access_context_manager_service_perimeter: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus — perimeter metadata); billing-behavior: VPC SC perimeter config only — not existence-billed

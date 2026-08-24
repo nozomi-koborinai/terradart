@@ -6,7 +6,7 @@
 
 Curated factory wrappers for **Google Cloud** resources (the official [`hashicorp/google`](https://registry.terraform.io/providers/hashicorp/google) Terraform provider) for Dart-first Terraform stacks.
 
-Ships **1332 curated resource factories + 461 data sources** (1793 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
+Ships **1333 curated resource factories + 461 data sources** (1794 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
 
 Beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) (128 resource factories). The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). Discover factories programmatically via `package:terradart_google/catalog.dart` (`terradartCatalog`).
 

@@ -3,6 +3,7 @@
 /// Use with [Apis.required] to derive the `google_project_service` set for the
 /// factories you import from `package:terradart_google/<barrel>.dart`.
 enum Barrels {
+  agentic('agentic'),
   alloydb('alloydb'),
   accessContextManager('access_context_manager'),
   apigee('apigee'),

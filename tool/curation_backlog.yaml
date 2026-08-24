@@ -46,9 +46,6 @@
 # detected types.
 
 entries:
-  - resource: google_agentic_applications_analyst_agent_persona
-    detected_at: 2026-08-23
-    provider_version: 7.45.0
   - resource: google_chronicle_soar_network
     detected_at: 2026-08-16
     provider_version: 7.44.0

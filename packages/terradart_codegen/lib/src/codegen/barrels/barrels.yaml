@@ -44,6 +44,14 @@ barrels:
       /// plus registered agent/MCP services and auth-provider bindings.
       /// Requires Agent Identity scaffolding; ships debt-only (not applyable
       /// on terradart-validate).
+  agentic:
+    file: agentic_applications
+    doc: |-
+      /// Agentic Applications — analyst agent personas for Gemini Enterprise:
+      /// role, data resources (BigQuery / GCS / Drive / raw files), skills,
+      /// table schema overrides, and artifact/visualization examples. Persona
+      /// config is design-time only; Finance Agent token SKUs meter agent
+      /// usage, not persona create.
   alloydb:
     doc: |-
       /// AlloyDB — Postgres-compatible managed database clusters and instances.
