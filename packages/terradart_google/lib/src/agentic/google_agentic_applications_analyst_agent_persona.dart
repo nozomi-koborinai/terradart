@@ -1270,6 +1270,12 @@ final class AgenticApplicationsAnalystAgentPersonaTablesColumns {
 /// `mcp_data_sources.api_key` / `client_secret` are marked sensitive:
 /// pass them from a secret source rather than committing literals.
 ///
+/// The `export_format` fields under [artifactsConfig] stay `TfArg<String>`
+/// (the schema documents their values in prose, not as an enum): documents
+/// accept `PDF` / `DOCX` / `GOOGLE_DOCS`, slides accept `PDF` / `PNG` /
+/// `PPTX` / `GOOGLE_SLIDES`. Anything else is rejected at apply, not at
+/// `terraform validate`.
+///
 /// **Cost:** gcp-cost: Agentic Applications `E4EE-DF31-DCDA` Finance
 /// Agent Input Tokens Usage SKU `ECEB-E3A9-60D0` **$5/count** (Output
 /// `8B98-07A1-58AC` **$25/count**; Cached `455D-CE9B-3B9F`
