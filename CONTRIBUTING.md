@@ -39,9 +39,23 @@ tool/agent_verify.sh
 dart tool/check_docs_consistency.dart
 tool/smoke_quickstart.sh
 
-# Format check
-dart format --set-exit-if-changed .
+# Format check — scoped to the hand-written packages, same as CI
+dart format --output=none --set-exit-if-changed \
+  packages/terradart_core/ \
+  packages/terradart_codegen/ \
+  packages/terradart_agent/ \
+  packages/terradart_coverage/
 ```
+
+**Do not run `dart format` over the whole repo.** `terradart_google`
+wrappers are formatted by `terradart wrap`'s pinned `dart_style`, which can
+drift from the SDK-bundled CLI — `terradart wrap --check` is the
+authoritative check for those. And `examples/` is outside every format
+check: `examples/cloudflare_leftover_quickstart/lib/main.dart` is generated
+with long single-line expressions, and formatting wraps them without
+trailing commas, which trips `require_trailing_commas` 58 times. Running
+`dart format .` leaves the tree failing `dart analyze` with no CI job to
+tell you why.
 
 **Agent skills (optional):** TerraDart maintainer workflows are committed under [`.agents/skills/`](.agents/skills/). Compatible agents discover them automatically. For generic Dart analyze/test workflows you may also install [dart-lang/skills](https://github.com/dart-lang/skills) with Node.js: `npx skills add dart-lang/skills --skill '*' --agent universal --yes`.
 
@@ -58,7 +72,7 @@ Before opening a PR:
 - [ ] `tool/agent_verify.sh` passes (or explain what you could not run).
 - [ ] `dart tool/check_docs_consistency.dart` passes when you touch versions or catalog counts.
 - [ ] `tool/smoke_quickstart.sh` passes when you touch `pubsub_quickstart` or synth/export paths.
-- [ ] `dart format` was run.
+- [ ] `dart format` was run **on the scoped paths above** — not `dart format .`.
 
 **Wave / new curated factories** (see [`.agents/skills/terradart-ship-wave/`](.agents/skills/terradart-ship-wave/SKILL.md)):
 
