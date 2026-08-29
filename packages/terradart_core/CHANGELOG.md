@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- **`S3Backend`** — `terraform { backend "s3" { ... } }` configuration, alongside the existing `GcsBackend` and `LocalBackend`. Covers S3 and the S3-compatible stores (Cloudflare R2, MinIO, Backblaze B2) via `endpoints` plus the `skip_*` flags. `S3Backend.r2(accountId:, bucket:, key:)` fills in the R2 endpoint, `region = "auto"`, path-style addressing, and all five skip flags. Optional fields are omitted from the emitted JSON when null; an explicit `false` is emitted.
+
+### Fixed
+
+- **Docs** — `Stack.backend` and `backends.dart` described S3 as living in "provider-specific packages" and named an `S3Backend` that no package shipped. Both now describe what core actually provides.
+
 ## 0.26.0 - 2026-08-24
 
 Lockstep release with `terradart_cloudflare` 0.26.0 (catalog filled at the `5.23.0` pin). No `terradart_core` API changes.
