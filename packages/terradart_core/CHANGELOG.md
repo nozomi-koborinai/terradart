@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- **`TfVariable` + `Stack.addVariable`** — declare the `variable "<name>" { ... }` blocks that `TfArg.variable` references. Synth emits them under the top-level `variable` key, and omits the key when a stack declares none (Terraform rejects an empty `variable` block).
+- **`Stack.addExternalVariable`** — accept `TfArg.variable` references to a variable declared in a hand-written file beside the generated `main.tf.json`, without emitting a block for it. For declarations `TfVariable` cannot model (`validation { ... }`) and for existing stacks that keep a `variables.tf`.
+- **Undeclared-variable check at synth time** — synth throws a `StateError` naming the variable and the resources referencing it when a `TfArg.variable` reference has no matching `addVariable` declaration, including references nested inside literal Maps and Lists. Previously such a config synthesised cleanly and failed at `terraform plan` with "Reference to undeclared input variable". **Breaking** — see [MIGRATING.md](../../MIGRATING.md).
+
+### Changed
+
+- **`SensitiveLiteralError`** — the recovery hint now points at `addVariable` instead of telling the user to hand-write a `variable` block.
+
 ## 0.26.0 - 2026-08-24
 
 Lockstep release with `terradart_cloudflare` 0.26.0 (catalog filled at the `5.23.0` pin). No `terradart_core` API changes.

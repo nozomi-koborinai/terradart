@@ -1,5 +1,45 @@
 # Migrating terradart
 
+## 0.26.0 → next
+
+**Breaking (`terradart_core`)** — synth now refuses to emit a config whose
+`TfArg.variable('<name>')` references have no matching declaration. Before,
+such a config synthesised cleanly and failed later at `terraform plan` with
+*Reference to undeclared input variable*.
+
+Declare the variable on the Stack:
+
+```dart
+// Before — the declaration lived in a hand-written file, or nowhere.
+password: TfArg.variable('db_password'),
+
+// After — declare it alongside the reference.
+addVariable(
+  'db_password',
+  const TfVariable(type: 'string', sensitive: true),
+);
+password: TfArg.variable('db_password'),
+```
+
+Synth emits the collected declarations under the top-level `variable` key of
+`main.tf.json`, and omits the key when a stack declares none (Terraform
+rejects an empty `variable` block).
+
+**If your `variable` blocks live in a hand-written file** beside the
+generated `main.tf.json` — a legitimate setup, since Terraform merges every
+`.tf` / `.tf.json` in the module directory, and the only way to express what
+`TfVariable` does not model such as `validation { ... }` blocks — register
+the name instead of moving the block. Synth then accepts the reference and
+emits nothing for it, so there is no duplicate declaration:
+
+```dart
+addExternalVariable('db_password');
+```
+
+The reference check still catches typos in every other name.
+
+---
+
 ## 0.25.3 → 0.26.0
 
 **Breaking (`terradart_cloudflare`)** — `CloudflareZone.account` is a typed

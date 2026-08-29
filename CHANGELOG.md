@@ -6,6 +6,10 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+### Added
+
+- **`terradart_core`** — `TfVariable` and `Stack.addVariable` declare the `variable "<name>" { ... }` blocks that `TfArg.variable` references, and synth now refuses to emit a config that references an undeclared variable. `TfArg.variable` previously had no counterpart for declaring the variable, so the ten examples using it each hand-wrote a `variables.tf.json` after `writeTo()`; those writes are gone. `Stack.addExternalVariable` covers declarations that stay in a hand-written file. **Breaking** — see [MIGRATING.md](MIGRATING.md).
+
 ## [0.26.0] - 2026-08-24
 
 Lockstep release across the workspace. **Breaking** — see [MIGRATING.md](MIGRATING.md).

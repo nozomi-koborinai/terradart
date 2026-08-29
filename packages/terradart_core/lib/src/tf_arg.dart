@@ -129,9 +129,10 @@ final class TfArgVariable<T> extends TfArg<T> {
   /// Terraform variable name. Emitted as `"\${var.<name>}"` so consumers
   /// can supply the value at `terraform apply -var '<name>=...'` time.
   ///
-  /// The consumer is responsible for declaring the matching
-  /// `variable "<name>" { ... }` block in a `variables.tf` (or via a
-  /// future `Stack.variables` API; v1.x candidate).
+  /// Declare the matching `variable "<name>" { ... }` block with
+  /// `Stack.addVariable`. Synth throws when a reference has no
+  /// declaration, so a typo here fails at synth time rather than at
+  /// `terraform plan`.
   final String name;
 
   @override

@@ -12,6 +12,13 @@ import 'package:terradart_core/terradart_core.dart';
 final class CloudflareLeftoverStack extends Stack {
   CloudflareLeftoverStack()
       : super(providers: [const CloudflareProvider()]) {
+    // Declared here so the TfArg.variable references below resolve;
+    // the values themselves arrive at `terraform apply -var` time.
+    addVariable(
+      'leftover_secret',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+
     const leftover = 'leftover';
     const accountId = '00000000000000000000000000000001';
     const zoneId = '00000000000000000000000000000002';

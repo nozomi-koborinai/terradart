@@ -34,6 +34,13 @@ final class CryptoStack extends Stack {
             const TimeProvider(),
           ],
         ) {
+    // Declared here so the TfArg.variable references below resolve;
+    // the values themselves arrive at `terraform apply -var` time.
+    addVariable(
+      'kms_secret_plaintext',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+
     // ---- API enablement ---------------------------------------------------
     //
     // [Apis.enable] enables the Cloud KMS API and waits 60s for propagation

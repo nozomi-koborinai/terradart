@@ -23,6 +23,21 @@ final class AppCheckStack extends Stack {
             GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
+    // Declared here so the TfArg.variable references below resolve;
+    // the values themselves arrive at `terraform apply -var` time.
+    addVariable(
+      'recaptcha_v3_site_secret',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'app_check_debug_token',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'device_check_private_key',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+
     // Bind a reCAPTCHA Enterprise site key to the Firebase Web App.
     // This tells App Check to use reCAPTCHA Enterprise as the attestation
     // provider for that specific app.

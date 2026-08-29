@@ -6,8 +6,9 @@
 ///
 /// Recovery: use [TfArg.variable] for runtime values (the canonical
 /// pattern for sensitive inputs supplied at `terraform apply -var`
-/// time), or — if the resource exposes a write-only variant of the
-/// field (`<field>_wo`) — assign the literal there instead.
+/// time) and declare the matching variable with `Stack.addVariable`, or
+/// — if the resource exposes a write-only variant of the field
+/// (`<field>_wo`) — assign the literal there instead.
 class SensitiveLiteralError extends StateError {
   SensitiveLiteralError({
     required this.resourceAddress,
@@ -30,7 +31,9 @@ class SensitiveLiteralError extends StateError {
       'sensitive fields).\n\n'
       'Recommended fix:\n'
       '  $fieldPath: TfArg.variable(\'<your-var-name>\'),\n'
-      'then declare `variable "<your-var-name>" { sensitive = true }` '
+      'then declare it on the Stack:\n'
+      '  addVariable(\'<your-var-name>\', '
+      'const TfVariable(type: \'string\', sensitive: true));\n'
       'and pass it at `terraform apply -var=...` time.\n\n'
       'Alternative: if the resource exposes a write-only variant '
       '(`<field>_wo`), assign the literal there instead — the `_wo` '

@@ -51,8 +51,9 @@ class StackSynth {
     // 1. Top-level terraform block (required).
     final terraform = TfJsonEncoder.terraformBlock(stack);
 
-    // 2. Optional provider block.
+    // 2. Optional provider and variable blocks.
     final providers = TfJsonEncoder.providerBlock(stack);
+    final variables = TfJsonEncoder.variableBlock(stack);
 
     // 3. Resources & data sources.
     final resources = TfJsonEncoder.resourcesGroup(stack);
@@ -65,6 +66,7 @@ class StackSynth {
 
     // 5. Assemble tf.json (key order is stable for golden tests).
     final tfJson = <String, dynamic>{'terraform': terraform};
+    if (variables != null) tfJson['variable'] = variables;
     if (providers != null) tfJson['provider'] = providers;
     if (resources != null) tfJson['resource'] = resources;
     if (data != null) tfJson['data'] = data;
