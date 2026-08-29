@@ -2775,6 +2775,8 @@ files:
     upstream: null  # no mmv1 YAML (probed 2026-08-15)
   google_transcoder_job:
     upstream: mmv1/products/transcoder/Job.yaml
+  google_agentic_applications_analyst_agent_persona:
+    upstream: mmv1/products/agenticapplications/AnalystAgentPersona.yaml
   data_google_access_approval_folder_service_account:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_access_approval_organization_service_account:

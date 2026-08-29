@@ -233,7 +233,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## Coverage & Examples
 
-- [`terradart_google`](packages/terradart_google/README.md) ships **1332 curated resource factories + 461 data sources** (1793 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
+- [`terradart_google`](packages/terradart_google/README.md) ships **1333 curated resource factories + 461 data sources** (1794 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
 - [`terradart_google_beta`](packages/terradart_google_beta/README.md) ships the **beta-only** `hashicorp/google-beta` catalog (**128 resource factories**, schema pin tracking the weekly GA bump).
 - [`terradart_appwrite`](packages/terradart_appwrite/README.md) ships the filled `appwrite/appwrite` catalog at `2.0.0-beta.1` (38 resource factories + 24 data sources).
 - [`terradart_cloudflare`](packages/terradart_cloudflare/README.md) ships the filled `cloudflare/cloudflare` catalog at `5.23.0` (**257 resource factories + 446 data sources**). Nested plugin-framework objects are typed Dart helpers.
@@ -243,6 +243,7 @@ Explore ready-to-run examples in [`examples/`](examples/):
 - **Compute & Networking**: [Compute & Firewall](examples/compute_quickstart/), [GKE](examples/gke_quickstart/), [Cloud DNS](examples/dns_quickstart/)
 - **Data & Storage**: [Cloud Storage](examples/storage_quickstart/), [BigQuery](examples/bigquery_quickstart/), [Cloud Bigtable](examples/bigtable_quickstart/), [KMS](examples/kms_quickstart/)
 - **Application Platform**: [Cloud Run v2](examples/cloud_run_quickstart/), [Cloud Monitoring](examples/monitoring_quickstart/), [Workflows](examples/workflows_quickstart/), [Eventarc](examples/eventarc_quickstart/)
+- **AI & Agents**: [Vertex AI](examples/vertex_ai_quickstart/), [Agentic Applications](examples/agentic_applications_quickstart/)
 
 See the full factory table on [terradart.dev/docs/coverage/](https://terradart.dev/docs/coverage/).
 
