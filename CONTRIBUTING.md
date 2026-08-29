@@ -49,13 +49,12 @@ dart format --output=none --set-exit-if-changed \
 
 **Do not run `dart format` over the whole repo.** `terradart_google`
 wrappers are formatted by `terradart wrap`'s pinned `dart_style`, which can
-drift from the SDK-bundled CLI — `terradart wrap --check` is the
-authoritative check for those. And `examples/` is outside every format
-check: `examples/cloudflare_leftover_quickstart/lib/main.dart` is generated
-with long single-line expressions, and formatting wraps them without
-trailing commas, which trips `require_trailing_commas` 58 times. Running
-`dart format .` leaves the tree failing `dart analyze` with no CI job to
-tell you why.
+drift from the SDK-bundled CLI, so `dart format .` rewrites ~1763 of them
+into a shape `terradart wrap --check` then rejects. Regenerate wrappers with
+`terradart wrap`; that is the authoritative format for generated code.
+
+`examples/` is outside the format check too, so nothing verifies it either
+way — leave it to `dart analyze`, which does cover it.
 
 **Agent skills (optional):** TerraDart maintainer workflows are committed under [`.agents/skills/`](.agents/skills/). Compatible agents discover them automatically. For generic Dart analyze/test workflows you may also install [dart-lang/skills](https://github.com/dart-lang/skills) with Node.js: `npx skills add dart-lang/skills --skill '*' --agent universal --yes`.
 
