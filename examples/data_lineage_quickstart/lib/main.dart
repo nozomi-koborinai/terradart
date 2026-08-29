@@ -42,7 +42,8 @@ final class DataLineageStack extends Stack {
                       .dataproc,
                 ),
               ),
-              lineageEnablement: DataLineageConfigIngestionRuleLineageEnablement(
+              lineageEnablement:
+                  DataLineageConfigIngestionRuleLineageEnablement(
                 enabled: TfArg.literal(true),
               ),
             ),
