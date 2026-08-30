@@ -7,10 +7,10 @@ import 'duplicate_resource_error.dart';
 import 'resource.dart';
 import 'synth/stack_synth.dart';
 
-/// Lightweight backend hook — concrete classes (`GcsBackend`, `S3Backend`)
-/// live in provider-specific packages. The core `Stack` only stores the
-/// value and exposes a discriminator for synth's `terraform { backend ... }`
-/// emitter.
+/// Lightweight backend hook. Core ships `GcsBackend`, `S3Backend`, and
+/// `LocalBackend`; anything else implements this interface in the caller.
+/// The `Stack` only stores the value and exposes a discriminator for
+/// synth's `terraform { backend ... }` emitter.
 abstract interface class StackBackend {
   /// Backend type tag, e.g. `'gcs'`, `'s3'`, `'local'`. Synth uses this
   /// as the JSON key under `terraform.backend.<type>`.

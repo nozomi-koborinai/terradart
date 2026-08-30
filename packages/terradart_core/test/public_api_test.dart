@@ -30,6 +30,7 @@ void main() {
       ResourceAttributeExport,
       EnvBackedExport,
       GcsBackend,
+      S3Backend,
       LiteralResolver,
       OutputEmitter,
       OutputEmissionResult,
@@ -40,7 +41,7 @@ void main() {
       SynthResult,
       DuplicateResourceError,
     ];
-    expect(symbols, hasLength(33));
+    expect(symbols, hasLength(34));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {
