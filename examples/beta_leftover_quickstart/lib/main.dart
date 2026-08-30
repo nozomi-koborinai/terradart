@@ -43,6 +43,13 @@ final class BetaLeftoverStack extends Stack {
             GoogleBetaProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
+    // Declared here so the TfArg.variable references below resolve;
+    // the values themselves arrive at `terraform apply -var` time.
+    addVariable(
+      'runtimeconfig_variable_text',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+
     add(
       GoogleActiveDirectoryPeering(
         localName: 'active_directory_peering',

@@ -51,6 +51,13 @@ final class DeferredLeftoverStack extends Stack {
             GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
+    // Declared here so the TfArg.variable references below resolve;
+    // the values themselves arrive at `terraform apply -var` time.
+    addVariable(
+      'ad_trust_handshake_secret',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+
     add(
       GoogleActiveDirectoryDomainTrust(
         localName: 'activedirectorydomaintrust',

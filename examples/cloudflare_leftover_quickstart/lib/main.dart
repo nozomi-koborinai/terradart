@@ -15,6 +15,11 @@ final class CloudflareLeftoverStack extends Stack {
     const accountId = '00000000000000000000000000000001';
     const zoneId = '00000000000000000000000000000002';
 
+    addVariable(
+      'leftover_secret',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+
     add(
       CloudflareAccount(
         localName: 'account',

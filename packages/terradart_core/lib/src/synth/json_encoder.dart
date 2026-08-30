@@ -115,6 +115,76 @@ class TfJsonEncoder {
     return entries;
   }
 
+  /// The top-level `variable { ... }` value, or `null` when the stack
+  /// declares none (Terraform rejects an empty `variable` block).
+  ///
+  /// Also validates that every `TfArg.variable` reference in the stack
+  /// has a matching declaration — the counterpart to the provider
+  /// coverage check in [terraformBlock]. Without it, a typo synthesises
+  /// cleanly and then fails at `terraform plan` with "Reference to
+  /// undeclared input variable", typically in CI rather than locally.
+  static Map<String, dynamic>? variableBlock(Stack stack) {
+    _validateVariableReferences(stack);
+    if (stack.variables.isEmpty) return null;
+    return {
+      for (final e in stack.variables.entries) e.key: e.value.toTfJson(),
+    };
+  }
+
+  static void _validateVariableReferences(Stack stack) {
+    final declared = {
+      ...stack.variables.keys,
+      ...stack.externalVariables,
+    };
+    // name -> addresses that reference it, insertion-ordered so the
+    // error message is stable across runs.
+    final undeclared = <String, Set<String>>{};
+    for (final r in [...stack.resources, ...stack.dataSources]) {
+      for (final arg in r.argMap.values) {
+        for (final name in _referencedVariableNames(arg)) {
+          if (declared.contains(name)) continue;
+          undeclared.putIfAbsent(name, () => <String>{}).add(r.tfAddress);
+        }
+      }
+    }
+    if (undeclared.isEmpty) return;
+
+    final detail = undeclared.entries
+        .map((e) => '"${e.key}" (referenced by ${e.value.join(', ')})')
+        .join('; ');
+    throw StateError(
+      'Stack references undeclared Terraform variable(s): $detail. '
+      "Declare each one with `addVariable('<name>', TfVariable(...))` "
+      'in your Stack constructor, or drop the TfArg.variable reference. '
+      'Terraform rejects a config that interpolates \${var.<name>} with '
+      'no matching variable block.\n\n'
+      'If the block lives in a hand-written file beside the generated '
+      "main.tf.json, register it with `addExternalVariable('<name>')` "
+      'instead — synth then accepts the reference and emits no block.',
+    );
+  }
+
+  /// Every variable name reachable from [v], including references nested
+  /// inside literal Maps and Lists (mirrors [_encodeLiteralValue]).
+  static Iterable<String> _referencedVariableNames(Object? v) sync* {
+    switch (v) {
+      case TfArgVariable(:final name):
+        yield name;
+      case TfArgLiteral(:final value):
+        yield* _referencedVariableNames(value);
+      case List():
+        for (final e in v) {
+          yield* _referencedVariableNames(e);
+        }
+      case Map():
+        for (final e in v.values) {
+          yield* _referencedVariableNames(e);
+        }
+      default:
+        break;
+    }
+  }
+
   /// Encode a single `TfArg` into a JSON-serialisable value.
   ///
   /// - `TfArgLiteral<T>` → the raw `T` value (recursively walked in

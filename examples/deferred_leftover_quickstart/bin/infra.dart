@@ -1,7 +1,6 @@
 /// Synth entry. `dart run bin/infra.dart` -> `tf-out/main.tf.json`.
 library;
 
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_example_deferred_leftover_quickstart/main.dart';
@@ -14,13 +13,5 @@ Future<void> main() async {
   }
   final stack = DeferredLeftoverStack(projectId: projectId);
   await stack.writeTo('tf-out');
-  // Sensitive leftover fields use TfArg.variable — declare for validate.
-  await File('tf-out/variables.tf.json').writeAsString(
-    const JsonEncoder.withIndent('  ').convert({
-      'variable': {
-        'ad_trust_handshake_secret': {'type': 'string', 'sensitive': true},
-      },
-    }),
-  );
   print('synthesized to tf-out/main.tf.json');
 }

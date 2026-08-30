@@ -44,6 +44,25 @@ final class AppwriteDemoStack extends Stack {
             ),
           ],
         ) {
+    // Declared here so the TfArg.variable references below resolve;
+    // the values themselves arrive at `terraform apply -var` time.
+    addVariable(
+      'backup_access_key',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'backup_secret_key',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'function_api_url',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'site_api_url',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+
     add(
       AppwriteProject(
         localName: 'demo',

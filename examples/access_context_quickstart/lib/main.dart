@@ -27,6 +27,13 @@ final class AccessControlsStack extends Stack {
             const TimeProvider(),
           ],
         ) {
+    // Declared here so the TfArg.variable references below resolve;
+    // the values themselves arrive at `terraform apply -var` time.
+    addVariable(
+      'ops_organization_id',
+      const TfVariable(type: 'string'),
+    );
+
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.accessContextManager],

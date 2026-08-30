@@ -56,6 +56,41 @@ final class ComputeLbStack extends Stack {
             GoogleProvider(project: projectId, region: 'asia-northeast1'),
           ],
         ) {
+    // Declared here so the TfArg.variable references below resolve;
+    // the values themselves arrive at `terraform apply -var` time.
+    addVariable(
+      'lb_self_managed_certificate',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'lb_self_managed_private_key',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'lb_regional_certificate',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'lb_regional_private_key',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'cm_trust_anchor_pem',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'cm_cas_cert_csr_pem',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'lb_backend_bucket_signed_url_key',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+    addVariable(
+      'lb_backend_service_signed_url_key',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+
     const region = 'asia-northeast1';
     const zone = 'asia-northeast1-a';
 

@@ -29,5 +29,6 @@ export 'src/synth/sensitive_literal_error.dart' show SensitiveLiteralError;
 export 'src/synth/stack_synth.dart' show SynthResult;
 export 'src/tf_arg.dart'
     show TerraformEnum, TfArg, TfArgLiteral, TfArgRef, TfArgVariable;
+export 'src/tf_variable.dart' show TfVariable;
 export 'src/tf_ref.dart'
     show AttributeRef, DataRef, ResourceRef, TfAddressed, TfRef;

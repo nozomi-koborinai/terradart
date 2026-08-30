@@ -9,6 +9,7 @@ Per-package changelogs live alongside each package and are the system of record 
 ### Added
 
 - **`terradart_core`** — `S3Backend` for `terraform { backend "s3" { ... } }`, including the S3-compatible stores people keep state in (Cloudflare R2, MinIO, Backblaze B2). `S3Backend.r2(accountId:, bucket:, key:)` presets the R2 endpoint, `region = "auto"`, path-style addressing, and the five `skip_*` flags. Previously only `GcsBackend` and `LocalBackend` shipped, so an S3/R2 stack had to bypass `Stack.writeTo()` and splice the backend into the synthesised JSON by hand.
+- **`terradart_core`** — `TfVariable` and `Stack.addVariable` declare the `variable "<name>" { ... }` blocks that `TfArg.variable` references, and synth now refuses to emit a config that references an undeclared variable. `TfArg.variable` previously had no counterpart for declaring the variable, so the ten examples using it each hand-wrote a `variables.tf.json` after `writeTo()`; those writes are gone. `Stack.addExternalVariable` covers declarations that stay in a hand-written file. **Breaking** — see [MIGRATING.md](MIGRATING.md).
 
 ## [0.26.0] - 2026-08-24
 

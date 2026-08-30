@@ -24,6 +24,17 @@ final class AuditPipelineStack extends Stack {
             GoogleProvider(project: projectId, region: 'asia-northeast1'),
           ],
         ) {
+    // Declared here so the TfArg.variable references below resolve;
+    // the values themselves arrive at `terraform apply -var` time.
+    addVariable(
+      'ops_folder_id',
+      const TfVariable(type: 'string'),
+    );
+    addVariable(
+      'ops_organization_id',
+      const TfVariable(type: 'string'),
+    );
+
     const bucketId = 'audit-logs';
     const viewName = 'audit-only';
     const location = 'global';

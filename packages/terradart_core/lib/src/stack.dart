@@ -5,6 +5,7 @@ import 'app_export.dart';
 import 'data.dart';
 import 'duplicate_resource_error.dart';
 import 'resource.dart';
+import 'tf_variable.dart';
 import 'synth/stack_synth.dart';
 
 /// Lightweight backend hook. Core ships `GcsBackend`, `S3Backend`, and
@@ -65,6 +66,10 @@ abstract interface class StackProvider {
 /// - `setBackend(...)` / `backend` — late binding for backend config
 ///   (alternative to passing it via constructor; useful when backend
 ///   config depends on values resolved during stack construction).
+/// - `addVariable(...)` / `variables` — `variable "<name>" { ... }`
+///   declarations backing the `TfArg.variable` references in this
+///   stack. `addExternalVariable(...)` / `externalVariables` covers
+///   names declared in a hand-written file instead.
 abstract base class Stack {
   Stack({
     required List<StackProvider> providers,
@@ -98,6 +103,12 @@ abstract base class Stack {
 
   String? _appExportsOutputPath;
 
+  /// Insertion-ordered so the emitted `variable` block is stable.
+  final Map<String, TfVariable> _variables = {};
+
+  /// Names declared outside synth output — see [addExternalVariable].
+  final Set<String> _externalVariables = {};
+
   /// Default Terraform version constraint (1.11+ is required for
   /// write-only argument support).
   String _requiredVersion = '>= 1.11.0';
@@ -114,6 +125,16 @@ abstract base class Stack {
   /// Insertion order is preserved for deterministic generated output.
   Map<String, AppExport> get appExports =>
       Map<String, AppExport>.unmodifiable(_appExports);
+
+  /// Read-only map of declared Terraform variables, keyed by variable
+  /// name. Insertion order is preserved for deterministic output.
+  Map<String, TfVariable> get variables =>
+      Map<String, TfVariable>.unmodifiable(_variables);
+
+  /// Read-only view of variable names declared outside synth output.
+  /// Synth accepts references to these but emits no block for them.
+  Set<String> get externalVariables =>
+      Set<String>.unmodifiable(_externalVariables);
 
   /// Output path for synth's `.dart` constants file. Null means "do not
   /// emit a constants file" (the default behavior).
@@ -137,6 +158,54 @@ abstract base class Stack {
       );
     }
     _appExports[name] = export;
+  }
+
+  /// Declare a `variable "<name>" { ... }` block, making
+  /// `TfArg.variable('<name>')` references in this stack resolvable.
+  /// Order is preserved for deterministic output. Throws
+  /// [ArgumentError] if `name` is empty or already declared.
+  void addVariable(String name, TfVariable variable) {
+    if (name.isEmpty) {
+      throw ArgumentError.value(name, 'name', 'must not be empty');
+    }
+    if (_variables.containsKey(name) || _externalVariables.contains(name)) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'Variable "$name" is already declared on this Stack.',
+      );
+    }
+    _variables[name] = variable;
+  }
+
+  /// Accept `TfArg.variable('<name>')` references to a variable declared
+  /// in a hand-written file beside the generated `main.tf.json`, without
+  /// emitting a block for it.
+  ///
+  /// Terraform merges every `.tf` / `.tf.json` file in the module
+  /// directory, so a hand-written `variables.tf` is a legitimate way to
+  /// declare inputs — and the only way to express what [TfVariable] does
+  /// not model, such as `validation { ... }` blocks. Emitting a second
+  /// declaration for the same name would be a duplicate-variable error,
+  /// so this registers the name for the reference check alone.
+  ///
+  /// Prefer [addVariable] when the declaration can live in Dart: it keeps
+  /// the whole module in one place, and the block travels with the stack.
+  ///
+  /// Throws [ArgumentError] if `name` is empty or already registered by
+  /// either [addVariable] or this method.
+  void addExternalVariable(String name) {
+    if (name.isEmpty) {
+      throw ArgumentError.value(name, 'name', 'must not be empty');
+    }
+    if (_variables.containsKey(name) || _externalVariables.contains(name)) {
+      throw ArgumentError.value(
+        name,
+        'name',
+        'Variable "$name" is already declared on this Stack.',
+      );
+    }
+    _externalVariables.add(name);
   }
 
   /// Set destination path for the generated `.dart` constants file.

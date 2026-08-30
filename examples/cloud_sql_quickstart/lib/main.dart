@@ -36,6 +36,13 @@ final class CloudSqlStack extends Stack {
             GoogleProvider(project: projectId, region: 'asia-northeast1'),
           ],
         ) {
+    // Declared here so the TfArg.variable references below resolve;
+    // the values themselves arrive at `terraform apply -var` time.
+    addVariable(
+      'source_rep_password',
+      const TfVariable(type: 'string', sensitive: true),
+    );
+
     // ---- 1. Dedicated VPC for the Cloud SQL instance ----------------------
 
     final vpc = add(
