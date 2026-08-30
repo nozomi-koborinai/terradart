@@ -33,7 +33,7 @@ For project-level documentation, see the [terradart repo README](https://github.
 
 ```yaml
 dependencies:
-  terradart_core: ^0.26.x
+  terradart_core: ^0.27.x
 ```
 
 Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch. Read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before minor bumps.

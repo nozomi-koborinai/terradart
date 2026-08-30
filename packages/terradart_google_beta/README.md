@@ -12,8 +12,8 @@ The **beta-only** catalog is filled (**128 resource factories**, schema pin trac
 
 ```yaml
 dependencies:
-  terradart_core: ^0.26.x
-  terradart_google_beta: ^0.26.x
+  terradart_core: ^0.27.x
+  terradart_google_beta: ^0.27.x
 ```
 
 ## Usage example

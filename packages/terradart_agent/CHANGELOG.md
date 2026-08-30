@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.27.0 - 2026-08-30
+
+Lockstep release with `terradart_core` 0.27.0 (`TfVariable` / `Stack.addVariable` and `S3Backend`). No `terradart_agent` API changes.
 ## 0.26.0 - 2026-08-24
 
 Lockstep release with `terradart_cloudflare` 0.26.0. MCP catalog is unchanged (GA `hashicorp/google` only). No MCP protocol or tool changes.

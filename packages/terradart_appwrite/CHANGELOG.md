@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.27.0 - 2026-08-30
+
+Lockstep release with `terradart_core` 0.27.0 (`TfVariable` / `Stack.addVariable` and `S3Backend`). No `terradart_appwrite` API changes.
 ## 0.26.0 - 2026-08-24
 
 Lockstep release with the TerraDart workspace. No Appwrite factory or provider changes.
