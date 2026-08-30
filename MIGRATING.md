@@ -38,6 +38,22 @@ addExternalVariable('db_password');
 
 The reference check still catches typos in every other name.
 
+**Delete any `variables.tf.json` you were writing by hand.** If you followed
+the previous pattern — writing a second JSON file next to the generated
+`main.tf.json` after `writeTo()` — that file is still on disk, and synth does
+not remove it. Once the same names are declared through `addVariable`,
+Terraform sees both files and fails:
+
+```
+Error: Duplicate variable declaration
+
+  on variables.tf.json line 3, in variable:
+A variable named "ops_folder_id" was already declared at main.tf.json.
+```
+
+Remove the stale file once (`rm tf-out/variables.tf.json`); nothing
+regenerates it.
+
 ---
 
 ## 0.25.3 → 0.26.0
