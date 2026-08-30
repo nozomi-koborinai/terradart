@@ -1,6 +1,6 @@
 name: terradart_agent
 description: terradart-mcp — MCP server exposing the curated GCP factory catalog of TerraDart.
-version: 0.26.0
+version: 0.27.0
 publish_to: none
 homepage: https://github.com/nozomi-koborinai/terradart
 repository: https://github.com/nozomi-koborinai/terradart
@@ -16,9 +16,9 @@ executables:
   terradart-mcp: terradart_mcp
 
 dependencies:
-  terradart_core: ^0.26.0
-  terradart_google: ^0.26.0
-  terradart_coverage: ^0.26.0
+  terradart_core: ^0.27.0
+  terradart_google: ^0.27.0
+  terradart_coverage: ^0.27.0
   genkit: ^0.14.1
   genkit_mcp: ^0.2.1
   schemantic: ^0.2.0

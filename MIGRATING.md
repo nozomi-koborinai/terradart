@@ -1,6 +1,6 @@
 # Migrating terradart
 
-## 0.26.0 → next
+## 0.26.0 → 0.27.0
 
 **Breaking (`terradart_core`)** — synth now refuses to emit a config whose
 `TfArg.variable('<name>')` references have no matching declaration. Before,

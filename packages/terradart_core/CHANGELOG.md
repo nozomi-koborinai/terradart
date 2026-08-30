@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.27.0 - 2026-08-30
+
+Lockstep release across the workspace. **Breaking** — see [MIGRATING.md](../../MIGRATING.md).
 
 ### Added
 

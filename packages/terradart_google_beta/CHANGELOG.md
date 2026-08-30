@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.27.0 - 2026-08-30
+
+Lockstep release with `terradart_core` 0.27.0 (`TfVariable` / `Stack.addVariable` and `S3Backend`). No `terradart_google_beta` API changes.
 ## 0.26.0 - 2026-08-24
 
 Lockstep release with the TerraDart workspace. Schema fixture re-extracted at `hashicorp/google-beta` 7.45.0 (same resource set). No factory or provider API changes.

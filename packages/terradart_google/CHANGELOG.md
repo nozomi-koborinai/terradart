@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.27.0 - 2026-08-30
+
+Lockstep release with `terradart_core` 0.27.0 (`TfVariable` / `Stack.addVariable` and `S3Backend`). No `terradart_google` API changes.
 ## 0.26.0 - 2026-08-24
 
 Lockstep release. **Breaking** for `terradart_cloudflare` — see [MIGRATING.md](../../MIGRATING.md). No `terradart_google` API changes — the filled catalog and the `CloudflareZone.account` type change ship in `terradart_cloudflare`. Wrap fixture pin is `hashicorp/google` 7.45.0; generated wrappers are unchanged.
