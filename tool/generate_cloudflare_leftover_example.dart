@@ -151,6 +151,11 @@ void main() {
   File(_outPath)
     ..createSync(recursive: true)
     ..writeAsStringSync(buf.toString());
+  final fmt = Process.runSync('dart', ['format', _outPath]);
+  if (fmt.exitCode != 0) {
+    stderr.writeln('dart format failed on $_outPath:\n${fmt.stderr}');
+    exit(fmt.exitCode);
+  }
   stdout.writeln(
     'Wrote leftover example: ${factories.length} factories '
     '(${factories.where((f) => f.kind == _Kind.resource).length} resources + '
@@ -529,7 +534,7 @@ String _dummyForType(
   }
   if (t.startsWith('List<') && t.endsWith('>')) {
     final inner = t.substring(5, t.length - 1);
-    return '[${_dummyForType(inner, helpers, depth: depth + 1, name: name, sensitive: sensitive, owner: owner)}]';
+    return '[${_dummyForType(inner, helpers, depth: depth + 1, name: name, sensitive: sensitive, owner: owner)},]';
   }
   if (t.startsWith('Map<') || t == 'Map') {
     return "{'k': leftover}";
@@ -566,7 +571,7 @@ String _literalInner(
   if (t.startsWith('List<') && t.endsWith('>')) {
     final listInner = t.substring(5, t.length - 1).trim().replaceAll('?', '');
     if (helpers.containsKey(listInner)) {
-      return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)}]';
+      return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)},]';
     }
     if (listInner.startsWith('Map')) return "[{'k': leftover}]";
     if (listInner.contains('num') ||
@@ -713,5 +718,9 @@ String _constructHelper(
             '${p.name}: ${_dummy(p, helpers, depth: depth, sensitive: sensitive, owner: className)}',
       )
       .join(', ');
-  return '$className($args)';
+  // Trailing comma: `dart format` then expands the call across lines and
+  // keeps it there, which is the shape `require_trailing_commas` wants.
+  // Without it the formatter wraps long calls and adds no comma, so a
+  // formatted `examples/` fails `dart analyze`.
+  return '$className($args,)';
 }
