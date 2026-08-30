@@ -42,6 +42,11 @@ const _skipDataTypes = {
 const _srcRoot = 'packages/terradart_cloudflare/lib/src';
 const _outPath = 'examples/cloudflare_leftover_quickstart/lib/main.dart';
 
+/// Terraform variable backing every sensitive leaf in the generated
+/// stack. Declared by the generator so the reference resolves at synth.
+const _secretVar = 'leftover_secret';
+const _secretVarRef = "TfArg.variable('$_secretVar')";
+
 void main() {
   final files = Directory(_srcRoot)
       .listSync(recursive: true)
@@ -126,24 +131,39 @@ void main() {
     )
     ..writeln();
 
+  // Body first: the preamble can only decide whether to declare the
+  // secret variable once it knows a factory actually referenced it.
+  final body = StringBuffer();
   for (final f in factories) {
     final local = _uniqueLocal(f.type, f.kind, usedLocals);
     final method = f.kind == _Kind.data ? 'addData' : 'add';
-    buf.writeln('    $method(');
-    buf.writeln('      ${f.className}(');
-    buf.writeln("        localName: '$local',");
+    body.writeln('    $method(');
+    body.writeln('      ${f.className}(');
+    body.writeln("        localName: '$local',");
     for (final p in f.requiredParams) {
-      buf.writeln(
+      body.writeln(
         '        ${p.name}: ${_dummy(p, helpers, sensitive: f.sensitiveLeaves, depth: 0, owner: f.className)},',
       );
     }
     for (final extra in _extras(f, helpers)) {
-      buf.writeln('        ${extra.name}: ${extra.value},');
+      body.writeln('        ${extra.name}: ${extra.value},');
     }
-    buf.writeln('      ),');
+    body.writeln('      ),');
+    body.writeln('    );');
+    body.writeln();
+  }
+
+  // Sensitive leaves render as a TfArg.variable reference, and synth
+  // rejects a reference with no matching declaration — so the declaration
+  // is generated too, not hand-added to this generated file.
+  if (body.toString().contains(_secretVarRef)) {
+    buf.writeln('    addVariable(');
+    buf.writeln("      '$_secretVar',");
+    buf.writeln("      const TfVariable(type: 'string', sensitive: true),");
     buf.writeln('    );');
     buf.writeln();
   }
+  buf.write(body);
 
   buf.writeln('  }');
   buf.writeln('}');
@@ -151,6 +171,11 @@ void main() {
   File(_outPath)
     ..createSync(recursive: true)
     ..writeAsStringSync(buf.toString());
+  final fmt = Process.runSync('dart', ['format', _outPath]);
+  if (fmt.exitCode != 0) {
+    stderr.writeln('dart format failed on $_outPath:\n${fmt.stderr}');
+    exit(fmt.exitCode);
+  }
   stdout.writeln(
     'Wrote leftover example: ${factories.length} factories '
     '(${factories.where((f) => f.kind == _Kind.resource).length} resources + '
@@ -468,7 +493,7 @@ String _dummy(
   if (depth > 8) return "TfArg.literal('leftover')";
   final n = p.name;
   if (_isSensitive(n, sensitive) && p.type.startsWith('TfArg')) {
-    return "TfArg.variable('leftover_secret')";
+    return _secretVarRef;
   }
   if (n == 'accountId' || n == 'account') {
     if (p.type.startsWith('TfArg')) {
@@ -522,14 +547,14 @@ String _dummyForType(
 
   if (t.startsWith('TfArg<') && t.endsWith('>')) {
     if (_isSensitive(name, sensitive)) {
-      return "TfArg.variable('leftover_secret')";
+      return _secretVarRef;
     }
     final inner = t.substring(6, t.length - 1);
     return 'TfArg.literal(${_literalInner(inner, helpers, depth: depth, name: name, sensitive: sensitive, owner: owner)})';
   }
   if (t.startsWith('List<') && t.endsWith('>')) {
     final inner = t.substring(5, t.length - 1);
-    return '[${_dummyForType(inner, helpers, depth: depth + 1, name: name, sensitive: sensitive, owner: owner)}]';
+    return '[${_dummyForType(inner, helpers, depth: depth + 1, name: name, sensitive: sensitive, owner: owner)},]';
   }
   if (t.startsWith('Map<') || t == 'Map') {
     return "{'k': leftover}";
@@ -566,7 +591,7 @@ String _literalInner(
   if (t.startsWith('List<') && t.endsWith('>')) {
     final listInner = t.substring(5, t.length - 1).trim().replaceAll('?', '');
     if (helpers.containsKey(listInner)) {
-      return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)}]';
+      return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)},]';
     }
     if (listInner.startsWith('Map')) return "[{'k': leftover}]";
     if (listInner.contains('num') ||
@@ -713,5 +738,9 @@ String _constructHelper(
             '${p.name}: ${_dummy(p, helpers, depth: depth, sensitive: sensitive, owner: className)}',
       )
       .join(', ');
-  return '$className($args)';
+  // Trailing comma: `dart format` then expands the call across lines and
+  // keeps it there, which is the shape `require_trailing_commas` wants.
+  // Without it the formatter wraps long calls and adds no comma, so a
+  // formatted `examples/` fails `dart analyze`.
+  return '$className($args,)';
 }

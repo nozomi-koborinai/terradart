@@ -76,6 +76,60 @@ void main() {
       );
     });
 
+    test('S3 backend is included when configured', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+        backend: const S3Backend(
+          bucket: 'tfstate-orders',
+          key: 'envs/prod/terraform.tfstate',
+          region: 'ap-northeast-1',
+        ),
+      );
+      final block = TfJsonEncoder.terraformBlock(stack);
+      expect(
+        block['backend'],
+        equals({
+          's3': {
+            'bucket': 'tfstate-orders',
+            'key': 'envs/prod/terraform.tfstate',
+            'region': 'ap-northeast-1',
+          },
+        }),
+      );
+    });
+
+    test('S3 backend for R2 emits the endpoint and skip flags', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+        backend: S3Backend.r2(
+          accountId: 'abc123',
+          bucket: 'tfstate-orders',
+          key: 'site/terraform.tfstate',
+        ),
+      );
+      final backend =
+          (TfJsonEncoder.terraformBlock(stack)['backend'] as Map)['s3'] as Map;
+      expect(
+        backend['endpoints'],
+        equals({'s3': 'https://abc123.r2.cloudflarestorage.com'}),
+      );
+      expect(backend['region'], equals('auto'));
+      expect(backend['use_path_style'], isTrue);
+      expect(backend['skip_s3_checksum'], isTrue);
+    });
+
     test('GCS backend without prefix omits the field', () {
       final stack = TestStack(
         providers: const [
