@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_backend_service`.
 const Set<String> _googleComputeBackendServiceSensitive = <String>{
+  'iap.oauth2_client_id',
   'iap.oauth2_client_secret',
   'iap.oauth2_client_secret_sha256',
   'security_settings.aws_v4_authentication.access_key',
