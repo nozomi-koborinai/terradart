@@ -553,6 +553,10 @@ final class GoogleRedisCluster extends Resource {
   TfRef<String> get effectiveMaintenanceVersion =>
       TfRef.attribute<String>(this, 'effective_maintenance_version');
 
+  /// Reference to `is_acl_policy_in_sync` attribute.
+  TfRef<bool> get isAclPolicyInSync =>
+      TfRef.attribute<bool>(this, 'is_acl_policy_in_sync');
+
   /// Reference to `maintenance_schedule` attribute.
   TfRef<List<Map<String, Object?>>> get maintenanceSchedule =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'maintenance_schedule');

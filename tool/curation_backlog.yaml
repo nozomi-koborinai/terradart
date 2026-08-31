@@ -73,6 +73,12 @@ entries:
   - resource: google_iam_project_access_policy
     detected_at: 2026-08-16
     provider_version: 7.44.0
+  - resource: google_memorystore_acl_policy
+    detected_at: 2026-08-30
+    provider_version: 7.46.0
+  - resource: google_redis_cluster_acl_policy
+    detected_at: 2026-08-30
+    provider_version: 7.46.0
   - resource: google_vertex_ai_evaluation_metric
     detected_at: 2026-08-16
     provider_version: 7.44.0

@@ -36,6 +36,9 @@ final class DataGoogleRedisCluster extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `acl_policy` attribute.
+  TfRef<String> get aclPolicy => TfRef.attribute<String>(this, 'acl_policy');
+
   /// Reference to `authorization_mode` attribute.
   TfRef<String> get authorizationMode =>
       TfRef.attribute<String>(this, 'authorization_mode');
@@ -88,6 +91,10 @@ final class DataGoogleRedisCluster extends Data {
   /// Reference to `gcs_source` attribute.
   TfRef<List<Map<String, Object?>>> get gcsSource =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'gcs_source');
+
+  /// Reference to `is_acl_policy_in_sync` attribute.
+  TfRef<bool> get isAclPolicyInSync =>
+      TfRef.attribute<bool>(this, 'is_acl_policy_in_sync');
 
   /// Reference to `kms_key` attribute.
   TfRef<String> get kmsKey => TfRef.attribute<String>(this, 'kms_key');

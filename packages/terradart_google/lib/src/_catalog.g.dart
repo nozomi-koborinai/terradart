@@ -6700,6 +6700,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
     ],
     nestedTypes: <String>[
+      'CesToolsetConnectorToolset',
+      'CesToolsetConnectorToolsetAuthConfig',
+      'CesToolsetConnectorToolsetAuthConfigOauth2AuthCodeConfig',
+      'CesToolsetConnectorToolsetAuthConfigOauth2JwtBearerConfig',
+      'CesToolsetConnectorToolsetConnectorActions',
+      'CesToolsetConnectorToolsetConnectorActionsEntityOperation',
       'CesToolsetMcpToolset',
       'CesToolsetMcpToolsetApiAuthentication',
       'CesToolsetMcpToolsetApiAuthenticationApiKeyConfig',
@@ -10267,6 +10273,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeBackendServiceBackendServiceParams',
     ],
     sensitiveFields: <String>[
+      'iap.oauth2_client_id',
       'iap.oauth2_client_secret',
       'iap.oauth2_client_secret_sha256',
       'security_settings.aws_v4_authentication.access_key',

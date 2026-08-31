@@ -7,6 +7,136 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_ces_toolset`.
 const Set<String> _googleCesToolsetSensitive = <String>{};
 
+/// Typed helper for the `connector_toolset` block of
+/// `google_ces_toolset` (derived from provider schema).
+@immutable
+final class CesToolsetConnectorToolset {
+  const CesToolsetConnectorToolset({
+    required this.connection,
+    this.authConfig,
+    required this.connectorActions,
+  });
+
+  final TfArg<String> connection;
+
+  final CesToolsetConnectorToolsetAuthConfig? authConfig;
+
+  final List<CesToolsetConnectorToolsetConnectorActions> connectorActions;
+
+  Map<String, Object?> encode() => {
+    'connection': connection.toTfJson(),
+    if (authConfig != null) 'auth_config': authConfig!.encode(),
+    'connector_actions': [for (final e in connectorActions) e.encode()],
+  };
+}
+
+/// Typed helper for the `connector_toolset.auth_config` block of
+/// `google_ces_toolset` (derived from provider schema).
+@immutable
+final class CesToolsetConnectorToolsetAuthConfig {
+  const CesToolsetConnectorToolsetAuthConfig({
+    this.oauth2AuthCodeConfig,
+    this.oauth2JwtBearerConfig,
+  });
+
+  final CesToolsetConnectorToolsetAuthConfigOauth2AuthCodeConfig?
+  oauth2AuthCodeConfig;
+
+  final CesToolsetConnectorToolsetAuthConfigOauth2JwtBearerConfig?
+  oauth2JwtBearerConfig;
+
+  Map<String, Object?> encode() => {
+    if (oauth2AuthCodeConfig != null)
+      'oauth2_auth_code_config': oauth2AuthCodeConfig!.encode(),
+    if (oauth2JwtBearerConfig != null)
+      'oauth2_jwt_bearer_config': oauth2JwtBearerConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `connector_toolset.auth_config.oauth2_auth_code_config` block of
+/// `google_ces_toolset` (derived from provider schema).
+@immutable
+final class CesToolsetConnectorToolsetAuthConfigOauth2AuthCodeConfig {
+  const CesToolsetConnectorToolsetAuthConfigOauth2AuthCodeConfig({
+    required this.oauthToken,
+  });
+
+  final TfArg<String> oauthToken;
+
+  Map<String, Object?> encode() => {'oauth_token': oauthToken.toTfJson()};
+}
+
+/// Typed helper for the `connector_toolset.auth_config.oauth2_jwt_bearer_config` block of
+/// `google_ces_toolset` (derived from provider schema).
+@immutable
+final class CesToolsetConnectorToolsetAuthConfigOauth2JwtBearerConfig {
+  const CesToolsetConnectorToolsetAuthConfigOauth2JwtBearerConfig({
+    required this.clientKey,
+    required this.issuer,
+    required this.subject,
+  });
+
+  final TfArg<String> clientKey;
+
+  final TfArg<String> issuer;
+
+  final TfArg<String> subject;
+
+  Map<String, Object?> encode() => {
+    'client_key': clientKey.toTfJson(),
+    'issuer': issuer.toTfJson(),
+    'subject': subject.toTfJson(),
+  };
+}
+
+/// Typed helper for the `connector_toolset.connector_actions` block of
+/// `google_ces_toolset` (derived from provider schema).
+@immutable
+final class CesToolsetConnectorToolsetConnectorActions {
+  const CesToolsetConnectorToolsetConnectorActions({
+    this.connectionActionId,
+    this.inputFields,
+    this.outputFields,
+    this.entityOperation,
+  });
+
+  final TfArg<String>? connectionActionId;
+
+  final TfArg<List<Object?>>? inputFields;
+
+  final TfArg<List<Object?>>? outputFields;
+
+  final CesToolsetConnectorToolsetConnectorActionsEntityOperation?
+  entityOperation;
+
+  Map<String, Object?> encode() => {
+    if (connectionActionId != null)
+      'connection_action_id': connectionActionId!.toTfJson(),
+    if (inputFields != null) 'input_fields': inputFields!.toTfJson(),
+    if (outputFields != null) 'output_fields': outputFields!.toTfJson(),
+    if (entityOperation != null) 'entity_operation': entityOperation!.encode(),
+  };
+}
+
+/// Typed helper for the `connector_toolset.connector_actions.entity_operation` block of
+/// `google_ces_toolset` (derived from provider schema).
+@immutable
+final class CesToolsetConnectorToolsetConnectorActionsEntityOperation {
+  const CesToolsetConnectorToolsetConnectorActionsEntityOperation({
+    required this.entityId,
+    required this.operation,
+  });
+
+  final TfArg<String> entityId;
+
+  final TfArg<String> operation;
+
+  Map<String, Object?> encode() => {
+    'entity_id': entityId.toTfJson(),
+    'operation': operation.toTfJson(),
+  };
+}
+
 /// Typed helper for the `mcp_toolset` block of
 /// `google_ces_toolset` (derived from provider schema).
 @immutable

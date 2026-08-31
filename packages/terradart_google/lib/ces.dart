@@ -137,6 +137,12 @@ export 'src/ces/google_ces_tool.dart'
         GoogleCesTool;
 export 'src/ces/google_ces_toolset.dart'
     show
+        CesToolsetConnectorToolset,
+        CesToolsetConnectorToolsetAuthConfig,
+        CesToolsetConnectorToolsetAuthConfigOauth2AuthCodeConfig,
+        CesToolsetConnectorToolsetAuthConfigOauth2JwtBearerConfig,
+        CesToolsetConnectorToolsetConnectorActions,
+        CesToolsetConnectorToolsetConnectorActionsEntityOperation,
         CesToolsetMcpToolset,
         CesToolsetMcpToolsetApiAuthentication,
         CesToolsetMcpToolsetApiAuthenticationApiKeyConfig,
