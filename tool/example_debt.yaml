@@ -137,6 +137,13 @@ GoogleSccSourceIamPolicy: iam-adjunct-debt: sibling GoogleSccSourceIamMember alr
 GoogleSccV2OrganizationSourceIamBinding: iam-adjunct-debt: sibling GoogleSccV2OrganizationSourceIamMember already in scc_quickstart; authoritative binding not needed in smoke
 GoogleSccV2OrganizationSourceIamPolicy: iam-adjunct-debt: sibling GoogleSccV2OrganizationSourceIamMember already in scc_quickstart; authoritative policy not needed in smoke
 
+# Dataform repository IAM binding/policy — sibling *IamMember is in
+# dataform_quickstart, which grants roles/dataform.editor additively to the
+# in-stack workflow-runner service account. The authoritative variants would
+# replace the whole role member list on that repository.
+GoogleDataformRepositoryIamBinding: iam-adjunct-debt: sibling GoogleDataformRepositoryIamMember already in dataform_quickstart; authoritative binding not needed in smoke
+GoogleDataformRepositoryIamPolicy: iam-adjunct-debt: sibling GoogleDataformRepositoryIamMember already in dataform_quickstart; authoritative policy not needed in smoke
+
 # Vector Search indexes default dedicated_infrastructure to two
 # PERFORMANCE_OPTIMIZED replicas (hourly capacity-unit SKUs). vector_quickstart
 # exercises the schema-only collection instead.
