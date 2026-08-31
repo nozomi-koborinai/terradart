@@ -436,6 +436,14 @@ files:
     upstream: mmv1/products/dataform/Folder.yaml
   google_dataform_team_folder:
     upstream: mmv1/products/dataform/TeamFolder.yaml
+  google_dataform_repository:
+    upstream: mmv1/products/dataform/Repository.yaml
+  google_dataform_repository_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataform_repository_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataform_repository_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_data_lineage_config:
     upstream: mmv1/products/datalineage/Config.yaml
   google_dataplex_lake:

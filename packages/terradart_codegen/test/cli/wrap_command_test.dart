@@ -85,7 +85,7 @@ void main() {
         // the generated static catalog `_catalog.g.dart`, plus the derived
         // barrels: 133 per-catalog barrels (132 service + `data`) and the
         // `terradart_google.dart` umbrella → 1929 emitted .dart files.
-        expect(files, hasLength(1929));
+        expect(files, hasLength(1933));
         expect(files, contains(p.join('lib', 'src', '_catalog.g.dart')));
         expect(
           files,

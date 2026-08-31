@@ -6,5 +6,13 @@
 library;
 
 export 'src/dataform/google_dataform_folder.dart' show GoogleDataformFolder;
+export 'src/dataform/google_dataform_repository.dart'
+    show GoogleDataformRepository;
+export 'src/dataform/google_dataform_repository_iam_binding.dart'
+    show GoogleDataformRepositoryIamBinding;
+export 'src/dataform/google_dataform_repository_iam_member.dart'
+    show GoogleDataformRepositoryIamMember;
+export 'src/dataform/google_dataform_repository_iam_policy.dart'
+    show GoogleDataformRepositoryIamPolicy;
 export 'src/dataform/google_dataform_team_folder.dart'
     show GoogleDataformTeamFolder;

@@ -1,0 +1,21 @@
+outputDir: dataform
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Additive IAM grant of one `role` to one `member` on a Dataform
+  /// repository.
+  ///
+  /// Leaves grants made outside Terraform in place — prefer this over
+  /// [GoogleDataformRepositoryIamBinding] and
+  /// [GoogleDataformRepositoryIamPolicy] unless you need authoritative
+  /// updates.
+
+paramOrder:
+  - repository
+  - role
+  - member
+  - region
+  - project
+  - condition
