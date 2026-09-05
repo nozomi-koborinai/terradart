@@ -219,13 +219,20 @@ sense when you know them:
 - `wave-open.yml` (PAT-authenticated so its label fires the executor) turns a
   `[wave-ready]` marker push into a ready PR + the `wave-approved` label,
   generating the PR body from your commit messages. A marker-less push only
-  creates/keeps a draft backup PR.
+  creates/keeps a draft backup PR. Every marker push re-applies the label,
+  so a repair round's `[wave-ready]` push re-runs the executor against the
+  new head.
 - `wave-merge.yml` independently re-verifies before merging: every changed
   file inside `tool/wave_allowed_paths.yaml` (`MIGRATING.md` / `CHANGELOG.md`
   / pubspecs / workflows are outside it, so only additive Waves auto-merge;
   the root pubspec is content-gated to workspace-member additions) and
-  required checks green. Live apply-smoke is retired; example verification
-  is synth + `terraform validate`.
+  required checks green. The ledger and checker come from `main`, never from
+  your branch. After required checks it also waits for GitHub's merge state
+  (a required check still queued behind the example matrix is waited for)
+  and merges exactly the head it verified; a push after the label makes the
+  merge refuse and comment, and your next `[wave-ready]` push re-verifies.
+  Every non-merge outcome is a PR comment. Live apply-smoke is retired;
+  example verification is synth + `terraform validate`.
 - If the branch is BEHIND at merge time, the executor updates it and
   re-dispatches itself once (depth-capped).
 - Merging stays disarmed unless the `WAVE_MERGE_ENABLED` repository variable

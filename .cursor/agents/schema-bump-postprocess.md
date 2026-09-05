@@ -104,10 +104,14 @@ it as a stalled handoff.
 
 `bump-merge.yml` reacts to `bump-approved` and independently re-verifies
 before squash-merging: branch pattern `chore/schema-bump-*`, same-repo head,
-every changed file inside `tool/bump_allowed_paths.yaml`, required checks
-green. Merging stays disarmed unless the `BUMP_MERGE_ENABLED` repository
-variable is `true`. A `bump-escalated` PR is maintainer work — humans may
-add commits, then re-label or merge manually.
+every changed file inside `tool/bump_allowed_paths.yaml` (checked with the
+ledger and checker from `main`, never from the PR), required checks green,
+and GitHub's merge state (a required check still queued behind the example
+matrix is waited for). It merges exactly the head it verified — a push after
+the label makes the merge refuse and comment; re-label to re-verify. Every
+non-merge outcome is a PR comment. Merging stays disarmed unless the
+`BUMP_MERGE_ENABLED` repository variable is `true`. A `bump-escalated` PR is
+maintainer work — humans may add commits, then re-label or merge manually.
 
 ## Hard rules
 

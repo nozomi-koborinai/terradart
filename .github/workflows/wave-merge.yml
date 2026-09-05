@@ -3,10 +3,30 @@ name: wave-merge
 # Merge executor for the wave-shipper agent. The agent implements a Wave
 # from the curation backlog and labels the PR (wave-approved); this
 # workflow INDEPENDENTLY re-verifies — branch pattern, same-repo head,
-# the Wave scope ledger (additive-only by construction), and required
-# checks — and only then squash-merges. The agent holds no merge power.
-# Staged rollout: merging is disarmed (verify + comment only) until the
-# repository variable WAVE_MERGE_ENABLED is 'true'.
+# the Wave scope ledger (additive-only by construction), required checks,
+# unresolved Bugbot threads, merge state — and only then squash-merges the
+# exact head it verified. The agent holds no merge power. Staged rollout:
+# merging is disarmed (verify + comment only) until the repository
+# variable WAVE_MERGE_ENABLED is 'true'.
+#
+# Trust boundary: the job runs on pull_request_target, so this file,
+# tool/check_bump_scope.dart and tool/wave_allowed_paths.yaml are taken
+# from the BASE branch (main), never from the PR under judgment. Under
+# plain pull_request the PR supplied its own ledger and checker, so one
+# push could widen the scope it was judged by. The job never checks out
+# or runs PR code: it pins the head SHA, fetches that commit and only READS
+# its trees to diff them against main (the pulls/files API reflects the
+# live head and cannot bind a verdict to a SHA), then merges exactly that
+# SHA (--match-head-commit), so a push after verification cannot ride an
+# earlier verdict.
+#
+# Merge state: `gh pr checks --required` only sees check runs that already
+# exist. A required job queued behind `needs:` (the terraform validate
+# gate waits for the example matrix) is invisible until it starts, so the
+# executor also waits for GitHub's own mergeStateStatus to leave BLOCKED
+# before merging. Without that wait `gh pr merge` fails on branch
+# protection and the PR strands with no comment (PR #643, 2026-08-31).
+# Every non-merge outcome posts a comment.
 #
 # Live GCP apply-smoke is retired. Example verification is synth +
 # terraform validate (CI + agent_verify), not terraform apply.
@@ -15,7 +35,7 @@ name: wave-merge
 # through env: (never inline interpolation).
 
 on:
-  pull_request:
+  pull_request_target:
     types: [labeled]
   workflow_dispatch:
     inputs:
@@ -53,7 +73,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      # On pull_request_target the default ref is the BASE branch. Keep it
+      # that way: the ledger and checker must never come from the PR. Full
+      # history so the pinned head can be diffed against main offline (no
+      # blob filter: an on-demand blob fetch is one more way to fail).
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - uses: dart-lang/setup-dart@v1
         with:
@@ -110,8 +136,19 @@ jobs:
           esac
           cross=$(gh pr view "$PR" --json isCrossRepository -q .isCrossRepository)
           [ "$cross" = "false" ] || fail "cross-repository PR"
-          gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR}/files" \
-            --paginate --jq '.[].filename' > /tmp/changed.txt
+          # Pin the head this verdict is about. Every content check below is
+          # computed from THIS SHA, and the merge step refuses any other head
+          # (--match-head-commit). The pulls/files API has no commit
+          # parameter — it always reflects the live head — so it cannot bind
+          # a verdict to a SHA; diff the pinned commit against main locally.
+          # The PR's trees are only read, never checked out or executed.
+          head_sha=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
+          echo "head_sha=$head_sha" >> "$GITHUB_OUTPUT"
+          git fetch -q origin "$head_sha"
+          git diff --no-renames --name-only "origin/main...$head_sha" > /tmp/changed.txt
+          head_now=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
+          [ "$head_now" = "$head_sha" ] \
+            || fail "head moved during verification (${head_sha:0:7} -> ${head_now:0:7}); re-label wave-approved to re-verify"
           if dart tool/check_bump_scope.dart --ledger tool/wave_allowed_paths.yaml \
               < /tmp/changed.txt > /tmp/scope.txt 2>&1; then
             cat /tmp/scope.txt
@@ -123,13 +160,23 @@ jobs:
           # listed as a workspace member; anything beyond `- examples/…`
           # additions (dependency edits, removals) must not auto-merge.
           if grep -qx 'pubspec.yaml' /tmp/changed.txt; then
-            head_sha=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
-            git fetch -q origin main "$head_sha"
-            if git diff "origin/main...$head_sha" -- pubspec.yaml \
-              | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' \
+            # Fail CLOSED. `git diff` runs on its own so its exit status is
+            # checked (inside an `if … | grep` pipeline a git error would look
+            # like "no disallowed lines" and pass). Same pinned SHA as the
+            # file list.
+            if ! git diff "origin/main...$head_sha" -- pubspec.yaml > /tmp/pubspec.diff; then
+              fail "git diff of pubspec.yaml at ${head_sha:0:7} failed"
+            fi
+            # Every line that is not a unified-diff header or a context line
+            # must be a workspace example addition; mode / rename / binary
+            # markers and any other +/- line fail. At least one addition must
+            # exist — an empty or header-only diff is not "clean".
+            if grep -vE '^(diff --git |index [0-9a-f]+\.\.[0-9a-f]+|--- |\+\+\+ |@@ | )' /tmp/pubspec.diff \
               | grep -vE '^\+  - examples/[a-z0-9_]+$' | grep -q .; then
               fail "pubspec.yaml diff contains more than workspace example additions"
             fi
+            grep -qE '^\+  - examples/[a-z0-9_]+$' /tmp/pubspec.diff \
+              || fail "pubspec.yaml is listed as changed but adds no workspace example"
             echo "pubspec.yaml diff: workspace example additions only"
           fi
           echo "verdict=pass" >> "$GITHUB_OUTPUT"
@@ -154,37 +201,95 @@ jobs:
           IGNORE: ${{ github.event.inputs.ignore_review_threads }}
         run: |
           set -euo pipefail
-          echo "verdict=pass" >> "$GITHUB_OUTPUT"
+          fail() {
+            echo "verdict=fail" >> "$GITHUB_OUTPUT"
+            echo "reason=$1" >> "$GITHUB_OUTPUT"
+            exit 0
+          }
           if [ "$IGNORE" = "true" ]; then
             echo "review-thread gate skipped by dispatch input (human override)"
+            echo "verdict=pass" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           # CI green is not review clean: Bugbot findings arrive as review
           # threads, and the shipper's token cannot resolve them — but
           # Bugbot's re-review auto-resolves threads its fix push addressed,
           # so a fix-and-push loop self-heals this gate.
-          unresolved=$(gh api graphql \
+          # The pass verdict is written only after the query succeeded: a
+          # failed query is a failed gate, never a stale pass.
+          if ! unresolved=$(gh api graphql \
             -F owner="${GITHUB_REPOSITORY%%/*}" \
             -F name="${GITHUB_REPOSITORY##*/}" \
             -F pr="$PR" \
             -f query='query($owner:String!,$name:String!,$pr:Int!){repository(owner:$owner,name:$name){pullRequest(number:$pr){reviewThreads(first:100){nodes{isResolved comments(first:1){nodes{author{login}}}}}}}}' \
-            --jq '[.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved==false and .comments.nodes[0].author.login=="cursor")] | length')
-          if [ "${unresolved:-0}" -gt 0 ]; then
-            echo "verdict=fail" >> "$GITHUB_OUTPUT"
-            echo "reason=$unresolved unresolved Bugbot finding(s) — fix and push (Bugbot's re-review auto-resolves addressed threads), or a human resolves the threads / re-dispatches with ignore_review_threads=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "no unresolved Bugbot threads"
+            --jq '[.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved==false and .comments.nodes[0].author.login=="cursor")] | length'); then
+            fail "could not query review threads (GraphQL failed) — not merging"
           fi
+          case "$unresolved" in
+            ''|*[!0-9]*) fail "unexpected review-thread count '${unresolved}' — not merging" ;;
+          esac
+          if [ "$unresolved" -gt 0 ]; then
+            fail "$unresolved unresolved Bugbot finding(s) — fix and push (Bugbot's re-review auto-resolves addressed threads), or a human resolves the threads / re-dispatches with ignore_review_threads=true"
+          fi
+          echo "no unresolved Bugbot threads"
+          echo "verdict=pass" >> "$GITHUB_OUTPUT"
+
+      - name: Wait for merge state
+        id: merge_state
+        # success() is the implicit default, spelled out: this must never run
+        # after an earlier step errored.
+        if: ${{ success() && steps.verify.outputs.verdict == 'pass' && steps.checks.outputs.exit == '0' && steps.review.outputs.verdict == 'pass' }}
+        env:
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
+          PR: ${{ steps.pr.outputs.number }}
+        run: |
+          set -euo pipefail
+          # Required checks still queued behind `needs:` are invisible to
+          # `gh pr checks`; branch protection still counts them. Poll until
+          # GitHub itself reports the PR mergeable (or definitively not).
+          deadline=$((SECONDS + 1200))
+          while :; do
+            # A transient API error must not end the step (and skip the
+            # comment); treat it like UNKNOWN and poll again.
+            state=$(gh pr view "$PR" --json mergeStateStatus -q .mergeStateStatus) || state=UNKNOWN
+            case "$state" in
+              CLEAN|UNSTABLE|HAS_HOOKS|BEHIND|DIRTY)
+                echo "state=$state" >> "$GITHUB_OUTPUT"
+                exit 0 ;;
+            esac
+            # BLOCKED / UNKNOWN: a late required check may have failed.
+            set +e
+            gh pr checks "$PR" --required > /dev/null 2>&1
+            rc=$?
+            set -e
+            if [ "$rc" = "1" ]; then
+              echo "state=CHECKS_FAILED" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if [ "$SECONDS" -ge "$deadline" ]; then
+              echo "state=TIMEOUT_${state}" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "mergeStateStatus=$state (gh pr checks rc=$rc); waiting for branch protection to settle"
+            sleep 30
+          done
 
       - name: Merge or report
+        # Runs even when an earlier step crashed (not via fail()), so a
+        # transient error still leaves a comment instead of a silent red run.
+        if: ${{ !cancelled() && steps.pr.outputs.number != '' }}
         env:
           GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
           PR: ${{ steps.pr.outputs.number }}
           VERDICT: ${{ steps.verify.outputs.verdict }}
           REASON: ${{ steps.verify.outputs.reason }}
+          HEAD_SHA: ${{ steps.verify.outputs.head_sha }}
           CHECKS_EXIT: ${{ steps.checks.outputs.exit }}
           REVIEW_VERDICT: ${{ steps.review.outputs.verdict }}
           REVIEW_REASON: ${{ steps.review.outputs.reason }}
+          REVIEW_OUTCOME: ${{ steps.review.outcome }}
+          STATE: ${{ steps.merge_state.outputs.state }}
+          STATE_OUTCOME: ${{ steps.merge_state.outcome }}
           DRY_RUN: ${{ steps.pr.outputs.dry_run }}
           DEPTH: ${{ github.event.inputs.depth }}
           IGNORE: ${{ github.event.inputs.ignore_review_threads }}
@@ -192,7 +297,7 @@ jobs:
           set -euo pipefail
           [ "$IGNORE" = "true" ] || IGNORE=false
           if [ "$VERDICT" != "pass" ]; then
-            gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${REASON}."
+            gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${REASON:-an earlier step failed before reaching a verdict; see the workflow log}."
             exit 1
           fi
           if [ "$CHECKS_EXIT" != "0" ]; then
@@ -200,28 +305,51 @@ jobs:
             exit 1
           fi
           if [ "$REVIEW_VERDICT" != "pass" ]; then
-            gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${REVIEW_REASON}."
+            gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${REVIEW_REASON:-the review-thread gate reached no verdict; see the workflow log}."
             exit 1
           fi
+          # Outputs alone are not enough: a gate step that errored after
+          # writing an output must still block the merge.
+          if [ "$REVIEW_OUTCOME" != "success" ] || [ "$STATE_OUTCOME" != "success" ]; then
+            gh pr comment "$PR" --body "**wave-merge:** NOT merging — a gate step did not complete (review-thread gate: ${REVIEW_OUTCOME:-skipped}, merge-state wait: ${STATE_OUTCOME:-skipped}); see the workflow log."
+            exit 1
+          fi
+          case "$STATE" in
+            CLEAN|UNSTABLE|HAS_HOOKS) ;;
+            BEHIND)
+              if [ "$DRY_RUN" = "true" ]; then
+                gh pr comment "$PR" --body "**wave-merge (dry run):** verifications passed but the branch is BEHIND main; an armed run would update it and re-dispatch itself. Merging is disarmed (WAVE_MERGE_ENABLED != true)."
+                exit 0
+              fi
+              d="${DEPTH:-0}"
+              case "$d" in *[!0-9]*|"") d=0 ;; esac
+              if [ "$d" -ge 2 ]; then
+                gh pr comment "$PR" --body "**wave-merge:** NOT merging — branch keeps falling BEHIND after ${d} update attempts; human attention required."
+                exit 1
+              fi
+              gh pr update-branch "$PR"
+              # Forward the human override — a BEHIND redispatch must not
+              # silently drop ignore_review_threads back to its default.
+              gh workflow run wave-merge.yml -f pr="$PR" -f dry_run=false \
+                -f depth="$((d + 1))" -f ignore_review_threads="$IGNORE"
+              gh pr comment "$PR" --body "**wave-merge:** branch was BEHIND — updated it and re-dispatched myself (depth $((d + 1))) to re-verify against the new head."
+              exit 0 ;;
+            DIRTY)
+              gh pr comment "$PR" --body "**wave-merge:** NOT merging — merge conflict with main; human attention required."
+              exit 1 ;;
+            CHECKS_FAILED)
+              gh pr comment "$PR" --body "**wave-merge:** NOT merging — required checks are not green (a late check failed, or none are reported); see the Checks tab."
+              exit 1 ;;
+            *)
+              gh pr comment "$PR" --body "**wave-merge:** NOT merging — merge state did not settle (${STATE:-unknown}); a required check may still be queued. Re-label \`wave-approved\` once every check has reported."
+              exit 1 ;;
+          esac
           if [ "$DRY_RUN" = "true" ]; then
-            gh pr comment "$PR" --body "**wave-merge (dry run):** all verifications passed — branch pattern, same-repo head, Wave scope ledger, required checks green, and no unresolved Bugbot threads. Merging is disarmed (WAVE_MERGE_ENABLED != true)."
+            gh pr comment "$PR" --body "**wave-merge (dry run):** all verifications passed — branch pattern, same-repo head, Wave scope ledger, required checks green, no unresolved Bugbot threads, merge state ${STATE}. Merging is disarmed (WAVE_MERGE_ENABLED != true)."
             exit 0
           fi
-          state=$(gh pr view "$PR" --json mergeStateStatus -q .mergeStateStatus)
-          if [ "$state" = "BEHIND" ]; then
-            d="${DEPTH:-0}"
-            case "$d" in *[!0-9]*|"") d=0 ;; esac
-            if [ "$d" -ge 2 ]; then
-              gh pr comment "$PR" --body "**wave-merge:** NOT merging — branch keeps falling BEHIND after ${d} update attempts; human attention required."
-              exit 1
-            fi
-            gh pr update-branch "$PR"
-            # Forward the human override — a BEHIND redispatch must not
-            # silently drop ignore_review_threads back to its default.
-            gh workflow run wave-merge.yml -f pr="$PR" -f dry_run=false \
-              -f depth="$((d + 1))" -f ignore_review_threads="$IGNORE"
-            gh pr comment "$PR" --body "**wave-merge:** branch was BEHIND — updated it and re-dispatched myself (depth $((d + 1))) to re-verify against the new head."
-            exit 0
+          if ! gh pr merge "$PR" --squash --delete-branch --match-head-commit "$HEAD_SHA"; then
+            gh pr comment "$PR" --body "**wave-merge:** NOT merging — \`gh pr merge\` was refused (the head moved after verification, or branch protection changed). Re-label \`wave-approved\` to re-verify the current head."
+            exit 1
           fi
-          gh pr merge "$PR" --squash --delete-branch
-          gh pr comment "$PR" --body "**wave-merge:** verified (branch pattern, same-repo head, scope ledger, required checks, no unresolved Bugbot threads) and squash-merged."
+          gh pr comment "$PR" --body "**wave-merge:** verified (branch pattern, same-repo head, scope ledger, required checks, no unresolved Bugbot threads, merge state ${STATE}) and squash-merged ${HEAD_SHA:0:7}."

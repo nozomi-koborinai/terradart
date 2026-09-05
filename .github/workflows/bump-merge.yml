@@ -3,16 +3,36 @@ name: bump-merge
 # Merge executor for the schema-bump post-process agent. The agent judges
 # and labels (bump-approved); this workflow INDEPENDENTLY re-verifies —
 # branch pattern, same-repo head, changed-file scope ledger, required
-# checks — and only then squash-merges. The agent holds no merge power.
-# Staged rollout: merging is disarmed (verify + comment only) until the
-# repository variable BUMP_MERGE_ENABLED is 'true'.
+# checks, merge state — and only then squash-merges the exact head it
+# verified. The agent holds no merge power. Staged rollout: merging is
+# disarmed (verify + comment only) until the repository variable
+# BUMP_MERGE_ENABLED is 'true'.
+#
+# Trust boundary: the job runs on pull_request_target, so this file,
+# tool/check_bump_scope.dart and tool/bump_allowed_paths.yaml are taken
+# from the BASE branch (main), never from the PR under judgment. Under
+# plain pull_request the PR supplied its own ledger and checker, so one
+# push could widen the scope it was judged by. The job never checks out
+# or runs PR code: it pins the head SHA, fetches that commit and only READS
+# its trees to diff them against main (the pulls/files API reflects the
+# live head and cannot bind a verdict to a SHA), then merges exactly that
+# SHA (--match-head-commit), so a push after verification cannot ride an
+# earlier verdict.
+#
+# Merge state: `gh pr checks --required` only sees check runs that already
+# exist. A required job queued behind `needs:` (the terraform validate
+# gate waits for the example matrix) is invisible until it starts, so the
+# executor also waits for GitHub's own mergeStateStatus to leave BLOCKED
+# before merging. Without that wait `gh pr merge` fails on branch
+# protection and the PR strands with no comment (PR #643, 2026-08-31).
+# Every non-merge outcome posts a comment.
 #
 # Injection hygiene: every ${{ }} value consumed by a run: step goes
 # through env: (never inline interpolation) — the verify reason embeds the
 # head branch name, which is contributor-controlled input.
 
 on:
-  pull_request:
+  pull_request_target:
     types: [labeled]
   workflow_dispatch:
     inputs:
@@ -42,7 +62,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
+      # On pull_request_target the default ref is the BASE branch. Keep it
+      # that way: the ledger and checker must never come from the PR. Full
+      # history so the pinned head can be diffed against main offline (no
+      # blob filter: an on-demand blob fetch is one more way to fail).
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - uses: dart-lang/setup-dart@v1
         with:
@@ -99,11 +125,19 @@ jobs:
           esac
           cross=$(gh pr view "$PR" --json isCrossRepository -q .isCrossRepository)
           [ "$cross" = "false" ] || fail "cross-repository PR"
-          # NOT `gh pr diff --name-only`: bump PRs carry a huge schema.json
-          # diff and trip the API's 20k-line limit (HTTP 406). The files
-          # endpoint lists names without diff bodies and paginates.
-          gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR}/files" \
-            --paginate --jq '.[].filename' > /tmp/changed.txt
+          # Pin the head this verdict is about. Every content check below is
+          # computed from THIS SHA, and the merge step refuses any other head
+          # (--match-head-commit). The pulls/files API has no commit
+          # parameter — it always reflects the live head — so it cannot bind
+          # a verdict to a SHA; diff the pinned commit against main locally.
+          # The PR's trees are only read, never checked out or executed.
+          head_sha=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
+          echo "head_sha=$head_sha" >> "$GITHUB_OUTPUT"
+          git fetch -q origin "$head_sha"
+          git diff --no-renames --name-only "origin/main...$head_sha" > /tmp/changed.txt
+          head_now=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
+          [ "$head_now" = "$head_sha" ] \
+            || fail "head moved during verification (${head_sha:0:7} -> ${head_now:0:7}); re-label bump-approved to re-verify"
           if dart tool/check_bump_scope.dart < /tmp/changed.txt > /tmp/scope.txt 2>&1; then
             cat /tmp/scope.txt
             echo "verdict=pass" >> "$GITHUB_OUTPUT"
@@ -123,27 +157,97 @@ jobs:
           gh pr checks "$PR" --required --watch --interval 60
           echo "exit=$?" >> "$GITHUB_OUTPUT"
 
+      - name: Wait for merge state
+        id: merge_state
+        # success() is the implicit default, spelled out: this must never run
+        # after an earlier step errored.
+        if: ${{ success() && steps.verify.outputs.verdict == 'pass' && steps.checks.outputs.exit == '0' }}
+        env:
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
+          PR: ${{ steps.pr.outputs.number }}
+        run: |
+          set -euo pipefail
+          # Required checks still queued behind `needs:` are invisible to
+          # `gh pr checks`; branch protection still counts them. Poll until
+          # GitHub itself reports the PR mergeable (or definitively not).
+          deadline=$((SECONDS + 1200))
+          while :; do
+            # A transient API error must not end the step (and skip the
+            # comment); treat it like UNKNOWN and poll again.
+            state=$(gh pr view "$PR" --json mergeStateStatus -q .mergeStateStatus) || state=UNKNOWN
+            case "$state" in
+              CLEAN|UNSTABLE|HAS_HOOKS|BEHIND|DIRTY)
+                echo "state=$state" >> "$GITHUB_OUTPUT"
+                exit 0 ;;
+            esac
+            # BLOCKED / UNKNOWN: a late required check may have failed.
+            set +e
+            gh pr checks "$PR" --required > /dev/null 2>&1
+            rc=$?
+            set -e
+            if [ "$rc" = "1" ]; then
+              echo "state=CHECKS_FAILED" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            if [ "$SECONDS" -ge "$deadline" ]; then
+              echo "state=TIMEOUT_${state}" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "mergeStateStatus=$state (gh pr checks rc=$rc); waiting for branch protection to settle"
+            sleep 30
+          done
+
       - name: Merge or report
+        # Runs even when an earlier step crashed (not via fail()), so a
+        # transient error still leaves a comment instead of a silent red run.
+        if: ${{ !cancelled() && steps.pr.outputs.number != '' }}
         env:
           GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
           PR: ${{ steps.pr.outputs.number }}
           VERDICT: ${{ steps.verify.outputs.verdict }}
           REASON: ${{ steps.verify.outputs.reason }}
+          HEAD_SHA: ${{ steps.verify.outputs.head_sha }}
           CHECKS_EXIT: ${{ steps.checks.outputs.exit }}
+          STATE: ${{ steps.merge_state.outputs.state }}
+          STATE_OUTCOME: ${{ steps.merge_state.outcome }}
           DRY_RUN: ${{ steps.pr.outputs.dry_run }}
         run: |
           set -euo pipefail
           if [ "$VERDICT" != "pass" ]; then
-            gh pr comment "$PR" --body "**bump-merge:** NOT merging — ${REASON}."
+            gh pr comment "$PR" --body "**bump-merge:** NOT merging — ${REASON:-an earlier step failed before reaching a verdict; see the workflow log}."
             exit 1
           fi
           if [ "$CHECKS_EXIT" != "0" ]; then
             gh pr comment "$PR" --body "**bump-merge:** NOT merging — required checks did not finish green (gh pr checks exit ${CHECKS_EXIT})."
             exit 1
           fi
+          # Outputs alone are not enough: a gate step that errored after
+          # writing an output must still block the merge.
+          if [ "$STATE_OUTCOME" != "success" ]; then
+            gh pr comment "$PR" --body "**bump-merge:** NOT merging — the merge-state wait did not complete (${STATE_OUTCOME:-skipped}); see the workflow log."
+            exit 1
+          fi
+          case "$STATE" in
+            CLEAN|UNSTABLE|HAS_HOOKS) ;;
+            BEHIND)
+              gh pr comment "$PR" --body "**bump-merge:** NOT merging — branch is BEHIND main (protection requires an up-to-date branch). Update it (\`gh pr update-branch ${PR}\`), wait for green, then re-label \`bump-approved\`."
+              exit 1 ;;
+            DIRTY)
+              gh pr comment "$PR" --body "**bump-merge:** NOT merging — merge conflict with main; human attention required."
+              exit 1 ;;
+            CHECKS_FAILED)
+              gh pr comment "$PR" --body "**bump-merge:** NOT merging — required checks are not green (a late check failed, or none are reported); see the Checks tab."
+              exit 1 ;;
+            *)
+              gh pr comment "$PR" --body "**bump-merge:** NOT merging — merge state did not settle (${STATE:-unknown}); a required check may still be queued. Re-label \`bump-approved\` once every check has reported."
+              exit 1 ;;
+          esac
           if [ "$DRY_RUN" = "true" ]; then
-            gh pr comment "$PR" --body "**bump-merge (dry run):** all verifications passed — branch pattern, same-repo head, scope ledger, required checks green. Merging is disarmed (BUMP_MERGE_ENABLED != true)."
+            gh pr comment "$PR" --body "**bump-merge (dry run):** all verifications passed — branch pattern, same-repo head, scope ledger, required checks green, merge state ${STATE}. Merging is disarmed (BUMP_MERGE_ENABLED != true)."
             exit 0
           fi
-          gh pr merge "$PR" --squash --delete-branch
-          gh pr comment "$PR" --body "**bump-merge:** verified (branch pattern, same-repo head, scope ledger, required checks green) and squash-merged."
+          if ! gh pr merge "$PR" --squash --delete-branch --match-head-commit "$HEAD_SHA"; then
+            gh pr comment "$PR" --body "**bump-merge:** NOT merging — \`gh pr merge\` was refused (the head moved after verification, or branch protection changed). Re-label \`bump-approved\` to re-verify the current head."
+            exit 1
+          fi
+          gh pr comment "$PR" --body "**bump-merge:** verified (branch pattern, same-repo head, scope ledger, required checks green, merge state ${STATE}) and squash-merged ${HEAD_SHA:0:7}."
