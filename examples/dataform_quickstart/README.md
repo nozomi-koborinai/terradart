@@ -1,13 +1,18 @@
-# Dataform folder quickstart
+# Dataform quickstart
 
-End-to-end terradart example for Dataform **folder metadata**:
+End-to-end terradart example for Dataform folder metadata and a repository:
 
 - `google_dataform_team_folder`
 - `google_dataform_folder` nested via `containing_folder`
+- `google_dataform_repository` running workflow invocations as an in-stack
+  `google_service_account`
+- `google_dataform_repository_iam_member` granting that service account
+  `roles/dataform.editor` on the repository
 
-This stack does not create a Dataform repository (GA `hashicorp/google`
-does not ship `google_dataform_repository` — that resource is beta) and
-does not compile or run SQL workflows.
+The repository is created without a Git remote (linking one needs an external
+Git URL plus a Secret Manager token version, or a Developer Connect link), so
+this stack does not compile or run SQL workflows and incurs no BigQuery
+analysis charge.
 
 ## Prerequisites
 

@@ -1,0 +1,19 @@
+outputDir: dataform
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Dataform repository.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleDataformRepositoryIamMember] for
+  /// additive grants.
+
+paramOrder:
+  - repository
+  - role
+  - members
+  - region
+  - project
+  - condition

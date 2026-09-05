@@ -1,0 +1,17 @@
+outputDir: dataform
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataform repository.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleDataformRepositoryIamMember] for
+  /// single-principal grants.
+
+paramOrder:
+  - repository
+  - policy_data
+  - region
+  - project

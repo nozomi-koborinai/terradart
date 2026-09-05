@@ -1,0 +1,49 @@
+outputDir: dataform
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Dataform **repository** — the regional container for SQL workflow code,
+  /// workspaces, and compilation results.
+  ///
+  /// Creating a repository does not compile SQL or run workflows: BigQuery
+  /// charges start when a workflow invocation executes the compiled SQL.
+  ///
+  /// `serviceAccount` is the identity workflow invocations run under; it needs
+  /// BigQuery access to the datasets the workflow writes. `kmsKeyName` is
+  /// immutable — it cannot be added or rotated after create.
+  ///
+  /// **Cost:** gcp-cost: no Cloud Billing Catalog SKU after list_services
+  /// "Dataform" empty; BigQuery 24E6-581D-38E5 list_skus keyword
+  /// dataform/repository/compilation/workflow → 0. billing-behavior:
+  /// repository metadata is free config; BigQuery analysis SKUs fire on
+  /// workflow invocations, not on repository create.
+  ///
+  /// The Git remote block is deliberately not curated: linking a remote needs
+  /// an external Git URL plus a Secret Manager token version (or a Developer
+  /// Connect link), and the API requires exactly one of those three
+  /// authentication shapes. Repositories created here hold Dataform-managed
+  /// workspaces.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDataformRepository(
+  ///   localName: 'analytics',
+  ///   name: TfArg.literal('terradart-analytics'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   displayName: TfArg.literal('TerraDart analytics'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - region
+  - display_name
+  - service_account
+  - kms_key_name
+  - npmrc_environment_variables_secret_version
+  - workspace_compilation_overrides
+  - labels
+  - deletion_policy
+  - project

@@ -49,18 +49,15 @@ entries:
   - resource: google_chronicle_soar_network
     detected_at: 2026-08-16
     provider_version: 7.44.0
-  - resource: google_dataform_repository
-    detected_at: 2026-08-16
-    provider_version: 7.44.0
-  - resource: google_dataform_repository_iam_binding
-    detected_at: 2026-08-16
-    provider_version: 7.44.0
-  - resource: google_dataform_repository_iam_member
-    detected_at: 2026-08-16
-    provider_version: 7.44.0
-  - resource: google_dataform_repository_iam_policy
-    detected_at: 2026-08-16
-    provider_version: 7.44.0
+    note: skipped by wave-shipper — schema requires `instance` (the Chronicle /
+      Google SecOps instance UUID), which no Terraform resource creates; the
+      only Chronicle example is skip-listed for exactly that reason
+      (apply_smoke_skip.yaml `chronicle_quickstart: needs a real Chronicle
+      (Google SecOps) instance ID — placeholder UUID fails at apply time`) and
+      all 19 curated google_chronicle_* types are never_apply in
+      apply_cost_denylist.yaml. A Wave cannot touch a skip-listed example
+      (check_wave_skiplist_gate), so this needs the maintainer apply-excluded
+      path, not a wave.
   - resource: google_firestore_change_stream
     detected_at: 2026-08-23
     provider_version: 7.45.0

@@ -96,7 +96,7 @@ HCL has provider schema types; CDKTF bindings are typed in TypeScript and other 
 
 ## Curated provider coverage
 
-- [`terradart_google`](https://pub.dev/packages/terradart_google) wraps the **GA** HashiCorp `google` provider catalog — **1333 curated resource factories + 461 data sources** (1794 catalog entries).
+- [`terradart_google`](https://pub.dev/packages/terradart_google) wraps the **GA** HashiCorp `google` provider catalog — **1337 curated resource factories + 461 data sources** (1798 catalog entries).
 - [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) wraps beta-only types (128 resource factories).
 - [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) wraps official `appwrite/appwrite` provider resources (filled at `2.0.0-beta.1`: 38 resource factories + 24 data sources).
 - [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) wraps official `cloudflare/cloudflare` provider resources (filled at `5.23.0`: **257 resource factories + 446 data sources**).
