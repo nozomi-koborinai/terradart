@@ -4,7 +4,8 @@ name: wave-open
 # cannot create PRs or apply labels (403, verified 2026-07-04..06). A push
 # to wave/** whose HEAD commit message contains [wave-ready] gets a ready
 # PR + the wave-approved label (firing the wave-merge executor); a push
-# without the marker gets a draft PR (backup only). Auth uses
+# without the marker gets a draft PR (backup only). Every marker push
+# re-applies the label, so repair rounds re-run the executor. Auth uses
 # SCHEMA_BUMP_PAT: labels applied by
 # GITHUB_TOKEN would not trigger wave-merge's labeled event.
 
@@ -76,6 +77,12 @@ jobs:
           fi
 
           if [ "$ready" = "true" ]; then
+            # Adding a label that is already present emits no `labeled`
+            # event, so a repair round's second [wave-ready] push would never
+            # re-run wave-merge (PR #634 stranded this way on 2026-08-25 and
+            # needed a manual merge). Remove first so the add is a fresh
+            # event; `unlabeled` triggers nothing.
+            gh pr edit "$number" --remove-label wave-approved > /dev/null 2>&1 || true
             gh pr edit "$number" --add-label wave-approved
             echo "ready: PR #$number labeled wave-approved"
           else
