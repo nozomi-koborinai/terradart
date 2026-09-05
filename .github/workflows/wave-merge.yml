@@ -14,9 +14,10 @@ name: wave-merge
 # from the BASE branch (main), never from the PR under judgment. Under
 # plain pull_request the PR supplied its own ledger and checker, so one
 # push could widen the scope it was judged by. The job never checks out
-# or runs PR code: changed files and the root-pubspec hunk come from the
-# API, and the head SHA verified here is pinned at merge time
-# (--match-head-commit), so a push after verification cannot ride an
+# or runs PR code: it pins the head SHA, fetches that commit and only READS
+# its trees to diff them against main (the pulls/files API reflects the
+# live head and cannot bind a verdict to a SHA), then merges exactly that
+# SHA (--match-head-commit), so a push after verification cannot ride an
 # earlier verdict.
 #
 # Merge state: `gh pr checks --required` only sees check runs that already
@@ -73,8 +74,12 @@ jobs:
     timeout-minutes: 45
     steps:
       # On pull_request_target the default ref is the BASE branch. Keep it
-      # that way: the ledger and checker must never come from the PR.
+      # that way: the ledger and checker must never come from the PR. Full
+      # (blobless) history so the pinned head can be diffed against main.
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          filter: blob:none
 
       - uses: dart-lang/setup-dart@v1
         with:
@@ -131,12 +136,16 @@ jobs:
           esac
           cross=$(gh pr view "$PR" --json isCrossRepository -q .isCrossRepository)
           [ "$cross" = "false" ] || fail "cross-repository PR"
-          # Pin the head this verdict is about BEFORE listing files; the
-          # merge step refuses any other head (--match-head-commit).
+          # Pin the head this verdict is about. Every content check below is
+          # computed from THIS SHA, and the merge step refuses any other head
+          # (--match-head-commit). The pulls/files API has no commit
+          # parameter — it always reflects the live head — so it cannot bind
+          # a verdict to a SHA; diff the pinned commit against main locally.
+          # The PR's trees are only read, never checked out or executed.
           head_sha=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
           echo "head_sha=$head_sha" >> "$GITHUB_OUTPUT"
-          gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR}/files" \
-            --paginate --jq '.[].filename' > /tmp/changed.txt
+          git fetch -q origin "$head_sha"
+          git diff --no-renames --name-only "origin/main...$head_sha" > /tmp/changed.txt
           head_now=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
           [ "$head_now" = "$head_sha" ] \
             || fail "head moved during verification (${head_sha:0:7} -> ${head_now:0:7}); re-label wave-approved to re-verify"
@@ -151,15 +160,10 @@ jobs:
           # listed as a workspace member; anything beyond `- examples/…`
           # additions (dependency edits, removals) must not auto-merge.
           if grep -qx 'pubspec.yaml' /tmp/changed.txt; then
-            # Take the hunk from the API instead of fetching PR git objects:
-            # the executor never touches PR code, and a shallow checkout has
-            # no merge base to diff against anyway.
-            gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR}/files" --paginate \
-              --jq '.[] | select(.filename == "pubspec.yaml") | .patch // empty' \
-              > /tmp/pubspec.patch
-            [ -s /tmp/pubspec.patch ] \
-              || fail "pubspec.yaml changed but the API returned no patch for it"
-            if grep -E '^[+-]' /tmp/pubspec.patch \
+            # Same pinned SHA as the file list; `+++ `/`--- ` are the unified
+            # diff file headers, everything else starting with +/- is content.
+            if git diff "origin/main...$head_sha" -- pubspec.yaml \
+              | grep -E '^[+-]' | grep -vE '^(\+\+\+ |--- )' \
               | grep -vE '^\+  - examples/[a-z0-9_]+$' | grep -q .; then
               fail "pubspec.yaml diff contains more than workspace example additions"
             fi
