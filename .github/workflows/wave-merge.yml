@@ -26,7 +26,8 @@ name: wave-merge
 # executor also waits for GitHub's own mergeStateStatus to leave BLOCKED
 # before merging. Without that wait `gh pr merge` fails on branch
 # protection and the PR strands with no comment (PR #643, 2026-08-31).
-# Every non-merge outcome posts a comment.
+# Every non-merge outcome posts a comment, including a failed BEHIND
+# update or re-dispatch.
 #
 # Live GCP apply-smoke is retired. Example verification is synth +
 # terraform validate (CI + agent_verify), not terraform apply.
@@ -58,6 +59,10 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  # The BEHIND re-dispatch uses GITHUB_TOKEN: workflow_dispatch is one of
+  # the two events a GITHUB_TOKEN-created event still triggers, and the PAT
+  # has no actions scope (HTTP 403 on PR #643, 2026-09-05).
+  actions: write
 
 concurrency:
   group: wave-merge-${{ github.event.pull_request.number || github.event.inputs.pr }}
@@ -293,6 +298,7 @@ jobs:
           DRY_RUN: ${{ steps.pr.outputs.dry_run }}
           DEPTH: ${{ github.event.inputs.depth }}
           IGNORE: ${{ github.event.inputs.ignore_review_threads }}
+          DISPATCH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           [ "$IGNORE" = "true" ] || IGNORE=false
@@ -327,11 +333,19 @@ jobs:
                 gh pr comment "$PR" --body "**wave-merge:** NOT merging — branch keeps falling BEHIND after ${d} update attempts; human attention required."
                 exit 1
               fi
-              gh pr update-branch "$PR"
+              if ! gh pr update-branch "$PR"; then
+                gh pr comment "$PR" --body "**wave-merge:** NOT merging — branch is BEHIND main and \`gh pr update-branch\` failed; update it by hand and re-label \`wave-approved\`."
+                exit 1
+              fi
               # Forward the human override — a BEHIND redispatch must not
               # silently drop ignore_review_threads back to its default.
-              gh workflow run wave-merge.yml -f pr="$PR" -f dry_run=false \
-                -f depth="$((d + 1))" -f ignore_review_threads="$IGNORE"
+              # GITHUB_TOKEN (actions: write) dispatches; the PAT cannot.
+              if ! GH_TOKEN="$DISPATCH_TOKEN" gh workflow run wave-merge.yml \
+                -f pr="$PR" -f dry_run=false \
+                -f depth="$((d + 1))" -f ignore_review_threads="$IGNORE"; then
+                gh pr comment "$PR" --body "**wave-merge:** branch was BEHIND — updated it, but re-dispatching myself failed; re-label \`wave-approved\` once the new head's checks are green."
+                exit 1
+              fi
               gh pr comment "$PR" --body "**wave-merge:** branch was BEHIND — updated it and re-dispatched myself (depth $((d + 1))) to re-verify against the new head."
               exit 0 ;;
             DIRTY)
