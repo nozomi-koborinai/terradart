@@ -75,11 +75,11 @@ jobs:
     steps:
       # On pull_request_target the default ref is the BASE branch. Keep it
       # that way: the ledger and checker must never come from the PR. Full
-      # (blobless) history so the pinned head can be diffed against main.
+      # history so the pinned head can be diffed against main offline (no
+      # blob filter: an on-demand blob fetch is one more way to fail).
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          filter: blob:none
 
       - uses: dart-lang/setup-dart@v1
         with:
@@ -160,13 +160,23 @@ jobs:
           # listed as a workspace member; anything beyond `- examples/…`
           # additions (dependency edits, removals) must not auto-merge.
           if grep -qx 'pubspec.yaml' /tmp/changed.txt; then
-            # Same pinned SHA as the file list; `+++ `/`--- ` are the unified
-            # diff file headers, everything else starting with +/- is content.
-            if git diff "origin/main...$head_sha" -- pubspec.yaml \
-              | grep -E '^[+-]' | grep -vE '^(\+\+\+ |--- )' \
+            # Fail CLOSED. `git diff` runs on its own so its exit status is
+            # checked (inside an `if … | grep` pipeline a git error would look
+            # like "no disallowed lines" and pass). Same pinned SHA as the
+            # file list.
+            if ! git diff "origin/main...$head_sha" -- pubspec.yaml > /tmp/pubspec.diff; then
+              fail "git diff of pubspec.yaml at ${head_sha:0:7} failed"
+            fi
+            # Every line that is not a unified-diff header or a context line
+            # must be a workspace example addition; mode / rename / binary
+            # markers and any other +/- line fail. At least one addition must
+            # exist — an empty or header-only diff is not "clean".
+            if grep -vE '^(diff --git |index [0-9a-f]+\.\.[0-9a-f]+|--- |\+\+\+ |@@ | )' /tmp/pubspec.diff \
               | grep -vE '^\+  - examples/[a-z0-9_]+$' | grep -q .; then
               fail "pubspec.yaml diff contains more than workspace example additions"
             fi
+            grep -qE '^\+  - examples/[a-z0-9_]+$' /tmp/pubspec.diff \
+              || fail "pubspec.yaml is listed as changed but adds no workspace example"
             echo "pubspec.yaml diff: workspace example additions only"
           fi
           echo "verdict=pass" >> "$GITHUB_OUTPUT"

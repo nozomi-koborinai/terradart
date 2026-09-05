@@ -64,11 +64,11 @@ jobs:
     steps:
       # On pull_request_target the default ref is the BASE branch. Keep it
       # that way: the ledger and checker must never come from the PR. Full
-      # (blobless) history so the pinned head can be diffed against main.
+      # history so the pinned head can be diffed against main offline (no
+      # blob filter: an on-demand blob fetch is one more way to fail).
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-          filter: blob:none
 
       - uses: dart-lang/setup-dart@v1
         with:
