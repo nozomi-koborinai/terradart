@@ -159,7 +159,9 @@ jobs:
 
       - name: Wait for merge state
         id: merge_state
-        if: steps.verify.outputs.verdict == 'pass' && steps.checks.outputs.exit == '0'
+        # success() is the implicit default, spelled out: this must never run
+        # after an earlier step errored.
+        if: ${{ success() && steps.verify.outputs.verdict == 'pass' && steps.checks.outputs.exit == '0' }}
         env:
           GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
           PR: ${{ steps.pr.outputs.number }}
@@ -207,6 +209,7 @@ jobs:
           HEAD_SHA: ${{ steps.verify.outputs.head_sha }}
           CHECKS_EXIT: ${{ steps.checks.outputs.exit }}
           STATE: ${{ steps.merge_state.outputs.state }}
+          STATE_OUTCOME: ${{ steps.merge_state.outcome }}
           DRY_RUN: ${{ steps.pr.outputs.dry_run }}
         run: |
           set -euo pipefail
@@ -216,6 +219,12 @@ jobs:
           fi
           if [ "$CHECKS_EXIT" != "0" ]; then
             gh pr comment "$PR" --body "**bump-merge:** NOT merging — required checks did not finish green (gh pr checks exit ${CHECKS_EXIT})."
+            exit 1
+          fi
+          # Outputs alone are not enough: a gate step that errored after
+          # writing an output must still block the merge.
+          if [ "$STATE_OUTCOME" != "success" ]; then
+            gh pr comment "$PR" --body "**bump-merge:** NOT merging — the merge-state wait did not complete (${STATE_OUTCOME:-skipped}); see the workflow log."
             exit 1
           fi
           case "$STATE" in

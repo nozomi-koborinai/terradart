@@ -201,31 +201,44 @@ jobs:
           IGNORE: ${{ github.event.inputs.ignore_review_threads }}
         run: |
           set -euo pipefail
-          echo "verdict=pass" >> "$GITHUB_OUTPUT"
+          fail() {
+            echo "verdict=fail" >> "$GITHUB_OUTPUT"
+            echo "reason=$1" >> "$GITHUB_OUTPUT"
+            exit 0
+          }
           if [ "$IGNORE" = "true" ]; then
             echo "review-thread gate skipped by dispatch input (human override)"
+            echo "verdict=pass" >> "$GITHUB_OUTPUT"
             exit 0
           fi
           # CI green is not review clean: Bugbot findings arrive as review
           # threads, and the shipper's token cannot resolve them — but
           # Bugbot's re-review auto-resolves threads its fix push addressed,
           # so a fix-and-push loop self-heals this gate.
-          unresolved=$(gh api graphql \
+          # The pass verdict is written only after the query succeeded: a
+          # failed query is a failed gate, never a stale pass.
+          if ! unresolved=$(gh api graphql \
             -F owner="${GITHUB_REPOSITORY%%/*}" \
             -F name="${GITHUB_REPOSITORY##*/}" \
             -F pr="$PR" \
             -f query='query($owner:String!,$name:String!,$pr:Int!){repository(owner:$owner,name:$name){pullRequest(number:$pr){reviewThreads(first:100){nodes{isResolved comments(first:1){nodes{author{login}}}}}}}}' \
-            --jq '[.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved==false and .comments.nodes[0].author.login=="cursor")] | length')
-          if [ "${unresolved:-0}" -gt 0 ]; then
-            echo "verdict=fail" >> "$GITHUB_OUTPUT"
-            echo "reason=$unresolved unresolved Bugbot finding(s) — fix and push (Bugbot's re-review auto-resolves addressed threads), or a human resolves the threads / re-dispatches with ignore_review_threads=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "no unresolved Bugbot threads"
+            --jq '[.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved==false and .comments.nodes[0].author.login=="cursor")] | length'); then
+            fail "could not query review threads (GraphQL failed) — not merging"
           fi
+          case "$unresolved" in
+            ''|*[!0-9]*) fail "unexpected review-thread count '${unresolved}' — not merging" ;;
+          esac
+          if [ "$unresolved" -gt 0 ]; then
+            fail "$unresolved unresolved Bugbot finding(s) — fix and push (Bugbot's re-review auto-resolves addressed threads), or a human resolves the threads / re-dispatches with ignore_review_threads=true"
+          fi
+          echo "no unresolved Bugbot threads"
+          echo "verdict=pass" >> "$GITHUB_OUTPUT"
 
       - name: Wait for merge state
         id: merge_state
-        if: steps.verify.outputs.verdict == 'pass' && steps.checks.outputs.exit == '0' && steps.review.outputs.verdict == 'pass'
+        # success() is the implicit default, spelled out: this must never run
+        # after an earlier step errored.
+        if: ${{ success() && steps.verify.outputs.verdict == 'pass' && steps.checks.outputs.exit == '0' && steps.review.outputs.verdict == 'pass' }}
         env:
           GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
           PR: ${{ steps.pr.outputs.number }}
@@ -274,7 +287,9 @@ jobs:
           CHECKS_EXIT: ${{ steps.checks.outputs.exit }}
           REVIEW_VERDICT: ${{ steps.review.outputs.verdict }}
           REVIEW_REASON: ${{ steps.review.outputs.reason }}
+          REVIEW_OUTCOME: ${{ steps.review.outcome }}
           STATE: ${{ steps.merge_state.outputs.state }}
+          STATE_OUTCOME: ${{ steps.merge_state.outcome }}
           DRY_RUN: ${{ steps.pr.outputs.dry_run }}
           DEPTH: ${{ github.event.inputs.depth }}
           IGNORE: ${{ github.event.inputs.ignore_review_threads }}
@@ -290,7 +305,13 @@ jobs:
             exit 1
           fi
           if [ "$REVIEW_VERDICT" != "pass" ]; then
-            gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${REVIEW_REASON}."
+            gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${REVIEW_REASON:-the review-thread gate reached no verdict; see the workflow log}."
+            exit 1
+          fi
+          # Outputs alone are not enough: a gate step that errored after
+          # writing an output must still block the merge.
+          if [ "$REVIEW_OUTCOME" != "success" ] || [ "$STATE_OUTCOME" != "success" ]; then
+            gh pr comment "$PR" --body "**wave-merge:** NOT merging — a gate step did not complete (review-thread gate: ${REVIEW_OUTCOME:-skipped}, merge-state wait: ${STATE_OUTCOME:-skipped}); see the workflow log."
             exit 1
           fi
           case "$STATE" in
