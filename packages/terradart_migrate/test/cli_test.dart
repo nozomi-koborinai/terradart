@@ -307,6 +307,57 @@ void main() {
     expect(text.out, isNot(contains('--allow-todo')));
   });
 
+  test('writeProject refuses a path that resolves outside --out', () {
+    final project = MigratedProject(
+      name: 'x',
+      packageName: 'x',
+      inputPath: '.',
+      allowTodo: false,
+      modules: const [],
+      environments: const [],
+      files: {'ok.txt': '', '../escape.txt': ''},
+      copies: const [],
+    );
+    final out = Directory(p.join(tmp.path, 'out'));
+    expect(
+      () => writeProject(project, out),
+      throwsA(
+        isA<FileSystemException>().having(
+          (e) => e.path,
+          'path',
+          p.join(tmp.path, 'escape.txt'),
+        ),
+      ),
+    );
+    // Refused before anything is written.
+    expect(File(p.join(tmp.path, 'escape.txt')).existsSync(), isFalse);
+    expect(out.existsSync(), isFalse);
+  });
+
+  test('a directory name with backslashes stays inside --out', () async {
+    if (Platform.isWindows) return;
+    const weird = r'a\..\..\..\escape';
+    final input = Directory(p.join(tmp.path, 'infra'))..createSync();
+    File(
+      p.join(input.path, 'main.tf'),
+    ).writeAsStringSync('resource "google_pubsub_topic" "t" { name = "t" }\n');
+    Directory(p.join(input.path, weird)).createSync();
+    File(p.join(input.path, weird, 'main.tf')).writeAsStringSync(
+      'resource "aws_s3_bucket" "logs" { bucket = "logs" }\n',
+    );
+    final out = p.join(tmp.path, 'out');
+    final r = await _run(['--dir', input.path, '--out', out, '--json']);
+    expect(r.code, MigrateExitCodes.success, reason: r.err);
+    final modules = (jsonDecode(r.out) as Map<String, dynamic>)['modules'];
+    expect(((modules as List)[1] as Map)['terraformDir'], 'tf-out/$weird');
+    expect(
+      File(p.join(out, 'tf-out', weird, leftoverFileName)).existsSync(),
+      isTrue,
+    );
+    // Before the name was kept literal, this resolved to <tmp>/escape/.
+    expect(Directory(p.join(tmp.path, 'escape')).existsSync(), isFalse);
+  });
+
   test('the bin entry point runs', () async {
     final result = await Process.run('dart', [
       'run',

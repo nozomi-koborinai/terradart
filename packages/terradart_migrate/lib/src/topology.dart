@@ -226,8 +226,12 @@ String relPathOf(String path, String rootPath) {
 }
 
 /// `./envs/dev/` → `envs/dev`; `` / `.` / `./` → `.`.
+///
+/// A backslash is a separator only where the platform uses one (Windows).
+/// On POSIX it is an ordinary character of a directory name, and rewriting
+/// it would turn a name such as `a\..\b` into the path `a/../b`.
 String normalizeRelPath(String rel) {
-  var out = rel.replaceAll('\\', '/');
+  var out = p.separator == '\\' ? rel.replaceAll('\\', '/') : rel;
   while (out.startsWith('./')) {
     out = out.substring(2);
   }

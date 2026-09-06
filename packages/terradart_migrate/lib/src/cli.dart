@@ -129,17 +129,35 @@ Future<int> runMigrateCli(
 }
 
 /// Writes [project]'s files and copies under [outDir]; never touches the
-/// scanned tree.
+/// scanned tree, and never writes outside [outDir]: a path that resolves
+/// elsewhere (a `..` segment, say) is refused with a [FileSystemException]
+/// before anything is written.
 void writeProject(MigratedProject project, Directory outDir) {
-  for (final entry in project.files.entries) {
-    final f = File(p.join(outDir.path, entry.key));
-    f.parent.createSync(recursive: true);
-    f.writeAsStringSync(entry.value);
+  final root = p.normalize(outDir.absolute.path);
+  File target(String rel) {
+    final path = p.normalize(p.join(root, rel));
+    if (!p.isWithin(root, path)) {
+      throw FileSystemException(
+        'refusing to write outside the output directory',
+        path,
+      );
+    }
+    return File(path);
   }
-  for (final c in project.copies) {
-    final f = File(p.join(outDir.path, c.to));
-    f.parent.createSync(recursive: true);
-    File(c.from).copySync(f.path);
+
+  final files = [
+    for (final e in project.files.entries) (file: target(e.key), text: e.value),
+  ];
+  final copies = [
+    for (final c in project.copies) (from: File(c.from), to: target(c.to)),
+  ];
+  for (final w in files) {
+    w.file.parent.createSync(recursive: true);
+    w.file.writeAsStringSync(w.text);
+  }
+  for (final c in copies) {
+    c.to.parent.createSync(recursive: true);
+    c.from.copySync(c.to.path);
   }
 }
 
