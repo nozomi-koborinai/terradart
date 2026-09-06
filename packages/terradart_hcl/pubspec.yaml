@@ -1,0 +1,19 @@
+name: terradart_hcl
+description: Pure Dart HCL (Terraform native syntax) parser and tf.json front-end producing a shared Terraform module model — the input side of terradart-migrate.
+version: 0.27.0
+publish_to: none
+homepage: https://github.com/nozomi-koborinai/terradart
+repository: https://github.com/nozomi-koborinai/terradart
+issue_tracker: https://github.com/nozomi-koborinai/terradart/issues
+
+environment:
+  sdk: ^3.10.0
+
+resolution: workspace
+
+dependencies:
+  meta: ^1.16.0
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.6

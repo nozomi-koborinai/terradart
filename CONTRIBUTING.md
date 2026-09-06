@@ -44,7 +44,8 @@ dart format --output=none --set-exit-if-changed \
   packages/terradart_core/ \
   packages/terradart_codegen/ \
   packages/terradart_agent/ \
-  packages/terradart_coverage/
+  packages/terradart_coverage/ \
+  packages/terradart_hcl/
 ```
 
 **Do not run `dart format` over the whole repo.** `terradart_google`

@@ -56,7 +56,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_agent, terradart_coverage]
+        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_agent, terradart_coverage, terradart_hcl]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -70,7 +70,7 @@ jobs:
       # CLI. wrap CLI output is the authoritative format for generated wrappers
       # and is guarded by the `wrap_check` job (`terradart wrap --check`).
       - if: matrix.package == 'terradart_core'
-        run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/ packages/terradart_agent/ packages/terradart_coverage/
+        run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/ packages/terradart_agent/ packages/terradart_coverage/ packages/terradart_hcl/
       - if: matrix.package == 'terradart_core'
         run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
       - if: matrix.package == 'terradart_core'
