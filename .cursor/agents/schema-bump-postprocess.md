@@ -29,6 +29,13 @@ guardrails all bind you.
 
 ## Classify and act
 
+Delivery: your token can comment on and label the bump PR (unlike the
+wave-shipper's push-only token — see AGENTS.md, Loop health). If a
+`gh pr comment` is ever refused, relay the same text instead: an empty
+commit whose subject starts with `[agent-relay #<pr>]` pushed to an
+`escalation/*` branch is posted verbatim by `escalation-relay.yml`; then
+apply the label as usual.
+
 **Tier 1 — clean:** required checks all green, no repair needed.
 → Comment your report, then apply the `bump-approved` label. Done.
 

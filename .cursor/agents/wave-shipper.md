@@ -194,8 +194,9 @@ stay human-applied (#308).
 ## Deliver (push with the marker)
 
 Your token can push but cannot create PRs, label, or comment (probed
-2026-08-18, #597) — do not attempt any of those. Pushing IS your delivery
-mechanism:
+2026-08-18, #597) — do not attempt any of those. (The Monday bump agent
+runs with a token that CAN comment and label, which is why its runbook
+reads differently.) Pushing IS your delivery mechanism:
 
 - Branch `wave/<product>-<YYYY-MM-DD>`; commits in English, no AI footers.
 - **Commit messages are the public record.** The PR body is machine-
