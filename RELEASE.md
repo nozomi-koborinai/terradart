@@ -1,6 +1,6 @@
 # Release Checklist
 
-terradart bumps 5 packages in lockstep: `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage`. All 5 share the same version. The pub.dev publish workflow currently publishes the 3 hosted packages: `terradart_core`, `terradart_codegen`, and `terradart_google`.
+terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, and `terradart_cloudflare`. `terradart_agent` and `terradart_coverage` are `publish_to: none` and ship as Homebrew binaries via `release-binary.yml`.
 
 ## Pre-flight (local)
 

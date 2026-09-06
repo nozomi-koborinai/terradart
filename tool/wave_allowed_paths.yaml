@@ -4,7 +4,8 @@
 #
 # Deliberately excluded (needing them means the Wave is NOT additive or
 # needs maintainer judgment — no auto-merge): MIGRATING.md, CHANGELOG.md,
-# pubspec.yaml files, .github/workflows/, tool/*.dart,
+# pubspec.yaml files, .github/workflows/, tool/*.dart (except the count
+# file tool/doc_expectations.dart, admitted below),
 # tool/exactly_one_lint_debt.yaml (sealed design = escalate), .cursor/,
 # .claude/.
 

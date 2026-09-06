@@ -1,8 +1,6 @@
 ---
 name: terradart-tighten-example-topology
 description: After example backfill, wire orphan factories into sibling refs (SSL certs on proxies, health checks on backends) and run topology + terraform validate gates.
-metadata:
-  last_modified: 2026-06-09
 ---
 # Tighten example topology
 

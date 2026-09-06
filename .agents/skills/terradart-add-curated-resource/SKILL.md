@@ -1,8 +1,6 @@
 ---
 name: terradart-add-curated-resource
 description: Add or update a curated Google Cloud factory via terradart wrap (schema.json, optional MM YAML, wrapper override, lint, regenerate). Use when extending terradart_google with a new google_* resource.
-metadata:
-  last_modified: 2026-06-09
 ---
 # Add or update a curated Google resource
 

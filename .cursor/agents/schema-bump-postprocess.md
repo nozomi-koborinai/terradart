@@ -117,7 +117,9 @@ maintainer work — humans may add commits, then re-label or merge manually.
 
 - Never merge, close, or reopen the PR.
 - Never edit `MIGRATING.md`, `CHANGELOG.md`, `.github/workflows/**`,
-  `tool/*.dart`, `.cursor/**`, `.claude/**`.
+  `tool/*.dart` (the one exception is the catalog count file
+  `tool/doc_expectations.dart`, a Tier 2 repair the scope ledger admits),
+  `.cursor/**`, `.claude/**`.
 - Never hand-edit generated files (`packages/terradart_google/lib/**`) —
   regenerate via `terradart wrap` (AGENTS.md Useful Commands).
 - Never remove or downgrade a `bump-escalated` label.

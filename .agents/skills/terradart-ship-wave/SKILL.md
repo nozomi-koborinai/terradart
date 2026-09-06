@@ -1,14 +1,12 @@
 ---
 name: terradart-ship-wave
 description: Ship a TerraDart Wave release — curated factories, examples/docs debt, catalog counts, CHANGELOG, and agent_verify. Use when landing multiple related google_* resources as one user-visible release.
-metadata:
-  last_modified: 2026-08-16
 ---
 # Ship a TerraDart Wave
 
 Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy is in [`AGENTS.md`](../../../AGENTS.md). For each new `google_*` factory, follow [`terradart-add-curated-resource`](../terradart-add-curated-resource/SKILL.md) first; this skill covers the **release boundary** around a Wave.
 
-The GA catalog is filled (0.25.x): Waves now originate from new resources the
+The GA catalog is filled: Waves now originate from new resources the
 weekly schema bump appends to `tool/curation_backlog.yaml`, and catalog counts
 move as increments on the completed baseline.
 
@@ -31,7 +29,7 @@ A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done 
    - New resource types are cost-classified in `tool/apply_cost_denylist.yaml` (`safe`/`sweep_only`/`never_apply`); unclassified types fail apply-smoke test9 (default-deny). Confirm cost on two axes — price via the gcp-cost MCP (SKU lookup) and billing behavior via terraform MCP + docs (existence-billed vs hourly) — then classify, recording the basis in the ledger comment. License/SPLA-style services absent from the Cloud Billing Catalog fall back to docs/pattern. When unsure, leave unclassified (the example stays skipped).
 3. **Breaking changes** — `MIGRATING.md` entry **and** example updated to the new API.
 4. **Counts & docs** — `tool/doc_expectations.dart`, `catalog_count_test.dart`, `wrap_command_test.dart`, README / package catalog **count phrases** (do not rebuild a per-factory dump in `## What ships` — detail lives on Coverage), agent/website catalog phrases, example `pubspec.yaml` carets.
-5. **CI matrix** — add the example slug to `.github/workflows/ci.yml` `terraform_validate` matrix when introducing a new quickstart.
+5. **CI matrix** — nothing to wire: the `terraform_validate` matrix derives from `examples/` automatically (`tool/select_changed_examples.dart`).
 6. **Verify** — [`terradart-agent-verify`](../terradart-agent-verify/SKILL.md) (`tool/agent_verify.sh`).
 
 `curatedDoc` alone does **not** satisfy (2). README example bullet lists must stay in sync with `examples/`.
@@ -44,10 +42,10 @@ A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done 
 - [ ] 4. **Breaking API** — `MIGRATING.md` + migrate any affected examples in the same PR.
 - [ ] 5. **Counts** — bump `catalogEntryCount` / `curatedFactoryCount` and every phrase in `tool/doc_expectations.dart`; sync tests.
 - [ ] 5b. **Coverage page** — regenerate the site coverage page: `dart tool/example_synth_gates.dart --skip-validate` then `dart tool/render_coverage_page.dart` (needs ALL tf-out present — the renderer fails closed on partial synth; CI's freshness check fails otherwise).
-- [ ] 6. **Version & CHANGELOG** — lockstep `0.N.P` across four packages; root + per-package CHANGELOG entries.
+- [ ] 6. **Version & CHANGELOG** (maintainer, release time — not part of a Wave PR; the wave-shipper skips this) — lockstep `0.N.P` across every workspace package (`tool/bump_version.sh`); root + per-package CHANGELOG entries.
 - [ ] 7. **CI** — nothing to wire: the `terraform_validate` matrix derives from `examples/` automatically (tool/select_changed_examples.dart).
 - [ ] 8. **Verify** — `tool/agent_verify.sh` (add `--maintainer` when touching wrap-init / wrap-promote).
-- [ ] 9. **Tag & GitHub release** — after merge and green CI: push `v0.N.P`, publish via `.github/workflows/publish.yml`, create the GitHub release using the template below (title is **`v0.N.P` only** — no Wave subtitle in the release name).
+- [ ] 9. **Tag & GitHub release** (maintainer — the wave-shipper skips this) — after merge and green CI: push `v0.N.P`, publish via `.github/workflows/publish.yml`, create the GitHub release using the template below (title is **`v0.N.P` only** — no Wave subtitle in the release name).
 
 ## Example patterns
 
@@ -131,7 +129,7 @@ gh release create v0.N.P --title "v0.N.P" --notes-file /path/to/notes.md
 
 ```bash
 # Batch scaffold (maintainer)
-dart tool/batch_wrap_init.dart --types google_foo,google_bar
+dart tool/batch_wrap_init.dart --resources=google_foo,google_bar
 
 # Docs gate
 dart tool/check_docs_consistency.dart
