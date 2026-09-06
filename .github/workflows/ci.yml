@@ -269,8 +269,16 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
-          # Keyed on the pinned provider version; a provider bump invalidates it.
-          key: tfplugins-${{ runner.os }}-${{ hashFiles('packages/terradart_google/lib/src/_provider_meta.dart') }}
+          # A cache entry is immutable per key, and synth writes the floating
+          # constraint `~> 7.0`, so `terraform init` resolves the NEWEST
+          # provider release while a key derived from the pinned metadata
+          # never changed: the entry went stale on the first upstream release
+          # and every leg then restored it, missed, downloaded, and could not
+          # save ("Cache hit occurred on the primary key, not saving"). Key on
+          # the run instead: each run saves what it downloaded (the first leg
+          # to finish wins), and the next run restores the newest entry via
+          # the prefix, so a provider release costs one run of downloads.
+          key: tfplugins-${{ runner.os }}-${{ github.run_id }}
           restore-keys: tfplugins-${{ runner.os }}-
       - name: Ensure plugin cache dir exists
         run: mkdir -p "$TF_PLUGIN_CACHE_DIR"
