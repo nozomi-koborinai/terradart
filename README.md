@@ -28,7 +28,7 @@ See [terradart.dev](https://terradart.dev) for documentation, guides, and API re
 | [`terradart_google`](packages/terradart_google) | Curated factory wrappers for Google Cloud resources (`hashicorp/google`). | [![pub](https://img.shields.io/pub/v/terradart_google.svg)](https://pub.dev/packages/terradart_google) |
 | [`terradart_google_beta`](packages/terradart_google_beta) | Curated factory wrappers for beta-only Google Cloud resources (`hashicorp/google-beta`). | [![pub](https://img.shields.io/pub/v/terradart_google_beta.svg)](https://pub.dev/packages/terradart_google_beta) |
 | [`terradart_appwrite`](packages/terradart_appwrite) | Curated factory wrappers for Appwrite resources (`appwrite/appwrite`). | [![pub](https://img.shields.io/pub/v/terradart_appwrite.svg)](https://pub.dev/packages/terradart_appwrite) |
-| [`terradart_cloudflare`](packages/terradart_cloudflare) | Curated factory wrappers for Cloudflare resources (`cloudflare/cloudflare`). | [![pub](https://img.shields.io/pub/v/terradart_cloudflare.svg)](https://pub.dev/packages/terradart_cloudflare) |
+| [`terradart_cloudflare`](packages/terradart_cloudflare) | Curated factory wrappers for Cloudflare edge infrastructure (`cloudflare/cloudflare`). | [![pub](https://img.shields.io/pub/v/terradart_cloudflare.svg)](https://pub.dev/packages/terradart_cloudflare) |
 | [`terradart_agent`](packages/terradart_agent) | MCP server (`terradart-mcp`) exposing the curated factory catalog to AI agents. | *(unlisted)* |
 | [`terradart_codegen`](packages/terradart_codegen) | Maintainer generation tooling and CLI (`terradart wrap`). | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
 
@@ -41,6 +41,7 @@ See [terradart.dev](https://terradart.dev) for documentation, guides, and API re
 dependencies:
   terradart_core: ^0.27.x
   terradart_google: ^0.27.x
+  # Optional: terradart_cloudflare / terradart_appwrite / terradart_google_beta
 ```
 
 ```dart
@@ -128,9 +129,11 @@ dart run bin/infra.dart                                  # synth → tf-out/
 cd tf-out && terraform init && terraform apply
 ```
 
+`TfArg.literal(...)` wraps known values at synth time, while `TfArg.ref(...)` (e.g. `runSa.iamMember` or `runSa.email`) passes typed references between resources that Terraform resolves during plan/apply.
+
 Per-service imports (`cloud_run.dart`, `cloud_sql.dart`, …) keep IDE completion scoped; the legacy `package:terradart_google/terradart_google.dart` barrel re-export remains supported.
 
-Runnable end-to-end example: [`examples/pubsub_quickstart/`](examples/pubsub_quickstart/).
+Runnable end-to-end example: [`examples/pubsub_quickstart/`](examples/pubsub_quickstart/). Looking for edge infrastructure? See the [Cloudflare DNS quickstart](examples/cloudflare_dns_quickstart/).
 
 ---
 
@@ -144,7 +147,7 @@ Runnable end-to-end example: [`examples/pubsub_quickstart/`](examples/pubsub_qui
 - A renamed secret silently breaks runtime resolution because the reference is a string.
 - IAM binding members drift between modules with no compiler visibility.
 
-TerraDart makes this boundary a first-class artifact. The same `Topic` object whose ID is consumed by `terraform apply` is exported as a typed Dart constant your Firebase Function imports — and `dart analyze` catches drift the moment it happens.
+TerraDart makes this boundary a first-class artifact. When synth runs (`stack.writeTo(...)`), literal-resolvable exports are emitted as typed Dart constants in `<stack>.app.dart` that your app/function code imports directly — while computed exports become standard Terraform outputs. `dart analyze` catches drift the moment it happens.
 
 ```dart
 // infra/lib/orders_stack.dart
@@ -162,13 +165,14 @@ final class OrdersStack extends Stack {
     );
     add(orders);
     addExport('ORDERS_TOPIC', ResourceIdExport(orders.nameRef));
+    setAppExportsOutputPath('lib/generated/orders_stack.app.dart');
   }
 }
 ```
 
 ```dart
 // functions/lib/orders_handler.dart  (regenerated on synth)
-import 'package:my_app_infra/exports.g.dart';
+import 'package:my_app_infra/generated/orders_stack.app.dart';
 
 Future<void> handle(PubsubEvent event) async {
   if (event.topic == OrdersStackExports.ORDERS_TOPIC) {
@@ -244,6 +248,7 @@ Explore ready-to-run examples in [`examples/`](examples/):
 - **Data & Storage**: [Cloud Storage](examples/storage_quickstart/), [BigQuery](examples/bigquery_quickstart/), [Cloud Bigtable](examples/bigtable_quickstart/), [KMS](examples/kms_quickstart/)
 - **Application Platform**: [Cloud Run v2](examples/cloud_run_quickstart/), [Cloud Monitoring](examples/monitoring_quickstart/), [Workflows](examples/workflows_quickstart/), [Eventarc](examples/eventarc_quickstart/)
 - **AI & Agents**: [Vertex AI](examples/vertex_ai_quickstart/), [Agentic Applications](examples/agentic_applications_quickstart/)
+- **Multi-provider & Edge**: [Cloudflare DNS](examples/cloudflare_dns_quickstart/), [Appwrite](examples/appwrite_quickstart/)
 
 See the full factory table on [terradart.dev/docs/coverage/](https://terradart.dev/docs/coverage/).
 
@@ -253,10 +258,13 @@ See the full factory table on [terradart.dev/docs/coverage/](https://terradart.d
 
 |   | TerraDart | HCL | CDKTF | Pulumi |
 |---|---|---|---|---|
-| Dart authoring | ✅ | ❌ | ❌ (TS / Py / Java / Go) | ❌ (TS / Py / Go / etc.) |
-| Type-safe handoff to your app | ✅ (compile-time) | ❌ (`terraform output` + parse) | ❌ (no Dart) | ❌ (no Dart) |
-| Drop-in for `terraform apply` | ✅ (emits `*.tf.json`) | ✅ (native) | ✅ | ⚠️ (different state model) |
+| Dart authoring | ✅ | ❌ | ❌ (TS / Py / Java / Go) | ⚠️ (community host; no official SDK) |
+| Type-safe handoff to your app | ✅ (compile-time) | ❌ (`terraform output` + parse) | ❌ (no Dart) | ❌ (no typed Dart export) |
+| Drop-in for `terraform apply` | ✅ (emits `*.tf.json`) | ✅ (native) | ✅ | ❌ (different state engine) |
+| Execution engine | Plain `terraform` | Plain `terraform` | Plain `terraform` | Pulumi engine + state backend |
 | Project status | Alpha | Mature | **Archived Dec 2025** | Active |
+
+**Already using Pulumi?** If your team already runs on Pulumi and wants to write stacks in Dart, check out [Pulumi Dart](https://github.com/kingwill101/pulumi-dart) (`kingwill101/pulumi-dart`), an active community language runtime and provider SDK ecosystem for Pulumi. TerraDart is designed specifically for teams using **Terraform** who want type-safe Dart authoring without replacing their existing Terraform state or execution pipeline.
 
 ---
 
