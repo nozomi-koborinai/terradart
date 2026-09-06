@@ -98,6 +98,36 @@ void main() {
       expect(r.sourceText, isEmpty);
     });
 
+    test('terraform backend and cloud from the JSON object form', () {
+      final m = TfModule.fromTfJson(
+        '{"terraform": {"required_version": ">= 1.5", '
+        '"backend": {"gcs": {"bucket": "tf-state", "prefix": "p"}}, '
+        '"cloud": {"organization": "acme"}}}',
+      );
+      expect(m.backend!.labelTexts, ['gcs']);
+      expect(
+        m.backend!.body.attribute('bucket')!.value.constantString,
+        'tf-state',
+      );
+      expect(
+        m.terraform.single.cloud!.body
+            .attribute('organization')!
+            .value
+            .constantString,
+        'acme',
+      );
+      expect(m.requiredVersion!.constantString, '>= 1.5');
+      final none = TfModule.fromTfJson(
+        '{"terraform": {"backend": {"a": {}, "b": {}}}}',
+      );
+      expect(none.backend, isNull);
+      final hcl = TfModule.fromHcl(
+        'terraform {\n  backend "s3" {\n    bucket = "b"\n  }\n  cloud {}\n}\n',
+      );
+      expect(hcl.backend!.labelTexts, ['s3']);
+      expect(hcl.terraform.single.cloud, isNotNull);
+    });
+
     test('malformed labels are kept opaque with a warning', () {
       final m = TfModule.fromHcl(
         'resource "only_one" {}\nvariable {}\nx = 1\n',

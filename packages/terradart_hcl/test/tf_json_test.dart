@@ -97,6 +97,12 @@ void main() {
         'v',
       );
       expect(file.body.blocksOf('moved'), hasLength(1));
+      expect(
+        decodeTfJson(
+          '{"check": {"health": {"assert": {"condition": true}}}}',
+        ).body.block('check')!.labelTexts,
+        ['health'],
+      );
       expect(file.body.block('custom_block')!.body.attribute('x'), isNotNull);
       expect(file.body.attribute('stray')!.value.constantString, 'value');
     });

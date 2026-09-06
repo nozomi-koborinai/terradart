@@ -449,6 +449,9 @@ final class _Parser {
         end = next.range.end;
         _i += 2;
       } else if (_t.type == TokenType.lbrack) {
+        // `[` is never the last token, but `foo[` at EOF has only `eof`
+        // after it: fall back to the raw scanner, which reports it.
+        if (_i + 2 >= tokens.length) return null;
         final open = _t;
         final idx = tokens[_i + 1];
         final close = tokens[_i + 2];

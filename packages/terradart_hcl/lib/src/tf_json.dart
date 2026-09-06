@@ -10,8 +10,9 @@ import 'source.dart';
 ///
 /// The Terraform-level structure is fixed, so it maps to blocks without a
 /// schema: `resource` / `data` values are `{type: {name: body}}`,
-/// `variable` / `output` / `module` / `provider` values are `{name: body}`,
-/// `terraform` / `moved` / `import` / `removed` / `check` values are a body,
+/// `variable` / `output` / `module` / `provider` / `check` values are
+/// `{name: body}`, `terraform` / `moved` / `import` / `removed` values are a
+/// body,
 /// and `locals` is a body of attributes. Wherever Terraform allows a list
 /// of bodies (repeated `provider` configurations, several `resource` entries
 /// of the same address) each element becomes its own block.
@@ -61,8 +62,14 @@ final class _TfJsonDecoder {
   final String? fileName;
 
   static const _twoLabels = {'resource', 'data'};
-  static const _oneLabel = {'variable', 'output', 'module', 'provider'};
-  static const _noLabel = {'terraform', 'moved', 'import', 'removed', 'check'};
+  static const _oneLabel = {
+    'variable',
+    'output',
+    'module',
+    'provider',
+    'check',
+  };
+  static const _noLabel = {'terraform', 'moved', 'import', 'removed'};
 
   Never _fail(String message) {
     throw HclParseException([

@@ -209,11 +209,41 @@ final class TerraformBlock extends TfBlock {
 
   Expr? get requiredVersion => argument('required_version');
 
-  /// `backend "type" { ... }`, if any.
-  Block? get backend => body.block('backend');
+  /// `backend "type" { ... }`, if any — also from the JSON form
+  /// `"backend": {"type": { ... }}`, which is surfaced as an equivalent
+  /// synthesized [Block] (no source range).
+  Block? get backend {
+    final b = body.block('backend');
+    if (b != null) return b;
+    final v = body.attribute('backend')?.value;
+    if (v is! ObjectExpr || v.items.length != 1) return null;
+    final item = v.items.single;
+    final type = item.keyName;
+    final settings = item.value;
+    if (type == null || settings is! ObjectExpr) return null;
+    return Block(
+      'backend',
+      [BlockLabel(type, item.key.range, quoted: true)],
+      bodyFromObject(settings),
+      v.range,
+      typeRange: SourceRange.none,
+    );
+  }
 
-  /// `cloud { ... }`, if any.
-  Block? get cloud => body.block('cloud');
+  /// `cloud { ... }`, if any — also from the JSON form `"cloud": { ... }`.
+  Block? get cloud {
+    final b = body.block('cloud');
+    if (b != null) return b;
+    final v = body.attribute('cloud')?.value;
+    if (v is! ObjectExpr) return null;
+    return Block(
+      'cloud',
+      const [],
+      bodyFromObject(v),
+      v.range,
+      typeRange: SourceRange.none,
+    );
+  }
 
   /// `required_providers { name = {...} }` as name → expression.
   Map<String, Expr> get requiredProviders {

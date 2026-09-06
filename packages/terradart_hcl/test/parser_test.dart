@@ -302,6 +302,9 @@ b "x" {
         _parseError('unterminated object'),
       );
       expect(() => parseHcl('a =\n'), _parseError('expected an expression'));
+      expect(() => parseHcl('a = foo['), _parseError('unbalanced'));
+      expect(() => parseHcl('a = foo[0'), _parseError('unbalanced'));
+      expect(() => parseHclExpression('foo['), _parseError('unbalanced'));
       expect(() => parseHcl('a b c\n'), _parseError('expected "{"'));
       expect(() => parseHcl('a\n'), _parseError('expected "=" or "{"'));
       expect(() => parseHcl('}\n'), _parseError('unexpected "}"'));
