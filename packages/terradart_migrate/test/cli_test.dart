@@ -232,6 +232,79 @@ void main() {
       File(p.join(out, 'MIGRATION.md')).readAsStringSync(),
       contains('Stack: none'),
     );
+
+    // With --allow-todo the root's module call becomes a TODO (the plan
+    // differs), while the child, having no Stack, keeps its sidecar.
+    final todo = p.join(tmp.path, 'todo');
+    final t = await _run([
+      '--dir',
+      input.path,
+      '--out',
+      todo,
+      '--allow-todo',
+      '--json',
+    ]);
+    expect(t.code, MigrateExitCodes.success, reason: t.err);
+    final tj = jsonDecode(t.out) as Map<String, dynamic>;
+    expect(tj['kept'], 2);
+    expect(tj['todos'], 1);
+    expect(tj['planDiffers'], isTrue);
+    expect(
+      File(p.join(todo, 'tf-out/$leftoverFileName')).existsSync(),
+      isFalse,
+    );
+    expect(
+      File(p.join(todo, 'tf-out/modules/m/$leftoverFileName')).existsSync(),
+      isTrue,
+    );
+    expect(
+      File(p.join(todo, 'MIGRATION.md')).readAsStringSync(),
+      contains('1 block became a TODO comment (`TODO(terradart-migrate)`)'),
+    );
+  });
+
+  test('--allow-todo: a directory with no Stack keeps its sidecar and does not '
+      'make the plan differ', () async {
+    final input = Directory(p.join(tmp.path, 'infra'))..createSync();
+    File(
+      p.join(input.path, 'main.tf'),
+    ).writeAsStringSync('resource "google_pubsub_topic" "t" { name = "t" }\n');
+    Directory(p.join(input.path, 'modules/m')).createSync(recursive: true);
+    File(p.join(input.path, 'modules/m/main.tf')).writeAsStringSync(
+      'resource "aws_s3_bucket" "logs" { bucket = "logs" }\n',
+    );
+    final out = p.join(tmp.path, 'out');
+    final r = await _run([
+      '--dir',
+      input.path,
+      '--out',
+      out,
+      '--allow-todo',
+      '--json',
+    ]);
+    expect(r.code, MigrateExitCodes.success, reason: r.err);
+    final json = jsonDecode(r.out) as Map<String, dynamic>;
+    expect(json['complete'], isFalse);
+    expect(json['kept'], 1);
+    expect(json['todos'], 0);
+    expect(json['planDiffers'], isFalse);
+    expect(
+      File(p.join(out, 'tf-out/modules/m/$leftoverFileName')).existsSync(),
+      isTrue,
+    );
+    final md = File(p.join(out, 'MIGRATION.md')).readAsStringSync();
+    expect(md, isNot(contains('--allow-todo')));
+    expect(md, contains('Stack: none'));
+    final text = await _run([
+      '--dir',
+      input.path,
+      '--out',
+      out,
+      '--allow-todo',
+      '--force',
+    ]);
+    expect(text.code, MigrateExitCodes.success, reason: text.err);
+    expect(text.out, isNot(contains('--allow-todo')));
   });
 
   test('the bin entry point runs', () async {

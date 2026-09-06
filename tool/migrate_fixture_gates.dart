@@ -105,9 +105,13 @@ Future<bool> _gate(
       ['dart', 'run', 'bin/infra.dart'],
     ];
     for (final step in steps) {
+      final before = errors.length;
       var passed = await _run(step, temp, errors);
       if (!passed && step[1] == 'pub') {
-        errors.clear();
+        // A cold pub cache fails --offline: drop only that failure and retry
+        // online, so an earlier error (a kept block that landed in no
+        // sidecar file) still fails the gate.
+        errors.removeRange(before, errors.length);
         passed = await _run(['dart', 'pub', 'get'], temp, errors);
       }
       if (!passed) return _finish(fixture, temp, errors, keep: keep);

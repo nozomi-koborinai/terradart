@@ -49,6 +49,10 @@ final class MigratedModule {
 
   MigrationReport get report => stack.report;
 
+  /// Kept blocks written as `TODO` comments into the Stack rather than as
+  /// sidecar blocks (`allowTodo`, on a directory that has a Stack).
+  int get todoCount => sidecar == null ? report.kept.length : 0;
+
   /// Scan notes and emitter warnings together.
   List<String> get warnings => [...dir.warnings, ...report.warnings];
 
@@ -103,8 +107,13 @@ final class MigratedProject {
   int get keptCount => modules.fold(0, (n, m) => n + m.report.kept.length);
   bool get isComplete => keptCount == 0;
 
-  /// With `allowTodo`, untranslated blocks are gone from the configuration.
-  bool get planDiffers => allowTodo && !isComplete;
+  /// Kept blocks written as `TODO` comments instead of sidecar blocks.
+  int get todoCount => modules.fold(0, (n, m) => n + m.todoCount);
+
+  /// With `allowTodo`, a Stack's untranslated blocks are TODO comments, gone
+  /// from the configuration. A directory with no Stack keeps its sidecar
+  /// even then, so its blocks never make the plan differ.
+  bool get planDiffers => allowTodo && todoCount > 0;
 
   List<MigratedModule> get roots => [
     for (final m in modules)
@@ -120,6 +129,7 @@ final class MigratedProject {
     'complete': isComplete,
     'migrated': migratedCount,
     'kept': keptCount,
+    'todos': todoCount,
     'modules': [for (final m in modules) m.toJson()],
     'environments': [for (final e in environments) e.toJson()],
     'files': files.keys.toList()..sort(),
@@ -152,8 +162,8 @@ final class MigratedProject {
     }
     if (planDiffers) {
       b.writeln(
-        '  --allow-todo: no sidecar written; the plan differs until the TODOs '
-        'are ported.',
+        '  --allow-todo: ${_todoPhrase()} in the Stacks instead of sidecar '
+        'blocks; the plan differs until they are ported by hand.',
       );
     }
     b
@@ -180,9 +190,9 @@ final class MigratedProject {
       b
         ..writeln()
         ..writeln(
-          '> **`--allow-todo`**: no sidecar was written. The plan differs '
-          'from the current state until every `TODO(terradart-migrate)` in '
-          'the Stacks is ported by hand.',
+          '> **`--allow-todo`**: ${_todoPhrase()} (`TODO(terradart-migrate)`) '
+          'in the Stacks instead of sidecar blocks. The plan differs from '
+          'the current state until they are ported by hand.',
         );
     }
     final rootDirs = roots.map((r) => '`${r.terraformDir}`').join(', ');
@@ -307,6 +317,11 @@ final class MigratedProject {
     }
     return b.toString();
   }
+
+  /// `1 block became a TODO comment` / `3 blocks became TODO comments`.
+  String _todoPhrase() => todoCount == 1
+      ? '1 block became a TODO comment'
+      : '$todoCount blocks became TODO comments';
 
   static String _role(MigratedModule m) => m.dir.isRoot
       ? (m.dir.environment == null
