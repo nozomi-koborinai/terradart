@@ -1,4 +1,5 @@
 import 'package:terradart_core/src/app_export.dart';
+import 'package:terradart_core/src/dart_source.dart';
 import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/synth/literal_resolver.dart';
 import 'package:terradart_core/src/tf_ref.dart';
@@ -76,7 +77,7 @@ class OutputEmitter {
         // base class declares it nullable so we read via the concrete type.
         dartConstants.add(
           DartConstantSpec(
-            name: key,
+            name: _dartConstantName(key),
             dartType: export.dartType,
             rhs: export.dartLiteralExpression,
             doc: export.description,
@@ -93,9 +94,9 @@ class OutputEmitter {
         if (canDartLiteral) {
           dartConstants.add(
             DartConstantSpec(
-              name: key,
+              name: _dartConstantName(key),
               dartType: export.dartType,
-              rhs: "r'$lit'",
+              rhs: dartStringLiteral(lit),
               doc: export.description,
             ),
           );
@@ -108,7 +109,7 @@ class OutputEmitter {
         if (mustOutput) {
           terraformOutputs.add(
             TerraformOutputSpec(
-              name: export.terraformOutputName ?? key,
+              name: _terraformOutputName(export.terraformOutputName ?? key),
               value: export.ref.interpolation,
               sensitive: export.sensitive,
               description: export.description,
@@ -130,7 +131,7 @@ class OutputEmitter {
           final rhs = _runEncoder(export, litRaw, addr, attrName);
           dartConstants.add(
             DartConstantSpec(
-              name: key,
+              name: _dartConstantName(key),
               dartType: export.dartType,
               rhs: rhs,
               doc: export.description,
@@ -142,7 +143,7 @@ class OutputEmitter {
         if (mustOutput) {
           terraformOutputs.add(
             TerraformOutputSpec(
-              name: export.terraformOutputName ?? key,
+              name: _terraformOutputName(export.terraformOutputName ?? key),
               value: export.ref.interpolation,
               sensitive: export.sensitive,
               description: export.description,
@@ -155,7 +156,7 @@ class OutputEmitter {
       if (export is EnvBackedExport) {
         dartConstants.add(
           DartConstantSpec(
-            name: key,
+            name: _dartConstantName(key),
             dartType: export.dartType,
             rhs: export.dartLiteralExpression,
             doc: export.description,
@@ -176,6 +177,27 @@ class OutputEmitter {
     return OutputEmissionResult(
       dartConstants: dartConstants,
       terraformOutputs: terraformOutputs,
+    );
+  }
+
+  /// The export key becomes `static const <type> <key>` in the generated
+  /// constants file, so it must be a Dart identifier — checked here, where
+  /// the file would otherwise be written and fail to compile later.
+  static String _dartConstantName(String key) {
+    if (isDartIdentifier(key)) return key;
+    throw StateError(
+      'AppExport "$key" is emitted as a Dart constant, but "$key" is not a '
+      'valid Dart identifier (letters, digits, and underscores; not a '
+      'reserved word). Rename the export, or make it Terraform-output-only.',
+    );
+  }
+
+  /// Terraform `output` names allow letters, digits, `_`, and `-`.
+  static String _terraformOutputName(String name) {
+    if (isTerraformIdentifier(name)) return name;
+    throw StateError(
+      'Terraform output name "$name" is not a valid identifier (letters, '
+      'digits, underscores, and hyphens; must not start with a digit).',
     );
   }
 
