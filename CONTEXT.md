@@ -41,7 +41,7 @@ A user-visible release batch of related curated factories. With the GA catalog f
 _Avoid_: Sprint, milestone
 
 **Migration manifest**:
-The generated `_migrate_manifest.g.dart` (`terradart wrap --migrate-manifest`) that records, per curated factory, how each constructor slot, helper field, enum and output getter maps back to Terraform — the machine-readable recipe the HCL → Dart migrator follows. Derived from the wrapper inputs and emitted source; a shape it cannot derive is `manual` with a reason, gated by `lint-override` and `tool/migrate_manifest_debt.yaml`.
+The generated `packages/terradart_migrate/lib/src/manifest/<registry>.g.dart` (`terradart wrap --migrate-manifest`) that records, per curated factory, how each constructor slot, helper field, enum and output getter maps back to Terraform — the machine-readable recipe the HCL → Dart migrator follows. Derived from the wrapper inputs and emitted source; a shape it cannot derive is `manual` with a reason, gated by `lint-override` and `tool/migrate_manifest_debt.yaml`.
 _Avoid_: Mapping table, conversion config
 
 **Debt ledger**:

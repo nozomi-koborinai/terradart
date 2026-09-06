@@ -1,11 +1,13 @@
-import 'catalog_entry.dart' show CatalogKind;
+import 'package:terradart_google/catalog.dart' show CatalogKind;
+
+export 'package:terradart_google/catalog.dart' show CatalogKind;
 
 /// How one constructor parameter of a curated factory — or one field of a
 /// nested helper class — accepts its value.
 ///
-/// The migration manifest (`migrate_manifest.dart` in each provider package)
-/// is the machine-readable recipe `terradart migrate` follows to construct a
-/// curated factory from Terraform JSON values. Each [MigrateSlot] tells the
+/// A migration manifest (one per provider package, generated into
+/// `lib/src/manifest/`) is the machine-readable recipe `terradart migrate`
+/// follows to construct a curated factory from Terraform JSON values. Each [MigrateSlot] tells the
 /// migrator which Dart expression shape a Terraform argument maps to.
 ///
 /// The member docs below spell `Map<String; String>` with a semicolon on
@@ -200,20 +202,28 @@ final class MigrateEntry {
   final List<MigrateGetter> getters;
 }
 
-/// The whole manifest: one [MigrateEntry] per curated factory plus the
-/// package-wide helper and enum tables the entries refer to by name.
+/// The whole manifest of one provider package: one [MigrateEntry] per
+/// curated factory plus the package-wide helper and enum tables the entries
+/// refer to by name.
 ///
-/// This type is **hand-written**; only the `terradartMigrateManifest` value
-/// in the generated `_migrate_manifest.g.dart` is produced by `terradart
-/// wrap --migrate-manifest`. Edit this type by hand; never hand-edit the
-/// generated value.
+/// This type is **hand-written**; only the `<package>MigrateManifest` values
+/// in the generated `lib/src/manifest/*.g.dart` files are produced by
+/// `terradart wrap --migrate-manifest`. Edit this type by hand; never
+/// hand-edit a generated value.
 final class MigrateManifest {
   const MigrateManifest({
+    required this.package,
     required this.entries,
     required this.helpers,
     required this.enums,
   });
 
+  /// The Dart package whose curated factories this manifest describes
+  /// (`terradart_google`, `terradart_google_beta`, ...); the package a
+  /// migrated Stack imports the factories from.
+  final String package;
+
+  /// Sorted by [MigrateEntry.tfType], a resource before its data-source twin.
   final List<MigrateEntry> entries;
 
   /// Helper class name → recipe. Helper names are unique per package.
@@ -221,4 +231,12 @@ final class MigrateManifest {
 
   /// Enum name → raw-value map. Enum names are unique per package.
   final Map<String, MigrateEnum> enums;
+
+  /// The entry for a Terraform type of the given kind, if curated.
+  MigrateEntry? entryFor(String tfType, CatalogKind kind) {
+    for (final e in entries) {
+      if (e.tfType == tfType && e.kind == kind) return e;
+    }
+    return null;
+  }
 }

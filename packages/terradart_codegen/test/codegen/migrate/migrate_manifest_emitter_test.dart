@@ -56,25 +56,29 @@ const _helper = MigrateHelperData(
 void main() {
   group('MigrateManifestEmitter', () {
     test('emits a formatted, deterministic manifest', () {
-      final src = MigrateManifestEmitter().emit([
-        _build('google_b', kind: 'dataSource'),
-        _build('google_b', helpers: const [_helper]),
-        _build(
-          'google_a',
-          enums: const [
-            MigrateEnumData(name: 'Color', members: {'RED': 'red'}),
-          ],
-        ),
-      ]);
+      final src = MigrateManifestEmitter().emit(
+        [
+          _build('google_b', kind: 'dataSource'),
+          _build('google_b', helpers: const [_helper]),
+          _build(
+            'google_a',
+            enums: const [
+              MigrateEnumData(name: 'Color', members: {'RED': 'red'}),
+            ],
+          ),
+        ],
+        package: 'terradart_google_beta',
+      );
       final formatted = DartFormatter(
         languageVersion: DartFormatter.latestLanguageVersion,
       ).format(src);
       expect(formatted, startsWith('// GENERATED FILE - DO NOT EDIT\n'));
-      expect(formatted, contains("import 'migrate_manifest_entry.dart';"));
+      expect(formatted, contains("import '../migrate_manifest.dart';"));
       expect(
         formatted,
-        contains('const MigrateManifest terradartMigrateManifest'),
+        contains('const MigrateManifest googleBetaMigrateManifest'),
       );
+      expect(formatted, contains("package: 'terradart_google_beta',"));
       // Sorted by tfType, resource before its dataSource twin.
       final a = formatted.indexOf("tfType: 'google_a'");
       final bRes = formatted.indexOf('kind: CatalogKind.resource', a + 1);
@@ -116,7 +120,7 @@ void main() {
           helpers: [],
           enums: [],
         ),
-      ]);
+      ], package: 'terradart_google');
       expect(src, contains(r"reason: 'it\'s \$dynamic \\ and'"));
     });
 
@@ -126,7 +130,7 @@ void main() {
         () => MigrateManifestEmitter().emit([
           _build('google_a', helpers: const [_helper]),
           _build('google_b', helpers: const [other]),
-        ]),
+        ], package: 'terradart_google'),
         throwsStateError,
       );
       // Identical redeclarations (the same file emitted twice) are fine.
@@ -134,7 +138,7 @@ void main() {
         MigrateManifestEmitter().emit([
           _build('google_a', helpers: const [_helper]),
           _build('google_b', helpers: const [_helper]),
-        ]),
+        ], package: 'terradart_google'),
         contains("'PubsubTarget': MigrateHelper("),
       );
     });

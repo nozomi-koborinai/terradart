@@ -56,7 +56,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_agent, terradart_coverage, terradart_hcl]
+        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_agent, terradart_coverage, terradart_hcl, terradart_migrate]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -70,7 +70,7 @@ jobs:
       # CLI. wrap CLI output is the authoritative format for generated wrappers
       # and is guarded by the `wrap_check` job (`terradart wrap --check`).
       - if: matrix.package == 'terradart_core'
-        run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/ packages/terradart_agent/ packages/terradart_coverage/ packages/terradart_hcl/
+        run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/ packages/terradart_agent/ packages/terradart_coverage/ packages/terradart_hcl/ packages/terradart_migrate/
       - if: matrix.package == 'terradart_core'
         run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
       - if: matrix.package == 'terradart_core'
@@ -119,6 +119,7 @@ jobs:
             --provider hashicorp/google \
             --source test/fixtures/wrap/source \
             --output ../terradart_google/lib/src \
+            --migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart \
             --check
       # Per-provider lanes beyond GA google — coordinates in
       # tool/providers.yaml. A lane that lives only in agent_verify.sh
@@ -133,6 +134,7 @@ jobs:
             --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
             --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
             --resource-provider google-beta \
+            --migrate-manifest ../terradart_migrate/lib/src/manifest/google_beta.g.dart \
             --check
       - name: Verify generated appwrite wrappers are up to date
         working-directory: packages/terradart_codegen
@@ -143,6 +145,7 @@ jobs:
             --output ../terradart_appwrite/lib/src \
             --overrides-root lib/src/codegen/wrapper_overrides/appwrite/yaml \
             --barrels-manifest lib/src/codegen/barrels/barrels_appwrite.yaml \
+            --migrate-manifest ../terradart_migrate/lib/src/manifest/appwrite.g.dart \
             --check
       - name: Verify generated cloudflare wrappers are up to date
         working-directory: packages/terradart_codegen
@@ -153,6 +156,7 @@ jobs:
             --output ../terradart_cloudflare/lib/src \
             --overrides-root lib/src/codegen/wrapper_overrides/cloudflare/yaml \
             --barrels-manifest lib/src/codegen/barrels/barrels_cloudflare.yaml \
+            --migrate-manifest ../terradart_migrate/lib/src/manifest/cloudflare.g.dart \
             --check
 
   override_gates:

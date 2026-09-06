@@ -151,7 +151,8 @@ jobs:
           (cd packages/terradart_codegen && dart run bin/terradart.dart wrap \
             --provider hashicorp/google \
             --source test/fixtures/wrap/source \
-            --output ../terradart_google/lib/src) > /tmp/wrap_regen.txt 2>&1
+            --output ../terradart_google/lib/src \
+            --migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart) > /tmp/wrap_regen.txt 2>&1
           rc=$?
           echo "Exit: $rc"
           cat /tmp/wrap_regen.txt
@@ -161,7 +162,7 @@ jobs:
             # the bump PR carries inputs + the check log only (the pre-regen
             # behavior). The --check step below then records the divergence
             # for the drift report, and a maintainer regenerates locally.
-            git checkout -- packages/terradart_google/lib
+            git checkout -- packages/terradart_google/lib packages/terradart_migrate/lib/src/manifest/google.g.dart
             echo "wrap failed; bump PR will carry inputs only (see drift report)."
           fi
 
@@ -176,6 +177,7 @@ jobs:
             --provider hashicorp/google \
             --source test/fixtures/wrap/source \
             --output ../terradart_google/lib/src \
+            --migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart \
             --check) > /tmp/wrap_check.txt 2>&1
           rc=$?
           echo "$rc" > /tmp/wrap_check_exit
@@ -216,14 +218,15 @@ jobs:
               --output ../terradart_google_beta/lib/src \
               --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
               --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
-              --resource-provider google-beta) > /tmp/beta_wrap.txt 2>&1
+              --resource-provider google-beta \
+              --migrate-manifest ../terradart_migrate/lib/src/manifest/google_beta.g.dart) > /tmp/beta_wrap.txt 2>&1
             regen_rc=$?
             set -e
             cat /tmp/beta_wrap.txt
             if [ "$regen_rc" != "0" ]; then
               # GA precedent: keep the refreshed fixture (PR carries inputs),
               # discard partial generation; --check below records divergence.
-              git checkout -- packages/terradart_google_beta/lib
+              git checkout -- packages/terradart_google_beta/lib packages/terradart_migrate/lib/src/manifest/google_beta.g.dart
             fi
             set +e
             (cd packages/terradart_codegen && dart run bin/terradart.dart wrap \
@@ -233,6 +236,7 @@ jobs:
               --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
               --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
               --resource-provider google-beta \
+              --migrate-manifest ../terradart_migrate/lib/src/manifest/google_beta.g.dart \
               --check) > /tmp/beta_wrap_check.txt 2>&1
             wrap_check_rc=$?
             set -e
@@ -350,7 +354,9 @@ jobs:
             packages/terradart_codegen/test/fixtures/wrap/source/mm \
             packages/terradart_codegen/test/fixtures/wrap/source_beta \
             packages/terradart_google/lib \
-            packages/terradart_google_beta/lib
+            packages/terradart_google_beta/lib \
+            packages/terradart_migrate/lib/src/manifest/google.g.dart \
+            packages/terradart_migrate/lib/src/manifest/google_beta.g.dart
           git commit -m "chore(schema): weekly bump $today"
           git push -u origin "$branch"
           # Ensure the PR labels exist (idempotent) so a missing label can't fail

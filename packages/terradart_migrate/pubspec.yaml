@@ -1,0 +1,19 @@
+name: terradart_migrate
+description: HCL → Dart migrator for existing Terraform users (terradart-migrate) — the migration manifests of the four curated catalogs, and the emitter that follows them.
+version: 0.27.0
+publish_to: none
+homepage: https://github.com/nozomi-koborinai/terradart
+repository: https://github.com/nozomi-koborinai/terradart
+issue_tracker: https://github.com/nozomi-koborinai/terradart/issues
+
+environment:
+  sdk: ^3.10.0
+
+resolution: workspace
+
+dependencies:
+  terradart_google: ^0.27.0
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.6

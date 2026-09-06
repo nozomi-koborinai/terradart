@@ -15,6 +15,7 @@ workspace:
   - packages/terradart_agent
   - packages/terradart_coverage
   - packages/terradart_hcl
+  - packages/terradart_migrate
   - examples/agentic_applications_quickstart
   - examples/apigee_quickstart
   - examples/appwrite_quickstart

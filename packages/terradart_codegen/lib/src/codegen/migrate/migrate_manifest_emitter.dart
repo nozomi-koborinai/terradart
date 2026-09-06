@@ -1,8 +1,12 @@
 import 'migrate_manifest_data.dart';
 
-/// Renders `_migrate_manifest.g.dart`: a single `const MigrateManifest
-/// terradartMigrateManifest` built from the per-factory [MigrateEntryBuild]s
-/// `terradart wrap --migrate-manifest` collects.
+/// Renders one provider package's migration manifest — a single
+/// `const MigrateManifest <package>MigrateManifest` (`googleMigrateManifest`
+/// for `terradart_google`, `googleBetaMigrateManifest` for
+/// `terradart_google_beta`, ...) built from the per-factory
+/// [MigrateEntryBuild]s `terradart wrap --migrate-manifest <file>` collects.
+/// The file lives in `terradart_migrate` (`lib/src/manifest/<registry>.g.dart`)
+/// next to the hand-written runtime types it imports (#658).
 ///
 /// Output is deterministic regardless of input order: entries sort by
 /// `tfType` (resource before dataSource twin), helper and enum tables by
@@ -14,7 +18,11 @@ import 'migrate_manifest_data.dart';
 /// Like `CatalogMetadataEmitter`, the returned source is unformatted; the
 /// wrap pipeline runs it through the same `DartFormatter` as the wrappers.
 class MigrateManifestEmitter {
-  String emit(List<MigrateEntryBuild> builds) {
+  /// [package] is the Dart package whose factories the manifest describes
+  /// (`terradart_google`); it is recorded in `MigrateManifest.package` and
+  /// names the constant.
+  String emit(List<MigrateEntryBuild> builds, {required String package}) {
+    final constName = constNameFor(package);
     final entries = [for (final b in builds) b.entry]..sort((a, b) {
         final byType = a.tfType.compareTo(b.tfType);
         if (byType != 0) return byType;
@@ -35,12 +43,12 @@ class MigrateManifestEmitter {
 
     final buf = StringBuffer()
       ..writeln('// GENERATED FILE - DO NOT EDIT')
-      ..writeln('// Run `terradart wrap --migrate-manifest` to regenerate.')
-      ..writeln("import 'catalog_entry.dart';")
-      ..writeln("import 'migrate_manifest_entry.dart';")
+      ..writeln('// Regenerate with `terradart wrap --migrate-manifest <this '
+          'file>` (lanes: tool/providers.yaml).')
+      ..writeln("import '../migrate_manifest.dart';")
       ..writeln()
-      ..writeln(
-          'const MigrateManifest terradartMigrateManifest = MigrateManifest(')
+      ..writeln('const MigrateManifest $constName = MigrateManifest(')
+      ..writeln('  package: ${_str(package)},')
       ..writeln('  entries: <MigrateEntry>[');
     for (final e in entries) {
       buf.write(_entry(e));
@@ -61,6 +69,28 @@ class MigrateManifestEmitter {
       ..writeln('  },')
       ..writeln(');');
     return buf.toString();
+  }
+
+  /// `terradart_google` → `googleMigrateManifest`,
+  /// `terradart_google_beta` → `googleBetaMigrateManifest`.
+  static String constNameFor(String package) {
+    if (!RegExp(r'^[a-z][a-z0-9_]*$').hasMatch(package)) {
+      throw ArgumentError.value(
+        package,
+        'package',
+        'must be a Dart package name (lower_snake_case)',
+      );
+    }
+    final base = package.startsWith('terradart_')
+        ? package.substring('terradart_'.length)
+        : package;
+    final parts = base.split('_').where((s) => s.isNotEmpty).toList();
+    final camel = [
+      parts.first,
+      for (final part in parts.skip(1))
+        part[0].toUpperCase() + part.substring(1),
+    ].join();
+    return '${camel}MigrateManifest';
   }
 
   static void _put(
