@@ -1,8 +1,9 @@
 /// Read-only Terraform coverage checker for TerraDart.
 ///
-/// Public exports (tf_reference, tf_json_parser, catalog_matcher,
-/// coverage_report, report_render) are added by subsequent tasks as each
-/// `src/` file lands.
+/// Scans Terraform source ([scanConfigDir]) or an evaluated
+/// `terraform show -json` document ([parseShowJson]) and reports which
+/// resource / data types have a curated factory in any TerraDart provider
+/// package ([CatalogIndex.all]).
 library;
 
 export 'src/tf_reference.dart';

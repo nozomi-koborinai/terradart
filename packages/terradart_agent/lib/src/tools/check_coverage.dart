@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:terradart_coverage/terradart_coverage.dart';
-import 'package:terradart_google/catalog.dart';
 
 /// Runs coverage analysis on a `terraform show -json` string and returns a
 /// JSON-object result (MCP structuredContent). On bad input, returns an
@@ -20,6 +19,6 @@ Map<String, Object?> checkCoverage(String tfJson) {
   } on FormatException catch (e) {
     return {'error': e.message};
   }
-  final report = buildCoverageReport(parsed, CatalogIndex(terradartCatalog));
+  final report = buildCoverageReport(parsed, CatalogIndex.all());
   return reportToJsonMap(report);
 }

@@ -51,7 +51,7 @@ Full walkthroughs: [terradart.dev — terradart-mcp](https://terradart.dev/docs/
 | `list_resources` | Resources / data sources (optional `barrel` filter) |
 | `get_resource_schema` | Constructor params and nested types for one factory |
 | `get_quickstart` | Ready-made `Stack` template for a resource |
-| `check_coverage` | Coverage report for `terraform show -json` input |
+| `check_coverage` | Coverage report for `terraform show -json` input, against all four provider catalogs |
 
 The catalog currently holds 1798 entries (1337 curated resource factories + 461 data sources) across 132 service barrels.
 

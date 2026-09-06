@@ -29,12 +29,16 @@ final class SupportedType {
     required this.count,
     required this.className,
     required this.barrel,
+    required this.package,
   });
   final String type;
   final CatalogKind kind;
   final int count;
   final String className;
   final String barrel;
+
+  /// The provider package that ships [className], e.g. `terradart_google`.
+  final String package;
 }
 
 final class NotInCatalogType {
@@ -63,15 +67,20 @@ final class CoverageReport {
     required this.notInCatalog,
     required this.perModule,
     required this.unparseable,
+    this.unexpanded = const [],
   });
   final CoverageSummary summary;
   final List<SupportedType> supported;
   final List<NotInCatalogType> notInCatalog;
   final Map<String, ModuleBreakdown> perModule;
   final List<String> unparseable;
+
+  /// Blocks counted once because their `count` / `for_each` could not be
+  /// expanded from source (see `ParseOutcome.unexpanded`).
+  final List<String> unexpanded;
 }
 
-/// Coarse product from a `google_<product>_<rest>` type string.
+/// Coarse product from a `<provider>_<product>_<rest>` type string.
 String productOf(String tfType) {
   final parts = tfType.split('_');
   return parts.length >= 2 ? parts[1] : tfType;
@@ -110,6 +119,7 @@ CoverageReport buildCoverageReport(ParseOutcome parsed, CatalogIndex index) {
           count: count,
           className: hit.className,
           barrel: hit.barrel,
+          package: hit.package,
         ),
       );
     } else {
@@ -147,5 +157,6 @@ CoverageReport buildCoverageReport(ParseOutcome parsed, CatalogIndex index) {
     notInCatalog: notInCatalog,
     perModule: perModule,
     unparseable: parsed.unparseable,
+    unexpanded: parsed.unexpanded,
   );
 }

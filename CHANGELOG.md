@@ -7,6 +7,7 @@ Per-package changelogs live alongside each package and are the system of record 
 ## Unreleased
 
 - New package **`terradart_hcl`** — pure Dart HCL parser, `*.tf.json` decoder and `TfModule` model (the input side of `terradart-migrate`, #657).
+- **`terradart_coverage`** — the source scan parses with `terradart_hcl` (exact blocks, literal `count` / `for_each` expanded, module calls read from the AST) and matches all four provider catalogs; `terradart_google_beta`, `terradart_appwrite` and `terradart_cloudflare` gain a `catalog.dart` barrel like `terradart_google`'s (#670).
 
 ## [0.27.0] - 2026-08-30
 

@@ -23,7 +23,7 @@ String renderText(CoverageReport r) {
   for (final e in r.supported) {
     b.writeln(
       '  ${e.type} [${_kind(e.kind)}] x${e.count} '
-      '-> ${e.className} (${e.barrel})',
+      '-> ${e.className} (${e.package}/${e.barrel})',
     );
   }
   b.writeln();
@@ -40,6 +40,14 @@ String renderText(CoverageReport r) {
       '  ${entry.key}: ${entry.value.supported} supported, '
       '${entry.value.notInCatalog} not-in-catalog',
     );
+  }
+
+  if (r.unexpanded.isNotEmpty) {
+    b.writeln();
+    b.writeln('Counted once (${r.unexpanded.length}):');
+    for (final u in r.unexpanded) {
+      b.writeln('  $u');
+    }
   }
 
   if (r.unparseable.isNotEmpty) {
@@ -72,6 +80,7 @@ Map<String, Object?> reportToJsonMap(CoverageReport r) => {
         'count': e.count,
         'className': e.className,
         'barrel': e.barrel,
+        'package': e.package,
       },
   ],
   'notInCatalog': [
@@ -91,6 +100,7 @@ Map<String, Object?> reportToJsonMap(CoverageReport r) => {
       },
   },
   'unparseable': r.unparseable,
+  'unexpanded': r.unexpanded,
 };
 
 /// Machine-readable report. Encodes [reportToJsonMap] as indented JSON.
