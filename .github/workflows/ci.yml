@@ -235,6 +235,14 @@ jobs:
     if: needs.changes.outputs.examples != '[]'
     env:
       TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
+      # tf-out is regenerated every run and its .terraform.lock.hcl is
+      # gitignored, so `terraform init` never has a lock file to verify cached
+      # providers against — and without this opt-in Terraform ignores the
+      # cache and downloads ~100 MB per leg from releases.hashicorp.com. A
+      # registry hiccup then fails the whole matrix (two legs on #647,
+      # 2026-09-06: "connection reset by peer"). Validate-only, no state, so
+      # the "may break the lock file" caveat has nothing to break.
+      TF_PLUGIN_CACHE_MAY_BREAK_DEPENDENCY_LOCK_FILE: "1"
     strategy:
       fail-fast: false
       matrix:
