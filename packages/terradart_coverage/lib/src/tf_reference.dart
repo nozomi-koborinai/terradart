@@ -1,6 +1,8 @@
 import 'package:terradart_google/catalog.dart' show CatalogKind;
 
-/// One Terraform resource/data reference extracted from `terraform show -json`.
+/// One Terraform resource / data source occurrence, from a source scan
+/// (`scanConfigDir`) or an evaluated `terraform show -json` document
+/// (`parseShowJson`).
 final class TfReference {
   const TfReference({
     required this.type,
@@ -14,18 +16,30 @@ final class TfReference {
   /// Managed resource vs read-only data source.
   final CatalogKind kind;
 
-  /// Module address, `root` for the root module, else e.g. `module.network`.
+  /// Module address (`root`, `module.network`) for evaluated input; the
+  /// directory (`root`, `dev`, `modules/network`) for a source scan.
   final String modulePath;
 }
 
-/// Outcome of parsing a `terraform show -json` document.
+/// Outcome of extracting references from Terraform input.
 final class ParseOutcome {
-  const ParseOutcome({required this.references, required this.unparseable});
+  const ParseOutcome({
+    required this.references,
+    required this.unparseable,
+    this.unexpanded = const [],
+  });
 
   /// Successfully extracted references (one per resource instance occurrence).
   final List<TfReference> references;
 
-  /// Human-readable notes for entries that could not be interpreted
-  /// (missing `type`/`mode`, unexpected shape). Never silently dropped.
+  /// Human-readable notes for input that could not be interpreted (a file
+  /// that fails to parse, a remote module, an entry without a `type`, an
+  /// unexpected shape). Never silently dropped.
   final List<String> unparseable;
+
+  /// Blocks whose `count` / `for_each` could not be expanded from source (a
+  /// variable, a conditional, a function call other than `toset([...])`);
+  /// each is counted once. Empty for evaluated input, where Terraform has
+  /// already expanded them.
+  final List<String> unexpanded;
 }

@@ -124,8 +124,8 @@ sed_inplace "s#^( *terradart_google): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/ter
 echo "    - terradart_agent.dependencies.terradart_google: ^${NEW}"
 sed_inplace "s#^( *terradart_coverage): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
 echo "    - terradart_agent.dependencies.terradart_coverage: ^${NEW}"
-sed_inplace "s#^( *terradart_google): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_coverage/pubspec.yaml
-echo "    - terradart_coverage.dependencies.terradart_google: ^${NEW}"
+sed_inplace "s#^( *terradart_(google|google_beta|appwrite|cloudflare|hcl)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_coverage/pubspec.yaml
+echo "    - terradart_coverage.dependencies.terradart_{google,google_beta,appwrite,cloudflare,hcl}: ^${NEW}"
 
 # 2b. terradart_agent binary version const (lockstep with its pubspec;
 #     guarded by packages/terradart_agent/test/version_test.dart).

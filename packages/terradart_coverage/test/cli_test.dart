@@ -35,6 +35,21 @@ void main() {
     expect(result.exitCode, isNonZero);
   });
 
+  test('CLI --dir scans a source tree without terraform', () async {
+    final result = await Process.run('dart', [
+      'run',
+      'bin/terradart_coverage.dart',
+      '--json',
+      '--dir',
+      'test/fixtures/config_tree',
+    ]);
+    expect(result.exitCode, 0, reason: result.stderr.toString());
+    final decoded = jsonDecode(result.stdout as String) as Map<String, dynamic>;
+    expect((decoded['summary'] as Map)['totalOccurrences'], 41);
+    expect(decoded['unexpanded'], isEmpty);
+    expect(decoded['unparseable'], isEmpty);
+  });
+
   test('CLI --help prints usage and exits 0', () async {
     final result = await Process.run('dart', [
       'run',

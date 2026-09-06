@@ -39,8 +39,8 @@ SchemanticType<Map<String, dynamic>> _objectSchema({
 /// [Genkit] instance and exposes them over the Model Context Protocol via
 /// genkit_mcp. The first four project TerraDart's curated `terradartCatalog`
 /// (from `package:terradart_google`) into agent-friendly JSON; `check_coverage`
-/// analyses `terraform show -json` output against the catalog and reports
-/// coverage metrics.
+/// analyses `terraform show -json` output against every provider package's
+/// catalog (via `terradart_coverage`) and reports coverage metrics.
 Future<GenkitMcpServer> buildTerradartMcpServer() async {
   final ai = Genkit();
 
@@ -140,9 +140,11 @@ Future<GenkitMcpServer> buildTerradartMcpServer() async {
     name: 'check_coverage',
     description:
         'Given `terraform show -json` output (the "tf_json" arg), report how '
-        'much of the Terraform config is covered by curated terradart_google '
-        'factories: coverage %, supported types, not-in-catalog types, and a '
-        'per-module breakdown.',
+        'much of the Terraform config is covered by curated TerraDart '
+        'factories (terradart_google, terradart_google_beta, '
+        'terradart_appwrite, terradart_cloudflare): coverage %, supported '
+        'types with their package, not-in-catalog types, and a per-module '
+        'breakdown.',
     inputSchema: _objectSchema(
       properties: {
         'tf_json': $Schema.string(

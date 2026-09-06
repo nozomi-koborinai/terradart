@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:terradart_coverage/terradart_coverage.dart';
-import 'package:terradart_google/catalog.dart';
 
 Future<int> run(List<String> argv) async {
   final parser = ArgParser()
@@ -22,7 +21,9 @@ Future<int> run(List<String> argv) async {
       'Usage: terradart-coverage [--json] [--dir <dir> | <terraform-show.json>]',
     );
     stdout.writeln(
-      'Reports terradart_google coverage of a Terraform configuration.\n'
+      'Reports how much of a Terraform configuration is covered by curated '
+      'TerraDart factories (terradart_google, terradart_google_beta, '
+      'terradart_appwrite, terradart_cloudflare).\n'
       'By default it scans .tf / .tf.json under --dir (or the current '
       'directory), with no terraform run, init, or credentials. Pipe '
       '`terraform show -json` (or pass it as a file) for an evaluated view '
@@ -57,7 +58,7 @@ Future<int> run(List<String> argv) async {
       parsed = p;
   }
 
-  final report = buildCoverageReport(parsed, CatalogIndex(terradartCatalog));
+  final report = buildCoverageReport(parsed, CatalogIndex.all());
   stdout.writeln(
     (args['json'] as bool) ? renderJson(report) : renderText(report),
   );
