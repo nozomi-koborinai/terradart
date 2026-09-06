@@ -1,0 +1,62 @@
+# Kept in Terraform by terradart-migrate {{version}}.
+# Terraform merges this file with the Stack's main.tf.json in this
+# directory; each block stays here for the reason noted above
+# it (see MIGRATION.md).
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "sa_bff" {
+  source     = "../modules/service_account"
+  account_id = "app-bff-sa"
+}
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "sa_worker" {
+  source     = "../modules/service_account"
+  account_id = "app-worker-sa"
+}
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "sa_adk_agent" {
+  source     = "../modules/service_account"
+  account_id = "app-agent-sa"
+}
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "sa_github_actions" {
+  source     = "../modules/service_account"
+  account_id = "app-gha-sa"
+}
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "app_secrets" {
+  source = "../modules/secret_manager"
+}
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "cloud_run_bff" {
+  source = "../modules/cloud_run"
+  name   = "app-bff"
+}
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "cloud_run_worker" {
+  source = "../modules/cloud_run"
+  name   = "app-worker"
+}
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "cloud_sql" {
+  source        = "../modules/cloud_sql"
+  instance_name = "app-postgres-dev"
+}
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "pubsub_webhook" {
+  source = "../modules/pubsub"
+  topic  = "app-webhook-events"
+}
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "workload_identity" {
+  source = "../modules/workload_identity"
+}
