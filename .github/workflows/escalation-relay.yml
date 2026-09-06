@@ -12,8 +12,12 @@ name: escalation-relay
 # Everything after the marker (including further message lines) is posted
 # VERBATIM — transport only, never interpreted or rewritten
 # (tool/loop_health_report.dart counts escalation comments by their
-# escalation(...) prefix). One exception to pure transport, for safety
-# rather than judgment: a trailer line
+# escalation(...) prefix). The only addition is a provenance FOOTER (relay
+# branch, pusher, run link) appended after the text, so a reader can tell a
+# relayed agent message from a comment a human or an executor wrote — the
+# footer is appended, never prepended, so body-prefix matching stays
+# intact. One exception to pure transport, for safety rather than
+# judgment: a trailer line
 #
 #   Relay-Label: <name>
 #
@@ -47,6 +51,10 @@ on:
 permissions:
   contents: write # delete the relay branch after posting
   issues: write # comment on / label the target issue
+  # `[agent-relay #N]` may target a pull request; commenting on a PR needs
+  # this scope too (two bump reports were lost to HTTP 403 without it —
+  # runs 33344067483 and 32673553201).
+  pull-requests: write
 
 concurrency:
   group: escalation-relay-${{ github.ref }}
@@ -146,6 +154,9 @@ jobs:
           BODY: ${{ steps.msg.outputs.body }}
           ISSUE: ${{ steps.msg.outputs.issue }}
           LABEL: ${{ steps.msg.outputs.label }}
+          EVENT_NAME: ${{ github.event_name }}
+          RELAY_REF: ${{ github.ref_name }}
+          RELAY_ACTOR: ${{ github.actor }}
         run: |
           set -euo pipefail
           # Re-validate at the privileged boundary — do not trust step
@@ -179,7 +190,19 @@ jobs:
               exit 1
             fi
           fi
-          gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body "$BODY"
+          # Provenance footer (appended, never prepended — see header).
+          run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          if [ "$EVENT_NAME" = "push" ]; then
+            origin="relayed from \`$RELAY_REF\`, pushed by $RELAY_ACTOR"
+          else
+            origin="relayed via workflow_dispatch by $RELAY_ACTOR"
+          fi
+          body_file=$(mktemp)
+          {
+            printf '%s\n\n' "$BODY"
+            printf '<sub>escalation-relay: %s · [run](%s)</sub>\n' "$origin" "$run_url"
+          } > "$body_file"
+          gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body-file "$body_file"
           if [ -n "$LABEL" ]; then
             gh issue edit "$n" --repo "$GITHUB_REPOSITORY" --add-label "$LABEL"
           fi
