@@ -161,6 +161,14 @@ GoogleSecureSourceManagerInstanceIamPolicy: authoritative IAM policy; requires a
 GoogleSecureSourceManagerRepositoryIamBinding: authoritative IAM binding; requires a parent repository on a never_apply instance; deferred with the instance
 GoogleSecureSourceManagerRepositoryIamPolicy: authoritative IAM policy; requires a parent repository on a never_apply instance; deferred with the instance
 
+# Cloud License Manager configurations reserve third-party software licenses
+# (Office SPLA) that bill per license_count for the configuration's lifetime as
+# a 30-day subscription charged in full on creation — no VM attached. The former
+# license_manager_quickstart caused the Cloud License Manager cost spike and was
+# removed so no checkout can apply it by accident; the factory ships without an
+# example (never_apply in apply_cost_denylist.yaml).
+GoogleLicenseManagerConfiguration: Office SPLA (Office2021ProfessionalPlus) bills per license_count as a 30-day subscription charged in full on creation, no VM attached — never_apply in apply_cost_denylist.yaml; quickstart removed after the cost spike so the resource cannot be applied from any checkout
+
 # Managed Service for Apache Kafka clusters bill Data Compute Units hourly
 # (us-central1 SKU 2837-8C0C-F431 $0.09/h) plus storage; Connect clusters bill
 # Connect DCU (12FB-6837-84CF $0.12/h). A quickstart would force
