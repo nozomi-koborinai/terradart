@@ -171,9 +171,20 @@ void _collect(
 /// literal `count`, or the size of a literal `for_each`; `null` when it cannot
 /// be read from source.
 int? _instanceCount(Expr? count, Expr? forEach) {
-  if (count != null) return _intLiteral(count);
-  if (forEach != null) return _collectionSize(forEach);
+  if (count != null) return _intLiteral(_unwrapInterpolation(count));
+  if (forEach != null) return _collectionSize(_unwrapInterpolation(forEach));
   return 1;
+}
+
+/// JSON syntax writes expressions as strings — `"for_each": "${toset([...])}"`
+/// — which decode to a template holding one interpolation; this is that
+/// interpolation's expression. Any other expression is returned unchanged.
+Expr _unwrapInterpolation(Expr e) {
+  if (e is TemplateExpr && e.parts.length == 1) {
+    final part = e.parts.single;
+    if (part is TemplateInterpolation) return part.expr;
+  }
+  return e;
 }
 
 int? _intLiteral(Expr e) {

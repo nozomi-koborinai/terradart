@@ -292,13 +292,18 @@ data "google_project" "p" {
       expect(out.unparseable, isEmpty);
     });
 
-    test('.tf.json count is expanded too', () {
+    test('.tf.json count and toset([...]) for_each are expanded too', () {
       File('${tmp.path}/extra.tf.json').writeAsStringSync(
         jsonEncode({
           'resource': {
             'google_dns_managed_zone': {
               'z': {'count': 2},
               'dyn': {'count': r'${var.n}'},
+            },
+            'google_dns_record_set': {
+              // JSON syntax spells the call as an interpolated string.
+              'set': {'for_each': r'${toset(["a", "b"])}'},
+              'dynset': {'for_each': r'${var.names}'},
             },
           },
         }),
@@ -307,9 +312,18 @@ data "google_project" "p" {
       final out = scanConfigDir(tmp.path);
 
       expect(occurrences(out)['google_dns_managed_zone'], 3);
+      expect(occurrences(out)['google_dns_record_set'], 3);
       expect(
         out.unexpanded,
         contains(matches(r'extra\.tf\.json: google_dns_managed_zone\.dyn:')),
+      );
+      expect(
+        out.unexpanded,
+        contains(matches(r'extra\.tf\.json: google_dns_record_set\.dynset:')),
+      );
+      expect(
+        out.unexpanded.any((n) => n.contains('google_dns_record_set.set:')),
+        isFalse,
       );
     });
   });
