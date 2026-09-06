@@ -187,7 +187,15 @@ dart tool/check_mm_upstream_fingerprint.dart
 
 echo ">> apply_smoke_test (selection, no GCP)"
 chmod +x tool/apply_smoke_test.sh
-tool/apply_smoke_test.sh
+if [[ "$QUICK" == "1" ]] && ! compgen -G "examples/*/tf-out" > /dev/null; then
+  # The cost gate (test 9) inspects synthesized tf-out and fails closed when
+  # there is none. --quick skips the synth that creates it, so on a fresh
+  # checkout the gate would fail for the wrong reason; the full gate always
+  # runs it right after synth.
+  echo ">> apply_smoke_test: SKIPPED (--quick, no examples/*/tf-out yet — the full gate runs the cost gate after synth)"
+else
+  tool/apply_smoke_test.sh
+fi
 
 if [[ "$QUICK" == "0" ]]; then
   echo ">> smoke_quickstart"
