@@ -1,8 +1,6 @@
 ---
 name: terradart-add-beta-resource
 description: Add a beta-only curated factory to terradart_google_beta (filtered-fixture extraction, google_beta override, wrap with provider pin). Use when a later provider pin introduces a new beta-only google_* type — the current pin's beta-only catalog is filled.
-metadata:
-  last_modified: 2026-08-19
 ---
 # Add a beta-only curated resource
 

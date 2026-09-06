@@ -5,7 +5,7 @@
 #   tool/agent_verify.sh
 #   tool/agent_verify.sh --quick       # iteration loop: static checks + unit
 #                                      # gates only (skips example synth, the
-#                                      # seven package suites, cookbook, smoke).
+#                                      # package suites, cookbook, smoke).
 #                                      # Run the FULL gate before opening a PR.
 #   tool/agent_verify.sh --format      # add scoped dart format (hand-written packages)
 #   tool/agent_verify.sh --maintainer  # add wrap-init / wrap-promote e2e tests

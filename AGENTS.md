@@ -4,7 +4,7 @@ This file is the shared source of truth for coding agents working on TerraDart. 
 
 ## Current phase — maintenance + path to beta
 
-The GA `hashicorp/google` catalog is **filled** (0.25.x, alpha). The curation push is over; the harness runs in **maintenance mode**:
+The GA `hashicorp/google` catalog is **filled** (alpha). The curation push is over; the harness runs in **maintenance mode**:
 
 | Loop | Cadence | Actor → merge path |
 |------|---------|--------------------|
@@ -68,7 +68,7 @@ When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer 
 ## Branch and merge policy
 
 - **Never push directly to `main`.** All changes land through a pull request, including CI/publish hotfixes. Branch protection should enforce this for maintainers and automation alike.
-- Cloud agents: create `cursor/<descriptive-name>-fc7b` (or the repo's active agent suffix), commit, push, and open/update a PR before claiming work is done.
+- Scheduled loop agents deliver by push only: the bump agent pushes to its existing `chore/schema-bump-*` branch and the wave-shipper to a `wave/*` branch. They never open PRs themselves — `schema-bump.yml` and `wave-open.yml` own those PRs — and the executors accept only those two branch patterns. Ad-hoc cloud sessions use any descriptive branch and let the platform open the PR; such PRs are never auto-merged.
 - Emergency publish fixes still get a PR (can merge immediately after CI green); do not bypass review habit.
 - Release tags and GitHub release bodies follow [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md).
 
@@ -103,7 +103,7 @@ Waves are implemented by a scheduled agent on Tuesday mornings — instructions 
 
 ### Loop health (weekly)
 
-Every Monday noon JST, [`loop-health.yml`](.github/workflows/loop-health.yml) appends a metrics + stall report to the open issue labeled `loop-health`: per-loop throughput and verdict counts (bump / wave), backlog depth, executor arm state, and stalls — open `wave/*` PRs quiet too long (WIP-1 halts silently behind them), bump PRs the Monday agent missed, verdict-labeled bump PRs missing their mandated report comment (a contentless maintainer handoff), and an actionable backlog with no wave PR opened and none in flight (a run that left no trace). Runs are attributed to the model each schedule was on via [`tool/loop_models.yaml`](tool/loop_models.yaml) — the maintainer appends an entry whenever a loop's model is flipped in the Cursor UI — so per-loop precision (first-pass green rate, `fix(repair):` commit counts, comment-marked escalations, Bugbot findings per merged wave) stays comparable across models. Agents cannot comment directly (their tokens are push-only — probed in #597), so escalation comments arrive via [`escalation-relay.yml`](.github/workflows/escalation-relay.yml), which turns an empty-commit `[agent-relay]` push on an `escalation/*` branch into a verbatim comment on the loop-health issue. Stall thresholds live as constants in [`tool/loop_health_report.dart`](tool/loop_health_report.dart). This is the input to the outer loop: a human reads it and improves instructions or ledgers, not the code under them.
+Every Monday noon JST, [`loop-health.yml`](.github/workflows/loop-health.yml) appends a metrics + stall report to the open issue labeled `loop-health`: per-loop throughput and verdict counts (bump / wave), backlog depth, executor arm state, and stalls — open `wave/*` PRs quiet too long (WIP-1 halts silently behind them), bump PRs the Monday agent missed, verdict-labeled bump PRs missing their mandated report comment (a contentless maintainer handoff), and an actionable backlog with no wave PR opened and none in flight (a run that left no trace). Runs are attributed to the model each schedule was on via [`tool/loop_models.yaml`](tool/loop_models.yaml) — the maintainer appends an entry whenever a loop's model is flipped in the Cursor UI — so per-loop precision (first-pass green rate, `fix(repair):` commit counts, comment-marked escalations, Bugbot findings per merged wave) stays comparable across models. The two loops run with different token capabilities: the wave-shipper's token is push-only (probed in #597), so its escalation comments arrive via [`escalation-relay.yml`](.github/workflows/escalation-relay.yml), which turns an empty-commit `[agent-relay]` push on an `escalation/*` branch into a verbatim comment on the loop-health issue; the Monday bump agent's token can comment and label, so the bump loop delivers verdicts as PR comments plus the `bump-approved` / `bump-escalated` labels. Stall thresholds live as constants in [`tool/loop_health_report.dart`](tool/loop_health_report.dart). This is the input to the outer loop: a human reads it and improves instructions or ledgers, not the code under them.
 
 ## Documentation Policy
 
@@ -135,7 +135,7 @@ Before claiming work is done, run from the repository root:
 tool/agent_verify.sh
 ```
 
-This is the shared agent gate (docs consistency, analyze incl. `tool/`, four-package tests, `terradart wrap --check`, `lint-override`, enum gaps, example synth gates, pubsub smoke). The example synth gates synth every quickstart and enforce catalog coverage plus the API-enablement dependency graph: an example that enables any API must enable **every** API its resources need (`tool/example_api_debt.yaml` is the audited escape hatch). The gate does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge. The three override gates (`lint-override`, `check_override_enum_gaps`, `check_mm_upstream_fingerprint`) also run per PR in CI (`override_gates` job) — they used to live only in this script, which let them rot silently when nobody ran it.
+This is the shared agent gate (docs consistency, analyze incl. `tool/`, every package's tests, `terradart wrap --check`, `lint-override`, enum gaps, example synth gates, pubsub smoke). The example synth gates synth every quickstart and enforce catalog coverage plus the API-enablement dependency graph: an example that enables any API must enable **every** API its resources need (`tool/example_api_debt.yaml` is the audited escape hatch). The gate does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge. The three override gates (`lint-override`, `check_override_enum_gaps`, `check_mm_upstream_fingerprint`) also run per PR in CI (`override_gates` job) — they used to live only in this script, which let them rot silently when nobody ran it.
 
 **Ad-hoc verification pitfall:** when you compose your own check instead of `agent_verify.sh`, never rely on `&&` after piping a test/build command into `tail` / `grep` / `head` — the pipeline's exit status is the LAST command's, so the pipe swallows a failure and the chain keeps going (this hid a red `dart test` behind a green-looking `| tail -1` once). Run the command bare and check its exit code directly, or use `agent_verify.sh`, which sets `pipefail`.
 
@@ -146,7 +146,7 @@ tool/agent_verify.sh --quick        # iteration loop: static + unit gates only
                                     # (skips example synth, package suites,
                                     # cookbook, smoke) — run the FULL gate
                                     # before opening or updating a PR
-tool/agent_verify.sh --format       # scoped dart format (core, codegen, agent)
+tool/agent_verify.sh --format       # scoped dart format (hand-written packages)
 tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 ```
 
@@ -242,7 +242,7 @@ When a resource can't stand alone in an example — org-only (Shared VPC host/se
 
 ## Cursor Cloud specific instructions
 
-Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; workspace root requires ^3.6, `terradart_agent` requires ^3.10) from the official apt repo, **Terraform** (≥ 1.11) from HashiCorp apt, and the **Google Cloud CLI** (`gcloud`) from Google's apt repo, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot so new boots pick up `gcloud`.
+Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; most packages require ^3.6, `terradart_agent` and `terradart_coverage` require ^3.10) from the official apt repo, **Terraform** (≥ 1.11) from HashiCorp apt, the **Google Cloud CLI** (`gcloud`) from Google's apt repo, and the `gcp-cost-mcp-server` binary behind `tool/gcp_cost_call.dart`, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot so new boots pick up `gcloud`.
 
 **gcloud + terradart-validate (read-only).** CLI alone is not enough — register a **separate** Cursor Secret `GCP_VALIDATE_SA_JSON` (inline service-account JSON) for a **read-only** SA on `terradart-validate` (list/get style roles such as `roles/viewer` / Browser; no create/delete). Do **not** reuse the gcp-cost `GOOGLE_APPLICATION_CREDENTIALS` secret (Billing Catalog only). Auth helper: `eval "$(tool/gcloud_validate_auth.sh)"`. High-cost orphan probe (never mutates): `tool/apply_smoke_orphan_check.sh`. Agents must not `gcloud … delete` / create, and must not run `tool/apply_smoke.sh` without `--dry-run`.
 

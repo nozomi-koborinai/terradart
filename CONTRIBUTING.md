@@ -21,7 +21,7 @@ Requirements:
 - `git` ≥ 2.30.
 
 ```bash
-# Clone and bootstrap (Pub Workspaces resolves all four packages)
+# Clone and bootstrap (Pub Workspaces resolves every package)
 git clone https://github.com/nozomi-koborinai/terradart.git
 cd terradart
 dart pub get
@@ -77,7 +77,7 @@ Before opening a PR:
 
 - [ ] New or breaking factories have a runnable example (`examples/*_quickstart` or extended existing example).
 - [ ] Breaking API changes include `MIGRATING.md` and updated examples in the same PR.
-- [ ] README **Examples** list matches `examples/`; new quickstarts are in CI `terraform_validate` matrix.
+- [ ] README **Examples** list matches `examples/` (the CI `terraform_validate` matrix derives from `examples/` automatically via `tool/select_changed_examples.dart`; nothing to wire).
 
 ## Review cadence
 

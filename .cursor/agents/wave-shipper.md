@@ -15,13 +15,14 @@ verification pitfalls, cost-classify rules, and guardrails all bind you.
    (`gh pr list --state open --json number,headRefName`)? Check its CI:
    `gh pr checks <number>` —
    - failures OTHER than the `verify + merge` check → the wave is **red**:
-     do NOT start a new Wave; go to **Repair a red wave** below.
-   - `verify + merge` alone failing with a **skip-listed example** reason
-     (`example … is skip-listed` / `human merge required`) → also **red**:
-     that is *repairable* (make the example stand alone and remove it from
-     `tool/apply_smoke_skip.yaml` / `apply_smoke_pr_skip.yaml`, or drop the
-     example change into `tool/example_debt.yaml`). Do NOT treat it as a
-     human-only no-op — that stalls WIP-1 forever (#296). Go to Repair.
+     do NOT start a new Wave; go to **Repair a red wave** below. This
+     includes a red `apply_smoke.sh selection test` check because the Wave
+     touches a **skip-listed example** (`tool/check_wave_skiplist_gate.dart`,
+     run by that CI job): that is *repairable* (make the example stand alone
+     and remove it from `tool/apply_smoke_skip.yaml` /
+     `apply_smoke_pr_skip.yaml`, or drop the example change into
+     `tool/example_debt.yaml`). Do NOT treat it as a human-only no-op — that
+     stalls WIP-1 forever (#296). Go to Repair.
    - `verify + merge` alone failing for a true executor/human verdict that
      you cannot fix in-scope (e.g. scope-ledger rejection outside
      `tool/wave_allowed_paths.yaml`) → report escalation and exit 0.
@@ -103,7 +104,7 @@ evidence-first:
 
 ## Implement
 
-Follow the two skills exactly, in order, for each resource:
+Follow the two skills exactly, in order, for each resource — except the steps marked **maintainer** in `terradart-ship-wave` (version bump, CHANGELOG, tag, GitHub release), which are release-time work outside a Wave PR:
 
 1. [`terradart-add-curated-resource`](../../.agents/skills/terradart-add-curated-resource/SKILL.md)
    — schema confirmation, `tool/mm_yaml_sources.yaml` row, MM fixture sync,
@@ -193,8 +194,9 @@ stay human-applied (#308).
 ## Deliver (push with the marker)
 
 Your token can push but cannot create PRs, label, or comment (probed
-2026-08-18, #597) — do not attempt any of those. Pushing IS your delivery
-mechanism:
+2026-08-18, #597) — do not attempt any of those. (The Monday bump agent
+runs with a token that CAN comment and label, which is why its runbook
+reads differently.) Pushing IS your delivery mechanism:
 
 - Branch `wave/<product>-<YYYY-MM-DD>`; commits in English, no AI footers.
 - **Commit messages are the public record.** The PR body is machine-
@@ -242,8 +244,10 @@ sense when you know them:
 
 - Never merge, close, or reopen PRs.
 - Never edit `MIGRATING.md`, `CHANGELOG.md`, any `pubspec.yaml`,
-  `.github/workflows/**`, `tool/*.dart`, `tool/exactly_one_lint_debt.yaml`,
-  `.cursor/**`, `.claude/**` — needing to means escalate.
+  `.github/workflows/**`, `tool/*.dart` (the one exception is the catalog
+  count file `tool/doc_expectations.dart`, which the scope ledger admits),
+  `tool/exactly_one_lint_debt.yaml`, `.cursor/**`, `.claude/**` — needing
+  to means escalate.
 - Never hand-edit generated files (`packages/terradart_google/lib/**`) —
   regenerate via `terradart wrap`.
 - One Wave per run; never remove or downgrade labels.

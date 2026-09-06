@@ -4,7 +4,8 @@
 # (fail-closed). Lines ending in '/' are prefix rules; others are exact paths.
 #
 # Deliberately excluded (touching them is Tier 3 — never auto-merge):
-# MIGRATING.md, CHANGELOG.md, .github/workflows/, tool/*.dart, .cursor/,
+# MIGRATING.md, CHANGELOG.md, .github/workflows/, tool/*.dart (except the
+# count file tool/doc_expectations.dart, admitted below), .cursor/,
 # .claude/. Wanting to edit MIGRATING.md means the bump is breaking.
 
 # Bump inputs (schema fixture, provider pin, MM overlays)

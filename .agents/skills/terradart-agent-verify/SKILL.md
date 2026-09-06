@@ -1,8 +1,6 @@
 ---
 name: terradart-agent-verify
 description: Run TerraDart's shared agent gate (docs consistency, analyze, tests, wrap --check, pubsub smoke). Use before claiming maintainer or agent work is complete.
-metadata:
-  last_modified: 2026-06-09
 ---
 # TerraDart agent verification
 
@@ -28,14 +26,14 @@ Policy and pitfalls live in [`AGENTS.md`](../../../AGENTS.md) at the repo root. 
 
 - [ ] 1. From the **repository root**, run `dart pub get` if dependencies changed.
 - [ ] 2. Run `tool/agent_verify.sh` and confirm it exits 0 (`agent_verify: OK`). This includes `check_example_topology` (strict quickstarts only) and `apply_smoke_test` (cost gate + **cost-comment gate** test 13). If you added curated factories used in examples, confirm `tool/apply_cost_denylist.yaml` lines include **`gcp-cost:` from MCP** (not `billing-behavior:` alone unless IAM adjunct).
-- [ ] 3. `check_docs_consistency` (step 2) already synths all quickstarts and runs `terraform validate` per example when `terraform` is on `PATH`.
+- [ ] 3. `example_synth_gates` (inside step 2) already synths all quickstarts and runs `terraform validate` per example when `terraform` is on `PATH`; `check_docs_consistency` is the text-only docs check.
 - [ ] 4. If you touched `pubsub_quickstart` or synth/export paths, run `tool/smoke_quickstart.sh`.
 - [ ] 5. Report which commands ran in the PR or task summary.
 
 ## Optional flags
 
 ```bash
-tool/agent_verify.sh --format       # scoped dart format (core, codegen, agent)
+tool/agent_verify.sh --format       # scoped dart format (hand-written packages)
 tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 ```
 

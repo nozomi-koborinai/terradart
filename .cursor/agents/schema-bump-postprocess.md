@@ -29,6 +29,13 @@ guardrails all bind you.
 
 ## Classify and act
 
+Delivery: your token can comment on and label the bump PR (unlike the
+wave-shipper's push-only token — see AGENTS.md, Loop health). If a
+`gh pr comment` is ever refused, relay the same text instead: an empty
+commit whose subject starts with `[agent-relay #<pr>]` pushed to an
+`escalation/*` branch is posted verbatim by `escalation-relay.yml`; then
+apply the label as usual.
+
 **Tier 1 — clean:** required checks all green, no repair needed.
 → Comment your report, then apply the `bump-approved` label. Done.
 
@@ -117,7 +124,9 @@ maintainer work — humans may add commits, then re-label or merge manually.
 
 - Never merge, close, or reopen the PR.
 - Never edit `MIGRATING.md`, `CHANGELOG.md`, `.github/workflows/**`,
-  `tool/*.dart`, `.cursor/**`, `.claude/**`.
+  `tool/*.dart` (the one exception is the catalog count file
+  `tool/doc_expectations.dart`, a Tier 2 repair the scope ledger admits),
+  `.cursor/**`, `.claude/**`.
 - Never hand-edit generated files (`packages/terradart_google/lib/**`) —
   regenerate via `terradart wrap` (AGENTS.md Useful Commands).
 - Never remove or downgrade a `bump-escalated` label.

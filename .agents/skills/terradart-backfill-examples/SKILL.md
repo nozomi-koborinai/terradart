@@ -1,8 +1,6 @@
 ---
 name: terradart-backfill-examples
 description: Backfill example quickstarts for curated factories listed in tool/example_debt.yaml — extend stacks, sync debt, and run terraform validate locally before PR.
-metadata:
-  last_modified: 2026-08-16
 ---
 # Backfill example coverage
 
@@ -30,7 +28,7 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Wave policy lives in [`
 - [ ] 7. **Verify** — from repo root:
   ```bash
   dart tool/check_example_topology.dart   # unwired SSL cert / health check / HTTP proxy
-  dart tool/check_docs_consistency.dart   # synth coverage + terraform validate all quickstarts
+  dart tool/example_synth_gates.dart      # synth coverage + terraform validate all quickstarts
   tool/agent_verify.sh
   ```
 - [ ] 8. No version bump or catalog count change unless you also curated new factories.
@@ -64,7 +62,7 @@ GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart
 cd tf-out && terraform init -backend=false && terraform validate
 ```
 
-`tool/example_synth_gates.dart` (via `check_docs_consistency.dart`) now runs this validate step for **every** quickstart when `terraform` is on `PATH`.
+`tool/example_synth_gates.dart` (inside `tool/agent_verify.sh`) runs this validate step for **every** quickstart when `terraform` is on `PATH`.
 
 ## What this does not cover
 
