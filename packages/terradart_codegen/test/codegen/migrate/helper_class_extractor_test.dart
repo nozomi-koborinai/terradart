@@ -384,6 +384,45 @@ class NoEncode {
       );
     });
 
+    test('a field written under two different keys is irregular', () {
+      const src = '''
+class Dual {
+  const Dual({this.name, this.other});
+  final TfArg<String>? name;
+  final TfArg<String>? other;
+  Map<String, Object?> encode() => {
+    if (name != null) 'name': name!.toTfJson(),
+    if (name != null) 'display_name': name!.toTfJson(),
+    if (other != null) 'other': other!.toTfJson(),
+    if (other == null) 'other': 'default',
+  };
+}
+''';
+      final h = _one(src, 'Dual');
+      expect(
+        h.irregularReason,
+        contains('field `name` is written under several keys'),
+      );
+      // The same key written twice for one field is not a conflict.
+      expect(h.irregularReason, isNot(contains('`other`')));
+    });
+
+    test('a value variant with a parameter the key cannot carry is irregular',
+        () {
+      const src = '''
+final class TaggedValue extends Choice {
+  const TaggedValue({required this.value, this.tag});
+  final TfArg<String> value;
+  final TfArg<String>? tag;
+  @override
+  String get blockKey => 'tagged';
+}
+''';
+      final h = _one(src, 'TaggedValue');
+      expect(h.irregularReason, contains('field `tag` has no encode entry'));
+      expect(h.fields.firstWhere((f) => f.name == 'value').tfKey, 'tagged');
+    });
+
     test('skips Resource / Data subclasses', () {
       const src = '''
 final class GoogleThing extends Resource {

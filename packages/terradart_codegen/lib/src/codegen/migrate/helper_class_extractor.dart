@@ -296,6 +296,12 @@ class HelperClassExtractor {
       }
     }
 
+    // Every constructor parameter must reach Terraform through the encoding
+    // — an encode() entry, a spread, or (for a scalar variant) the `value`
+    // the block key carries. A parameter the encoding never mentions is
+    // irregular either way; a class with neither encoding nor parameters
+    // is a marker and needs nothing.
+    final hasEncoding = encodePart != null || encoding.keys.isNotEmpty;
     final fields = <ExtractedField>[];
     for (final p in ctor.params) {
       final type = fieldTypes[p.field];
@@ -305,7 +311,7 @@ class HelperClassExtractor {
       }
       final key = encoding.keys[p.field];
       final merged = encoding.merged.contains(p.field);
-      if (key == null && !merged && encodePart != null) {
+      if (key == null && !merged && hasEncoding) {
         reasons.add('field `${p.field}` has no encode entry');
       }
       fields.add(ExtractedField(
@@ -565,7 +571,9 @@ class HelperClassExtractor {
           reasons,
           prefix: path,
         );
-        keys.addAll(innerKeys.keys);
+        for (final e in innerKeys.keys.entries) {
+          _recordKey(keys, e.key, e.value, reasons);
+        }
         continue;
       }
 
@@ -575,9 +583,29 @@ class HelperClassExtractor {
         reasons.add("entry '$path' combines fields ${refs.join(', ')}");
         continue;
       }
-      keys[refs.single] = path;
+      _recordKey(keys, refs.single, path, reasons);
     }
     return _Encoding(keys: keys, merged: merged, topLevelKeys: topLevelKeys);
+  }
+
+  /// A field maps to exactly one Terraform key. The same key written twice
+  /// (two guarded entries for one field) is fine; two *different* keys
+  /// cannot be expressed by the manifest's single `tfName`, so the class
+  /// is irregular rather than silently keeping the last one.
+  static void _recordKey(
+    Map<String, String> keys,
+    String field,
+    String path,
+    List<String> reasons,
+  ) {
+    final existing = keys[field];
+    if (existing != null && existing != path) {
+      reasons.add(
+        'field `$field` is written under several keys (`$existing`, `$path`)',
+      );
+      return;
+    }
+    keys[field] = path;
   }
 
   /// `(key, value, quoted)` for a `'key': value` / `identifier: value`
