@@ -188,7 +188,10 @@ final class MigrateEntry {
   /// Dart wrapper class name, e.g. `GooglePubsubTopic`.
   final String className;
 
-  /// Per-service barrel (outputDir), e.g. `pubsub`.
+  /// The barrel file stem under `lib/` that exports [className] — `pubsub`,
+  /// `cloud_sql` — so a Stack imports `package:<package>/<barrel>.dart`.
+  /// The catalog's `barrel` is the override's outputDir instead; the two
+  /// differ where `barrels.yaml` renames the file (`sql` → `cloud_sql`).
   final String barrel;
 
   /// Resource vs data source.

@@ -1873,7 +1873,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_agentic_applications_analyst_agent_persona',
       className: 'GoogleAgenticApplicationsAnalystAgentPersona',
-      barrel: 'agentic',
+      barrel: 'agentic_applications',
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117271,7 +117271,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_database',
       className: 'GoogleSqlDatabase',
-      barrel: 'sql',
+      barrel: 'cloud_sql',
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117383,7 +117383,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_database_instance',
       className: 'GoogleSqlDatabaseInstance',
-      barrel: 'sql',
+      barrel: 'cloud_sql',
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117910,7 +117910,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_provision_script',
       className: 'GoogleSqlProvisionScript',
-      barrel: 'sql',
+      barrel: 'cloud_sql',
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -117963,7 +117963,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_source_representation_instance',
       className: 'GoogleSqlSourceRepresentationInstance',
-      barrel: 'sql',
+      barrel: 'cloud_sql',
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118059,7 +118059,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_ssl_cert',
       className: 'GoogleSqlSslCert',
-      barrel: 'sql',
+      barrel: 'cloud_sql',
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
@@ -118145,7 +118145,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     MigrateEntry(
       tfType: 'google_sql_user',
       className: 'GoogleSqlUser',
-      barrel: 'sql',
+      barrel: 'cloud_sql',
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(

@@ -414,19 +414,6 @@ class WrapCommand extends Command<int> {
       final catalogRaw = CatalogMetadataEmitter().emit(catalogEntries);
       buffer['_catalog.g.dart'] = formatter.format(catalogRaw);
 
-      // Migration manifest: same formatting / header / E401 / --check rules
-      // as the catalog, but written to the `--migrate-manifest` file in
-      // terradart_migrate rather than under `--output` (#658). The buffer is
-      // keyed relative to `--output`, so the path is expressed that way.
-      if (migrateManifest) {
-        final manifestRaw = MigrateManifestEmitter().emit(
-          buildMigrateEntries(migrateInputs),
-          package: migratePackage!,
-        );
-        buffer[p.relative(migrateManifestPath, from: output)] =
-            formatter.format(manifestRaw);
-      }
-
       // Barrels: every per-service barrel (+ `data` + the umbrella) derives
       // from the catalog entries joined with the authored barrels.yaml
       // manifest (doc, file-name override, hand-written extraExports). Same
@@ -449,11 +436,13 @@ class WrapCommand extends Command<int> {
         }
         manifestPath = manifestUri.toFilePath();
       }
+      final BarrelManifest barrelManifest;
       final Map<String, String> barrelFiles;
       try {
+        barrelManifest = loadBarrelManifest(manifestPath);
         barrelFiles = buildBarrelFiles(
           entries: catalogEntries,
-          manifest: loadBarrelManifest(manifestPath),
+          manifest: barrelManifest,
         );
       } on StateError catch (e) {
         stderr.writeln('terradart wrap: $e');
@@ -461,6 +450,27 @@ class WrapCommand extends Command<int> {
       } on FormatException catch (e) {
         stderr.writeln('terradart wrap: $e');
         return CliExitCodes.dataError;
+      }
+
+      // Migration manifest: same formatting / header / E401 / --check rules
+      // as the catalog, but written to the `--migrate-manifest` file in
+      // terradart_migrate rather than under `--output` (#658). The buffer is
+      // keyed relative to `--output`, so the path is expressed that way.
+      // Entries record the barrel *file* stem (barrels.yaml `file:`), which
+      // is what a migrated Stack imports.
+      if (migrateManifest) {
+        final manifestRaw = MigrateManifestEmitter().emit(
+          buildMigrateEntries(
+            migrateInputs,
+            barrelFiles: {
+              for (final e in barrelManifest.barrels.entries)
+                e.key: e.value.fileStemFor(e.key),
+            },
+          ),
+          package: migratePackage!,
+        );
+        buffer[p.relative(migrateManifestPath, from: output)] =
+            formatter.format(manifestRaw);
       }
       for (final entry in barrelFiles.entries) {
         // `--output` is `.../lib/src`; barrels live one level up in `lib/`.
