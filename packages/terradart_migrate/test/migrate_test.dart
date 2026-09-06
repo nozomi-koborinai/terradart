@@ -33,7 +33,9 @@ const _google = {
 
 void main() {
   group('pubsub_quickstart synth output', () {
-    final file = File('../../examples/pubsub_quickstart/tf-out/main.tf.json');
+    // The quickstart's synth output as of this package's last change; the
+    // round-trip gate covers the live examples.
+    final file = File('test/fixtures/pubsub_quickstart.tf.json');
     final result = migrateModule(
       TfModule.fromTfJson(file.readAsStringSync(), fileName: file.path),
       name: 'pubsub_quickstart',
