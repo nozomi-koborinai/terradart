@@ -73,6 +73,29 @@ void main() {
       expect(sel, isEmpty);
     });
 
+    test('a deleted example is in the diff but not in the matrix', () {
+      // Deleting examples/<slug>_quickstart/ lists its files as changed while
+      // the directory is gone from the checkout; validating it would fail.
+      final sel = selectExamples(
+        event: 'pull_request',
+        changed: const [
+          'examples/gone_quickstart/lib/main.dart',
+          'examples/gone_quickstart/pubspec.yaml',
+          'examples/pubsub_quickstart/lib/main.dart',
+        ],
+        exists: (slug) => slug == 'pubsub',
+      );
+      expect(sel, equals(['pubsub']));
+    });
+
+    test('the default existence check consults the checkout', () {
+      final sel = selectExamples(
+        event: 'pull_request',
+        changed: const ['examples/no_such_example_quickstart/lib/main.dart'],
+      );
+      expect(sel, isEmpty);
+    });
+
     test('a file directly under examples/ (no quickstart dir) is ignored', () {
       final sel = selectExamples(
         event: 'pull_request',

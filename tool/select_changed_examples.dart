@@ -38,9 +38,15 @@ List<String> allSlugs() => Directory('examples')
   ..sort();
 
 /// Pure selection logic — unit-tested in select_changed_examples_test.dart.
+///
+/// [exists] answers whether `examples/<slug>_quickstart/` is present on the
+/// checkout (defaults to the filesystem). A PR that deletes an example still
+/// lists its files in the diff, and the matrix must not try to validate a
+/// directory that is gone.
 List<String> selectExamples({
   required String event,
   required List<String> changed,
+  bool Function(String slug)? exists,
 }) {
   if (event != 'pull_request') return allSlugs();
   final fanOut = RegExp(r'^(packages/|tool/|\.github/workflows/ci\.yml$)');
@@ -51,8 +57,11 @@ List<String> selectExamples({
     final m = example.firstMatch(path);
     if (m != null) slugs.add(m.group(1)!);
   }
-  return slugs.toList()..sort();
+  return slugs.where(exists ?? _quickstartExists).toList()..sort();
 }
+
+bool _quickstartExists(String slug) =>
+    Directory('examples/${slug}_quickstart').existsSync();
 
 void main(List<String> args) {
   var event = '';
