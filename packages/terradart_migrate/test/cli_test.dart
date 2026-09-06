@@ -195,6 +195,45 @@ void main() {
     },
   );
 
+  test('a child where nothing translates stays Terraform, no Stack', () async {
+    final input = Directory(p.join(tmp.path, 'infra'))..createSync();
+    File(p.join(input.path, 'main.tf')).writeAsStringSync(
+      'resource "google_pubsub_topic" "t" { name = "t" }\n'
+      'module "m" { source = "./modules/m" }\n',
+    );
+    Directory(p.join(input.path, 'modules/m')).createSync(recursive: true);
+    File(p.join(input.path, 'modules/m/main.tf')).writeAsStringSync(
+      'resource "aws_s3_bucket" "logs" { bucket = "logs" }\n',
+    );
+    final out = p.join(tmp.path, 'out');
+    final r = await _run(['--dir', input.path, '--out', out, '--json']);
+    expect(r.code, MigrateExitCodes.success, reason: r.err);
+    final json = jsonDecode(r.out) as Map<String, dynamic>;
+    final modules = json['modules'] as List;
+    expect((modules[0] as Map)['hasStack'], isTrue);
+    final child = modules[1] as Map;
+    expect(child['directory'], 'modules/m');
+    expect(child['hasStack'], isFalse);
+    expect(child['stackClass'], isNull);
+    expect(
+      Directory(p.join(out, 'lib')).listSync().map((f) => p.basename(f.path)),
+      ['infra_stack.dart'],
+    );
+    final infra = File(p.join(out, 'bin/infra.dart')).readAsStringSync();
+    expect(infra, contains("InfraStack().writeTo(r'tf-out')"));
+    expect(infra, isNot(contains('MStack')));
+    expect(
+      File(
+        p.join(out, 'tf-out/modules/m/$leftoverFileName'),
+      ).readAsStringSync(),
+      contains('resource "aws_s3_bucket" "logs"'),
+    );
+    expect(
+      File(p.join(out, 'MIGRATION.md')).readAsStringSync(),
+      contains('Stack: none'),
+    );
+  });
+
   test('the bin entry point runs', () async {
     final result = await Process.run('dart', [
       'run',

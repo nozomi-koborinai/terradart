@@ -165,6 +165,14 @@ output "label" {
         sidecar.placements['terraform.required_providers.aws'],
         backendFileName,
       );
+      expect(sidecar.placements['provider.aws'], backendFileName);
+      for (final k in r.report.kept) {
+        expect(
+          sidecar.placements[k.address],
+          isNotNull,
+          reason: '${k.address} has no sidecar file',
+        );
+      }
       expect(r.stackSource, contains("setRequiredVersion(r'>= 1.11.0');"));
     });
 
@@ -269,11 +277,17 @@ output "id" {
 
   test('allowTodo writes TODOs into the Stack and no sidecar', () {
     final r = _hcl(r'''
+resource "google_pubsub_topic" "ok" {
+  name = "ok"
+}
+
 resource "google_pubsub_topic" "t" {
   name  = "t"
   count = 2
 }
 ''', allowTodo: true);
+    expect(r.hasStack, isTrue);
+    expect(r.stackSource, contains("localName: r'ok'"));
     expect(r.sidecar, isNull);
     expect(r.files.keys.where((k) => k.startsWith('tf-out/')), isEmpty);
     expect(
@@ -283,6 +297,53 @@ resource "google_pubsub_topic" "t" {
         'supported yet',
       ),
     );
+  });
+
+  test('a directory where nothing translates gets no Stack', () {
+    const hcl = r'''
+terraform {
+  required_version = ">= 1.5.0"
+  backend "gcs" { bucket = "b" }
+}
+
+variable "name" {
+  type = string
+}
+
+resource "aws_s3_bucket" "logs" {
+  bucket = var.name
+}
+
+output "arn" {
+  value = aws_s3_bucket.logs.arn
+}
+''';
+    for (final allowTodo in [false, true]) {
+      final r = _hcl(hcl, allowTodo: allowTodo);
+      expect(r.hasStack, isFalse, reason: 'allowTodo: $allowTodo');
+      expect(r.stackSource, isEmpty);
+      expect(r.files.keys.where((k) => k.startsWith('lib/')), isEmpty);
+      expect(r.files['bin/infra.dart'], contains('nothing yet'));
+      expect(r.report.migrated, isEmpty);
+      expect(
+        r.report.kept.map((k) => k.address),
+        unorderedEquals([
+          'terraform.required_version',
+          'terraform.backend',
+          'variable.name',
+          'aws_s3_bucket.logs',
+          'output.arn',
+        ]),
+      );
+      final sidecar = r.sidecar!;
+      expect(sidecar.files[backendFileName], contains('backend "gcs"'));
+      expect(sidecar.files[backendFileName], contains('required_version'));
+      expect(sidecar.files[variablesFileName], contains('variable "name"'));
+      expect(sidecar.files[outputsFileName], contains('output "arn"'));
+      for (final k in r.report.kept) {
+        expect(sidecar.placements[k.address], isNotNull, reason: k.address);
+      }
+    }
   });
 
   test('a sensitive literal never reaches the Dart output', () {

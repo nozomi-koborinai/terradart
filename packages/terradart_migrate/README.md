@@ -29,7 +29,7 @@ The output is one Dart package:
 | `tf-out/<dir>/backend.tf`, `variables.tf`, `locals.tf`, `outputs.tf` | the `terraform` settings, variables, locals and outputs the Stack does not own |
 | `MIGRATION.md` | the report: every module, every kept block with its reason and file, warnings, and how the environment roots differ |
 
-A single-module `--dir` synthesizes into `tf-out/` directly. `--json` prints the report as JSON; `--allow-todo` writes a `TODO` per untranslated block into the Stack instead of a sidecar (the plan then differs until they are ported). Exit codes follow sysexits: 64 usage, 65 unreadable input, 73 output not empty.
+A single-module `--dir` synthesizes into `tf-out/` directly. A directory where nothing translates — no curated resource and no known provider — gets no Stack and stays Terraform: its sidecar files are its whole output, even with `--allow-todo`. `--json` prints the report as JSON; `--allow-todo` writes a `TODO` per untranslated block into the Stack instead of a sidecar (the plan then differs until they are ported). Exit codes follow sysexits: 64 usage, 65 unreadable input, 73 output not empty.
 
 **Child-module mode** registers providers without configuration (synth emits only `required_providers`), turns `variable` into `addVariable` and `output` into exports, and keeps provider configurations or a backend found in the module in the sidecar; the root's `module` call stays in its sidecar, so plan addresses keep their `module.<name>.` prefix. After `dart run bin/infra.dart`, each root plans with *No changes*: `cd tf-out/dev && terraform init && terraform plan`.
 

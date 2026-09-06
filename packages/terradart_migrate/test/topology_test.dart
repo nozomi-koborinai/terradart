@@ -124,6 +124,39 @@ void main() {
       );
     });
 
+    test('three environments: exclusive, partial and shared addresses', () {
+      for (final env in ['a', 'b', 'c']) {
+        Directory('${dir.path}/envs/$env').createSync(recursive: true);
+      }
+      File('${dir.path}/envs/a/main.tf').writeAsStringSync(
+        'resource "google_pubsub_topic" "x" { name = "x" }\n'
+        'resource "google_pubsub_topic" "y" { name = "y" }\n',
+      );
+      File('${dir.path}/envs/b/main.tf').writeAsStringSync(
+        'resource "google_pubsub_topic" "x" { name = "x" }\n'
+        'resource "google_pubsub_topic" "y" { name = "y" }\n'
+        'resource "google_pubsub_topic" "z" { name = "z" }\n',
+      );
+      File('${dir.path}/envs/c/main.tf').writeAsStringSync(
+        'resource "google_pubsub_topic" "x" { name = "x-c" }\n',
+      );
+      final tree = scanModuleTree(dir);
+      expect(tree.environments.keys, ['envs']);
+      final c = compareEnvironment('envs', tree.environments['envs']!);
+      expect(c.shared, ['google_pubsub_topic.x']);
+      expect(c.only, {
+        'envs/a': <String>[],
+        'envs/b': ['google_pubsub_topic.z'],
+        'envs/c': <String>[],
+      });
+      expect(c.partial, {
+        'google_pubsub_topic.y': ['envs/a', 'envs/b'],
+      });
+      expect(c.differing, {
+        'google_pubsub_topic.x': ['name'],
+      });
+    });
+
     test('relative paths normalize', () {
       expect(normalizeRelPath('./envs/dev/'), 'envs/dev');
       expect(normalizeRelPath('.'), '.');

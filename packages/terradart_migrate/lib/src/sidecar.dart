@@ -187,6 +187,11 @@ final class _SidecarBuilder {
             );
             _placements['terraform.required_providers.${attr.name}'] =
                 backendFileName;
+            // A kept provider with no `provider` block lives here alone.
+            _placements.putIfAbsent(
+              'provider.${attr.name}',
+              () => backendFileName,
+            );
           }
           continue;
         }

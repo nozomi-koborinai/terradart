@@ -22,6 +22,7 @@ final class MigratedStack {
     required this.source,
     required this.packages,
     required this.report,
+    required this.hasStack,
   });
 
   /// `OrdersStack`.
@@ -30,8 +31,13 @@ final class MigratedStack {
   /// `orders_stack` — the library file is `lib/<stackFile>.dart`.
   final String stackFile;
 
-  /// The Stack source, formatted unless the caller asked otherwise.
+  /// The Stack source, formatted unless the caller asked otherwise; empty
+  /// when [hasStack] is false.
   final String source;
+
+  /// False when nothing in the module translates: no Stack is generated,
+  /// every block stays in Terraform, and the sidecar is always written.
+  final bool hasStack;
 
   /// The TerraDart packages the Stack imports, sorted.
   final List<String> packages;
@@ -74,9 +80,12 @@ MigratedStack migrateStack(
   return MigratedStack(
     stackClass: names.stackClass,
     stackFile: names.stackFile,
-    source: format ? formatDart(emitted.source) : emitted.source,
+    source: format && emitted.hasStack
+        ? formatDart(emitted.source)
+        : emitted.source,
     packages: emitted.packages,
     report: emitted.report,
+    hasStack: emitted.hasStack,
   );
 }
 
@@ -106,11 +115,15 @@ final class MigrationResult {
   /// The generated package's name.
   final String packageName;
 
-  /// The leftover sidecar (`null` with `allowTodo`).
+  /// The leftover sidecar (`null` with `allowTodo`, unless there is no
+  /// Stack — then the sidecar is the whole output).
   final Sidecar? sidecar;
 
-  /// The Stack source (`lib/<stackFile>.dart`).
-  String get stackSource => files['lib/$stackFile.dart']!;
+  /// True when a Stack was generated (something in the module translates).
+  bool get hasStack => files.containsKey('lib/$stackFile.dart');
+
+  /// The Stack source (`lib/<stackFile>.dart`); empty without a Stack.
+  String get stackSource => files['lib/$stackFile.dart'] ?? '';
 }
 
 /// Migrates one Terraform module to a Dart package.
@@ -140,18 +153,19 @@ MigrationResult migrateModule(
     allowTodo: allowTodo,
   );
   final packageName = packageNameFor(name);
-  final sidecar = allowTodo
+  final sidecar = allowTodo && stack.hasStack
       ? null
       : buildSidecar(module, stack.report, version: packageVersion);
   return MigrationResult(
     files: {
-      'lib/${stack.stackFile}.dart': stack.source,
+      if (stack.hasStack) 'lib/${stack.stackFile}.dart': stack.source,
       'bin/infra.dart': renderInfra(packageName, [
-        (
-          stackFile: stack.stackFile,
-          stackClass: stack.stackClass,
-          terraformDir: 'tf-out',
-        ),
+        if (stack.hasStack)
+          (
+            stackFile: stack.stackFile,
+            stackClass: stack.stackClass,
+            terraformDir: 'tf-out',
+          ),
       ], format: format),
       'pubspec.yaml': renderPubspec(packageName, name, stack.packages),
       if (sidecar != null)
@@ -213,10 +227,15 @@ String renderInfra(
     for (final s in stacks)
       '  await ${s.stackClass}().writeTo(${dartString(s.terraformDir)});',
   ].join('\n');
-  final what = stacks.length == 1
-      ? '/// `${stacks.single.terraformDir}/main.tf.json`.'
-      : "/// every Stack's `main.tf.json` under `tf-out/`, mirroring the\n"
-            '/// migrated module tree.';
+  final what = switch (stacks.length) {
+    0 =>
+      '/// nothing yet: no module directory translates, so the Terraform\n'
+          '/// directories hold the sidecar files only.',
+    1 => '/// `${stacks.single.terraformDir}/main.tf.json`.',
+    _ =>
+      "/// every Stack's `main.tf.json` under `tf-out/`, mirroring the\n"
+          '/// migrated module tree.',
+  };
   final src =
       '''
 /// Synth entry point: `dart run bin/infra.dart` writes

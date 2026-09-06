@@ -33,7 +33,8 @@ final class MigratedModule {
   final String name;
   final MigratedStack stack;
 
-  /// `null` with `allowTodo`.
+  /// `null` with `allowTodo`, unless the directory has no Stack — then the
+  /// sidecar is its whole output.
   final Sidecar? sidecar;
 
   /// Where the Stack synthesizes, relative to the package (`tf-out/dev`).
@@ -56,8 +57,9 @@ final class MigratedModule {
     'role': dir.role.name,
     if (dir.environment != null) 'environment': dir.environment,
     'callers': (dir.callers.toList()..sort()),
-    'stackClass': stack.stackClass,
-    'stackFile': 'lib/${stack.stackFile}.dart',
+    'hasStack': stack.hasStack,
+    'stackClass': stack.hasStack ? stack.stackClass : null,
+    'stackFile': stack.hasStack ? 'lib/${stack.stackFile}.dart' : null,
     'terraformDir': terraformDir,
     'sidecar': sidecar?.placements ?? const <String, String>{},
     'copied': copied,
@@ -142,7 +144,8 @@ final class MigratedProject {
       );
     for (final m in modules) {
       b.writeln(
-        '  ${m.dir.relPath}: ${m.stack.stackClass} — '
+        '  ${m.dir.relPath}: '
+        '${m.stack.hasStack ? m.stack.stackClass : 'no Stack'} — '
         '${m.report.migrated.length} migrated, ${m.report.kept.length} kept '
         '→ ${m.terraformDir}',
       );
@@ -207,7 +210,8 @@ final class MigratedProject {
       ..writeln('| :--- | :--- | :--- | :--- | ---: | ---: |');
     for (final m in modules) {
       b.writeln(
-        '| `${m.dir.relPath}` | ${_role(m)} | `${m.stack.stackClass}` | '
+        '| `${m.dir.relPath}` | ${_role(m)} | '
+        '${m.stack.hasStack ? '`${m.stack.stackClass}`' : 'none'} | '
         '`${m.terraformDir}` | ${m.report.migrated.length} | '
         '${m.report.kept.length} |',
       );
@@ -222,11 +226,19 @@ final class MigratedProject {
           ? ''
           : ', called from ${callers.map((c) => '`$c`').join(', ')}';
       b.writeln('- Role: ${_role(m)}$calledFrom');
-      b.writeln(
-        '- Stack: `${m.stack.stackClass}` in `lib/${m.stack.stackFile}.dart`; '
-        'packages: ${_codes(m.report.packages)}; '
-        'providers: ${_codes(m.report.providers)}',
-      );
+      if (m.stack.hasStack) {
+        b.writeln(
+          '- Stack: `${m.stack.stackClass}` in '
+          '`lib/${m.stack.stackFile}.dart`; '
+          'packages: ${_codes(m.report.packages)}; '
+          'providers: ${_codes(m.report.providers)}',
+        );
+      } else {
+        b.writeln(
+          '- Stack: none — nothing in this directory translates, so it stays '
+          'Terraform (sidecar files only)',
+        );
+      }
       final sidecarFiles = m.sidecar?.files.keys.toList() ?? const <String>[];
       b.writeln(
         '- Terraform directory: `${m.terraformDir}`'
@@ -282,6 +294,9 @@ final class MigratedProject {
           final only = e.only[r] ?? const <String>[];
           if (only.isNotEmpty) b.writeln('- Only in `$r`: ${_codes(only)}');
         }
+        for (final d in e.partial.entries) {
+          b.writeln('- `${d.key}`: only in ${_codes(d.value)}');
+        }
         if (e.differing.isNotEmpty) {
           b.writeln('- Arguments that differ:');
           for (final d in e.differing.entries) {
@@ -335,10 +350,10 @@ MigratedProject migrateTree(
     final terraformDir = single || m.relPath == '.'
         ? 'tf-out'
         : 'tf-out/${m.relPath}';
-    final sidecar = allowTodo
+    final sidecar = allowTodo && stack.hasStack
         ? null
         : buildSidecar(m.module, stack.report, version: packageVersion);
-    files['lib/${stack.stackFile}.dart'] = stack.source;
+    if (stack.hasStack) files['lib/${stack.stackFile}.dart'] = stack.source;
     if (sidecar != null) {
       for (final e in sidecar.files.entries) {
         files['$terraformDir/${e.key}'] = e.value;
@@ -359,11 +374,13 @@ MigratedProject migrateTree(
     copied.sort();
     notCopied.sort();
     packages.addAll(stack.packages);
-    stacks.add((
-      stackFile: stack.stackFile,
-      stackClass: stack.stackClass,
-      terraformDir: terraformDir,
-    ));
+    if (stack.hasStack) {
+      stacks.add((
+        stackFile: stack.stackFile,
+        stackClass: stack.stackClass,
+        terraformDir: terraformDir,
+      ));
+    }
     modules.add(
       MigratedModule(
         dir: m,

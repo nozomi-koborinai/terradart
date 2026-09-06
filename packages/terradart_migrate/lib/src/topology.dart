@@ -256,6 +256,7 @@ final class EnvironmentComparison {
     required this.roots,
     required this.shared,
     required this.only,
+    required this.partial,
     required this.differing,
   });
 
@@ -267,8 +268,12 @@ final class EnvironmentComparison {
   /// Resource, data-source and module-call addresses every root declares.
   final List<String> shared;
 
-  /// Root → the addresses only it declares.
+  /// Root → the addresses no other root declares.
   final Map<String, List<String>> only;
+
+  /// Address → the roots declaring it, for addresses some but not all roots
+  /// share (empty with two roots).
+  final Map<String, List<String>> partial;
 
   /// Shared address → the top-level arguments whose values differ.
   final Map<String, List<String>> differing;
@@ -278,6 +283,7 @@ final class EnvironmentComparison {
     'roots': roots,
     'shared': shared,
     'only': only,
+    'partial': partial,
     'differing': differing,
   };
 }
@@ -290,13 +296,23 @@ EnvironmentComparison compareEnvironment(String group, List<ModuleDir> roots) {
     for (final a in first.keys)
       if (bodies.values.every((m) => m.containsKey(a))) a,
   ];
-  final only = {
-    for (final r in roots)
-      r.relPath: [
-        for (final a in bodies[r.relPath]!.keys)
-          if (!shared.contains(a)) a,
-      ],
-  };
+  final only = {for (final r in roots) r.relPath: <String>[]};
+  final partial = <String, List<String>>{};
+  final seen = <String>{};
+  for (final r in roots) {
+    for (final a in bodies[r.relPath]!.keys) {
+      if (shared.contains(a) || !seen.add(a)) continue;
+      final owners = [
+        for (final o in roots)
+          if (bodies[o.relPath]!.containsKey(a)) o.relPath,
+      ];
+      if (owners.length == 1) {
+        only[owners.single]!.add(a);
+      } else {
+        partial[a] = owners;
+      }
+    }
+  }
   final differing = <String, List<String>>{};
   for (final a in shared) {
     final keys = <String>{};
@@ -315,6 +331,7 @@ EnvironmentComparison compareEnvironment(String group, List<ModuleDir> roots) {
     roots: [for (final r in roots) r.relPath],
     shared: shared,
     only: only,
+    partial: partial,
     differing: differing,
   );
 }
