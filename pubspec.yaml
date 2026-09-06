@@ -92,7 +92,6 @@ workspace:
   - examples/identity_platform_quickstart
   - examples/kms_autokey_quickstart
   - examples/kms_quickstart
-  - examples/license_manager_quickstart
   - examples/migration_center_quickstart
   - examples/model_armor_quickstart
   - examples/monitoring_quickstart

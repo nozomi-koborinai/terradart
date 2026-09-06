@@ -130,7 +130,7 @@ done
 # License Manager-class resources bill merely by existing — the class
 # behind the 2026-08 cost spike (Office SPLA licenses billing daily; see
 # tool/apply_cost_denylist.yaml header). It has no stable gcloud list
-# surface, so probe the REST API in the example's location plus global.
+# surface, so probe the REST API in the sweep regions plus global.
 # TODO: Discovery Engine licenseConfigs / userStores belong to the same
 # never_apply class — add them once their REST list paths are verified.
 for loc in "${REGIONS[@]}" global; do

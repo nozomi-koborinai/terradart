@@ -179,26 +179,9 @@ ai.defineFlow(
 
 ## Deploy
 
-### GitHub Actions (reference)
-
-[`.github/workflows/lunch-concierge-deploy.yml`](../../.github/workflows/lunch-concierge-deploy.yml)
-is kept as a **reference** WIF-based `plan` / `apply` / `destroy` pipeline
-(`workflow_dispatch` only — not part of the merge gate). It is not wired to a
-maintainer demo project anymore; bring your own GCP project and set these
-repository secrets before running it:
-
-| Secret | Purpose |
-|--------|---------|
-| `LUNCH_PROJECT_ID` | GCP project id |
-| `LUNCH_PROJECT_NUMBER` | GCP project number (WIF resource names) |
-| `LUNCH_TF_STATE_BUCKET` | GCS bucket for Terraform state |
-| `LUNCH_TF_STATE_PREFIX` | State object prefix (e.g. `lunch-concierge`) |
-| `LUNCH_WIF_PROVIDER` | Full Workload Identity Provider resource name |
-| `LUNCH_DEPLOYER_SERVICE_ACCOUNT` | Deployer SA email impersonated via WIF |
-| `LUNCH_INVOKER_EMAIL` | Google account granted IAP / invoker access |
-
-Without those secrets, the workflow fails at `google-github-actions/auth` —
-that is expected when credentials are not configured.
+No GitHub Actions pipeline ships with this recipe. The repository keeps no
+GCP credentials and no workflow that runs `terraform apply`; every deploy is a
+deliberate local step from your own machine against your own project.
 
 ### Local apply
 
@@ -241,7 +224,7 @@ min-instances 0, and the VPC / PSA range are free.
 
 ### Teardown gotcha (PSA)
 
-After Cloud SQL is gone, `terraform destroy` (local or Actions) can still fail
+After Cloud SQL is gone, `terraform destroy` can still fail
 on `google_service_networking_connection` with `Producer services … are still
 using this connection`. Force-delete the consumer peering, then re-run
 destroy:
@@ -253,7 +236,6 @@ gcloud compute networks peerings delete servicenetworking-googleapis-com \
   --quiet
 
 # then: terraform destroy -auto-approve
-#   or: re-run the workflow with operation=destroy
 ```
 
 Same pattern as [`single-project-app`](../single-project-app/README.md).

@@ -126,16 +126,6 @@ cloudflare_leftover_quickstart: cloudflare leftover catalog fill — the apply-s
 beta_service_identity_quickstart: google-beta example — beta apply policy is not designed yet, so synth + terraform validate cover it; the resource itself is free (service-agent metadata, no SKU — see google_project_service_identity in apply_cost_denylist.yaml)
 beta_leftover_quickstart: google-beta leftover catalog fill — beta apply policy is not designed yet (GA-only harness); synth + terraform validate cover the remaining beta-only factories; types stay unclassified (default-deny)
 
-# --- Bills heavily even for a brief existence (third-party software licenses) ---
-# License Manager reserves third-party software licenses (e.g. Office SPLA) that
-# bill per license_count for the configuration's entire lifetime — no Compute VM
-# is attached. Even a brief apply→destroy in the sweep accrues real Microsoft
-# license fees at a per-unit rate far above any other resource here (it caused a
-# large single-month cost spike). Unlike gke/compute in apply_smoke_pr_skip.yaml,
-# this must NOT apply even in the full sweep, so it belongs here. synth +
-# terraform validate still cover it.
-license_manager_quickstart: reserves Office SPLA licenses (license_count, active) that bill for the configuration's existence with no VM attached; a brief apply→destroy still accrues high Microsoft license fees — synth + terraform validate cover it instead
-
 # --- Vector Search DataObject meters Write Ops + payload storage ---
 # Collection-only was applyable (~$0 schema). Adding google_vector_search_data_object
 # for synth coverage introduces Write Ops SKU C1E5-1A7F-E9B3 ~$0.18/count plus
