@@ -6,6 +6,8 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+- New package **`terradart_hcl`** — pure Dart HCL parser, `*.tf.json` decoder and `TfModule` model (the input side of `terradart-migrate`, #657).
+
 ## [0.27.0] - 2026-08-30
 
 Lockstep release across the workspace. **Breaking** — synth now rejects a

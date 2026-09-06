@@ -1,0 +1,128 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 7.0"
+      }
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "ci-test-project-id",
+      "region": "us-central1"
+    }
+  },
+  "resource": {
+    "google_pubsub_schema": {
+      "orders_proto": {
+        "name": "orders-proto",
+        "type": "PROTOCOL_BUFFER",
+        "definition": "syntax = \"proto3\"; message Order { string id = 1; }"
+      }
+    },
+    "google_service_account": {
+      "orders_publisher": {
+        "account_id": "orders-publisher",
+        "display_name": "Orders Pub/Sub publisher"
+      }
+    },
+    "google_pubsub_schema_iam_member": {
+      "orders_schema_publisher": {
+        "schema": "${google_pubsub_schema.orders_proto.id}",
+        "role": "roles/pubsub.viewer",
+        "member": "${google_service_account.orders_publisher.member}",
+        "depends_on": [
+          "google_pubsub_schema.orders_proto",
+          "google_service_account.orders_publisher"
+        ]
+      }
+    },
+    "google_pubsub_schema_iam_binding": {
+      "orders_schema_viewer_binding": {
+        "schema": "${google_pubsub_schema.orders_proto.id}",
+        "role": "roles/pubsub.viewer",
+        "members": [
+          "${google_service_account.orders_publisher.member}"
+        ],
+        "depends_on": [
+          "google_pubsub_schema.orders_proto",
+          "google_service_account.orders_publisher"
+        ]
+      }
+    },
+    "google_pubsub_schema_iam_policy": {
+      "orders_schema_viewer_policy": {
+        "schema": "${google_pubsub_schema.orders_proto.id}",
+        "policy_data": "{\"bindings\":[{\"role\":\"roles/pubsub.viewer\",\"members\":[\"serviceAccount:orders-publisher@ci-test-project-id.iam.gserviceaccount.com\"]}]}",
+        "depends_on": [
+          "google_pubsub_schema.orders_proto",
+          "google_pubsub_schema_iam_binding.orders_schema_viewer_binding"
+        ]
+      }
+    },
+    "google_pubsub_topic": {
+      "orders": {
+        "name": "orders-prod",
+        "message_retention_duration": "604800s"
+      }
+    },
+    "google_pubsub_subscription": {
+      "orders_push": {
+        "name": "orders-push",
+        "topic": "${google_pubsub_topic.orders.id}",
+        "push_config": {
+          "push_endpoint": "https://app.example.com/push"
+        },
+        "ack_deadline_seconds": 60
+      }
+    },
+    "google_pubsub_topic_iam_member": {
+      "orders_pubsub_agent": {
+        "topic": "${google_pubsub_topic.orders.name}",
+        "role": "roles/pubsub.publisher",
+        "member": "serviceAccount:service-${data.google_project.current.number}@gcp-sa-pubsub.iam.gserviceaccount.com",
+        "depends_on": [
+          "google_pubsub_topic.orders"
+        ]
+      }
+    },
+    "google_pubsub_topic_iam_binding": {
+      "orders_publisher_binding": {
+        "topic": "${google_pubsub_topic.orders.name}",
+        "role": "roles/pubsub.viewer",
+        "members": [
+          "${google_service_account.orders_publisher.member}"
+        ],
+        "depends_on": [
+          "google_pubsub_topic.orders",
+          "google_service_account.orders_publisher"
+        ]
+      }
+    },
+    "google_pubsub_topic_iam_policy": {
+      "orders_publisher_policy": {
+        "topic": "${google_pubsub_topic.orders.name}",
+        "policy_data": "{\"bindings\":[{\"role\":\"roles/pubsub.viewer\",\"members\":[\"serviceAccount:orders-publisher@ci-test-project-id.iam.gserviceaccount.com\"]}]}",
+        "depends_on": [
+          "google_pubsub_topic.orders",
+          "google_pubsub_topic_iam_binding.orders_publisher_binding"
+        ]
+      }
+    }
+  },
+  "data": {
+    "google_project": {
+      "current": {}
+    }
+  },
+  "output": {
+    "ORDERS_TOPIC_NAME": {
+      "value": "${google_pubsub_topic.orders.name}"
+    },
+    "ORDERS_TOPIC_ID": {
+      "value": "${google_pubsub_topic.orders.id}"
+    }
+  }
+}

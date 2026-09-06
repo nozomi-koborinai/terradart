@@ -33,6 +33,7 @@ TerraDart is a Dart-first infrastructure-as-code project that synthesizes Terraf
 - `terradart_cloudflare` for curated Cloudflare factories (`cloudflare/cloudflare`, filled at the current pin).
 - `terradart_agent` for the MCP catalog server.
 - `terradart_codegen` for maintainer generation commands such as `wrap`, `wrap-init`, and `wrap-promote`.
+- `terradart_hcl` for the HCL / `*.tf.json` front-end (`parseHcl`, `decodeTfJson`, `TfModule`) that `terradart-migrate` reads existing Terraform through (#80).
 
 Read `CONTEXT.md` before design work. It defines project-specific terms such as Curated factory, Beta-only factory, Maintainer generation pipeline, Merged IR, Wrapper override, Agent guide, and Local notes.
 
