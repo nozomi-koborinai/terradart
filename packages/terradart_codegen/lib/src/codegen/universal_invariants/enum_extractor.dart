@@ -13,7 +13,16 @@ class EmittedEnum {
 /// skipped (it isn't using the project's convention, so Gate 3 / Gate 5
 /// don't apply to it).
 class EnumExtractor {
-  const EnumExtractor();
+  /// The universal-invariant scanner: canonical shapes only.
+  const EnumExtractor() : _lenient = false;
+
+  /// Also accepts the hand-curated `@override` form and a wrapped
+  /// constructor. Used by the migration manifest, which must see every
+  /// `TerraformEnum` a wrapper file declares; the invariant gates keep the
+  /// strict matcher so their accepted set does not change silently.
+  const EnumExtractor.lenient() : _lenient = true;
+
+  final bool _lenient;
 
   /// Matches: `enum <Name> [implements TerraformEnum] { ... }` followed by
   /// the const constructor + terraformValue field. Captures (name, body).
@@ -29,6 +38,16 @@ class EnumExtractor {
     dotAll: true,
   );
 
+  /// [EnumExtractor.lenient]'s block matcher: additionally accepts an
+  /// `@override` before `final String terraformValue` (hand-curated enums
+  /// that annotate the interface member) and whitespace / a trailing comma
+  /// inside `(this.terraformValue)` (a `dart_style`-wrapped constructor of
+  /// a long enum name).
+  static final RegExp _lenientEnumBlock = RegExp(
+    r'enum\s+([A-Z][A-Za-z0-9_]*)(?:\s+implements\s+TerraformEnum)?\s*\{([^}]*?)const\s+\1\s*\(\s*this\.terraformValue\s*,?\s*\)\s*;\s*(?:@override\s+)?final\s+String\s+terraformValue\s*;',
+    dotAll: true,
+  );
+
   /// Within the body, matches each `member('STRING_VALUE')`. The optional
   /// trailing comma + whitespace before `)` handles Dart format's multi-line
   /// member style: `name(\n    'LONG_VALUE',\n  )`.
@@ -38,7 +57,8 @@ class EnumExtractor {
 
   List<EmittedEnum> extract(String dartSource) {
     final result = <EmittedEnum>[];
-    for (final match in _enumBlock.allMatches(dartSource)) {
+    final block = _lenient ? _lenientEnumBlock : _enumBlock;
+    for (final match in block.allMatches(dartSource)) {
       final name = match.group(1)!;
       final body = match.group(2)!;
       final members = <String, String>{};

@@ -160,7 +160,10 @@ class YamlOverrideLoader {
   static const Set<String> _allowedCustomSlotKeys = {
     'paramDeclaration',
     'argMapEntry',
+    'migrate',
   };
+
+  static const Set<String> _allowedMigrateHintKeys = {'kind', 'reason'};
 
   /// Loads every `*.yaml` under [rootDir] and returns the parsed entries
   /// split by [WrapperOverrideKind].
@@ -755,8 +758,55 @@ class YamlOverrideLoader {
       out[slotName] = CustomSlot(
         paramDeclaration: paramDecl,
         argMapEntry: argMap,
+        migrate: _readMigrateHint(slotMap['migrate'], slotName, filePath),
       );
     }
     return out;
+  }
+
+  /// Parses `customSlots.<slot>.migrate`:
+  ///
+  /// ```yaml
+  /// migrate:
+  ///   kind: manual
+  ///   reason: env sources are a discriminated union the manifest cannot express
+  /// ```
+  ///
+  /// Only `kind: manual` exists today; `reason` is mandatory and non-empty so
+  /// the manifest never carries a bare "manual" without an explanation.
+  MigrateHint? _readMigrateHint(
+    Object? raw,
+    String slotName,
+    String filePath,
+  ) {
+    if (raw == null) return null;
+    if (raw is! YamlMap) {
+      throw FormatException(
+        '$filePath: customSlots["$slotName"].migrate must be a mapping',
+      );
+    }
+    for (final k in raw.keys) {
+      if (!_allowedMigrateHintKeys.contains(k)) {
+        throw FormatException(
+          '$filePath: customSlots["$slotName"].migrate has unknown key: $k '
+          '(allowed: $_allowedMigrateHintKeys)',
+        );
+      }
+    }
+    final kind = raw['kind'];
+    if (kind != 'manual') {
+      throw FormatException(
+        '$filePath: customSlots["$slotName"].migrate.kind must be "manual" '
+        '(got: $kind)',
+      );
+    }
+    final reason = raw['reason'];
+    if (reason is! String || reason.trim().isEmpty) {
+      throw FormatException(
+        '$filePath: customSlots["$slotName"].migrate.reason is required and '
+        'must be a non-empty string',
+      );
+    }
+    return MigrateHint.manual(reason: reason.trim());
   }
 }

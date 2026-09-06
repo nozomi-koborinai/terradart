@@ -374,8 +374,37 @@ final class CustomSlot {
   /// concatenate cleanly inside the argMap literal.
   final String argMapEntry;
 
+  /// Optional migration hint (the `migrate:` sub-key).
+  ///
+  /// `terradart wrap --migrate-manifest` derives a slot's migration recipe
+  /// from [paramDeclaration] / [argMapEntry] and the helper classes in the
+  /// emitted file. When that derivation cannot describe the slot (an
+  /// argMap entry with a computed key, a helper whose `encode()` is not
+  /// field-per-key, ...), the curator records the slot as `manual` here
+  /// with a reason instead of leaving the migrator to guess. The reason is
+  /// surfaced verbatim in the manifest so `terradart migrate` can print it
+  /// next to the untranslated HCL.
+  final MigrateHint? migrate;
+
   const CustomSlot({
     required this.paramDeclaration,
     required this.argMapEntry,
+    this.migrate,
   });
+}
+
+/// A curator's `migrate:` hint on one custom slot.
+///
+/// Phase 1 (#659) only knows one kind — `manual` — which pins the slot to
+/// `MigrateSlotKind.manual` with a human-readable [reason]. The class is a
+/// carrier (not a bare string) so later phases can add derivable kinds
+/// without changing the YAML shape.
+final class MigrateHint {
+  /// Why the slot cannot be migrated mechanically. Non-empty.
+  final String reason;
+
+  const MigrateHint.manual({required this.reason});
+
+  /// The `kind:` value this hint was declared with.
+  String get kind => 'manual';
 }

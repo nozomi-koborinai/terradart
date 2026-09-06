@@ -115,7 +115,9 @@ List<String> catalogConstructorParams(
 /// `'required SchedulerTarget target'` → `target`. The identifier is the last
 /// `\w+` token (declarations never carry a trailing default value — see
 /// `CustomSlot.paramDeclaration` contract).
-@visibleForTesting
+///
+/// Shared with the migration-manifest shape analyzer so both derive the
+/// same Dart name from the same declaration.
 String paramIdentifier(String paramDeclaration) {
   final matches =
       RegExp(r'[A-Za-z_$][A-Za-z0-9_$]*').allMatches(paramDeclaration).toList();

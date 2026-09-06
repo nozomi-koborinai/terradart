@@ -851,6 +851,76 @@ barrels:
       expect(manifest.umbrellaFile, 'terradart_google');
     });
   });
+  group('WrapCommand --migrate-manifest', () {
+    test('emits _migrate_manifest.g.dart beside the catalog (whole registry)',
+        () async {
+      final tmpOut = await Directory.systemTemp.createTemp('migrate_manifest_');
+      try {
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          _libSrcOut(tmpOut),
+          '--migrate-manifest',
+        ]);
+        expect(code, CliExitCodes.success);
+
+        final manifest = File(
+          p.join(_libSrcOut(tmpOut), '_migrate_manifest.g.dart'),
+        );
+        expect(manifest.existsSync(), isTrue);
+        final src = manifest.readAsStringSync();
+        expect(src, startsWith('// GENERATED FILE - DO NOT EDIT\n'));
+        expect(src, contains('const MigrateManifest terradartMigrateManifest'));
+        expect(src, contains("tfType: 'google_pubsub_topic'"));
+        expect(
+            src, contains("'CloudSchedulerJobPubsubTarget': MigrateHelper("));
+        // The catalog is still emitted next to it.
+        expect(
+          File(p.join(_libSrcOut(tmpOut), '_catalog.g.dart')).existsSync(),
+          isTrue,
+        );
+        // Already formatted, so a `--check` diff against a committed copy
+        // is byte-exact (#658).
+        final formatted = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        ).format(src);
+        expect(formatted, src);
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+
+    test('--only skips the manifest like every whole-registry artifact',
+        () async {
+      final tmpOut = await Directory.systemTemp.createTemp('migrate_only_');
+      try {
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          _libSrcOut(tmpOut),
+          '--only',
+          'google_pubsub_schema',
+          '--migrate-manifest',
+        ]);
+        expect(code, CliExitCodes.success);
+        expect(
+          File(p.join(_libSrcOut(tmpOut), '_migrate_manifest.g.dart'))
+              .existsSync(),
+          isFalse,
+        );
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+  });
 }
 
 /// Loads `resource_schemas[terraformType].block` straight from an

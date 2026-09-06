@@ -81,6 +81,15 @@ When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer 
 
 `lint-override` clean does **not** guarantee every optional nested block is type-enforced: resources without MM `exactly_one_of` metadata (e.g. large schema-only surfaces) may still fan out at the Dart API until sealed. Prefer sealed virtual slots + `wrap-promote` when curating new `exactly_one_of` groups. Pre-existing optional-fanout overrides may be listed in [`tool/exactly_one_lint_debt.yaml`](tool/exactly_one_lint_debt.yaml) with a reason until sealed (#107).
 
+### Migration manifest (`migrate-shape-*`)
+
+`terradart wrap --migrate-manifest` also emits `_migrate_manifest.g.dart` — one `MigrateEntry` per curated factory describing how every constructor slot, helper-class field, enum and output getter maps back to Terraform (the recipe `terradart migrate` follows, #80/#659). The manifest is derived from the same IR + override + emitted-source inputs as the wrappers; nothing is hand-listed. Shapes it cannot derive are recorded as `manual`, and `lint-override` makes that visible from the YAML alone:
+
+- `migrate-shape-underivable` — a `prelude` helper whose `encode()` is not a field-per-key map literal, a helper field or custom slot with a type the manifest cannot express, or a custom slot whose argMap entry has no static key. Reshape it, declare `customSlots.<slot>.migrate: {kind: manual, reason: ...}` when the slot is manual by design, or add a reasoned entry to [`tool/migrate_manifest_debt.yaml`](tool/migrate_manifest_debt.yaml) (stale entries fail the lint).
+- `migrate-hint-stale` — a `migrate:` hint on a slot the manifest derives fine; remove the hint.
+
+The flag is off by default until every provider package commits the artifact (#658); the runtime types live in each package's `migrate_manifest.dart`.
+
 ### Example verification (no live GCP apply)
 
 Live `terraform apply` / `destroy` against `terradart-validate` is **retired**. CI and agents must not apply or destroy examples on a real GCP project. Example quality is synth + `terraform validate` (`dart tool/example_synth_gates.dart` and the CI `terraform_validate` matrix).
@@ -195,6 +204,7 @@ cd packages/terradart_codegen && dart run bin/terradart.dart wrap \
   --source test/fixtures/wrap/source \
   --output ../terradart_google/lib/src \
   --check
+# add --migrate-manifest to also emit lib/src/_migrate_manifest.g.dart (#659)
 ```
 
 ## Cloud Agent Runbooks

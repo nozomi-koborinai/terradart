@@ -40,6 +40,10 @@ _Avoid_: Agent guide, public docs
 A user-visible release batch of related curated factories. With the GA catalog filled, Waves originate from new resources the weekly schema bump detects and appends to the curation backlog.
 _Avoid_: Sprint, milestone
 
+**Migration manifest**:
+The generated `_migrate_manifest.g.dart` (`terradart wrap --migrate-manifest`) that records, per curated factory, how each constructor slot, helper field, enum and output getter maps back to Terraform — the machine-readable recipe the HCL → Dart migrator follows. Derived from the wrapper inputs and emitted source; a shape it cannot derive is `manual` with a reason, gated by `lint-override` and `tool/migrate_manifest_debt.yaml`.
+_Avoid_: Mapping table, conversion config
+
 **Debt ledger**:
 A machine-checked YAML under `tool/` (for example `example_debt.yaml`, the apply-smoke skip lists, `apply_cost_denylist.yaml`) that records a reviewed, reasoned gap so CI can enforce that every gap is a decision, not an accident.
 _Avoid_: TODO list, wishlist

@@ -1,0 +1,15 @@
+# Overrides exempt from `migrate-shape-underivable` (migration manifest, #659).
+#
+# Each line is `<terraform_type>: reason`. Listed overrides carry a prelude
+# helper class (or a custom slot) whose Terraform encoding the migration
+# manifest cannot derive, so `terradart wrap --migrate-manifest` records the
+# shape as `manual` and `terradart migrate` keeps such blocks in Terraform.
+# Stale entries (override no longer violates) fail `terradart lint-override`.
+# New entries are a reviewed maintainer decision — prefer reshaping the
+# helper to a field-per-key `encode()` map literal (see #659).
+
+google_chronicle_dashboard_chart: ChronicleDashboardChartVisualization spreads a `...axisType.encode()` enum into the block; the manifest has no merged-enum shape
+google_compute_autoscaler: AutoscalingPolicy.scalingSchedules is a `Map<String, ScalingSchedule>` keyed nested block; the manifest has no map-of-helper shape
+google_compute_firewall: Allow/DenyPolicy.encode() fans one Dart value out into several `allow {}` / `deny {}` blocks via additionalRules
+google_compute_region_autoscaler: AutoscalingPolicy.scalingSchedules is a `Map<String, ScalingSchedule>` keyed nested block; the manifest has no map-of-helper shape
+google_firestore_field: SingleFieldIndex.arrayContains is a Dart-side bool discriminant that encodes as `array_config: CONTAINS`
