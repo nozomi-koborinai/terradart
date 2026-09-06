@@ -42,11 +42,17 @@ jobs:
         # nothing but stall lines to show for it. This never fails the report;
         # it appends a section and raises a workflow warning when something
         # needs a human.
+        # Belt and braces: even an unexpected error here must not stop the
+        # report from being posted by the next step.
+        continue-on-error: true
         env:
           PAT: ${{ secrets.SCHEMA_BUMP_PAT }}
           GH_TOKEN: ${{ github.token }}
         run: |
-          set -uo pipefail
+          # The runner's default shell is `bash -e`; drop -e so a probe that
+          # finds nothing (an empty grep, a rejected token) is a finding, not
+          # a failed step.
+          set +e -u -o pipefail
           pat_line=''
           pat_warn=''
           if [ -z "$PAT" ]; then
@@ -57,7 +63,7 @@ jobs:
             if printf '%s\n' "$headers" | head -1 | grep -q ' 200'; then
               exp=$(printf '%s\n' "$headers" \
                 | grep -i '^github-authentication-token-expiration:' \
-                | sed -E 's/^[^:]*:[[:space:]]*//' | head -1)
+                | sed -E 's/^[^:]*:[[:space:]]*//' | head -1 || true)
               if [ -z "$exp" ]; then
                 pat_line="\`SCHEMA_BUMP_PAT\` valid; the API reported no expiry."
               elif secs=$(date -u -d "$exp" +%s 2>/dev/null); then
