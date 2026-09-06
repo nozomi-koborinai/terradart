@@ -572,4 +572,172 @@ resource "google_pubsub_topic" "t" {
       expect(r.stackSource, contains(r"name: TfArg.literal(r'a-$${b}-%%{c}')"));
     });
   });
+
+  group('ordering and providers', () {
+    test('a depends_on reference declares its target first', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+  }
+}
+
+resource "google_pubsub_subscription" "s" {
+  name       = "s"
+  topic      = "t"
+  depends_on = [google_pubsub_topic.t]
+}
+
+resource "google_pubsub_topic" "t" {
+  name = "t"
+}
+''');
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      final src = r.stackSource;
+      expect(src, contains('dependsOn: [ResourceDependency(t)]'));
+      expect(src, contains('final t = add('));
+      expect(
+        src.indexOf('final t = add('),
+        lessThan(src.indexOf("localName: r's'")),
+      );
+    });
+
+    test('a replace_triggered_by address declares its target first', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_subscription': {
+            's': {
+              'name': 's',
+              'topic': 't',
+              'lifecycle': {
+                'replace_triggered_by': ['google_pubsub_topic.t'],
+              },
+            },
+          },
+          'google_pubsub_topic': {
+            't': {'name': 't'},
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      final src = r.stackSource;
+      expect(src, contains('replaceTriggeredBy: [TfRef.resource(t)]'));
+      expect(src, contains('final t = add('));
+      expect(
+        src.indexOf('final t = add('),
+        lessThan(src.indexOf("localName: r's'")),
+      );
+    });
+
+    test('provider = <the default provider> is migrated', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic': {
+            'x': {'name': 'x', 'provider': 'google'},
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+    });
+
+    test('a provider alias keeps the resource in Terraform', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+  }
+}
+
+provider "google" {
+  project = "p"
+}
+
+provider "google" {
+  alias  = "west"
+  region = "us-west1"
+}
+
+resource "google_pubsub_topic" "x" {
+  name     = "x"
+  provider = google.west
+}
+''');
+      expect(
+        r.report.kept.map((k) => k.address),
+        unorderedEquals(['provider.google.west', 'google_pubsub_topic.x']),
+      );
+      final reason = r.report.kept
+          .singleWhere((k) => k.address == 'google_pubsub_topic.x')
+          .reason;
+      expect(
+        reason,
+        allOf(contains('provider = google.west'), contains('#666')),
+      );
+      expect(r.stackSource, isNot(contains('GooglePubsubTopic(')));
+    });
+
+    test('a beta resource selects google-beta, not google', () {
+      final r = _migrateJson({
+        'terraform': {
+          'required_providers': {
+            'google-beta': {
+              'source': 'hashicorp/google-beta',
+              'version': '~> 7.0',
+            },
+          },
+        },
+        'provider': {
+          'google-beta': {'project': 'p'},
+        },
+        'resource': {
+          'google_api_gateway_api': {
+            'api': {'api_id': 'api', 'provider': 'google-beta'},
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(r.report.packages, ['terradart_google_beta']);
+      final src = r.stackSource;
+      expect(
+        src,
+        contains("providers: [const GoogleBetaProvider(project: r'p')]"),
+      );
+      expect(src, isNot(contains('GoogleProvider(')));
+      expect(
+        src,
+        contains(
+          "GoogleApiGatewayApi(localName: r'api', apiId: TfArg.literal(r'api'))",
+        ),
+      );
+    });
+
+    test('time_sleep implies the time provider, not google', () {
+      final r = _migrateJson({
+        'terraform': {
+          'required_providers': {
+            'time': {'source': 'hashicorp/time', 'version': '~> 0.12'},
+          },
+        },
+        'resource': {
+          'time_sleep': {
+            'wait': {'create_duration': '30s'},
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(r.report.packages, ['terradart_google']);
+      final src = r.stackSource;
+      expect(src, contains('providers: [const TimeProvider()]'));
+      expect(src, isNot(contains('GoogleProvider(')));
+      expect(src, contains("import 'package:terradart_google/time.dart';"));
+      expect(
+        src,
+        contains(
+          "TimeSleep(localName: r'wait', createDuration: TfArg.literal(r'30s'))",
+        ),
+      );
+    });
+  });
 }

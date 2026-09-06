@@ -362,7 +362,7 @@ void _diff(Object? expected, Object? actual, String path, List<String> out) {
     }
     for (final key in actual.keys) {
       if (!expected.containsKey(key)) {
-        out.add('\$path.\$key: unexpected in migrated synth');
+        out.add('$path.$key: unexpected in migrated synth');
       }
     }
     return;

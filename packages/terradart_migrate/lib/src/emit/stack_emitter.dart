@@ -110,6 +110,7 @@ const _blockedMeta = <String, String>{
 final class _Emitted {
   _Emitted({
     required this.address,
+    required this.tfType,
     required this.dartName,
     required this.call,
     required this.usedTargets,
@@ -119,6 +120,7 @@ final class _Emitted {
   });
 
   final String address;
+  final String tfType;
   final String dartName;
 
   /// `add(...)` / `addData(...)` without the `final x =` prefix.
@@ -222,9 +224,7 @@ final class StackEmitter {
         if (!module.requiredProviders.containsKey(p.name)) p.name,
     ];
     for (final e in emitted.values) {
-      final needed = e.package == 'terradart_google_beta'
-          ? 'google-beta'
-          : e.package.substring('terradart_'.length);
+      final needed = _defaultProviderFor(e.package, e.tfType);
       if (!providerNames.contains(needed)) providerNames.add(needed);
     }
     final providerExprs = <String>[];
@@ -479,13 +479,14 @@ final class StackEmitter {
     final extras = <String>[];
     final provider = values.remove('provider');
     if (provider != null) {
-      final own = manifest.package == 'terradart_google_beta'
-          ? 'google-beta'
-          : null;
-      if (provider.constantString != own) {
+      // `provider = google.west` is a traversal in HCL and the string
+      // "google.west" in tf.json; `google-beta` parses as one root either way.
+      final selected = provider.constantString ?? hclSource(provider);
+      final own = _defaultProviderFor(manifest.package, b.type);
+      if (selected != own) {
         throw MigrateBlocker(
-          'provider = ${hclSource(provider)}: provider aliases are not '
-          'supported yet (#666)',
+          'provider = $selected: only the default provider ("$own") is '
+          'migrated; provider aliases are not supported yet (#666)',
         );
       }
     }
@@ -510,6 +511,7 @@ final class StackEmitter {
         '${extras.isEmpty ? '' : ', ${extras.join(', ')}'})';
     return _Emitted(
       address: b.address,
+      tfType: b.type,
       dartName: dartName,
       call: '${b.isData ? 'addData' : 'add'}($ctor)',
       usedTargets: emitter.usedTargets,
@@ -590,11 +592,7 @@ final class StackEmitter {
           }
           final refs = <String>[];
           for (final e in v.elements) {
-            final t =
-                singleReference(e) ??
-                (e.constantString == null
-                    ? null
-                    : parseHclExpression(e.constantString!) as TraversalExpr?);
+            final t = singleReference(e) ?? _traversalOf(e.constantString);
             final c = t == null ? null : classifyTraversal(t);
             if (c is! BlockReference) {
               throw MigrateBlocker(
@@ -901,22 +899,56 @@ final class StackEmitter {
 
     final values = objectMap(bodyAsObject(b.body)) ?? {};
     for (final entry in values.entries) {
-      if (entry.key == 'depends_on') {
-        final v = entry.value;
-        if (v is TupleExpr) {
-          for (final e in v.elements) {
-            final s = e.constantString;
-            if (s != null) out.add(s);
-          }
-        }
-        continue;
+      switch (entry.key) {
+        case 'depends_on':
+          _addAddresses(entry.value, out);
+        case 'lifecycle':
+          // `replace_triggered_by` holds references in HCL (which `visit`
+          // sees) and address strings in tf.json.
+          final replace = objectMap(entry.value)?['replace_triggered_by'];
+          if (replace != null) _addAddresses(replace, out);
+          visit(entry.value);
+        default:
+          visit(entry.value);
       }
-      visit(entry.value);
     }
     out.remove(b.address);
     return out;
   }
 }
+
+/// Adds the block addresses [list] names to [out]: bare references
+/// (`google_pubsub_topic.t`, HCL) or address strings (tf.json), as
+/// `depends_on` and `lifecycle.replace_triggered_by` write them.
+void _addAddresses(Expr list, Set<String> out) {
+  if (list is! TupleExpr) return;
+  for (final e in list.elements) {
+    final t = singleReference(e) ?? _traversalOf(e.constantString);
+    final c = t == null ? null : classifyTraversal(t);
+    if (c is BlockReference) out.add(c.address);
+  }
+}
+
+/// [source] parsed as a reference (`google_pubsub_topic.t`), or `null` when
+/// it is absent or not one.
+TraversalExpr? _traversalOf(String? source) {
+  if (source == null) return null;
+  try {
+    final e = parseHclExpression(source);
+    return e is TraversalExpr ? e : null;
+  } on HclParseException {
+    return null;
+  }
+}
+
+/// The provider a block of [tfType] from [package] uses without a `provider`
+/// argument: the type prefix (`google_pubsub_topic` → `google`, `time_sleep`
+/// → `time`), or `google-beta` for the beta package, whose types keep the
+/// `google_` prefix.
+String _defaultProviderFor(String package, String tfType) =>
+    package == 'terradart_google_beta'
+    ? 'google-beta'
+    : tfType.split('_').first;
 
 final class _BlockInfo {
   const _BlockInfo({
