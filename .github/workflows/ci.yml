@@ -328,25 +328,85 @@ jobs:
   terraform_validate_gate:
     name: terraform validate gate
     runs-on: ubuntu-latest
-    needs: [changes, terraform_validate]
+    needs: [changes, test, terraform_validate]
     if: always()
-    # Stable, always-present check that aggregates the dynamic validate matrix.
-    # Branch protection requires THIS (not the per-example jobs), so a PR that
-    # validates a subset — or none — still presents a green required check.
+    # Stable, always-present check that aggregates the dynamic validate matrix,
+    # so a PR that validates a subset — or none — still presents a green
+    # check. `skipped` is a pass ONLY when nothing was selected: the matrix is
+    # also skipped when `test` fails (it `needs: test`), and that must not
+    # read as "validated".
     steps:
       - name: Aggregate terraform validate result
         env:
           CHANGES: ${{ needs.changes.result }}
+          TESTS: ${{ needs.test.result }}
           RESULT: ${{ needs.terraform_validate.result }}
           SELECTED: ${{ needs.changes.outputs.examples }}
         run: |
           echo "selected examples: $SELECTED"
-          echo "changes job: $CHANGES / terraform_validate: $RESULT"
+          echo "changes: $CHANGES / test: $TESTS / terraform_validate: $RESULT"
           if [ "$CHANGES" != 'success' ]; then
             echo "::error::example-selection job did not succeed ($CHANGES)"
             exit 1
           fi
+          if [ "$TESTS" != 'success' ]; then
+            echo "::error::package tests did not succeed ($TESTS), so the validate matrix never ran"
+            exit 1
+          fi
           case "$RESULT" in
-            success|skipped) echo "gate: PASS"; exit 0 ;;
+            success) echo "gate: PASS"; exit 0 ;;
+            skipped)
+              if [ "$SELECTED" = '[]' ]; then
+                echo "gate: PASS (no example selected)"; exit 0
+              fi
+              echo "::error::terraform validate was skipped although examples were selected"
+              exit 1 ;;
             *) echo "::error::terraform validate did not pass (result=$RESULT)"; exit 1 ;;
           esac
+
+  ci_gate:
+    name: ci gate
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+      - test
+      - apply_smoke_selection_test
+      - wrap_check
+      - override_gates
+      - publish_dry_run
+      - wrap_init_check
+      - wrap_promote_check
+      - terraform_validate_gate
+    if: always()
+    # The one check branch protection should require. Requiring individual
+    # job names let the required set drift: the cost gate
+    # (apply_smoke_selection_test), four of the eight package test legs, and
+    # the publish dry-runs were never required, so a PR with any of them red
+    # — or still pending — could auto-merge. Every job must be `success`;
+    # `skipped` counts as failure because a job skipped by a failed
+    # dependency has not proven anything.
+    steps:
+      - name: Require every CI job to succeed
+        env:
+          RESULTS: |
+            select examples=${{ needs.changes.result }}
+            test=${{ needs.test.result }}
+            apply_smoke.sh selection test=${{ needs.apply_smoke_selection_test.result }}
+            terradart wrap --check=${{ needs.wrap_check.result }}
+            override gates=${{ needs.override_gates.result }}
+            pub publish --dry-run=${{ needs.publish_dry_run.result }}
+            terradart wrap-init smoke=${{ needs.wrap_init_check.result }}
+            terradart wrap-promote smoke=${{ needs.wrap_promote_check.result }}
+            terraform validate gate=${{ needs.terraform_validate_gate.result }}
+        run: |
+          fail=0
+          while IFS='=' read -r job result; do
+            [ -n "$job" ] || continue
+            if [ "$result" = 'success' ]; then
+              echo "ok    $job"
+            else
+              echo "::error::$job: $result"
+              fail=1
+            fi
+          done <<< "$RESULTS"
+          [ "$fail" = '0' ] && echo "ci gate: PASS" || exit 1
