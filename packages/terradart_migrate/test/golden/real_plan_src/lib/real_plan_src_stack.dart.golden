@@ -1,0 +1,76 @@
+/// RealPlanSrcStack — migrated from `real_plan_src` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/compute.dart';
+import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/identity.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/pubsub.dart';
+import 'package:terradart_google/storage.dart';
+
+final class RealPlanSrcStack extends Stack {
+  RealPlanSrcStack()
+    : super(
+        providers: [
+          const GoogleProvider(
+            project: r'example-dogfood-project',
+            region: r'us-central1',
+          ),
+        ],
+      ) {
+    add(
+      GoogleStorageBucket(
+        localName: r'assets',
+        name: TfArg.literal(r'example-dogfood-assets'),
+        location: TfArg.literal(r'US'),
+        forceDestroy: TfArg.literal(true),
+      ),
+    );
+    add(
+      GooglePubsubTopic(localName: r'events', name: TfArg.literal(r'events')),
+    );
+    add(
+      GoogleServiceAccount(
+        localName: r'ci',
+        accountId: TfArg.literal(r'ci-runner'),
+        displayName: TfArg.literal(r'CI Runner'),
+      ),
+    );
+    final router = add(
+      GoogleComputeRouter(
+        localName: r'router',
+        name: TfArg.literal(r'example-router'),
+        network: TfArg.literal(r'default'),
+        region: TfArg.literal(r'us-central1'),
+      ),
+    );
+    add(
+      GoogleComputeRouterNat(
+        localName: r'nat',
+        name: TfArg.literal(r'example-nat'),
+        router: TfArg.ref(router.nameRef),
+        region: TfArg.literal(r'us-central1'),
+        sourceSubnetworkIpRangesToNat: TfArg.literal(
+          ComputeRouterNatSourceSubnetworkIpRangesToNat
+              .allSubnetworksAllIpRanges,
+        ),
+        natIpAllocateOption: TfArg.literal(
+          ComputeRouterNatNatIpAllocateOption.autoOnly,
+        ),
+      ),
+    );
+    add(
+      GoogleIdentityPlatformOauthIdpConfig(
+        localName: r'hello',
+        name: TfArg.literal(r'oidc.hello'),
+        issuer: TfArg.literal(r'https://accounts.example.com'),
+        clientId: TfArg.literal(r'dummy'),
+      ),
+    );
+  }
+}

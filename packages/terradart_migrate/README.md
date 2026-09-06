@@ -7,7 +7,31 @@ The HCL → Dart migrator for existing Terraform users (`terradart-migrate`, [#8
 
 ## Status
 
-**Under construction** — the library migrates a Terraform module (`*.tf.json` today, HCL through `terradart_hcl`) into a Dart package; the leftover sidecar, the `terradart-migrate` CLI and the Homebrew binary follow in [#661](https://github.com/nozomi-koborinai/terradart/issues/661) / [#664](https://github.com/nozomi-koborinai/terradart/issues/664). `publish_to: none`.
+**Under construction** — the library and the `terradart-migrate` CLI migrate a Terraform source tree (`*.tf` and `*.tf.json`, through `terradart_hcl`) into a Dart package with a leftover sidecar per directory; the Homebrew binary and the website guide follow in [#664](https://github.com/nozomi-koborinai/terradart/issues/664). `publish_to: none`.
+
+## CLI
+
+```sh
+dart run bin/terradart_migrate.dart --dir infra --out infra_dart
+# once distributed (#664): terradart-migrate --dir infra --out infra_dart
+```
+
+`--dir` is scanned for module directories (every directory holding `.tf` / `.tf.json` files; hidden directories are skipped) and their roles are inferred: a directory a `module` block's `./` or `../` `source` points at is a **child** (migrated in child-module mode), everything else a **root**, and roots sharing a parent directory are **environment** siblings. `--roots` and `--env-dirs` override the inference. Nothing under `--dir` is written; `--out` must be empty unless `--force` is given.
+
+The output is one Dart package:
+
+| Path | Content |
+| :--- | :--- |
+| `pubspec.yaml`, `bin/infra.dart` | lockstep pins; `dart run bin/infra.dart` synthesizes every Stack |
+| `lib/<dir>_stack.dart` | one Stack per module directory (`dev` → `DevStack`) |
+| `tf-out/<dir>/` | each module's Terraform directory, mirroring the source tree so `source = "../modules/x"` keeps resolving: `main.tf.json` (written by synth) next to the sidecar files, plus `terraform.tfvars`, `*.auto.tfvars` and `.terraform.lock.hcl` copied from the source (other `*.tfvars` are listed for `-var-file`) |
+| `tf-out/<dir>/terradart_leftover.tf` | resources, data sources, module calls, `moved` and provider aliases that stay in Terraform, verbatim, each with its reason |
+| `tf-out/<dir>/backend.tf`, `variables.tf`, `locals.tf`, `outputs.tf` | the `terraform` settings, variables, locals and outputs the Stack does not own |
+| `MIGRATION.md` | the report: every module, every kept block with its reason and file, warnings, and how the environment roots differ |
+
+A single-module `--dir` synthesizes into `tf-out/` directly. `--json` prints the report as JSON; `--allow-todo` writes a `TODO` per untranslated block into the Stack instead of a sidecar (the plan then differs until they are ported). Exit codes follow sysexits: 64 usage, 65 unreadable input, 73 output not empty.
+
+**Child-module mode** registers providers without configuration (synth emits only `required_providers`), turns `variable` into `addVariable` and `output` into exports, and keeps provider configurations or a backend found in the module in the sidecar; the root's `module` call stays in its sidecar, so plan addresses keep their `module.<name>.` prefix. After `dart run bin/infra.dart`, each root plans with *No changes*: `cd tf-out/dev && terraform init && terraform plan`.
 
 ## Library
 
@@ -18,10 +42,16 @@ import 'package:terradart_migrate/terradart_migrate.dart';
 final module = loadTfModule(Directory('infra/dev'));
 final result = migrateModule(module, name: 'dev');
 
-result.files['lib/dev_stack.dart']; // final class DevStack extends Stack { ... }
-result.files['bin/infra.dart'];     // synth entry point
-result.files['pubspec.yaml'];       // lockstep pins on terradart_core + the provider packages used
-print(result.report.renderText());  // what became Dart, what stays in Terraform and why
+result.files['lib/dev_stack.dart'];            // final class DevStack extends Stack { ... }
+result.files['bin/infra.dart'];                // synth entry point
+result.files['pubspec.yaml'];                  // lockstep pins on terradart_core + the provider packages used
+result.files['tf-out/terradart_leftover.tf'];  // the sidecar: what stays in Terraform, verbatim
+print(result.report.renderText());             // what became Dart, what stays in Terraform and why
+
+// A whole tree, as the CLI does it:
+final project = migrateTree(scanModuleTree(Directory('infra')), name: 'infra');
+project.files;   // every Stack, bin/infra.dart, pubspec.yaml, tf-out/**/sidecars, MIGRATION.md
+project.copies;  // tfvars and lockfiles to copy next to each main.tf.json
 ```
 
 **Translation is resource-atomic.** A resource whose arguments all translate becomes a curated factory call; one untranslatable argument keeps the whole block in Terraform, listed in `report.kept` with the reason — nothing is dropped silently. Resource addresses are preserved (`localName` is the Terraform name), so a migrated Stack plans with *No changes* once the leftover blocks sit beside its `main.tf.json`.
@@ -36,6 +66,8 @@ What translates (the conversion rules of [#655](https://github.com/nozomi-kobori
 ## Round-trip gate
 
 `tool/migrate_roundtrip_gates.dart` migrates every quickstart's synth output back to Dart, analyzes the generated Stacks and re-synthesizes them: `synth(migrate(synth(S))) == synth(S)`, byte-for-byte after JSON canonicalization. Strict examples must round-trip completely; [`tool/migrate_roundtrip_debt.yaml`](../../tool/migrate_roundtrip_debt.yaml) ratchets the reasoned exceptions. It runs in `tool/agent_verify.sh` (full mode) and as the CI `migrate round-trip gate` job.
+
+`tool/migrate_fixture_gates.dart` is the end-to-end acceptance: it migrates the coverage fixtures `config_tree/` (two environment roots over six local modules) and `real_plan_src/` (a root with a child), analyzes and synthesizes the generated package, and runs `terraform validate` in every directory of the mirrored `tf-out/` tree (`agent_verify.sh` full mode, CI `migrate fixture gate`). `test/golden/` pins their output; `UPDATE_GOLDENS=1 dart test test/golden_test.dart` regenerates it.
 
 ## Migration manifests
 

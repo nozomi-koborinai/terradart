@@ -1,0 +1,42 @@
+/// NetworkStack — migrated from `network` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/compute.dart';
+import 'package:terradart_google/provider.dart';
+
+final class NetworkStack extends Stack {
+  NetworkStack() : super(providers: [const GoogleProvider()]) {
+    final vpc = add(
+      GoogleComputeNetwork(
+        localName: r'vpc',
+        name: TfArg.literal(r'example-vpc'),
+        autoCreateSubnetworks: TfArg.literal(false),
+      ),
+    );
+    add(
+      GoogleComputeSubnetwork(
+        localName: r'subnet',
+        name: TfArg.literal(r'example-subnet'),
+        region: TfArg.literal(r'us-central1'),
+        network: TfArg.ref(vpc.id),
+        ipCidrRange: TfArg.literal(r'10.0.0.0/24'),
+      ),
+    );
+    add(
+      GoogleComputeRoute(
+        localName: r'egress',
+        name: TfArg.literal(r'example-egress'),
+        network: TfArg.ref(vpc.nameRef),
+        destRange: TfArg.literal(r'0.0.0.0/0'),
+        nextHop: ComputeRouteGatewayNextHop(
+          nextHopGateway: TfArg.literal(r'default-internet-gateway'),
+        ),
+      ),
+    );
+  }
+}

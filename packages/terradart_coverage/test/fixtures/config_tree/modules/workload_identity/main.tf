@@ -12,7 +12,7 @@ resource "google_iam_workload_identity_pool_provider" "github" {
 }
 
 resource "google_service_account_iam_member" "github_actions" {
-  service_account_id = "projects/example-project/serviceAccounts/gha@example-project.iam.gserviceaccount.com"
+  service_account_id = "projects/example-project/serviceAccounts/gha-deploy@example-project.iam.gserviceaccount.com"
   role               = "roles/iam.workloadIdentityUser"
   member             = "principalSet://iam.googleapis.com/example/attribute.repository/owner/repo"
 }
