@@ -12,6 +12,8 @@ import '../codegen/catalog_entry_builder.dart';
 import '../codegen/catalog_metadata_emitter.dart';
 import '../codegen/data_source_wrapper_emitter.dart';
 import '../codegen/generated_file_header.dart';
+import '../codegen/migrate/migrate_entry_builder.dart';
+import '../codegen/migrate/migrate_manifest_emitter.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
 import '../codegen/wrapper_overrides/yaml_loader.dart';
@@ -60,6 +62,14 @@ class WrapCommand extends Command<int> {
         negatable: false,
         help: 'Overwrite files that are missing or have a non-TerraDart '
             'generated-file header (E401 is suppressed).',
+      )
+      ..addFlag(
+        'migrate-manifest',
+        negatable: false,
+        help: 'Also emit `_migrate_manifest.g.dart` (the machine-readable '
+            'HCL → Dart migration recipe consumed by `terradart migrate`). '
+            'Whole-registry artifact: skipped under --only. Off by default '
+            'until each provider package commits the artifact (#658).',
       )
       ..addOption(
         'only',
@@ -131,6 +141,7 @@ class WrapCommand extends Command<int> {
     final check = results['check'] as bool;
     final force = results['force'] as bool;
     final only = results['only'] as String?;
+    final migrateManifest = results['migrate-manifest'] as bool;
 
     // 1. Load schema.json from <source>/schema.json. The parser is tolerant
     //    of missing data_source_schemas / resource_schemas keys (returns an
@@ -245,6 +256,13 @@ class WrapCommand extends Command<int> {
     // `sensitiveFields` / `constructorParams` are computed from the SAME
     // helpers the wrapper emitter uses (zero drift by construction).
     final catalogEntries = <CatalogEntryData>[];
+    // Migration-manifest inputs (`--migrate-manifest` only): one per curated
+    // resource + data source, carrying the SAME IR / override / raw-schema
+    // inputs the wrapper emitters consume plus the just-emitted source, so
+    // the recipe cannot drift from the generated Dart API (same zero-drift
+    // argument as the catalog). Built after the loops so helper classes one
+    // wrapper file declares resolve from every other file.
+    final migrateInputs = <MigrateEntryInput>[];
     // `deriveNestedTypes` needs the RAW schema.json `block` shape
     // (`block_types` / `nesting_mode` / `min_items`, ...), which `baseIr`
     // above no longer carries once `SchemaJsonParser` has flattened it into
@@ -306,6 +324,18 @@ class WrapCommand extends Command<int> {
           emittedSource: dartSrc,
         ),
       );
+      if (migrateManifest) {
+        migrateInputs.add(
+          MigrateEntryInput(
+            tfType: entry.key,
+            override: entry.value,
+            def: def,
+            kind: 'resource',
+            emittedSource: dartSrc,
+            rawSchemaBlock: rawResourceSchemas[entry.key],
+          ),
+        );
+      }
     }
 
     for (final entry in loaded.dataSources.entries) {
@@ -330,6 +360,18 @@ class WrapCommand extends Command<int> {
           emittedSource: layer2,
         ),
       );
+      if (migrateManifest) {
+        migrateInputs.add(
+          MigrateEntryInput(
+            tfType: entry.key,
+            override: entry.value,
+            def: def,
+            kind: 'dataSource',
+            emittedSource: layer2,
+            rawSchemaBlock: rawDataSourceSchemas[entry.key],
+          ),
+        );
+      }
     }
 
     // Static catalog: render one CatalogEntry per curated resource + data
@@ -350,6 +392,16 @@ class WrapCommand extends Command<int> {
     if (only == null) {
       final catalogRaw = CatalogMetadataEmitter().emit(catalogEntries);
       buffer['_catalog.g.dart'] = formatter.format(catalogRaw);
+
+      // Migration manifest: same placement / formatting / header rules as
+      // the catalog, gated behind `--migrate-manifest` so the default run
+      // (and `--check`) stays byte-identical until each provider package
+      // ships `migrate_manifest_entry.dart` and commits the artifact (#658).
+      if (migrateManifest) {
+        final manifestRaw =
+            MigrateManifestEmitter().emit(buildMigrateEntries(migrateInputs));
+        buffer['_migrate_manifest.g.dart'] = formatter.format(manifestRaw);
+      }
 
       // Barrels: every per-service barrel (+ `data` + the umbrella) derives
       // from the catalog entries joined with the authored barrels.yaml

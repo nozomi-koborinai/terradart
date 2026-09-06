@@ -107,10 +107,34 @@ class LintOverrideCommand extends Command<int> {
         return CliExitCodes.dataError;
       }
     }
+    final migrateContext = preludeShapeContext(lintBag);
+    final migrateDebtPath = migrateManifestDebtPathForOverrideRoot(rootDir);
+    final migrateDebt = loadLintDebtLedger(migrateDebtPath);
+    final staleMigrateDebt = staleMigrateManifestDebt(
+      lintBag,
+      context: migrateContext,
+      debt: migrateDebt.keys.toSet(),
+    );
+    if (staleMigrateDebt.isNotEmpty) {
+      stderr.writeln(
+          'lint-override: stale tool/migrate_manifest_debt.yaml entries:');
+      for (final tf in staleMigrateDebt) {
+        stderr.writeln(
+          lintBag.containsKey(tf)
+              ? '  $tf (override no longer violates migrate-shape-underivable)'
+              : '  $tf (unknown override)',
+        );
+      }
+      return CliExitCodes.dataError;
+    }
     final violations = lintOverrides(
       lintBag,
       mmByType: mmByType,
       exactlyOneOptionalFanoutDebt: debt.keys.toSet(),
+      migrate: MigrateShapeLintInput(
+        context: migrateContext,
+        debt: migrateDebt.keys.toSet(),
+      ),
     );
 
     if (violations.isEmpty) {
@@ -149,24 +173,40 @@ String exactlyOneLintDebtPathForOverrideRoot(String overrideYamlRoot) {
   return p.join(repoRoot, 'tool', 'exactly_one_lint_debt.yaml');
 }
 
+/// `tool/migrate_manifest_debt.yaml` beside `tool/exactly_one_lint_debt.yaml`:
+/// overrides accepted as `migrate-shape-underivable` debt.
 @visibleForTesting
-Map<String, String> loadExactlyOneLintDebt(String path) {
+String migrateManifestDebtPathForOverrideRoot(String overrideYamlRoot) {
+  return p.join(
+    p.dirname(exactlyOneLintDebtPathForOverrideRoot(overrideYamlRoot)),
+    'migrate_manifest_debt.yaml',
+  );
+}
+
+@visibleForTesting
+Map<String, String> loadExactlyOneLintDebt(String path) =>
+    loadLintDebtLedger(path);
+
+/// Parses a `name: reason` debt ledger (one entry per line, `#` comments
+/// and blank lines ignored). A missing file is an empty ledger; a line
+/// without a reason is an error, so every accepted debt stays explained.
+@visibleForTesting
+Map<String, String> loadLintDebtLedger(String path) {
   final file = File(path);
   if (!file.existsSync()) return const {};
+  final label = p.join('tool', p.basename(path));
   final entries = <String, String>{};
   for (final raw in file.readAsLinesSync()) {
     final line = raw.trim();
     if (line.isEmpty || line.startsWith('#')) continue;
     final sep = line.indexOf(':');
     if (sep <= 0) {
-      throw FormatException(
-          'tool/exactly_one_lint_debt.yaml: unparsable line "$raw"');
+      throw FormatException('$label: unparsable line "$raw"');
     }
     final name = line.substring(0, sep).trim();
     final reason = line.substring(sep + 1).trim();
     if (reason.isEmpty) {
-      throw FormatException(
-          'tool/exactly_one_lint_debt.yaml: $name needs a reason');
+      throw FormatException('$label: $name needs a reason');
     }
     entries[name] = reason;
   }

@@ -29,6 +29,31 @@ enum BucketStorageClass {
       );
     });
 
+    test('accepts @override and a dart_style-wrapped constructor', () {
+      const src = '''
+enum ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
+    implements TerraformEnum {
+  tier1('TIER_1'),
+  platformDefault('DEFAULT');
+
+  const ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+''';
+      // The strict (universal-invariant) matcher skips this shape on
+      // purpose; the migration manifest opts into it.
+      expect(const EnumExtractor().extract(src), isEmpty);
+      final enums = const EnumExtractor.lenient().extract(src);
+      expect(enums, hasLength(1));
+      expect(
+        enums.single.members,
+        equals({'tier1': 'TIER_1', 'platformDefault': 'DEFAULT'}),
+      );
+    });
+
     test('returns empty list for source with no enum declarations', () {
       const src = 'class Foo {}\nvoid bar() {}';
       expect(const EnumExtractor().extract(src), isEmpty);

@@ -1,6 +1,9 @@
 import 'package:meta/meta.dart';
 
 import '../parser/mm_yaml_parser.dart';
+import 'migrate/helper_class_extractor.dart';
+import 'migrate/migrate_shape_analyzer.dart';
+import 'universal_invariants/enum_extractor.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
 /// A single dead/conflicting-config finding for one override.
@@ -52,6 +55,7 @@ List<LintViolation> lintOverride(
   WrapperOverride override, {
   MmResourceOverrides? mm,
   Set<String> exactlyOneOptionalFanoutDebt = const {},
+  MigrateShapeLintInput? migrate,
 }) {
   final violations = <LintViolation>[];
 
@@ -96,7 +100,176 @@ List<LintViolation> lintOverride(
     ),
   );
 
+  if (migrate != null) {
+    violations.addAll(lintMigrateShapes(tfType, override, migrate));
+  }
+
   return violations;
+}
+
+/// Inputs of the migration-manifest shape rules.
+final class MigrateShapeLintInput {
+  const MigrateShapeLintInput({
+    required this.context,
+    this.debt = const {},
+  });
+
+  /// Symbol table the slot / field types resolve against: the helper
+  /// classes, sealed roots and enums declared across every override's
+  /// `prelude` in the registry (see [preludeShapeContext]).
+  final ShapeContext context;
+
+  /// Terraform types exempt from `migrate-shape-underivable`
+  /// (`tool/migrate_manifest_debt.yaml`).
+  final Set<String> debt;
+}
+
+/// Builds the package-wide [ShapeContext] the lint resolves types against:
+/// what `terradart wrap --migrate-manifest` sees minus the derived symbols
+/// (`deriveEnums` enums, `deriveNestedTypes` classes), which only exist in
+/// emitted source. A custom slot or prelude field typed with a *derived*
+/// symbol therefore reads as underivable here; none does today, and one
+/// that appears is a reviewed ledger entry, not a silent pass.
+ShapeContext preludeShapeContext(Map<String, WrapperOverride> overrides) {
+  const helperExtractor = HelperClassExtractor();
+  const enumExtractor = EnumExtractor.lenient();
+  final parts = <HelperExtraction>[];
+  final enumNames = <String>{};
+  for (final o in overrides.values) {
+    final prelude = o.prelude;
+    if (prelude == null) continue;
+    parts.add(helperExtractor.extract(prelude));
+    enumNames.addAll(enumExtractor.extract(prelude).map((e) => e.name));
+  }
+  return ShapeContext(
+    helpers: HelperExtraction.merge(parts),
+    enumNames: enumNames,
+  );
+}
+
+/// Migration-manifest shape rules (issue #659).
+///
+/// `terradart wrap --migrate-manifest` derives, for every curated factory,
+/// how each constructor slot and helper-class field maps back to Terraform
+/// (`_migrate_manifest.g.dart`). Shapes it cannot derive are recorded as
+/// `manual` — silently, because the manifest must always emit. These rules
+/// make that visible at lint time, from the override YAML alone:
+///
+/// - `migrate-shape-underivable` — a `prelude` helper class whose
+///   `encode()` cannot be mapped field-per-key, a helper field or custom
+///   slot whose type the manifest cannot express, or a custom slot whose
+///   argMap entry has no static key. Fix the shape, declare
+///   `customSlots.<slot>.migrate: {kind: manual, reason: ...}` for a slot
+///   that is manual by design, or add a reasoned `tool/migrate_manifest_debt.yaml`
+///   entry. Suppressed for types listed in [MigrateShapeLintInput.debt].
+/// - `migrate-hint-stale` — a `migrate:` hint on a slot the manifest
+///   derives fine; the hint would hide a working recipe. Never suppressed.
+List<LintViolation> lintMigrateShapes(
+  String tfType,
+  WrapperOverride override,
+  MigrateShapeLintInput input,
+) {
+  final violations = <LintViolation>[];
+  final underivable = <LintViolation>[];
+  final ctx = input.context;
+
+  void flag(String detail) {
+    underivable.add(LintViolation(
+      tfType: tfType,
+      rule: 'migrate-shape-underivable',
+      detail: detail,
+    ));
+  }
+
+  final prelude = override.prelude;
+  if (prelude != null) {
+    final own = const HelperClassExtractor().extract(prelude);
+    for (final h in own.helpers.values) {
+      if (h.isIrregular) {
+        flag(
+          'prelude helper `${h.name}` cannot be mapped back to Terraform '
+          'keys (${h.irregularReason}). The migration manifest records it '
+          'as manual. Rewrite encode() as a field-per-key map literal, or '
+          'add a reasoned entry to tool/migrate_manifest_debt.yaml.',
+        );
+        continue;
+      }
+      for (final f in h.fields) {
+        var shape =
+            resolveEnumPayload(classifyDartType(f.typeSource, ctx), ctx);
+        if (f.merged) shape = mergedShape(shape);
+        if (shape.isManual) {
+          flag(
+            'prelude helper `${h.name}` field `${f.name}` has a type the '
+            'migration manifest cannot express (${shape.reason}). Use '
+            'TfArg<T>, a helper class, a sealed class or an enum, or add a '
+            'reasoned entry to tool/migrate_manifest_debt.yaml.',
+          );
+        }
+      }
+    }
+  }
+
+  for (final entry in (override.customSlots ?? const {}).entries) {
+    final slot = entry.value;
+    final SlotShape derived;
+    try {
+      derived = deriveCustomSlotShape(parseCustomSlot(slot), ctx);
+    } on FormatException catch (e) {
+      flag(
+        'customSlots["${entry.key}"] paramDeclaration could not be parsed '
+        '(${e.message}).',
+      );
+      continue;
+    }
+    final hint = slot.migrate;
+    if (hint != null && !derived.isManual) {
+      violations.add(LintViolation(
+        tfType: tfType,
+        rule: 'migrate-hint-stale',
+        detail: 'customSlots["${entry.key}"].migrate declares the slot '
+            'manual, but the migration manifest derives it as '
+            '${derived.kind.name}. Remove the hint so the manifest carries '
+            'the working recipe.',
+      ));
+    } else if (hint == null && derived.isManual) {
+      flag(
+        'customSlots["${entry.key}"] cannot be derived for the migration '
+        'manifest (${derived.reason}). Give the slot a shape the manifest '
+        'can express, declare `migrate: {kind: manual, reason: ...}` on it '
+        'when it is manual by design, or add a reasoned entry to '
+        'tool/migrate_manifest_debt.yaml.',
+      );
+    }
+  }
+
+  if (!input.debt.contains(tfType)) violations.addAll(underivable);
+  return violations;
+}
+
+/// Ledger entries that no longer suppress a `migrate-shape-underivable`
+/// finding (the override was fixed, or the type is unknown).
+List<String> staleMigrateManifestDebt(
+  Map<String, WrapperOverride> overrides, {
+  required ShapeContext context,
+  required Set<String> debt,
+}) {
+  final stale = <String>[];
+  for (final tfType in debt) {
+    final override = overrides[tfType];
+    if (override == null) {
+      stale.add(tfType);
+      continue;
+    }
+    final wouldViolate = lintMigrateShapes(
+      tfType,
+      override,
+      MigrateShapeLintInput(context: context),
+    ).any((v) => v.rule == 'migrate-shape-underivable');
+    if (!wouldViolate) stale.add(tfType);
+  }
+  stale.sort();
+  return stale;
 }
 
 /// Flags `customSlots` entries the emitter can never emit.
@@ -364,6 +537,7 @@ List<LintViolation> lintOverrides(
   Map<String, WrapperOverride> overrides, {
   Map<String, MmResourceOverrides>? mmByType,
   Set<String> exactlyOneOptionalFanoutDebt = const {},
+  MigrateShapeLintInput? migrate,
 }) {
   final keys = overrides.keys.toList()..sort();
   return [
@@ -373,6 +547,7 @@ List<LintViolation> lintOverrides(
         overrides[k]!,
         mm: mmByType?[k],
         exactlyOneOptionalFanoutDebt: exactlyOneOptionalFanoutDebt,
+        migrate: migrate,
       ),
   ];
 }

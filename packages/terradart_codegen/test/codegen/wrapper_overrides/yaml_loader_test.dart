@@ -968,4 +968,86 @@ deriveClassDoc: true
       },
     );
   });
+
+  group('customSlots.<slot>.migrate', () {
+    Future<Directory> registry(String yaml) async {
+      final dir = await Directory.systemTemp.createTemp('migrate_hint_');
+      addTearDown(() => dir.delete(recursive: true));
+      await File(p.join(dir.path, 'google_x.yaml')).writeAsString(yaml);
+      return dir;
+    }
+
+    const slotHead = '''
+outputDir: pubsub
+paramOrder: [h]
+customSlots:
+  h:
+    paramDeclaration: 'Map<String, Object?>? h'
+    argMapEntry: 'if (h != null) ...h,'
+''';
+
+    test('kind: manual + reason parses into a MigrateHint', () async {
+      final dir = await registry('''
+$slotHead    migrate:
+      kind: manual
+      reason: '  free-form extras merged into the block  '
+''');
+      final o = YamlOverrideLoader(rootDir: dir.path).load().resources;
+      final hint = o['google_x']!.customSlots!['h']!.migrate;
+      expect(hint, isNotNull);
+      expect(hint!.kind, 'manual');
+      expect(hint.reason, 'free-form extras merged into the block');
+    });
+
+    test('absent migrate key leaves the hint null', () async {
+      final dir = await registry(slotHead);
+      final o = YamlOverrideLoader(rootDir: dir.path).load().resources;
+      expect(o['google_x']!.customSlots!['h']!.migrate, isNull);
+    });
+
+    test('rejects unknown kinds, missing reasons and unknown keys', () async {
+      Matcher fails(String substring) => throwsA(
+            isA<FormatException>().having(
+              (e) => e.message,
+              'message',
+              contains(substring),
+            ),
+          );
+      final badKind = await registry('''
+$slotHead    migrate:
+      kind: auto
+      reason: x
+''');
+      expect(
+        YamlOverrideLoader(rootDir: badKind.path).load,
+        fails('migrate.kind must be "manual"'),
+      );
+      final noReason = await registry('''
+$slotHead    migrate:
+      kind: manual
+      reason: '   '
+''');
+      expect(
+        YamlOverrideLoader(rootDir: noReason.path).load,
+        fails('migrate.reason is required'),
+      );
+      final unknownKey = await registry('''
+$slotHead    migrate:
+      kind: manual
+      reason: x
+      because: y
+''');
+      expect(
+        YamlOverrideLoader(rootDir: unknownKey.path).load,
+        fails('migrate has unknown key: because'),
+      );
+      final notMap = await registry('''
+$slotHead    migrate: manual
+''');
+      expect(
+        YamlOverrideLoader(rootDir: notMap.path).load,
+        fails('migrate must be a mapping'),
+      );
+    });
+  });
 }

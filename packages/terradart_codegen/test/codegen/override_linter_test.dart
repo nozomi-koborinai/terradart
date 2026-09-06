@@ -321,4 +321,210 @@ void main() {
       expect(lintOverrides({'google_x': o}), isEmpty);
     });
   });
+
+  group('lintMigrateShapes', () {
+    const irregularPrelude = '''
+class Fanout {
+  const Fanout({required this.protocol, this.additionalRules});
+  final TfArg<String> protocol;
+  final List<Fanout>? additionalRules;
+  List<Map<String, Object?>> encode() => [
+    {'protocol': protocol.toTfJson()},
+    ...?additionalRules?.map((r) => r.encode().single),
+  ];
+}
+''';
+    const sealedPrelude = '''
+sealed class Target {
+  const Target();
+}
+final class PubsubTarget extends Target {
+  const PubsubTarget({required this.topicName});
+  final TfArg<String> topicName;
+  @override
+  String get blockKey => 'pubsub_target';
+  @override
+  Map<String, Object?> encode() => {'topic_name': topicName.toTfJson()};
+}
+''';
+    const sealedSlot = CustomSlot(
+      paramDeclaration: 'required Target target',
+      argMapEntry: 'target.blockKey: TfArg.literal(target.encode()),',
+    );
+
+    MigrateShapeLintInput input(
+      Map<String, WrapperOverride> overrides, {
+      Set<String> debt = const {},
+    }) =>
+        MigrateShapeLintInput(
+          context: preludeShapeContext(overrides),
+          debt: debt,
+        );
+
+    test('flags an irregular prelude helper', () {
+      const o = WrapperOverride(outputDir: 'x', prelude: irregularPrelude);
+      final v = lintMigrateShapes('google_x', o, input({'google_x': o}));
+      expect(v, hasLength(1));
+      expect(v.single.rule, 'migrate-shape-underivable');
+      expect(v.single.detail, contains('`Fanout`'));
+      expect(v.single.detail, contains('tool/migrate_manifest_debt.yaml'));
+    });
+
+    test('flags a helper field the manifest cannot express', () {
+      const o = WrapperOverride(
+        outputDir: 'x',
+        prelude: '''
+class Policy {
+  const Policy({this.schedules});
+  final Map<String, Schedule>? schedules;
+  Map<String, Object?> encode() => {
+    if (schedules != null) 'schedules': schedules,
+  };
+}
+''',
+      );
+      final v = lintMigrateShapes('google_x', o, input({'google_x': o}));
+      expect(v.single.rule, 'migrate-shape-underivable');
+      expect(v.single.detail, contains('field `schedules`'));
+    });
+
+    test('flags an underivable custom slot without a hint', () {
+      const o = WrapperOverride(
+        outputDir: 'x',
+        paramOrder: ['h'],
+        customSlots: {
+          'h': CustomSlot(
+            paramDeclaration: 'Map<String, Object?>? h',
+            argMapEntry: 'if (h != null) ...h,',
+          ),
+        },
+      );
+      final v = lintMigrateShapes('google_x', o, input({'google_x': o}));
+      expect(v.single.rule, 'migrate-shape-underivable');
+      expect(v.single.detail, contains('customSlots["h"]'));
+      expect(v.single.detail, contains('no static key'));
+    });
+
+    test('a migrate hint accepts an underivable slot', () {
+      const o = WrapperOverride(
+        outputDir: 'x',
+        paramOrder: ['h'],
+        customSlots: {
+          'h': CustomSlot(
+            paramDeclaration: 'Map<String, Object?>? h',
+            argMapEntry: 'if (h != null) ...h,',
+            migrate: MigrateHint.manual(reason: 'free-form extras'),
+          ),
+        },
+      );
+      expect(
+        lintMigrateShapes('google_x', o, input({'google_x': o})),
+        isEmpty,
+      );
+    });
+
+    test('a hint on a derivable slot is stale (never suppressed by debt)', () {
+      const o = WrapperOverride(
+        outputDir: 'x',
+        paramOrder: ['target'],
+        prelude: sealedPrelude,
+        customSlots: {
+          'target': CustomSlot(
+            paramDeclaration: 'required Target target',
+            argMapEntry: 'target.blockKey: TfArg.literal(target.encode()),',
+            migrate: MigrateHint.manual(reason: 'not needed'),
+          ),
+        },
+      );
+      final v = lintMigrateShapes(
+        'google_x',
+        o,
+        input({'google_x': o}, debt: {'google_x'}),
+      );
+      expect(v.single.rule, 'migrate-hint-stale');
+      expect(v.single.detail, contains('derives it as sealed'));
+    });
+
+    test('clean: sealed virtual slot resolved through the prelude', () {
+      const o = WrapperOverride(
+        outputDir: 'x',
+        paramOrder: ['target'],
+        prelude: sealedPrelude,
+        customSlots: {'target': sealedSlot},
+      );
+      expect(
+        lintMigrateShapes('google_x', o, input({'google_x': o})),
+        isEmpty,
+      );
+    });
+
+    test('clean: helper declared in another override prelude resolves', () {
+      const declaring = WrapperOverride(
+        outputDir: 'x',
+        prelude: '''
+class Shared {
+  const Shared({this.x});
+  final TfArg<String>? x;
+  Map<String, Object?> encode() => {if (x != null) 'x': x!.toTfJson()};
+}
+''',
+      );
+      const user = WrapperOverride(
+        outputDir: 'x',
+        paramOrder: ['s'],
+        customSlots: {
+          's': CustomSlot(
+            paramDeclaration: 'Shared? s',
+            argMapEntry: "if (s != null) 's': TfArg.literal([s.encode()]),",
+          ),
+        },
+      );
+      final registry = {'google_a': declaring, 'google_b': user};
+      expect(lintMigrateShapes('google_b', user, input(registry)), isEmpty);
+      // Alone, the same slot is underivable — the context is package-wide.
+      expect(
+        lintMigrateShapes('google_b', user, input({'google_b': user})),
+        hasLength(1),
+      );
+    });
+
+    test('debt suppresses underivable findings and reports staleness', () {
+      const bad = WrapperOverride(outputDir: 'x', prelude: irregularPrelude);
+      const fine = WrapperOverride(outputDir: 'x');
+      final registry = {'google_bad': bad, 'google_fine': fine};
+      final ctx = preludeShapeContext(registry);
+      expect(
+        lintMigrateShapes(
+          'google_bad',
+          bad,
+          MigrateShapeLintInput(context: ctx, debt: const {'google_bad'}),
+        ),
+        isEmpty,
+      );
+      expect(
+        staleMigrateManifestDebt(
+          registry,
+          context: ctx,
+          debt: const {'google_bad', 'google_fine', 'google_missing'},
+        ),
+        ['google_fine', 'google_missing'],
+      );
+    });
+
+    test('lintOverride / lintOverrides run the rule when given the input', () {
+      const bad = WrapperOverride(outputDir: 'x', prelude: irregularPrelude);
+      final registry = {'google_bad': bad};
+      final input =
+          MigrateShapeLintInput(context: preludeShapeContext(registry));
+      expect(lintOverride('google_bad', bad), isEmpty);
+      expect(
+        lintOverride('google_bad', bad, migrate: input).single.rule,
+        'migrate-shape-underivable',
+      );
+      expect(
+        lintOverrides(registry, migrate: input).single.rule,
+        'migrate-shape-underivable',
+      );
+    });
+  });
 }
