@@ -90,7 +90,7 @@ HCL has provider schema types; CDKTF bindings are typed in TypeScript and other 
 
 **CDKTF** would have been the obvious model to follow, except it was archived by HashiCorp in December 2025 and never targeted Dart in any case. TerraDart is the Dart-shaped slot CDKTF did not reach.
 
-**Pulumi** is a different model entirely: its own runtime, its own state, and its own resource graph. If you want a code-first IaC platform and you do not already have Terraform investment, Pulumi is a strong choice. TerraDart is for teams who already use Terraform and do not want to give that up.
+**Pulumi** is a different model entirely: its own runtime, its own state, and its own resource graph. If your team is already invested in Pulumi and wants to author in Dart, consider [Pulumi Dart](https://github.com/kingwill101/pulumi-dart) (`kingwill101/pulumi-dart`), an active community language runtime for Pulumi. TerraDart is for teams who already use **Terraform** and want type-safe Dart authoring without replacing their Terraform state or execution pipeline.
 
 **TerraDart** makes sense when you are already centered on Dart (Flutter + Cloud Run / backend apps), already using Terraform (or heading there), and the gap between those two — IaC stuck outside your Dart repo — is the part that hurts.
 

@@ -264,6 +264,8 @@ See the full factory table on [terradart.dev/docs/coverage/](https://terradart.d
 | Execution engine | Plain `terraform` | Plain `terraform` | Plain `terraform` | Pulumi engine + state backend |
 | Project status | Alpha | Mature | **Archived Dec 2025** | Active |
 
+**Already using Pulumi?** If your team already runs on Pulumi and wants to write stacks in Dart, check out [Pulumi Dart](https://github.com/kingwill101/pulumi-dart) (`kingwill101/pulumi-dart`), an active community language runtime and provider SDK ecosystem for Pulumi. TerraDart is designed specifically for teams using **Terraform** who want type-safe Dart authoring without replacing their existing Terraform state or execution pipeline.
+
 ---
 
 ## Non-goals
