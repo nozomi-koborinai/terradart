@@ -359,6 +359,11 @@ jobs:
             --description "Dependency / provider schema bumps" 2>/dev/null || true
           gh label create schema-bump --color D4C5F9 \
             --description "Weekly provider schema / MM bump automation" 2>/dev/null || true
+          # The Monday agent's verdict labels, which bump-merge keys on.
+          gh label create bump-approved --color 0E8A16 \
+            --description "Post-process agent verdict: bump PR verified, executor may merge" 2>/dev/null || true
+          gh label create bump-escalated --color B60205 \
+            --description "Post-process agent verdict: needs maintainer design judgment" 2>/dev/null || true
           gh pr create \
             --title "chore(schema): weekly bump $today" \
             --body-file .schema-bump/drift_report.md \

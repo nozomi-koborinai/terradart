@@ -82,6 +82,11 @@ jobs:
             # re-run wave-merge (PR #634 stranded this way on 2026-08-25 and
             # needed a manual merge). Remove first so the add is a fresh
             # event; `unlabeled` triggers nothing.
+            # The label the executor keys on must exist before it is applied;
+            # create it idempotently (schema-bump.yml does the same for its
+            # labels) so a deleted label cannot silently stop the wave loop.
+            gh label create wave-approved --color 0E8A16 \
+              --description "wave-shipper verdict: Wave PR ready, executor may merge" 2>/dev/null || true
             gh pr edit "$number" --remove-label wave-approved > /dev/null 2>&1 || true
             gh pr edit "$number" --add-label wave-approved
             echo "ready: PR #$number labeled wave-approved"

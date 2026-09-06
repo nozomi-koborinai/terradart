@@ -36,6 +36,66 @@ jobs:
           WAVE_MERGE_ENABLED: ${{ vars.WAVE_MERGE_ENABLED }}
         run: dart tool/loop_health_report.dart > /tmp/report.md
 
+      - name: Probe loop credentials and labels
+        # SCHEMA_BUMP_PAT alone authenticates schema-bump, bump-merge, wave-open
+        # and wave-merge, so a silent expiry stops every loop at once with
+        # nothing but stall lines to show for it. This never fails the report;
+        # it appends a section and raises a workflow warning when something
+        # needs a human.
+        env:
+          PAT: ${{ secrets.SCHEMA_BUMP_PAT }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -uo pipefail
+          pat_line=''
+          pat_warn=''
+          if [ -z "$PAT" ]; then
+            pat_line="⚠️ \`SCHEMA_BUMP_PAT\` is not set — schema-bump, bump-merge, wave-open, and wave-merge cannot run."
+            pat_warn='SCHEMA_BUMP_PAT is not set'
+          else
+            headers=$(GH_TOKEN="$PAT" gh api -i user 2>/dev/null | tr -d '\r' || true)
+            if printf '%s\n' "$headers" | head -1 | grep -q ' 200'; then
+              exp=$(printf '%s\n' "$headers" \
+                | grep -i '^github-authentication-token-expiration:' \
+                | sed -E 's/^[^:]*:[[:space:]]*//' | head -1)
+              if [ -z "$exp" ]; then
+                pat_line="\`SCHEMA_BUMP_PAT\` valid; the API reported no expiry."
+              elif secs=$(date -u -d "$exp" +%s 2>/dev/null); then
+                days=$(( (secs - $(date -u +%s)) / 86400 ))
+                if [ "$days" -le 14 ]; then
+                  pat_line="⚠️ \`SCHEMA_BUMP_PAT\` is valid but expires in ${days} day(s) (${exp}) — rotate it before the loops stop."
+                  pat_warn="SCHEMA_BUMP_PAT expires in ${days} day(s)"
+                else
+                  pat_line="\`SCHEMA_BUMP_PAT\` valid; expires in ${days} day(s) (${exp})."
+                fi
+              else
+                pat_line="\`SCHEMA_BUMP_PAT\` valid; expiry header not parsed: ${exp}."
+              fi
+            else
+              pat_line="⚠️ \`SCHEMA_BUMP_PAT\` was rejected by the API — every loop is stalled until it is replaced."
+              pat_warn='SCHEMA_BUMP_PAT rejected by the API'
+            fi
+          fi
+          existing=$(gh label list --limit 200 --json name --jq '.[].name' || true)
+          missing=''
+          for l in bump-approved bump-escalated wave-approved loop-health; do
+            printf '%s\n' "$existing" | grep -qx "$l" || missing="$missing $l"
+          done
+          if [ -n "$missing" ]; then
+            label_line="⚠️ missing labels:${missing} — the executors and runbooks reference them."
+            echo "::warning::missing labels:${missing}"
+          else
+            label_line='executor labels present (bump-approved, bump-escalated, wave-approved, loop-health).'
+          fi
+          [ -z "$pat_warn" ] || echo "::warning::$pat_warn"
+          {
+            echo
+            echo '## Credentials and labels'
+            echo
+            echo "- $pat_line"
+            echo "- $label_line"
+          } >> /tmp/report.md
+
       - name: Append to the tracking issue
         env:
           GH_TOKEN: ${{ github.token }}
