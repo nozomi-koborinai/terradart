@@ -60,9 +60,9 @@ void main() {
       expect(e.description, isNull);
     });
 
-    test('preserves single quotes via raw string', () {
+    test('escapes single quotes instead of emitting a broken raw string', () {
       final e = StringExport("user's-topic");
-      expect(e.dartLiteralExpression, equals("r'user's-topic'"));
+      expect(e.dartLiteralExpression, equals(r"'user\'s-topic'"));
     });
 
     test('rejects values containing newlines (would break raw string)', () {
@@ -198,6 +198,27 @@ void main() {
     test('rejects empty envVarName', () {
       expect(
         () => EnvBackedExport(envVarName: ''),
+        throwsA(isA<ArgumentError>()),
+      );
+    });
+
+    test('escapes a defaultValue containing a single quote', () {
+      final e = EnvBackedExport(envVarName: 'GREETING', defaultValue: "it's");
+      expect(
+        e.dartLiteralExpression,
+        equals(
+          r"const String.fromEnvironment('GREETING', defaultValue: 'it\'s')",
+        ),
+      );
+    });
+
+    test('rejects an envVarName that would break the generated literal', () {
+      expect(
+        () => EnvBackedExport(envVarName: "A'B"),
+        throwsA(isA<ArgumentError>()),
+      );
+      expect(
+        () => EnvBackedExport(envVarName: r'A$B'),
         throwsA(isA<ArgumentError>()),
       );
     });
