@@ -19,3 +19,7 @@ resource "google_cloud_run_v2_service_iam_member" "invoker" {
   role     = "roles/run.invoker"
   member   = "allUsers"
 }
+
+output "service_name" {
+  value = google_cloud_run_v2_service.this.name
+}

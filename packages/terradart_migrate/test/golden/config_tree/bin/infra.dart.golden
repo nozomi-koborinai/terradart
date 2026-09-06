@@ -1,0 +1,24 @@
+/// Synth entry point: `dart run bin/infra.dart` writes
+/// every Stack's `main.tf.json` under `tf-out/`, mirroring the
+/// migrated module tree.
+library;
+
+import 'package:config_tree/cloud_run_stack.dart';
+import 'package:config_tree/cloud_sql_stack.dart';
+import 'package:config_tree/dev_stack.dart';
+import 'package:config_tree/prod_stack.dart';
+import 'package:config_tree/pubsub_stack.dart';
+import 'package:config_tree/secret_manager_stack.dart';
+import 'package:config_tree/service_account_stack.dart';
+import 'package:config_tree/workload_identity_stack.dart';
+
+Future<void> main() async {
+  await DevStack().writeTo(r'tf-out/dev');
+  await CloudRunStack().writeTo(r'tf-out/modules/cloud_run');
+  await CloudSqlStack().writeTo(r'tf-out/modules/cloud_sql');
+  await PubsubStack().writeTo(r'tf-out/modules/pubsub');
+  await SecretManagerStack().writeTo(r'tf-out/modules/secret_manager');
+  await ServiceAccountStack().writeTo(r'tf-out/modules/service_account');
+  await WorkloadIdentityStack().writeTo(r'tf-out/modules/workload_identity');
+  await ProdStack().writeTo(r'tf-out/prod');
+}

@@ -32,7 +32,7 @@ See [terradart.dev](https://terradart.dev) for documentation, guides, and API re
 | [`terradart_agent`](packages/terradart_agent) | MCP server (`terradart-mcp`) exposing the curated factory catalog to AI agents. | *(unlisted)* |
 | [`terradart_codegen`](packages/terradart_codegen) | Maintainer generation tooling and CLI (`terradart wrap`). | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
 | [`terradart_hcl`](packages/terradart_hcl) | Pure Dart HCL / `*.tf.json` front-end and Terraform module model — the input side of `terradart-migrate`. | *(unlisted)* |
-| [`terradart_migrate`](packages/terradart_migrate) | HCL → Dart migrator (`terradart-migrate`): the generated migration manifests of the four catalogs today; emitter and CLI to follow. | *(unlisted)* |
+| [`terradart_migrate`](packages/terradart_migrate) | HCL → Dart migrator (`terradart-migrate`): migration manifests, emitter, leftover sidecar and the CLI that turns a Terraform source tree into a Stack per directory; Homebrew binary to follow (#664). | *(unlisted)* |
 
 ---
 

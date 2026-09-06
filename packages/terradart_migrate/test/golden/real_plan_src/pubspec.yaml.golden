@@ -1,0 +1,13 @@
+name: real_plan_src
+description: Migrated from `real_plan_src` by terradart-migrate {{version}}.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  terradart_core: ^{{version}}
+  terradart_google: ^{{version}}
+
+dev_dependencies:
+  lints: ^6.0.0

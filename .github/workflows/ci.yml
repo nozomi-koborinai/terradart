@@ -404,6 +404,38 @@ jobs:
       - name: Migrate and re-synthesize
         run: dart tool/migrate_roundtrip_gates.dart --reuse-tf-out
 
+  migrate_fixtures:
+    name: migrate fixture gate
+    runs-on: ubuntu-latest
+    needs: test
+    env:
+      TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
+    # The migrator's end-to-end acceptance (#661): terradart-migrate the
+    # coverage fixtures config_tree/ (two environment roots over six local
+    # modules) and real_plan_src/ (a root with a child), analyze and
+    # synthesize the generated package, and terraform-validate every
+    # directory of the mirrored tf-out/ tree — Stack synth output next to the
+    # leftover sidecar. Every kept block must have landed in a sidecar file.
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: "1.15.2"
+      - name: Cache Terraform providers
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: tfplugins-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: tfplugins-${{ runner.os }}-
+      - name: Ensure plugin cache dir exists
+        run: mkdir -p "$TF_PLUGIN_CACHE_DIR"
+      - run: dart pub get
+      - name: Migrate, synthesize and validate the fixtures
+        run: dart tool/migrate_fixture_gates.dart
+
   ci_gate:
     name: ci gate
     runs-on: ubuntu-latest
@@ -413,6 +445,7 @@ jobs:
       - apply_smoke_selection_test
       - wrap_check
       - migrate_roundtrip
+      - migrate_fixtures
       - override_gates
       - publish_dry_run
       - wrap_init_check
@@ -435,6 +468,7 @@ jobs:
             apply_smoke.sh selection test=${{ needs.apply_smoke_selection_test.result }}
             terradart wrap --check=${{ needs.wrap_check.result }}
             migrate round-trip gate=${{ needs.migrate_roundtrip.result }}
+            migrate fixture gate=${{ needs.migrate_fixtures.result }}
             override gates=${{ needs.override_gates.result }}
             pub publish --dry-run=${{ needs.publish_dry_run.result }}
             terradart wrap-init smoke=${{ needs.wrap_init_check.result }}
