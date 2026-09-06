@@ -285,4 +285,93 @@ void main() {
       expect(res.dartConstants.single.doc, equals('API version'));
     });
   });
+
+  group('OutputEmitter emits valid names and compilable literals', () {
+    OutputEmissionResult run(TestStack stack) => OutputEmitter.run(
+          stack: stack,
+          resolver: LiteralResolver.fromStack(stack),
+        );
+
+    test('escapes a resolved literal containing a single quote', () {
+      final stack = TestStack();
+      final topic = stack.add(
+        FakePubsubTopic(
+          localName: 'orders',
+          argMap: const {'name': TfArgLiteral<String>("user's-topic")},
+        ),
+      );
+      stack.addExport(
+        'ordersTopicName',
+        ResourceIdExport(TfRef.attribute<String>(topic, 'name')),
+      );
+      expect(run(stack).dartConstants.single.rhs, equals(r"'user\'s-topic'"));
+    });
+
+    test('rejects a Dart-constant export whose key is not a Dart identifier',
+        () {
+      final stack = TestStack();
+      stack.addExport('orders-topic', StringExport('v1'));
+      expect(
+        () => run(stack),
+        throwsA(
+          isA<StateError>()
+              .having((e) => e.message, 'message', contains('orders-topic')),
+        ),
+      );
+    });
+
+    test('rejects a Dart-constant export whose key is a reserved word', () {
+      final stack = TestStack();
+      stack.addExport('class', StringExport('v1'));
+      expect(() => run(stack), throwsA(isA<StateError>()));
+    });
+
+    test('allows a hyphenated key when the export is Terraform-output-only',
+        () {
+      final stack = TestStack();
+      final topic = stack.add(
+        FakePubsubTopic(
+          localName: 'orders',
+          argMap: const {'name': TfArgLiteral<String>('orders-prod')},
+        ),
+      );
+      // `id` has no literal in argMap, so no Dart constant is emitted.
+      stack.addExport(
+        'orders-topic-id',
+        ResourceIdExport(
+          TfRef.attribute<String>(topic, 'id'),
+          emitTerraformOutput: true,
+        ),
+      );
+      final res = run(stack);
+      expect(res.dartConstants, isEmpty);
+      expect(res.terraformOutputs.single.name, equals('orders-topic-id'));
+    });
+
+    test('rejects a terraformOutputName that is not a Terraform identifier',
+        () {
+      final stack = TestStack();
+      final topic = stack.add(
+        FakePubsubTopic(
+          localName: 'orders',
+          argMap: const {'name': TfArgLiteral<String>('orders-prod')},
+        ),
+      );
+      stack.addExport(
+        'ordersTopicId',
+        ResourceIdExport(
+          TfRef.attribute<String>(topic, 'id'),
+          emitTerraformOutput: true,
+          terraformOutputName: 'orders topic',
+        ),
+      );
+      expect(
+        () => run(stack),
+        throwsA(
+          isA<StateError>()
+              .having((e) => e.message, 'message', contains('orders topic')),
+        ),
+      );
+    });
+  });
 }

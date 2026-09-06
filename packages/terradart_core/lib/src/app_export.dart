@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 
+import 'dart_source.dart';
 import 'tf_ref.dart';
 
 /// IaC ↔ application seam: a value Stack can export to either pure-Dart
@@ -49,9 +50,10 @@ abstract base class AppExport {
 /// secrets use `EnvBackedExport` (compile-time `--dart-define`) or
 /// `ResourceIdExport` with `sensitive: true` (Terraform-output-only).
 ///
-/// The constructor is non-const so it can validate `value` (no newlines,
-/// which would break the `r'...'` raw-string quoting). Use `final` not
-/// `const` at the call site:
+/// The constructor is non-const so it can validate `value` (no newlines —
+/// a constant is a single-line value). Quotes, `$`, and backslashes are
+/// fine: the emitted literal is escaped so it always compiles. Use `final`
+/// not `const` at the call site:
 ///
 /// ```dart
 /// final apiVersion = StringExport('v1');
@@ -63,8 +65,7 @@ final class StringExport extends AppExport {
       throw ArgumentError.value(
         value,
         'value',
-        'StringExport value must not contain newlines (would break '
-            'raw-string quoting in generated Dart constant).',
+        'StringExport value must not contain newlines.',
       );
     }
   }
@@ -75,7 +76,7 @@ final class StringExport extends AppExport {
   final String? description;
 
   @override
-  String get dartLiteralExpression => "r'$value'";
+  String get dartLiteralExpression => dartStringLiteral(value);
 
   @override
   String get dartType => 'String';
@@ -193,7 +194,8 @@ final class ResourceAttributeExport<T> extends AppExport {
 /// variable. Never appears in Terraform outputs.
 ///
 /// Constructor is non-const because it validates `envVarName` (must be
-/// non-empty). Use `final`:
+/// non-empty and free of characters that could not appear inside the
+/// generated `String.fromEnvironment('...')` literal). Use `final`:
 ///
 /// ```dart
 /// final apiBase = EnvBackedExport(envVarName: 'API_BASE_URL');
@@ -212,7 +214,18 @@ final class EnvBackedExport extends AppExport {
         'must not be empty',
       );
     }
+    if (_unsafeInLiteral.hasMatch(envVarName)) {
+      throw ArgumentError.value(
+        envVarName,
+        'envVarName',
+        r"must not contain quotes, backslashes, `$`, or control characters",
+      );
+    }
   }
+
+  /// Characters that would break or alter the single-quoted literal the
+  /// variable name is written into.
+  static final RegExp _unsafeInLiteral = RegExp(r"['\\$\x00-\x1f\x7f]");
 
   final String envVarName;
   final String? defaultValue;
@@ -225,7 +238,8 @@ final class EnvBackedExport extends AppExport {
     if (defaultValue == null) {
       return "const String.fromEnvironment('$envVarName')";
     }
-    return "const String.fromEnvironment('$envVarName', defaultValue: r'$defaultValue')";
+    return "const String.fromEnvironment('$envVarName', "
+        "defaultValue: ${dartStringLiteral(defaultValue!)})";
   }
 
   @override
