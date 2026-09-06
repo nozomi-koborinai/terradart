@@ -17,6 +17,7 @@
 #   - packages/terradart_cloudflare/pubspec.yaml  (version: + terradart_core caret)
 #   - packages/terradart_agent/pubspec.yaml       (version: + terradart_core caret + terradart_google caret)
 #   - packages/terradart_agent/lib/src/version.dart  (packageVersion const — lockstep with its pubspec)
+#   - packages/terradart_migrate/lib/src/version.dart (packageVersion const — pinned into migrated pubspecs)
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta + terradart_appwrite + terradart_cloudflare carets)
 #   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google carets on
 #     cookbook/*/*/pubspec.yaml                    workspace-member cookbook recipes)
@@ -134,6 +135,8 @@ echo "    - terradart_coverage.dependencies.terradart_{google,google_beta,appwri
 echo "  Binary version const:"
 sed_inplace "s#^const String packageVersion = '${OLD_RE}';\$#const String packageVersion = '${NEW}';#" packages/terradart_agent/lib/src/version.dart
 echo "    - packages/terradart_agent/lib/src/version.dart -> $NEW"
+sed_inplace "s#^const String packageVersion = '${OLD_RE}';\$#const String packageVersion = '${NEW}';#" packages/terradart_migrate/lib/src/version.dart
+echo "    - packages/terradart_migrate/lib/src/version.dart -> $NEW"
 
 # 3. Every example pubspec: terradart_core + terradart_google carets.
 echo "  Example pubspecs:"
@@ -307,6 +310,7 @@ STALE=$(
     website/src/content/docs/docs/getting-started.md \
     packages/terradart_codegen/README.md 2>/dev/null
   grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_agent/lib/src/version.dart 2>/dev/null
+  grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_migrate/lib/src/version.dart 2>/dev/null
   if [ "$OLD_MINOR" != "$NEW_MINOR" ]; then
     grep -nE "\\^${OLD_MINOR_RE}\\.x" \
       CONTRIBUTING.md SECURITY.md 2>/dev/null

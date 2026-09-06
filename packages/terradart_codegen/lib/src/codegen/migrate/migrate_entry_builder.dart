@@ -68,7 +68,15 @@ final class MigrateEntryInput {
 /// a same-file helper. Each build still records only the helpers / enums its
 /// own file declares, so the manifest emitter's per-name tables stay
 /// one-declaration-per-file.
-List<MigrateEntryBuild> buildMigrateEntries(List<MigrateEntryInput> inputs) {
+///
+/// [barrelFiles] maps a barrel key (the override's `outputDir`) to the barrel
+/// file stem under `lib/` when they differ (`sql` → `cloud_sql`, from
+/// `barrels.yaml`); the manifest records the file stem so a migrated Stack
+/// can import `package:<package>/<barrel>.dart` directly.
+List<MigrateEntryBuild> buildMigrateEntries(
+  List<MigrateEntryInput> inputs, {
+  Map<String, String> barrelFiles = const {},
+}) {
   const helperExtractor = HelperClassExtractor();
   const enumExtractor = EnumExtractor.lenient();
   final perFileHelpers = <HelperExtraction>[];
@@ -96,6 +104,7 @@ List<MigrateEntryBuild> buildMigrateEntries(List<MigrateEntryInput> inputs) {
         context: ctx,
         fileHelpers: perFileHelpers[i],
         fileEnums: perFileEnums[i],
+        barrelFile: barrelFiles[inputs[i].override.outputDir],
       ),
   ];
 }
@@ -114,6 +123,7 @@ MigrateEntryBuild buildMigrateEntry({
   ShapeContext? context,
   HelperExtraction? fileHelpers,
   List<EmittedEnum>? fileEnums,
+  String? barrelFile,
 }) {
   final isDataSource = kind == 'dataSource';
   final className =
@@ -217,7 +227,7 @@ MigrateEntryBuild buildMigrateEntry({
     entry: MigrateEntryData(
       tfType: tfType,
       className: className,
-      barrel: override.outputDir,
+      barrel: barrelFile ?? override.outputDir,
       kind: kind,
       slots: slots,
       getters: getters,

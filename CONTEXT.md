@@ -44,8 +44,24 @@ _Avoid_: Sprint, milestone
 The generated `packages/terradart_migrate/lib/src/manifest/<registry>.g.dart` (`terradart wrap --migrate-manifest`) that records, per curated factory, how each constructor slot, helper field, enum and output getter maps back to Terraform — the machine-readable recipe the HCL → Dart migrator follows. Derived from the wrapper inputs and emitted source; a shape it cannot derive is `manual` with a reason, gated by `lint-override` and `tool/migrate_manifest_debt.yaml`.
 _Avoid_: Mapping table, conversion config
 
+**Resource-atomic translation**:
+The migrator's rule that a resource moves to Dart only when every argument of it translates; one untranslatable argument keeps the whole block in Terraform, listed in the report with the reason.
+_Avoid_: Best-effort conversion, partial migration
+
+**Leftover sidecar**:
+The Terraform file the migrator writes next to `main.tf.json` holding, verbatim, every block it did not translate (Terraform merges every file in the directory). Nothing is dropped silently.
+_Avoid_: Fallback file, TODO file
+
+**Round-trip gate**:
+`tool/migrate_roundtrip_gates.dart`: migrate every quickstart's synth output back to Dart, re-synthesize, deep-compare — `synth(migrate(synth(S))) == synth(S)`. The migrator's correctness oracle; strict examples must round-trip completely, `tool/migrate_roundtrip_debt.yaml` ratchets the reasoned exceptions.
+_Avoid_: Golden diff
+
+**Zero-diff plan**:
+The migrator's acceptance criterion: after migrating a module, `terraform plan` against the existing state reports *No changes*. Resource addresses are always preserved.
+_Avoid_: Best effort, approximately equivalent
+
 **Debt ledger**:
-A machine-checked YAML under `tool/` (for example `example_debt.yaml`, the apply-smoke skip lists, `apply_cost_denylist.yaml`) that records a reviewed, reasoned gap so CI can enforce that every gap is a decision, not an accident.
+A machine-checked YAML under `tool/` (for example `example_debt.yaml`, the apply-smoke skip lists, `apply_cost_denylist.yaml`, `migrate_roundtrip_debt.yaml`) that records a reviewed, reasoned gap so CI can enforce that every gap is a decision, not an accident.
 _Avoid_: TODO list, wishlist
 
 **Apply-excluded path**:

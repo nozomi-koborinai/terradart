@@ -8,7 +8,9 @@ void main() {
       'terradart_google_beta',
       'terradart_appwrite',
       'terradart_cloudflare',
+      'terradart_google', // hand-written extras: time_sleep
     ]);
+    expect(allMigrateManifests.last, same(googleExtrasMigrateManifest));
     expect(
       manifestForPackage('terradart_cloudflare'),
       cloudflareMigrateManifest,
@@ -17,7 +19,10 @@ void main() {
   });
 
   for (final manifest in allMigrateManifests) {
-    group(manifest.package, () {
+    final label = identical(manifest, googleExtrasMigrateManifest)
+        ? '${manifest.package} (extras)'
+        : manifest.package;
+    group(label, () {
       test('is non-empty and sorted by type, resource before data source', () {
         expect(manifest.entries, isNotEmpty);
         for (var i = 1; i < manifest.entries.length; i++) {
@@ -37,6 +42,7 @@ void main() {
       });
 
       test('every type carries the registry prefix', () {
+        if (identical(manifest, googleExtrasMigrateManifest)) return;
         final prefix = switch (manifest.package) {
           'terradart_google' || 'terradart_google_beta' => 'google_',
           'terradart_appwrite' => 'appwrite_',

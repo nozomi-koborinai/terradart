@@ -319,6 +319,24 @@ final class GoogleThing extends Resource {
       expect(builds[0].helpers.map((h) => h.className), ['Config']);
       expect(builds[1].helpers, isEmpty);
     });
+
+    test('buildMigrateEntries records the barrel file stem', () {
+      const input = MigrateEntryInput(
+        tfType: 'google_thing',
+        override: WrapperOverride(outputDir: 'thing'),
+        def: def,
+        kind: 'resource',
+        emittedSource: emitted,
+      );
+      expect(buildMigrateEntries([input]).single.entry.barrel, 'thing');
+      expect(
+        buildMigrateEntries(
+          [input],
+          barrelFiles: const {'thing': 'cloud_thing'},
+        ).single.entry.barrel,
+        'cloud_thing',
+      );
+    });
   });
 
   group('buildMigrateEntry (committed google registry)', () {

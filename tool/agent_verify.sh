@@ -51,6 +51,9 @@ if [[ "$QUICK" == "0" ]]; then
 
   echo ">> check_example_topology (reuses tf-out from the synth pass)"
   dart tool/check_example_topology.dart --reuse-tf-out
+
+  echo ">> migrate_roundtrip_gates (migrate every quickstart's synth output back to Dart and re-synth; reuses tf-out)"
+  dart tool/migrate_roundtrip_gates.dart --reuse-tf-out
 else
   echo ">> example synth gates: SKIPPED (--quick)"
 fi

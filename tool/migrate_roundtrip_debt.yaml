@@ -1,0 +1,26 @@
+# Resources the round-trip gate (tool/migrate_roundtrip_gates.dart) allows the
+# migrator to keep in Terraform, per example: slug → resource address → reason.
+#
+# The gate migrates every quickstart's synth output back to Dart and
+# re-synthesizes it; strict examples must round-trip completely. A resource
+# the migrator cannot translate is listed here with the blocker as the reason
+# (a reviewed decision, not a default) and removed once it round-trips again
+# — a listed resource that round-trips fails the gate as stale.
+
+compute_lb_quickstart:
+  google_compute_security_policy.lb_armor: >-
+    rule.match is the hand-written ComputeSecurityPolicySecurityPolicyRuleMatch with
+    named factory constructors (.config / .expr); the manifest extractor derives
+    field slots it cannot construct from, so versioned_expr / config have no Dart
+    parameter (manifest extractor gap, #659 follow-up)
+  google_compute_region_security_policy.regional_armor: >-
+    rules.match is the same hand-written factory-constructor shape as
+    google_compute_security_policy (manifest extractor gap, #659 follow-up)
+  google_compute_firewall.allow_lb_health: >-
+    allow is ComputeFirewallAllowPolicy, whose encode() returns a list of maps with
+    fields spread across them — ledgered as irregular in tool/migrate_manifest_debt.yaml
+
+chronicle_quickstart:
+  google_chronicle_dashboard_chart.dns_events: >-
+    dashboard_chart.visualization.axisType is a spread-merged enum — ledgered as a
+    manual field in tool/migrate_manifest_debt.yaml

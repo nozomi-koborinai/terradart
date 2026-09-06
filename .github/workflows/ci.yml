@@ -384,6 +384,26 @@ jobs:
             *) echo "::error::terraform validate did not pass (result=$RESULT)"; exit 1 ;;
           esac
 
+  migrate_roundtrip:
+    name: migrate round-trip gate
+    runs-on: ubuntu-latest
+    needs: test
+    # The migrator's correctness oracle (#660): synthesize every quickstart,
+    # migrate the tf.json back to Dart with terradart_migrate, analyze the
+    # generated Stacks once, re-synthesize and deep-compare. Strict examples
+    # must round-trip completely; tool/migrate_roundtrip_debt.yaml ratchets
+    # the reasoned exceptions.
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: Synthesize every quickstart (no terraform)
+        run: dart tool/example_synth_gates.dart --skip-validate
+      - name: Migrate and re-synthesize
+        run: dart tool/migrate_roundtrip_gates.dart --reuse-tf-out
+
   ci_gate:
     name: ci gate
     runs-on: ubuntu-latest
@@ -392,6 +412,7 @@ jobs:
       - test
       - apply_smoke_selection_test
       - wrap_check
+      - migrate_roundtrip
       - override_gates
       - publish_dry_run
       - wrap_init_check
@@ -413,6 +434,7 @@ jobs:
             test=${{ needs.test.result }}
             apply_smoke.sh selection test=${{ needs.apply_smoke_selection_test.result }}
             terradart wrap --check=${{ needs.wrap_check.result }}
+            migrate round-trip gate=${{ needs.migrate_roundtrip.result }}
             override gates=${{ needs.override_gates.result }}
             pub publish --dry-run=${{ needs.publish_dry_run.result }}
             terradart wrap-init smoke=${{ needs.wrap_init_check.result }}

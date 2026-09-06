@@ -159,3 +159,8 @@ dev_dependencies:
     path: packages/terradart_google
   terradart_codegen:
     path: packages/terradart_codegen
+  # tool/migrate_roundtrip_gates.dart migrates every quickstart in-process.
+  terradart_hcl:
+    path: packages/terradart_hcl
+  terradart_migrate:
+    path: packages/terradart_migrate
