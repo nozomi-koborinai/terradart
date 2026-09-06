@@ -73,17 +73,18 @@ else
 fi
 
 if [[ "$WITH_FORMAT" == "1" ]]; then
-  echo ">> dart format (terradart_core, terradart_codegen, terradart_agent, terradart_coverage, terradart_hcl)"
+  echo ">> dart format (terradart_core, terradart_codegen, terradart_agent, terradart_coverage, terradart_hcl, terradart_migrate)"
   dart format --output=none --set-exit-if-changed \
     packages/terradart_core/ \
     packages/terradart_codegen/ \
     packages/terradart_agent/ \
     packages/terradart_coverage/ \
-    packages/terradart_hcl/
+    packages/terradart_hcl/ \
+    packages/terradart_migrate/
 fi
 
 if [[ "$QUICK" == "0" ]]; then
-  PACKAGES=(terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_agent terradart_coverage terradart_hcl)
+  PACKAGES=(terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_agent terradart_coverage terradart_hcl terradart_migrate)
   for pkg in "${PACKAGES[@]}"; do
     echo ">> dart test packages/$pkg"
     (cd "packages/$pkg" && dart test --reporter=expanded)
@@ -102,6 +103,7 @@ echo ">> terradart wrap --check"
     --provider hashicorp/google \
     --source test/fixtures/wrap/source \
     --output ../terradart_google/lib/src \
+    --migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart \
     --check
 )
 
@@ -116,6 +118,7 @@ echo ">> terradart wrap --check (google-beta)"
     --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
     --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
     --resource-provider google-beta \
+    --migrate-manifest ../terradart_migrate/lib/src/manifest/google_beta.g.dart \
     --check
 )
 
@@ -128,6 +131,7 @@ echo ">> terradart wrap --check (appwrite)"
     --output ../terradart_appwrite/lib/src \
     --overrides-root lib/src/codegen/wrapper_overrides/appwrite/yaml \
     --barrels-manifest lib/src/codegen/barrels/barrels_appwrite.yaml \
+    --migrate-manifest ../terradart_migrate/lib/src/manifest/appwrite.g.dart \
     --check
 )
 
@@ -140,6 +144,7 @@ echo ">> terradart wrap --check (cloudflare)"
     --output ../terradart_cloudflare/lib/src \
     --overrides-root lib/src/codegen/wrapper_overrides/cloudflare/yaml \
     --barrels-manifest lib/src/codegen/barrels/barrels_cloudflare.yaml \
+    --migrate-manifest ../terradart_migrate/lib/src/manifest/cloudflare.g.dart \
     --check
 )
 

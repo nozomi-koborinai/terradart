@@ -852,9 +852,122 @@ barrels:
     });
   });
   group('WrapCommand --migrate-manifest', () {
-    test('emits _migrate_manifest.g.dart beside the catalog (whole registry)',
+    test('writes the manifest to the given file, named after the package',
         () async {
+      // Three full-fixture wrap runs (write, --check, --check after drift).
       final tmpOut = await Directory.systemTemp.createTemp('migrate_manifest_');
+      try {
+        final manifestPath =
+            p.join(tmpOut.path, 'migrate', 'lib', 'src', 'manifest', 'g.dart');
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          _libSrcOut(tmpOut),
+          '--migrate-manifest',
+          manifestPath,
+          '--migrate-package',
+          'terradart_google',
+        ]);
+        expect(code, CliExitCodes.success);
+
+        final manifest = File(manifestPath);
+        expect(manifest.existsSync(), isTrue);
+        final src = manifest.readAsStringSync();
+        expect(src, startsWith('// GENERATED FILE - DO NOT EDIT\n'));
+        expect(src, contains("import '../migrate_manifest.dart';"));
+        expect(src, contains('const MigrateManifest googleMigrateManifest'));
+        expect(src, contains("package: 'terradart_google',"));
+        expect(src, contains("tfType: 'google_pubsub_topic'"));
+        expect(
+            src, contains("'CloudSchedulerJobPubsubTarget': MigrateHelper("));
+        // Nothing lands under --output besides the usual artifacts.
+        expect(
+          File(p.join(_libSrcOut(tmpOut), '_migrate_manifest.g.dart'))
+              .existsSync(),
+          isFalse,
+        );
+        expect(
+          File(p.join(_libSrcOut(tmpOut), '_catalog.g.dart')).existsSync(),
+          isTrue,
+        );
+        // Already formatted, so a `--check` diff against the committed copy
+        // is byte-exact.
+        final formatted = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        ).format(src);
+        expect(formatted, src);
+
+        // `--check` against the freshly written file passes ...
+        final checkCode = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          _libSrcOut(tmpOut),
+          '--migrate-manifest',
+          manifestPath,
+          '--migrate-package',
+          'terradart_google',
+          '--check',
+        ]);
+        expect(checkCode, CliExitCodes.success);
+        // ... and fails once the manifest drifts (E301).
+        manifest.writeAsStringSync('$src// drift\n');
+        final driftCode = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          _libSrcOut(tmpOut),
+          '--migrate-manifest',
+          manifestPath,
+          '--migrate-package',
+          'terradart_google',
+          '--check',
+        ]);
+        expect(driftCode, CliExitCodes.dataError);
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    }, timeout: const Timeout(Duration(minutes: 3)));
+
+    test('the package name defaults to the pubspec two levels above --output',
+        () async {
+      final tmpOut = await Directory.systemTemp.createTemp('migrate_pubspec_');
+      try {
+        File(p.join(tmpOut.path, 'pubspec.yaml'))
+            .writeAsStringSync('name: terradart_fake_beta\nversion: 0.0.1\n');
+        final manifestPath = p.join(tmpOut.path, 'fake_beta.g.dart');
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          _libSrcOut(tmpOut),
+          '--migrate-manifest',
+          manifestPath,
+        ]);
+        expect(code, CliExitCodes.success);
+        final src = File(manifestPath).readAsStringSync();
+        expect(src, contains('const MigrateManifest fakeBetaMigrateManifest'));
+        expect(src, contains("package: 'terradart_fake_beta',"));
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+
+    test('fails clearly when no package name can be determined', () async {
+      final tmpOut = await Directory.systemTemp.createTemp('migrate_nopkg_');
       try {
         final code = await buildCliRunner().run([
           'wrap',
@@ -865,30 +978,10 @@ barrels:
           '--output',
           _libSrcOut(tmpOut),
           '--migrate-manifest',
+          p.join(tmpOut.path, 'x.g.dart'),
         ]);
-        expect(code, CliExitCodes.success);
-
-        final manifest = File(
-          p.join(_libSrcOut(tmpOut), '_migrate_manifest.g.dart'),
-        );
-        expect(manifest.existsSync(), isTrue);
-        final src = manifest.readAsStringSync();
-        expect(src, startsWith('// GENERATED FILE - DO NOT EDIT\n'));
-        expect(src, contains('const MigrateManifest terradartMigrateManifest'));
-        expect(src, contains("tfType: 'google_pubsub_topic'"));
-        expect(
-            src, contains("'CloudSchedulerJobPubsubTarget': MigrateHelper("));
-        // The catalog is still emitted next to it.
-        expect(
-          File(p.join(_libSrcOut(tmpOut), '_catalog.g.dart')).existsSync(),
-          isTrue,
-        );
-        // Already formatted, so a `--check` diff against a committed copy
-        // is byte-exact (#658).
-        final formatted = DartFormatter(
-          languageVersion: DartFormatter.latestLanguageVersion,
-        ).format(src);
-        expect(formatted, src);
+        expect(code, CliExitCodes.dataError);
+        expect(File(p.join(tmpOut.path, 'x.g.dart')).existsSync(), isFalse);
       } finally {
         await tmpOut.delete(recursive: true);
       }
@@ -898,6 +991,7 @@ barrels:
         () async {
       final tmpOut = await Directory.systemTemp.createTemp('migrate_only_');
       try {
+        final manifestPath = p.join(tmpOut.path, 'google.g.dart');
         final code = await buildCliRunner().run([
           'wrap',
           '--provider',
@@ -909,13 +1003,12 @@ barrels:
           '--only',
           'google_pubsub_schema',
           '--migrate-manifest',
+          manifestPath,
+          '--migrate-package',
+          'terradart_google',
         ]);
         expect(code, CliExitCodes.success);
-        expect(
-          File(p.join(_libSrcOut(tmpOut), '_migrate_manifest.g.dart'))
-              .existsSync(),
-          isFalse,
-        );
+        expect(File(manifestPath).existsSync(), isFalse);
       } finally {
         await tmpOut.delete(recursive: true);
       }

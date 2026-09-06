@@ -26,6 +26,9 @@
 #                    implied default provider (GA google). Non-default
 #                    providers sharing the google_* type prefix MUST set
 #                    this or synth attributes their resources to `google`.
+#   migrateManifest: the migration manifest wrap emits for the lane
+#                    (wrap --migrate-manifest), generated into
+#                    terradart_migrate and verified by the same --check.
 
 providers:
   google:
@@ -37,6 +40,7 @@ providers:
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml
     resourceProvider: null
+    migrateManifest: packages/terradart_migrate/lib/src/manifest/google.g.dart
   google-beta:
     source: hashicorp/google-beta
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_beta
@@ -46,6 +50,7 @@ providers:
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/google_beta/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml
     resourceProvider: google-beta
+    migrateManifest: packages/terradart_migrate/lib/src/manifest/google_beta.g.dart
   appwrite:
     source: appwrite/appwrite
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_appwrite
@@ -55,6 +60,7 @@ providers:
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/appwrite/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_appwrite.yaml
     resourceProvider: null # appwrite_ prefix collides with nothing
+    migrateManifest: packages/terradart_migrate/lib/src/manifest/appwrite.g.dart
   cloudflare:
     source: cloudflare/cloudflare
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_cloudflare
@@ -64,3 +70,4 @@ providers:
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/cloudflare/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_cloudflare.yaml
     resourceProvider: null # cloudflare_ prefix collides with nothing
+    migrateManifest: packages/terradart_migrate/lib/src/manifest/cloudflare.g.dart

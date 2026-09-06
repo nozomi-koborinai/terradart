@@ -63,13 +63,21 @@ class WrapCommand extends Command<int> {
         help: 'Overwrite files that are missing or have a non-TerraDart '
             'generated-file header (E401 is suppressed).',
       )
-      ..addFlag(
+      ..addOption(
         'migrate-manifest',
-        negatable: false,
-        help: 'Also emit `_migrate_manifest.g.dart` (the machine-readable '
-            'HCL → Dart migration recipe consumed by `terradart migrate`). '
-            'Whole-registry artifact: skipped under --only. Off by default '
-            'until each provider package commits the artifact (#658).',
+        help: 'Also emit the migration manifest (the machine-readable '
+            'HCL → Dart recipe `terradart migrate` follows) to this file — '
+            'in terradart_migrate, `lib/src/manifest/<registry>.g.dart`. '
+            'Whole-registry artifact: skipped under --only. `--check` '
+            'verifies it like every other generated file.',
+        valueHelp: 'FILE',
+      )
+      ..addOption(
+        'migrate-package',
+        help: 'Dart package name recorded in the migration manifest '
+            '(`terradart_google`). Defaults to the `name:` of the pubspec '
+            'two levels above --output (`<output>/../../pubspec.yaml`).',
+        valueHelp: 'NAME',
       )
       ..addOption(
         'only',
@@ -141,7 +149,20 @@ class WrapCommand extends Command<int> {
     final check = results['check'] as bool;
     final force = results['force'] as bool;
     final only = results['only'] as String?;
-    final migrateManifest = results['migrate-manifest'] as bool;
+    final migrateManifestPath = results['migrate-manifest'] as String?;
+    final migrateManifest = migrateManifestPath != null;
+    String? migratePackage;
+    if (migrateManifest) {
+      migratePackage =
+          (results['migrate-package'] as String?) ?? _pubspecName(output);
+      if (migratePackage == null) {
+        stderr.writeln(
+          'terradart wrap: --migrate-manifest needs --migrate-package '
+          '(no pubspec.yaml two levels above --output "$output").',
+        );
+        return CliExitCodes.dataError;
+      }
+    }
 
     // 1. Load schema.json from <source>/schema.json. The parser is tolerant
     //    of missing data_source_schemas / resource_schemas keys (returns an
@@ -393,14 +414,17 @@ class WrapCommand extends Command<int> {
       final catalogRaw = CatalogMetadataEmitter().emit(catalogEntries);
       buffer['_catalog.g.dart'] = formatter.format(catalogRaw);
 
-      // Migration manifest: same placement / formatting / header rules as
-      // the catalog, gated behind `--migrate-manifest` so the default run
-      // (and `--check`) stays byte-identical until each provider package
-      // ships `migrate_manifest_entry.dart` and commits the artifact (#658).
+      // Migration manifest: same formatting / header / E401 / --check rules
+      // as the catalog, but written to the `--migrate-manifest` file in
+      // terradart_migrate rather than under `--output` (#658). The buffer is
+      // keyed relative to `--output`, so the path is expressed that way.
       if (migrateManifest) {
-        final manifestRaw =
-            MigrateManifestEmitter().emit(buildMigrateEntries(migrateInputs));
-        buffer['_migrate_manifest.g.dart'] = formatter.format(manifestRaw);
+        final manifestRaw = MigrateManifestEmitter().emit(
+          buildMigrateEntries(migrateInputs),
+          package: migratePackage!,
+        );
+        buffer[p.relative(migrateManifestPath, from: output)] =
+            formatter.format(manifestRaw);
       }
 
       // Barrels: every per-service barrel (+ `data` + the umbrella) derives
@@ -533,6 +557,19 @@ class WrapCommand extends Command<int> {
     stderr.writeln('\nRun `terradart wrap` to regenerate.');
     return CliExitCodes.dataError;
   }
+}
+
+/// The `name:` of the pubspec two levels above [output] (`<pkg>/lib/src` →
+/// `<pkg>/pubspec.yaml`), or `null` when there is none.
+String? _pubspecName(String output) {
+  // Lexical: `--output` need not exist yet when wrap runs for the first time.
+  final pubspec = File(p.normalize(p.join(output, '..', '..', 'pubspec.yaml')));
+  if (!pubspec.existsSync()) return null;
+  final match = RegExp(
+    r'^name:\s*([A-Za-z0-9_]+)\s*$',
+    multiLine: true,
+  ).firstMatch(pubspec.readAsStringSync());
+  return match?.group(1);
 }
 
 /// Decodes [schemaJson]'s raw `resource_schemas` or `data_source_schemas`
