@@ -436,6 +436,40 @@ jobs:
       - name: Migrate, synthesize and validate the fixtures
         run: dart tool/migrate_fixture_gates.dart
 
+  migrate_moved:
+    name: migrate moved gate
+    runs-on: ubuntu-latest
+    needs: test
+    env:
+      TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
+    # The acceptance check for count / for_each unrolling (#663): migrate
+    # the moved_state fixture (a count resource, a for_each resource,
+    # references to their instances, a moved block of its own), synthesize
+    # the Stack, put the fixture's terraform.tfstate — the indexed instances
+    # as Terraform recorded them — next to the synth output, and
+    # `terraform plan -refresh=false`: moves only, nothing created, changed
+    # or destroyed.
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: "1.15.2"
+          terraform_wrapper: false
+      - name: Cache Terraform providers
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: tfplugins-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: tfplugins-${{ runner.os }}-
+      - name: Ensure plugin cache dir exists
+        run: mkdir -p "$TF_PLUGIN_CACHE_DIR"
+      - run: dart pub get
+      - name: Migrate, synthesize and plan against the indexed state
+        run: dart tool/migrate_moved_gates.dart
+
   ci_gate:
     name: ci gate
     runs-on: ubuntu-latest
@@ -446,6 +480,7 @@ jobs:
       - wrap_check
       - migrate_roundtrip
       - migrate_fixtures
+      - migrate_moved
       - override_gates
       - publish_dry_run
       - wrap_init_check
@@ -469,6 +504,7 @@ jobs:
             terradart wrap --check=${{ needs.wrap_check.result }}
             migrate round-trip gate=${{ needs.migrate_roundtrip.result }}
             migrate fixture gate=${{ needs.migrate_fixtures.result }}
+            migrate moved gate=${{ needs.migrate_moved.result }}
             override gates=${{ needs.override_gates.result }}
             pub publish --dry-run=${{ needs.publish_dry_run.result }}
             terradart wrap-init smoke=${{ needs.wrap_init_check.result }}

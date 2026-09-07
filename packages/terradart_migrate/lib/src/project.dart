@@ -261,6 +261,16 @@ final class MigratedProject {
           '${_codes(m.varFilesNotCopied)}',
         );
       }
+      if (m.report.expanded.isNotEmpty) {
+        b.writeln('- Unrolled (${m.report.expanded.length}):');
+        for (final e in m.report.expanded) {
+          b.writeln(
+            '  - `${e.address}` (${e.isForEach ? 'for_each' : 'count'}) → '
+            '${_codes([for (final i in e.instances) i.to])}; state moves with '
+            '`moved` blocks',
+          );
+        }
+      }
       if (m.report.kept.isNotEmpty) {
         b
           ..writeln('- Kept in Terraform (${m.report.kept.length}):')

@@ -73,7 +73,7 @@ Before opening a PR:
 - [ ] `tool/agent_verify.sh` passes (or explain what you could not run).
 - [ ] `dart tool/check_docs_consistency.dart` passes when you touch versions or catalog counts.
 - [ ] `tool/smoke_quickstart.sh` passes when you touch `pubsub_quickstart` or synth/export paths.
-- [ ] `dart tool/migrate_roundtrip_gates.dart --reuse-tf-out` and `dart tool/migrate_fixture_gates.dart` pass when you touch `terradart_hcl` or `terradart_migrate` (both run in `tool/agent_verify.sh` full mode; `UPDATE_GOLDENS=1 dart test test/golden_test.dart` in `packages/terradart_migrate` regenerates the fixture goldens when the output changes on purpose).
+- [ ] `dart tool/migrate_roundtrip_gates.dart --reuse-tf-out`, `dart tool/migrate_fixture_gates.dart` and `dart tool/migrate_moved_gates.dart` pass when you touch `terradart_hcl` or `terradart_migrate` (all three run in `tool/agent_verify.sh` full mode; `UPDATE_GOLDENS=1 dart test test/golden_test.dart` in `packages/terradart_migrate` regenerates the fixture goldens when the output changes on purpose).
 - [ ] `dart format` was run **on the scoped paths above** — not `dart format .`.
 
 **Wave / new curated factories** (see [`.agents/skills/terradart-ship-wave/`](.agents/skills/terradart-ship-wave/SKILL.md)):

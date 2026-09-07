@@ -48,6 +48,10 @@ _Avoid_: Mapping table, conversion config
 The migrator's rule that a resource moves to Dart only when every argument of it translates; one untranslatable argument keeps the whole block in Terraform, listed in the report with the reason.
 _Avoid_: Best-effort conversion, partial migration
 
+**Unrolling**:
+The migrator's translation of a literal `count` / `for_each`: one resource per instance (`google_pubsub_topic.t[0]` → `google_pubsub_topic.t_0`, `t["eu"]` → `t_eu`) with `count.index` / `each.*` substituted, every reference in the module pointed at the new addresses, and a `moved` entry per instance (`Stack.addMoved`) so the plan shows moves, not replacements. A non-literal `count` / `for_each` cannot be unrolled and keeps the block in Terraform.
+_Avoid_: Expansion (Terraform's own word for evaluating the meta-argument), flattening
+
 **Leftover sidecar**:
 The Terraform files the migrator writes next to `main.tf.json` — `terradart_leftover.tf`, plus `backend.tf` / `variables.tf` / `locals.tf` / `outputs.tf` — holding, verbatim and with a reason each, every block it did not translate (Terraform merges every file in the directory). Nothing is dropped silently, and nothing the Stack owns (its `required_providers`, provider configurations, backend, translated variables) is repeated.
 _Avoid_: Fallback file, TODO file
@@ -65,7 +69,7 @@ _Avoid_: Workspace
 _Avoid_: Golden diff
 
 **Zero-diff plan**:
-The migrator's acceptance criterion: after migrating a module, `terraform plan` against the existing state reports *No changes*. Resource addresses are always preserved.
+The migrator's acceptance criterion: after migrating a module, `terraform plan` against the existing state reports *No changes*. Resource addresses are preserved — or, for an unrolled `count` / `for_each`, moved with `moved` blocks, so the plan is moves only (`tool/migrate_moved_gates.dart` checks it against a fixture state).
 _Avoid_: Best effort, approximately equivalent
 
 **Debt ledger**:

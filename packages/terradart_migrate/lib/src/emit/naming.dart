@@ -53,6 +53,8 @@ const Set<String> stackMemberNames = {
   'addExport',
   'addVariable',
   'addExternalVariable',
+  'addMoved',
+  'moved',
   'setAppExportsOutputPath',
   'setRequiredVersion',
   'setBackend',

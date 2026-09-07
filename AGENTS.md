@@ -276,6 +276,7 @@ There is no long-running dev server for core work. Primary flows:
 | Example coverage + API-enablement ratchet | `dart tool/example_synth_gates.dart` |
 | Migrator round-trip (synth → migrate → synth) | `dart tool/migrate_roundtrip_gates.dart --reuse-tf-out` |
 | Migrator fixture gate (migrate the coverage fixtures, synth, terraform validate) | `dart tool/migrate_fixture_gates.dart` |
+| Migrator moved gate (unroll count / for_each, synth, plan against the indexed state: moves only) | `dart tool/migrate_moved_gates.dart` |
 | Publish readiness (per package) | `cd packages/<pkg> && dart pub publish --dry-run` |
 | Synth example stack | `cd examples/pubsub_quickstart && GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart` |
 | Validate synth output | `cd examples/pubsub_quickstart/tf-out && terraform init -backend=false && terraform validate` |

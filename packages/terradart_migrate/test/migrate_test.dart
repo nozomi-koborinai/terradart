@@ -166,17 +166,19 @@ void main() {
     test('count / for_each / dynamic / provisioner', () {
       expect(
         reasonOf(
-          _migrateJson(module({'name': 'x', 'count': 2})),
+          _migrateJson(module({'name': 'x', 'count': r'${var.n}'})),
           'google_pubsub_topic.x',
         ),
-        contains('count'),
+        contains('count = var.n is not a literal number'),
       );
       expect(
         reasonOf(
-          _migrateJson(module({'name': 'x', 'for_each': r'${toset(["a"])}'})),
+          _migrateJson(
+            module({'name': 'x', 'for_each': r'${toset(var.names)}'}),
+          ),
           'google_pubsub_topic.x',
         ),
-        contains('for_each'),
+        contains('for_each = toset(var.names) is not a literal'),
       );
       expect(
         reasonOf(
@@ -372,7 +374,7 @@ resource "google_pubsub_topic" "x" {
         'terraform': _google,
         'resource': {
           'google_pubsub_topic': {
-            'x': {'name': 'x', 'count': 1},
+            'x': {'name': 'x', 'count': r'${var.n}'},
             'y': {
               'name': 'y',
               'depends_on': ['google_pubsub_topic.x'],
@@ -392,7 +394,7 @@ resource "google_pubsub_topic" "x" {
         'terraform': _google,
         'resource': {
           'google_pubsub_topic': {
-            'x': {'name': 'x', 'count': 1},
+            'x': {'name': 'x', 'no_such_arg': 1},
             'y': {'name': r'${google_pubsub_topic.x.name}-copy'},
           },
         },
@@ -609,11 +611,455 @@ resource "google_pubsub_topic" "x" {
         },
         'moved': {'from': 'a.b', 'to': 'a.c'},
       });
-      expect(r.report.kept.map((k) => k.address), [
-        'local.prefix',
-        'module.net',
-        'moved',
+      expect(
+        r.report.kept.map((k) => k.address),
+        unorderedEquals(['local.prefix', 'module.net', 'moved']),
+      );
+      expect(
+        r.report.kept.singleWhere((k) => k.address == 'moved').reason,
+        contains('"a.c" stays in Terraform'),
+      );
+    });
+  });
+
+  group('count / for_each unrolling', () {
+    test('a literal count becomes one resource per instance, state moved', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+  }
+}
+
+resource "google_pubsub_topic" "t" {
+  count  = 2
+  name   = "t-\${count.index}"
+  labels = { index = "\${count.index}" }
+}
+
+resource "google_pubsub_subscription" "s" {
+  name       = "s"
+  topic      = google_pubsub_topic.t[1].name
+  depends_on = [google_pubsub_topic.t]
+}
+
+output "first" {
+  value = google_pubsub_topic.t[0].id
+}
+''');
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.report.migratedAddresses,
+        containsAll([
+          'google_pubsub_topic.t_0',
+          'google_pubsub_topic.t_1',
+          'google_pubsub_subscription.s',
+          'output.first',
+        ]),
+      );
+      expect(
+        r.report.migratedAddresses,
+        isNot(contains('google_pubsub_topic.t')),
+      );
+      final e = r.report.expanded.single;
+      expect(e.address, 'google_pubsub_topic.t');
+      expect(e.isForEach, isFalse);
+      expect(
+        [for (final i in e.instances) (i.key, i.from, i.to)],
+        [
+          (0, 'google_pubsub_topic.t[0]', 'google_pubsub_topic.t_0'),
+          (1, 'google_pubsub_topic.t[1]', 'google_pubsub_topic.t_1'),
+        ],
+      );
+      final src = r.stackSource;
+      expect(
+        src,
+        contains(
+          "GooglePubsubTopic(localName: r't_0', name: TfArg.literal(r't-0'), "
+          "labels: TfArg.literal({r'index': r'0'}))",
+        ),
+      );
+      expect(src, contains("localName: r't_1', name: TfArg.literal(r't-1')"));
+      expect(src, contains('topic: TfArg.ref(t1.nameRef)'));
+      expect(
+        src,
+        contains('dependsOn: [ResourceDependency(t0), ResourceDependency(t1)]'),
+      );
+      expect(
+        src,
+        contains(
+          "addMoved(r'google_pubsub_topic.t[0]', r'google_pubsub_topic.t_0');",
+        ),
+      );
+      expect(
+        src,
+        contains(
+          "addMoved(r'google_pubsub_topic.t[1]', r'google_pubsub_topic.t_1');",
+        ),
+      );
+      expect(src, contains("addExport(r'first', ResourceIdExport(t0.id"));
+      expect(r.report.renderText(), contains('Unrolled (1):'));
+    });
+
+    test('a literal for_each substitutes each.key and each.value', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic': {
+            't': {
+              'for_each': {
+                'eu': {'region': 'europe-west1', 'tier': 1},
+                'us-east': {'region': 'us-east1', 'tier': 2},
+              },
+              'name': r'${each.key}-topic',
+              'labels': {'region': r'${each.value.region}'},
+              'message_retention_duration': r'${each.value.tier * 60}s',
+            },
+            'plain': {
+              'for_each': r'${toset(["a", "b"])}',
+              'name': r'${each.value}',
+            },
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      final src = r.stackSource;
+      expect(
+        src,
+        contains(
+          "GooglePubsubTopic(localName: r't_eu', name: TfArg.literal(r'eu-topic'), "
+          "labels: TfArg.literal({r'region': r'europe-west1'}), "
+          "messageRetentionDuration: TfArg.expression(r'\${1 * 60}s'))",
+        ),
+      );
+      expect(
+        src,
+        contains(
+          "localName: r't_us-east', name: TfArg.literal(r'us-east-topic')",
+        ),
+      );
+      expect(
+        src,
+        contains(
+          'addMoved(r\'google_pubsub_topic.t["eu"]\', r\'google_pubsub_topic.t_eu\');',
+        ),
+      );
+      expect(
+        src,
+        contains(
+          "GooglePubsubTopic(localName: r'plain_a', name: TfArg.literal(r'a'))",
+        ),
+      );
+      expect(
+        src,
+        contains(
+          'addMoved(r\'google_pubsub_topic.plain["b"]\', r\'google_pubsub_topic.plain_b\');',
+        ),
+      );
+      final keys = {
+        for (final e in r.report.expanded)
+          e.address: [for (final i in e.instances) i.key],
+      };
+      expect(keys, {
+        'google_pubsub_topic.t': ['eu', 'us-east'],
+        'google_pubsub_topic.plain': ['a', 'b'],
+      });
+    });
+
+    test('splats and bare references become the instance collection', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+  }
+}
+
+resource "google_pubsub_topic" "t" {
+  count = 2
+  name  = "t-\${count.index}"
+}
+
+resource "google_pubsub_topic" "mirror" {
+  name = "mirror"
+  message_storage_policy {
+    allowed_persistence_regions = google_pubsub_topic.t[*].name
+  }
+}
+
+output "ids" {
+  value = google_pubsub_topic.t[*].id
+}
+
+output "count" {
+  value = length(google_pubsub_topic.t)
+}
+''');
+      final src = r.stackSource;
+      expect(
+        src,
+        contains(
+          r"messageStoragePolicy: TfArg.literal({r'allowed_persistence_regions': r'${[google_pubsub_topic.t_0, google_pubsub_topic.t_1][*].name}'})",
+        ),
+      );
+      // Outputs that are not one attribute stay in outputs.tf, rewritten.
+      final outputs = r.sidecar!.files[outputsFileName]!;
+      expect(
+        outputs,
+        contains(
+          'value = [google_pubsub_topic.t_0, google_pubsub_topic.t_1][*].id',
+        ),
+      );
+      expect(
+        outputs,
+        contains(
+          'value = length([google_pubsub_topic.t_0, google_pubsub_topic.t_1])',
+        ),
+      );
+      expect(outputs, contains('point at the new addresses'));
+    });
+
+    test('a data source with count is unrolled without moved entries', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'data': {
+          'google_project': {
+            'p': {'count': 2, 'project_id': r'proj-${count.index}'},
+          },
+        },
+        'resource': {
+          'google_pubsub_topic': {
+            't': {
+              'name': 't',
+              'project': r'${data.google_project.p[1].project_id}',
+            },
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      final src = r.stackSource;
+      expect(
+        src,
+        contains(
+          "addData(GoogleProject(localName: r'p_0', projectId: TfArg.literal(r'proj-0')))",
+        ),
+      );
+      expect(src, contains('project: TfArg.ref(p1.projectIdRef)'));
+      expect(src, isNot(contains('addMoved')));
+    });
+
+    test("the module's own moved blocks follow their targets", () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+  }
+}
+
+resource "google_pubsub_topic" "t" {
+  name = "t"
+}
+
+resource "google_pubsub_topic" "many" {
+  count = 2
+  name  = "many-\${count.index}"
+}
+
+moved {
+  from = google_pubsub_topic.old
+  to   = google_pubsub_topic.t
+}
+
+moved {
+  from = google_pubsub_topic.legacy
+  to   = google_pubsub_topic.many
+}
+
+moved {
+  from = google_pubsub_topic.elsewhere
+  to   = google_pubsub_topic.kept
+}
+
+resource "google_pubsub_topic" "kept" {
+  name        = "kept"
+  no_such_arg = 1
+}
+''');
+      final src = r.stackSource;
+      expect(
+        src,
+        contains(
+          "addMoved(r'google_pubsub_topic.old', r'google_pubsub_topic.t');",
+        ),
+      );
+      // A move onto an unrolled block is one move per instance.
+      expect(
+        src,
+        contains(
+          "addMoved(r'google_pubsub_topic.legacy[0]', r'google_pubsub_topic.many_0');",
+        ),
+      );
+      expect(
+        src,
+        contains(
+          "addMoved(r'google_pubsub_topic.legacy[1]', r'google_pubsub_topic.many_1');",
+        ),
+      );
+      expect(
+        r.report.migratedAddresses,
+        containsAll([
+          'moved.google_pubsub_topic.old',
+          'moved.google_pubsub_topic.legacy[0]',
+        ]),
+      );
+      expect(
+        r.report.kept.map((k) => k.address),
+        unorderedEquals(['google_pubsub_topic.kept', 'moved']),
+      );
+      expect(
+        r.report.kept.singleWhere((k) => k.address == 'moved').reason,
+        contains('"google_pubsub_topic.kept" stays in Terraform'),
+      );
+      expect(
+        r.sidecar!.files[leftoverFileName],
+        contains('moved {\n  from = google_pubsub_topic.elsewhere'),
+      );
+    });
+
+    test('blockers: no instance, a tuple, a name collision, a bad index', () {
+      String reason(Map<String, Object?> resources, String address) {
+        final r = _migrateJson({'terraform': _google, 'resource': resources});
+        return r.report.kept.singleWhere((k) => k.address == address).reason;
+      }
+
+      expect(
+        reason({
+          'google_pubsub_topic': {
+            'x': {'name': 'x', 'count': 0},
+          },
+        }, 'google_pubsub_topic.x'),
+        contains('count = 0 declares no instance'),
+      );
+      expect(
+        reason({
+          'google_pubsub_topic': {
+            'x': {
+              'name': 'x',
+              'for_each': ['a'],
+            },
+          },
+        }, 'google_pubsub_topic.x'),
+        contains('is not a literal map or toset([...])'),
+      );
+      expect(
+        reason({
+          'google_pubsub_topic': {
+            'x': {'name': 'x', 'count': 1},
+            'x_0': {'name': 'x0'},
+          },
+        }, 'google_pubsub_topic.x'),
+        contains('collides with another resource'),
+      );
+      expect(
+        reason({
+          'google_pubsub_topic': {
+            'x': {'name': 'x', 'count': 2},
+            'y': {'name': r'${google_pubsub_topic.x[5].name}'},
+          },
+        }, 'google_pubsub_topic.y'),
+        contains(
+          'refers to an instance "google_pubsub_topic.x" does not declare',
+        ),
+      );
+      // Two unrolled blocks may not produce the same instance name either:
+      // `svc["api/0"]` and `svc_api[0]` would both be `svc_api_0`.
+      final crossBlock = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic': {
+            'svc': {'for_each': r'${toset(["api/0"])}', 'name': 'svc'},
+            'svc_api': {'count': 1, 'name': 'svc-api'},
+          },
+        },
+      });
+      expect(crossBlock.report.kept.map((k) => k.address), [
+        'google_pubsub_topic.svc_api',
       ]);
+      expect(
+        crossBlock.report.kept.single.reason,
+        contains('"svc_api_0", which collides'),
+      );
+      expect(
+        crossBlock.report.migratedAddresses,
+        contains('google_pubsub_topic.svc_api_0'),
+      );
+    });
+
+    test('a resource named like a Stack member does not shadow addMoved', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic': {
+            'add_moved': {'name': 'am'},
+            't': {'count': 1, 'name': 't'},
+          },
+          'google_pubsub_subscription': {
+            's': {
+              'name': 's',
+              'topic': r'${google_pubsub_topic.add_moved.name}',
+            },
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(r.stackSource, contains('final addMovedPubsubTopic = add('));
+      expect(
+        r.stackSource,
+        contains(
+          "addMoved(r'google_pubsub_topic.t[0]', r'google_pubsub_topic.t_0');",
+        ),
+      );
+    });
+
+    test('an instance that cannot become Dart rolls the block back', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+  }
+}
+
+resource "google_pubsub_topic" "t" {
+  count       = 2
+  name        = "t-\${count.index}"
+  no_such_arg = count.index
+}
+
+resource "google_pubsub_subscription" "s" {
+  name  = "s"
+  topic = google_pubsub_topic.t[0].name
+}
+''');
+      final kept = {for (final k in r.report.kept) k.address: k.reason};
+      expect(kept.keys, unorderedEquals(['google_pubsub_topic.t']));
+      expect(
+        kept['google_pubsub_topic.t'],
+        allOf(
+          contains('instance google_pubsub_topic.t[0]:'),
+          contains('"no_such_arg"'),
+        ),
+      );
+      expect(r.report.expanded, isEmpty);
+      // The subscription still references the block as written.
+      expect(
+        r.stackSource,
+        contains(
+          r"topic: TfArg.expression(r'${google_pubsub_topic.t[0].name}')",
+        ),
+      );
+      expect(
+        r.sidecar!.files[leftoverFileName],
+        contains('resource "google_pubsub_topic" "t" {\n  count       = 2'),
+      );
     });
   });
 

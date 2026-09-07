@@ -57,6 +57,9 @@ if [[ "$QUICK" == "0" ]]; then
 
   echo ">> migrate_fixture_gates (terradart-migrate the coverage fixtures, synth, terraform validate every directory)"
   dart tool/migrate_fixture_gates.dart
+
+  echo ">> migrate_moved_gates (unroll count / for_each, synth, terraform plan against the indexed state: moves only)"
+  dart tool/migrate_moved_gates.dart
 else
   echo ">> example synth gates: SKIPPED (--quick)"
 fi

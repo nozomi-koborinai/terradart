@@ -1,0 +1,138 @@
+{
+  "version": 4,
+  "terraform_version": "1.11.0",
+  "serial": 7,
+  "lineage": "6b1d7e2a-4d2c-4c1e-9a1b-663000000663",
+  "outputs": {
+    "topic_ids": {
+      "value": [
+        "projects/demo-project/topics/t-0",
+        "projects/demo-project/topics/t-1"
+      ],
+      "type": [
+        "tuple",
+        [
+          "string",
+          "string"
+        ]
+      ]
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "google_pubsub_topic",
+      "name": "t",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": 0,
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/demo-project/topics/t-0",
+            "name": "t-0",
+            "project": "demo-project",
+            "effective_labels": {},
+            "terraform_labels": {},
+            "deletion_policy": "DELETE"
+          },
+          "sensitive_attributes": []
+        },
+        {
+          "index_key": 1,
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/demo-project/topics/t-1",
+            "name": "t-1",
+            "project": "demo-project",
+            "effective_labels": {},
+            "terraform_labels": {},
+            "deletion_policy": "DELETE"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_pubsub_topic",
+      "name": "region",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "index_key": "eu",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/demo-project/topics/topic-eu",
+            "name": "topic-eu",
+            "project": "demo-project",
+            "effective_labels": {},
+            "terraform_labels": {},
+            "deletion_policy": "DELETE"
+          },
+          "sensitive_attributes": []
+        },
+        {
+          "index_key": "us",
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/demo-project/topics/topic-us",
+            "name": "topic-us",
+            "project": "demo-project",
+            "effective_labels": {},
+            "terraform_labels": {},
+            "deletion_policy": "DELETE"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_pubsub_topic",
+      "name": "old",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/demo-project/topics/single",
+            "name": "single",
+            "project": "demo-project",
+            "effective_labels": {},
+            "terraform_labels": {},
+            "deletion_policy": "DELETE"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "google_pubsub_subscription",
+      "name": "s",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "projects/demo-project/subscriptions/s",
+            "name": "s",
+            "topic": "projects/demo-project/topics/t-1",
+            "project": "demo-project",
+            "effective_labels": {},
+            "terraform_labels": {},
+            "deletion_policy": "DELETE",
+            "message_retention_duration": "604800s"
+          },
+          "sensitive_attributes": [],
+          "dependencies": [
+            "google_pubsub_topic.region",
+            "google_pubsub_topic.t"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}

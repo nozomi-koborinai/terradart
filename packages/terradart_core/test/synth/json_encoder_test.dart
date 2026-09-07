@@ -721,6 +721,105 @@ void main() {
     });
   });
 
+  group('TfJsonEncoder.movedBlock', () {
+    FakePubsubTopic topic(String name) => FakePubsubTopic(
+          localName: name,
+          argMap: {'name': TfArgLiteral<String>(name)},
+        );
+
+    test('returns null when the stack recorded no moved entry', () {
+      expect(TfJsonEncoder.movedBlock(TestStack()..add(topic('a'))), isNull);
+    });
+
+    test('emits one {from, to} object per entry, in registration order', () {
+      final stack = TestStack()
+        ..add(topic('orders_0'))
+        ..add(topic('orders_1'))
+        ..addMoved(
+          'google_pubsub_topic.orders[1]',
+          'google_pubsub_topic.orders_1',
+        )
+        ..addMoved(
+          'google_pubsub_topic.orders[0]',
+          'google_pubsub_topic.orders_0',
+        )
+        ..addMoved(
+          'module.legacy.google_pubsub_topic.x',
+          'module.events.google_pubsub_topic.x',
+        );
+      expect(
+        TfJsonEncoder.movedBlock(stack),
+        equals([
+          {
+            'from': 'google_pubsub_topic.orders[1]',
+            'to': 'google_pubsub_topic.orders_1',
+          },
+          {
+            'from': 'google_pubsub_topic.orders[0]',
+            'to': 'google_pubsub_topic.orders_0',
+          },
+          {
+            'from': 'module.legacy.google_pubsub_topic.x',
+            'to': 'module.events.google_pubsub_topic.x',
+          },
+        ]),
+      );
+    });
+
+    test('synth places the moved list between data and output', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+      )
+        ..add(topic('orders_0'))
+        ..addMoved(
+          'google_pubsub_topic.orders[0]',
+          'google_pubsub_topic.orders_0',
+        );
+      final json = stack.synth().tfJson;
+      expect(
+        json['moved'],
+        equals([
+          {
+            'from': 'google_pubsub_topic.orders[0]',
+            'to': 'google_pubsub_topic.orders_0',
+          },
+        ]),
+      );
+      expect(
+        json.keys.toList(),
+        equals(['terraform', 'resource', 'moved']),
+      );
+    });
+
+    test('a target that is not a registered resource is refused', () {
+      final stack = TestStack()
+        ..add(topic('orders_0'))
+        ..addMoved(
+          'google_pubsub_topic.orders[0]',
+          'google_pubsub_topic.orders_9',
+        );
+      expect(
+        () => TfJsonEncoder.movedBlock(stack),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            allOf(
+              contains('"google_pubsub_topic.orders_9"'),
+              contains('<type>.<localName>'),
+            ),
+          ),
+        ),
+      );
+    });
+  });
+
   group('TfJsonEncoder.resourcesGroup / dataGroup', () {
     test('groups by terraform type', () {
       final stack = TestStack();

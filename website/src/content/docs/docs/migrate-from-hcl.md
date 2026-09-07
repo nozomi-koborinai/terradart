@@ -91,9 +91,9 @@ A plan that is not empty means a block was translated differently from how it wa
 Translation is **resource-atomic**: a resource becomes a factory call only when every one of its arguments translates. One untranslatable argument keeps the whole block in Terraform, verbatim, preceded by the reason:
 
 ```hcl
-# terradart-migrate: count is not supported yet (addresses cannot be preserved, #663)
+# terradart-migrate: count = var.workers is not a literal number; only a literal count is unrolled into resources with fixed addresses
 resource "google_pubsub_subscription" "workers" {
-  count = 3
+  count = var.workers
   name  = "workers-${count.index}"
   topic = google_pubsub_topic.events.name
 }
@@ -101,11 +101,11 @@ resource "google_pubsub_subscription" "workers" {
 
 The sidecar is split the way Terraform code usually is:
 
-- `terradart_leftover.tf` — resources, data sources, module calls, `moved` blocks;
+- `terradart_leftover.tf` — resources, data sources, module calls, and `moved` blocks whose target stays here too;
 - `backend.tf` — `terraform { }` settings the Stack does not own: a backend without a TerraDart type, `cloud`, and the `required_providers` entries of providers that have no factory;
 - `variables.tf`, `locals.tf`, `outputs.tf` — the variables that did not become `addVariable`, every `locals` block, and the outputs that did not become exports.
 
-Nothing the Stack owns is repeated (its `required_providers`, its provider configurations — aliased ones included — its backend, the variables it declares), because Terraform rejects those twice. A `provider "google" { alias = "eu" }` block becomes a second `GoogleProvider(alias: 'eu', ...)` on the Stack, and a resource's `provider = google.eu` becomes `provider: 'google.eu'` on its factory (`provider = google-beta` on a GA type is translated the same way). Expressions the migrator cannot type — templates, function calls, conditionals, `local.x`, `module.x.y` — become `TfArg.expression(...)`, verbatim, on any argument. What keeps a block in Terraform today: a type outside the four curated catalogs, `count` / `for_each` / `dynamic` / `provisioner` / `timeouts`, a `provider = x.alias` the module does not configure (or one inside a child module, which needs `configuration_aliases`), an argument with no Dart parameter, an expression inside a typed list, a sensitive literal (never copied into Dart), and `depends_on` on a resource that stays in Terraform. `MIGRATION.md` lists every kept block with its reason and file.
+Nothing the Stack owns is repeated (its `required_providers`, its provider configurations — aliased ones included — its backend, the variables it declares), because Terraform rejects those twice. A `provider "google" { alias = "eu" }` block becomes a second `GoogleProvider(alias: 'eu', ...)` on the Stack, and a resource's `provider = google.eu` becomes `provider: 'google.eu'` on its factory (`provider = google-beta` on a GA type is translated the same way). Expressions the migrator cannot type — templates, function calls, conditionals, `local.x`, `module.x.y` — become `TfArg.expression(...)`, verbatim, on any argument. A literal `count` or `for_each` is unrolled into one resource per instance — `google_pubsub_topic.t[0]` becomes `google_pubsub_topic.t_0`, `google_pubsub_topic.t["eu"]` becomes `google_pubsub_topic.t_eu` — with `count.index` / `each.key` / `each.value` substituted, every reference in the module (indexed, splat or bare) pointed at the new addresses, and a `moved` entry per instance (`Stack.addMoved`) so the plan shows moves, never a destroy and create; the module's own `moved` blocks follow their targets into the Stack. What keeps a block in Terraform today: a type outside the four curated catalogs, a `count` / `for_each` that is not a literal (its instance set cannot be known without evaluating it), `dynamic` / `provisioner` / `timeouts`, a `provider = x.alias` the module does not configure (or one inside a child module, which needs `configuration_aliases`), an argument with no Dart parameter, an expression inside a typed list, a sensitive literal (never copied into Dart), and `depends_on` on a resource that stays in Terraform. `MIGRATION.md` lists every kept block with its reason and file, and every unrolled one with its new addresses.
 
 To finish a block by hand: write it in the Stack, delete it from the sidecar, synthesize and plan again — the plan tells you whether the two agree. `--allow-todo` writes a `TODO(terradart-migrate)` comment per untranslated block into the Stack instead of a sidecar; the report then says the plan differs until every TODO is ported.
 
@@ -140,4 +140,4 @@ The same pipeline is a Dart library: `scanModuleTree` reads the tree, `migrateTr
 
 ## What comes next
 
-The blockers above shrink as the runtime grows — `moved` and `count` / `for_each` ([#663](https://github.com/nozomi-koborinai/terradart/issues/663)), module calls ([#665](https://github.com/nozomi-koborinai/terradart/issues/665)) — followed by `--merge-envs` ([#668](https://github.com/nozomi-koborinai/terradart/issues/668)) and incremental re-runs ([#669](https://github.com/nozomi-koborinai/terradart/issues/669)). Progress is tracked on the [migrator epic](https://github.com/nozomi-koborinai/terradart/issues/80).
+The blockers above shrink as the runtime grows — module calls ([#665](https://github.com/nozomi-koborinai/terradart/issues/665)) — followed by `--merge-envs` ([#668](https://github.com/nozomi-koborinai/terradart/issues/668)) and incremental re-runs ([#669](https://github.com/nozomi-koborinai/terradart/issues/669)). Progress is tracked on the [migrator epic](https://github.com/nozomi-koborinai/terradart/issues/80).
