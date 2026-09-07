@@ -56,7 +56,8 @@ final class Expansion {
 /// Returns `null` when the block has neither meta-argument. Throws
 /// [MigrateBlocker] when it has one that cannot be unrolled: a value that is
 /// not a literal, no instance at all, or an instance name that collides with
-/// another block of the same type ([siblingNames]).
+/// a name already in use for the same kind and type ([siblingNames]: the
+/// blocks as written and the instances of blocks unrolled before this one).
 Expansion? expandBlock({
   required String type,
   required String name,
@@ -120,7 +121,7 @@ Expansion? expandBlock({
       throw MigrateBlocker(
         'instance ${_keyText(key)} would be named "$instanceName", which '
         'collides with another ${isData ? 'data source' : 'resource'} of '
-        'type "$type"',
+        'type "$type" (as written, or unrolled from another block)',
       );
     }
     final substitution = key is int

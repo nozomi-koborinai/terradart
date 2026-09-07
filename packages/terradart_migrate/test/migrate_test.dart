@@ -970,6 +970,54 @@ resource "google_pubsub_topic" "kept" {
           'refers to an instance "google_pubsub_topic.x" does not declare',
         ),
       );
+      // Two unrolled blocks may not produce the same instance name either:
+      // `svc["api/0"]` and `svc_api[0]` would both be `svc_api_0`.
+      final crossBlock = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic': {
+            'svc': {'for_each': r'${toset(["api/0"])}', 'name': 'svc'},
+            'svc_api': {'count': 1, 'name': 'svc-api'},
+          },
+        },
+      });
+      expect(crossBlock.report.kept.map((k) => k.address), [
+        'google_pubsub_topic.svc_api',
+      ]);
+      expect(
+        crossBlock.report.kept.single.reason,
+        contains('"svc_api_0", which collides'),
+      );
+      expect(
+        crossBlock.report.migratedAddresses,
+        contains('google_pubsub_topic.svc_api_0'),
+      );
+    });
+
+    test('a resource named like a Stack member does not shadow addMoved', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic': {
+            'add_moved': {'name': 'am'},
+            't': {'count': 1, 'name': 't'},
+          },
+          'google_pubsub_subscription': {
+            's': {
+              'name': 's',
+              'topic': r'${google_pubsub_topic.add_moved.name}',
+            },
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(r.stackSource, contains('final addMovedPubsubTopic = add('));
+      expect(
+        r.stackSource,
+        contains(
+          "addMoved(r'google_pubsub_topic.t[0]', r'google_pubsub_topic.t_0');",
+        ),
+      );
     });
 
     test('an instance that cannot become Dart rolls the block back', () {

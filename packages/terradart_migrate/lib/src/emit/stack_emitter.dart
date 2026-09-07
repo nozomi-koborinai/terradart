@@ -1105,13 +1105,16 @@ final class StackEmitter {
   /// or `depends_on` forces the target first.
   List<_BlockInfo> _blocksInOrder(Map<String, String> refused) {
     _expansions.clear();
-    // Block names per (kind, type), for instance-name collisions.
-    final siblings = <String, Set<String>>{};
+    // Names in use per (kind, type): every block as written, plus the
+    // instances of every block unrolled so far — so an instance name can
+    // collide neither with a sibling nor with another block's instance
+    // (`svc["api/0"]` and `svc_api[0]` would both be `svc_api_0`).
+    final taken = <String, Set<String>>{};
     for (final d in module.dataSources) {
-      siblings.putIfAbsent('data.${d.type}', () => {}).add(d.name);
+      taken.putIfAbsent('data.${d.type}', () => {}).add(d.name);
     }
     for (final r in module.resources) {
-      siblings.putIfAbsent(r.type, () => {}).add(r.name);
+      taken.putIfAbsent(r.type, () => {}).add(r.name);
     }
 
     final collected = <_BlockInfo>[];
@@ -1125,6 +1128,7 @@ final class StackEmitter {
     }) {
       Expansion? expansion;
       var blocker = refused[address];
+      final names = taken[isData ? 'data.$type' : type]!;
       if (blocker == null) {
         try {
           expansion = expandBlock(
@@ -1132,10 +1136,15 @@ final class StackEmitter {
             name: name,
             body: body,
             isData: isData,
-            siblingNames: siblings[isData ? 'data.$type' : type]!,
+            siblingNames: names,
           );
         } on MigrateBlocker catch (e) {
           blocker = e.reason;
+        }
+      }
+      if (expansion != null) {
+        for (final instance in expansion.item.instances) {
+          names.add(instance.to.split('.').last);
         }
       }
       if (expansion == null) {
