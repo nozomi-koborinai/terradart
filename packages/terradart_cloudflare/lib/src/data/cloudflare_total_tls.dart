@@ -14,11 +14,14 @@ const Set<String> _cloudflareTotalTlsSensitive = <String>{};
 final class DataCloudflareTotalTls extends Data {
   static const String tfType = 'cloudflare_total_tls';
 
-  DataCloudflareTotalTls({required super.localName, TfArg<String>? zoneId})
-    : super(
-        terraformType: tfType,
-        argMap: {if (zoneId != null) 'zone_id': zoneId},
-      );
+  DataCloudflareTotalTls({
+    required super.localName,
+    TfArg<String>? zoneId,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (zoneId != null) 'zone_id': zoneId},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareTotalTlsSensitive;

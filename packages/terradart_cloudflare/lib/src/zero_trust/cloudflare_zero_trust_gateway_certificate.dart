@@ -17,6 +17,7 @@ final class CloudflareZeroTrustGatewayCertificate extends Resource {
     TfArg<num>? validityPeriodDays,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

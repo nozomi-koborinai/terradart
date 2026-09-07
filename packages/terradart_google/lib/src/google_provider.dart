@@ -15,10 +15,17 @@ import '_provider_meta.dart';
 @immutable
 final class GoogleProvider implements StackProvider {
   const GoogleProvider({
+    this.alias,
     this.project,
     this.region,
     this.zone,
   });
+
+  /// Provider alias (`provider "google" { alias = "eu" }`), or `null` for
+  /// the default configuration. Select it on a resource with
+  /// `provider: 'google.<alias>'`.
+  @override
+  final String? alias;
 
   /// Default GCP project ID.
   final String? project;

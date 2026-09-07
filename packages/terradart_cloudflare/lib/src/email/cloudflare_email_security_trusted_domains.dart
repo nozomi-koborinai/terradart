@@ -24,6 +24,7 @@ final class CloudflareEmailSecurityTrustedDomains extends Resource {
     required TfArg<String> pattern,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

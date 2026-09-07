@@ -256,6 +256,7 @@ final class GoogleVmwareengineCluster extends Resource {
     List<VmwareengineClusterDatastoreMountConfig>? datastoreMountConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -657,6 +657,7 @@ final class GoogleSecurityposturePosture extends Resource {
     required List<SecurityposturePosturePolicySets> policySets,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

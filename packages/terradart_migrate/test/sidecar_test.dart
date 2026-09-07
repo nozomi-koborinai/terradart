@@ -127,7 +127,9 @@ output "label" {
       );
       expect(leftover, contains('resource "aws_s3_bucket" "logs" {'));
       expect(leftover, contains('moved {\n  from = google_pubsub_topic.old'));
-      expect(leftover, contains('provider "google" {\n  alias  = "west"'));
+      // The aliased configuration is registered on the Stack (#666), so it
+      // is not repeated here either.
+      expect(leftover, isNot(contains('alias  = "west"')));
       expect(leftover, isNot(contains('resource "google_pubsub_topic" "t"')));
       expect(leftover, isNot(contains('project = "p"')));
       expect(leftover, startsWith('# Kept in Terraform by terradart-migrate'));
@@ -136,7 +138,15 @@ output "label" {
         leftoverFileName,
       );
       expect(sidecar.placements['moved'], leftoverFileName);
-      expect(sidecar.placements['provider.google.west'], leftoverFileName);
+      expect(sidecar.placements['provider.google.west'], isNull);
+      expect(r.report.migratedAddresses, contains('provider.google.west'));
+      expect(
+        r.stackSource,
+        contains(
+          "providers: [const GoogleProvider(project: r'p'), "
+          "const GoogleProvider(alias: r'west', region: r'us-west1')]",
+        ),
+      );
     });
 
     test('terraform settings the Stack does not own go to backend.tf', () {

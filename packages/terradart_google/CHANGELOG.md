@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **`GoogleProvider.alias`** (`provider "google" { alias = "eu" }`) and a **`provider:`** parameter on every resource factory and data source, for Terraform's `provider` meta-argument: `provider: 'google.eu'` selects an aliased configuration registered beside the default one, `provider: 'google-beta'` puts a GA type on the beta provider. `TimeProvider` takes `alias` too (#666).
+
 ## 0.27.0 - 2026-08-30
 
 Lockstep release with `terradart_core` 0.27.0 (`TfVariable` / `Stack.addVariable` and `S3Backend`). No `terradart_google` API changes.

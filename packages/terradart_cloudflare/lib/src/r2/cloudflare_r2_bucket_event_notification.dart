@@ -51,6 +51,7 @@ final class CloudflareR2BucketEventNotification extends Resource {
     required List<R2BucketEventNotificationRules> rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

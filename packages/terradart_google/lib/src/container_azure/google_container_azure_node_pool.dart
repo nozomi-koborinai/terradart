@@ -157,6 +157,7 @@ final class GoogleContainerAzureNodePool extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -18,6 +18,7 @@ final class DataCloudflareResourceGroup extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> resourceGroupId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

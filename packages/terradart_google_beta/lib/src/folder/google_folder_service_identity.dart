@@ -23,9 +23,10 @@ final class GoogleFolderServiceIdentity extends Resource {
     required TfArg<String> folder,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {'service': service, 'folder': folder},
        );
 

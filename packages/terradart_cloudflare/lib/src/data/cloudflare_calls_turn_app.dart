@@ -18,6 +18,7 @@ final class DataCloudflareCallsTurnApp extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> keyId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'key_id': keyId},

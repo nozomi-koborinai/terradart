@@ -45,6 +45,7 @@ final class CloudflareLoadBalancerMonitorGroup extends Resource {
     required List<LoadBalancerMonitorGroupMembers> members,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -58,6 +58,7 @@ final class DataCloudflareApiShieldOperation extends Data {
     TfArg<bool>? withSchemas,
     TfArg<String>? zoneId,
     DataApiShieldOperationFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

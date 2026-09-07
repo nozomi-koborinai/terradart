@@ -20,6 +20,7 @@ final class DataCloudflareMagicTransitSiteAcl extends Data {
     required TfArg<String> accountId,
     required TfArg<String> aclId,
     required TfArg<String> siteId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'acl_id': aclId, 'site_id': siteId},

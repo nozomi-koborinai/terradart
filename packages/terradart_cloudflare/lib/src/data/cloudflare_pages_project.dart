@@ -26,6 +26,7 @@ final class DataCloudflarePagesProject extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> projectName,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

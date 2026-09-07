@@ -89,6 +89,7 @@ final class CloudflareAccountToken extends Resource {
     required List<AccountTokenPolicies> policies,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

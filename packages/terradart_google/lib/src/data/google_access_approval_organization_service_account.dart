@@ -18,6 +18,7 @@ final class DataGoogleAccessApprovalOrganizationServiceAccount extends Data {
   DataGoogleAccessApprovalOrganizationServiceAccount({
     required super.localName,
     required TfArg<String> organizationId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'organization_id': organizationId},

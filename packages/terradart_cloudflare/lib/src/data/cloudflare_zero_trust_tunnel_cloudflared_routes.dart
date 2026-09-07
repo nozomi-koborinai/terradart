@@ -30,6 +30,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredRoutes extends Data {
     TfArg<List<String>>? tunTypes,
     TfArg<String>? tunnelId,
     TfArg<String>? virtualNetworkId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

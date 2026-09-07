@@ -36,6 +36,7 @@ final class DataCloudflarePipelineStream extends Data {
     TfArg<String>? accountId,
     TfArg<String>? streamId,
     DataPipelineStreamFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

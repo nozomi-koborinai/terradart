@@ -22,6 +22,7 @@ final class GoogleDnsResponsePolicy extends Resource {
     TfArg<List<Map<String, dynamic>>>? gkeClusters,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

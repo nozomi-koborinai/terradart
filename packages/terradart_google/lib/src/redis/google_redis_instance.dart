@@ -232,6 +232,7 @@ final class GoogleRedisInstance extends Resource {
     RedisInstancePersistenceConfig? persistenceConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

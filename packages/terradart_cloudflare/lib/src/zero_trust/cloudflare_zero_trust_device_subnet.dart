@@ -23,6 +23,7 @@ final class CloudflareZeroTrustDeviceSubnet extends Resource {
     required TfArg<String> network,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

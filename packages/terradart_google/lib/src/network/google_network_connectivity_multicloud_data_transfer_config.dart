@@ -51,6 +51,7 @@ final class GoogleNetworkConnectivityMulticloudDataTransferConfig
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

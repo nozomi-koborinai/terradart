@@ -250,6 +250,7 @@ final class GoogleOsConfigOsPolicyAssignment extends Resource {
     TfArg<bool>? skipAwaitRollout,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

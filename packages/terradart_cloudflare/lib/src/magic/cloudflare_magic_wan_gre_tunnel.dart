@@ -94,6 +94,7 @@ final class CloudflareMagicWanGreTunnel extends Resource {
     MagicWanGreTunnelHealthCheck? healthCheck,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

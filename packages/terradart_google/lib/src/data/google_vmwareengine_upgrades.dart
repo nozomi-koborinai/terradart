@@ -17,6 +17,7 @@ final class DataGoogleVmwareengineUpgrades extends Data {
     required super.localName,
     TfArg<String>? name,
     required TfArg<String> parent,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (name != null) 'name': name, 'parent': parent},

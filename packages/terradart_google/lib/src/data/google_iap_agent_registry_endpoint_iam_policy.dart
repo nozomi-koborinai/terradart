@@ -19,6 +19,7 @@ final class DataGoogleIapAgentRegistryEndpointIamPolicy extends Data {
     required TfArg<String> endpointId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

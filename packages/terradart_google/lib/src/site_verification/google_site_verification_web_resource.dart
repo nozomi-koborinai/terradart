@@ -80,6 +80,7 @@ final class GoogleSiteVerificationWebResource extends Resource {
     required SiteVerificationWebResourceSite site,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

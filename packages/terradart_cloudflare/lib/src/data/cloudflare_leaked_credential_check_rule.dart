@@ -19,6 +19,7 @@ final class DataCloudflareLeakedCredentialCheckRule extends Data {
     required super.localName,
     required TfArg<String> detectionId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

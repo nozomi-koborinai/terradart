@@ -17,6 +17,7 @@ final class DataGoogleSourcerepoRepositoryIamPolicy extends Data {
     required super.localName,
     TfArg<String>? project,
     required TfArg<String> repository,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

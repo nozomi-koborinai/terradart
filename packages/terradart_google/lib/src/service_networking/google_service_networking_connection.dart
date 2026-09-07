@@ -68,6 +68,7 @@ final class GoogleServiceNetworkingConnection extends Resource {
     TfArg<bool>? updateOnCreationFail,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

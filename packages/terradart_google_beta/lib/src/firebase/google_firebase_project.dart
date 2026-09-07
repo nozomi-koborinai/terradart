@@ -15,9 +15,10 @@ final class GoogleFirebaseProject extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {if (project != null) 'project': project},
        );
 

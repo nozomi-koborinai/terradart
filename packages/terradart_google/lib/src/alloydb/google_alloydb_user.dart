@@ -52,6 +52,7 @@ final class GoogleAlloydbUser extends Resource {
     TfArg<String>? passwordWoVersion,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

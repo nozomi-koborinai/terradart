@@ -14,6 +14,7 @@ final class DataCloudflareR2BucketSippy extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> bucketName,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'bucket_name': bucketName},

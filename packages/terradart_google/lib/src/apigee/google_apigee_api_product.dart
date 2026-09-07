@@ -424,6 +424,7 @@ final class GoogleApigeeApiProduct extends Resource {
     ApigeeApiProductGrpcOperationGroup? grpcOperationGroup,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

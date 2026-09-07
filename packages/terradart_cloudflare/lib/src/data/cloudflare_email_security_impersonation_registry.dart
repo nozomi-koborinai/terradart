@@ -49,6 +49,7 @@ final class DataCloudflareEmailSecurityImpersonationRegistry extends Data {
     TfArg<String>? accountId,
     TfArg<String>? impersonationRegistryId,
     DataEmailSecurityImpersonationRegistryFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

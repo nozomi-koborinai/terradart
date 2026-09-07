@@ -18,6 +18,7 @@ final class CloudflareOriginCaCertificate extends Resource {
     TfArg<num>? requestedValidity,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

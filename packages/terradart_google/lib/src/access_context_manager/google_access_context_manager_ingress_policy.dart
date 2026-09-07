@@ -27,6 +27,7 @@ final class GoogleAccessContextManagerIngressPolicy extends Resource {
     required TfArg<String> resource,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

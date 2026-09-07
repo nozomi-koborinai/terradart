@@ -27,6 +27,7 @@ final class DataCloudflareZeroTrustList extends Data {
     TfArg<String>? accountId,
     TfArg<String>? listId,
     DataZeroTrustListFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

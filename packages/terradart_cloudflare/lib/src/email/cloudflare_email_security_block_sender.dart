@@ -23,6 +23,7 @@ final class CloudflareEmailSecurityBlockSender extends Resource {
     required TfArg<String> patternType,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

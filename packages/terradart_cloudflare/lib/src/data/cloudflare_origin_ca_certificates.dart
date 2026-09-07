@@ -16,6 +16,7 @@ final class DataCloudflareOriginCaCertificates extends Data {
     TfArg<num>? maxItems,
     TfArg<num>? offset,
     required TfArg<String> zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

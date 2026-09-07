@@ -43,6 +43,7 @@ final class DataCloudflareMoqRelay extends Data {
     required TfArg<String> accountId,
     TfArg<String>? relayId,
     DataMoqRelayFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

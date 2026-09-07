@@ -26,6 +26,7 @@ final class CloudflareStreamWatermark extends Resource {
     TfArg<String>? url,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

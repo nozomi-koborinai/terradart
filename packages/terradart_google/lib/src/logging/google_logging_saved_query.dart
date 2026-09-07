@@ -83,6 +83,7 @@ final class GoogleLoggingSavedQuery extends Resource {
     LoggingSavedQueryOpsAnalyticsQuery? opsAnalyticsQuery,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

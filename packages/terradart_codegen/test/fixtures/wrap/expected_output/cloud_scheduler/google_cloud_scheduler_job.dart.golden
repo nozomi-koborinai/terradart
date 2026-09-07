@@ -255,6 +255,7 @@ final class GoogleCloudSchedulerJob extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

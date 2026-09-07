@@ -18,6 +18,7 @@ final class DataGoogleLustreInstance extends Data {
     required TfArg<String> instanceId,
     TfArg<String>? project,
     TfArg<String>? zone,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

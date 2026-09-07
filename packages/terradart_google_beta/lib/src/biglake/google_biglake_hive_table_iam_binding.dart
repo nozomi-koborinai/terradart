@@ -26,9 +26,10 @@ final class GoogleBiglakeHiveTableIamBinding extends Resource {
     TfArg<Map<String, dynamic>>? condition,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'catalog': catalog,
            'database': database,

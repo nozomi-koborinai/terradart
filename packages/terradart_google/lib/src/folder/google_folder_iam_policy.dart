@@ -21,6 +21,7 @@ final class GoogleFolderIamPolicy extends Resource {
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'folder': folder, 'policy_data': policyData},

@@ -728,6 +728,7 @@ final class CloudflareWorkersScript extends Resource {
     List<WorkersScriptTailConsumers>? tailConsumers,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

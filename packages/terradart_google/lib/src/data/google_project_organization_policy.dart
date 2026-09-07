@@ -17,6 +17,7 @@ final class DataGoogleProjectOrganizationPolicy extends Data {
     required super.localName,
     required TfArg<String> constraint,
     required TfArg<String> project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'constraint': constraint, 'project': project},

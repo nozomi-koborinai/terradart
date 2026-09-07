@@ -22,6 +22,7 @@ final class GoogleHealthcareFhirStoreIamMember extends Resource {
     required TfArg<String> member,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'fhir_store_id': fhirStoreId, 'role': role, 'member': member},

@@ -19,6 +19,7 @@ final class DataCloudflareMagicWanGreTunnel extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> greTunnelId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

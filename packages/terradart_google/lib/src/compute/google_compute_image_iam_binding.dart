@@ -24,6 +24,7 @@ final class GoogleComputeImageIamBinding extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

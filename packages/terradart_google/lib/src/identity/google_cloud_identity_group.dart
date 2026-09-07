@@ -58,6 +58,7 @@ final class GoogleCloudIdentityGroup extends Resource {
     required CloudIdentityGroupGroupKey groupKey,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

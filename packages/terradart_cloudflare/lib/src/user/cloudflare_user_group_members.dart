@@ -33,6 +33,7 @@ final class CloudflareUserGroupMembers extends Resource {
     required List<UserGroupMembersMembers> members,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

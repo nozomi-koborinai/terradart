@@ -18,6 +18,7 @@ final class DataCloudflareZeroTrustDlpDataClass extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> dataClassId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'data_class_id': dataClassId},

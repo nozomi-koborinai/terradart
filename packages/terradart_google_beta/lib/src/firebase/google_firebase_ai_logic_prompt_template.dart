@@ -21,9 +21,10 @@ final class GoogleFirebaseAiLogicPromptTemplate extends Resource {
     required TfArg<String> templateString,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (displayName != null) 'display_name': displayName,

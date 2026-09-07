@@ -41,6 +41,7 @@ final class GoogleSccV2FolderNotificationConfig extends Resource {
     required SccV2FolderNotificationConfigStreamingConfig streamingConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -18,6 +18,7 @@ final class DataGoogleApphubDiscoveredService extends Data {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> serviceUri,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

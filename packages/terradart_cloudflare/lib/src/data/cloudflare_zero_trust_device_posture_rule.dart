@@ -14,6 +14,7 @@ final class DataCloudflareZeroTrustDevicePostureRule extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> ruleId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

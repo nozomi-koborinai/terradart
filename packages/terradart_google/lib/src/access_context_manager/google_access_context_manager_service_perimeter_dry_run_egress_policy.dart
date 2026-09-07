@@ -224,6 +224,7 @@ final class GoogleAccessContextManagerServicePerimeterDryRunEgressPolicy
     AccessContextManagerServicePerimeterDryRunEgressPolicyEgressTo? egressTo,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

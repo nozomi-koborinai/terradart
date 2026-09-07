@@ -20,6 +20,7 @@ final class CloudflareShareResource extends Resource {
     required TfArg<String> shareId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

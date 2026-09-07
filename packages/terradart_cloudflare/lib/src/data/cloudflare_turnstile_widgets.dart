@@ -22,6 +22,7 @@ final class DataCloudflareTurnstileWidgets extends Data {
     TfArg<String>? filter,
     TfArg<num>? maxItems,
     TfArg<String>? order,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

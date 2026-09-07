@@ -20,6 +20,7 @@ final class DataGoogleMonitoringNotificationChannel extends Data {
     TfArg<String>? project,
     TfArg<String>? type,
     TfArg<Map<String, String>>? userLabels,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

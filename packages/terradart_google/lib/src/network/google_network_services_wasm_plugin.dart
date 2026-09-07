@@ -108,6 +108,7 @@ final class GoogleNetworkServicesWasmPlugin extends Resource {
     required List<NetworkServicesWasmPluginVersions> versions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

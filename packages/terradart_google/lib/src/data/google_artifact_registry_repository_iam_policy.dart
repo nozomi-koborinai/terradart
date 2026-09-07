@@ -19,6 +19,7 @@ final class DataGoogleArtifactRegistryRepositoryIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> repository,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

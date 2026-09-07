@@ -19,6 +19,7 @@ final class DataCloudflareFlagshipFlag extends Data {
     required TfArg<String> accountId,
     required TfArg<String> appId,
     required TfArg<String> flagKey,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

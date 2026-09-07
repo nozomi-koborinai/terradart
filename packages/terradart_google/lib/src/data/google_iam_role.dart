@@ -13,8 +13,11 @@ const Set<String> _googleIamRoleSensitive = <String>{};
 final class DataGoogleIamRole extends Data {
   static const String tfType = 'google_iam_role';
 
-  DataGoogleIamRole({required super.localName, required TfArg<String> name})
-    : super(terraformType: tfType, argMap: {'name': name});
+  DataGoogleIamRole({
+    required super.localName,
+    required TfArg<String> name,
+    super.provider,
+  }) : super(terraformType: tfType, argMap: {'name': name});
 
   @override
   Set<String> get sensitiveFields => _googleIamRoleSensitive;

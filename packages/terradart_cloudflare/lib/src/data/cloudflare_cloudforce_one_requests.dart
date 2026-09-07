@@ -28,6 +28,7 @@ final class DataCloudflareCloudforceOneRequests extends Data {
     TfArg<String>? sortBy,
     TfArg<String>? sortOrder,
     TfArg<String>? status,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

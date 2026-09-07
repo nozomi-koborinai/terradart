@@ -46,6 +46,7 @@ final class GoogleApigeeDataCollector extends Resource {
     TfArg<ApigeeDataCollectorDeletionPolicy>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

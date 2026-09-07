@@ -38,6 +38,7 @@ final class GoogleApigeeKeystoresAliasesKeyCertFile extends Resource {
     TfArg<String>? password,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

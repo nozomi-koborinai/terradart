@@ -170,6 +170,7 @@ final class GoogleAlloydbCluster extends Resource {
     TfArg<bool>? deletionProtection,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

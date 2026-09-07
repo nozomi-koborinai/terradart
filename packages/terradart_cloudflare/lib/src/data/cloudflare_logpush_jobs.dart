@@ -21,6 +21,7 @@ final class DataCloudflareLogpushJobs extends Data {
     TfArg<String>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

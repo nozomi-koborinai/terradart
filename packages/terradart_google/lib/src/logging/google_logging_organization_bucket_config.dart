@@ -60,6 +60,7 @@ final class GoogleLoggingOrganizationBucketConfig extends Resource {
     List<LoggingOrganizationBucketConfigIndexConfigs>? indexConfigs,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

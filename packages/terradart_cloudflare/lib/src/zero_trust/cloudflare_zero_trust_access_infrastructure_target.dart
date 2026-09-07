@@ -76,6 +76,7 @@ final class CloudflareZeroTrustAccessInfrastructureTarget extends Resource {
     required ZeroTrustAccessInfrastructureTargetIp ip,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

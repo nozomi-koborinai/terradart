@@ -53,6 +53,7 @@ final class GoogleAppEngineServiceSplitTraffic extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

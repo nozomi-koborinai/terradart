@@ -40,6 +40,7 @@ final class CloudflareZeroTrustRiskBehavior extends Resource {
     required ZeroTrustRiskBehaviorBehaviors behaviors,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

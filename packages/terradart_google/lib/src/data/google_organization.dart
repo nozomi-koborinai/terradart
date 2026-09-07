@@ -17,6 +17,7 @@ final class DataGoogleOrganization extends Data {
     required super.localName,
     TfArg<String>? domain,
     TfArg<String>? organization,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -25,6 +25,7 @@ final class AppwriteAuthUser extends Resource {
     TfArg<bool>? status,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -36,6 +36,7 @@ final class DataCloudflareEmailRoutingAddress extends Data {
     TfArg<String>? accountId,
     TfArg<String>? destinationAddressIdentifier,
     DataEmailRoutingAddressFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

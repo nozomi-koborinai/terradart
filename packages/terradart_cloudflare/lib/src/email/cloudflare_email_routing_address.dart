@@ -21,6 +21,7 @@ final class CloudflareEmailRoutingAddress extends Resource {
     TfArg<String>? status,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

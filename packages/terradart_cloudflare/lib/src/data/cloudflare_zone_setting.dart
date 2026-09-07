@@ -18,6 +18,7 @@ final class DataCloudflareZoneSetting extends Data {
     required super.localName,
     required TfArg<String> settingId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

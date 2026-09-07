@@ -1542,6 +1542,7 @@ final class CloudflareRuleset extends Resource {
     List<RulesetRules>? rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

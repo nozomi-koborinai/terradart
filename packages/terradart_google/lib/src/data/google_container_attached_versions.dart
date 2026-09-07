@@ -17,6 +17,7 @@ final class DataGoogleContainerAttachedVersions extends Data {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'location': location, 'project': project},

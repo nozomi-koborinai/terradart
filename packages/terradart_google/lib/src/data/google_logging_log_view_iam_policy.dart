@@ -19,6 +19,7 @@ final class DataGoogleLoggingLogViewIamPolicy extends Data {
     TfArg<String>? location,
     required TfArg<String> name,
     required TfArg<String> parent,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -16,9 +16,10 @@ final class GoogleVertexAiModelGardenEnableModel extends Resource {
     required TfArg<String> publisherModelName,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (project != null) 'project': project,
            'publisher_model_name': publisherModelName,

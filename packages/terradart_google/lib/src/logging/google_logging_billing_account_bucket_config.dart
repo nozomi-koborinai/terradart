@@ -63,6 +63,7 @@ final class GoogleLoggingBillingAccountBucketConfig extends Resource {
     List<LoggingBillingAccountBucketConfigIndexConfigs>? indexConfigs,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

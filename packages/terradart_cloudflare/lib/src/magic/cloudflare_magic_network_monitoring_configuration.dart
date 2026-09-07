@@ -50,6 +50,7 @@ final class CloudflareMagicNetworkMonitoringConfiguration extends Resource {
     List<MagicNetworkMonitoringConfigurationWarpDevices>? warpDevices,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

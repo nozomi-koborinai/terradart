@@ -18,6 +18,7 @@ final class DataCloudflareWorkersScriptSubdomain extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> scriptName,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'script_name': scriptName},

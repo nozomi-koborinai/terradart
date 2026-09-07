@@ -51,6 +51,7 @@ final class DataCloudflareFilter extends Data {
     TfArg<String>? filterId,
     TfArg<String>? zoneId,
     DataFilterFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

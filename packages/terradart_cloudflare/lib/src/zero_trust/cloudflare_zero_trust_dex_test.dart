@@ -57,6 +57,7 @@ final class CloudflareZeroTrustDexTest extends Resource {
     List<ZeroTrustDexTestTargetPolicies>? targetPolicies,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -31,6 +31,7 @@ final class AppwriteSiteDeployment extends Resource {
     TfArg<bool>? waitForReady,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

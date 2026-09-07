@@ -213,6 +213,7 @@ final class GoogleComputeFirewallPolicyWithRules extends Resource {
     required List<ComputeFirewallPolicyWithRulesRule> rule,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

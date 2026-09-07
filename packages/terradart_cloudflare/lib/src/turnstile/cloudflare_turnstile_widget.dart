@@ -28,6 +28,7 @@ final class CloudflareTurnstileWidget extends Resource {
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

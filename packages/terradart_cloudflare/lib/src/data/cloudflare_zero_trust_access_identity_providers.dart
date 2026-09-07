@@ -23,6 +23,7 @@ final class DataCloudflareZeroTrustAccessIdentityProviders extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? scimEnabled,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

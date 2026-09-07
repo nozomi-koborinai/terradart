@@ -21,9 +21,10 @@ final class GoogleComputeRegionBackendBucket extends Resource {
     required TfArg<String> region,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'bucket_name': bucketName,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

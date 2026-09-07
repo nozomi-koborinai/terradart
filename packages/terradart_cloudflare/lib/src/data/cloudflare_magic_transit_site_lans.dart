@@ -20,6 +20,7 @@ final class DataCloudflareMagicTransitSiteLans extends Data {
     TfArg<String>? accountId,
     TfArg<num>? maxItems,
     required TfArg<String> siteId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

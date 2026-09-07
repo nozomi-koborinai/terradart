@@ -50,6 +50,7 @@ final class GoogleGeminiRepositoryGroup extends Resource {
     required List<GeminiRepositoryGroupRepositories> repositories,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

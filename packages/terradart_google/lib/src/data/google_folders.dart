@@ -13,8 +13,11 @@ const Set<String> _googleFoldersSensitive = <String>{};
 final class DataGoogleFolders extends Data {
   static const String tfType = 'google_folders';
 
-  DataGoogleFolders({required super.localName, required TfArg<String> parentId})
-    : super(terraformType: tfType, argMap: {'parent_id': parentId});
+  DataGoogleFolders({
+    required super.localName,
+    required TfArg<String> parentId,
+    super.provider,
+  }) : super(terraformType: tfType, argMap: {'parent_id': parentId});
 
   @override
   Set<String> get sensitiveFields => _googleFoldersSensitive;

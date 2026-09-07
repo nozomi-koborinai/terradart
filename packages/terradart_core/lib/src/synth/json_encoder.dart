@@ -41,18 +41,20 @@ class TfJsonEncoder {
       );
     }
 
-    final providerNames = <String>{
-      for (final p in stack.providers) p.providerName,
+    validateProviders(stack);
+    final registered = <String>{
+      for (final p in stack.providers) providerReference(p),
     };
     final missingByPrefix = <String, List<String>>{};
     for (final r in [...stack.resources, ...stack.dataSources]) {
       // An explicit provider meta-argument REPLACES the implied prefix
       // provider (Terraform semantics) — google-beta wrappers share the
       // GA google_* type prefix, so requiring both would force beta-only
-      // stacks to register a google provider they never use.
+      // stacks to register a google provider they never use. `google.eu`
+      // selects the registered provider carrying that alias.
       final explicit = r.provider;
       final needed = explicit ?? r.terraformType.split('_').first;
-      if (!providerNames.contains(needed)) {
+      if (!registered.contains(needed)) {
         missingByPrefix.putIfAbsent(needed, () => []).add(r.tfAddress);
       }
     }
@@ -64,7 +66,8 @@ class TfJsonEncoder {
         'Stack.providers declares no provider named $detail. Terraform '
         'would fall back to an unpinned implied provider for these '
         'resources. Add the matching StackProvider to '
-        '`Stack(providers: [...])`.',
+        '`Stack(providers: [...])` — for a `name.alias` reference, one '
+        "registered with `alias: '<alias>'`.",
       );
     }
 
@@ -104,16 +107,91 @@ class TfJsonEncoder {
     return {backend.backendType: backend.toTfJson()};
   }
 
-  /// The top-level `provider { ... }` value, or `null` when none of the
-  /// registered providers carry config args (no block needed).
+  /// The top-level `provider { ... }` value, or `null` when no block is
+  /// needed.
+  ///
+  /// A provider name registered once, without an alias, keeps the map form
+  /// (`"google": {"project": ...}`), omitted when it has no config args. A
+  /// name with aliases takes the list form Terraform JSON uses for repeated
+  /// provider blocks — one entry per registered configuration in
+  /// registration order, the aliased ones carrying `"alias"`; a default
+  /// configuration with no args is left out (Terraform supplies it).
   static Map<String, dynamic>? providerBlock(Stack stack) {
-    final entries = <String, dynamic>{};
+    validateProviders(stack);
+    final byName = <String, List<StackProvider>>{};
     for (final p in stack.providers) {
-      if (p.configArgs.isEmpty) continue;
-      entries[p.providerName] = Map<String, dynamic>.from(p.configArgs);
+      byName.putIfAbsent(p.providerName, () => []).add(p);
+    }
+    final entries = <String, dynamic>{};
+    for (final e in byName.entries) {
+      final configs = e.value;
+      if (configs.every((p) => p.alias == null)) {
+        // Validated above: exactly one default configuration.
+        final args = configs.single.configArgs;
+        if (args.isEmpty) continue;
+        entries[e.key] = Map<String, dynamic>.from(args);
+        continue;
+      }
+      entries[e.key] = [
+        for (final p in configs)
+          if (p.alias != null || p.configArgs.isNotEmpty)
+            <String, dynamic>{
+              ...p.configArgs,
+              if (p.alias != null) 'alias': p.alias,
+            },
+      ];
     }
     if (entries.isEmpty) return null;
     return entries;
+  }
+
+  /// `google` or `google.eu`: the value a resource's `provider`
+  /// meta-argument uses to select [p].
+  static String providerReference(StackProvider p) =>
+      p.alias == null ? p.providerName : '${p.providerName}.${p.alias}';
+
+  static final RegExp _aliasPattern = RegExp(r'^[A-Za-z_][A-Za-z0-9_-]*$');
+
+  /// Rejects a provider registration Terraform would: two default
+  /// configurations of one name, a repeated alias, an alias that is not an
+  /// identifier, or aliases of one name that disagree on `source` /
+  /// `versionConstraint` (they share the `required_providers` entry).
+  static void validateProviders(Stack stack) {
+    final seen = <String>{};
+    final firstOfName = <String, StackProvider>{};
+    for (final p in stack.providers) {
+      final alias = p.alias;
+      if (alias != null && !_aliasPattern.hasMatch(alias)) {
+        throw StateError(
+          'Provider "${p.providerName}" has the alias "$alias", which is not '
+          'a Terraform identifier (letters, digits, "_" and "-", not '
+          'starting with a digit).',
+        );
+      }
+      final ref = providerReference(p);
+      if (!seen.add(ref)) {
+        throw StateError(
+          alias == null
+              ? 'Provider "${p.providerName}" is registered twice without an '
+                  'alias. Give every configuration after the default one an '
+                  "`alias:` and select it with `provider: '${p.providerName}"
+                  ".<alias>'` on the resource."
+              : 'Provider alias "$ref" is registered twice.',
+        );
+      }
+      final first = firstOfName.putIfAbsent(p.providerName, () => p);
+      if (!identical(first, p) &&
+          (first.source != p.source ||
+              first.versionConstraint != p.versionConstraint)) {
+        throw StateError(
+          'Provider "${p.providerName}" is registered with different '
+          'source / version constraints (${first.source} '
+          '${first.versionConstraint} vs ${p.source} '
+          '${p.versionConstraint}); every configuration of one name shares '
+          'its required_providers entry.',
+        );
+      }
+    }
   }
 
   /// The top-level `variable { ... }` value, or `null` when the stack

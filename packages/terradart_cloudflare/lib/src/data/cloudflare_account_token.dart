@@ -36,6 +36,7 @@ final class DataCloudflareAccountToken extends Data {
     TfArg<String>? accountId,
     TfArg<String>? tokenId,
     DataAccountTokenFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

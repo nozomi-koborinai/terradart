@@ -18,6 +18,7 @@ final class DataCloudflareZeroTrustAccessPolicy extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> policyId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

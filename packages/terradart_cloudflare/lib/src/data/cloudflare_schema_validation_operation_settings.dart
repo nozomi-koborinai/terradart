@@ -21,6 +21,7 @@ final class DataCloudflareSchemaValidationOperationSettings extends Data {
     required super.localName,
     required TfArg<String> operationId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

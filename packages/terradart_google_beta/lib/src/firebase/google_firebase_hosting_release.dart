@@ -19,9 +19,10 @@ final class GoogleFirebaseHostingRelease extends Resource {
     TfArg<String>? versionName,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (channelId != null) 'channel_id': channelId,
            if (message != null) 'message': message,

@@ -20,6 +20,7 @@ final class DataGoogleVertexAiReasoningEngineQuery extends Data {
     TfArg<String>? project,
     required TfArg<String> reasoningEngineId,
     required TfArg<String> region,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -17,6 +17,7 @@ final class DataGoogleComputeImageIamPolicy extends Data {
     required super.localName,
     required TfArg<String> image,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'image': image, if (project != null) 'project': project},

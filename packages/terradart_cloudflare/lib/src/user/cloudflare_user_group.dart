@@ -67,6 +67,7 @@ final class CloudflareUserGroup extends Resource {
     List<UserGroupPolicies>? policies,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

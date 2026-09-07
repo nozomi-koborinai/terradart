@@ -23,6 +23,7 @@ final class AppwriteBackupPolicy extends Resource {
     required TfArg<List<String>> services,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

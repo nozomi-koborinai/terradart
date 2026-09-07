@@ -19,6 +19,7 @@ final class CloudflareRegistrarDomain extends Resource {
     TfArg<bool>? privacy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

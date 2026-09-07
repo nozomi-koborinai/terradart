@@ -271,10 +271,18 @@ class WrapperEmitter {
     }
     buf.writeln('    super.lifecycle,');
     buf.writeln('    super.dependsOn,');
+    // The `provider` meta-argument (`'google.eu'`, `'google-beta'` on a GA
+    // type). A lane with a fixed [resourceProvider] keeps it as the default
+    // so `provider:` can still select an alias of that provider.
+    if (resourceProvider == null) {
+      buf.writeln('    super.provider,');
+    } else {
+      buf.writeln('    String? provider,');
+    }
     buf.writeln('  }) : super(');
     buf.writeln('         terraformType: tfType,');
     if (resourceProvider != null) {
-      buf.writeln("         provider: '$resourceProvider',");
+      buf.writeln("         provider: provider ?? '$resourceProvider',");
     }
     buf.writeln('         argMap: {');
     for (final name in argMapOrder) {

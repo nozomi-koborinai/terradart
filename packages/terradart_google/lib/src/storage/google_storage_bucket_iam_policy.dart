@@ -21,6 +21,7 @@ final class GoogleStorageBucketIamPolicy extends Resource {
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'bucket': bucket, 'policy_data': policyData},

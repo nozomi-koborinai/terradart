@@ -39,6 +39,7 @@ final class CloudflareZeroTrustDeviceDeploymentGroups extends Resource {
     required List<ZeroTrustDeviceDeploymentGroupsVersionConfig> versionConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

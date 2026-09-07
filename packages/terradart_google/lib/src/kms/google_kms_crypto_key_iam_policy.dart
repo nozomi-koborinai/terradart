@@ -21,6 +21,7 @@ final class GoogleKmsCryptoKeyIamPolicy extends Resource {
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'crypto_key_id': cryptoKeyId, 'policy_data': policyData},

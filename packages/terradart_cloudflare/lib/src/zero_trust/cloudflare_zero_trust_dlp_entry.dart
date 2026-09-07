@@ -42,6 +42,7 @@ final class CloudflareZeroTrustDlpEntry extends Resource {
     required ZeroTrustDlpEntryPattern pattern,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

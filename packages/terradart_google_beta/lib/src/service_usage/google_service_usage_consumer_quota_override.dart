@@ -23,9 +23,10 @@ final class GoogleServiceUsageConsumerQuotaOverride extends Resource {
     required TfArg<String> service,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (dimensions != null) 'dimensions': dimensions,

@@ -204,6 +204,7 @@ final class GoogleAssuredWorkloadsWorkload extends Resource {
     AssuredWorkloadsWorkloadWorkloadOptions? workloadOptions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

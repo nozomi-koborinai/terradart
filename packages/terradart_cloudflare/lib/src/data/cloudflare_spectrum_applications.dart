@@ -20,6 +20,7 @@ final class DataCloudflareSpectrumApplications extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? order,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

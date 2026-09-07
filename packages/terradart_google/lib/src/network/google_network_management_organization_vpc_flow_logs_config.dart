@@ -40,6 +40,7 @@ final class GoogleNetworkManagementOrganizationVpcFlowLogsConfig
     required TfArg<String> vpcFlowLogsConfigId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -48,6 +48,7 @@ final class CloudflareMagicTransitConnector extends Resource {
     required MagicTransitConnectorDevice device,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

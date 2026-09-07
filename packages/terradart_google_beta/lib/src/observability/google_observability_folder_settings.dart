@@ -18,9 +18,10 @@ final class GoogleObservabilityFolderSettings extends Resource {
     required TfArg<String> location,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (defaultStorageLocation != null)
              'default_storage_location': defaultStorageLocation,

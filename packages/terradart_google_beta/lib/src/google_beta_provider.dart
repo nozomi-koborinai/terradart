@@ -22,10 +22,17 @@ const String kBetaProviderVersionConstraint = '~> 7.0';
 @immutable
 final class GoogleBetaProvider implements StackProvider {
   const GoogleBetaProvider({
+    this.alias,
     this.project,
     this.region,
     this.zone,
   });
+
+  /// Provider alias (`provider "google-beta" { alias = "eu" }`), or `null` for
+  /// the default configuration. Select it on a resource with
+  /// `provider: 'google-beta.<alias>'`.
+  @override
+  final String? alias;
 
   /// Default GCP project ID.
   final String? project;

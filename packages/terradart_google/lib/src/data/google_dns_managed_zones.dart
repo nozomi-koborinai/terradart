@@ -13,11 +13,14 @@ const Set<String> _googleDnsManagedZonesSensitive = <String>{};
 final class DataGoogleDnsManagedZones extends Data {
   static const String tfType = 'google_dns_managed_zones';
 
-  DataGoogleDnsManagedZones({required super.localName, TfArg<String>? project})
-    : super(
-        terraformType: tfType,
-        argMap: {if (project != null) 'project': project},
-      );
+  DataGoogleDnsManagedZones({
+    required super.localName,
+    TfArg<String>? project,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (project != null) 'project': project},
+       );
 
   @override
   Set<String> get sensitiveFields => _googleDnsManagedZonesSensitive;

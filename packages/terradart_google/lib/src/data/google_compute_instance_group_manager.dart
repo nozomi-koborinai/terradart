@@ -19,6 +19,7 @@ final class DataGoogleComputeInstanceGroupManager extends Data {
     TfArg<String>? project,
     TfArg<String>? selfLink,
     TfArg<String>? zone,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

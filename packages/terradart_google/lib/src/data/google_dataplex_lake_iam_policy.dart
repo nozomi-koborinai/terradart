@@ -18,6 +18,7 @@ final class DataGoogleDataplexLakeIamPolicy extends Data {
     required TfArg<String> lake,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

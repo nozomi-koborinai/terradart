@@ -27,6 +27,7 @@ final class AppwriteProjectKey extends Resource {
     required TfArg<List<String>> scopes,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

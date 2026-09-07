@@ -182,6 +182,7 @@ final class GoogleCloudTasksQueue extends Resource {
     TfArg<CloudTasksQueueDesiredState>? desiredState,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

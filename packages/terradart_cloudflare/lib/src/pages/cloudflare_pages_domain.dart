@@ -21,6 +21,7 @@ final class CloudflarePagesDomain extends Resource {
     required TfArg<String> projectName,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

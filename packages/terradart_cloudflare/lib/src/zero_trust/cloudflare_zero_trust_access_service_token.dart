@@ -26,6 +26,7 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
     TfArg<String>? zoneId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

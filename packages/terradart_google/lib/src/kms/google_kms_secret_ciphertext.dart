@@ -48,6 +48,7 @@ final class GoogleKmsSecretCiphertext extends Resource {
     TfArg<String>? additionalAuthenticatedData,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

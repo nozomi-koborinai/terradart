@@ -27,6 +27,7 @@ final class GoogleServiceNetworkingPeeredDnsDomain extends Resource {
     TfArg<String>? service,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

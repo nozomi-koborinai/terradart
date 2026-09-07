@@ -78,6 +78,7 @@ final class GoogleCloudbuildBitbucketServerConfig extends Resource {
     required CloudbuildBitbucketServerConfigSecrets secrets,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -57,6 +57,7 @@ final class CloudflareKeylessCertificate extends Resource {
     KeylessCertificateTunnel? tunnel,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

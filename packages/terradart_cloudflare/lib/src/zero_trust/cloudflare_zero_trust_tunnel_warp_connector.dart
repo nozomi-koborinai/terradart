@@ -26,6 +26,7 @@ final class CloudflareZeroTrustTunnelWarpConnector extends Resource {
     TfArg<String>? tunnelSecret,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

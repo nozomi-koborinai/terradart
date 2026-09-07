@@ -710,6 +710,7 @@ final class CloudflareWorkerVersion extends Resource {
     WorkerVersionPlacement? placement,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

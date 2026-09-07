@@ -16,6 +16,7 @@ final class DataGoogleComputeFirewallPolicyIamPolicy extends Data {
   DataGoogleComputeFirewallPolicyIamPolicy({
     required super.localName,
     required TfArg<String> name,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'name': name});
 
   @override

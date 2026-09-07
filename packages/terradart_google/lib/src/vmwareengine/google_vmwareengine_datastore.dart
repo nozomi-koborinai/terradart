@@ -109,6 +109,7 @@ final class GoogleVmwareengineDatastore extends Resource {
     TfArg<String>? description,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

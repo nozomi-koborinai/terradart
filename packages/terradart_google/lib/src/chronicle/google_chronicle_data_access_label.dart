@@ -35,6 +35,7 @@ final class GoogleChronicleDataAccessLabel extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

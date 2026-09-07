@@ -33,6 +33,7 @@ final class CloudflareOauthClient extends Resource {
     TfArg<String>? visibility,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

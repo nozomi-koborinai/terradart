@@ -33,6 +33,7 @@ final class DataCloudflareShareResource extends Data {
     required TfArg<String> shareId,
     TfArg<String>? shareResourceId,
     DataShareResourceFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

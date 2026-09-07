@@ -18,6 +18,7 @@ final class DataGoogleApphubApplication extends Data {
     required TfArg<String> applicationId,
     required TfArg<String> location,
     required TfArg<String> project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -41,6 +41,7 @@ final class GoogleComputeServiceAttachment extends Resource {
     TfArg<List<Map<String, dynamic>>>? consumerAcceptLists,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

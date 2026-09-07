@@ -24,6 +24,7 @@ final class DataCloudflareWorkerVersions extends Data {
     TfArg<String>? accountId,
     TfArg<num>? maxItems,
     required TfArg<String> workerId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

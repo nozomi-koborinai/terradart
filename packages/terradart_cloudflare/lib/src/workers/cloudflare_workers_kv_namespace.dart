@@ -20,6 +20,7 @@ final class CloudflareWorkersKvNamespace extends Resource {
     required TfArg<String> title,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'title': title},

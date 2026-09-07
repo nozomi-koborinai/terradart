@@ -25,9 +25,10 @@ final class GoogleSaasRuntimeUnitKind extends Resource {
     TfArg<List<Map<String, dynamic>>>? outputVariableMappings,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (annotations != null) 'annotations': annotations,
            if (defaultRelease != null) 'default_release': defaultRelease,

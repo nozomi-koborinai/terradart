@@ -72,6 +72,7 @@ final class CloudflareAccount extends Resource {
     AccountUnit? unit,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -11,6 +11,8 @@ import 'package:terradart_core/terradart_core.dart';
 
 final class FakeProvider implements StackProvider {
   @override
+  String? get alias => null;
+  @override
   String get providerName => 'fake';
   @override
   String get source => 'example/fake';

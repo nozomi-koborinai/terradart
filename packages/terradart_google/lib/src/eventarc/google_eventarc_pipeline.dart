@@ -30,6 +30,7 @@ final class GoogleEventarcPipeline extends Resource {
     TfArg<Map<String, dynamic>>? retryPolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

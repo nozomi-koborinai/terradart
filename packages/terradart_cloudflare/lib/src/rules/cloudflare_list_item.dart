@@ -89,6 +89,7 @@ final class CloudflareListItem extends Resource {
     ListItemRedirect? redirect,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -25,6 +25,7 @@ final class GoogleFirebaserulesRelease extends Resource {
     required TfArg<String> rulesetName,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

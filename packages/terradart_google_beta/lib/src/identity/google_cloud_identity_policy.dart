@@ -18,9 +18,10 @@ final class GoogleCloudIdentityPolicy extends Resource {
     required TfArg<Map<String, dynamic>> setting,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'customer': customer,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

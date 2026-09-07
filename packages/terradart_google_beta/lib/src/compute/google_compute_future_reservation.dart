@@ -35,9 +35,10 @@ final class GoogleComputeFutureReservation extends Resource {
     required TfArg<Map<String, dynamic>> timeWindow,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (autoCreatedReservationsDeleteTime != null)
              'auto_created_reservations_delete_time':

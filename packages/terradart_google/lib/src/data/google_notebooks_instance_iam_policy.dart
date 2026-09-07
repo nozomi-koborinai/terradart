@@ -18,6 +18,7 @@ final class DataGoogleNotebooksInstanceIamPolicy extends Data {
     required TfArg<String> instanceName,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

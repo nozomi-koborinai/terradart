@@ -47,6 +47,7 @@ final class GoogleServiceNetworkingVpcServiceControls extends Resource {
     required TfArg<String> service,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

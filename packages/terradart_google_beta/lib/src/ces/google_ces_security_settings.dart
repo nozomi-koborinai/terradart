@@ -17,9 +17,10 @@ final class GoogleCesSecuritySettings extends Resource {
     TfArg<Map<String, dynamic>>? endpointControlPolicy,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'location': location,
            if (project != null) 'project': project,

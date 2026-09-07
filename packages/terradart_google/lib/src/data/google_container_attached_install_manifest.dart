@@ -19,6 +19,7 @@ final class DataGoogleContainerAttachedInstallManifest extends Data {
     required TfArg<String> location,
     required TfArg<String> platformVersion,
     required TfArg<String> project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

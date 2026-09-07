@@ -17,6 +17,7 @@ final class DataGoogleComputeNodeTypes extends Data {
     required super.localName,
     TfArg<String>? project,
     TfArg<String>? zone,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

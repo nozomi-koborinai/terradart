@@ -20,6 +20,7 @@ final class DataGoogleBackupDrDataSources extends Data {
     required TfArg<String> location,
     TfArg<String>? orderBy,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -33,6 +33,7 @@ final class DataCloudflareZeroTrustDeviceIpProfile extends Data {
     TfArg<String>? accountId,
     TfArg<String>? profileId,
     DataZeroTrustDeviceIpProfileFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

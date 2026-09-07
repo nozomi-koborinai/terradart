@@ -21,6 +21,7 @@ final class CloudflareLeakedCredentialCheck extends Resource {
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (enabled != null) 'enabled': enabled, 'zone_id': zoneId},

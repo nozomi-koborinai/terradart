@@ -29,6 +29,7 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
     TfArg<String>? provenance,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

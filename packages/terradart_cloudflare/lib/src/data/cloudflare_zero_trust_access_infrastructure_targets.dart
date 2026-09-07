@@ -34,6 +34,7 @@ final class DataCloudflareZeroTrustAccessInfrastructureTargets extends Data {
     TfArg<String>? order,
     TfArg<List<String>>? targetIds,
     TfArg<String>? virtualNetworkId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

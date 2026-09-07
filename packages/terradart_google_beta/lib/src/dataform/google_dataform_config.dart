@@ -17,9 +17,10 @@ final class GoogleDataformConfig extends Resource {
     required TfArg<String> region,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (defaultKmsKeyName != null)
              'default_kms_key_name': defaultKmsKeyName,

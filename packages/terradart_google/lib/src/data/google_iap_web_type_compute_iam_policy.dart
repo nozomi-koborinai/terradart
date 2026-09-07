@@ -16,6 +16,7 @@ final class DataGoogleIapWebTypeComputeIamPolicy extends Data {
   DataGoogleIapWebTypeComputeIamPolicy({
     required super.localName,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (project != null) 'project': project},

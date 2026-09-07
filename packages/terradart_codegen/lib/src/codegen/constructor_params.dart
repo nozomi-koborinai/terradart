@@ -9,8 +9,8 @@ import '../ir/resource_def.dart';
 /// surfaces produce an identical ordering.
 ///
 /// The returned list excludes the super-parameters that frame the slot list
-/// (`localName`, `lifecycle`, `dependsOn`) — those are always emitted by the
-/// caller as fixed bookends.
+/// (`localName`, `lifecycle`, `dependsOn`, `provider`) — those are always
+/// emitted by the caller as fixed bookends.
 ///
 /// ## Ordering rule
 ///

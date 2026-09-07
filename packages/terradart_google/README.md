@@ -55,6 +55,8 @@ dart run bin/infra.dart
 cd tf-out && terraform init && terraform apply
 ```
 
+Register a second configuration with `GoogleProvider(alias: 'eu', ...)` and select it on a resource with `provider: 'google.eu'` — every factory and data source takes `provider:` (Terraform's `provider` meta-argument); `provider: 'google-beta'` puts a GA type on the beta provider.
+
 Per-service imports (`cloud_run.dart`, `storage.dart`, …) keep IDE completion scoped. See [examples/](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) for AppExport / boundary patterns.
 
 ## How resources are built

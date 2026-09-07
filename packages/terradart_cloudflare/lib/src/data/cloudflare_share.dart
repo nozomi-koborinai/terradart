@@ -57,6 +57,7 @@ final class DataCloudflareShare extends Data {
     TfArg<bool>? includeResources,
     TfArg<String>? shareId,
     DataShareFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

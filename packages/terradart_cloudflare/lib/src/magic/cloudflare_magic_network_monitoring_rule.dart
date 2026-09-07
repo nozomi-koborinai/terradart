@@ -30,6 +30,7 @@ final class CloudflareMagicNetworkMonitoringRule extends Resource {
     TfArg<String>? zscoreTarget,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -23,6 +23,7 @@ final class CloudflareCloudforceOneRequestAsset extends Resource {
     TfArg<String>? source,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -29,6 +29,7 @@ final class AppwriteMysqlPooler extends Resource {
     TfArg<bool>? readWriteSplitting,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

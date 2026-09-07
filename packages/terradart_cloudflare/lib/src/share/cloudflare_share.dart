@@ -63,6 +63,7 @@ final class CloudflareShare extends Resource {
     required List<ShareResources> resources,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

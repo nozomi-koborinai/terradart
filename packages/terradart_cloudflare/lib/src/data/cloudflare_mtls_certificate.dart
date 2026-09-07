@@ -14,6 +14,7 @@ final class DataCloudflareMtlsCertificate extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> mtlsCertificateId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -31,6 +31,7 @@ final class DataCloudflareCustomCsr extends Data {
     TfArg<String>? customCsrId,
     TfArg<String>? zoneId,
     DataCustomCsrFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

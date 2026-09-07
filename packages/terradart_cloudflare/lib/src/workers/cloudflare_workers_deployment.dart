@@ -56,6 +56,7 @@ final class CloudflareWorkersDeployment extends Resource {
     required List<WorkersDeploymentVersions> versions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

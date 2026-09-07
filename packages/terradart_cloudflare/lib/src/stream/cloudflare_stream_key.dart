@@ -19,6 +19,7 @@ final class CloudflareStreamKey extends Resource {
     required TfArg<String> accountId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'account_id': accountId});
 
   @override

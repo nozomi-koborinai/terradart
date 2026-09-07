@@ -4,13 +4,15 @@ import 'resource.dart';
 ///
 /// Parallel to `Resource`. The two share `Stack`-level dedup via
 /// `(kind, terraformType, localName)`. `Data` does not accept `lifecycle`
-/// (Terraform forbids it on data sources).
+/// (Terraform forbids it on data sources); it does take the `provider`
+/// meta-argument, like a resource.
 abstract base class Data extends Resource {
   Data({
     required super.terraformType,
     required super.localName,
     required super.argMap,
     super.dependsOn,
+    super.provider,
   }) : super(lifecycle: null);
 
   @override

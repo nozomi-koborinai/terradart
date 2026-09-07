@@ -14,11 +14,14 @@ const Set<String> _cloudflareBotManagementSensitive = <String>{};
 final class DataCloudflareBotManagement extends Data {
   static const String tfType = 'cloudflare_bot_management';
 
-  DataCloudflareBotManagement({required super.localName, TfArg<String>? zoneId})
-    : super(
-        terraformType: tfType,
-        argMap: {if (zoneId != null) 'zone_id': zoneId},
-      );
+  DataCloudflareBotManagement({
+    required super.localName,
+    TfArg<String>? zoneId,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (zoneId != null) 'zone_id': zoneId},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareBotManagementSensitive;

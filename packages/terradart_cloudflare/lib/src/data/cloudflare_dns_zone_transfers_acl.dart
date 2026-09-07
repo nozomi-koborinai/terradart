@@ -18,6 +18,7 @@ final class DataCloudflareDnsZoneTransfersAcl extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> aclId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

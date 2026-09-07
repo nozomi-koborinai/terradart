@@ -18,6 +18,7 @@ final class DataGoogleStorageInsightsDatasetConfig extends Data {
     required TfArg<String> datasetConfigId,
     required TfArg<String> location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -13,11 +13,14 @@ const Set<String> _googleAlloydbLocationsSensitive = <String>{};
 final class DataGoogleAlloydbLocations extends Data {
   static const String tfType = 'google_alloydb_locations';
 
-  DataGoogleAlloydbLocations({required super.localName, TfArg<String>? project})
-    : super(
-        terraformType: tfType,
-        argMap: {if (project != null) 'project': project},
-      );
+  DataGoogleAlloydbLocations({
+    required super.localName,
+    TfArg<String>? project,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (project != null) 'project': project},
+       );
 
   @override
   Set<String> get sensitiveFields => _googleAlloydbLocationsSensitive;

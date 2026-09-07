@@ -20,6 +20,7 @@ final class DataCloudflareLoadBalancerPools extends Data {
     TfArg<String>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? monitor,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -16,6 +16,7 @@ final class DataGoogleCloudIdentityGroups extends Data {
   DataGoogleCloudIdentityGroups({
     required super.localName,
     required TfArg<String> parent,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'parent': parent});
 
   @override

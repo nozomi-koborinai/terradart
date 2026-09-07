@@ -17,6 +17,7 @@ final class DataGoogleServiceDirectoryNamespaceIamPolicy extends Data {
   DataGoogleServiceDirectoryNamespaceIamPolicy({
     required super.localName,
     required TfArg<String> name,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'name': name});
 
   @override

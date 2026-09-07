@@ -103,6 +103,7 @@ final class GoogleCloudAssetOrganizationFeed extends Resource {
     required CloudAssetOrganizationFeedFeedOutputConfig feedOutputConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

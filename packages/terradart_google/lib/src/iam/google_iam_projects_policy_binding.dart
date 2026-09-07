@@ -75,6 +75,7 @@ final class GoogleIamProjectsPolicyBinding extends Resource {
     required IamProjectsPolicyBindingTarget target,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

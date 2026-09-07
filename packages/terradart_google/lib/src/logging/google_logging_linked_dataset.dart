@@ -42,6 +42,7 @@ final class GoogleLoggingLinkedDataset extends Resource {
     LoggingLinkedDatasetBigqueryDataset? bigqueryDataset,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

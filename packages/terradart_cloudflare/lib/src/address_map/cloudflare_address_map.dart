@@ -41,6 +41,7 @@ final class CloudflareAddressMap extends Resource {
     List<AddressMapMemberships>? memberships,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

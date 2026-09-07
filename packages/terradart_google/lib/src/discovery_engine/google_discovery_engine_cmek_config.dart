@@ -42,6 +42,7 @@ final class GoogleDiscoveryEngineCmekConfig extends Resource {
     List<DiscoveryEngineCmekConfigSingleRegionKeys>? singleRegionKeys,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

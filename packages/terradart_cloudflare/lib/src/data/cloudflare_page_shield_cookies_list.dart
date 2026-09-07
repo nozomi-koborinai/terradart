@@ -33,6 +33,7 @@ final class DataCloudflarePageShieldCookiesList extends Data {
     TfArg<bool>? secure,
     TfArg<String>? type,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

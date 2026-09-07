@@ -22,6 +22,7 @@ final class DataGoogleStorageControlFolderIntelligenceFindingsSummary
     required TfArg<String> folder,
     TfArg<String>? location,
     TfArg<String>? resourceScope,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

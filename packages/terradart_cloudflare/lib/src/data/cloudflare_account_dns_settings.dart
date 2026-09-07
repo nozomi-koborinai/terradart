@@ -17,6 +17,7 @@ final class DataCloudflareAccountDnsSettings extends Data {
   DataCloudflareAccountDnsSettings({
     required super.localName,
     TfArg<String>? accountId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (accountId != null) 'account_id': accountId},

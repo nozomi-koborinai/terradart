@@ -25,9 +25,10 @@ final class GoogleBiglakeHiveTable extends Resource {
     required TfArg<Map<String, dynamic>> storageDescriptor,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'catalog': catalog,
            'database': database,

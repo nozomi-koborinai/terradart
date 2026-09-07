@@ -18,6 +18,7 @@ final class DataGoogleIapTunnelInstanceIamPolicy extends Data {
     required TfArg<String> instance,
     TfArg<String>? project,
     TfArg<String>? zone,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

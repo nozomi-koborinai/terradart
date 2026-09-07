@@ -21,6 +21,7 @@ final class GoogleKmsKeyRingIamPolicy extends Resource {
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'key_ring_id': keyRingId, 'policy_data': policyData},

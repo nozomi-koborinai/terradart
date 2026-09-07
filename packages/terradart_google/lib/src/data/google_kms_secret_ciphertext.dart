@@ -17,6 +17,7 @@ final class DataGoogleKmsSecretCiphertext extends Data {
     required super.localName,
     required TfArg<String> cryptoKey,
     required TfArg<String> plaintext,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'crypto_key': cryptoKey, 'plaintext': plaintext},

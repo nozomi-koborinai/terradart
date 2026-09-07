@@ -55,6 +55,7 @@ final class GoogleComputePublicDelegatedPrefix extends Resource {
     required TfArg<String> region,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

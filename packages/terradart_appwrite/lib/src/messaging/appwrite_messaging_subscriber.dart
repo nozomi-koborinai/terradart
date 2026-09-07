@@ -19,6 +19,7 @@ final class AppwriteMessagingSubscriber extends Resource {
     required TfArg<String> topicId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

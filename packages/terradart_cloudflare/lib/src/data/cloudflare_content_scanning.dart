@@ -18,6 +18,7 @@ final class DataCloudflareContentScanning extends Data {
   DataCloudflareContentScanning({
     required super.localName,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (zoneId != null) 'zone_id': zoneId},

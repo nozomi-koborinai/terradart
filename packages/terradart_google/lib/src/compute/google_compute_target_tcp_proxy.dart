@@ -32,6 +32,7 @@ final class GoogleComputeTargetTcpProxy extends Resource {
     TfArg<TargetTcpProxyProxyHeader>? proxyHeader,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

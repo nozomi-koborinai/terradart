@@ -32,9 +32,10 @@ final class GoogleTpuV2Vm extends Resource {
     TfArg<Map<String, dynamic>>? shieldedInstanceConfig,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (acceleratorType != null) 'accelerator_type': acceleratorType,
            if (cidrBlock != null) 'cidr_block': cidrBlock,

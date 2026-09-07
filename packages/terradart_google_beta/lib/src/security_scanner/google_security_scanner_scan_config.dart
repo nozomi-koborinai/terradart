@@ -30,9 +30,10 @@ final class GoogleSecurityScannerScanConfig extends Resource {
     TfArg<Map<String, dynamic>>? schedule,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (blacklistPatterns != null)
              'blacklist_patterns': blacklistPatterns,

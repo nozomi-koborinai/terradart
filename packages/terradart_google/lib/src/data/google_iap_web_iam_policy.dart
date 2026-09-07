@@ -13,11 +13,14 @@ const Set<String> _googleIapWebIamPolicySensitive = <String>{};
 final class DataGoogleIapWebIamPolicy extends Data {
   static const String tfType = 'google_iap_web_iam_policy';
 
-  DataGoogleIapWebIamPolicy({required super.localName, TfArg<String>? project})
-    : super(
-        terraformType: tfType,
-        argMap: {if (project != null) 'project': project},
-      );
+  DataGoogleIapWebIamPolicy({
+    required super.localName,
+    TfArg<String>? project,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (project != null) 'project': project},
+       );
 
   @override
   Set<String> get sensitiveFields => _googleIapWebIamPolicySensitive;

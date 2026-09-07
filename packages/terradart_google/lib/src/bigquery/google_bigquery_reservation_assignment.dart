@@ -32,6 +32,7 @@ final class GoogleBigqueryReservationAssignment extends Resource {
     required TfArg<String> reservation,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -17,6 +17,7 @@ final class DataGoogleKmsCryptoKeys extends Data {
     required super.localName,
     TfArg<String>? filter,
     required TfArg<String> keyRing,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (filter != null) 'filter': filter, 'key_ring': keyRing},

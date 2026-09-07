@@ -124,6 +124,7 @@ final class GoogleStorageNotification extends Resource {
     TfArg<Map<String, String>>? customAttributes,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -56,6 +56,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork
     TfArg<String>? accountId,
     TfArg<String>? virtualNetworkId,
     DataZeroTrustTunnelCloudflaredVirtualNetworkFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

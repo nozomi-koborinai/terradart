@@ -155,6 +155,7 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
     List<DiscoveryEngineDataConnectorEntities>? entities,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

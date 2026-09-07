@@ -20,6 +20,7 @@ final class CloudflareR2DataCatalog extends Resource {
     required TfArg<String> bucketName,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'bucket_name': bucketName},

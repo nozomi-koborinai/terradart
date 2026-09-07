@@ -18,6 +18,7 @@ final class DataGoogleDataCatalogTagTemplateIamPolicy extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> tagTemplate,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

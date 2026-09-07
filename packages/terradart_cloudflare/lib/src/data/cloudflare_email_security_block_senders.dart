@@ -23,6 +23,7 @@ final class DataCloudflareEmailSecurityBlockSenders extends Data {
     TfArg<String>? pattern,
     TfArg<String>? patternType,
     TfArg<String>? search,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

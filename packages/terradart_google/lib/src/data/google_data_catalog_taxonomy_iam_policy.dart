@@ -18,6 +18,7 @@ final class DataGoogleDataCatalogTaxonomyIamPolicy extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> taxonomy,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

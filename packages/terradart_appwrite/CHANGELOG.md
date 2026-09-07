@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **`AppwriteProvider.alias`** (`provider "appwrite" { alias = "staging" }`) and a **`provider:`** parameter on every factory and data source, so a resource can select an aliased configuration (`provider: 'appwrite.staging'`) (#666).
+
 ## 0.27.0 - 2026-08-30
 
 Lockstep release with `terradart_core` 0.27.0 (`TfVariable` / `Stack.addVariable` and `S3Backend`). No `terradart_appwrite` API changes.

@@ -19,6 +19,7 @@ final class DataGoogleParameterManagerRegionalParameter extends Data {
     required TfArg<String> location,
     required TfArg<String> parameterId,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

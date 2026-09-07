@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **`CloudflareProvider.alias`** (`provider "cloudflare" { alias = "other_account" }`) and a **`provider:`** parameter on every factory and data source, so a resource can select an aliased configuration (`provider: 'cloudflare.other_account'`) (#666).
+
 ## 0.27.0 - 2026-08-30
 
 Lockstep release with `terradart_core` 0.27.0 (`TfVariable` / `Stack.addVariable` and `S3Backend`). No `terradart_cloudflare` API changes.

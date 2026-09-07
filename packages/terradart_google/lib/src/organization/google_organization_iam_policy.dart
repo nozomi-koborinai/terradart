@@ -21,6 +21,7 @@ final class GoogleOrganizationIamPolicy extends Resource {
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'org_id': orgId, 'policy_data': policyData},

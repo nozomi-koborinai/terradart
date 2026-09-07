@@ -20,6 +20,7 @@ final class DataGoogleSecureSourceManagerInstanceIamPolicy extends Data {
     required TfArg<String> instanceId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

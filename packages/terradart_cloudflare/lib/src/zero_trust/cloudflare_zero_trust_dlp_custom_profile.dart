@@ -153,6 +153,7 @@ final class CloudflareZeroTrustDlpCustomProfile extends Resource {
     List<ZeroTrustDlpCustomProfileSharedEntries>? sharedEntries,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

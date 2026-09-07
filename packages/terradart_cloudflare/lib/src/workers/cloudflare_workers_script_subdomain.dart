@@ -22,6 +22,7 @@ final class CloudflareWorkersScriptSubdomain extends Resource {
     required TfArg<String> scriptName,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -235,6 +235,7 @@ final class GoogleNetworkManagementConnectivityTest extends Resource {
     TfArg<bool>? roundTrip,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

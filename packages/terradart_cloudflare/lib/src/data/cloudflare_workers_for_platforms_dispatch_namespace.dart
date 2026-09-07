@@ -20,6 +20,7 @@ final class DataCloudflareWorkersForPlatformsDispatchNamespace extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> dispatchNamespace,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -48,6 +48,7 @@ final class CloudflareZeroTrustAccessMtlsHostnameSettings extends Resource {
     required List<ZeroTrustAccessMtlsHostnameSettingsSettings> settings,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

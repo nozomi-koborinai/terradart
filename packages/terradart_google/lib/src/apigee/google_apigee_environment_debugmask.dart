@@ -31,6 +31,7 @@ final class GoogleApigeeEnvironmentDebugmask extends Resource {
     TfArg<List<String>>? variables,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

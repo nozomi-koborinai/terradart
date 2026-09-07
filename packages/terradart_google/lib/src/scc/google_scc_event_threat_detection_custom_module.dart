@@ -44,6 +44,7 @@ final class GoogleSccEventThreatDetectionCustomModule extends Resource {
     required TfArg<String> type,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

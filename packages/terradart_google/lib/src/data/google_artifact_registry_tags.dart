@@ -20,6 +20,7 @@ final class DataGoogleArtifactRegistryTags extends Data {
     required TfArg<String> packageName,
     TfArg<String>? project,
     required TfArg<String> repositoryId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

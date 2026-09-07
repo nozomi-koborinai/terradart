@@ -27,6 +27,7 @@ final class GoogleSqlProvisionScript extends Resource {
     required TfArg<String> script,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

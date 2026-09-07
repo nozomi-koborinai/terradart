@@ -29,6 +29,7 @@ final class GoogleApigeeControlPlaneAccess extends Resource {
     TfArg<List<String>>? analyticsPublisherIdentities,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

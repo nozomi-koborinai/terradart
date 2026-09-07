@@ -31,6 +31,7 @@ final class GoogleComputeOrganizationSecurityPolicy extends Resource {
     TfArg<Map<String, dynamic>>? advancedOptionsConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

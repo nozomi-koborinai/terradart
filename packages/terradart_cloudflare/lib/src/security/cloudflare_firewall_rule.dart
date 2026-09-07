@@ -84,6 +84,7 @@ final class CloudflareFirewallRule extends Resource {
     required FirewallRuleFilter filter,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

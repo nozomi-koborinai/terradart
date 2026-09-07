@@ -201,6 +201,7 @@ final class GoogleHealthcarePipelineJob extends Resource {
     HealthcarePipelineJobReconciliationPipelineJob? reconciliationPipelineJob,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

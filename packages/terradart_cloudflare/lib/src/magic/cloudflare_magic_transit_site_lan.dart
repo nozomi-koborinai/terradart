@@ -187,6 +187,7 @@ final class CloudflareMagicTransitSiteLan extends Resource {
     MagicTransitSiteLanStaticAddressing? staticAddressing,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

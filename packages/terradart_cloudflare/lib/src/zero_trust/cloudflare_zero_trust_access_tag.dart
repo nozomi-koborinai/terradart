@@ -16,6 +16,7 @@ final class CloudflareZeroTrustAccessTag extends Resource {
     required TfArg<String> name,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'name': name},

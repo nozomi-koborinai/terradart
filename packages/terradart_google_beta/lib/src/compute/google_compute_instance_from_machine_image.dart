@@ -52,9 +52,10 @@ final class GoogleComputeInstanceFromMachineImage extends Resource {
     TfArg<Map<String, dynamic>>? workloadIdentityConfig,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (allowStoppingForUpdate != null)
              'allow_stopping_for_update': allowStoppingForUpdate,

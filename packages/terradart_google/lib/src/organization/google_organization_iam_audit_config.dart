@@ -45,6 +45,7 @@ final class GoogleOrganizationIamAuditConfig extends Resource {
     required List<OrganizationIamAuditConfigAuditLogConfig> auditLogConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

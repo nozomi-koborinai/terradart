@@ -19,6 +19,7 @@ final class DataAppwriteMongoBackups extends Data {
     required TfArg<String> databaseId,
     TfArg<String>? projectId,
     TfArg<List<String>>? queries,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

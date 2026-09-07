@@ -43,6 +43,7 @@ final class DataCloudflareAiSearchInstance extends Data {
     required super.localName,
     TfArg<String>? accountId,
     DataAiSearchInstanceFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -4,7 +4,13 @@ import 'package:terradart_core/terradart_core.dart';
 /// Concrete [StackProvider] for `hashicorp/time` (used by `TimeSleep`).
 @immutable
 final class TimeProvider implements StackProvider {
-  const TimeProvider();
+  const TimeProvider({this.alias});
+
+  /// Provider alias (`provider "time" { alias = "eu" }`), or `null` for
+  /// the default configuration. Select it on a resource with
+  /// `provider: 'time.<alias>'`.
+  @override
+  final String? alias;
 
   @override
   String get providerName => 'time';

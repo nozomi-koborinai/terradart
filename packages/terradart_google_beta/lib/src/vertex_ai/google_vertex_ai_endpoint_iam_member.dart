@@ -20,9 +20,10 @@ final class GoogleVertexAiEndpointIamMember extends Resource {
     TfArg<Map<String, dynamic>>? condition,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'endpoint': endpoint,
            if (location != null) 'location': location,

@@ -429,6 +429,7 @@ final class GoogleOsConfigV2PolicyOrchestrator extends Resource {
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

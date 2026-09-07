@@ -392,6 +392,7 @@ final class GoogleClouddomainsRegistration extends Resource {
     required ClouddomainsRegistrationYearlyPrice yearlyPrice,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -16,6 +16,7 @@ final class DataGoogleHealthcareDatasetIamPolicy extends Data {
   DataGoogleHealthcareDatasetIamPolicy({
     required super.localName,
     required TfArg<String> datasetId,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'dataset_id': datasetId});
 
   @override

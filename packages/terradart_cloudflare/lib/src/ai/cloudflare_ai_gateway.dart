@@ -426,6 +426,7 @@ final class CloudflareAiGateway extends Resource {
     AiGatewayStripe? stripe,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

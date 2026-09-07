@@ -52,6 +52,7 @@ final class GoogleOrganizationAccessApprovalSettings extends Resource {
     enrolledServices,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

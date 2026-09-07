@@ -29,6 +29,7 @@ final class GoogleApigeeEnvReferences extends Resource {
     TfArg<String>? description,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

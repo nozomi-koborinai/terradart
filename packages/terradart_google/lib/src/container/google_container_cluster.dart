@@ -111,6 +111,7 @@ final class GoogleContainerCluster extends Resource {
     TfArg<Map<String, dynamic>>? workloadIdentityConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

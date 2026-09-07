@@ -151,6 +151,7 @@ final class CloudflareZeroTrustOrganization extends Resource {
     ZeroTrustOrganizationMfaSshPivKeyRequirements? mfaSshPivKeyRequirements,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

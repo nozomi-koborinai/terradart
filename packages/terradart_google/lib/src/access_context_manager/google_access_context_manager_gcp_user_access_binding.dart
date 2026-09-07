@@ -266,6 +266,7 @@ final class GoogleAccessContextManagerGcpUserAccessBinding extends Resource {
     AccessContextManagerGcpUserAccessBindingSessionSettings? sessionSettings,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

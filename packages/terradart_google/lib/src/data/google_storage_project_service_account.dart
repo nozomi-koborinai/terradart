@@ -17,6 +17,7 @@ final class DataGoogleStorageProjectServiceAccount extends Data {
     required super.localName,
     TfArg<String>? project,
     TfArg<String>? userProject,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

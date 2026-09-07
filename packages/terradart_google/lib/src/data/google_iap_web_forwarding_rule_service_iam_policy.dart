@@ -19,6 +19,7 @@ final class DataGoogleIapWebForwardingRuleServiceIamPolicy extends Data {
     required super.localName,
     required TfArg<String> forwardingRuleServiceName,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

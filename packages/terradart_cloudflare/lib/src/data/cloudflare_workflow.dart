@@ -33,6 +33,7 @@ final class DataCloudflareWorkflow extends Data {
     TfArg<String>? accountId,
     TfArg<String>? workflowName,
     DataWorkflowFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

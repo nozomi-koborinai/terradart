@@ -18,6 +18,7 @@ final class DataGoogleSqlDatabase extends Data {
     required TfArg<String> instance,
     required TfArg<String> name,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

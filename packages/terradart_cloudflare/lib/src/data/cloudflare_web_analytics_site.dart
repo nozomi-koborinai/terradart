@@ -33,6 +33,7 @@ final class DataCloudflareWebAnalyticsSite extends Data {
     TfArg<String>? accountId,
     TfArg<String>? siteId,
     DataWebAnalyticsSiteFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -15,6 +15,7 @@ final class DataCloudflareRuleset extends Data {
     TfArg<String>? accountId,
     TfArg<String>? rulesetId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

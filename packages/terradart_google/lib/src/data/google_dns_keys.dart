@@ -17,6 +17,7 @@ final class DataGoogleDnsKeys extends Data {
     required super.localName,
     required TfArg<String> managedZone,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

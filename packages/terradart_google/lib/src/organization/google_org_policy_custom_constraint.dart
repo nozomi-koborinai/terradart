@@ -44,6 +44,7 @@ final class GoogleOrgPolicyCustomConstraint extends Resource {
     required TfArg<List<String>> resourceTypes,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

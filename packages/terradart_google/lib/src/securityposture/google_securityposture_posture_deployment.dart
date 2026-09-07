@@ -37,6 +37,7 @@ final class GoogleSecurityposturePostureDeployment extends Resource {
     required TfArg<String> targetResource,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

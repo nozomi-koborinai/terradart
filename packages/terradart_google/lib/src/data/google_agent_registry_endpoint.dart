@@ -19,6 +19,7 @@ final class DataGoogleAgentRegistryEndpoint extends Data {
     TfArg<String>? filter,
     required TfArg<String> location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

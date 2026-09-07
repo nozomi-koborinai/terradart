@@ -67,6 +67,7 @@ final class GoogleStorageControlProjectIntelligenceConfig extends Resource {
     TfArg<Map<String, dynamic>>? filter,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

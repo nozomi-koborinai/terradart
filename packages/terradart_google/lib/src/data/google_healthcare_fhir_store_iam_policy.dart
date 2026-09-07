@@ -16,6 +16,7 @@ final class DataGoogleHealthcareFhirStoreIamPolicy extends Data {
   DataGoogleHealthcareFhirStoreIamPolicy({
     required super.localName,
     required TfArg<String> fhirStoreId,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'fhir_store_id': fhirStoreId});
 
   @override

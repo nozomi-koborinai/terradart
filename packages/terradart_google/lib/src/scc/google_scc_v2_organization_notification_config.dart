@@ -44,6 +44,7 @@ final class GoogleSccV2OrganizationNotificationConfig extends Resource {
     required SccV2OrganizationNotificationConfigStreamingConfig streamingConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

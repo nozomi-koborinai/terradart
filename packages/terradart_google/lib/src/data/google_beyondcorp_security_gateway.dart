@@ -17,6 +17,7 @@ final class DataGoogleBeyondcorpSecurityGateway extends Data {
     required super.localName,
     TfArg<String>? project,
     required TfArg<String> securityGatewayId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

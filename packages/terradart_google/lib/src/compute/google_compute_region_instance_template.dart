@@ -52,6 +52,7 @@ final class GoogleComputeRegionInstanceTemplate extends Resource {
     TfArg<Map<String, dynamic>>? workloadIdentityConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

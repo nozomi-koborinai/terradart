@@ -17,6 +17,7 @@ final class DataGoogleIapWebBackendServiceIamPolicy extends Data {
     required super.localName,
     TfArg<String>? project,
     required TfArg<String> webBackendService,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

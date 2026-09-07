@@ -30,6 +30,7 @@ final class GoogleLoggingFolderSettings extends Resource {
     TfArg<String>? storageLocation,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -265,6 +265,7 @@ final class CloudflareFlagshipFlag extends Resource {
     required List<FlagshipFlagRules> rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

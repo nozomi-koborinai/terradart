@@ -85,6 +85,7 @@ final class DataCloudflareZone extends Data {
     required super.localName,
     TfArg<String>? zoneId,
     DataZoneFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

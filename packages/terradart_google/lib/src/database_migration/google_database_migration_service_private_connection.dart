@@ -69,6 +69,7 @@ final class GoogleDatabaseMigrationServicePrivateConnection extends Resource {
     DatabaseMigrationServicePrivateConnectionVpcPeeringConfig? vpcPeeringConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

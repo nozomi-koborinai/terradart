@@ -34,6 +34,7 @@ final class DataCloudflareMagicTransitSite extends Data {
     TfArg<String>? accountId,
     TfArg<String>? siteId,
     DataMagicTransitSiteFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

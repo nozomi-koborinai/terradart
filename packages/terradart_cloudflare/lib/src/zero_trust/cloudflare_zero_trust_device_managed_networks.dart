@@ -43,6 +43,7 @@ final class CloudflareZeroTrustDeviceManagedNetworks extends Resource {
     required ZeroTrustDeviceManagedNetworksConfig config,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

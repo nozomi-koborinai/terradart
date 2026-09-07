@@ -55,6 +55,7 @@ final class CloudflareZone extends Resource {
     TfArg<List<String>>? vanityNameServers,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

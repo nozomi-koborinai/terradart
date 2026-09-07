@@ -23,6 +23,7 @@ final class CloudflareUser extends Resource {
     TfArg<String>? zipcode,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

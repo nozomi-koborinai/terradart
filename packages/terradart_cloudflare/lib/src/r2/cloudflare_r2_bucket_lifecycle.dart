@@ -184,6 +184,7 @@ final class CloudflareR2BucketLifecycle extends Resource {
     List<R2BucketLifecycleRules>? rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

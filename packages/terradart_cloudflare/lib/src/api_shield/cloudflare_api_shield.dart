@@ -41,6 +41,7 @@ final class CloudflareApiShield extends Resource {
     required List<ApiShieldAuthIdCharacteristics> authIdCharacteristics,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

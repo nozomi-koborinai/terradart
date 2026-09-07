@@ -20,6 +20,7 @@ final class DataCloudflareSecretsStores extends Data {
     TfArg<String>? direction,
     TfArg<num>? maxItems,
     TfArg<String>? order,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

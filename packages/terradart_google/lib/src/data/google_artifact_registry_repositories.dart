@@ -18,6 +18,7 @@ final class DataGoogleArtifactRegistryRepositories extends Data {
     required TfArg<String> location,
     TfArg<String>? nameFilter,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

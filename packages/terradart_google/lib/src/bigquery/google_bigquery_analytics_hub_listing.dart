@@ -45,6 +45,7 @@ final class GoogleBigqueryAnalyticsHubListing extends Resource {
     TfArg<Map<String, dynamic>>? restrictedExportConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

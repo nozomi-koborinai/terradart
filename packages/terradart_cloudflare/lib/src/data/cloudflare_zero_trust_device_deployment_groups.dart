@@ -15,6 +15,7 @@ final class DataCloudflareZeroTrustDeviceDeploymentGroups extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> groupId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'group_id': groupId},

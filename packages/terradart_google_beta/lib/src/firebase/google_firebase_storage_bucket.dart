@@ -17,9 +17,10 @@ final class GoogleFirebaseStorageBucket extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (bucketId != null) 'bucket_id': bucketId,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

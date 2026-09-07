@@ -18,6 +18,7 @@ final class DataGoogleDataCatalogEntryGroupIamPolicy extends Data {
     required TfArg<String> entryGroup,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

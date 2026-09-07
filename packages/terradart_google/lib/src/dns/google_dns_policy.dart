@@ -56,6 +56,7 @@ final class GoogleDnsPolicy extends Resource {
     TfArg<List<Map<String, dynamic>>>? networks,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

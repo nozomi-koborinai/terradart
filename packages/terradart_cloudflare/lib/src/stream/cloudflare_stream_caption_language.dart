@@ -22,6 +22,7 @@ final class CloudflareStreamCaptionLanguage extends Resource {
     required TfArg<String> language,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

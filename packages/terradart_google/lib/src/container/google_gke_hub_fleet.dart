@@ -120,6 +120,7 @@ final class GoogleGkeHubFleet extends Resource {
     GkeHubFleetDefaultClusterConfig? defaultClusterConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

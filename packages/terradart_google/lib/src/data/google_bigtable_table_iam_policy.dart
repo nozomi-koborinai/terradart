@@ -18,6 +18,7 @@ final class DataGoogleBigtableTableIamPolicy extends Data {
     required TfArg<String> instanceName,
     TfArg<String>? project,
     required TfArg<String> table,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

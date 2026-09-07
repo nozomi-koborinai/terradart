@@ -210,6 +210,27 @@ final class MobileAppBackendStack extends Stack {
 
 Wrappers from `terradart_google_beta` automatically attach `provider = "google-beta"` in the synthesized Terraform JSON. See the complete runnable recipe in [`cookbook/firebase-app-backend`](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/firebase-app-backend).
 
+Every factory also takes a `provider:` parameter — Terraform's `provider` meta-argument. Register a second configuration of a provider with `alias:` and select it per resource; everything else keeps using the default configuration:
+
+```dart
+final class MultiRegionStack extends Stack {
+  MultiRegionStack({required String projectId})
+      : super(providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+          GoogleProvider(alias: 'eu', project: projectId, region: 'europe-west1'),
+        ]) {
+    add(GoogleStorageBucket(
+      localName: 'assets_eu',
+      name: TfArg.literal('my-app-assets-eu'),
+      location: TfArg.literal('EUROPE-WEST1'),
+      provider: 'google.eu', // provider = google.eu
+    ));
+  }
+}
+```
+
+Synth emits `provider.google` as a list when a name has more than one configuration, and rejects a `provider:` that matches no registered configuration. `provider: 'google-beta'` on a GA-catalog factory puts that one resource on the beta provider.
+
 ## Next steps
 
 - [Why TerraDart](/docs/why-terradart/) — motivation and comparisons

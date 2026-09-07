@@ -116,6 +116,7 @@ final class GoogleKmsCryptoKey extends Resource {
     KmsCryptoKeyVersionTemplate? versionTemplate,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

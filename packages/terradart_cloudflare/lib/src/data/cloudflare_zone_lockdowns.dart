@@ -27,6 +27,7 @@ final class DataCloudflareZoneLockdowns extends Data {
     TfArg<num>? priority,
     TfArg<String>? uriSearch,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

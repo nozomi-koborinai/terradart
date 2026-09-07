@@ -286,6 +286,7 @@ final class GoogleBillingBudget extends Resource {
     List<BillingBudgetThresholdRules>? thresholdRules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

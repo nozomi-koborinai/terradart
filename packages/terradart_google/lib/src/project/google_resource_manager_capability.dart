@@ -24,6 +24,7 @@ final class GoogleResourceManagerCapability extends Resource {
     required TfArg<bool> value,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

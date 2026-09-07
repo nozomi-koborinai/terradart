@@ -17,6 +17,7 @@ final class DataGoogleFolder extends Data {
     required super.localName,
     required TfArg<String> folder,
     TfArg<bool>? lookupOrganization,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

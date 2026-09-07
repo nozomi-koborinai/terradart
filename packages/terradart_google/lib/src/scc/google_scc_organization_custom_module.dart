@@ -192,6 +192,7 @@ final class GoogleSccOrganizationCustomModule extends Resource {
     required SccOrganizationCustomModuleCustomConfig customConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

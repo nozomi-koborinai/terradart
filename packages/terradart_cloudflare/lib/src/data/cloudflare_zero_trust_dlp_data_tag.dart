@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustDlpDataTag extends Data {
     required TfArg<String> accountId,
     required TfArg<String> categoryId,
     required TfArg<String> tagId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

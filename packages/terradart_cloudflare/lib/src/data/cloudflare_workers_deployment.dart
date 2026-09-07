@@ -19,6 +19,7 @@ final class DataCloudflareWorkersDeployment extends Data {
     required TfArg<String> accountId,
     required TfArg<String> deploymentId,
     required TfArg<String> scriptName,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

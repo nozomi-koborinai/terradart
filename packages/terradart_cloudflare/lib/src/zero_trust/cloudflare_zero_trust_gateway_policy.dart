@@ -573,6 +573,7 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
     ZeroTrustGatewayPolicySchedule? schedule,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

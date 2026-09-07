@@ -20,6 +20,7 @@ final class GoogleBigqueryBiReservation extends Resource {
     TfArg<List<Map<String, dynamic>>>? preferredTables,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

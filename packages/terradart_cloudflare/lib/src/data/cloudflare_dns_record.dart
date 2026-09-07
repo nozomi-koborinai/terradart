@@ -208,6 +208,7 @@ final class DataCloudflareDnsRecord extends Data {
     TfArg<bool>? includeShadowMetadata,
     TfArg<String>? zoneId,
     DataDnsRecordFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

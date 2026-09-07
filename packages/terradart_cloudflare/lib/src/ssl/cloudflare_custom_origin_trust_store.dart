@@ -20,6 +20,7 @@ final class CloudflareCustomOriginTrustStore extends Resource {
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'certificate': certificate, 'zone_id': zoneId},

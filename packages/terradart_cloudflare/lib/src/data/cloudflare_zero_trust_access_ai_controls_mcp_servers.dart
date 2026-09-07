@@ -21,6 +21,7 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpServers extends Data {
     TfArg<String>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? search,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

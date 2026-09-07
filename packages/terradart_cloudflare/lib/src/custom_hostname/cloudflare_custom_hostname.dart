@@ -137,6 +137,7 @@ final class CloudflareCustomHostname extends Resource {
     CustomHostnameSsl? ssl,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

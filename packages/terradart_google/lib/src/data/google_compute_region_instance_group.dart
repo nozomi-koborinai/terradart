@@ -19,6 +19,7 @@ final class DataGoogleComputeRegionInstanceGroup extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     TfArg<String>? selfLink,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

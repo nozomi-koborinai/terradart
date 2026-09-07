@@ -18,6 +18,7 @@ final class DataGoogleEndpointsServiceConsumersIamPolicy extends Data {
     required super.localName,
     required TfArg<String> consumerProject,
     required TfArg<String> serviceName,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

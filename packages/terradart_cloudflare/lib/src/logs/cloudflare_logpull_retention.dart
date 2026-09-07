@@ -20,6 +20,7 @@ final class CloudflareLogpullRetention extends Resource {
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (flag != null) 'flag': flag, 'zone_id': zoneId},

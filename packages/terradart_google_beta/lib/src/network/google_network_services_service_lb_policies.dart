@@ -24,9 +24,10 @@ final class GoogleNetworkServicesServiceLbPolicies extends Resource {
     TfArg<Map<String, dynamic>>? isolationConfig,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (description != null) 'description': description,

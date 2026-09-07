@@ -214,6 +214,7 @@ final class CloudflareZeroTrustAccessIdentityProvider extends Resource {
     ZeroTrustAccessIdentityProviderScimConfig? scimConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

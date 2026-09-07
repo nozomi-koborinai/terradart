@@ -21,9 +21,10 @@ final class GoogleFirebaseAndroidApp extends Resource {
     TfArg<List<String>>? sha256Hashes,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (apiKeyId != null) 'api_key_id': apiKeyId,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

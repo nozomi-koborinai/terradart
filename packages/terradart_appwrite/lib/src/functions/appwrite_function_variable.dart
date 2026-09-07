@@ -24,6 +24,7 @@ final class AppwriteFunctionVariable extends Resource {
     required TfArg<String> value,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -16,6 +16,7 @@ final class DataGoogleKmsKeyRingIamPolicy extends Data {
   DataGoogleKmsKeyRingIamPolicy({
     required super.localName,
     required TfArg<String> keyRingId,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'key_ring_id': keyRingId});
 
   @override

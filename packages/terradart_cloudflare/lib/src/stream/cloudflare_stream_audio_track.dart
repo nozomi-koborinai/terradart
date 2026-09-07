@@ -23,6 +23,7 @@ final class CloudflareStreamAudioTrack extends Resource {
     TfArg<String>? label,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -14,11 +14,14 @@ const Set<String> _cloudflareStreamKeySensitive = <String>{};
 final class DataCloudflareStreamKey extends Data {
   static const String tfType = 'cloudflare_stream_key';
 
-  DataCloudflareStreamKey({required super.localName, TfArg<String>? accountId})
-    : super(
-        terraformType: tfType,
-        argMap: {if (accountId != null) 'account_id': accountId},
-      );
+  DataCloudflareStreamKey({
+    required super.localName,
+    TfArg<String>? accountId,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (accountId != null) 'account_id': accountId},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareStreamKeySensitive;

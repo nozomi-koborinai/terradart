@@ -16,6 +16,7 @@ final class DataGoogleFolderIamPolicy extends Data {
   DataGoogleFolderIamPolicy({
     required super.localName,
     required TfArg<String> folder,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'folder': folder});
 
   @override

@@ -26,6 +26,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetworks
     TfArg<bool>? isDeleted,
     TfArg<num>? maxItems,
     TfArg<String>? name,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

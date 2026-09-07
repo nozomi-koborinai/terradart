@@ -39,6 +39,8 @@ class _FakeProvider implements StackProvider {
   @override
   String get providerName => 'google';
   @override
+  String? get alias => null;
+  @override
   String get source => 'hashicorp/google';
   @override
   String get versionConstraint => '~> 7.0';

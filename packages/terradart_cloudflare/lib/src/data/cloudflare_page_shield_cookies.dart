@@ -19,6 +19,7 @@ final class DataCloudflarePageShieldCookies extends Data {
     required super.localName,
     required TfArg<String> cookieId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'cookie_id': cookieId, if (zoneId != null) 'zone_id': zoneId},

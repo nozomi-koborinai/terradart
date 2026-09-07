@@ -345,6 +345,7 @@ final class GoogleDatabaseMigrationServiceMigrationJob extends Resource {
     vpcPeeringConnectivity,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -157,6 +157,7 @@ final class DataCloudflareDnsRecords extends Data {
     DataDnsRecordsContent? content,
     DataDnsRecordsName? name,
     DataDnsRecordsTag? tag,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

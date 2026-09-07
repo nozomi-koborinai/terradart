@@ -39,6 +39,7 @@ final class AppwritePostgresqlBackupStorage extends Resource {
     required TfArg<String> storageProvider,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

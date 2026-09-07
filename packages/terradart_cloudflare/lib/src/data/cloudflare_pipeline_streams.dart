@@ -20,6 +20,7 @@ final class DataCloudflarePipelineStreams extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? name,
     TfArg<String>? pipelineId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

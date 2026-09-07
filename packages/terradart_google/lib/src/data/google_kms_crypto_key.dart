@@ -17,6 +17,7 @@ final class DataGoogleKmsCryptoKey extends Data {
     required super.localName,
     required TfArg<String> keyRing,
     required TfArg<String> name,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'key_ring': keyRing, 'name': name},

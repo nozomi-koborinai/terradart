@@ -27,9 +27,10 @@ final class GoogleBigqueryAnalyticsHubDataExchangeSubscription
     TfArg<Map<String, dynamic>>? destinationDataset,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'data_exchange_id': dataExchangeId,
            'data_exchange_location': dataExchangeLocation,

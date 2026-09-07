@@ -21,6 +21,7 @@ final class GoogleHealthcareDicomStoreIamPolicy extends Resource {
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'dicom_store_id': dicomStoreId, 'policy_data': policyData},

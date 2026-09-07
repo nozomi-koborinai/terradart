@@ -193,6 +193,7 @@ final class CloudflareAiGatewayDynamicRouting extends Resource {
     required List<AiGatewayDynamicRoutingElements> elements,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -62,6 +62,7 @@ final class CloudflareQueueConsumer extends Resource {
     QueueConsumerSettings? settings,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

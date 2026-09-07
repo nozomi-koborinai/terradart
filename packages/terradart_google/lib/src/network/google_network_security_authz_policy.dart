@@ -1275,6 +1275,7 @@ final class GoogleNetworkSecurityAuthzPolicy extends Resource {
     required NetworkSecurityAuthzPolicyTarget target,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

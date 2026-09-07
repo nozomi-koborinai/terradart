@@ -64,6 +64,7 @@ final class CloudflareOrganization extends Resource {
     OrganizationProfile? profile,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

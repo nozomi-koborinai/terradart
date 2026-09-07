@@ -28,6 +28,7 @@ final class CloudflareZeroTrustDeviceSettings extends Resource {
     TfArg<bool>? useZtVirtualIp,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

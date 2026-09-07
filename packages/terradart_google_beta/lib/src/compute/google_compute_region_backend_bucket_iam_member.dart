@@ -22,9 +22,10 @@ final class GoogleComputeRegionBackendBucketIamMember extends Resource {
     TfArg<Map<String, dynamic>>? condition,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'member': member,
            'name': name,

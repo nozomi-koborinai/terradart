@@ -22,9 +22,10 @@ final class GoogleDataplexDataAsset extends Resource {
     TfArg<List<Map<String, dynamic>>>? accessGroupConfigs,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'data_asset_id': dataAssetId,
            'data_product_id': dataProductId,

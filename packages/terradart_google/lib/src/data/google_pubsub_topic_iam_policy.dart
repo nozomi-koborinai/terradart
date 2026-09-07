@@ -17,6 +17,7 @@ final class DataGooglePubsubTopicIamPolicy extends Data {
     required super.localName,
     TfArg<String>? project,
     required TfArg<String> topic,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (project != null) 'project': project, 'topic': topic},

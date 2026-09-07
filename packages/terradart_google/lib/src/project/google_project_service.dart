@@ -55,6 +55,7 @@ final class GoogleProjectService extends Resource {
     TfArg<bool>? disableDependentServices,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

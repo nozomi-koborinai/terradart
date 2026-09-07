@@ -27,12 +27,19 @@ const String kAppwriteProviderVersionConstraint = '2.0.0-beta.1';
 @immutable
 final class AppwriteProvider implements StackProvider {
   const AppwriteProvider({
+    this.alias,
     this.endpoint,
     this.projectId,
     this.organizationId,
     this.selfSigned,
     this.httpTimeoutSeconds,
   });
+
+  /// Provider alias (`provider "appwrite" { alias = "eu" }`), or `null` for
+  /// the default configuration. Select it on a resource with
+  /// `provider: 'appwrite.<alias>'`.
+  @override
+  final String? alias;
 
   /// Appwrite API endpoint (e.g. `https://cloud.appwrite.io/v1`).
   final String? endpoint;

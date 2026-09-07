@@ -73,6 +73,7 @@ final class GoogleServiceAccount extends Resource {
     TfArg<bool>? disabled,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

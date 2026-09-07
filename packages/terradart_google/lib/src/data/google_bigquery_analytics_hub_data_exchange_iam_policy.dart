@@ -20,6 +20,7 @@ final class DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Data {
     required TfArg<String> dataExchangeId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

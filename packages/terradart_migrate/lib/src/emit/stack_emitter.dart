@@ -124,11 +124,16 @@ final class _Emitted {
     required this.usedVariables,
     required this.package,
     required this.barrel,
+    this.providerName,
   });
 
   final String address;
   final String tfType;
   final String dartName;
+
+  /// The provider the block's `provider` meta-argument selects (`google`
+  /// of `google.eu`, `google-beta`), or `null` for the type's default.
+  final String? providerName;
 
   /// `add(...)` / `addData(...)` without the `final x =` prefix.
   final String call;
@@ -251,7 +256,7 @@ final class StackEmitter {
         if (!module.requiredProviders.containsKey(p.name)) p.name,
     ];
     for (final e in emitted.values) {
-      final needed = _defaultProviderFor(e.package, e.tfType);
+      final needed = e.providerName ?? _defaultProviderFor(e.package, e.tfType);
       if (!providerNames.contains(needed)) providerNames.add(needed);
     }
     final providerExprs = <String>[];
@@ -265,19 +270,15 @@ final class StackEmitter {
       final defaults = childModule
           ? const <ProviderBlock>[]
           : configs.where((p) => p.alias == null).toList();
+      final aliases = childModule
+          ? const <ProviderBlock>[]
+          : configs.where((p) => p.alias != null).toList();
       if (childModule) {
         for (final p in configs) {
           _keep(
             p.alias == null ? 'provider.$name' : 'provider.$name.${p.alias}',
             'a provider configuration inside a child module stays in '
             'Terraform; the Stack only registers the provider',
-          );
-        }
-      } else {
-        for (final p in configs.where((p) => p.alias != null)) {
-          _keep(
-            'provider.$name.${p.alias}',
-            'provider aliases are not supported yet (#666)',
           );
         }
       }
@@ -287,31 +288,9 @@ final class StackEmitter {
           'first configuration is migrated',
         );
       }
-      final args = <String>[];
-      if (defaults.isNotEmpty) {
-        final values = objectMap(bodyAsObject(defaults.first.body)) ?? {};
-        for (final entry in values.entries) {
-          final param = recipe.args[entry.key];
-          final json = jsonValue(entry.value);
-          if (param == null) {
-            _warnings.add(
-              'provider "$name": argument "${entry.key}" has no '
-              '${recipe.className} parameter and was dropped',
-            );
-            continue;
-          }
-          if (json is String && json.contains(r'${') ||
-              json is List ||
-              json is Map) {
-            _warnings.add(
-              'provider "$name": argument "${entry.key}" is not a literal and '
-              'was dropped',
-            );
-            continue;
-          }
-          args.add('$param: ${dartValue(json)}');
-        }
-      }
+      final args = <String>[
+        if (defaults.isNotEmpty) ..._providerArgs(recipe, name, defaults.first),
+      ];
       final pinned = module.requiredProviders[name];
       final wanted = pinned == null ? null : objectMap(pinned)?['version'];
       final wantedText = wanted?.constantString;
@@ -326,6 +305,17 @@ final class StackEmitter {
       _registeredProviders.add(name);
       if (!childModule || configs.isEmpty) {
         _migrated.add(MigratedItem(address: 'provider.$name'));
+      }
+      // Every aliased configuration of the name is registered too, with
+      // its alias; a resource selects it with `provider: 'name.alias'`.
+      for (final p in aliases) {
+        final alias = p.alias!;
+        final aliasArgs = [
+          'alias: ${dartString(alias)}',
+          ..._providerArgs(recipe, '$name.$alias', p),
+        ];
+        providerExprs.add('const ${recipe.className}(${aliasArgs.join(', ')})');
+        _migrated.add(MigratedItem(address: 'provider.$name.$alias'));
       }
     }
     ctorInit.write('providers: [${providerExprs.join(', ')}]');
@@ -524,6 +514,41 @@ final class StackEmitter {
     _kept.add(KeptItem(address: address, reason: reason));
   }
 
+  /// `param: value` arguments of [recipe]'s constructor for the provider
+  /// configuration [block] (`alias` excluded); anything the constructor
+  /// cannot take is dropped with a warning naming [label].
+  List<String> _providerArgs(
+    _ProviderRecipe recipe,
+    String label,
+    ProviderBlock block,
+  ) {
+    final args = <String>[];
+    final values = objectMap(bodyAsObject(block.body)) ?? {};
+    for (final entry in values.entries) {
+      if (entry.key == 'alias') continue;
+      final param = recipe.args[entry.key];
+      final json = jsonValue(entry.value);
+      if (param == null) {
+        _warnings.add(
+          'provider "$label": argument "${entry.key}" has no '
+          '${recipe.className} parameter and was dropped',
+        );
+        continue;
+      }
+      if (json is String && json.contains(r'${') ||
+          json is List ||
+          json is Map) {
+        _warnings.add(
+          'provider "$label": argument "${entry.key}" is not a literal and '
+          'was dropped',
+        );
+        continue;
+      }
+      args.add('$param: ${dartValue(json)}');
+    }
+    return args;
+  }
+
   // -----------------------------------------------------------------------
   // Blocks
   // -----------------------------------------------------------------------
@@ -553,6 +578,7 @@ final class StackEmitter {
 
     // Meta-arguments the base class takes.
     final extras = <String>[];
+    String? providerName;
     final provider = values.remove('provider');
     if (provider != null) {
       // `provider = google.west` is a traversal in HCL and the string
@@ -560,10 +586,34 @@ final class StackEmitter {
       final selected = provider.constantString ?? hclSource(provider);
       final own = _defaultProviderFor(manifest.package, b.type);
       if (selected != own) {
-        throw MigrateBlocker(
-          'provider = $selected: only the default provider ("$own") is '
-          'migrated; provider aliases are not supported yet (#666)',
-        );
+        final dot = selected.indexOf('.');
+        final name = dot < 0 ? selected : selected.substring(0, dot);
+        final alias = dot < 0 ? null : selected.substring(dot + 1);
+        if (!_providerRecipes.containsKey(name)) {
+          throw MigrateBlocker(
+            'provider = $selected: provider "$name" has no TerraDart factory',
+          );
+        }
+        if (alias != null) {
+          if (childModule) {
+            throw MigrateBlocker(
+              'provider = $selected: a provider alias inside a child module '
+              'needs configuration_aliases, which the Stack cannot declare '
+              'yet',
+            );
+          }
+          final configured = module.providers.any(
+            (p) => p.name == name && p.alias == alias,
+          );
+          if (!configured) {
+            throw MigrateBlocker(
+              'provider = $selected: this module has no provider "$name" '
+              'block with alias = "$alias"',
+            );
+          }
+        }
+        providerName = name;
+        extras.add('provider: ${dartString(selected)}');
       }
     }
     final dependsOn = values.remove('depends_on');
@@ -594,6 +644,7 @@ final class StackEmitter {
       usedVariables: emitter.usedVariables,
       package: manifest.package,
       barrel: entry.barrel,
+      providerName: providerName,
     );
   }
 

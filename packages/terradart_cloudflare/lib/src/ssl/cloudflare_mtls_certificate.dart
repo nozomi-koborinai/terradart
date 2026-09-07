@@ -19,6 +19,7 @@ final class CloudflareMtlsCertificate extends Resource {
     TfArg<String>? privateKey,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

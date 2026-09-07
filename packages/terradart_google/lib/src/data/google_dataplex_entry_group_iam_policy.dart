@@ -18,6 +18,7 @@ final class DataGoogleDataplexEntryGroupIamPolicy extends Data {
     required TfArg<String> entryGroupId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -21,6 +21,7 @@ final class CloudflareCloudforceOneRequestMessage extends Resource {
     required TfArg<String> requestId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

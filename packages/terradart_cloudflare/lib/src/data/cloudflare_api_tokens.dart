@@ -19,6 +19,7 @@ final class DataCloudflareApiTokens extends Data {
     TfArg<String>? direction,
     TfArg<bool>? includeExpired,
     TfArg<num>? maxItems,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

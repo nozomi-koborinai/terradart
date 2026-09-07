@@ -38,6 +38,7 @@ final class DataCloudflareOriginCaCertificate extends Data {
     required super.localName,
     TfArg<String>? certificateId,
     DataOriginCaCertificateFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

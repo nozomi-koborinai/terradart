@@ -17,6 +17,7 @@ final class DataGoogleCertificateManagerCertificates extends Data {
     required super.localName,
     TfArg<String>? filter,
     TfArg<String>? region,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

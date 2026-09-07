@@ -13,11 +13,14 @@ const Set<String> _googleBigqueryDatasetsSensitive = <String>{};
 final class DataGoogleBigqueryDatasets extends Data {
   static const String tfType = 'google_bigquery_datasets';
 
-  DataGoogleBigqueryDatasets({required super.localName, TfArg<String>? project})
-    : super(
-        terraformType: tfType,
-        argMap: {if (project != null) 'project': project},
-      );
+  DataGoogleBigqueryDatasets({
+    required super.localName,
+    TfArg<String>? project,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (project != null) 'project': project},
+       );
 
   @override
   Set<String> get sensitiveFields => _googleBigqueryDatasetsSensitive;

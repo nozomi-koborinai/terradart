@@ -16,6 +16,7 @@ final class CloudflareOriginTlsComplianceModes extends Resource {
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'value': value, 'zone_id': zoneId},

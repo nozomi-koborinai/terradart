@@ -20,6 +20,7 @@ final class DataCloudflareWorkers extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? order,
     TfArg<String>? orderBy,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

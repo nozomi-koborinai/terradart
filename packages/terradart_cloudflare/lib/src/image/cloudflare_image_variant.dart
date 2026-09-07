@@ -50,6 +50,7 @@ final class CloudflareImageVariant extends Resource {
     required ImageVariantOptions options,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

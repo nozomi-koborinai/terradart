@@ -19,6 +19,7 @@ final class DataGoogleOracleDatabaseOdbSubnet extends Data {
     required TfArg<String> odbSubnetId,
     required TfArg<String> odbnetwork,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

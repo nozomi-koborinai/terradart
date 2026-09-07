@@ -18,6 +18,7 @@ final class DataGoogleCloudIdentityGroupTransitiveMemberships extends Data {
   DataGoogleCloudIdentityGroupTransitiveMemberships({
     required super.localName,
     required TfArg<String> group,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'group': group});
 
   @override

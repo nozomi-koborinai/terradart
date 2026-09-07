@@ -126,6 +126,7 @@ final class GoogleStorageControlFolderIntelligenceConfig extends Resource {
     StorageControlFolderIntelligenceConfigFilter? filter,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

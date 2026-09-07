@@ -19,6 +19,7 @@ final class DataGoogleSpannerInstance extends Data {
     TfArg<String>? displayName,
     required TfArg<String> name,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

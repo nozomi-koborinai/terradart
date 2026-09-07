@@ -16,6 +16,7 @@ final class DataGoogleLoggingProjectSettings extends Data {
   DataGoogleLoggingProjectSettings({
     required super.localName,
     required TfArg<String> project,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'project': project});
 
   @override

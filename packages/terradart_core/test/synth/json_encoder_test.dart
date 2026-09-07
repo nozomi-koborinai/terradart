@@ -186,6 +186,184 @@ void main() {
       );
     });
 
+    test('aliases take the list form, one entry per configuration', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+            configArgs: {'project': 'demo', 'region': 'us-central1'},
+          ),
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+            alias: 'eu',
+            configArgs: {'project': 'demo', 'region': 'europe-west1'},
+          ),
+          FakeStackProvider(
+            providerName: 'time',
+            source: 'hashicorp/time',
+            versionConstraint: '~> 0.12',
+          ),
+        ],
+      );
+      expect(
+        TfJsonEncoder.providerBlock(stack),
+        equals({
+          'google': [
+            {'project': 'demo', 'region': 'us-central1'},
+            {'project': 'demo', 'region': 'europe-west1', 'alias': 'eu'},
+          ],
+        }),
+      );
+      // One required_providers entry per name, aliases included.
+      expect(
+        (TfJsonEncoder.terraformBlock(stack)['required_providers'] as Map).keys,
+        equals(['google', 'time']),
+      );
+    });
+
+    test('an alias next to an unconfigured default emits the alias alone', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+            alias: 'eu',
+          ),
+        ],
+      );
+      expect(
+        TfJsonEncoder.providerBlock(stack),
+        equals({
+          'google': [
+            {'alias': 'eu'},
+          ],
+        }),
+      );
+    });
+
+    test('a resource selects an alias with provider: name.alias', () {
+      TestStack stackWith(String? provider) => TestStack(
+            providers: const [
+              FakeStackProvider(
+                providerName: 'google',
+                source: 'hashicorp/google',
+                versionConstraint: '~> 7.0',
+              ),
+              FakeStackProvider(
+                providerName: 'google',
+                source: 'hashicorp/google',
+                versionConstraint: '~> 7.0',
+                alias: 'eu',
+              ),
+            ],
+          )..add(
+              FakePubsubTopic.withMeta(
+                localName: 'orders',
+                argMap: {'name': const TfArgLiteral<String>('orders')},
+                provider: provider,
+              ),
+            );
+      final json = stackWith('google.eu').synth().tfJson;
+      expect(
+        (json['resource'] as Map)['google_pubsub_topic']['orders']['provider'],
+        equals('google.eu'),
+      );
+      expect(
+        () => stackWith('google.us').synth(),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            allOf(
+              contains('"google.us"'),
+              contains('google_pubsub_topic.orders'),
+              contains("alias: '<alias>'"),
+            ),
+          ),
+        ),
+      );
+    });
+
+    test('provider registrations Terraform would reject are refused', () {
+      const base = FakeStackProvider(
+        providerName: 'google',
+        source: 'hashicorp/google',
+        versionConstraint: '~> 7.0',
+      );
+      Matcher throwsWith(String fragment) => throwsA(
+            isA<StateError>()
+                .having((e) => e.message, 'message', contains(fragment)),
+          );
+      expect(
+        () => TfJsonEncoder.validateProviders(
+          TestStack(providers: const [base, base]),
+        ),
+        throwsWith('registered twice without an alias'),
+      );
+      expect(
+        () => TfJsonEncoder.validateProviders(
+          TestStack(
+            providers: const [
+              FakeStackProvider(
+                providerName: 'google',
+                source: 'hashicorp/google',
+                versionConstraint: '~> 7.0',
+                alias: 'eu',
+              ),
+              FakeStackProvider(
+                providerName: 'google',
+                source: 'hashicorp/google',
+                versionConstraint: '~> 7.0',
+                alias: 'eu',
+              ),
+            ],
+          ),
+        ),
+        throwsWith('"google.eu" is registered twice'),
+      );
+      expect(
+        () => TfJsonEncoder.validateProviders(
+          TestStack(
+            providers: const [
+              FakeStackProvider(
+                providerName: 'google',
+                source: 'hashicorp/google',
+                versionConstraint: '~> 7.0',
+                alias: 'eu west',
+              ),
+            ],
+          ),
+        ),
+        throwsWith('not a Terraform identifier'),
+      );
+      expect(
+        () => TfJsonEncoder.validateProviders(
+          TestStack(
+            providers: const [
+              base,
+              FakeStackProvider(
+                providerName: 'google',
+                source: 'hashicorp/google',
+                versionConstraint: '~> 6.0',
+                alias: 'old',
+              ),
+            ],
+          ),
+        ),
+        throwsWith('different source / version constraints'),
+      );
+    });
+
     test('omits provider block entirely if no configArgs', () {
       final stack = TestStack(
         providers: const [

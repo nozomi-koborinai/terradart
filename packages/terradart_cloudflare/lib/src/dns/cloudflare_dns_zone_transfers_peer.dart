@@ -24,6 +24,7 @@ final class CloudflareDnsZoneTransfersPeer extends Resource {
     TfArg<String>? tsigId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

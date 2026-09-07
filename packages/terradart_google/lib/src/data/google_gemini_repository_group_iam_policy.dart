@@ -19,6 +19,7 @@ final class DataGoogleGeminiRepositoryGroupIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> repositoryGroupId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

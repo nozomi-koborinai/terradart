@@ -18,6 +18,7 @@ final class CloudflareR2ManagedDomain extends Resource {
     TfArg<String>? jurisdiction,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

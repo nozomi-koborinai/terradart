@@ -18,6 +18,7 @@ final class DataGoogleCloudQuotasQuotaInfo extends Data {
     required TfArg<String> parent,
     required TfArg<String> quotaId,
     required TfArg<String> service,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'parent': parent, 'quota_id': quotaId, 'service': service},

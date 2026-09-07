@@ -128,6 +128,7 @@ final class GoogleStorageControlOrganizationIntelligenceConfig
     StorageControlOrganizationIntelligenceConfigFilter? filter,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

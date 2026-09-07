@@ -25,6 +25,7 @@ final class DataCloudflareApiShieldOperations extends Data {
     TfArg<List<String>>? method,
     TfArg<String>? order,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

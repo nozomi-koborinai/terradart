@@ -82,6 +82,7 @@ final class CloudflareMoqRelay extends Resource {
     MoqRelayConfig? config,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

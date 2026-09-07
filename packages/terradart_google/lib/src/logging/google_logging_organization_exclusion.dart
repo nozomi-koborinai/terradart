@@ -26,6 +26,7 @@ final class GoogleLoggingOrganizationExclusion extends Resource {
     required TfArg<String> orgId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

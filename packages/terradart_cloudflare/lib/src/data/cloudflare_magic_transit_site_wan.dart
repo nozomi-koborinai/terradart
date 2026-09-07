@@ -20,6 +20,7 @@ final class DataCloudflareMagicTransitSiteWan extends Data {
     required TfArg<String> accountId,
     required TfArg<String> siteId,
     required TfArg<String> wanId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'site_id': siteId, 'wan_id': wanId},

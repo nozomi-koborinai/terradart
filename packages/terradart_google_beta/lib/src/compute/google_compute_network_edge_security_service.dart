@@ -21,9 +21,10 @@ final class GoogleComputeNetworkEdgeSecurityService extends Resource {
     TfArg<String>? securityPolicy,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (description != null) 'description': description,

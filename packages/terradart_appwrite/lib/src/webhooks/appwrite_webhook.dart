@@ -27,6 +27,7 @@ final class AppwriteWebhook extends Resource {
     required TfArg<String> url,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

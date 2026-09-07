@@ -20,6 +20,7 @@ final class DataGoogleMonitoringClusterIstioService extends Data {
     TfArg<String>? project,
     required TfArg<String> serviceName,
     required TfArg<String> serviceNamespace,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

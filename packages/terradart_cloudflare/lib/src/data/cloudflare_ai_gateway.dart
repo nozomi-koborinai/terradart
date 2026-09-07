@@ -32,6 +32,7 @@ final class DataCloudflareAiGateway extends Data {
     required super.localName,
     TfArg<String>? accountId,
     DataAiGatewayFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -42,6 +42,7 @@ final class CloudflareAuthenticatedOriginPulls extends Resource {
     required List<AuthenticatedOriginPullsConfig> config,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

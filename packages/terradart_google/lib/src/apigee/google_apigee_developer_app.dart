@@ -55,6 +55,7 @@ final class GoogleApigeeDeveloperApp extends Resource {
     List<ApigeeDeveloperAppAttributes>? attributes,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

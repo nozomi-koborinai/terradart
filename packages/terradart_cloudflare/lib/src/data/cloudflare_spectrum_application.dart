@@ -36,6 +36,7 @@ final class DataCloudflareSpectrumApplication extends Data {
     TfArg<String>? appId,
     TfArg<String>? zoneId,
     DataSpectrumApplicationFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

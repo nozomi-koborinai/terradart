@@ -15,6 +15,7 @@ final class DataCloudflareAccounts extends Data {
     TfArg<String>? direction,
     TfArg<num>? maxItems,
     TfArg<String>? name,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

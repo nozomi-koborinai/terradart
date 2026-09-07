@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustRiskScoringIntegration extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> integrationId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

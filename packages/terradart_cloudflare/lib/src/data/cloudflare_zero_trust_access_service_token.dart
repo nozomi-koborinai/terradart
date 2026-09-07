@@ -37,6 +37,7 @@ final class DataCloudflareZeroTrustAccessServiceToken extends Data {
     TfArg<String>? serviceTokenId,
     TfArg<String>? zoneId,
     DataZeroTrustAccessServiceTokenFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

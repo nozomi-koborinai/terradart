@@ -18,6 +18,7 @@ final class DataCloudflareWeb3Hostnames extends Data {
     required super.localName,
     TfArg<num>? maxItems,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

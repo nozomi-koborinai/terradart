@@ -155,6 +155,7 @@ final class GoogleApigeeSecurityAction extends Resource {
     ApigeeSecurityActionDeny? deny,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

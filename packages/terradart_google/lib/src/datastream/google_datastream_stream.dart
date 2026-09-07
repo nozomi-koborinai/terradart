@@ -2834,6 +2834,7 @@ final class GoogleDatastreamStream extends Resource {
     required DatastreamStreamSourceConfig sourceConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

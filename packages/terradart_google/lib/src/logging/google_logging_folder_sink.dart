@@ -75,6 +75,7 @@ final class GoogleLoggingFolderSink extends Resource {
     List<LoggingFolderSinkExclusion>? exclusions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

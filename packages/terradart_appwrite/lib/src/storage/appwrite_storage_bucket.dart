@@ -31,6 +31,7 @@ final class AppwriteStorageBucket extends Resource {
     TfArg<bool>? antivirus,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

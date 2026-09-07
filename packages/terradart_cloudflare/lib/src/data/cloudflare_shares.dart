@@ -23,6 +23,7 @@ final class DataCloudflareShares extends Data {
     TfArg<String>? status,
     TfArg<List<String>>? tag,
     TfArg<String>? targetType,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

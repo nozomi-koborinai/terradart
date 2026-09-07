@@ -226,6 +226,7 @@ final class GoogleStorageBucketObject extends Resource {
     StorageBucketObjectBucketObjectRetention? retention,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -492,6 +492,7 @@ final class GoogleDatastreamConnectionProfile extends Resource {
     DatastreamConnectionProfilePrivateConnectivity? privateConnectivity,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

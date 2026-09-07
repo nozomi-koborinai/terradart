@@ -75,6 +75,7 @@ final class GoogleIamOrganizationsPolicyBinding extends Resource {
     required IamOrganizationsPolicyBindingTarget target,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -42,6 +42,7 @@ final class CloudflareCustomSsl extends Resource {
     CustomSslGeoRestrictions? geoRestrictions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

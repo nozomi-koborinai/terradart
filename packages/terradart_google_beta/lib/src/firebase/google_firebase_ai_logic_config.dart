@@ -22,9 +22,10 @@ final class GoogleFirebaseAiLogicConfig extends Resource {
     TfArg<Map<String, dynamic>>? trafficFilter,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (location != null) 'location': location,

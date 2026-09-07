@@ -19,6 +19,7 @@ final class DataGoogleIapAppEngineVersionIamPolicy extends Data {
     TfArg<String>? project,
     required TfArg<String> service,
     required TfArg<String> versionId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

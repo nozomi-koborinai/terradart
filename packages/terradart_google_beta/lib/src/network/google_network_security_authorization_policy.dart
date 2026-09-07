@@ -23,9 +23,10 @@ final class GoogleNetworkSecurityAuthorizationPolicy extends Resource {
     TfArg<List<Map<String, dynamic>>>? rules,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'action': action,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

@@ -21,6 +21,7 @@ final class DataCloudflareUserGroups extends Data {
     TfArg<String>? fuzzyName,
     TfArg<num>? maxItems,
     TfArg<String>? name,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

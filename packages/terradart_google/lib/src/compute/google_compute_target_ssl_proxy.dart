@@ -34,6 +34,7 @@ final class GoogleComputeTargetSslProxy extends Resource {
     TfArg<String>? sslPolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

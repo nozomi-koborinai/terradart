@@ -20,6 +20,7 @@ final class CloudflareWebAnalyticsRule extends Resource {
     required TfArg<String> rulesetId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

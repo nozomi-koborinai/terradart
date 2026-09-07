@@ -170,6 +170,7 @@ final class GoogleBinaryAuthorizationPolicy extends Resource {
     required BinaryAuthorizationPolicyDefaultAdmissionRule defaultAdmissionRule,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

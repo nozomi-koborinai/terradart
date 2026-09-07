@@ -19,9 +19,10 @@ final class GoogleObservabilityOrganizationSettings extends Resource {
     required TfArg<String> organization,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (defaultStorageLocation != null)
              'default_storage_location': defaultStorageLocation,

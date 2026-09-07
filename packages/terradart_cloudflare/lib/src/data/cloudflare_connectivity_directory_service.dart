@@ -27,6 +27,7 @@ final class DataCloudflareConnectivityDirectoryService extends Data {
     TfArg<String>? accountId,
     TfArg<String>? serviceId,
     DataConnectivityDirectoryServiceFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -18,6 +18,7 @@ final class DataGoogleDataprocJobIamPolicy extends Data {
     required TfArg<String> jobId,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

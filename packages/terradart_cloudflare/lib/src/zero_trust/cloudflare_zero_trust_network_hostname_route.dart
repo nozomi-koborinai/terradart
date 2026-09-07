@@ -24,6 +24,7 @@ final class CloudflareZeroTrustNetworkHostnameRoute extends Resource {
     TfArg<String>? tunnelId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

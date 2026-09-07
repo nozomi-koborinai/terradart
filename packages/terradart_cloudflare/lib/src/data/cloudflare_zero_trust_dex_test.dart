@@ -47,6 +47,7 @@ final class DataCloudflareZeroTrustDexTest extends Data {
     TfArg<String>? dexTestId,
     DataZeroTrustDexTestFilter? filter,
     List<DataZeroTrustDexTestTargetPolicies>? targetPolicies,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -26,6 +26,7 @@ final class CloudflareZeroTrustTunnelCloudflaredVirtualNetwork
     required TfArg<String> name,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {
