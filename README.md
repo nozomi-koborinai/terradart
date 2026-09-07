@@ -131,7 +131,7 @@ dart run bin/infra.dart                                  # synth → tf-out/
 cd tf-out && terraform init && terraform apply
 ```
 
-`TfArg.literal(...)` wraps known values at synth time, while `TfArg.ref(...)` (e.g. `runSa.iamMember` or `runSa.email`) passes typed references between resources that Terraform resolves during plan/apply.
+`TfArg.literal(...)` wraps known values at synth time, while `TfArg.ref(...)` (e.g. `runSa.iamMember` or `runSa.email`) passes typed references between resources that Terraform resolves during plan/apply. `TfArg.variable('name')` reads a Terraform input variable declared with `addVariable`, and `TfArg.expression(r'${...}')` passes a raw Terraform expression through verbatim — accepted on sensitive fields, checked for undeclared variables at synth time.
 
 Per-service imports (`cloud_run.dart`, `cloud_sql.dart`, …) keep IDE completion scoped; the legacy `package:terradart_google/terradart_google.dart` barrel re-export remains supported.
 

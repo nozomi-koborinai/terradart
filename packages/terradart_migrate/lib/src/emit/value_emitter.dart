@@ -2,6 +2,8 @@
 /// arguments, slot by slot, following a [MigrateManifest].
 library;
 
+import 'package:terradart_core/terradart_core.dart'
+    show hasTemplateSequence, templateVariableNames;
 import 'package:terradart_hcl/terradart_hcl.dart';
 
 import '../migrate_manifest.dart';
@@ -210,12 +212,7 @@ final class ValueEmitter {
     }
     level.claim(parts);
     return switch (slot.kind) {
-      MigrateSlotKind.scalar => _scalar(
-        slot,
-        value,
-        path: path,
-        topLevel: level.isTop,
-      ),
+      MigrateSlotKind.scalar => _scalar(slot, value, path: path),
       MigrateSlotKind.enumValue => _enum(slot, value, path: path),
       MigrateSlotKind.helper =>
         slot.repeated
@@ -236,12 +233,7 @@ final class ValueEmitter {
   // Scalars
   // ---------------------------------------------------------------------
 
-  String _scalar(
-    MigrateSlot slot,
-    Expr value, {
-    required String path,
-    required bool topLevel,
-  }) {
+  String _scalar(MigrateSlot slot, Expr value, {required String path}) {
     final type = slot.dartType ?? 'Object?';
     final sensitive = sensitivePaths.contains(path);
     if (slot.repeated) {
@@ -272,7 +264,6 @@ final class ValueEmitter {
                 ),
                 e,
                 path: path,
-                topLevel: false,
               )
             : _element(type, e, path: path);
         items.add(item);
@@ -306,19 +297,19 @@ final class ValueEmitter {
         'argument "$path" takes a bare Dart value, not an expression',
       );
     }
-    if (type != 'String') {
-      throw MigrateBlocker(
-        'argument "$path" is a Terraform expression on a $type argument '
-        '(needs TfArg.expression, #662)',
-      );
-    }
-    if (sensitive && topLevel) {
-      throw MigrateBlocker(
-        'argument "$path" is sensitive: an expression literal is rejected '
-        'by synth (needs TfArg.expression, #662)',
-      );
-    }
-    return 'TfArg.literal(${dartString(jsonValue(value)! as String)})';
+    // Any other expression — a template, a function call, a conditional, a
+    // reference the Stack cannot type — is emitted verbatim. Synth accepts
+    // an expression on a sensitive argument (no value is stored in it).
+    return _expression(value);
+  }
+
+  /// `TfArg.expression(...)` holding the tf.json template of [value]; the
+  /// `var.<name>` references inside it are recorded so the Stack declares
+  /// them (synth checks every one).
+  String _expression(Expr value) {
+    final template = jsonValue(value)! as String;
+    usedVariables.addAll(templateVariableNames(template));
+    return 'TfArg.expression(${dartString(template)})';
   }
 
   /// Dart source of a constant payload of [type], `null` when [value] is not
@@ -410,7 +401,7 @@ final class ValueEmitter {
     if (c != null) return c;
     throw MigrateBlocker(
       'argument "$path" holds a Terraform expression inside a $type '
-      'collection (needs TfArg.expression, #662)',
+      'collection; a typed Dart list cannot hold one',
     );
   }
 
@@ -483,12 +474,17 @@ final class ValueEmitter {
     if (members == null) {
       throw MigrateBlocker('enum $enumName is missing from the manifest');
     }
+    bool isExpression(Expr e) =>
+        e.constantString == null &&
+        e is! LiteralExpr &&
+        e is! TupleExpr &&
+        e is! ObjectExpr;
     String member(Expr e) {
       final raw = e.constantString;
       if (raw == null) {
         throw MigrateBlocker(
-          'argument "$path" is a Terraform expression on an enum argument '
-          '(needs TfArg.expression, #662)',
+          'argument "$path" expects a member of $enumName but is '
+          '${isExpression(e) ? 'a Terraform expression' : 'a ${_describe(e)}'}',
         );
       }
       final m = members[raw];
@@ -498,6 +494,18 @@ final class ValueEmitter {
         );
       }
       return '$enumName.$m';
+    }
+
+    // `TfArg<E>` (wrapped) takes an expression verbatim; a bare `E` cannot.
+    String wrapped(Expr e) =>
+        isExpression(e) ? _expression(e) : 'TfArg.literal(${member(e)})';
+    String bare(Expr e) {
+      if (isExpression(e)) {
+        throw MigrateBlocker(
+          'argument "$path" takes a bare enum value, not an expression',
+        );
+      }
+      return member(e);
     }
 
     if (slot.repeated) {
@@ -510,7 +518,7 @@ final class ValueEmitter {
         throw MigrateBlocker('argument "$path" expects a list of $enumName');
       }
       // `List<TfArg<E>>` when wrapped, `List<E>` when bare.
-      return '[${value.elements.map((e) => slot.wrapped ? 'TfArg.literal(${member(e)})' : member(e)).join(', ')}]';
+      return '[${value.elements.map(slot.wrapped ? wrapped : bare).join(', ')}]';
     }
     final ref = singleReference(value);
     if (ref != null) {
@@ -524,8 +532,7 @@ final class ValueEmitter {
         return r;
       }
     }
-    final m = member(value);
-    return slot.wrapped ? 'TfArg.literal($m)' : m;
+    return slot.wrapped ? wrapped(value) : bare(value);
   }
 
   String _helper(
@@ -643,13 +650,14 @@ final class ValueEmitter {
     return 'TfArg.literal(${dartValue(json)})';
   }
 
-  /// Synth rejects a plain literal on a sensitive nested path; only `${...}`
-  /// text passes. Mirror that before emitting a passthrough map.
+  /// Synth rejects a plain literal on a sensitive nested path; only a
+  /// Terraform template (a `${ ... }` or `%{ ... }` sequence anywhere in
+  /// the string) passes. Mirror that before emitting a passthrough map.
   void _checkSensitiveJson(Object? json, String prefix) {
     for (final p in sensitivePaths) {
       if (!p.startsWith(prefix)) continue;
       final rest = p.substring(prefix.length).split('.');
-      if (_hasPlainLeaf(json, rest)) {
+      if (hasPlainSensitiveLeaf(json, rest)) {
         throw MigrateBlocker(
           'argument "$p" is sensitive: its value is not copied into Dart '
           '(pass it as a variable)',
@@ -658,14 +666,20 @@ final class ValueEmitter {
     }
   }
 
-  static bool _hasPlainLeaf(Object? json, List<String> path) {
-    if (json is List) return json.any((e) => _hasPlainLeaf(e, path));
+  /// True when the leaf at [path] inside the tf.json value [json] is a plain
+  /// value rather than a Terraform template — the same test synth applies to
+  /// a sensitive nested path (`hasTemplateSequence`). Lists are searched
+  /// element by element. Exposed for tests.
+  static bool hasPlainSensitiveLeaf(Object? json, List<String> path) {
+    if (json is List) {
+      return json.any((e) => hasPlainSensitiveLeaf(e, path));
+    }
     if (json is! Map) return false;
     if (!json.containsKey(path.first)) return false;
     final v = json[path.first];
     if (path.length == 1) {
-      return !(v is String && v.startsWith(r'${'));
+      return !(v is String && hasTemplateSequence(v));
     }
-    return _hasPlainLeaf(v, path.sublist(1));
+    return hasPlainSensitiveLeaf(v, path.sublist(1));
   }
 }

@@ -77,9 +77,9 @@ project.copies;  // tfvars and lockfiles to copy next to each main.tf.json
 What translates (the conversion rules of [#655](https://github.com/nozomi-koborinai/terradart/issues/655)):
 
 - literals (`TfArg.literal(...)`, `${` / `%{` re-escaped), enum members from the manifest, typed nested helpers (single, repeated, exactly-one-of variants), opaque passthrough maps;
-- references to migrated resources and data sources as typed `TfArg.ref(x.id)` (or `TfRef.attribute<T>` when the wrapper has no getter), `var.x` as `TfArg.variable`, everything else — function calls, conditionals, `local.x`, `module.x` — verbatim as a `${...}` string on string arguments;
+- references to migrated resources and data sources as typed `TfArg.ref(x.id)` (or `TfRef.attribute<T>` when the wrapper has no getter), `var.x` as `TfArg.variable`, everything else — templates, function calls, conditionals, `local.x`, `module.x` — verbatim as `TfArg.expression` on any `TfArg`-typed argument (string, number, bool, enum, list or sensitive), the variables inside it declared like references;
 - `depends_on` and `lifecycle`, `terraform.required_version`, `backend "gcs" | "local" | "s3"`, `provider` blocks of the four providers (and `time`), `variable` blocks as `addVariable`, single-attribute `output`s as exports;
-- blockers, always with a reason: types outside every catalog, `count` / `for_each` / `dynamic` / `provisioner` / `timeouts`, provider aliases, an argument with no Dart parameter, an expression on a non-string argument (until `TfArg.expression`, #662), a sensitive literal (never copied), a `depends_on` on a resource that stays in Terraform.
+- blockers, always with a reason: types outside every catalog, `count` / `for_each` / `dynamic` / `provisioner` / `timeouts`, provider aliases, an argument with no Dart parameter, an expression inside a typed collection (a `List<int>` element, say) or on a bare non-`TfArg` parameter, a sensitive literal (never copied), a `depends_on` on a resource that stays in Terraform.
 
 ## Round-trip gate
 

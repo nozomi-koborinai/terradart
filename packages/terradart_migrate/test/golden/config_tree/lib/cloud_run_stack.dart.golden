@@ -20,7 +20,7 @@ final class CloudRunStack extends Stack {
         template: CloudRunV2ServiceTemplate(
           containers: [
             CloudRunV2ServiceServiceContainer(
-              image: TfArg.literal(
+              image: TfArg.expression(
                 r'gcr.io/example-project/${var.name}:latest',
               ),
             ),

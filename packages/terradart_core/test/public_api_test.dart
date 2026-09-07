@@ -6,6 +6,7 @@ void main() {
     // Compile-time: just referencing them is the test.
     final symbols = <Type>[
       TfArg,
+      TfArgExpression,
       TfArgLiteral,
       TfArgRef,
       TfRef,
@@ -42,7 +43,7 @@ void main() {
       DuplicateResourceError,
       TfVariable,
     ];
-    expect(symbols, hasLength(35));
+    expect(symbols, hasLength(36));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {

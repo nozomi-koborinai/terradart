@@ -6,9 +6,10 @@
 ///
 /// Recovery: use [TfArg.variable] for runtime values (the canonical
 /// pattern for sensitive inputs supplied at `terraform apply -var`
-/// time) and declare the matching variable with `Stack.addVariable`, or
-/// — if the resource exposes a write-only variant of the field
-/// (`<field>_wo`) — assign the literal there instead.
+/// time) and declare the matching variable with `Stack.addVariable`,
+/// [TfArg.expression] for a value Terraform computes, or — if the
+/// resource exposes a write-only variant of the field (`<field>_wo`) —
+/// assign the literal there instead.
 class SensitiveLiteralError extends StateError {
   SensitiveLiteralError({
     required this.resourceAddress,
@@ -35,6 +36,9 @@ class SensitiveLiteralError extends StateError {
       '  addVariable(\'<your-var-name>\', '
       'const TfVariable(type: \'string\', sensitive: true));\n'
       'and pass it at `terraform apply -var=...` time.\n\n'
+      'A value Terraform computes (a reference, a function call) goes '
+      'through TfArg.ref or TfArg.expression, which this check lets '
+      'through.\n\n'
       'Alternative: if the resource exposes a write-only variant '
       '(`<field>_wo`), assign the literal there instead — the `_wo` '
       'variants are write-once and exempt from this check.';

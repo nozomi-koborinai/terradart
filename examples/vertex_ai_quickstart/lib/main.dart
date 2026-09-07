@@ -147,7 +147,7 @@ final class FeatureStack extends Stack {
     // (…/tensorboards/{tensorboard}/experiments), so they need the short
     // numeric ID — the full resource name in `tensorboard.name` produces a
     // doubled path and a 404. Extract the trailing segment.
-    final tensorboardShortId = TfArg.literal(
+    final tensorboardShortId = TfArg.expression<String>(
       '\${element(split("/", ${tensorboard.nameRef.bareAddress}), 5)}',
     );
 

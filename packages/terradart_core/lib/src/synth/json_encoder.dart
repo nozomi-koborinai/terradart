@@ -6,6 +6,7 @@ import 'package:terradart_core/src/synth/output_emitter.dart';
 import 'package:terradart_core/src/synth/sensitive_literal_error.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
+import 'package:terradart_core/src/tf_template.dart';
 
 /// Synth-time JSON encoder: builds the JSON structure for `main.tf.json`.
 ///
@@ -170,6 +171,8 @@ class TfJsonEncoder {
     switch (v) {
       case TfArgVariable(:final name):
         yield name;
+      case TfArgExpression(:final referencedVariables):
+        yield* referencedVariables;
       case TfArgLiteral(:final value):
         yield* _referencedVariableNames(value);
       case List():
@@ -191,12 +194,13 @@ class TfJsonEncoder {
   ///   case the literal is a Map/List that itself contains `TfArg`s).
   /// - `TfArgRef<T>` → the `${...}` interpolation string.
   /// - `TfArgVariable<T>` → the `${var.<name>}` interpolation string.
+  /// - `TfArgExpression<T>` → its template string, verbatim.
   static Object? encodeArg(TfArg<dynamic> arg) {
     final raw = arg.toTfJson();
-    // Both refs and variables produce final string forms (Terraform
-    // interpolations). Only literals may still hold nested `TfArg`
-    // instances inside Maps/Lists that need recursion.
-    if (arg is TfArgRef || arg is TfArgVariable) {
+    // Refs, variables and expressions produce final string forms (Terraform
+    // templates). Only literals may still hold nested `TfArg` instances
+    // inside Maps/Lists that need recursion.
+    if (arg is TfArgRef || arg is TfArgVariable || arg is TfArgExpression) {
       return raw;
     }
     return _encodeLiteralValue(raw);
@@ -297,11 +301,13 @@ class TfJsonEncoder {
   /// - `Map`: descends one segment per path; **throws** at literal leaves.
   /// - Other (primitive, or `${...}` ref string): returned unchanged.
   ///
-  /// Leaves whose value already looks like a Terraform interpolation
-  /// (`${...}`) are passed through — refs and variables are safe in
-  /// sensitive positions. Plain string / int / bool literals at a
-  /// sensitive leaf throw [SensitiveLiteralError] with the dotted
-  /// `<parentKey>.<leaf>` path as `fieldPath`.
+  /// Leaves whose value is a Terraform template — it holds an unescaped
+  /// `${ ... }` or `%{ ... }` sequence — are passed through: refs,
+  /// variables and expressions are safe in sensitive positions, since the
+  /// value is computed by Terraform rather than stored in the config. Plain
+  /// string / int / bool literals at a sensitive leaf throw
+  /// [SensitiveLiteralError] with the dotted `<parentKey>.<leaf>` path as
+  /// `fieldPath`.
   static dynamic _checkNestedPaths(
     dynamic value,
     List<List<String>> paths, {
@@ -337,8 +343,8 @@ class TfJsonEncoder {
       for (final leaf in leavesToCheck) {
         if (!value.containsKey(leaf)) continue;
         final leafValue = value[leaf];
-        if (leafValue is String && leafValue.startsWith(r'${')) {
-          // Interpolation (ref or variable) — safe, pass through.
+        if (leafValue is String && hasTemplateSequence(leafValue)) {
+          // A template (ref, variable or expression) — safe, pass through.
           continue;
         }
         // Primitive literal at a sensitive leaf — throw.

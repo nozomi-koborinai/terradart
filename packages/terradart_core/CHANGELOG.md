@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- **`TfArg.expression`** (`TfArgExpression`) — a raw Terraform expression, emitted verbatim as the tf.json template it is: `TfArg.expression(r'${lower(var.name)}-x')`, `TfArg.expression<int>(r'${var.replicas * 2}')`. Accepted on sensitive fields like `TfArg.ref` and `TfArg.variable` (no value is stored in it); the `var.<name>` references inside it are checked against the Stack's declarations at synth time; a plain value with no `${ ... }` / `%{ ... }` sequence is rejected with an `ArgumentError`. Replaces the `TfArg.literal(r'${...}')` workaround. **Breaking** for exhaustive `switch`es over `TfArg` — see [MIGRATING.md](../../MIGRATING.md) (#662).
+- **`hasTemplateSequence` / `templateVariableNames`** — the template scanner behind it (escapes, quoted strings and directives handled), exported for tools that generate `TfArg` code.
+
+### Changed
+
+- **Sensitive nested fields** accept any Terraform template — an unescaped `${ ... }` or `%{ ... }` anywhere in the string — where they accepted only a string starting with `${` (#662).
+- **`SensitiveLiteralError`** — the recovery hint mentions `TfArg.expression` for values Terraform computes.
+
 ## 0.27.0 - 2026-08-30
 
 Lockstep release across the workspace. **Breaking** — see [MIGRATING.md](../../MIGRATING.md).
