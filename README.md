@@ -32,7 +32,7 @@ See [terradart.dev](https://terradart.dev) for documentation, guides, and API re
 | [`terradart_agent`](packages/terradart_agent) | MCP server (`terradart-mcp`) exposing the curated factory catalog to AI agents. | *(unlisted)* |
 | [`terradart_codegen`](packages/terradart_codegen) | Maintainer generation tooling and CLI (`terradart wrap`). | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
 | [`terradart_hcl`](packages/terradart_hcl) | Pure Dart HCL / `*.tf.json` front-end and Terraform module model — the input side of `terradart-migrate`. | *(unlisted)* |
-| [`terradart_migrate`](packages/terradart_migrate) | HCL → Dart migrator (`terradart-migrate`): migration manifests, emitter, leftover sidecar and the CLI that turns a Terraform source tree into a Stack per directory; Homebrew binary to follow (#664). | *(unlisted)* |
+| [`terradart_migrate`](packages/terradart_migrate) | HCL → Dart migrator (`terradart-migrate`): migration manifests, emitter, leftover sidecar and the CLI that turns a Terraform source tree into a Stack per directory. `brew install nozomi-koborinai/tap/terradart-migrate`. | *(unlisted)* |
 
 ---
 
@@ -234,6 +234,20 @@ brew install nozomi-koborinai/tap/terradart-mcp
 ```
 
 Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
+
+---
+
+## Migrating from HCL (`terradart-migrate`)
+
+**Alpha.** [`terradart-migrate`](packages/terradart_migrate/) turns an existing Terraform source tree into a TerraDart package: one `Stack` per module directory, a `tf-out/` tree mirroring the source, and a **leftover sidecar** (`terradart_leftover.tf` and friends) beside each `main.tf.json` holding, verbatim and with a reason each, every block the curated factories do not cover yet. Resource addresses are preserved, so `terraform plan` against the existing state reports *No changes* — migrate one resource at a time, no big-bang rewrite. It reads `.tf` / `.tf.json` only: no Terraform run, no state access, nothing written into the source tree.
+
+```sh
+brew install nozomi-koborinai/tap/terradart-migrate
+terradart-migrate --dir infra --out infra_dart
+cd infra_dart && dart pub get && dart run bin/infra.dart   # then: terraform init && terraform plan in tf-out/<root>
+```
+
+Docs: [terradart.dev/docs/migrate-from-hcl/](https://terradart.dev/docs/migrate-from-hcl/)
 
 ---
 

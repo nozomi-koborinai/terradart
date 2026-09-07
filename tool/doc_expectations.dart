@@ -39,6 +39,10 @@ String get agentResourceFactoriesPhrase =>
 String get serviceBarrelCountPhrase => '$serviceBarrelCount service barrels';
 String get listBarrelsOutputCountPhrase => '${_counts.allBarrels} in total';
 
+/// The Homebrew install line of the migrator binary (#664): README, the
+/// package README and the website guide must all carry it.
+const migrateBrewPhrase = 'brew install nozomi-koborinai/tap/terradart-migrate';
+
 class _CatalogCounts {
   const _CatalogCounts({
     required this.total,

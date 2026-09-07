@@ -18,6 +18,7 @@ TerraDart is organized as a multi-package monorepo:
 - **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — Curated factories for Cloudflare edge infrastructure (`cloudflare/cloudflare`, filled at `5.23.0`: 257 resource factories + 446 data sources).
 - **[`terradart_agent`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_agent)** — MCP server (`terradart-mcp`) exposing the curated catalog to AI coding agents.
 - **[`terradart_codegen`](https://pub.dev/packages/terradart_codegen)** — Maintainer generation CLI (`terradart wrap`).
+- **[`terradart_migrate`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_migrate)** — HCL → Dart migrator (`terradart-migrate`), reading Terraform through **[`terradart_hcl`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_hcl)**.
 
 ## Guides
 
@@ -26,6 +27,7 @@ TerraDart is organized as a multi-package monorepo:
 - [Architecture](/docs/architecture/) — generate `*.tf.json`, `synth()` / `writeTo()`, AppExport
 - [Coverage](/docs/coverage/) — every curated factory, its barrel, and runnable examples
 - [How it's built](/docs/how-its-built/) — the generation pipeline, verification harness, and sustainability
+- [Migrating from HCL](/docs/migrate-from-hcl/) — `terradart-migrate`: bring an existing Terraform tree into TerraDart with a plan that reports *No changes*
 - [Migrating](/docs/migrating/) — breaking-change guides for minor bumps
 - [Status & versioning](/docs/status/) — alpha, path to beta, 1.0
 

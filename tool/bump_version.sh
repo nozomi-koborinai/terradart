@@ -17,7 +17,10 @@
 #   - packages/terradart_cloudflare/pubspec.yaml  (version: + terradart_core caret)
 #   - packages/terradart_agent/pubspec.yaml       (version: + terradart_core caret + terradart_google caret)
 #   - packages/terradart_agent/lib/src/version.dart  (packageVersion const — lockstep with its pubspec)
-#   - packages/terradart_migrate/lib/src/version.dart (packageVersion const — pinned into migrated pubspecs)
+#   - packages/terradart_coverage/pubspec.yaml    (version: + terradart_{google,google_beta,appwrite,cloudflare,hcl} carets)
+#   - packages/terradart_hcl/pubspec.yaml         (version: line)
+#   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{google,google_beta,appwrite,cloudflare,hcl} carets)
+#   - packages/terradart_migrate/lib/src/version.dart (packageVersion const — pinned into migrated pubspecs and printed by `terradart-migrate --version`)
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta + terradart_appwrite + terradart_cloudflare carets)
 #   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google carets on
 #     cookbook/*/*/pubspec.yaml                    workspace-member cookbook recipes)
@@ -109,8 +112,8 @@ done
 echo "  Inter-package carets:"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_codegen/pubspec.yaml
 echo "    - terradart_codegen.dependencies.terradart_core: ^${NEW}"
-sed_inplace "s#^( *terradart_google): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_migrate/pubspec.yaml
-echo "    - terradart_migrate.dependencies.terradart_google: ^${NEW}"
+sed_inplace "s#^( *terradart_(google|google_beta|appwrite|cloudflare|hcl)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_migrate/pubspec.yaml
+echo "    - terradart_migrate.dependencies.terradart_{google,google_beta,appwrite,cloudflare,hcl}: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
 echo "    - terradart_google.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_codegen): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
@@ -295,7 +298,7 @@ echo "==> Verifying no stale '$OLD' references remain"
 set +e
 STALE=$(
   grep -nE "^version: ${OLD_RE}\$" packages/*/pubspec.yaml 2>/dev/null
-  grep -nE "terradart_(core|codegen|google|google_beta|appwrite|cloudflare|coverage): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
+  grep -nE "terradart_(core|codegen|google|google_beta|appwrite|cloudflare|coverage|hcl|migrate): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     packages/*/pubspec.yaml examples/*/pubspec.yaml \
     cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml \
     README.md website/src/content/docs/docs/getting-started.md \

@@ -7,13 +7,31 @@ The HCL → Dart migrator for existing Terraform users (`terradart-migrate`, [#8
 
 ## Status
 
-**Under construction** — the library and the `terradart-migrate` CLI migrate a Terraform source tree (`*.tf` and `*.tf.json`, through `terradart_hcl`) into a Dart package with a leftover sidecar per directory; the Homebrew binary and the website guide follow in [#664](https://github.com/nozomi-koborinai/terradart/issues/664). `publish_to: none`.
+**Alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The library and the `terradart-migrate` CLI migrate a Terraform source tree (`*.tf` and `*.tf.json`, through `terradart_hcl`) into a Dart package with a leftover sidecar per directory. The CLI reads files only: no Terraform run, no state access, nothing written into the source tree or outside `--out`. `publish_to: none`; ships as a single binary.
+
+## Install
+
+**Homebrew (macOS / Linux):**
+
+```sh
+brew install nozomi-koborinai/tap/terradart-migrate
+```
+
+**Direct binary:** see [GitHub releases](https://github.com/nozomi-koborinai/terradart/releases) (`terradart-migrate-darwin-arm64`, `terradart-migrate-darwin-amd64`, `terradart-migrate-linux-amd64`, `terradart-migrate-windows-amd64.exe`).
+
+**From a checkout:** `dart run bin/terradart_migrate.dart` in this directory.
+
+```sh
+terradart-migrate --version
+```
+
+Guide: [terradart.dev — Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/)
 
 ## CLI
 
 ```sh
-dart run bin/terradart_migrate.dart --dir infra --out infra_dart
-# once distributed (#664): terradart-migrate --dir infra --out infra_dart
+terradart-migrate --dir infra --out infra_dart
+# from a checkout: dart run bin/terradart_migrate.dart --dir infra --out infra_dart
 ```
 
 `--dir` is scanned for module directories (every directory holding `.tf` / `.tf.json` files; hidden directories are skipped) and their roles are inferred: a directory a `module` block's `./` or `../` `source` points at is a **child** (migrated in child-module mode), everything else a **root**, and roots sharing a parent directory are **environment** siblings. `--roots` and `--env-dirs` override the inference. Nothing under `--dir` is written; `--out` must be empty unless `--force` is given.
@@ -96,7 +114,7 @@ for (final slot in hit.entry.slots) {
 
 ## Development
 
-Source lives under `packages/terradart_migrate/`. Regenerate a manifest with the matching wrap lane, e.g. for GA google:
+Source lives under `packages/terradart_migrate/`; release binaries are built by `.github/workflows/release-binary.yml`, which also renders the Homebrew formula (`tool/render_to_file.dart`). Regenerate a manifest with the matching wrap lane, e.g. for GA google:
 
 ```sh
 cd packages/terradart_codegen && dart run bin/terradart.dart wrap \

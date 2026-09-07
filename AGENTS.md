@@ -34,9 +34,9 @@ TerraDart is a Dart-first infrastructure-as-code project that synthesizes Terraf
 - `terradart_agent` for the MCP catalog server.
 - `terradart_codegen` for maintainer generation commands such as `wrap`, `wrap-init`, and `wrap-promote`.
 - `terradart_hcl` for the HCL / `*.tf.json` front-end (`parseHcl`, `decodeTfJson`, `TfModule`) that `terradart-migrate` reads existing Terraform through (#80).
-- `terradart_migrate` for the HCL → Dart migrator itself: the four generated migration manifests, and `migrateModule` — a `TfModule` in, a Dart package (Stack + `bin/infra.dart` + `pubspec.yaml`) and a report out, resource-atomic (#660). `terradart-migrate` (`bin/terradart_migrate.dart`) migrates a whole source tree: `scanModuleTree` infers roots, children and environment siblings, `migrateTree` writes one Stack per directory into one package with a `tf-out/` tree mirroring the source, the leftover sidecar beside each `main.tf.json`, and `MIGRATION.md`; `tool/migrate_fixture_gates.dart` terraform-validates the migrated coverage fixtures (#661). The Homebrew binary follows (#664).
+- `terradart_migrate` for the HCL → Dart migrator itself: the four generated migration manifests, and `migrateModule` — a `TfModule` in, a Dart package (Stack + `bin/infra.dart` + `pubspec.yaml`) and a report out, resource-atomic (#660). `terradart-migrate` (`bin/terradart_migrate.dart`) migrates a whole source tree: `scanModuleTree` infers roots, children and environment siblings, `migrateTree` writes one Stack per directory into one package with a `tf-out/` tree mirroring the source, the leftover sidecar beside each `main.tf.json`, and `MIGRATION.md`; `tool/migrate_fixture_gates.dart` terraform-validates the migrated coverage fixtures (#661). Ships as a single binary like `terradart-mcp`: `release-binary.yml` builds `terradart-migrate` for every tag and `tool/render_to_file.dart` renders its Homebrew formula (`brew install nozomi-koborinai/tap/terradart-migrate`); the website guide is *Migrating from HCL* (#664).
 
-Read `CONTEXT.md` before design work. It defines project-specific terms such as Curated factory, Beta-only factory, Maintainer generation pipeline, Merged IR, Wrapper override, Agent guide, and Local notes.
+Read `CONTEXT.md` before design work. It defines project-specific terms such as Curated factory, Beta-only factory, Maintainer generation pipeline, Merged IR, Wrapper override, Agent guide, Local notes, and the migrator's Migration manifest, Resource-atomic translation, Leftover sidecar, Child-module mode, Environment root, Round-trip gate, and Zero-diff plan.
 
 ## Generation Policy
 
@@ -275,6 +275,7 @@ There is no long-running dev server for core work. Primary flows:
 | High-cost orphan probe (read-only) | `tool/apply_smoke_orphan_check.sh` |
 | Example coverage + API-enablement ratchet | `dart tool/example_synth_gates.dart` |
 | Migrator round-trip (synth → migrate → synth) | `dart tool/migrate_roundtrip_gates.dart --reuse-tf-out` |
+| Migrator fixture gate (migrate the coverage fixtures, synth, terraform validate) | `dart tool/migrate_fixture_gates.dart` |
 | Publish readiness (per package) | `cd packages/<pkg> && dart pub publish --dry-run` |
 | Synth example stack | `cd examples/pubsub_quickstart && GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart` |
 | Validate synth output | `cd examples/pubsub_quickstart/tf-out && terraform init -backend=false && terraform validate` |

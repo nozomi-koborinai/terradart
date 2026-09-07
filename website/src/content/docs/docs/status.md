@@ -47,6 +47,7 @@ Beta is the alpha change policy **proven against real external usage**. We will 
 - [ ] **External quickstart**: someone outside the core team completes the README path once; feedback captured in an issue or discussion.
 - [ ] **Real apply dogfood** via the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook): at least one non-trivial recipe documents a successful `terraform apply`.
 - [ ] **`terradart-mcp`**: [Agent install](/docs/agent/install/) verified on a clean machine (Homebrew or release binary + five tools).
+- [ ] **`terradart-migrate`**: [Migrating from HCL](/docs/migrate-from-hcl/) verified on a clean machine (Homebrew or release binary), with one real Terraform tree that migrates and plans with *No changes*.
 
 Toward **1.0.0** (does not block beta):
 
