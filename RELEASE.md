@@ -1,6 +1,6 @@
 # Release Checklist
 
-terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, and `terradart_cloudflare`. `terradart_agent` and `terradart_coverage` are `publish_to: none` and ship as Homebrew binaries via `release-binary.yml`.
+terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, and `terradart_cloudflare`. `terradart_agent`, `terradart_coverage` and `terradart_migrate` are `publish_to: none` and ship as Homebrew binaries (`terradart-mcp`, `terradart-coverage`, `terradart-migrate`) via `release-binary.yml`, which also pushes their formulas to `nozomi-koborinai/homebrew-tap`.
 
 ## Pre-flight (local)
 
@@ -106,3 +106,5 @@ If a phase succeeds for some packages but fails for the next (e.g. `publish-code
 - [ ] All 3 listings on pub.dev show the correct version
 - [ ] GitHub Release created (`gh release create v0.X.Y --notes ...`)
 - [ ] Verified publisher badge appears on all 3 pub.dev pages
+- [ ] `release-binary.yml` succeeded: the three binaries (`terradart-mcp`, `terradart-coverage`, `terradart-migrate`) and their `.sha256` sidecars are attached to the GitHub Release, and the tap received the formula update
+- [ ] Binary install verified on a clean machine: `brew install nozomi-koborinai/tap/terradart-migrate && terradart-migrate --version` (and the same for `terradart-mcp`), then one real tree migrates and plans with *No changes* per [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/)

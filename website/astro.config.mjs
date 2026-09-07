@@ -45,6 +45,7 @@ export default defineConfig({
             "docs/architecture",
             "docs/how-its-built",
             "docs/coverage",
+            "docs/migrate-from-hcl",
             "docs/migrating",
             "docs/status",
           ],

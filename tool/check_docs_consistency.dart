@@ -100,6 +100,19 @@ Future<void> main() async {
     dataSourceCatalogPhrase,
     serviceBarrelCountPhrase,
   );
+  // terradart-migrate distribution (#664): the install line and the guide.
+  for (final page in [
+    'README.md',
+    'packages/terradart_migrate/README.md',
+    'website/src/content/docs/docs/migrate-from-hcl.md',
+  ]) {
+    _checkPhrase(errors, page, migrateBrewPhrase);
+  }
+  _checkPhrase(
+    errors,
+    'website/src/content/docs/docs/index.md',
+    '/docs/migrate-from-hcl/',
+  );
   for (final template in [
     '.github/ISSUE_TEMPLATE/bug.yml',
     '.github/ISSUE_TEMPLATE/feature.yml',
