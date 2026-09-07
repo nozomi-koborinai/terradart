@@ -81,6 +81,13 @@ final class AssetsStack extends Stack {
         provider: 'google.eu',
       ),
     );
+    // The EU bucket was declared as `assets_europe` in an earlier revision.
+    // `moved { from = ... to = ... }` keeps its state across the rename, so
+    // `terraform plan` shows a move instead of a destroy-and-create.
+    addMoved(
+      'google_storage_bucket.assets_europe',
+      'google_storage_bucket.assets_eu',
+    );
 
     add(
       GoogleStorageBucketObject(

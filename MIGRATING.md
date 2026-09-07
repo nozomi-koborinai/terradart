@@ -91,6 +91,19 @@ Synth changes, additive for a Stack that registers each provider once:
   provider registered twice without an alias (or with the same alias
   twice), and an alias that is not a Terraform identifier.
 
+**`terradart_core`** — `Stack.addMoved(from, to)` records a
+`moved { from = ... to = ... }` block (additive, #663): synth emits the
+entries under the top-level `moved` key, so a renamed resource — or a
+`count` / `for_each` instance unrolled into its own resource — keeps its
+state instead of being destroyed and re-created. `to` must name a resource
+of the Stack (or lie inside a `module.` call); synth checks it, as Terraform
+would.
+
+```dart
+add(GooglePubsubTopic(localName: 'orders_0', name: TfArg.literal('orders-0')));
+addMoved('google_pubsub_topic.orders[0]', 'google_pubsub_topic.orders_0');
+```
+
 ## 0.26.0 → 0.27.0
 
 **Breaking (`terradart_core`)** — synth now refuses to emit a config whose

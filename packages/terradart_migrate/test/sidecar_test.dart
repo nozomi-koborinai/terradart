@@ -112,32 +112,38 @@ output "label" {
 
     test('resource-level blocks are copied verbatim, comments included', () {
       final leftover = sidecar.files[leftoverFileName]!;
+      // The counted subscription was unrolled (#663) and the moved block
+      // follows its migrated target into the Stack.
       expect(
         leftover,
-        contains(
-          '# terradart-migrate: count is not supported yet (addresses cannot '
-          'be preserved, #663)\n'
-          '# Fan-out subscriptions.\n'
-          'resource "google_pubsub_subscription" "many" {\n'
-          '  count = 2\n'
-          '  name  = "s-\${count.index}"\n'
-          '  topic = google_pubsub_topic.t.name\n'
-          '} # trailing',
-        ),
+        isNot(contains('resource "google_pubsub_subscription" "many"')),
       );
       expect(leftover, contains('resource "aws_s3_bucket" "logs" {'));
-      expect(leftover, contains('moved {\n  from = google_pubsub_topic.old'));
+      expect(leftover, isNot(contains('moved {')));
+      expect(
+        r.stackSource,
+        allOf(
+          contains(
+            "GooglePubsubSubscription(localName: r'many_0', "
+            "name: TfArg.literal(r's-0'), topic: TfArg.ref(t.nameRef))",
+          ),
+          contains(
+            "addMoved(r'google_pubsub_subscription.many[1]', "
+            "r'google_pubsub_subscription.many_1');",
+          ),
+          contains(
+            "addMoved(r'google_pubsub_topic.old', r'google_pubsub_topic.t');",
+          ),
+        ),
+      );
       // The aliased configuration is registered on the Stack (#666), so it
       // is not repeated here either.
       expect(leftover, isNot(contains('alias  = "west"')));
       expect(leftover, isNot(contains('resource "google_pubsub_topic" "t"')));
       expect(leftover, isNot(contains('project = "p"')));
       expect(leftover, startsWith('# Kept in Terraform by terradart-migrate'));
-      expect(
-        sidecar.placements['google_pubsub_subscription.many'],
-        leftoverFileName,
-      );
-      expect(sidecar.placements['moved'], leftoverFileName);
+      expect(sidecar.placements['google_pubsub_subscription.many'], isNull);
+      expect(sidecar.placements['moved'], isNull);
       expect(sidecar.placements['provider.google.west'], isNull);
       expect(r.report.migratedAddresses, contains('provider.google.west'));
       expect(
@@ -222,7 +228,7 @@ output "label" {
           },
           'resource': {
             'google_pubsub_topic': {
-              't': {'name': 't', 'count': 2},
+              't': {'name': 't', 'no_such_arg': 2},
             },
           },
           'locals': {'prefix': 'app'},
@@ -236,7 +242,7 @@ output "label" {
     expect(
       sidecar.files[leftoverFileName],
       contains(
-        'resource "google_pubsub_topic" "t" {\n  name = "t"\n  count = 2\n}',
+        'resource "google_pubsub_topic" "t" {\n  name = "t"\n  no_such_arg = 2\n}',
       ),
     );
     expect(
@@ -292,8 +298,8 @@ resource "google_pubsub_topic" "ok" {
 }
 
 resource "google_pubsub_topic" "t" {
-  name  = "t"
-  count = 2
+  name        = "t"
+  no_such_arg = 2
 }
 ''', allowTodo: true);
     expect(r.hasStack, isTrue);
@@ -303,8 +309,8 @@ resource "google_pubsub_topic" "t" {
     expect(
       r.stackSource,
       contains(
-        '// TODO(terradart-migrate): google_pubsub_topic.t: count is not '
-        'supported yet',
+        '// TODO(terradart-migrate): google_pubsub_topic.t: no Dart '
+        'parameter for argument "no_such_arg"',
       ),
     );
   });

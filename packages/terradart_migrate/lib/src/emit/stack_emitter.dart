@@ -16,6 +16,7 @@ import 'blocker.dart';
 import 'body_map.dart';
 import 'context.dart';
 import 'dart_literal.dart';
+import 'expand.dart';
 import 'naming.dart';
 import 'tf_expr.dart';
 import 'value_emitter.dart';
@@ -105,9 +106,6 @@ const _providerRecipes = <String, _ProviderRecipe>{
 
 /// Meta-arguments and blocks a resource may carry that have no synth path.
 const _blockedMeta = <String, String>{
-  'count': 'count is not supported yet (addresses cannot be preserved, #663)',
-  'for_each':
-      'for_each is not supported yet (addresses cannot be preserved, #663)',
   'dynamic': 'dynamic blocks have no synth path',
   'provisioner': 'provisioner blocks have no synth path',
   'connection': 'connection blocks have no synth path',
@@ -179,6 +177,14 @@ final class StackEmitter {
   /// Provider local names the Stack registers (`google`, `time`, ...).
   final _registeredProviders = <String>[];
 
+  /// Blocks unrolled from a literal `count` / `for_each`, by their address
+  /// as written; filled by [_blocksInOrder].
+  final _expansions = <String, Expansion>{};
+
+  /// Points references at the unrolled instances; empty when nothing was
+  /// unrolled.
+  var _rewriter = ReferenceRewriter(const []);
+
   static const _noStackReason =
       'nothing in this directory translates, so no Stack is generated; the '
       'block stays as written';
@@ -188,54 +194,77 @@ final class StackEmitter {
   final _warnings = <String>[];
 
   EmittedStack emit() {
-    final blocks = _blocksInOrder();
-    final names = NameAllocator();
-    final dartNames = <String, String>{
-      for (final b in blocks)
-        b.address: names.allocate(
-          b.name,
-          suffix: NameAllocator.typeSuffix(b.type),
-        ),
-    };
     for (final v in module.variables) {
       ctx.declaredVariables.add(v.name);
     }
 
-    // Resource-atomic translation to a fixpoint: a resource that references
-    // a kept resource may need to be kept too (depends_on), so re-run until
-    // the kept set is stable.
+    // A literal count / for_each is unrolled into one block per instance
+    // (#663). Translation stays resource-atomic: one instance that cannot
+    // become Dart rolls the whole block back to "kept as written", and the
+    // module is emitted again without that expansion.
+    final refused = <String, String>{};
+    late List<_BlockInfo> blocks;
+    late Map<String, String> dartNames;
     var kept = <String, String>{};
     var emitted = <String, _Emitted>{};
     while (true) {
-      ctx.targets.clear();
-      ctx.resetPass();
-      for (final b in blocks) {
-        if (kept.containsKey(b.address)) continue;
-        final hit = ctx.lookup(b.type, b.kind);
-        if (hit == null) continue;
-        ctx.targets[b.address] = EmitTarget(
-          address: b.address,
-          dartName: dartNames[b.address]!,
-          entry: hit.entry,
-          manifest: hit.manifest,
-          isData: b.isData,
-        );
+      blocks = _blocksInOrder(refused);
+      final names = NameAllocator();
+      dartNames = <String, String>{
+        for (final b in blocks)
+          b.address: names.allocate(
+            b.name,
+            suffix: NameAllocator.typeSuffix(b.type),
+          ),
+      };
+
+      // Resource-atomic translation to a fixpoint: a resource that
+      // references a kept resource may need to be kept too (depends_on), so
+      // re-run until the kept set is stable.
+      kept = <String, String>{};
+      while (true) {
+        ctx.targets.clear();
+        ctx.resetPass();
+        for (final b in blocks) {
+          if (kept.containsKey(b.address)) continue;
+          final hit = ctx.lookup(b.type, b.kind);
+          if (hit == null) continue;
+          ctx.targets[b.address] = EmitTarget(
+            address: b.address,
+            dartName: dartNames[b.address]!,
+            entry: hit.entry,
+            manifest: hit.manifest,
+            isData: b.isData,
+          );
+        }
+        final nextKept = <String, String>{};
+        emitted = {};
+        for (final b in blocks) {
+          try {
+            emitted[b.address] = _emitBlock(b, dartNames[b.address]!);
+          } on MigrateBlocker catch (e) {
+            nextKept[b.address] = e.reason;
+          }
+        }
+        if (nextKept.keys.toSet().containsAll(kept.keys) &&
+            kept.keys.toSet().containsAll(nextKept.keys)) {
+          kept = nextKept;
+          break;
+        }
+        kept = nextKept;
       }
-      final nextKept = <String, String>{};
-      emitted = {};
-      for (final b in blocks) {
-        try {
-          emitted[b.address] = _emitBlock(b, dartNames[b.address]!);
-        } on MigrateBlocker catch (e) {
-          nextKept[b.address] = e.reason;
+
+      var rolledBack = false;
+      for (final ex in _expansions.values) {
+        for (final inst in ex.item.instances) {
+          final reason = kept[inst.to];
+          if (reason == null) continue;
+          refused[ex.address] = 'instance ${inst.from}: $reason';
+          rolledBack = true;
+          break;
         }
       }
-      if (nextKept.keys.toSet().containsAll(kept.keys) &&
-          kept.keys.toSet().containsAll(nextKept.keys)) {
-        kept = nextKept;
-        break;
-      }
-      kept = nextKept;
+      if (!rolledBack) break;
     }
 
     final referenced = <String>{};
@@ -421,6 +450,32 @@ final class StackEmitter {
       );
     }
 
+    // --- moved: unrolled instances keep their state, and the module's own
+    // moved blocks follow their targets into the Stack ---------------------
+    final movedFroms = <String>{};
+    for (final ex in _expansions.values) {
+      if (ex.isData) continue;
+      for (final inst in ex.item.instances) {
+        body.writeln(
+          'addMoved(${dartString(inst.from)}, ${dartString(inst.to)});',
+        );
+        movedFroms.add(inst.from);
+      }
+    }
+    final translatedMoved = <OpaqueBlock>{};
+    for (final o in module.opaque) {
+      if (o.type != 'moved' || o.block.labels.isNotEmpty || noStack) continue;
+      try {
+        for (final stmt in _moved(o, movedFroms, emitted)) {
+          body.writeln(stmt);
+        }
+        translatedMoved.add(o);
+      } on MigrateBlocker catch (e) {
+        _keep('moved', e.reason);
+        translatedMoved.add(o);
+      }
+    }
+
     for (final stmt in outputStatements) {
       body.writeln(stmt);
     }
@@ -441,6 +496,7 @@ final class StackEmitter {
       );
     }
     for (final o in module.opaque) {
+      if (translatedMoved.contains(o)) continue;
       final labels = o.block.labels.map((l) => '.${l.text}').join();
       _keep('${o.type}$labels', 'no synth path for "${o.type}" blocks');
     }
@@ -506,6 +562,9 @@ final class StackEmitter {
         warnings: List.unmodifiable(ctx.warnings),
         packages: packages,
         providers: List.unmodifiable(_registeredProviders),
+        expanded: List.unmodifiable([
+          for (final e in _expansions.values) e.item,
+        ]),
       ),
     );
   }
@@ -563,6 +622,10 @@ final class StackEmitter {
     }
     final entry = hit.entry;
     final manifest = hit.manifest;
+    // A count / for_each that could not be unrolled, or a reference to an
+    // instance that does not exist.
+    final expansionBlocker = b.expansionBlocker;
+    if (expansionBlocker != null) throw MigrateBlocker(expansionBlocker);
     final values = objectMap(bodyAsObject(b.body)) ?? {};
     for (final meta in _blockedMeta.keys) {
       if (values.containsKey(meta)) throw MigrateBlocker(_blockedMeta[meta]!);
@@ -646,6 +709,86 @@ final class StackEmitter {
       barrel: entry.barrel,
       providerName: providerName,
     );
+  }
+
+  /// `addMoved(...)` statements for one of the module's own `moved` blocks.
+  ///
+  /// `to` is rewritten like any reference: a block that was unrolled yields
+  /// one move per instance (`from[key]` → the instance's address). The target
+  /// must be a resource the Stack registers (or lie in a `module.` call),
+  /// since Terraform rejects a move onto an address the configuration does
+  /// not declare — a block whose target stays in Terraform stays with it.
+  List<String> _moved(
+    OpaqueBlock o,
+    Set<String> froms,
+    Map<String, _Emitted> emitted,
+  ) {
+    final values = objectMap(bodyAsObject(o.body)) ?? {};
+    for (final key in values.keys) {
+      if (key != 'from' && key != 'to') {
+        throw MigrateBlocker('moved.$key has no synth path');
+      }
+    }
+    TraversalExpr address(String key) {
+      final e = values[key];
+      if (e == null) throw MigrateBlocker('moved block has no "$key"');
+      final text = e.constantString;
+      final t = text != null ? _traversalOf(text) : singleReference(e);
+      if (t == null) {
+        throw MigrateBlocker('moved.$key = ${hclSource(e)} is not an address');
+      }
+      return t;
+    }
+
+    final from = hclSource(address('from'));
+    final toTraversal = address('to');
+    final to = _rewriter.expr(toTraversal);
+    final targets = <String>[];
+    final moves = <(String, String)>[];
+    switch (to) {
+      case TraversalExpr():
+        targets.add(hclSource(to));
+        moves.add((from, hclSource(to)));
+      case TupleExpr(:final elements):
+        // `to` named a block that was unrolled: one move per instance.
+        for (var i = 0; i < elements.length; i++) {
+          final t = hclSource(elements[i]);
+          targets.add(t);
+          moves.add(('$from[$i]', t));
+        }
+      case ObjectExpr(:final items):
+        for (final item in items) {
+          final t = hclSource(item.value);
+          targets.add(t);
+          moves.add(('$from[${hclSource(item.key)}]', t));
+        }
+      default:
+        throw MigrateBlocker('moved.to = ${hclSource(to)} is not an address');
+    }
+    for (final t in targets) {
+      if (t.startsWith('module.')) continue;
+      final parts = t.split('.');
+      final base = parts.length >= 2
+          ? '${parts[0]}.${parts[1].split('[').first}'
+          : t;
+      if (!emitted.containsKey(base)) {
+        throw MigrateBlocker(
+          'moved.to = $t: "$base" stays in Terraform, so the block does too',
+        );
+      }
+    }
+    final out = <String>[];
+    for (final (f, t) in moves) {
+      if (f == t) {
+        throw MigrateBlocker('moved.from and moved.to are the same address');
+      }
+      if (!froms.add(f)) {
+        throw MigrateBlocker('another moved block already moves "$f"');
+      }
+      out.add('addMoved(${dartString(f)}, ${dartString(t)});');
+      _migrated.add(MigratedItem(address: 'moved.$f'));
+    }
+    return out;
   }
 
   String _dependsOn(Expr value, ValueEmitter emitter) {
@@ -898,8 +1041,9 @@ final class StackEmitter {
   String? _output(OutputBlock o) {
     final values = objectMap(bodyAsObject(o.body)) ?? {};
     try {
-      final value = values['value'];
+      var value = values['value'];
       if (value == null) throw MigrateBlocker('output has no value');
+      value = _rewriter.expr(value);
       final t = singleReference(value);
       final c = t == null ? null : classifyTraversal(t);
       if (c is! BlockReference || c.attribute.isEmpty) {
@@ -959,27 +1103,108 @@ final class StackEmitter {
   /// Resources and data sources in an order where every Dart local is
   /// declared before it is used: source order, moved only where a reference
   /// or `depends_on` forces the target first.
-  List<_BlockInfo> _blocksInOrder() {
-    final all = <_BlockInfo>[
-      for (final d in module.dataSources)
-        _BlockInfo(
-          address: d.address,
-          type: d.type,
-          name: d.name,
-          kind: CatalogKind.dataSource,
-          body: d.body,
-          isData: true,
-        ),
-      for (final r in module.resources)
-        _BlockInfo(
-          address: r.address,
-          type: r.type,
-          name: r.name,
-          kind: CatalogKind.resource,
-          body: r.body,
-          isData: false,
-        ),
-    ];
+  List<_BlockInfo> _blocksInOrder(Map<String, String> refused) {
+    _expansions.clear();
+    // Block names per (kind, type), for instance-name collisions.
+    final siblings = <String, Set<String>>{};
+    for (final d in module.dataSources) {
+      siblings.putIfAbsent('data.${d.type}', () => {}).add(d.name);
+    }
+    for (final r in module.resources) {
+      siblings.putIfAbsent(r.type, () => {}).add(r.name);
+    }
+
+    final collected = <_BlockInfo>[];
+    void collect({
+      required String address,
+      required String type,
+      required String name,
+      required CatalogKind kind,
+      required Body body,
+      required bool isData,
+    }) {
+      Expansion? expansion;
+      var blocker = refused[address];
+      if (blocker == null) {
+        try {
+          expansion = expandBlock(
+            type: type,
+            name: name,
+            body: body,
+            isData: isData,
+            siblingNames: siblings[isData ? 'data.$type' : type]!,
+          );
+        } on MigrateBlocker catch (e) {
+          blocker = e.reason;
+        }
+      }
+      if (expansion == null) {
+        collected.add(
+          _BlockInfo(
+            address: address,
+            type: type,
+            name: name,
+            kind: kind,
+            body: body,
+            isData: isData,
+            expansionBlocker: blocker,
+          ),
+        );
+        return;
+      }
+      _expansions[address] = expansion;
+      for (var i = 0; i < expansion.bodies.length; i++) {
+        final instance = expansion.item.instances[i];
+        collected.add(
+          _BlockInfo(
+            address: instance.to,
+            type: type,
+            name: instance.to.split('.').last,
+            kind: kind,
+            body: expansion.bodies[i],
+            isData: isData,
+            expandedFrom: instance.from,
+          ),
+        );
+      }
+    }
+
+    for (final d in module.dataSources) {
+      collect(
+        address: d.address,
+        type: d.type,
+        name: d.name,
+        kind: CatalogKind.dataSource,
+        body: d.body,
+        isData: true,
+      );
+    }
+    for (final r in module.resources) {
+      collect(
+        address: r.address,
+        type: r.type,
+        name: r.name,
+        kind: CatalogKind.resource,
+        body: r.body,
+        isData: false,
+      );
+    }
+
+    // Point every reference at the unrolled instances.
+    _rewriter = ReferenceRewriter([for (final e in _expansions.values) e.item]);
+    final all = <_BlockInfo>[];
+    for (final b in collected) {
+      if (_rewriter.isEmpty || b.expansionBlocker != null) {
+        all.add(b);
+        continue;
+      }
+      try {
+        all.add(b.withBody(_rewriter.body(b.body, topLevel: true)));
+      } on MigrateBlocker catch (e) {
+        all.add(b.withBlocker(e.reason));
+      }
+    }
+
     final index = {for (final b in all) b.address: b};
     final deps = <String, Set<String>>{
       for (final b in all)
@@ -1092,6 +1317,8 @@ final class _BlockInfo {
     required this.kind,
     required this.body,
     required this.isData,
+    this.expandedFrom,
+    this.expansionBlocker,
   });
 
   final String address;
@@ -1100,4 +1327,36 @@ final class _BlockInfo {
   final CatalogKind kind;
   final Body body;
   final bool isData;
+
+  /// The address this block had before its `count` / `for_each` was
+  /// unrolled (`google_x.y[0]`), or `null` for a block written as-is.
+  final String? expandedFrom;
+
+  /// Why this block cannot become Dart, decided before emission: a
+  /// `count` / `for_each` that is not a literal, an instance of it that did
+  /// not translate, or a reference to an instance another block does not
+  /// declare.
+  final String? expansionBlocker;
+
+  _BlockInfo withBody(Body body) => _BlockInfo(
+    address: address,
+    type: type,
+    name: name,
+    kind: kind,
+    body: body,
+    isData: isData,
+    expandedFrom: expandedFrom,
+    expansionBlocker: expansionBlocker,
+  );
+
+  _BlockInfo withBlocker(String reason) => _BlockInfo(
+    address: address,
+    type: type,
+    name: name,
+    kind: kind,
+    body: body,
+    isData: isData,
+    expandedFrom: expandedFrom,
+    expansionBlocker: reason,
+  );
 }

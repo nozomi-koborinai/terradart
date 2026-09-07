@@ -55,9 +55,10 @@ class StackSynth {
     final providers = TfJsonEncoder.providerBlock(stack);
     final variables = TfJsonEncoder.variableBlock(stack);
 
-    // 3. Resources & data sources.
+    // 3. Resources, data sources and the moved entries between them.
     final resources = TfJsonEncoder.resourcesGroup(stack);
     final data = TfJsonEncoder.dataGroup(stack);
+    final moved = TfJsonEncoder.movedBlock(stack);
 
     // 4. Two-pass app exports.
     final resolver = LiteralResolver.fromStack(stack);
@@ -70,6 +71,7 @@ class StackSynth {
     if (providers != null) tfJson['provider'] = providers;
     if (resources != null) tfJson['resource'] = resources;
     if (data != null) tfJson['data'] = data;
+    if (moved != null) tfJson['moved'] = moved;
     if (outputs != null) tfJson['output'] = outputs;
 
     // 6. Dart constants file.

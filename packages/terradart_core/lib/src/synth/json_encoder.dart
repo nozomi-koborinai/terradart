@@ -546,6 +546,30 @@ class TfJsonEncoder {
     return out;
   }
 
+  /// Top-level `moved` list — one `{"from": ..., "to": ...}` object per
+  /// [Stack.addMoved] entry, in registration order — or `null` when the
+  /// stack recorded none.
+  ///
+  /// Every `to` must name a resource registered on the stack (Terraform
+  /// rejects a move whose target is not in the configuration) or an
+  /// address inside a `module.` call, which the stack cannot see.
+  static List<Map<String, String>>? movedBlock(Stack stack) {
+    final moved = stack.moved;
+    if (moved.isEmpty) return null;
+    final addresses = {for (final r in stack.resources) r.tfAddress};
+    for (final m in moved) {
+      final to = m.to;
+      if (to.startsWith('module.') || addresses.contains(to)) continue;
+      throw StateError(
+        'moved block "${m.from}" -> "$to": no resource "$to" is registered '
+        'on this Stack. Terraform only moves state onto a resource the '
+        'configuration declares — add the resource, or point the block at '
+        'its address (`<type>.<localName>`).',
+      );
+    }
+    return [for (final m in moved) m.toTfJson()];
+  }
+
   /// Top-level `output { ... }` block built from Pass-2's
   /// [TerraformOutputSpec] list. Returns `null` for an empty list.
   static Map<String, dynamic>? outputBlock(List<TerraformOutputSpec> outs) {

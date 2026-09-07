@@ -18,6 +18,51 @@ final class MigratedItem {
   };
 }
 
+/// A `count` / `for_each` block unrolled into one resource per instance,
+/// each with a `moved` entry carrying its state to the new address.
+final class ExpandedItem {
+  const ExpandedItem({
+    required this.address,
+    required this.isForEach,
+    required this.instances,
+  });
+
+  /// The block as written: `google_pubsub_topic.orders`.
+  final String address;
+
+  /// True for `for_each`, false for `count`.
+  final bool isForEach;
+
+  final List<ExpandedInstanceItem> instances;
+
+  Map<String, Object?> toJson() => {
+    'address': address,
+    'meta': isForEach ? 'for_each' : 'count',
+    'instances': [for (final i in instances) i.toJson()],
+  };
+}
+
+/// One instance of an [ExpandedItem].
+final class ExpandedInstanceItem {
+  const ExpandedInstanceItem({
+    required this.key,
+    required this.from,
+    required this.to,
+  });
+
+  /// The instance key: an `int` index for `count`, a `String` for `for_each`.
+  final Object key;
+
+  /// The address the instance had: `google_pubsub_topic.orders[0]`,
+  /// `google_pubsub_topic.orders["eu"]`.
+  final String from;
+
+  /// The address of the resource it became: `google_pubsub_topic.orders_0`.
+  final String to;
+
+  Map<String, Object?> toJson() => {'key': key, 'from': from, 'to': to};
+}
+
 /// A block that stays in Terraform, and why.
 final class KeptItem {
   const KeptItem({required this.address, required this.reason});
@@ -38,6 +83,7 @@ final class MigrationReport {
     required this.warnings,
     required this.packages,
     this.providers = const [],
+    this.expanded = const [],
   });
 
   /// The module name (its directory, or the name the caller gave).
@@ -63,6 +109,10 @@ final class MigrationReport {
   /// `required_providers` entries are the Stack's, never the sidecar's.
   final List<String> providers;
 
+  /// `count` / `for_each` blocks unrolled into one resource per instance;
+  /// their instances are listed in [migrated] under the new addresses.
+  final List<ExpandedItem> expanded;
+
   /// True when nothing was left in Terraform.
   bool get isComplete => kept.isEmpty;
 
@@ -78,6 +128,7 @@ final class MigrationReport {
     'warnings': warnings,
     'packages': packages,
     'providers': providers,
+    'expanded': [for (final e in expanded) e.toJson()],
   };
 
   String renderText() {
@@ -88,6 +139,16 @@ final class MigrationReport {
       ..writeln(
         '  migrated: ${migrated.length}, kept in Terraform: ${kept.length}',
       );
+    if (expanded.isNotEmpty) {
+      b.writeln();
+      b.writeln('Unrolled (${expanded.length}):');
+      for (final e in expanded) {
+        b.writeln(
+          '  ${e.address} (${e.isForEach ? 'for_each' : 'count'}): '
+          '${e.instances.map((i) => '${i.from} → ${i.to}').join(', ')}',
+        );
+      }
+    }
     if (kept.isNotEmpty) {
       b.writeln();
       b.writeln('Kept in Terraform (${kept.length}):');

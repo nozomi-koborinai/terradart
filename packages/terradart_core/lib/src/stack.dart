@@ -5,6 +5,7 @@ import 'app_export.dart';
 import 'data.dart';
 import 'duplicate_resource_error.dart';
 import 'resource.dart';
+import 'tf_moved.dart';
 import 'tf_variable.dart';
 import 'synth/stack_synth.dart';
 
@@ -82,6 +83,8 @@ abstract interface class StackProvider {
 ///   declarations backing the `TfArg.variable` references in this
 ///   stack. `addExternalVariable(...)` / `externalVariables` covers
 ///   names declared in a hand-written file instead.
+/// - `addMoved(...)` / `moved` — `moved { from = ... to = ... }` entries
+///   that carry existing state across a resource rename.
 abstract base class Stack {
   Stack({
     required List<StackProvider> providers,
@@ -121,6 +124,9 @@ abstract base class Stack {
   /// Names declared outside synth output — see [addExternalVariable].
   final Set<String> _externalVariables = {};
 
+  /// Insertion-ordered so the emitted `moved` list is stable.
+  final List<TfMoved> _moved = [];
+
   /// Default Terraform version constraint (1.11+ is required for
   /// write-only argument support).
   String _requiredVersion = '>= 1.11.0';
@@ -147,6 +153,9 @@ abstract base class Stack {
   /// Synth accepts references to these but emits no block for them.
   Set<String> get externalVariables =>
       Set<String>.unmodifiable(_externalVariables);
+
+  /// The `moved` entries registered with [addMoved], in registration order.
+  List<TfMoved> get moved => List<TfMoved>.unmodifiable(_moved);
 
   /// Output path for synth's `.dart` constants file. Null means "do not
   /// emit a constants file" (the default behavior).
@@ -188,6 +197,36 @@ abstract base class Stack {
       );
     }
     _variables[name] = variable;
+  }
+
+  /// Record a `moved { from = <from> to = <to> }` block: the state object
+  /// at [from] now belongs to the resource at [to], so a rename (or a
+  /// `count` / `for_each` instance unrolled into its own resource) keeps
+  /// its state instead of being destroyed and re-created. Addresses are
+  /// written as Terraform writes them (`google_pubsub_topic.orders[0]`,
+  /// `module.events.google_pubsub_topic.orders`).
+  ///
+  /// Throws [ArgumentError] when either address is empty, both are the
+  /// same, or [from] was already recorded. Synth checks that [to] names a
+  /// resource of this Stack (or lies inside a `module.` call).
+  void addMoved(String from, String to) {
+    if (from.trim().isEmpty) {
+      throw ArgumentError.value(from, 'from', 'must not be empty');
+    }
+    if (to.trim().isEmpty) {
+      throw ArgumentError.value(to, 'to', 'must not be empty');
+    }
+    if (from == to) {
+      throw ArgumentError.value(to, 'to', 'must differ from "from"');
+    }
+    if (_moved.any((m) => m.from == from)) {
+      throw ArgumentError.value(
+        from,
+        'from',
+        'A moved block from "$from" is already recorded on this Stack.',
+      );
+    }
+    _moved.add(TfMoved(from: from, to: to));
   }
 
   /// Accept `TfArg.variable('<name>')` references to a variable declared

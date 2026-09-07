@@ -1,5 +1,6 @@
 import 'package:terradart_core/src/app_export.dart';
 import 'package:terradart_core/src/stack.dart';
+import 'package:terradart_core/src/tf_moved.dart';
 import 'package:test/test.dart';
 
 final class _Export extends AppExport {
@@ -98,6 +99,48 @@ void main() {
     test('setter round-trips', () {
       final s = _S()..setAppExportsOutputPath('lib/gen/exports.dart');
       expect(s.appExportsOutputPath, 'lib/gen/exports.dart');
+    });
+  });
+
+  group('Stack.addMoved', () {
+    test('records entries in order and exposes them read-only', () {
+      final stack = _S()
+        ..addMoved('google_pubsub_topic.a[0]', 'google_pubsub_topic.a_0')
+        ..addMoved('google_pubsub_topic.a[1]', 'google_pubsub_topic.a_1');
+      expect(
+        stack.moved,
+        equals(const [
+          TfMoved(
+            from: 'google_pubsub_topic.a[0]',
+            to: 'google_pubsub_topic.a_0',
+          ),
+          TfMoved(
+            from: 'google_pubsub_topic.a[1]',
+            to: 'google_pubsub_topic.a_1',
+          ),
+        ]),
+      );
+      expect(
+        () => stack.moved.add(const TfMoved(from: 'x.y', to: 'x.z')),
+        throwsUnsupportedError,
+      );
+    });
+
+    test('rejects empty, identical and repeated addresses', () {
+      final stack = _S()..addMoved('a.b[0]', 'a.b_0');
+      expect(() => stack.addMoved('', 'a.b_1'), throwsArgumentError);
+      expect(() => stack.addMoved('a.b[1]', ' '), throwsArgumentError);
+      expect(() => stack.addMoved('a.b_1', 'a.b_1'), throwsArgumentError);
+      expect(
+        () => stack.addMoved('a.b[0]', 'a.b_2'),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            contains('already recorded'),
+          ),
+        ),
+      );
     });
   });
 

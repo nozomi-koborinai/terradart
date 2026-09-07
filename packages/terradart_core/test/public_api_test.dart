@@ -42,8 +42,9 @@ void main() {
       SynthResult,
       DuplicateResourceError,
       TfVariable,
+      TfMoved,
     ];
-    expect(symbols, hasLength(36));
+    expect(symbols, hasLength(37));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {

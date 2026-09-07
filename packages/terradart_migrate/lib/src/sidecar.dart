@@ -10,6 +10,7 @@ library;
 
 import 'package:terradart_hcl/terradart_hcl.dart';
 
+import 'emit/expand.dart';
 import 'report.dart';
 
 /// Resources, data sources, module calls, `moved` and friends, provider
@@ -82,11 +83,25 @@ final class _SidecarBuilder {
   final _chunks = <String, List<String>>{};
   final _placements = <String, String>{};
 
+  /// Points references at the instances the Stack unrolled a `count` /
+  /// `for_each` block into (`google_x.y[0]` → `google_x.y_0`); the block as
+  /// written no longer exists in the directory.
+  late final _rewriter = ReferenceRewriter(report.expanded);
+
   void _put(String file, String address, String text) {
     final reason = kept[address];
+    var body = text;
+    if (!_rewriter.isEmpty) {
+      final rewritten = _rewriter.text(text, strict: false);
+      if (rewritten != text) {
+        body =
+            '# terradart-migrate: references to instances of an unrolled '
+            'count / for_each block point at the new addresses\n$rewritten';
+      }
+    }
     _chunks
         .putIfAbsent(file, () => [])
-        .add(reason == null ? text : '# terradart-migrate: $reason\n$text');
+        .add(reason == null ? body : '# terradart-migrate: $reason\n$body');
     _placements[address] = file;
   }
 
