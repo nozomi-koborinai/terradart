@@ -1,5 +1,43 @@
 # Migrating terradart
 
+## 0.27.0 → 0.28.0
+
+**`terradart_core`** — `TfArg` gains a fourth variant, `TfArgExpression`
+(`TfArg.expression(...)`): a raw Terraform expression, emitted verbatim.
+`TfArg` is sealed, so an exhaustive `switch` over its subtypes needs one
+more case:
+
+```dart
+// Before
+switch (arg) {
+  case TfArgLiteral(:final value): ...
+  case TfArgRef(:final ref): ...
+  case TfArgVariable(:final name): ...
+}
+
+// After
+switch (arg) {
+  case TfArgLiteral(:final value): ...
+  case TfArgRef(:final ref): ...
+  case TfArgVariable(:final name): ...
+  case TfArgExpression(:final template): ...
+}
+```
+
+Nothing changes for code that only constructs arguments. Two synth
+behaviours are new, both additive:
+
+- the `var.<name>` references inside a `TfArg.expression` template are
+  checked against the Stack's declarations, as `TfArg.variable` is —
+  declare them with `addVariable` or `addExternalVariable`;
+- a nested sensitive field accepts any Terraform template (a string holding
+  an unescaped `${ ... }` or `%{ ... }` anywhere), where it used to accept
+  only a string *starting* with `${`.
+
+Where you wrote `TfArg.literal(r'${...}')` to smuggle an expression through
+a string argument, write `TfArg.expression(r'${...}')`; the literal form
+still works on non-sensitive string arguments.
+
 ## 0.26.0 → 0.27.0
 
 **Breaking (`terradart_core`)** — synth now refuses to emit a config whose

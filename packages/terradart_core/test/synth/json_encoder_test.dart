@@ -217,6 +217,23 @@ void main() {
       );
     });
 
+    test('TfArgExpression -> its template, verbatim', () {
+      final arg = TfArg.expression<int>(r'${var.n * 2}');
+      expect(TfJsonEncoder.encodeArg(arg), equals(r'${var.n * 2}'));
+      expect(
+        TfJsonEncoder.encodeArgMap({
+          'count': arg,
+          'labels': TfArg.literal({
+            'k': TfArg.expression<String>(r'prefix-${var.env}'),
+          }),
+        }),
+        equals({
+          'count': r'${var.n * 2}',
+          'labels': {'k': r'prefix-${var.env}'},
+        }),
+      );
+    });
+
     test('TfArgRef -> interpolation string', () {
       final ref = TfRef.attribute<String>(
         const AddressStub('data.google_project.this'),
@@ -711,6 +728,41 @@ void main() {
       );
     });
 
+    test('nested expression leaf passes through, wherever its `\${` sits', () {
+      final argMap = <String, TfArg<dynamic>?>{
+        'customer_encryption': TfArg.literal<List<dynamic>>([
+          {
+            'encryption_algorithm': 'AES256',
+            'encryption_key': TfArg.expression<String>(
+              r'key-${var.suffix}',
+            ),
+          },
+        ]),
+      };
+      final out = TfJsonEncoder.encodeArgMapWithSensitive(
+        argMap: argMap,
+        sensitiveFields: const {'customer_encryption.encryption_key'},
+        resourceAddress: 'google_storage_bucket_object.assets',
+      );
+      expect(
+        (out['customer_encryption'] as List).single['encryption_key'],
+        equals(r'key-${var.suffix}'),
+      );
+      // An escaped sequence is literal text, so it is still a plain literal.
+      expect(
+        () => TfJsonEncoder.encodeArgMapWithSensitive(
+          argMap: {
+            'customer_encryption': const TfArgLiteral<List<dynamic>>([
+              {'encryption_key': r'not-a-template-$${x}'},
+            ]),
+          },
+          sensitiveFields: const {'customer_encryption.encryption_key'},
+          resourceAddress: 'google_storage_bucket_object.assets',
+        ),
+        throwsA(isA<SensitiveLiteralError>()),
+      );
+    });
+
     test('nested: multiple sibling sensitive paths — first literal throws', () {
       final argMap = <String, TfArg<dynamic>?>{
         'block': const TfArgLiteral<List<dynamic>>([
@@ -775,6 +827,20 @@ void main() {
         resourceAddress: 'google_secret_manager_secret_version.v1',
       );
       expect(out, equals({'secret_data': r'${data.external.vault.value}'}));
+    });
+
+    test('TfArgExpression on sensitive top-level passes through', () {
+      final argMap = <String, TfArg<dynamic>?>{
+        'secret_data': TfArg.expression<String>(
+          r'${base64decode(var.blob)}',
+        ),
+      };
+      final out = TfJsonEncoder.encodeArgMapWithSensitive(
+        argMap: argMap,
+        sensitiveFields: const {'secret_data'},
+        resourceAddress: 'google_secret_manager_secret_version.v1',
+      );
+      expect(out, equals({'secret_data': r'${base64decode(var.blob)}'}));
     });
 
     test('TfArgVariable on sensitive top-level passes through (no throw)', () {

@@ -255,6 +255,38 @@ void main() {
       );
     });
 
+    test('an undeclared reference inside an expression is caught', () {
+      expect(
+        () => stackWith(
+          variables: {'a': const TfVariable(type: 'string')},
+          topicArgs: {
+            'labels': TfArg.expression<String>(r'${var.a}-${lower(var.b)}'),
+          },
+        ).synth(),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            allOf(contains('"b"'), isNot(contains('"a"'))),
+          ),
+        ),
+      );
+    });
+
+    test('an expression whose variables are declared synthesizes', () {
+      final stack = stackWith(
+        variables: {'a': const TfVariable(type: 'string')},
+        topicArgs: {
+          'labels': TfArg.expression<String>(r'${var.a}-${lower(var.b)}'),
+        },
+      )..addExternalVariable('b');
+      final json = stack.synth().tfJson;
+      expect(
+        (json['resource'] as Map)['google_pubsub_topic']['orders']['labels'],
+        equals(r'${var.a}-${lower(var.b)}'),
+      );
+    });
+
     test('every undeclared name is reported, not just the first', () {
       expect(
         () => stackWith(

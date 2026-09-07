@@ -226,7 +226,7 @@ void main() {
       );
     });
 
-    test('an expression on a non-string argument', () {
+    test('an expression on a non-string argument is TfArg.expression', () {
       final r = _migrateJson(
         module({
           'name': 'x',
@@ -244,14 +244,87 @@ void main() {
               'name': 's',
               'topic': 't',
               'ack_deadline_seconds': r'${var.n * 2}',
+              'enable_message_ordering': r'${var.env == "prod"}',
             },
           },
         },
       });
+      expect(r2.report.isComplete, isTrue, reason: r2.report.renderText());
+      final src = r2.stackSource;
       expect(
-        reasonOf(r2, 'google_pubsub_subscription.s'),
-        contains('needs TfArg.expression'),
+        src,
+        contains(r"ackDeadlineSeconds: TfArg.expression(r'${var.n * 2}')"),
       );
+      expect(
+        src,
+        contains(
+          "enableMessageOrdering: TfArg.expression(r'\${var.env == \"prod\"}')",
+        ),
+      );
+      // The variables inside the expressions are declared, like references.
+      expect(src, contains("addExternalVariable(r'n');"));
+      expect(src, contains("addExternalVariable(r'env');"));
+    });
+
+    test('an expression on an enum argument is TfArg.expression', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_schema': {
+            's': {
+              'name': 's',
+              'type': r'${upper(var.schema_type)}',
+              'definition': 'x',
+            },
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(r"type: TfArg.expression(r'${upper(var.schema_type)}')"),
+      );
+    });
+
+    test('an expression on a sensitive argument is TfArg.expression', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_sql_user': {
+            'u': {
+              'name': 'u',
+              'instance': 'db',
+              'password': r'${var.pw_prefix}-${random_id.suffix.hex}',
+            },
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(
+          r"password: TfArg.expression(r'${var.pw_prefix}-${random_id.suffix.hex}')",
+        ),
+      );
+    });
+
+    test('an expression inside a typed collection stays a blocker', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic': {
+            'x': {
+              'name': 'x',
+              'message_storage_policy': {
+                'allowed_persistence_regions': ['us-central1', r'${var.r}'],
+              },
+            },
+          },
+        },
+      });
+      // A `List<String>` element may be a raw `${...}` string.
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(r.stackSource, contains(r"[r'us-central1', r'${var.r}']"));
     });
 
     test('a provider alias', () {
@@ -292,7 +365,9 @@ void main() {
       expect(r.report.kept.map((k) => k.address), ['google_pubsub_topic.x']);
       expect(
         r.stackSource,
-        contains(r"name: TfArg.literal(r'${google_pubsub_topic.x.name}-copy')"),
+        contains(
+          r"name: TfArg.expression(r'${google_pubsub_topic.x.name}-copy')",
+        ),
       );
     });
 

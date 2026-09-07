@@ -19,7 +19,7 @@
 #   - packages/terradart_agent/lib/src/version.dart  (packageVersion const — lockstep with its pubspec)
 #   - packages/terradart_coverage/pubspec.yaml    (version: + terradart_{google,google_beta,appwrite,cloudflare,hcl} carets)
 #   - packages/terradart_hcl/pubspec.yaml         (version: line)
-#   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{google,google_beta,appwrite,cloudflare,hcl} carets)
+#   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{core,google,google_beta,appwrite,cloudflare,hcl} carets)
 #   - packages/terradart_migrate/lib/src/version.dart (packageVersion const — pinned into migrated pubspecs and printed by `terradart-migrate --version`)
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta + terradart_appwrite + terradart_cloudflare carets)
 #   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google carets on
@@ -112,8 +112,8 @@ done
 echo "  Inter-package carets:"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_codegen/pubspec.yaml
 echo "    - terradart_codegen.dependencies.terradart_core: ^${NEW}"
-sed_inplace "s#^( *terradart_(google|google_beta|appwrite|cloudflare|hcl)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_migrate/pubspec.yaml
-echo "    - terradart_migrate.dependencies.terradart_{google,google_beta,appwrite,cloudflare,hcl}: ^${NEW}"
+sed_inplace "s#^( *terradart_(core|google|google_beta|appwrite|cloudflare|hcl)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_migrate/pubspec.yaml
+echo "    - terradart_migrate.dependencies.terradart_{core,google,google_beta,appwrite,cloudflare,hcl}: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
 echo "    - terradart_google.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_codegen): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml

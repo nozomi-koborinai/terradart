@@ -2,6 +2,7 @@ import 'package:meta/meta.dart';
 
 import 'duration_helper.dart';
 import 'tf_ref.dart';
+import 'tf_template.dart';
 
 /// Implemented by every codegen-emitted Dart enum whose values map to
 /// Terraform string literals (e.g. `KmsKeyPurpose.encryptDecrypt` →
@@ -47,6 +48,25 @@ sealed class TfArg<T> {
   /// Dart-side artifact.
   static TfArg<T> variable<T>(String name) => TfArgVariable<T>(name);
 
+  /// Convenience: `TfArg.expression(r'${lower(var.name)}-x')` (T inferred)
+  /// or `TfArg.expression<int>(r'${var.replicas * 2}')` (explicit).
+  ///
+  /// A raw Terraform expression, emitted verbatim as the tf.json template
+  /// string it is: `${ ... }` interpolations and `%{ ... }` directives are
+  /// evaluated by Terraform, and a literal `${` / `%{` in the text must be
+  /// escaped as `$${` / `%%{`. Use it for what [literal], [ref] and
+  /// [variable] cannot express — function calls, conditionals, `local.x`,
+  /// `module.x.y`, `terraform.workspace`. `T` is the Dart type of the
+  /// parameter it fills; Terraform converts the evaluated value.
+  ///
+  /// Like a reference it is accepted in sensitive positions (no plaintext
+  /// value is stored in it), and every `var.<name>` it mentions must be
+  /// declared on the Stack (`addVariable` / `addExternalVariable`) — synth
+  /// checks that, as it does for [variable]. A plain value is not an
+  /// expression: `TfArg.expression('x')` throws; use [literal].
+  static TfArg<T> expression<T>(String template) =>
+      TfArgExpression<T>(template);
+
   /// Convenience for Terraform duration-string fields
   /// (`rotation_period`, `message_retention_duration`, `ack_deadline_seconds`
   /// when expressed in string-seconds form, etc.).
@@ -65,9 +85,10 @@ sealed class TfArg<T> {
 
   /// Value emitted into Terraform JSON.
   ///
-  /// - `TfArgLiteral`  → the actual value (string, int, etc.)
-  /// - `TfArgRef`      → an interpolation string `'${...}'`
-  /// - `TfArgVariable` → an interpolation string `'${var.<name>}'`
+  /// - `TfArgLiteral`    → the actual value (string, int, etc.)
+  /// - `TfArgRef`        → an interpolation string `'${...}'`
+  /// - `TfArgVariable`   → an interpolation string `'${var.<name>}'`
+  /// - `TfArgExpression` → its template string, verbatim
   Object? toTfJson();
 }
 
@@ -137,4 +158,34 @@ final class TfArgVariable<T> extends TfArg<T> {
 
   @override
   Object? toTfJson() => '\${var.$name}';
+}
+
+/// A raw Terraform expression — the tf.json template string, verbatim.
+///
+/// Construct through [TfArg.expression]. The class is public so callers can
+/// pattern-match on it (`switch (arg) { case TfArgExpression(): ... }`) and
+/// grep for it.
+@immutable
+final class TfArgExpression<T> extends TfArg<T> {
+  TfArgExpression(this.template) {
+    if (!hasTemplateSequence(template)) {
+      throw ArgumentError.value(
+        template,
+        'template',
+        'must contain a Terraform interpolation `\${ ... }` or directive '
+            '`%{ ... }`; for a plain value use TfArg.literal',
+      );
+    }
+  }
+
+  /// The template as it is written into tf.json: interpolations and
+  /// directives are evaluated by Terraform, `$${` / `%%{` are literal.
+  final String template;
+
+  /// The `var.<name>` references inside the template's interpolations and
+  /// directives; synth requires each to be declared on the Stack.
+  Set<String> get referencedVariables => templateVariableNames(template);
+
+  @override
+  Object? toTfJson() => template;
 }

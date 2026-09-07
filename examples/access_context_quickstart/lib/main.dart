@@ -43,7 +43,7 @@ final class AccessControlsStack extends Stack {
     final policy = add(
       GoogleAccessContextManagerAccessPolicy(
         localName: 'org_policy',
-        parent: TfArg.literal('organizations/\${var.ops_organization_id}'),
+        parent: TfArg.expression('organizations/\${var.ops_organization_id}'),
         title: TfArg.literal('terradart-quickstart-policy'),
         dependsOn: apiDeps,
       ),
@@ -372,7 +372,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerGcpUserAccessBinding(
         localName: 'group_binding',
-        organizationId: TfArg.literal('\${var.ops_organization_id}'),
+        organizationId: TfArg.expression('\${var.ops_organization_id}'),
         groupKey: TfArg.literal('00abcde12345678'),
         accessLevels: TfArg.literal([usOnly.nameRef.interpolation]),
         deletionPolicy: TfArg.literal('DELETE'),

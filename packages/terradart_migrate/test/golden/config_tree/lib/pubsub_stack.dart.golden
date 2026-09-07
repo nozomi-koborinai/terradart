@@ -19,7 +19,7 @@ final class PubsubStack extends Stack {
     add(
       GooglePubsubSubscription(
         localName: r'this',
-        name: TfArg.literal(r'${var.topic}-sub'),
+        name: TfArg.expression(r'${var.topic}-sub'),
         topic: TfArg.ref(thisPubsubTopic.nameRef),
       ),
     );

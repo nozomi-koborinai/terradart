@@ -10,7 +10,7 @@ This package ships the small set of primitives every TerraDart Stack uses:
 
 - `Stack` — abstract base for your infrastructure module. You subclass it (`final class MyStack extends Stack`), register `Resource` / `Data` instances via `add(...)` / `addData(...)`, and call `stack.writeTo('tf-out')` from your own `main()` to emit `main.tf.json`.
 - `Resource` / `Data` — typed nodes supplied by provider factory packages.
-- `TfArg.literal(...)` / `TfArg.ref(...)` — the only two ways every settable field accepts input. `TfArg<MyEnum>.literal(MyEnum.foo)` encodes typed Dart enums (see below).
+- `TfArg.literal(...)` / `TfArg.ref(...)` / `TfArg.variable(...)` / `TfArg.expression(...)` — the four ways every settable field accepts input: a Dart value, a reference to another resource's attribute, a Terraform input variable, or a raw Terraform expression emitted verbatim (`TfArg.expression(r'${lower(var.name)}-x')`). `TfArg<MyEnum>.literal(MyEnum.foo)` encodes typed Dart enums (see below).
 - `LifecycleOptions` — `create_before_destroy`, `prevent_destroy`, `ignore_changes`, `replace_triggered_by`.
 - `Stack.synth()` returns an in-memory `SynthResult` with `tfJson` (Terraform JSON map) and optional `dartConstants` (typed Dart constants for the IaC ↔ application seam). `Stack.writeTo(outDir)` is the file-IO wrapper that calls `synth()` and writes `main.tf.json` (plus any `dartConstants`) under `outDir`.
 

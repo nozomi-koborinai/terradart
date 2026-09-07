@@ -78,7 +78,7 @@ final class DevStack extends Stack {
         localName: r'uploads_admin',
         bucket: TfArg.ref(uploads.nameRef),
         role: TfArg.literal(r'roles/storage.objectAdmin'),
-        member: TfArg.literal(r'${module.sa_worker.member}'),
+        member: TfArg.expression(r'${module.sa_worker.member}'),
       ),
     );
     add(
@@ -86,7 +86,7 @@ final class DevStack extends Stack {
         localName: r'uploads_reader',
         bucket: TfArg.ref(uploads.nameRef),
         role: TfArg.literal(r'roles/storage.objectViewer'),
-        member: TfArg.literal(r'${module.sa_bff.member}'),
+        member: TfArg.expression(r'${module.sa_bff.member}'),
       ),
     );
     add(
@@ -110,7 +110,7 @@ final class DevStack extends Stack {
     add(
       GoogleCloudRunV2ServiceIamMember(
         localName: r'bff_invoker',
-        name: TfArg.literal(r'${module.cloud_run_bff.service_name}'),
+        name: TfArg.expression(r'${module.cloud_run_bff.service_name}'),
         role: TfArg.literal(r'roles/run.invoker'),
         member: TfArg.literal(r'allUsers'),
       ),
@@ -120,15 +120,15 @@ final class DevStack extends Stack {
         localName: r'worker_token_creator',
         project: TfArg.variable(r'project_id'),
         role: TfArg.literal(r'roles/iam.serviceAccountTokenCreator'),
-        member: TfArg.literal(r'${module.sa_worker.member}'),
+        member: TfArg.expression(r'${module.sa_worker.member}'),
       ),
     );
     add(
       GoogleServiceAccountIamMember(
         localName: r'agent_user',
-        serviceAccountId: TfArg.literal(r'${module.sa_adk_agent.id}'),
+        serviceAccountId: TfArg.expression(r'${module.sa_adk_agent.id}'),
         role: TfArg.literal(r'roles/iam.serviceAccountUser'),
-        member: TfArg.literal(r'${module.sa_bff.member}'),
+        member: TfArg.expression(r'${module.sa_bff.member}'),
       ),
     );
   }

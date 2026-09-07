@@ -33,6 +33,7 @@ void main() {
         TfArgLiteral<String>() => 'literal',
         TfArgRef<String>() => 'ref',
         TfArgVariable<String>() => 'variable',
+        TfArgExpression<String>() => 'expression',
       };
       expect(kind, 'literal');
     });
@@ -106,6 +107,51 @@ void main() {
     });
   });
 
+  group('TfArg.expression', () {
+    test('TfArg.expression factory returns TfArgExpression<T>', () {
+      final arg = TfArg.expression<int>(r'${var.replicas * 2}');
+      expect(arg, isA<TfArgExpression<int>>());
+    });
+
+    test('toTfJson returns the template verbatim', () {
+      final arg = TfArg.expression<String>(r'${lower(var.name)}-x');
+      expect(arg.toTfJson(), equals(r'${lower(var.name)}-x'));
+      expect(
+        TfArg.expression<String>(r'%{ if var.a }a%{ else }b%{ endif }')
+            .toTfJson(),
+        equals(r'%{ if var.a }a%{ else }b%{ endif }'),
+      );
+    });
+
+    test('rejects a template with no interpolation or directive', () {
+      for (final plain in ['', 'orders', r'price-$5', r'$${not}-%%{one}']) {
+        expect(
+          () => TfArg.expression<String>(plain),
+          throwsA(isA<ArgumentError>()),
+          reason: plain,
+        );
+      }
+    });
+
+    test('referencedVariables lists every var.<name> in the sequences', () {
+      final arg = TfArgExpression<String>(
+        r'${var.a}-${lower(var.b_2)}-${var.with-dash}%{ if var.c }x%{ endif }',
+      );
+      expect(
+        arg.referencedVariables,
+        equals({'a', 'b_2', 'with-dash', 'c'}),
+      );
+    });
+
+    test('referencedVariables ignores escapes, strings and lookalikes', () {
+      final arg = TfArgExpression<String>(
+        r'$${var.escaped} ${lookup(var.m, "var.key")} '
+        r'${google_x.y.var.z} ${avar.x} ${format("%s", "${var.inner}")}',
+      );
+      expect(arg.referencedVariables, equals({'m', 'inner'}));
+    });
+  });
+
   group('TfArg.variable', () {
     test('TfArgVariable emits \${var.<name>} interpolation', () {
       final arg = TfArgVariable<String>('db_password');
@@ -133,12 +179,13 @@ void main() {
     });
   });
 
-  group('TfArg sealed exhaustive (3-way)', () {
-    test('switch covers Literal, Ref, Variable', () {
+  group('TfArg sealed exhaustive (4-way)', () {
+    test('switch covers Literal, Ref, Variable, Expression', () {
       String dispatch(TfArg<String> arg) => switch (arg) {
             TfArgLiteral<String>() => 'literal',
             TfArgRef<String>() => 'ref',
             TfArgVariable<String>() => 'variable',
+            TfArgExpression<String>() => 'expression',
           };
 
       expect(dispatch(const TfArgLiteral<String>('x')), equals('literal'));

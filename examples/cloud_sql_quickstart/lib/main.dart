@@ -76,7 +76,7 @@ final class CloudSqlStack extends Stack {
         reservedPeeringRanges: TfArg.literal([
           // ServiceNetworking expects the *name* of the global_address, not
           // its self_link. Wrap in a list for the schema's repeated string.
-          '\${google_compute_global_address.psa_range.name}',
+          psaRange.nameRef.interpolation,
         ]),
       ),
     );
