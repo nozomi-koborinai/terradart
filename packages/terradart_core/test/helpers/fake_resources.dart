@@ -111,6 +111,7 @@ final class FakeProjectData extends Data {
   FakeProjectData({
     required super.localName,
     required super.argMap,
+    super.provider,
   }) : super(
           terraformType: 'google_project',
         );

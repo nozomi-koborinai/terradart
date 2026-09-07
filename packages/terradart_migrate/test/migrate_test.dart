@@ -837,6 +837,34 @@ resource "google_pubsub_topic" "x" {
       );
     });
 
+    test('a data source selects an alias too', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'provider': {
+          'google': [
+            {'project': 'p'},
+            {'alias': 'eu', 'region': 'europe-west1'},
+          ],
+        },
+        'data': {
+          'google_project': {
+            'current': {'provider': 'google.eu'},
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(
+          "addData(GoogleProject(localName: r'current', provider: r'google.eu'))",
+        ),
+      );
+      expect(
+        r.stackSource,
+        contains("const GoogleProvider(alias: r'eu', region: r'europe-west1')"),
+      );
+    });
+
     test('provider = google-beta on a GA type registers the beta provider', () {
       final r = _migrateJson({
         'terraform': _google,

@@ -529,15 +529,19 @@ class TfJsonEncoder {
     return out;
   }
 
-  /// Top-level `data { ... }` group. Data sources have no
-  /// `lifecycle` / `depends_on` / sensitive masking at v0.0.x — Terraform
-  /// rejects those on data blocks anyway.
+  /// Top-level `data { ... }` group. A data source carries its `provider`
+  /// meta-argument like a resource; it has no `lifecycle` / `depends_on` /
+  /// sensitive masking at v0.0.x — Terraform rejects `lifecycle` on data
+  /// blocks anyway.
   static Map<String, dynamic>? dataGroup(Stack stack) {
     if (stack.dataSources.isEmpty) return null;
     final out = <String, Map<String, dynamic>>{};
     for (final d in stack.dataSources) {
-      out.putIfAbsent(d.terraformType, () => {})[d.localName] =
-          encodeArgMap(d.argMap);
+      final block = encodeArgMap(d.argMap);
+      if (d.provider != null) {
+        block['provider'] = d.provider;
+      }
+      out.putIfAbsent(d.terraformType, () => {})[d.localName] = block;
     }
     return out;
   }

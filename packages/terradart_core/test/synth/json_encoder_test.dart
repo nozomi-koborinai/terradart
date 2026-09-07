@@ -278,6 +278,40 @@ void main() {
         (json['resource'] as Map)['google_pubsub_topic']['orders']['provider'],
         equals('google.eu'),
       );
+      // A data source selects an alias the same way, and synth keeps it.
+      final withData = stackWith('google.eu')
+        ..addData(
+          FakeProjectData(
+            localName: 'current',
+            argMap: const {},
+            provider: 'google.eu',
+          ),
+        );
+      expect(
+        (withData.synth().tfJson['data'] as Map)['google_project']['current'],
+        equals({'provider': 'google.eu'}),
+      );
+      expect(
+        () => (TestStack(providers: stackWith(null).providers)
+              ..addData(
+                FakeProjectData(
+                  localName: 'current',
+                  argMap: const {},
+                  provider: 'google.us',
+                ),
+              ))
+            .synth(),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            allOf(
+              contains('"google.us"'),
+              contains('data.google_project.current'),
+            ),
+          ),
+        ),
+      );
       expect(
         () => stackWith('google.us').synth(),
         throwsA(
@@ -742,6 +776,27 @@ void main() {
 
     test('dataGroup returns null for empty stack', () {
       expect(TfJsonEncoder.dataGroup(TestStack()), isNull);
+    });
+
+    test('dataGroup emits the provider meta-argument', () {
+      final stack = TestStack();
+      stack.addData(
+        FakeProjectData(
+          localName: 'eu',
+          argMap: const {
+            'project_id': TfArgLiteral<String>('orders-prod'),
+          },
+          provider: 'google.eu',
+        ),
+      );
+      expect(
+        TfJsonEncoder.dataGroup(stack),
+        equals({
+          'google_project': {
+            'eu': {'project_id': 'orders-prod', 'provider': 'google.eu'},
+          },
+        }),
+      );
     });
   });
 
