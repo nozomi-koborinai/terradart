@@ -46,6 +46,14 @@ resource "google_storage_bucket_iam_member" "uploads_reader" {
 resource "google_cloud_run_v2_job" "db_migrate" {
   name     = "app-db-migrate"
   location = var.region
+
+  template {
+    template {
+      containers {
+        image = "gcr.io/example-project/db-migrate:latest"
+      }
+    }
+  }
 }
 
 resource "google_cloud_run_v2_service_iam_member" "bff_invoker" {

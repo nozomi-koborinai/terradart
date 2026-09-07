@@ -34,7 +34,7 @@ TerraDart is a Dart-first infrastructure-as-code project that synthesizes Terraf
 - `terradart_agent` for the MCP catalog server.
 - `terradart_codegen` for maintainer generation commands such as `wrap`, `wrap-init`, and `wrap-promote`.
 - `terradart_hcl` for the HCL / `*.tf.json` front-end (`parseHcl`, `decodeTfJson`, `TfModule`) that `terradart-migrate` reads existing Terraform through (#80).
-- `terradart_migrate` for the HCL → Dart migrator itself: the four generated migration manifests, and `migrateModule` — a `TfModule` in, a Dart package (Stack + `bin/infra.dart` + `pubspec.yaml`) and a report out, resource-atomic (#660). The sidecar writer and the `terradart-migrate` CLI follow (#661).
+- `terradart_migrate` for the HCL → Dart migrator itself: the four generated migration manifests, and `migrateModule` — a `TfModule` in, a Dart package (Stack + `bin/infra.dart` + `pubspec.yaml`) and a report out, resource-atomic (#660). `terradart-migrate` (`bin/terradart_migrate.dart`) migrates a whole source tree: `scanModuleTree` infers roots, children and environment siblings, `migrateTree` writes one Stack per directory into one package with a `tf-out/` tree mirroring the source, the leftover sidecar beside each `main.tf.json`, and `MIGRATION.md`; `tool/migrate_fixture_gates.dart` terraform-validates the migrated coverage fixtures (#661). The Homebrew binary follows (#664).
 
 Read `CONTEXT.md` before design work. It defines project-specific terms such as Curated factory, Beta-only factory, Maintainer generation pipeline, Merged IR, Wrapper override, Agent guide, and Local notes.
 

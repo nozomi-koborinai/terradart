@@ -1,0 +1,16 @@
+# Kept in Terraform by terradart-migrate {{version}}.
+# Terraform merges this file with the Stack's main.tf.json in this
+# directory; each block stays here for the reason noted above
+# it (see MIGRATION.md).
+
+# terradart-migrate: argument "content" is sensitive: its value is not copied into Dart (pass it as a variable)
+resource "google_storage_bucket_object" "config" {
+  name    = "config.json"
+  bucket  = google_storage_bucket.assets.name
+  content = "{}"
+}
+
+# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
+module "network" {
+  source = "./modules/network"
+}

@@ -1,0 +1,34 @@
+# Migration report
+
+`terradart-migrate {{version}}` migrated `../terradart_coverage/test/fixtures/real_plan_src` into the Dart package `real_plan_src`: 2 module directories, 11 blocks became Dart, 2 stay in Terraform (listed below, each with its reason).
+
+## Next steps
+
+1. `dart pub get`
+2. `dart run bin/infra.dart` — writes `main.tf.json` next to the sidecar files in every Terraform directory under `tf-out/`.
+3. In `tf-out`: `terraform init && terraform plan` — expect *No changes* against the existing state.
+
+## Modules
+
+| Directory | Role | Stack | Terraform directory | Migrated | Kept |
+| :--- | :--- | :--- | :--- | ---: | ---: |
+| `.` | root | `RealPlanSrcStack` | `tf-out` | 7 | 2 |
+| `modules/network` | child | `NetworkStack` | `tf-out/modules/network` | 4 | 0 |
+
+### `.`
+
+- Role: root
+- Stack: `RealPlanSrcStack` in `lib/real_plan_src_stack.dart`; packages: `terradart_google`; providers: `google`
+- Terraform directory: `tf-out`; sidecar: `terradart_leftover.tf`
+- Kept in Terraform (2):
+
+  | Address | Reason | File |
+  | :--- | :--- | :--- |
+  | `google_storage_bucket_object.config` | argument "content" is sensitive: its value is not copied into Dart (pass it as a variable) | `terradart_leftover.tf` |
+  | `module.network` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
+
+### `modules/network`
+
+- Role: child, called from `.`
+- Stack: `NetworkStack` in `lib/network_stack.dart`; packages: `terradart_google`; providers: `google`
+- Terraform directory: `tf-out/modules/network`

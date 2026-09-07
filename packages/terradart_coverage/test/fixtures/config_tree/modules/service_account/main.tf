@@ -11,3 +11,11 @@ resource "google_project_iam_member" "log_writer" {
   role    = "roles/logging.logWriter"
   member  = "serviceAccount:${google_service_account.this.email}"
 }
+
+output "id" {
+  value = google_service_account.this.id
+}
+
+output "member" {
+  value = google_service_account.this.member
+}

@@ -1,0 +1,12 @@
+/// Synth entry point: `dart run bin/infra.dart` writes
+/// every Stack's `main.tf.json` under `tf-out/`, mirroring the
+/// migrated module tree.
+library;
+
+import 'package:real_plan_src/network_stack.dart';
+import 'package:real_plan_src/real_plan_src_stack.dart';
+
+Future<void> main() async {
+  await RealPlanSrcStack().writeTo(r'tf-out');
+  await NetworkStack().writeTo(r'tf-out/modules/network');
+}

@@ -54,6 +54,9 @@ if [[ "$QUICK" == "0" ]]; then
 
   echo ">> migrate_roundtrip_gates (migrate every quickstart's synth output back to Dart and re-synth; reuses tf-out)"
   dart tool/migrate_roundtrip_gates.dart --reuse-tf-out
+
+  echo ">> migrate_fixture_gates (terradart-migrate the coverage fixtures, synth, terraform validate every directory)"
+  dart tool/migrate_fixture_gates.dart
 else
   echo ">> example synth gates: SKIPPED (--quick)"
 fi

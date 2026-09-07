@@ -1,0 +1,41 @@
+/// CloudSqlStack — migrated from `cloud_sql` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/cloud_sql.dart';
+import 'package:terradart_google/provider.dart';
+
+final class CloudSqlStack extends Stack {
+  CloudSqlStack() : super(providers: [const GoogleProvider()]) {
+    addVariable(r'instance_name', const TfVariable(type: r'string'));
+    final thisSqlDatabaseInstance = add(
+      GoogleSqlDatabaseInstance(
+        localName: r'this',
+        databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
+        name: TfArg.variable(r'instance_name'),
+        region: TfArg.literal(r'asia-northeast1'),
+        settings: SqlDatabaseInstanceSettings(
+          tier: TfArg.literal(r'db-f1-micro'),
+        ),
+      ),
+    );
+    add(
+      GoogleSqlDatabase(
+        localName: r'app',
+        name: TfArg.literal(r'app'),
+        instance: TfArg.ref(thisSqlDatabaseInstance.nameRef),
+      ),
+    );
+    add(
+      GoogleSqlUser(
+        localName: r'app',
+        name: TfArg.literal(r'app'),
+        instance: TfArg.ref(thisSqlDatabaseInstance.nameRef),
+      ),
+    );
+  }
+}

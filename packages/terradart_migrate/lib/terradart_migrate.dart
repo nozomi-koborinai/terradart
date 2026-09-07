@@ -16,8 +16,12 @@ import 'src/manifests.dart';
 import 'src/migrate_manifest.dart';
 import 'src/report.dart';
 
+export 'src/cli.dart';
 export 'src/manifests.dart';
 export 'src/migrate.dart';
 export 'src/migrate_manifest.dart';
+export 'src/project.dart';
 export 'src/report.dart';
+export 'src/sidecar.dart';
+export 'src/topology.dart';
 export 'src/version.dart';

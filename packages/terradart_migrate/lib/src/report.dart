@@ -37,6 +37,7 @@ final class MigrationReport {
     required this.kept,
     required this.warnings,
     required this.packages,
+    this.providers = const [],
   });
 
   /// The module name (its directory, or the name the caller gave).
@@ -58,6 +59,10 @@ final class MigrationReport {
   /// The TerraDart packages the Stack imports (`terradart_google`, ...).
   final List<String> packages;
 
+  /// Provider local names the Stack registers (`google`, `time`, ...): their
+  /// `required_providers` entries are the Stack's, never the sidecar's.
+  final List<String> providers;
+
   /// True when nothing was left in Terraform.
   bool get isComplete => kept.isEmpty;
 
@@ -72,12 +77,14 @@ final class MigrationReport {
     'kept': [for (final k in kept) k.toJson()],
     'warnings': warnings,
     'packages': packages,
+    'providers': providers,
   };
 
   String renderText() {
     final b = StringBuffer()
       ..writeln('terradart-migrate: $module → $stackClass')
       ..writeln('  packages: ${packages.join(', ')}')
+      ..writeln('  providers: ${providers.join(', ')}')
       ..writeln(
         '  migrated: ${migrated.length}, kept in Terraform: ${kept.length}',
       );

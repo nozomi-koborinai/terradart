@@ -1,0 +1,5 @@
+# The golden output of the migrated fixtures includes a tf-out/ tree (the
+# Terraform directories the migrator lays out, holding the sidecar files).
+# The root .gitignore hides tf-out/ everywhere as synth output; these
+# goldens must be tracked.
+!tf-out/

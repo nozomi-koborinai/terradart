@@ -28,12 +28,19 @@ final class EmittedStack {
     required this.source,
     required this.packages,
     required this.report,
+    this.hasStack = true,
   });
 
   final String stackClass;
 
-  /// The complete `lib/<stack>.dart` source (unformatted).
+  /// The complete `lib/<stack>.dart` source (unformatted); empty when
+  /// [hasStack] is false.
   final String source;
+
+  /// False when nothing in the module translates — no resource became Dart
+  /// and no known provider is declared — so no Stack is generated and every
+  /// block stays in Terraform.
+  final bool hasStack;
 
   /// Provider packages the Stack imports, in import order.
   final List<String> packages;
@@ -140,6 +147,8 @@ final class StackEmitter {
     required this.stackClass,
     required this.stackFile,
     required this.version,
+    this.childModule = false,
+    this.allowTodo = false,
   });
 
   final TfModule module;
@@ -150,6 +159,24 @@ final class StackEmitter {
   /// `lib/<stack_file>.dart`, for the app-exports path.
   final String stackFile;
   final String version;
+
+  /// Child-module mode, for a directory a `module` block's `source` points
+  /// at: providers are registered without configuration so synth emits only
+  /// `required_providers`, and provider configurations and a backend found
+  /// in the module stay in Terraform.
+  final bool childModule;
+
+  /// Write a `TODO` comment per block that stays in Terraform into the Stack
+  /// (the caller then writes no sidecar, and the plan differs until the
+  /// TODOs are ported by hand).
+  final bool allowTodo;
+
+  /// Provider local names the Stack registers (`google`, `time`, ...).
+  final _registeredProviders = <String>[];
+
+  static const _noStackReason =
+      'nothing in this directory translates, so no Stack is generated; the '
+      'block stays as written';
 
   final _kept = <KeptItem>[];
   final _migrated = <MigratedItem>[];
@@ -235,12 +262,24 @@ final class StackEmitter {
         continue;
       }
       final configs = module.providers.where((p) => p.name == name).toList();
-      final defaults = configs.where((p) => p.alias == null).toList();
-      for (final p in configs.where((p) => p.alias != null)) {
-        _keep(
-          'provider.$name.${p.alias}',
-          'provider aliases are not supported yet (#666)',
-        );
+      final defaults = childModule
+          ? const <ProviderBlock>[]
+          : configs.where((p) => p.alias == null).toList();
+      if (childModule) {
+        for (final p in configs) {
+          _keep(
+            p.alias == null ? 'provider.$name' : 'provider.$name.${p.alias}',
+            'a provider configuration inside a child module stays in '
+            'Terraform; the Stack only registers the provider',
+          );
+        }
+      } else {
+        for (final p in configs.where((p) => p.alias != null)) {
+          _keep(
+            'provider.$name.${p.alias}',
+            'provider aliases are not supported yet (#666)',
+          );
+        }
       }
       if (defaults.length > 1) {
         _warnings.add(
@@ -284,12 +323,26 @@ final class StackEmitter {
       }
       ctx.import(recipe.package, recipe.barrel);
       providerExprs.add('const ${recipe.className}(${args.join(', ')})');
-      _migrated.add(MigratedItem(address: 'provider.$name'));
+      _registeredProviders.add(name);
+      if (!childModule || configs.isEmpty) {
+        _migrated.add(MigratedItem(address: 'provider.$name'));
+      }
     }
     ctorInit.write('providers: [${providerExprs.join(', ')}]');
+    // No provider registered means no resource translated and no known
+    // provider declared: a Stack would synthesize an empty configuration,
+    // so the directory stays Terraform and every block is kept as written.
+    final noStack = providerExprs.isEmpty;
 
     // --- backend ----------------------------------------------------------
-    final backendExpr = _backend();
+    final backendExpr = noStack
+        ? _keptBackend(_noStackReason)
+        : childModule
+        ? _keptBackend(
+            'a backend inside a child module is ignored by Terraform; kept '
+            'as written',
+          )
+        : _backend();
     if (backendExpr != null) ctorInit.write(', backend: $backendExpr');
 
     // --- terraform settings ---------------------------------------------
@@ -299,7 +352,9 @@ final class StackEmitter {
         switch (key) {
           case 'required_version':
             final v = values[key]!.constantString;
-            if (v == null) {
+            if (noStack) {
+              _keep('terraform.required_version', _noStackReason);
+            } else if (v == null) {
               _keep('terraform.required_version', 'not a literal');
             } else {
               body.writeln('setRequiredVersion(${dartString(v)});');
@@ -322,6 +377,10 @@ final class StackEmitter {
 
     // --- variables ------------------------------------------------------
     for (final v in module.variables) {
+      if (noStack) {
+        _keep('variable.${v.name}', _noStackReason);
+        continue;
+      }
       final stmt = _variable(v);
       if (stmt != null) {
         body.writeln(stmt);
@@ -329,7 +388,7 @@ final class StackEmitter {
       }
     }
     for (final name in usedVariables) {
-      if (!ctx.declaredVariables.contains(name)) {
+      if (!noStack && !ctx.declaredVariables.contains(name)) {
         body.writeln('addExternalVariable(${dartString(name)});');
         _warnings.add(
           'variable "$name" is referenced but not declared in this module; '
@@ -341,6 +400,10 @@ final class StackEmitter {
     // --- outputs (resolved first: an export keeps its target's Dart local) --
     final outputStatements = <String>[];
     for (final o in module.outputs) {
+      if (noStack) {
+        _keep('output.${o.name}', _noStackReason);
+        continue;
+      }
       final stmt = _output(o);
       if (stmt != null) {
         outputStatements.add(stmt);
@@ -398,6 +461,17 @@ final class StackEmitter {
       _warnings.add(w.toString());
     }
 
+    if (allowTodo && !noStack && _kept.isNotEmpty) {
+      body.writeln(
+        '// TODO(terradart-migrate): ${_kept.length} block(s) stay '
+        'untranslated with no sidecar (--allow-todo); the plan differs until '
+        'they are ported by hand.',
+      );
+      for (final k in _kept) {
+        body.writeln('// TODO(terradart-migrate): ${k.address}: ${k.reason}');
+      }
+    }
+
     // --- assemble ---------------------------------------------------------
     final packages = ctx.imports.keys.toList()..sort();
     final imports = <String>[
@@ -431,7 +505,8 @@ final class StackEmitter {
     ctx.warnings.addAll(_warnings);
     return EmittedStack(
       stackClass: stackClass,
-      source: src.toString(),
+      source: noStack ? '' : src.toString(),
+      hasStack: !noStack,
       packages: packages,
       report: MigrationReport(
         module: moduleName,
@@ -440,6 +515,7 @@ final class StackEmitter {
         kept: List.unmodifiable(_kept),
         warnings: List.unmodifiable(ctx.warnings),
         packages: packages,
+        providers: List.unmodifiable(_registeredProviders),
       ),
     );
   }
@@ -625,6 +701,13 @@ final class StackEmitter {
   // -----------------------------------------------------------------------
   // Module-level blocks
   // -----------------------------------------------------------------------
+
+  /// No backend on the Stack; the block, if any, stays as written (a child
+  /// module, whose backend Terraform ignores, or a directory with no Stack).
+  String? _keptBackend(String reason) {
+    if (module.backend != null) _keep('terraform.backend', reason);
+    return null;
+  }
 
   String? _backend() {
     final b = module.backend;

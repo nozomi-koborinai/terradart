@@ -138,7 +138,7 @@ void main() {
       );
       expect(
         result.files['bin/infra.dart'],
-        contains("PubsubQuickstartStack().writeTo('tf-out')"),
+        contains("PubsubQuickstartStack().writeTo(r'tf-out')"),
       );
     });
   });

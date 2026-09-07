@@ -49,8 +49,16 @@ The migrator's rule that a resource moves to Dart only when every argument of it
 _Avoid_: Best-effort conversion, partial migration
 
 **Leftover sidecar**:
-The Terraform file the migrator writes next to `main.tf.json` holding, verbatim, every block it did not translate (Terraform merges every file in the directory). Nothing is dropped silently.
+The Terraform files the migrator writes next to `main.tf.json` — `terradart_leftover.tf`, plus `backend.tf` / `variables.tf` / `locals.tf` / `outputs.tf` — holding, verbatim and with a reason each, every block it did not translate (Terraform merges every file in the directory). Nothing is dropped silently, and nothing the Stack owns (its `required_providers`, provider configurations, backend, translated variables) is repeated.
 _Avoid_: Fallback file, TODO file
+
+**Child-module mode**:
+The migrator's Stack output for a directory a `module` block's `source` points at: providers registered without configuration (synth emits only `required_providers`), `variable` → `addVariable`, `output` → exports; provider configurations and a backend found there stay in the sidecar. The caller's `module` block stays in its own sidecar, so plan addresses keep the `module.<name>.` prefix.
+_Avoid_: Nested Stack
+
+**Environment root**:
+A root module directory with its own backend and state (`envs/dev`). Sibling roots under one parent directory are environment candidates; the migrator gives each its own Stack and Terraform directory and reports their shared addresses and differing arguments (`--merge-envs`, #668, folds them later).
+_Avoid_: Workspace
 
 **Round-trip gate**:
 `tool/migrate_roundtrip_gates.dart`: migrate every quickstart's synth output back to Dart, re-synthesize, deep-compare — `synth(migrate(synth(S))) == synth(S)`. The migrator's correctness oracle; strict examples must round-trip completely, `tool/migrate_roundtrip_debt.yaml` ratchets the reasoned exceptions.

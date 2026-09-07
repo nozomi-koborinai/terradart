@@ -1,0 +1,49 @@
+/// CloudRunStack — migrated from `cloud_run` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/provider.dart';
+
+final class CloudRunStack extends Stack {
+  CloudRunStack() : super(providers: [const GoogleProvider()]) {
+    addVariable(r'name', const TfVariable(type: r'string'));
+    final thisCloudRunV2Service = add(
+      GoogleCloudRunV2Service(
+        localName: r'this',
+        name: TfArg.variable(r'name'),
+        location: TfArg.literal(r'asia-northeast1'),
+        template: CloudRunV2ServiceTemplate(
+          containers: [
+            CloudRunV2ServiceServiceContainer(
+              image: TfArg.literal(
+                r'gcr.io/example-project/${var.name}:latest',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    add(
+      GoogleCloudRunV2ServiceIamMember(
+        localName: r'invoker',
+        name: TfArg.ref(thisCloudRunV2Service.nameRef),
+        role: TfArg.literal(r'roles/run.invoker'),
+        member: TfArg.literal(r'allUsers'),
+        location: TfArg.ref(thisCloudRunV2Service.locationRef),
+      ),
+    );
+    addExport(
+      r'service_name',
+      ResourceIdExport(
+        thisCloudRunV2Service.nameRef,
+        emitTerraformOutput: true,
+      ),
+    );
+    setAppExportsOutputPath(r'lib/generated/cloud_run_stack.app.dart');
+  }
+}
