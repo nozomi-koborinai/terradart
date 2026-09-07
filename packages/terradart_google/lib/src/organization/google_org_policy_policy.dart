@@ -233,6 +233,7 @@ final class GoogleOrgPolicyPolicy extends Resource {
     OrgPolicyPolicySpec? spec,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

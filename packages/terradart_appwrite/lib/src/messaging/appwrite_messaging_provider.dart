@@ -53,6 +53,7 @@ final class AppwriteMessagingProvider extends Resource {
     TfArg<String>? username,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

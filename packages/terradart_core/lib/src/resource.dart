@@ -46,11 +46,14 @@ abstract base class Resource implements TfAddressed {
   /// `TfRef` (rendered via `bareAddress`).
   final List<DependencyTarget>? dependsOn;
 
-  /// Optional Terraform `provider` meta-argument (e.g. `'google-beta'`).
+  /// Optional Terraform `provider` meta-argument: a provider name
+  /// (`'google-beta'` on a GA type) or a `name.alias` pair (`'google.eu'`).
   ///
-  /// When set, synth emits `"provider": "<name>"` on the resource block and
-  /// requires a [StackProvider] whose [StackProvider.providerName] matches.
-  /// Omit for the default provider implied by [terraformType]'s prefix.
+  /// When set, synth emits `"provider": "<value>"` on the block and requires
+  /// a [StackProvider] registered with that [StackProvider.providerName] and
+  /// [StackProvider.alias]. Omit for the default configuration of the
+  /// provider implied by [terraformType]'s prefix. Every curated factory
+  /// exposes it as its `provider:` constructor parameter.
   final String? provider;
 
   @override

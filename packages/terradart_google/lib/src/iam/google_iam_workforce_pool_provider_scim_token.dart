@@ -36,6 +36,7 @@ final class GoogleIamWorkforcePoolProviderScimToken extends Resource {
     required TfArg<String> workforcePoolId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

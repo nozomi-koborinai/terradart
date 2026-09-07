@@ -19,6 +19,7 @@ final class DataGoogleFirestoreDocument extends Data {
     required TfArg<String> database,
     required TfArg<String> documentId,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

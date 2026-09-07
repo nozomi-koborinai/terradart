@@ -43,6 +43,7 @@ final class GoogleSccMuteConfig extends Resource {
     TfArg<SccMuteConfigType>? type,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

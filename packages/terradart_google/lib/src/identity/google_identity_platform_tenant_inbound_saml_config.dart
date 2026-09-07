@@ -101,6 +101,7 @@ final class GoogleIdentityPlatformTenantInboundSamlConfig extends Resource {
     required IdentityPlatformTenantInboundSamlConfigSpConfig spConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -25,6 +25,7 @@ final class CloudflareImage extends Resource {
     TfArg<String>? url,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

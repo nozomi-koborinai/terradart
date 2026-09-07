@@ -19,6 +19,7 @@ final class DataCloudflarePageShieldPolicy extends Data {
     required super.localName,
     required TfArg<String> policyId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'policy_id': policyId, if (zoneId != null) 'zone_id': zoneId},

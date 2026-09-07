@@ -33,6 +33,7 @@ final class GoogleIapBrand extends Resource {
     required TfArg<String> supportEmail,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

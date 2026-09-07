@@ -25,6 +25,7 @@ final class GoogleApigeeEnvironmentAddonsConfig extends Resource {
     TfArg<bool>? analyticsEnabled,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

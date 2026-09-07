@@ -17,6 +17,7 @@ final class DataGoogleKmsCryptoKeyVersion extends Data {
     required super.localName,
     required TfArg<String> cryptoKey,
     TfArg<num>? version,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

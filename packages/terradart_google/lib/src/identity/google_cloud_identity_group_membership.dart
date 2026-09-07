@@ -92,6 +92,7 @@ final class GoogleCloudIdentityGroupMembership extends Resource {
     required List<CloudIdentityGroupMembershipRoles> roles,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

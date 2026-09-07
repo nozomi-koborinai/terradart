@@ -56,6 +56,7 @@ final class GoogleContainerAnalysisNoteIamMember extends Resource {
     ContainerAnalysisNoteIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

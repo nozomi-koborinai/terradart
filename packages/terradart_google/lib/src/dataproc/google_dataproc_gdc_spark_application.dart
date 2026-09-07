@@ -177,6 +177,7 @@ final class GoogleDataprocGdcSparkApplication extends Resource {
     DataprocGdcSparkApplicationSparkApplicationConfig? sparkApplicationConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

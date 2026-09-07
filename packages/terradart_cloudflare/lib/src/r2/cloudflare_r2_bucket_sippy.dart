@@ -114,6 +114,7 @@ final class CloudflareR2BucketSippy extends Resource {
     R2BucketSippySource? source,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

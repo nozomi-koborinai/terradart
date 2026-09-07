@@ -21,6 +21,7 @@ final class DataAppwritePostgresqlDatabaseStatus extends Data {
     required super.localName,
     required TfArg<String> databaseId,
     TfArg<String>? projectId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

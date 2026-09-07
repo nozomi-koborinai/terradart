@@ -74,6 +74,7 @@ final class DataCloudflareOrganizations extends Data {
     DataOrganizationsContaining? containing,
     DataOrganizationsName? name,
     DataOrganizationsParent? parent,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

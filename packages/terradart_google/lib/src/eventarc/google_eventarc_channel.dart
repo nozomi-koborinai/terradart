@@ -22,6 +22,7 @@ final class GoogleEventarcChannel extends Resource {
     TfArg<String>? thirdPartyProvider,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

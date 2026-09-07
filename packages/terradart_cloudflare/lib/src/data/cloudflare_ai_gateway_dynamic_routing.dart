@@ -19,6 +19,7 @@ final class DataCloudflareAiGatewayDynamicRouting extends Data {
     TfArg<String>? accountId,
     required TfArg<String> gatewayId,
     required TfArg<String> id,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

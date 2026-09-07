@@ -32,6 +32,7 @@ terraform apply
 ## What gets created
 
 - A GCS bucket `my-app-assets-prod` in `ASIA-NORTHEAST1` on `STANDARD` storage class.
+- A second bucket `my-app-assets-prod-eu` in `EUROPE-WEST1`, created through the aliased provider configuration (`GoogleProvider(alias: 'eu', ...)` selected with `provider: 'google.eu'` — the `provider "google" { alias = "eu" }` / `provider = google.eu` pattern in HCL).
 - Object versioning enabled via `Versioning(enabled: true)`.
 - One `LifecycleRule` transitioning objects to `ARCHIVE` storage class after 365 days.
 - One inline-content object `config/app.json` uploaded via `BucketObjectFromContent`.
@@ -40,8 +41,22 @@ terraform apply
 
 ```json
 {
+  "provider": {
+    "google": [
+      { "project": "your-project-id", "region": "asia-northeast1" },
+      { "alias": "eu", "project": "your-project-id", "region": "europe-west1" }
+    ]
+  },
   "resource": {
     "google_storage_bucket": {
+      "assets_eu": {
+        "name": "my-app-assets-prod-eu",
+        "location": "EUROPE-WEST1",
+        "storage_class": "STANDARD",
+        "force_destroy": false,
+        "uniform_bucket_level_access": true,
+        "provider": "google.eu"
+      },
       "assets": {
         "name": "my-app-assets-prod",
         "location": "ASIA-NORTHEAST1",

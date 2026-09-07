@@ -17,6 +17,7 @@ final class DataCloudflareAuthenticatedOriginPullsHostnameCertificate
     required super.localName,
     required TfArg<String> certificateId,
     required TfArg<String> zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'certificate_id': certificateId, 'zone_id': zoneId},

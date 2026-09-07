@@ -24,6 +24,7 @@ final class DataCloudflareZeroTrustAccessApplications extends Data {
     TfArg<String>? name,
     TfArg<String>? search,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

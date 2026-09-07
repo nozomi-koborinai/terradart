@@ -111,6 +111,7 @@ final class GoogleProjectOrganizationPolicy extends Resource {
     ProjectOrganizationPolicyRestorePolicy? restorePolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

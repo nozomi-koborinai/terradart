@@ -19,6 +19,7 @@ final class DataCloudflareObservatoryScheduledTest extends Data {
     TfArg<String>? region,
     required TfArg<String> url,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

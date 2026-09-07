@@ -21,6 +21,7 @@ final class GoogleEndpointsServiceIamPolicy extends Resource {
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'service_name': serviceName, 'policy_data': policyData},

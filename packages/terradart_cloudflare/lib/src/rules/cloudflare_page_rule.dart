@@ -341,6 +341,7 @@ final class CloudflarePageRule extends Resource {
     required PageRuleActions actions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

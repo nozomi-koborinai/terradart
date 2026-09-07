@@ -27,6 +27,7 @@ final class GoogleEventarcGoogleApiSource extends Resource {
     EventarcMessageBusLoggingConfig? loggingConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

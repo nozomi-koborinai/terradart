@@ -21,6 +21,7 @@ final class DataGoogleBigqueryAnalyticsHubListingIamPolicy extends Data {
     required TfArg<String> listingId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

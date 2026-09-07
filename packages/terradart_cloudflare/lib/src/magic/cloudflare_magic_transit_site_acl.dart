@@ -91,6 +91,7 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
     required MagicTransitSiteAclLan2 lan2,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

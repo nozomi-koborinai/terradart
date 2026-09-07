@@ -675,6 +675,7 @@ final class GoogleDatabaseMigrationServiceConnectionProfile extends Resource {
     DatabaseMigrationServiceConnectionProfilePostgresql? postgresql,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

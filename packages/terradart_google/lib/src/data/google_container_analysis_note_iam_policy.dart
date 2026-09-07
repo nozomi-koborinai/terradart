@@ -17,6 +17,7 @@ final class DataGoogleContainerAnalysisNoteIamPolicy extends Data {
     required super.localName,
     required TfArg<String> note,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'note': note, if (project != null) 'project': project},

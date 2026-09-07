@@ -31,6 +31,7 @@ final class DataCloudflareWorkersScript extends Data {
     TfArg<String>? accountId,
     TfArg<String>? scriptName,
     DataWorkersScriptFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

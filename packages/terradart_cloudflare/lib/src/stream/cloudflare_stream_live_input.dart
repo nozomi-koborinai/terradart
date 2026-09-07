@@ -71,6 +71,7 @@ final class CloudflareStreamLiveInput extends Resource {
     StreamLiveInputRecording? recording,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

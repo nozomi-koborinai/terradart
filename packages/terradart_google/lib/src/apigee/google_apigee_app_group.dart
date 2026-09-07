@@ -58,6 +58,7 @@ final class GoogleApigeeAppGroup extends Resource {
     List<ApigeeAppGroupAttributes>? attributes,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

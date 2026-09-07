@@ -103,6 +103,7 @@ final class CloudflareLogpushJob extends Resource {
     LogpushJobOutputOptions? outputOptions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

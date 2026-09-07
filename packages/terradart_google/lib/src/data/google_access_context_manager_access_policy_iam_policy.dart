@@ -18,6 +18,7 @@ final class DataGoogleAccessContextManagerAccessPolicyIamPolicy extends Data {
   DataGoogleAccessContextManagerAccessPolicyIamPolicy({
     required super.localName,
     required TfArg<String> name,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'name': name});
 
   @override

@@ -100,6 +100,7 @@ final class GoogleCloudAssetFolderFeed extends Resource {
     required CloudAssetFolderFeedFeedOutputConfig feedOutputConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

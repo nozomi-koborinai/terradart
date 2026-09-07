@@ -20,9 +20,10 @@ final class GoogleFirebaseDatabaseInstance extends Resource {
     TfArg<String>? type,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (desiredState != null) 'desired_state': desiredState,

@@ -273,6 +273,7 @@ final class CloudflareZeroTrustTunnelCloudflaredConfig extends Resource {
     ZeroTrustTunnelCloudflaredConfigConfig? config,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

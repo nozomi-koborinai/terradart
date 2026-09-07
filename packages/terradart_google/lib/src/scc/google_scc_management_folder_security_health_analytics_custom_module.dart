@@ -217,6 +217,7 @@ final class GoogleSccManagementFolderSecurityHealthAnalyticsCustomModule
     customConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

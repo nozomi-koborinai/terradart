@@ -36,6 +36,7 @@ final class DataCloudflarePipelineSink extends Data {
     TfArg<String>? accountId,
     TfArg<String>? sinkId,
     DataPipelineSinkFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

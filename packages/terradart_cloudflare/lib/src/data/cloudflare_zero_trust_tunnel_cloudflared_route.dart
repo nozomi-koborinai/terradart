@@ -67,6 +67,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredRoute extends Data {
     TfArg<String>? accountId,
     TfArg<String>? routeId,
     DataZeroTrustTunnelCloudflaredRouteFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

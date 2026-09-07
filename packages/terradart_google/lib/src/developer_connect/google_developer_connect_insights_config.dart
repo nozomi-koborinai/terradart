@@ -105,6 +105,7 @@ final class GoogleDeveloperConnectInsightsConfig extends Resource {
     DeveloperConnectInsightsConfigTargetProjects? targetProjects,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

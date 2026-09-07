@@ -16,6 +16,7 @@ final class DataGoogleLoggingFolderSettings extends Data {
   DataGoogleLoggingFolderSettings({
     required super.localName,
     required TfArg<String> folder,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'folder': folder});
 
   @override

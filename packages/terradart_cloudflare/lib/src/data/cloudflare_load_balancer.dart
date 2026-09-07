@@ -20,6 +20,7 @@ final class DataCloudflareLoadBalancer extends Data {
     TfArg<Map<String, List<String>>>? popPools,
     TfArg<Map<String, List<String>>>? regionPools,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

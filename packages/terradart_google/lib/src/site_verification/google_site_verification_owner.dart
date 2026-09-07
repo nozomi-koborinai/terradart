@@ -24,6 +24,7 @@ final class GoogleSiteVerificationOwner extends Resource {
     required TfArg<String> webResourceId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -87,6 +87,7 @@ final class CloudflareTokenValidationRules extends Resource {
     required TokenValidationRulesSelector selector,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

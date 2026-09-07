@@ -28,6 +28,7 @@ final class GoogleOrganizationIamCustomRole extends Resource {
     required TfArg<String> title,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

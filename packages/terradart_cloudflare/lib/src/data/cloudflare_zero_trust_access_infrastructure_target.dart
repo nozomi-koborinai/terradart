@@ -103,6 +103,7 @@ final class DataCloudflareZeroTrustAccessInfrastructureTarget extends Data {
     TfArg<String>? accountId,
     TfArg<String>? targetId,
     DataZeroTrustAccessInfrastructureTargetFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

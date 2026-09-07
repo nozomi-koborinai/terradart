@@ -35,6 +35,7 @@ final class GoogleSccFolderSccBigQueryExport extends Resource {
     required TfArg<String> folder,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

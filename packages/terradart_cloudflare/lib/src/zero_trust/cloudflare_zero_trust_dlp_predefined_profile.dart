@@ -47,6 +47,7 @@ final class CloudflareZeroTrustDlpPredefinedProfile extends Resource {
     List<ZeroTrustDlpPredefinedProfileEntries>? entries,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

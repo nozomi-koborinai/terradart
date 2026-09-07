@@ -16,6 +16,7 @@ final class GoogleComputeSharedVpcServiceProject extends Resource {
     required TfArg<String> serviceProject,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

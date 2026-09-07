@@ -20,6 +20,7 @@ final class CloudflareStreamWebhook extends Resource {
     TfArg<String>? notificationUrl,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

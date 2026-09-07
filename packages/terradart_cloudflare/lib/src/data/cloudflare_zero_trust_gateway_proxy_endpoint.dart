@@ -15,6 +15,7 @@ final class DataCloudflareZeroTrustGatewayProxyEndpoint extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> proxyEndpointId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

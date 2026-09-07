@@ -72,6 +72,7 @@ final class GoogleIamPrincipalAccessBoundaryPolicy extends Resource {
     IamPrincipalAccessBoundaryPolicyDetails? details,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

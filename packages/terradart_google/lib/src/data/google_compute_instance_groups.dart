@@ -18,6 +18,7 @@ final class DataGoogleComputeInstanceGroups extends Data {
     TfArg<String>? filter,
     TfArg<String>? project,
     TfArg<String>? zone,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

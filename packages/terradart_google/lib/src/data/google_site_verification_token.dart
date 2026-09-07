@@ -18,6 +18,7 @@ final class DataGoogleSiteVerificationToken extends Data {
     required TfArg<String> identifier,
     required TfArg<String> type,
     required TfArg<String> verificationMethod,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

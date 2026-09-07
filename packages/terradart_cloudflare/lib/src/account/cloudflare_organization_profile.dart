@@ -20,6 +20,7 @@ final class CloudflareOrganizationProfile extends Resource {
     required TfArg<String> organizationId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

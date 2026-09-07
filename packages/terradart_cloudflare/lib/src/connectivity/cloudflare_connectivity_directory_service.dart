@@ -100,6 +100,7 @@ final class CloudflareConnectivityDirectoryService extends Resource {
     ConnectivityDirectoryServiceTlsSettings? tlsSettings,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

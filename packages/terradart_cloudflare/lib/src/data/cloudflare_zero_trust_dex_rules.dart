@@ -22,6 +22,7 @@ final class DataCloudflareZeroTrustDexRules extends Data {
     TfArg<String>? name,
     TfArg<String>? sortBy,
     TfArg<String>? sortOrder,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

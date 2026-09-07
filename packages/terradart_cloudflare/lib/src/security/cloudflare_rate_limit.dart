@@ -129,6 +129,7 @@ final class CloudflareRateLimit extends Resource {
     required RateLimitMatch match,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

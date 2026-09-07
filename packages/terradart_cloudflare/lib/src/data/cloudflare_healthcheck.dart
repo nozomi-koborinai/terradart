@@ -18,6 +18,7 @@ final class DataCloudflareHealthcheck extends Data {
     required super.localName,
     required TfArg<String> healthcheckId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

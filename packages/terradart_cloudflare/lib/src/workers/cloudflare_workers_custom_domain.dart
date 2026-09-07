@@ -24,6 +24,7 @@ final class CloudflareWorkersCustomDomain extends Resource {
     TfArg<String>? zoneName,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

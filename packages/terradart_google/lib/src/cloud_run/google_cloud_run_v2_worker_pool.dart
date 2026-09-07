@@ -167,6 +167,7 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
     CloudRunV2WorkerPoolTemplate? template,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

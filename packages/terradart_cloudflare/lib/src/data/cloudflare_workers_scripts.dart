@@ -19,6 +19,7 @@ final class DataCloudflareWorkersScripts extends Data {
     TfArg<String>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? tags,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

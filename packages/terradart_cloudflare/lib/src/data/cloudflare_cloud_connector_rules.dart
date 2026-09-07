@@ -17,6 +17,7 @@ final class DataCloudflareCloudConnectorRules extends Data {
   DataCloudflareCloudConnectorRules({
     required super.localName,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (zoneId != null) 'zone_id': zoneId},

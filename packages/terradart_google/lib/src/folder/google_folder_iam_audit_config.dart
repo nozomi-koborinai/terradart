@@ -45,6 +45,7 @@ final class GoogleFolderIamAuditConfig extends Resource {
     required List<FolderIamAuditConfigAuditLogConfig> auditLogConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

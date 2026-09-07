@@ -19,6 +19,7 @@ final class DataGoogleDnsRecordSets extends Data {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? type,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

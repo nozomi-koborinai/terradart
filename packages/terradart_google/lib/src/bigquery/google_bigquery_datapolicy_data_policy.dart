@@ -60,6 +60,7 @@ final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
     BigqueryDatapolicyDataPolicyDataMaskingPolicy? dataMaskingPolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

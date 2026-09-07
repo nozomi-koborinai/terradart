@@ -41,6 +41,7 @@ final class CloudflareZoneLockdown extends Resource {
     required List<ZoneLockdownConfigurations> configurations,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

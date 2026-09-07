@@ -40,7 +40,7 @@ final class WrapperOverride {
   /// [customSlots]. The emitter resolves names by checking [customSlots]
   /// first, then falling back to the IR-derived snippets.
   ///
-  /// `localName`, `lifecycle`, and `dependsOn` are super-parameters and
+  /// `localName`, `lifecycle`, `dependsOn`, and `provider` are super-parameters and
   /// always frame the override-ordered slots; do not include them here.
   ///
   /// `null` means "use IR-natural order" (alphabetical, since the parser

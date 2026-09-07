@@ -30,6 +30,7 @@ final class AppwriteFunctionDeployment extends Resource {
     TfArg<bool>? waitForReady,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -31,6 +31,7 @@ final class GoogleIapClient extends Resource {
     required TfArg<String> displayName,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -32,6 +32,7 @@ final class CloudflareContentScanningExpression extends Resource {
     required List<ContentScanningExpressionBody> body,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -53,7 +53,7 @@ dart run bin/infra.dart
 cd tf-out && terraform init && terraform apply
 ```
 
-Wrappers in this package automatically pin the `provider = google-beta` meta-argument.
+Wrappers in this package automatically pin the `provider = google-beta` meta-argument. Pass `provider: 'google-beta.<alias>'` to select an aliased `GoogleBetaProvider(alias: '<alias>', ...)` instead.
 
 ## Curated surface
 

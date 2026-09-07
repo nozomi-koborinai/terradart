@@ -35,6 +35,7 @@ final class GoogleMonitoringMonitoredProject extends Resource {
     required TfArg<String> name,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'metrics_scope': metricsScope, 'name': name},

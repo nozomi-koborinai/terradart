@@ -22,6 +22,7 @@ final class GoogleIamWorkforcePoolIamPolicy extends Resource {
     TfArg<String>? location,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -1261,6 +1261,7 @@ final class GoogleOsConfigV2PolicyOrchestratorForOrganization extends Resource {
     orchestrationScope,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

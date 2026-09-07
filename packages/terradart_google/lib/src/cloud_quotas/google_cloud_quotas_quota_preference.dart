@@ -68,6 +68,7 @@ final class GoogleCloudQuotasQuotaPreference extends Resource {
     TfArg<CloudQuotasQuotaPreferenceIgnoreSafetyChecks>? ignoreSafetyChecks,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

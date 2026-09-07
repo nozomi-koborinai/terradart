@@ -69,6 +69,7 @@ final class CloudflareR2BucketCors extends Resource {
     List<R2BucketCorsRules>? rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

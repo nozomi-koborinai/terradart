@@ -29,6 +29,7 @@ final class AppwriteMysqlBranch extends Resource {
     TfArg<num>? ttl,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

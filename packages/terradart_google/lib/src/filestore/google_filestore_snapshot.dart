@@ -39,6 +39,7 @@ final class GoogleFilestoreSnapshot extends Resource {
     TfArg<Map<String, String>>? labels,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

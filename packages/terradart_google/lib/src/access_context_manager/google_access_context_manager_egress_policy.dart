@@ -26,6 +26,7 @@ final class GoogleAccessContextManagerEgressPolicy extends Resource {
     required TfArg<String> resource,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

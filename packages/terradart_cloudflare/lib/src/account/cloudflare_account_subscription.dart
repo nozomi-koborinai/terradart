@@ -38,6 +38,7 @@ final class CloudflareAccountSubscription extends Resource {
     AccountSubscriptionRatePlan? ratePlan,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

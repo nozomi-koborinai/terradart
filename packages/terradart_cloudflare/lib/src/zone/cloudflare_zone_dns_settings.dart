@@ -99,6 +99,7 @@ final class CloudflareZoneDnsSettings extends Resource {
     ZoneDnsSettingsSoa? soa,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

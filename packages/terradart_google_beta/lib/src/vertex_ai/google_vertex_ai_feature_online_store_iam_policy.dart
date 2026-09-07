@@ -25,9 +25,10 @@ final class GoogleVertexAiFeatureOnlineStoreIamPolicy extends Resource {
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'feature_online_store': featureOnlineStore,
            'policy_data': policyData,

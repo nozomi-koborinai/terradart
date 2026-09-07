@@ -186,6 +186,7 @@ final class GoogleCloudSecurityComplianceFramework extends Resource {
     cloudControlDetails,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

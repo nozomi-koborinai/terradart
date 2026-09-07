@@ -21,9 +21,10 @@ final class GoogleFirebaseAppleApp extends Resource {
     TfArg<String>? teamId,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (apiKeyId != null) 'api_key_id': apiKeyId,
            if (appStoreId != null) 'app_store_id': appStoreId,

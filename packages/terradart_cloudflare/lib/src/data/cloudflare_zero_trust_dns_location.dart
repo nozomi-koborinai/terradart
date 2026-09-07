@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustDnsLocation extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> locationId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

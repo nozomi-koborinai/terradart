@@ -18,6 +18,7 @@ final class DataGoogleBigqueryTableIamPolicy extends Data {
     required TfArg<String> datasetId,
     TfArg<String>? project,
     required TfArg<String> tableId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

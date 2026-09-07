@@ -18,6 +18,7 @@ final class DataGoogleComputeRouterStatus extends Data {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

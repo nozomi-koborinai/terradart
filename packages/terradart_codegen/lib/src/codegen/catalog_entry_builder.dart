@@ -82,7 +82,7 @@ CatalogEntryData buildCatalogEntry({
 /// slot's verbatim `paramDeclaration` (handling renames like `host_rule` →
 /// `hostRules` and virtual slots like scheduler_job's `target`); every
 /// other name is an IR slot rendered as `snakeToCamel(name)`. The
-/// super-parameter bookends (`lifecycle`, `dependsOn`) are excluded — only
+/// super-parameter bookends (`lifecycle`, `dependsOn`, `provider`) are excluded — only
 /// `localName` is prepended, matching the `CatalogEntry.constructorParams`
 /// contract.
 ///

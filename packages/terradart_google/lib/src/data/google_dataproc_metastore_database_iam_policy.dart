@@ -20,6 +20,7 @@ final class DataGoogleDataprocMetastoreDatabaseIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> serviceId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

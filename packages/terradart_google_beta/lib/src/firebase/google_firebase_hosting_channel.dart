@@ -21,9 +21,10 @@ final class GoogleFirebaseHostingChannel extends Resource {
     TfArg<String>? ttl,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'channel_id': channelId,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

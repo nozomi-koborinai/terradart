@@ -37,6 +37,7 @@ final class DataCloudflareCustomSsl extends Data {
     TfArg<String>? customCertificateId,
     TfArg<String>? zoneId,
     DataCustomSslFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

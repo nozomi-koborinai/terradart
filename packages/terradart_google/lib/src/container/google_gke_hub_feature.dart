@@ -42,6 +42,7 @@ final class GoogleGkeHubFeature extends Resource {
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

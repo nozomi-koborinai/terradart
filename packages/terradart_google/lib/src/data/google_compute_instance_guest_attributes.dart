@@ -21,6 +21,7 @@ final class DataGoogleComputeInstanceGuestAttributes extends Data {
     TfArg<String>? region,
     TfArg<String>? variableKey,
     TfArg<String>? zone,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

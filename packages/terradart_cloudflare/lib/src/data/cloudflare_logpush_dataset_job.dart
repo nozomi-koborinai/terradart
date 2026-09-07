@@ -21,6 +21,7 @@ final class DataCloudflareLogpushDatasetJob extends Data {
     TfArg<String>? accountId,
     TfArg<String>? datasetId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

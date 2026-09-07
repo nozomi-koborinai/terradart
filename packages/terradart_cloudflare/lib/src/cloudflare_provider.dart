@@ -28,10 +28,17 @@ const String kCloudflareProviderVersionConstraint = '5.23.0';
 @immutable
 final class CloudflareProvider implements StackProvider {
   const CloudflareProvider({
+    this.alias,
     this.baseUrl,
     this.email,
     this.userAgentOperatorSuffix,
   });
+
+  /// Provider alias (`provider "cloudflare" { alias = "eu" }`), or `null` for
+  /// the default configuration. Select it on a resource with
+  /// `provider: 'cloudflare.<alias>'`.
+  @override
+  final String? alias;
 
   /// API base URL override (e.g. a gateway or mock in front of
   /// `https://api.cloudflare.com/client/v4`).

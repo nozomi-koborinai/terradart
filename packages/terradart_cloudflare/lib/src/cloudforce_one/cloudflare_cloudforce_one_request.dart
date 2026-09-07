@@ -24,6 +24,7 @@ final class CloudflareCloudforceOneRequest extends Resource {
     TfArg<String>? tlp,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

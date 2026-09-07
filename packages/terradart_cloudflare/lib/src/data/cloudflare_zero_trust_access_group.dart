@@ -38,6 +38,7 @@ final class DataCloudflareZeroTrustAccessGroup extends Data {
     TfArg<String>? groupId,
     TfArg<String>? zoneId,
     DataZeroTrustAccessGroupFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -22,6 +22,7 @@ final class GoogleFirebaseAppCheckRecaptchaV3Config extends Resource {
     TfArg<String>? tokenTtl,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -449,6 +449,7 @@ final class GoogleDataPipelinePipeline extends Resource {
     DataPipelinePipelineWorkload? workload,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

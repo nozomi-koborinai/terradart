@@ -73,6 +73,7 @@ final class GoogleLoggingBillingAccountSink extends Resource {
     List<LoggingBillingAccountSinkExclusions>? exclusions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

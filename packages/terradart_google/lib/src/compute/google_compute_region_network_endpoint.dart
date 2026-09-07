@@ -28,6 +28,7 @@ final class GoogleComputeRegionNetworkEndpoint extends Resource {
     required TfArg<String> regionNetworkEndpointGroup,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -24,9 +24,10 @@ final class GoogleDataformRepositoryReleaseConfig extends Resource {
     TfArg<Map<String, dynamic>>? codeCompilationConfig,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (cronSchedule != null) 'cron_schedule': cronSchedule,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

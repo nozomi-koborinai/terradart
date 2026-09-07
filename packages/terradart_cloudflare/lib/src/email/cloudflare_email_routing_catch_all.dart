@@ -53,6 +53,7 @@ final class CloudflareEmailRoutingCatchAll extends Resource {
     required List<EmailRoutingCatchAllMatchers> matchers,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -320,6 +320,7 @@ final class GoogleCloudSecurityComplianceFrameworkDeployment extends Resource {
     targetResourceConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

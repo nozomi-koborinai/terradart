@@ -19,6 +19,7 @@ final class DataCloudflareMagicTransitCf1Site extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> cf1SiteId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'cf1_site_id': cf1SiteId},

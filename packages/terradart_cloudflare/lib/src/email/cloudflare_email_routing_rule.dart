@@ -62,6 +62,7 @@ final class CloudflareEmailRoutingRule extends Resource {
     required List<EmailRoutingRuleMatchers> matchers,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

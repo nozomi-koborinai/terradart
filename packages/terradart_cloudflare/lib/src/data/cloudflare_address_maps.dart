@@ -18,6 +18,7 @@ final class DataCloudflareAddressMaps extends Data {
     required super.localName,
     TfArg<String>? accountId,
     TfArg<num>? maxItems,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -25,6 +25,7 @@ final class DataCloudflareEmailSecurityTrustedDomainsList extends Data {
     TfArg<String>? order,
     TfArg<String>? pattern,
     TfArg<String>? search,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

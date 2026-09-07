@@ -13,6 +13,7 @@ final class DataCloudflareZeroTrustDeviceSettings extends Data {
   DataCloudflareZeroTrustDeviceSettings({
     required super.localName,
     TfArg<String>? accountId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (accountId != null) 'account_id': accountId},

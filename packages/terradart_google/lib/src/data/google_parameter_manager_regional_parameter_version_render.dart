@@ -25,6 +25,7 @@ final class DataGoogleParameterManagerRegionalParameterVersionRender
     required TfArg<String> parameter,
     required TfArg<String> parameterVersionId,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

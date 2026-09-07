@@ -17,6 +17,7 @@ final class DataGoogleVmwareengineExternalAccessRule extends Data {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> parent,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'name': name, 'parent': parent});
 
   @override

@@ -16,6 +16,7 @@ final class DataGoogleBillingAccountIamPolicy extends Data {
   DataGoogleBillingAccountIamPolicy({
     required super.localName,
     required TfArg<String> billingAccountId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'billing_account_id': billingAccountId},

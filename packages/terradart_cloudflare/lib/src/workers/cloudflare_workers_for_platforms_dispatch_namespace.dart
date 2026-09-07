@@ -22,6 +22,7 @@ final class CloudflareWorkersForPlatformsDispatchNamespace extends Resource {
     TfArg<String>? name,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, if (name != null) 'name': name},

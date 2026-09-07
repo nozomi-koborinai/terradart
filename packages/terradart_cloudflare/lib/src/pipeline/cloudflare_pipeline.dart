@@ -21,6 +21,7 @@ final class CloudflarePipeline extends Resource {
     required TfArg<String> sql,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'name': name, 'sql': sql},

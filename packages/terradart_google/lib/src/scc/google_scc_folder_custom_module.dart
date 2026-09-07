@@ -191,6 +191,7 @@ final class GoogleSccFolderCustomModule extends Resource {
     required SccFolderCustomModuleCustomConfig customConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

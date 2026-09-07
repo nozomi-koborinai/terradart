@@ -16,6 +16,7 @@ final class DataGoogleCloudIdentityPolicies extends Data {
   DataGoogleCloudIdentityPolicies({
     required super.localName,
     TfArg<String>? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (filter != null) 'filter': filter},

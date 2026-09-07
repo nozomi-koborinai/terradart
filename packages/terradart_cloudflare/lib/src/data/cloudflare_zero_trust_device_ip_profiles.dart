@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustDeviceIpProfiles extends Data {
     TfArg<String>? accountId,
     TfArg<num>? maxItems,
     TfArg<num>? perPage,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

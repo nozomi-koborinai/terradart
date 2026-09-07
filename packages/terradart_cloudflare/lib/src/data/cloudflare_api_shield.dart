@@ -19,6 +19,7 @@ final class DataCloudflareApiShield extends Data {
     required super.localName,
     TfArg<bool>? normalize,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

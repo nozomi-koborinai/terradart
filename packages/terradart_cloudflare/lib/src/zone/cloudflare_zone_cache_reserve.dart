@@ -20,6 +20,7 @@ final class CloudflareZoneCacheReserve extends Resource {
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (value != null) 'value': value, 'zone_id': zoneId},

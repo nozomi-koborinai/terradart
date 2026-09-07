@@ -37,6 +37,7 @@ final class GoogleDialogflowEncryptionSpec extends Resource {
     required DialogflowEncryptionSpecEncryptionSpec encryptionSpec,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

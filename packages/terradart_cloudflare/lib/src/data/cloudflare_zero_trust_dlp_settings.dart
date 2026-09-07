@@ -17,6 +17,7 @@ final class DataCloudflareZeroTrustDlpSettings extends Data {
   DataCloudflareZeroTrustDlpSettings({
     required super.localName,
     required TfArg<String> accountId,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'account_id': accountId});
 
   @override

@@ -40,6 +40,7 @@ final class CloudflareUserAgentBlockingRule extends Resource {
     required UserAgentBlockingRuleConfiguration configuration,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -46,6 +46,7 @@ final class GoogleSccNotificationConfig extends Resource {
     required SccNotificationConfigStreamingConfig streamingConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -20,6 +20,7 @@ final class GoogleTagsTagBinding extends Resource {
     required TfArg<String> tagValue,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'parent': parent, 'tag_value': tagValue},

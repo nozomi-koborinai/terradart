@@ -18,6 +18,7 @@ final class DataCloudflareOauthClient extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> oauthClientId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'oauth_client_id': oauthClientId},

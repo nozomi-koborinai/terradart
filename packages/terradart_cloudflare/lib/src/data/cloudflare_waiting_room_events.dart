@@ -19,6 +19,7 @@ final class DataCloudflareWaitingRoomEvents extends Data {
     TfArg<num>? maxItems,
     required TfArg<String> waitingRoomId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

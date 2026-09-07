@@ -18,6 +18,7 @@ final class DataGoogleOracleDatabaseCloudVmCluster extends Data {
     required TfArg<String> cloudVmClusterId,
     required TfArg<String> location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

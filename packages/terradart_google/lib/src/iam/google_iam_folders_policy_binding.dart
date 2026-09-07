@@ -75,6 +75,7 @@ final class GoogleIamFoldersPolicyBinding extends Resource {
     required IamFoldersPolicyBindingTarget target,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -1585,6 +1585,7 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
     List<ZeroTrustAccessPolicyRequire>? require,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

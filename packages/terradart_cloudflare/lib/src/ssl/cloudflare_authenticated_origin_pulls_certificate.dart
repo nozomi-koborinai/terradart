@@ -19,6 +19,7 @@ final class CloudflareAuthenticatedOriginPullsCertificate extends Resource {
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

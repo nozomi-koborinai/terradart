@@ -23,6 +23,7 @@ final class CloudflareSsoConnector extends Resource {
     TfArg<bool>? useFedrampLanguage,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

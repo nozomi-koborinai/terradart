@@ -20,9 +20,10 @@ final class GoogleChronicleSoarDomain extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            'display_name': displayName,

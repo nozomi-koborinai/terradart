@@ -18,6 +18,7 @@ final class DataGoogleDataplexDatascanIamPolicy extends Data {
     required TfArg<String> dataScanId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

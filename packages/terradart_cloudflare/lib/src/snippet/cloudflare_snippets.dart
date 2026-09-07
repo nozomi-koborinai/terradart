@@ -30,6 +30,7 @@ final class CloudflareSnippets extends Resource {
     required SnippetsMetadata metadata,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

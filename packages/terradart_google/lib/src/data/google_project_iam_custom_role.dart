@@ -17,6 +17,7 @@ final class DataGoogleProjectIamCustomRole extends Data {
     required super.localName,
     TfArg<String>? project,
     required TfArg<String> roleId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (project != null) 'project': project, 'role_id': roleId},

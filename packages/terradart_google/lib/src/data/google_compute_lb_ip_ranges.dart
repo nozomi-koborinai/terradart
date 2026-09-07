@@ -13,7 +13,7 @@ const Set<String> _googleComputeLbIpRangesSensitive = <String>{};
 final class DataGoogleComputeLbIpRanges extends Data {
   static const String tfType = 'google_compute_lb_ip_ranges';
 
-  DataGoogleComputeLbIpRanges({required super.localName})
+  DataGoogleComputeLbIpRanges({required super.localName, super.provider})
     : super(terraformType: tfType, argMap: {});
 
   @override

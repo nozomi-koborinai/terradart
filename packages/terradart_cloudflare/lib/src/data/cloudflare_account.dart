@@ -45,6 +45,7 @@ final class DataCloudflareAccount extends Data {
     required super.localName,
     TfArg<String>? accountId,
     DataAccountFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

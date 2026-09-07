@@ -2108,6 +2108,7 @@ final class GoogleDataLossPreventionDiscoveryConfig extends Resource {
     List<DataLossPreventionDiscoveryConfigTargets>? targets,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

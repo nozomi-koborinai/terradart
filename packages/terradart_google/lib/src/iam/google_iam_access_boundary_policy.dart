@@ -101,6 +101,7 @@ final class GoogleIamAccessBoundaryPolicy extends Resource {
     required List<IamAccessBoundaryPolicyRules> rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

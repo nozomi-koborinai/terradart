@@ -43,7 +43,7 @@ The output is one Dart package:
 | `pubspec.yaml`, `bin/infra.dart` | lockstep pins; `dart run bin/infra.dart` synthesizes every Stack |
 | `lib/<dir>_stack.dart` | one Stack per module directory (`dev` → `DevStack`) |
 | `tf-out/<dir>/` | each module's Terraform directory, mirroring the source tree so `source = "../modules/x"` keeps resolving: `main.tf.json` (written by synth) next to the sidecar files, plus `terraform.tfvars`, `*.auto.tfvars` and `.terraform.lock.hcl` copied from the source (other `*.tfvars` are listed for `-var-file`) |
-| `tf-out/<dir>/terradart_leftover.tf` | resources, data sources, module calls, `moved` and provider aliases that stay in Terraform, verbatim, each with its reason |
+| `tf-out/<dir>/terradart_leftover.tf` | resources, data sources, module calls and `moved` blocks that stay in Terraform, verbatim, each with its reason |
 | `tf-out/<dir>/backend.tf`, `variables.tf`, `locals.tf`, `outputs.tf` | the `terraform` settings, variables, locals and outputs the Stack does not own |
 | `MIGRATION.md` | the report: every module, every kept block with its reason and file, warnings, and how the environment roots differ |
 
@@ -78,8 +78,8 @@ What translates (the conversion rules of [#655](https://github.com/nozomi-kobori
 
 - literals (`TfArg.literal(...)`, `${` / `%{` re-escaped), enum members from the manifest, typed nested helpers (single, repeated, exactly-one-of variants), opaque passthrough maps;
 - references to migrated resources and data sources as typed `TfArg.ref(x.id)` (or `TfRef.attribute<T>` when the wrapper has no getter), `var.x` as `TfArg.variable`, everything else — templates, function calls, conditionals, `local.x`, `module.x` — verbatim as `TfArg.expression` on any `TfArg`-typed argument (string, number, bool, enum, list or sensitive), the variables inside it declared like references;
-- `depends_on` and `lifecycle`, `terraform.required_version`, `backend "gcs" | "local" | "s3"`, `provider` blocks of the four providers (and `time`), `variable` blocks as `addVariable`, single-attribute `output`s as exports;
-- blockers, always with a reason: types outside every catalog, `count` / `for_each` / `dynamic` / `provisioner` / `timeouts`, provider aliases, an argument with no Dart parameter, an expression inside a typed collection (a `List<int>` element, say) or on a bare non-`TfArg` parameter, a sensitive literal (never copied), a `depends_on` on a resource that stays in Terraform.
+- `depends_on` and `lifecycle`, `terraform.required_version`, `backend "gcs" | "local" | "s3"`, `provider` blocks of the four providers (and `time`) — aliased ones included, registered as `GoogleProvider(alias: 'eu', ...)` and selected per resource as `provider: 'google.eu'` (`provider = google-beta` on a GA type works the same way) — `variable` blocks as `addVariable`, single-attribute `output`s as exports;
+- blockers, always with a reason: types outside every catalog, `count` / `for_each` / `dynamic` / `provisioner` / `timeouts`, a `provider = x.alias` the module does not configure (or inside a child module, which needs `configuration_aliases`), an argument with no Dart parameter, an expression inside a typed collection (a `List<int>` element, say) or on a bare non-`TfArg` parameter, a sensitive literal (never copied), a `depends_on` on a resource that stays in Terraform.
 
 ## Round-trip gate
 

@@ -35,6 +35,7 @@ final class GoogleApigeeEnvironmentApiRevisionDeployment extends Resource {
     TfArg<String>? serviceAccount,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

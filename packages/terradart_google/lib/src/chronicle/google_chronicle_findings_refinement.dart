@@ -61,6 +61,7 @@ final class GoogleChronicleFindingsRefinement extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

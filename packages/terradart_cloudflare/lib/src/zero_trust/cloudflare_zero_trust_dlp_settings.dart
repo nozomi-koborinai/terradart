@@ -39,6 +39,7 @@ final class CloudflareZeroTrustDlpSettings extends Resource {
     ZeroTrustDlpSettingsPayloadLogging? payloadLogging,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

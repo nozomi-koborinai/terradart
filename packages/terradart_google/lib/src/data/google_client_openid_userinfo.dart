@@ -23,7 +23,7 @@ const Set<String> _googleClientOpenidUserinfoSensitive = <String>{};
 final class DataGoogleClientOpenidUserinfo extends Data {
   static const String tfType = 'google_client_openid_userinfo';
 
-  DataGoogleClientOpenidUserinfo({required super.localName})
+  DataGoogleClientOpenidUserinfo({required super.localName, super.provider})
     : super(terraformType: tfType, argMap: {});
 
   @override

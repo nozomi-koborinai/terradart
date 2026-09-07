@@ -16,9 +16,10 @@ final class GoogleFirebaseHostingVersion extends Resource {
     TfArg<Map<String, dynamic>>? config,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {'site_id': siteId, if (config != null) 'config': config},
        );
 

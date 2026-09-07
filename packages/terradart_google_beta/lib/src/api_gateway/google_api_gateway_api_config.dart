@@ -25,9 +25,10 @@ final class GoogleApiGatewayApiConfig extends Resource {
     TfArg<List<Map<String, dynamic>>>? openapiDocuments,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'api': api,
            if (apiConfigId != null) 'api_config_id': apiConfigId,

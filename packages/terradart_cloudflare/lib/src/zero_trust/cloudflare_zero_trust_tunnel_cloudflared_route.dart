@@ -24,6 +24,7 @@ final class CloudflareZeroTrustTunnelCloudflaredRoute extends Resource {
     TfArg<String>? virtualNetworkId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -287,6 +287,7 @@ final class CloudflarePipelineSink extends Resource {
     PipelineSinkSchema? schema,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

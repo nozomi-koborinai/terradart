@@ -21,6 +21,7 @@ final class DataGoogleSqlDatabaseInstances extends Data {
     TfArg<String>? state,
     TfArg<String>? tier,
     TfArg<String>? zone,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

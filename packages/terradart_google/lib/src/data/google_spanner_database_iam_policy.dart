@@ -18,6 +18,7 @@ final class DataGoogleSpannerDatabaseIamPolicy extends Data {
     required TfArg<String> database,
     required TfArg<String> instance,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

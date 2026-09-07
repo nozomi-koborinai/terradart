@@ -19,6 +19,7 @@ final class DataAppwriteMysqlDatabase extends Data {
     required super.localName,
     required TfArg<String> id,
     TfArg<String>? projectId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'id': id, if (projectId != null) 'project_id': projectId},

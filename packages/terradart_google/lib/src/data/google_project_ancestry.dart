@@ -13,11 +13,14 @@ const Set<String> _googleProjectAncestrySensitive = <String>{};
 final class DataGoogleProjectAncestry extends Data {
   static const String tfType = 'google_project_ancestry';
 
-  DataGoogleProjectAncestry({required super.localName, TfArg<String>? project})
-    : super(
-        terraformType: tfType,
-        argMap: {if (project != null) 'project': project},
-      );
+  DataGoogleProjectAncestry({
+    required super.localName,
+    TfArg<String>? project,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (project != null) 'project': project},
+       );
 
   @override
   Set<String> get sensitiveFields => _googleProjectAncestrySensitive;

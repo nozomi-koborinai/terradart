@@ -24,6 +24,7 @@ final class GoogleProjectIamMemberRemove extends Resource {
     required TfArg<String> role,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'member': member, 'project': project, 'role': role},

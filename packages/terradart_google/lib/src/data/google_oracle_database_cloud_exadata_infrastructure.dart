@@ -20,6 +20,7 @@ final class DataGoogleOracleDatabaseCloudExadataInfrastructure extends Data {
     required TfArg<String> cloudExadataInfrastructureId,
     required TfArg<String> location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

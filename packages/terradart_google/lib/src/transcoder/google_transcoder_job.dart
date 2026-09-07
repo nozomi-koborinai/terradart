@@ -647,6 +647,7 @@ final class GoogleTranscoderJob extends Resource {
     TranscoderJobConfig? config,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

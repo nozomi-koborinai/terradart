@@ -16,6 +16,7 @@ final class DataGoogleStorageBucketIamPolicy extends Data {
   DataGoogleStorageBucketIamPolicy({
     required super.localName,
     required TfArg<String> bucket,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'bucket': bucket});
 
   @override

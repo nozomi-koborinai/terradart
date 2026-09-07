@@ -21,6 +21,7 @@ final class DataGoogleArtifactRegistryFile extends Data {
     TfArg<bool>? overwrite,
     TfArg<String>? project,
     required TfArg<String> repositoryId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

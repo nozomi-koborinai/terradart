@@ -23,6 +23,7 @@ final class CloudflareZeroTrustDeviceDefaultProfileCertificates
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'enabled': enabled, 'zone_id': zoneId},

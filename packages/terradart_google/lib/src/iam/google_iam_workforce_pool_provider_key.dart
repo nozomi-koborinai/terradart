@@ -55,6 +55,7 @@ final class GoogleIamWorkforcePoolProviderKey extends Resource {
     required IamWorkforcePoolProviderKeyKeyData keyData,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

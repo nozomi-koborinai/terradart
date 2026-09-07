@@ -35,6 +35,7 @@ final class GoogleLoggingLogScope extends Resource {
     TfArg<String>? parent,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

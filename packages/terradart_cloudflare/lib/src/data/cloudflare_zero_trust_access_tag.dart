@@ -14,6 +14,7 @@ final class DataCloudflareZeroTrustAccessTag extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> tagName,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

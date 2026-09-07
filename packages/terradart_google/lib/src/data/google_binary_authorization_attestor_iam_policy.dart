@@ -19,6 +19,7 @@ final class DataGoogleBinaryAuthorizationAttestorIamPolicy extends Data {
     required super.localName,
     required TfArg<String> attestor,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

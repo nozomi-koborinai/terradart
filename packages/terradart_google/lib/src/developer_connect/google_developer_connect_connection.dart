@@ -518,6 +518,7 @@ final class GoogleDeveloperConnectConnection extends Resource {
     DeveloperConnectConnectionHttpConfig? httpConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

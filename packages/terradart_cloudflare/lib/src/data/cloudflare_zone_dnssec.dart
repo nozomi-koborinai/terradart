@@ -14,11 +14,14 @@ const Set<String> _cloudflareZoneDnssecSensitive = <String>{};
 final class DataCloudflareZoneDnssec extends Data {
   static const String tfType = 'cloudflare_zone_dnssec';
 
-  DataCloudflareZoneDnssec({required super.localName, TfArg<String>? zoneId})
-    : super(
-        terraformType: tfType,
-        argMap: {if (zoneId != null) 'zone_id': zoneId},
-      );
+  DataCloudflareZoneDnssec({
+    required super.localName,
+    TfArg<String>? zoneId,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (zoneId != null) 'zone_id': zoneId},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneDnssecSensitive;

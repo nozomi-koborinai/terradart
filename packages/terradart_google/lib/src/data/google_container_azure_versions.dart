@@ -17,6 +17,7 @@ final class DataGoogleContainerAzureVersions extends Data {
     required super.localName,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

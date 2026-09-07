@@ -17,6 +17,7 @@ final class DataGoogleParameterManagerParameter extends Data {
     required super.localName,
     required TfArg<String> parameterId,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

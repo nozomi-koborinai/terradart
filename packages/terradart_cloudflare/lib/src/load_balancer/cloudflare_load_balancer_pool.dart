@@ -178,6 +178,7 @@ final class CloudflareLoadBalancerPool extends Resource {
     required List<LoadBalancerPoolOrigins> origins,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -86,6 +86,7 @@ final class CloudflareSpectrumApplication extends Resource {
     SpectrumApplicationOriginDns? originDns,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

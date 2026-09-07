@@ -21,9 +21,10 @@ final class GoogleFirebaseHostingCustomDomain extends Resource {
     TfArg<bool>? waitDnsVerification,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (certPreference != null) 'cert_preference': certPreference,
            'custom_domain': customDomain,

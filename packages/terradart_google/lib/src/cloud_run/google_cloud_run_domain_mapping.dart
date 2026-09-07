@@ -87,6 +87,7 @@ final class GoogleCloudRunDomainMapping extends Resource {
     required CloudRunDomainMappingSpec spec,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

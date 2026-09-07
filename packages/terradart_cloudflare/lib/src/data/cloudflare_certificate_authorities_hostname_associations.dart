@@ -21,6 +21,7 @@ final class DataCloudflareCertificateAuthoritiesHostnameAssociations
     required super.localName,
     TfArg<String>? mtlsCertificateId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -36,6 +36,7 @@ final class AppwriteFunction extends Resource {
     TfArg<num>? timeout,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

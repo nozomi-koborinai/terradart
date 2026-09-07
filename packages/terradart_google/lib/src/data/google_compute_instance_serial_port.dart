@@ -19,6 +19,7 @@ final class DataGoogleComputeInstanceSerialPort extends Data {
     required TfArg<num> port,
     TfArg<String>? project,
     TfArg<String>? zone,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

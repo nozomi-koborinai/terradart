@@ -23,9 +23,10 @@ final class GoogleVertexAiFeatureGroupIamPolicy extends Resource {
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'feature_group': featureGroup,
            'policy_data': policyData,

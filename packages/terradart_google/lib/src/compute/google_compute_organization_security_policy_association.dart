@@ -31,6 +31,7 @@ final class GoogleComputeOrganizationSecurityPolicyAssociation
     required TfArg<String> policyId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

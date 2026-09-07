@@ -76,6 +76,7 @@ final class GoogleComputeRouter extends Resource {
     TfArg<Map<String, dynamic>>? params,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -17,6 +17,7 @@ final class DataGooglePubsubSubscriptionIamPolicy extends Data {
     required super.localName,
     TfArg<String>? project,
     required TfArg<String> subscription,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

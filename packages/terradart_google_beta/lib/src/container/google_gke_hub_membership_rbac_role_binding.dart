@@ -21,9 +21,10 @@ final class GoogleGkeHubMembershipRbacRoleBinding extends Resource {
     required TfArg<Map<String, dynamic>> role,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            'location': location,

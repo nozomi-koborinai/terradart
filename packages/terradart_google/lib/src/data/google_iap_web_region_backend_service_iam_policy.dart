@@ -20,6 +20,7 @@ final class DataGoogleIapWebRegionBackendServiceIamPolicy extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> webRegionBackendService,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -87,6 +87,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
     List<ZeroTrustAccessAiControlsMcpServerUpdatedTools>? updatedTools,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

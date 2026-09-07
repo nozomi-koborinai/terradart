@@ -19,6 +19,7 @@ final class DataGoogleServiceAccountJwt extends Data {
     TfArg<num>? expiresIn,
     required TfArg<String> payload,
     required TfArg<String> targetServiceAccount,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

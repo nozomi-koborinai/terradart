@@ -20,6 +20,7 @@ final class CloudflareStreamDownload extends Resource {
     required TfArg<String> identifier,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'identifier': identifier},

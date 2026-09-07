@@ -125,6 +125,7 @@ final class CloudflareHyperdriveConfig extends Resource {
     required HyperdriveConfigOrigin origin,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

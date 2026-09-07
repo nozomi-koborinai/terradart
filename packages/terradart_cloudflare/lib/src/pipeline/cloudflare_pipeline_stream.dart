@@ -200,6 +200,7 @@ final class CloudflarePipelineStream extends Resource {
     PipelineStreamWorkerBinding? workerBinding,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

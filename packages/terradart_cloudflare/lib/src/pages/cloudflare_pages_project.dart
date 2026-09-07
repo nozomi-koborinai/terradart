@@ -816,6 +816,7 @@ final class CloudflarePagesProject extends Resource {
     PagesProjectSource? source,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -25,6 +25,7 @@ final class CloudflareZeroTrustDlpDataset extends Resource {
     TfArg<bool>? secret,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

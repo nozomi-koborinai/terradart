@@ -422,6 +422,7 @@ final class GoogleComputeRegionSecurityPolicy extends Resource {
     userDefinedFields,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

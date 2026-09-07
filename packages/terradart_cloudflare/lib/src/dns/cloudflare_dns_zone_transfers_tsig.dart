@@ -22,6 +22,7 @@ final class CloudflareDnsZoneTransfersTsig extends Resource {
     required TfArg<String> secret,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

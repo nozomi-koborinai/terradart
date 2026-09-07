@@ -407,6 +407,7 @@ final class CloudflareAiSearchInstance extends Resource {
     AiSearchInstanceSourceParams? sourceParams,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

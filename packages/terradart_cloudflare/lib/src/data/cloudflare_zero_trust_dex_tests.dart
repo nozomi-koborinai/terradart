@@ -21,6 +21,7 @@ final class DataCloudflareZeroTrustDexTests extends Data {
     TfArg<String>? kind,
     TfArg<num>? maxItems,
     TfArg<String>? testName,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

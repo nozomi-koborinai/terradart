@@ -16,6 +16,7 @@ final class DataGoogleOrganizationIamPolicy extends Data {
   DataGoogleOrganizationIamPolicy({
     required super.localName,
     required TfArg<String> orgId,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'org_id': orgId});
 
   @override

@@ -38,6 +38,7 @@ final class CloudflareMagicWanStaticRoute extends Resource {
     MagicWanStaticRouteScope? scope,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

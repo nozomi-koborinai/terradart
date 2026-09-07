@@ -172,6 +172,7 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
     ZeroTrustDeviceCustomProfileVirtualNetworks? virtualNetworks,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

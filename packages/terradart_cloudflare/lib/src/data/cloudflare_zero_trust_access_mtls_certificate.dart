@@ -21,6 +21,7 @@ final class DataCloudflareZeroTrustAccessMtlsCertificate extends Data {
     TfArg<String>? accountId,
     required TfArg<String> certificateId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

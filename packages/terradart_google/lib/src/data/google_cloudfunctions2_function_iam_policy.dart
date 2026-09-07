@@ -18,6 +18,7 @@ final class DataGoogleCloudfunctions2FunctionIamPolicy extends Data {
     required TfArg<String> cloudFunction,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

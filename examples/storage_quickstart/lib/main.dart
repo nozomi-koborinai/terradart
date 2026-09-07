@@ -17,6 +17,10 @@
 /// Storage coverage wave adds hierarchical [GoogleStorageFolder], managed-
 /// folder IAM, Storage Batch Operations (`put_metadata`), and a separate
 /// fine-grained-ACL bucket (UBLA off) for access-control factories.
+///
+/// A second `GoogleProvider` registered with `alias: 'eu'` and a bucket that
+/// selects it with `provider: 'google.eu'` show the provider-alias pattern
+/// (`provider "google" { alias = "eu" }` + `provider = google.eu` in HCL).
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -30,6 +34,14 @@ final class AssetsStack extends Stack {
       : super(
           providers: [
             GoogleProvider(project: projectId, region: 'asia-northeast1'),
+            // `provider "google" { alias = "eu" ... }`: a second configuration
+            // of the same provider. Resources use the default one unless they
+            // opt in with `provider: 'google.eu'`.
+            GoogleProvider(
+              alias: 'eu',
+              project: projectId,
+              region: 'europe-west1',
+            ),
           ],
         ) {
     final assets = GoogleStorageBucket(
@@ -53,6 +65,22 @@ final class AssetsStack extends Stack {
       ],
     );
     add(assets);
+
+    // ---- Provider alias: the same bucket layout in another region --------
+    //
+    // `provider = google.eu` in HCL. Only this bucket selects the aliased
+    // configuration; everything else in the Stack keeps the default one.
+    add(
+      GoogleStorageBucket(
+        localName: 'assets_eu',
+        name: TfArg.literal('my-app-assets-prod-eu'),
+        location: TfArg.literal('EUROPE-WEST1'),
+        storageClass: TfArg.literal(BucketStorageClass.standard),
+        forceDestroy: TfArg.literal(false),
+        uniformBucketLevelAccess: TfArg.literal(true),
+        provider: 'google.eu',
+      ),
+    );
 
     add(
       GoogleStorageBucketObject(

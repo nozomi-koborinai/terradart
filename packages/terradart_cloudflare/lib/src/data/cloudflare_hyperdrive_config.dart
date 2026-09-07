@@ -21,6 +21,7 @@ final class DataCloudflareHyperdriveConfig extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> hyperdriveId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

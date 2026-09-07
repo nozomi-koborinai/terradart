@@ -19,6 +19,7 @@ final class DataGoogleMonitoringIstioCanonicalService extends Data {
     required TfArg<String> canonicalServiceNamespace,
     required TfArg<String> meshUid,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -1144,6 +1144,7 @@ final class GoogleAccessContextManagerServicePerimeters extends Resource {
     servicePerimeters,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

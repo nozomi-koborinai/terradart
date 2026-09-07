@@ -14,11 +14,14 @@ const Set<String> _cloudflareTieredCacheSensitive = <String>{};
 final class DataCloudflareTieredCache extends Data {
   static const String tfType = 'cloudflare_tiered_cache';
 
-  DataCloudflareTieredCache({required super.localName, TfArg<String>? zoneId})
-    : super(
-        terraformType: tfType,
-        argMap: {if (zoneId != null) 'zone_id': zoneId},
-      );
+  DataCloudflareTieredCache({
+    required super.localName,
+    TfArg<String>? zoneId,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (zoneId != null) 'zone_id': zoneId},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareTieredCacheSensitive;

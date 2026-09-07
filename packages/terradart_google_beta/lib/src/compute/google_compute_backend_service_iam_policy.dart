@@ -22,9 +22,10 @@ final class GoogleComputeBackendServiceIamPolicy extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'name': name,
            'policy_data': policyData,

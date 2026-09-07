@@ -30,6 +30,18 @@ abstract interface class StackProvider {
   /// `provider.<providerName>`.
   String get providerName;
 
+  /// Provider alias (`provider "google" { alias = "eu" }`), or `null` for
+  /// the default configuration of [providerName].
+  ///
+  /// Register one provider per configuration: at most one default and any
+  /// number of aliases per name. Synth then emits every configuration of the
+  /// name as a list under `provider.<providerName>`, the aliased ones
+  /// carrying their `alias`, and a resource selects one with the `provider`
+  /// meta-argument (`provider: 'google.eu'`). Aliases share the name's
+  /// `required_providers` entry, so [source] and [versionConstraint] must
+  /// agree across them.
+  String? get alias;
+
   /// Source identifier in form `<namespace>/<name>`, e.g. `'hashicorp/google'`.
   /// `GoogleProvider` returns `kProviderSource`. Synth emits this under
   /// `terraform.required_providers.<providerName>.source`.

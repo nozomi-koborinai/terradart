@@ -19,6 +19,7 @@ final class DataCloudflareR2CustomDomain extends Data {
     required TfArg<String> accountId,
     required TfArg<String> bucketName,
     required TfArg<String> domain,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

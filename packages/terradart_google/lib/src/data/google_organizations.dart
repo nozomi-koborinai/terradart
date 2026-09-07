@@ -13,11 +13,14 @@ const Set<String> _googleOrganizationsSensitive = <String>{};
 final class DataGoogleOrganizations extends Data {
   static const String tfType = 'google_organizations';
 
-  DataGoogleOrganizations({required super.localName, TfArg<String>? filter})
-    : super(
-        terraformType: tfType,
-        argMap: {if (filter != null) 'filter': filter},
-      );
+  DataGoogleOrganizations({
+    required super.localName,
+    TfArg<String>? filter,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (filter != null) 'filter': filter},
+       );
 
   @override
   Set<String> get sensitiveFields => _googleOrganizationsSensitive;

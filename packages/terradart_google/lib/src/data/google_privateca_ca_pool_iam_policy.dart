@@ -18,6 +18,7 @@ final class DataGooglePrivatecaCaPoolIamPolicy extends Data {
     required TfArg<String> caPool,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

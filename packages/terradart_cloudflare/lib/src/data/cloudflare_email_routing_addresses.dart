@@ -20,6 +20,7 @@ final class DataCloudflareEmailRoutingAddresses extends Data {
     TfArg<String>? direction,
     TfArg<num>? maxItems,
     TfArg<bool>? verified,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

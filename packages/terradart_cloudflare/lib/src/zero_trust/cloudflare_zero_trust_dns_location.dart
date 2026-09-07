@@ -183,6 +183,7 @@ final class CloudflareZeroTrustDnsLocation extends Resource {
     List<ZeroTrustDnsLocationNetworks>? networks,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

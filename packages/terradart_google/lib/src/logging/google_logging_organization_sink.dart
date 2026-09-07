@@ -79,6 +79,7 @@ final class GoogleLoggingOrganizationSink extends Resource {
     List<LoggingOrganizationSinkExclusion>? exclusions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

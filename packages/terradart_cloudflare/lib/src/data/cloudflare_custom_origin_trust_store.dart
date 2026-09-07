@@ -36,6 +36,7 @@ final class DataCloudflareCustomOriginTrustStore extends Data {
     TfArg<String>? customOriginTrustStoreId,
     TfArg<String>? zoneId,
     DataCustomOriginTrustStoreFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

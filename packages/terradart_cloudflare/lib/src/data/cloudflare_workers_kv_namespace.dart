@@ -36,6 +36,7 @@ final class DataCloudflareWorkersKvNamespace extends Data {
     TfArg<String>? accountId,
     TfArg<String>? namespaceId,
     DataWorkersKvNamespaceFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

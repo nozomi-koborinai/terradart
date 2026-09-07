@@ -34,6 +34,7 @@ final class GoogleSccV2ProjectSccBigQueryExport extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

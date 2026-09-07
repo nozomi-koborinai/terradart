@@ -19,6 +19,7 @@ final class DataGoogleComputeRouterNat extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> router,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -312,6 +312,7 @@ final class GoogleDialogflowCxAgent extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

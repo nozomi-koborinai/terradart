@@ -21,6 +21,7 @@ final class GoogleHealthcareFhirStoreIamPolicy extends Resource {
     required TfArg<String> policyData,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'fhir_store_id': fhirStoreId, 'policy_data': policyData},

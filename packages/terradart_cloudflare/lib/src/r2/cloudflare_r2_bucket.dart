@@ -23,6 +23,7 @@ final class CloudflareR2Bucket extends Resource {
     TfArg<String>? storageClass,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

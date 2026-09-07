@@ -48,6 +48,7 @@ final class GoogleComputeRegionSslPolicy extends Resource {
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

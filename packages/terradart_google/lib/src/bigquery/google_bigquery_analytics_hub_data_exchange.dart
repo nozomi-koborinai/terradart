@@ -36,6 +36,7 @@ final class GoogleBigqueryAnalyticsHubDataExchange extends Resource {
     TfArg<Map<String, dynamic>>? sharingEnvironmentConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

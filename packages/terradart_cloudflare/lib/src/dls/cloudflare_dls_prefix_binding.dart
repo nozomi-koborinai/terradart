@@ -22,6 +22,7 @@ final class CloudflareDlsPrefixBinding extends Resource {
     required TfArg<String> regionKey,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

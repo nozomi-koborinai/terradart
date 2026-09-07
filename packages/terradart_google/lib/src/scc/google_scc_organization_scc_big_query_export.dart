@@ -33,6 +33,7 @@ final class GoogleSccOrganizationSccBigQueryExport extends Resource {
     required TfArg<String> organization,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -17,6 +17,7 @@ final class DataGoogleComputeHealthCheck extends Data {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'name': name, if (project != null) 'project': project},

@@ -18,6 +18,7 @@ final class DataGoogleCloudRunServiceIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> service,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -173,6 +173,7 @@ final class GoogleDnsRecordSet extends Resource {
     DnsRecordSetRoutingPolicy? routingPolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

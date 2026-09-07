@@ -45,6 +45,7 @@ final class GoogleContainerNodePool extends Resource {
     TfArg<Map<String, dynamic>>? upgradeSettings,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

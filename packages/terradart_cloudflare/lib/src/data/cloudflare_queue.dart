@@ -19,6 +19,7 @@ final class DataCloudflareQueue extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> queueId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

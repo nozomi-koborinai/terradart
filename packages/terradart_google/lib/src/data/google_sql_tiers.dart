@@ -13,11 +13,14 @@ const Set<String> _googleSqlTiersSensitive = <String>{};
 final class DataGoogleSqlTiers extends Data {
   static const String tfType = 'google_sql_tiers';
 
-  DataGoogleSqlTiers({required super.localName, TfArg<String>? project})
-    : super(
-        terraformType: tfType,
-        argMap: {if (project != null) 'project': project},
-      );
+  DataGoogleSqlTiers({
+    required super.localName,
+    TfArg<String>? project,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (project != null) 'project': project},
+       );
 
   @override
   Set<String> get sensitiveFields => _googleSqlTiersSensitive;

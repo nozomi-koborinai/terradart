@@ -28,6 +28,7 @@ final class GoogleApigeeSyncAuthorization extends Resource {
     required TfArg<List<String>> identities,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'name': name, 'identities': identities},

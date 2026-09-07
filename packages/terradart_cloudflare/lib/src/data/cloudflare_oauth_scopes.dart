@@ -10,11 +10,14 @@ const Set<String> _cloudflareOauthScopesSensitive = <String>{};
 final class DataCloudflareOauthScopes extends Data {
   static const String tfType = 'cloudflare_oauth_scopes';
 
-  DataCloudflareOauthScopes({required super.localName, TfArg<num>? maxItems})
-    : super(
-        terraformType: tfType,
-        argMap: {if (maxItems != null) 'max_items': maxItems},
-      );
+  DataCloudflareOauthScopes({
+    required super.localName,
+    TfArg<num>? maxItems,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (maxItems != null) 'max_items': maxItems},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareOauthScopesSensitive;

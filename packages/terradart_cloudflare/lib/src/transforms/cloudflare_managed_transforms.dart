@@ -73,6 +73,7 @@ final class CloudflareManagedTransforms extends Resource {
     List<ManagedTransformsManagedResponseHeaders>? managedResponseHeaders,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

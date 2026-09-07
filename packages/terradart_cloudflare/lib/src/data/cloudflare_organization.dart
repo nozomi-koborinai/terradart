@@ -111,6 +111,7 @@ final class DataCloudflareOrganization extends Data {
     required super.localName,
     TfArg<String>? organizationId,
     DataOrganizationFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

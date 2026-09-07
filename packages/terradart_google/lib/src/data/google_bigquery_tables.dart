@@ -17,6 +17,7 @@ final class DataGoogleBigqueryTables extends Data {
     required super.localName,
     required TfArg<String> datasetId,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

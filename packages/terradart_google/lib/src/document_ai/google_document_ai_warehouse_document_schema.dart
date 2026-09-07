@@ -460,6 +460,7 @@ final class GoogleDocumentAiWarehouseDocumentSchema extends Resource {
     propertyDefinitions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

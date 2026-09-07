@@ -19,6 +19,7 @@ final class DataCloudflareMagicWanIpsecTunnel extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> ipsecTunnelId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

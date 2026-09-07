@@ -24,6 +24,7 @@ final class CloudflareZeroTrustRiskScoringIntegration extends Resource {
     required TfArg<String> tenantUrl,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

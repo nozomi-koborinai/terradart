@@ -20,6 +20,7 @@ final class DataGoogleComputeInstanceTemplate extends Data {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? selfLinkUnique,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

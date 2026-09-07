@@ -55,6 +55,7 @@ final class DataCloudflareEmailSecurityTrustedDomains extends Data {
     TfArg<String>? accountId,
     TfArg<String>? trustedDomainId,
     DataEmailSecurityTrustedDomainsFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

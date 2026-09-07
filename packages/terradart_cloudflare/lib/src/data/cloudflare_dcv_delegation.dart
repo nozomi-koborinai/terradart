@@ -14,11 +14,14 @@ const Set<String> _cloudflareDcvDelegationSensitive = <String>{};
 final class DataCloudflareDcvDelegation extends Data {
   static const String tfType = 'cloudflare_dcv_delegation';
 
-  DataCloudflareDcvDelegation({required super.localName, TfArg<String>? zoneId})
-    : super(
-        terraformType: tfType,
-        argMap: {if (zoneId != null) 'zone_id': zoneId},
-      );
+  DataCloudflareDcvDelegation({
+    required super.localName,
+    TfArg<String>? zoneId,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (zoneId != null) 'zone_id': zoneId},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareDcvDelegationSensitive;

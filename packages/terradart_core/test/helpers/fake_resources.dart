@@ -20,10 +20,14 @@ class FakeStackProvider implements StackProvider {
     required this.source,
     required this.versionConstraint,
     this.configArgs = const {},
+    this.alias,
   });
 
   @override
   final String providerName;
+
+  @override
+  final String? alias;
 
   @override
   final String source;
@@ -107,6 +111,7 @@ final class FakeProjectData extends Data {
   FakeProjectData({
     required super.localName,
     required super.argMap,
+    super.provider,
   }) : super(
           terraformType: 'google_project',
         );

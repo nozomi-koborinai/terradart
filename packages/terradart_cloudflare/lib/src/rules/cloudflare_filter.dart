@@ -47,6 +47,7 @@ final class CloudflareFilter extends Resource {
     required List<FilterBody> body,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

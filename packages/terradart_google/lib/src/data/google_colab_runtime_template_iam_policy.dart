@@ -18,6 +18,7 @@ final class DataGoogleColabRuntimeTemplateIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> runtimeTemplate,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

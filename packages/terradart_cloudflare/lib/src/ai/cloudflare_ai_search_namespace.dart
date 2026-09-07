@@ -17,6 +17,7 @@ final class CloudflareAiSearchNamespace extends Resource {
     required TfArg<String> name,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

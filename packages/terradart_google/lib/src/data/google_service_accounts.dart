@@ -18,6 +18,7 @@ final class DataGoogleServiceAccounts extends Data {
     TfArg<String>? prefix,
     TfArg<String>? project,
     TfArg<String>? regex,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

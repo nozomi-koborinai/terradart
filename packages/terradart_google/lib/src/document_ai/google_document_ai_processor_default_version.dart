@@ -44,6 +44,7 @@ final class GoogleDocumentAiProcessorDefaultVersion extends Resource {
     required TfArg<String> version,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'processor': processor, 'version': version},

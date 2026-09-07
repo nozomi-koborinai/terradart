@@ -49,6 +49,7 @@ final class CloudflareWaitingRoomRules extends Resource {
     required List<WaitingRoomRulesRules> rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

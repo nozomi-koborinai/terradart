@@ -16,6 +16,7 @@ final class DataGoogleNetblockIpRanges extends Data {
   DataGoogleNetblockIpRanges({
     required super.localName,
     TfArg<String>? rangeType,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (rangeType != null) 'range_type': rangeType},

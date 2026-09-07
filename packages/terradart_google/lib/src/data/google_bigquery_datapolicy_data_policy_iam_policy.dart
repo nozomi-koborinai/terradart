@@ -20,6 +20,7 @@ final class DataGoogleBigqueryDatapolicyDataPolicyIamPolicy extends Data {
     required TfArg<String> dataPolicyId,
     TfArg<String>? location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

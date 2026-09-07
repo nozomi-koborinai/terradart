@@ -20,6 +20,7 @@ final class DataCloudflareCustomPages extends Data {
     TfArg<String>? accountId,
     required TfArg<String> identifier,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

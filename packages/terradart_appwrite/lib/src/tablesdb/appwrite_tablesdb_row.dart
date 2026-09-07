@@ -21,6 +21,7 @@ final class AppwriteTablesdbRow extends Resource {
     required TfArg<String> tableId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

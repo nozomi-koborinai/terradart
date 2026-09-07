@@ -25,11 +25,14 @@ const Set<String> _cloudflareZoneHoldSensitive = <String>{};
 final class DataCloudflareZoneHold extends Data {
   static const String tfType = 'cloudflare_zone_hold';
 
-  DataCloudflareZoneHold({required super.localName, TfArg<String>? zoneId})
-    : super(
-        terraformType: tfType,
-        argMap: {if (zoneId != null) 'zone_id': zoneId},
-      );
+  DataCloudflareZoneHold({
+    required super.localName,
+    TfArg<String>? zoneId,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (zoneId != null) 'zone_id': zoneId},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneHoldSensitive;

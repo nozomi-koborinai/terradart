@@ -18,6 +18,7 @@ final class DataGoogleBackupDrBackupPlan extends Data {
     required TfArg<String> backupPlanId,
     required TfArg<String> location,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -30,6 +30,7 @@ final class DataCloudflareZeroTrustTunnelWarpConnectors extends Data {
     TfArg<String>? uuid,
     TfArg<String>? wasActiveAt,
     TfArg<String>? wasInactiveAt,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

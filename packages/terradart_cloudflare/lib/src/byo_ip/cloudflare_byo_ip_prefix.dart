@@ -26,6 +26,7 @@ final class CloudflareByoIpPrefix extends Resource {
     TfArg<String>? loaDocumentId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

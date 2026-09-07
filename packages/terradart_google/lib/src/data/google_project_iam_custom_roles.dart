@@ -18,6 +18,7 @@ final class DataGoogleProjectIamCustomRoles extends Data {
     TfArg<String>? project,
     TfArg<bool>? showDeleted,
     TfArg<String>? view,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

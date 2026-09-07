@@ -348,6 +348,7 @@ final class GoogleAccessContextManagerAccessLevels extends Resource {
     List<AccessContextManagerAccessLevelsAccessLevels>? accessLevels,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

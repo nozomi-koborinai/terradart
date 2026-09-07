@@ -18,6 +18,7 @@ final class DataGoogleComputeSecurityPolicy extends Data {
     TfArg<String>? name,
     TfArg<String>? project,
     TfArg<String>? selfLink,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

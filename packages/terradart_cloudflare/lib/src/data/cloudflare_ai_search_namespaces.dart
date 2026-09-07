@@ -15,6 +15,7 @@ final class DataCloudflareAiSearchNamespaces extends Data {
     required TfArg<String> accountId,
     TfArg<num>? maxItems,
     TfArg<String>? search,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

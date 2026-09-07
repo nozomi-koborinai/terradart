@@ -72,6 +72,7 @@ final class DataCloudflareCloudforceOneRequest extends Data {
     TfArg<String>? accountId,
     TfArg<String>? requestId,
     DataCloudforceOneRequestFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

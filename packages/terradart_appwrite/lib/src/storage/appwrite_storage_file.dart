@@ -25,6 +25,7 @@ final class AppwriteStorageFile extends Resource {
     TfArg<String>? projectId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -23,6 +23,7 @@ final class GoogleBigqueryAnalyticsHubListingSubscription extends Resource {
     required TfArg<Map<String, dynamic>> destinationDataset,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -36,6 +36,7 @@ final class DataCloudflareCertificatePack extends Data {
     TfArg<String>? certificatePackId,
     TfArg<String>? zoneId,
     DataCertificatePackFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

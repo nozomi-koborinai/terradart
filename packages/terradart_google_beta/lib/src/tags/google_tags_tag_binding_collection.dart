@@ -17,9 +17,10 @@ final class GoogleTagsTagBindingCollection extends Resource {
     required TfArg<Map<String, String>> tags,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'full_resource_name': fullResourceName,
            if (location != null) 'location': location,

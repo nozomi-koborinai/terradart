@@ -118,6 +118,7 @@ final class CloudflareList extends Resource {
     List<ListItems>? items,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

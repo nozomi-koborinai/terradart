@@ -68,6 +68,7 @@ final class GoogleIamWorkforcePool extends Resource {
     IamWorkforcePoolAccessRestrictions? accessRestrictions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

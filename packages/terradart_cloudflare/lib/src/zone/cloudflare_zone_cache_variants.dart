@@ -76,6 +76,7 @@ final class CloudflareZoneCacheVariants extends Resource {
     required ZoneCacheVariantsValue value,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'zone_id': zoneId, 'value': TfArg.literal(value.encode())},

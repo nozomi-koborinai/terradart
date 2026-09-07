@@ -19,6 +19,7 @@ final class DataCloudflareCloudforceOneRequestAsset extends Data {
     required TfArg<String> accountId,
     required TfArg<String> assetId,
     required TfArg<String> requestId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

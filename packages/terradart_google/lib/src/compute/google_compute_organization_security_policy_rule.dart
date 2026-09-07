@@ -294,6 +294,7 @@ final class GoogleComputeOrganizationSecurityPolicyRule extends Resource {
     ComputeOrganizationSecurityPolicyRuleRedirectOptions? redirectOptions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

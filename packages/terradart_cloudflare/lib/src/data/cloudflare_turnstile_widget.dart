@@ -40,6 +40,7 @@ final class DataCloudflareTurnstileWidget extends Data {
     TfArg<String>? accountId,
     TfArg<String>? sitekey,
     DataTurnstileWidgetFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

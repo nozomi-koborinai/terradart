@@ -45,6 +45,7 @@ final class GoogleWorkloadIdentityServiceAgent extends Resource {
     required TfArg<String> parent,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'parent': parent});
 
   @override

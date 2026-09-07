@@ -22,6 +22,7 @@ final class DataGoogleStorageControlProjectIntelligenceFindingsSummary
     TfArg<String>? location,
     TfArg<String>? project,
     TfArg<String>? resourceScope,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

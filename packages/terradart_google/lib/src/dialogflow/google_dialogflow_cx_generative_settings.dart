@@ -179,6 +179,7 @@ final class GoogleDialogflowCxGenerativeSettings extends Resource {
     DialogflowCxGenerativeSettingsLlmModelSettings? llmModelSettings,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

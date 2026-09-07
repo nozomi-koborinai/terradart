@@ -21,6 +21,7 @@ final class DataGoogleArtifactRegistryVersion extends Data {
     required TfArg<String> repositoryId,
     required TfArg<String> versionName,
     TfArg<String>? view,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

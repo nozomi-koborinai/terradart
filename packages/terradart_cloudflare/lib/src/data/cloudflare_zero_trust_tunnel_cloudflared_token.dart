@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredToken extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> tunnelId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'tunnel_id': tunnelId},

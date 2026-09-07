@@ -74,6 +74,7 @@ final class CloudflareZeroTrustDevicePostureIntegration extends Resource {
     required ZeroTrustDevicePostureIntegrationConfig config,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

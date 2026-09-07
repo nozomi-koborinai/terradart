@@ -76,6 +76,7 @@ final class CloudflareZeroTrustTunnelWarpConnectorConfig extends Resource {
     ZeroTrustTunnelWarpConnectorConfigConfig? config,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

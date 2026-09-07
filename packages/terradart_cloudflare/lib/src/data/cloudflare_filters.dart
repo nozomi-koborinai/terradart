@@ -22,6 +22,7 @@ final class DataCloudflareFilters extends Data {
     TfArg<bool>? paused,
     TfArg<String>? ref,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

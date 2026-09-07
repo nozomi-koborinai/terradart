@@ -69,6 +69,7 @@ final class DataCloudflareZeroTrustTunnelWarpConnector extends Data {
     TfArg<String>? accountId,
     TfArg<String>? tunnelId,
     DataZeroTrustTunnelWarpConnectorFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

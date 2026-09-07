@@ -98,6 +98,7 @@ final class CloudflareZeroTrustGatewayLogging extends Resource {
     ZeroTrustGatewayLoggingSettingsByRuleType? settingsByRuleType,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -216,6 +216,7 @@ final class CloudflareDnsRecord extends Resource {
     TfArg<bool>? privateRouting,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

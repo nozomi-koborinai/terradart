@@ -15,8 +15,10 @@ final class DataGoogleAccessContextManagerSupportedServices extends Data {
   static const String tfType =
       'google_access_context_manager_supported_services';
 
-  DataGoogleAccessContextManagerSupportedServices({required super.localName})
-    : super(terraformType: tfType, argMap: {});
+  DataGoogleAccessContextManagerSupportedServices({
+    required super.localName,
+    super.provider,
+  }) : super(terraformType: tfType, argMap: {});
 
   @override
   Set<String> get sensitiveFields =>

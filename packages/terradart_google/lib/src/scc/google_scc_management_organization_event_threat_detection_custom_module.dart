@@ -51,6 +51,7 @@ final class GoogleSccManagementOrganizationEventThreatDetectionCustomModule
     TfArg<String>? type,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

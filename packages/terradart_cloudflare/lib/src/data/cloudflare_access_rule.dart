@@ -73,6 +73,7 @@ final class DataCloudflareAccessRule extends Data {
     TfArg<String>? ruleId,
     TfArg<String>? zoneId,
     DataAccessRuleFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

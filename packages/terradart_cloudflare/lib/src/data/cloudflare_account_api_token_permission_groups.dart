@@ -20,6 +20,7 @@ final class DataCloudflareAccountApiTokenPermissionGroups extends Data {
     TfArg<String>? accountId,
     TfArg<String>? name,
     TfArg<String>? scope,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

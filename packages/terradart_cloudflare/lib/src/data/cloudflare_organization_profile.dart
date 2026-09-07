@@ -13,6 +13,7 @@ final class DataCloudflareOrganizationProfile extends Data {
   DataCloudflareOrganizationProfile({
     required super.localName,
     required TfArg<String> organizationId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'organization_id': organizationId},

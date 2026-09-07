@@ -48,6 +48,7 @@ final class CloudflareSnippetRules extends Resource {
     required List<SnippetRulesRules> rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

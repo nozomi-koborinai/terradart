@@ -884,6 +884,7 @@ final class GoogleCloudSecurityComplianceCloudControl extends Resource {
     List<CloudSecurityComplianceCloudControlRules>? rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

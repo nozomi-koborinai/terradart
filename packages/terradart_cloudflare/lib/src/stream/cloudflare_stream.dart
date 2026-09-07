@@ -58,6 +58,7 @@ final class CloudflareStream extends Resource {
     StreamPublicDetails? publicDetails,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

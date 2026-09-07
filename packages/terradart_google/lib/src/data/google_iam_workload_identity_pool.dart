@@ -17,6 +17,7 @@ final class DataGoogleIamWorkloadIdentityPool extends Data {
     required super.localName,
     TfArg<String>? project,
     required TfArg<String> workloadIdentityPoolId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

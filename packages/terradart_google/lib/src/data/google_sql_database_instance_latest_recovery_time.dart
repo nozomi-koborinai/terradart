@@ -20,6 +20,7 @@ final class DataGoogleSqlDatabaseInstanceLatestRecoveryTime extends Data {
     required TfArg<String> instance,
     TfArg<String>? project,
     TfArg<String>? sourceInstanceDeletionTime,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -713,6 +713,7 @@ final class GoogleGkeHubFeatureMembership extends Resource {
     GkeHubFeatureMembershipPolicycontroller? policycontroller,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

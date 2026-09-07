@@ -342,6 +342,7 @@ final class CloudflareLoadBalancer extends Resource {
     LoadBalancerSessionAffinityAttributes? sessionAffinityAttributes,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

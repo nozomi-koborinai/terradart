@@ -277,6 +277,7 @@ final class CloudflareNotificationPolicy extends Resource {
     required NotificationPolicyMechanisms mechanisms,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

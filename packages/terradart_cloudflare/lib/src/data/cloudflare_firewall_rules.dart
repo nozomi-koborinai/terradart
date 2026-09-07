@@ -21,6 +21,7 @@ final class DataCloudflareFirewallRules extends Data {
     TfArg<num>? maxItems,
     TfArg<bool>? paused,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

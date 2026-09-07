@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustDlpSensitivityLevel extends Data {
     required TfArg<String> accountId,
     required TfArg<String> sensitivityGroupId,
     required TfArg<String> sensitivityLevelId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

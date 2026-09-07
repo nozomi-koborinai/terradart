@@ -17,6 +17,7 @@ final class DataCloudflareShareResources extends Data {
     TfArg<String>? resourceType,
     required TfArg<String> shareId,
     TfArg<String>? status,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

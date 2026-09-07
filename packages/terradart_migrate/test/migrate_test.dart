@@ -327,9 +327,44 @@ void main() {
       expect(r.stackSource, contains(r"[r'us-central1', r'${var.r}']"));
     });
 
-    test('a provider alias', () {
+    test('a provider alias the module does not configure', () {
       final r = _migrateJson(module({'name': 'x', 'provider': 'google.eu'}));
-      expect(reasonOf(r, 'google_pubsub_topic.x'), contains('alias'));
+      expect(
+        reasonOf(r, 'google_pubsub_topic.x'),
+        contains('no provider "google" block with alias = "eu"'),
+      );
+    });
+
+    test('a provider alias inside a child module', () {
+      final r = migrateModule(
+        TfModule.fromHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+  }
+}
+
+resource "google_pubsub_topic" "x" {
+  name     = "x"
+  provider = google.eu
+}
+''', fileName: 'main.tf'),
+        name: 'demo',
+        format: false,
+        childModule: true,
+      );
+      expect(
+        reasonOf(r, 'google_pubsub_topic.x'),
+        contains('configuration_aliases'),
+      );
+    });
+
+    test('a provider with no TerraDart factory', () {
+      final r = _migrateJson(module({'name': 'x', 'provider': 'aws'}));
+      expect(
+        reasonOf(r, 'google_pubsub_topic.x'),
+        contains('provider "aws" has no TerraDart factory'),
+      );
     });
 
     test('depends_on a resource that is kept', () {
@@ -717,7 +752,7 @@ resource "google_pubsub_topic" "t" {
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
     });
 
-    test('a provider alias keeps the resource in Terraform', () {
+    test('a provider alias is registered and selected', () {
       final r = _migrateHcl('''
 terraform {
   required_providers {
@@ -738,19 +773,121 @@ resource "google_pubsub_topic" "x" {
   name     = "x"
   provider = google.west
 }
+
+resource "google_pubsub_topic" "y" {
+  name = "y"
+}
 ''');
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
-        r.report.kept.map((k) => k.address),
-        unorderedEquals(['provider.google.west', 'google_pubsub_topic.x']),
+        r.report.migratedAddresses,
+        unorderedEquals([
+          'provider.google',
+          'provider.google.west',
+          'google_pubsub_topic.x',
+          'google_pubsub_topic.y',
+        ]),
       );
-      final reason = r.report.kept
-          .singleWhere((k) => k.address == 'google_pubsub_topic.x')
-          .reason;
+      expect(r.report.providers, ['google']);
+      final src = r.stackSource;
       expect(
-        reason,
-        allOf(contains('provider = google.west'), contains('#666')),
+        src,
+        contains(
+          "providers: [const GoogleProvider(project: r'p'), "
+          "const GoogleProvider(alias: r'west', region: r'us-west1')]",
+        ),
       );
-      expect(r.stackSource, isNot(contains('GooglePubsubTopic(')));
+      expect(src, contains("provider: r'google.west'"));
+      // The default configuration stays implicit on `y`.
+      expect(
+        src,
+        contains(
+          "GooglePubsubTopic(localName: r'y', name: TfArg.literal(r'y'))",
+        ),
+      );
+    });
+
+    test('an alias only the provider declares is registered too', () {
+      // `provider "google" { alias = "west" }` with no resource selecting
+      // it: registered like the default configuration, so a later `provider
+      // = google.west` in Dart just works and nothing stays in Terraform.
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+  }
+}
+
+provider "google" {
+  alias  = "west"
+  region = "us-west1"
+}
+
+resource "google_pubsub_topic" "x" {
+  name = "x"
+}
+''');
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(
+          "providers: [const GoogleProvider(), "
+          "const GoogleProvider(alias: r'west', region: r'us-west1')]",
+        ),
+      );
+    });
+
+    test('a data source selects an alias too', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'provider': {
+          'google': [
+            {'project': 'p'},
+            {'alias': 'eu', 'region': 'europe-west1'},
+          ],
+        },
+        'data': {
+          'google_project': {
+            'current': {'provider': 'google.eu'},
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(
+          "addData(GoogleProject(localName: r'current', provider: r'google.eu'))",
+        ),
+      );
+      expect(
+        r.stackSource,
+        contains("const GoogleProvider(alias: r'eu', region: r'europe-west1')"),
+      );
+    });
+
+    test('provider = google-beta on a GA type registers the beta provider', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic': {
+            'x': {'name': 'x', 'provider': 'google-beta'},
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(r.report.providers, ['google', 'google-beta']);
+      expect(
+        r.report.packages,
+        unorderedEquals(['terradart_google', 'terradart_google_beta']),
+      );
+      final src = r.stackSource;
+      expect(
+        src,
+        contains(
+          'providers: [const GoogleProvider(), const GoogleBetaProvider()]',
+        ),
+      );
+      expect(src, contains("provider: r'google-beta'"));
     });
 
     test('a beta resource selects google-beta, not google', () {

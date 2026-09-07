@@ -301,6 +301,7 @@ final class GooglePrivilegedAccessManagerEntitlement extends Resource {
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -1353,6 +1353,7 @@ final class GoogleOsConfigV2PolicyOrchestratorForFolder extends Resource {
     OsConfigV2PolicyOrchestratorForFolderOrchestrationScope? orchestrationScope,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

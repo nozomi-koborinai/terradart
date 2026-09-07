@@ -19,6 +19,7 @@ final class DataCloudflareEmailRoutingRules extends Data {
     TfArg<bool>? enabled,
     TfArg<num>? maxItems,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

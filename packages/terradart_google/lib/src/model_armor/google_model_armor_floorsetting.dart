@@ -275,6 +275,7 @@ final class GoogleModelArmorFloorsetting extends Resource {
     googleMcpServerFloorSetting,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

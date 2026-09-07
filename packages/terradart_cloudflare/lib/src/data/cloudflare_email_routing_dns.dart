@@ -18,6 +18,7 @@ final class DataCloudflareEmailRoutingDns extends Data {
     required super.localName,
     TfArg<String>? subdomain,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

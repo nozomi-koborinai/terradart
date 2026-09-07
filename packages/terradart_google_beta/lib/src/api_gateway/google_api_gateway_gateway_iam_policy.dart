@@ -23,9 +23,10 @@ final class GoogleApiGatewayGatewayIamPolicy extends Resource {
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'gateway': gateway,
            'policy_data': policyData,

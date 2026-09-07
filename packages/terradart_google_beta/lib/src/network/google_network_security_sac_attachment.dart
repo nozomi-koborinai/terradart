@@ -24,9 +24,10 @@ final class GoogleNetworkSecuritySacAttachment extends Resource {
     TfArg<Map<String, dynamic>>? symantecOptions,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (country != null) 'country': country,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

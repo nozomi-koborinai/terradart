@@ -24,6 +24,7 @@ final class CloudflareWebAnalyticsSite extends Resource {
     TfArg<String>? zoneTag,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -18,6 +18,7 @@ final class DataAppwriteMysqlSpecifications extends Data {
   DataAppwriteMysqlSpecifications({
     required super.localName,
     TfArg<String>? projectId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (projectId != null) 'project_id': projectId},

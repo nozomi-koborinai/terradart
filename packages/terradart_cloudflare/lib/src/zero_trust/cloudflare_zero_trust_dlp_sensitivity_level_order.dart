@@ -23,6 +23,7 @@ final class CloudflareZeroTrustDlpSensitivityLevelOrder extends Resource {
     required TfArg<String> sensitivityGroupId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

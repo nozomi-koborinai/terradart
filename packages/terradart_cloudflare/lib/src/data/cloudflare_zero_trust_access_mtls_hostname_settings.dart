@@ -21,6 +21,7 @@ final class DataCloudflareZeroTrustAccessMtlsHostnameSettings extends Data {
     required super.localName,
     TfArg<String>? accountId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

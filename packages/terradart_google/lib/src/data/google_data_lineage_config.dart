@@ -17,6 +17,7 @@ final class DataGoogleDataLineageConfig extends Data {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> parent,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'location': location, 'parent': parent},

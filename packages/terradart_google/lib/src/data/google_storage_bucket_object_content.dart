@@ -18,6 +18,7 @@ final class DataGoogleStorageBucketObjectContent extends Data {
     required TfArg<String> bucket,
     TfArg<String>? content,
     required TfArg<String> name,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

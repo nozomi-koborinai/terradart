@@ -22,9 +22,10 @@ final class GoogleActiveDirectoryPeering extends Resource {
     TfArg<String>? statusMessage,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'authorized_network': authorizedNetwork,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

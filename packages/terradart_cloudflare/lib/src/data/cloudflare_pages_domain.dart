@@ -19,6 +19,7 @@ final class DataCloudflarePagesDomain extends Data {
     required TfArg<String> accountId,
     required TfArg<String> domainName,
     required TfArg<String> projectName,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

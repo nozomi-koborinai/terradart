@@ -21,6 +21,7 @@ final class DataCloudflareClientCertificates extends Data {
     TfArg<num>? offset,
     TfArg<String>? status,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

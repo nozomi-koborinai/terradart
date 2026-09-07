@@ -18,6 +18,7 @@ final class DataGoogleVertexAiIndex extends Data {
     required TfArg<String> name,
     TfArg<String>? project,
     required TfArg<String> region,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -19,6 +19,7 @@ final class DataAppwritePostgresqlDatabases extends Data {
     required super.localName,
     TfArg<String>? projectId,
     TfArg<List<String>>? queries,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

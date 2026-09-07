@@ -18,6 +18,7 @@ final class DataGoogleDataCatalogTaxonomy extends Data {
     required TfArg<String> displayName,
     TfArg<String>? project,
     required TfArg<String> region,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

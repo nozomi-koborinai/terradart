@@ -21,6 +21,7 @@ final class DataCloudflareZeroTrustResourceLibraryApplications extends Data {
     TfArg<num>? offset,
     TfArg<String>? orderBy,
     TfArg<String>? search,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

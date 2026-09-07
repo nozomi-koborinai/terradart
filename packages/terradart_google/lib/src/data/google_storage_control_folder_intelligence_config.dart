@@ -18,6 +18,7 @@ final class DataGoogleStorageControlFolderIntelligenceConfig extends Data {
   DataGoogleStorageControlFolderIntelligenceConfig({
     required super.localName,
     required TfArg<String> name,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'name': name});
 
   @override

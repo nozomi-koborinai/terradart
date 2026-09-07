@@ -19,6 +19,7 @@ final class DataGoogleBillingAccount extends Data {
     TfArg<String>? displayName,
     TfArg<bool>? lookupProjects,
     TfArg<bool>? open,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

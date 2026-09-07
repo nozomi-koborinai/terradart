@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `terradart wrap` emits Terraform's `provider` meta-argument on every generated constructor: `super.provider` on resource factories and data sources, and on a `--resource-provider` lane a `String? provider` parameter that defaults to the lane's provider (`provider: provider ?? 'google-beta'`), so a beta wrapper can still select an alias of it (#666).
+
 ## 0.27.0 - 2026-08-30
 
 Lockstep release with `terradart_core` 0.27.0 (`TfVariable` / `Stack.addVariable` and `S3Backend`). No `terradart_codegen` API changes.

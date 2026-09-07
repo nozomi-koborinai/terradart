@@ -34,6 +34,7 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpPortal extends Data {
     required super.localName,
     TfArg<String>? accountId,
     DataZeroTrustAccessAiControlsMcpPortalFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

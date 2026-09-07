@@ -51,6 +51,7 @@ final class CloudflareDnsFirewall extends Resource {
     DnsFirewallAttackMitigation? attackMitigation,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

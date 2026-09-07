@@ -17,6 +17,7 @@ final class DataGoogleApigeeInstance extends Data {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> orgId,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'name': name, 'org_id': orgId});
 
   @override

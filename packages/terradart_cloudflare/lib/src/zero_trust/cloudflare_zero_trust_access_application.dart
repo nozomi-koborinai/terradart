@@ -2265,6 +2265,7 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
     List<ZeroTrustAccessApplicationTargetCriteria>? targetCriteria,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

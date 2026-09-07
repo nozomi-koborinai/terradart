@@ -63,6 +63,7 @@ final class CloudflareCloudConnectorRules extends Resource {
     List<CloudConnectorRulesRules>? rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

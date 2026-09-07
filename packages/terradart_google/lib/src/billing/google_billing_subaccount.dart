@@ -24,6 +24,7 @@ final class GoogleBillingSubaccount extends Resource {
     required TfArg<String> masterBillingAccount,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

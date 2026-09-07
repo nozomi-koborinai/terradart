@@ -53,6 +53,7 @@ final class DataCloudflareCustomHostnames extends Data {
     TfArg<bool>? wildcard,
     TfArg<String>? zoneId,
     DataCustomHostnamesHostname? hostname,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

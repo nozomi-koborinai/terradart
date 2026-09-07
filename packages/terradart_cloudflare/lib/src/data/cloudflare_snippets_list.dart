@@ -14,6 +14,7 @@ final class DataCloudflareSnippetsList extends Data {
     required super.localName,
     TfArg<num>? maxItems,
     required TfArg<String> zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

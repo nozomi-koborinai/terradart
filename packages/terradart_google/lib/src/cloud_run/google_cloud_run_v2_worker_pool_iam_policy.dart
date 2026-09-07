@@ -23,6 +23,7 @@ final class GoogleCloudRunV2WorkerPoolIamPolicy extends Resource {
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

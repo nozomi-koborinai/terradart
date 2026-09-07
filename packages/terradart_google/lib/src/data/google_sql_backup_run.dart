@@ -19,6 +19,7 @@ final class DataGoogleSqlBackupRun extends Data {
     required TfArg<String> instance,
     TfArg<bool>? mostRecent,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -23,6 +23,7 @@ final class CloudflareZeroTrustGatewayPacfile extends Resource {
     TfArg<String>? slug,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

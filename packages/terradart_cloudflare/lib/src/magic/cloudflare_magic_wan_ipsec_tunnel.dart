@@ -108,6 +108,7 @@ final class CloudflareMagicWanIpsecTunnel extends Resource {
     MagicWanIpsecTunnelHealthCheck? healthCheck,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

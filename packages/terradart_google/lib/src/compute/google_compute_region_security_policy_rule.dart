@@ -154,6 +154,7 @@ final class GoogleComputeRegionSecurityPolicyRule extends Resource {
     ComputeRegionSecurityPolicyRuleRateLimitOptions? rateLimitOptions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

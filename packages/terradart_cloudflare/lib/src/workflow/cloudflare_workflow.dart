@@ -67,6 +67,7 @@ final class CloudflareWorkflow extends Resource {
     List<WorkflowSchedules>? schedules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

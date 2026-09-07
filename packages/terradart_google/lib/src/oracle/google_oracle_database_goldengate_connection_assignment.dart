@@ -48,6 +48,7 @@ final class GoogleOracleDatabaseGoldengateConnectionAssignment
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

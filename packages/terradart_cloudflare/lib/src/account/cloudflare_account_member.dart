@@ -69,6 +69,7 @@ final class CloudflareAccountMember extends Resource {
     List<AccountMemberPolicies>? policies,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

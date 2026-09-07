@@ -18,6 +18,7 @@ final class DataCloudflareDnsZoneTransfersPeer extends Data {
     required super.localName,
     TfArg<String>? accountId,
     required TfArg<String> peerId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

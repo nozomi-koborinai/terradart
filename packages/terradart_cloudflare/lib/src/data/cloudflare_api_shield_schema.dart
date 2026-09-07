@@ -20,6 +20,7 @@ final class DataCloudflareApiShieldSchema extends Data {
     TfArg<bool>? omitSource,
     required TfArg<String> schemaId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

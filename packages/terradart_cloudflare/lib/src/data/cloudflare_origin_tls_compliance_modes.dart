@@ -13,6 +13,7 @@ final class DataCloudflareOriginTlsComplianceModes extends Data {
   DataCloudflareOriginTlsComplianceModes({
     required super.localName,
     required TfArg<String> zoneId,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'zone_id': zoneId});
 
   @override

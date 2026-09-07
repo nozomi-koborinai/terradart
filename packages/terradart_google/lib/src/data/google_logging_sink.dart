@@ -13,8 +13,11 @@ const Set<String> _googleLoggingSinkSensitive = <String>{};
 final class DataGoogleLoggingSink extends Data {
   static const String tfType = 'google_logging_sink';
 
-  DataGoogleLoggingSink({required super.localName, required TfArg<String> id})
-    : super(terraformType: tfType, argMap: {'id': id});
+  DataGoogleLoggingSink({
+    required super.localName,
+    required TfArg<String> id,
+    super.provider,
+  }) : super(terraformType: tfType, argMap: {'id': id});
 
   @override
   Set<String> get sensitiveFields => _googleLoggingSinkSensitive;

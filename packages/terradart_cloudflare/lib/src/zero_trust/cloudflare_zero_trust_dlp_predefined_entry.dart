@@ -22,6 +22,7 @@ final class CloudflareZeroTrustDlpPredefinedEntry extends Resource {
     TfArg<String>? profileId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

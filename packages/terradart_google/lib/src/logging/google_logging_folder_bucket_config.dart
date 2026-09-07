@@ -60,6 +60,7 @@ final class GoogleLoggingFolderBucketConfig extends Resource {
     List<LoggingFolderBucketConfigIndexConfigs>? indexConfigs,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

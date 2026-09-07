@@ -29,6 +29,7 @@ final class GoogleResourceManagerLien extends Resource {
     required TfArg<List<String>> restrictions,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

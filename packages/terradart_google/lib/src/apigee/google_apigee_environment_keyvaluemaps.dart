@@ -25,6 +25,7 @@ final class GoogleApigeeEnvironmentKeyvaluemaps extends Resource {
     required TfArg<String> envId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'name': name, 'env_id': envId});
 
   @override

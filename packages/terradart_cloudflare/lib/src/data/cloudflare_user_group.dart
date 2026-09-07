@@ -47,6 +47,7 @@ final class DataCloudflareUserGroup extends Data {
     required TfArg<String> accountId,
     TfArg<String>? userGroupId,
     DataUserGroupFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

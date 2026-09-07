@@ -69,6 +69,7 @@ final class CloudflareR2BucketLock extends Resource {
     List<R2BucketLockRules>? rules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

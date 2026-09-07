@@ -135,6 +135,7 @@ final class CloudflareAccountDnsSettings extends Resource {
     AccountDnsSettingsZoneDefaults? zoneDefaults,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

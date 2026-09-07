@@ -22,6 +22,7 @@ final class CloudflareAccountDnsSettingsInternalView extends Resource {
     required TfArg<List<String>> zones,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'name': name, 'zones': zones},

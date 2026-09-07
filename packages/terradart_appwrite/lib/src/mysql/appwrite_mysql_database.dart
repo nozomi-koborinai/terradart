@@ -47,6 +47,7 @@ final class AppwriteMysqlDatabase extends Resource {
     TfArg<String>? version,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

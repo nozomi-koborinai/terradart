@@ -33,6 +33,7 @@ final class CloudflareWorkersCronTrigger extends Resource {
     required List<WorkersCronTriggerSchedules> schedules,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

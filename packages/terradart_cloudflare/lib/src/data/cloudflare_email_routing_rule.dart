@@ -33,6 +33,7 @@ final class DataCloudflareEmailRoutingRule extends Data {
     TfArg<String>? ruleIdentifier,
     TfArg<String>? zoneId,
     DataEmailRoutingRuleFilter? filter,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

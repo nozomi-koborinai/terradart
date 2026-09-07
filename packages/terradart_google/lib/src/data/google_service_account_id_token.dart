@@ -19,6 +19,7 @@ final class DataGoogleServiceAccountIdToken extends Data {
     TfArg<bool>? includeEmail,
     required TfArg<String> targetAudience,
     TfArg<String>? targetServiceAccount,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

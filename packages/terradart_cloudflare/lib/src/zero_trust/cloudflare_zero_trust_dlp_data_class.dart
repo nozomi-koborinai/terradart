@@ -44,6 +44,7 @@ final class CloudflareZeroTrustDlpDataClass extends Resource {
     required List<ZeroTrustDlpDataClassSensitivityLevels> sensitivityLevels,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

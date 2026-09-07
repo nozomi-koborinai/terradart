@@ -19,6 +19,7 @@ final class DataCloudflareList extends Data {
     TfArg<String>? accountId,
     required TfArg<String> listId,
     TfArg<String>? search,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

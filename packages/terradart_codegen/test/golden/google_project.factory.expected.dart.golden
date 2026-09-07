@@ -37,11 +37,14 @@ const Set<String> _googleProjectSensitive = <String>{};
 final class GoogleProject extends Data {
   static const String tfType = 'google_project';
 
-  GoogleProject({required super.localName, TfArg<String>? projectId})
-    : super(
-        terraformType: tfType,
-        argMap: {if (projectId != null) 'project_id': projectId},
-      );
+  GoogleProject({
+    required super.localName,
+    TfArg<String>? projectId,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (projectId != null) 'project_id': projectId},
+       );
 
   @override
   Set<String> get sensitiveFields => _googleProjectSensitive;

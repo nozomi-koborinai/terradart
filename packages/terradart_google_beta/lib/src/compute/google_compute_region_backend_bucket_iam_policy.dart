@@ -25,9 +25,10 @@ final class GoogleComputeRegionBackendBucketIamPolicy extends Resource {
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'name': name,
            'policy_data': policyData,

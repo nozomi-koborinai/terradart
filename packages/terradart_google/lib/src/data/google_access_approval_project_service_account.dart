@@ -17,6 +17,7 @@ final class DataGoogleAccessApprovalProjectServiceAccount extends Data {
   DataGoogleAccessApprovalProjectServiceAccount({
     required super.localName,
     required TfArg<String> projectId,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'project_id': projectId});
 
   @override

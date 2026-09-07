@@ -16,9 +16,10 @@ final class GoogleKmsProjectKajPolicyConfig extends Resource {
     TfArg<Map<String, dynamic>>? defaultKeyAccessJustificationPolicy,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (project != null) 'project': project,
            if (defaultKeyAccessJustificationPolicy != null)

@@ -18,6 +18,7 @@ final class DataGoogleComputeDiskIamPolicy extends Data {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? zone,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

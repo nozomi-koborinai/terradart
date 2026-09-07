@@ -20,9 +20,10 @@ final class GoogleNetworkSecuritySacRealm extends Resource {
     TfArg<Map<String, dynamic>>? symantecOptions,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (labels != null) 'labels': labels,

@@ -93,6 +93,7 @@ final class CloudflareHealthcheck extends Resource {
     HealthcheckTcpConfig? tcpConfig,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

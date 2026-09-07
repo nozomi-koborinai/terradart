@@ -24,9 +24,10 @@ final class GoogleCesEvaluation extends Resource {
     TfArg<Map<String, dynamic>>? scenario,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            'app': app,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

@@ -73,6 +73,7 @@ final class CloudflareWaitingRoom extends Resource {
     WaitingRoomCookieAttributes? cookieAttributes,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

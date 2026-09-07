@@ -15,6 +15,7 @@ final class GoogleComputeSharedVpcHostProject extends Resource {
     required TfArg<String> project,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'project': project});
 
   @override

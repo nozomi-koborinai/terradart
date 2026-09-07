@@ -22,6 +22,7 @@ final class AppwriteTablesdbTable extends Resource {
     TfArg<bool>? rowSecurity,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

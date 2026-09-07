@@ -88,6 +88,7 @@ final class CloudflareApiToken extends Resource {
     required List<ApiTokenPolicies> policies,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -55,6 +55,7 @@ final class GoogleActiveDirectoryDomainTrust extends Resource {
     required TfArg<ActiveDirectoryDomainTrustTrustType> trustType,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

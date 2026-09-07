@@ -17,6 +17,7 @@ final class DataGoogleIamPolicy extends Data {
     required super.localName,
     TfArg<List<Map<String, dynamic>>>? auditConfig,
     TfArg<List<Map<String, dynamic>>>? binding,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

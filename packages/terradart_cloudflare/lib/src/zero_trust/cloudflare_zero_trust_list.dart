@@ -36,6 +36,7 @@ final class CloudflareZeroTrustList extends Resource {
     List<ZeroTrustListItems>? items,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

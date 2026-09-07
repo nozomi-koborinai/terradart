@@ -19,6 +19,7 @@ final class DataGoogleComputeSnapshot extends Data {
     TfArg<bool>? mostRecent,
     TfArg<String>? name,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

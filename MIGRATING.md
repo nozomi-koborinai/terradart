@@ -38,6 +38,59 @@ Where you wrote `TfArg.literal(r'${...}')` to smuggle an expression through
 a string argument, write `TfArg.expression(r'${...}')`; the literal form
 still works on non-sensitive string arguments.
 
+**`terradart_core`** — `StackProvider` gains `String? get alias`. Every
+provider class in the workspace implements it; a hand-written
+`StackProvider` implementation needs the getter (`null` for the default
+configuration):
+
+```dart
+final class MyProvider implements StackProvider {
+  const MyProvider({this.alias});
+
+  @override
+  final String? alias;
+  // providerName, source, versionConstraint, configArgs as before
+}
+```
+
+That is the whole breaking surface. Provider aliases are now end-to-end
+(#666): register a second configuration with `alias:` and select it on a
+resource with the `provider:` parameter every curated factory and data
+source now takes:
+
+```dart
+final class MultiRegionStack extends Stack {
+  MultiRegionStack({required String projectId})
+      : super(providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+          GoogleProvider(alias: 'eu', project: projectId, region: 'europe-west1'),
+          GoogleBetaProvider(project: projectId),
+        ]) {
+    add(GoogleStorageBucket(
+      localName: 'assets_eu',
+      name: TfArg.literal('my-app-assets-eu'),
+      location: TfArg.literal('EUROPE-WEST1'),
+      provider: 'google.eu', // provider = google.eu
+    ));
+    add(GooglePubsubTopic(
+      localName: 'preview',
+      name: TfArg.literal('preview'),
+      provider: 'google-beta', // a GA type on the registered beta provider
+    ));
+  }
+}
+```
+
+Synth changes, additive for a Stack that registers each provider once:
+
+- the `provider` block is emitted as a list when a name has more than one
+  configuration — Terraform's JSON form for aliases:
+  `"google": [{"project": "p"}, {"alias": "eu", "project": "p", "region": "europe-west1"}]`.
+  A single default configuration keeps the object form it had;
+- synth rejects a `provider:` with no matching registration, the same
+  provider registered twice without an alias (or with the same alias
+  twice), and an alias that is not a Terraform identifier.
+
 ## 0.26.0 → 0.27.0
 
 **Breaking (`terradart_core`)** — synth now refuses to emit a config whose

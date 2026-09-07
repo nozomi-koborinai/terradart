@@ -16,6 +16,7 @@ final class DataGoogleAppEngineDefaultServiceAccount extends Data {
   DataGoogleAppEngineDefaultServiceAccount({
     required super.localName,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {if (project != null) 'project': project},

@@ -41,6 +41,7 @@ final class CloudflareAccessRule extends Resource {
     required AccessRuleConfiguration configuration,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

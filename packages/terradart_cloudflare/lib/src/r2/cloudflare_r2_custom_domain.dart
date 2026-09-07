@@ -26,6 +26,7 @@ final class CloudflareR2CustomDomain extends Resource {
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

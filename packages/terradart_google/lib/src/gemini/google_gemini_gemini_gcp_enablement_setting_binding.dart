@@ -51,6 +51,7 @@ final class GoogleGeminiGeminiGcpEnablementSettingBinding extends Resource {
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

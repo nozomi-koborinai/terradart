@@ -16,6 +16,7 @@ final class DataGoogleVmwareengineVcenterCredentials extends Data {
   DataGoogleVmwareengineVcenterCredentials({
     required super.localName,
     required TfArg<String> parent,
+    super.provider,
   }) : super(terraformType: tfType, argMap: {'parent': parent});
 
   @override

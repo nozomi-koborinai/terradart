@@ -35,6 +35,7 @@ final class GoogleVmwareengineSubnet extends Resource {
     required TfArg<String> ipCidrRange,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'name': name, 'parent': parent, 'ip_cidr_range': ipCidrRange},

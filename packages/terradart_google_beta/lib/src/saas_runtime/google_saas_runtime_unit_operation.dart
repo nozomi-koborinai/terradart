@@ -25,9 +25,10 @@ final class GoogleSaasRuntimeUnitOperation extends Resource {
     TfArg<Map<String, dynamic>>? upgrade,
     super.lifecycle,
     super.dependsOn,
+    String? provider,
   }) : super(
          terraformType: tfType,
-         provider: 'google-beta',
+         provider: provider ?? 'google-beta',
          argMap: {
            if (annotations != null) 'annotations': annotations,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

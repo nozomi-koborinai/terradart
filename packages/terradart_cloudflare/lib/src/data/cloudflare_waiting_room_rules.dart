@@ -18,6 +18,7 @@ final class DataCloudflareWaitingRoomRules extends Data {
     required super.localName,
     required TfArg<String> waitingRoomId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

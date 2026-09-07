@@ -19,6 +19,7 @@ final class DataCloudflarePageShieldConnections extends Data {
     required super.localName,
     required TfArg<String> connectionId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

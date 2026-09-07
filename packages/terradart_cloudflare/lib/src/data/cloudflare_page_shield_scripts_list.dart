@@ -32,6 +32,7 @@ final class DataCloudflarePageShieldScriptsList extends Data {
     TfArg<String>? status,
     TfArg<String>? urls,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

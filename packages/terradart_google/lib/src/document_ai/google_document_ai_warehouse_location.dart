@@ -70,6 +70,7 @@ final class GoogleDocumentAiWarehouseLocation extends Resource {
     required TfArg<String> projectNumber,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

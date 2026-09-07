@@ -251,6 +251,7 @@ final class CloudflareZeroTrustDevicePostureRule extends Resource {
     List<ZeroTrustDevicePostureRuleMatch>? match,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -35,6 +35,7 @@ final class CloudflareD1Database extends Resource {
     D1DatabaseReadReplication? readReplication,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

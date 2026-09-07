@@ -10,11 +10,14 @@ const Set<String> _cloudflareIpRangesSensitive = <String>{};
 final class DataCloudflareIpRanges extends Data {
   static const String tfType = 'cloudflare_ip_ranges';
 
-  DataCloudflareIpRanges({required super.localName, TfArg<String>? networks})
-    : super(
-        terraformType: tfType,
-        argMap: {if (networks != null) 'networks': networks},
-      );
+  DataCloudflareIpRanges({
+    required super.localName,
+    TfArg<String>? networks,
+    super.provider,
+  }) : super(
+         terraformType: tfType,
+         argMap: {if (networks != null) 'networks': networks},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareIpRangesSensitive;

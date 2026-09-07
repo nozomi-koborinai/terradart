@@ -29,6 +29,7 @@ final class DataCloudflarePageRule extends Data {
     required super.localName,
     required TfArg<String> pageruleId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

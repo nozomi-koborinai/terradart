@@ -48,6 +48,7 @@ final class GoogleMlEngineModel extends Resource {
     MlEngineModelDefaultVersion? defaultVersion,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

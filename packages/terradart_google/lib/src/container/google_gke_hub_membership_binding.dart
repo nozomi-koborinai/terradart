@@ -31,6 +31,7 @@ final class GoogleGkeHubMembershipBinding extends Resource {
     required TfArg<String> scope,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

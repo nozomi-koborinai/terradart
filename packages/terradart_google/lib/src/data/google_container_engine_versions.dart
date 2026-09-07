@@ -18,6 +18,7 @@ final class DataGoogleContainerEngineVersions extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     TfArg<String>? versionPrefix,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

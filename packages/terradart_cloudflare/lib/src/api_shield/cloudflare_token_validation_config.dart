@@ -86,6 +86,7 @@ final class CloudflareTokenValidationConfig extends Resource {
     required TokenValidationConfigCredentials credentials,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

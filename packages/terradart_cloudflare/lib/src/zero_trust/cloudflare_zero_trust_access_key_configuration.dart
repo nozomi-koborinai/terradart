@@ -22,6 +22,7 @@ final class CloudflareZeroTrustAccessKeyConfiguration extends Resource {
     required TfArg<num> keyRotationIntervalDays,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

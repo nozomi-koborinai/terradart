@@ -27,6 +27,7 @@ final class GoogleNotebooksRuntimeIamBinding extends Resource {
     TfArg<Map<String, dynamic>>? condition,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

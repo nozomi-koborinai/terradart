@@ -20,6 +20,7 @@ final class DataCloudflareUserGroupMembers extends Data {
     TfArg<String>? direction,
     TfArg<String>? fuzzyEmail,
     required TfArg<String> userGroupId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

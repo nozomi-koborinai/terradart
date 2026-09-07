@@ -19,6 +19,7 @@ final class DataCloudflareTokenValidationConfig extends Data {
     required super.localName,
     required TfArg<String> configId,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {'config_id': configId, if (zoneId != null) 'zone_id': zoneId},

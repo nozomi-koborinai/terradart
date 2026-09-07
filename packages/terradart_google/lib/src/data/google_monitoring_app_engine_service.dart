@@ -17,6 +17,7 @@ final class DataGoogleMonitoringAppEngineService extends Data {
     required super.localName,
     required TfArg<String> moduleId,
     TfArg<String>? project,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

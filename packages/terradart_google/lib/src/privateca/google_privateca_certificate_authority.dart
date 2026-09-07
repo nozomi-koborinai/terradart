@@ -257,6 +257,7 @@ final class GooglePrivatecaCertificateAuthority extends Resource {
     TfArg<PrivatecaCertificateAuthorityDesiredState>? desiredState,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

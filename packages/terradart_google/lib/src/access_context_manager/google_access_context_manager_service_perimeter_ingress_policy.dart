@@ -198,6 +198,7 @@ final class GoogleAccessContextManagerServicePerimeterIngressPolicy
     AccessContextManagerServicePerimeterIngressPolicyIngressTo? ingressTo,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

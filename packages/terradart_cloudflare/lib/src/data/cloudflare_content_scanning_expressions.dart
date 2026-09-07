@@ -19,6 +19,7 @@ final class DataCloudflareContentScanningExpressions extends Data {
     required super.localName,
     TfArg<num>? maxItems,
     TfArg<String>? zoneId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -20,6 +20,7 @@ final class DataGoogleSecretManagerRegionalSecretIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> secretId,
+    super.provider,
   }) : super(
          terraformType: tfType,
          argMap: {
