@@ -2,7 +2,8 @@
 /// arguments, slot by slot, following a [MigrateManifest].
 library;
 
-import 'package:terradart_core/terradart_core.dart' show templateVariableNames;
+import 'package:terradart_core/terradart_core.dart'
+    show hasTemplateSequence, templateVariableNames;
 import 'package:terradart_hcl/terradart_hcl.dart';
 
 import '../migrate_manifest.dart';
@@ -649,13 +650,14 @@ final class ValueEmitter {
     return 'TfArg.literal(${dartValue(json)})';
   }
 
-  /// Synth rejects a plain literal on a sensitive nested path; only `${...}`
-  /// text passes. Mirror that before emitting a passthrough map.
+  /// Synth rejects a plain literal on a sensitive nested path; only a
+  /// Terraform template (a `${ ... }` or `%{ ... }` sequence anywhere in
+  /// the string) passes. Mirror that before emitting a passthrough map.
   void _checkSensitiveJson(Object? json, String prefix) {
     for (final p in sensitivePaths) {
       if (!p.startsWith(prefix)) continue;
       final rest = p.substring(prefix.length).split('.');
-      if (_hasPlainLeaf(json, rest)) {
+      if (hasPlainSensitiveLeaf(json, rest)) {
         throw MigrateBlocker(
           'argument "$p" is sensitive: its value is not copied into Dart '
           '(pass it as a variable)',
@@ -664,14 +666,20 @@ final class ValueEmitter {
     }
   }
 
-  static bool _hasPlainLeaf(Object? json, List<String> path) {
-    if (json is List) return json.any((e) => _hasPlainLeaf(e, path));
+  /// True when the leaf at [path] inside the tf.json value [json] is a plain
+  /// value rather than a Terraform template — the same test synth applies to
+  /// a sensitive nested path (`hasTemplateSequence`). Lists are searched
+  /// element by element. Exposed for tests.
+  static bool hasPlainSensitiveLeaf(Object? json, List<String> path) {
+    if (json is List) {
+      return json.any((e) => hasPlainSensitiveLeaf(e, path));
+    }
     if (json is! Map) return false;
     if (!json.containsKey(path.first)) return false;
     final v = json[path.first];
     if (path.length == 1) {
-      return !(v is String && v.startsWith(r'${'));
+      return !(v is String && hasTemplateSequence(v));
     }
-    return _hasPlainLeaf(v, path.sublist(1));
+    return hasPlainSensitiveLeaf(v, path.sublist(1));
   }
 }
