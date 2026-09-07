@@ -1,6 +1,7 @@
 # Fixture for tool/migrate_moved_gates.dart (#663): a module whose state
-# (terraform.tfstate, next to this file) holds indexed instances. After
-# migration the unrolled resources must plan as moves only.
+# (state.json next to this file — a terraform.tfstate under a name the
+# repository does not ignore) holds indexed instances. After migration the
+# unrolled resources must plan as moves only.
 
 terraform {
   required_providers {

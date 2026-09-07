@@ -3,8 +3,9 @@
 /// — a module with a `count` resource, a `for_each` resource, references to
 /// their instances, an output over them and a `moved` block of its own —
 /// with `terradart_migrate`, synthesizes the generated Stack, puts the
-/// fixture's `terraform.tfstate` (the indexed instances as Terraform recorded
-/// them) next to the synth output, and runs `terraform plan -refresh=false`:
+/// fixture's `state.json` (a `terraform.tfstate` of the indexed instances as
+/// Terraform recorded them; the name keeps it out of the `*.tfstate` ignore
+/// rule) next to the synth output, and runs `terraform plan -refresh=false`:
 /// the plan must be moves only — every resource change a `no-op`, every
 /// unrolled instance reported under its previous address, nothing created,
 /// changed or destroyed.
@@ -128,9 +129,10 @@ Future<bool> _gate({required String repoRoot, required bool keep}) async {
     }
 
     // The state Terraform recorded for the module as written, next to the
-    // synth output and its sidecar files.
+    // synth output and its sidecar files (committed as state.json: the
+    // repository ignores *.tfstate).
     File(
-      p.join(input.path, 'terraform.tfstate'),
+      p.join(input.path, 'state.json'),
     ).copySync(p.join(dir.path, 'terraform.tfstate'));
 
     if (!await _run(
