@@ -362,8 +362,24 @@ MigratedProject migrateTree(
   final stacks =
       <({String stackFile, String stackClass, String terraformDir})>[];
   final packages = <String>{};
+  // The Dart-side interface of every directory some `module` block calls:
+  // its `variable` blocks are the wrapper's parameters, its `output` blocks
+  // the wrapper's getters.
+  // A module that declares neither a variable nor an output has nothing to
+  // type, so its calls keep the bare `ModuleCall` and no wrapper is written.
+  final interfaces = <String, LocalModule>{};
+  for (final m in tree.modules) {
+    if (m.callers.isEmpty) continue;
+    final local = localModuleOf(m.module, name: names[m.relPath]!);
+    if (!local.isEmpty) interfaces[m.relPath] = local;
+  }
+  final wrappers = <String, LocalModule>{};
   for (final m in tree.modules) {
     final moduleName = names[m.relPath]!;
+    final localModules = <String, LocalModule>{
+      for (final call in m.calls.entries)
+        if (interfaces[call.value] != null) call.key: interfaces[call.value]!,
+    };
     final stack = migrateStack(
       m.module,
       name: moduleName,
@@ -371,7 +387,13 @@ MigratedProject migrateTree(
       format: format,
       childModule: !m.isRoot,
       allowTodo: allowTodo,
+      localModules: localModules,
     );
+    for (final used in stack.moduleWrappers) {
+      for (final local in localModules.values) {
+        if (local.fileStem == used) wrappers[used] = local;
+      }
+    }
     final terraformDir = single || m.relPath == '.'
         ? 'tf-out'
         : 'tf-out/${m.relPath}';
@@ -419,6 +441,10 @@ MigratedProject migrateTree(
     );
   }
   copies.sort((a, b) => a.to.compareTo(b.to));
+  for (final w in wrappers.values) {
+    final source = renderModuleWrapper(w, version: packageVersion);
+    files['lib/${w.fileStem}.dart'] = format ? formatDart(source) : source;
+  }
   files['bin/infra.dart'] = renderInfra(packageName, stacks, format: format);
   files['pubspec.yaml'] = renderPubspec(packageName, name, packages);
   final project = MigratedProject(

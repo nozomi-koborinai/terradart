@@ -152,6 +152,12 @@ final class ValueEmitter {
     return [...positional, ...named];
   }
 
+  /// The Dart expression for one [slot] read from [level], claiming what it
+  /// consumes; `null` when the value is absent and the slot is optional.
+  /// For a caller that assembles its own argument list — a module call's
+  /// `inputs` map, whose keys are the module's variables.
+  String? emitSlot(MigrateSlot slot, BodyLevel level) => _emitSlot(slot, level);
+
   String? _emitSlot(MigrateSlot slot, BodyLevel level) {
     final path = '${level.path}${slot.tfName}';
     if (slot.merged) {
@@ -439,6 +445,18 @@ final class ValueEmitter {
         }
         return 'TfArg.ref(TfRef.attribute<$type>('
             '${target.dartName}, ${dartString(attribute)}))';
+      case ModuleReference(:final address, :final attribute):
+        final target = ctx.moduleTargets[address];
+        if (target == null || attribute.isEmpty) return null;
+        usedTargets.add(address);
+        final getter = target.getter(attribute);
+        // A module output carries no declared type, so the wrapper's getter
+        // is always `TfRef<String>`; anything else spells the ref out.
+        if (getter != null && type == 'String') {
+          return 'TfArg.ref(${target.dartName}.${getter.dartName})';
+        }
+        return 'TfArg.ref(TfRef.attribute<$type>('
+            '${target.dartName}, ${dartString(attribute)}))';
       case OtherReference():
         return null;
     }
@@ -451,6 +469,18 @@ final class ValueEmitter {
     if (c is VariableReference) {
       usedVariables.add(c.name);
       return null;
+    }
+    if (c is ModuleReference) {
+      if (c.attribute.isEmpty) return null;
+      final module = ctx.moduleTargets[c.address];
+      if (module == null) return null;
+      usedTargets.add(c.address);
+      final getter = module.getter(c.attribute);
+      if (getter != null) {
+        return '${module.dartName}.${getter.dartName}.interpolation';
+      }
+      return 'TfRef.attribute<String>(${module.dartName}, '
+          '${dartString(c.attribute)}).interpolation';
     }
     if (c is! BlockReference || c.attribute.isEmpty) return null;
     final target = ctx.targets[c.address];

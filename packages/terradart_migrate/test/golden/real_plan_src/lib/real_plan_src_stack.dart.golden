@@ -72,5 +72,6 @@ final class RealPlanSrcStack extends Stack {
         clientId: TfArg.literal(r'dummy'),
       ),
     );
+    addModule(ModuleCall(localName: r'network', source: r'./modules/network'));
   }
 }

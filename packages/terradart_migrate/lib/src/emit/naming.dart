@@ -45,6 +45,24 @@ String pascalCase(String name) {
   return out;
 }
 
+/// [name] as a Dart identifier in snake_case.
+String snakeCase(String name) {
+  final buf = StringBuffer();
+  for (var i = 0; i < name.length; i++) {
+    final c = name[i];
+    final isUpper = c.toUpperCase() == c && c.toLowerCase() != c;
+    if (isUpper && i > 0 && buf.isNotEmpty && !buf.toString().endsWith('_')) {
+      buf.write('_');
+    }
+    buf.write(RegExp(r'[A-Za-z0-9]').hasMatch(c) ? c.toLowerCase() : '_');
+  }
+  var out = buf.toString().replaceAll(RegExp(r'_+'), '_');
+  out = out.replaceAll(RegExp(r'^_|_$'), '');
+  if (out.isEmpty) out = 'stack';
+  if (RegExp(r'^[0-9]').hasMatch(out)) out = 'm_$out';
+  return out;
+}
+
 /// `Stack` members and inherited names a migrated Stack's locals must not
 /// shadow.
 const Set<String> stackMemberNames = {
@@ -54,7 +72,9 @@ const Set<String> stackMemberNames = {
   'addVariable',
   'addExternalVariable',
   'addMoved',
+  'addModule',
   'moved',
+  'modules',
   'setAppExportsOutputPath',
   'setRequiredVersion',
   'setBackend',

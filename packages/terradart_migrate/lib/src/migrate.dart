@@ -6,6 +6,7 @@ import 'package:terradart_hcl/terradart_hcl.dart';
 
 import 'emit/context.dart';
 import 'emit/dart_literal.dart';
+import 'emit/module_wrapper.dart';
 import 'emit/naming.dart';
 import 'emit/stack_emitter.dart';
 import 'manifests.dart';
@@ -13,6 +14,15 @@ import 'migrate_manifest.dart';
 import 'report.dart';
 import 'sidecar.dart';
 import 'version.dart';
+
+export 'emit/module_wrapper.dart'
+    show
+        LocalModule,
+        ModuleInput,
+        ModuleOutput,
+        localModuleOf,
+        renderModuleWrapper;
+export 'emit/naming.dart' show snakeCase;
 
 /// One module's Stack, as [migrateStack] emits it.
 final class MigratedStack {
@@ -23,6 +33,7 @@ final class MigratedStack {
     required this.packages,
     required this.report,
     required this.hasStack,
+    this.moduleWrappers = const {},
   });
 
   /// `OrdersStack`.
@@ -41,6 +52,10 @@ final class MigratedStack {
 
   /// The TerraDart packages the Stack imports, sorted.
   final List<String> packages;
+
+  /// File stems of the generated local-module wrappers the Stack imports
+  /// (`lib/<stem>.dart`), for the caller to write beside it.
+  final Set<String> moduleWrappers;
   final MigrationReport report;
 }
 
@@ -52,8 +67,11 @@ final class MigratedStack {
 /// registered without configuration so synth emits only `required_providers`,
 /// and provider configurations or a backend found there stay in Terraform.
 /// [allowTodo] writes a `TODO` per block that stays in Terraform into the
-/// Stack instead of leaving it to a sidecar. [manifests] defaults to
-/// [allMigrateManifests]; [format] runs the emitted Dart through `dart_style`.
+/// Stack instead of leaving it to a sidecar. [localModules] maps a `module`
+/// call's name to the typed wrapper of the local directory its `source`
+/// points at (see [localModuleOf]); a call with no entry becomes a bare
+/// `ModuleCall`. [manifests] defaults to [allMigrateManifests]; [format] runs
+/// the emitted Dart through `dart_style`.
 MigratedStack migrateStack(
   TfModule module, {
   required String name,
@@ -61,6 +79,7 @@ MigratedStack migrateStack(
   bool format = true,
   bool childModule = false,
   bool allowTodo = false,
+  Map<String, LocalModule> localModules = const {},
 }) {
   final names = stackNames(name);
   final ctx = EmitContext(
@@ -76,6 +95,7 @@ MigratedStack migrateStack(
     version: packageVersion,
     childModule: childModule,
     allowTodo: allowTodo,
+    localModules: localModules,
   ).emit();
   return MigratedStack(
     stackClass: names.stackClass,
@@ -84,6 +104,7 @@ MigratedStack migrateStack(
         ? formatDart(emitted.source)
         : emitted.source,
     packages: emitted.packages,
+    moduleWrappers: emitted.moduleWrappers,
     report: emitted.report,
     hasStack: emitted.hasStack,
   );
@@ -194,24 +215,6 @@ String packageNameFor(String name) => snakeCase(name);
 String formatDart(String source) => DartFormatter(
   languageVersion: DartFormatter.latestLanguageVersion,
 ).format(source);
-
-/// [name] as a Dart identifier in snake_case.
-String snakeCase(String name) {
-  final buf = StringBuffer();
-  for (var i = 0; i < name.length; i++) {
-    final c = name[i];
-    final isUpper = c.toUpperCase() == c && c.toLowerCase() != c;
-    if (isUpper && i > 0 && buf.isNotEmpty && !buf.toString().endsWith('_')) {
-      buf.write('_');
-    }
-    buf.write(RegExp(r'[A-Za-z0-9]').hasMatch(c) ? c.toLowerCase() : '_');
-  }
-  var out = buf.toString().replaceAll(RegExp(r'_+'), '_');
-  out = out.replaceAll(RegExp(r'^_|_$'), '');
-  if (out.isEmpty) out = 'stack';
-  if (RegExp(r'^[0-9]').hasMatch(out)) out = 'm_$out';
-  return out;
-}
 
 /// `bin/infra.dart`: synthesizes every Stack into its Terraform directory.
 String renderInfra(

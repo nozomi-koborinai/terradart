@@ -104,6 +104,47 @@ add(GooglePubsubTopic(localName: 'orders_0', name: TfArg.literal('orders-0')));
 addMoved('google_pubsub_topic.orders[0]', 'google_pubsub_topic.orders_0');
 ```
 
+**`terradart_core`** — `Stack.addModule(...)` registers a `ModuleCall`
+(additive, #665): a `module "<name>" { ... }` block as a Dart value. Synth
+emits the calls under the top-level `module` key, and reads a module's
+outputs back as `TfRef`s, so they flow into any `TfArg` slot like a
+resource attribute.
+
+```dart
+final naming = addModule(ModuleCall(
+  localName: 'naming',
+  source: '../modules/naming',
+  inputs: {'env': TfArg.literal('prod')},
+));
+add(GooglePubsubTopic(
+  localName: 'orders',
+  name: TfArg.ref(naming.output<String>('topic_name')),
+));
+```
+
+A root that *only* calls modules needs no provider of its own —
+`Stack(providers: [])` now synthesizes when the stack registers a
+`ModuleCall` and no resource or data source, and the `terraform` block
+omits `required_providers` instead of emitting an empty one; the child
+modules pin what they use. A stack with a resource still needs its
+provider registered, as before.
+
+`source` is copied verbatim and Terraform resolves it relative to the
+directory the Stack synthesizes into (`tf-out/`), so a local module lives
+beside that directory, not beside the Dart. `version`, `providers`,
+`dependsOn`, `count` and `forEach` cover the rest of the `module` block;
+an input named like one of those meta-arguments is rejected at construction,
+and synth checks that every `providers` value names a registered provider
+configuration.
+
+`terradart-migrate` now translates `module` blocks instead of leaving them
+in the sidecar, and generates a typed wrapper per local module directory
+from its `variable` and `output` blocks
+(`ServiceAccountModule(localName: 'sa_bff', source: '../modules/service_account', accountId: ...)`,
+`sa.member`). Re-running the migrator on a tree migrated with 0.27.0 moves
+those calls out of `terradart_leftover.tf` and into the Stack; the plan is
+unchanged either way, since the address keeps its `module.<name>.` prefix.
+
 ## 0.26.0 → 0.27.0
 
 **Breaking (`terradart_core`)** — synth now refuses to emit a config whose

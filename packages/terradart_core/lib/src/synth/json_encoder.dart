@@ -1,5 +1,6 @@
 import 'package:terradart_core/src/backends.dart';
 import 'package:terradart_core/src/lifecycle.dart';
+import 'package:terradart_core/src/module_call.dart';
 import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/synth/output_emitter.dart';
@@ -28,12 +29,20 @@ class TfJsonEncoder {
   /// must have a [StackProvider] whose `providerName` equals the resource
   /// type's provider prefix (the segment before the first `_`, e.g.
   /// `google_redis_instance` → `google`, `time_sleep` → `time`). An explicit
-  /// [Resource.provider] meta-argument (e.g. `'google-beta'`) must also match
-  /// a registered provider. Without this, Terraform silently falls back to
-  /// an unpinned implied `hashicorp/<prefix>` provider, bypassing the
-  /// version pin the concrete provider class promises.
+  /// [Resource.provider] meta-argument (e.g. `'google-beta'`), and every
+  /// value of a [ModuleCall.providers] map, must also match a registered
+  /// provider. Without this, Terraform silently falls back to an unpinned
+  /// implied `hashicorp/<prefix>` provider, bypassing the version pin the
+  /// concrete provider class promises.
   static Map<String, dynamic> terraformBlock(Stack stack) {
-    if (stack.providers.isEmpty) {
+    // A root that only calls modules declares no provider of its own — the
+    // child modules pin what they use — so there is nothing to require and
+    // nothing for Terraform to imply. Any resource or data source of its own
+    // brings the guard back.
+    final modulesOnly = stack.modules.isNotEmpty &&
+        stack.resources.isEmpty &&
+        stack.dataSources.isEmpty;
+    if (stack.providers.isEmpty && !modulesOnly) {
       throw StateError(
         'Stack has no providers registered. '
         'Pass at least one StackProvider in `Stack(providers: [...])` '
@@ -56,6 +65,16 @@ class TfJsonEncoder {
       final needed = explicit ?? r.terraformType.split('_').first;
       if (!registered.contains(needed)) {
         missingByPrefix.putIfAbsent(needed, () => []).add(r.tfAddress);
+      }
+    }
+    // `providers = { google = google.eu }` passes one of this Stack's
+    // configurations into the child module; the value names it.
+    for (final m in stack.modules) {
+      for (final e in m.providers.entries) {
+        if (registered.contains(e.value)) continue;
+        missingByPrefix
+            .putIfAbsent(e.value, () => [])
+            .add('${m.tfAddress} (providers.${e.key})');
       }
     }
     if (missingByPrefix.isNotEmpty) {
@@ -81,7 +100,7 @@ class TfJsonEncoder {
 
     final out = <String, dynamic>{
       'required_version': stack.requiredVersion,
-      'required_providers': requiredProviders,
+      if (requiredProviders.isNotEmpty) 'required_providers': requiredProviders,
     };
 
     final backend = stack.backend;
@@ -218,13 +237,20 @@ class TfJsonEncoder {
     // name -> addresses that reference it, insertion-ordered so the
     // error message is stable across runs.
     final undeclared = <String, Set<String>>{};
-    for (final r in [...stack.resources, ...stack.dataSources]) {
-      for (final arg in r.argMap.values) {
+    void scan(String address, Iterable<TfArg<dynamic>?> args) {
+      for (final arg in args) {
         for (final name in _referencedVariableNames(arg)) {
           if (declared.contains(name)) continue;
-          undeclared.putIfAbsent(name, () => <String>{}).add(r.tfAddress);
+          undeclared.putIfAbsent(name, () => <String>{}).add(address);
         }
       }
+    }
+
+    for (final r in [...stack.resources, ...stack.dataSources]) {
+      scan(r.tfAddress, r.argMap.values);
+    }
+    for (final m in stack.modules) {
+      scan(m.tfAddress, [...m.inputs.values, m.count, m.forEach]);
     }
     if (undeclared.isEmpty) return;
 
@@ -542,6 +568,37 @@ class TfJsonEncoder {
         block['provider'] = d.provider;
       }
       out.putIfAbsent(d.terraformType, () => {})[d.localName] = block;
+    }
+    return out;
+  }
+
+  /// Top-level `module { ... }` group, keyed by the call's local name:
+  /// `source` (and `version`) first, then the module's inputs, then the
+  /// meta-arguments. Returns `null` when the stack registers no call.
+  ///
+  /// The module's own body is never read — a `module` block is a reference,
+  /// and Terraform resolves [ModuleCall.source] relative to the directory
+  /// the Stack synthesizes into.
+  static Map<String, dynamic>? moduleGroup(Stack stack) {
+    if (stack.modules.isEmpty) return null;
+    final out = <String, dynamic>{};
+    for (final m in stack.modules) {
+      final block = <String, dynamic>{'source': m.source};
+      if (m.version != null) block['version'] = m.version;
+      block.addAll(encodeArgMap(m.inputs));
+      if (m.providers.isNotEmpty) {
+        block['providers'] = Map<String, String>.from(m.providers);
+      }
+      final count = m.count;
+      if (count != null) block['count'] = encodeArg(count);
+      final forEach = m.forEach;
+      if (forEach != null) block['for_each'] = encodeArg(forEach);
+      final deps = m.dependsOn;
+      if (deps != null) {
+        final dep = dependsOn(deps);
+        if (dep != null) block['depends_on'] = dep;
+      }
+      out[m.localName] = block;
     }
     return out;
   }

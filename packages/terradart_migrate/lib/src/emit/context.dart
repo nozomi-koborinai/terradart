@@ -7,6 +7,30 @@ import 'package:terradart_google/catalog.dart' as google;
 import 'package:terradart_google_beta/catalog.dart' as beta;
 
 import '../migrate_manifest.dart';
+import 'module_wrapper.dart';
+
+/// A `module` call the Stack declares, as other blocks see it.
+final class ModuleTarget {
+  const ModuleTarget({
+    required this.address,
+    required this.dartName,
+    this.local,
+  });
+
+  /// `module.sa_bff`.
+  final String address;
+
+  /// The Dart local that holds it.
+  final String dartName;
+
+  /// The typed wrapper the call uses, or `null` when it is a bare
+  /// `ModuleCall` (a registry / git module, or a local directory the scan
+  /// did not see).
+  final LocalModule? local;
+
+  /// The output getter for [attribute], if the wrapper declares one.
+  ModuleOutput? getter(String attribute) => local?.output(attribute);
+}
 
 /// A resource or data source the Stack declares, as other blocks see it.
 final class EmitTarget {
@@ -90,6 +114,10 @@ final class EmitContext {
 
   /// Migrated blocks by address — the ones a reference may resolve to.
   final Map<String, EmitTarget> targets = {};
+
+  /// Migrated `module` calls by address (`module.sa_bff`), the other half of
+  /// what a reference may resolve to.
+  final Map<String, ModuleTarget> moduleTargets = {};
 
   /// Variables declared by `variable` blocks that become `addVariable`.
   final Set<String> declaredVariables = {};

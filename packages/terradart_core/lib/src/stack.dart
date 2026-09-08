@@ -4,6 +4,7 @@ import 'dart:io';
 import 'app_export.dart';
 import 'data.dart';
 import 'duplicate_resource_error.dart';
+import 'module_call.dart';
 import 'resource.dart';
 import 'tf_moved.dart';
 import 'tf_variable.dart';
@@ -85,6 +86,8 @@ abstract interface class StackProvider {
 ///   names declared in a hand-written file instead.
 /// - `addMoved(...)` / `moved` — `moved { from = ... to = ... }` entries
 ///   that carry existing state across a resource rename.
+/// - `addModule(...)` / `modules` — `module "<name>" { ... }` calls, whose
+///   outputs other resources read through [ModuleCall.output].
 abstract base class Stack {
   Stack({
     required List<StackProvider> providers,
@@ -106,6 +109,7 @@ abstract base class Stack {
   // Insertion-ordered for deterministic JSON emission.
   final Map<_DedupKey, Resource> _resources = {};
   final Map<_DedupKey, Data> _dataSources = {};
+  final Map<String, ModuleCall> _modules = {};
 
   // ---- Coordination state (synth consumes) --------------------------------
 
@@ -138,6 +142,10 @@ abstract base class Stack {
   List<Resource> get resources =>
       List<Resource>.unmodifiable(_resources.values);
   List<Data> get dataSources => List<Data>.unmodifiable(_dataSources.values);
+
+  /// The `module` calls registered with [addModule], in registration order.
+  List<ModuleCall> get modules =>
+      List<ModuleCall>.unmodifiable(_modules.values);
 
   /// Read-only map of registered exports, keyed by user-supplied name.
   /// Insertion order is preserved for deterministic generated output.
@@ -292,6 +300,29 @@ abstract base class Stack {
     }
     _resources[key] = resource;
     return resource;
+  }
+
+  /// Register a `module "<localName>" { ... }` call. Returns the same
+  /// instance, so the call site can read the module's outputs from it:
+  ///
+  /// ```dart
+  /// final sa = addModule(ServiceAccountModule(
+  ///   localName: 'sa_bff',
+  ///   source: '../modules/service_account',
+  ///   accountId: TfArg.literal('app-bff-sa'),
+  /// ));
+  /// // ... member: TfArg.ref(sa.member)
+  /// ```
+  ///
+  /// Throws [DuplicateModuleError] when a call of the same
+  /// [ModuleCall.localName] is already registered — Terraform addresses both
+  /// as `module.<localName>`.
+  T addModule<T extends ModuleCall>(T call) {
+    if (_modules.containsKey(call.localName)) {
+      throw DuplicateModuleError(call.localName);
+    }
+    _modules[call.localName] = call;
+    return call;
   }
 
   /// Register a data source. Returns the same instance.

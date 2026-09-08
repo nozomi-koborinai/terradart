@@ -1,6 +1,6 @@
 # Migration report
 
-`terradart-migrate {{version}}` migrated `../terradart_coverage/test/fixtures/real_plan_src` into the Dart package `real_plan_src`: 2 module directories, 11 blocks became Dart, 2 stay in Terraform (listed below, each with its reason).
+`terradart-migrate {{version}}` migrated `../terradart_coverage/test/fixtures/real_plan_src` into the Dart package `real_plan_src`: 2 module directories, 12 blocks became Dart, 1 stays in Terraform (listed below, each with its reason).
 
 ## Next steps
 
@@ -12,7 +12,7 @@
 
 | Directory | Role | Stack | Terraform directory | Migrated | Kept |
 | :--- | :--- | :--- | :--- | ---: | ---: |
-| `.` | root | `RealPlanSrcStack` | `tf-out` | 7 | 2 |
+| `.` | root | `RealPlanSrcStack` | `tf-out` | 8 | 1 |
 | `modules/network` | child | `NetworkStack` | `tf-out/modules/network` | 4 | 0 |
 
 ### `.`
@@ -20,12 +20,11 @@
 - Role: root
 - Stack: `RealPlanSrcStack` in `lib/real_plan_src_stack.dart`; packages: `terradart_google`; providers: `google`
 - Terraform directory: `tf-out`; sidecar: `terradart_leftover.tf`
-- Kept in Terraform (2):
+- Kept in Terraform (1):
 
   | Address | Reason | File |
   | :--- | :--- | :--- |
   | `google_storage_bucket_object.config` | argument "content" is sensitive: its value is not copied into Dart (pass it as a variable) | `terradart_leftover.tf` |
-  | `module.network` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
 
 ### `modules/network`
 
