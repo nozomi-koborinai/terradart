@@ -677,7 +677,14 @@ final class StackEmitter {
   // -----------------------------------------------------------------------
 
   _Emitted _emitBlock(_BlockInfo b, String dartName) {
-    if (b.call != null) return _emitModuleCall(b, dartName);
+    if (b.call != null) {
+      // Same guard as the resource path below: a body the rewriter could not
+      // point at the unrolled instances still names addresses that no longer
+      // exist, so the call stays in Terraform.
+      final blocker = b.expansionBlocker;
+      if (blocker != null) throw MigrateBlocker(blocker);
+      return _emitModuleCall(b, dartName);
+    }
     final hit = ctx.lookup(b.type, b.kind);
     if (hit == null) {
       throw MigrateBlocker(
@@ -847,12 +854,9 @@ final class StackEmitter {
       extras.add('dependsOn: ${_dependsOn(dependsOn, emitter)}');
     }
 
-    for (final key in values.keys) {
-      if (ModuleCall.reservedInputNames.contains(key)) {
-        throw MigrateBlocker('"$key" is not an input of a module call');
-      }
-    }
-
+    // Every name in `ModuleCall.reservedInputNames` is consumed or blocked
+    // above, so what is left is the module's own variables — `provider`
+    // included, which is a resource meta-argument, not a module one.
     final local = localModules[call.name];
     final level = BodyLevel(values, path: '');
     final String ctor;

@@ -59,8 +59,11 @@ base class ModuleCall implements TfAddressed {
     }
   }
 
-  /// Argument names Terraform reserves on a `module` block, so an input of
-  /// the same name would silently become a meta-argument.
+  /// The names Terraform reserves on a `module` block, so an input of the
+  /// same name would silently become a meta-argument. A module cannot
+  /// declare a `variable` with any of them either, so nothing legitimate is
+  /// turned away. `provider` (singular) is **not** among them — it is a
+  /// resource meta-argument, and an ordinary input on a module call.
   static const Set<String> reservedInputNames = {
     'source',
     'version',
@@ -69,7 +72,6 @@ base class ModuleCall implements TfAddressed {
     'for_each',
     'depends_on',
     'lifecycle',
-    'provider',
   };
 
   /// The call's name within the Stack: `module "<localName>"`.

@@ -1543,6 +1543,50 @@ resource "google_pubsub_topic" "x" {
       );
     });
 
+    test('"provider" on a module call is an input, not a meta-argument', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic': {
+            't': {'name': 'orders'},
+          },
+        },
+        'module': {
+          'm': {'source': './m', 'provider': 'edge'},
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(
+          "addModule(ModuleCall(localName: r'm', source: r'./m', "
+          "inputs: {r'provider': TfArg.literal(r'edge')}))",
+        ),
+      );
+    });
+
+    test('a reference to an instance the unroll does not declare keeps the '
+        'call', () {
+      final r = _migrateHcl(
+        _hcl([
+          'resource "google_pubsub_topic" "t" {',
+          '  count = 2',
+          '  name  = "t-\${count.index}"',
+          '}',
+          '',
+          'module "m" {',
+          '  source = "./modules/m"',
+          '  topic  = google_pubsub_topic.t[5].name',
+          '}',
+        ]),
+      );
+      // The body could not be pointed at t_0 / t_1, so emitting it would
+      // leave a dangling `google_pubsub_topic.t[5]` reference in the Stack.
+      final kept = r.report.kept.singleWhere((k) => k.address == 'module.m');
+      expect(kept.reason, contains('does not declare'));
+      expect(r.stackSource, isNot(contains('addModule(')));
+    });
+
     for (final probe in _moduleBlockers) {
       test('${probe.label} keeps the call in Terraform', () {
         final r = _migrateJson({

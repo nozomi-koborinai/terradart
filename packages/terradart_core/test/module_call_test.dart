@@ -195,6 +195,25 @@ void main() {
       );
     });
 
+    test('an input named "provider" is an input, not a meta-argument', () {
+      // Terraform reserves source / version / providers / count / for_each /
+      // depends_on / lifecycle on a module block — `provider` (singular) is a
+      // resource meta-argument, and a module may declare it as a variable.
+      expect(ModuleCall.reservedInputNames, isNot(contains('provider')));
+      final stack = TestStack(providers: const [google])
+        ..addModule(
+          ModuleCall(
+            localName: 'm',
+            source: './m',
+            inputs: const {'provider': TfArgLiteral<String>('x')},
+          ),
+        );
+      expect(
+        TfJsonEncoder.moduleGroup(stack)!['m'],
+        equals({'source': './m', 'provider': 'x'}),
+      );
+    });
+
     test('for_each carries an expression', () {
       final stack = TestStack(providers: const [google])
         ..addModule(
