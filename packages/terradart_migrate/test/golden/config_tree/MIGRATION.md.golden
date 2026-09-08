@@ -1,6 +1,6 @@
 # Migration report
 
-`terradart-migrate {{version}}` migrated `../terradart_coverage/test/fixtures/config_tree` into the Dart package `config_tree`: 8 module directories, 62 blocks became Dart, 20 stay in Terraform (listed below, each with its reason).
+`terradart-migrate {{version}}` migrated `../terradart_coverage/test/fixtures/config_tree` into the Dart package `config_tree`: 8 module directories, 82 blocks became Dart, 0 stay in Terraform.
 
 ## Next steps
 
@@ -12,34 +12,20 @@
 
 | Directory | Role | Stack | Terraform directory | Migrated | Kept |
 | :--- | :--- | :--- | :--- | ---: | ---: |
-| `dev` | root, environment `.` | `DevStack` | `tf-out/dev` | 16 | 10 |
+| `dev` | root, environment `.` | `DevStack` | `tf-out/dev` | 26 | 0 |
 | `modules/cloud_run` | child | `CloudRunStack` | `tf-out/modules/cloud_run` | 5 | 0 |
 | `modules/cloud_sql` | child | `CloudSqlStack` | `tf-out/modules/cloud_sql` | 5 | 0 |
 | `modules/pubsub` | child | `PubsubStack` | `tf-out/modules/pubsub` | 5 | 0 |
 | `modules/secret_manager` | child | `SecretManagerStack` | `tf-out/modules/secret_manager` | 3 | 0 |
 | `modules/service_account` | child | `ServiceAccountStack` | `tf-out/modules/service_account` | 6 | 0 |
 | `modules/workload_identity` | child | `WorkloadIdentityStack` | `tf-out/modules/workload_identity` | 4 | 0 |
-| `prod` | root, environment `.` | `ProdStack` | `tf-out/prod` | 18 | 10 |
+| `prod` | root, environment `.` | `ProdStack` | `tf-out/prod` | 28 | 0 |
 
 ### `dev`
 
 - Role: root, environment `.`
 - Stack: `DevStack` in `lib/dev_stack.dart`; packages: `terradart_google`; providers: `google`
-- Terraform directory: `tf-out/dev`; sidecar: `terradart_leftover.tf`
-- Kept in Terraform (10):
-
-  | Address | Reason | File |
-  | :--- | :--- | :--- |
-  | `module.sa_bff` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.sa_worker` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.sa_adk_agent` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.sa_github_actions` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.app_secrets` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.cloud_run_bff` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.cloud_run_worker` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.cloud_sql` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.pubsub_webhook` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.workload_identity` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
+- Terraform directory: `tf-out/dev`
 
 ### `modules/cloud_run`
 
@@ -81,21 +67,7 @@
 
 - Role: root, environment `.`
 - Stack: `ProdStack` in `lib/prod_stack.dart`; packages: `terradart_google`; providers: `google`
-- Terraform directory: `tf-out/prod`; sidecar: `terradart_leftover.tf`
-- Kept in Terraform (10):
-
-  | Address | Reason | File |
-  | :--- | :--- | :--- |
-  | `module.sa_bff` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.sa_worker` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.sa_adk_agent` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.sa_github_actions` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.app_secrets` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.cloud_run_bff` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.cloud_run_worker` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.cloud_sql` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.pubsub_webhook` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
-  | `module.workload_identity` | module calls stay in Terraform until ModuleCall (#665) | `terradart_leftover.tf` |
+- Terraform directory: `tf-out/prod`
 
 ## Environments
 

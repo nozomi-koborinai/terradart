@@ -42,14 +42,15 @@ The output is one Dart package:
 | :--- | :--- |
 | `pubspec.yaml`, `bin/infra.dart` | lockstep pins; `dart run bin/infra.dart` synthesizes every Stack |
 | `lib/<dir>_stack.dart` | one Stack per module directory (`dev` → `DevStack`) |
+| `lib/<dir>_module.dart` | one typed `ModuleCall` wrapper per local module directory a `module` block calls (`modules/cloud_run` → `CloudRunModule`), from its `variable` and `output` blocks |
 | `tf-out/<dir>/` | each module's Terraform directory, mirroring the source tree so `source = "../modules/x"` keeps resolving: `main.tf.json` (written by synth) next to the sidecar files, plus `terraform.tfvars`, `*.auto.tfvars` and `.terraform.lock.hcl` copied from the source (other `*.tfvars` are listed for `-var-file`) |
-| `tf-out/<dir>/terradart_leftover.tf` | resources, data sources, module calls, and `moved` blocks whose target stays, in Terraform, verbatim, each with its reason |
+| `tf-out/<dir>/terradart_leftover.tf` | resources, data sources, module calls the Stack cannot express, and `moved` blocks whose target stays, in Terraform, verbatim, each with its reason |
 | `tf-out/<dir>/backend.tf`, `variables.tf`, `locals.tf`, `outputs.tf` | the `terraform` settings, variables, locals and outputs the Stack does not own |
 | `MIGRATION.md` | the report: every module, every kept block with its reason and file, warnings, and how the environment roots differ |
 
-A single-module `--dir` synthesizes into `tf-out/` directly. A directory where nothing translates — no curated resource and no known provider — gets no Stack and stays Terraform: its sidecar files are its whole output, even with `--allow-todo`. `--json` prints the report as JSON; `--allow-todo` writes a `TODO` per untranslated block into the Stack instead of a sidecar (the plan then differs until they are ported). Exit codes follow sysexits: 64 usage, 65 unreadable input, 73 output not empty.
+A single-module `--dir` synthesizes into `tf-out/` directly. A directory where nothing translates — no curated resource, no known provider and no `module` call it can express — gets no Stack and stays Terraform: its sidecar files are its whole output, even with `--allow-todo`. A root that only calls modules is a Stack with `providers: []`, since the child modules pin what they use. `--json` prints the report as JSON; `--allow-todo` writes a `TODO` per untranslated block into the Stack instead of a sidecar (the plan then differs until they are ported). Exit codes follow sysexits: 64 usage, 65 unreadable input, 73 output not empty.
 
-**Child-module mode** registers providers without configuration (synth emits only `required_providers`), turns `variable` into `addVariable` and `output` into exports, and keeps provider configurations or a backend found in the module in the sidecar; the root's `module` call stays in its sidecar, so plan addresses keep their `module.<name>.` prefix. After `dart run bin/infra.dart`, each root plans with *No changes*: `cd tf-out/dev && terraform init && terraform plan`.
+**Child-module mode** registers providers without configuration (synth emits only `required_providers`), turns `variable` into `addVariable` and `output` into exports, and keeps provider configurations or a backend found in the module in the sidecar. The root's `module` call becomes `addModule(...)`, whose `source` keeps pointing at the child's directory in the mirrored `tf-out/` tree, so plan addresses keep their `module.<name>.` prefix. After `dart run bin/infra.dart`, each root plans with *No changes*: `cd tf-out/dev && terraform init && terraform plan`.
 
 ## Library
 
@@ -68,7 +69,7 @@ print(result.report.renderText());             // what became Dart, what stays i
 
 // A whole tree, as the CLI does it:
 final project = migrateTree(scanModuleTree(Directory('infra')), name: 'infra');
-project.files;   // every Stack, bin/infra.dart, pubspec.yaml, tf-out/**/sidecars, MIGRATION.md
+project.files;   // every Stack and module wrapper, bin/infra.dart, pubspec.yaml, tf-out/**/sidecars, MIGRATION.md
 project.copies;  // tfvars and lockfiles to copy next to each main.tf.json
 ```
 
@@ -77,10 +78,11 @@ project.copies;  // tfvars and lockfiles to copy next to each main.tf.json
 What translates (the conversion rules of [#655](https://github.com/nozomi-koborinai/terradart/issues/655)):
 
 - literals (`TfArg.literal(...)`, `${` / `%{` re-escaped), enum members from the manifest, typed nested helpers (single, repeated, exactly-one-of variants), opaque passthrough maps;
-- references to migrated resources and data sources as typed `TfArg.ref(x.id)` (or `TfRef.attribute<T>` when the wrapper has no getter), `var.x` as `TfArg.variable`, everything else — templates, function calls, conditionals, `local.x`, `module.x` — verbatim as `TfArg.expression` on any `TfArg`-typed argument (string, number, bool, enum, list or sensitive), the variables inside it declared like references;
+- references to migrated resources and data sources as typed `TfArg.ref(x.id)` (or `TfRef.attribute<T>` when the wrapper has no getter), `var.x` as `TfArg.variable`, `module.x.out` as a `TfRef` on the call (see below), everything else — templates, function calls, conditionals, `local.x` — verbatim as `TfArg.expression` on any `TfArg`-typed argument (string, number, bool, enum, list or sensitive), the variables inside it declared like references;
 - `depends_on` and `lifecycle`, `terraform.required_version`, `backend "gcs" | "local" | "s3"`, `provider` blocks of the four providers (and `time`) — aliased ones included, registered as `GoogleProvider(alias: 'eu', ...)` and selected per resource as `provider: 'google.eu'` (`provider = google-beta` on a GA type works the same way) — `variable` blocks as `addVariable`, single-attribute `output`s as exports;
+- `module` calls: a call into a local directory of the tree uses the typed wrapper generated from that module's `variable` and `output` blocks (`CloudRunModule(localName: 'cloud_run_bff', source: '../modules/cloud_run', name: TfArg.literal('app-bff'))`, `bff.serviceName`), everything else a bare `ModuleCall` with `source` / `version` verbatim and an untyped `inputs` map; `module.x.out` reads like a resource attribute, and the call is ordered with the blocks around it;
 - a literal `count` / `for_each` unrolled into one resource per instance (`google_pubsub_topic.t[0]` → `google_pubsub_topic.t_0`, `google_pubsub_topic.t["eu"]` → `google_pubsub_topic.t_eu`): `count.index` / `each.key` / `each.value` substituted, every reference in the module — indexed, splat or bare — pointed at the new addresses (in blocks that stay in Terraform too), and a `moved` entry per instance (`addMoved`) so the plan shows moves only; the module's own `moved` blocks follow their targets into the Stack;
-- blockers, always with a reason: types outside every catalog, a `count` / `for_each` that is not a literal (its instances cannot be known without evaluating it), `dynamic` / `provisioner` / `timeouts`, a `provider = x.alias` the module does not configure (or inside a child module, which needs `configuration_aliases`), an argument with no Dart parameter, an expression inside a typed collection (a `List<int>` element, say) or on a bare non-`TfArg` parameter, a sensitive literal (never copied), a `depends_on` on a resource that stays in Terraform.
+- blockers, always with a reason: types outside every catalog, a `count` / `for_each` that is not a literal (its instances cannot be known without evaluating it) or one on a `module` call (whose instances are addressed `module.x[0]`), `dynamic` / `provisioner` / `timeouts`, a `provider = x.alias` the module does not configure (or inside a child module, which needs `configuration_aliases`), an argument with no Dart parameter — an input the called module does not declare included, a non-literal `source`, an expression inside a typed collection (a `List<int>` element, say) or on a bare non-`TfArg` parameter, a sensitive literal (never copied), a `depends_on` on a resource that stays in Terraform.
 
 ## Round-trip gate
 
@@ -90,7 +92,7 @@ What translates (the conversion rules of [#655](https://github.com/nozomi-kobori
 
 `tool/migrate_moved_gates.dart` is the acceptance check for `count` / `for_each` unrolling: it migrates [`test/fixtures/moved_state/`](test/fixtures/moved_state/) — a `count` resource, a `for_each` resource, references to their instances, an output over them and a `moved` block of its own — synthesizes the Stack, puts the fixture's `state.json` (a `terraform.tfstate` of the indexed instances as Terraform recorded them) next to the synth output, and runs `terraform plan -refresh=false`: the plan must be moves only, nothing created, changed or destroyed. It runs in `tool/agent_verify.sh` (full mode) and as the CI `migrate moved gate` job.
 
-`tool/migrate_fixture_gates.dart` is the end-to-end acceptance: it migrates the coverage fixtures `config_tree/` (two environment roots over six local modules) and `real_plan_src/` (a root with a child), analyzes and synthesizes the generated package, and runs `terraform validate` in every directory of the mirrored `tf-out/` tree (`agent_verify.sh` full mode, CI `migrate fixture gate`). `test/golden/` pins their output; `UPDATE_GOLDENS=1 dart test test/golden_test.dart` regenerates it.
+`tool/migrate_fixture_gates.dart` is the end-to-end acceptance: it migrates the coverage fixtures `config_tree/` (two environment roots over six local modules, which migrates completely — module calls included) and `real_plan_src/` (a root with a child), analyzes and synthesizes the generated package, and runs `terraform validate` in every directory of the mirrored `tf-out/` tree (`agent_verify.sh` full mode, CI `migrate fixture gate`). `test/golden/` pins their output; `UPDATE_GOLDENS=1 dart test test/golden_test.dart` regenerates it.
 
 ## Migration manifests
 

@@ -21,6 +21,10 @@
 /// A second `GoogleProvider` registered with `alias: 'eu'` and a bucket that
 /// selects it with `provider: 'google.eu'` show the provider-alias pattern
 /// (`provider "google" { alias = "eu" }` + `provider = google.eu` in HCL).
+///
+/// `addModule(ModuleCall(source: '../modules/object_prefix', ...))` calls the
+/// local Terraform module beside `tf-out/` and reads its `prefix` output back
+/// as a `TfRef` -- the `module "object_prefix" { ... }` block in HCL.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -270,6 +274,17 @@ final class AssetsStack extends Stack {
 
     // ---- Backfill: GCS -> Pub/Sub object notifications ----------------------
 
+    // `module "object_prefix" { source = "../modules/object_prefix" }`: a local
+    // Terraform module the Stack calls instead of inlining. Its `prefix` output
+    // is a `TfRef`, so the notification below reads it like any attribute.
+    final objectPrefix = addModule(
+      ModuleCall(
+        localName: 'object_prefix',
+        source: '../modules/object_prefix',
+        inputs: {'folder': TfArg.literal('config')},
+      ),
+    );
+
     final objectEventsTopic = add(
       GooglePubsubTopic(
         localName: 'object_events',
@@ -288,7 +303,7 @@ final class AssetsStack extends Stack {
           StorageNotificationEventType.objectFinalize,
           StorageNotificationEventType.objectDelete,
         ],
-        objectNamePrefix: TfArg.literal('config/'),
+        objectNamePrefix: TfArg.ref(objectPrefix.output<String>('prefix')),
         dependsOn: [ResourceDependency(objectEventsTopic)],
       ),
     );

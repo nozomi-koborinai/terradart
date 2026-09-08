@@ -122,8 +122,20 @@ final class VariableReference extends ReferenceTarget {
   final String name;
 }
 
-/// `local.x`, `module.x.y`, `each.key`, `path.module`, ... — anything the
-/// migrator does not resolve.
+/// `module.events.topic_id` — an output of a `module` call.
+final class ModuleReference extends ReferenceTarget {
+  const ModuleReference({required this.address, required this.attribute});
+
+  /// `module.events`.
+  final String address;
+
+  /// The output read from it (`topic_id`), or empty for a reference to the
+  /// call itself (`depends_on = [module.events]`).
+  final String attribute;
+}
+
+/// `local.x`, `each.key`, `path.module`, an instance of a counted `module`
+/// call, ... — anything the migrator does not resolve.
 final class OtherReference extends ReferenceTarget {
   const OtherReference();
 }
@@ -165,13 +177,15 @@ ReferenceTarget classifyTraversal(TraversalExpr t) {
         attribute: attrPath(2),
         isData: true,
       );
-    case 'local' ||
-        'module' ||
-        'each' ||
-        'count' ||
-        'path' ||
-        'terraform' ||
-        'self':
+    case 'module':
+      final name = attrName(0);
+      if (name == null) return const OtherReference();
+      final attribute = attrPath(1);
+      // `module.x[0].y`: an instance of a counted call, which no `ModuleCall`
+      // spells — the expression stays verbatim.
+      if (attribute.startsWith('[')) return const OtherReference();
+      return ModuleReference(address: 'module.$name', attribute: attribute);
+    case 'local' || 'each' || 'count' || 'path' || 'terraform' || 'self':
       return const OtherReference();
     default:
       final name = attrName(0);

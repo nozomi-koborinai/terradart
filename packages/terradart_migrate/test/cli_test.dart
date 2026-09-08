@@ -91,12 +91,19 @@ void main() {
       ]) {
         expect(File(p.join(out, f)).existsSync(), isTrue, reason: f);
       }
-      final leftover = File(
-        p.join(out, 'tf-out/$leftoverFileName'),
-      ).readAsStringSync();
+      // The call became `addModule(...)`; the child directory stays where it
+      // is, so `source` still resolves from `tf-out/`. The module declares
+      // neither a variable nor an output, so there is no typed wrapper.
       expect(
-        leftover,
-        contains('module "network" {\n  source = "./modules/network"\n}'),
+        File(p.join(out, 'lib/real_plan_src_stack.dart')).readAsStringSync(),
+        contains(
+          "addModule(ModuleCall(localName: r'network', "
+          "source: r'./modules/network'));",
+        ),
+      );
+      expect(
+        File(p.join(out, 'lib/network_module.dart')).existsSync(),
+        isFalse,
       );
       expect(
         File(p.join(out, 'bin/infra.dart')).readAsStringSync(),
@@ -142,8 +149,7 @@ void main() {
     expect(
       File(p.join(out, 'lib/real_plan_src_stack.dart')).readAsStringSync(),
       contains(
-        '// TODO(terradart-migrate): module.network: module calls stay in '
-        'Terraform until ModuleCall (#665)',
+        '// TODO(terradart-migrate): google_storage_bucket_object.config: ',
       ),
     );
     expect(
@@ -197,9 +203,11 @@ void main() {
 
   test('a child where nothing translates stays Terraform, no Stack', () async {
     final input = Directory(p.join(tmp.path, 'infra'))..createSync();
+    // `count` on the call is a blocker (its instances are addressed
+    // `module.m[0]`), so the call itself stays in Terraform too.
     File(p.join(input.path, 'main.tf')).writeAsStringSync(
       'resource "google_pubsub_topic" "t" { name = "t" }\n'
-      'module "m" { source = "./modules/m" }\n',
+      'module "m" {\n  source = "./modules/m"\n  count  = 2\n}\n',
     );
     Directory(p.join(input.path, 'modules/m')).createSync(recursive: true);
     File(p.join(input.path, 'modules/m/main.tf')).writeAsStringSync(
@@ -233,8 +241,8 @@ void main() {
       contains('Stack: none'),
     );
 
-    // With --allow-todo the root's module call becomes a TODO (the plan
-    // differs), while the child, having no Stack, keeps its sidecar.
+    // With --allow-todo the root's blocked module call becomes a TODO (the
+    // plan differs), while the child, having no Stack, keeps its sidecar.
     final todo = p.join(tmp.path, 'todo');
     final t = await _run([
       '--dir',
