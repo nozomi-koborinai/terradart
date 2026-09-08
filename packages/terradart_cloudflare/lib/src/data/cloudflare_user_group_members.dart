@@ -21,6 +21,7 @@ final class DataCloudflareUserGroupMembers extends Data {
     TfArg<String>? fuzzyEmail,
     required TfArg<String> userGroupId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

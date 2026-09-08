@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustGatewayPacfile extends Data {
     TfArg<String>? accountId,
     required TfArg<String> pacfileId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

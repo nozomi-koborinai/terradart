@@ -20,6 +20,7 @@ final class DataGoogleServiceAccountJwt extends Data {
     required TfArg<String> payload,
     required TfArg<String> targetServiceAccount,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

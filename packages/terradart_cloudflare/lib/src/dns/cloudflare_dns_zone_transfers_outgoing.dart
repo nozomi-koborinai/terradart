@@ -23,6 +23,7 @@ final class CloudflareDnsZoneTransfersOutgoing extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'name': name, 'peers': peers, 'zone_id': zoneId},

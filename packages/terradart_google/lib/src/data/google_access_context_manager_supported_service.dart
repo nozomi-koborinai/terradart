@@ -19,6 +19,7 @@ final class DataGoogleAccessContextManagerSupportedService extends Data {
     required super.localName,
     required TfArg<String> serviceName,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'service_name': serviceName});
 
   @override

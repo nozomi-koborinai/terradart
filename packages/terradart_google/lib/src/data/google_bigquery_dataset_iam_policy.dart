@@ -18,6 +18,7 @@ final class DataGoogleBigqueryDatasetIamPolicy extends Data {
     required TfArg<String> datasetId,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

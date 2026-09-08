@@ -21,6 +21,7 @@ final class DataCloudflareApiShieldSchema extends Data {
     required TfArg<String> schemaId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

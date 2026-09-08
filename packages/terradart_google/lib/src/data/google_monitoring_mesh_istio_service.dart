@@ -20,6 +20,7 @@ final class DataGoogleMonitoringMeshIstioService extends Data {
     required TfArg<String> serviceName,
     required TfArg<String> serviceNamespace,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

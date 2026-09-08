@@ -16,6 +16,7 @@ final class DataCloudflareCustomPageAsset extends Data {
     required TfArg<String> assetName,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

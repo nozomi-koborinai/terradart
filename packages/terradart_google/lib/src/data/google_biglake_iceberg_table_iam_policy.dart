@@ -20,6 +20,7 @@ final class DataGoogleBiglakeIcebergTableIamPolicy extends Data {
     required TfArg<String> namespace,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

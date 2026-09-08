@@ -20,6 +20,7 @@ final class DataCloudflareD1Databases extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? name,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

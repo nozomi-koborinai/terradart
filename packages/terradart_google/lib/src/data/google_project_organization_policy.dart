@@ -18,6 +18,7 @@ final class DataGoogleProjectOrganizationPolicy extends Data {
     required TfArg<String> constraint,
     required TfArg<String> project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'constraint': constraint, 'project': project},

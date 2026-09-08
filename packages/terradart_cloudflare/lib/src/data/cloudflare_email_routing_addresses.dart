@@ -21,6 +21,7 @@ final class DataCloudflareEmailRoutingAddresses extends Data {
     TfArg<num>? maxItems,
     TfArg<bool>? verified,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

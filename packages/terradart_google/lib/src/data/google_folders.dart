@@ -17,6 +17,7 @@ final class DataGoogleFolders extends Data {
     required super.localName,
     required TfArg<String> parentId,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'parent_id': parentId});
 
   @override

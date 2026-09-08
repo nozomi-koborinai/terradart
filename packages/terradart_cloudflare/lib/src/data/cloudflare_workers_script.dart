@@ -32,6 +32,7 @@ final class DataCloudflareWorkersScript extends Data {
     TfArg<String>? scriptName,
     DataWorkersScriptFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -21,6 +21,7 @@ final class DataCloudflareMagicTransitSiteLan extends Data {
     required TfArg<String> lanId,
     required TfArg<String> siteId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'lan_id': lanId, 'site_id': siteId},

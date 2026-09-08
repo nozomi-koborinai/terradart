@@ -20,6 +20,7 @@ final class DataAppwritePostgresqlDatabases extends Data {
     TfArg<String>? projectId,
     TfArg<List<String>>? queries,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

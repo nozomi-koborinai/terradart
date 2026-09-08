@@ -19,6 +19,7 @@ final class DataCloudflareStreamWatermark extends Data {
     required TfArg<String> accountId,
     required TfArg<String> identifier,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'identifier': identifier},

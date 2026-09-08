@@ -150,6 +150,7 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

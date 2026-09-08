@@ -228,6 +228,7 @@ class DataSourceWrapperEmitter {
       buf.writeln('    $snippet,');
     }
     buf.writeln('    super.provider,');
+    buf.writeln('    super.timeouts,');
     buf.writeln('  }) : super(');
     buf.writeln('         terraformType: tfType,');
     buf.writeln('         argMap: {');

@@ -14,6 +14,7 @@ final class DataCloudflareIpRanges extends Data {
     required super.localName,
     TfArg<String>? networks,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (networks != null) 'networks': networks},

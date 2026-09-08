@@ -19,6 +19,7 @@ final class DataGoogleVertexAiReasoningEngineIamPolicy extends Data {
     required TfArg<String> reasoningEngine,
     TfArg<String>? region,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -20,6 +20,7 @@ final class DataGoogleComputeInstanceGroupManager extends Data {
     TfArg<String>? selfLink,
     TfArg<String>? zone,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

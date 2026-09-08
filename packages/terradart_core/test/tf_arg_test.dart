@@ -206,6 +206,28 @@ void main() {
       );
     });
   });
+
+  group('TfArg.workspace', () {
+    test('emits the terraform.workspace interpolation', () {
+      expect(
+        TfArg.workspace<String>().toTfJson(),
+        equals(r'${terraform.workspace}'),
+      );
+      expect(TfArg.workspaceTemplate, equals(r'${terraform.workspace}'));
+    });
+
+    test('is an expression, so it is accepted where a ref is', () {
+      final arg = TfArg.workspace<String>();
+      expect(arg, isA<TfArgExpression<String>>());
+      // Nothing to declare: `terraform.workspace` is not a variable.
+      expect((arg as TfArgExpression<String>).referencedVariables, isEmpty);
+    });
+
+    test('the type argument is inferred from the slot it fills', () {
+      final TfArg<String> name = TfArg.workspace();
+      expect(name.toTfJson(), equals(r'${terraform.workspace}'));
+    });
+  });
 }
 
 /// Sample enum with the convention (`implements TerraformEnum`, providing

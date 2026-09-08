@@ -18,6 +18,7 @@ final class DataGoogleFolder extends Data {
     required TfArg<String> folder,
     TfArg<bool>? lookupOrganization,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

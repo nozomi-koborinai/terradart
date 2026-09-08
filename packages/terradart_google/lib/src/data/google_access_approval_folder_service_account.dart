@@ -18,6 +18,7 @@ final class DataGoogleAccessApprovalFolderServiceAccount extends Data {
     required super.localName,
     required TfArg<String> folderId,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'folder_id': folderId});
 
   @override

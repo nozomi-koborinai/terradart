@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustDlpEntry extends Data {
     TfArg<String>? accountId,
     required TfArg<String> entryId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

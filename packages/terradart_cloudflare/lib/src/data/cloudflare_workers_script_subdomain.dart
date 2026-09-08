@@ -19,6 +19,7 @@ final class DataCloudflareWorkersScriptSubdomain extends Data {
     required TfArg<String> accountId,
     required TfArg<String> scriptName,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'script_name': scriptName},

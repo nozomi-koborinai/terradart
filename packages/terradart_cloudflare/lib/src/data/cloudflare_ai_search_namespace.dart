@@ -15,6 +15,7 @@ final class DataCloudflareAiSearchNamespace extends Data {
     required TfArg<String> accountId,
     required TfArg<String> name,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'name': name},

@@ -26,6 +26,7 @@ final class DataGoogleStorageObjectSignedUrl extends Data {
     TfArg<String>? httpMethod,
     required TfArg<String> path,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

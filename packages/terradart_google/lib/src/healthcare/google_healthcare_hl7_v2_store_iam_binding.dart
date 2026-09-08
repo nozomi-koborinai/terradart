@@ -25,6 +25,7 @@ final class GoogleHealthcareHl7V2StoreIamBinding extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

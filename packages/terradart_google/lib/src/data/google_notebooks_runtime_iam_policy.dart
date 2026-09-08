@@ -19,6 +19,7 @@ final class DataGoogleNotebooksRuntimeIamPolicy extends Data {
     TfArg<String>? project,
     required TfArg<String> runtimeName,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -18,6 +18,7 @@ final class DataGoogleStorageManagedFolderIamPolicy extends Data {
     required TfArg<String> bucket,
     required TfArg<String> managedFolder,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'bucket': bucket, 'managed_folder': managedFolder},

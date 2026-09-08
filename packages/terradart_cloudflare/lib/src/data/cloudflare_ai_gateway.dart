@@ -33,6 +33,7 @@ final class DataCloudflareAiGateway extends Data {
     TfArg<String>? accountId,
     DataAiGatewayFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

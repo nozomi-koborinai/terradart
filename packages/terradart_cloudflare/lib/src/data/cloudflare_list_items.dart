@@ -22,6 +22,7 @@ final class DataCloudflareListItems extends Data {
     TfArg<num>? perPage,
     TfArg<String>? search,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

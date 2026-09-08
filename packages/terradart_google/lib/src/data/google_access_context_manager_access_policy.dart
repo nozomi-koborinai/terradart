@@ -18,6 +18,7 @@ final class DataGoogleAccessContextManagerAccessPolicy extends Data {
     required TfArg<String> parent,
     TfArg<List<String>>? scopes,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'parent': parent, if (scopes != null) 'scopes': scopes},

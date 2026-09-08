@@ -26,6 +26,7 @@ final class DataCloudflareWorkerVersion extends Data {
     required TfArg<String> versionId,
     required TfArg<String> workerId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

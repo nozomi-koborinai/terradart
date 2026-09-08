@@ -22,6 +22,7 @@ final class GoogleHealthcareHl7V2StoreIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'hl7_v2_store_id': hl7V2StoreId, 'policy_data': policyData},

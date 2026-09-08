@@ -34,6 +34,7 @@ final class DataCloudflareEmailRoutingRule extends Data {
     TfArg<String>? zoneId,
     DataEmailRoutingRuleFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

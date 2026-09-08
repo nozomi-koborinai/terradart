@@ -23,6 +23,7 @@ final class DataGoogleStorageControlProjectIntelligenceFindingRevision
     TfArg<String>? project,
     required TfArg<String> revisionId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

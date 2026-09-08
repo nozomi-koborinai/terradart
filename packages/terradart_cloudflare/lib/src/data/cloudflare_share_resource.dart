@@ -34,6 +34,7 @@ final class DataCloudflareShareResource extends Data {
     TfArg<String>? shareResourceId,
     DataShareResourceFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

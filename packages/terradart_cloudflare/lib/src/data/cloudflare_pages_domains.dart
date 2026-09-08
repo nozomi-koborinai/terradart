@@ -20,6 +20,7 @@ final class DataCloudflarePagesDomains extends Data {
     TfArg<num>? maxItems,
     required TfArg<String> projectName,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

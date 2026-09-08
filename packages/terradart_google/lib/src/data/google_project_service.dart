@@ -18,6 +18,7 @@ final class DataGoogleProjectService extends Data {
     TfArg<String>? project,
     required TfArg<String> service,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (project != null) 'project': project, 'service': service},

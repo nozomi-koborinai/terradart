@@ -20,6 +20,7 @@ final class DataCloudflareAiGateways extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? search,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

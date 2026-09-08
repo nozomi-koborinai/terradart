@@ -20,6 +20,7 @@ final class DataGoogleDataplexTaskIamPolicy extends Data {
     TfArg<String>? project,
     required TfArg<String> taskId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

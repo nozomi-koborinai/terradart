@@ -25,6 +25,7 @@ final class DataCloudflareEmailSecurityImpersonationRegistries extends Data {
     TfArg<String>? provenance,
     TfArg<String>? search,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

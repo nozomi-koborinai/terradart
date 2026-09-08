@@ -21,6 +21,7 @@ final class DataCloudflareFlagshipFlags extends Data {
     TfArg<String>? limit,
     TfArg<num>? maxItems,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -20,6 +20,7 @@ final class DataCloudflarePageShieldScripts extends Data {
     required TfArg<String> scriptId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'script_id': scriptId, if (zoneId != null) 'zone_id': zoneId},

@@ -19,6 +19,7 @@ final class DataCloudflareHostnameTlsSetting extends Data {
     required TfArg<String> settingId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -22,6 +22,7 @@ final class GoogleServiceDirectoryServiceIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'name': name, 'policy_data': policyData},

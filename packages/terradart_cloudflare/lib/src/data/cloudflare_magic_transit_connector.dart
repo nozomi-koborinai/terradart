@@ -34,6 +34,7 @@ final class DataCloudflareMagicTransitConnector extends Data {
     TfArg<String>? connectorId,
     DataMagicTransitConnectorFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -506,14 +506,22 @@ resource "google_pubsub_topic" "x" {
           "backend: const S3Backend(bucket: r'b', key: r'k', region: r'auto', usePathStyle: true)",
         ),
       );
+      // A partial configuration (`terraform init -backend-config=...`) is
+      // the block with those keys left out (#671).
       final partial = _migrateJson({
         'terraform': {
           ..._google,
           'backend': {'gcs': <String, Object?>{}},
         },
       });
-      expect(partial.report.kept.single.address, 'terraform.backend');
-      expect(partial.report.kept.single.reason, contains('partial'));
+      expect(partial.report.kept, isEmpty);
+      expect(partial.stackSource, contains('backend: const GcsBackend()'));
+      expect(
+        backend({
+          's3': {'key': 'k', 'region': 'auto'},
+        }),
+        contains("backend: const S3Backend(key: r'k', region: r'auto')"),
+      );
       final unknown = _migrateJson({
         'terraform': {
           ..._google,
@@ -1753,6 +1761,69 @@ resource "google_pubsub_topic" "x" {
     });
   });
 
+  group('workspace, timeouts and partial backends (#671)', () {
+    test('timeouts becomes a const TfTimeouts', () {
+      final r = _migrateJson(
+        _resource({
+          'name': 'x',
+          'timeouts': {'create': '30m', 'update': '1h30m', 'delete': '30m'},
+        }),
+      );
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(
+          "timeouts: const TfTimeouts(create: r'30m', update: r'1h30m', "
+          "delete: r'30m')",
+        ),
+      );
+    });
+
+    test('a data source may carry timeouts too', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'data': {
+          'google_project': {
+            'current': {
+              'project_id': 'demo',
+              'timeouts': {'read': '5m'},
+            },
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains("timeouts: const TfTimeouts(read: r'5m')"),
+      );
+    });
+
+    for (final probe in _timeoutBlockers) {
+      test('${probe.label} keeps the resource in Terraform', () {
+        final r = _migrateJson(
+          _resource({'name': 'x', 'timeouts': probe.body}),
+        );
+        expect(r.report.kept.single.reason, contains(probe.reason));
+      });
+    }
+
+    test('terraform.workspace becomes TfArg.workspace', () {
+      final r = _migrateJson(_resource({'name': r'${terraform.workspace}'}));
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(r.stackSource, contains('name: TfArg.workspace<String>()'));
+    });
+
+    test('workspace inside a larger template stays an expression', () {
+      final r = _migrateJson(
+        _resource({'name': r'app-${terraform.workspace}'}),
+      );
+      expect(
+        r.stackSource,
+        contains(r"name: TfArg.expression(r'app-${terraform.workspace}')"),
+      );
+    });
+  });
+
   group('localModuleOf', () {
     LocalModule of(String hcl) =>
         localModuleOf(TfModule.fromHcl(hcl, fileName: 'main.tf'), name: 'm');
@@ -1838,4 +1909,38 @@ const _moduleBlockers =
         body: {'depends_on': <String>[]},
         reason: 'no "source"',
       ),
+    ];
+
+/// One resource of [type] named `x` with [body], under a google terraform
+/// block — the top-level twin of the `module(...)` helper inside the
+/// conversion-rule group.
+Map<String, Object?> _resource(
+  Map<String, Object?> body, {
+  String type = 'google_pubsub_topic',
+}) => {
+  'terraform': _google,
+  'resource': {
+    type: {'x': body},
+  },
+};
+
+/// `timeouts` blocks the emitter cannot express, with the reason it gives.
+const _timeoutBlockers =
+    <({String label, Map<String, Object?> body, String reason})>[
+      (
+        label: 'an unknown operation',
+        body: {'plan': '30m'},
+        reason: 'not a Terraform operation',
+      ),
+      (
+        label: 'a value that is not a duration',
+        body: {'create': '30 minutes'},
+        reason: 'is not a Terraform duration string',
+      ),
+      (
+        label: 'a reference',
+        body: {'create': r'${var.t}'},
+        reason: 'is not a duration string',
+      ),
+      (label: 'no operation', body: {}, reason: 'sets no operation'),
     ];

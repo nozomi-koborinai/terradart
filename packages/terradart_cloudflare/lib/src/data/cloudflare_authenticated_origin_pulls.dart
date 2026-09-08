@@ -15,6 +15,7 @@ final class DataCloudflareAuthenticatedOriginPulls extends Data {
     required TfArg<String> hostname,
     required TfArg<String> zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'hostname': hostname, 'zone_id': zoneId},

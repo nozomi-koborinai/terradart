@@ -22,6 +22,7 @@ final class DataCloudflareCustomSsls extends Data {
     TfArg<String>? status,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

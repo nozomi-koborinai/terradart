@@ -20,6 +20,7 @@ final class DataCloudflareR2CustomDomain extends Data {
     required TfArg<String> bucketName,
     required TfArg<String> domain,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

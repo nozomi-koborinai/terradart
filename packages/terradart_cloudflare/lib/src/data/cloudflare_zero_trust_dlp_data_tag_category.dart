@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustDlpDataTagCategory extends Data {
     required TfArg<String> accountId,
     required TfArg<String> categoryId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'category_id': categoryId},

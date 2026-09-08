@@ -20,6 +20,7 @@ final class DataCloudflareLoadBalancerMonitor extends Data {
     TfArg<String>? accountId,
     required TfArg<String> monitorId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

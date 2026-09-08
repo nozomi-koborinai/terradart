@@ -40,6 +40,7 @@ final class DataCloudflareClientCertificate extends Data {
     TfArg<String>? zoneId,
     DataClientCertificateFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

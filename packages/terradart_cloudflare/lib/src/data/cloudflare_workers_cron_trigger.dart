@@ -19,6 +19,7 @@ final class DataCloudflareWorkersCronTrigger extends Data {
     TfArg<String>? accountId,
     required TfArg<String> scriptName,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

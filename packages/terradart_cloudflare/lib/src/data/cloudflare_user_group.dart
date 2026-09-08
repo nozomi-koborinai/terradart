@@ -48,6 +48,7 @@ final class DataCloudflareUserGroup extends Data {
     TfArg<String>? userGroupId,
     DataUserGroupFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

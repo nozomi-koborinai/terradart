@@ -54,6 +54,7 @@ final class DataCloudflareAccountDnsSettingsInternalViews extends Data {
     TfArg<String>? zoneName,
     DataAccountDnsSettingsInternalViewsName? name,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

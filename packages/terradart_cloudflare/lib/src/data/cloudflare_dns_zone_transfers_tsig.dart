@@ -19,6 +19,7 @@ final class DataCloudflareDnsZoneTransfersTsig extends Data {
     TfArg<String>? accountId,
     required TfArg<String> tsigId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

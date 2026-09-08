@@ -20,6 +20,7 @@ final class DataGoogleLoggingLogViewIamPolicy extends Data {
     required TfArg<String> name,
     required TfArg<String> parent,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

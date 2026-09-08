@@ -19,6 +19,7 @@ final class DataGoogleComputeMachineTypes extends Data {
     TfArg<String>? project,
     TfArg<String>? zone,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

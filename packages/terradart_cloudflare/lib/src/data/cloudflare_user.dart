@@ -14,7 +14,7 @@ const Set<String> _cloudflareUserSensitive = <String>{};
 final class DataCloudflareUser extends Data {
   static const String tfType = 'cloudflare_user';
 
-  DataCloudflareUser({required super.localName, super.provider})
+  DataCloudflareUser({required super.localName, super.provider, super.timeouts})
     : super(terraformType: tfType, argMap: {});
 
   @override

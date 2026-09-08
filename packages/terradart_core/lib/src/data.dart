@@ -13,6 +13,7 @@ abstract base class Data extends Resource {
     required super.argMap,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(lifecycle: null);
 
   @override

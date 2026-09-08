@@ -27,6 +27,7 @@ final class GoogleBigqueryDatapolicyv2DataPolicyIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

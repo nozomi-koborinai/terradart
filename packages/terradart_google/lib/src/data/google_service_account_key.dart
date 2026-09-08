@@ -18,6 +18,7 @@ final class DataGoogleServiceAccountKey extends Data {
     required TfArg<String> name,
     TfArg<String>? publicKeyType,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

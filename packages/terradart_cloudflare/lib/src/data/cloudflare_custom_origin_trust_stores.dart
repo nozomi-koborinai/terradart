@@ -21,6 +21,7 @@ final class DataCloudflareCustomOriginTrustStores extends Data {
     TfArg<num>? offset,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

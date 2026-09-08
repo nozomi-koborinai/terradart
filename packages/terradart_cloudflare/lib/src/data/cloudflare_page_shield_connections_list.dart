@@ -32,6 +32,7 @@ final class DataCloudflarePageShieldConnectionsList extends Data {
     TfArg<String>? urls,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

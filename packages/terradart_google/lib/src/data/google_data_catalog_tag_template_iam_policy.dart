@@ -19,6 +19,7 @@ final class DataGoogleDataCatalogTagTemplateIamPolicy extends Data {
     TfArg<String>? region,
     required TfArg<String> tagTemplate,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

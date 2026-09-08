@@ -20,6 +20,7 @@ final class DataGoogleServiceAccountIdToken extends Data {
     required TfArg<String> targetAudience,
     TfArg<String>? targetServiceAccount,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

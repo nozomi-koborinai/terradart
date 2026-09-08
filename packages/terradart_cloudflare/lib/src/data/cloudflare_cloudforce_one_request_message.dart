@@ -25,6 +25,7 @@ final class DataCloudflareCloudforceOneRequestMessage extends Data {
     TfArg<String>? sortBy,
     TfArg<String>? sortOrder,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

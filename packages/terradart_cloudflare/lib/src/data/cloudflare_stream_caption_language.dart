@@ -20,6 +20,7 @@ final class DataCloudflareStreamCaptionLanguage extends Data {
     required TfArg<String> identifier,
     required TfArg<String> language,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

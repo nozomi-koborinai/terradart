@@ -20,6 +20,7 @@ final class DataCloudflareLogpushDatasetField extends Data {
     TfArg<String>? datasetId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

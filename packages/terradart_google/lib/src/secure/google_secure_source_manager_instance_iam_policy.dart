@@ -28,6 +28,7 @@ final class GoogleSecureSourceManagerInstanceIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

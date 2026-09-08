@@ -17,6 +17,7 @@ final class DataCloudflareShareRecipients extends Data {
     TfArg<num>? maxItems,
     required TfArg<String> shareId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

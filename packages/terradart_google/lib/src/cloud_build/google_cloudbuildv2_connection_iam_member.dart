@@ -21,6 +21,7 @@ final class GoogleCloudbuildv2ConnectionIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

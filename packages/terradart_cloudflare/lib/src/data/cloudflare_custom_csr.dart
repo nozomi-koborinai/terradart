@@ -32,6 +32,7 @@ final class DataCloudflareCustomCsr extends Data {
     TfArg<String>? zoneId,
     DataCustomCsrFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

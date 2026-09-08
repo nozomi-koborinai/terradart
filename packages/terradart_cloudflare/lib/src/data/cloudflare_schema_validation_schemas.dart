@@ -37,6 +37,7 @@ final class DataCloudflareSchemaValidationSchemas extends Data {
     TfArg<String>? zoneId,
     DataSchemaValidationSchemasFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

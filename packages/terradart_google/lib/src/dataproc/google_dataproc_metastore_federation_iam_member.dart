@@ -27,6 +27,7 @@ final class GoogleDataprocMetastoreFederationIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

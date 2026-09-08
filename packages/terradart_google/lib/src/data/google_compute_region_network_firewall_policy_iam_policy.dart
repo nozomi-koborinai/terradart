@@ -21,6 +21,7 @@ final class DataGoogleComputeRegionNetworkFirewallPolicyIamPolicy extends Data {
     TfArg<String>? project,
     TfArg<String>? region,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

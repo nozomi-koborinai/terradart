@@ -18,6 +18,7 @@ final class DataGoogleIapWebTypeAppEngineIamPolicy extends Data {
     required TfArg<String> appId,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'app_id': appId, if (project != null) 'project': project},

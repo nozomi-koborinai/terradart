@@ -19,6 +19,7 @@ final class DataCloudflareWeb3Hostname extends Data {
     required TfArg<String> identifier,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

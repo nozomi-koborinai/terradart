@@ -209,6 +209,7 @@ final class DataCloudflareDnsRecord extends Data {
     TfArg<String>? zoneId,
     DataDnsRecordFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

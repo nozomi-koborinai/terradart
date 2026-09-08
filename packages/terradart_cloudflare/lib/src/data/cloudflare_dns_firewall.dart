@@ -19,6 +19,7 @@ final class DataCloudflareDnsFirewall extends Data {
     TfArg<String>? accountId,
     required TfArg<String> dnsFirewallId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

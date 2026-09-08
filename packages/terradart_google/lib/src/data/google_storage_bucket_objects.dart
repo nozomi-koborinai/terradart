@@ -19,6 +19,7 @@ final class DataGoogleStorageBucketObjects extends Data {
     TfArg<String>? matchGlob,
     TfArg<String>? prefix,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

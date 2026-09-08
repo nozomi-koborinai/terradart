@@ -21,6 +21,7 @@ final class CloudflareEmailRoutingDns extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (name != null) 'name': name, 'zone_id': zoneId},

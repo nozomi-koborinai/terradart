@@ -21,6 +21,7 @@ final class DataCloudflareMagicTransitSiteWans extends Data {
     TfArg<num>? maxItems,
     required TfArg<String> siteId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

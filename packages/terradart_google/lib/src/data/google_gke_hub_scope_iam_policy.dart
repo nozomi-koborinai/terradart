@@ -18,6 +18,7 @@ final class DataGoogleGkeHubScopeIamPolicy extends Data {
     TfArg<String>? project,
     required TfArg<String> scopeId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (project != null) 'project': project, 'scope_id': scopeId},

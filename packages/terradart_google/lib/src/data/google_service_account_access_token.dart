@@ -22,6 +22,7 @@ final class DataGoogleServiceAccountAccessToken extends Data {
     required TfArg<List<String>> scopes,
     required TfArg<String> targetServiceAccount,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

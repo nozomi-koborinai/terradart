@@ -35,6 +35,7 @@ final class DataCloudflareMagicTransitSite extends Data {
     TfArg<String>? siteId,
     DataMagicTransitSiteFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

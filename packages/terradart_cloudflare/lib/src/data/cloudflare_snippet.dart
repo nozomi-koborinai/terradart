@@ -19,6 +19,7 @@ final class DataCloudflareSnippet extends Data {
     required TfArg<String> snippetName,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

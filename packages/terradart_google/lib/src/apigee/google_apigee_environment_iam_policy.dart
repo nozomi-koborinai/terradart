@@ -23,6 +23,7 @@ final class GoogleApigeeEnvironmentIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'org_id': orgId, 'env_id': envId, 'policy_data': policyData},

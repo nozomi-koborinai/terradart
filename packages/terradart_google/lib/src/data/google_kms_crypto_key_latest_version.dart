@@ -18,6 +18,7 @@ final class DataGoogleKmsCryptoKeyLatestVersion extends Data {
     required TfArg<String> cryptoKey,
     TfArg<String>? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

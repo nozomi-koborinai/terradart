@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustAccessCustomPage extends Data {
     TfArg<String>? accountId,
     required TfArg<String> customPageId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

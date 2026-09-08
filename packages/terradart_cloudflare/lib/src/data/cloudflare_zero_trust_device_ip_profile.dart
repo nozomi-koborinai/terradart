@@ -34,6 +34,7 @@ final class DataCloudflareZeroTrustDeviceIpProfile extends Data {
     TfArg<String>? profileId,
     DataZeroTrustDeviceIpProfileFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

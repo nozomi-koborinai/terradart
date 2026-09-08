@@ -20,6 +20,7 @@ final class DataGoogleArtifactRegistryPythonPackage extends Data {
     TfArg<String>? project,
     required TfArg<String> repositoryId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

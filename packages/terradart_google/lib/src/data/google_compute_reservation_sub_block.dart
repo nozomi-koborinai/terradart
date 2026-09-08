@@ -21,6 +21,7 @@ final class DataGoogleComputeReservationSubBlock extends Data {
     required TfArg<String> reservationBlock,
     TfArg<String>? zone,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

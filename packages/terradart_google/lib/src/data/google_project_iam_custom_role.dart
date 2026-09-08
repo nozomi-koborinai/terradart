@@ -18,6 +18,7 @@ final class DataGoogleProjectIamCustomRole extends Data {
     TfArg<String>? project,
     required TfArg<String> roleId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (project != null) 'project': project, 'role_id': roleId},

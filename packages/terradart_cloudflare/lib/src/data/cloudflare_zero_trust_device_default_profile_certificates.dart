@@ -21,6 +21,7 @@ final class DataCloudflareZeroTrustDeviceDefaultProfileCertificates
     required super.localName,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (zoneId != null) 'zone_id': zoneId},

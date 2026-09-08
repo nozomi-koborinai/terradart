@@ -20,6 +20,7 @@ final class DataCloudflareCloudforceOneRequestAsset extends Data {
     required TfArg<String> assetId,
     required TfArg<String> requestId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

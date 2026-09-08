@@ -19,6 +19,7 @@ final class DataGoogleCloudfunctions2FunctionIamPolicy extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

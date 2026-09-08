@@ -22,6 +22,7 @@ final class GoogleHealthcareDatasetIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'dataset_id': datasetId, 'policy_data': policyData},

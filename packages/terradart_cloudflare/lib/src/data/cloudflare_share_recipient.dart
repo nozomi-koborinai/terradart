@@ -17,6 +17,7 @@ final class DataCloudflareShareRecipient extends Data {
     required TfArg<String> recipientId,
     required TfArg<String> shareId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

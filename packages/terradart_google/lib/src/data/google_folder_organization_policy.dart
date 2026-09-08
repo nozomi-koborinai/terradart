@@ -18,6 +18,7 @@ final class DataGoogleFolderOrganizationPolicy extends Data {
     required TfArg<String> constraint,
     required TfArg<String> folder,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'constraint': constraint, 'folder': folder},

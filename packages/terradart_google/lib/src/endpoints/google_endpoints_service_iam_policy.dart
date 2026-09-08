@@ -22,6 +22,7 @@ final class GoogleEndpointsServiceIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'service_name': serviceName, 'policy_data': policyData},

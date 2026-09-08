@@ -58,6 +58,11 @@ final class AssetsStack extends Stack {
       hierarchicalNamespace:
           StorageBucketHierarchicalNamespace(enabled: TfArg.literal(true)),
       versioning: StorageBucketVersioning(enabled: TfArg.literal(true)),
+      // `timeouts { ... }` in HCL: how long Terraform waits per operation.
+      // Provider-neutral, like `lifecycle` — the provider decides which
+      // operations its schema declares, and `terraform validate` says so
+      // (google_storage_bucket has create / read / update, but no delete).
+      timeouts: const TfTimeouts(create: '10m', read: '5m', update: '10m'),
       lifecycleRule: [
         StorageBucketLifecycleRule(
           action: StorageBucketLifecycleAction(

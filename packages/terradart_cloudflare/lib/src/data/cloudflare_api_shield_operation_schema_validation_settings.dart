@@ -23,6 +23,7 @@ final class DataCloudflareApiShieldOperationSchemaValidationSettings
     required TfArg<String> operationId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

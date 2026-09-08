@@ -18,6 +18,7 @@ final class DataGoogleStorageProjectServiceAccount extends Data {
     TfArg<String>? project,
     TfArg<String>? userProject,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

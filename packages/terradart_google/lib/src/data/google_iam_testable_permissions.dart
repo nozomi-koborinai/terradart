@@ -19,6 +19,7 @@ final class DataGoogleIamTestablePermissions extends Data {
     required TfArg<String> fullResourceName,
     TfArg<List<String>>? stages,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

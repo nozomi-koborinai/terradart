@@ -22,6 +22,7 @@ final class DataCloudflareZeroTrustResourceLibraryApplications extends Data {
     TfArg<String>? orderBy,
     TfArg<String>? search,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

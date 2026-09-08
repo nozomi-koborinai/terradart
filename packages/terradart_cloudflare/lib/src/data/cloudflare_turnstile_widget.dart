@@ -41,6 +41,7 @@ final class DataCloudflareTurnstileWidget extends Data {
     TfArg<String>? sitekey,
     DataTurnstileWidgetFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

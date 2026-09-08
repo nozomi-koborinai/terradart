@@ -24,6 +24,7 @@ final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

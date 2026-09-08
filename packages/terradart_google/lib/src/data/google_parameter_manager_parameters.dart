@@ -18,6 +18,7 @@ final class DataGoogleParameterManagerParameters extends Data {
     TfArg<String>? filter,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

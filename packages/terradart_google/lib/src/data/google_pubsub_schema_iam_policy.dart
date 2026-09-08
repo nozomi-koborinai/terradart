@@ -18,6 +18,7 @@ final class DataGooglePubsubSchemaIamPolicy extends Data {
     TfArg<String>? project,
     required TfArg<String> schema,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (project != null) 'project': project, 'schema': schema},

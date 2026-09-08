@@ -36,6 +36,7 @@ final class DataCloudflareApiToken extends Data {
     TfArg<String>? tokenId,
     DataApiTokenFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

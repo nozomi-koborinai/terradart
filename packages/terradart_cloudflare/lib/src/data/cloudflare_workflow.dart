@@ -34,6 +34,7 @@ final class DataCloudflareWorkflow extends Data {
     TfArg<String>? workflowName,
     DataWorkflowFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -19,6 +19,7 @@ final class DataCloudflareImageVariant extends Data {
     TfArg<String>? accountId,
     required TfArg<String> variantId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

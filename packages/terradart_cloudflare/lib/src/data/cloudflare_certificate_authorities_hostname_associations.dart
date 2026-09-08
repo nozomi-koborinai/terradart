@@ -22,6 +22,7 @@ final class DataCloudflareCertificateAuthoritiesHostnameAssociations
     TfArg<String>? mtlsCertificateId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

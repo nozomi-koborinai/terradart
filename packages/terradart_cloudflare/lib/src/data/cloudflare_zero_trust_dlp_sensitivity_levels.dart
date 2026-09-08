@@ -21,6 +21,7 @@ final class DataCloudflareZeroTrustDlpSensitivityLevels extends Data {
     TfArg<num>? maxItems,
     required TfArg<String> sensitivityGroupId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

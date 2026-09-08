@@ -20,6 +20,7 @@ final class DataAppwritePostgresqlDatabase extends Data {
     required TfArg<String> id,
     TfArg<String>? projectId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'id': id, if (projectId != null) 'project_id': projectId},

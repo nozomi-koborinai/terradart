@@ -21,6 +21,7 @@ final class DataCloudflareQueueConsumers extends Data {
     TfArg<num>? maxItems,
     required TfArg<String> queueId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

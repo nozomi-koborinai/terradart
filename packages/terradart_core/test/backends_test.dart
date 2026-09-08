@@ -134,4 +134,43 @@ void main() {
       expect(backend.backendType, equals('s3'));
     });
   });
+
+  group('partial backend configuration', () {
+    test('GcsBackend with nothing set emits an empty block', () {
+      const backend = GcsBackend();
+      expect(backend.toTfJson(), equals(<String, Object?>{}));
+    });
+
+    test('GcsBackend emits only the keys that are set', () {
+      const backend = GcsBackend(prefix: 'app');
+      expect(backend.toTfJson(), equals(<String, Object?>{'prefix': 'app'}));
+    });
+
+    test('S3Backend without bucket and key emits only the rest', () {
+      const backend = S3Backend(region: 'eu-west-1');
+      expect(
+        backend.toTfJson(),
+        equals(<String, Object?>{'region': 'eu-west-1'}),
+      );
+    });
+
+    test('S3Backend.r2 keeps its preset without bucket and key', () {
+      final backend = S3Backend.r2(accountId: 'acc');
+      expect(backend.bucket, isNull);
+      expect(backend.key, isNull);
+      expect(
+        backend.toTfJson(),
+        equals(<String, Object?>{
+          'region': 'auto',
+          'endpoints': {'s3': 'https://acc.r2.cloudflarestorage.com'},
+          'use_path_style': true,
+          'skip_credentials_validation': true,
+          'skip_region_validation': true,
+          'skip_requesting_account_id': true,
+          'skip_metadata_api_check': true,
+          'skip_s3_checksum': true,
+        }),
+      );
+    });
+  });
 }

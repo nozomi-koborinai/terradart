@@ -57,6 +57,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork
     TfArg<String>? virtualNetworkId,
     DataZeroTrustTunnelCloudflaredVirtualNetworkFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

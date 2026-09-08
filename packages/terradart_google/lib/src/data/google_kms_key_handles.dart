@@ -19,6 +19,7 @@ final class DataGoogleKmsKeyHandles extends Data {
     TfArg<String>? project,
     required TfArg<String> resourceTypeSelector,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

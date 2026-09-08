@@ -29,6 +29,7 @@ final class DataCloudflareAiSearchToken extends Data {
     TfArg<String>? accountId,
     DataAiSearchTokenFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

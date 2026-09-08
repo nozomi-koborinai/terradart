@@ -28,6 +28,7 @@ final class DataCloudflareApiShieldDiscoveryOperations extends Data {
     TfArg<String>? state,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

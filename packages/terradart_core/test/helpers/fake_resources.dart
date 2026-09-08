@@ -75,6 +75,7 @@ final class FakePubsubTopic extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
           terraformType: 'google_pubsub_topic',
         );
@@ -112,6 +113,7 @@ final class FakeProjectData extends Data {
     required super.localName,
     required super.argMap,
     super.provider,
+    super.timeouts,
   }) : super(
           terraformType: 'google_project',
         );

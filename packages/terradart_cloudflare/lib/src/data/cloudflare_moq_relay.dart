@@ -44,6 +44,7 @@ final class DataCloudflareMoqRelay extends Data {
     TfArg<String>? relayId,
     DataMoqRelayFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

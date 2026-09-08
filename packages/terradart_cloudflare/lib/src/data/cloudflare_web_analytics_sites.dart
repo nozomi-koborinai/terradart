@@ -20,6 +20,7 @@ final class DataCloudflareWebAnalyticsSites extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? orderBy,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

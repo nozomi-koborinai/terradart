@@ -21,6 +21,7 @@ final class GoogleTagsTagBinding extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'parent': parent, 'tag_value': tagValue},

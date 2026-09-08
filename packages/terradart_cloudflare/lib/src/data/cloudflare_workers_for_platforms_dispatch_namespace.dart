@@ -21,6 +21,7 @@ final class DataCloudflareWorkersForPlatformsDispatchNamespace extends Data {
     TfArg<String>? accountId,
     required TfArg<String> dispatchNamespace,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

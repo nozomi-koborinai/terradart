@@ -18,6 +18,7 @@ final class DataCloudflareShareResources extends Data {
     required TfArg<String> shareId,
     TfArg<String>? status,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

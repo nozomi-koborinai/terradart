@@ -22,6 +22,7 @@ final class DataCloudflareUserGroups extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? name,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

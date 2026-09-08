@@ -21,6 +21,7 @@ final class DataGoogleClouddeployCustomTargetTypeIamPolicy extends Data {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

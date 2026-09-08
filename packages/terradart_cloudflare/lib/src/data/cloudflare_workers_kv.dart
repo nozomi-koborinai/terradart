@@ -20,6 +20,7 @@ final class DataCloudflareWorkersKv extends Data {
     required TfArg<String> keyName,
     required TfArg<String> namespaceId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

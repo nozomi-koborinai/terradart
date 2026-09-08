@@ -21,6 +21,7 @@ final class DataCloudflareMagicTransitSites extends Data {
     TfArg<String>? connectorid,
     TfArg<num>? maxItems,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

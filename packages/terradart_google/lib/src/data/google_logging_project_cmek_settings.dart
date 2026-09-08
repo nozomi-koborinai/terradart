@@ -18,6 +18,7 @@ final class DataGoogleLoggingProjectCmekSettings extends Data {
     TfArg<String>? kmsKeyName,
     required TfArg<String> project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

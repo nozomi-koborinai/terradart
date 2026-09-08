@@ -24,6 +24,7 @@ final class DataGoogleStorageControlOrganizationIntelligenceFindingsSummary
     required TfArg<String> organization,
     TfArg<String>? resourceScope,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

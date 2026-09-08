@@ -22,6 +22,7 @@ final class DataGoogleStorageControlProjectIntelligenceFindings extends Data {
     TfArg<num>? pageSize,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

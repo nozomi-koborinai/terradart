@@ -22,6 +22,7 @@ final class DataGoogleSecretManagerSecretVersionAccess extends Data {
     required TfArg<String> secret,
     TfArg<String>? version,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

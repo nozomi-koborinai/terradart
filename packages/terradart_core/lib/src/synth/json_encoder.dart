@@ -115,7 +115,7 @@ class TfJsonEncoder {
     if (backend is GcsBackend) {
       return {
         'gcs': {
-          'bucket': backend.bucket,
+          if (backend.bucket != null) 'bucket': backend.bucket,
           if (backend.prefix != null) 'prefix': backend.prefix,
         },
       };
@@ -496,8 +496,8 @@ class TfJsonEncoder {
   }
 
   /// JSON for one resource block: `argMap` + optional `depends_on` +
-  /// optional `lifecycle`. Sensitive fields are masked per
-  /// `Resource.sensitiveFields`.
+  /// optional `lifecycle` + optional `timeouts`. Sensitive fields are
+  /// masked per `Resource.sensitiveFields`.
   ///
   /// When [devModeInjectDeletionProtection] is `true` and the resource
   /// exposes `supportsDeletionProtection == true` and its `argMap` does
@@ -538,6 +538,8 @@ class TfJsonEncoder {
       final life = lifecycleBlock(lc);
       if (life != null) out['lifecycle'] = life;
     }
+    final timeouts = r.timeouts?.toTfJson();
+    if (timeouts != null) out['timeouts'] = timeouts;
     return out;
   }
 
@@ -556,9 +558,9 @@ class TfJsonEncoder {
   }
 
   /// Top-level `data { ... }` group. A data source carries its `provider`
-  /// meta-argument like a resource; it has no `lifecycle` / `depends_on` /
-  /// sensitive masking at v0.0.x — Terraform rejects `lifecycle` on data
-  /// blocks anyway.
+  /// and `timeouts` meta-arguments like a resource; it has no `lifecycle` /
+  /// `depends_on` / sensitive masking at v0.0.x — Terraform rejects
+  /// `lifecycle` on data blocks anyway.
   static Map<String, dynamic>? dataGroup(Stack stack) {
     if (stack.dataSources.isEmpty) return null;
     final out = <String, Map<String, dynamic>>{};
@@ -567,6 +569,8 @@ class TfJsonEncoder {
       if (d.provider != null) {
         block['provider'] = d.provider;
       }
+      final timeouts = d.timeouts?.toTfJson();
+      if (timeouts != null) block['timeouts'] = timeouts;
       out.putIfAbsent(d.terraformType, () => {})[d.localName] = block;
     }
     return out;

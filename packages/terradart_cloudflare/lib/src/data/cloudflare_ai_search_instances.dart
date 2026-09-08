@@ -19,6 +19,7 @@ final class DataCloudflareAiSearchInstances extends Data {
     TfArg<String>? orderByDirection,
     TfArg<String>? search,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

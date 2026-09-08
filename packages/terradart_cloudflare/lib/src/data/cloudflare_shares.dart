@@ -24,6 +24,7 @@ final class DataCloudflareShares extends Data {
     TfArg<List<String>>? tag,
     TfArg<String>? targetType,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

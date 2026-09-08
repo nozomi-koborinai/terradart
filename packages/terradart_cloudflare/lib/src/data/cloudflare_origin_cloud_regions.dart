@@ -15,6 +15,7 @@ final class DataCloudflareOriginCloudRegions extends Data {
     TfArg<num>? maxItems,
     required TfArg<String> zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
