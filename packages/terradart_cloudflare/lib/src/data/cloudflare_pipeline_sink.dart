@@ -37,6 +37,7 @@ final class DataCloudflarePipelineSink extends Data {
     TfArg<String>? sinkId,
     DataPipelineSinkFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

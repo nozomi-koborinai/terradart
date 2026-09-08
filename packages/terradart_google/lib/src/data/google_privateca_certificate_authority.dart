@@ -20,6 +20,7 @@ final class DataGooglePrivatecaCertificateAuthority extends Data {
     TfArg<String>? pool,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

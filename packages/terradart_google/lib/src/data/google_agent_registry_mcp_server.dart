@@ -20,6 +20,7 @@ final class DataGoogleAgentRegistryMcpServer extends Data {
     TfArg<String>? mcpServerId,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

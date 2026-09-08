@@ -35,6 +35,7 @@ final class CloudflareUrlNormalizationSettings extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'scope': scope, 'type': type, 'zone_id': zoneId},

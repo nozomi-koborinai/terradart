@@ -458,6 +458,14 @@ final class ValueEmitter {
         return 'TfArg.ref(TfRef.attribute<$type>('
             '${target.dartName}, ${dartString(attribute)}))';
       case OtherReference():
+        // `terraform.workspace` has a name of its own; everything else the
+        // migrator does not resolve stays a verbatim expression.
+        if (t.root == 'terraform' &&
+            t.steps.length == 1 &&
+            t.steps.single is AttrStep &&
+            (t.steps.single as AttrStep).name == 'workspace') {
+          return 'TfArg.workspace<$type>()';
+        }
         return null;
     }
   }

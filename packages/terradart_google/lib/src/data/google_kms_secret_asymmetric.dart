@@ -19,6 +19,7 @@ final class DataGoogleKmsSecretAsymmetric extends Data {
     TfArg<String>? crc32,
     required TfArg<String> cryptoKeyVersion,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

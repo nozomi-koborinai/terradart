@@ -20,6 +20,7 @@ final class DataGoogleArtifactRegistryRepositoryIamPolicy extends Data {
     TfArg<String>? project,
     required TfArg<String> repository,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

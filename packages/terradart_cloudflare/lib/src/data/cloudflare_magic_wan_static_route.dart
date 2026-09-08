@@ -20,6 +20,7 @@ final class DataCloudflareMagicWanStaticRoute extends Data {
     TfArg<String>? accountId,
     required TfArg<String> routeId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

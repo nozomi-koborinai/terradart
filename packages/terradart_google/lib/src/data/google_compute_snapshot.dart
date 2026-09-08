@@ -20,6 +20,7 @@ final class DataGoogleComputeSnapshot extends Data {
     TfArg<String>? name,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

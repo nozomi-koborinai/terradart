@@ -20,6 +20,7 @@ final class DataCloudflareLeakedCredentialCheckRule extends Data {
     required TfArg<String> detectionId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

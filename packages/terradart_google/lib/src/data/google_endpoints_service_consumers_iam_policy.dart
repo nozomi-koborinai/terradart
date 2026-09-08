@@ -19,6 +19,7 @@ final class DataGoogleEndpointsServiceConsumersIamPolicy extends Data {
     required TfArg<String> consumerProject,
     required TfArg<String> serviceName,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

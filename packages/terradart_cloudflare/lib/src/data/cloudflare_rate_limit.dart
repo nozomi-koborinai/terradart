@@ -19,6 +19,7 @@ final class DataCloudflareRateLimit extends Data {
     required TfArg<String> rateLimitId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

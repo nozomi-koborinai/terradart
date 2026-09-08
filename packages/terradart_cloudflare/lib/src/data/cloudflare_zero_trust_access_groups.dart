@@ -23,6 +23,7 @@ final class DataCloudflareZeroTrustAccessGroups extends Data {
     TfArg<String>? search,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -21,6 +21,7 @@ final class DataGoogleWorkstationsWorkstationIamPolicy extends Data {
     required TfArg<String> workstationConfigId,
     required TfArg<String> workstationId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -92,6 +92,7 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

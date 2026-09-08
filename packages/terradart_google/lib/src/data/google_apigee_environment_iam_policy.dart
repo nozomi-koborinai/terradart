@@ -18,6 +18,7 @@ final class DataGoogleApigeeEnvironmentIamPolicy extends Data {
     required TfArg<String> envId,
     required TfArg<String> orgId,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'env_id': envId, 'org_id': orgId});
 
   @override

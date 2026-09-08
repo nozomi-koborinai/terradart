@@ -19,6 +19,7 @@ final class DataCloudflareWorkersRoute extends Data {
     required TfArg<String> routeId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'route_id': routeId, if (zoneId != null) 'zone_id': zoneId},

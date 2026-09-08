@@ -19,6 +19,7 @@ final class DataGoogleBigqueryRoutineIamPolicy extends Data {
     TfArg<String>? project,
     required TfArg<String> routineId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

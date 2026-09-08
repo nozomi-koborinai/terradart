@@ -20,6 +20,7 @@ final class DataGoogleDataprocAutoscalingPolicyIamPolicy extends Data {
     required TfArg<String> policyId,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

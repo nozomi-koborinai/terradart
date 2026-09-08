@@ -35,6 +35,7 @@ final class DataCloudflareLoadBalancerPool extends Data {
     TfArg<String>? poolId,
     DataLoadBalancerPoolFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

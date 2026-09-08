@@ -22,6 +22,7 @@ final class DataGoogleArtifactRegistryVersion extends Data {
     required TfArg<String> versionName,
     TfArg<String>? view,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -21,6 +21,7 @@ final class DataCloudflareAccountTokens extends Data {
     TfArg<bool>? includeExpired,
     TfArg<num>? maxItems,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

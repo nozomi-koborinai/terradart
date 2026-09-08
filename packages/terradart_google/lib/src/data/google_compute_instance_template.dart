@@ -21,6 +21,7 @@ final class DataGoogleComputeInstanceTemplate extends Data {
     TfArg<String>? project,
     TfArg<String>? selfLinkUnique,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

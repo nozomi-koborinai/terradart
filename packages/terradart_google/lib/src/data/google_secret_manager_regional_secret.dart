@@ -19,6 +19,7 @@ final class DataGoogleSecretManagerRegionalSecret extends Data {
     TfArg<String>? project,
     required TfArg<String> secretId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

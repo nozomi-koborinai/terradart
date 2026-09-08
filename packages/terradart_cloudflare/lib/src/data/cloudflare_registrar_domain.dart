@@ -15,6 +15,7 @@ final class DataCloudflareRegistrarDomain extends Data {
     required TfArg<String> accountId,
     required TfArg<String> domainName,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'domain_name': domainName},

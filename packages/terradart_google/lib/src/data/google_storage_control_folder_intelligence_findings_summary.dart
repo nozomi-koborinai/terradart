@@ -23,6 +23,7 @@ final class DataGoogleStorageControlFolderIntelligenceFindingsSummary
     TfArg<String>? location,
     TfArg<String>? resourceScope,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

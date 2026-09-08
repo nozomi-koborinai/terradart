@@ -22,6 +22,7 @@ final class DataCloudflareHyperdriveConfig extends Data {
     TfArg<String>? accountId,
     required TfArg<String> hyperdriveId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

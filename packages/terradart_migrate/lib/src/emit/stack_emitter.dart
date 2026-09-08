@@ -5,7 +5,7 @@ import 'package:terradart_appwrite/provider.dart'
     show kAppwriteProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
-import 'package:terradart_core/terradart_core.dart' show ModuleCall;
+import 'package:terradart_core/terradart_core.dart' show ModuleCall, TfTimeouts;
 import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderVersionConstraint;
@@ -116,7 +116,6 @@ const _blockedMeta = <String, String>{
   'dynamic': 'dynamic blocks have no synth path',
   'provisioner': 'provisioner blocks have no synth path',
   'connection': 'connection blocks have no synth path',
-  'timeouts': 'timeouts are not supported yet (#671)',
 };
 
 final class _Emitted {
@@ -762,6 +761,10 @@ final class StackEmitter {
       }
       extras.add('lifecycle: ${_lifecycle(lifecycle, emitter)}');
     }
+    final timeouts = values.remove('timeouts');
+    if (timeouts != null) {
+      extras.add('timeouts: ${_timeouts(timeouts)}');
+    }
 
     final level = BodyLevel(values, path: '');
     final args = emitter.emitArgs(entry.slots, level);
@@ -1079,6 +1082,48 @@ final class StackEmitter {
     return '[${out.join(', ')}]';
   }
 
+  /// `timeouts: const TfTimeouts(create: '30m')` for a `timeouts { ... }`
+  /// block. Terraform forbids references here — the values are literal Go
+  /// duration strings — so nothing but a constant translates.
+  String _timeouts(Expr value) {
+    final m = objectMap(value);
+    if (m == null) throw MigrateBlocker('timeouts is not a block');
+    const operations = {
+      'create': 'create',
+      'read': 'read',
+      'update': 'update',
+      'delete': 'delete',
+    };
+    final args = <String>[];
+    for (final entry in m.entries) {
+      final param = operations[entry.key];
+      if (param == null) {
+        throw MigrateBlocker(
+          'timeouts.${entry.key} is not a Terraform operation (create, read, '
+          'update, delete)',
+        );
+      }
+      final text = entry.value.constantString;
+      if (text == null) {
+        throw MigrateBlocker(
+          'timeouts.${entry.key} = ${hclSource(entry.value)} is not a '
+          'duration string',
+        );
+      }
+      try {
+        TfTimeouts(create: text).toTfJson();
+      } on ArgumentError {
+        throw MigrateBlocker(
+          'timeouts.${entry.key} = "$text" is not a Terraform duration '
+          'string (e.g. "30m")',
+        );
+      }
+      args.add('$param: ${dartString(text)}');
+    }
+    if (args.isEmpty) throw MigrateBlocker('timeouts sets no operation');
+    return 'const TfTimeouts(${args.join(', ')})';
+  }
+
   String _lifecycle(Expr value, ValueEmitter emitter) {
     final m = objectMap(value);
     if (m == null) throw MigrateBlocker('lifecycle is not a block');
@@ -1185,13 +1230,6 @@ final class StackEmitter {
     try {
       switch (type) {
         case 'gcs':
-          final bucket = constant('bucket');
-          if (bucket == null) {
-            throw MigrateBlocker(
-              'backend "gcs" without a bucket is a partial configuration '
-              '(-backend-config), which stays in backend.tf',
-            );
-          }
           final extra = values.keys.where(
             (k) => k != 'bucket' && k != 'prefix',
           );
@@ -1201,10 +1239,16 @@ final class StackEmitter {
               '${extra.map((k) => '"$k"').join(', ')}',
             );
           }
+          // A partial configuration — the values come from `terraform init
+          // -backend-config` — is the block with those keys left out.
+          final bucket = constant('bucket');
           final prefix = constant('prefix');
+          final args = <String>[
+            if (bucket != null) 'bucket: ${dartString(bucket)}',
+            if (prefix != null) 'prefix: ${dartString(prefix)}',
+          ];
           _migrated.add(const MigratedItem(address: 'terraform.backend'));
-          return 'const GcsBackend(bucket: ${dartString(bucket)}'
-              '${prefix == null ? '' : ', prefix: ${dartString(prefix)}'})';
+          return 'const GcsBackend(${args.join(', ')})';
         case 'local':
           final extra = values.keys.where((k) => k != 'path');
           if (extra.isNotEmpty) {
@@ -1229,12 +1273,7 @@ final class StackEmitter {
             'skip_metadata_api_check': 'skipMetadataApiCheck',
             'skip_s3_checksum': 'skipS3Checksum',
           };
-          if (!values.containsKey('bucket') || !values.containsKey('key')) {
-            throw MigrateBlocker(
-              'backend "s3" without bucket and key is a partial configuration, '
-              'which stays in backend.tf',
-            );
-          }
+          // As for gcs: what is missing comes from `-backend-config`.
           final args = <String>[];
           for (final entry in values.entries) {
             final param = params[entry.key];

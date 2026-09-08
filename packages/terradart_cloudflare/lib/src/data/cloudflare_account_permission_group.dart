@@ -29,6 +29,7 @@ final class DataCloudflareAccountPermissionGroup extends Data {
     required TfArg<String> accountId,
     required TfArg<String> permissionGroupId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

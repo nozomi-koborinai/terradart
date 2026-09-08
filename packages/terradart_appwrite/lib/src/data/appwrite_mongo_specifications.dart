@@ -19,6 +19,7 @@ final class DataAppwriteMongoSpecifications extends Data {
     required super.localName,
     TfArg<String>? projectId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (projectId != null) 'project_id': projectId},

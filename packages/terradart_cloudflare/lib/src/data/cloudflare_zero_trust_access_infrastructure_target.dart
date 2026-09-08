@@ -104,6 +104,7 @@ final class DataCloudflareZeroTrustAccessInfrastructureTarget extends Data {
     TfArg<String>? targetId,
     DataZeroTrustAccessInfrastructureTargetFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

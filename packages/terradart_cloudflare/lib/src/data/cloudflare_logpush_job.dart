@@ -20,6 +20,7 @@ final class DataCloudflareLogpushJob extends Data {
     required TfArg<num> jobId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

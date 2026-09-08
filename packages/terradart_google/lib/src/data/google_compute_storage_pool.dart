@@ -19,6 +19,7 @@ final class DataGoogleComputeStoragePool extends Data {
     TfArg<String>? project,
     required TfArg<String> zone,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

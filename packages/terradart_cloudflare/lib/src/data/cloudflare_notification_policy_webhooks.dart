@@ -22,6 +22,7 @@ final class DataCloudflareNotificationPolicyWebhooks extends Data {
     TfArg<String>? accountId,
     required TfArg<String> webhookId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

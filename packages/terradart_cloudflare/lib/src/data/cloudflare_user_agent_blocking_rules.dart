@@ -22,6 +22,7 @@ final class DataCloudflareUserAgentBlockingRules extends Data {
     TfArg<String>? userAgent,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

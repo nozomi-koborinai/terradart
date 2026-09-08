@@ -19,6 +19,7 @@ final class DataCloudflareSsoConnector extends Data {
     TfArg<String>? accountId,
     required TfArg<String> ssoConnectorId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

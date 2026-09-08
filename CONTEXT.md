@@ -60,6 +60,10 @@ _Avoid_: Fallback file, TODO file
 The migrator's Stack output for a directory a `module` block's `source` points at: providers registered without configuration (synth emits only `required_providers`), `variable` → `addVariable`, `output` → exports; provider configurations and a backend found there stay in the sidecar. The caller's `module` block becomes a **module call wrapper**, whose `source` still points at the child's directory in the mirrored `tf-out/` tree, so plan addresses keep the `module.<name>.` prefix.
 _Avoid_: Nested Stack
 
+**Partial backend configuration**:
+A `backend` block whose values arrive at `terraform init -backend-config` time rather than in the configuration. Every field of `GcsBackend` and `S3Backend` is optional, so `const GcsBackend()` emits `backend "gcs" {}` and the migrator translates such a block instead of leaving it in `backend.tf`.
+_Avoid_: Empty backend, backend stub
+
 **Module call wrapper**:
 The `ModuleCall` subclass the migrator generates per local module directory (`modules/cloud_run` → `lib/cloud_run_module.dart`, `CloudRunModule`) from that module's `variable` and `output` blocks: one named `TfArg` parameter per variable, one `TfRef<String>` getter per output. A module that declares neither, and any source the scan cannot resolve to a directory (registry, git, out of tree), keeps the bare `ModuleCall` with an untyped `inputs` map. The module itself is never inlined — `source` is copied verbatim and Terraform resolves it.
 _Avoid_: Module Stack, generated module class

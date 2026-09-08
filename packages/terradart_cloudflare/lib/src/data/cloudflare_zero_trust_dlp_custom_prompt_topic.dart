@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustDlpCustomPromptTopic extends Data {
     required TfArg<String> accountId,
     required TfArg<String> entryId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'entry_id': entryId},

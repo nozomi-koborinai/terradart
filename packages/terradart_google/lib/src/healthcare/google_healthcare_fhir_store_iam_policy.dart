@@ -22,6 +22,7 @@ final class GoogleHealthcareFhirStoreIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'fhir_store_id': fhirStoreId, 'policy_data': policyData},

@@ -40,6 +40,7 @@ final class DataCloudflareAccountMember extends Data {
     TfArg<String>? memberId,
     DataAccountMemberFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

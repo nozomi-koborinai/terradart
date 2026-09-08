@@ -18,6 +18,7 @@ final class DataGoogleIamPolicy extends Data {
     TfArg<List<Map<String, dynamic>>>? auditConfig,
     TfArg<List<Map<String, dynamic>>>? binding,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

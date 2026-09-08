@@ -22,6 +22,7 @@ final class DataAppwriteMysqlDatabaseStatus extends Data {
     required TfArg<String> databaseId,
     TfArg<String>? projectId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

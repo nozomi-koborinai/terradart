@@ -19,6 +19,7 @@ final class DataGoogleArtifactRegistryRepositories extends Data {
     TfArg<String>? nameFilter,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -34,6 +34,7 @@ final class DataCloudflareWebAnalyticsSite extends Data {
     TfArg<String>? siteId,
     DataWebAnalyticsSiteFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

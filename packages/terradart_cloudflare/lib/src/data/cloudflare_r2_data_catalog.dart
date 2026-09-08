@@ -19,6 +19,7 @@ final class DataCloudflareR2DataCatalog extends Data {
     TfArg<String>? accountId,
     required TfArg<String> bucketName,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

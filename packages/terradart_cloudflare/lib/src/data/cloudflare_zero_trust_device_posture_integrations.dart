@@ -17,6 +17,7 @@ final class DataCloudflareZeroTrustDevicePostureIntegrations extends Data {
     TfArg<String>? accountId,
     TfArg<num>? maxItems,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

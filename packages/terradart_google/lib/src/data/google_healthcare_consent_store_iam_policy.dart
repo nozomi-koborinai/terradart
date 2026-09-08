@@ -18,6 +18,7 @@ final class DataGoogleHealthcareConsentStoreIamPolicy extends Data {
     required TfArg<String> consentStoreId,
     required TfArg<String> dataset,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'consent_store_id': consentStoreId, 'dataset': dataset},

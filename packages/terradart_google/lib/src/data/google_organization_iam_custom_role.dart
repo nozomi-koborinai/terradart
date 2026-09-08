@@ -18,6 +18,7 @@ final class DataGoogleOrganizationIamCustomRole extends Data {
     required TfArg<String> orgId,
     required TfArg<String> roleId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'org_id': orgId, 'role_id': roleId},

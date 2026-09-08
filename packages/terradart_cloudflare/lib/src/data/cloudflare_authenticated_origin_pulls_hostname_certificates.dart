@@ -18,6 +18,7 @@ final class DataCloudflareAuthenticatedOriginPullsHostnameCertificates
     TfArg<num>? maxItems,
     required TfArg<String> zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

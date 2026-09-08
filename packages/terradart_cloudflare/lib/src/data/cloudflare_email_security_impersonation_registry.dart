@@ -50,6 +50,7 @@ final class DataCloudflareEmailSecurityImpersonationRegistry extends Data {
     TfArg<String>? impersonationRegistryId,
     DataEmailSecurityImpersonationRegistryFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

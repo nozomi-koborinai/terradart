@@ -20,6 +20,7 @@ final class DataCloudflareList extends Data {
     required TfArg<String> listId,
     TfArg<String>? search,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

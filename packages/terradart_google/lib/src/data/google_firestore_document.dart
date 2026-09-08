@@ -20,6 +20,7 @@ final class DataGoogleFirestoreDocument extends Data {
     required TfArg<String> documentId,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

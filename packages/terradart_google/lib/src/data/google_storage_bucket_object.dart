@@ -18,6 +18,7 @@ final class DataGoogleStorageBucketObject extends Data {
     TfArg<String>? bucket,
     TfArg<String>? name,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -18,6 +18,7 @@ final class DataGoogleComputeNetworkPeering extends Data {
     required TfArg<String> name,
     required TfArg<String> network,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': name, 'network': network});
 
   @override

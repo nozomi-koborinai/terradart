@@ -20,6 +20,7 @@ final class DataGoogleOracleDatabaseGoldengateDeploymentTypes extends Data {
     required TfArg<String> location,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

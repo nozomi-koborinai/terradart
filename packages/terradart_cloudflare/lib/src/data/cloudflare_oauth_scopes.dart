@@ -14,6 +14,7 @@ final class DataCloudflareOauthScopes extends Data {
     required super.localName,
     TfArg<num>? maxItems,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (maxItems != null) 'max_items': maxItems},

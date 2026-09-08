@@ -22,6 +22,7 @@ final class CloudflareAuthenticatedOriginPullsSettings extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'enabled': enabled, 'zone_id': zoneId},

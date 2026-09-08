@@ -19,6 +19,7 @@ final class DataGoogleActiveFolder extends Data {
     required TfArg<String> displayName,
     required TfArg<String> parent,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

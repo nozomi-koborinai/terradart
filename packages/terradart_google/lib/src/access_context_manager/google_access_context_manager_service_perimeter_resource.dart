@@ -40,6 +40,7 @@ final class GoogleAccessContextManagerServicePerimeterResource
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

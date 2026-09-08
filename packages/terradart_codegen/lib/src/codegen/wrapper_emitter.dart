@@ -279,6 +279,10 @@ class WrapperEmitter {
     } else {
       buf.writeln('    String? provider,');
     }
+    // The `timeouts` meta-argument, provider-neutral like `lifecycle`:
+    // `terraform validate` decides whether this type's schema declares the
+    // operations set on it.
+    buf.writeln('    super.timeouts,');
     buf.writeln('  }) : super(');
     buf.writeln('         terraformType: tfType,');
     if (resourceProvider != null) {

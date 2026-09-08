@@ -19,6 +19,7 @@ final class DataGoogleComputeNetworkAttachment extends Data {
     TfArg<String>? project,
     required TfArg<String> region,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

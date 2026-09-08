@@ -18,6 +18,7 @@ final class DataGoogleSccV2OrganizationSourceIamPolicy extends Data {
     required TfArg<String> organization,
     required TfArg<String> source,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'organization': organization, 'source': source},

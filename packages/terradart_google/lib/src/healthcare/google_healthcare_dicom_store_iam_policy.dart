@@ -22,6 +22,7 @@ final class GoogleHealthcareDicomStoreIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'dicom_store_id': dicomStoreId, 'policy_data': policyData},

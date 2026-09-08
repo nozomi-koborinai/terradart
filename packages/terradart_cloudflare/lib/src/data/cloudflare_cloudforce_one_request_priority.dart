@@ -19,6 +19,7 @@ final class DataCloudflareCloudforceOneRequestPriority extends Data {
     TfArg<String>? accountId,
     required TfArg<String> priorityId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

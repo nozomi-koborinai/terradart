@@ -18,6 +18,7 @@ final class DataGoogleBigqueryDataset extends Data {
     required TfArg<String> datasetId,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

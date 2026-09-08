@@ -21,6 +21,7 @@ final class DataGoogleServiceNetworkingPeeredDnsDomain extends Data {
     required TfArg<String> project,
     required TfArg<String> service,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

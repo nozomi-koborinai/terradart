@@ -19,6 +19,7 @@ final class DataCloudflareFirewallRule extends Data {
     TfArg<String>? ruleId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
