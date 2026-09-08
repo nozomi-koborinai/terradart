@@ -20,6 +20,7 @@ final class DataCloudflareR2BucketEventNotification extends Data {
     required TfArg<String> bucketName,
     required TfArg<String> queueId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

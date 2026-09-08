@@ -14,6 +14,7 @@ final class DataCloudflareOriginTlsComplianceModes extends Data {
     required super.localName,
     required TfArg<String> zoneId,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'zone_id': zoneId});
 
   @override

@@ -17,6 +17,7 @@ final class DataGoogleCloudIdentityGroupLookup extends Data {
     required super.localName,
     required TfArg<Map<String, dynamic>> groupKey,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'group_key': groupKey});
 
   @override

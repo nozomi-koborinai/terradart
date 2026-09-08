@@ -48,6 +48,7 @@ final class DataCloudflareZeroTrustDexTest extends Data {
     DataZeroTrustDexTestFilter? filter,
     List<DataZeroTrustDexTestTargetPolicies>? targetPolicies,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

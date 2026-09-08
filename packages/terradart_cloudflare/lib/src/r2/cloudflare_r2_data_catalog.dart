@@ -21,6 +21,7 @@ final class CloudflareR2DataCatalog extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'bucket_name': bucketName},

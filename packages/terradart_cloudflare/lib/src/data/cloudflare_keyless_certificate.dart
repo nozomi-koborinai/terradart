@@ -30,6 +30,7 @@ final class DataCloudflareKeylessCertificate extends Data {
     required TfArg<String> keylessCertificateId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

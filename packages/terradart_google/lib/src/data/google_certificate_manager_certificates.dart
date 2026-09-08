@@ -18,6 +18,7 @@ final class DataGoogleCertificateManagerCertificates extends Data {
     TfArg<String>? filter,
     TfArg<String>? region,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

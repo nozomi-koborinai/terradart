@@ -52,6 +52,7 @@ final class DataCloudflareWorkersCustomDomain extends Data {
     TfArg<String>? domainId,
     DataWorkersCustomDomainFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 import 'lifecycle.dart';
 import 'tf_arg.dart';
 import 'tf_ref.dart';
+import 'tf_timeouts.dart';
 
 /// Whether a Stack entry is a `resource` block or a `data` block in
 /// Terraform JSON.
@@ -25,6 +26,7 @@ abstract base class Resource implements TfAddressed {
     this.lifecycle,
     this.dependsOn,
     this.provider,
+    this.timeouts,
   });
 
   /// Terraform resource type, e.g. `google_pubsub_topic`.
@@ -40,6 +42,12 @@ abstract base class Resource implements TfAddressed {
 
   /// Optional `lifecycle { ... }` block.
   final LifecycleOptions? lifecycle;
+
+  /// Optional `timeouts { ... }` block: how long Terraform waits for each
+  /// operation. Provider-neutral like [lifecycle] — synth copies the
+  /// duration strings verbatim, and `terraform validate` decides whether
+  /// this resource's schema declares the operations set here.
+  final TfTimeouts? timeouts;
 
   /// Optional `depends_on = [...]`. Each entry is a `DependencyTarget` —
   /// either a wholesale resource (rendered as bare address) or an explicit

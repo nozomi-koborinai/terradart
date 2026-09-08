@@ -11,12 +11,18 @@ import 'stack.dart';
 ///
 /// `TfJsonEncoder.terraformBlock` special-cases [GcsBackend] because it
 /// predates the generic path; the emitted JSON is the same either way.
+///
+/// Every field is optional, so a **partial configuration** — the block with
+/// the values supplied at init time instead (`terraform init
+/// -backend-config=bucket=...`, or a `-backend-config=FILE`) — is
+/// expressible: `const GcsBackend()` emits `backend "gcs" {}`.
 @immutable
 final class GcsBackend implements StackBackend {
-  const GcsBackend({required this.bucket, this.prefix});
+  const GcsBackend({this.bucket, this.prefix});
 
-  /// GCS bucket holding the Terraform state file.
-  final String bucket;
+  /// GCS bucket holding the Terraform state file, or `null` for a partial
+  /// configuration that supplies it with `-backend-config`.
+  final String? bucket;
 
   /// Optional prefix inside the bucket. Defaults to `default` on the
   /// Terraform side; we omit the field entirely if unset so the user's
@@ -28,7 +34,7 @@ final class GcsBackend implements StackBackend {
 
   @override
   Map<String, Object?> toTfJson() => {
-        'bucket': bucket,
+        if (bucket != null) 'bucket': bucket,
         if (prefix != null) 'prefix': prefix,
       };
 }
@@ -66,12 +72,14 @@ final class LocalBackend implements StackBackend {
 ///
 /// Every optional field is omitted from [toTfJson] when null, so the
 /// Terraform-side default applies rather than a value terradart chose.
-/// An explicit `false` is a value, and is emitted.
+/// An explicit `false` is a value, and is emitted. [bucket] and [key] are
+/// optional for the same reason as [GcsBackend]'s: a **partial
+/// configuration** leaves them to `terraform init -backend-config`.
 @immutable
 final class S3Backend implements StackBackend {
   const S3Backend({
-    required this.bucket,
-    required this.key,
+    this.bucket,
+    this.key,
     this.region,
     this.endpoints,
     this.usePathStyle,
@@ -98,8 +106,8 @@ final class S3Backend implements StackBackend {
   /// at apply time (an R2 API token), never from synth output.
   factory S3Backend.r2({
     required String accountId,
-    required String bucket,
-    required String key,
+    String? bucket,
+    String? key,
   }) =>
       S3Backend(
         bucket: bucket,
@@ -114,12 +122,14 @@ final class S3Backend implements StackBackend {
         skipS3Checksum: true,
       );
 
-  /// S3 bucket holding the Terraform state file.
-  final String bucket;
+  /// S3 bucket holding the Terraform state file, or `null` for a partial
+  /// configuration that supplies it with `-backend-config`.
+  final String? bucket;
 
   /// Object key of the state file inside [bucket], e.g.
-  /// `terraform/site/terraform.tfstate`. Terraform has no default here.
-  final String key;
+  /// `terraform/site/terraform.tfstate`. Terraform has no default here;
+  /// `null` leaves it to `-backend-config`.
+  final String? key;
 
   /// Bucket region. `'auto'` for R2.
   final String? region;
@@ -154,8 +164,8 @@ final class S3Backend implements StackBackend {
 
   @override
   Map<String, Object?> toTfJson() => {
-        'bucket': bucket,
-        'key': key,
+        if (bucket != null) 'bucket': bucket,
+        if (key != null) 'key': key,
         if (region != null) 'region': region,
         if (endpoints != null) 'endpoints': endpoints,
         if (usePathStyle != null) 'use_path_style': usePathStyle,

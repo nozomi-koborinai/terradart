@@ -64,6 +64,7 @@ final class GoogleApigeeSecurityProfileV2 extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

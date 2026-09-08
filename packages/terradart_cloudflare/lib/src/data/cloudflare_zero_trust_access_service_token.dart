@@ -38,6 +38,7 @@ final class DataCloudflareZeroTrustAccessServiceToken extends Data {
     TfArg<String>? zoneId,
     DataZeroTrustAccessServiceTokenFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

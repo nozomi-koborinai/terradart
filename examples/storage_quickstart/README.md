@@ -33,7 +33,7 @@ terraform apply
 
 - A GCS bucket `my-app-assets-prod` in `ASIA-NORTHEAST1` on `STANDARD` storage class.
 - A second bucket `my-app-assets-prod-eu` in `EUROPE-WEST1`, created through the aliased provider configuration (`GoogleProvider(alias: 'eu', ...)` selected with `provider: 'google.eu'` — the `provider "google" { alias = "eu" }` / `provider = google.eu` pattern in HCL), with a `moved` block (`addMoved('google_storage_bucket.assets_europe', 'google_storage_bucket.assets_eu')`) carrying the state of its earlier name.
-- Object versioning enabled via `Versioning(enabled: true)`.
+- Object versioning enabled via `Versioning(enabled: true)`, and a `timeouts` block (`TfTimeouts(create: '10m', read: '5m', update: '10m')` — `google_storage_bucket` declares no `delete` timeout, and `terraform validate` says so).
 - One `LifecycleRule` transitioning objects to `ARCHIVE` storage class after 365 days.
 - One inline-content object `config/app.json` uploaded via `BucketObjectFromContent`.
 - A local Terraform module `modules/object_prefix` called with `addModule(ModuleCall(source: '../modules/object_prefix', ...))`; its `prefix` output feeds the object-notification filter as a `TfRef` (`objectPrefix.output<String>('prefix')`).

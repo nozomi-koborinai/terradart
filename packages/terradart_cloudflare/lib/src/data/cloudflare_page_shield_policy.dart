@@ -20,6 +20,7 @@ final class DataCloudflarePageShieldPolicy extends Data {
     required TfArg<String> policyId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'policy_id': policyId, if (zoneId != null) 'zone_id': zoneId},

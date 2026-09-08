@@ -15,6 +15,7 @@ final class DataCloudflareOriginCloudRegion extends Data {
     required TfArg<String> originIp,
     required TfArg<String> zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'origin_ip': originIp, 'zone_id': zoneId},

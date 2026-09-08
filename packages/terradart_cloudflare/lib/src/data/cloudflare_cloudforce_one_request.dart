@@ -73,6 +73,7 @@ final class DataCloudflareCloudforceOneRequest extends Data {
     TfArg<String>? requestId,
     DataCloudforceOneRequestFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -17,6 +17,7 @@ final class DataGoogleHealthcareHl7V2StoreIamPolicy extends Data {
     required super.localName,
     required TfArg<String> hl7V2StoreId,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'hl7_v2_store_id': hl7V2StoreId});
 
   @override

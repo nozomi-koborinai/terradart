@@ -19,6 +19,7 @@ final class DataGoogleOrganizationIamCustomRoles extends Data {
     TfArg<bool>? showDeleted,
     TfArg<String>? view,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

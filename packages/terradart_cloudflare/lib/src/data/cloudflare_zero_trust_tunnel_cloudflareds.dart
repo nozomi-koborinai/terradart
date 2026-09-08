@@ -30,6 +30,7 @@ final class DataCloudflareZeroTrustTunnelCloudflareds extends Data {
     TfArg<String>? wasActiveAt,
     TfArg<String>? wasInactiveAt,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -20,6 +20,7 @@ final class DataCloudflareImages extends Data {
     TfArg<String>? creator,
     TfArg<num>? maxItems,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

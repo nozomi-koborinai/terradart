@@ -58,6 +58,7 @@ final class DataCloudflareZeroTrustNetworkHostnameRoute extends Data {
     TfArg<String>? hostnameRouteId,
     DataZeroTrustNetworkHostnameRouteFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

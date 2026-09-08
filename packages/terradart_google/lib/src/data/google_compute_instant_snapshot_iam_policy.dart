@@ -19,6 +19,7 @@ final class DataGoogleComputeInstantSnapshotIamPolicy extends Data {
     TfArg<String>? project,
     TfArg<String>? zone,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -18,6 +18,7 @@ final class DataCloudflareStreamKey extends Data {
     required super.localName,
     TfArg<String>? accountId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (accountId != null) 'account_id': accountId},

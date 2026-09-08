@@ -17,6 +17,7 @@ final class DataCloudflareZeroTrustResourceLibraryCategory extends Data {
     required TfArg<String> accountId,
     required TfArg<String> id,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'id': id},

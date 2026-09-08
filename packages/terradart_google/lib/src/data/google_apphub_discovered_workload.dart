@@ -19,6 +19,7 @@ final class DataGoogleApphubDiscoveredWorkload extends Data {
     TfArg<String>? project,
     required TfArg<String> workloadUri,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

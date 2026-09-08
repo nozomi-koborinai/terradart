@@ -60,6 +60,7 @@ final class GoogleAccessContextManagerServicePerimeterDryRunResource
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

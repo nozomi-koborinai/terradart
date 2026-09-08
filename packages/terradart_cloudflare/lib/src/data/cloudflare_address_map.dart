@@ -19,6 +19,7 @@ final class DataCloudflareAddressMap extends Data {
     TfArg<String>? accountId,
     required TfArg<String> addressMapId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

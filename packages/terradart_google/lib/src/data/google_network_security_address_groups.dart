@@ -19,6 +19,7 @@ final class DataGoogleNetworkSecurityAddressGroups extends Data {
     TfArg<String>? parent,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

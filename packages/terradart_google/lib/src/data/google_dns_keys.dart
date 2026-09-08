@@ -18,6 +18,7 @@ final class DataGoogleDnsKeys extends Data {
     required TfArg<String> managedZone,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -20,6 +20,7 @@ final class CloudflareEmailRoutingSettings extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'zone_id': zoneId});
 
   @override

@@ -17,6 +17,7 @@ final class DataGoogleBillingAccountIamPolicy extends Data {
     required super.localName,
     required TfArg<String> billingAccountId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'billing_account_id': billingAccountId},

@@ -21,6 +21,7 @@ final class DataGoogleDataprocMetastoreTableIamPolicy extends Data {
     required TfArg<String> serviceId,
     required TfArg<String> table,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

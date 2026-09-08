@@ -15,6 +15,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
     TfArg<String>? accountId,
     required TfArg<String> policyId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

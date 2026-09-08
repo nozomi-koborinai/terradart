@@ -37,6 +37,7 @@ final class DataCloudflareSecretsStore extends Data {
     TfArg<String>? storeId,
     DataSecretsStoreFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

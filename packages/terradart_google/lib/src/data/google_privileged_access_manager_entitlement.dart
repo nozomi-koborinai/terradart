@@ -20,6 +20,7 @@ final class DataGooglePrivilegedAccessManagerEntitlement extends Data {
     TfArg<String>? location,
     TfArg<String>? parent,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

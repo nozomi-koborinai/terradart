@@ -21,6 +21,7 @@ final class CloudflareCustomHostnameFallbackOrigin extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'origin': origin, 'zone_id': zoneId},

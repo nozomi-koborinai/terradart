@@ -21,6 +21,7 @@ final class DataCloudflarePipelineStreams extends Data {
     TfArg<String>? name,
     TfArg<String>? pipelineId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

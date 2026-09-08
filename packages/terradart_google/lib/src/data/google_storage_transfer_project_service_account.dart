@@ -19,6 +19,7 @@ final class DataGoogleStorageTransferProjectServiceAccount extends Data {
     required super.localName,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (project != null) 'project': project},

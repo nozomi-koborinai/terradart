@@ -19,6 +19,7 @@ final class DataGoogleBackupDrDataSourceReferences extends Data {
     TfArg<String>? project,
     TfArg<String>? resourceType,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -18,6 +18,7 @@ final class DataGoogleOrganization extends Data {
     TfArg<String>? domain,
     TfArg<String>? organization,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

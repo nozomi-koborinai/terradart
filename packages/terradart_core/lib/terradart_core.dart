@@ -39,5 +39,6 @@ export 'src/tf_arg.dart'
 export 'src/tf_template.dart' show hasTemplateSequence, templateVariableNames;
 export 'src/tf_moved.dart' show TfMoved;
 export 'src/tf_variable.dart' show TfVariable;
+export 'src/tf_timeouts.dart' show TfTimeouts;
 export 'src/tf_ref.dart'
     show AttributeRef, DataRef, ResourceRef, TfAddressed, TfRef;

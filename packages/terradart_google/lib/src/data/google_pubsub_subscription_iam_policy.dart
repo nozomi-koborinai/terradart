@@ -18,6 +18,7 @@ final class DataGooglePubsubSubscriptionIamPolicy extends Data {
     TfArg<String>? project,
     required TfArg<String> subscription,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

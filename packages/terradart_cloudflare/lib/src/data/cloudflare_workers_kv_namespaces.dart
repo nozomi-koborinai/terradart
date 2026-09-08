@@ -21,6 +21,7 @@ final class DataCloudflareWorkersKvNamespaces extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? order,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

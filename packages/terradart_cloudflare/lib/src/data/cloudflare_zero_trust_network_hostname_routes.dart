@@ -26,6 +26,7 @@ final class DataCloudflareZeroTrustNetworkHostnameRoutes extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? tunnelId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

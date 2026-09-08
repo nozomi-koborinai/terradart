@@ -15,6 +15,7 @@ final class DataCloudflareZeroTrustGatewayCertificate extends Data {
     TfArg<String>? accountId,
     required TfArg<String> certificateId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

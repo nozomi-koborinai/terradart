@@ -16,6 +16,7 @@ final class DataCloudflareZeroTrustLists extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? type,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

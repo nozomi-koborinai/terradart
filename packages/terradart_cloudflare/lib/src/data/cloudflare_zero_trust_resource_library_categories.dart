@@ -19,6 +19,7 @@ final class DataCloudflareZeroTrustResourceLibraryCategories extends Data {
     TfArg<num>? maxItems,
     TfArg<num>? offset,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

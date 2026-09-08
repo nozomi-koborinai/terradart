@@ -18,6 +18,7 @@ final class DataGoogleIapWebBackendServiceIamPolicy extends Data {
     TfArg<String>? project,
     required TfArg<String> webBackendService,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

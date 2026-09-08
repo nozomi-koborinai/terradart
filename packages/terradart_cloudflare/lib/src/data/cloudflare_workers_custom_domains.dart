@@ -24,6 +24,7 @@ final class DataCloudflareWorkersCustomDomains extends Data {
     TfArg<String>? zoneId,
     TfArg<String>? zoneName,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -47,6 +47,7 @@ final class GoogleKmsCryptoKeyVersion extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'crypto_key': cryptoKey, if (state != null) 'state': state},

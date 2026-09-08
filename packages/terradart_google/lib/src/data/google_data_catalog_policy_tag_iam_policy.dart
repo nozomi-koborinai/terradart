@@ -17,6 +17,7 @@ final class DataGoogleDataCatalogPolicyTagIamPolicy extends Data {
     required super.localName,
     required TfArg<String> policyTag,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'policy_tag': policyTag});
 
   @override

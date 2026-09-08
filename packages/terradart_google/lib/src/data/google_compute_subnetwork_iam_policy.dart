@@ -19,6 +19,7 @@ final class DataGoogleComputeSubnetworkIamPolicy extends Data {
     TfArg<String>? region,
     required TfArg<String> subnetwork,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

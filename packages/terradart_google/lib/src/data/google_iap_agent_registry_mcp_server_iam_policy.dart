@@ -21,6 +21,7 @@ final class DataGoogleIapAgentRegistryMcpServerIamPolicy extends Data {
     required TfArg<String> mcpServerId,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

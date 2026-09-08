@@ -20,6 +20,7 @@ final class DataGoogleDnsRecordSet extends Data {
     TfArg<String>? project,
     required TfArg<String> type,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

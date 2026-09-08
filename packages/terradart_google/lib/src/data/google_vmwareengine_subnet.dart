@@ -18,6 +18,7 @@ final class DataGoogleVmwareengineSubnet extends Data {
     required TfArg<String> name,
     required TfArg<String> parent,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'name': name, 'parent': parent});
 
   @override

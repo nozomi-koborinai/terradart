@@ -18,6 +18,7 @@ final class DataGoogleComputeRegions extends Data {
     TfArg<String>? project,
     TfArg<String>? status,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

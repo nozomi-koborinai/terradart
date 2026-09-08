@@ -67,6 +67,24 @@ sealed class TfArg<T> {
   static TfArg<T> expression<T>(String template) =>
       TfArgExpression<T>(template);
 
+  /// Convenience: `TfArg.workspace()` — the name of the selected Terraform
+  /// workspace, `${terraform.workspace}`.
+  ///
+  /// ```dart
+  /// name: TfArg.expression(r'my-app-${terraform.workspace}'),
+  /// labels: TfArg.literal({'env': TfArg.workspace<String>()}),
+  /// ```
+  ///
+  /// Terraform resolves it per `terraform workspace select`, so a stack that
+  /// reads it synthesizes once and plans differently per workspace — nothing
+  /// about the state layout or the selection changes. Equivalent to
+  /// `TfArg.expression(r'${terraform.workspace}')`; use [expression] to
+  /// interpolate it into a larger string.
+  static TfArg<T> workspace<T>() => TfArgExpression<T>(workspaceTemplate);
+
+  /// The template [workspace] emits: `${terraform.workspace}`.
+  static const String workspaceTemplate = r'${terraform.workspace}';
+
   /// Convenience for Terraform duration-string fields
   /// (`rotation_period`, `message_retention_duration`, `ack_deadline_seconds`
   /// when expressed in string-seconds form, etc.).

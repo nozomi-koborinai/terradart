@@ -23,6 +23,7 @@ final class DataCloudflareAccountApiTokenPermissionGroupsList extends Data {
     TfArg<String>? name,
     TfArg<String>? scope,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

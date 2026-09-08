@@ -19,6 +19,7 @@ final class DataCloudflareRegionalHostnames extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

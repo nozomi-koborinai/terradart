@@ -30,6 +30,7 @@ final class DataCloudflarePageRule extends Data {
     required TfArg<String> pageruleId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

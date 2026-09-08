@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustDlpPredefinedProfile extends Data {
     TfArg<String>? accountId,
     required TfArg<String> profileId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

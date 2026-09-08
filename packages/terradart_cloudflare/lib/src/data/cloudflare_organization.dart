@@ -112,6 +112,7 @@ final class DataCloudflareOrganization extends Data {
     TfArg<String>? organizationId,
     DataOrganizationFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

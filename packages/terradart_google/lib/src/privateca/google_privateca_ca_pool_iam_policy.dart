@@ -22,6 +22,7 @@ final class GooglePrivatecaCaPoolIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'ca_pool': caPool, 'policy_data': policyData},

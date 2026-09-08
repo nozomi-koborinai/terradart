@@ -20,6 +20,7 @@ final class DataCloudflareZeroTrustDeviceIpProfiles extends Data {
     TfArg<num>? maxItems,
     TfArg<num>? perPage,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

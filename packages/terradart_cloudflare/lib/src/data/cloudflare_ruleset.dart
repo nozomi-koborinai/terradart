@@ -16,6 +16,7 @@ final class DataCloudflareRuleset extends Data {
     TfArg<String>? rulesetId,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

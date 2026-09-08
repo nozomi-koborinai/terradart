@@ -21,6 +21,7 @@ final class DataGoogleContainerRegistryImage extends Data {
     TfArg<String>? region,
     TfArg<String>? tag,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -20,6 +20,7 @@ final class DataGoogleComputeNetwork extends Data {
     TfArg<String>? project,
     TfArg<String>? selfLink,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

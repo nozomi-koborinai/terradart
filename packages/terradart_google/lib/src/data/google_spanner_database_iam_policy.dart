@@ -19,6 +19,7 @@ final class DataGoogleSpannerDatabaseIamPolicy extends Data {
     required TfArg<String> instance,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

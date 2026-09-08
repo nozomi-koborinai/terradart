@@ -16,6 +16,7 @@ final class DataCloudflareZeroTrustDeviceManagedNetworks extends Data {
     TfArg<String>? accountId,
     required TfArg<String> networkId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

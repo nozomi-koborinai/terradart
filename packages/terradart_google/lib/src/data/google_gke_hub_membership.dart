@@ -19,6 +19,7 @@ final class DataGoogleGkeHubMembership extends Data {
     required TfArg<String> membershipId,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -33,6 +33,7 @@ final class DataCloudflareD1Database extends Data {
     TfArg<List<String>>? fields,
     DataD1DatabaseFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

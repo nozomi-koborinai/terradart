@@ -21,6 +21,7 @@ final class DataCloudflareByoIpPrefix extends Data {
     TfArg<String>? accountId,
     required TfArg<String> prefixId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

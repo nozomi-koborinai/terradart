@@ -15,6 +15,7 @@ final class DataCloudflareR2BucketCors extends Data {
     required TfArg<String> accountId,
     required TfArg<String> bucketName,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'account_id': accountId, 'bucket_name': bucketName},

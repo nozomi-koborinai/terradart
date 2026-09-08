@@ -19,6 +19,7 @@ final class DataGoogleCloudbuildTrigger extends Data {
     TfArg<String>? project,
     required TfArg<String> triggerId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

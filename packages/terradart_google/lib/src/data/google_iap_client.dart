@@ -18,6 +18,7 @@ final class DataGoogleIapClient extends Data {
     required TfArg<String> brand,
     required TfArg<String> clientId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'brand': brand, 'client_id': clientId},

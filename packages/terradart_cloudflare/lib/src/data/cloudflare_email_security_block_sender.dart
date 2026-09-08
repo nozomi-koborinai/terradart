@@ -52,6 +52,7 @@ final class DataCloudflareEmailSecurityBlockSender extends Data {
     TfArg<String>? patternId,
     DataEmailSecurityBlockSenderFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

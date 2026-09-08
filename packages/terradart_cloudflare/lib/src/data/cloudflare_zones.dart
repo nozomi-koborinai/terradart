@@ -42,6 +42,7 @@ final class DataCloudflareZones extends Data {
     TfArg<List<String>>? type,
     DataZonesAccount? account,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

@@ -21,6 +21,7 @@ final class CloudflareArgoSmartRouting extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'value': value, 'zone_id': zoneId},

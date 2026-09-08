@@ -21,6 +21,7 @@ final class DataCloudflareLoadBalancer extends Data {
     TfArg<Map<String, List<String>>>? regionPools,
     TfArg<String>? zoneId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

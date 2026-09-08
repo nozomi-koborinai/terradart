@@ -18,6 +18,7 @@ final class DataGoogleIamWorkforcePoolIamPolicy extends Data {
     TfArg<String>? location,
     required TfArg<String> workforcePoolId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

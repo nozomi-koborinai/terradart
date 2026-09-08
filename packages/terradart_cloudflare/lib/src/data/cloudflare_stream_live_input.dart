@@ -30,6 +30,7 @@ final class DataCloudflareStreamLiveInput extends Data {
     required TfArg<String> accountId,
     required TfArg<String> liveInputIdentifier,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

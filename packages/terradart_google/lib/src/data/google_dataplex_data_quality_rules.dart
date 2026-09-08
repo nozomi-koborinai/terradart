@@ -19,6 +19,7 @@ final class DataGoogleDataplexDataQualityRules extends Data {
     TfArg<String>? location,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

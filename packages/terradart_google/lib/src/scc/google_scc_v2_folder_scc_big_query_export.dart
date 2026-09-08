@@ -35,6 +35,7 @@ final class GoogleSccV2FolderSccBigQueryExport extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

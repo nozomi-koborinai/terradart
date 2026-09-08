@@ -19,6 +19,7 @@ final class DataGoogleCloudAssetSearchAllResources extends Data {
     TfArg<String>? query,
     required TfArg<String> scope,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

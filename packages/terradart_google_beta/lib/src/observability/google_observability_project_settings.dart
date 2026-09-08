@@ -19,6 +19,7 @@ final class GoogleObservabilityProjectSettings extends Resource {
     super.lifecycle,
     super.dependsOn,
     String? provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          provider: provider ?? 'google-beta',

@@ -17,6 +17,7 @@ final class DataGoogleServiceAccountIamPolicy extends Data {
     required super.localName,
     required TfArg<String> serviceAccountId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'service_account_id': serviceAccountId},

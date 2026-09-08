@@ -19,6 +19,7 @@ final class DataGoogleBigqueryTable extends Data {
     TfArg<String>? project,
     required TfArg<String> tableId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

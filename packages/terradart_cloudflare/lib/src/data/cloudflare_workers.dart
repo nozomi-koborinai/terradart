@@ -21,6 +21,7 @@ final class DataCloudflareWorkers extends Data {
     TfArg<String>? order,
     TfArg<String>? orderBy,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

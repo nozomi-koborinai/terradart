@@ -17,6 +17,7 @@ final class DataGoogleProjectIamPolicy extends Data {
     required super.localName,
     required TfArg<String> project,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'project': project});
 
   @override

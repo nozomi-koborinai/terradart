@@ -33,6 +33,7 @@ final class DataCloudflareStreams extends Data {
     TfArg<String>? type,
     TfArg<String>? videoName,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

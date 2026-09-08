@@ -15,6 +15,7 @@ final class DataCloudflareZeroTrustGatewayPolicy extends Data {
     TfArg<String>? accountId,
     required TfArg<String> ruleId,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

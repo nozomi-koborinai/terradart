@@ -104,6 +104,38 @@ add(GooglePubsubTopic(localName: 'orders_0', name: TfArg.literal('orders-0')));
 addMoved('google_pubsub_topic.orders[0]', 'google_pubsub_topic.orders_0');
 ```
 
+**`terradart_core`** — three additions that turn migrator blockers into
+translations (#671), all additive:
+
+- **`timeouts:`** on every curated factory and data source, mirroring
+  `lifecycle`. `TfTimeouts` carries the Go duration strings Terraform
+  writes; which operations a type declares is `terraform validate`'s
+  business, not synth's:
+
+  ```dart
+  add(GoogleStorageBucket(
+    localName: 'assets',
+    name: TfArg.literal('my-app-assets'),
+    location: TfArg.literal('ASIA-NORTHEAST1'),
+    timeouts: const TfTimeouts(create: '10m', read: '5m', update: '10m'),
+  ));
+  ```
+
+  `TfTimeouts.of(create: Duration(minutes: 10))` builds one from
+  `Duration`s (rendered as whole seconds). A hand-written `Resource`
+  subclass gains the parameter for free; a hand-written *factory* that
+  wants to expose it forwards `super.timeouts` like `super.lifecycle`.
+
+- **`TfArg.workspace()`** — `${terraform.workspace}` under a name.
+  Sugar over `TfArg.expression`; use `TfArg.expression` to interpolate the
+  workspace into a larger string.
+
+- **Partial backend configuration**: every field of `GcsBackend` and
+  `S3Backend` is optional now, so a block whose values arrive at
+  `terraform init -backend-config` time is expressible —
+  `const GcsBackend()` emits `backend "gcs" {}`. Passing them still works
+  exactly as before.
+
 **`terradart_core`** — `Stack.addModule(...)` registers a `ModuleCall`
 (additive, #665): a `module "<name>" { ... }` block as a Dart value. Synth
 emits the calls under the top-level `module` key, and reads a module's

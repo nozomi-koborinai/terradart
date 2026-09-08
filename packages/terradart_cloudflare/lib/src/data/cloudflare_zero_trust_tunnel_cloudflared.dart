@@ -70,6 +70,7 @@ final class DataCloudflareZeroTrustTunnelCloudflared extends Data {
     TfArg<String>? tunnelId,
     DataZeroTrustTunnelCloudflaredFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

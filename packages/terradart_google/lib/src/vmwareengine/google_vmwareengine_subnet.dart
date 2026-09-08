@@ -36,6 +36,7 @@ final class GoogleVmwareengineSubnet extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'name': name, 'parent': parent, 'ip_cidr_range': ipCidrRange},

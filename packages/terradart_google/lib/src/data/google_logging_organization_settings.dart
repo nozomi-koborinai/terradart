@@ -17,6 +17,7 @@ final class DataGoogleLoggingOrganizationSettings extends Data {
     required super.localName,
     required TfArg<String> organization,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'organization': organization});
 
   @override

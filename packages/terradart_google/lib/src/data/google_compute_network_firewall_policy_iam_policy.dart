@@ -20,6 +20,7 @@ final class DataGoogleComputeNetworkFirewallPolicyIamPolicy extends Data {
     required TfArg<String> name,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'name': name, if (project != null) 'project': project},

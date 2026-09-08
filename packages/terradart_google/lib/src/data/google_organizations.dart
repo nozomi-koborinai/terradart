@@ -17,6 +17,7 @@ final class DataGoogleOrganizations extends Data {
     required super.localName,
     TfArg<String>? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {if (filter != null) 'filter': filter},

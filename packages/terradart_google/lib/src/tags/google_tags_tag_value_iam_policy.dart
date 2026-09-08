@@ -22,6 +22,7 @@ final class GoogleTagsTagValueIamPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {'tag_value': tagValue, 'policy_data': policyData},

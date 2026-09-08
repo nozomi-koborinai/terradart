@@ -35,6 +35,7 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpPortal extends Data {
     TfArg<String>? accountId,
     DataZeroTrustAccessAiControlsMcpPortalFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

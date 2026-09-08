@@ -21,6 +21,7 @@ final class DataGoogleParameterManagerParameterVersion extends Data {
     required TfArg<String> parameterVersionId,
     TfArg<String>? project,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

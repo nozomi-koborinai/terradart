@@ -28,6 +28,7 @@ final class DataCloudflareConnectivityDirectoryService extends Data {
     TfArg<String>? serviceId,
     DataConnectivityDirectoryServiceFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {

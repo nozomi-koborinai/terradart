@@ -17,6 +17,7 @@ final class DataGoogleBackupDrManagementServer extends Data {
     required super.localName,
     required TfArg<String> location,
     super.provider,
+    super.timeouts,
   }) : super(terraformType: tfType, argMap: {'location': location});
 
   @override

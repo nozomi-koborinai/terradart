@@ -58,6 +58,7 @@ final class DataCloudflareTokenValidationRules extends Data {
     TfArg<String>? zoneId,
     DataTokenValidationRulesFilter? filter,
     super.provider,
+    super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
