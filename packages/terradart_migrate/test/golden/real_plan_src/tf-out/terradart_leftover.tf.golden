@@ -9,8 +9,3 @@ resource "google_storage_bucket_object" "config" {
   bucket  = google_storage_bucket.assets.name
   content = "{}"
 }
-
-# terradart-migrate: module calls stay in Terraform until ModuleCall (#665)
-module "network" {
-  source = "./modules/network"
-}

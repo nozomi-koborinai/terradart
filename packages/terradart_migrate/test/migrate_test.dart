@@ -602,7 +602,7 @@ resource "google_pubsub_topic" "x" {
       expect(r.report.kept.single.address, 'output.literal');
     });
 
-    test('locals, module calls and moved blocks stay in Terraform', () {
+    test('locals and unresolvable moved blocks stay in Terraform', () {
       final r = _migrateJson({
         'terraform': _google,
         'locals': {'prefix': 'p'},
@@ -613,11 +613,16 @@ resource "google_pubsub_topic" "x" {
       });
       expect(
         r.report.kept.map((k) => k.address),
-        unorderedEquals(['local.prefix', 'module.net', 'moved']),
+        unorderedEquals(['local.prefix', 'moved']),
       );
       expect(
         r.report.kept.singleWhere((k) => k.address == 'moved').reason,
         contains('"a.c" stays in Terraform'),
+      );
+      // The module call itself became Dart, with no local directory to type.
+      expect(
+        r.stackSource,
+        contains("addModule(ModuleCall(localName: r'net', source: r'./net'))"),
       );
     });
   });
@@ -1398,4 +1403,395 @@ resource "google_pubsub_topic" "x" {
       );
     });
   });
+
+  group('module calls (#665)', () {
+    test('a call with no local directory becomes a bare ModuleCall', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'module': {
+          'network': {
+            'source': 'terraform-google-modules/network/google',
+            'version': '~> 9.0',
+            'project_id': 'demo',
+            'subnets': ['a', 'b'],
+          },
+        },
+        'resource': {
+          'google_pubsub_topic': {
+            't': {'name': 'orders'},
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(
+          "addModule(ModuleCall(localName: r'network', "
+          "source: r'terraform-google-modules/network/google', "
+          "version: r'~> 9.0', inputs: {r'project_id': "
+          "TfArg.literal(r'demo'), r'subnets': "
+          "TfArg.literal([r'a', r'b'])}))",
+        ),
+      );
+      expect(
+        r.report.migrated.map((m) => m.address),
+        contains('module.network'),
+      );
+    });
+
+    test('a resource reads a module output, and is emitted after it', () {
+      final r = _migrateHcl(
+        _hcl([
+          'resource "google_pubsub_topic" "t" {',
+          '  name = module.naming.topic',
+          '}',
+          '',
+          'module "naming" {',
+          '  source = "./modules/naming"',
+          '  env    = "dev"',
+          '}',
+        ]),
+      );
+      final src = r.stackSource;
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        src,
+        contains("name: TfArg.ref(TfRef.attribute<String>(naming, r'topic'))"),
+      );
+      expect(
+        src.indexOf('addModule('),
+        lessThan(src.indexOf('GooglePubsubTopic(')),
+      );
+    });
+
+    test('depends_on and an output may name the call', () {
+      final r = _migrateHcl(
+        _hcl([
+          'module "naming" {',
+          '  source = "./modules/naming"',
+          '}',
+          '',
+          'resource "google_pubsub_topic" "t" {',
+          '  name       = "orders"',
+          '  depends_on = [module.naming]',
+          '}',
+          '',
+          'output "topic_prefix" {',
+          '  value = module.naming.prefix',
+          '}',
+        ]),
+      );
+      final src = r.stackSource;
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(src, contains('dependsOn: [ResourceDependency(naming)]'));
+      expect(
+        src,
+        contains(
+          "addExport(r'topic_prefix', ResourceIdExport("
+          "TfRef.attribute<String>(naming, r'prefix'), "
+          'emitTerraformOutput: true))',
+        ),
+      );
+    });
+
+    test('providers = { ... } hands a registered alias down', () {
+      final r = _migrateHcl(
+        _hcl([
+          'provider "google" {',
+          '  project = "p"',
+          '}',
+          '',
+          'provider "google" {',
+          '  alias   = "eu"',
+          '  project = "p"',
+          '  region  = "europe-west1"',
+          '}',
+          '',
+          'module "eu_bucket" {',
+          '  source    = "./modules/bucket"',
+          '  providers = { google = google.eu }',
+          '}',
+        ]),
+      );
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(r.stackSource, contains("providers: {r'google': r'google.eu'}"));
+      expect(r.report.providers, ['google']);
+    });
+
+    test('an alias the module does not configure keeps the call', () {
+      final r = _migrateHcl(
+        _hcl([
+          'provider "google" {',
+          '  project = "p"',
+          '}',
+          '',
+          'resource "google_pubsub_topic" "t" {',
+          '  name = "orders"',
+          '}',
+          '',
+          'module "eu_bucket" {',
+          '  source    = "./modules/bucket"',
+          '  providers = { google = google.eu }',
+          '}',
+        ]),
+      );
+      expect(
+        r.report.kept
+            .singleWhere((k) => k.address == 'module.eu_bucket')
+            .reason,
+        contains('no provider "google" block with alias = "eu"'),
+      );
+    });
+
+    for (final probe in _moduleBlockers) {
+      test('${probe.label} keeps the call in Terraform', () {
+        final r = _migrateJson({
+          'terraform': _google,
+          'resource': {
+            'google_pubsub_topic': {
+              't': {'name': 'orders'},
+            },
+          },
+          'module': {'m': probe.body},
+        });
+        expect(
+          r.report.kept.singleWhere((k) => k.address == 'module.m').reason,
+          contains(probe.reason),
+        );
+      });
+    }
+  });
+
+  group('local module wrappers (#665)', () {
+    late Directory tmp;
+
+    setUp(() => tmp = Directory.systemTemp.createTempSync('tdmw'));
+    tearDown(() => tmp.deleteSync(recursive: true));
+
+    MigratedProject build(Map<String, String> files) {
+      for (final e in files.entries) {
+        final f = File('${tmp.path}/${e.key}');
+        f.parent.createSync(recursive: true);
+        f.writeAsStringSync(e.value);
+      }
+      return migrateTree(scanModuleTree(tmp), name: 'infra', format: false);
+    }
+
+    test('variables become parameters and outputs become TfRef getters', () {
+      final project = build({
+        'main.tf': _hcl([
+          'resource "google_pubsub_topic" "t" {',
+          '  name = module.sa.member',
+          '}',
+          '',
+          'module "sa" {',
+          '  source     = "./modules/service_account"',
+          '  account_id = "app-bff"',
+          '}',
+        ]),
+        'modules/service_account/main.tf': _lines([
+          'variable "account_id" {',
+          '  type        = string',
+          '  description = "The account id."',
+          '}',
+          '',
+          'variable "disabled" {',
+          '  type    = bool',
+          '  default = false',
+          '}',
+          '',
+          'resource "google_service_account" "this" {',
+          '  account_id = var.account_id',
+          '}',
+          '',
+          'output "member" {',
+          '  value = google_service_account.this.member',
+          '}',
+        ]),
+      });
+      final wrapper = project.files['lib/service_account_module.dart']!;
+      expect(
+        wrapper,
+        contains('final class ServiceAccountModule extends ModuleCall {'),
+      );
+      expect(wrapper, contains('required TfArg<String> accountId,'));
+      expect(wrapper, contains('TfArg<bool>? disabled,'));
+      expect(wrapper, contains('/// The account id.'));
+      expect(
+        wrapper,
+        contains(
+          'TfRef<String> get member => '
+          "TfRef.attribute<String>(this, r'member');",
+        ),
+      );
+      final root = project.files['lib/infra_stack.dart']!;
+      expect(root, contains("import 'service_account_module.dart';"));
+      expect(
+        root,
+        contains(
+          "addModule(ServiceAccountModule(localName: r'sa', "
+          "source: r'./modules/service_account', "
+          "accountId: TfArg.literal(r'app-bff')))",
+        ),
+      );
+      expect(root, contains('name: TfArg.ref(sa.member)'));
+      expect(project.keptCount, 0, reason: project.renderMarkdown());
+    });
+
+    test('an input the module does not declare keeps the call', () {
+      final project = build({
+        'main.tf': _hcl([
+          'resource "google_pubsub_topic" "t" {',
+          '  name = "orders"',
+          '}',
+          '',
+          'module "sa" {',
+          '  source     = "./modules/service_account"',
+          '  account_id = "app-bff"',
+          '  typo       = true',
+          '}',
+        ]),
+        'modules/service_account/main.tf':
+            'variable "account_id" { type = string }\n',
+      });
+      final kept = project.modules
+          .expand((m) => m.report.kept)
+          .singleWhere((k) => k.address == 'module.sa');
+      expect(kept.reason, contains('"typo"'));
+    });
+
+    test('a root that only calls modules still gets a Stack', () {
+      final project = build({
+        'main.tf': _lines([
+          'module "sa" {',
+          '  source     = "./modules/sa"',
+          '  account_id = "app-bff"',
+          '}',
+        ]),
+        'modules/sa/main.tf': _lines([
+          'variable "account_id" { type = string }',
+          '',
+          'resource "google_service_account" "this" {',
+          '  account_id = var.account_id',
+          '}',
+        ]),
+      });
+      // No provider of its own — the child module pins what it uses.
+      expect(
+        project.files['lib/infra_stack.dart'],
+        contains('InfraStack() : super(providers: []) {'),
+      );
+      expect(project.keptCount, 0, reason: project.renderMarkdown());
+    });
+
+    test('a module with no variables and no outputs gets no wrapper', () {
+      final project = build({
+        'main.tf': _hcl([
+          'resource "google_pubsub_topic" "t" {',
+          '  name = "orders"',
+          '}',
+          '',
+          'module "bare" {',
+          '  source = "./modules/bare"',
+          '}',
+        ]),
+        'modules/bare/main.tf':
+            'resource "google_pubsub_topic" "inner" { name = "inner" }\n',
+      });
+      expect(project.files.containsKey('lib/bare_module.dart'), isFalse);
+      expect(
+        project.files['lib/infra_stack.dart'],
+        contains(
+          "addModule(ModuleCall(localName: r'bare', "
+          "source: r'./modules/bare'))",
+        ),
+      );
+    });
+  });
+
+  group('localModuleOf', () {
+    LocalModule of(String hcl) =>
+        localModuleOf(TfModule.fromHcl(hcl, fileName: 'main.tf'), name: 'm');
+
+    test('maps the scalar type constraints and leaves the rest untyped', () {
+      final m = of(
+        _lines([
+          'variable "a" { type = string }',
+          'variable "b" { type = number }',
+          'variable "c" { type = bool }',
+          'variable "d" { type = list(string) }',
+          'variable "e" {}',
+        ]),
+      );
+      expect(
+        {for (final i in m.inputs) i.tfName: i.dartType},
+        equals({
+          'a': 'String',
+          'b': 'num',
+          'c': 'bool',
+          'd': 'Object?',
+          'e': 'Object?',
+        }),
+      );
+      expect(m.inputs.every((i) => i.required), isTrue);
+      expect(m.className, 'MModule');
+      expect(m.fileStem, 'm_module');
+    });
+
+    test('a variable or output named like a member is renamed', () {
+      final m = of(
+        _lines([
+          'variable "source" { type = string }',
+          'variable "local_name" { type = string }',
+          'output "tf_address" { value = "x" }',
+        ]),
+      );
+      expect(m.input('source')!.dartName, 'sourceInput');
+      expect(m.input('local_name')!.dartName, 'localNameInput');
+      expect(m.output('tf_address')!.dartName, 'tfAddressOutput');
+    });
+
+    test('a module with neither variables nor outputs is empty', () {
+      expect(of('resource "google_pubsub_topic" "t" {}\n').isEmpty, isTrue);
+    });
+  });
 }
+
+/// [lines] as one HCL source string.
+String _lines(List<String> lines) => '${lines.join('\n')}\n';
+
+/// [lines] under a `terraform { required_providers { google = ... } }` header.
+String _hcl(List<String> lines) => _lines([
+  'terraform {',
+  '  required_providers {',
+  '    google = { source = "hashicorp/google", version = "~> 7.0" }',
+  '  }',
+  '}',
+  '',
+  ...lines,
+]);
+
+/// Module-call bodies the emitter cannot express, with the reason it gives.
+const _moduleBlockers =
+    <({String label, Map<String, Object?> body, String reason})>[
+      (
+        label: 'count',
+        body: {'source': './m', 'count': 2},
+        reason: 'count on a module call',
+      ),
+      (
+        label: 'for_each',
+        body: {'source': './m', 'for_each': r'${toset(["a"])}'},
+        reason: 'for_each on a module call',
+      ),
+      (
+        label: 'a computed source',
+        body: {'source': r'${var.module_source}'},
+        reason: 'is not a literal',
+      ),
+      (
+        label: 'no source',
+        body: {'depends_on': <String>[]},
+        reason: 'no "source"',
+      ),
+    ];

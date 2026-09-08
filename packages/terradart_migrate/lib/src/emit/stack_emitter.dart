@@ -5,6 +5,7 @@ import 'package:terradart_appwrite/provider.dart'
     show kAppwriteProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
+import 'package:terradart_core/terradart_core.dart' show ModuleCall;
 import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderVersionConstraint;
@@ -17,6 +18,7 @@ import 'body_map.dart';
 import 'context.dart';
 import 'dart_literal.dart';
 import 'expand.dart';
+import 'module_wrapper.dart';
 import 'naming.dart';
 import 'tf_expr.dart';
 import 'value_emitter.dart';
@@ -30,6 +32,7 @@ final class EmittedStack {
     required this.packages,
     required this.report,
     this.hasStack = true,
+    this.moduleWrappers = const {},
   });
 
   final String stackClass;
@@ -45,6 +48,10 @@ final class EmittedStack {
 
   /// Provider packages the Stack imports, in import order.
   final List<String> packages;
+
+  /// File stems of the generated local-module wrappers this Stack imports
+  /// (`service_account_module`), for the caller to write beside it.
+  final Set<String> moduleWrappers;
   final MigrationReport report;
 }
 
@@ -123,11 +130,26 @@ final class _Emitted {
     required this.package,
     required this.barrel,
     this.providerName,
+    this.isModule = false,
+    this.moduleProviders = const [],
+    this.wrapperFile,
   });
 
   final String address;
   final String tfType;
   final String dartName;
+
+  /// True for an `addModule(...)` statement: [package] / [barrel] are empty
+  /// and the type prefix implies no provider.
+  final bool isModule;
+
+  /// Provider names a module call's `providers = { ... }` map selects, which
+  /// the Stack must register.
+  final List<String> moduleProviders;
+
+  /// The generated wrapper library the call's class comes from
+  /// (`service_account_module`), or `null` for a bare `ModuleCall`.
+  final String? wrapperFile;
 
   /// The provider the block's `provider` meta-argument selects (`google`
   /// of `google.eu`, `google-beta`), or `null` for the type's default.
@@ -152,6 +174,7 @@ final class StackEmitter {
     required this.version,
     this.childModule = false,
     this.allowTodo = false,
+    this.localModules = const {},
   });
 
   final TfModule module;
@@ -173,6 +196,14 @@ final class StackEmitter {
   /// (the caller then writes no sidecar, and the plan differs until the
   /// TODOs are ported by hand).
   final bool allowTodo;
+
+  /// Call name → the typed wrapper of the local module directory its
+  /// `source` points at, for the calls whose callee the scan resolved. A
+  /// call with no entry here becomes a bare `ModuleCall`.
+  final Map<String, LocalModule> localModules;
+
+  /// Wrapper libraries the Stack ended up importing.
+  final _moduleWrappers = <String>{};
 
   /// Provider local names the Stack registers (`google`, `time`, ...).
   final _registeredProviders = <String>[];
@@ -224,9 +255,18 @@ final class StackEmitter {
       kept = <String, String>{};
       while (true) {
         ctx.targets.clear();
+        ctx.moduleTargets.clear();
         ctx.resetPass();
         for (final b in blocks) {
           if (kept.containsKey(b.address)) continue;
+          if (b.call != null) {
+            ctx.moduleTargets[b.address] = ModuleTarget(
+              address: b.address,
+              dartName: dartNames[b.address]!,
+              local: localModules[b.name],
+            );
+            continue;
+          }
           final hit = ctx.lookup(b.type, b.kind);
           if (hit == null) continue;
           ctx.targets[b.address] = EmitTarget(
@@ -269,9 +309,15 @@ final class StackEmitter {
 
     final referenced = <String>{};
     final usedVariables = <String>{};
+    _moduleWrappers.clear();
     for (final e in emitted.values) {
       referenced.addAll(e.usedTargets);
       usedVariables.addAll(e.usedVariables);
+      if (e.isModule) {
+        final wrapper = e.wrapperFile;
+        if (wrapper != null) _moduleWrappers.add(wrapper);
+        continue;
+      }
       ctx.import(e.package, e.barrel);
     }
 
@@ -285,6 +331,15 @@ final class StackEmitter {
         if (!module.requiredProviders.containsKey(p.name)) p.name,
     ];
     for (final e in emitted.values) {
+      if (e.isModule) {
+        // A module call implies no provider of its own — the child module
+        // declares what it needs; only an explicit `providers = { ... }`
+        // hands one of this Stack's configurations down.
+        for (final name in e.moduleProviders) {
+          if (!providerNames.contains(name)) providerNames.add(name);
+        }
+        continue;
+      }
       final needed = e.providerName ?? _defaultProviderFor(e.package, e.tfType);
       if (!providerNames.contains(needed)) providerNames.add(needed);
     }
@@ -351,7 +406,10 @@ final class StackEmitter {
     // No provider registered means no resource translated and no known
     // provider declared: a Stack would synthesize an empty configuration,
     // so the directory stays Terraform and every block is kept as written.
-    final noStack = providerExprs.isEmpty;
+    // A root that only calls modules is the exception — it declares no
+    // provider of its own, and synth accepts that.
+    final noStack =
+        providerExprs.isEmpty && !emitted.values.any((e) => e.isModule);
 
     // --- backend ----------------------------------------------------------
     final backendExpr = noStack
@@ -438,6 +496,12 @@ final class StackEmitter {
         _kept.add(KeptItem(address: b.address, reason: kept[b.address]!));
         continue;
       }
+      if (noStack) {
+        // A directory whose only translatable block is a `module` call has
+        // no provider to register, so there is no Stack to hold it.
+        _kept.add(KeptItem(address: b.address, reason: _noStackReason));
+        continue;
+      }
       final assign = referenced.contains(b.address)
           ? 'final ${e.dartName} = '
           : '';
@@ -489,12 +553,6 @@ final class StackEmitter {
     for (final l in module.locals) {
       _keep('local.${l.name}', 'locals stay in Terraform (see #672)');
     }
-    for (final m in module.moduleCalls) {
-      _keep(
-        'module.${m.name}',
-        'module calls stay in Terraform until ModuleCall (#665)',
-      );
-    }
     for (final o in module.opaque) {
       if (translatedMoved.contains(o)) continue;
       final labels = o.block.labels.map((l) => '.${l.text}').join();
@@ -520,11 +578,16 @@ final class StackEmitter {
 
     // --- assemble ---------------------------------------------------------
     final packages = ctx.imports.keys.toList()..sort();
+    final wrappers = noStack
+        ? const <String>[]
+        : (_moduleWrappers.toList()..sort());
     final imports = <String>[
       "import 'package:terradart_core/terradart_core.dart';",
       for (final p in packages)
         for (final barrel in (ctx.imports[p]!.toList()..sort()))
           "import 'package:$p/$barrel.dart';",
+      // The wrappers live beside the Stack in `lib/` of the same package.
+      for (final w in wrappers) "import '$w.dart';",
     ];
     final src = StringBuffer()
       ..writeln(
@@ -554,6 +617,7 @@ final class StackEmitter {
       source: noStack ? '' : src.toString(),
       hasStack: !noStack,
       packages: packages,
+      moduleWrappers: Set.unmodifiable(wrappers),
       report: MigrationReport(
         module: moduleName,
         stackClass: stackClass,
@@ -613,6 +677,7 @@ final class StackEmitter {
   // -----------------------------------------------------------------------
 
   _Emitted _emitBlock(_BlockInfo b, String dartName) {
+    if (b.call != null) return _emitModuleCall(b, dartName);
     final hit = ctx.lookup(b.type, b.kind);
     if (hit == null) {
       throw MigrateBlocker(
@@ -711,6 +776,196 @@ final class StackEmitter {
     );
   }
 
+  /// The empty manifest a module call's inputs are emitted against: its
+  /// slots are plain scalars, so no enum or helper table is ever consulted.
+  static const _moduleManifest = MigrateManifest(
+    package: '',
+    entries: [],
+    helpers: {},
+    enums: {},
+  );
+
+  /// `addModule(...)` for one `module "<name>" { ... }` call.
+  ///
+  /// The call becomes the local module's generated wrapper when the scan
+  /// resolved its `source` to a directory in the tree, and a bare
+  /// [ModuleCall] otherwise (a registry or git module, or a local path the
+  /// scan did not see): either way the `source` is copied verbatim, so
+  /// Terraform resolves it exactly as before against the mirrored `tf-out/`
+  /// tree, and the plan address keeps its `module.<name>.` prefix.
+  _Emitted _emitModuleCall(_BlockInfo b, String dartName) {
+    final call = b.call!;
+    // `_blockedMeta` is not consulted here: `dynamic` / `provisioner` /
+    // `connection` / `timeouts` are not module meta-arguments, so a key of
+    // that name is an ordinary input of the called module.
+    final values = objectMap(bodyAsObject(b.body)) ?? {};
+    for (final meta in const ['count', 'for_each']) {
+      if (values.containsKey(meta)) {
+        throw MigrateBlocker(
+          'a $meta on a module call addresses its instances '
+          '`module.${call.name}[...]`, which no ModuleCall output spells',
+        );
+      }
+    }
+    if (values.containsKey('lifecycle')) {
+      throw MigrateBlocker('lifecycle on a module call has no synth path');
+    }
+
+    final sourceExpr = values.remove('source');
+    if (sourceExpr == null) throw MigrateBlocker('the call has no "source"');
+    final source = sourceExpr.constantString;
+    if (source == null) {
+      throw MigrateBlocker(
+        'source = ${hclSource(sourceExpr)} is not a literal',
+      );
+    }
+    final extras = <String>['localName: ${dartString(call.name)}'];
+    extras.add('source: ${dartString(source)}');
+    final versionExpr = values.remove('version');
+    if (versionExpr != null) {
+      final version = versionExpr.constantString;
+      if (version == null) {
+        throw MigrateBlocker(
+          'version = ${hclSource(versionExpr)} is not a literal',
+        );
+      }
+      extras.add('version: ${dartString(version)}');
+    }
+
+    final emitter = ValueEmitter(
+      ctx,
+      _moduleManifest,
+      sensitivePaths: const {},
+    );
+    final moduleProviders = <String>[];
+    final providers = values.remove('providers');
+    if (providers != null) {
+      extras.add(_moduleProviders(providers, moduleProviders));
+    }
+    final dependsOn = values.remove('depends_on');
+    if (dependsOn != null) {
+      extras.add('dependsOn: ${_dependsOn(dependsOn, emitter)}');
+    }
+
+    for (final key in values.keys) {
+      if (ModuleCall.reservedInputNames.contains(key)) {
+        throw MigrateBlocker('"$key" is not an input of a module call');
+      }
+    }
+
+    final local = localModules[call.name];
+    final level = BodyLevel(values, path: '');
+    final String ctor;
+    if (local == null) {
+      // No wrapper: the inputs travel as an untyped `inputs` map, which is
+      // exactly what Terraform passes down.
+      final inputs = <String>[];
+      for (final key in values.keys) {
+        final expr = emitter.emitSlot(_input(key, 'Object?'), level);
+        if (expr != null) inputs.add('${dartString(key)}: $expr');
+      }
+      if (inputs.isNotEmpty) extras.add('inputs: {${inputs.join(', ')}}');
+      ctor = 'ModuleCall(${extras.join(', ')})';
+    } else {
+      final args = emitter.emitArgs([
+        for (final i in local.inputs)
+          _input(
+            i.tfName,
+            i.dartType,
+            dartName: i.dartName,
+            required: i.required,
+          ),
+      ], level);
+      ctor =
+          '${local.className}(${extras.join(', ')}'
+          '${args.isEmpty ? '' : ', ${args.join(', ')}'})';
+    }
+    // An argument the module does not declare as a variable: Terraform would
+    // reject it, and the wrapper has no parameter for it.
+    level.checkClaimed();
+    return _Emitted(
+      address: b.address,
+      tfType: 'module',
+      dartName: dartName,
+      call: 'addModule($ctor)',
+      usedTargets: emitter.usedTargets,
+      usedVariables: emitter.usedVariables,
+      package: '',
+      barrel: '',
+      isModule: true,
+      moduleProviders: moduleProviders,
+      wrapperFile: local?.fileStem,
+    );
+  }
+
+  /// One module input as a manifest slot: always a `TfArg` scalar, since a
+  /// module's variables have no nested-block structure to recover.
+  static MigrateSlot _input(
+    String tfName,
+    String dartType, {
+    String? dartName,
+    bool required = false,
+  }) => MigrateSlot(
+    tfName: tfName,
+    dartName: dartName ?? tfName,
+    kind: MigrateSlotKind.scalar,
+    required: required,
+    dartType: dartType,
+  );
+
+  /// `providers: {'google': 'google.eu'}` — the Stack's configurations the
+  /// call hands down, recorded in [selected] so they get registered.
+  String _moduleProviders(Expr value, List<String> selected) {
+    final m = objectMap(value);
+    if (m == null) {
+      throw MigrateBlocker('providers must be a map of provider references');
+    }
+    final entries = <String>[];
+    for (final entry in m.entries) {
+      final ref =
+          entry.value.constantString ??
+          (singleReference(entry.value) == null
+              ? null
+              : hclSource(singleReference(entry.value)!));
+      if (ref == null) {
+        throw MigrateBlocker(
+          'providers.${entry.key} = ${hclSource(entry.value)} is not a '
+          'provider reference',
+        );
+      }
+      final dot = ref.indexOf('.');
+      final name = dot < 0 ? ref : ref.substring(0, dot);
+      final alias = dot < 0 ? null : ref.substring(dot + 1);
+      if (!_providerRecipes.containsKey(name)) {
+        throw MigrateBlocker(
+          'providers.${entry.key} = $ref: provider "$name" has no TerraDart '
+          'factory',
+        );
+      }
+      if (alias != null) {
+        if (childModule) {
+          throw MigrateBlocker(
+            'providers.${entry.key} = $ref: a provider alias inside a child '
+            'module needs configuration_aliases, which the Stack cannot '
+            'declare yet',
+          );
+        }
+        final configured = module.providers.any(
+          (p) => p.name == name && p.alias == alias,
+        );
+        if (!configured) {
+          throw MigrateBlocker(
+            'providers.${entry.key} = $ref: this module has no provider '
+            '"$name" block with alias = "$alias"',
+          );
+        }
+      }
+      selected.add(name);
+      entries.add('${dartString(entry.key)}: ${dartString(ref)}');
+    }
+    return 'providers: {${entries.join(', ')}}';
+  }
+
   /// `addMoved(...)` statements for one of the module's own `moved` blocks.
   ///
   /// `to` is rewritten like any reference: a block that was unrolled yields
@@ -805,15 +1060,17 @@ final class StackEmitter {
           'depends_on entry ${hclSource(e)} is not an address',
         );
       }
-      final target = ctx.targets[address];
-      if (target == null) {
+      final dartName =
+          ctx.targets[address]?.dartName ??
+          ctx.moduleTargets[address]?.dartName;
+      if (dartName == null) {
         throw MigrateBlocker(
           'depends_on target "$address" is not migrated (a Dart dependency '
           'needs the Dart object)',
         );
       }
       emitter.usedTargets.add(address);
-      out.add('ResourceDependency(${target.dartName})');
+      out.add('ResourceDependency($dartName)');
     }
     return '[${out.join(', ')}]';
   }
@@ -1046,16 +1303,28 @@ final class StackEmitter {
       value = _rewriter.expr(value);
       final t = singleReference(value);
       final c = t == null ? null : classifyTraversal(t);
-      if (c is! BlockReference || c.attribute.isEmpty) {
+      final isModule = c is ModuleReference;
+      final address = switch (c) {
+        BlockReference(:final address) => address,
+        ModuleReference(:final address) => address,
+        _ => null,
+      };
+      final attribute = switch (c) {
+        BlockReference(:final attribute) => attribute,
+        ModuleReference(:final attribute) => attribute,
+        _ => '',
+      };
+      if (address == null || attribute.isEmpty) {
         throw MigrateBlocker(
-          'only an output whose value is one resource attribute becomes an '
-          'export; this one stays in outputs.tf',
+          'only an output whose value is one resource or module attribute '
+          'becomes an export; this one stays in outputs.tf',
         );
       }
-      final target = ctx.targets[c.address];
-      if (target == null) {
+      final target = isModule ? null : ctx.targets[address];
+      final moduleTarget = isModule ? ctx.moduleTargets[address] : null;
+      if (target == null && moduleTarget == null) {
         throw MigrateBlocker(
-          'output references "${c.address}", which is not migrated',
+          'output references "$address", which is not migrated',
         );
       }
       final args = <String>['emitTerraformOutput: true'];
@@ -1080,13 +1349,18 @@ final class StackEmitter {
             );
         }
       }
-      final getter = target.getter(c.attribute);
-      final ref = getter != null && getter.dartType == 'String'
-          ? '${target.dartName}.${getter.dartName}'
-          : 'TfRef.attribute<String>(${target.dartName}, ${dartString(c.attribute)})';
+      final dartName = target?.dartName ?? moduleTarget!.dartName;
+      final getterName = target != null
+          ? (target.getter(attribute)?.dartType == 'String'
+                ? target.getter(attribute)!.dartName
+                : null)
+          : moduleTarget!.getter(attribute)?.dartName;
+      final ref = getterName != null
+          ? '$dartName.$getterName'
+          : 'TfRef.attribute<String>($dartName, ${dartString(attribute)})';
       final key = isDartIdentifier(o.name) ? o.name : lowerCamel(o.name);
       if (key != o.name) args.add('terraformOutputName: ${dartString(o.name)}');
-      _outputRefs.add(c.address);
+      _outputRefs.add(address);
       return 'addExport(${dartString(key)}, ResourceIdExport($ref, ${args.join(', ')}));';
     } on MigrateBlocker catch (e) {
       _keep('output.${o.name}', e.reason);
@@ -1198,6 +1472,22 @@ final class StackEmitter {
         isData: false,
       );
     }
+    // Module calls take part in the same ordering: a call may pass a
+    // resource's attribute down, and a resource may read one of its outputs.
+    // They are never unrolled — a `count` on a call is a blocker.
+    for (final c in module.moduleCalls) {
+      collected.add(
+        _BlockInfo(
+          address: 'module.${c.name}',
+          type: 'module',
+          name: c.name,
+          kind: CatalogKind.resource,
+          body: c.body,
+          isData: false,
+          call: c,
+        ),
+      );
+    }
 
     // Point every reference at the unrolled instances.
     _rewriter = ReferenceRewriter([for (final e in _expansions.values) e.item]);
@@ -1248,6 +1538,7 @@ final class StackEmitter {
       if (t != null) {
         final c = classifyTraversal(t);
         if (c is BlockReference) out.add(c.address);
+        if (c is ModuleReference) out.add(c.address);
       }
       switch (e) {
         case TemplateExpr(:final parts):
@@ -1294,6 +1585,7 @@ void _addAddresses(Expr list, Set<String> out) {
     final t = singleReference(e) ?? _traversalOf(e.constantString);
     final c = t == null ? null : classifyTraversal(t);
     if (c is BlockReference) out.add(c.address);
+    if (c is ModuleReference) out.add(c.address);
   }
 }
 
@@ -1328,6 +1620,7 @@ final class _BlockInfo {
     required this.isData,
     this.expandedFrom,
     this.expansionBlocker,
+    this.call,
   });
 
   final String address;
@@ -1336,6 +1629,11 @@ final class _BlockInfo {
   final CatalogKind kind;
   final Body body;
   final bool isData;
+
+  /// Non-null when this "block" is a `module` call rather than a resource or
+  /// data source: it takes part in the ordering the same way, but is emitted
+  /// as `addModule(...)`.
+  final ModuleCallBlock? call;
 
   /// The address this block had before its `count` / `for_each` was
   /// unrolled (`google_x.y[0]`), or `null` for a block written as-is.
@@ -1356,6 +1654,7 @@ final class _BlockInfo {
     isData: isData,
     expandedFrom: expandedFrom,
     expansionBlocker: expansionBlocker,
+    call: call,
   );
 
   _BlockInfo withBlocker(String reason) => _BlockInfo(
@@ -1367,5 +1666,6 @@ final class _BlockInfo {
     isData: isData,
     expandedFrom: expandedFrom,
     expansionBlocker: reason,
+    call: call,
   );
 }

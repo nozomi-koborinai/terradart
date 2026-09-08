@@ -36,6 +36,7 @@ terraform apply
 - Object versioning enabled via `Versioning(enabled: true)`.
 - One `LifecycleRule` transitioning objects to `ARCHIVE` storage class after 365 days.
 - One inline-content object `config/app.json` uploaded via `BucketObjectFromContent`.
+- A local Terraform module `modules/object_prefix` called with `addModule(ModuleCall(source: '../modules/object_prefix', ...))`; its `prefix` output feeds the object-notification filter as a `TfRef` (`objectPrefix.output<String>('prefix')`).
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 

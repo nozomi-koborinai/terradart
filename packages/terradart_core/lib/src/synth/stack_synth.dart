@@ -55,9 +55,11 @@ class StackSynth {
     final providers = TfJsonEncoder.providerBlock(stack);
     final variables = TfJsonEncoder.variableBlock(stack);
 
-    // 3. Resources, data sources and the moved entries between them.
+    // 3. Resources, data sources, module calls, and the moved entries
+    // between them.
     final resources = TfJsonEncoder.resourcesGroup(stack);
     final data = TfJsonEncoder.dataGroup(stack);
+    final modules = TfJsonEncoder.moduleGroup(stack);
     final moved = TfJsonEncoder.movedBlock(stack);
 
     // 4. Two-pass app exports.
@@ -71,6 +73,7 @@ class StackSynth {
     if (providers != null) tfJson['provider'] = providers;
     if (resources != null) tfJson['resource'] = resources;
     if (data != null) tfJson['data'] = data;
+    if (modules != null) tfJson['module'] = modules;
     if (moved != null) tfJson['moved'] = moved;
     if (outputs != null) tfJson['output'] = outputs;
 
