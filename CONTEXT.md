@@ -80,6 +80,10 @@ _Avoid_: Multi-environment Stack, Stack template
 `terradart-migrate --lift-workspace`: `terraform.workspace` becomes a `workspace` parameter on the Stack, so `bin/infra.dart --workspace prod` synthesizes for one named workspace instead of emitting `${terraform.workspace}` for `terraform workspace select`. Opt-in, and faithful only for the workspace it names.
 _Avoid_: Workspace mode
 
+**Re-run snippet**:
+`terradart-migrate --update`: the Dart for a block that stayed in Terraform and has a factory today, emitted as `lib/<stack>.snippets.dart` — an extension on `Stack` whose method body is what belongs in the constructor. A re-run reads only the sidecar (never the `main.tf.json` a Stack writes) and writes only snippets, `terradart_leftover.next.tf` and `RERUN.md`, so a migration can be picked back up without a generated file ever landing on hand-written Dart.
+_Avoid_: Re-migration, regeneration
+
 **Round-trip gate**:
 `tool/migrate_roundtrip_gates.dart`: migrate every quickstart's synth output back to Dart, re-synthesize, deep-compare — `synth(migrate(synth(S))) == synth(S)`. The migrator's correctness oracle; strict examples must round-trip completely, `tool/migrate_roundtrip_debt.yaml` ratchets the reasoned exceptions.
 _Avoid_: Golden diff

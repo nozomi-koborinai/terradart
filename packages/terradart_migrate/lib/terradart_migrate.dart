@@ -25,6 +25,7 @@ export 'src/migrate.dart';
 export 'src/migrate_manifest.dart';
 export 'src/project.dart';
 export 'src/report.dart';
+export 'src/rerun.dart';
 export 'src/sidecar.dart';
 export 'src/topology.dart';
 export 'src/version.dart';

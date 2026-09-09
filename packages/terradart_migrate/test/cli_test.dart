@@ -375,4 +375,88 @@ void main() {
     expect(result.exitCode, 0, reason: result.stderr.toString());
     expect(result.stdout, contains('Usage: terradart-migrate'));
   });
+
+  group('--update', () {
+    /// A package migrated with no factory for `google_storage_bucket`, so
+    /// its sidecar holds blocks a later catalog covers.
+    Future<Directory> migrated() async {
+      final out = Directory(p.join(tmp.path, 'pkg'));
+      final tree = scanModuleTree(Directory('$_fixtures/real_plan_src'));
+      writeProject(
+        migrateTree(
+          tree,
+          name: 'real_plan_src',
+          manifests: [
+            for (final m in allMigrateManifests)
+              MigrateManifest(
+                package: m.package,
+                entries: [
+                  for (final e in m.entries)
+                    if (e.tfType != 'google_storage_bucket') e,
+                ],
+                helpers: m.helpers,
+                enums: m.enums,
+              ),
+          ],
+        ),
+        out,
+      );
+      return out;
+    }
+
+    test('re-runs a package and writes only what it owns', () async {
+      final pkg = await migrated();
+      final before = {
+        for (final f in pkg.listSync(recursive: true).whereType<File>())
+          p.relative(f.path, from: pkg.path): f.readAsStringSync(),
+      };
+      final r = await _run(['--update', pkg.path]);
+      expect(r.code, MigrateExitCodes.success, reason: r.err);
+      expect(r.out, contains('re-run on'));
+
+      final after = {
+        for (final f in pkg.listSync(recursive: true).whereType<File>())
+          p.relative(f.path, from: pkg.path): f.readAsStringSync(),
+      };
+      // Every file the migration wrote is byte for byte what it was.
+      for (final entry in before.entries) {
+        expect(after[entry.key], entry.value, reason: entry.key);
+      }
+      final added = after.keys.toSet().difference(before.keys.toSet());
+      expect(added, contains('RERUN.md'));
+      for (final path in added) {
+        expect(
+          path == 'RERUN.md' ||
+              path.endsWith('.snippets.dart') ||
+              p.basename(path) == 'terradart_leftover.next.tf',
+          isTrue,
+          reason: 'a re-run wrote $path',
+        );
+      }
+    });
+
+    test('--json reports what translates now', () async {
+      final pkg = await migrated();
+      final r = await _run(['--update', pkg.path, '--json']);
+      expect(r.code, MigrateExitCodes.success, reason: r.err);
+      final json = jsonDecode(r.out) as Map<String, Object?>;
+      expect(json['package'], pkg.path);
+      expect(json['translated'], greaterThan(0));
+      expect(json['files'], contains('RERUN.md'));
+    });
+
+    test('--update takes neither --dir nor --out', () async {
+      final r = await _run(['--update', tmp.path, '--dir', tmp.path]);
+      expect(r.code, MigrateExitCodes.usage);
+      expect(r.err, contains('neither --dir nor --out'));
+    });
+
+    test('a directory the migrator did not write exits 65', () async {
+      final missing = await _run(['--update', p.join(tmp.path, 'nope')]);
+      expect(missing.code, MigrateExitCodes.dataError);
+      final bare = await _run(['--update', tmp.path]);
+      expect(bare.code, MigrateExitCodes.dataError);
+      expect(bare.err, contains('no tf-out/'));
+    });
+  });
 }
