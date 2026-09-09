@@ -78,6 +78,24 @@ The merge is refused — leaving one Stack per root, with the reason in `MIGRATI
 
 **`--lift-workspace`** turns `terraform.workspace` into a `workspace` parameter on the Stack, so `dart run bin/infra.dart --workspace prod` synthesizes for one workspace by name: a bare reference becomes `TfArg.literal(workspace)`, a template around it becomes Dart interpolation (`TfArg.literal('orders-$workspace')`), and one inside a list or map becomes the value. A template mixing it with another reference stays a Terraform expression, with a warning. Off by default: the synthesized JSON then names a workspace instead of leaving `${terraform.workspace}` for `terraform workspace select` — faithful for the workspace it names, and only that one.
 
+**`--update`** re-runs over a package the migrator already generated, for the day a catalog wave covers something that stayed in Terraform:
+
+```sh
+terradart-migrate --update infra_dart
+```
+
+It reads each Terraform directory's **sidecar** — everything there except the `main.tf.json` a Stack writes — migrates it against today's catalog, and writes three kinds of file and nothing else:
+
+| Path | Content |
+| :--- | :--- |
+| `lib/<stack>.snippets.dart` | an `extension <Stack>Rerun on Stack` whose method body is exactly the statements to paste into the constructor — so the file compiles where it sits, and the paste is mechanical |
+| `tf-out/<dir>/terradart_leftover.next.tf` | the sidecar as it looks once they are pasted |
+| `RERUN.md` | what translates now, and the swap steps per directory |
+
+**Your Dart is never overwritten.** The writer owns those three paths and refuses every other one, so a re-run cannot damage a package it did not write. A local the Stack already declares is reserved, so a pasted one never shadows it. A reference to a block the Stack already owns stays a Terraform expression (`TfArg.expression(r'\${google_storage_bucket.assets.name}')`): the re-run reads the sidecar, not your Dart, so it has no Dart name to point at — resolving those against the existing Stack is the next step of [#669](https://github.com/nozomi-koborinai/terradart/issues/669). For the same reason a kept block whose only obstacle is a `depends_on` on a block the Stack owns stays in Terraform: a Dart dependency needs the Dart object.
+
+Paste, swap the `.next.tf` in, delete the snippets file, re-synthesize — `terraform plan` must still report *No changes*.
+
 **Child-module mode** registers providers without configuration (synth emits only `required_providers`), turns `variable` into `addVariable` and `output` into exports, and keeps provider configurations or a backend found in the module in the sidecar. The root's `module` call becomes `addModule(...)`, whose `source` keeps pointing at the child's directory in the mirrored `tf-out/` tree, so plan addresses keep their `module.<name>.` prefix. After `dart run bin/infra.dart`, each root plans with *No changes*: `cd tf-out/dev && terraform init && terraform plan`.
 
 ## Library
@@ -120,7 +138,7 @@ What translates (the conversion rules of [#655](https://github.com/nozomi-kobori
 
 `tool/migrate_moved_gates.dart` is the acceptance check for `count` / `for_each` unrolling: it migrates [`test/fixtures/moved_state/`](test/fixtures/moved_state/) — a `count` resource, a `for_each` resource, references to their instances, an output over them and a `moved` block of its own — synthesizes the Stack, puts the fixture's `state.json` (a `terraform.tfstate` of the indexed instances as Terraform recorded them) next to the synth output, and runs `terraform plan -refresh=false`: the plan must be moves only, nothing created, changed or destroyed. It runs in `tool/agent_verify.sh` (full mode) and as the CI `migrate moved gate` job.
 
-`tool/migrate_fixture_gates.dart` is the end-to-end acceptance: it migrates the coverage fixtures `config_tree/` (two environment roots over six local modules, which migrates completely — module calls included) and `real_plan_src/` (a root with a child), analyzes and synthesizes the generated package, and runs `terraform validate` in every directory of the mirrored `tf-out/` tree (`agent_verify.sh` full mode, CI `migrate fixture gate`). It then migrates `config_tree/` again with `--merge-envs` and requires that the one `ConfigTreeStack(env: ...)` synthesizes, per environment, exactly the JSON the two separate Stacks did — the proof that folding the roots together changes the Dart and nothing else. `test/golden/` pins the output of all three runs; `UPDATE_GOLDENS=1 dart test test/golden_test.dart` regenerates it.
+`tool/migrate_fixture_gates.dart` is the end-to-end acceptance: it migrates the coverage fixtures `config_tree/` (two environment roots over six local modules, which migrates completely — module calls included) and `real_plan_src/` (a root with a child), analyzes and synthesizes the generated package, and runs `terraform validate` in every directory of the mirrored `tf-out/` tree (`agent_verify.sh` full mode, CI `migrate fixture gate`). It then migrates `config_tree/` again with `--merge-envs` and requires that the one `ConfigTreeStack(env: ...)` synthesizes, per environment, exactly the JSON the two separate Stacks did — the proof that folding the roots together changes the Dart and nothing else. Last it migrates `config_tree/` against a catalog with `google_storage_bucket` removed — the world before the wave that added it — re-runs with `--update`, and requires that the five sidecar blocks come back as snippets, that every file the first run wrote is byte-identical afterwards, and that the Stack with the snippet pasted synthesizes exactly what the one-shot migration does; re-running a fully migrated package must find nothing at all. `test/golden/` pins the output of all three runs; `UPDATE_GOLDENS=1 dart test test/golden_test.dart` regenerates it.
 
 ## Migration manifests
 

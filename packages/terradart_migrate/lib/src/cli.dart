@@ -6,8 +6,10 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
+import 'package:terradart_hcl/terradart_hcl.dart' show HclParseException;
 
 import 'project.dart';
+import 'rerun.dart';
 import 'topology.dart';
 import 'version.dart';
 
@@ -55,6 +57,20 @@ Future<int> runMigrateCli(
   if (args['version'] as bool) {
     o.writeln('terradart-migrate $packageVersion');
     return MigrateExitCodes.success;
+  }
+  final updateArg = args['update'] as String?;
+  if (updateArg != null) {
+    if (args['dir'] != null || args['out'] != null) {
+      e
+        ..writeln(
+          'terradart-migrate: --update reads and writes one package; it '
+          'takes neither --dir nor --out',
+        )
+        ..writeln()
+        ..writeln(_usage(parser));
+      return MigrateExitCodes.usage;
+    }
+    return _runUpdate(updateArg, o, e, json: args['json'] as bool);
   }
   final dirArg = args['dir'] as String?;
   final outArg = args['out'] as String?;
@@ -130,6 +146,79 @@ Future<int> runMigrateCli(
   return MigrateExitCodes.success;
 }
 
+/// `--update`: re-runs over a package the migrator generated.
+Future<int> _runUpdate(
+  String path,
+  StringSink o,
+  StringSink e, {
+  required bool json,
+}) async {
+  final dir = Directory(path);
+  if (!dir.existsSync()) {
+    e.writeln('terradart-migrate: --update "$path" is not a directory');
+    return MigrateExitCodes.dataError;
+  }
+  final RerunResult result;
+  try {
+    result = rerunProject(dir);
+  } on FileSystemException catch (x) {
+    e.writeln('terradart-migrate: ${x.message} (${x.path})');
+    return MigrateExitCodes.dataError;
+  } on HclParseException catch (x) {
+    e.writeln('terradart-migrate: $x');
+    return MigrateExitCodes.dataError;
+  } on Object catch (x, st) {
+    e
+      ..writeln('terradart-migrate: internal error: $x')
+      ..writeln(st);
+    return MigrateExitCodes.software;
+  }
+  try {
+    writeRerun(result, dir);
+  } on FileSystemException catch (x) {
+    e.writeln('terradart-migrate: $x');
+    return MigrateExitCodes.cannotCreate;
+  }
+  if (json) {
+    o.writeln(const JsonEncoder.withIndent('  ').convert(result.toJson()));
+  } else {
+    o.write(result.renderText());
+  }
+  return MigrateExitCodes.success;
+}
+
+/// Writes a re-run's files into [packageDir].
+///
+/// The whole point of `--update` is that it cannot damage a package it did
+/// not write, so this refuses any path that is not one of the three the
+/// re-run owns — a snippets library, a `.next.tf`, or the report — before
+/// writing anything.
+void writeRerun(RerunResult result, Directory packageDir) {
+  final root = p.normalize(packageDir.absolute.path);
+  final targets = <File, String>{};
+  for (final entry in result.files.entries) {
+    final rel = entry.key;
+    final base = p.basename(rel);
+    final owned =
+        rel == rerunReportFileName ||
+        base.endsWith(snippetsSuffix) ||
+        base == nextLeftoverFileName;
+    final path = p.normalize(p.join(root, rel));
+    if (!owned || !p.isWithin(root, path)) {
+      throw FileSystemException(
+        'refusing to write "$rel": a re-run writes only $rerunReportFileName, '
+        '*$snippetsSuffix and $nextLeftoverFileName',
+        path,
+      );
+    }
+    targets[File(path)] = entry.value;
+  }
+  for (final w in targets.entries) {
+    w.key.parent.createSync(recursive: true);
+    w.key.writeAsStringSync(w.value);
+  }
+}
+
 /// Writes [project]'s files and copies under [outDir]; never touches the
 /// scanned tree, and never writes outside [outDir]: a path that resolves
 /// elsewhere (a `..` segment, say) is refused with a [FileSystemException]
@@ -164,6 +253,16 @@ void writeProject(MigratedProject project, Directory outDir) {
 }
 
 ArgParser _parser() => ArgParser(usageLineLength: 80)
+  ..addOption(
+    'update',
+    valueHelp: 'package dir',
+    help:
+        'Re-run over a package terradart-migrate already generated, instead '
+        'of migrating a tree. Reads each Terraform directory\'s sidecar (not '
+        'the main.tf.json a Stack writes), and writes what translates today '
+        'as lib/<stack>.snippets.dart plus terradart_leftover.next.tf. Your '
+        'Dart is never overwritten.',
+  )
   ..addOption(
     'dir',
     valueHelp: 'terraform dir',
@@ -248,5 +347,11 @@ MIGRATION.md with a reason for every kept block. With --merge-envs, sibling
 environment roots become one Stack per group, parameterised by a generated
 Env enum. Reads .tf and .tf.json with no terraform run, init or credentials;
 never writes into --dir.
+
+  terradart-migrate --update <package dir>
+
+re-runs over a package it already generated: what the catalog covers today
+but did not before becomes a pasteable snippet, and nothing of yours is
+overwritten.
 
 ${parser.usage}''';
