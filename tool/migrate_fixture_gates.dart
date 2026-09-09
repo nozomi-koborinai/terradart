@@ -7,6 +7,12 @@
 /// Stack's `main.tf.json` next to its leftover sidecar. Every kept block
 /// must have landed in a sidecar file.
 ///
+/// The merged-environment gate (#668) migrates `config_tree/` a second time
+/// with `--merge-envs`, and requires that the one `ConfigTreeStack(env: ...)`
+/// synthesizes, per environment, exactly the JSON the two separate Stacks
+/// did: same resources, same addresses, same values. That is the proof that
+/// folding the roots together changes the Dart and nothing else.
+///
 ///   dart tool/migrate_fixture_gates.dart [--skip-validate] [--keep]
 ///
 /// `--skip-validate` stops before terraform (no terraform on PATH);
@@ -14,12 +20,16 @@
 /// with the failing package kept for inspection.
 library;
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_migrate/terradart_migrate.dart';
 
 const _fixtures = ['config_tree', 'real_plan_src'];
+
+/// The fixture whose environment roots `--merge-envs` folds together.
+const _mergeFixture = 'config_tree';
 
 const _terraformInit = [
   'terraform',
@@ -53,10 +63,168 @@ Future<void> main(List<String> args) async {
     );
     ok = ok && passed;
   }
+  ok = await _mergeEnvGate(
+        repoRoot: repoRoot,
+        skipValidate: skipValidate,
+        keep: keep,
+      ) &&
+      ok;
   stdout.writeln(
     ok ? 'migrate_fixture_gates: OK' : 'migrate_fixture_gates: FAILED',
   );
   exitCode = ok ? 0 : 1;
+}
+
+/// `--merge-envs` on [_mergeFixture]: one Stack for both environment roots,
+/// synthesizing per environment exactly what one Stack each did.
+Future<bool> _mergeEnvGate({
+  required String repoRoot,
+  required bool skipValidate,
+  required bool keep,
+}) async {
+  final input = Directory(
+    p.join(
+      repoRoot,
+      'packages/terradart_coverage/test/fixtures',
+      _mergeFixture,
+    ),
+  );
+  final plain = Directory.systemTemp.createTempSync('terradart_merge_plain_');
+  final temp = Directory.systemTemp.createTempSync('terradart_merge_envs_');
+  final errors = <String>[];
+  try {
+    final tree = scanModuleTree(input);
+    writeProject(migrateTree(tree, name: _mergeFixture), plain);
+    final project = migrateTree(tree, name: _mergeFixture, mergeEnvs: true);
+    writeProject(project, temp);
+
+    final merged = project.merged.where((m) => m.isMerged).toList();
+    if (merged.length != project.merged.length) {
+      for (final m in project.merged) {
+        if (m.isMerged) continue;
+        errors.add('${m.group}: the roots did not merge — ${m.refusal}');
+      }
+    }
+    if (merged.isEmpty) {
+      errors.add('--merge-envs folded no environment group');
+      return _finish('$_mergeFixture --merge-envs', temp, errors, keep: keep);
+    }
+    for (final step in [plain, temp]) {
+      if (!await _build(step, repoRoot, errors)) {
+        return _finish('$_mergeFixture --merge-envs', temp, errors, keep: keep);
+      }
+    }
+
+    // The proof: every environment's synth is the one the separate Stacks
+    // wrote, key for key.
+    final dirs = [for (final m in project.modules) m.terraformDir];
+    for (final dir in dirs) {
+      final before = File(p.join(plain.path, dir, 'main.tf.json'));
+      final after = File(p.join(temp.path, dir, 'main.tf.json'));
+      if (!before.existsSync() || !after.existsSync()) {
+        errors.add('$dir: no main.tf.json after synth');
+        continue;
+      }
+      final diffs = <String>[];
+      _diff(
+        jsonDecode(before.readAsStringSync()),
+        jsonDecode(after.readAsStringSync()),
+        r'$',
+        diffs,
+      );
+      if (diffs.isNotEmpty) {
+        errors.add(
+          '$dir: the merged Stack synthesizes differently '
+          '(${diffs.length} difference${diffs.length == 1 ? '' : 's'}):\n'
+          '${diffs.take(8).map((d) => '      $d').join('\n')}',
+        );
+      }
+    }
+    if (!skipValidate && errors.isEmpty) {
+      for (final d in dirs) {
+        final dir = Directory(p.join(temp.path, d));
+        if (!await _run(_terraformInit, dir, errors)) continue;
+        await _run(['terraform', 'validate', '-no-color'], dir, errors);
+      }
+    }
+    final envs = [for (final m in merged) ...m.envs];
+    stdout.writeln(
+      'migrate_fixture_gates: $_mergeFixture --merge-envs: '
+      '${envs.length} environments '
+      '(${envs.map((e) => e.path).join(', ')}) → '
+      '${merged.map((m) => m.stackClass).join(', ')}, '
+      '${_count(merged.fold(0, (n, m) => n + m.fields.length), 'constant')}, '
+      '${_count(merged.fold(0, (n, m) => n + m.guards.length), 'flag')}; '
+      'per-environment synth identical'
+      '${skipValidate ? ' (terraform validate skipped)' : ', validated'}',
+    );
+  } on Object catch (e, st) {
+    errors.add('$_mergeFixture --merge-envs: $e\n$st');
+  }
+  if (errors.isEmpty && !keep) plain.deleteSync(recursive: true);
+  return _finish('$_mergeFixture --merge-envs', temp, errors, keep: keep);
+}
+
+String _count(int n, String what) => '$n $what${n == 1 ? '' : 's'}';
+
+/// `pub get`, `analyze` and `run bin/infra.dart` in a generated package.
+Future<bool> _build(
+  Directory temp,
+  String repoRoot,
+  List<String> errors,
+) async {
+  final overrides = StringBuffer('\ndependency_overrides:\n');
+  for (final pkg in _workspacePackages) {
+    overrides
+      ..writeln('  $pkg:')
+      ..writeln('    path: ${p.join(repoRoot, 'packages', pkg)}');
+  }
+  File(
+    p.join(temp.path, 'pubspec.yaml'),
+  ).writeAsStringSync(overrides.toString(), mode: FileMode.append);
+  for (final step in const [
+    ['dart', 'pub', 'get', '--offline'],
+    ['dart', 'analyze', '--fatal-infos', '--fatal-warnings', 'lib', 'bin'],
+    ['dart', 'run', 'bin/infra.dart'],
+  ]) {
+    final before = errors.length;
+    var passed = await _run(step, temp, errors);
+    if (!passed && step[1] == 'pub') {
+      errors.removeRange(before, errors.length);
+      passed = await _run(['dart', 'pub', 'get'], temp, errors);
+    }
+    if (!passed) return false;
+  }
+  return true;
+}
+
+/// Deep JSON comparison, as the round-trip gate does it.
+void _diff(Object? a, Object? b, String path, List<String> out) {
+  if (a is Map && b is Map) {
+    for (final key in {...a.keys, ...b.keys}) {
+      if (!a.containsKey(key)) {
+        out.add('$path.$key: only after the merge');
+      } else if (!b.containsKey(key)) {
+        out.add('$path.$key: only before the merge');
+      } else {
+        _diff(a[key], b[key], '$path.$key', out);
+      }
+    }
+    return;
+  }
+  if (a is List && b is List) {
+    if (a.length != b.length) {
+      out.add('$path: ${a.length} entries before, ${b.length} after');
+      return;
+    }
+    for (var i = 0; i < a.length; i++) {
+      _diff(a[i], b[i], '$path[$i]', out);
+    }
+    return;
+  }
+  if (jsonEncode(a) != jsonEncode(b)) {
+    out.add('$path: ${jsonEncode(a)} before, ${jsonEncode(b)} after');
+  }
 }
 
 Future<bool> _gate(

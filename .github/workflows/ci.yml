@@ -416,6 +416,10 @@ jobs:
     # synthesize the generated package, and terraform-validate every
     # directory of the mirrored tf-out/ tree — Stack synth output next to the
     # leftover sidecar. Every kept block must have landed in a sidecar file.
+    #
+    # Then the merged-environment gate (#668): config_tree/ migrated again
+    # with --merge-envs must synthesize, per environment, exactly the JSON
+    # the two separate Stacks did.
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1

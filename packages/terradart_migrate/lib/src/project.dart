@@ -8,6 +8,9 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 
+import 'emit/env_plan.dart';
+import 'emit/naming.dart';
+import 'merge_envs.dart';
 import 'migrate.dart';
 import 'migrate_manifest.dart';
 import 'report.dart';
@@ -25,6 +28,7 @@ final class MigratedModule {
     required this.terraformDir,
     required this.copied,
     required this.varFilesNotCopied,
+    this.mergedInto,
   });
 
   final ModuleDir dir;
@@ -47,6 +51,10 @@ final class MigratedModule {
   /// Other `*.tfvars` files, which Terraform loads only with `-var-file`.
   final List<String> varFilesNotCopied;
 
+  /// The `Env` member this root became inside a merged Stack
+  /// (`--merge-envs`), or `null` when it kept a Stack of its own.
+  final String? mergedInto;
+
   MigrationReport get report => stack.report;
 
   /// Kept blocks written as `TODO` comments into the Stack rather than as
@@ -64,6 +72,7 @@ final class MigratedModule {
     'hasStack': stack.hasStack,
     'stackClass': stack.hasStack ? stack.stackClass : null,
     'stackFile': stack.hasStack ? 'lib/${stack.stackFile}.dart' : null,
+    if (mergedInto != null) 'mergedInto': mergedInto,
     'terraformDir': terraformDir,
     'sidecar': sidecar?.placements ?? const <String, String>{},
     'copied': copied,
@@ -84,6 +93,7 @@ final class MigratedProject {
     required this.environments,
     required this.files,
     required this.copies,
+    this.merged = const [],
   });
 
   final String name;
@@ -94,6 +104,10 @@ final class MigratedProject {
   final bool allowTodo;
   final List<MigratedModule> modules;
   final List<EnvironmentComparison> environments;
+
+  /// The environment groups `--merge-envs` folded into one Stack — or, with
+  /// a [MergedEnvironment.refusal], the ones it could not.
+  final List<MergedEnvironment> merged;
 
   /// Path (relative to the package root) → content: the Stacks,
   /// `bin/infra.dart`, `pubspec.yaml`, every sidecar file, `MIGRATION.md`.
@@ -132,6 +146,19 @@ final class MigratedProject {
     'todos': todoCount,
     'modules': [for (final m in modules) m.toJson()],
     'environments': [for (final e in environments) e.toJson()],
+    if (merged.isNotEmpty)
+      'merged': [
+        for (final m in merged)
+          {
+            'group': m.group,
+            'stackClass': m.stackClass,
+            'envClass': m.envClass,
+            'environments': [for (final e in m.envs) e.member],
+            'constants': [for (final f in m.fields) f.origin],
+            'guards': [for (final g in m.guards) g.dartName],
+            if (m.refusal != null) 'refusal': m.refusal,
+          },
+      ],
     'files': files.keys.toList()..sort(),
     'copies': [for (final c in copies) c.to],
   };
@@ -158,6 +185,18 @@ final class MigratedProject {
         '${m.stack.hasStack ? m.stack.stackClass : 'no Stack'} — '
         '${m.report.migrated.length} migrated, ${m.report.kept.length} kept '
         '→ ${m.terraformDir}',
+      );
+    }
+    for (final m in merged) {
+      b.writeln(
+        m.isMerged
+            ? '  --merge-envs: ${m.envs.map((e) => e.path).join(', ')} → '
+                  '${m.stackClass}({required ${m.envClass} env}) with '
+                  '${m.fields.length} constant'
+                  '${m.fields.length == 1 ? '' : 's'} and '
+                  '${m.guards.length} flag${m.guards.length == 1 ? '' : 's'}'
+            : '  --merge-envs: ${m.envs.map((e) => e.path).join(', ')} stay '
+                  'one Stack each — ${m.refusal}',
       );
     }
     if (planDiffers) {
@@ -301,9 +340,52 @@ final class MigratedProject {
         ..writeln('## Environments')
         ..writeln()
         ..writeln(
-          'Sibling roots are migrated one Stack each, backends untouched; '
-          '`--merge-envs` (#668) will fold them into one Stack later.',
+          merged.isEmpty
+              ? 'Sibling roots are migrated one Stack each, backends '
+                    'untouched; `--merge-envs` folds them into one Stack '
+                    'taking the environment as a parameter.'
+              : 'Sibling roots were compared argument by argument; what '
+                    'follows is what `--merge-envs` found.',
         );
+      for (final m in merged) {
+        b
+          ..writeln()
+          ..writeln('### Merged: `${m.group}` → `${m.stackClass}`');
+        if (!m.isMerged) {
+          b
+            ..writeln()
+            ..writeln(
+              '${_codes([for (final e in m.envs) e.path])} stay one Stack '
+              'each: ${m.refusal}.',
+            );
+          continue;
+        }
+        b
+          ..writeln()
+          ..writeln(
+            '`${m.stackClass}({required ${m.envClass} env})` in '
+            '`lib/${m.stackFile}.dart` synthesizes '
+            '${_codes([for (final e in m.envs) e.path])}, one `tf-out` '
+            'directory each. `dart run bin/infra.dart --env '
+            '${m.envs.first.member}` writes just that one.',
+          )
+          ..writeln()
+          ..writeln(
+            '| `${m.envClass}` | Value | ${[for (final e in m.envs) '`${e.member}`'].join(' | ')} |',
+          )
+          ..writeln('| :--- | :--- |${' :--- |' * m.envs.length}');
+        for (final f in m.fields) {
+          b.writeln(
+            '| `${f.dartName}` | `${f.origin}` | ${[for (final e in m.envs) '`${f.values[e.member]}`'].join(' | ')} |',
+          );
+        }
+        for (final g in m.guards) {
+          b.writeln(
+            '| `${g.dartName}` | blocks only ${_codes(g.members)} '
+            'declare${g.members.length == 1 ? 's' : ''} | ${[for (final e in m.envs) g.members.contains(e.member) ? '`true`' : '`false`'].join(' | ')} |',
+          );
+        }
+      }
       for (final e in environments) {
         b
           ..writeln()
@@ -346,11 +428,17 @@ final class MigratedProject {
 }
 
 /// Migrates every module of [tree] into one package named [name].
+///
+/// [mergeEnvs] folds each group of sibling environment roots into one Stack
+/// taking a generated `Env` enum (see [mergeEnvironments]); a group that
+/// cannot be merged keeps one Stack per root and says why in the report.
 MigratedProject migrateTree(
   ModuleTree tree, {
   required String name,
   bool allowTodo = false,
   bool format = true,
+  bool mergeEnvs = false,
+  bool liftWorkspace = false,
   List<MigrateManifest>? manifests,
 }) {
   final packageName = packageNameFor(name);
@@ -360,7 +448,14 @@ MigratedProject migrateTree(
   final files = <String, String>{};
   final copies = <({String from, String to})>[];
   final stacks =
-      <({String stackFile, String stackClass, String terraformDir})>[];
+      <
+        ({
+          String stackFile,
+          String stackClass,
+          String terraformDir,
+          bool workspace,
+        })
+      >[];
   final packages = <String>{};
   // The Dart-side interface of every directory some `module` block calls:
   // its `variable` blocks are the wrapper's parameters, its `output` blocks
@@ -373,22 +468,79 @@ MigratedProject migrateTree(
     final local = localModuleOf(m.module, name: names[m.relPath]!);
     if (!local.isEmpty) interfaces[m.relPath] = local;
   }
+  Map<String, LocalModule> callsOf(ModuleDir m) => {
+    for (final call in m.calls.entries)
+      if (interfaces[call.value] != null) call.key: interfaces[call.value]!,
+  };
+
+  // --- merged environment groups (--merge-envs) --------------------------
+  final mergedGroups = <MergedEnvironment>[];
+  final mergedOf = <String, MergedEnvironment>{};
+  final memberOf = <String, String>{};
+  if (mergeEnvs) {
+    // Names the modules keeping a Stack of their own already hold; the roots
+    // being merged give theirs up.
+    final taken = <String>{
+      for (final m in tree.modules)
+        if (m.environment == null ||
+            !tree.environments.containsKey(m.environment))
+          stackNames(names[m.relPath]!).stackFile,
+    };
+    for (final group in tree.environments.entries) {
+      final roots = group.value;
+      final members = _envMembers(roots);
+      memberOf.addAll(members);
+      final base = group.key == '.' ? name : p.posix.split(group.key).last;
+      final stack = _mergedStackNames(base, taken);
+      taken.add(stack.stackFile);
+      final envClass = mergedGroups.isEmpty ? 'Env' : '${pascalCase(base)}Env';
+      final result = mergeEnvironments(
+        group: group.key,
+        envs: [
+          for (final r in roots)
+            EnvBinding(
+              member: members[r.relPath]!,
+              path: r.relPath,
+              module: r.module,
+            ),
+        ],
+        stackClass: stack.stackClass,
+        stackFile: stack.stackFile,
+        envClass: envClass,
+        envFile: snakeCase(envClass),
+        version: packageVersion,
+        localModules: {for (final r in roots) members[r.relPath]!: callsOf(r)},
+        manifests: manifests,
+        allowTodo: allowTodo,
+        liftWorkspace: liftWorkspace,
+        format: format,
+      );
+      mergedGroups.add(result);
+      if (result.isMerged) {
+        for (final r in roots) {
+          mergedOf[r.relPath] = result;
+        }
+      }
+    }
+  }
+
   final wrappers = <String, LocalModule>{};
   for (final m in tree.modules) {
     final moduleName = names[m.relPath]!;
-    final localModules = <String, LocalModule>{
-      for (final call in m.calls.entries)
-        if (interfaces[call.value] != null) call.key: interfaces[call.value]!,
-    };
-    final stack = migrateStack(
-      m.module,
-      name: moduleName,
-      manifests: manifests,
-      format: format,
-      childModule: !m.isRoot,
-      allowTodo: allowTodo,
-      localModules: localModules,
-    );
+    final localModules = callsOf(m);
+    final merged = mergedOf[m.relPath];
+    final stack =
+        merged?.stacks[memberOf[m.relPath]] ??
+        migrateStack(
+          m.module,
+          name: moduleName,
+          manifests: manifests,
+          format: format,
+          childModule: !m.isRoot,
+          allowTodo: allowTodo,
+          liftWorkspace: liftWorkspace,
+          localModules: localModules,
+        );
     for (final used in stack.moduleWrappers) {
       for (final local in localModules.values) {
         if (local.fileStem == used) wrappers[used] = local;
@@ -400,7 +552,10 @@ MigratedProject migrateTree(
     final sidecar = allowTodo && stack.hasStack
         ? null
         : buildSidecar(m.module, stack.report, version: packageVersion);
-    if (stack.hasStack) files['lib/${stack.stackFile}.dart'] = stack.source;
+    // A merged root's Stack is written once for the whole group, below.
+    if (stack.hasStack && merged == null) {
+      files['lib/${stack.stackFile}.dart'] = stack.source;
+    }
     if (sidecar != null) {
       for (final e in sidecar.files.entries) {
         files['$terraformDir/${e.key}'] = e.value;
@@ -421,11 +576,12 @@ MigratedProject migrateTree(
     copied.sort();
     notCopied.sort();
     packages.addAll(stack.packages);
-    if (stack.hasStack) {
+    if (stack.hasStack && merged == null) {
       stacks.add((
         stackFile: stack.stackFile,
         stackClass: stack.stackClass,
         terraformDir: terraformDir,
+        workspace: stack.usesWorkspace,
       ));
     }
     modules.add(
@@ -437,15 +593,38 @@ MigratedProject migrateTree(
         terraformDir: terraformDir,
         copied: copied,
         varFilesNotCopied: notCopied,
+        mergedInto: merged == null ? null : memberOf[m.relPath],
       ),
     );
   }
   copies.sort((a, b) => a.to.compareTo(b.to));
+  for (final g in mergedGroups) {
+    if (!g.isMerged) continue;
+    files['lib/${g.stackFile}.dart'] = g.source;
+    files['lib/${g.envFile}.dart'] = g.envSource;
+    packages.addAll(g.packages);
+  }
   for (final w in wrappers.values) {
     final source = renderModuleWrapper(w, version: packageVersion);
     files['lib/${w.fileStem}.dart'] = format ? formatDart(source) : source;
   }
-  files['bin/infra.dart'] = renderInfra(packageName, stacks, format: format);
+  files['bin/infra.dart'] = renderInfra(
+    packageName,
+    stacks,
+    merged: [
+      for (final g in mergedGroups)
+        if (g.isMerged)
+          (
+            stackFile: g.stackFile,
+            stackClass: g.stackClass,
+            envFile: g.envFile,
+            envClass: g.envClass,
+            outPrefix: 'tf-out',
+            workspace: g.usesWorkspace,
+          ),
+    ],
+    format: format,
+  );
   files['pubspec.yaml'] = renderPubspec(packageName, name, packages);
   final project = MigratedProject(
     name: name,
@@ -459,6 +638,7 @@ MigratedProject migrateTree(
     ],
     files: files,
     copies: copies,
+    merged: mergedGroups,
   );
   files['MIGRATION.md'] = project.renderMarkdown();
   return project;
@@ -487,6 +667,43 @@ Map<String, String> _moduleNames(ModuleTree tree, String projectName) {
     out[m.relPath] = name;
   }
   return out;
+}
+
+/// A unique `Env` member per environment root: the directory's base name,
+/// extended with parent directory names on collision, then a counter.
+Map<String, String> _envMembers(List<ModuleDir> roots) {
+  final out = <String, String>{};
+  final used = <String>{...envMemberNames};
+  for (final r in roots) {
+    final segments = p.posix.split(r.relPath);
+    var member = '';
+    for (var n = 1; n <= segments.length; n++) {
+      member = lowerCamel(segments.sublist(segments.length - n).join('_'));
+      if (!used.contains(member)) break;
+    }
+    for (var i = 2; used.contains(member); i++) {
+      member = '${lowerCamel(segments.join('_'))}$i';
+    }
+    used.add(member);
+    out[r.relPath] = member;
+  }
+  return out;
+}
+
+/// The merged Stack's names, avoiding the file stems [taken] by the modules
+/// that keep a Stack of their own.
+({String stackClass, String stackFile}) _mergedStackNames(
+  String base,
+  Set<String> taken,
+) {
+  var candidate = stackNames(base);
+  if (!taken.contains(candidate.stackFile)) return candidate;
+  candidate = stackNames('${base}_envs');
+  if (!taken.contains(candidate.stackFile)) return candidate;
+  for (var n = 2; ; n++) {
+    candidate = stackNames('${base}_envs_$n');
+    if (!taken.contains(candidate.stackFile)) return candidate;
+  }
 }
 
 bool _isCopied(String base) =>

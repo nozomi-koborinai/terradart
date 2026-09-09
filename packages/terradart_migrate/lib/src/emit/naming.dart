@@ -98,6 +98,12 @@ const Set<String> stackMemberNames = {
 
 /// Hands out unique Dart local names inside one Stack constructor.
 final class NameAllocator {
+  /// [reserved] names are taken before any allocation — the merged Stack's
+  /// `env` parameter, say.
+  NameAllocator({Set<String> reserved = const {}}) {
+    _used.addAll(reserved);
+  }
+
   final Set<String> _used = {...stackMemberNames};
 
   /// A unique identifier derived from [base]; on a clash the PascalCase

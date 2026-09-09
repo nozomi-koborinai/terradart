@@ -1,0 +1,232 @@
+/// ConfigTreeStack — migrated from `dev` and `prod` by terradart-migrate {{version}}.
+///
+/// One Stack for every environment (`--merge-envs`): what the roots disagree
+/// on is a constant on [Env], and a block only some of them declare
+/// sits behind an `if`. Resource addresses are preserved, so
+/// `terraform plan` against each environment's state reports no changes.
+library;
+
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/artifact_registry.dart';
+import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/data.dart';
+import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/project.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/storage.dart';
+import 'cloud_run_module.dart';
+import 'cloud_sql_module.dart';
+import 'env.dart';
+import 'pubsub_module.dart';
+import 'service_account_module.dart';
+
+final class ConfigTreeStack extends Stack {
+  ConfigTreeStack({required this.env})
+    : super(
+        providers: [const GoogleProvider()],
+        backend: GcsBackend(
+          bucket: env.backendBucket,
+          prefix: env.backendPrefix,
+        ),
+      ) {
+    addVariable(
+      r'project_id',
+      TfVariable(type: r'string', defaultValue: env.projectIdDefault),
+    );
+    addVariable(
+      r'region',
+      const TfVariable(type: r'string', defaultValue: r'asia-northeast1'),
+    );
+    addData(
+      GoogleProject(
+        localName: r'current',
+        projectId: TfArg.variable(r'project_id'),
+      ),
+    );
+    add(
+      GoogleProjectService(
+        localName: r'run',
+        service: TfArg.literal(r'run.googleapis.com'),
+      ),
+    );
+    add(
+      GoogleArtifactRegistryRepository(
+        localName: r'images',
+        repositoryId: TfArg.literal(r'app-images'),
+        format: TfArg.literal(r'DOCKER'),
+        location: TfArg.variable(r'region'),
+      ),
+    );
+    final assets = add(
+      GoogleStorageBucket(
+        localName: r'assets',
+        name: TfArg.literal(env.assetsName),
+        location: TfArg.variable(r'region'),
+      ),
+    );
+    final uploads = add(
+      GoogleStorageBucket(
+        localName: r'uploads',
+        name: TfArg.literal(env.uploadsName),
+        location: TfArg.variable(r'region'),
+      ),
+    );
+    late final GoogleStorageBucket backups;
+    if (env.isProd) {
+      backups = add(
+        GoogleStorageBucket(
+          localName: r'backups',
+          name: TfArg.literal(r'app-prod-backups'),
+          location: TfArg.variable(r'region'),
+        ),
+      );
+    }
+    add(
+      GoogleStorageBucketIamMember(
+        localName: r'assets_public',
+        bucket: TfArg.ref(assets.nameRef),
+        role: TfArg.literal(r'roles/storage.objectViewer'),
+        member: TfArg.literal(r'allUsers'),
+      ),
+    );
+    add(
+      GoogleCloudRunV2Job(
+        localName: r'db_migrate',
+        name: TfArg.literal(r'app-db-migrate'),
+        location: TfArg.variable(r'region'),
+        template: CloudRunV2JobTemplate(
+          template: CloudRunV2JobTaskTemplate(
+            containers: [
+              CloudRunV2JobContainer(
+                image: TfArg.literal(
+                  r'gcr.io/example-project/db-migrate:latest',
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    final saBff = addModule(
+      ServiceAccountModule(
+        localName: r'sa_bff',
+        source: r'../modules/service_account',
+        accountId: TfArg.literal(r'app-bff-sa'),
+      ),
+    );
+    final saWorker = addModule(
+      ServiceAccountModule(
+        localName: r'sa_worker',
+        source: r'../modules/service_account',
+        accountId: TfArg.literal(r'app-worker-sa'),
+      ),
+    );
+    final saAdkAgent = addModule(
+      ServiceAccountModule(
+        localName: r'sa_adk_agent',
+        source: r'../modules/service_account',
+        accountId: TfArg.literal(r'app-agent-sa'),
+      ),
+    );
+    addModule(
+      ServiceAccountModule(
+        localName: r'sa_github_actions',
+        source: r'../modules/service_account',
+        accountId: TfArg.literal(r'app-gha-sa'),
+      ),
+    );
+    addModule(
+      ModuleCall(
+        localName: r'app_secrets',
+        source: r'../modules/secret_manager',
+      ),
+    );
+    final cloudRunBff = addModule(
+      CloudRunModule(
+        localName: r'cloud_run_bff',
+        source: r'../modules/cloud_run',
+        name: TfArg.literal(r'app-bff'),
+      ),
+    );
+    addModule(
+      CloudRunModule(
+        localName: r'cloud_run_worker',
+        source: r'../modules/cloud_run',
+        name: TfArg.literal(r'app-worker'),
+      ),
+    );
+    addModule(
+      CloudSqlModule(
+        localName: r'cloud_sql',
+        source: r'../modules/cloud_sql',
+        instanceName: TfArg.literal(env.cloudSqlInstanceName),
+      ),
+    );
+    addModule(
+      PubsubModule(
+        localName: r'pubsub_webhook',
+        source: r'../modules/pubsub',
+        topic: TfArg.literal(r'app-webhook-events'),
+      ),
+    );
+    addModule(
+      ModuleCall(
+        localName: r'workload_identity',
+        source: r'../modules/workload_identity',
+      ),
+    );
+    if (env.isProd) {
+      add(
+        GoogleStorageBucketIamBinding(
+          localName: r'backups_admins',
+          bucket: TfArg.ref(backups.nameRef),
+          role: TfArg.literal(r'roles/storage.objectAdmin'),
+          members: TfArg.literal([saWorker.member.interpolation]),
+        ),
+      );
+    }
+    add(
+      GoogleStorageBucketIamMember(
+        localName: r'uploads_admin',
+        bucket: TfArg.ref(uploads.nameRef),
+        role: TfArg.literal(r'roles/storage.objectAdmin'),
+        member: TfArg.ref(saWorker.member),
+      ),
+    );
+    add(
+      GoogleStorageBucketIamMember(
+        localName: r'uploads_reader',
+        bucket: TfArg.ref(uploads.nameRef),
+        role: TfArg.literal(r'roles/storage.objectViewer'),
+        member: TfArg.ref(saBff.member),
+      ),
+    );
+    add(
+      GoogleCloudRunV2ServiceIamMember(
+        localName: r'bff_invoker',
+        name: TfArg.ref(cloudRunBff.serviceName),
+        role: TfArg.literal(r'roles/run.invoker'),
+        member: TfArg.literal(r'allUsers'),
+      ),
+    );
+    add(
+      GoogleProjectIamMember(
+        localName: r'worker_token_creator',
+        project: TfArg.variable(r'project_id'),
+        role: TfArg.literal(r'roles/iam.serviceAccountTokenCreator'),
+        member: TfArg.ref(saWorker.member),
+      ),
+    );
+    add(
+      GoogleServiceAccountIamMember(
+        localName: r'agent_user',
+        serviceAccountId: TfArg.ref(saAdkAgent.id),
+        role: TfArg.literal(r'roles/iam.serviceAccountUser'),
+        member: TfArg.ref(saBff.member),
+      ),
+    );
+  }
+
+  /// The environment this Stack synthesizes for.
+  final Env env;
+}

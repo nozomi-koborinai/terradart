@@ -1,0 +1,47 @@
+/// WorkloadIdentityStack — migrated from `workload_identity` by terradart-migrate {{version}}.
+///
+/// One Stack per Terraform module directory. Resource addresses are
+/// preserved, so `terraform plan` against the existing state reports
+/// no changes once the sidecar is in place.
+library;
+
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/provider.dart';
+
+final class WorkloadIdentityStack extends Stack {
+  WorkloadIdentityStack() : super(providers: [const GoogleProvider()]) {
+    final github = add(
+      GoogleIamWorkloadIdentityPool(
+        localName: r'github',
+        workloadIdentityPoolId: TfArg.literal(r'github-pool'),
+      ),
+    );
+    add(
+      GoogleIamWorkloadIdentityPoolProvider(
+        localName: r'github',
+        workloadIdentityPoolId: TfArg.ref(
+          TfRef.attribute<String>(github, r'workload_identity_pool_id'),
+        ),
+        workloadIdentityPoolProviderId: TfArg.literal(r'github-provider'),
+        trustSource: IamWorkloadIdentityPoolProviderOidcTrust(
+          issuerUri: TfArg.literal(
+            r'https://token.actions.githubusercontent.com',
+          ),
+        ),
+      ),
+    );
+    add(
+      GoogleServiceAccountIamMember(
+        localName: r'github_actions',
+        serviceAccountId: TfArg.literal(
+          r'projects/example-project/serviceAccounts/gha-deploy@example-project.iam.gserviceaccount.com',
+        ),
+        role: TfArg.literal(r'roles/iam.workloadIdentityUser'),
+        member: TfArg.literal(
+          r'principalSet://iam.googleapis.com/example/attribute.repository/owner/repo',
+        ),
+      ),
+    );
+  }
+}

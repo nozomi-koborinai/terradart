@@ -23,6 +23,39 @@ import 'naming.dart';
 import 'tf_expr.dart';
 import 'value_emitter.dart';
 
+/// One statement of the Stack constructor body, tagged with the block it
+/// came from so `--merge-envs` can line two environments' bodies up.
+final class StackStatement {
+  const StackStatement({
+    required this.tag,
+    required this.text,
+    this.uses = const {},
+    this.declaresLocal = false,
+    this.dartType,
+  });
+
+  /// What the statement stands for: a block address
+  /// (`google_pubsub_topic.orders`, `module.sa`), `variable.<name>`,
+  /// `output.<name>`, `moved:<statement>`, `terraform.required_version`.
+  /// Two environments that produce the same tag produce the same statement,
+  /// or the merge refuses.
+  final String tag;
+
+  /// The Dart source: one statement, or one `//` comment line.
+  final String text;
+
+  /// Addresses whose Dart local this statement reads.
+  final Set<String> uses;
+
+  /// True when the statement declares its own block's Dart local
+  /// (`final orders = add(...)`).
+  final bool declaresLocal;
+
+  /// The Dart type of that local (`GooglePubsubTopic`), for a merged Stack
+  /// that has to declare it ahead of the `if` that assigns it.
+  final String? dartType;
+}
+
 /// The Dart source of a migrated module: the Stack class body pieces the
 /// caller assembles into files, plus its report.
 final class EmittedStack {
@@ -33,6 +66,13 @@ final class EmittedStack {
     required this.report,
     this.hasStack = true,
     this.moduleWrappers = const {},
+    this.usesWorkspace = false,
+    this.statements = const [],
+    this.imports = const [],
+    this.ctorInit = '',
+    this.envSlotTypes = const {},
+    this.envValueSources = const {},
+    this.envImports = const [],
   });
 
   final String stackClass;
@@ -52,6 +92,31 @@ final class EmittedStack {
   /// File stems of the generated local-module wrappers this Stack imports
   /// (`service_account_module`), for the caller to write beside it.
   final Set<String> moduleWrappers;
+
+  /// The constructor body, statement by statement, in the order [source]
+  /// writes them; the merged-environment emitter lines these up.
+  final List<StackStatement> statements;
+
+  /// True when the Stack takes a `workspace` parameter: something in it
+  /// read `terraform.workspace` and `--lift-workspace` was on.
+  final bool usesWorkspace;
+
+  /// The `import` lines [source] opens with, `terradart_core` included.
+  final List<String> imports;
+
+  /// The `super(...)` arguments (`providers: [...], backend: ...`).
+  final String ctorInit;
+
+  /// `env.<field>` → the Dart type the argument it filled expects.
+  final Map<String, String> envSlotTypes;
+
+  /// `env.<field>` → the Dart source of this module's value for it, where a
+  /// plain literal will not do (an enum member).
+  final Map<String, String> envValueSources;
+
+  /// `import` lines the constants' own types need (the barrel exporting an
+  /// enum a lifted argument takes), for the file declaring them.
+  final List<String> envImports;
   final MigrationReport report;
 }
 
@@ -124,6 +189,8 @@ final class _Emitted {
     required this.tfType,
     required this.dartName,
     required this.call,
+    required this.dartType,
+    required this.usesWorkspace,
     required this.usedTargets,
     required this.usedVariables,
     required this.package,
@@ -156,6 +223,12 @@ final class _Emitted {
 
   /// `add(...)` / `addData(...)` without the `final x =` prefix.
   final String call;
+
+  /// What `add(...)` returns: the class the call constructs.
+  final String dartType;
+
+  /// True when the block read the Stack's `workspace` parameter.
+  final bool usesWorkspace;
   final Set<String> usedTargets;
   final Set<String> usedVariables;
   final String package;
@@ -174,6 +247,10 @@ final class StackEmitter {
     this.childModule = false,
     this.allowTodo = false,
     this.localModules = const {},
+    this.envValues = const {},
+    this.forceLocals = const {},
+    this.reservedNames = const {},
+    this.liftWorkspace = false,
   });
 
   final TfModule module;
@@ -200,6 +277,33 @@ final class StackEmitter {
   /// `source` points at, for the calls whose callee the scan resolved. A
   /// call with no entry here becomes a bare `ModuleCall`.
   final Map<String, LocalModule> localModules;
+
+  /// `--merge-envs`: block address → top-level argument → the Dart
+  /// expression (`env.assetsName`) to emit in place of the literal this
+  /// environment writes, for arguments the environments disagree on.
+  /// Addressed as `variable.<name>`, `provider.<name>[.<alias>]` and
+  /// `terraform.backend` too.
+  final Map<String, Map<String, String>> envValues;
+
+  /// Addresses that get a Dart local even when nothing in *this* module
+  /// reads them — another merged environment does.
+  final Set<String> forceLocals;
+
+  /// Identifiers no Dart local may take (`env`, in a merged Stack).
+  final Set<String> reservedNames;
+
+  /// `--lift-workspace`: `terraform.workspace` becomes the Stack's
+  /// `workspace` parameter, so the synthesized JSON names one workspace
+  /// instead of deferring to `terraform workspace select`.
+  final bool liftWorkspace;
+
+  /// `env.<field>` → the Dart type of the argument it filled.
+  final _envSlotTypes = <String, String>{};
+
+  /// `env.<field>` → this module's Dart source for it, and the import its
+  /// type needs; both empty unless a lifted argument takes an enum.
+  final _envValueSources = <String, String>{};
+  final _envImports = <String>{};
 
   /// Wrapper libraries the Stack ended up importing.
   final _moduleWrappers = <String>{};
@@ -239,7 +343,9 @@ final class StackEmitter {
     var emitted = <String, _Emitted>{};
     while (true) {
       blocks = _blocksInOrder(refused);
-      final names = NameAllocator();
+      final names = NameAllocator(
+        reserved: {...reservedNames, if (liftWorkspace) 'workspace'},
+      );
       dartNames = <String, String>{
         for (final b in blocks)
           b.address: names.allocate(
@@ -320,7 +426,9 @@ final class StackEmitter {
       ctx.import(e.package, e.barrel);
     }
 
-    final body = StringBuffer();
+    final body = <StackStatement>[];
+    void write(String tag, String text) =>
+        body.add(StackStatement(tag: tag, text: text));
     final ctorInit = StringBuffer();
 
     // --- providers ------------------------------------------------------
@@ -371,9 +479,10 @@ final class StackEmitter {
           'first configuration is migrated',
         );
       }
-      final args = <String>[
-        if (defaults.isNotEmpty) ..._providerArgs(recipe, name, defaults.first),
-      ];
+      final config = defaults.isEmpty
+          ? (args: const <String>[], isConst: true)
+          : _providerArgs(recipe, name, defaults.first);
+      final args = config.args;
       final pinned = module.requiredProviders[name];
       final wanted = pinned == null ? null : objectMap(pinned)?['version'];
       final wantedText = wanted?.constantString;
@@ -384,7 +493,10 @@ final class StackEmitter {
         );
       }
       ctx.import(recipe.package, recipe.barrel);
-      providerExprs.add('const ${recipe.className}(${args.join(', ')})');
+      providerExprs.add(
+        '${config.isConst ? 'const ' : ''}'
+        '${recipe.className}(${args.join(', ')})',
+      );
       _registeredProviders.add(name);
       if (!childModule || configs.isEmpty) {
         _migrated.add(MigratedItem(address: 'provider.$name'));
@@ -393,11 +505,12 @@ final class StackEmitter {
       // its alias; a resource selects it with `provider: 'name.alias'`.
       for (final p in aliases) {
         final alias = p.alias!;
-        final aliasArgs = [
-          'alias: ${dartString(alias)}',
-          ..._providerArgs(recipe, '$name.$alias', p),
-        ];
-        providerExprs.add('const ${recipe.className}(${aliasArgs.join(', ')})');
+        final aliasConfig = _providerArgs(recipe, '$name.$alias', p);
+        final aliasArgs = ['alias: ${dartString(alias)}', ...aliasConfig.args];
+        providerExprs.add(
+          '${aliasConfig.isConst ? 'const ' : ''}'
+          '${recipe.className}(${aliasArgs.join(', ')})',
+        );
         _migrated.add(MigratedItem(address: 'provider.$name.$alias'));
       }
     }
@@ -433,7 +546,10 @@ final class StackEmitter {
             } else if (v == null) {
               _keep('terraform.required_version', 'not a literal');
             } else {
-              body.writeln('setRequiredVersion(${dartString(v)});');
+              write(
+                'terraform.required_version',
+                'setRequiredVersion(${dartString(v)});',
+              );
               _migrated.add(
                 const MigratedItem(address: 'terraform.required_version'),
               );
@@ -459,13 +575,13 @@ final class StackEmitter {
       }
       final stmt = _variable(v);
       if (stmt != null) {
-        body.writeln(stmt);
+        write('variable.${v.name}', stmt);
         _migrated.add(MigratedItem(address: 'variable.${v.name}'));
       }
     }
     for (final name in usedVariables) {
       if (!noStack && !ctx.declaredVariables.contains(name)) {
-        body.writeln('addExternalVariable(${dartString(name)});');
+        write('variable.$name', 'addExternalVariable(${dartString(name)});');
         _warnings.add(
           'variable "$name" is referenced but not declared in this module; '
           'declared as external',
@@ -474,19 +590,28 @@ final class StackEmitter {
     }
 
     // --- outputs (resolved first: an export keeps its target's Dart local) --
-    final outputStatements = <String>[];
+    final outputStatements = <StackStatement>[];
     for (final o in module.outputs) {
       if (noStack) {
         _keep('output.${o.name}', _noStackReason);
         continue;
       }
-      final stmt = _output(o);
-      if (stmt != null) {
-        outputStatements.add(stmt);
+      final export = _output(o);
+      if (export != null) {
+        outputStatements.add(
+          StackStatement(
+            tag: 'output.${o.name}',
+            text: export.statement,
+            uses: {export.address},
+          ),
+        );
         _migrated.add(MigratedItem(address: 'output.${o.name}'));
       }
     }
     referenced.addAll(_outputRefs);
+    // A local another environment reads keeps its `final x =` here too, so
+    // the merged Stack's bodies still line up statement for statement.
+    referenced.addAll(forceLocals);
 
     // --- resources and data sources -------------------------------------
     for (final b in blocks) {
@@ -501,10 +626,17 @@ final class StackEmitter {
         _kept.add(KeptItem(address: b.address, reason: _noStackReason));
         continue;
       }
-      final assign = referenced.contains(b.address)
-          ? 'final ${e.dartName} = '
-          : '';
-      body.writeln('$assign${e.call};');
+      final declares = referenced.contains(b.address);
+      final assign = declares ? 'final ${e.dartName} = ' : '';
+      body.add(
+        StackStatement(
+          tag: b.address,
+          text: '$assign${e.call};',
+          uses: e.usedTargets,
+          declaresLocal: declares,
+          dartType: e.dartType,
+        ),
+      );
       _migrated.add(
         MigratedItem(
           address: b.address,
@@ -519,7 +651,8 @@ final class StackEmitter {
     for (final ex in _expansions.values) {
       if (ex.isData) continue;
       for (final inst in ex.item.instances) {
-        body.writeln(
+        write(
+          'moved.${inst.from}',
           'addMoved(${dartString(inst.from)}, ${dartString(inst.to)});',
         );
         movedFroms.add(inst.from);
@@ -530,7 +663,7 @@ final class StackEmitter {
       if (o.type != 'moved' || o.block.labels.isNotEmpty || noStack) continue;
       try {
         for (final stmt in _moved(o, movedFroms, emitted)) {
-          body.writeln(stmt);
+          write('moved:$stmt', stmt);
         }
         translatedMoved.add(o);
       } on MigrateBlocker catch (e) {
@@ -539,11 +672,10 @@ final class StackEmitter {
       }
     }
 
-    for (final stmt in outputStatements) {
-      body.writeln(stmt);
-    }
+    body.addAll(outputStatements);
     if (outputStatements.isNotEmpty) {
-      body.writeln(
+      write(
+        'appExports',
         'setAppExportsOutputPath(${dartString('lib/generated/$stackFile.app.dart')});',
       );
     }
@@ -565,17 +697,23 @@ final class StackEmitter {
     }
 
     if (allowTodo && !noStack && _kept.isNotEmpty) {
-      body.writeln(
+      write(
+        'todo',
         '// TODO(terradart-migrate): ${_kept.length} block(s) stay '
-        'untranslated with no sidecar (--allow-todo); the plan differs until '
-        'they are ported by hand.',
+            'untranslated with no sidecar (--allow-todo); the plan differs until '
+            'they are ported by hand.',
       );
       for (final k in _kept) {
-        body.writeln('// TODO(terradart-migrate): ${k.address}: ${k.reason}');
+        write(
+          'todo.${k.address}',
+          '// TODO(terradart-migrate): ${k.address}: ${k.reason}',
+        );
       }
     }
 
     // --- assemble ---------------------------------------------------------
+    final usesWorkspace = emitted.values.any((e) => e.usesWorkspace);
+    final parameters = usesWorkspace ? '{required String workspace}' : '';
     final packages = ctx.imports.keys.toList()..sort();
     final wrappers = noStack
         ? const <String>[]
@@ -605,8 +743,8 @@ final class StackEmitter {
       ..writeln(imports.join('\n'))
       ..writeln()
       ..writeln('final class $stackClass extends Stack {')
-      ..writeln('  $stackClass() : super($ctorInit) {')
-      ..write(body)
+      ..writeln('  $stackClass($parameters) : super($ctorInit) {')
+      ..writeln([for (final s in body) s.text].join('\n'))
       ..writeln('  }')
       ..writeln('}');
 
@@ -617,6 +755,13 @@ final class StackEmitter {
       hasStack: !noStack,
       packages: packages,
       moduleWrappers: Set.unmodifiable(wrappers),
+      usesWorkspace: usesWorkspace,
+      statements: List.unmodifiable(body),
+      imports: List.unmodifiable(imports),
+      ctorInit: ctorInit.toString(),
+      envSlotTypes: Map.unmodifiable(_envSlotTypes),
+      envValueSources: Map.unmodifiable(_envValueSources),
+      envImports: List.unmodifiable(_envImports.toList()..sort()),
       report: MigrationReport(
         module: moduleName,
         stackClass: stackClass,
@@ -639,16 +784,24 @@ final class StackEmitter {
   /// `param: value` arguments of [recipe]'s constructor for the provider
   /// configuration [block] (`alias` excluded); anything the constructor
   /// cannot take is dropped with a warning naming [label].
-  List<String> _providerArgs(
+  ({List<String> args, bool isConst}) _providerArgs(
     _ProviderRecipe recipe,
     String label,
     ProviderBlock block,
   ) {
     final args = <String>[];
+    final overrides = envValues['provider.$label'] ?? const <String, String>{};
+    var isConst = true;
     final values = objectMap(bodyAsObject(block.body)) ?? {};
     for (final entry in values.entries) {
       if (entry.key == 'alias') continue;
       final param = recipe.args[entry.key];
+      final override = overrides[entry.key];
+      if (param != null && override != null) {
+        isConst = false;
+        args.add('$param: $override');
+        continue;
+      }
       final json = jsonValue(entry.value);
       if (param == null) {
         _warnings.add(
@@ -668,7 +821,7 @@ final class StackEmitter {
       }
       args.add('$param: ${dartValue(json)}');
     }
-    return args;
+    return (args: args, isConst: isConst);
   }
 
   // -----------------------------------------------------------------------
@@ -708,6 +861,8 @@ final class StackEmitter {
       sensitivePaths: b.isData
           ? const {}
           : ctx.sensitive.of(manifest.package, b.type, b.kind),
+      envValues: envValues[b.address] ?? const {},
+      liftWorkspace: liftWorkspace,
     );
 
     // Meta-arguments the base class takes.
@@ -769,6 +924,15 @@ final class StackEmitter {
     final level = BodyLevel(values, path: '');
     final args = emitter.emitArgs(entry.slots, level);
     level.checkClaimed();
+    _envSlotTypes.addAll(emitter.envSlotTypes);
+    _envValueSources.addAll(emitter.envValueSources);
+    // A constant typed as one of the package's enums needs the barrel that
+    // exports it wherever it is declared, not just here.
+    if (emitter.envValueSources.isNotEmpty) {
+      _envImports.add(
+        "import 'package:${manifest.package}/${entry.barrel}.dart';",
+      );
+    }
     final ctor =
         '${entry.className}(localName: ${dartString(b.name)}'
         '${args.isEmpty ? '' : ', ${args.join(', ')}'}'
@@ -778,6 +942,8 @@ final class StackEmitter {
       tfType: b.type,
       dartName: dartName,
       call: '${b.isData ? 'addData' : 'add'}($ctor)',
+      dartType: entry.className,
+      usesWorkspace: emitter.usedWorkspace,
       usedTargets: emitter.usedTargets,
       usedVariables: emitter.usedVariables,
       package: manifest.package,
@@ -846,6 +1012,8 @@ final class StackEmitter {
       ctx,
       _moduleManifest,
       sensitivePaths: const {},
+      envValues: envValues[b.address] ?? const {},
+      liftWorkspace: liftWorkspace,
     );
     final moduleProviders = <String>[];
     final providers = values.remove('providers');
@@ -890,11 +1058,14 @@ final class StackEmitter {
     // An argument the module does not declare as a variable: Terraform would
     // reject it, and the wrapper has no parameter for it.
     level.checkClaimed();
+    _envSlotTypes.addAll(emitter.envSlotTypes);
     return _Emitted(
       address: b.address,
       tfType: 'module',
       dartName: dartName,
       call: 'addModule($ctor)',
+      dartType: local?.className ?? 'ModuleCall',
+      usesWorkspace: emitter.usedWorkspace,
       usedTargets: emitter.usedTargets,
       usedVariables: emitter.usedVariables,
       package: '',
@@ -1217,14 +1388,24 @@ final class StackEmitter {
     }
     final type = b.labels.isEmpty ? '' : b.labels.first.text;
     final values = objectMap(bodyAsObject(b.body)) ?? {};
-    String? constant(String key) {
+    final overrides =
+        envValues['terraform.backend'] ?? const <String, String>{};
+    // A backend argument the merged environments disagree on becomes an
+    // `Env` constant, and the backend is no longer a compile-time constant.
+    var isConst = true;
+    String? arg(String param, String key) {
       final v = values[key];
       if (v == null) return null;
+      final override = overrides[key];
+      if (override != null) {
+        isConst = false;
+        return '$param: $override';
+      }
       final s = v.constantString;
       if (s == null) {
         throw MigrateBlocker('backend "$type": "$key" is not a literal');
       }
-      return s;
+      return '$param: ${dartString(s)}';
     }
 
     try {
@@ -1241,14 +1422,11 @@ final class StackEmitter {
           }
           // A partial configuration — the values come from `terraform init
           // -backend-config` — is the block with those keys left out.
-          final bucket = constant('bucket');
-          final prefix = constant('prefix');
-          final args = <String>[
-            if (bucket != null) 'bucket: ${dartString(bucket)}',
-            if (prefix != null) 'prefix: ${dartString(prefix)}',
-          ];
+          final bucket = arg('bucket', 'bucket');
+          final prefix = arg('prefix', 'prefix');
+          final args = <String>[?bucket, ?prefix];
           _migrated.add(const MigratedItem(address: 'terraform.backend'));
-          return 'const GcsBackend(${args.join(', ')})';
+          return '${isConst ? 'const ' : ''}GcsBackend(${args.join(', ')})';
         case 'local':
           final extra = values.keys.where((k) => k != 'path');
           if (extra.isNotEmpty) {
@@ -1257,9 +1435,9 @@ final class StackEmitter {
               '${extra.map((k) => '"$k"').join(', ')}',
             );
           }
-          final path = constant('path');
+          final path = arg('path', 'path');
           _migrated.add(const MigratedItem(address: 'terraform.backend'));
-          return 'const LocalBackend(${path == null ? '' : 'path: ${dartString(path)}'})';
+          return '${isConst ? 'const ' : ''}LocalBackend(${path ?? ''})';
         case 's3':
           const params = {
             'bucket': 'bucket',
@@ -1282,6 +1460,12 @@ final class StackEmitter {
                 'backend "s3": S3Backend has no parameter for "${entry.key}"',
               );
             }
+            final override = overrides[entry.key];
+            if (override != null) {
+              isConst = false;
+              args.add('$param: $override');
+              continue;
+            }
             final json = jsonValue(entry.value);
             if (json is String && json.contains(r'${')) {
               throw MigrateBlocker(
@@ -1291,7 +1475,7 @@ final class StackEmitter {
             args.add('$param: ${dartValue(json)}');
           }
           _migrated.add(const MigratedItem(address: 'terraform.backend'));
-          return 'const S3Backend(${args.join(', ')})';
+          return '${isConst ? 'const ' : ''}S3Backend(${args.join(', ')})';
         default:
           throw MigrateBlocker(
             'backend "$type" has no TerraDart type; it stays in backend.tf',
@@ -1305,19 +1489,33 @@ final class StackEmitter {
 
   String? _variable(VariableBlock v) {
     final values = objectMap(bodyAsObject(v.body)) ?? {};
+    final overrides =
+        envValues['variable.${v.name}'] ?? const <String, String>{};
+    var isConst = true;
     final args = <String>[];
     try {
       for (final entry in values.entries) {
         final value = entry.value;
+        final override = overrides[entry.key];
         switch (entry.key) {
           case 'type':
             final s = value.constantString ?? hclSource(value);
             args.add('type: ${dartString(s)}');
           case 'description':
+            if (override != null) {
+              isConst = false;
+              args.add('description: $override');
+              break;
+            }
             final s = value.constantString;
             if (s == null) throw MigrateBlocker('description is not a literal');
             args.add('description: ${dartString(s)}');
           case 'default':
+            if (override != null) {
+              isConst = false;
+              args.add('defaultValue: $override');
+              break;
+            }
             args.add('defaultValue: ${dartValue(jsonValue(value))}');
           case 'sensitive' || 'nullable':
             if (value is! LiteralExpr || value.value is! bool) {
@@ -1335,10 +1533,11 @@ final class StackEmitter {
       _keep('variable.${v.name}', e.reason);
       return 'addExternalVariable(${dartString(v.name)});';
     }
-    return 'addVariable(${dartString(v.name)}, const TfVariable(${args.join(', ')}));';
+    return 'addVariable(${dartString(v.name)}, '
+        '${isConst ? 'const ' : ''}TfVariable(${args.join(', ')}));';
   }
 
-  String? _output(OutputBlock o) {
+  ({String statement, String address})? _output(OutputBlock o) {
     final values = objectMap(bodyAsObject(o.body)) ?? {};
     try {
       var value = values['value'];
@@ -1404,7 +1603,12 @@ final class StackEmitter {
       final key = isDartIdentifier(o.name) ? o.name : lowerCamel(o.name);
       if (key != o.name) args.add('terraformOutputName: ${dartString(o.name)}');
       _outputRefs.add(address);
-      return 'addExport(${dartString(key)}, ResourceIdExport($ref, ${args.join(', ')}));';
+      return (
+        statement:
+            'addExport(${dartString(key)}, '
+            "ResourceIdExport($ref, ${args.join(', ')}));",
+        address: address,
+      );
     } on MigrateBlocker catch (e) {
       _keep('output.${o.name}', e.reason);
       return null;

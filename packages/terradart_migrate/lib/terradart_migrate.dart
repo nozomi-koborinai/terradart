@@ -17,7 +17,10 @@ import 'src/migrate_manifest.dart';
 import 'src/report.dart';
 
 export 'src/cli.dart';
+export 'src/emit/env_plan.dart'
+    show EnvBinding, EnvField, EnvPlan, planEnvironments;
 export 'src/manifests.dart';
+export 'src/merge_envs.dart';
 export 'src/migrate.dart';
 export 'src/migrate_manifest.dart';
 export 'src/project.dart';
