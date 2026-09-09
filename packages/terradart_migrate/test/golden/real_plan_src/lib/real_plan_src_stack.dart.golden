@@ -23,6 +23,7 @@ final class RealPlanSrcStack extends Stack {
           ),
         ],
       ) {
+    // --- Curated by terradart_google (expected: supported) ---
     add(
       GoogleStorageBucket(
         localName: r'assets',
@@ -64,6 +65,7 @@ final class RealPlanSrcStack extends Stack {
         ),
       ),
     );
+    // --- Still uncurated in terradart_google (not a required sentinel) ---
     add(
       GoogleIdentityPlatformOauthIdpConfig(
         localName: r'hello',

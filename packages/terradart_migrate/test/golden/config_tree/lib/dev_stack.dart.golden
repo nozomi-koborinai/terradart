@@ -35,6 +35,8 @@ final class DevStack extends Stack {
       r'region',
       const TfVariable(type: r'string', defaultValue: r'asia-northeast1'),
     );
+    // Environment root module. Resources declared directly here, plus calls into
+    // the shared local modules under ../modules.
     addData(
       GoogleProject(
         localName: r'current',

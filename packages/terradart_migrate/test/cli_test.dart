@@ -26,9 +26,116 @@ void main() {
     expect(help.code, MigrateExitCodes.success);
     expect(help.out, contains('Usage: terradart-migrate --dir'));
     expect(help.out, contains('--allow-todo'));
+    expect(help.out, contains('--inline-locals'));
+    expect(help.out, contains('--in-place'));
     final version = await _run(['--version']);
     expect(version.code, MigrateExitCodes.success);
     expect(version.out.trim(), 'terradart-migrate $packageVersion');
+  });
+
+  test('--inline-locals and --merge-envs cannot be combined', () async {
+    // Both move a value out of Terraform; --merge-envs does it per
+    // environment, which one `final` per Stack cannot express.
+    final r = await _run([
+      '--dir',
+      '$_fixtures/config_tree',
+      '--out',
+      p.join(tmp.path, 'out'),
+      '--inline-locals',
+      '--merge-envs',
+    ]);
+    expect(r.code, MigrateExitCodes.usage);
+    expect(r.err, contains('cannot be combined'));
+    expect(r.err, contains('Env enum'));
+    expect(Directory(p.join(tmp.path, 'out')).existsSync(), isFalse);
+  });
+
+  group('--in-place', () {
+    /// A committed git repository holding [main] as `tf/main.tf`.
+    Directory repo(String main) {
+      final root = Directory(p.join(tmp.path, 'repo'))
+        ..createSync(recursive: true);
+      File(p.join(root.path, 'tf', 'main.tf'))
+        ..createSync(recursive: true)
+        ..writeAsStringSync(main);
+      for (final args in const [
+        ['init', '-q'],
+        ['config', 'user.email', 'cli@terradart'],
+        ['config', 'user.name', 'cli'],
+        ['add', '-A'],
+        ['commit', '-qm', 'fixture'],
+      ]) {
+        Process.runSync('git', args, workingDirectory: root.path);
+      }
+      return root;
+    }
+
+    const bucket = '''
+resource "google_storage_bucket" "assets" {
+  name     = "a"
+  location = "US"
+}
+
+resource "acme_widget" "w" {
+  size = 3
+}
+''';
+
+    test('rewrites the tree and reports what it cut', () async {
+      final root = repo(bucket);
+      final r = await _run([
+        '--dir',
+        p.join(root.path, 'tf'),
+        '--out',
+        p.join(tmp.path, 'out'),
+        '--in-place',
+      ]);
+      expect(r.code, MigrateExitCodes.success);
+      expect(r.out, contains('--in-place'));
+      expect(r.out, contains('google_storage_bucket.assets'));
+      final rewritten = File(
+        p.join(root.path, 'tf', 'main.tf'),
+      ).readAsStringSync();
+      expect(rewritten, contains('acme_widget'));
+      expect(rewritten, isNot(contains('google_storage_bucket')));
+    });
+
+    test('refuses a dirty working tree, and writes nothing at all', () async {
+      final root = repo(bucket);
+      File(
+        p.join(root.path, 'tf', 'main.tf'),
+      ).writeAsStringSync('$bucket\n# edited\n');
+      final r = await _run([
+        '--dir',
+        p.join(root.path, 'tf'),
+        '--out',
+        p.join(tmp.path, 'out'),
+        '--in-place',
+      ]);
+      expect(r.code, MigrateExitCodes.cannotCreate);
+      expect(r.err, contains('uncommitted changes'));
+      // The refusal comes before the package is written, so --out is not
+      // left half-made either.
+      expect(Directory(p.join(tmp.path, 'out')).existsSync(), isFalse);
+      expect(
+        File(p.join(root.path, 'tf', 'main.tf')).readAsStringSync(),
+        endsWith('# edited\n'),
+      );
+    });
+
+    test('refuses a tree that is not in git', () async {
+      final dir = Directory(p.join(tmp.path, 'bare'))..createSync();
+      File(p.join(dir.path, 'main.tf')).writeAsStringSync(bucket);
+      final r = await _run([
+        '--dir',
+        dir.path,
+        '--out',
+        p.join(tmp.path, 'out'),
+        '--in-place',
+      ]);
+      expect(r.code, MigrateExitCodes.cannotCreate);
+      expect(r.err, contains('git'));
+    });
   });
 
   test('usage errors exit 64', () async {
