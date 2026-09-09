@@ -32,6 +32,7 @@ final class StackStatement {
   const StackStatement({
     required this.tag,
     required this.text,
+    this.comments = '',
     this.uses = const {},
     this.declaresLocal = false,
     this.dartType,
@@ -46,6 +47,12 @@ final class StackStatement {
 
   /// The Dart source: one statement, or one `//` comment line.
   final String text;
+
+  /// The block's own HCL comments as Dart `//` lines, newline-terminated,
+  /// to write directly above [text]; empty when the block carried none.
+  /// Kept apart from [text] so `--merge-envs` compares the statements and
+  /// not the prose around them.
+  final String comments;
 
   /// Addresses whose Dart local this statement reads.
   final Set<String> uses;
@@ -265,6 +272,7 @@ final class StackEmitter {
     this.reservedNames = const {},
     this.liftWorkspace = false,
     this.inlineLocals = false,
+    this.carryComments = true,
   });
 
   final TfModule module;
@@ -316,6 +324,12 @@ final class StackEmitter {
   /// value instead of a `${local.x}` template Terraform resolves from the
   /// sidecar. A local that stays keeps both.
   final bool inlineLocals;
+
+  /// Carry each block's leading HCL comments into the Stack as `//` lines
+  /// above its statement. Off for a merged Stack, whose bodies are lined up
+  /// statement by statement across environments that may document the same
+  /// block differently.
+  final bool carryComments;
 
   /// The plan for this module's locals, decided once the block names are
   /// allocated so an inlined local never renames a resource's Dart local.
@@ -656,6 +670,7 @@ final class StackEmitter {
     referenced.addAll(forceLocals);
 
     // --- resources and data sources -------------------------------------
+    final commented = <String>{};
     for (final b in blocks) {
       final e = emitted[b.address];
       if (e == null) {
@@ -674,6 +689,11 @@ final class StackEmitter {
         StackStatement(
           tag: b.address,
           text: '$assign${e.call};',
+          // One source block unrolled into instances documents them all
+          // once, above the first.
+          comments: commented.add(b.sourceAddress)
+              ? _blockComments[b.sourceAddress] ?? ''
+              : '',
           uses: e.usedTargets,
           declaresLocal: declares,
           dartType: e.dartType,
@@ -805,7 +825,7 @@ final class StackEmitter {
       ..writeln()
       ..writeln('final class $stackClass extends Stack {')
       ..writeln('  $stackClass($parameters) : super($ctorInit) {')
-      ..writeln([for (final s in body) s.text].join('\n'))
+      ..writeln([for (final s in body) '${s.comments}${s.text}'].join('\n'))
       ..writeln('  }')
       ..writeln('}');
 
@@ -841,6 +861,70 @@ final class StackEmitter {
 
   void _keep(String address, String reason) {
     _kept.add(KeptItem(address: address, reason: reason));
+  }
+
+  // -----------------------------------------------------------------------
+  // Comments
+  // -----------------------------------------------------------------------
+
+  /// Block address → the block's own leading HCL comments as Dart `//`
+  /// lines. A comment is the author's documentation of the resource: the
+  /// sidecar keeps it for a block that stays in Terraform, and the Stack
+  /// would otherwise be the one place it is lost.
+  late final Map<String, String> _blockComments = !carryComments
+      ? const {}
+      : {
+          for (final r in module.resources) r.address: _dartComments(r.block),
+          for (final d in module.dataSources) d.address: _dartComments(d.block),
+          for (final c in module.moduleCalls)
+            'module.${c.name}': _dartComments(c.block),
+        };
+
+  /// [block]'s leading comments as `//` lines, newline-terminated.
+  ///
+  /// The migrator's own `# terradart-migrate:` annotations are dropped: they
+  /// are not the author's, and `--update` reads a sidecar full of them.
+  static String _dartComments(Block block) {
+    final out = <String>[];
+    for (final comment in block.leadingComments) {
+      final lines = _commentLines(comment);
+      if (lines.isEmpty || lines.first.startsWith('terradart-migrate:')) {
+        continue;
+      }
+      for (final line in lines) {
+        out.add(line.isEmpty ? '//' : '// $line');
+      }
+    }
+    return out.isEmpty ? '' : '${out.join('\n')}\n';
+  }
+
+  /// The text of one HCL comment with its delimiters removed, one entry per
+  /// line.
+  static List<String> _commentLines(Comment comment) {
+    var text = comment.text.trim();
+    if (comment.isBlock) {
+      text = text
+          .replaceFirst(RegExp(r'^/\*'), '')
+          .replaceFirst(RegExp(r'\*/$'), '');
+    }
+    final out = <String>[];
+    for (final raw in const LineSplitter().convert(text)) {
+      out.add(
+        raw.trim().replaceFirst(
+          comment.isBlock ? RegExp(r'^\*\s?') : RegExp(r'^(#+|//)\s?'),
+          '',
+        ),
+      );
+    }
+    // A `/* ... */` opening or closing on a line of its own leaves a blank
+    // one at each end; the prose between them is the comment.
+    while (out.isNotEmpty && out.last.isEmpty) {
+      out.removeLast();
+    }
+    while (out.isNotEmpty && out.first.isEmpty) {
+      out.removeAt(0);
+    }
+    return out;
   }
 
   // -----------------------------------------------------------------------
@@ -2059,6 +2143,11 @@ final class _BlockInfo {
   /// The address this block had before its `count` / `for_each` was
   /// unrolled (`google_x.y[0]`), or `null` for a block written as-is.
   final String? expandedFrom;
+
+  /// The address of the block as written: [address], or the block an
+  /// instance was unrolled from with its key dropped.
+  String get sourceAddress =>
+      expandedFrom?.replaceFirst(RegExp(r'\[.*\]$'), '') ?? address;
 
   /// Why this block cannot become Dart, decided before emission: a
   /// `count` / `for_each` that is not a literal, an instance of it that did

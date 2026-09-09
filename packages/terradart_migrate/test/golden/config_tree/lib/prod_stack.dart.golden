@@ -35,6 +35,8 @@ final class ProdStack extends Stack {
       r'region',
       const TfVariable(type: r'string', defaultValue: r'asia-northeast1'),
     );
+    // Production environment root module — same shape as dev, with an extra bucket
+    // and an authoritative IAM binding.
     addData(
       GoogleProject(
         localName: r'current',
