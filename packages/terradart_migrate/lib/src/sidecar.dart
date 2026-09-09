@@ -51,14 +51,9 @@ Sidecar buildSidecar(
   required String version,
 }) => _SidecarBuilder(module, report, version).build();
 
-/// [entry] as written in [file], with the comments directly above it and a
-/// trailing comment, or re-rendered with [HclWriter] when the file is JSON
-/// (or the node has no source range). [level] indents the first line for
-/// nesting; continuation lines keep the indentation they had.
-String verbatimEntry(HclFile file, BodyEntry entry, {int level = 0}) {
-  if (file.isJson || entry.range.isNone) {
-    return const HclWriter().writeEntry(entry, level: level).trimRight();
-  }
+/// The full source range of [entry]: the entry itself, the comments
+/// directly above it and its trailing comment.
+SourceRange entryRange(BodyEntry entry) {
   var range = entry.range;
   for (final c in entry.leadingComments) {
     range = range.union(c.range);
@@ -67,8 +62,18 @@ String verbatimEntry(HclFile file, BodyEntry entry, {int level = 0}) {
     Attribute(:final trailingComment) => trailingComment,
     Block(:final trailingComment) => trailingComment,
   };
-  if (trailing != null) range = range.union(trailing.range);
-  final text = range.textIn(file.source).trimRight();
+  return trailing == null ? range : range.union(trailing.range);
+}
+
+/// [entry] as written in [file], with the comments directly above it and a
+/// trailing comment, or re-rendered with [HclWriter] when the file is JSON
+/// (or the node has no source range). [level] indents the first line for
+/// nesting; continuation lines keep the indentation they had.
+String verbatimEntry(HclFile file, BodyEntry entry, {int level = 0}) {
+  if (file.isJson || entry.range.isNone) {
+    return const HclWriter().writeEntry(entry, level: level).trimRight();
+  }
+  final text = entryRange(entry).textIn(file.source).trimRight();
   return level == 0 ? text : '${'  ' * level}$text';
 }
 

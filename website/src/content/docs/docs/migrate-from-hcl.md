@@ -188,6 +188,21 @@ Two rules keep the sidecar correct. A local leaves it only when nothing that sta
 
 The cost of the flag is that the value is copied: editing `locals.tf` afterwards no longer moves what the Stack writes. What it never changes is the plan — the fixture gate migrates a module both ways and requires `terraform plan` to report the same thing for both packages, resource for resource. `--inline-locals` cannot be combined with `--merge-envs`, which already lifts the values the environments disagree on onto the generated `Env` enum.
 
+### The tree as the leftover
+
+Every other mode reads `--dir` and never writes to it. `--in-place` is the exception: after the package is written, it rewrites the Terraform tree so its `.tf` files keep only the blocks that stayed in Terraform.
+
+```sh
+terradart-migrate --dir infra --out infra_dart --in-place
+git -C infra diff
+```
+
+That diff is the point. Every block that became Dart shows as a deletion, in the file it lived in, and nothing else changes: the rewrite cuts source ranges rather than re-rendering, so every line that stays keeps its own formatting, comments and blank lines byte for byte. A file whose every block became Dart is deleted; a `terraform { }` block loses the settings the Stack owns — `required_version`, the `required_providers` entries of the providers it registers — and keeps the rest.
+
+It refuses to run unless `--dir` is inside a **git working tree with nothing uncommitted in it**, untracked files included, and it checks that before writing anything, `--out` included. The rewrite deletes your Terraform; `git checkout` is the undo, and it only works if the tree started clean.
+
+Two things it never touches. A `*.tf.json` file, whose nodes carry no source ranges to cut — re-rendering it would rewrite the whole file, so it is left alone and listed in the report. And `moved` blocks: the report does not say which of them became `Stack.addMoved`, and a state move is not worth a guess.
+
 ## Picking the migration back up
 
 The catalog grows. A block that had no factory when you migrated may have one today — but the Dart is yours now, so re-migrating over it is not an option. `--update` re-runs on the package instead of the tree:
@@ -210,20 +225,21 @@ Two things a re-run cannot know, because it reads the sidecar and not your Dart:
 
 | Flag | Meaning |
 | :--- | :--- |
-| `--dir <tree>` | The Terraform source tree to migrate. Never written. |
-| `--out <package>` | Where the Dart package goes. Must not exist or be empty unless `--force` is given; nothing is ever written outside it. |
+| `--dir <tree>` | The Terraform source tree to migrate. Never written, unless `--in-place` is given. |
+| `--out <package>` | Where the Dart package goes. Must not exist or be empty unless `--force` is given; nothing is written outside it, unless `--in-place` rewrites the tree under `--dir`. |
 | `--name <name>` | The package name and the root Stack class. Defaults to the base name of `--dir`. |
 | `--roots <dir>` | Treat `<dir>` as a root module even when a `module` block references it. |
 | `--env-dirs <dir>` | Root directories that are environments of one deployment. |
 | `--merge-envs` | Fold each group of environment siblings into one Stack taking a generated `Env` enum. |
 | `--lift-workspace` | Turn `terraform.workspace` into a `workspace` parameter on the Stack. |
 | `--inline-locals` | Declare the `locals` entries whose value is a literal as Dart `final`s. Cannot be combined with `--merge-envs`. |
+| `--in-place` | Rewrite the tree under `--dir` to keep only what stays in Terraform. Destructive; refuses unless that tree is a clean git working tree. |
 | `--update <package>` | Re-run over a package already generated: snippets for what the catalog covers today. Takes neither `--dir` nor `--out`. |
 | `--allow-todo` | TODO comments in the Stack instead of a sidecar; the plan differs until they are ported. |
 | `--json` | Print the report as JSON instead of the summary. |
 | `--force` | Write into a non-empty `--out`, overwriting only the files the migrator generates. |
 
-Exit codes follow sysexits: `0` success, `64` usage, `65` unreadable input or no Terraform files, `70` internal error, `73` output directory not empty or not writable.
+Exit codes follow sysexits: `0` success, `64` usage, `65` unreadable input or no Terraform files, `70` internal error, `73` output directory not empty or not writable, or `--in-place` refusing a tree it cannot undo.
 
 ## Library
 
