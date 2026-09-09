@@ -120,6 +120,11 @@ final class ValueEmitter {
   /// the merger declares the constant with a type the call site accepts.
   final Map<String, String> envSlotTypes = {};
 
+  /// Environment expression → the Dart source of *this* environment's value,
+  /// where the literal is not what [dartValue] would write: an enum member
+  /// (`SqlDatabaseVersion.postgres15`), not the wire string it came from.
+  final Map<String, String> envValueSources = {};
+
   /// `--lift-workspace`: `terraform.workspace` becomes the Stack's
   /// `workspace` parameter instead of the `${terraform.workspace}` template
   /// Terraform resolves at plan time.
@@ -299,20 +304,6 @@ final class ValueEmitter {
       }
       return '[${items.join(', ')}]';
     }
-    // `--merge-envs` lifted this argument into an `Env` constant: the
-    // environments disagree on its literal, and nothing else about the
-    // block.
-    final envExpr = envValues[path];
-    if (envExpr != null) {
-      if (sensitive) {
-        throw MigrateBlocker(
-          'argument "$path" is sensitive: its value is not lifted into an '
-          'environment constant',
-        );
-      }
-      envSlotTypes[envExpr] = type;
-      return slot.wrapped ? 'TfArg.literal($envExpr)' : envExpr;
-    }
     final ref = singleReference(value);
     if (ref != null) {
       final r = _refArg(ref, type: type);
@@ -332,6 +323,15 @@ final class ValueEmitter {
           'argument "$path" is sensitive: its value is not copied into Dart '
           '(pass it as a variable)',
         );
+      }
+      // `--merge-envs` lifted this argument into an `Env` constant: the
+      // environments disagree on its literal, and nothing else about the
+      // block. The literal is still typed first, so the constant's type is
+      // the one the argument takes.
+      final envExpr = envValues[path];
+      if (envExpr != null) {
+        envSlotTypes[envExpr] = type;
+        return slot.wrapped ? 'TfArg.literal($envExpr)' : envExpr;
       }
       return slot.wrapped ? 'TfArg.literal($constant)' : constant;
     }
@@ -374,21 +374,32 @@ final class ValueEmitter {
   static String? _dartTemplate(String template) {
     final parts = template.split(_workspace);
     if (parts.any(hasTemplateSequence)) return null;
+    final escaped = [for (final part in parts) _dartStringBody(part)];
     final buf = StringBuffer("'");
-    for (var i = 0; i < parts.length; i++) {
-      if (i > 0) buf.write(r'$workspace');
-      buf.write(
-        parts[i]
-            .replaceAll('\\', r'\\')
-            .replaceAll("'", r"\'")
-            .replaceAll(r'$', r'\$')
-            .replaceAll('\n', r'\n')
-            .replaceAll('\r', r'\r')
-            .replaceAll('\t', r'\t'),
-      );
+    for (var i = 0; i < escaped.length; i++) {
+      if (i > 0) {
+        // `\${workspace}` where the text runs straight on into an identifier
+        // character: Dart would read `\$workspace_suffix` as one name.
+        buf.write(
+          _identifier.hasMatch(escaped[i]) ? r'${workspace}' : r'$workspace',
+        );
+      }
+      buf.write(escaped[i]);
     }
     return (buf..write("'")).toString();
   }
+
+  /// A part of the template inside a single-quoted Dart string.
+  static String _dartStringBody(String text) => text
+      .replaceAll('\\', r'\\')
+      .replaceAll("'", r"\'")
+      .replaceAll(r'$', r'\$')
+      .replaceAll('\n', r'\n')
+      .replaceAll('\r', r'\r')
+      .replaceAll('\t', r'\t');
+
+  /// A leading character Dart would take as part of the interpolated name.
+  static final RegExp _identifier = RegExp('^[A-Za-z0-9_]');
 
   /// Dart source of a constant payload of [type], `null` when [value] is not
   /// a constant (a reference, template or other expression). A constant of
@@ -646,6 +657,15 @@ final class ValueEmitter {
       }
       // `List<TfArg<E>>` when wrapped, `List<E>` when bare.
       return '[${value.elements.map(slot.wrapped ? wrapped : bare).join(', ')}]';
+    }
+    // Lifted by `--merge-envs`: the environments name different members of
+    // the same enum, so the constant is typed as the enum, not as its wire
+    // string.
+    final envExpr = envValues[path];
+    if (envExpr != null) {
+      envSlotTypes[envExpr] = enumName;
+      envValueSources[envExpr] = member(value);
+      return slot.wrapped ? 'TfArg.literal($envExpr)' : envExpr;
     }
     final ref = singleReference(value);
     if (ref != null) {

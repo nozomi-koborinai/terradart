@@ -2,8 +2,8 @@
 /// every Stack's `main.tf.json` under `tf-out/`, mirroring the
 /// migrated module tree.
 ///
-/// `dart run bin/infra.dart --env <name>` writes one merged environment
-/// instead of all of them.
+/// `dart run bin/infra.dart --env <name>` writes the merged environments
+/// of that name instead of all of them.
 library;
 
 import 'dart:io';
@@ -18,31 +18,43 @@ import 'package:config_tree/service_account_stack.dart';
 import 'package:config_tree/workload_identity_stack.dart';
 
 Future<void> main(List<String> args) async {
+  final selected = _option(args, '--env');
+  var written = 0;
   await CloudRunStack().writeTo(r'tf-out/modules/cloud_run');
   await CloudSqlStack().writeTo(r'tf-out/modules/cloud_sql');
   await PubsubStack().writeTo(r'tf-out/modules/pubsub');
   await SecretManagerStack().writeTo(r'tf-out/modules/secret_manager');
   await ServiceAccountStack().writeTo(r'tf-out/modules/service_account');
   await WorkloadIdentityStack().writeTo(r'tf-out/modules/workload_identity');
-  for (final env in _environments(args, Env.values)) {
+  for (final env in _environments(selected, Env.values)) {
     await ConfigTreeStack(env: env).writeTo('tf-out/${env.path}');
+    written++;
+  }
+  if (selected != null && written == 0) {
+    stderr.writeln(
+      'infra: unknown environment "$selected"; expected one of '
+      '${[...Env.values].map((e) => e.name).toSet().join(', ')}',
+    );
+    exit(64);
   }
 }
 
-/// The environments to synthesize: every member, or the one `--env` names.
-List<T> _environments<T extends Enum>(List<String> args, List<T> values) {
-  String? name;
+/// The environments to synthesize: every member, or the ones [name] picks.
+List<T> _environments<T extends Enum>(String? name, List<T> values) =>
+    name == null
+    ? values
+    : [
+        for (final value in values)
+          if (value.name == name) value,
+      ];
+
+/// The value of `--flag <value>` or `--flag=<value>`, or `null`.
+String? _option(List<String> args, String flag) {
   for (var i = 0; i < args.length; i++) {
-    if (args[i] == '--env' && i + 1 < args.length) name = args[i + 1];
-    if (args[i].startsWith('--env=')) name = args[i].substring('--env='.length);
+    if (args[i] == flag && i + 1 < args.length) return args[i + 1];
+    if (args[i].startsWith('$flag=')) {
+      return args[i].substring(flag.length + 1);
+    }
   }
-  if (name == null) return values;
-  for (final value in values) {
-    if (value.name == name) return [value];
-  }
-  stderr.writeln(
-    'infra: unknown environment "$name"; expected one of '
-    '${values.map((v) => v.name).join(', ')}',
-  );
-  exit(64);
+  return null;
 }

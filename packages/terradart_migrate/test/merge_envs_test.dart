@@ -207,6 +207,55 @@ resource "google_storage_bucket_iam_member" "backups_reader" {
     });
   });
 
+  group('merge-envs: enum arguments', () {
+    // A differing enum member is a scalar in HCL and a typed constant in
+    // Dart: the enum's own type, and the barrel that exports it.
+    final merged = _merge({
+      for (final e in {'dev': 'STANDARD', 'prod': 'NEARLINE'}.entries)
+        e.key:
+            '''
+resource "google_storage_bucket" "assets" {
+  name          = "a"
+  location      = "US"
+  storage_class = "${e.value}"
+}
+''',
+    });
+
+    test('the member becomes a typed Env constant', () {
+      expect(merged.refusal, isNull);
+      expect(
+        merged.fields.single.origin,
+        'google_storage_bucket.assets.storage_class',
+      );
+      expect(
+        merged.source,
+        contains('storageClass: TfArg.literal(env.assetsStorageClass)'),
+      );
+    });
+
+    test('the enum declares the member, not the wire string', () {
+      expect(
+        merged.envSource,
+        contains('final BucketStorageClass assetsStorageClass;'),
+      );
+      expect(
+        merged.envSource,
+        contains('assetsStorageClass: BucketStorageClass.standard'),
+      );
+      expect(
+        merged.envSource,
+        contains('assetsStorageClass: BucketStorageClass.nearline'),
+      );
+      expect(merged.envSource, isNot(contains("r'NEARLINE'")));
+      // The enum's own barrel, so the file compiles on its own.
+      expect(
+        merged.envSource,
+        contains("import 'package:terradart_google/storage.dart';"),
+      );
+    });
+  });
+
   group('merge-envs: what is refused', () {
     test('a sensitive variable default is never lifted', () {
       String body(String token) =>
@@ -295,6 +344,24 @@ ${_bucket('a')}
       });
       expect(m.isMerged, isFalse);
       expect(m.refusal, contains('different providers or backends'));
+    });
+
+    test('a lifted value the emitter cannot read explains itself', () {
+      // `message_storage_policy` is a passthrough argument: the factory takes
+      // its JSON verbatim, so there is no typed parameter to read a constant
+      // from, and the plan's lift goes unused. The refusal says so instead of
+      // reporting a bare difference.
+      String body(String value) =>
+          '''
+resource "google_pubsub_topic" "t" {
+  name                   = "t"
+  message_storage_policy = "$value"
+}
+''';
+      final m = _merge({'dev': body('a'), 'prod': body('b')});
+      expect(m.isMerged, isFalse);
+      expect(m.refusal, contains('google_pubsub_topic.t'));
+      expect(m.refusal, contains('no plain argument to take it from the'));
     });
 
     test('a root where nothing translates cannot be merged', () {

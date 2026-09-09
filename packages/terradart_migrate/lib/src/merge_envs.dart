@@ -174,6 +174,24 @@ MergedEnvironment mergeEnvironments({
     );
   }
 
+  // A constant the emitter never read is one the merged Stack has no way to
+  // take from the environment (an argument with no plain Dart parameter);
+  // its address will differ, and this is the reason why.
+  final consumed = {
+    for (final env in envs) ...emitted[env.member]!.envSlotTypes.keys,
+  };
+  final unconsumed = <String, List<String>>{};
+  for (final field in plan.fields) {
+    if (consumed.contains(field.expression)) continue;
+    final dot = field.origin.lastIndexOf('.');
+    unconsumed
+        .putIfAbsent(field.origin.substring(0, dot), () => [])
+        .add(
+          '"${field.origin.substring(dot + 1)}" differs, and the merged '
+          'Stack has no plain argument to take it from the environment',
+        );
+  }
+
   // ---- line the bodies up ------------------------------------------------
   final statements = <String, Map<String, StackStatement>>{};
   for (final env in envs) {
@@ -186,10 +204,10 @@ MergedEnvironment mergeEnvironments({
     final texts = {for (final s in statements[tag]!.values) s.text};
     if (texts.length == 1) continue;
     final address = tag.startsWith('moved:') ? 'moved' : tag;
-    final why = plan.notes[address];
+    final why = [...?plan.notes[address], ...?unconsumed[address]];
     return refuse(
       'the environments write `$address` differently'
-      '${why == null ? '' : ': ${_list(why)}'}',
+      '${why.isEmpty ? '' : ': ${_list(why)}'}',
     );
   }
 
@@ -282,6 +300,12 @@ MergedEnvironment mergeEnvironments({
   final slotTypes = <String, String>{
     for (final env in envs) ...emitted[env.member]!.envSlotTypes,
   };
+  final valueSources = {
+    for (final env in envs) env.member: emitted[env.member]!.envValueSources,
+  };
+  final envImports = {
+    for (final env in envs) ...emitted[env.member]!.envImports,
+  }.toList()..sort();
   // `package:` imports first (terradart_core sorts to the front), then the
   // libraries beside the Stack: the enum and the module wrappers.
   final lines = {
@@ -350,6 +374,8 @@ $body  }
     fields: plan.fields,
     guards: guards,
     slotTypes: slotTypes,
+    valueSources: valueSources,
+    imports: envImports,
   );
 
   return MergedEnvironment(
@@ -387,16 +413,21 @@ String _renderEnv({
   required List<EnvField> fields,
   required List<EnvGuard> guards,
   required Map<String, String> slotTypes,
+  required Map<String, Map<String, String>> valueSources,
+  required List<String> imports,
 }) {
   String typeOf(EnvField f) => slotTypes[f.expression] ?? f.inferredType;
+  // An enum-typed constant is written as the member the environment names,
+  // not as the wire string it came from.
+  String valueOf(EnvField f, String member) =>
+      valueSources[member]?[f.expression] ?? dartValue(f.values[member]);
 
   final members = <String>[];
   for (var i = 0; i < envs.length; i++) {
     final env = envs[i];
     final args = <String>[
       'path: ${dartString(env.path)}',
-      for (final f in fields)
-        '${f.dartName}: ${dartValue(f.values[env.member])}',
+      for (final f in fields) '${f.dartName}: ${valueOf(f, env.member)}',
       for (final g in guards)
         if (g.members.contains(env.member)) '${g.dartName}: true',
     ];
@@ -428,7 +459,7 @@ String _renderEnv({
 /// One member per environment root, carrying every value the roots disagree
 /// on. Add an environment by adding a member: the Stack is the same code.
 library;
-
+${imports.isEmpty ? '' : '\n${imports.join('\n')}\n'}
 enum $envClass {
 ${members.join('\n')}
 

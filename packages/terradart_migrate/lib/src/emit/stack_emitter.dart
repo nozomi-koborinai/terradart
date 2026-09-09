@@ -71,6 +71,8 @@ final class EmittedStack {
     this.imports = const [],
     this.ctorInit = '',
     this.envSlotTypes = const {},
+    this.envValueSources = const {},
+    this.envImports = const [],
   });
 
   final String stackClass;
@@ -107,6 +109,14 @@ final class EmittedStack {
 
   /// `env.<field>` → the Dart type the argument it filled expects.
   final Map<String, String> envSlotTypes;
+
+  /// `env.<field>` → the Dart source of this module's value for it, where a
+  /// plain literal will not do (an enum member).
+  final Map<String, String> envValueSources;
+
+  /// `import` lines the constants' own types need (the barrel exporting an
+  /// enum a lifted argument takes), for the file declaring them.
+  final List<String> envImports;
   final MigrationReport report;
 }
 
@@ -289,6 +299,11 @@ final class StackEmitter {
 
   /// `env.<field>` → the Dart type of the argument it filled.
   final _envSlotTypes = <String, String>{};
+
+  /// `env.<field>` → this module's Dart source for it, and the import its
+  /// type needs; both empty unless a lifted argument takes an enum.
+  final _envValueSources = <String, String>{};
+  final _envImports = <String>{};
 
   /// Wrapper libraries the Stack ended up importing.
   final _moduleWrappers = <String>{};
@@ -745,6 +760,8 @@ final class StackEmitter {
       imports: List.unmodifiable(imports),
       ctorInit: ctorInit.toString(),
       envSlotTypes: Map.unmodifiable(_envSlotTypes),
+      envValueSources: Map.unmodifiable(_envValueSources),
+      envImports: List.unmodifiable(_envImports.toList()..sort()),
       report: MigrationReport(
         module: moduleName,
         stackClass: stackClass,
@@ -908,6 +925,14 @@ final class StackEmitter {
     final args = emitter.emitArgs(entry.slots, level);
     level.checkClaimed();
     _envSlotTypes.addAll(emitter.envSlotTypes);
+    _envValueSources.addAll(emitter.envValueSources);
+    // A constant typed as one of the package's enums needs the barrel that
+    // exports it wherever it is declared, not just here.
+    if (emitter.envValueSources.isNotEmpty) {
+      _envImports.add(
+        "import 'package:${manifest.package}/${entry.barrel}.dart';",
+      );
+    }
     final ctor =
         '${entry.className}(localName: ${dartString(b.name)}'
         '${args.isEmpty ? '' : ', ${args.join(', ')}'}'

@@ -1916,6 +1916,20 @@ resource "google_pubsub_topic" "x" {
       );
     });
 
+    test('a name running on from the workspace is braced', () {
+      // `'t-$workspace_v2'` would read the identifier `workspace_v2`.
+      final r = lift(
+        'resource "google_pubsub_topic" "t" {\n'
+        '  name = "t-\${terraform.workspace}_v2"\n'
+        '}\n',
+      );
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(r"name: TfArg.literal('t-${workspace}_v2')"),
+      );
+    });
+
     test('a workspace reference inside a map lifts too', () {
       final r = lift(
         'resource "google_pubsub_topic" "t" {\n'
@@ -1962,9 +1976,12 @@ resource "google_pubsub_topic" "x" {
         '}\n',
       );
       final infra = r.files['bin/infra.dart']!;
-      expect(infra, contains('final workspace = _workspace(args);'));
+      expect(
+        infra,
+        contains("final workspace = _option(args, '--workspace') ?? 'default'"),
+      );
       expect(infra, contains('DemoStack(workspace: workspace)'));
-      expect(infra, contains("return 'default';"));
+      expect(infra, contains("if (args[i] == flag && i + 1 < args.length)"));
     });
   });
 }

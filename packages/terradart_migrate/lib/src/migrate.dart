@@ -244,7 +244,8 @@ typedef MergedInfra = ({
 /// `bin/infra.dart`: synthesizes every Stack into its Terraform directory.
 ///
 /// With [merged] groups the entry point takes `--env <name>`, narrowing the
-/// merged environments to one; without it every environment is written.
+/// merged environments to the ones of that name; without it every
+/// environment is written. A name no group declares is a usage error.
 String renderInfra(
   String packageName,
   List<
@@ -265,15 +266,30 @@ String renderInfra(
   final workspace =
       stacks.any((s) => s.workspace) || merged.any((m) => m.workspace);
   final calls = [
-    if (workspace) "  final workspace = _workspace(args);",
+    if (merged.isNotEmpty) "  final selected = _option(args, '--env');",
+    if (merged.isNotEmpty) '  var written = 0;',
+    if (workspace)
+      "  final workspace = _option(args, '--workspace') ?? 'default';",
     for (final s in stacks)
       '  await ${s.stackClass}(${s.workspace ? 'workspace: workspace' : ''})'
           '.writeTo(${dartString(s.terraformDir)});',
     for (final m in merged) ...[
-      '  for (final env in _environments(args, ${m.envClass}.values)) {',
+      '  for (final env in _environments(selected, ${m.envClass}.values)) {',
       '    await ${m.stackClass}(env: env'
           '${m.workspace ? ', workspace: workspace' : ''})',
       "        .writeTo('${m.outPrefix}/\${env.path}');",
+      '    written++;',
+      '  }',
+    ],
+    // A name none of the groups declares is the error; a name only some of
+    // them declare selects those, and leaves the others alone.
+    if (merged.isNotEmpty) ...[
+      '  if (selected != null && written == 0) {',
+      '    stderr.writeln(',
+      '      \'infra: unknown environment "\$selected"; expected one of \'',
+      "      '\${[${[for (final m in merged) '...${m.envClass}.values'].join(', ')}].map((e) => e.name).toSet().join(', ')}',",
+      '    );',
+      '    exit(64);',
       '  }',
     ],
   ].join('\n');
@@ -288,8 +304,8 @@ String renderInfra(
   };
   final usage = [
     if (merged.isNotEmpty)
-      '/// `dart run bin/infra.dart --env <name>` writes one merged '
-          'environment\n/// instead of all of them.',
+      '/// `dart run bin/infra.dart --env <name>` writes the merged '
+          'environments\n/// of that name instead of all of them.',
     if (workspace)
       '/// `--workspace <name>` names the Terraform workspace the Stacks\n'
           "/// synthesize for (default `default`).",
@@ -299,37 +315,27 @@ String renderInfra(
       ? ''
       : '''
 
-/// The environments to synthesize: every member, or the one `--env` names.
-List<T> _environments<T extends Enum>(List<String> args, List<T> values) {
-  String? name;
-  for (var i = 0; i < args.length; i++) {
-    if (args[i] == '--env' && i + 1 < args.length) name = args[i + 1];
-    if (args[i].startsWith('--env=')) name = args[i].substring('--env='.length);
-  }
-  if (name == null) return values;
-  for (final value in values) {
-    if (value.name == name) return [value];
-  }
-  stderr.writeln(
-    'infra: unknown environment "\$name"; expected one of '
-    '\${values.map((v) => v.name).join(', ')}',
-  );
-  exit(64);
-}''';
-  final workspaceHelper = !workspace
+/// The environments to synthesize: every member, or the ones [name] picks.
+List<T> _environments<T extends Enum>(String? name, List<T> values) => name ==
+        null
+    ? values
+    : [
+        for (final value in values)
+          if (value.name == name) value,
+      ];''';
+  final optionHelper = merged.isEmpty && !workspace
       ? ''
       : '''
 
-/// The Terraform workspace the Stacks synthesize for: `--workspace <name>`,
-/// or Terraform's own default.
-String _workspace(List<String> args) {
+/// The value of `--flag <value>` or `--flag=<value>`, or `null`.
+String? _option(List<String> args, String flag) {
   for (var i = 0; i < args.length; i++) {
-    if (args[i] == '--workspace' && i + 1 < args.length) return args[i + 1];
-    if (args[i].startsWith('--workspace=')) {
-      return args[i].substring('--workspace='.length);
+    if (args[i] == flag && i + 1 < args.length) return args[i + 1];
+    if (args[i].startsWith('\$flag=')) {
+      return args[i].substring(flag.length + 1);
     }
   }
-  return 'default';
+  return null;
 }''';
   final src =
       '''
@@ -342,7 +348,7 @@ $imports
 Future<void> main(${merged.isEmpty && !workspace ? '' : 'List<String> args'}) async {
 $calls
 }
-$helper$workspaceHelper
+$helper$optionHelper
 ''';
   return format ? formatDart(src) : src;
 }

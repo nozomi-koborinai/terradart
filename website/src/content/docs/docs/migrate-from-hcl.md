@@ -155,7 +155,7 @@ enum Env {
 }
 ```
 
-`dart run bin/infra.dart` writes every environment into its own `tf-out/` directory; `--env dev` writes one. A value lifts when every root writes it as a plain scalar: a resource argument, a `module` call input, a `variable` default or description, a provider argument, a backend argument. Anything else — a reference, a nested block, a list, an interpolated string, a `sensitive` variable's default (never copied into Dart), a different provider or backend, a different block order — keeps one Stack per root, with the reason in `MIGRATION.md`. What merging never changes is the plan: the fixture gate proves the merged Stack synthesizes, per environment, exactly the JSON the separate Stacks did.
+`dart run bin/infra.dart` writes every environment into its own `tf-out/` directory; `--env dev` writes the ones of that name. A value lifts when every root writes it as a plain scalar: a resource argument, a `module` call input, a `variable` default or description, a provider argument, a backend argument. The constant is typed as the argument takes it, so an enum-valued one is a typed member (`storageClass: TfArg.literal(env.assetsStorageClass)`, with `BucketStorageClass.nearline` on the enum). Anything else — a reference, a nested block, a list, an interpolated string, a `sensitive` variable's default (never copied into Dart), a different provider or backend, a different block order — keeps one Stack per root, with the reason in `MIGRATION.md`. What merging never changes is the plan: the fixture gate proves the merged Stack synthesizes, per environment, exactly the JSON the separate Stacks did.
 
 ### The workspace as a parameter
 
