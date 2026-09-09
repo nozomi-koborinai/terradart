@@ -97,13 +97,41 @@ final class BodyLevel {
 /// recorded in [usedTargets] so the caller can decide whether the target
 /// needs a Dart local; variables it references land in [usedVariables].
 final class ValueEmitter {
-  ValueEmitter(this.ctx, this.manifest, {required this.sensitivePaths});
+  ValueEmitter(
+    this.ctx,
+    this.manifest, {
+    required this.sensitivePaths,
+    this.envValues = const {},
+    this.liftWorkspace = false,
+  });
 
   final EmitContext ctx;
   final MigrateManifest manifest;
 
   /// Dotted sensitive paths of the block being emitted (from the catalog).
   final Set<String> sensitivePaths;
+
+  /// Top-level argument → the Dart expression to emit in place of its
+  /// literal (`env.assetsName`), for an argument `--merge-envs` lifted into
+  /// an [Env] constant because it differs between the merged environments.
+  final Map<String, String> envValues;
+
+  /// Environment expression → the Dart type the slot it filled expects, so
+  /// the merger declares the constant with a type the call site accepts.
+  final Map<String, String> envSlotTypes = {};
+
+  /// Environment expression → the Dart source of *this* environment's value,
+  /// where the literal is not what [dartValue] would write: an enum member
+  /// (`SqlDatabaseVersion.postgres15`), not the wire string it came from.
+  final Map<String, String> envValueSources = {};
+
+  /// `--lift-workspace`: `terraform.workspace` becomes the Stack's
+  /// `workspace` parameter instead of the `${terraform.workspace}` template
+  /// Terraform resolves at plan time.
+  final bool liftWorkspace;
+
+  /// True once something read the `workspace` parameter.
+  bool usedWorkspace = false;
 
   final Set<String> usedTargets = {};
   final Set<String> usedVariables = {};
@@ -296,6 +324,15 @@ final class ValueEmitter {
           '(pass it as a variable)',
         );
       }
+      // `--merge-envs` lifted this argument into an `Env` constant: the
+      // environments disagree on its literal, and nothing else about the
+      // block. The literal is still typed first, so the constant's type is
+      // the one the argument takes.
+      final envExpr = envValues[path];
+      if (envExpr != null) {
+        envSlotTypes[envExpr] = type;
+        return slot.wrapped ? 'TfArg.literal($envExpr)' : envExpr;
+      }
       return slot.wrapped ? 'TfArg.literal($constant)' : constant;
     }
     if (!slot.wrapped) {
@@ -314,9 +351,55 @@ final class ValueEmitter {
   /// them (synth checks every one).
   String _expression(Expr value) {
     final template = jsonValue(value)! as String;
+    if (liftWorkspace && template.contains(_workspace)) {
+      final lifted = _dartTemplate(template);
+      if (lifted != null) {
+        usedWorkspace = true;
+        return 'TfArg.literal($lifted)';
+      }
+      ctx.warnings.add(
+        'the template "$template" mixes `terraform.workspace` with other '
+        'references; it stays a Terraform expression (--lift-workspace)',
+      );
+    }
     usedVariables.addAll(templateVariableNames(template));
     return 'TfArg.expression(${dartString(template)})';
   }
+
+  static const _workspace = r'${terraform.workspace}';
+
+  /// [template] as a Dart string interpolating `workspace`, or `null` when
+  /// it holds a reference other than `terraform.workspace` (which has no
+  /// Dart value to interpolate).
+  static String? _dartTemplate(String template) {
+    final parts = template.split(_workspace);
+    if (parts.any(hasTemplateSequence)) return null;
+    final escaped = [for (final part in parts) _dartStringBody(part)];
+    final buf = StringBuffer("'");
+    for (var i = 0; i < escaped.length; i++) {
+      if (i > 0) {
+        // `\${workspace}` where the text runs straight on into an identifier
+        // character: Dart would read `\$workspace_suffix` as one name.
+        buf.write(
+          _identifier.hasMatch(escaped[i]) ? r'${workspace}' : r'$workspace',
+        );
+      }
+      buf.write(escaped[i]);
+    }
+    return (buf..write("'")).toString();
+  }
+
+  /// A part of the template inside a single-quoted Dart string.
+  static String _dartStringBody(String text) => text
+      .replaceAll('\\', r'\\')
+      .replaceAll("'", r"\'")
+      .replaceAll(r'$', r'\$')
+      .replaceAll('\n', r'\n')
+      .replaceAll('\r', r'\r')
+      .replaceAll('\t', r'\t');
+
+  /// A leading character Dart would take as part of the interpolated name.
+  static final RegExp _identifier = RegExp('^[A-Za-z0-9_]');
 
   /// Dart source of a constant payload of [type], `null` when [value] is not
   /// a constant (a reference, template or other expression). A constant of
@@ -464,6 +547,13 @@ final class ValueEmitter {
             t.steps.length == 1 &&
             t.steps.single is AttrStep &&
             (t.steps.single as AttrStep).name == 'workspace') {
+          // `--lift-workspace`: the selected workspace is a Dart parameter,
+          // so the synthesized JSON carries its name instead of the
+          // template. Only where the argument is a string, of course.
+          if (liftWorkspace && (type == 'String' || type == 'Object?')) {
+            usedWorkspace = true;
+            return 'TfArg.literal(workspace)';
+          }
           return 'TfArg.workspace<$type>()';
         }
         return null;
@@ -477,6 +567,16 @@ final class ValueEmitter {
     if (c is VariableReference) {
       usedVariables.add(c.name);
       return null;
+    }
+    // `--lift-workspace`: a workspace reference inside a list or map is the
+    // parameter's value, like one on an argument of its own.
+    if (liftWorkspace &&
+        t.root == 'terraform' &&
+        t.steps.length == 1 &&
+        t.steps.single is AttrStep &&
+        (t.steps.single as AttrStep).name == 'workspace') {
+      usedWorkspace = true;
+      return 'workspace';
     }
     if (c is ModuleReference) {
       if (c.attribute.isEmpty) return null;
@@ -557,6 +657,15 @@ final class ValueEmitter {
       }
       // `List<TfArg<E>>` when wrapped, `List<E>` when bare.
       return '[${value.elements.map(slot.wrapped ? wrapped : bare).join(', ')}]';
+    }
+    // Lifted by `--merge-envs`: the environments name different members of
+    // the same enum, so the constant is typed as the enum, not as its wire
+    // string.
+    final envExpr = envValues[path];
+    if (envExpr != null) {
+      envSlotTypes[envExpr] = enumName;
+      envValueSources[envExpr] = member(value);
+      return slot.wrapped ? 'TfArg.literal($envExpr)' : envExpr;
     }
     final ref = singleReference(value);
     if (ref != null) {

@@ -115,10 +115,51 @@ To finish a block by hand: write it in the Stack, delete it from the sidecar, sy
 The migrator infers the role of each directory:
 
 - a directory some `module` block's `./` or `../` `source` points at is a **child**, migrated in child-module mode: providers are registered without configuration (synth emits only `required_providers`), `variable` becomes `addVariable`, `output` becomes an export, and a provider configuration or backend found there stays in the sidecar. The caller's `module` block becomes `addModule(...)`, whose `source` still points at the child's directory in the mirrored `tf-out/` tree, so plan addresses keep their `module.<name>.` prefix;
-- every other directory is a **root**; roots sharing a parent directory (`envs/dev`, `envs/prod`) are **environment** siblings. Each keeps its own Stack, Terraform directory and backend; `MIGRATION.md` reports the addresses they share, the ones only some of them declare, and the arguments that differ. Folding them into one Stack is a later step (`--merge-envs`, [#668](https://github.com/nozomi-koborinai/terradart/issues/668));
+- every other directory is a **root**; roots sharing a parent directory (`envs/dev`, `envs/prod`) are **environment** siblings. Each keeps its own Stack, Terraform directory and backend; `MIGRATION.md` reports the addresses they share, the ones only some of them declare, and the arguments that differ. `--merge-envs` folds the group into one Stack instead (below);
 - a directory where nothing translates — no curated resource and no known provider — gets no Stack and stays Terraform; its sidecar files are its whole output.
 
 `--roots <dir>` forces a directory to be a root even when a `module` block references it; `--env-dirs <dir>` names the environments explicitly. Both are relative to `--dir` and repeatable.
+
+### One Stack for every environment
+
+`envs/dev` and `envs/prod` are usually the same configuration with a handful of different values. Migrated one Stack each, that duplication carries straight into Dart. `--merge-envs` folds each group into one Stack instead:
+
+```dart
+final class AppStack extends Stack {
+  AppStack({required this.env})
+    : super(
+        providers: [const GoogleProvider()],
+        backend: GcsBackend(bucket: env.backendBucket, prefix: env.backendPrefix),
+      ) {
+    final assets = add(GoogleStorageBucket(
+      localName: 'assets',
+      name: TfArg.literal(env.assetsName),   // "app-dev-assets" / "app-prod-assets"
+      location: TfArg.variable('region'),
+    ));
+    if (env.isProd) {
+      add(GoogleStorageBucket(localName: 'backups', ...));
+    }
+  }
+
+  final Env env;
+}
+```
+
+`lib/env.dart` holds the generated enum — one member per root, carrying its `path` (`tf-out/<path>`), every value the roots disagree on, and a flag per group of blocks only some of them declare:
+
+```dart
+enum Env {
+  dev(path: 'dev', assetsName: 'app-dev-assets', backendBucket: 'app-dev-tfstate', ...),
+  prod(path: 'prod', assetsName: 'app-prod-assets', backendBucket: 'app-prod-tfstate', ..., isProd: true);
+  ...
+}
+```
+
+`dart run bin/infra.dart` writes every environment into its own `tf-out/` directory; `--env dev` writes the ones of that name. A value lifts when every root writes it as a plain scalar: a resource argument, a `module` call input, a `variable` default or description, a provider argument, a backend argument. The constant is typed as the argument takes it, so an enum-valued one is a typed member (`storageClass: TfArg.literal(env.assetsStorageClass)`, with `BucketStorageClass.nearline` on the enum). Anything else — a reference, a nested block, a list, an interpolated string, a `sensitive` variable's default (never copied into Dart), a different provider or backend, a different block order — keeps one Stack per root, with the reason in `MIGRATION.md`. What merging never changes is the plan: the fixture gate proves the merged Stack synthesizes, per environment, exactly the JSON the separate Stacks did.
+
+### The workspace as a parameter
+
+`--lift-workspace` turns `terraform.workspace` into a `workspace` parameter on the Stack: a bare reference becomes `TfArg.literal(workspace)`, a template around it becomes Dart interpolation (`TfArg.literal('orders-$workspace')`), and one inside a list or map becomes the value. `dart run bin/infra.dart --workspace prod` then synthesizes for that workspace by name. It is opt-in because it moves the decision: the JSON names a workspace instead of leaving `${terraform.workspace}` for `terraform workspace select`, so it is faithful for the workspace it names and only that one. A template mixing the workspace with another reference stays a Terraform expression, with a warning naming it.
 
 ## Options
 
@@ -129,6 +170,8 @@ The migrator infers the role of each directory:
 | `--name <name>` | The package name and the root Stack class. Defaults to the base name of `--dir`. |
 | `--roots <dir>` | Treat `<dir>` as a root module even when a `module` block references it. |
 | `--env-dirs <dir>` | Root directories that are environments of one deployment. |
+| `--merge-envs` | Fold each group of environment siblings into one Stack taking a generated `Env` enum. |
+| `--lift-workspace` | Turn `terraform.workspace` into a `workspace` parameter on the Stack. |
 | `--allow-todo` | TODO comments in the Stack instead of a sidecar; the plan differs until they are ported. |
 | `--json` | Print the report as JSON instead of the summary. |
 | `--force` | Write into a non-empty `--out`, overwriting only the files the migrator generates. |
