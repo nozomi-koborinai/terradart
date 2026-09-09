@@ -26,9 +26,27 @@ void main() {
     expect(help.code, MigrateExitCodes.success);
     expect(help.out, contains('Usage: terradart-migrate --dir'));
     expect(help.out, contains('--allow-todo'));
+    expect(help.out, contains('--inline-locals'));
     final version = await _run(['--version']);
     expect(version.code, MigrateExitCodes.success);
     expect(version.out.trim(), 'terradart-migrate $packageVersion');
+  });
+
+  test('--inline-locals and --merge-envs cannot be combined', () async {
+    // Both move a value out of Terraform; --merge-envs does it per
+    // environment, which one `final` per Stack cannot express.
+    final r = await _run([
+      '--dir',
+      '$_fixtures/config_tree',
+      '--out',
+      p.join(tmp.path, 'out'),
+      '--inline-locals',
+      '--merge-envs',
+    ]);
+    expect(r.code, MigrateExitCodes.usage);
+    expect(r.err, contains('cannot be combined'));
+    expect(r.err, contains('Env enum'));
+    expect(Directory(p.join(tmp.path, 'out')).existsSync(), isFalse);
   });
 
   test('usage errors exit 64', () async {

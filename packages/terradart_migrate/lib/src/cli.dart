@@ -72,6 +72,21 @@ Future<int> runMigrateCli(
     }
     return _runUpdate(updateArg, o, e, json: args['json'] as bool);
   }
+  final inlineLocals = args['inline-locals'] as bool;
+  if (inlineLocals && args['merge-envs'] as bool) {
+    // Both move a value out of Terraform and into Dart, and --merge-envs
+    // does it better: what the environments disagree on becomes a constant
+    // on the `Env` enum, which one `final` per Stack cannot express.
+    e
+      ..writeln(
+        'terradart-migrate: --inline-locals and --merge-envs cannot be '
+        'combined; --merge-envs already lifts the values the environments '
+        'disagree on onto the generated Env enum',
+      )
+      ..writeln()
+      ..writeln(_usage(parser));
+    return MigrateExitCodes.usage;
+  }
   final dirArg = args['dir'] as String?;
   final outArg = args['out'] as String?;
   if (dirArg == null || outArg == null) {
@@ -125,6 +140,7 @@ Future<int> runMigrateCli(
       allowTodo: args['allow-todo'] as bool,
       mergeEnvs: args['merge-envs'] as bool,
       liftWorkspace: args['lift-workspace'] as bool,
+      inlineLocals: inlineLocals,
     );
   } on Object catch (x, st) {
     e
@@ -317,6 +333,16 @@ ArgParser _parser() => ArgParser(usageLineLength: 80)
         'Stack, so `dart run bin/infra.dart --workspace <name>` synthesizes '
         'for one workspace by name instead of leaving the template for '
         '`terraform workspace select` to resolve.',
+  )
+  ..addFlag(
+    'inline-locals',
+    negatable: false,
+    help:
+        'Declare a `locals` entry whose value is a literal as a Dart final '
+        'in the Stack, and read it from there instead of the `\${local.x}` '
+        'template Terraform resolves from the sidecar. A local nothing in '
+        'the Stack reads, or that something still in Terraform reads, keeps '
+        'its sidecar entry.',
   )
   ..addFlag(
     'allow-todo',

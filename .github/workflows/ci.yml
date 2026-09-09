@@ -419,7 +419,11 @@ jobs:
     #
     # Then the merged-environment gate (#668): config_tree/ migrated again
     # with --merge-envs must synthesize, per environment, exactly the JSON
-    # the two separate Stacks did.
+    # the two separate Stacks did; the re-run gate (#669); and the
+    # inlined-locals gate (#672), which migrates the inline_locals fixture
+    # with and without --inline-locals and requires terraform to plan both
+    # packages identically — the value a local was inlined to is the one
+    # Terraform resolved from the sidecar before.
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -428,6 +432,9 @@ jobs:
       - uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: "1.15.2"
+          # The locals gate parses `terraform show -json`; the wrapper
+          # decorates the output it would read.
+          terraform_wrapper: false
       - name: Cache Terraform providers
         uses: actions/cache@v4
         with:

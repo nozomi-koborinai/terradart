@@ -1,6 +1,8 @@
 /// Emits one Terraform module as a Dart `Stack`.
 library;
 
+import 'dart:convert';
+
 import 'package:terradart_appwrite/provider.dart'
     show kAppwriteProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
@@ -18,6 +20,7 @@ import 'body_map.dart';
 import 'context.dart';
 import 'dart_literal.dart';
 import 'expand.dart';
+import 'locals_plan.dart';
 import 'module_wrapper.dart';
 import 'naming.dart';
 import 'tf_expr.dart';
@@ -199,6 +202,7 @@ final class _Emitted {
     required this.usesWorkspace,
     required this.usedTargets,
     required this.usedVariables,
+    required this.usedLocals,
     required this.package,
     required this.barrel,
     this.providerName,
@@ -237,6 +241,9 @@ final class _Emitted {
   final bool usesWorkspace;
   final Set<String> usedTargets;
   final Set<String> usedVariables;
+
+  /// Inlined locals (`--inline-locals`) the block's arguments read.
+  final Set<String> usedLocals;
   final String package;
   final String barrel;
 }
@@ -257,6 +264,7 @@ final class StackEmitter {
     this.forceLocals = const {},
     this.reservedNames = const {},
     this.liftWorkspace = false,
+    this.inlineLocals = false,
   });
 
   final TfModule module;
@@ -302,6 +310,16 @@ final class StackEmitter {
   /// `workspace` parameter, so the synthesized JSON names one workspace
   /// instead of deferring to `terraform workspace select`.
   final bool liftWorkspace;
+
+  /// `--inline-locals`: a `locals` entry whose value is a literal becomes a
+  /// `final` in the constructor, and the arguments reading it read the Dart
+  /// value instead of a `${local.x}` template Terraform resolves from the
+  /// sidecar. A local that stays keeps both.
+  final bool inlineLocals;
+
+  /// The plan for this module's locals, decided once the block names are
+  /// allocated so an inlined local never renames a resource's Dart local.
+  var _locals = LocalsPlan.none;
 
   /// `env.<field>` → the Dart type of the argument it filled.
   final _envSlotTypes = <String, String>{};
@@ -359,6 +377,12 @@ final class StackEmitter {
             suffix: NameAllocator.typeSuffix(b.type),
           ),
       };
+      // After the blocks, so a `locals` entry sharing a resource's name is
+      // the one that takes the suffix: the Stack reads the same as it does
+      // without the flag, with the `final`s added.
+      _locals = inlineLocals
+          ? planLocals(module, names: names)
+          : LocalsPlan.none;
 
       // Resource-atomic translation to a fixpoint: a resource that
       // references a kept resource may need to be kept too (depends_on), so
@@ -420,10 +444,12 @@ final class StackEmitter {
 
     final referenced = <String>{};
     final usedVariables = <String>{};
+    final usedLocals = <String>{};
     _moduleWrappers.clear();
     for (final e in emitted.values) {
       referenced.addAll(e.usedTargets);
       usedVariables.addAll(e.usedVariables);
+      usedLocals.addAll(e.usedLocals);
       if (e.isModule) {
         final wrapper = e.wrapperFile;
         if (wrapper != null) _moduleWrappers.add(wrapper);
@@ -436,6 +462,16 @@ final class StackEmitter {
     void write(String tag, String text) =>
         body.add(StackStatement(tag: tag, text: text));
     final ctorInit = StringBuffer();
+
+    // --- inlined locals (`--inline-locals`) ------------------------------
+    // Declared first, so every statement below can read them. Only the ones
+    // something reads: an unused `final` is a warning in the package the
+    // migrator writes, and a local nothing reads has no reason to leave the
+    // sidecar either.
+    final declared = _localsToDeclare(usedLocals);
+    for (final l in _locals.inlined) {
+      if (declared.contains(l.name)) write('local:${l.name}', l.declaration);
+    }
 
     // --- providers ------------------------------------------------------
     final providerNames = <String>[
@@ -687,8 +723,18 @@ final class StackEmitter {
     }
 
     // --- everything else stays in Terraform ------------------------------
+    // A local leaves Terraform only when it became a Dart `final` *and*
+    // nothing that stays behind still reads it: a block the migration kept,
+    // a local it kept, or a `${local.x}` the Stack itself still emits as an
+    // expression. Everything else keeps its sidecar entry, inlined or not —
+    // a `locals` definition costs nothing next to a Stack that reads it.
+    final stillRead = _localsStillInTerraform(kept, body, declared);
     for (final l in module.locals) {
-      _keep('local.${l.name}', 'locals stay in Terraform (see #672)');
+      if (declared.contains(l.name) && !stillRead.contains(l.name)) {
+        _migrated.add(MigratedItem(address: 'local.${l.name}'));
+        continue;
+      }
+      _keep('local.${l.name}', _localReason(l.name, declared, stillRead));
     }
     for (final o in module.opaque) {
       if (translatedMoved.contains(o)) continue;
@@ -797,6 +843,114 @@ final class StackEmitter {
     _kept.add(KeptItem(address: address, reason: reason));
   }
 
+  // -----------------------------------------------------------------------
+  // Inlined locals (`--inline-locals`)
+  // -----------------------------------------------------------------------
+
+  /// `local.<name>`, not preceded by a name character — the same shape
+  /// `templateVariableNames` matches `var.<name>` with.
+  static final RegExp _localMention = RegExp(
+    r'(?<![\w.])local\.([A-Za-z_][\w-]*)',
+  );
+
+  /// The inlined locals to declare: the ones the blocks read, closed over
+  /// what those locals read in turn.
+  Set<String> _localsToDeclare(Set<String> read) {
+    final out = <String>{};
+    final queue = [...read];
+    while (queue.isNotEmpty) {
+      final local = _locals.byName[queue.removeLast()];
+      if (local == null || !out.add(local.name)) continue;
+      queue.addAll(local.reads);
+    }
+    return out;
+  }
+
+  /// Local names something that is *not* becoming Dart still reads: a block
+  /// the migration kept, a `terraform` setting, a local that stays, and any
+  /// `${local.x}` the Stack still emits as a verbatim expression.
+  ///
+  /// Every one of those is read as text, so a reference the emitter does not
+  /// model counts too. The bias is deliberate: keeping a `locals` entry the
+  /// sidecar no longer needs costs a line, and dropping one it still needs
+  /// breaks the plan.
+  Set<String> _localsStillInTerraform(
+    Map<String, String> kept,
+    List<StackStatement> body,
+    Set<String> declared,
+  ) {
+    final out = <String>{};
+    void scan(String text) {
+      for (final m in _localMention.allMatches(text)) {
+        out.add(m.group(1)!);
+      }
+    }
+
+    void scanBody(Body b) => scan(jsonEncode(jsonValue(bodyAsObject(b))));
+
+    for (final (address, blockBody) in _addressedBodies()) {
+      if (kept.containsKey(address)) scanBody(blockBody);
+    }
+    // The settings block is split entry by entry in the sidecar; reading all
+    // of it is the conservative half of that.
+    for (final t in module.terraform) {
+      scanBody(t.body);
+    }
+    for (final l in module.locals) {
+      if (!declared.contains(l.name)) scan(jsonEncode(jsonValue(l.value)));
+    }
+    for (final statement in body) {
+      scan(statement.text);
+    }
+    return out;
+  }
+
+  /// Every block of the module under the address the report gives it, so a
+  /// kept one can be read back.
+  Iterable<(String, Body)> _addressedBodies() sync* {
+    for (final r in module.resources) {
+      yield (r.address, r.body);
+    }
+    for (final d in module.dataSources) {
+      yield (d.address, d.body);
+    }
+    for (final m in module.moduleCalls) {
+      yield ('module.${m.name}', m.body);
+    }
+    for (final p in module.providers) {
+      final alias = p.alias;
+      yield ('provider.${p.name}${alias == null ? '' : '.$alias'}', p.body);
+    }
+    for (final v in module.variables) {
+      yield ('variable.${v.name}', v.body);
+    }
+    for (final o in module.outputs) {
+      yield ('output.${o.name}', o.body);
+    }
+    for (final o in module.opaque) {
+      final labels = o.block.labels.map((l) => '.${l.text}').join();
+      yield ('${o.type}$labels', o.block.body);
+    }
+  }
+
+  /// Why `local.<name>` keeps its sidecar entry.
+  String _localReason(String name, Set<String> declared, Set<String> read) {
+    if (!inlineLocals) {
+      return 'locals stay in Terraform (pass --inline-locals to declare the '
+          'literal ones as Dart finals)';
+    }
+    final refused = _locals.refused[name];
+    if (refused != null) return refused;
+    if (!declared.contains(name)) {
+      return read.contains(name)
+          ? 'only what stays in Terraform reads it, so the Stack has no '
+                'reason to declare it'
+          : 'nothing reads it';
+    }
+    return 'the Stack declares it as a `final` too, but something still in '
+        'Terraform reads it';
+  }
+
   /// `param: value` arguments of [recipe]'s constructor for the provider
   /// configuration [block] (`alias` excluded); anything the constructor
   /// cannot take is dropped with a warning naming [label].
@@ -879,6 +1033,7 @@ final class StackEmitter {
           : ctx.sensitive.of(manifest.package, b.type, b.kind),
       envValues: envValues[b.address] ?? const {},
       liftWorkspace: liftWorkspace,
+      inlinedLocals: _locals.byName,
     );
 
     // Meta-arguments the base class takes.
@@ -962,6 +1117,7 @@ final class StackEmitter {
       usesWorkspace: emitter.usedWorkspace,
       usedTargets: emitter.usedTargets,
       usedVariables: emitter.usedVariables,
+      usedLocals: emitter.usedLocals,
       package: manifest.package,
       barrel: entry.barrel,
       providerName: providerName,
@@ -1030,6 +1186,7 @@ final class StackEmitter {
       sensitivePaths: const {},
       envValues: envValues[b.address] ?? const {},
       liftWorkspace: liftWorkspace,
+      inlinedLocals: _locals.byName,
     );
     final moduleProviders = <String>[];
     final providers = values.remove('providers');
@@ -1084,6 +1241,7 @@ final class StackEmitter {
       usesWorkspace: emitter.usedWorkspace,
       usedTargets: emitter.usedTargets,
       usedVariables: emitter.usedVariables,
+      usedLocals: emitter.usedLocals,
       package: '',
       barrel: '',
       isModule: true,

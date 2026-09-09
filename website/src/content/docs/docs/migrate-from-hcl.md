@@ -104,7 +104,7 @@ The sidecar is split the way Terraform code usually is:
 
 - `terradart_leftover.tf` — resources, data sources, module calls the Stack cannot express, and `moved` blocks whose target stays here too;
 - `backend.tf` — `terraform { }` settings the Stack does not own: a backend without a TerraDart type, `cloud`, and the `required_providers` entries of providers that have no factory;
-- `variables.tf`, `locals.tf`, `outputs.tf` — the variables that did not become `addVariable`, every `locals` block, and the outputs that did not become exports.
+- `variables.tf`, `locals.tf`, `outputs.tf` — the variables that did not become `addVariable`, the `locals` entries that stay in Terraform, and the outputs that did not become exports.
 
 Nothing the Stack owns is repeated (its `required_providers`, its provider configurations — aliased ones included — its backend, the variables it declares), because Terraform rejects those twice. A `provider "google" { alias = "eu" }` block becomes a second `GoogleProvider(alias: 'eu', ...)` on the Stack, and a resource's `provider = google.eu` becomes `provider: 'google.eu'` on its factory (`provider = google-beta` on a GA type is translated the same way). Expressions the migrator cannot type — templates, function calls, conditionals, `local.x` — become `TfArg.expression(...)`, verbatim, on any argument. A `timeouts { ... }` block becomes `const TfTimeouts(create: '30m', ...)` on the factory, a bare `terraform.workspace` becomes `TfArg.workspace<T>()`, and a partial backend (`backend "gcs" {}`, whose values come from `terraform init -backend-config`) becomes the typed backend with those parameters left out. A `module` block becomes `addModule(...)`: a call whose `source` points at a directory in the scanned tree gets a typed wrapper generated from that module's `variable` and `output` blocks (`CloudRunModule(localName: 'cloud_run_bff', source: '../modules/cloud_run', name: TfArg.literal('app-bff'))`, and `bff.serviceName` wherever a resource attribute goes), while registry, git and out-of-tree sources become a bare `ModuleCall` with `source` / `version` verbatim and an untyped `inputs` map — either way the address keeps its `module.<name>.` prefix. A literal `count` or `for_each` is unrolled into one resource per instance — `google_pubsub_topic.t[0]` becomes `google_pubsub_topic.t_0`, `google_pubsub_topic.t["eu"]` becomes `google_pubsub_topic.t_eu` — with `count.index` / `each.key` / `each.value` substituted, every reference in the module (indexed, splat or bare) pointed at the new addresses, and a `moved` entry per instance (`Stack.addMoved`) so the plan shows moves, never a destroy and create; the module's own `moved` blocks follow their targets into the Stack. What keeps a block in Terraform today: a type outside the four curated catalogs, a `count` / `for_each` that is not a literal (its instance set cannot be known without evaluating it) or one on a `module` call (whose instances are addressed `module.x[0]`), a `module` call with a computed `source` or an input the called module does not declare, `dynamic` / `provisioner`, a `timeouts` key that is not a Terraform operation or whose value is not a duration string, a `provider = x.alias` the module does not configure (or one inside a child module, which needs `configuration_aliases`), an argument with no Dart parameter, an expression inside a typed list, a sensitive literal (never copied into Dart), and `depends_on` on a resource that stays in Terraform. `MIGRATION.md` lists every kept block with its reason and file, and every unrolled one with its new addresses.
 
@@ -161,6 +161,31 @@ enum Env {
 
 `--lift-workspace` turns `terraform.workspace` into a `workspace` parameter on the Stack: a bare reference becomes `TfArg.literal(workspace)`, a template around it becomes Dart interpolation (`TfArg.literal('orders-$workspace')`), and one inside a list or map becomes the value. `dart run bin/infra.dart --workspace prod` then synthesizes for that workspace by name. It is opt-in because it moves the decision: the JSON names a workspace instead of leaving `${terraform.workspace}` for `terraform workspace select`, so it is faithful for the workspace it names and only that one. A template mixing the workspace with another reference stays a Terraform expression, with a warning naming it.
 
+### Locals as Dart finals
+
+A `locals` block stays in the sidecar by default, and the Stack goes on reading it as the `${local.prefix}` templates Terraform resolves at plan time — which is right for a local whose value is computed. A local whose value is a plain literal has a Dart value, though, and reading it out of a sidecar file is a worse Stack than declaring it. `--inline-locals` declares those:
+
+```hcl
+locals {
+  prefix      = "acme"
+  bucket_name = "${local.prefix}-assets"
+  suffix      = "topic-${var.env}"
+  labels      = { managed_by = "terradart" }
+}
+```
+
+```dart
+final prefix = r'acme';
+final bucketName = '$prefix-assets';
+add(GoogleStorageBucket(localName: r'assets', name: TfArg.literal(bucketName), ...));
+```
+
+`prefix` and `bucket_name` become `final`s and leave `locals.tf`; `suffix` and `labels` keep their entries, each over the reason it stayed. A local is inlined when its value is a scalar literal, or a template made only of literal text and locals that are themselves inlined — so the value the Stack writes is the one Terraform resolved before. A list, an object, a reference to a variable or a resource, a `%{ ... }` directive, or a name two `locals` blocks both declare all stay.
+
+Two rules keep the sidecar correct. A local leaves it only when nothing that stays behind still reads it — a kept block, a `terraform` setting, another local, or a `${local.x}` the Stack still emits as an expression — so a local can be a `final` in the Stack *and* an entry in `locals.tf` at the same time. And a local nothing in the Stack reads is never declared, so the generated package has no unused `final`.
+
+The cost of the flag is that the value is copied: editing `locals.tf` afterwards no longer moves what the Stack writes. What it never changes is the plan — the fixture gate migrates a module both ways and requires `terraform plan` to report the same thing for both packages, resource for resource. `--inline-locals` cannot be combined with `--merge-envs`, which already lifts the values the environments disagree on onto the generated `Env` enum.
+
 ## Picking the migration back up
 
 The catalog grows. A block that had no factory when you migrated may have one today — but the Dart is yours now, so re-migrating over it is not an option. `--update` re-runs on the package instead of the tree:
@@ -190,6 +215,7 @@ Two things a re-run cannot know, because it reads the sidecar and not your Dart:
 | `--env-dirs <dir>` | Root directories that are environments of one deployment. |
 | `--merge-envs` | Fold each group of environment siblings into one Stack taking a generated `Env` enum. |
 | `--lift-workspace` | Turn `terraform.workspace` into a `workspace` parameter on the Stack. |
+| `--inline-locals` | Declare the `locals` entries whose value is a literal as Dart `final`s. Cannot be combined with `--merge-envs`. |
 | `--update <package>` | Re-run over a package already generated: snippets for what the catalog covers today. Takes neither `--dir` nor `--out`. |
 | `--allow-todo` | TODO comments in the Stack instead of a sidecar; the plan differs until they are ported. |
 | `--json` | Print the report as JSON instead of the summary. |
@@ -203,4 +229,4 @@ The same pipeline is a Dart library: `scanModuleTree` reads the tree, `migrateTr
 
 ## What comes next
 
-The blockers above shrink as the runtime grows — `locals` ([#672](https://github.com/nozomi-koborinai/terradart/issues/672)) — followed by `--merge-envs` ([#668](https://github.com/nozomi-koborinai/terradart/issues/668)) and incremental re-runs ([#669](https://github.com/nozomi-koborinai/terradart/issues/669)). Progress is tracked on the [migrator epic](https://github.com/nozomi-koborinai/terradart/issues/80).
+The blockers above shrink as the runtime grows. Progress is tracked on the [migrator epic](https://github.com/nozomi-koborinai/terradart/issues/80).

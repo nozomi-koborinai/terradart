@@ -155,16 +155,7 @@ final class _SidecarBuilder {
         _put(variablesFileName, address, verbatimEntry(v.file, v.block));
       }
     }
-    final seen = <Block>{};
-    for (final l in module.locals) {
-      if (!seen.add(l.block)) continue;
-      _put(localsFileName, 'local.${l.name}', verbatimEntry(l.file, l.block));
-      for (final other in module.locals) {
-        if (identical(other.block, l.block)) {
-          _placements['local.${other.name}'] = localsFileName;
-        }
-      }
-    }
+    _locals();
     for (final o in module.outputs) {
       final address = 'output.${o.name}';
       if (kept.containsKey(address)) {
@@ -176,6 +167,52 @@ final class _SidecarBuilder {
       files: {for (final e in _chunks.entries) e.key: _render(e.value)},
       placements: Map.unmodifiable(_placements),
     );
+  }
+
+  /// The `locals` blocks, holding the entries that stay in Terraform.
+  ///
+  /// A block every entry of which is kept is copied as written; once
+  /// `--inline-locals` has taken some of them into the Stack, what is left
+  /// is re-rendered around the entries that remain, so the sidecar defines
+  /// exactly the locals something still reads.
+  void _locals() {
+    final seen = <Block>{};
+    for (final l in module.locals) {
+      if (!seen.add(l.block)) continue;
+      final entries = [
+        for (final other in module.locals)
+          if (identical(other.block, l.block) &&
+              kept.containsKey('local.${other.name}'))
+            other,
+      ];
+      if (entries.isEmpty) continue;
+      if (entries.length == l.block.body.entries.length) {
+        // Every entry stays: the block is the user's, as written.
+        _put(
+          localsFileName,
+          'local.${entries.first.name}',
+          verbatimEntry(l.file, l.block),
+        );
+      } else {
+        // Some entries became Dart, so the block is rebuilt around what is
+        // left, each entry over the reason it stayed.
+        _chunks
+            .putIfAbsent(localsFileName, () => [])
+            .add(
+              [
+                'locals {',
+                for (final e in entries) ...[
+                  '  # terradart-migrate: ${kept['local.${e.name}']}',
+                  verbatimEntry(e.file, e.attribute, level: 1),
+                ],
+                '}',
+              ].join('\n'),
+            );
+      }
+      for (final e in entries) {
+        _placements['local.${e.name}'] = localsFileName;
+      }
+    }
   }
 
   /// One `terraform { }` block holding the settings the Stack does not own.

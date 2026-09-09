@@ -439,6 +439,7 @@ MigratedProject migrateTree(
   bool format = true,
   bool mergeEnvs = false,
   bool liftWorkspace = false,
+  bool inlineLocals = false,
   List<MigrateManifest>? manifests,
 }) {
   final packageName = packageNameFor(name);
@@ -539,6 +540,7 @@ MigratedProject migrateTree(
           childModule: !m.isRoot,
           allowTodo: allowTodo,
           liftWorkspace: liftWorkspace,
+          inlineLocals: inlineLocals,
           localModules: localModules,
         );
     for (final used in stack.moduleWrappers) {
