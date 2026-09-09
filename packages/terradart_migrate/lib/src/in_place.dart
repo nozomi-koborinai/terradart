@@ -134,6 +134,7 @@ String _count(int n, String what) => '$n $what${n == 1 ? '' : 's'}';
 /// became `addMoved`, and a state move is not worth a guess.
 InPlaceResult planInPlace(MigratedProject project) {
   final root = p.normalize(p.absolute(project.inputPath));
+  final base = _realPath(Directory(root)) ?? root;
   final files = <InPlaceFile>[];
   for (final module in project.modules) {
     final migrated = {for (final m in module.report.migrated) m.address};
@@ -142,6 +143,17 @@ InPlaceResult planInPlace(MigratedProject project) {
       final path = p
           .relative(p.normalize(p.absolute(name)), from: root)
           .replaceAll(r'\', '/');
+      final escape = _escapes(name, p.join(base, path));
+      if (escape != null) {
+        files.add(
+          InPlaceFile(
+            path: path,
+            action: InPlaceAction.skipped,
+            reason: escape,
+          ),
+        );
+        continue;
+      }
       if (file.isJson) {
         files.add(
           InPlaceFile(
@@ -159,6 +171,37 @@ InPlaceResult planInPlace(MigratedProject project) {
   }
   files.sort((a, b) => a.path.compareTo(b.path));
   return InPlaceResult(rootPath: project.inputPath, files: files);
+}
+
+/// Why writing [name] would not be writing the file it looks like, or `null`
+/// when the path holds no link at all.
+///
+/// The scan reads through symbolic links, and so would a write: a `*.tf`
+/// link — or a file under a linked directory — sits at a path inside
+/// `--dir` and resolves anywhere. That is not the file the rewrite claims to
+/// own, its git state is the link's rather than the target's, and two
+/// module directories sharing one linked file would each cut it differently.
+/// So a path with a link anywhere in it is left alone; [expected] is where
+/// the file would resolve to if it had none.
+String? _escapes(String name, String expected) {
+  final real = _realPath(File(name));
+  if (real == null) {
+    return 'it could not be resolved on disk';
+  }
+  if (real != p.normalize(expected)) {
+    return 'it is reached through a symbolic link, and resolves to "$real"';
+  }
+  return null;
+}
+
+/// [entity]'s path with every symbolic link resolved, or `null` when it does
+/// not resolve.
+String? _realPath(FileSystemEntity entity) {
+  try {
+    return p.normalize(entity.resolveSymbolicLinksSync());
+  } on FileSystemException {
+    return null;
+  }
 }
 
 /// One file with the migrated blocks cut out.
@@ -417,18 +460,25 @@ String? inPlaceGitBlocker(Directory dir) {
 /// under [root]: a path that escapes it, or names anything else, is a
 /// [FileSystemException] before a single file is touched.
 void writeInPlace(InPlaceResult result, Directory root) {
-  final base = p.normalize(p.absolute(root.path));
+  final lexical = p.normalize(p.absolute(root.path));
+  final base = _realPath(root) ?? lexical;
   final targets = <InPlaceFile, File>{};
   for (final f in result.files) {
     if (f.action == InPlaceAction.unchanged ||
         f.action == InPlaceAction.skipped) {
       continue;
     }
-    final path = p.normalize(p.join(base, f.path));
-    if (!p.isWithin(base, path) || !path.endsWith('.tf')) {
+    final path = p.normalize(p.join(lexical, f.path));
+    // Lexical containment is not containment: a `*.tf` symbolic link, or a
+    // file under a linked directory, sits at a path inside `--dir` and
+    // resolves anywhere, and a write follows it. Both the path and what it
+    // resolves to have to be ours.
+    if (!p.isWithin(lexical, path) ||
+        !path.endsWith('.tf') ||
+        _realPath(File(path)) != p.normalize(p.join(base, f.path))) {
       throw FileSystemException(
         'terradart-migrate --in-place rewrites only the *.tf files it read '
-        'under "${root.path}"',
+        'under "${root.path}", and never through a symbolic link',
         f.path,
       );
     }

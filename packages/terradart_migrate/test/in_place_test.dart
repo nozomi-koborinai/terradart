@@ -178,6 +178,83 @@ moved {
     });
   });
 
+  group('in-place: symbolic links', () {
+    // The scan reads through links, and so would a write: a `*.tf` link
+    // inside the tree sits at a path `p.isWithin` accepts and resolves
+    // anywhere. Its git state is the link's, not the target's, so the guard
+    // passes and `git checkout` restores the link over an already-clobbered
+    // file. Nothing reached through a link is rewritten.
+    ({Directory root, File outside}) linked() {
+      final root = _repo({'main.tf': _leftover});
+      final outside = File('${root.path}/outside/victim.tf')
+        ..createSync(recursive: true)
+        ..writeAsStringSync('$_bucket\n$_leftover');
+      Link('${root.path}/tf/linked.tf').createSync(outside.path);
+      Process.runSync('git', ['add', '-A'], workingDirectory: root.path);
+      Process.runSync('git', [
+        'commit',
+        '-qm',
+        'link',
+      ], workingDirectory: root.path);
+      return (root: root, outside: outside);
+    }
+
+    test(
+      'a .tf link out of the tree is skipped, naming what it resolves to',
+      () {
+        final f = linked();
+        final plan = _plan(f.root);
+        final entry = _file(plan, 'linked.tf');
+        expect(entry.action, InPlaceAction.skipped);
+        expect(entry.reason, contains('symbolic link'));
+        expect(entry.reason, contains('victim.tf'));
+      },
+    );
+
+    test('and writing the plan leaves the file outside untouched', () {
+      final f = linked();
+      final before = f.outside.readAsStringSync();
+      writeInPlace(_plan(f.root), Directory('${f.root.path}/tf'));
+      expect(f.outside.readAsStringSync(), before);
+      // The link itself is still a link, not a file the rewrite replaced.
+      expect(
+        FileSystemEntity.isLinkSync('${f.root.path}/tf/linked.tf'),
+        isTrue,
+      );
+    });
+
+    test('a file under a linked directory is skipped too', () {
+      final root = _repo({'main.tf': _leftover});
+      Directory('${root.path}/outside').createSync(recursive: true);
+      File('${root.path}/outside/main.tf').writeAsStringSync(_bucket);
+      Link('${root.path}/tf/sub').createSync('${root.path}/outside');
+      final plan = _plan(root);
+      expect(
+        plan.files.where((f) => f.path.startsWith('sub/')),
+        everyElement(
+          isA<InPlaceFile>().having(
+            (f) => f.action,
+            'action',
+            InPlaceAction.skipped,
+          ),
+        ),
+      );
+    });
+
+    test('a --dir that is itself a link is still rewritten', () {
+      // Only a link *inside* the tree is an escape; the tree reached through
+      // one is the tree the caller named.
+      final root = _repo({'main.tf': '$_bucket\n$_leftover'});
+      final link = Link('${root.path}/link')..createSync('${root.path}/tf');
+      final plan = planInPlace(
+        migrateTree(scanModuleTree(Directory(link.path)), name: 'tf'),
+      );
+      expect(_file(plan, 'main.tf').action, InPlaceAction.rewritten);
+      writeInPlace(plan, Directory(link.path));
+      expect(File('${root.path}/tf/main.tf').readAsStringSync(), _leftover);
+    });
+  });
+
   group('in-place: the git guard', () {
     test('a clean working tree passes', () {
       final root = _repo({'main.tf': _bucket});
@@ -224,6 +301,8 @@ moved {
         '../escape.tf',
         'main.tf.json',
         'MIGRATION.md',
+        // Never read, so never resolved: the writer refuses it too.
+        'never_read.tf',
       ]) {
         expect(
           () => writeInPlace(

@@ -201,7 +201,7 @@ That diff is the point. Every block that became Dart shows as a deletion, in the
 
 It refuses to run unless `--dir` is inside a **git working tree with nothing uncommitted in it**, untracked files included, and it checks that before writing anything, `--out` included. The rewrite deletes your Terraform; `git checkout` is the undo, and it only works if the tree started clean.
 
-Two things it never touches. A `*.tf.json` file, whose nodes carry no source ranges to cut — re-rendering it would rewrite the whole file, so it is left alone and listed in the report. And `moved` blocks: the report does not say which of them became `Stack.addMoved`, and a state move is not worth a guess.
+Three things it never touches. A `*.tf.json` file, whose nodes carry no source ranges to cut — re-rendering it would rewrite the whole file, so it is left alone and listed in the report. `moved` blocks: the report does not say which of them became `Stack.addMoved`, and a state move is not worth a guess. And anything reached through a **symbolic link** — a `*.tf` link, or a file under a linked directory. The scan reads through links and a write would follow one, so such a path sits inside `--dir` and resolves anywhere; its git state is the link's rather than the target's, which is exactly the case the clean-tree guard cannot cover. The report names what each skipped path resolved to. A `--dir` that is itself a link is fine — only a link *inside* the tree is an escape.
 
 ## Picking the migration back up
 
