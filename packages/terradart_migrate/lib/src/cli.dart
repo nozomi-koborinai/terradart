@@ -107,6 +107,8 @@ Future<int> runMigrateCli(
       tree,
       name: name,
       allowTodo: args['allow-todo'] as bool,
+      mergeEnvs: args['merge-envs'] as bool,
+      liftWorkspace: args['lift-workspace'] as bool,
     );
   } on Object catch (x, st) {
     e
@@ -199,6 +201,25 @@ ArgParser _parser() => ArgParser(usageLineLength: 80)
         'deployment. By default, roots sharing a parent directory are.',
   )
   ..addFlag(
+    'merge-envs',
+    negatable: false,
+    help:
+        'Fold each group of sibling environment roots into one Stack taking '
+        'an `Env` enum: the values they disagree on become constants on it, '
+        'and blocks only some of them declare sit behind a flag. A group '
+        'that cannot be merged keeps one Stack per root, with the reason in '
+        'MIGRATION.md.',
+  )
+  ..addFlag(
+    'lift-workspace',
+    negatable: false,
+    help:
+        'Turn `terraform.workspace` into a `workspace` parameter on the '
+        'Stack, so `dart run bin/infra.dart --workspace <name>` synthesizes '
+        'for one workspace by name instead of leaving the template for '
+        '`terraform workspace select` to resolve.',
+  )
+  ..addFlag(
     'allow-todo',
     negatable: false,
     help:
@@ -223,7 +244,9 @@ Migrates a Terraform source tree into a TerraDart package: one Stack per
 module directory (child-module mode for directories a `module` block points
 at), a Terraform directory per module under tf-out/ mirroring the tree, a
 leftover sidecar next to each main.tf.json for what stays in Terraform, and
-MIGRATION.md with a reason for every kept block. Reads .tf and .tf.json with
-no terraform run, init or credentials; never writes into --dir.
+MIGRATION.md with a reason for every kept block. With --merge-envs, sibling
+environment roots become one Stack per group, parameterised by a generated
+Env enum. Reads .tf and .tf.json with no terraform run, init or credentials;
+never writes into --dir.
 
 ${parser.usage}''';

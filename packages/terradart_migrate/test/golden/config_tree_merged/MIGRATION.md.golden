@@ -12,19 +12,19 @@
 
 | Directory | Role | Stack | Terraform directory | Migrated | Kept |
 | :--- | :--- | :--- | :--- | ---: | ---: |
-| `dev` | root, environment `.` | `DevStack` | `tf-out/dev` | 26 | 0 |
+| `dev` | root, environment `.` | `ConfigTreeStack` | `tf-out/dev` | 26 | 0 |
 | `modules/cloud_run` | child | `CloudRunStack` | `tf-out/modules/cloud_run` | 5 | 0 |
 | `modules/cloud_sql` | child | `CloudSqlStack` | `tf-out/modules/cloud_sql` | 5 | 0 |
 | `modules/pubsub` | child | `PubsubStack` | `tf-out/modules/pubsub` | 5 | 0 |
 | `modules/secret_manager` | child | `SecretManagerStack` | `tf-out/modules/secret_manager` | 3 | 0 |
 | `modules/service_account` | child | `ServiceAccountStack` | `tf-out/modules/service_account` | 6 | 0 |
 | `modules/workload_identity` | child | `WorkloadIdentityStack` | `tf-out/modules/workload_identity` | 4 | 0 |
-| `prod` | root, environment `.` | `ProdStack` | `tf-out/prod` | 28 | 0 |
+| `prod` | root, environment `.` | `ConfigTreeStack` | `tf-out/prod` | 28 | 0 |
 
 ### `dev`
 
 - Role: root, environment `.`
-- Stack: `DevStack` in `lib/dev_stack.dart`; packages: `terradart_google`; providers: `google`
+- Stack: `ConfigTreeStack` in `lib/config_tree_stack.dart`; packages: `terradart_google`; providers: `google`
 - Terraform directory: `tf-out/dev`
 
 ### `modules/cloud_run`
@@ -66,12 +66,26 @@
 ### `prod`
 
 - Role: root, environment `.`
-- Stack: `ProdStack` in `lib/prod_stack.dart`; packages: `terradart_google`; providers: `google`
+- Stack: `ConfigTreeStack` in `lib/config_tree_stack.dart`; packages: `terradart_google`; providers: `google`
 - Terraform directory: `tf-out/prod`
 
 ## Environments
 
-Sibling roots are migrated one Stack each, backends untouched; `--merge-envs` folds them into one Stack taking the environment as a parameter.
+Sibling roots were compared argument by argument; what follows is what `--merge-envs` found.
+
+### Merged: `.` → `ConfigTreeStack`
+
+`ConfigTreeStack({required Env env})` in `lib/config_tree_stack.dart` synthesizes `dev`, `prod`, one `tf-out` directory each. `dart run bin/infra.dart --env dev` writes just that one.
+
+| `Env` | Value | `dev` | `prod` |
+| :--- | :--- | :--- | :--- |
+| `assetsName` | `google_storage_bucket.assets.name` | `app-dev-assets` | `app-prod-assets` |
+| `uploadsName` | `google_storage_bucket.uploads.name` | `app-dev-uploads` | `app-prod-uploads` |
+| `cloudSqlInstanceName` | `module.cloud_sql.instance_name` | `app-postgres-dev` | `app-postgres-prod` |
+| `projectIdDefault` | `variable.project_id.default` | `example-project-dev` | `example-project-prod` |
+| `backendBucket` | `terraform.backend.bucket` | `app-dev-tfstate` | `app-prod-tfstate` |
+| `backendPrefix` | `terraform.backend.prefix` | `infra/dev` | `infra/prod` |
+| `isProd` | blocks only `prod` declares | `false` | `true` |
 
 ### `.`: `dev`, `prod`
 

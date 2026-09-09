@@ -1870,6 +1870,103 @@ resource "google_pubsub_topic" "x" {
       expect(of('resource "google_pubsub_topic" "t" {}\n').isEmpty, isTrue);
     });
   });
+
+  group('lift-workspace (#668)', () {
+    MigrationResult lift(String body, {bool liftWorkspace = true}) =>
+        migrateModule(
+          TfModule.fromHcl(_hcl([body]), fileName: 'main.tf'),
+          name: 'demo',
+          format: false,
+          liftWorkspace: liftWorkspace,
+        );
+
+    test('terraform.workspace becomes the Stack parameter', () {
+      final r = lift(
+        'resource "google_pubsub_topic" "t" {\n'
+        '  name = terraform.workspace\n'
+        '}\n',
+      );
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(r.stackSource, contains('DemoStack({required String workspace})'));
+      expect(r.stackSource, contains('name: TfArg.literal(workspace)'));
+      expect(r.stackSource, isNot(contains('TfArg.workspace')));
+    });
+
+    test('without the flag it stays a Terraform expression', () {
+      final r = lift(
+        'resource "google_pubsub_topic" "t" {\n'
+        '  name = terraform.workspace\n'
+        '}\n',
+        liftWorkspace: false,
+      );
+      expect(r.stackSource, contains('name: TfArg.workspace<String>()'));
+      expect(r.stackSource, contains('DemoStack() :'));
+    });
+
+    test('a template around it becomes Dart interpolation', () {
+      final r = lift(
+        'resource "google_pubsub_topic" "t" {\n'
+        '  name = "orders-\${terraform.workspace}"\n'
+        '}\n',
+      );
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(r"name: TfArg.literal('orders-$workspace')"),
+      );
+    });
+
+    test('a workspace reference inside a map lifts too', () {
+      final r = lift(
+        'resource "google_pubsub_topic" "t" {\n'
+        '  name   = "t"\n'
+        '  labels = { env = terraform.workspace }\n'
+        '}\n',
+      );
+      expect(
+        r.stackSource,
+        contains("labels: TfArg.literal({r'env': workspace})"),
+      );
+    });
+
+    test(
+      'a template holding another reference is left alone, with a warning',
+      () {
+        final r = lift(
+          'variable "suffix" {\n'
+          '  type = string\n'
+          '}\n'
+          '\n'
+          'resource "google_pubsub_topic" "t" {\n'
+          '  name = "t-\${terraform.workspace}-\${var.suffix}"\n'
+          '}\n',
+        );
+        expect(
+          r.stackSource,
+          contains(
+            r"TfArg.expression(r't-${terraform.workspace}-${var.suffix}')",
+          ),
+        );
+        expect(
+          r.report.warnings.join('\n'),
+          contains('mixes `terraform.workspace` with other references'),
+        );
+        expect(r.stackSource, isNot(contains('required String workspace')));
+      },
+    );
+
+    test('bin/infra.dart takes --workspace', () {
+      final r = lift(
+        'resource "google_pubsub_topic" "t" {\n'
+        '  name = terraform.workspace\n'
+        '}\n',
+      );
+      final infra = r.files['bin/infra.dart']!;
+      expect(infra, contains('final workspace = _workspace(args);'));
+      expect(infra, contains('DemoStack(workspace: workspace)'));
+      expect(infra, contains("return 'default';"));
+    });
+  });
 }
 
 /// [lines] as one HCL source string.
