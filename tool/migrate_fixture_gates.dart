@@ -69,6 +69,7 @@ Future<void> main(List<String> args) async {
         keep: keep,
       ) &&
       ok;
+  ok = await _rerunGate(repoRoot: repoRoot, keep: keep) && ok;
   stdout.writeln(
     ok ? 'migrate_fixture_gates: OK' : 'migrate_fixture_gates: FAILED',
   );
@@ -164,6 +165,165 @@ Future<bool> _mergeEnvGate({
   if (errors.isEmpty && !keep) plain.deleteSync(recursive: true);
   return _finish('$_mergeFixture --merge-envs', temp, errors, keep: keep);
 }
+
+/// `--update` on [_mergeFixture] (#669): the catalog wave, simulated.
+///
+/// Migrate the fixture against a catalog with one factory missing, so the
+/// sidecar holds real blocks. Re-run against the full catalog: what the
+/// wave added must come back as snippets, the sidecar must shrink, and the
+/// Stack with the snippet pasted must synthesize exactly what a one-shot
+/// migration of the whole tree does. Nothing the first run wrote may change.
+Future<bool> _rerunGate({
+  required String repoRoot,
+  required bool keep,
+}) async {
+  const missing = 'google_storage_bucket';
+  final input = Directory(
+    p.join(
+      repoRoot,
+      'packages/terradart_coverage/test/fixtures',
+      _mergeFixture,
+    ),
+  );
+  final before = Directory.systemTemp.createTempSync('terradart_rerun_before_');
+  final after = Directory.systemTemp.createTempSync('terradart_rerun_after_');
+  final errors = <String>[];
+  try {
+    final tree = scanModuleTree(input);
+    writeProject(
+      migrateTree(
+        tree,
+        name: _mergeFixture,
+        manifests: _catalogWithout(missing),
+      ),
+      before,
+    );
+    // What the first run wrote, so the re-run can be shown not to touch it.
+    final untouched = {
+      for (final f in before.listSync(recursive: true).whereType<File>())
+        p.relative(f.path, from: before.path): f.readAsStringSync(),
+    };
+
+    final rerun = rerunProject(before);
+    writeRerun(rerun, before);
+    for (final entry in untouched.entries) {
+      final now = File(p.join(before.path, entry.key));
+      if (now.readAsStringSync() != entry.value) {
+        errors.add('${entry.key}: the re-run overwrote a file it did not own');
+      }
+    }
+    if (rerun.changed.isEmpty) {
+      errors.add('the re-run found nothing to translate');
+      return _finish('$_mergeFixture --update', before, errors, keep: keep);
+    }
+    for (final m in rerun.changed) {
+      final next = File(
+        p.join(before.path, m.terraformDir, nextLeftoverFileName),
+      ).readAsStringSync();
+      for (final t in m.translated) {
+        if (next.contains('"${t.address.split('.').last}"')) {
+          errors.add(
+            '${m.terraformDir}: ${t.address} translates but is still in '
+            'terradart_leftover.next.tf',
+          );
+        }
+      }
+    }
+
+    // Pasting, mechanically: the snippet is an extension on `Stack`, so
+    // calling it on the Stack runs exactly the statements its body holds.
+    final imports = StringBuffer("import 'dart:convert';\nimport 'dart:io';\n");
+    final calls = StringBuffer();
+    for (final m in rerun.changed) {
+      final stack = m.stackFile;
+      if (stack == null) {
+        errors.add('${m.terraformDir}: no Stack file for the snippets');
+        continue;
+      }
+      final lib = p.basenameWithoutExtension(stack);
+      imports
+        ..writeln("import 'package:$_mergeFixture/$lib.dart';")
+        ..writeln("import 'package:$_mergeFixture/$lib.snippets.dart';");
+      calls.writeln(
+        "  File('pasted-${p.basename(m.terraformDir)}.json').writeAsStringSync("
+        'jsonEncode((${m.stackClass}()..${m.methodName}()).synth().tfJson));',
+      );
+    }
+    File(p.join(before.path, 'bin', 'rerun_check.dart'))
+      ..createSync(recursive: true)
+      ..writeAsStringSync('$imports\nvoid main() {\n$calls}\n');
+
+    // The snippets must compile where they sit, and the pasted Stack must
+    // synthesize what a one-shot migration of the whole tree does.
+    writeProject(migrateTree(tree, name: _mergeFixture), after);
+    if (!await _build(before, repoRoot, errors) ||
+        !await _build(after, repoRoot, errors) ||
+        !await _run(['dart', 'run', 'bin/rerun_check.dart'], before, errors)) {
+      return _finish('$_mergeFixture --update', before, errors, keep: keep);
+    }
+    for (final m in rerun.changed) {
+      final env = p.basename(m.terraformDir);
+      final pasted = File(p.join(before.path, 'pasted-$env.json'));
+      final oneShot = File(p.join(after.path, m.terraformDir, 'main.tf.json'));
+      if (!pasted.existsSync() || !oneShot.existsSync()) {
+        errors.add('$env: no synth output to compare');
+        continue;
+      }
+      final diffs = <String>[];
+      _diff(
+        jsonDecode(oneShot.readAsStringSync()),
+        jsonDecode(pasted.readAsStringSync()),
+        r'$',
+        diffs,
+      );
+      if (diffs.isNotEmpty) {
+        errors.add(
+          '$env: the pasted snippet does not round-trip '
+          '(${diffs.length} difference${diffs.length == 1 ? '' : 's'}):\n'
+          '${diffs.take(8).map((d) => '      $d').join('\n')}',
+        );
+      }
+    }
+
+    // A package with nothing left in Terraform has nothing to re-run — and
+    // proves the re-run reads the sidecar, never the main.tf.json a Stack
+    // writes, which would otherwise re-migrate the whole configuration.
+    final quiet = rerunProject(after);
+    if (!quiet.isEmpty) {
+      errors.add(
+        're-running a fully migrated package found '
+        '${quiet.translatedCount} block(s) to translate; it must find none',
+      );
+    }
+
+    final blocks = rerun.modules.fold(0, (n, m) => n + m.sidecarBlocks);
+    stdout.writeln(
+      'migrate_fixture_gates: $_mergeFixture --update: "$missing" curated → '
+      '${rerun.translatedCount} of $blocks sidecar block(s) translate across '
+      '${rerun.changed.length} directories, pasted synth identical, '
+      'nothing overwritten',
+    );
+  } on Object catch (e, st) {
+    errors.add('$_mergeFixture --update: $e\n$st');
+  }
+  if (errors.isEmpty && !keep) after.deleteSync(recursive: true);
+  return _finish('$_mergeFixture --update', before, errors, keep: keep);
+}
+
+/// The curated catalogs with [tfType] removed: the world before the wave
+/// that added it.
+List<MigrateManifest> _catalogWithout(String tfType) => [
+      for (final m in allMigrateManifests)
+        MigrateManifest(
+          package: m.package,
+          entries: [
+            for (final e in m.entries)
+              if (e.tfType != tfType) e,
+          ],
+          helpers: m.helpers,
+          enums: m.enums,
+        ),
+    ];
 
 String _count(int n, String what) => '$n $what${n == 1 ? '' : 's'}';
 

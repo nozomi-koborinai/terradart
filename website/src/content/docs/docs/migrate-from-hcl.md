@@ -161,6 +161,24 @@ enum Env {
 
 `--lift-workspace` turns `terraform.workspace` into a `workspace` parameter on the Stack: a bare reference becomes `TfArg.literal(workspace)`, a template around it becomes Dart interpolation (`TfArg.literal('orders-$workspace')`), and one inside a list or map becomes the value. `dart run bin/infra.dart --workspace prod` then synthesizes for that workspace by name. It is opt-in because it moves the decision: the JSON names a workspace instead of leaving `${terraform.workspace}` for `terraform workspace select`, so it is faithful for the workspace it names and only that one. A template mixing the workspace with another reference stays a Terraform expression, with a warning naming it.
 
+## Picking the migration back up
+
+The catalog grows. A block that had no factory when you migrated may have one today — but the Dart is yours now, so re-migrating over it is not an option. `--update` re-runs on the package instead of the tree:
+
+```sh
+terradart-migrate --update infra_dart
+```
+
+It reads only what is still Terraform — each directory's sidecar, never the `main.tf.json` a Stack writes — and writes three kinds of file, and nothing else:
+
+- `lib/<stack>.snippets.dart` — an `extension <Stack>Rerun on Stack` whose method body is exactly the statements to paste into the constructor. It is an extension so the file compiles where it sits: the body is valid in the constructor because it is valid here. Resources, data sources, module calls and their `moved` entries are pasted; a provider configuration, a variable, an output and the `terraform` settings are the Stack's own structure, and stay in the sidecar.
+- `tf-out/<dir>/terradart_leftover.next.tf` — the sidecar as it looks once they are pasted.
+- `RERUN.md` — what translates now, and the swap steps per directory.
+
+Your Dart is never overwritten: the writer owns those three paths and refuses every other one. Paste the body, add the imports the snippets file opens with, swap the `.next.tf` in, delete the snippets file and re-synthesize — `terraform plan` must still report *No changes*.
+
+Two things a re-run cannot know, because it reads the sidecar and not your Dart: a reference to a block your Stack already owns stays a Terraform expression rather than becoming `TfArg.ref(...)`, and a block whose only obstacle is a `depends_on` on one of them stays in Terraform, since a Dart dependency needs the Dart object. A local your Stack already declares *is* known — the re-run reads the names and never shadows one.
+
 ## Options
 
 | Flag | Meaning |
@@ -172,6 +190,7 @@ enum Env {
 | `--env-dirs <dir>` | Root directories that are environments of one deployment. |
 | `--merge-envs` | Fold each group of environment siblings into one Stack taking a generated `Env` enum. |
 | `--lift-workspace` | Turn `terraform.workspace` into a `workspace` parameter on the Stack. |
+| `--update <package>` | Re-run over a package already generated: snippets for what the catalog covers today. Takes neither `--dir` nor `--out`. |
 | `--allow-todo` | TODO comments in the Stack instead of a sidecar; the plan differs until they are ported. |
 | `--json` | Print the report as JSON instead of the summary. |
 | `--force` | Write into a non-empty `--out`, overwriting only the files the migrator generates. |

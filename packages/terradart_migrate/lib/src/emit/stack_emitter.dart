@@ -69,6 +69,7 @@ final class EmittedStack {
     this.usesWorkspace = false,
     this.statements = const [],
     this.imports = const [],
+    this.blockImports = const [],
     this.ctorInit = '',
     this.envSlotTypes = const {},
     this.envValueSources = const {},
@@ -103,6 +104,11 @@ final class EmittedStack {
 
   /// The `import` lines [source] opens with, `terradart_core` included.
   final List<String> imports;
+
+  /// The subset of [imports] the resource, data-source and module-call
+  /// statements need — no provider barrel, since the statements register no
+  /// provider. What a re-run's snippets open with.
+  final List<String> blockImports;
 
   /// The `super(...)` arguments (`providers: [...], backend: ...`).
   final String ctorInit;
@@ -714,6 +720,15 @@ final class StackEmitter {
     // --- assemble ---------------------------------------------------------
     final usesWorkspace = emitted.values.any((e) => e.usesWorkspace);
     final parameters = usesWorkspace ? '{required String workspace}' : '';
+    final blockImports = <String>{
+      if (emitted.isNotEmpty)
+        "import 'package:terradart_core/terradart_core.dart';",
+      for (final e in emitted.values)
+        if (!e.isModule)
+          "import 'package:${e.package}/${e.barrel}.dart';"
+        else if (e.wrapperFile != null)
+          "import '${e.wrapperFile}.dart';",
+    }.toList()..sort();
     final packages = ctx.imports.keys.toList()..sort();
     final wrappers = noStack
         ? const <String>[]
@@ -758,6 +773,7 @@ final class StackEmitter {
       usesWorkspace: usesWorkspace,
       statements: List.unmodifiable(body),
       imports: List.unmodifiable(imports),
+      blockImports: List.unmodifiable(blockImports),
       ctorInit: ctorInit.toString(),
       envSlotTypes: Map.unmodifiable(_envSlotTypes),
       envValueSources: Map.unmodifiable(_envValueSources),
