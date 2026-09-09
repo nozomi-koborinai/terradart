@@ -97,6 +97,29 @@ resource   "acme_widget"   "w"   {
       expect(_file(r, 'other.tf').action, InPlaceAction.unchanged);
       expect(_file(r, 'other.tf').content, isNull);
     });
+
+    test('an unrolled count block is cut under its instances', () {
+      // The report names `google_pubsub_topic.t_0` and `t_1`, never the
+      // `google_pubsub_topic.t` the file is written as; matching only the
+      // written address would leave the block in the tree, duplicating the
+      // resource the Stack now declares.
+      final r = _plan(
+        _repo({
+          'main.tf':
+              """
+resource "google_pubsub_topic" "t" {
+  count = 2
+  name  = "t-\${count.index}"
+}
+
+$_leftover
+""",
+        }),
+      );
+      final f = _file(r, 'main.tf');
+      expect(f.cut, ['google_pubsub_topic.t']);
+      expect(f.content, _leftover);
+    });
   });
 
   group('in-place: blocks split entry by entry', () {
@@ -149,6 +172,27 @@ $_bucket
       // No blank line is left where the settings were.
       expect(f.content, isNot(contains('\n\n\n')));
       expect(f.content, isNot(contains('{\n\n')));
+    });
+
+    test('a terraform block that holds nothing else goes whole', () {
+      // The usual layout: `required_providers` and nothing more. Cutting the
+      // entries alone would leave an empty `terraform { }` behind.
+      final r = _plan(
+        _repo({
+          'main.tf':
+              '''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+  }
+}
+
+$_bucket
+$_leftover
+''',
+        }),
+      );
+      expect(_file(r, 'main.tf').content, _leftover);
     });
   });
 

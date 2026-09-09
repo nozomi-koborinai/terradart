@@ -95,19 +95,30 @@ final class _SidecarBuilder {
 
   void _put(String file, String address, String text) {
     final reason = kept[address];
-    var body = text;
-    if (!_rewriter.isEmpty) {
-      final rewritten = _rewriter.text(text, strict: false);
-      if (rewritten != text) {
-        body =
-            '# terradart-migrate: references to instances of an unrolled '
-            'count / for_each block point at the new addresses\n$rewritten';
-      }
-    }
+    final pointed = _pointAtInstances(text);
+    final body = pointed.rewritten
+        ? '# terradart-migrate: $_instancesMoved\n${pointed.text}'
+        : pointed.text;
     _chunks
         .putIfAbsent(file, () => [])
         .add(reason == null ? body : '# terradart-migrate: $reason\n$body');
     _placements[address] = file;
+  }
+
+  static const _instancesMoved =
+      'references to instances of an unrolled count / for_each block point '
+      'at the new addresses';
+
+  /// [text] with every reference to an instance of an unrolled block
+  /// pointed at the address that instance became.
+  ///
+  /// Everything the sidecar writes goes through this: a block the migration
+  /// kept still names `google_x.y[0]`, and that resource no longer exists —
+  /// the Stack declares `google_x.y_0`.
+  ({String text, bool rewritten}) _pointAtInstances(String text) {
+    if (_rewriter.isEmpty) return (text: text, rewritten: false);
+    final out = _rewriter.text(text, strict: false);
+    return (text: out, rewritten: out != text);
   }
 
   Sidecar build() {
@@ -200,18 +211,26 @@ final class _SidecarBuilder {
         );
       } else {
         // Some entries became Dart, so the block is rebuilt around what is
-        // left, each entry over the reason it stayed.
+        // left, each entry over the reason it stayed — and each pointed at
+        // the unrolled instances, as `_put` would have done for a whole one.
+        final lines = <String>['locals {'];
+        var moved = false;
+        for (final e in entries) {
+          final pointed = _pointAtInstances(
+            verbatimEntry(e.file, e.attribute, level: 1),
+          );
+          moved = moved || pointed.rewritten;
+          lines
+            ..add('  # terradart-migrate: ${kept['local.${e.name}']}')
+            ..add(pointed.text);
+        }
+        lines.add('}');
         _chunks
             .putIfAbsent(localsFileName, () => [])
             .add(
-              [
-                'locals {',
-                for (final e in entries) ...[
-                  '  # terradart-migrate: ${kept['local.${e.name}']}',
-                  verbatimEntry(e.file, e.attribute, level: 1),
-                ],
-                '}',
-              ].join('\n'),
+              moved
+                  ? '# terradart-migrate: $_instancesMoved\n${lines.join('\n')}'
+                  : lines.join('\n'),
             );
       }
       for (final e in entries) {

@@ -165,7 +165,10 @@ InPlaceResult planInPlace(MigratedProject project) {
         continue;
       }
       files.add(
-        _rewrite(path, file, migrated, module.report.providers.toSet()),
+        _rewrite(path, file, migrated, module.report.providers.toSet(), {
+          for (final e in module.report.expanded)
+            e.address: [for (final i in e.instances) i.to],
+        }),
       );
     }
   }
@@ -210,7 +213,15 @@ InPlaceFile _rewrite(
   HclFile file,
   Set<String> migrated,
   Set<String> providers,
+  Map<String, List<String>> unrolled,
 ) {
+  // A `count` / `for_each` block is in the report under the addresses of
+  // the instances it was unrolled into (`google_x.y_0`), never under the one
+  // it is written as — but the block in the file is the one written.
+  bool becameDart(String address) =>
+      migrated.contains(address) ||
+      (unrolled[address]?.every(migrated.contains) ?? false);
+
   final ranges = <SourceRange>[];
   final cut = <String>[];
 
@@ -246,7 +257,7 @@ InPlaceFile _rewrite(
         continue;
     }
     final address = _address(entry);
-    if (address == null || !migrated.contains(address)) continue;
+    if (address == null || !becameDart(address)) continue;
     ranges.add(entryRange(entry));
     cut.add(address);
   }
@@ -321,10 +332,10 @@ void _terraform(
     for (final e in required.body.entries)
       if (e is Attribute && providers.contains(e.name)) e,
   ];
-  if (owned.length == required.body.entries.length &&
-      settingsGone &&
-      settings.isNotEmpty) {
-    // Nothing of the block is the module's any more.
+  if (owned.length == required.body.entries.length && settingsGone) {
+    // Nothing of the block is the module's any more — including the usual
+    // layout, where `required_providers` is all it holds and an empty
+    // `terraform { }` is what cutting the entries alone would leave.
     ranges.add(entryRange(block));
     cut
       ..addAll(settings.values)

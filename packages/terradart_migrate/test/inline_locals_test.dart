@@ -292,6 +292,37 @@ resource "google_storage_bucket" "assets" {
       expect('# terradart-migrate: '.allMatches(locals), hasLength(1));
     });
 
+    test('a kept entry points at the addresses an unrolled block became', () {
+      // The rebuilt block goes through the same rewrite a whole one does:
+      // `google_pubsub_topic.t[0]` no longer exists once the instances have
+      // become `t_0` and `t_1`.
+      final r = _migrate(r'''
+locals {
+  name = "a"
+  refs = google_pubsub_topic.t[0].id
+}
+
+resource "google_pubsub_topic" "t" {
+  count = 2
+  name  = "t-${count.index}"
+}
+
+resource "google_storage_bucket" "assets" {
+  name     = local.name
+  location = "US"
+}
+''');
+      final locals = r.sidecar!.files['locals.tf']!;
+      expect(locals, contains('point at the new addresses'));
+      // The entry Terraform reads is rewritten; the reason above it quotes
+      // the local as the author wrote it, which is what makes it a reason.
+      final entry = locals
+          .split('\n')
+          .firstWhere((l) => l.trimLeft().startsWith('refs'));
+      expect(entry, contains('google_pubsub_topic.t_0.id'));
+      expect(entry, isNot(contains('t[0]')));
+    });
+
     test('no locals block is written when every entry became Dart', () {
       final r = _migrate('''
 locals {
