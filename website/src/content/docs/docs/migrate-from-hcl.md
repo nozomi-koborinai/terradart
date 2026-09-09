@@ -171,7 +171,7 @@ terradart-migrate --update infra_dart
 
 It reads only what is still Terraform — each directory's sidecar, never the `main.tf.json` a Stack writes — and writes three kinds of file, and nothing else:
 
-- `lib/<stack>.snippets.dart` — an `extension <Stack>Rerun on Stack` whose method body is exactly the statements to paste into the constructor. It is an extension so the file compiles where it sits: the body is valid in the constructor because it is valid here.
+- `lib/<stack>.snippets.dart` — an `extension <Stack>Rerun on Stack` whose method body is exactly the statements to paste into the constructor. It is an extension so the file compiles where it sits: the body is valid in the constructor because it is valid here. Resources, data sources, module calls and their `moved` entries are pasted; a provider configuration, a variable, an output and the `terraform` settings are the Stack's own structure, and stay in the sidecar.
 - `tf-out/<dir>/terradart_leftover.next.tf` — the sidecar as it looks once they are pasted.
 - `RERUN.md` — what translates now, and the swap steps per directory.
 

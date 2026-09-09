@@ -89,6 +89,7 @@ It reads each Terraform directory's **sidecar** — everything there except the 
 | Path | Content |
 | :--- | :--- |
 | `lib/<stack>.snippets.dart` | an `extension <Stack>Rerun on Stack` whose method body is exactly the statements to paste into the constructor — so the file compiles where it sits, and the paste is mechanical |
+| | Resources, data sources, module calls and their `moved` entries are pasted; a provider configuration, a variable, an output and the `terraform` settings are the Stack's own structure, so they stay in the sidecar rather than vanishing from it. |
 | `tf-out/<dir>/terradart_leftover.next.tf` | the sidecar as it looks once they are pasted |
 | `RERUN.md` | what translates now, and the swap steps per directory |
 

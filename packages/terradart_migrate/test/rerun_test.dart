@@ -20,6 +20,7 @@ Directory _package({
   String leftover = _bucket,
   String synth = '{"resource": {}}',
   String? stack,
+  String? infra,
   String dir = 'tf-out',
 }) {
   final root = Directory.systemTemp.createTempSync('terradart_rerun_test_');
@@ -31,6 +32,11 @@ Directory _package({
     File('${root.path}/lib/demo_stack.dart')
       ..createSync(recursive: true)
       ..writeAsStringSync(stack);
+  }
+  if (infra != null) {
+    File('${root.path}/bin/infra.dart')
+      ..createSync(recursive: true)
+      ..writeAsStringSync(infra);
   }
   final tf = Directory('${root.path}/$dir')..createSync(recursive: true);
   if (leftover.isNotEmpty) {
@@ -150,6 +156,104 @@ final class DemoStack extends Stack {
       expect(md, contains('`lib/demo_stack.dart`'));
       expect(md, contains('terradart_leftover.next.tf'));
       expect(md, contains('*No changes*'));
+    });
+
+    test('what the snippets cannot carry stays in the next sidecar', () {
+      // Swapping the sidecar in must never drop something the paste does
+      // not put back: a provider configuration has no statement to paste,
+      // and a `moved` block carries state.
+      final result = rerunProject(
+        _package(
+          leftover:
+              '''
+provider "google" {
+  project = "demo"
+}
+
+$_bucket
+moved {
+  from = google_storage_bucket.old
+  to   = google_storage_bucket.assets
+}
+''',
+        ),
+        format: false,
+      );
+      final module = result.changed.single;
+      // The move is pasted, so it may leave the sidecar.
+      expect(
+        module.snippets,
+        contains(
+          "addMoved(r'google_storage_bucket.old', "
+          "r'google_storage_bucket.assets')",
+        ),
+      );
+      expect(module.nextLeftover, isNot(contains('moved {')));
+      // The provider configuration is not, so it may not.
+      expect(module.nextLeftover, contains('provider "google"'));
+      expect(
+        module.stillKept.map((k) => k.address),
+        contains('provider.google'),
+      );
+      expect(
+        module.stillKept.map((k) => k.reason).join(),
+        contains('a re-run pastes resources'),
+      );
+    });
+
+    test('a reason is not stacked again on every re-run', () {
+      // A sidecar already carries the comment the run before wrote above
+      // each block; only this run's reason is current.
+      final result = rerunProject(
+        _package(
+          leftover:
+              '''
+# terradart-migrate: no curated factory for resource type "unknown_thing" (request curation)
+resource "unknown_thing" "x" {
+  name = "x"
+}
+
+$_bucket
+''',
+        ),
+        format: false,
+      );
+      final next = result.changed.single.nextLeftover;
+      expect(next, isNotNull);
+      expect(next, contains('resource "unknown_thing"'));
+      expect('# terradart-migrate: '.allMatches(next!).length, 1, reason: next);
+    });
+
+    test('a hidden directory is never entered, nor written into', () {
+      final root = _package();
+      // What `terraform init` leaves behind: other people's modules.
+      final vendored = Directory('${root.path}/tf-out/.terraform/modules/x')
+        ..createSync(recursive: true);
+      File('${vendored.path}/main.tf').writeAsStringSync(_bucket);
+      final result = rerunProject(root, format: false);
+      expect(result.modules.map((m) => m.terraformDir), ['tf-out']);
+      expect(result.files.keys.where((f) => f.contains('.terraform')), isEmpty);
+    });
+
+    test('the Stack comes from the package\'s own bin/infra.dart', () {
+      // Two directories sharing a base name: only `bin/infra.dart` says
+      // which Stack writes which, and the first run named them by path.
+      final root = _package(
+        dir: 'tf-out/envs/dev',
+        infra: '''
+Future<void> main() async {
+  await EnvsDevApiStack().writeTo(r'tf-out/envs/dev');
+  await EnvsProdApiStack().writeTo(r'tf-out/envs/prod');
+}
+''',
+      );
+      File('${root.path}/lib/envs_dev_api_stack.dart')
+        ..createSync(recursive: true)
+        ..writeAsStringSync('// stack');
+      final module = rerunProject(root, format: false).changed.single;
+      expect(module.stem, 'envs_dev_api_stack');
+      expect(module.stackFile, 'lib/envs_dev_api_stack.dart');
+      expect(module.snippetsFile, 'lib/envs_dev_api_stack.snippets.dart');
     });
 
     test('a package with no tf-out is not one the migrator wrote', () {

@@ -294,6 +294,7 @@ RerunResult rerunProject(
   // The root of the mirrored tree is `tf-out/` itself, and its Stack is
   // named after the package, not after the directory.
   final name = _packageName(root) ?? p.basename(root);
+  final stackClasses = _stacksByDirectory(root);
   final modules = <RerunModule>[];
   final files = <String, String>{};
   final stems = <String>{};
@@ -305,11 +306,16 @@ RerunResult rerunProject(
         module.dataSources.length +
         module.moduleCalls.length;
     if (blocks == 0) continue;
-    // Two directories can share a base name (`envs/*/modules/api`); their
-    // snippets may not share a file.
-    var stem = stackNames(
-      relDir == 'tf-out' ? name : p.basename(dir.path),
-    ).stackFile;
+    // The Stack `bin/infra.dart` points at this directory, when it names
+    // one; else the name the first run would have derived. Two directories
+    // can share a base name (`envs/*/modules/api`), and their snippets may
+    // not share a file.
+    final declared = stackClasses[relDir];
+    var stem = declared != null
+        ? snakeCase(declared)
+        : stackNames(
+            relDir == 'tf-out' ? name : p.basename(dir.path),
+          ).stackFile;
     for (var n = 2; !stems.add(stem); n++) {
       stem = '${stackNames(p.basename(dir.path)).stackFile}_$n';
     }
@@ -371,12 +377,12 @@ RerunModule _rerunModule(
     reservedNames: _localsOf(existingStack),
   ).emit();
 
-  // Only the blocks are pasteable: variables, outputs, the backend and the
-  // `terraform` settings are the Stack's structure, and the re-run has no
-  // business rewriting it.
+  // Blocks and their `moved` entries are pasteable; variables, outputs, the
+  // backend and the `terraform` settings are the Stack's structure, and the
+  // re-run has no business rewriting it.
   final statements = [
     for (final s in emitted.statements)
-      if (_isBlockTag(s.tag)) s,
+      if (_isPasteable(s.tag)) s,
   ];
   final translated = [
     for (final m in emitted.report.migrated)
@@ -400,11 +406,34 @@ RerunModule _rerunModule(
     );
   }
 
-  final next = buildSidecar(
-    module,
-    emitted.report,
-    version: packageVersion,
-  ).files[leftoverFileName];
+  // The next sidecar must hold everything the snippets do not carry, or
+  // swapping it in would drop it: a provider configuration, a variable, an
+  // output, the `terraform` settings. Only what is pasted may leave.
+  final report = MigrationReport(
+    module: emitted.report.module,
+    stackClass: emitted.report.stackClass,
+    migrated: [
+      for (final m in emitted.report.migrated)
+        if (_isPasteable(m.address)) m,
+    ],
+    kept: [
+      ...emitted.report.kept,
+      for (final m in emitted.report.migrated)
+        if (!_isPasteable(m.address))
+          KeptItem(address: m.address, reason: _notPasteable),
+    ],
+    warnings: emitted.report.warnings,
+    packages: emitted.report.packages,
+    providers: emitted.report.providers,
+    expanded: emitted.report.expanded,
+  );
+  final next = _collapseReasons(
+    buildSidecar(
+      module,
+      report,
+      version: packageVersion,
+    ).files[leftoverFileName],
+  );
   final source = _renderSnippets(
     stem: stem,
     terraformDir: terraformDir,
@@ -420,7 +449,7 @@ RerunModule _rerunModule(
     snippets: format ? formatDart(source) : source,
     nextLeftover: next == currentLeftover ? null : (next ?? _emptyLeftover()),
     translated: List.unmodifiable(translated),
-    stillKept: List.unmodifiable(emitted.report.kept),
+    stillKept: List.unmodifiable(report.kept),
     packages: emitted.packages,
     sidecarBlocks: sidecarBlocks,
   );
@@ -452,9 +481,9 @@ String _renderSnippets({
   );
   final body = StringBuffer();
   for (final s in statements) {
-    body
-      ..writeln('// ${s.tag}')
-      ..writeln(s.text);
+    // A `moved` statement names its own addresses; a block does not.
+    if (!s.tag.startsWith('moved')) body.writeln('// ${s.tag}');
+    body.writeln(s.text);
   }
   return '''
 /// Blocks of `$terraformDir` that translate now — terradart-migrate
@@ -483,12 +512,39 @@ $body  }
 ''';
 }
 
+/// The reason the sidecar was built with, once per block.
+///
+/// A re-run reads a sidecar and writes one, and every block it keeps comes
+/// back carrying the comment the run before wrote above it. Only the reason
+/// this run gives is current, and it is the one on top.
+String? _collapseReasons(String? text) {
+  if (text == null) return null;
+  const marker = '# terradart-migrate: ';
+  final out = <String>[];
+  var inRun = false;
+  for (final line in text.split('\n')) {
+    final isReason = line.startsWith(marker);
+    if (isReason && inRun) continue;
+    inRun = isReason;
+    out.add(line);
+  }
+  return out.join('\n');
+}
+
 String _emptyLeftover() =>
     '# terradart-migrate $packageVersion — nothing stays in Terraform here\n'
     '# any more. Replace $leftoverFileName with this file (or delete it).\n';
 
 String _count(int n, String what, [String? plural]) =>
     '$n ${n == 1 ? what : plural ?? '${what}s'}';
+
+const _notPasteable =
+    'a re-run pastes resources, data sources, module calls and their `moved` '
+    'entries; this is the Stack\'s own structure and stays as written';
+
+/// A statement or address the snippets can carry into the constructor: a
+/// block, or a `moved` entry that keeps its state.
+bool _isPasteable(String tag) => _isBlockTag(tag) || tag.startsWith('moved');
 
 /// A sidecar tag that stands for a resource, data source or module call.
 bool _isBlockTag(String tag) =>
@@ -502,10 +558,18 @@ bool _isBlockTag(String tag) =>
     tag != 'appExports';
 
 /// The directories of [tfOut] holding Terraform, deepest path last.
+///
+/// Hidden directories are never entered, as the tree scan does not enter
+/// them: `terraform init` fills `.terraform/modules/` with other people's
+/// modules, which are neither this package's sidecar nor its to write into.
 List<Directory> _terraformDirs(Directory tfOut) {
+  final root = p.normalize(tfOut.absolute.path);
   final out = <Directory>[tfOut];
   for (final e in tfOut.listSync(recursive: true, followLinks: false)) {
-    if (e is Directory) out.add(e);
+    if (e is! Directory) continue;
+    final rel = p.relative(p.normalize(e.absolute.path), from: root);
+    if (p.split(rel).any(_skipSegment)) continue;
+    out.add(e);
   }
   out.sort((a, b) => a.path.compareTo(b.path));
   return [
@@ -513,6 +577,9 @@ List<Directory> _terraformDirs(Directory tfOut) {
       if (_hasSidecar(d)) d,
   ];
 }
+
+bool _skipSegment(String name) =>
+    (name.startsWith('.') && name != '.') || name == 'node_modules';
 
 bool _hasSidecar(Directory d) => d
     .listSync(followLinks: false)
@@ -540,6 +607,25 @@ Set<String> _localsOf(String? source) {
       r'(?:^|\s)(?:late\s+)?final\s+(?:\w+\??\s+)?(\w+)\s*[=;]',
     ).allMatches(source))
       m.group(1)!,
+  };
+}
+
+/// Terraform directory → the Stack class `bin/infra.dart` synthesizes into
+/// it, which is the package's own record of the pairing — more reliable
+/// than deriving a name from the directory again, and the only thing that
+/// gets a directory right when two share a base name.
+///
+/// A Stack whose directory is an expression rather than a literal (the one
+/// `--merge-envs` writes, `tf-out/\${env.path}`) has no entry: the re-run
+/// then names the directory instead of the file.
+Map<String, String> _stacksByDirectory(String root) {
+  final text = _read(p.join(root, 'bin', 'infra.dart'));
+  if (text == null) return const {};
+  return {
+    for (final m in RegExp(
+      r"""(\w+)\([^()]*\)\s*\.writeTo\(\s*r?'([^'$]+)'""",
+    ).allMatches(text))
+      m.group(2)!: m.group(1)!,
   };
 }
 
