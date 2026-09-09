@@ -5,7 +5,7 @@
 
 `terradart-mcp` — a [Model Context Protocol](https://modelcontextprotocol.io) server that exposes the curated factory catalog of [TerraDart](https://terradart.dev) to AI coding agents.
 
-It reads the static catalog compiled into [`terradart_google`](https://pub.dev/packages/terradart_google) (`package:terradart_google/catalog.dart`) and surfaces it as five read-only MCP tools so agents can discover constructor signatures, nested types, quickstart snippets, and coverage gaps without guessing factory names.
+It reads the static catalog compiled into [`terradart_google`](https://pub.dev/packages/terradart_google) (`package:terradart_google/catalog.dart`) and surfaces it as six MCP tools so agents can discover constructor signatures, nested types, quickstart snippets, and coverage gaps without guessing factory names — and translate an existing Terraform module into a `Stack` with `migrate_module`, the migrator (`terradart_migrate`) over MCP.
 
 Built on [`genkit`](https://pub.dev/packages/genkit) + [`genkit_mcp`](https://pub.dev/packages/genkit_mcp). Ships as a single `terradart-mcp` binary (not published to pub.dev).
 
@@ -52,6 +52,7 @@ Full walkthroughs: [terradart.dev — terradart-mcp](https://terradart.dev/docs/
 | `get_resource_schema` | Constructor params and nested types for one factory |
 | `get_quickstart` | Ready-made `Stack` template for a resource |
 | `check_coverage` | Coverage report for `terraform show -json` input, against all four provider catalogs |
+| `migrate_module` | One Terraform module's text (HCL or `.tf.json`) → a `Stack`, a sidecar of what stays in Terraform, and a report |
 
 The catalog currently holds 1798 entries (1337 curated resource factories + 461 data sources) across 132 service barrels.
 
