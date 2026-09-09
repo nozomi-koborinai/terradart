@@ -1,9 +1,9 @@
 ---
 title: Tools reference
-description: The five read-only tools exposed by terradart-mcp, with request/response examples.
+description: The six tools exposed by terradart-mcp, with request/response examples.
 ---
 
-`terradart-mcp` exposes five read-only tools over MCP. All five are invoked with the standard MCP `tools/call` method. The envelope looks like this:
+`terradart-mcp` exposes six tools over MCP. All six are invoked with the standard MCP `tools/call` method. The envelope looks like this:
 
 ```json
 {
@@ -184,3 +184,76 @@ Returns a coverage report for an existing Terraform plan or state JSON. Pass the
 ```
 
 The report is read-only analysis. It does not run Terraform, read local files, or contact Google Cloud.
+
+## `migrate_module`
+
+Translates one Terraform module into a TerraDart package: `terradart-migrate`, over MCP. Pass the module's own configuration text as `source` — a `.tf` file's HCL or a `.tf.json` file's JSON — and the tool answers with the generated `Stack`, the package files around it, the sidecar holding whatever has no curated factory yet, and a report naming every block either way.
+
+Resource addresses are preserved, so `terraform plan` against the existing state reports no changes once the sidecar sits beside the Stack's `main.tf.json`. Nothing is read from disk and no `terraform` runs: the module arrives as text in the call and leaves as text in the result.
+
+| Argument | Required | Meaning |
+| :--- | :--- | :--- |
+| `source` | yes | The whole Terraform configuration as text — HCL or `.tf.json`. |
+| `name` | no | Names the module. The Stack class is its PascalCase form with `Stack` appended, the package its snake_case form. Defaults to `main`. |
+| `syntax` | no | `auto` (default), `hcl`, or `json`. `auto` reads a leading `{` as `.tf.json`. |
+| `allow_todo` | no | Write a `TODO` comment per untranslated block into the Stack instead of a sidecar. The plan then differs until the TODOs are ported. Defaults to `false`. |
+
+**Input**
+
+```json
+{
+  "source": "resource \"google_pubsub_topic\" \"orders\" {\n  name = \"orders-prod\"\n}\n\nresource \"acme_widget\" \"w\" {\n  size = 3\n}\n",
+  "name": "orders"
+}
+```
+
+**Output** — the Stack in `dart_source`, the leftover in `sidecar`, the accounting in `report` (abridged here; `infra_source` and `pubspec` carry `bin/infra.dart` and `pubspec.yaml`):
+
+```json
+{
+  "migrated": true,
+  "package_name": "orders",
+  "stack_class": "OrdersStack",
+  "stack_file": "lib/orders_stack.dart",
+  "dart_source": "final class OrdersStack extends Stack {\n  OrdersStack() : super(providers: [const GoogleProvider()]) {\n    add(\n      GooglePubsubTopic(\n        localName: r'orders',\n        name: TfArg.literal(r'orders-prod'),\n      ),\n    );\n  }\n}\n",
+  "infra_source": "…",
+  "pubspec": "…",
+  "sidecar": {
+    "terradart_leftover.tf": "# terradart-migrate: no curated factory for resource type \"acme_widget\" (request curation)\nresource \"acme_widget\" \"w\" {\n  size = 3\n}\n"
+  },
+  "sidecar_placements": { "acme_widget.w": "terradart_leftover.tf" },
+  "report": {
+    "module": "orders",
+    "stackClass": "OrdersStack",
+    "complete": false,
+    "migrated": [
+      { "address": "provider.google" },
+      { "address": "google_pubsub_topic.orders", "dartName": "orders" }
+    ],
+    "kept": [
+      {
+        "address": "acme_widget.w",
+        "reason": "no curated factory for resource type \"acme_widget\" (request curation)"
+      }
+    ],
+    "warnings": [],
+    "packages": ["terradart_google"],
+    "providers": ["google"],
+    "expanded": []
+  },
+  "report_text": "terradart-migrate: orders → OrdersStack\n…"
+}
+```
+
+`sidecar` maps file name to content for the directory the Stack synthesizes into (`tf-out/`), and `sidecar_placements` says which file each kept address landed in. When nothing in the module translates, `migrated` is `false`, `dart_source` is empty, and the sidecar is the whole answer.
+
+**Output** — on a source that does not parse:
+
+```json
+{
+  "error": "source is not valid HCL: expected \"}\" to close the single-line block",
+  "diagnostics": ["main.tf:1:15: expected \"}\" to close the single-line block"]
+}
+```
+
+For a whole tree of modules rather than one file — child modules, environments, `moved` blocks, a re-runnable sidecar — use the [`terradart-migrate` CLI](/docs/migrate-from-hcl/) instead; this tool is the single-module slice of it, for an agent that already has the text in hand.

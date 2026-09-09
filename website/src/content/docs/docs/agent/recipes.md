@@ -35,4 +35,14 @@ When you already have a proposed stack (or a design sketch), use the catalog to 
 
 > **Prompt:** "Here's my planned TerraDart stack: a Pub/Sub topic, a push subscription, and a Cloud Run service that consumes it. Verify every resource and parameter against the TerraDart catalog before I implement it."
 
-The agent resolves each resource with `get_resource_schema`, flags anything that returns `found: false` (with suggestions), and confirms the constructor parameters exist — turning "looks plausible" into "compiles against the curated API."
+The agent resolves each resource with `get_resource_schema`, flags anything that returns `found: false` (with suggestions), and confirms the constructor parameters exist — turning "looks plausible" into "compiles against the curated API.
+
+## Migrating an existing module
+
+When you have a `.tf` file open and want to know what it becomes in TerraDart, hand the agent the file. It calls `migrate_module` with the text as `source` and gets back the `Stack`, the sidecar of anything with no curated factory yet, and a report listing every block either way.
+
+> **Prompt:** "Convert this `main.tf` to TerraDart, and tell me what wouldn't convert."
+
+The agent calls `migrate_module` with `{ "source": "<the file>", "name": "orders" }`, writes `dart_source` into `lib/orders_stack.dart`, and reads `report.kept` to explain what stayed in Terraform and why. Resource addresses are preserved, so the plan reports *No changes* once the `sidecar` files sit beside the Stack's synth output.
+
+For a whole tree — child modules, environments, `moved` blocks, re-running as the catalog grows — reach for the [`terradart-migrate` CLI](/docs/migrate-from-hcl/) instead; the tool is its single-module slice, for text the agent already has."

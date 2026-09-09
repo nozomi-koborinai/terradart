@@ -8,6 +8,7 @@ import 'tools/get_quickstart.dart';
 import 'tools/get_resource_schema.dart';
 import 'tools/list_barrels.dart';
 import 'tools/list_resources.dart';
+import 'tools/migrate_module.dart';
 
 /// A JSON-Schema `object` input wrapped as a [SchemanticType] so it can be
 /// passed to [Genkit.defineTool]'s `inputSchema`.
@@ -34,13 +35,19 @@ SchemanticType<Map<String, dynamic>> _objectSchema({
 
 /// Builds the `terradart-mcp` MCP server.
 ///
-/// Registers five read-only tools (`list_resources`, `list_barrels`,
-/// `get_resource_schema`, `get_quickstart`, `check_coverage`) on a fresh
-/// [Genkit] instance and exposes them over the Model Context Protocol via
-/// genkit_mcp. The first four project TerraDart's curated `terradartCatalog`
-/// (from `package:terradart_google`) into agent-friendly JSON; `check_coverage`
-/// analyses `terraform show -json` output against every provider package's
-/// catalog (via `terradart_coverage`) and reports coverage metrics.
+/// Registers six tools (`list_resources`, `list_barrels`,
+/// `get_resource_schema`, `get_quickstart`, `check_coverage`,
+/// `migrate_module`) on a fresh [Genkit] instance and exposes them over the
+/// Model Context Protocol via genkit_mcp. The first four project TerraDart's
+/// curated `terradartCatalog` (from `package:terradart_google`) into
+/// agent-friendly JSON; `check_coverage` analyses `terraform show -json`
+/// output against every provider package's catalog (via `terradart_coverage`)
+/// and reports coverage metrics; `migrate_module` translates a Terraform
+/// module's own text into a TerraDart package (via `terradart_migrate`).
+///
+/// Every tool answers from what the caller passed and what is compiled into
+/// the binary: none of them reads a file, runs `terraform`, or reaches the
+/// network.
 Future<GenkitMcpServer> buildTerradartMcpServer() async {
   final ai = Genkit();
 
@@ -155,6 +162,79 @@ Future<GenkitMcpServer> buildTerradartMcpServer() async {
       required: ['tf_json'],
     ),
     fn: (input, _) async => checkCoverage(input['tf_json'] as String),
+  );
+
+  ai.defineTool<Map<String, dynamic>, Object>(
+    name: 'migrate_module',
+    description:
+        'Translate one Terraform module to TerraDart Dart. Pass the whole '
+        'config text as the "source" arg — HCL or .tf.json — and get back the '
+        'generated Stack ("dart_source"), the package files around it, the '
+        'sidecar of what stays in Terraform, and a report naming every block '
+        'either way with a reason. Resource addresses are preserved, so '
+        '`terraform plan` reports no changes once the sidecar is in place. '
+        'Nothing is read from disk and no terraform runs.',
+    inputSchema: _objectSchema(
+      properties: {
+        'source': $Schema.string(
+          description:
+              'The Terraform configuration text: the contents of a .tf file '
+              '(HCL) or a .tf.json file.',
+        ),
+        'name': $Schema.string(
+          description:
+              'Names the module: the Stack class is its PascalCase form with '
+              '"Stack" appended, the package its snake_case form. Defaults '
+              'to "main".',
+        ),
+        'syntax': $Schema.string(
+          description:
+              'How to read "source": "hcl", "json", or "auto" (the default, '
+              'which reads a leading "{" as .tf.json).',
+          enumValues: const ['auto', 'hcl', 'json'],
+        ),
+        'allow_todo': $Schema.boolean(
+          description:
+              'Write a TODO comment per untranslated block into the Stack '
+              'instead of a sidecar. The plan then differs until the TODOs '
+              'are ported. Defaults to false.',
+        ),
+      },
+      required: ['source'],
+    ),
+    fn: (input, _) async {
+      // The arguments come from an agent, so a wrong type is answered the
+      // same way an unparseable source is — with an error object, not a
+      // failed MCP call.
+      final source = input['source'];
+      if (source is! String) {
+        return <String, Object?>{
+          'error': source == null
+              ? 'missing required argument "source"'
+              : '"source" must be the Terraform config as a string',
+        };
+      }
+      final syntax = input['syntax'];
+      final parsed = syntax == null
+          ? MigrateSyntax.auto
+          : (syntax is String ? MigrateSyntax.byName(syntax) : null);
+      if (parsed == null) {
+        return <String, Object?>{
+          'error':
+              'unknown syntax "$syntax": expected one of '
+              '${MigrateSyntax.values.map((s) => s.name).join(', ')}',
+        };
+      }
+      return migrateModuleSource(
+        source,
+        name: switch (input['name']) {
+          final String n => n,
+          _ => 'main',
+        },
+        syntax: parsed,
+        allowTodo: input['allow_todo'] == true,
+      );
+    },
   );
 
   return createMcpServer(ai, McpServerOptions(name: 'terradart'));

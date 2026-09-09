@@ -226,7 +226,7 @@ GoogleCloudRunV2Service(
 
 ## AI Agent MCP Server (`terradart-mcp`)
 
-**Alpha.** [`terradart-mcp`](packages/terradart_agent/) is an MCP server that exposes the curated factory **catalog** to coding agents (Claude Code, Cursor, Claude Desktop). Five read-only tools — `list_barrels`, `list_resources`, `get_resource_schema`, `get_quickstart`, and `check_coverage` — help agents author correct Dart without guessing factory names. It does **not** run Terraform or touch GCP.
+**Alpha.** [`terradart-mcp`](packages/terradart_agent/) is an MCP server that exposes the curated factory **catalog** — and the migrator — to coding agents (Claude Code, Cursor, Claude Desktop). Six tools — `list_barrels`, `list_resources`, `get_resource_schema`, `get_quickstart`, `check_coverage`, and `migrate_module` — help agents author correct Dart without guessing factory names, and translate an existing Terraform module into a Stack. Every one of them answers from the text you pass and the catalog compiled into the binary: it does **not** run Terraform, write files, or touch GCP.
 
 ```sh
 brew install nozomi-koborinai/tap/terradart-mcp
