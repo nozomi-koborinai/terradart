@@ -7,6 +7,12 @@
 /// Stack's `main.tf.json` next to its leftover sidecar. Every kept block
 /// must have landed in a sidecar file.
 ///
+/// The inlined-locals gate (#672) migrates
+/// `packages/terradart_migrate/test/fixtures/inline_locals/` twice, with and
+/// without `--inline-locals`, and plans both with Terraform: a local that
+/// became a Dart `final` must produce the value Terraform resolved from the
+/// sidecar before, so the two plans are identical resource for resource.
+///
 /// The merged-environment gate (#668) migrates `config_tree/` a second time
 /// with `--merge-envs`, and requires that the one `ConfigTreeStack(env: ...)`
 /// synthesizes, per environment, exactly the JSON the two separate Stacks
@@ -30,6 +36,10 @@ const _fixtures = ['config_tree', 'real_plan_src'];
 
 /// The fixture whose environment roots `--merge-envs` folds together.
 const _mergeFixture = 'config_tree';
+
+/// The migrator's own fixture for `--inline-locals`, holding one `locals`
+/// entry of every kind the flag has to tell apart.
+const _localsFixture = 'inline_locals';
 
 const _terraformInit = [
   'terraform',
@@ -70,6 +80,12 @@ Future<void> main(List<String> args) async {
       ) &&
       ok;
   ok = await _rerunGate(repoRoot: repoRoot, keep: keep) && ok;
+  ok = await _inlineLocalsGate(
+        repoRoot: repoRoot,
+        skipValidate: skipValidate,
+        keep: keep,
+      ) &&
+      ok;
   stdout.writeln(
     ok ? 'migrate_fixture_gates: OK' : 'migrate_fixture_gates: FAILED',
   );
@@ -308,6 +324,180 @@ Future<bool> _rerunGate({
   }
   if (errors.isEmpty && !keep) after.deleteSync(recursive: true);
   return _finish('$_mergeFixture --update', before, errors, keep: keep);
+}
+
+/// `--inline-locals` on [_localsFixture]: the same plan, from a Stack that
+/// declares the literal locals instead of reading them from the sidecar.
+///
+/// Terraform is the judge here, not the migrator: both packages are planned
+/// and their `resource_changes` compared. A local the flag inlined wrongly
+/// shows up as a different value on the resource that reads it.
+Future<bool> _inlineLocalsGate({
+  required String repoRoot,
+  required bool skipValidate,
+  required bool keep,
+}) async {
+  final input = Directory(
+    p.join(
+      repoRoot,
+      'packages/terradart_migrate/test/fixtures',
+      _localsFixture,
+    ),
+  );
+  final plain = Directory.systemTemp.createTempSync('terradart_locals_plain_');
+  final temp = Directory.systemTemp.createTempSync('terradart_locals_inline_');
+  final errors = <String>[];
+  try {
+    final tree = scanModuleTree(input);
+    final before = migrateTree(tree, name: _localsFixture);
+    final after = migrateTree(tree, name: _localsFixture, inlineLocals: true);
+    writeProject(before, plain);
+    writeProject(after, temp);
+
+    // Without the flag every local stays; with it, the literal ones move and
+    // the rest keep their entry. A run that inlines nothing proves nothing.
+    final moved = [
+      for (final m in after.modules.single.report.migrated)
+        if (m.address.startsWith('local.'))
+          m.address.substring('local.'.length),
+    ];
+    if (moved.isEmpty) {
+      errors.add('--inline-locals moved no local out of the sidecar');
+    }
+    final keptBefore = {
+      for (final k in before.modules.single.report.kept)
+        if (k.address.startsWith('local.')) k.address,
+    };
+    final keptAfter = {
+      for (final k in after.modules.single.report.kept)
+        if (k.address.startsWith('local.')) k.address,
+    };
+    if (!keptBefore.containsAll(keptAfter) ||
+        keptAfter.length >= keptBefore.length) {
+      errors.add(
+        'the sidecar did not shrink: $keptBefore before, $keptAfter after',
+      );
+    }
+    // A local something still in Terraform reads may never leave, whatever
+    // its value looks like.
+    if (!keptAfter.contains('local.retention')) {
+      errors.add(
+        'local.retention left the sidecar, but the kept '
+        'google_pubsub_topic.shards still reads it',
+      );
+    }
+    if (errors.isNotEmpty) {
+      return _finish(
+        '$_localsFixture --inline-locals',
+        temp,
+        errors,
+        keep: keep,
+      );
+    }
+
+    for (final pkg in [plain, temp]) {
+      if (!await _build(pkg, repoRoot, errors)) {
+        return _finish(
+          '$_localsFixture --inline-locals',
+          temp,
+          errors,
+          keep: keep,
+        );
+      }
+    }
+    if (skipValidate) {
+      stdout.writeln(
+        'migrate_fixture_gates: $_localsFixture --inline-locals: '
+        '${_count(moved.length, 'local')} inlined (${moved.join(', ')}), '
+        'plan comparison skipped',
+      );
+      if (!keep) plain.deleteSync(recursive: true);
+      return _finish(
+        '$_localsFixture --inline-locals',
+        temp,
+        errors,
+        keep: keep,
+      );
+    }
+
+    final plans = <Map<String, Object?>>[];
+    for (final pkg in [plain, temp]) {
+      final dir = Directory(p.join(pkg.path, 'tf-out'));
+      final plan = await _plan(dir, errors);
+      if (plan == null) {
+        return _finish(
+          '$_localsFixture --inline-locals',
+          temp,
+          errors,
+          keep: keep,
+        );
+      }
+      plans.add(plan);
+    }
+    _diff(plans[0], plans[1], 'plan', errors);
+    if (errors.isEmpty) {
+      stdout.writeln(
+        'migrate_fixture_gates: $_localsFixture --inline-locals: '
+        '${_count(moved.length, 'local')} inlined (${moved.join(', ')}), '
+        '${_count(keptAfter.length, 'local')} kept, '
+        '${_count(plans[0].length, 'resource')} planned identically',
+      );
+    }
+  } on Object catch (e, st) {
+    errors.add('$_localsFixture --inline-locals: $e\n$st');
+  }
+  if (errors.isEmpty && !keep) plain.deleteSync(recursive: true);
+  return _finish('$_localsFixture --inline-locals', temp, errors, keep: keep);
+}
+
+/// `terraform plan` in [dir], as address → the values the plan would write.
+///
+/// No credentials and no network beyond `terraform init`: nothing exists yet,
+/// so the plan creates and reads nothing back.
+Future<Map<String, Object?>?> _plan(Directory dir, List<String> errors) async {
+  const init = ['terraform', 'init', '-input=false', '-no-color'];
+  if (!await _run(init, dir, errors)) return null;
+  const env = {'GOOGLE_OAUTH_ACCESS_TOKEN': 'terradart-migrate-gate'};
+  // Exit 2 is "succeeded, with a non-empty plan" — creating everything is one.
+  final plan = await Process.run(
+    'terraform',
+    const [
+      'plan',
+      '-refresh=false',
+      '-input=false',
+      '-no-color',
+      '-detailed-exitcode',
+      '-out=plan.out',
+    ],
+    workingDirectory: dir.path,
+    environment: env,
+  );
+  if (plan.exitCode != 0 && plan.exitCode != 2) {
+    errors.add(
+      '${p.basename(dir.parent.path)}: terraform plan exited '
+      '${plan.exitCode}:\n${plan.stdout}${plan.stderr}',
+    );
+    return null;
+  }
+  final show = await Process.run(
+    'terraform',
+    const ['show', '-json', 'plan.out'],
+    workingDirectory: dir.path,
+    environment: env,
+  );
+  if (show.exitCode != 0) {
+    errors.add(
+      '${p.basename(dir.parent.path)}: terraform show exited '
+      '${show.exitCode}:\n${show.stderr}',
+    );
+    return null;
+  }
+  final json = jsonDecode(show.stdout as String) as Map<String, dynamic>;
+  return {
+    for (final change in (json['resource_changes'] as List? ?? const [])
+        .cast<Map<String, dynamic>>())
+      change['address'] as String: change['change'],
+  };
 }
 
 /// The curated catalogs with [tfType] removed: the world before the wave

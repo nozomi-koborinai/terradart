@@ -483,6 +483,9 @@ String _renderSnippets({
   for (final s in statements) {
     // A `moved` statement names its own addresses; a block does not.
     if (!s.tag.startsWith('moved')) body.writeln('// ${s.tag}');
+    // The block's own comments came through the sidecar with it; the
+    // migrator's `# terradart-migrate:` reasons did not.
+    body.write(s.comments);
     body.writeln(s.text);
   }
   return '''

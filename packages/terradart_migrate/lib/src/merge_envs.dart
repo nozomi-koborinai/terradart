@@ -132,6 +132,10 @@ MergedEnvironment mergeEnvironments({
     forceLocals: forceLocals,
     reservedNames: const {'env'},
     liftWorkspace: liftWorkspace,
+    // The bodies are lined up statement by statement, and two environments
+    // may document the same block differently; the merged Stack carries no
+    // comments rather than one environment's.
+    carryComments: false,
   ).emit();
 
   // A local one environment reads is declared in every environment, so the

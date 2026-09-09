@@ -8,6 +8,7 @@ import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
 import 'package:terradart_hcl/terradart_hcl.dart' show HclParseException;
 
+import 'in_place.dart';
 import 'project.dart';
 import 'rerun.dart';
 import 'topology.dart';
@@ -72,6 +73,21 @@ Future<int> runMigrateCli(
     }
     return _runUpdate(updateArg, o, e, json: args['json'] as bool);
   }
+  final inlineLocals = args['inline-locals'] as bool;
+  if (inlineLocals && args['merge-envs'] as bool) {
+    // Both move a value out of Terraform and into Dart, and --merge-envs
+    // does it better: what the environments disagree on becomes a constant
+    // on the `Env` enum, which one `final` per Stack cannot express.
+    e
+      ..writeln(
+        'terradart-migrate: --inline-locals and --merge-envs cannot be '
+        'combined; --merge-envs already lifts the values the environments '
+        'disagree on onto the generated Env enum',
+      )
+      ..writeln()
+      ..writeln(_usage(parser));
+    return MigrateExitCodes.usage;
+  }
   final dirArg = args['dir'] as String?;
   final outArg = args['out'] as String?;
   if (dirArg == null || outArg == null) {
@@ -85,6 +101,16 @@ Future<int> runMigrateCli(
   if (!dir.existsSync()) {
     e.writeln('terradart-migrate: --dir "$dirArg" is not a directory');
     return MigrateExitCodes.dataError;
+  }
+  // Checked before a single file is written, --out included: the rewrite
+  // deletes the user's own Terraform, and `git checkout` is the only undo.
+  final inPlace = args['in-place'] as bool;
+  if (inPlace) {
+    final blocker = inPlaceGitBlocker(dir);
+    if (blocker != null) {
+      e.writeln('terradart-migrate: --in-place refuses to run: $blocker');
+      return MigrateExitCodes.cannotCreate;
+    }
   }
   final outDir = Directory(outArg);
   final force = args['force'] as bool;
@@ -125,6 +151,7 @@ Future<int> runMigrateCli(
       allowTodo: args['allow-todo'] as bool,
       mergeEnvs: args['merge-envs'] as bool,
       liftWorkspace: args['lift-workspace'] as bool,
+      inlineLocals: inlineLocals,
     );
   } on Object catch (x, st) {
     e
@@ -138,10 +165,26 @@ Future<int> runMigrateCli(
     e.writeln('terradart-migrate: $x');
     return MigrateExitCodes.cannotCreate;
   }
+  InPlaceResult? rewrite;
+  if (inPlace) {
+    rewrite = planInPlace(project);
+    try {
+      writeInPlace(rewrite, dir);
+    } on FileSystemException catch (x) {
+      e.writeln('terradart-migrate: $x');
+      return MigrateExitCodes.cannotCreate;
+    }
+  }
   if (args['json'] as bool) {
-    o.writeln(const JsonEncoder.withIndent('  ').convert(project.toJson()));
+    o.writeln(
+      const JsonEncoder.withIndent('  ').convert({
+        ...project.toJson(),
+        if (rewrite != null) 'inPlace': rewrite.toJson(),
+      }),
+    );
   } else {
     o.write(project.renderText(outArg));
+    if (rewrite != null) o.write(rewrite.renderText());
   }
   return MigrateExitCodes.success;
 }
@@ -269,7 +312,8 @@ ArgParser _parser() => ArgParser(usageLineLength: 80)
     help:
         'The Terraform source tree to migrate. Every directory holding .tf or '
         '.tf.json files becomes one Stack; no terraform run, init, backend or '
-        'credentials, and nothing here is written.',
+        'credentials, and nothing here is written unless --in-place is '
+        'given.',
   )
   ..addOption(
     'out',
@@ -317,6 +361,26 @@ ArgParser _parser() => ArgParser(usageLineLength: 80)
         'Stack, so `dart run bin/infra.dart --workspace <name>` synthesizes '
         'for one workspace by name instead of leaving the template for '
         '`terraform workspace select` to resolve.',
+  )
+  ..addFlag(
+    'inline-locals',
+    negatable: false,
+    help:
+        'Declare a `locals` entry whose value is a literal as a Dart final '
+        'in the Stack, and read it from there instead of the `\${local.x}` '
+        'template Terraform resolves from the sidecar. A local nothing in '
+        'the Stack reads, or that something still in Terraform reads, keeps '
+        'its sidecar entry.',
+  )
+  ..addFlag(
+    'in-place',
+    negatable: false,
+    help:
+        'Rewrite the Terraform tree under --dir so its .tf files keep only '
+        'the blocks that stay in Terraform. Destructive, and the one mode '
+        'that writes to --dir: it refuses unless that directory is inside a '
+        'git working tree with nothing uncommitted, so `git diff` afterwards '
+        'is the migration and `git checkout` is the undo.',
   )
   ..addFlag(
     'allow-todo',

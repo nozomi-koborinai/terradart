@@ -51,14 +51,9 @@ Sidecar buildSidecar(
   required String version,
 }) => _SidecarBuilder(module, report, version).build();
 
-/// [entry] as written in [file], with the comments directly above it and a
-/// trailing comment, or re-rendered with [HclWriter] when the file is JSON
-/// (or the node has no source range). [level] indents the first line for
-/// nesting; continuation lines keep the indentation they had.
-String verbatimEntry(HclFile file, BodyEntry entry, {int level = 0}) {
-  if (file.isJson || entry.range.isNone) {
-    return const HclWriter().writeEntry(entry, level: level).trimRight();
-  }
+/// The full source range of [entry]: the entry itself, the comments
+/// directly above it and its trailing comment.
+SourceRange entryRange(BodyEntry entry) {
   var range = entry.range;
   for (final c in entry.leadingComments) {
     range = range.union(c.range);
@@ -67,8 +62,18 @@ String verbatimEntry(HclFile file, BodyEntry entry, {int level = 0}) {
     Attribute(:final trailingComment) => trailingComment,
     Block(:final trailingComment) => trailingComment,
   };
-  if (trailing != null) range = range.union(trailing.range);
-  final text = range.textIn(file.source).trimRight();
+  return trailing == null ? range : range.union(trailing.range);
+}
+
+/// [entry] as written in [file], with the comments directly above it and a
+/// trailing comment, or re-rendered with [HclWriter] when the file is JSON
+/// (or the node has no source range). [level] indents the first line for
+/// nesting; continuation lines keep the indentation they had.
+String verbatimEntry(HclFile file, BodyEntry entry, {int level = 0}) {
+  if (file.isJson || entry.range.isNone) {
+    return const HclWriter().writeEntry(entry, level: level).trimRight();
+  }
+  final text = entryRange(entry).textIn(file.source).trimRight();
   return level == 0 ? text : '${'  ' * level}$text';
 }
 
@@ -90,19 +95,30 @@ final class _SidecarBuilder {
 
   void _put(String file, String address, String text) {
     final reason = kept[address];
-    var body = text;
-    if (!_rewriter.isEmpty) {
-      final rewritten = _rewriter.text(text, strict: false);
-      if (rewritten != text) {
-        body =
-            '# terradart-migrate: references to instances of an unrolled '
-            'count / for_each block point at the new addresses\n$rewritten';
-      }
-    }
+    final pointed = _pointAtInstances(text);
+    final body = pointed.rewritten
+        ? '# terradart-migrate: $_instancesMoved\n${pointed.text}'
+        : pointed.text;
     _chunks
         .putIfAbsent(file, () => [])
         .add(reason == null ? body : '# terradart-migrate: $reason\n$body');
     _placements[address] = file;
+  }
+
+  static const _instancesMoved =
+      'references to instances of an unrolled count / for_each block point '
+      'at the new addresses';
+
+  /// [text] with every reference to an instance of an unrolled block
+  /// pointed at the address that instance became.
+  ///
+  /// Everything the sidecar writes goes through this: a block the migration
+  /// kept still names `google_x.y[0]`, and that resource no longer exists —
+  /// the Stack declares `google_x.y_0`.
+  ({String text, bool rewritten}) _pointAtInstances(String text) {
+    if (_rewriter.isEmpty) return (text: text, rewritten: false);
+    final out = _rewriter.text(text, strict: false);
+    return (text: out, rewritten: out != text);
   }
 
   Sidecar build() {
@@ -155,16 +171,7 @@ final class _SidecarBuilder {
         _put(variablesFileName, address, verbatimEntry(v.file, v.block));
       }
     }
-    final seen = <Block>{};
-    for (final l in module.locals) {
-      if (!seen.add(l.block)) continue;
-      _put(localsFileName, 'local.${l.name}', verbatimEntry(l.file, l.block));
-      for (final other in module.locals) {
-        if (identical(other.block, l.block)) {
-          _placements['local.${other.name}'] = localsFileName;
-        }
-      }
-    }
+    _locals();
     for (final o in module.outputs) {
       final address = 'output.${o.name}';
       if (kept.containsKey(address)) {
@@ -176,6 +183,60 @@ final class _SidecarBuilder {
       files: {for (final e in _chunks.entries) e.key: _render(e.value)},
       placements: Map.unmodifiable(_placements),
     );
+  }
+
+  /// The `locals` blocks, holding the entries that stay in Terraform.
+  ///
+  /// A block every entry of which is kept is copied as written; once
+  /// `--inline-locals` has taken some of them into the Stack, what is left
+  /// is re-rendered around the entries that remain, so the sidecar defines
+  /// exactly the locals something still reads.
+  void _locals() {
+    final seen = <Block>{};
+    for (final l in module.locals) {
+      if (!seen.add(l.block)) continue;
+      final entries = [
+        for (final other in module.locals)
+          if (identical(other.block, l.block) &&
+              kept.containsKey('local.${other.name}'))
+            other,
+      ];
+      if (entries.isEmpty) continue;
+      if (entries.length == l.block.body.entries.length) {
+        // Every entry stays: the block is the user's, as written.
+        _put(
+          localsFileName,
+          'local.${entries.first.name}',
+          verbatimEntry(l.file, l.block),
+        );
+      } else {
+        // Some entries became Dart, so the block is rebuilt around what is
+        // left, each entry over the reason it stayed — and each pointed at
+        // the unrolled instances, as `_put` would have done for a whole one.
+        final lines = <String>['locals {'];
+        var moved = false;
+        for (final e in entries) {
+          final pointed = _pointAtInstances(
+            verbatimEntry(e.file, e.attribute, level: 1),
+          );
+          moved = moved || pointed.rewritten;
+          lines
+            ..add('  # terradart-migrate: ${kept['local.${e.name}']}')
+            ..add(pointed.text);
+        }
+        lines.add('}');
+        _chunks
+            .putIfAbsent(localsFileName, () => [])
+            .add(
+              moved
+                  ? '# terradart-migrate: $_instancesMoved\n${lines.join('\n')}'
+                  : lines.join('\n'),
+            );
+      }
+      for (final e in entries) {
+        _placements['local.${e.name}'] = localsFileName;
+      }
+    }
   }
 
   /// One `terraform { }` block holding the settings the Stack does not own.

@@ -77,7 +77,10 @@ final class MigratedStack {
 /// points at (see [localModuleOf]); a call with no entry becomes a bare
 /// `ModuleCall`. [liftWorkspace] turns `terraform.workspace` into a
 /// `workspace` parameter on the Stack, so its synth names one workspace
-/// instead of deferring to `terraform workspace select`. [manifests]
+/// instead of deferring to `terraform workspace select`. [inlineLocals]
+/// declares a `locals` entry whose value is a literal as a Dart `final`
+/// instead of reading it from the sidecar as a `${local.x}` template.
+/// [manifests]
 /// defaults to [allMigrateManifests]; [format] runs the emitted Dart through
 /// `dart_style`.
 MigratedStack migrateStack(
@@ -88,6 +91,7 @@ MigratedStack migrateStack(
   bool childModule = false,
   bool allowTodo = false,
   bool liftWorkspace = false,
+  bool inlineLocals = false,
   Map<String, LocalModule> localModules = const {},
 }) {
   final names = stackNames(name);
@@ -106,6 +110,7 @@ MigratedStack migrateStack(
     allowTodo: allowTodo,
     localModules: localModules,
     liftWorkspace: liftWorkspace,
+    inlineLocals: inlineLocals,
   ).emit();
   return MigratedStack(
     stackClass: names.stackClass,
@@ -176,6 +181,7 @@ MigrationResult migrateModule(
   bool childModule = false,
   bool allowTodo = false,
   bool liftWorkspace = false,
+  bool inlineLocals = false,
 }) {
   final stack = migrateStack(
     module,
@@ -185,6 +191,7 @@ MigrationResult migrateModule(
     childModule: childModule,
     allowTodo: allowTodo,
     liftWorkspace: liftWorkspace,
+    inlineLocals: inlineLocals,
   );
   final packageName = packageNameFor(name);
   final sidecar = allowTodo && stack.hasStack

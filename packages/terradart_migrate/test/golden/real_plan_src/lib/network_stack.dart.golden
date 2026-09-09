@@ -11,6 +11,8 @@ import 'package:terradart_google/provider.dart';
 
 final class NetworkStack extends Stack {
   NetworkStack() : super(providers: [const GoogleProvider()]) {
+    // All curated by terradart_google (expected: supported). Lives in a child module
+    // so the fixture exercises per-module breakdown and child_modules recursion.
     final vpc = add(
       GoogleComputeNetwork(
         localName: r'vpc',
