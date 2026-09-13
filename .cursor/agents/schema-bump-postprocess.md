@@ -63,7 +63,12 @@ apply the label as usual.
   `packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml`
   (same fail-closed rule as the GA barrels manifest). Beta wrappers are
   regenerated with the beta `wrap` coordinates in `tool/providers.yaml`
-  (`--resource-provider google-beta` is mandatory) — never hand-edited.
+  (`--resource-provider google-beta` is mandatory) — never hand-edited;
+- a stale migration manifest (`packages/terradart_migrate/lib/src/manifest/*.g.dart`,
+  named by `wrap --check` next to regenerated wrappers): regenerate it with
+  the same lane's `--migrate-manifest` (AGENTS.md Useful Commands;
+  `migrateManifest` in `tool/providers.yaml`) — generator output, never an
+  edit.
 
 Repair loop: edit → `tool/agent_verify.sh --quick` (~20s) → iterate; run
 the FULL `tool/agent_verify.sh` before pushing. Never pipe a test command
@@ -79,6 +84,11 @@ Two full repair rounds without green → escalate (Tier 3).
 - `terradart lint-override` fails with an `exactly-one-*` rule (a new
   exactly_one_of group needs a sealed-class design — maintainer work;
   see PR #244's next_hop sealing for what that looks like);
+- `terradart lint-override` fails with `migrate-shape-underivable` or
+  `migrate-hint-stale`, or the `migrate round-trip gate` is red: the bump
+  changed a shape the migration manifest derives, and a `migrate:` hint, a
+  `tool/migrate_manifest_debt.yaml` or a `tool/migrate_roundtrip_debt.yaml`
+  entry is maintainer work (outside `tool/bump_allowed_paths.yaml`);
 - the generated diff deletes or renames a public symbol, or changes a
   ctor param type (breaking — needs MIGRATING.md, which you must never
   edit);
@@ -127,7 +137,9 @@ maintainer work — humans may add commits, then re-label or merge manually.
   `tool/*.dart` (the one exception is the catalog count file
   `tool/doc_expectations.dart`, a Tier 2 repair the scope ledger admits),
   `.cursor/**`, `.claude/**`.
-- Never hand-edit generated files (`packages/terradart_google/lib/**`) —
-  regenerate via `terradart wrap` (AGENTS.md Useful Commands).
+- Never hand-edit generated files (`packages/terradart_google/lib/**`,
+  `packages/terradart_google_beta/lib/**`,
+  `packages/terradart_migrate/lib/src/manifest/**`) — regenerate via
+  `terradart wrap` (AGENTS.md Useful Commands).
 - Never remove or downgrade a `bump-escalated` label.
 - One PR per run; never touch other PRs.
