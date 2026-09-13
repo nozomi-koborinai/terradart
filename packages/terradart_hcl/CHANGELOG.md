@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.27.0 - unreleased
+## 0.28.0 - 2026-09-13
 
 Initial package (issue #657, part of the `terradart-migrate` epic #80).
 
