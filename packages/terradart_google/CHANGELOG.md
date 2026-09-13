@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.28.1 - 2026-09-13
+
+Lockstep release with `terradart_migrate` 0.28.1 (passthrough emission fix — a bare `Map` / `List` parameter no longer comes out as `TfArg.literal`). No `terradart_google` API changes.
+
 ## 0.28.0 - 2026-09-13
 
 - **`GoogleProvider.alias`** (`provider "google" { alias = "eu" }`) and a **`provider:`** parameter on every resource factory and data source, for Terraform's `provider` meta-argument: `provider: 'google.eu'` selects an aliased configuration registered beside the default one, `provider: 'google-beta'` puts a GA type on the beta provider. `TimeProvider` takes `alias` too (#666).

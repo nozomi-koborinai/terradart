@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.28.1 - 2026-09-13
+
+Lockstep release with `terradart_migrate` 0.28.1 (passthrough emission fix — a bare `Map` / `List` parameter no longer comes out as `TfArg.literal`). No `terradart_codegen` API changes.
+
 ## 0.28.0 - 2026-09-13
 
 - `terradart wrap` emits Terraform's `provider` meta-argument on every generated constructor: `super.provider` on resource factories and data sources, and on a `--resource-provider` lane a `String? provider` parameter that defaults to the lane's provider (`provider: provider ?? 'google-beta'`), so a beta wrapper can still select an alias of it (#666).

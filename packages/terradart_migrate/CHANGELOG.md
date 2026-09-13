@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.28.1 - 2026-09-13
+
+- Fix: a passthrough slot whose parameter is a bare `Map` / `List` rather than a `TfArg<Map<...>>` — `advancedExtra` on `SqlDatabaseInstanceSettings`, the raw-map escape hatch a hand-written helper spreads into its block — was emitted as `TfArg.literal({...})`, so a migrated Stack that carried an `insights_config` did not compile while the report counted the resource as migrated. The emitter now honours the manifest's `wrapped` flag (the manifests already recorded it), shapes the payload to the parameter (a block written once reads as one object: a `List<...>` parameter gets a one-element list, a `Map<...>` parameter takes the single element of a one-object list) and types empty payloads from the manifest. The round-trip gate had never exercised a passthrough slot because no quickstart used one; `cloud_sql_quickstart` now sets `insights_config` through `advancedExtra`, so it does.
+
 ## 0.28.0 - 2026-09-13
 
 - `--inline-locals` declares the `locals` entries whose value is a scalar literal — or a template made only of literal text and locals that are themselves inlined, resolved as a fixpoint — as Dart `final`s in the Stack (`final prefix = r'acme'; final bucketName = '$prefix-assets';`), and rebuilds `locals.tf` so it keeps only the entries something that stays in Terraform still reads (a kept block, a `terraform` setting, another local, or a `${local.x}` the Stack still emits as an expression); a local nothing in the Stack reads is never declared. A list, an object, a reference, a `%{ ... }` directive, or a name two `locals` blocks both declare stays, with its reason. Names come from the Stack's allocator after the blocks, types are carried (a bare `${local.port}` only fills a slot that takes a number), and `--lift-workspace` now shares the same `dartTemplate` rewrite. Refused together with `--merge-envs` (#672).
