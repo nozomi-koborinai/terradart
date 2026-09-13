@@ -15,7 +15,7 @@
 #   - packages/terradart_google_beta/pubspec.yaml (version: + terradart_core caret)
 #   - packages/terradart_appwrite/pubspec.yaml    (version: + terradart_core caret)
 #   - packages/terradart_cloudflare/pubspec.yaml  (version: + terradart_core caret)
-#   - packages/terradart_agent/pubspec.yaml       (version: + terradart_core caret + terradart_google caret)
+#   - packages/terradart_agent/pubspec.yaml       (version: + terradart_{core,google,coverage,hcl,migrate} carets)
 #   - packages/terradart_agent/lib/src/version.dart  (packageVersion const — lockstep with its pubspec)
 #   - packages/terradart_coverage/pubspec.yaml    (version: + terradart_{google,google_beta,appwrite,cloudflare,hcl} carets)
 #   - packages/terradart_hcl/pubspec.yaml         (version: line)
@@ -124,12 +124,8 @@ sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terra
 echo "    - terradart_appwrite.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_cloudflare/pubspec.yaml
 echo "    - terradart_cloudflare.dependencies.terradart_core: ^${NEW}"
-sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
-echo "    - terradart_agent.dependencies.terradart_core: ^${NEW}"
-sed_inplace "s#^( *terradart_google): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
-echo "    - terradart_agent.dependencies.terradart_google: ^${NEW}"
-sed_inplace "s#^( *terradart_coverage): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
-echo "    - terradart_agent.dependencies.terradart_coverage: ^${NEW}"
+sed_inplace "s#^( *terradart_(core|google|coverage|hcl|migrate)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
+echo "    - terradart_agent.dependencies.terradart_{core,google,coverage,hcl,migrate}: ^${NEW}"
 sed_inplace "s#^( *terradart_(google|google_beta|appwrite|cloudflare|hcl)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_coverage/pubspec.yaml
 echo "    - terradart_coverage.dependencies.terradart_{google,google_beta,appwrite,cloudflare,hcl}: ^${NEW}"
 

@@ -70,6 +70,7 @@ void main() {
           'packages/terradart_google/lib/src/_provider_meta.dart',
           'packages/terradart_google/lib/src/compute/google_compute_route.dart',
           'packages/terradart_google/lib/compute.dart',
+          'packages/terradart_migrate/lib/src/manifest/google.g.dart',
           'packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/google_compute_route.yaml',
           'packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml',
           'packages/terradart_codegen/test/golden/google_pubsub_topic.factory.expected.dart.golden',
@@ -96,6 +97,7 @@ void main() {
           'packages/terradart_codegen/test/fixtures/wrap/source_beta/README.md',
           'packages/terradart_google_beta/lib/src/_catalog.g.dart',
           'packages/terradart_google_beta/lib/firebase.dart',
+          'packages/terradart_migrate/lib/src/manifest/google_beta.g.dart',
           'packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml',
           'packages/terradart_codegen/lib/src/codegen/wrapper_overrides/google_beta/yaml/google_firebase_project.yaml',
         ],
@@ -114,10 +116,12 @@ void main() {
           'tool/check_bump_scope.dart',
           '.cursor/agents/schema-bump-postprocess.md',
           '.claude/settings.json',
+          'tool/migrate_manifest_debt.yaml',
+          'tool/migrate_roundtrip_debt.yaml',
         ],
         rules: rules,
       );
-      expect(violations, hasLength(6));
+      expect(violations, hasLength(8));
     });
 
     test('committed ledger rejects Tier-3 evidence from real PR #244', () {
@@ -155,6 +159,7 @@ void main() {
           'tool/mm_yaml_sources.yaml',
           'packages/terradart_google/lib/src/new_thing/google_new_thing.dart',
           'packages/terradart_google/lib/new_thing.dart',
+          'packages/terradart_migrate/lib/src/manifest/google.g.dart',
           'examples/new_thing_quickstart/lib/main.dart',
           'README.md',
           'CONTRIBUTING.md',
@@ -184,11 +189,13 @@ void main() {
           '.github/workflows/ci.yml',
           'tool/check_bump_scope.dart',
           'tool/exactly_one_lint_debt.yaml',
+          'tool/migrate_manifest_debt.yaml',
+          'tool/migrate_roundtrip_debt.yaml',
           '.cursor/agents/wave-shipper.md',
         ],
         rules: rules,
       ),
-      hasLength(7),
+      hasLength(9),
     );
   });
 }

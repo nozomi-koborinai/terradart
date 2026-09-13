@@ -13,6 +13,12 @@
       "Write(packages/terradart_appwrite/lib/src/*/appwrite_*.dart)",
       "Edit(packages/terradart_appwrite/lib/src/_catalog.g.dart)",
       "Write(packages/terradart_appwrite/lib/src/_catalog.g.dart)",
+      "Edit(packages/terradart_cloudflare/lib/src/*/cloudflare_*.dart)",
+      "Write(packages/terradart_cloudflare/lib/src/*/cloudflare_*.dart)",
+      "Edit(packages/terradart_cloudflare/lib/src/_catalog.g.dart)",
+      "Write(packages/terradart_cloudflare/lib/src/_catalog.g.dart)",
+      "Edit(packages/terradart_migrate/lib/src/manifest/*.g.dart)",
+      "Write(packages/terradart_migrate/lib/src/manifest/*.g.dart)",
       "Edit(packages/terradart_codegen/test/fixtures/wrap/expected_output/**)",
       "Write(packages/terradart_codegen/test/fixtures/wrap/expected_output/**)"
     ],

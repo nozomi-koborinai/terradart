@@ -33,8 +33,10 @@ The beta-only catalog at the current provider pin is **filled**. Add a resource 
     --output ../terradart_google_beta/lib/src \
     --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
     --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
-    --resource-provider google-beta
+    --resource-provider google-beta \
+    --migrate-manifest ../terradart_migrate/lib/src/manifest/google_beta.g.dart
   ```
+  The migration manifest regenerates with the wrappers — a whole-registry artifact, so run the full lane (`--only` skips it); CI's beta `wrap_check` lane and `tool/agent_verify.sh` fail on a stale one.
 - [ ] 6. **Cost-classify the type** (policy, apply or not): gcp-cost tools (`dart tool/gcp_cost_call.dart` in cloud-agent sessions) → record evidence in `tool/apply_cost_denylist.yaml` per its header format. When unsure, leave unclassified and say so.
 - [ ] 7. **Example coverage:** extend [`examples/beta_leftover_quickstart`](../../../examples/beta_leftover_quickstart/) (or a focused beta example) so the factory appears in a synth, or record a reasoned `tool/example_debt.yaml` line. `dart tool/example_synth_gates.dart` reads **both** GA and beta catalogs — an uncovered new factory fails CI.
 - [ ] 8. **Ledger check:** any new beta example must be listed in `tool/apply_smoke_skip.yaml` under the google-beta-lane section (beta apply policy is not designed; synth + `terraform validate` only).

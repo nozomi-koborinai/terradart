@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.28.0 - 2026-09-13
 
 - The source scan (`--dir`, the default) parses `.tf` / `.tf.json` with `terradart_hcl` instead of a regex: block structure is exact (a `resource` inside a heredoc or comment is not counted), a literal `count` / `for_each` (`count = 3`, a literal object, `toset([...])`) is expanded, anything else is counted once and listed under **Counted once**, and module calls are read from the AST — remote, missing and out-of-tree local modules are reported as not analyzed, and a file that fails to parse is reported and skipped.
 - Types are matched against all four curated catalogs — `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare` — through `CatalogIndex.all()`. Each supported line (and JSON entry) now carries the `package` that ships the factory; the JSON report gains `unexpanded`.

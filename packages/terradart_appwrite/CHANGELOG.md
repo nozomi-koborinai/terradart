@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.28.0 - 2026-09-13
 
 - **`AppwriteProvider.alias`** (`provider "appwrite" { alias = "staging" }`) and a **`provider:`** parameter on every factory and data source, so a resource can select an aliased configuration (`provider: 'appwrite.staging'`) (#666).
 

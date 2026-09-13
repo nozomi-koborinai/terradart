@@ -20,7 +20,7 @@ esac
 rel="$(hook_rel_path "$file_path" "$ROOT")"
 if hook_is_protected_write_path "$rel"; then
   hook_deny_shell \
-    "Direct edits to $rel are blocked. Regenerate with terradart wrap for terradart_google/lib/src, or update goldens via the maintainer workflow for expected_output/." \
+    "Direct edits to $rel are blocked. Regenerate with terradart wrap (wrappers, catalogs and the migration manifests under terradart_migrate/lib/src/manifest), or update goldens via the maintainer workflow for expected_output/." \
     "Blocked: protected path $rel"
   exit 0
 fi
