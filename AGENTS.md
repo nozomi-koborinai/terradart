@@ -139,6 +139,7 @@ Committed maintainer skills live under [`.agents/skills/`](.agents/skills/) (Age
 | [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md) | Landing a Wave release (curated + example/docs + counts + CHANGELOG + GitHub release notes) |
 | [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md) | Shrinking `tool/example_debt.yaml` (the maintenance-phase work queue) in existing quickstarts |
 | [`terradart-tighten-example-topology`](.agents/skills/terradart-tighten-example-topology/SKILL.md) | Wiring backfilled factories into sibling refs; `tool/check_example_topology.dart` |
+| [`terradart-promo-video`](.agents/skills/terradart-promo-video/SKILL.md) | Recording a release demo clip and drafting its X / LinkedIn copy; `tool/promo_video.sh` |
 
 Optional generic Dart skills from [dart-lang/skills](https://github.com/dart-lang/skills) (`npx skills add dart-lang/skills --skill '*' --agent universal --yes`) are not committed here. [flutter/skills](https://github.com/flutter/skills) targets Flutter apps and is not applicable to TerraDart.
 
@@ -281,6 +282,7 @@ There is no long-running dev server for core work. Primary flows:
 | Synth example stack | `cd examples/pubsub_quickstart && GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart` |
 | Validate synth output | `cd examples/pubsub_quickstart/tf-out && terraform init -backend=false && terraform validate` |
 | MCP catalog server (stdio) | `cd packages/terradart_agent && dart run terradart-mcp` |
+| Release demo clip (cut a `RecordScreen` take) | `tool/promo_video.sh --in RAW.mp4 --out EDIT.mp4 --deliver DELIVERY.mp4` |
 | Docs site (optional) | `cd website && bun install && bun run dev` (needs Bun + Node ≥ 22) |
 
 `dart tool/example_synth_gates.dart` (inside `tool/agent_verify.sh`) synths every quickstart and runs `terraform validate` on each `tf-out/` when `terraform` is on `PATH`; `dart tool/check_docs_consistency.dart` is the text-only docs check. Neither replaces the parallel `terraform_validate` CI matrix on merge. Examples use `GCP_PROJECT_ID` (or `ci-test-project-id` for local smoke) — no live GCP credentials are required for synth or `terraform validate`.
