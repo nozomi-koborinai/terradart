@@ -32,6 +32,108 @@ const _google = {
 };
 
 void main() {
+  group('passthrough slots', () {
+    // The two passthrough parameter shapes the catalogs carry: a
+    // `TfArg<Map<String, dynamic>>` (an IAM `condition`) and a bare
+    // `Map<String, Object?>` spread into its block (`advancedExtra` on
+    // `SqlDatabaseInstanceSettings`). The manifest's `wrapped` flag tells
+    // them apart; emitting `TfArg.literal` for the bare one produced a Stack
+    // that did not compile, found on a real Cloud SQL module.
+    test('a bare Map parameter takes the collection itself', () {
+      final r = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_sql_database_instance': {
+            'primary': {
+              'name': 'primary',
+              'database_version': 'POSTGRES_16',
+              'region': 'asia-northeast1',
+              'settings': [
+                {
+                  'tier': 'db-f1-micro',
+                  'insights_config': [
+                    {
+                      'query_insights_enabled': true,
+                      'query_string_length': 1024,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        },
+      });
+      expect(r.report.isComplete, isTrue, reason: r.report.renderText());
+      expect(
+        r.stackSource,
+        contains(
+          "advancedExtra: {r'insights_config': [{r'query_insights_enabled': "
+          "true, r'query_string_length': 1024}]}",
+        ),
+      );
+      expect(r.stackSource, isNot(contains('advancedExtra: TfArg.literal(')));
+    });
+
+    test('a TfArg<Map> parameter keeps TfArg.literal, from tf.json and HCL', () {
+      const expected =
+          "condition: TfArg.literal({r'title': r'expires', r'expression': r'true'})";
+      final json = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic_iam_member': {
+            'viewer': {
+              'topic': 'orders',
+              'role': 'roles/pubsub.viewer',
+              'member': 'user:a@example.com',
+              'condition': {'title': 'expires', 'expression': 'true'},
+            },
+          },
+        },
+      });
+      expect(json.report.isComplete, isTrue, reason: json.report.renderText());
+      expect(json.stackSource, contains(expected));
+
+      // The block form: written once, it reads as one object, not a list.
+      final hcl = _migrateHcl('''
+terraform {
+  required_providers {
+    google = { source = "hashicorp/google", version = "~> 7.0" }
+  }
+}
+
+resource "google_pubsub_topic_iam_member" "viewer" {
+  topic  = "orders"
+  role   = "roles/pubsub.viewer"
+  member = "user:a@example.com"
+  condition {
+    title      = "expires"
+    expression = "true"
+  }
+}
+''');
+      expect(hcl.report.isComplete, isTrue, reason: hcl.report.renderText());
+      expect(hcl.stackSource, contains(expected));
+
+      // The tf.json list form of a block written once fits a Map parameter.
+      final listForm = _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_topic_iam_member': {
+            'viewer': {
+              'topic': 'orders',
+              'role': 'roles/pubsub.viewer',
+              'member': 'user:a@example.com',
+              'condition': [
+                {'title': 'expires', 'expression': 'true'},
+              ],
+            },
+          },
+        },
+      });
+      expect(listForm.stackSource, contains(expected));
+    });
+  });
+
   group('pubsub_quickstart synth output', () {
     // The quickstart's synth output as of this package's last change; the
     // round-trip gate covers the live examples.

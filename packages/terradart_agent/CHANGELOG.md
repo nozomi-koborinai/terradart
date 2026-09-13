@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.28.1 - 2026-09-13
+
+Lockstep release with `terradart_migrate` 0.28.1 (passthrough emission fix — a bare `Map` / `List` parameter no longer comes out as `TfArg.literal`). No `terradart_agent` API changes. `terradart-mcp` picks up the `migrate_module` fix through `terradart_migrate`.
+
 ## 0.28.0 - 2026-09-13
 
 Lockstep release with `terradart_core` 0.28.0 (`TfArg.expression`, provider aliases, `timeouts:`, `Stack.addMoved`, `Stack.addModule`; the `terradart-migrate` epic #80).

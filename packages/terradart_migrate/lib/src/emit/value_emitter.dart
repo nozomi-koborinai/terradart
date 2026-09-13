@@ -181,11 +181,13 @@ final class ValueEmitter {
       if (rest.isNotEmpty) {
         _checkSensitiveJson(rest, level.path);
         named.add(
-          '${mergedPassthrough.dartName}: TfArg.literal(${dartValue(rest)})',
+          '${mergedPassthrough.dartName}: '
+          '${_passthroughValue(mergedPassthrough, rest)}',
         );
       } else if (mergedPassthrough.required) {
         named.add(
-          '${mergedPassthrough.dartName}: TfArg.literal(<String, dynamic>{})',
+          '${mergedPassthrough.dartName}: '
+          '${_passthroughValue(mergedPassthrough, const <String, Object?>{})}',
         );
       }
     }
@@ -269,7 +271,7 @@ final class ValueEmitter {
                     (throw MigrateBlocker('argument "$path" is not a block')),
                 path: '$path.',
               ),
-      MigrateSlotKind.passthrough => _passthrough(value, path: path),
+      MigrateSlotKind.passthrough => _passthrough(slot, value, path: path),
       MigrateSlotKind.sealed ||
       MigrateSlotKind.manual => throw StateError('handled above'),
     };
@@ -828,10 +830,56 @@ final class ValueEmitter {
     return '$className($args)';
   }
 
-  String _passthrough(Expr value, {required String path}) {
+  String _passthrough(MigrateSlot slot, Expr value, {required String path}) {
     final json = jsonValue(value);
     _checkSensitiveJson(json, '$path.');
-    return 'TfArg.literal(${dartValue(json)})';
+    return _passthroughValue(slot, json);
+  }
+
+  /// The Dart for a passthrough payload. The manifest's `wrapped` flag says
+  /// whether the parameter is `TfArg<Map<...>>` (an IAM `condition`, the
+  /// norm) or a bare `Map` / `List` spread into the block (`advancedExtra`
+  /// on a hand-written helper): only the former takes `TfArg.literal`.
+  /// Wrapping the latter produced a `TfArg<Map<...>>` where a `Map` was
+  /// expected, so a migrated Stack that used it did not compile.
+  ///
+  /// The payload is shaped to the parameter as well: a block written once
+  /// reads as one object, so a `List<...>` parameter gets it as a
+  /// one-element list, and a `Map<...>` parameter takes the single element
+  /// of a one-object list (the tf.json block form). An empty payload is
+  /// typed from the manifest, since [dartValue]'s `<Object?>[]` fits
+  /// neither a `List<Map<String, dynamic>>` nor strict inference.
+  String _passthroughValue(MigrateSlot slot, Object? json) {
+    final type = slot.dartType ?? '';
+    var payload = json;
+    if (type.startsWith('List<') && payload is Map) {
+      payload = [payload];
+    } else if (type.startsWith('Map<') &&
+        payload is List &&
+        payload.length == 1 &&
+        payload.single is Map) {
+      payload = payload.single;
+    }
+    final literal = _isEmptyCollection(payload)
+        ? _typedEmpty(type, payload)
+        : dartValue(payload);
+    return slot.wrapped ? 'TfArg.literal($literal)' : literal;
+  }
+
+  static bool _isEmptyCollection(Object? json) =>
+      (json is Map && json.isEmpty) || (json is List && json.isEmpty);
+
+  /// `<K, V>{}` / `<E>[]` for the manifest's payload type; [dartValue]'s
+  /// `Object?`-typed empties when the type is not a plain `Map<...>` /
+  /// `List<...>` spelling.
+  static String _typedEmpty(String type, Object? json) {
+    if (json is Map && type.startsWith('Map<') && type.endsWith('>')) {
+      return '<${type.substring(4, type.length - 1)}>{}';
+    }
+    if (json is List && type.startsWith('List<') && type.endsWith('>')) {
+      return '<${type.substring(5, type.length - 1)}>[]';
+    }
+    return dartValue(json);
   }
 
   /// Synth rejects a plain literal on a sensitive nested path; only a

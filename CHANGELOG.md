@@ -4,6 +4,12 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.28.1] - 2026-09-13
+
+Lockstep patch release across the workspace. **No breaking changes** vs `0.28.0`.
+
+- **`terradart_migrate`** — fix: a passthrough slot whose parameter is a bare `Map` / `List` (`advancedExtra` on `SqlDatabaseInstanceSettings`) was emitted as `TfArg.literal({...})`, so a migrated Stack carrying an `insights_config` did not compile although the report counted the resource as migrated. The emitter now honours the manifest's `wrapped` flag, shapes the payload to the parameter and types empty payloads; `cloud_sql_quickstart` exercises the path so the round-trip gate covers it.
+
 ## [0.28.0] - 2026-09-13
 
 Lockstep release across the workspace — the `terradart-migrate` epic (#80) lands: `terradart_hcl`, `terradart_migrate`, the `terradart-migrate` binary, the `migrate_module` MCP tool, and the `terradart_core` additions the migrator needed. **Breaking** — `TfArg` gains a fourth variant (`TfArgExpression`) and `StackProvider` gains `alias`; see [MIGRATING.md](MIGRATING.md).

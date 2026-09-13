@@ -81,7 +81,11 @@ final class MigrateSlot {
 
   /// Whether a [MigrateSlotKind.scalar] / [MigrateSlotKind.enumValue] element
   /// is `TfArg`-wrapped (the norm) or a bare Dart value (a curator-flagged
-  /// exception, e.g. a Dart-side discriminant enum).
+  /// exception, e.g. a Dart-side discriminant enum). For a
+  /// [MigrateSlotKind.passthrough] payload: whether the parameter is
+  /// `TfArg<Map<...>>` (an IAM `condition`) or a bare `Map` / `List`
+  /// (`advancedExtra` on a hand-written helper, spread into the block) —
+  /// the emitter writes `TfArg.literal(...)` only for the former.
   final bool wrapped;
 
   /// Whether the parameter is positional rather than named (rare; only a

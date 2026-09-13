@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.28.1 - 2026-09-13
+
+Lockstep release with `terradart_migrate` 0.28.1 (passthrough emission fix — a bare `Map` / `List` parameter no longer comes out as `TfArg.literal`). No `terradart_coverage` API changes.
+
 ## 0.28.0 - 2026-09-13
 
 - The source scan (`--dir`, the default) parses `.tf` / `.tf.json` with `terradart_hcl` instead of a regex: block structure is exact (a `resource` inside a heredoc or comment is not counted), a literal `count` / `for_each` (`count = 3`, a literal object, `toset([...])`) is expanded, anything else is counted once and listed under **Counted once**, and module calls are read from the AST — remote, missing and out-of-tree local modules are reported as not analyzed, and a file that fails to parse is reported and skipped.
