@@ -159,7 +159,9 @@ fi
 
 if [[ "$WITH_CARD" == 1 ]]; then
   [[ -f "$LOGO" ]] || die "no logo at $LOGO"
-  [[ -f "$FONT" ]] || die "no font at $FONT (pass --font, or --tagline '' to drop the text)"
+  if [[ -n "$TAGLINE" ]]; then
+    [[ -f "$FONT" ]] || die "no font at $FONT (pass --font, or --tagline '' to drop the text)"
+  fi
 
   CARD="$WORK/endcard.png"
   CARD_LOGO_W=$((SRC_W * 46 / 100))
