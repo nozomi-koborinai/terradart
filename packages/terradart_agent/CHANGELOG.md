@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.28.0 - 2026-09-13
+
+Lockstep release with `terradart_core` 0.28.0 (`TfArg.expression`, provider aliases, `timeouts:`, `Stack.addMoved`, `Stack.addModule`; the `terradart-migrate` epic #80).
+
+- **`migrate_module`** (#667) — the HCL → Dart migrator over MCP. Input: `source` (a `.tf` file's HCL or a `.tf.json` file's JSON), `syntax` (`auto` by default, which reads a leading `{` as JSON), an optional `name` for the Stack class and package, and `allow_todo` mirroring the CLI flag. Output: one JSON object with `dart_source` (the Stack), `infra_source` / `pubspec` (the package files around it), `sidecar` / `sidecar_placements` (what stays in Terraform, and the file each kept address landed in) and `report` / `report_text`. Resource addresses are preserved, so `terraform plan` reports no changes once the sidecar is in place. Nothing is read from disk and no `terraform` runs; a source that does not parse, or a bad argument, comes back as `{"error": ..., "diagnostics": [...]}` rather than failing the call. Whole-tree cases (child modules, environments, `moved`, `--update`) stay with the `terradart-migrate` CLI.
+- `terradart-mcp` now serves six tools; the package depends on `terradart_migrate` and `terradart_hcl`.
+
 ## 0.27.0 - 2026-08-30
 
 Lockstep release with `terradart_core` 0.27.0 (`TfVariable` / `Stack.addVariable` and `S3Backend`). No `terradart_agent` API changes.

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.28.0 - 2026-09-13
 
 - **`GoogleBetaProvider.alias`** and a **`provider:`** parameter on every factory and data source. Wrappers keep pinning `provider = google-beta` by default; `provider: 'google-beta.<alias>'` selects an aliased `GoogleBetaProvider(alias: ...)` instead (#666).
 

@@ -26,7 +26,7 @@ Policy and pitfalls live in [`AGENTS.md`](../../../AGENTS.md) at the repo root. 
 
 - [ ] 1. From the **repository root**, run `dart pub get` if dependencies changed.
 - [ ] 2. Run `tool/agent_verify.sh` and confirm it exits 0 (`agent_verify: OK`). This includes `check_example_topology` (strict quickstarts only) and `apply_smoke_test` (cost gate + **cost-comment gate** test 13). If you added curated factories used in examples, confirm `tool/apply_cost_denylist.yaml` lines include **`gcp-cost:` from MCP** (not `billing-behavior:` alone unless IAM adjunct).
-- [ ] 3. `example_synth_gates` (inside step 2) already synths all quickstarts and runs `terraform validate` per example when `terraform` is on `PATH`; `check_docs_consistency` is the text-only docs check.
+- [ ] 3. `example_synth_gates` (inside step 2) already synths all quickstarts and runs `terraform validate` per example when `terraform` is on `PATH`; `check_docs_consistency` is the text-only docs check. The full gate then runs the three migrator gates on the same `tf-out` (`migrate_roundtrip_gates` over every quickstart, `migrate_fixture_gates`, `migrate_moved_gates`); `--quick` skips them, so a change to a curated factory or a quickstart needs the full gate before pushing.
 - [ ] 4. If you touched `pubsub_quickstart` or synth/export paths, run `tool/smoke_quickstart.sh`.
 - [ ] 5. Report which commands ran in the PR or task summary.
 
@@ -43,6 +43,7 @@ Use `--maintainer` when changing `wrap-init`, `wrap-promote`, or their tests.
 
 - **Never trust `cmd | tail -1 && next`.** A pipeline's exit status is the last command's, so `tail`/`grep`/`head` swallow a failing `dart test` and the `&&` chain continues. Run the command bare and check `$?` directly, or use `agent_verify.sh` (it sets `pipefail`).
 - **Golden refresh is a copy, not an edit.** When `wrap` output legitimately changes: Level A factory goldens (`test/golden/*.factory.expected.dart.golden`) take the regenerated wrapper with the 3-line banner stripped (`tail -n +4`); wrap fixture goldens (`test/fixtures/wrap/expected_output/**`) take the file verbatim, banner included. Never hand-edit golden contents to make a diff pass.
+- **Migration manifests are generator output.** `packages/terradart_migrate/lib/src/manifest/*.g.dart` are written by the four `wrap --migrate-manifest` lanes (`agent_verify.sh` and CI `wrap_check` fail on a stale one) — regenerate with the lane, never edit. A shape the generator cannot derive is a `lint-override` finding (`migrate-shape-underivable`) to resolve in the override YAML or the debt ledger, not a manifest edit.
 
 ## What this does not cover
 

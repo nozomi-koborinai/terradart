@@ -1,11 +1,47 @@
 ---
 title: Migrating
-description: Upgrade notes for terradart_google — breaking changes in v0.12.10 and v0.12.12.
+description: Upgrade notes for terradart_core and terradart_google — breaking changes in v0.28.0, v0.12.12 and v0.12.10.
 ---
 
 Read this page before bumping **`terradart_google`** across minor lines or when a release note calls out breaking API changes.
 
 The canonical, full migration history lives in the repo: [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md).
+
+## 0.27.0 → 0.28.0 (`TfArg.expression`, provider aliases)
+
+**`0.28.0`** ships the `terradart-migrate` epic and two `terradart_core` changes that are additive for code that only constructs arguments and registers the shipped providers, but break an exhaustive match and a hand-written provider:
+
+- `TfArg` gains a fourth variant, **`TfArgExpression`** (`TfArg.expression(...)` — a raw Terraform expression, emitted verbatim). An exhaustive `switch` over `TfArg` needs one more case.
+- `StackProvider` gains **`String? get alias`**. Every provider class in the workspace implements it; a hand-written `StackProvider` needs the getter (`null` for the default configuration).
+
+Bump lockstep:
+
+```yaml
+dependencies:
+  terradart_core: ^0.28.0
+  terradart_google: ^0.28.0
+```
+
+```dart
+// Before
+switch (arg) {
+  case TfArgLiteral(:final value): ...
+  case TfArgRef(:final ref): ...
+  case TfArgVariable(:final name): ...
+}
+
+// After
+switch (arg) {
+  case TfArgLiteral(:final value): ...
+  case TfArgRef(:final ref): ...
+  case TfArgVariable(:final name): ...
+  case TfArgExpression(:final template): ...
+}
+```
+
+Everything else in `0.28.0` is additive — `provider:` and `timeouts:` on every curated factory, `Stack.addMoved`, `Stack.addModule`, `TfArg.workspace()`, partial `GcsBackend` / `S3Backend` configuration. Full notes: [MIGRATING.md — 0.27.0 → 0.28.0](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#0270--0280).
+
+---
 
 ## 0.12.11 → 0.12.12 (sealed exactly-one slots)
 

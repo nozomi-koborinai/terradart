@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.28.0 - 2026-09-13
 
 - **`CloudflareProvider.alias`** (`provider "cloudflare" { alias = "other_account" }`) and a **`provider:`** parameter on every factory and data source, so a resource can select an aliased configuration (`provider: 'cloudflare.other_account'`) (#666).
 

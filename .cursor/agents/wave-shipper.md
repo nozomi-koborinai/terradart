@@ -108,7 +108,11 @@ Follow the two skills exactly, in order, for each resource — except the steps 
 
 1. [`terradart-add-curated-resource`](../../.agents/skills/terradart-add-curated-resource/SKILL.md)
    — schema confirmation, `tool/mm_yaml_sources.yaml` row, MM fixture sync,
-   `wrap-init`, thin override, `lint-override`, regenerate, counts.
+   `wrap-init`, thin override, `lint-override`, regenerate (a full
+   `wrap --migrate-manifest` run after `wrap --only` — the migration
+   manifest `packages/terradart_migrate/lib/src/manifest/google.g.dart`
+   gains an entry per factory, CI's `wrap_check` requires it, and
+   `tool/wave_allowed_paths.yaml` admits it), counts.
 2. [`terradart-ship-wave`](../../.agents/skills/terradart-ship-wave/SKILL.md)
    — the runnable quickstart example (or, for pure `*IamBinding` /
    `*IamPolicy` Waves whose sibling `*IamMember` is already in synth,
@@ -151,6 +155,12 @@ tail/grep and trust `&&` — check exit codes bare.
   should be reconsidered by a human);
 - every remaining un-skipped backlog entry is unsuitable (skip-only day —
   proposed notes + evidence only; no backlog edit, no push);
+- `terradart lint-override` fails with `migrate-shape-underivable` after
+  you tried reshaping the prelude helper to a field-per-key `encode()` map
+  literal, or the `migrate round-trip gate` keeps a factory of the Wave in
+  Terraform — a `migrate:` hint, a `tool/migrate_manifest_debt.yaml` or a
+  `tool/migrate_roundtrip_debt.yaml` entry is a maintainer decision (both
+  ledgers are outside `tool/wave_allowed_paths.yaml`);
 - the FULL gate still fails after two repair rounds;
 - any needed change falls outside `tool/wave_allowed_paths.yaml`.
 
@@ -246,8 +256,10 @@ sense when you know them:
 - Never edit `MIGRATING.md`, `CHANGELOG.md`, any `pubspec.yaml`,
   `.github/workflows/**`, `tool/*.dart` (the one exception is the catalog
   count file `tool/doc_expectations.dart`, which the scope ledger admits),
-  `tool/exactly_one_lint_debt.yaml`, `.cursor/**`, `.claude/**` — needing
+  `tool/exactly_one_lint_debt.yaml`, `tool/migrate_manifest_debt.yaml`,
+  `tool/migrate_roundtrip_debt.yaml`, `.cursor/**`, `.claude/**` — needing
   to means escalate.
-- Never hand-edit generated files (`packages/terradart_google/lib/**`) —
-  regenerate via `terradart wrap`.
+- Never hand-edit generated files (`packages/terradart_google/lib/**`,
+  `packages/terradart_migrate/lib/src/manifest/**`) — regenerate via
+  `terradart wrap` (`--migrate-manifest` for the manifest).
 - One Wave per run; never remove or downgrade labels.
