@@ -358,6 +358,30 @@ properties:
                 description: |-
                   The success threshold for semantic similarity. Must be an integer
                   between 0 and 4. Default is >= 3.
+              - name: semanticSimilarityChannel
+                type: String
+                description: |-
+                  The semantic similarity channel to use for evaluation.
+                  Possible values:
+                  SEMANTIC_SIMILARITY_CHANNEL_UNSPECIFIED
+                  TEXT
+                  AUDIO
+          - name: toolMatchingSettings
+            type: NestedObject
+            description: |-
+              The tool matching settings. An extra tool call is a tool call that is
+              present in the execution but does not match any tool call in the golden
+              expectation.
+            properties:
+              - name: extraToolCallBehavior
+                type: Enum
+                description: |-
+                  Defines the behavior when an extra tool call is encountered. An extra
+                  tool call is a tool call that is present in the execution but does
+                  not match any tool call in the golden expectation.
+                enum_values:
+                  - 'FAIL'
+                  - 'ALLOW'
       - name: goldenHallucinationMetricBehavior
         type: Enum
         description: |-

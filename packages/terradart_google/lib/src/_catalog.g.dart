@@ -33569,7 +33569,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['ParameterManagerParameterFormat'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_parameter_manager_parameter`.\n\nA Parameter resource is a logical parameter.',
+        'Factory wrapper for `google_parameter_manager_parameter`.\n\nA Parameter is a configuration value that can be stored and managed\ncentrally through Parameter Manager. Parameters support labels, encryption\nvia Cloud KMS, and resource manager tags for fine-grained access control and\norganization.',
   ),
   CatalogEntry(
     tfType: 'google_parameter_manager_parameter',
@@ -33671,7 +33671,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['ParameterManagerRegionalParameterFormat'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_parameter_manager_regional_parameter`.\n\nA Regional Parameter is a logical regional parameter.',
+        'Factory wrapper for `google_parameter_manager_regional_parameter`.\n\nA Regional Parameter is a configuration value stored in a specific region\nthrough Parameter Manager. Regional parameters support labels, encryption\nvia Cloud KMS, and resource manager tags for fine-grained access control,\norganization, and regional compliance.',
   ),
   CatalogEntry(
     tfType: 'google_parameter_manager_regional_parameter',
