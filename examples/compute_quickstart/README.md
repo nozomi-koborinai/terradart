@@ -4,7 +4,7 @@ End-to-end terradart example for Cloud Compute networking primitives. Provisions
 
 ## Before you apply
 
-The Compute Engine VM bills hourly while it exists. Destroy it when you are done.
+Beyond the network basics described above, this stack provisions a Compute Engine VM, persistent disks, a Cloud NAT gateway, and a Filestore instance, all of which bill while they exist. Destroy the stack when you are done.
 
 ## Prerequisites
 
