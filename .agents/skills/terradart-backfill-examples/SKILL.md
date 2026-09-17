@@ -19,11 +19,11 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Wave policy lives in [`
 
 **Task progress:**
 
-- [ ] 1. **Pick targets** from `tool/example_debt.yaml`. Prefer extending the natural quickstart (Storage → `storage_quickstart`, Compute LB → `compute_lb_quickstart`) over inventing a new example.
-- [ ] 2. **Extend `lib/main.dart`** with minimal, self-contained resources that demonstrate real constructor patterns (refs to siblings in the same stack).
+- [ ] 1. **Pick targets** from `tool/example_debt.yaml`. Prefer extending the natural quickstart (Storage → `storage_quickstart`, Compute LB → `compute_lb_quickstart`) over inventing a new example. Entries whose reason cites `never_apply`, a `gcp-cost` SKU, apply-smoke, or `terradart-validate` are payable — the reason describes an apply-time gate, which no longer blocks example coverage.
+- [ ] 2. **Extend `lib/main.dart`** with minimal, self-contained resources that demonstrate real constructor patterns (refs to siblings in the same stack). Apply-gated factories (organization, entitlement, real external inputs, or billing while they exist) go only into a **gated example** — README `## Before you apply`, see `AGENTS.md` **Example verification**: extend the product's gated example or create one. Placeholder ids (organization, instance UUID, partner account) are fine — CI never applies.
 - [ ] 3. **Apply pitfall checklist** (below) before committing.
 - [ ] 4. **Sensitive / variable fields** — use `TfArg.variable('name')` in the stack and declare the variable in `bin/infra.dart` via `tf-out/variables.tf.json` (see existing `cloud_sql_quickstart`, `firebase_app_check_quickstart`, `compute_lb_quickstart`).
-- [ ] 5. **Remove covered lines** from `tool/example_debt.yaml`. Keep reasoned deferrals only (org/folder scope, `iam-adjunct-debt:` for binding/policy when sibling member is in synth, etc.).
+- [ ] 5. **Remove covered lines** from `tool/example_debt.yaml`. Keep reasoned deferrals only: `iam-adjunct-debt:` for binding/policy when the sibling member is in synth, or a factory whose required arguments no placeholder can satisfy at `terraform validate` time (quote the error). Org/folder scope, cost, and entitlements are not deferral reasons.
 - [ ] 6. **Tighten topology** — wire must-reference factories into siblings; see [`terradart-tighten-example-topology`](../terradart-tighten-example-topology/SKILL.md).
 - [ ] 7. **Verify** — from repo root:
   ```bash

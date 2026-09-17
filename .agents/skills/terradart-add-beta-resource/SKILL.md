@@ -37,11 +37,10 @@ The beta-only catalog at the current provider pin is **filled**. Add a resource 
     --migrate-manifest ../terradart_migrate/lib/src/manifest/google_beta.g.dart
   ```
   The migration manifest regenerates with the wrappers — a whole-registry artifact, so run the full lane (`--only` skips it); CI's beta `wrap_check` lane and `tool/agent_verify.sh` fail on a stale one.
-- [ ] 6. **Cost-classify the type** (policy, apply or not): gcp-cost tools (`dart tool/gcp_cost_call.dart` in cloud-agent sessions) → record evidence in `tool/apply_cost_denylist.yaml` per its header format. When unsure, leave unclassified and say so.
+- [ ] 6. **Gated example check:** if applying the type needs an entitlement, an organization, real external inputs, or bills while it exists, say so in the example README's `## Before you apply` section (see `AGENTS.md` **Example verification**).
 - [ ] 7. **Example coverage:** extend [`examples/beta_leftover_quickstart`](../../../examples/beta_leftover_quickstart/) (or a focused beta example) so the factory appears in a synth, or record a reasoned `tool/example_debt.yaml` line. `dart tool/example_synth_gates.dart` reads **both** GA and beta catalogs — an uncovered new factory fails CI.
-- [ ] 8. **Ledger check:** any new beta example must be listed in `tool/apply_smoke_skip.yaml` under the google-beta-lane section (beta apply policy is not designed; synth + `terraform validate` only).
-- [ ] 9. **Package test:** extend `packages/terradart_google_beta/test/synth_test.dart` when the new factory has synth-visible behavior worth pinning (provider pin, sealed slots, sensitive fields).
-- [ ] 10. **CHANGELOG:** add the factory to `packages/terradart_google_beta/CHANGELOG.md` under the next version heading.
+- [ ] 8. **Package test:** extend `packages/terradart_google_beta/test/synth_test.dart` when the new factory has synth-visible behavior worth pinning (provider pin, sealed slots, sensitive fields).
+- [ ] 9. **CHANGELOG:** add the factory to `packages/terradart_google_beta/CHANGELOG.md` under the next version heading.
 
 ## Verification
 
@@ -55,4 +54,4 @@ Check exit codes bare — never pipe into tail/grep and trust `&&`.
 
 ## PR conventions
 
-Single-purpose PR, Conventional Commit `feat(beta): curate <resource>`. Commit messages carry the demand source (issue link), the cost-classification evidence summary, and the example decision. English, no AI footers.
+Single-purpose PR, Conventional Commit `feat(beta): curate <resource>`. Commit messages carry the demand source (issue link) and the example decision. English, no AI footers.
