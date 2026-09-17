@@ -191,6 +191,7 @@ void main() {
           'tool/migrate_manifest_debt.yaml',
           'tool/migrate_roundtrip_debt.yaml',
           '.cursor/agents/wave-shipper.md',
+          // Retired ledger: must never be re-admitted to the Wave surface.
           'tool/apply_cost_denylist.yaml',
         ],
         rules: rules,
