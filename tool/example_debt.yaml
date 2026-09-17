@@ -1,17 +1,24 @@
 # Curated factories not yet exercised by any example quickstart.
 #
-# Policy (AGENTS.md "Wave shipping policy"): every NEW factory must appear in
-# an example within its Wave PR, or get a reasoned line here. Pre-existing
-# gaps live here explicitly, one `ClassName: reason` line each.
-# `dart tool/example_synth_gates.dart` fails when a factory is neither covered
-# nor listed, and when a listed factory becomes covered (remove the line) —
-# adding a line is a reviewed decision, not a default.
+# Policy (AGENTS.md "Wave shipping policy" + "Example verification"): every
+# NEW factory must appear in an example within its Wave PR, or get a reasoned
+# line here. Pre-existing gaps live here explicitly, one `ClassName: reason`
+# line each. `dart tool/example_synth_gates.dart` fails when a factory is
+# neither covered nor listed, and when a listed factory becomes covered
+# (remove the line) — adding a line is a reviewed decision, not a default.
+#
+# A reason that only matters at apply time is NOT a reason to stay here.
+# Lines that cite `never_apply`, a `gcp-cost` SKU, apply-smoke, or
+# `terradart-validate` predate the retirement of live apply and of the cost
+# ledger: they are payable. Cover the factory in a gated example (README
+# `## Before you apply`) and delete the line; the SKU notes are kept only as
+# raw material for that README section.
 #
 # IAM binding/policy (preferred for pure adjunct Waves): when shipping a new
 # `*IamBinding` / `*IamPolicy` whose sibling `*IamMember` is already curated
 # and already in some quickstart synth, list the new factory here with reason
 # containing the token `iam-adjunct-debt:` (plus a short human note). The synth
-# gate enforces sibling presence — no example change and no per-PR apply-smoke.
+# gate enforces sibling presence — no example change needed.
 # Example:
 #   GoogleFooIamBinding: iam-adjunct-debt: sibling GoogleFooIamMember already in bar_quickstart; authoritative binding not needed in smoke
 
