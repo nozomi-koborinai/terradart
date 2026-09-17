@@ -4,7 +4,7 @@ End-to-end terradart example for `google_config_deployment` — actuating a publ
 
 ## Before you apply
 
-Infrastructure Manager runs a real Terraform blueprint (the terraform-google-network VPC module). It needs a dedicated service account with `roles/config.agent` and `roles/compute.networkAdmin`, and the deployment is long-running.
+Applying actuates a real Terraform blueprint (the terraform-google-network VPC module): it creates a live VPC and is long-running. The stack grants `roles/config.agent` and `roles/compute.networkAdmin` to the actuation service account it creates, so your credentials must be allowed to grant project-level roles.
 
 ## Prerequisites
 

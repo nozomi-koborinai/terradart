@@ -4,7 +4,7 @@ End-to-end terradart example for Cloud Storage. Provisions a GCS bucket with a t
 
 ## Before you apply
 
-The bucket object uploads a local file (`config/app.json`) that is not part of the generated `tf-out/`. Provide it next to `main.tf.json` before applying.
+The bucket objects upload local files (`config/app.json`, `legacy/readme.txt`) that are not part of the generated `tf-out/`. Provide them next to `main.tf.json` before applying.
 
 ## Prerequisites
 
