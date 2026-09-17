@@ -62,7 +62,7 @@ void main() {
     });
 
     test('docs-only PR selects nothing (the historical cost-leak class)', () {
-      // The apply-smoke twin of this selector once fanned a pubspec-only
+      // A retired shell twin of this selector once fanned a pubspec-only
       // bump out to every example via a broken awk regex. The validate
       // matrix intentionally DOES select an example for its own pubspec
       // (cheap), but repo-level docs must select nothing.

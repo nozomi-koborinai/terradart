@@ -2,9 +2,9 @@
 //
 // Replaces the untested shell (awk/grep/sed/jq) in ci.yml's `changes` job.
 // This is the same class of selector whose awk regex once fanned a
-// pubspec-only bump out to every example (a real GCP-cost leak — see
-// apply_smoke_test.sh test 8 for the apply-smoke twin), so the logic lives
-// in Dart with unit tests instead of one-shot shell.
+// pubspec-only bump out to every example (a real GCP-cost leak while
+// examples were still applied live), so the logic lives in Dart with unit
+// tests instead of one-shot shell.
 //
 // Usage (from repo root):
 //   git diff --name-only <base> HEAD | \
