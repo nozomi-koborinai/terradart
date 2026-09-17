@@ -37,8 +37,8 @@ The beta-only catalog at the current provider pin is **filled**. Add a resource 
     --migrate-manifest ../terradart_migrate/lib/src/manifest/google_beta.g.dart
   ```
   The migration manifest regenerates with the wrappers — a whole-registry artifact, so run the full lane (`--only` skips it); CI's beta `wrap_check` lane and `tool/agent_verify.sh` fail on a stale one.
-- [ ] 6. **Gated example check:** if applying the type needs an entitlement, an organization, real external inputs, or bills while it exists, say so in the example README's `## Before you apply` section (see `AGENTS.md` **Example verification**).
-- [ ] 7. **Example coverage:** extend [`examples/beta_leftover_quickstart`](../../../examples/beta_leftover_quickstart/) (or a focused beta example) so the factory appears in a synth, or record a reasoned `tool/example_debt.yaml` line. `dart tool/example_synth_gates.dart` reads **both** GA and beta catalogs — an uncovered new factory fails CI.
+- [ ] 6. **Gated example check:** if applying the type needs an entitlement, an organization or real external inputs, bills while it exists, or leaves behind something that cannot be deleted (or a name that stays reserved), say so in the example README's `## Before you apply` section (see `AGENTS.md` **Example verification**).
+- [ ] 7. **Example coverage:** extend [`examples/beta_leftover_quickstart`](../../../examples/beta_leftover_quickstart/) (or a focused beta example) so the factory appears in a synth, or record a reasoned `tool/example_debt.yaml` line (apply-time reasons — cost, entitlements, an organization — are not acceptable; see `AGENTS.md` **Example verification**). `dart tool/example_synth_gates.dart` reads **both** GA and beta catalogs — an uncovered new factory fails CI.
 - [ ] 8. **Package test:** extend `packages/terradart_google_beta/test/synth_test.dart` when the new factory has synth-visible behavior worth pinning (provider pin, sealed slots, sensitive fields).
 - [ ] 9. **CHANGELOG:** add the factory to `packages/terradart_google_beta/CHANGELOG.md` under the next version heading.
 

@@ -52,7 +52,7 @@ The supported maintainer generation path is `terradart wrap`.
 
 ## Wave shipping policy
 
-A **Wave** is a user-visible release batch of related curated factories — now originating from new resources the weekly schema bump appends to [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml). A Wave PR is complete only when every new or breaking factory has a **runnable example** or a reasoned [`tool/example_debt.yaml`](tool/example_debt.yaml) entry (a reviewed decision, not a default — stale entries fail CI). Example coverage, the API-enablement dependency graph, and the IAM `iam-adjunct-debt:` path (binding/policy factories whose sibling `*IamMember` is already in some quickstart synth may take a ledger entry instead of an example) are machine-checked by `dart tool/example_synth_gates.dart`. Breaking API changes include **`MIGRATING.md`** and updated examples in the same PR; catalog counts, README Examples, and the CI `terraform_validate` matrix move in lockstep. `curatedDoc` alone is never sufficient. Full checklist: [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md).
+A **Wave** is a user-visible release batch of related curated factories — now originating from new resources the weekly schema bump appends to [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml). A Wave PR is complete only when every new or breaking factory has a **runnable example** or a reasoned [`tool/example_debt.yaml`](tool/example_debt.yaml) entry (a reviewed decision, not a default — stale entries fail CI, and apply-time reasons are not acceptable: see **Example verification**). Example coverage, the API-enablement dependency graph, and the IAM `iam-adjunct-debt:` path (binding/policy factories whose sibling `*IamMember` is already in some quickstart synth may take a ledger entry instead of an example) are machine-checked by `dart tool/example_synth_gates.dart`. Breaking API changes include **`MIGRATING.md`** and updated examples in the same PR; catalog counts, README Examples, and the CI `terraform_validate` matrix move in lockstep. `curatedDoc` alone is never sufficient. Full checklist: [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md).
 
 ## PR granularity
 
@@ -103,9 +103,9 @@ Live `terraform apply` / `destroy` against `terradart-validate` is **retired**, 
 **A reason that only matters at apply time is not a reason to skip an example.** Hourly or existence billing, entitlements, an organization or second project, resources that cannot be deleted, real secrets or certificates — none of these affect synth or `terraform validate`, so such factories get example coverage like any other. What changes is *where* they go:
 
 - A **gated example** carries a `## Before you apply` section in its README that says what a human needs (or pays) to apply it. Put apply-gated factories only in gated examples: extend the product's existing gated example (`GoogleApigeeInstance` → `apigee_quickstart`), or add a new example with that section. A dummy-value coverage stack follows the `<name>_leftover_quickstart` naming and says **Never apply**.
-- An example without that section is one a reader can apply on a plain standalone project. Never add an apply-gated factory to it.
+- An example without that section is one a reader can apply on a plain standalone project. Never add an apply-gated factory to it, and do not add the section to an existing example just to make room for a factory — add a new example instead.
 
-`tool/example_debt.yaml` entries whose reason cites `never_apply`, a `gcp-cost` SKU, or apply-smoke predate this rule and are payable ([`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md)).
+`tool/example_debt.yaml` entries whose reason cites `never_apply`, a `gcp-cost` SKU, apply-smoke, or `terradart-validate` predate this rule and are payable ([`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md)).
 
 ### Schema-bump post-processing (weekly)
 
@@ -243,7 +243,7 @@ Example failures are synth or `terraform validate` regressions. Fix the example,
 
 Recurring constraints that pass synth + `terraform validate` but fail at a human's real apply (real identities for IAM members, project *number* vs id, restricted resource-level roles, full-name data assets, extra required args, async-operation races) are cataloged with their fixes in the [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md) pitfall table.
 
-When a resource can't be applied on a plain standalone project — org-only (Shared VPC host/service), physical-circuit-dependent (Interconnect), entitlement- or cost-gated — keep it covered: move it to a gated example (see **Example verification**) instead of dropping it. Record a factory in [`tool/example_debt.yaml`](tool/example_debt.yaml) only when synth or `terraform validate` itself cannot be satisfied with placeholder values, or when the scaffolding is out of the example's scope for now (VPN gateways/tunnels); removal drops the factory from synth coverage, which the synth gate fails otherwise, so update the ledger and the example's doc comment together.
+When a resource can't be applied on a plain standalone project — org-only (Shared VPC host/service), physical-circuit-dependent (Interconnect), entitlement- or cost-gated — keep it covered: move it to a gated example (see **Example verification**) instead of dropping it. Record a factory in [`tool/example_debt.yaml`](tool/example_debt.yaml) only when synth or `terraform validate` itself cannot be satisfied with placeholder values; removal drops the factory from synth coverage, which the synth gate fails otherwise, so update the ledger and the example's doc comment together.
 
 ## Project Pitfalls
 

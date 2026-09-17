@@ -90,11 +90,14 @@ evidence-first:
     Report each proposed `note:` line with its evidence quote and exit 0
     (see Find the work §3). Never open a skip-only PR.
 - Where the factories go: if applying them needs an organization, an
-  entitlement, real external inputs, or bills while it exists, use a
-  **gated example** — extend the product's existing one, or add an
-  example whose README has a `## Before you apply` section stating the
-  gate. Never add such a factory to an example without that section, and
-  never use `tool/example_debt.yaml` to avoid writing the example.
+  entitlement or real external inputs, bills while it exists, or leaves
+  behind something that cannot be deleted (or a name that stays
+  reserved), use a **gated example** — extend the product's existing
+  one, or add an example whose README has a `## Before you apply` section
+  stating the gate. Never add such a factory to an example without that
+  section, never add that section to an existing example just to make
+  room for a factory (add a new example instead), and never use
+  `tool/example_debt.yaml` to avoid writing the example.
 
 ## Implement
 

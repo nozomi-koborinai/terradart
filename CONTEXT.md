@@ -101,7 +101,7 @@ Historical. The 2026-08 GA-catalog fill shipped factories that the then-live app
 _Avoid_: Untested, uncovered
 
 **Gated example**:
-An example whose README carries a `## Before you apply` section. It synthesizes and validates anywhere, but applying it needs an organization, an entitlement, real external inputs, or bills while it exists. Apply-gated factories go only into gated examples; a dummy-value coverage stack is a gated example named `<name>_leftover_quickstart` and marked **Never apply**.
+An example whose README carries a `## Before you apply` section. It synthesizes and validates anywhere, but applying it needs an organization, an entitlement or real external inputs, bills while it exists, or leaves behind something that cannot be deleted (or a name that stays reserved). Apply-gated factories go only into gated examples; a dummy-value coverage stack is a gated example named `<name>_leftover_quickstart` and marked **Never apply**.
 _Avoid_: Skip-listed example, apply-smoke skip
 
 ## Example Dialogue
