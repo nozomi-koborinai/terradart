@@ -27,7 +27,6 @@ terraform init
 terraform plan
 ```
 
-## Cost note
+## Before you apply
 
-DEVELOPER-tier Metastore bills hourly (~$0.34/h list). Per-PR apply-smoke
-defers this example to the full sweep (`tool/apply_smoke_pr_skip.yaml`).
+The DEVELOPER-tier Metastore service bills hourly while it exists. Destroy it when you are done.

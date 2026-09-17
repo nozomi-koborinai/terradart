@@ -2,6 +2,10 @@
 
 End-to-end terradart example for Cloud Storage. Provisions a GCS bucket with a typed `LifecycleRule` and uploads one inline-content object via the sealed `BucketObjectContent` API.
 
+## Before you apply
+
+The bucket object uploads a local file (`config/app.json`) that is not part of the generated `tf-out/`. Provide it next to `main.tf.json` before applying.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

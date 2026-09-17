@@ -7,7 +7,9 @@ an Advanced API Security monitoring condition (placeholder profile / env IDs):
 - `google_apigee_datastore`
 - `google_apigee_security_monitoring_condition`
 
-Real apply is skipped (`apply_smoke_skip.yaml`): needs a live Apigee org.
+## Before you apply
+
+To apply this stack you need an existing Apigee organization (`organizations/{org_name}`) and a Cloud Storage bucket for the analytics datastore target; Terraform creates neither here.
 
 ## Prerequisites
 

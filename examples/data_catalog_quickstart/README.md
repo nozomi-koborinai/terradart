@@ -5,9 +5,10 @@ End-to-end terradart example for the **legacy** Data Catalog API. Enables
 taxonomy + policy tag, a tag template, a tag on the custom entry, and additive IAM grants.
 
 Prefer [Dataplex Universal Catalog](../dataplex_quickstart/) for new catalogs.
-Apply-smoke skips this example: some projects reject Data Catalog writes due to
-upstream deprecation (HTTP 400). Synth + `terraform validate` still cover the
-factories.
+
+## Before you apply
+
+Data Catalog is deprecated in favor of Dataplex Universal Catalog, and some projects now reject Data Catalog writes (HTTP 400 on entry group creation).
 
 ## Usage
 

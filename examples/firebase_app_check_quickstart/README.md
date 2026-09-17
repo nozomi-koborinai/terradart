@@ -2,6 +2,10 @@
 
 End-to-end terradart example for Firebase App Check — request attestation that protects Firebase services (Firestore, Realtime DB, etc.) from unauthorized client traffic. Demonstrates the web-side reCAPTCHA Enterprise provider plus a service-level enforcement policy.
 
+## Before you apply
+
+Needs a project registered with Firebase and real App Check credentials: a debug token, a DeviceCheck private key, and a reCAPTCHA secret.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

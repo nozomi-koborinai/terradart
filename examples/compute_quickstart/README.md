@@ -2,6 +2,10 @@
 
 End-to-end terradart example for Cloud Compute networking primitives. Provisions a custom-mode VPC network and a regional external IPv4 address, demonstrating the typed `RoutingMode`, `AddressType`, `NetworkTier`, and `IpVersion` enums.
 
+## Before you apply
+
+The Compute Engine VM bills hourly while it exists. Destroy it when you are done.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

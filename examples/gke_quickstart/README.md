@@ -2,6 +2,10 @@
 
 End-to-end terradart example for Google Kubernetes Engine, GKE Hub, and GKE Backup. Provisions a custom-mode VPC, cluster + node pool, Hub fleet membership, and a backup plan + restore plan with plan-scoped IAM members bound to a dedicated service account.
 
+## Before you apply
+
+The GKE control plane fee and the node VMs bill hourly while the cluster exists. Destroy it when you are done.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

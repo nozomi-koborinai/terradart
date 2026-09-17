@@ -6,9 +6,8 @@
 ///
 /// Hive `hive_options` and Iceberg `schema` / `partition_spec` stay as
 /// structured maps on the thin curated factories. Metadata-only resources
-/// create and destroy cleanly in a single project; the Iceberg table hits
-/// BigLake Table Management hourly SKUs (PR apply deferred via
-/// `apply_smoke_pr_skip.yaml`).
+/// create and destroy cleanly in a single project; the Iceberg table bills
+/// BigLake Table Management hourly while it exists.
 ///
 /// Additive IAM members grant a reader service account on each Iceberg level
 /// (catalog, namespace, table).

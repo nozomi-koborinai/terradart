@@ -15,7 +15,8 @@
 ///
 /// Later coverage adds `GoogleKmsSecretCiphertext` (encrypt helper) and a
 /// software `GoogleKmsKeyRingImportJob` (wrapping key for external material).
-/// Apply-smoke skips this example (non-deletable key rings / import jobs).
+/// Key rings and import jobs can never be deleted (see the README's
+/// "Before you apply").
 library;
 
 import 'package:terradart_core/terradart_core.dart';

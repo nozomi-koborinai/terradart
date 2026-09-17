@@ -1,7 +1,7 @@
 /// SCC leftover quickstart — apply-excluded org/folder/project factories.
 ///
 /// Needs a real organization-activated Security Command Center parent.
-/// Skip-listed; synth + `terraform validate` only.
+/// Coverage stack; synth + `terraform validate` only. Never apply as-is.
 library;
 
 import 'package:terradart_core/terradart_core.dart';

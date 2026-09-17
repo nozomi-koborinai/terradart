@@ -33,7 +33,7 @@ final class DataprocMetastoreStack extends Stack {
 
     // Dataproc Metastore's THRIFT endpoint attaches to a VPC network. When
     // `network` is omitted the API falls back to the project `default`
-    // network, which standalone projects (e.g. the apply-smoke project) do
+    // network, which many standalone projects do
     // not have — apply then fails "Network ... does not exist". Provision an
     // auto-mode VPC so the example is self-contained.
     final network = add(

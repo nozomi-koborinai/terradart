@@ -4,12 +4,11 @@
 /// Federation-only pools cannot host namespaces — [mode] must be
 /// [WorkloadIdentityPoolMode.trustDomain].
 ///
-/// Real apply is skipped for `terradart-validate`
-/// ([tool/apply_smoke_skip.yaml]): WIF pool / namespace / managed-identity
-/// IDs are soft-deleted for ~30 days and Terraform create does not undelete,
-/// so a fixed-id re-apply after destroy 409s. Distinct from skip-listed
-/// `iam_quickstart` (that stack uses pool id `github-actions`, which collides
-/// with apply-smoke CI auth).
+/// Applying twice is gated: WIF pool / namespace / managed-identity ids are
+/// soft-deleted for ~30 days and Terraform create does not undelete, so a
+/// fixed-id re-apply after destroy 409s (see the README's "Before you
+/// apply"). The pool id is distinct from `iam_quickstart`'s
+/// (`github-actions`).
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;

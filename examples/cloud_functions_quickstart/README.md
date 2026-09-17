@@ -2,6 +2,10 @@
 
 End-to-end terradart example for a Cloud Functions Gen 2 HTTP function with a dedicated source bucket and runtime service account.
 
+## Before you apply
+
+Stage a real function source zip in the source bucket before applying; synth does not produce one.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

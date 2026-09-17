@@ -2,6 +2,10 @@
 
 End-to-end terradart example for `google_config_deployment` — actuating a public Git Terraform blueprint with a dedicated service account.
 
+## Before you apply
+
+Infrastructure Manager runs a real Terraform blueprint (the terraform-google-network VPC module). It needs a dedicated service account with `roles/config.agent` and `roles/compute.networkAdmin`, and the deployment is long-running.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

@@ -2,6 +2,10 @@
 
 End-to-end terradart example for `google_network_connectivity_transport` (Partner Cross-Cloud Interconnect).
 
+## Before you apply
+
+The Partner Cross-Cloud Interconnect transport needs a real partner account and remote transport profile; the placeholder `remote_account_id` fails at apply time.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6
