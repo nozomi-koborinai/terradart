@@ -93,12 +93,16 @@ The migrator's acceptance criterion: after migrating a module, `terraform plan` 
 _Avoid_: Best effort, approximately equivalent
 
 **Debt ledger**:
-A machine-checked YAML under `tool/` (for example `example_debt.yaml`, the apply-smoke skip lists, `apply_cost_denylist.yaml`, `migrate_roundtrip_debt.yaml`) that records a reviewed, reasoned gap so CI can enforce that every gap is a decision, not an accident.
+A machine-checked YAML under `tool/` (for example `example_debt.yaml`, `enum_gap_debt.yaml`, `migrate_roundtrip_debt.yaml`) that records a reviewed, reasoned gap so CI can enforce that every gap is a decision, not an accident.
 _Avoid_: TODO list, wishlist
 
 **Apply-excluded path**:
-Curating a factory whose example coverage is synth + `terraform validate` only, with the real-apply gap recorded in a debt ledger. Used heavily in the 2026-08 GA-catalog fill; paying the debt down is standing maintenance-phase work.
+Historical. The 2026-08 GA-catalog fill shipped factories that the then-live apply harness could not apply with a debt-ledger entry instead of an example. Live apply is retired, so those entries are ordinary example debt now and are payable through gated examples.
 _Avoid_: Untested, uncovered
+
+**Gated example**:
+An example whose README carries a `## Before you apply` section. It synthesizes and validates anywhere, but applying it needs an organization, an entitlement or real external inputs, bills while it exists, or leaves behind something that cannot be deleted (or a name that stays reserved). Apply-gated factories go only into gated examples; a dummy-value coverage stack is a gated example named `<name>_leftover_quickstart` and marked **Never apply**.
+_Avoid_: Skip-listed example, apply-smoke skip
 
 ## Example Dialogue
 

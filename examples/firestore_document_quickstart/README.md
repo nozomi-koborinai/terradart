@@ -9,6 +9,10 @@ For a more complete cookbook recipe (4 collections, 11 documents,
 composite index, daily backup schedule), see
 [`../../cookbook/firestore-seeded-data/`](../../cookbook/firestore-seeded-data/).
 
+## Before you apply
+
+Creates the project's `(default)` Firestore database. A project has only one, so applying to a project that already has it fails with 409 `Database already exists`.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

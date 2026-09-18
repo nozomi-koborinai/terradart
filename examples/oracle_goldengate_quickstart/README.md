@@ -9,6 +9,10 @@ End-to-end terradart example for Oracle Database@Google Cloud factories:
 - `google_oracle_database_goldengate_connection`
 - `google_oracle_database_goldengate_connection_assignment`
 
+## Before you apply
+
+Needs an Oracle Database@Google Cloud entitlement for the zone and a live ODB network and subnet; the API rejects the placeholder VPC / ODB wiring.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

@@ -6,6 +6,10 @@ VPC, subnet, backend VM, health check, NEG, Cloud Armor policy,
 backend service, URL map, SSL policy, managed TLS cert, target HTTPS
 proxy, VIP, and global forwarding rule -- using only Wave 6 resources.
 
+## Before you apply
+
+Supply a real TLS certificate and private key, and a Certificate Authority Service CSR / trust anchor, before applying. The placeholder values only satisfy `terraform validate`.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

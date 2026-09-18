@@ -6,6 +6,10 @@ private-services peering chain (VPC + reserved global address + service
 networking connection), a PostgreSQL primary with database and user, and
 an AlloyDB cluster with primary instance and app user.
 
+## Before you apply
+
+The external source-replica setup needs the real replication password; the placeholder only satisfies `terraform validate`.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

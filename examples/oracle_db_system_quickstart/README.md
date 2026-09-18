@@ -7,6 +7,10 @@ End-to-end terradart example for Oracle Base Database on Oracle Database@Google 
 - `google_oracle_database_odb_subnet`
 - `google_oracle_database_db_system`
 
+## Before you apply
+
+Needs an Oracle Database@Google Cloud entitlement for the zone and a live ODB network and subnet; the API rejects the placeholder wiring.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

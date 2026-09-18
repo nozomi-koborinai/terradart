@@ -2,6 +2,10 @@
 
 End-to-end terradart example for Firebase Data Connect — a serverless GraphQL backend backed by Cloud SQL.
 
+## Before you apply
+
+The project must already be registered with Firebase. Enabling `firebase.googleapis.com` is not enough, and this stack does not perform the registration.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

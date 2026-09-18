@@ -2,6 +2,10 @@
 
 End-to-end terradart example for App Engine. Enables the App Engine, App Engine Flex, and Cloud Storage APIs and provisions the project application, a standard-environment version on `default`, a flexible-environment version on `flex`, firewall and URL-dispatch rules, a domain mapping, and service-level network/traffic settings.
 
+## Before you apply
+
+Stage `app.zip` in the deploy bucket and use a domain you can verify for the domain mapping. A project can hold only one App Engine application.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6
@@ -35,5 +39,3 @@ dart run bin/infra.dart
 # 4. Plan / apply with Terraform:
 cd tf-out && terraform init && terraform plan
 ```
-
-Real apply needs a staged `app.zip` in the deploy bucket and a verifiable domain for domain mapping; CI runs synth + `terraform validate` only.

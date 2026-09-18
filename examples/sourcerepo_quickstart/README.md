@@ -9,10 +9,9 @@ End-to-end terradart example for Cloud Source Repositories. Enables
 Empty repositories are usage-metered only (storage / MAU free tiers cover
 this smoke stack).
 
-> **Apply-smoke note:** `sourcerepo.googleapis.com` is not enableable on
-> `terradart-validate` (API absent from the project's available services;
-> Cloud Source Repositories is in maintenance mode). This quickstart is
-> skip-listed for real apply; synth + `terraform validate` still run in CI.
+## Before you apply
+
+Cloud Source Repositories is in maintenance mode: `sourcerepo.googleapis.com` cannot be enabled on a project that did not already use it (enabling returns 403). Prefer Secure Source Manager for new work.
 
 ## Prerequisites
 

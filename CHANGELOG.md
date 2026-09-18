@@ -4,6 +4,17 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## Unreleased
+
+### Removed
+
+- The cost ledger (`tool/apply_cost_denylist.yaml`), the apply-smoke skip ledgers, `tool/apply_smoke.sh` and its selection tests, the wave skiplist gate, the read-only orphan probe, and the gcp-cost transport used for cost classification. They partitioned examples for the live apply harness retired in #624; nothing consumed them any more. The knowledge the skip ledgers held moved into each example README's `## Before you apply` section. The repository no longer registers the gcp-cost MCP server (`.mcp.json`, `.cursor/mcp.json`).
+
+### Changed
+
+- A reason that only matters at apply time (billing, entitlements, an organization, undeletable resources) is no longer a reason to skip an example. Such factories ship in gated examples, and the `tool/example_debt.yaml` entries that cited those reasons are payable.
+- The CI job `apply_smoke.sh selection test` is now `example gates (synth, topology, coverage page)`; `ci gate` remains the single required check.
+
 ## [0.28.1] - 2026-09-13
 
 Lockstep patch release across the workspace. **No breaking changes** vs `0.28.0`.

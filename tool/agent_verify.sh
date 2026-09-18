@@ -102,8 +102,8 @@ else
   echo ">> package test suites: SKIPPED (--quick)"
 fi
 
-echo ">> dart test tool/ (render_formula, render_to_file, select_changed_examples, check_bump_scope, wave_skiplist_gate, loop_health_report, extract_schema_subset)"
-dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/check_wave_skiplist_gate_test.dart tool/loop_health_report_test.dart tool/extract_schema_subset_test.dart tool/generate_drift_report_test.dart
+echo ">> dart test tool/ (render_formula, render_to_file, select_changed_examples, check_bump_scope, loop_health_report, extract_schema_subset, generate_drift_report)"
+dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/loop_health_report_test.dart tool/extract_schema_subset_test.dart tool/generate_drift_report_test.dart
 
 echo ">> terradart wrap --check"
 (
@@ -199,18 +199,6 @@ dart tool/check_override_enum_gaps.dart --strict-nested
 
 echo ">> check_mm_upstream_fingerprint"
 dart tool/check_mm_upstream_fingerprint.dart
-
-echo ">> apply_smoke_test (selection, no GCP)"
-chmod +x tool/apply_smoke_test.sh
-if [[ "$QUICK" == "1" ]] && ! compgen -G "examples/*/tf-out" > /dev/null; then
-  # The cost gate (test 9) inspects synthesized tf-out and fails closed when
-  # there is none. --quick skips the synth that creates it, so on a fresh
-  # checkout the gate would fail for the wrong reason; the full gate always
-  # runs it right after synth.
-  echo ">> apply_smoke_test: SKIPPED (--quick, no examples/*/tf-out yet — the full gate runs the cost gate after synth)"
-else
-  tool/apply_smoke_test.sh
-fi
 
 if [[ "$QUICK" == "0" ]]; then
   echo ">> smoke_quickstart"

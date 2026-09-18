@@ -1,7 +1,8 @@
 /// Org leftover quickstart — hierarchical firewall / Cloud Armor, BYOIP,
 /// Storage Intelligence folder/org, and a Wasm plugin stub.
 ///
-/// Skip-listed; synth + `terraform validate` only. Do not apply.
+/// Coverage stack with dummy values; synth + `terraform validate` only.
+/// Never apply.
 library;
 
 import 'package:terradart_core/terradart_core.dart';

@@ -2,6 +2,10 @@
 
 End-to-end terradart example for routing Cloud Audit Logs into BigQuery via logging sinks at project, folder, and organization scope. Provisions a BigQuery dataset (`audit_logs`) as the shared destination, a `GoogleLoggingProjectSink`, plus folder- and org-scoped sinks that read `ops_folder_id` / `ops_organization_id` Terraform variables (apply requires real folder/org permissions).
 
+## Before you apply
+
+The folder- and organization-level log sinks need a real organization id and folder id.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

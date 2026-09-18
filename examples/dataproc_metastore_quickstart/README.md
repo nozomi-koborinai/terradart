@@ -11,6 +11,10 @@ The stack also provisions a dedicated `google_compute_network`: the
 Metastore THRIFT endpoint attaches to a VPC, and the API otherwise defaults
 to the project `default` network, which standalone projects do not have.
 
+## Before you apply
+
+The DEVELOPER-tier Metastore service bills hourly while it exists. Destroy it when you are done.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6
@@ -26,8 +30,3 @@ cd tf-out
 terraform init
 terraform plan
 ```
-
-## Cost note
-
-DEVELOPER-tier Metastore bills hourly (~$0.34/h list). Per-PR apply-smoke
-defers this example to the full sweep (`tool/apply_smoke_pr_skip.yaml`).

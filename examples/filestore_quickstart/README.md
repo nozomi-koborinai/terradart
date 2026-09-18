@@ -2,6 +2,10 @@
 
 High Scale SSD Filestore instance and snapshot in `us-central1`.
 
+## Before you apply
+
+The High Scale SSD instance needs `HighScaleSSDStorageGibPerRegion` quota for its 10 TiB minimum; new projects start with a limit of 0. The instance bills hourly while it exists.
+
 ## Usage
 
 ```bash

@@ -6,8 +6,8 @@ End-to-end terradart example for VPN **gateway** metadata only:
 - `google_compute_ha_vpn_gateway`
 - `google_compute_external_vpn_gateway` (off-GCP peer shell)
 
-**Does not** create `google_compute_vpn_tunnel` (hourly `sweep_only` tunnel
-SKUs) or forwarding rules / Cloud Router BGP scaffolding.
+**Does not** create `google_compute_vpn_tunnel` (tunnels bill hourly) or
+forwarding rules / Cloud Router BGP scaffolding.
 
 ## Prerequisites
 

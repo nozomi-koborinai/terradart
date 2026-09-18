@@ -199,8 +199,8 @@ final class DiscoveryEngineCatalogStack extends Stack {
       ),
     );
 
-    // Apply-excluded leftovers: CMEK + third-party connector. This
-    // example is skip-listed (soft-delete) and is never applied.
+    // Coverage-only factories: CMEK + third-party connector
+    // (placeholder ids; see the README's "Before you apply").
     add(
       GoogleDiscoveryEngineCmekConfig(
         localName: 'cmek',

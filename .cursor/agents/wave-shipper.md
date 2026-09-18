@@ -3,11 +3,11 @@
 You ship one curated-factory Wave per run from the curation backlog. You
 implement and label; you NEVER merge — the wave-merge executor re-verifies
 your PR mechanically (scope ledger and required checks) and performs the
-merge. Live GCP apply-smoke is retired; do not `terraform apply` against
-`terradart-validate`.
+merge. Never run `terraform apply`: example verification is synth +
+`terraform validate` only.
 
 Read `AGENTS.md` first — its Generation Policy, Wave shipping policy,
-verification pitfalls, cost-classify rules, and guardrails all bind you.
+verification pitfalls, the gated-example rule, and guardrails all bind you.
 
 ## Find the work
 
@@ -15,14 +15,9 @@ verification pitfalls, cost-classify rules, and guardrails all bind you.
    (`gh pr list --state open --json number,headRefName`)? Check its CI:
    `gh pr checks <number>` —
    - failures OTHER than the `verify + merge` check → the wave is **red**:
-     do NOT start a new Wave; go to **Repair a red wave** below. This
-     includes a red `apply_smoke.sh selection test` check because the Wave
-     touches a **skip-listed example** (`tool/check_wave_skiplist_gate.dart`,
-     run by that CI job): that is *repairable* (make the example stand alone
-     and remove it from `tool/apply_smoke_skip.yaml` /
-     `apply_smoke_pr_skip.yaml`, or drop the example change into
-     `tool/example_debt.yaml`). Do NOT treat it as a human-only no-op — that
-     stalls WIP-1 forever (#296). Go to Repair.
+     do NOT start a new Wave; go to **Repair a red wave** below. A red
+     check is never a human-only no-op — leaving it stalls WIP-1 forever
+     (#296).
    - `verify + merge` alone failing for a true executor/human verdict that
      you cannot fix in-scope (e.g. scope-ledger rejection outside
      `tool/wave_allowed_paths.yaml`) → report escalation and exit 0.
@@ -74,15 +69,16 @@ evidence-first:
   when circumstances change). Entries in a group share the product segment
   (e.g. `google_apigee_*`). Take 3-6 resources; if the group has more,
   take the first 6 and leave the rest for the next run.
-- A product may be unsuitable when it is organization-scoped, needs
-  external artifacts (real certs/secrets/registrations), or its example
-  cannot stand alone on a single GCP project. **Skip evidence is
-  mandatory** — quote at least one of:
-  - a schema **required** field that cannot be satisfied in-stack
-    (optional fields are never "required");
-  - an existing `tool/apply_smoke_skip.yaml` / `example_debt.yaml` entry
-    for the parent or sibling product with a matching reason;
-  - a quoted terraform/API error from this run or a linked prior log.
+- Not being applyable is **not** unsuitability: organization-scoped,
+  entitlement-gated, hourly-billed, or undeletable resources ship in a
+  gated example (`AGENTS.md` **Example verification**) with placeholder
+  ids. A product is unsuitable only when synth or `terraform validate`
+  cannot be satisfied in-stack. **Skip evidence is mandatory** — quote at
+  least one of:
+  - a schema **required** field that no placeholder value or in-stack
+    sibling can satisfy at `terraform validate` time (optional fields are
+    never "required");
+  - a quoted terraform error from this run or a linked prior log.
   Desk analogy alone ("looks like the other skipped resource") is not
   enough.
 - **Writing skip notes vs escalating:**
@@ -93,14 +89,15 @@ evidence-first:
   - If **no** shippable group remains: do **not** edit the backlog.
     Report each proposed `note:` line with its evidence quote and exit 0
     (see Find the work §3). Never open a skip-only PR.
-- Prefer example subject matter that can stand alone: CI's
-  `apply_smoke.sh selection test` fails closed via
-  `tool/check_wave_skiplist_gate.dart` when a `wave/*` PR touches a
-  skip-listed example (so WIP-1 cannot silently stall). A Wave that needs
-  `apply_smoke_skip.yaml` must either make the example stand alone and
-  remove the skip entry in the same PR, or drop the factories into
-  `tool/example_debt.yaml` and pick another product — do **not** push
-  `[wave-ready]` while the example stays skip-listed.
+- Where the factories go: if applying them needs an organization, an
+  entitlement or real external inputs, bills while it exists, or leaves
+  behind something that cannot be deleted (or a name that stays
+  reserved), use a **gated example** — extend the product's existing
+  one, or add an example whose README has a `## Before you apply` section
+  stating the gate. Never add such a factory to an example without that
+  section, never add that section to an existing example just to make
+  room for a factory (add a new example instead), and never use
+  `tool/example_debt.yaml` to avoid writing the example.
 
 ## Implement
 
@@ -118,25 +115,12 @@ Follow the two skills exactly, in order, for each resource — except the steps 
    `*IamPolicy` Waves whose sibling `*IamMember` is already in synth,
    `tool/example_debt.yaml` lines with `iam-adjunct-debt:` — no example
    touch), README Examples list when examples
-   change, **cost-classify via the gcp-cost tools** (mandatory — record SKU
-   evidence in `tool/apply_cost_denylist.yaml` comments), coverage page
+   change, the README `## Before you apply` section when the example is
+   gated, coverage page
    regeneration (`dart tool/example_synth_gates.dart --skip-validate`
    then `dart tool/render_coverage_page.dart` — the renderer fails closed
    on partial tf-out), and the rest of
    the checklist.
-
-Cloud Agent sessions do not get the gcp-cost MCP server through Cursor's
-MCP integration — call the same tools through the stdio helper instead:
-
-```bash
-dart tool/gcp_cost_call.dart --list
-dart tool/gcp_cost_call.dart get_estimation_guide '{"service_name":"Cloud Tasks"}'
-dart tool/gcp_cost_call.dart list_skus '{"service_id":"F3A6-D7B7-9BDA","keyword":"operations"}'
-```
-
-Auth and the server binary are provisioned by the environment (install.sh
-+ the `GOOGLE_APPLICATION_CREDENTIALS` secret); if a call fails, quote the
-helper's stderr in your escalation instead of guessing prices.
 
 Also remove the implemented resources' entries from
 `tool/curation_backlog.yaml` in the same PR (the file's own header rule).
@@ -150,9 +134,6 @@ tail/grep and trust `&&` — check exit codes bare.
 - the MM fixture declares a top-level `exactly_one_of` group — that needs
   a sealed-class design (maintainer work; do not attempt, do not add
   `tool/exactly_one_lint_debt.yaml` entries);
-- you cannot classify a resource's billing with confidence via gcp-cost
-  MCP (default-deny will fail the cost gate — correct, but the Wave choice
-  should be reconsidered by a human);
 - every remaining un-skipped backlog entry is unsuitable (skip-only day —
   proposed notes + evidence only; no backlog edit, no push);
 - `terradart lint-override` fails with `migrate-shape-underivable` after
@@ -211,8 +192,8 @@ reads differently.) Pushing IS your delivery mechanism:
 - Branch `wave/<product>-<YYYY-MM-DD>`; commits in English, no AI footers.
 - **Commit messages are the public record.** The PR body is machine-
   generated from them (wave-open.yml), so your commits MUST carry the
-  selection rationale, the cost-classification evidence summary, and the
-  example's subject. Write them as if they were the PR description.
+  selection rationale and the example's subject (for a gated example,
+  what gates its apply). Write them as if they were the PR description.
 - After the FULL gate is green: make the final commit message contain
   **`[wave-ready]`** (an empty
   `git commit --allow-empty -m "chore: finalize wave [wave-ready]"` is
@@ -243,8 +224,8 @@ sense when you know them:
   (a required check still queued behind the example matrix is waited for)
   and merges exactly the head it verified; a push after the label makes the
   merge refuse and comment, and your next `[wave-ready]` push re-verifies.
-  Every non-merge outcome is a PR comment. Live apply-smoke is retired;
-  example verification is synth + `terraform validate`.
+  Every non-merge outcome is a PR comment. Example verification is synth
+  + `terraform validate`; nothing is applied.
 - If the branch is BEHIND at merge time, the executor updates it and
   re-dispatches itself once (depth-capped).
 - Merging stays disarmed unless the `WAVE_MERGE_ENABLED` repository variable

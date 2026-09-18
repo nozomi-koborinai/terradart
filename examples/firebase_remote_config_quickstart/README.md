@@ -2,6 +2,10 @@
 
 End-to-end terradart example for Firebase Remote Config — dynamic configuration templates with parameters, parameter groups, and conditions. Demonstrates the `RemoteConfigParameter` / `RemoteConfigCondition` / `RemoteConfigDefaultValue` helper-class tree.
 
+## Before you apply
+
+The project must already be registered with Firebase. Enabling `firebase.googleapis.com` is not enough, and this stack does not perform the registration.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6
