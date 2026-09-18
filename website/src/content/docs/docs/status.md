@@ -11,7 +11,7 @@ There are no SemVer guarantees until **v1.0.0**, but breaking changes land only 
 
 | Phase | Version line | What we promise |
 | --- | --- | --- |
-| **Alpha** | 0.28.x (current) | Maintainer-side gates are done (docs, CI, real-apply coverage). **No breaking changes within a minor** (`^0.N.x`); breaking changes only on minor bumps, always documented in `MIGRATING.md`. Not SemVer until 1.0.0. |
+| **Alpha** | 0.28.x (current) | Maintainer-side gates are done (docs, CI, example validation). **No breaking changes within a minor** (`^0.N.x`); breaking changes only on minor bumps, always documented in `MIGRATING.md`. Not SemVer until 1.0.0. |
 | **Beta** | TBD (needs external validation) | The same change policy, proven against real external usage — see [Path to beta](#path-to-beta). |
 | **1.0.0** | TBD | Stable SemVer for `terradart_core`, `terradart_google`, and `terradart_codegen`. |
 
@@ -37,7 +37,7 @@ Alpha required every item below; all are done. (This list was the former "beta r
 - [x] **Examples matrix** on `main` stays green (per-example synth + `terraform validate` on `tf-out/`).
 - [x] **Boundary demo**: [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) documents `addExport` / generated `.app.dart` and includes a subscriber stub that `dart analyze` accepts.
 - [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on alpha/beta wording, `^0.N.x` pins, and **1337 curated resource factories + 461 data sources** (1798 catalog entries).
-- [x] **Full example coverage**: `tool/example_debt.yaml` is empty — all catalog entries appear in at least one quickstart synth (`check_docs_consistency.dart`).
+- [x] **Example coverage is enforced**: every catalog entry is either exercised by a quickstart synth or listed with a reason in `tool/example_debt.yaml` (`dart tool/example_synth_gates.dart`). The ledger is not empty today: the GA catalog fill added factories faster than examples, and paying it down is ongoing maintenance work.
 - [x] **Change policy** published on this page (see [Change policy](#change-policy-from-alpha-onward)) and in force from alpha.
 
 ## Path to beta

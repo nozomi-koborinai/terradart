@@ -106,8 +106,8 @@ String renderCoveragePage({
     ..writeln(
       'TerraDart currently ships **$countsPhrase**. Each factory below is '
       'generated from the pinned provider schema, exported from the barrel '
-      'shown, and — where an example is listed — synthesized (and, for '
-      'apply-eligible examples, actually applied) in CI.',
+      'shown, and — where an example is listed — synthesized and checked '
+      'with `terraform validate` in CI.',
     )
     ..writeln()
     ..writeln(
