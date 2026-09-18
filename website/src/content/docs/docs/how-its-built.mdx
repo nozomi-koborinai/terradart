@@ -50,10 +50,10 @@ auditable.**
 - Human decisions — how to model an exactly-one-of block as a sealed class
   hierarchy, which surfaces to freeze deliberately, and whether to opt into
   `google-beta` lane — live in thin, reviewable override files.
-- Every escape hatch is a **fail-closed ledger**: skipped examples, frozen
-  surfaces, cost classifications, and coverage debts are recorded lines with
-  reasons, and CI fails when an entry goes stale. Forgetting is impossible to
-  do silently.
+- Every escape hatch is a **fail-closed ledger**: frozen surfaces, coverage
+  debts, and migrator round-trip exceptions are recorded lines with reasons,
+  and CI fails when an entry goes stale. Forgetting is impossible to do
+  silently.
 
 This is also why the API is opinionated: IAM adjuncts default to additive
 `*_iam_member` variants, and mutually-exclusive nested blocks are enforced at
@@ -70,19 +70,22 @@ Verification is layered from cheap to expensive:
     synth["Synth gates<br/>every example synthesized ·<br/>catalog coverage · API-enablement graph"]
     audit["Determinism & audit gates<br/>byte-identity · override linter ·<br/>nested-enum coverage · provenance fingerprints"]
   end
-  subgraph L2["Example changes + monthly — real applies"]
-    apply["terraform apply + destroy against a<br/>dedicated GCP project (WIF, no long-lived keys)"]
-    cost["Default-deny cost ledger:<br/>unclassified resource types are never applied"]
+  subgraph L2["Every PR — minutes"]
+    validate["terraform validate<br/>every example's JSON checked by Terraform<br/>against the real provider"]
+    roundtrip["Migrator round trip<br/>synth → migrate back to Dart → synth,<br/>outputs must be identical"]
   end
   L1 --> L2
-  apply --- cost`}
+  validate --- roundtrip`}
 />
 
-The last layer is the one most projects skip: apply-eligible examples are
-**actually applied and destroyed** in a real GCP project — automatically on
-any pull request that touches an example, and as a monthly full sweep. When
-you upgrade TerraDart and your synthesized JSON is unchanged, that is not
-luck; it is the property this harness exists to protect.
+The second layer asks Terraform itself. On every pull request, each example's
+synthesized JSON is checked with `terraform validate` against the real
+provider plugin, and the migrator round-trips every example — synthesize,
+migrate the JSON back to Dart, synthesize again — and requires identical
+output. CI does not apply examples to a live project; real-apply evidence is
+tracked through the cookbook (see [Status](/docs/status/)). When you upgrade
+TerraDart and your synthesized JSON is unchanged, that is not luck; it is the
+property this harness exists to protect.
 
 ## Sustainability
 
