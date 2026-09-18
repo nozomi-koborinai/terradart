@@ -6,8 +6,9 @@ Provisions a regional key ring (`main-ring`) and `payments` crypto key in
 import job, and a `GoogleContactCenterInsightsEncryptionSpec` wired to the
 payments key.
 
-Apply-smoke skips this example: KMS key rings / import jobs cannot be deleted
-from GCP, so re-runs fail with 409 on a reused project.
+## Before you apply
+
+KMS key rings, keys, and import jobs can never be deleted. Applying leaves them in the project permanently, and a second apply with the same names fails with 409.
 
 ## Prerequisites
 

@@ -51,7 +51,7 @@ jobs:
           body_file=/tmp/pr_body.md
           {
             echo "Opened automatically by wave-open.yml — the wave-shipper agent's"
-            echo "rationale and cost evidence live in the commit messages below."
+            echo "rationale (and, for a gated example, what gates its apply) live in the commit messages below."
             echo
             git log --format='- %s' "origin/main..$HEAD_SHA" 2>/dev/null || true
             echo

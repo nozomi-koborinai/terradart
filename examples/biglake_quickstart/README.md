@@ -9,6 +9,10 @@ Storage APIs and provisions:
 Hive `hive_options` and Iceberg `schema` / `partition_spec` are passed as
 structured maps, matching the thin curated factories.
 
+## Before you apply
+
+The Hive metastore stores catalog metadata only, but the Iceberg table incurs BigLake Table Management charges hourly while it exists. Destroy it when you are done.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6
@@ -42,7 +46,3 @@ dart run bin/infra.dart
 # 4. Plan / apply with Terraform:
 cd tf-out && terraform init && terraform plan
 ```
-
-Hive metastore stores catalog metadata only. The Iceberg table incurs BigLake
-Table Management hourly charges while it exists — the per-PR apply-smoke gate
-defers this example to the full sweep (`tool/apply_smoke_pr_skip.yaml`).

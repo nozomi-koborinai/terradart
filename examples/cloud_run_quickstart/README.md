@@ -2,6 +2,10 @@
 
 End-to-end terradart example for a Cloud Run v2 Service with a secret-backed environment variable, Serverless VPC Access, and Memorystore (Redis + Memcache) reached over Private Service Access. Provisions a Secret Manager secret, API enablement with propagation sleep, a dedicated VPC with a Private Service Access (PSA) peering, a VPC Access connector, Redis and Memcache instances on that VPC, then a Cloud Run service that consumes the secret via the sealed `EnvVarFromSecret` variant of `EnvVarSource` and routes private-range egress through the connector.
 
+## Before you apply
+
+The Memorystore for Redis and Memcached instances bill hourly while they exist. Destroy them when you are done.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

@@ -10,9 +10,9 @@ Creating a collection alone does not provision index-serving capacity.
 API defaults dedicated infrastructure to two PERFORMANCE_OPTIMIZED replicas
 (hourly billing).
 
-**Apply-smoke:** this example is listed in `tool/apply_smoke_skip.yaml`.
-DataObject meters Write Ops (~$0.18/count) and payload storage; synth +
-`terraform validate` still cover both factories.
+## Before you apply
+
+Vector Search data objects are metered per write operation and for stored payload. Destroy the stack when you are done.
 
 ## Prerequisites
 

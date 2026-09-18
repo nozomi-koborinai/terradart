@@ -101,7 +101,7 @@ final class DlpStack extends Stack {
     );
 
     // Empty bucket for the paused job trigger's storage_config. Force-destroy
-    // so apply-smoke teardown stays clean if any object appears.
+    // so `terraform destroy` stays clean if any object appears.
     final scanBucket = add(
       GoogleStorageBucket(
         localName: 'dlp_scan',

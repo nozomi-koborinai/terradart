@@ -7,7 +7,7 @@
 /// (`google_integrations_auth_config`). Control-plane only — no sample
 /// flows, no CMEK, no connectors that invoke paid runtimes.
 ///
-/// Uses `us-east1` so apply-smoke can provision even when `us-central1`
+/// Uses `us-east1` so an apply can provision even when `us-central1`
 /// already has an orphaned client from a prior failed create (the provision
 /// API can materialize the client while Terraform still surfaces a 400).
 /// Auth-config [location] matches the client.

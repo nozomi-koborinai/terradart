@@ -6,6 +6,10 @@ End-to-end terradart example for Chronicle (Google SecOps) factories:
 - `google_chronicle_native_dashboard`
 - `google_chronicle_dashboard_chart`
 
+## Before you apply
+
+Needs an existing Chronicle (Google SecOps) instance; the placeholder instance UUID fails at apply time.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

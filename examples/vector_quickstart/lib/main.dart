@@ -5,9 +5,8 @@
 ///   a dense vector field (dimensions only — no Vertex embedding config),
 /// - one [GoogleVectorSearchDataObject] row (zero vector) in that collection.
 ///
-/// **Apply-smoke:** listed in `tool/apply_smoke_skip.yaml` so real apply is
-/// skipped — DataObject meters Write Ops (`C1E5-1A7F-E9B3` ~$0.18/count) and
-/// payload storage. Synth + `terraform validate` still cover both factories.
+/// Applying is metered: a data object bills per write operation and for
+/// stored payload (see the README's "Before you apply").
 ///
 /// `google_vector_search_index` stays in `tool/example_debt.yaml` (hourly
 /// capacity-unit defaults).

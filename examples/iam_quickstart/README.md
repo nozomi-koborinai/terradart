@@ -22,6 +22,10 @@ Each IAM resource has a slightly different identity surface; this example shows 
 
 The `member` argument on every `_iam_member` is wired via `sa.member` -- the pre-formatted `serviceAccount:<email>` computed attribute on `GoogleServiceAccount`. No manual `'serviceAccount:' + email` concatenation, and renaming the `accountId` re-flows through every binding automatically.
 
+## Before you apply
+
+Workload identity pools and providers are soft-deleted for 30 days, so applying again with the same pool id after a destroy fails with 409 until the old pool is undeleted or purged. The workforce pool resources need an organization and use a placeholder id.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

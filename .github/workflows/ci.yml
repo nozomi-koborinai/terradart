@@ -78,16 +78,13 @@ jobs:
       - run: dart test --reporter=github
         working-directory: packages/${{ matrix.package }}
 
-  apply_smoke_selection_test:
-    name: apply_smoke.sh selection test
+  example_gates:
+    name: example gates (synth, topology, coverage page)
     runs-on: ubuntu-latest
-    # Selection + skip-list + cost-ledger tests (no live GCP). A broken awk
-    # regex once fanned a pubspec-only bump out to every example. The cost
-    # gate (test 9) reads tf-out/main.tf.json, which is
-    # gitignored, so example_synth_gates synths every example once (also running
-    # the coverage + API-enablement gates); the topology and cost gates reuse
-    # those tf-outs instead of re-synthing. terraform validate is skipped here —
-    # the per-example terraform_validate matrix covers it.
+    # example_synth_gates synths every example once (running the coverage +
+    # API-enablement gates); the topology gate and the coverage-page freshness
+    # check reuse those tf-outs instead of re-synthing. terraform validate is
+    # skipped here — the per-example terraform_validate matrix covers it.
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -100,7 +97,6 @@ jobs:
         run: dart tool/check_example_topology.dart --reuse-tf-out
       - name: Coverage page freshness (reuses tf-out)
         run: dart tool/render_coverage_page.dart --check
-      - run: bash tool/apply_smoke_test.sh
 
   wrap_check:
     name: terradart wrap --check
@@ -487,7 +483,7 @@ jobs:
     needs:
       - changes
       - test
-      - apply_smoke_selection_test
+      - example_gates
       - wrap_check
       - migrate_roundtrip
       - migrate_fixtures
@@ -499,10 +495,10 @@ jobs:
       - terraform_validate_gate
     if: always()
     # The one check branch protection should require. Requiring individual
-    # job names let the required set drift: the cost gate
-    # (apply_smoke_selection_test), four of the eight package test legs, and
-    # the publish dry-runs were never required, so a PR with any of them red
-    # — or still pending — could auto-merge. Every job must be `success`;
+    # job names let the required set drift: the example gates job, four of
+    # the eight package test legs, and the publish dry-runs were never
+    # required, so a PR with any of them red — or still pending — could
+    # auto-merge. Every job must be `success`;
     # `skipped` counts as failure because a job skipped by a failed
     # dependency has not proven anything.
     steps:
@@ -511,7 +507,7 @@ jobs:
           RESULTS: |
             select examples=${{ needs.changes.result }}
             test=${{ needs.test.result }}
-            apply_smoke.sh selection test=${{ needs.apply_smoke_selection_test.result }}
+            example gates=${{ needs.example_gates.result }}
             terradart wrap --check=${{ needs.wrap_check.result }}
             migrate round-trip gate=${{ needs.migrate_roundtrip.result }}
             migrate fixture gate=${{ needs.migrate_fixtures.result }}

@@ -1,7 +1,7 @@
 /// Beta leftover quickstart — remaining beta-only curated factories.
 ///
-/// Skip-listed; synth + `terraform validate` only. Do not apply. The
-/// apply-smoke harness is GA-only and beta apply policy is not designed.
+/// Coverage stack with dummy values; synth + `terraform validate` only.
+/// Never apply.
 library;
 
 import 'package:terradart_core/terradart_core.dart';

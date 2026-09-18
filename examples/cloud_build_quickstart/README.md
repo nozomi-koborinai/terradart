@@ -6,6 +6,10 @@ repository, an Artifact Registry sink for container images (with IAM
 granting the build SA push access), a private worker pool, and a v2
 push trigger -- using only Wave 7 Batch 1 resources.
 
+## Before you apply
+
+Needs a Secret Manager secret that holds a real GitHub App OAuth token, and a peered VPC for the private worker pool.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

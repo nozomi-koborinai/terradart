@@ -2,6 +2,10 @@
 
 End-to-end terradart example for BigQuery. Provisions a dataset (`analytics_prod`) with a typed sealed `Access` list (8 variants — this example uses `AccessUserByEmail` for an OWNER role and `AccessSpecialGroup` for a READER role over `allAuthenticatedUsers`).
 
+## Before you apply
+
+The data policy and Analytics Hub resources need a project that belongs to an organization; on a standalone project those creates are rejected.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6
@@ -64,7 +68,7 @@ The `Access` sealed type has 8 schema-faithful variants — `AccessUserByEmail`,
 
 `GoogleBigqueryReservationGroup` is curated but not exercised here: create
 requires Reservation Based Fairness (`ALTER PROJECT SET OPTIONS`), which is
-outside this stack's apply-smoke scope (see `tool/example_debt.yaml`).
+outside this stack's scope (see `tool/example_debt.yaml`).
 
 ## Next steps
 

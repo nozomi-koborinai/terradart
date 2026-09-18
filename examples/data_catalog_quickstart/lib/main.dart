@@ -7,10 +7,10 @@
 /// - a tag on the custom entry filling that `source` field,
 /// - additive IAM on the entry group, taxonomy, policy tag, and tag template.
 ///
-/// Prefer Dataplex Universal Catalog for new catalogs. This project may reject
-/// Data Catalog writes at apply time due to upstream deprecation (see
-/// `tool/apply_smoke_skip.yaml`); synth + `terraform validate` still cover the
-/// factories.
+/// Prefer Dataplex Universal Catalog for new catalogs. A project may reject
+/// Data Catalog writes at apply time due to upstream deprecation (see the
+/// README's "Before you apply"); synth + `terraform validate` still cover
+/// the factories.
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;

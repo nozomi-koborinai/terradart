@@ -11,7 +11,11 @@ a project singleton, and shared validate projects that already enabled Identity
 Platform reject a second create. Use the factory on a fresh project.
 
 Default-supported IdPs and SAML configs need real external credentials and
-are not included in this stack. Real apply is skipped (`apply_smoke_skip.yaml`).
+are not included in this stack.
+
+## Before you apply
+
+Tenants need Identity Platform multi-tenancy on a project linked to Firebase Authentication; enabling the API alone is not enough, and tenant creation then returns 400 `INVALID_PROJECT_ID`.
 
 ## Prerequisites
 

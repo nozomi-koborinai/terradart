@@ -472,8 +472,8 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
-    // Apply-excluded workforce leftovers (org parent). iam_quickstart
-    // is skip-listed; these are synth + terraform validate only.
+    // Coverage-only workforce factories (organization parent,
+    // placeholder id); see the README's "Before you apply" section.
     final workforce = add(
       GoogleIamWorkforcePool(
         localName: 'workforce',

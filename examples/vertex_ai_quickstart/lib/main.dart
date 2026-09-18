@@ -158,7 +158,7 @@ final class FeatureStack extends Stack {
         tensorboard: tensorboardShortId,
         location: TfArg.literal('us-central1'),
         displayName: TfArg.literal('TerraDart training experiment'),
-        description: TfArg.literal('Demo experiment for apply-smoke'),
+        description: TfArg.literal('Demo experiment'),
         dependsOn: [ResourceDependency(tensorboard)],
       ),
     );

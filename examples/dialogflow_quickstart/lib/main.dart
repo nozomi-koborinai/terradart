@@ -1,8 +1,8 @@
 /// Dialogflow CX quickstart — regional SIP trunk plus thin Agent
 /// Assist metadata (conversation profile + summarization generator).
 ///
-/// Real apply is skipped ([tool/apply_smoke_skip.yaml]): SIP trunk
-/// needs a live carrier TLS peer. The conversation profile omits
+/// Applying needs a live carrier TLS peer for the SIP trunk (see the
+/// README's "Before you apply"). The conversation profile omits
 /// automated-agent / STT / TTS so it does not start a conversation.
 /// The generator uses [DialogflowGeneratorTriggerEvent.manualCall]
 /// and does not run summarization on create.

@@ -8,12 +8,12 @@ identities:
 - `google_iam_workload_identity_pool_managed_identity`
 
 Federation-only pools cannot host namespaces. This stack uses a dedicated
-pool id (`terradart-trust`), not the skip-listed `iam_quickstart` pool
+pool id (`terradart-trust`), distinct from the `iam_quickstart` pool
 (`github-actions`).
 
-Real apply against `terradart-validate` is skipped: WIF IDs are soft-deleted
-for about 30 days and Terraform create does not undelete, so a fixed-id
-re-apply after destroy returns 409.
+## Before you apply
+
+Workload identity pool, namespace, and managed identity ids are soft-deleted for about 30 days, and Terraform create does not undelete them (hashicorp/terraform-provider-google#14191). Applying again with the same ids after a destroy returns 409.
 
 ## Prerequisites
 

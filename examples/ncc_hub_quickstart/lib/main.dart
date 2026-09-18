@@ -9,9 +9,9 @@
 /// - a policy-based route (`DEFAULT_ROUTING` + VM tags),
 /// - additive hub IAM for an inventory SA.
 ///
-/// Run `bin/infra.dart` to synth into `tf-out/`. Apply-smoke targets this
-/// stack on `terradart-validate` (not the Partner-CCI `network_connectivity`
-/// quickstart).
+/// Run `bin/infra.dart` to synth into `tf-out/`. Unlike the Partner-CCI
+/// `network_connectivity` quickstart, this stack can be applied on a
+/// standalone project.
 library;
 
 import 'package:terradart_core/terradart_core.dart';

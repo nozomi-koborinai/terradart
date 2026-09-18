@@ -84,7 +84,7 @@ final class ColabStack extends Stack {
     );
 
     // Vertex keeps notebookRuntimeTemplate IDs briefly after destroy
-    // (409 "already exists" on rapid apply-smoke re-runs). Use a short
+    // (409 "already exists" on rapid destroy-then-apply cycles). Use a short
     // stable id that is unlikely to collide with a soft-deleted prior name.
     final template = add(
       GoogleColabRuntimeTemplate(

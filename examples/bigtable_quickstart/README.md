@@ -2,6 +2,10 @@
 
 Provisions a production Cloud Bigtable instance with table, app profile, GC policy, authorized / logical / materialized views, and additive IAM grants.
 
+## Before you apply
+
+The Bigtable instance is a production instance billed per node-hour while it exists. Destroy it when you are done.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

@@ -1,8 +1,9 @@
 /// Identity Platform quickstart — a multi-tenant Auth realm plus dummy
 /// project and tenant OIDC IdP metadata (synth + validate).
 ///
-/// Real apply is skipped for `terradart-validate` ([tool/apply_smoke_skip.yaml]):
-/// tenant create returns 400 `INVALID_PROJECT_ID` after API enablement alone.
+/// Applying needs Identity Platform multi-tenancy on a Firebase-linked
+/// project: tenant create returns 400 `INVALID_PROJECT_ID` after API
+/// enablement alone (see the README's "Before you apply").
 /// [GoogleIdentityPlatformConfig] is also deferred to [tool/example_debt.yaml]
 /// (project singleton; create fails when Identity Platform is already on).
 ///

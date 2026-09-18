@@ -2,6 +2,10 @@
 
 Provisions a `google_cloud_tasks_queue` with rate-limit + retry config and grants `roles/cloudtasks.enqueuer` to a service account via `google_cloud_tasks_queue_iam_member`.
 
+## Before you apply
+
+A deleted Cloud Tasks queue name stays reserved for about seven days, so destroy followed by apply with the same queue name fails.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

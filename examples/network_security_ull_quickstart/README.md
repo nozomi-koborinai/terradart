@@ -6,6 +6,10 @@ End-to-end terradart example for Ultra Low Latency (ULL) mirroring factories:
 - `google_network_security_ull_mirroring_collector`
 - `google_network_security_ull_mirroring_collector_rule`
 
+## Before you apply
+
+ULL mirroring needs a real internal forwarding rule and zonal Network Security resources; the placeholder forwarding-rule self-link fails at apply time.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

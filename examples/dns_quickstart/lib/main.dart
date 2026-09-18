@@ -88,7 +88,7 @@ final class InternalDnsStack extends Stack {
 
     // Serialize member → binding → policy so destroy cannot race concurrent
     // SetIamPolicy calls on the same zone (DNS API returned 500 when member
-    // and binding tore down in parallel during apply-smoke).
+    // and binding tore down in parallel during a destroy).
     final zoneAdminMember = add(
       GoogleDnsManagedZoneIamMember(
         localName: 'internal_zone_admin_member',

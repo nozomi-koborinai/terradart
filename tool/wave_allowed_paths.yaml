@@ -58,8 +58,5 @@ pubspec.yaml
 
 # Ledgers a Wave legitimately edits
 tool/curation_backlog.yaml
-tool/apply_cost_denylist.yaml
-tool/apply_smoke_skip.yaml
-tool/apply_smoke_pr_skip.yaml
 tool/example_debt.yaml
 tool/example_api_debt.yaml

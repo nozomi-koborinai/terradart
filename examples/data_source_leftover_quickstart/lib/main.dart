@@ -1,6 +1,7 @@
 /// Data-source leftover quickstart — remaining GA data sources.
 ///
-/// Skip-listed; synth + `terraform validate` only. Do not apply.
+/// Coverage stack with dummy ids; synth + `terraform validate` only.
+/// Never apply.
 library;
 
 import 'package:terradart_core/terradart_core.dart';

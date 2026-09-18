@@ -3,6 +3,10 @@
 End-to-end terradart example for API Keys, reCAPTCHA Enterprise, and a
 Network Management connectivity probe.
 
+## Before you apply
+
+API keys are soft-deleted for 30 days. Applying again with the same key name after a destroy fails with `Resource already exists`.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

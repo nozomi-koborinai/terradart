@@ -13,6 +13,10 @@ Official IAM pricing: all use of the Identity and Access Management API
 is free of charge
 (https://cloud.google.com/iam/pricing).
 
+## Before you apply
+
+Privileged Access Manager only works on a project that belongs to an organization. On a standalone project the entitlement create call returns 400 `ORGLESS_RESOURCE`.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

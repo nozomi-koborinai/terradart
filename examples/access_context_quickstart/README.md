@@ -8,7 +8,7 @@ End-to-end terradart example for VPC Service Controls primitives:
 - `GoogleAccessContextManagerServicePerimeter` (Storage restriction + dedicated dry-run perimeter)
 - `GoogleAccessContextManagerServicePerimeterDryRunResource` (placeholder project on dry-run `spec` only)
 - `GoogleAccessContextManagerAuthorizedOrgsDesc` (placeholder org numbers; `deletion_policy=DELETE`)
-- Apply-excluded leftovers: bulk `access_levels` / `service_perimeters`, live perimeter resource, ingress/egress (live + dry-run), legacy ingress/egress attachments, GCP user access binding
+- Coverage-only (placeholder ids): bulk `access_levels` / `service_perimeters`, live perimeter resource, ingress/egress (live + dry-run), legacy ingress/egress attachments, GCP user access binding
 - `GoogleAccessContextManagerAccessPolicyIamMember`
 
 ```bash
@@ -17,4 +17,6 @@ dart run bin/infra.dart
 cd tf-out && terraform init -backend=false && terraform validate
 ```
 
-Apply requires a real organization id: `terraform apply -var 'ops_organization_id=1234567890'`.
+## Before you apply
+
+Access Context Manager policies live under an organization. Pass a real organization id: `terraform apply -var 'ops_organization_id=1234567890'`. The bulk `access_levels` / `service_perimeters`, ingress / egress, and user access binding resources use placeholder ids and exist for coverage only.

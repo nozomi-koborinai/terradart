@@ -95,8 +95,9 @@ void main() {
     )
     ..writeln('///')
     ..writeln(
-      '/// Skip-listed; synth + `terraform validate` only. Do not apply.',
+      '/// Coverage stack with dummy ids; synth + `terraform validate` only.',
     )
+    ..writeln('/// Never apply.')
     ..writeln('library;')
     ..writeln()
     ..writeln("import 'package:terradart_core/terradart_core.dart';")

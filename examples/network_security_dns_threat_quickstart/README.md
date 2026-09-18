@@ -4,6 +4,8 @@ End-to-end terradart example for a **Network Security DNS threat detector**
 (DNS Armor / Infoblox). Enables `networksecurity.googleapis.com` and creates a
 global detector with provider `INFOBLOX`.
 
+## Before you apply
+
 Creating the detector enables DNS Armor for the project. Billing is usage-based
 (workloads / internet-bound DNS queries), not a flat charge for the config alone.
 

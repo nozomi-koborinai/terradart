@@ -10,6 +10,10 @@ End-to-end terradart example for Oracle Exadata on Oracle Database@Google Cloud:
 - `google_oracle_database_cloud_exadata_infrastructure`
 - `google_oracle_database_cloud_vm_cluster`
 
+## Before you apply
+
+Needs an Oracle Database@Google Cloud entitlement for the zone and live Exascale vault wiring; the API rejects the placeholder wiring.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

@@ -6,8 +6,9 @@ End-to-end terradart example for:
 - `google_dialogflow_conversation_profile` (Agent Assist metadata; no STT/TTS)
 - `google_dialogflow_generator` (summarization generator; `MANUAL_CALL`)
 
-Real apply is skipped (`apply_smoke_skip.yaml`): SIP trunk needs a live
-carrier TLS peer.
+## Before you apply
+
+The SIP trunk needs a real carrier TLS peer certificate whose hostname matches `expected_hostname`; the placeholder fails at apply time.
 
 ## Prerequisites
 

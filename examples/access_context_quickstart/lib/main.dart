@@ -209,8 +209,8 @@ final class AccessControlsStack extends Stack {
       ),
     );
 
-    // Apply-excluded leftovers. Bulk replace + attachments use
-    // placeholders; this stack is skip-listed and is never applied.
+    // Coverage-only factories. Bulk replace + attachments use
+    // placeholders; see the README's "Before you apply" section.
     add(
       GoogleAccessContextManagerAccessLevels(
         localName: 'bulk_levels',

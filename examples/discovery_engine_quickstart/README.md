@@ -3,6 +3,10 @@
 Vertex AI Search (Discovery Engine) data store, search engine, schema, synonyms
 control, default serving config, and resource-scoped IAM.
 
+## Before you apply
+
+Discovery Engine data stores are soft-deleted for hours; applying again with the same ids right after a destroy fails while the previous deletion is still in progress. The CMEK config and third-party connector use placeholder ids and exist for coverage only.
+
 ## Usage
 
 ```bash
