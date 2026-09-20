@@ -31,7 +31,11 @@ final class BigqueryAnalyticsHubQueryTemplateRoutine {
 ///
 /// Represents a BigQuery Query Template within a Data Exchange. This resource
 /// defines a reusable SQL routine (e.g., a TVF) that can be shared or executed
-/// via the Data Exchange.
+/// via the Data Exchange. ~> **Note:** Approving a Query Template is not
+/// supported by Terraform. The approve flow includes steps that can only be
+/// performed through the Google Cloud console UI. You can still create a Query
+/// Template (e.g. a TVF) and add it as a listing to a Data Clean Room via
+/// Terraform, but the final approval must be done manually.
 ///
 /// Analytics Hub **query template** — reusable SQL routine (typically a
 /// table-valued function) defined on a data exchange for sharing /
