@@ -3,6 +3,7 @@
 End-to-end terradart example for Chronicle (Google SecOps) factories:
 
 - `google_chronicle_custom_list`
+- `google_chronicle_soar_network`
 - `google_chronicle_native_dashboard`
 - `google_chronicle_dashboard_chart`
 
@@ -29,5 +30,6 @@ terraform plan
 ## What gets created
 
 - `GoogleChronicleCustomList` — approved-files list on a placeholder Chronicle instance in `us`
+- `GoogleChronicleSoarNetwork` — `10.0.0.0/8` marked as internal for the Default Environment, so playbooks weigh its sensitivity
 - `GoogleChronicleNativeDashboard` — private custom dashboard on the same instance
 - `GoogleChronicleDashboardChart` — DNS-events visualization tile on that dashboard
