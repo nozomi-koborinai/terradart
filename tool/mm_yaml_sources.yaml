@@ -1117,6 +1117,8 @@ files:
     upstream: mmv1/products/chronicle/EnvironmentGroup.yaml
   google_chronicle_big_query_export:
     upstream: mmv1/products/chronicle/BigQueryExport.yaml
+  google_chronicle_soar_network:
+    upstream: mmv1/products/chronicle/SoarNetwork.yaml
   google_integration_connectors_connection:
     upstream: mmv1/products/integrationconnectors/Connection.yaml
   google_integration_connectors_endpoint_attachment:
