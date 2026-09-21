@@ -3,7 +3,7 @@ title: terradart-mcp
 description: An MCP server that exposes TerraDart's curated Google Cloud catalog — and its HCL migrator — to coding agents.
 ---
 
-`terradart-mcp` is a [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that exposes TerraDart's curated Google Cloud factory **catalog** to coding agents. The catalog covers 1798 entries (1337 curated resource factories + 461 data sources) across 132 service barrels (`agent`, `compute`, `container`, `pubsub`, `cloud_run`, `alloydb`, `redis`, `iap`, `firestore`, and more). With the server connected, an agent can look up the exact constructor signatures, nested types, and ready-made `Stack` templates it needs to author correct TerraDart Dart code — instead of guessing factory names from memory.
+`terradart-mcp` is a [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that exposes TerraDart's curated Google Cloud factory **catalog** to coding agents. The catalog covers 1799 entries (1338 curated resource factories + 461 data sources) across 132 service barrels (`agent`, `compute`, `container`, `pubsub`, `cloud_run`, `alloydb`, `redis`, `iap`, `firestore`, and more). With the server connected, an agent can look up the exact constructor signatures, nested types, and ready-made `Stack` templates it needs to author correct TerraDart Dart code — instead of guessing factory names from memory.
 
 It also carries the migrator: `migrate_module` takes a Terraform module's own text and hands back the `Stack` it becomes, so an agent looking at an existing `.tf` file can answer "what does this look like in TerraDart?" from the same connection.
 
@@ -15,7 +15,7 @@ It is built with [genkit_mcp](https://pub.dev/packages/genkit_mcp) (Genkit's MCP
 graph LR
   agent["coding agent<br/>(Claude Code / Cursor / Claude Desktop)"]
   mcp["terradart-mcp<br/>list_barrels · list_resources<br/>get_resource_schema · get_quickstart<br/>check_coverage · migrate_module"]
-  catalog["static catalog in terradart_google<br/>1798 entries · 132 service barrels"]
+  catalog["static catalog in terradart_google<br/>1799 entries · 132 service barrels"]
   agent -->|stdio JSON-RPC MCP| mcp
   mcp -->|reads in-process| catalog
 ```

@@ -7524,6 +7524,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_chronicle_rule_deployment`.\n\nThe RuleDeployment resource represents the deployment state of a Rule.\n\nChronicle (Google SecOps) **rule deployment** — enables / archives a\ncompiled [GoogleChronicleRule] (live detection + alerting).\n\n**Cost / apply:** gcp-cost: Chronicle `144D-4907-2A21` Bytes of data\ningested in US for the Enterprise Plus package SKU `0310-AEE4-5DC1`\n**\$6.58/GBy** (plus dollar-based SecOps commitments). billing-behavior:\nenabling a deployment runs detection against entitlement-gated SecOps\ningestion; alerting and live evaluation accrue while enabled. Not\napplyable on `terradart-validate`. **Never** wire into apply-smoke.\n\nEnable `chronicle.googleapis.com` before apply. [rule] is the rule\nresource name; [instance] / [location] must match the parent rule.',
   ),
   CatalogEntry(
+    tfType: 'google_chronicle_soar_network',
+    className: 'GoogleChronicleSoarNetwork',
+    barrel: 'chronicle',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_chronicle_soar_network`.',
+    constructorParams: <String>[
+      'localName',
+      'displayName',
+      'address',
+      'environmentsJson',
+      'location',
+      'instance',
+      'priority',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_chronicle_soar_network`.\n\nManage networks in the platform using the Classless Inter-Domain Routing\n(CIDR) format. The system identifies network subnets to help Google Security\nOperations recognize internal assets and consider network sensitivity during\nplaybook execution.\n\nChronicle (Google SecOps) **SOAR network** — a CIDR subnet SecOps treats\nas an internal asset range, so playbooks can weigh network sensitivity.\n\n[address] is the subnet in CIDR notation (e.g. `10.0.0.0/8`) and\n[environmentsJson] is a JSON-encoded array of the logical environment\nnames the subnet belongs to (e.g. `\'["Default Environment"]\'`) — the API\ntakes that list as an opaque string, so it is not a Dart `List`.\n[priority] orders overlapping networks; lower values win.\n\nEnable `chronicle.googleapis.com` before apply. [instance] is the\nChronicle instance ID in [location] (e.g. `us`); applying needs a real\nGoogle SecOps instance, which no Terraform resource creates.',
+  ),
+  CatalogEntry(
     tfType: 'google_chronicle_watchlist',
     className: 'GoogleChronicleWatchlist',
     barrel: 'chronicle',

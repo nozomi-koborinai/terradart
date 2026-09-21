@@ -1,4 +1,5 @@
-/// Chronicle quickstart — custom list, native dashboard, and dashboard chart.
+/// Chronicle quickstart — custom list, SOAR network, native dashboard, and
+/// dashboard chart.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -31,6 +32,19 @@ final class ChronicleCustomListStack extends Stack {
         entityIdentifier: TfArg.literal('filename.bin'),
         category: TfArg.literal('Approved Files'),
         environments: TfArg.literal('["Default Environment"]'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleChronicleSoarNetwork(
+        localName: 'corp_internal',
+        location: TfArg.literal('us'),
+        instance: TfArg.literal(instanceId),
+        displayName: TfArg.literal('Corp internal'),
+        address: TfArg.literal('10.0.0.0/8'),
+        environmentsJson: TfArg.literal('["Default Environment"]'),
+        priority: TfArg.literal(1),
         dependsOn: apiDeps,
       ),
     );

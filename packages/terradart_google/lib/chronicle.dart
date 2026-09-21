@@ -311,6 +311,8 @@ export 'src/chronicle/google_chronicle_rule_deployment.dart'
     show
         ChronicleRuleDeploymentScheduleCustomizations,
         GoogleChronicleRuleDeployment;
+export 'src/chronicle/google_chronicle_soar_network.dart'
+    show GoogleChronicleSoarNetwork;
 export 'src/chronicle/google_chronicle_watchlist.dart'
     show
         ChronicleWatchlistEntityPopulationMechanism,
