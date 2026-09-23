@@ -35,6 +35,11 @@ export default defineConfig({
           label: "GitHub",
           href: "https://github.com/nozomi-koborinai/terradart",
         },
+        {
+          icon: "x.com",
+          label: "X",
+          href: "https://x.com/terradart_dev",
+        },
       ],
       sidebar: [
         {
