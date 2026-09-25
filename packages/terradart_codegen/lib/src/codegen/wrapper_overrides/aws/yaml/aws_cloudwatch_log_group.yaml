@@ -1,0 +1,17 @@
+outputDir: cloudwatch
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+curatedDoc: |-
+  /// AWS **CloudWatch Logs log group**. Declare a Lambda function's group
+  /// (`/aws/lambda/<function name>`) yourself to control
+  /// `retentionInDays`; otherwise Lambda creates it on first invocation
+  /// with no expiry, outside Terraform.
+
+paramOrder:
+  - name
+  - retention_in_days
+  - log_group_class
+  - kms_key_id
+  - tags

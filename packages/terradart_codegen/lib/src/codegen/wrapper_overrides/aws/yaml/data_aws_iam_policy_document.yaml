@@ -1,0 +1,14 @@
+kind: data_source
+outputDir: data
+schemaStubBodyMode: bare
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+curatedDoc: |-
+  /// Builds an IAM policy document from typed statements. Terraform
+  /// renders it to JSON; read that through [json] and pass it to a trust
+  /// policy (`AwsIamRole.assumeRolePolicy`) or an inline policy.
+  ///
+  /// Each [DataIamPolicyDocumentStatement] carries `actions`, `resources`,
+  /// `effect`, and typed `principals` / `condition` blocks.

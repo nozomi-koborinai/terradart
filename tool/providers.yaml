@@ -16,8 +16,10 @@
 #   source:          terraform registry source (NAMESPACE/NAME)
 #   schemaDir:       checked-in schema fixture directory
 #   schemaMode:      full | filtered
-#                    full     — entire provider schema (backlog detection
-#                               needs every resource key; GA google only)
+#                    full     — entire provider schema (GA google, where
+#                               backlog detection needs every resource key;
+#                               aws, whose overrides fill the catalog in
+#                               stages against one extraction)
 #                    filtered — only curated resources, re-extracted with
 #                               tool/extract_schema_subset.dart (see the
 #                               fixture's README)
@@ -74,3 +76,13 @@ providers:
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_cloudflare.yaml
     resourceProvider: null # cloudflare_ prefix collides with nothing
     migrateManifest: packages/terradart_migrate/lib/src/manifest/cloudflare.g.dart
+  aws:
+    source: hashicorp/aws
+    schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_aws
+    schemaMode: full
+    mm: false
+    outputPackage: packages/terradart_aws
+    overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/aws/yaml
+    barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_aws.yaml
+    resourceProvider: null # aws_ prefix collides with nothing
+    migrateManifest: packages/terradart_migrate/lib/src/manifest/aws.g.dart

@@ -12,6 +12,7 @@ workspace:
   - packages/terradart_google_beta
   - packages/terradart_appwrite
   - packages/terradart_cloudflare
+  - packages/terradart_aws
   - packages/terradart_agent
   - packages/terradart_coverage
   - packages/terradart_hcl

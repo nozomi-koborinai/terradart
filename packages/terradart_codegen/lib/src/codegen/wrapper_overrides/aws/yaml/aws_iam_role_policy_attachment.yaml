@@ -1,0 +1,16 @@
+outputDir: iam
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+curatedDoc: |-
+  /// Attaches one managed IAM policy to an [AwsIamRole]. Additive: other
+  /// attachments on the role are left alone.
+  ///
+  /// `role` takes the role **name** (`TfArg.ref(role.nameRef)`), not its ARN.
+  /// AWS-managed policies use ARNs such as
+  /// `arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`.
+
+paramOrder:
+  - role
+  - policy_arn
