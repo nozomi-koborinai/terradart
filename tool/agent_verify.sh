@@ -102,90 +102,11 @@ else
   echo ">> package test suites: SKIPPED (--quick)"
 fi
 
-echo ">> dart test tool/ (render_formula, render_to_file, select_changed_examples, check_bump_scope, loop_health_report, extract_schema_subset, generate_drift_report)"
-dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/loop_health_report_test.dart tool/extract_schema_subset_test.dart tool/generate_drift_report_test.dart
+echo ">> dart test tool/ (render_formula, render_to_file, select_changed_examples, check_bump_scope, loop_health_report, extract_schema_subset, generate_drift_report, wrap_lanes)"
+dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/loop_health_report_test.dart tool/extract_schema_subset_test.dart tool/generate_drift_report_test.dart tool/wrap_lanes_test.dart
 
-echo ">> terradart wrap --check"
-(
-  cd packages/terradart_codegen
-  dart run bin/terradart.dart wrap \
-    --provider hashicorp/google \
-    --source test/fixtures/wrap/source \
-    --output ../terradart_google/lib/src \
-    --migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart \
-    --check
-)
-
-# Per-provider lanes beyond GA google — coordinates in tool/providers.yaml.
-echo ">> terradart wrap --check (google-beta)"
-(
-  cd packages/terradart_codegen
-  dart run bin/terradart.dart wrap \
-    --provider hashicorp/google-beta \
-    --source test/fixtures/wrap/source_beta \
-    --output ../terradart_google_beta/lib/src \
-    --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
-    --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
-    --resource-provider google-beta \
-    --migrate-manifest ../terradart_migrate/lib/src/manifest/google_beta.g.dart \
-    --check
-)
-
-echo ">> terradart wrap --check (appwrite)"
-(
-  cd packages/terradart_codegen
-  dart run bin/terradart.dart wrap \
-    --provider appwrite/appwrite \
-    --source test/fixtures/wrap/source_appwrite \
-    --output ../terradart_appwrite/lib/src \
-    --overrides-root lib/src/codegen/wrapper_overrides/appwrite/yaml \
-    --barrels-manifest lib/src/codegen/barrels/barrels_appwrite.yaml \
-    --migrate-manifest ../terradart_migrate/lib/src/manifest/appwrite.g.dart \
-    --check
-)
-
-echo ">> terradart wrap --check (cloudflare)"
-(
-  cd packages/terradart_codegen
-  dart run bin/terradart.dart wrap \
-    --provider cloudflare/cloudflare \
-    --source test/fixtures/wrap/source_cloudflare \
-    --output ../terradart_cloudflare/lib/src \
-    --overrides-root lib/src/codegen/wrapper_overrides/cloudflare/yaml \
-    --barrels-manifest lib/src/codegen/barrels/barrels_cloudflare.yaml \
-    --migrate-manifest ../terradart_migrate/lib/src/manifest/cloudflare.g.dart \
-    --check
-)
-
-echo ">> terradart lint-override"
-(
-  cd packages/terradart_codegen
-  dart run bin/terradart.dart lint-override
-)
-
-echo ">> terradart lint-override (google-beta)"
-(
-  cd packages/terradart_codegen
-  dart run bin/terradart.dart lint-override \
-    --dir lib/src/codegen/wrapper_overrides/google_beta/yaml \
-    --mm-dir test/fixtures/wrap/source_beta
-)
-
-echo ">> terradart lint-override (appwrite)"
-(
-  cd packages/terradart_codegen
-  dart run bin/terradart.dart lint-override \
-    --dir lib/src/codegen/wrapper_overrides/appwrite/yaml \
-    --mm-dir test/fixtures/wrap/source_appwrite
-)
-
-echo ">> terradart lint-override (cloudflare)"
-(
-  cd packages/terradart_codegen
-  dart run bin/terradart.dart lint-override \
-    --dir lib/src/codegen/wrapper_overrides/cloudflare/yaml \
-    --mm-dir test/fixtures/wrap/source_cloudflare
-)
+echo ">> wrap lanes (terradart wrap --check + lint-override for every tool/providers.yaml lane)"
+dart tool/wrap_lanes.dart
 
 # --strict-nested restored: the 0.24.0 flip (deriveNestedTypes across 19
 # NESTED_THIN resources) paid down the 56-advisory rot this gate silently
