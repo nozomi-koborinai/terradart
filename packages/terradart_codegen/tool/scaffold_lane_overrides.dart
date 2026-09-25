@@ -60,9 +60,11 @@ void main(List<String> args) {
   final resources = sortedKeys('resource_schemas');
   final dataSources = sortedKeys('data_source_schemas');
 
-  const derive = 'deriveClassDoc: true\n'
-      'deriveOutputGetters: true\n'
-      'deriveNestedTypes: true\n';
+  final derive = rules.typedNestedDefaults
+      ? 'deriveClassDoc: true\n'
+          'deriveOutputGetters: true\n'
+          'deriveNestedTypes: true\n'
+      : 'deriveClassDoc: true\n';
   final resolver = OutputDirResolver(
     aliases: rules.outputDirAliases,
     typePrefix: rules.terraformTypePrefix,
