@@ -14,18 +14,3 @@ curatedDoc: |-
   /// `s3Key`, or `imageUri`; the Dart API does not enforce that choice,
   /// `terraform validate` does. Pair `sourceCodeHash` with `filename` so a
   /// rebuilt zip redeploys.
-
-paramOrder:
-  - function_name
-  - role
-  - runtime
-  - handler
-  - filename
-  - source_code_hash
-  - architectures
-  - memory_size
-  - timeout
-  - environment
-  - logging_config
-  - description
-  - tags

@@ -17,10 +17,14 @@ final class AwsCloudwatchLogGroup extends Resource {
 
   AwsCloudwatchLogGroup({
     required super.localName,
-    TfArg<String>? name,
-    TfArg<num>? retentionInDays,
-    TfArg<String>? logGroupClass,
+    TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? kmsKeyId,
+    TfArg<String>? logGroupClass,
+    TfArg<String>? name,
+    TfArg<String>? namePrefix,
+    TfArg<String>? region,
+    TfArg<num>? retentionInDays,
+    TfArg<bool>? skipDestroy,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -29,10 +33,15 @@ final class AwsCloudwatchLogGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (retentionInDays != null) 'retention_in_days': retentionInDays,
-           if (logGroupClass != null) 'log_group_class': logGroupClass,
+           if (deletionProtectionEnabled != null)
+             'deletion_protection_enabled': deletionProtectionEnabled,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (logGroupClass != null) 'log_group_class': logGroupClass,
+           if (name != null) 'name': name,
+           if (namePrefix != null) 'name_prefix': namePrefix,
+           if (region != null) 'region': region,
+           if (retentionInDays != null) 'retention_in_days': retentionInDays,
+           if (skipDestroy != null) 'skip_destroy': skipDestroy,
            if (tags != null) 'tags': tags,
          },
        );

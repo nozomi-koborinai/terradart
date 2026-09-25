@@ -253,19 +253,47 @@ final class AwsLambdaFunction extends Resource {
 
   AwsLambdaFunction({
     required super.localName,
+    TfArg<List<String>>? architectures,
+    TfArg<String>? codeSha256,
+    TfArg<String>? codeSigningConfigArn,
+    TfArg<String>? description,
+    TfArg<String>? filename,
     required TfArg<String> functionName,
+    TfArg<String>? handler,
+    TfArg<String>? imageUri,
+    TfArg<String>? kmsKeyArn,
+    TfArg<List<String>>? layers,
+    TfArg<num>? memorySize,
+    TfArg<String>? packageType,
+    TfArg<bool>? publish,
+    TfArg<String>? publishTo,
+    TfArg<String>? region,
+    TfArg<bool>? replaceSecurityGroupsOnDestroy,
+    TfArg<List<String>>? replacementSecurityGroupIds,
+    TfArg<num>? reservedConcurrentExecutions,
     required TfArg<String> role,
     TfArg<String>? runtime,
-    TfArg<String>? handler,
-    TfArg<String>? filename,
+    TfArg<String>? s3Bucket,
+    TfArg<String>? s3Key,
+    TfArg<String>? s3ObjectVersion,
+    TfArg<bool>? skipDestroy,
     TfArg<String>? sourceCodeHash,
-    TfArg<List<String>>? architectures,
-    TfArg<num>? memorySize,
-    TfArg<num>? timeout,
-    LambdaFunctionEnvironment? environment,
-    LambdaFunctionLoggingConfig? loggingConfig,
-    TfArg<String>? description,
+    TfArg<String>? sourceKmsKeyArn,
     TfArg<Map<String, String>>? tags,
+    TfArg<num>? timeout,
+    TfArg<bool>? useResourceTimeoutForPropagation,
+    LambdaFunctionCapacityProviderConfig? capacityProviderConfig,
+    LambdaFunctionDeadLetterConfig? deadLetterConfig,
+    LambdaFunctionDurableConfig? durableConfig,
+    LambdaFunctionEnvironment? environment,
+    LambdaFunctionEphemeralStorage? ephemeralStorage,
+    LambdaFunctionFileSystemConfig? fileSystemConfig,
+    LambdaFunctionImageConfig? imageConfig,
+    LambdaFunctionLoggingConfig? loggingConfig,
+    LambdaFunctionSnapStart? snapStart,
+    LambdaFunctionTenancyConfig? tenancyConfig,
+    LambdaFunctionTracingConfig? tracingConfig,
+    LambdaFunctionVpcConfig? vpcConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -273,21 +301,68 @@ final class AwsLambdaFunction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
+           if (architectures != null) 'architectures': architectures,
+           if (codeSha256 != null) 'code_sha256': codeSha256,
+           if (codeSigningConfigArn != null)
+             'code_signing_config_arn': codeSigningConfigArn,
+           if (description != null) 'description': description,
+           if (filename != null) 'filename': filename,
            'function_name': functionName,
+           if (handler != null) 'handler': handler,
+           if (imageUri != null) 'image_uri': imageUri,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (layers != null) 'layers': layers,
+           if (memorySize != null) 'memory_size': memorySize,
+           if (packageType != null) 'package_type': packageType,
+           if (publish != null) 'publish': publish,
+           if (publishTo != null) 'publish_to': publishTo,
+           if (region != null) 'region': region,
+           if (replaceSecurityGroupsOnDestroy != null)
+             'replace_security_groups_on_destroy':
+                 replaceSecurityGroupsOnDestroy,
+           if (replacementSecurityGroupIds != null)
+             'replacement_security_group_ids': replacementSecurityGroupIds,
+           if (reservedConcurrentExecutions != null)
+             'reserved_concurrent_executions': reservedConcurrentExecutions,
            'role': role,
            if (runtime != null) 'runtime': runtime,
-           if (handler != null) 'handler': handler,
-           if (filename != null) 'filename': filename,
+           if (s3Bucket != null) 's3_bucket': s3Bucket,
+           if (s3Key != null) 's3_key': s3Key,
+           if (s3ObjectVersion != null) 's3_object_version': s3ObjectVersion,
+           if (skipDestroy != null) 'skip_destroy': skipDestroy,
            if (sourceCodeHash != null) 'source_code_hash': sourceCodeHash,
-           if (architectures != null) 'architectures': architectures,
-           if (memorySize != null) 'memory_size': memorySize,
+           if (sourceKmsKeyArn != null) 'source_kms_key_arn': sourceKmsKeyArn,
+           if (tags != null) 'tags': tags,
            if (timeout != null) 'timeout': timeout,
+           if (useResourceTimeoutForPropagation != null)
+             'use_resource_timeout_for_propagation':
+                 useResourceTimeoutForPropagation,
+           if (capacityProviderConfig != null)
+             'capacity_provider_config': TfArg.literal(
+               capacityProviderConfig.encode(),
+             ),
+           if (deadLetterConfig != null)
+             'dead_letter_config': TfArg.literal(deadLetterConfig.encode()),
+           if (durableConfig != null)
+             'durable_config': TfArg.literal(durableConfig.encode()),
            if (environment != null)
              'environment': TfArg.literal(environment.encode()),
+           if (ephemeralStorage != null)
+             'ephemeral_storage': TfArg.literal(ephemeralStorage.encode()),
+           if (fileSystemConfig != null)
+             'file_system_config': TfArg.literal(fileSystemConfig.encode()),
+           if (imageConfig != null)
+             'image_config': TfArg.literal(imageConfig.encode()),
            if (loggingConfig != null)
              'logging_config': TfArg.literal(loggingConfig.encode()),
-           if (description != null) 'description': description,
-           if (tags != null) 'tags': tags,
+           if (snapStart != null)
+             'snap_start': TfArg.literal(snapStart.encode()),
+           if (tenancyConfig != null)
+             'tenancy_config': TfArg.literal(tenancyConfig.encode()),
+           if (tracingConfig != null)
+             'tracing_config': TfArg.literal(tracingConfig.encode()),
+           if (vpcConfig != null)
+             'vpc_config': TfArg.literal(vpcConfig.encode()),
          },
        );
 

@@ -19,15 +19,15 @@ final class AwsIamRolePolicyAttachment extends Resource {
 
   AwsIamRolePolicyAttachment({
     required super.localName,
-    required TfArg<String> role,
     required TfArg<String> policyArn,
+    required TfArg<String> role,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'role': role, 'policy_arn': policyArn},
+         argMap: {'policy_arn': policyArn, 'role': role},
        );
 
   @override

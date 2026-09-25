@@ -38,12 +38,16 @@ final class AwsIamRole extends Resource {
   AwsIamRole({
     required super.localName,
     required TfArg<String> assumeRolePolicy,
-    TfArg<String>? name,
     TfArg<String>? description,
+    TfArg<bool>? forceDetachPolicies,
+    TfArg<List<String>>? managedPolicyArns,
+    TfArg<num>? maxSessionDuration,
+    TfArg<String>? name,
+    TfArg<String>? namePrefix,
     TfArg<String>? path,
     TfArg<String>? permissionsBoundary,
-    TfArg<num>? maxSessionDuration,
     TfArg<Map<String, String>>? tags,
+    List<IamRoleInlinePolicy>? inlinePolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -52,14 +56,23 @@ final class AwsIamRole extends Resource {
          terraformType: tfType,
          argMap: {
            'assume_role_policy': assumeRolePolicy,
-           if (name != null) 'name': name,
            if (description != null) 'description': description,
+           if (forceDetachPolicies != null)
+             'force_detach_policies': forceDetachPolicies,
+           if (managedPolicyArns != null)
+             'managed_policy_arns': managedPolicyArns,
+           if (maxSessionDuration != null)
+             'max_session_duration': maxSessionDuration,
+           if (name != null) 'name': name,
+           if (namePrefix != null) 'name_prefix': namePrefix,
            if (path != null) 'path': path,
            if (permissionsBoundary != null)
              'permissions_boundary': permissionsBoundary,
-           if (maxSessionDuration != null)
-             'max_session_duration': maxSessionDuration,
            if (tags != null) 'tags': tags,
+           if (inlinePolicy != null)
+             'inline_policy': TfArg.literal([
+               for (final e in inlinePolicy) e.encode(),
+             ]),
          },
        );
 

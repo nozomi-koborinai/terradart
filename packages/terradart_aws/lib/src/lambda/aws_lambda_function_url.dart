@@ -56,10 +56,11 @@ final class AwsLambdaFunctionUrl extends Resource {
 
   AwsLambdaFunctionUrl({
     required super.localName,
-    required TfArg<String> functionName,
     required TfArg<String> authorizationType,
-    TfArg<String>? qualifier,
+    required TfArg<String> functionName,
     TfArg<String>? invokeMode,
+    TfArg<String>? qualifier,
+    TfArg<String>? region,
     LambdaFunctionUrlCors? cors,
     super.lifecycle,
     super.dependsOn,
@@ -68,10 +69,11 @@ final class AwsLambdaFunctionUrl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_name': functionName,
            'authorization_type': authorizationType,
-           if (qualifier != null) 'qualifier': qualifier,
+           'function_name': functionName,
            if (invokeMode != null) 'invoke_mode': invokeMode,
+           if (qualifier != null) 'qualifier': qualifier,
+           if (region != null) 'region': region,
            if (cors != null) 'cors': TfArg.literal(cors.encode()),
          },
        );

@@ -10,7 +10,3 @@ curatedDoc: |-
   /// `role` takes the role **name** (`TfArg.ref(role.nameRef)`), not its ARN.
   /// AWS-managed policies use ARNs such as
   /// `arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole`.
-
-paramOrder:
-  - role
-  - policy_arn

@@ -11,12 +11,3 @@ curatedDoc: |-
   /// [DataAwsIamPolicyDocument] and pass `TfArg.ref(doc.json)`, so the
   /// statements are typed Dart rather than a hand-written JSON string.
   /// Attach managed policies with [AwsIamRolePolicyAttachment].
-
-paramOrder:
-  - assume_role_policy
-  - name
-  - description
-  - path
-  - permissions_boundary
-  - max_session_duration
-  - tags
