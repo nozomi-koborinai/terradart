@@ -61,13 +61,20 @@ List<String> _naturalOrderNames(ResourceDef def) {
 /// Returns true when [attr] must be excluded from the constructor / catalog.
 ///
 /// Excludes computed-only attributes ([Constraints.computedOnly] — no input
-/// role) and a **synthetic** `id` (optional/computed identity getter). A
-/// required `id` is a user-supplied create/lookup argument and stays in the
-/// constructor. Shared with [WrapperEmitter] / [DataSourceWrapperEmitter]
-/// (and the catalog metadata emitter) so all surfaces filter identically.
+/// role), a **synthetic** `id` (optional/computed identity getter), and
+/// `tags_all`. A required `id` is a user-supplied create/lookup argument and
+/// stays in the constructor. Shared with [WrapperEmitter] /
+/// [DataSourceWrapperEmitter] (and the catalog metadata emitter) so all
+/// surfaces filter identically.
+///
+/// AWS marks `tags_all` optional + computed, but its value is the provider's
+/// `default_tags` merged with `tags`; setting it by hand leaves a permanent
+/// plan diff, so it has no input role.
 bool skipAttribute(Attribute attr) {
   final isSyntheticId = attr.name == 'id' && !attr.constraints.required;
-  return attr.constraints.computedOnly || isSyntheticId;
+  return attr.constraints.computedOnly ||
+      isSyntheticId ||
+      attr.name == 'tags_all';
 }
 
 /// Data-source skip is the same filter as [skipAttribute]: computed-only
