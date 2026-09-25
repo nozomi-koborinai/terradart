@@ -2,10 +2,8 @@ import '../../ir/resource_def.dart';
 
 /// Provider-specific data + behaviour pulled out of the inline Google-only
 /// code in Phase 4.1–4.3. Each Terraform provider terradart supports is one
-/// concrete subclass.
+/// concrete subclass, registered in `provider_registry.dart`.
 ///
-/// Phase 4.4 ships only `GoogleProviderRules`. AWS / Azure adapters land in
-/// Phase 4.5+ when a real consumer (e.g. `terradart_aws`) is implemented.
 /// The abstract base is open/closed so community adapters in separate
 /// packages can plug in without touching this file.
 abstract class ProviderRules {
@@ -27,7 +25,7 @@ abstract class ProviderRules {
   /// `WrapInitGenerator._buildExtraGettersAxis`.
   ///
   /// Google: 0–2 lines for `id` and `nameRef` (from `name` attr).
-  /// AWS (Phase 4.5+): will return 0–2 lines for `id` and `arnRef`.
+  /// AWS: 0–2 lines for `id` and `arnRef` (from `arn` attr).
   List<String> universalGetters(ResourceDef def);
 
   /// Terraform type prefix this provider uses (`google_`, `cloudflare_`, …).

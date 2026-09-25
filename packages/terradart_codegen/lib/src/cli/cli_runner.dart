@@ -1,8 +1,6 @@
 import 'package:args/command_runner.dart';
 
-import '../codegen/providers/cloudflare_provider_rules.dart';
-import '../codegen/providers/google_provider_rules.dart';
-import '../codegen/providers/provider_rules.dart';
+import '../codegen/providers/provider_registry.dart';
 import 'lint_override_command.dart';
 import 'version_command.dart';
 import 'wrap_command.dart';
@@ -14,10 +12,6 @@ import 'wrap_promote_command.dart';
 /// Returns `int` so each command can pick its own exit code. `null` from a
 /// command means "no explicit code — treat as success".
 CommandRunner<int> buildCliRunner() {
-  const providers = <String, ProviderRules>{
-    'hashicorp/google': GoogleProviderRules(),
-    'cloudflare/cloudflare': CloudflareProviderRules(),
-  };
   final runner = CommandRunner<int>(
     'terradart',
     'Maintain terradart curated factories from Terraform provider schemas.',
@@ -28,8 +22,8 @@ CommandRunner<int> buildCliRunner() {
       help: 'Print the terradart CLI version and exit.',
     )
     ..addCommand(WrapCommand())
-    ..addCommand(WrapInitCommand(providers: providers))
-    ..addCommand(WrapPromoteCommand(providers: providers))
+    ..addCommand(WrapInitCommand(providers: providerRulesById))
+    ..addCommand(WrapPromoteCommand(providers: providerRulesById))
     ..addCommand(LintOverrideCommand())
     ..addCommand(VersionCommand());
   return runner;
