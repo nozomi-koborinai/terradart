@@ -74,7 +74,7 @@ jobs:
       - if: matrix.package == 'terradart_core'
         run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
       - if: matrix.package == 'terradart_core'
-        run: dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/extract_schema_subset_test.dart tool/generate_drift_report_test.dart
+        run: dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/extract_schema_subset_test.dart tool/generate_drift_report_test.dart tool/wrap_lanes_test.dart
       - run: dart test --reporter=github
         working-directory: packages/${{ matrix.package }}
 
@@ -108,52 +108,11 @@ jobs:
         with:
           sdk: stable
       - run: dart pub get
-      - name: Verify generated wrappers are up to date
-        working-directory: packages/terradart_codegen
-        run: |
-          dart run bin/terradart.dart wrap \
-            --provider hashicorp/google \
-            --source test/fixtures/wrap/source \
-            --output ../terradart_google/lib/src \
-            --migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart \
-            --check
-      # Per-provider lanes beyond GA google — coordinates in
-      # tool/providers.yaml. A lane that lives only in agent_verify.sh
-      # rots silently (the documented override_gates lesson).
-      - name: Verify generated google-beta wrappers are up to date
-        working-directory: packages/terradart_codegen
-        run: |
-          dart run bin/terradart.dart wrap \
-            --provider hashicorp/google-beta \
-            --source test/fixtures/wrap/source_beta \
-            --output ../terradart_google_beta/lib/src \
-            --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
-            --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
-            --resource-provider google-beta \
-            --migrate-manifest ../terradart_migrate/lib/src/manifest/google_beta.g.dart \
-            --check
-      - name: Verify generated appwrite wrappers are up to date
-        working-directory: packages/terradart_codegen
-        run: |
-          dart run bin/terradart.dart wrap \
-            --provider appwrite/appwrite \
-            --source test/fixtures/wrap/source_appwrite \
-            --output ../terradart_appwrite/lib/src \
-            --overrides-root lib/src/codegen/wrapper_overrides/appwrite/yaml \
-            --barrels-manifest lib/src/codegen/barrels/barrels_appwrite.yaml \
-            --migrate-manifest ../terradart_migrate/lib/src/manifest/appwrite.g.dart \
-            --check
-      - name: Verify generated cloudflare wrappers are up to date
-        working-directory: packages/terradart_codegen
-        run: |
-          dart run bin/terradart.dart wrap \
-            --provider cloudflare/cloudflare \
-            --source test/fixtures/wrap/source_cloudflare \
-            --output ../terradart_cloudflare/lib/src \
-            --overrides-root lib/src/codegen/wrapper_overrides/cloudflare/yaml \
-            --barrels-manifest lib/src/codegen/barrels/barrels_cloudflare.yaml \
-            --migrate-manifest ../terradart_migrate/lib/src/manifest/cloudflare.g.dart \
-            --check
+      # One step per gate, not per lane: tool/wrap_lanes.dart reads every
+      # lane from tool/providers.yaml, so a new provider cannot land with a
+      # lane that only agent_verify.sh runs.
+      - name: Verify generated wrappers are up to date (every providers.yaml lane)
+        run: dart tool/wrap_lanes.dart --gate wrap
 
   override_gates:
     name: override gates (lint, enum gaps, MM fingerprint)
@@ -168,9 +127,8 @@ jobs:
         with:
           sdk: stable
       - run: dart pub get
-      - name: terradart lint-override
-        working-directory: packages/terradart_codegen
-        run: dart run bin/terradart.dart lint-override
+      - name: terradart lint-override (every providers.yaml lane)
+        run: dart tool/wrap_lanes.dart --gate lint
       - name: check_override_enum_gaps (+ debt ledger staleness)
         run: dart tool/check_override_enum_gaps.dart --strict-nested
       - name: check_mm_upstream_fingerprint
