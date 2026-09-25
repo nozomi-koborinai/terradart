@@ -5,6 +5,7 @@ import 'dart:convert';
 
 import 'package:terradart_appwrite/provider.dart'
     show kAppwriteProviderVersionConstraint;
+import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
 import 'package:terradart_cloudflare/provider.dart'
     show kCloudflareProviderVersionConstraint;
 import 'package:terradart_core/terradart_core.dart' show ModuleCall, TfTimeouts;
@@ -149,7 +150,7 @@ final class _ProviderRecipe {
 
   final String package;
   final String className;
-  final Map<String, String> args;
+  final Map<String, _ProviderArg> args;
 
   /// The version constraint the package emits.
   final String pin;
@@ -158,30 +159,109 @@ final class _ProviderRecipe {
   final String barrel;
 }
 
+/// How one provider argument becomes a constructor argument. Every shape
+/// takes literals only: provider blocks do not interpolate resources.
+sealed class _ProviderArg {
+  const _ProviderArg(this.param);
+
+  /// The Dart parameter name.
+  final String param;
+}
+
+/// A string, number or bool (`region = "us-east-1"`).
+final class _Scalar extends _ProviderArg {
+  const _Scalar(super.param);
+}
+
+/// A list of strings (`allowed_account_ids = ["111"]`).
+final class _Strings extends _ProviderArg {
+  const _Strings(super.param);
+}
+
+/// A string map: an object attribute (`tags = { ... }`), a block whose
+/// attributes are the map (`endpoints { s3 = "..." }`), or the [key]
+/// attribute of a block (`default_tags { tags = { ... } }`).
+final class _StringMap extends _ProviderArg {
+  const _StringMap(super.param, {this.key});
+
+  final String? key;
+}
+
+/// Nested blocks as [className] instances (`assume_role { ... }`); a list
+/// when [repeated], else the one block.
+final class _Blocks extends _ProviderArg {
+  const _Blocks(
+    super.param,
+    this.className,
+    this.fields, {
+    required this.repeated,
+  });
+
+  final String className;
+  final Map<String, _ProviderArg> fields;
+  final bool repeated;
+}
+
 const _providerRecipes = <String, _ProviderRecipe>{
   'google': _ProviderRecipe('terradart_google', 'GoogleProvider', {
-    'project': 'project',
-    'region': 'region',
-    'zone': 'zone',
+    'project': _Scalar('project'),
+    'region': _Scalar('region'),
+    'zone': _Scalar('zone'),
   }, kProviderVersionConstraint),
-  'google-beta': _ProviderRecipe(
-    'terradart_google_beta',
-    'GoogleBetaProvider',
-    {'project': 'project', 'region': 'region', 'zone': 'zone'},
-    kBetaProviderVersionConstraint,
-  ),
+  'google-beta':
+      _ProviderRecipe('terradart_google_beta', 'GoogleBetaProvider', {
+        'project': _Scalar('project'),
+        'region': _Scalar('region'),
+        'zone': _Scalar('zone'),
+      }, kBetaProviderVersionConstraint),
   'appwrite': _ProviderRecipe('terradart_appwrite', 'AppwriteProvider', {
-    'endpoint': 'endpoint',
-    'project_id': 'projectId',
-    'organization_id': 'organizationId',
-    'self_signed': 'selfSigned',
-    'http_timeout_seconds': 'httpTimeoutSeconds',
+    'endpoint': _Scalar('endpoint'),
+    'project_id': _Scalar('projectId'),
+    'organization_id': _Scalar('organizationId'),
+    'self_signed': _Scalar('selfSigned'),
+    'http_timeout_seconds': _Scalar('httpTimeoutSeconds'),
   }, kAppwriteProviderVersionConstraint),
   'cloudflare': _ProviderRecipe('terradart_cloudflare', 'CloudflareProvider', {
-    'base_url': 'baseUrl',
-    'email': 'email',
-    'user_agent_operator_suffix': 'userAgentOperatorSuffix',
+    'base_url': _Scalar('baseUrl'),
+    'email': _Scalar('email'),
+    'user_agent_operator_suffix': _Scalar('userAgentOperatorSuffix'),
   }, kCloudflareProviderVersionConstraint),
+  // Credential arguments (access_key, secret_key, token,
+  // assume_role_with_web_identity) are absent on purpose: they drop with a
+  // warning and never reach Dart.
+  'aws': _ProviderRecipe('terradart_aws', 'AwsProvider', {
+    'region': _Scalar('region'),
+    'profile': _Scalar('profile'),
+    'allowed_account_ids': _Strings('allowedAccountIds'),
+    'forbidden_account_ids': _Strings('forbiddenAccountIds'),
+    'assume_role': _Blocks('assumeRole', 'AwsAssumeRole', {
+      'role_arn': _Scalar('roleArn'),
+      'session_name': _Scalar('sessionName'),
+      'external_id': _Scalar('externalId'),
+      'duration': _Scalar('duration'),
+      'policy': _Scalar('policy'),
+      'policy_arns': _Strings('policyArns'),
+      'source_identity': _Scalar('sourceIdentity'),
+      'tags': _StringMap('tags'),
+      'transitive_tag_keys': _Strings('transitiveTagKeys'),
+    }, repeated: true),
+    'default_tags': _StringMap('defaultTags', key: 'tags'),
+    'ignore_tags': _Blocks('ignoreTags', 'AwsIgnoreTags', {
+      'keys': _Strings('keys'),
+      'key_prefixes': _Strings('keyPrefixes'),
+    }, repeated: false),
+    'endpoints': _StringMap('endpoints'),
+    'shared_config_files': _Strings('sharedConfigFiles'),
+    'shared_credentials_files': _Strings('sharedCredentialsFiles'),
+    'skip_credentials_validation': _Scalar('skipCredentialsValidation'),
+    'skip_metadata_api_check': _Scalar('skipMetadataApiCheck'),
+    'skip_region_validation': _Scalar('skipRegionValidation'),
+    'skip_requesting_account_id': _Scalar('skipRequestingAccountId'),
+    'retry_mode': _Scalar('retryMode'),
+    'max_retries': _Scalar('maxRetries'),
+    'use_fips_endpoint': _Scalar('useFipsEndpoint'),
+    'use_dualstack_endpoint': _Scalar('useDualstackEndpoint'),
+  }, kAwsProviderVersionConstraint),
   // Hand-written in terradart_google next to TimeSleep (`time.dart`).
   'time': _ProviderRecipe(
     'terradart_google',
@@ -1043,39 +1123,109 @@ final class StackEmitter {
     String label,
     ProviderBlock block,
   ) {
-    final args = <String>[];
     final overrides = envValues['provider.$label'] ?? const <String, String>{};
     var isConst = true;
     final values = objectMap(bodyAsObject(block.body)) ?? {};
+    final args = <String>[];
     for (final entry in values.entries) {
       if (entry.key == 'alias') continue;
-      final param = recipe.args[entry.key];
+      final arg = recipe.args[entry.key];
       final override = overrides[entry.key];
-      if (param != null && override != null) {
+      if (arg is _Scalar && override != null) {
         isConst = false;
-        args.add('$param: $override');
+        args.add('${arg.param}: $override');
         continue;
       }
-      final json = jsonValue(entry.value);
-      if (param == null) {
+      if (arg == null) {
         _warnings.add(
           'provider "$label": argument "${entry.key}" has no '
           '${recipe.className} parameter and was dropped',
         );
         continue;
       }
-      if (json is String && json.contains(r'${') ||
-          json is List ||
-          json is Map) {
-        _warnings.add(
-          'provider "$label": argument "${entry.key}" is not a literal and '
-          'was dropped',
-        );
-        continue;
-      }
-      args.add('$param: ${dartValue(json)}');
+      final value = _providerValue(arg, entry.value, label, entry.key);
+      if (value != null) args.add('${arg.param}: $value');
     }
     return (args: args, isConst: isConst);
+  }
+
+  /// Dart source for [expr] read as [arg], or `null` (with a warning naming
+  /// [label] and the dotted [path]) when it is not a literal of that shape.
+  String? _providerValue(
+    _ProviderArg arg,
+    Expr expr,
+    String label,
+    String path,
+  ) {
+    String? drop() {
+      _warnings.add(
+        'provider "$label": argument "$path" is not a literal and was '
+        'dropped',
+      );
+      return null;
+    }
+
+    String? literalString(Object? json) =>
+        json is String && !json.contains(r'${') ? json : null;
+
+    switch (arg) {
+      case _Scalar():
+        final json = jsonValue(expr);
+        final literal =
+            json == null ||
+            json is bool ||
+            json is num ||
+            literalString(json) != null;
+        return literal ? dartValue(json) : drop();
+      case _Strings():
+        final json = jsonValue(expr);
+        if (json is! List) return drop();
+        final items = json.map(literalString).toList();
+        if (items.contains(null)) return drop();
+        return items.isEmpty ? '<String>[]' : dartValue(items);
+      case _StringMap(:final key):
+        var map = objectMap(expr);
+        if (key != null) {
+          final inner = map?[key];
+          map = inner == null ? null : objectMap(inner);
+        }
+        if (map == null) return drop();
+        final out = <String, String>{};
+        for (final MapEntry(key: k, :value) in map.entries) {
+          final s = literalString(jsonValue(value));
+          if (s == null) return drop();
+          out[k] = s;
+        }
+        return out.isEmpty ? '<String, String>{}' : dartValue(out);
+      case _Blocks(:final className, :final fields, :final repeated):
+        final blocks = expr is TupleExpr ? expr.elements : [expr];
+        if (!repeated && blocks.isEmpty) return drop();
+        if (!repeated && blocks.length > 1) {
+          _warnings.add(
+            'provider "$label": only the first "$path" block is migrated',
+          );
+        }
+        final instances = <String>[];
+        for (final b in repeated ? blocks : blocks.take(1)) {
+          final values = objectMap(b);
+          if (values == null) return drop();
+          final named = <String>[];
+          for (final MapEntry(key: k, :value) in values.entries) {
+            final field = fields[k];
+            if (field == null) {
+              _warnings.add(
+                'provider "$label": argument "$path.$k" has no $className '
+                'parameter and was dropped',
+              );
+              continue;
+            }
+            final v = _providerValue(field, value, label, '$path.$k');
+            if (v != null) named.add('${field.param}: $v');
+          }
+          instances.add('$className(${named.join(', ')})');
+        }
+        return repeated ? '[${instances.join(', ')}]' : instances.single;
+    }
   }
 
   // -----------------------------------------------------------------------

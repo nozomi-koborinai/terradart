@@ -23,7 +23,7 @@ terraform {
   required_version = ">= 1.11.0"
   required_providers {
     google = { source = "hashicorp/google", version = "~> 7.0" }
-    aws    = { source = "hashicorp/aws", version = "~> 5.0" }
+    azurerm = { source = "hashicorp/azurerm", version = "~> 4.0" }
   }
   backend "azurerm" {
     container_name = "tfstate"
@@ -68,8 +68,8 @@ resource "google_pubsub_subscription" "many" {
   topic = google_pubsub_topic.t.name
 } # trailing
 
-resource "aws_s3_bucket" "logs" {
-  bucket = "logs"
+resource "azurerm_resource_group" "logs" {
+  name = "logs"
 }
 
 moved {
@@ -118,7 +118,7 @@ output "label" {
         leftover,
         isNot(contains('resource "google_pubsub_subscription" "many"')),
       );
-      expect(leftover, contains('resource "aws_s3_bucket" "logs" {'));
+      expect(leftover, contains('resource "azurerm_resource_group" "logs" {'));
       expect(leftover, isNot(contains('moved {')));
       expect(
         r.stackSource,
@@ -168,8 +168,8 @@ output "label" {
           '  }\n'
           '\n'
           '  required_providers {\n'
-          '    # terradart-migrate: provider "aws" has no TerraDart factory\n'
-          '    aws    = { source = "hashicorp/aws", version = "~> 5.0" }\n'
+          '    # terradart-migrate: provider "azurerm" has no TerraDart factory\n'
+          '    azurerm = { source = "hashicorp/azurerm", version = "~> 4.0" }\n'
           '  }\n'
           '}',
         ),
@@ -178,10 +178,10 @@ output "label" {
       expect(backend, isNot(contains('required_version')));
       expect(sidecar.placements['terraform.backend'], backendFileName);
       expect(
-        sidecar.placements['terraform.required_providers.aws'],
+        sidecar.placements['terraform.required_providers.azurerm'],
         backendFileName,
       );
-      expect(sidecar.placements['provider.aws'], backendFileName);
+      expect(sidecar.placements['provider.azurerm'], backendFileName);
       for (final k in r.report.kept) {
         expect(
           sidecar.placements[k.address],
