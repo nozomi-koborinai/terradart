@@ -23,6 +23,8 @@ hook_is_handwritten_dart() {
   [[ "$rel" == packages/terradart_appwrite/lib/src/_catalog.g.dart ]] && return 1
   [[ "$rel" == packages/terradart_cloudflare/lib/src/*/cloudflare_*.dart ]] && return 1
   [[ "$rel" == packages/terradart_cloudflare/lib/src/_catalog.g.dart ]] && return 1
+  [[ "$rel" == packages/terradart_aws/lib/src/*/aws_*.dart ]] && return 1
+  [[ "$rel" == packages/terradart_aws/lib/src/_catalog.g.dart ]] && return 1
   [[ "$rel" == packages/terradart_core/* ]] && return 0
   [[ "$rel" == packages/terradart_codegen/* ]] && return 0
   [[ "$rel" == packages/terradart_agent/* ]] && return 0
@@ -48,6 +50,8 @@ hook_is_protected_write_path() {
     packages/terradart_appwrite/lib/src/_catalog.g.dart) return 0 ;;
     packages/terradart_cloudflare/lib/src/*/cloudflare_*.dart) return 0 ;;
     packages/terradart_cloudflare/lib/src/_catalog.g.dart) return 0 ;;
+    packages/terradart_aws/lib/src/*/aws_*.dart) return 0 ;;
+    packages/terradart_aws/lib/src/_catalog.g.dart) return 0 ;;
     packages/terradart_migrate/lib/src/manifest/*.g.dart) return 0 ;;
     packages/terradart_codegen/test/fixtures/wrap/expected_output/*) return 0 ;;
     .github/workflows/*) return 0 ;;
