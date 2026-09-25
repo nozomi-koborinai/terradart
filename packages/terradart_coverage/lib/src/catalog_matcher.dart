@@ -1,4 +1,5 @@
 import 'package:terradart_appwrite/catalog.dart' as appwrite;
+import 'package:terradart_aws/catalog.dart' as aws;
 import 'package:terradart_cloudflare/catalog.dart' as cloudflare;
 import 'package:terradart_google/catalog.dart';
 import 'package:terradart_google_beta/catalog.dart' as beta;
@@ -38,8 +39,8 @@ final class CuratedFactory {
 }
 
 /// Every curated factory of every provider package, in lookup precedence:
-/// `terradart_google`, then `terradart_google_beta`, `terradart_appwrite` and
-/// `terradart_cloudflare`.
+/// `terradart_google`, then `terradart_google_beta`, `terradart_appwrite`,
+/// `terradart_cloudflare` and `terradart_aws`.
 List<CuratedFactory> allCuratedFactories() => [
   for (final e in terradartCatalog) _google(e),
   for (final e in beta.terradartCatalog)
@@ -65,6 +66,14 @@ List<CuratedFactory> allCuratedFactories() => [
       className: e.className,
       barrel: e.barrel,
       package: 'terradart_cloudflare',
+    ),
+  for (final e in aws.terradartCatalog)
+    CuratedFactory(
+      tfType: e.tfType,
+      kind: _kindNamed(e.kind.name),
+      className: e.className,
+      barrel: e.barrel,
+      package: 'terradart_aws',
     ),
 ];
 
