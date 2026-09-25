@@ -1,3 +1,4 @@
+import 'package:terradart_codegen/src/codegen/providers/aws_provider_rules.dart';
 import 'package:terradart_codegen/src/codegen/providers/cloudflare_provider_rules.dart';
 import 'package:terradart_codegen/src/codegen/providers/google_provider_rules.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/output_dir_resolver.dart';
@@ -138,6 +139,59 @@ void main() {
         ),
         'data',
       );
+    });
+  });
+
+  group('OutputDirResolver (aws)', () {
+    final resolver = OutputDirResolver(
+      aliases: const AwsProviderRules().outputDirAliases,
+      typePrefix: const AwsProviderRules().terraformTypePrefix,
+    );
+    String barrel(String type) => resolver.resolve(
+          terraformType: type,
+          mmProduct: null,
+          kind: WrapperOverrideKind.resource,
+        );
+
+    test('EC2 / VPC resource-named types fold into ec2', () {
+      expect(
+        {
+          for (final type in [
+            'aws_instance',
+            'aws_route_table',
+            'aws_subnet',
+            'aws_vpc',
+            'aws_security_group_rule',
+            'aws_launch_template',
+            'aws_ec2_transit_gateway',
+          ])
+            type: barrel(type),
+        },
+        {
+          'aws_instance': 'ec2',
+          'aws_route_table': 'ec2',
+          'aws_subnet': 'ec2',
+          'aws_vpc': 'ec2',
+          'aws_security_group_rule': 'ec2',
+          'aws_launch_template': 'ec2',
+          'aws_ec2_transit_gateway': 'ec2',
+        },
+      );
+    });
+
+    test('service-named types keep their service barrel', () {
+      expect(barrel('aws_s3_bucket'), 's3');
+      expect(barrel('aws_lambda_function'), 'lambda');
+      expect(barrel('aws_route53_record'), 'route53');
+      expect(barrel('aws_vpclattice_service'), 'vpclattice');
+      expect(barrel('aws_securityhub_account'), 'securityhub');
+    });
+
+    test('launch_configuration is Auto Scaling, ALB aliases are ELB', () {
+      expect(barrel('aws_launch_configuration'), 'autoscaling');
+      expect(barrel('aws_alb_listener'), 'elb');
+      expect(barrel('aws_lb'), 'elb');
+      expect(barrel('aws_load_balancer_policy'), 'elb');
     });
   });
 }

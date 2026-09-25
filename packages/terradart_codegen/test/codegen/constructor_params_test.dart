@@ -135,6 +135,29 @@ void main() {
       expect(result, isNot(contains('id')));
     });
 
+    test('AWS tags_all is excluded while tags stays an input', () {
+      final def = makeResource(
+        attrs: [
+          const Attribute(
+            name: 'bucket',
+            type: StringType(),
+            constraints: Constraints(optional: true, computed: true),
+          ),
+          const Attribute(
+            name: 'tags',
+            type: MapType(StringType()),
+            constraints: Constraints(optional: true),
+          ),
+          const Attribute(
+            name: 'tags_all',
+            type: MapType(StringType()),
+            constraints: Constraints(optional: true, computed: true),
+          ),
+        ],
+      );
+      expect(orderedConstructorParams(def, null), ['bucket', 'tags']);
+    });
+
     test('required id stays in the resource constructor', () {
       final def = makeResource(
         attrs: [

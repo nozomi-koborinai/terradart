@@ -58,9 +58,9 @@ class EnumName {
   });
 }
 
-/// Strips a known provider prefix (`google_`, `cloudflare_`, `appwrite_`)
-/// from [terraformType], then converts the remainder to PascalCase — e.g.
-/// `google_app_engine_domain_mapping` → `AppEngineDomainMapping`,
+/// Strips a known provider prefix (`google_`, `cloudflare_`, `appwrite_`,
+/// `aws_`) from [terraformType], then converts the remainder to PascalCase —
+/// e.g. `google_app_engine_domain_mapping` → `AppEngineDomainMapping`,
 /// `cloudflare_zone` → `Zone`.
 ///
 /// This is the shared "short resource name" both [enumName] (top-level
@@ -70,7 +70,7 @@ class EnumName {
 /// `AppEngineDomainMappingSslSettings`) build their generated names from —
 /// dropping the prefix keeps generated names readable in user code.
 String shortResourcePascal(String terraformType) {
-  const providerPrefixes = ['google_', 'cloudflare_', 'appwrite_'];
+  const providerPrefixes = ['google_', 'cloudflare_', 'appwrite_', 'aws_'];
   var short = terraformType;
   for (final prefix in providerPrefixes) {
     if (short.startsWith(prefix)) {
