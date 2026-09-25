@@ -35,6 +35,11 @@ void main() {
       expect(shortResourcePascal('appwrite_project'), 'Project');
     });
 
+    test('shortResourcePascal strips the aws_ prefix', () {
+      expect(shortResourcePascal('aws_lambda_function'), 'LambdaFunction');
+      expect(shortResourcePascal('aws_s3_bucket'), 'S3Bucket');
+    });
+
     test('shortResourcePascal leaves a non-google_ type untouched (Pascal)',
         () {
       expect(shortResourcePascal('foo_bar'), 'FooBar');
