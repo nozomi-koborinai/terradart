@@ -84,7 +84,7 @@ When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer 
 - `exactly-one-optional-fanout` — multiple optional member `customSlots` without a sealed virtual slot.
 - `exactly-one-paramorder-fanout` — two or more group members listed in `paramOrder` without a sealed virtual slot (the path used when an override skips `customSlots`).
 
-`lint-override` clean does **not** guarantee every optional nested block is type-enforced: resources without MM `exactly_one_of` metadata (e.g. large schema-only surfaces) may still fan out at the Dart API until sealed. Prefer sealed virtual slots + `wrap-promote` when curating new `exactly_one_of` groups. Pre-existing optional-fanout overrides may be listed in [`tool/exactly_one_lint_debt.yaml`](tool/exactly_one_lint_debt.yaml) with a reason until sealed (#107).
+`lint-override` clean does **not** guarantee every optional nested block is type-enforced: resources without MM `exactly_one_of` metadata (e.g. large schema-only surfaces) may still fan out at the Dart API until sealed. Prefer sealed virtual slots + `wrap-promote` when curating new `exactly_one_of` groups. Pre-existing optional-fanout overrides may be listed in [`tool/exactly_one_lint_debt.yaml`](tool/exactly_one_lint_debt.yaml) with a reason until sealed (#107). Both lint ledgers (this one and `tool/migrate_manifest_debt.yaml`) are shared by every `tool/providers.yaml` lane: each lane's `lint-override` validates only the entries naming its own overrides, and `tool/wrap_lanes.dart` fails on an entry that names an override in no lane.
 
 ### Migration manifest (`migrate-shape-*`)
 
