@@ -460,8 +460,8 @@ const _extraParams = <String, List<String>>{
     'externalMetricsPreference',
   ],
   'AwsConfigAggregateAuthorization': ['authorizedAwsRegion'],
-  'AwsConfigConformancePack': ['templateBody', 'templateS3Uri'],
-  'AwsConnectInstance': ['directoryId', 'instanceAlias'],
+  'AwsConfigConformancePack': ['templateS3Uri'],
+  'AwsConnectInstance': ['instanceAlias'],
   'AwsDataexchangeEventAction': ['action', 'event'],
   'AwsDatazoneFormType': ['model'],
   'AwsDatazonePolicyGrant': ['detail', 'principal'],
@@ -474,7 +474,7 @@ const _extraParams = <String, List<String>>{
     'opsCenter',
   ],
   'AwsDlmLifecyclePolicy': ['defaultPolicy'],
-  'AwsDmsCertificate': ['certificatePem', 'certificateWallet'],
+  'AwsDmsCertificate': ['certificatePem'],
   'AwsDmsDataProvider': ['settings'],
   'AwsDmsMigrationProject': [
     'sourceDataProviderDescriptor',
@@ -487,7 +487,7 @@ const _extraParams = <String, List<String>>{
   'AwsDxHostedPrivateVirtualInterfaceAccepter': ['dxGatewayId'],
   'AwsDxHostedPublicVirtualInterface': ['bgpAsn'],
   'AwsDxHostedTransitVirtualInterface': ['bgpAsn'],
-  'AwsDxMacsecKeyAssociation': ['ckn', 'secretArn'],
+  'AwsDxMacsecKeyAssociation': ['secretArn'],
   'AwsDxPrivateVirtualInterface': ['bgpAsn', 'dxGatewayId'],
   'AwsDxTransitVirtualInterface': ['bgpAsn'],
   'AwsDynamodbGlobalSecondaryIndex': ['keySchema'],
@@ -584,7 +584,7 @@ const _extraParams = <String, List<String>>{
   ],
   'AwsOdbNetworkPeeringConnection': ['odbNetworkId'],
   'AwsOpensearchserverlessSecurityConfig': ['iamFederationOptions'],
-  'AwsPinpointGcmChannel': ['apiKey', 'serviceJson'],
+  'AwsPinpointGcmChannel': ['serviceJson'],
   'AwsPinpointsmsvoicev2EventDestination': ['cloudwatchLogsDestination'],
   'AwsPrometheusAnomalyDetector': ['configuration', 'missingDataAction'],
   'AwsPrometheusQueryLoggingConfiguration': ['destination'],
@@ -626,7 +626,7 @@ const _extraParams = <String, List<String>>{
   'AwsSagemakerLabelingJob': ['inputConfig', 'outputConfig', 'humanTaskConfig'],
   'AwsSagemakerModelCardExportJob': ['outputConfig'],
   'AwsSagemakerPipeline': ['pipelineDefinition'],
-  'AwsSagemakerWorkforce': ['cognitoConfig', 'oidcConfig'],
+  'AwsSagemakerWorkforce': ['cognitoConfig'],
   'AwsSecurityGroupRule': ['cidrBlocks'],
   'AwsSecurityhubAutomationRule': ['criteria', 'actions'],
   'AwsSecurityhubAutomationRuleV2': ['action', 'criteria'],
@@ -667,7 +667,7 @@ const _extraParams = <String, List<String>>{
   ],
   'AwsTranscribeVocabulary': ['phrases'],
   'AwsTranscribeVocabularyFilter': ['vocabularyFilterFileUri'],
-  'AwsTransferHostKey': ['hostKeyBody', 'hostKeyBodyWo'],
+  'AwsTransferHostKey': ['hostKeyBodyWo'],
   'AwsTransferWebApp': ['identityProviderDetails'],
   'AwsVerifiedpermissionsIdentitySource': ['configuration'],
   'AwsVerifiedpermissionsPolicy': ['definition'],
@@ -1103,7 +1103,7 @@ const _literalByKey = <String, String>{
   'AcmpcaCertificateAuthorityCertificateAuthorityConfiguration.keyAlgorithm':
       '\'RSA_2048\'',
   'AcmpcaCertificateAuthorityCertificateAuthorityConfiguration.signingAlgorithm':
-      '\'SHA256WITHECDSA\'',
+      '\'SHA256WITHRSA\'',
   'AcmpcaCertificateValidity.type': '\'END_DATE\'',
   'AcmpcaCertificateValidity.value': '\'2026-01-01T00:00:00Z\'',
   'AgentregistryRegistryDiscoveryConfiguration.authorizerType':
@@ -1143,7 +1143,7 @@ const _literalByKey = <String, String>{
   'AwsAccountAlternateContact.alternateContactType': '\'BILLING\'',
   'AwsAccountAlternateContact.phoneNumber': '\'+12065550100\'',
   'AwsAccountPrimaryContact.phoneNumber': '\'+12065550100\'',
-  'AwsAcmpcaCertificate.signingAlgorithm': '\'SHA256WITHECDSA\'',
+  'AwsAcmpcaCertificate.signingAlgorithm': '\'SHA256WITHRSA\'',
   'AwsAcmpcaPermission.actions': '[\'IssueCertificate\']',
   'AwsAcmpcaPermission.principal': '\'acm.amazonaws.com\'',
   'AwsApiGatewayDomainNameAccessAssociation.accessAssociationSourceType':
@@ -1266,7 +1266,6 @@ const _literalByKey = <String, String>{
   'AwsConfigOrganizationCustomRule.triggerTypes':
       '[\'ConfigurationItemChangeNotification\']',
   'AwsConfigRemediationConfiguration.targetType': '\'SSM_DOCUMENT\'',
-  'AwsConnectInstance.directoryId': '\'d-1234567890\'',
   'AwsConnectInstance.identityManagementType': '\'SAML\'',
   'AwsConnectInstanceStorageConfig.resourceType': '\'CHAT_TRANSCRIPTS\'',
   'AwsConnectPhoneNumber.countryCode': '\'AF\'',
@@ -1326,8 +1325,8 @@ const _literalByKey = <String, String>{
   'AwsDxHostedPublicVirtualInterface.addressFamily': '\'ipv4\'',
   'AwsDxHostedTransitVirtualInterface.addressFamily': '\'ipv4\'',
   'AwsDxLag.connectionsBandwidth': '\'1Gbps\'',
-  'AwsDxMacsecKeyAssociation.ckn':
-      '\'0000000000000000000000000000000000000000000000000000000000000000\'',
+  'AwsDxMacsecKeyAssociation.secretArn':
+      '\'arn:aws:secretsmanager:us-east-1:123456789012:secret:leftover\'',
   'AwsDxPrivateVirtualInterface.addressFamily': '\'ipv4\'',
   'AwsDxPublicVirtualInterface.addressFamily': '\'ipv4\'',
   'AwsDxTransitVirtualInterface.addressFamily': '\'ipv4\'',
@@ -1544,9 +1543,9 @@ const _literalByKey = <String, String>{
       '\'IAM_AND_QUICKSIGHT\'',
   'AwsQuicksightAccountSubscription.edition': '\'STANDARD\'',
   'AwsQuicksightAnalysis.sourceEntity':
-      '{\'source_template\': {\'arn\': arn, \'data_set_references\': {\'data_set_arn\': arn, \'data_set_placeholder\': leftover}}}',
+      '{\'source_template\': {\'arn\': arn, \'data_set_references\': [{\'data_set_arn\': arn, \'data_set_placeholder\': leftover}]}}',
   'AwsQuicksightDashboard.sourceEntity':
-      '{\'source_template\': {\'arn\': arn, \'data_set_references\': {\'data_set_arn\': arn, \'data_set_placeholder\': leftover}}}',
+      '{\'source_template\': {\'arn\': arn, \'data_set_references\': [{\'data_set_arn\': arn, \'data_set_placeholder\': leftover}]}}',
   'AwsQuicksightDataSet.importMode': '\'SPICE\'',
   'AwsQuicksightDataSource.type': '\'ADOBE_ANALYTICS\'',
   'AwsQuicksightFolderMembership.memberType': '\'DASHBOARD\'',
@@ -1578,7 +1577,7 @@ const _literalByKey = <String, String>{
   'AwsResiliencehubv2ServiceFunction.criticality': '\'PRIMARY\'',
   'AwsResourceexplorer2Index.type': '\'LOCAL\'',
   'AwsRoute53HealthCheck.type': '\'HTTP\'',
-  'AwsRoute53Record.type': '\'SOA\'',
+  'AwsRoute53Record.type': '\'A\'',
   'AwsRoute53ResolverConfig.autodefinedReverseFlag': '\'ENABLE\'',
   'AwsRoute53ResolverEndpoint.direction': '\'INBOUND\'',
   'AwsRoute53ResolverFirewallRule.action': '\'ALLOW\'',
@@ -2040,7 +2039,8 @@ const _literalByKey = <String, String>{
       '\'ml.eia1.medium\'',
   'SagemakerFeatureGroupFeatureDefinition.collectionType': '\'List\'',
   'SagemakerFlowDefinitionHumanLoopConfig.taskCount': '1',
-  'SagemakerFlowDefinitionOutputConfig.s3OutputPath': '\'s3://&/L\'',
+  'SagemakerFlowDefinitionOutputConfig.s3OutputPath':
+      '\'s3://leftover-bucket/leftover\'',
   'SagemakerHyperParameterTuningJobConfig.strategy': '\'Bayesian\'',
   'SagemakerLabelingJobHumanTaskConfig.numberOfHumanWorkersPerDataObject': '1',
   'SagemakerLabelingJobOutputConfig.s3OutputPath':
