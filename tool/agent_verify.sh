@@ -7,7 +7,6 @@
 #                                      # gates only (skips example synth, the
 #                                      # package suites, cookbook, smoke).
 #                                      # Run the FULL gate before opening a PR.
-#   tool/agent_verify.sh --format      # add scoped dart format (hand-written packages)
 #   tool/agent_verify.sh --maintainer  # add wrap-init / wrap-promote e2e tests
 #
 # Does not run the full terraform_validate example matrix; GitHub Actions still
@@ -17,16 +16,14 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-WITH_FORMAT=0
 WITH_MAINTAINER=0
 QUICK=0
 for arg in "$@"; do
   case "$arg" in
     --quick) QUICK=1 ;;
-    --format) WITH_FORMAT=1 ;;
     --maintainer) WITH_MAINTAINER=1 ;;
     -h | --help)
-      sed -n '2,16p' "$0"
+      sed -n '2,13p' "$0"
       exit 0
       ;;
     *)
@@ -38,9 +35,6 @@ done
 
 echo ">> dart pub get"
 dart pub get
-
-echo ">> example_synth_gates_test (unit)"
-dart --enable-asserts tool/example_synth_gates_test.dart
 
 echo ">> check_docs_consistency (text-only)"
 dart tool/check_docs_consistency.dart
@@ -81,29 +75,28 @@ else
   echo ">> cookbook validation: SKIPPED (--quick)"
 fi
 
-if [[ "$WITH_FORMAT" == "1" ]]; then
-  echo ">> dart format (terradart_core, terradart_codegen, terradart_agent, terradart_coverage, terradart_hcl, terradart_migrate)"
-  dart format --output=none --set-exit-if-changed \
-    packages/terradart_core/ \
-    packages/terradart_codegen/ \
-    packages/terradart_agent/ \
-    packages/terradart_coverage/ \
-    packages/terradart_hcl/ \
-    packages/terradart_migrate/
-fi
+# Same scope as the CI format step: generated wrappers keep the format of
+# wrap's pinned dart_style, which `wrap --check` guards instead.
+echo ">> dart format (terradart_core, terradart_codegen, terradart_agent, terradart_coverage, terradart_hcl, terradart_migrate)"
+dart format --output=none --set-exit-if-changed \
+  packages/terradart_core/ \
+  packages/terradart_codegen/ \
+  packages/terradart_agent/ \
+  packages/terradart_coverage/ \
+  packages/terradart_hcl/ \
+  packages/terradart_migrate/
 
 if [[ "$QUICK" == "0" ]]; then
-  PACKAGES=(terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_agent terradart_coverage terradart_hcl terradart_migrate)
-  for pkg in "${PACKAGES[@]}"; do
-    echo ">> dart test packages/$pkg"
-    (cd "packages/$pkg" && dart test --reporter=expanded)
+  for pkg_dir in packages/*/; do
+    echo ">> dart test $pkg_dir"
+    (cd "$pkg_dir" && dart test --reporter=expanded)
   done
 else
   echo ">> package test suites: SKIPPED (--quick)"
 fi
 
-echo ">> dart test tool/ (render_formula, render_to_file, select_changed_examples, check_bump_scope, loop_health_report, extract_schema_subset, generate_drift_report, wrap_lanes)"
-dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/loop_health_report_test.dart tool/extract_schema_subset_test.dart tool/generate_drift_report_test.dart tool/wrap_lanes_test.dart
+echo ">> dart test tool/"
+dart test tool/
 
 echo ">> wrap lanes (terradart wrap --check + lint-override for every tool/providers.yaml lane)"
 dart tool/wrap_lanes.dart

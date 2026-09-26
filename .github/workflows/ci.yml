@@ -63,9 +63,9 @@ jobs:
         with:
           sdk: stable
       - run: dart pub get
-      # Format check is scoped to the hand-written packages (terradart_core,
-      # terradart_codegen, terradart_agent) because
-      # terradart_google wrappers are formatted by `terradart wrap`'s pinned
+      # Format check is scoped to the hand-written packages (the same list as
+      # tool/agent_verify.sh and the afterFileEdit hook) because the provider
+      # package wrappers are formatted by `terradart wrap`'s pinned
       # dart_style (3.1.9), which can drift from the SDK-bundled `dart format`
       # CLI. wrap CLI output is the authoritative format for generated wrappers
       # and is guarded by the `wrap_check` job (`terradart wrap --check`).
@@ -74,7 +74,7 @@ jobs:
       - if: matrix.package == 'terradart_core'
         run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
       - if: matrix.package == 'terradart_core'
-        run: dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/extract_schema_subset_test.dart tool/generate_drift_report_test.dart tool/wrap_lanes_test.dart
+        run: dart test tool/
       - run: dart test --reporter=github
         working-directory: packages/${{ matrix.package }}
 
