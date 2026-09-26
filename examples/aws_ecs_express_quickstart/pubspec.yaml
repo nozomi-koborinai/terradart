@@ -1,0 +1,15 @@
+name: terradart_example_aws_ecs_express_quickstart
+description: A Dart HTTP server on ECS Express Mode -- an ECR repository for its image, the execution and infrastructure roles, and an Express gateway service that provisions the load balancer.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.28.1
+  terradart_aws: ^0.28.1
+
+dev_dependencies:
+  lints: ^6.0.0

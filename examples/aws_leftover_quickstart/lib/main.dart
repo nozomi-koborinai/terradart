@@ -114,20 +114,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsAcmCertificate(
-        localName: 'acm_certificate',
-        domainName: TfArg.literal(leftover),
-      ),
-    );
-
-    add(
-      AwsAcmCertificateValidation(
-        localName: 'acm_certificate_validation',
-        certificateArn: TfArg.literal(arn),
-      ),
-    );
-
-    add(
       AwsAcmpcaCertificate(
         localName: 'acmpca_certificate',
         certificateAuthorityArn: TfArg.literal(arn),
@@ -2705,33 +2691,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsCloudfrontDistribution(
-        localName: 'cloudfront_distribution',
-        enabled: TfArg.literal(true),
-        defaultCacheBehavior: CloudfrontDistributionDefaultCacheBehavior(
-          allowedMethods: TfArg.literal([leftover]),
-          cachedMethods: TfArg.literal([leftover]),
-          targetOriginId: TfArg.literal(leftover),
-          viewerProtocolPolicy: TfArg.literal('allow-all'),
-        ),
-        origin: [
-          CloudfrontDistributionOrigin(
-            domainName: TfArg.literal(leftover),
-            originId: TfArg.literal(leftover),
-          ),
-        ],
-        restrictions: CloudfrontDistributionRestrictions(
-          geoRestriction: CloudfrontDistributionRestrictionsGeoRestriction(
-            restrictionType: TfArg.literal('blacklist'),
-          ),
-        ),
-        viewerCertificate: CloudfrontDistributionViewerCertificate(
-          acmCertificateArn: TfArg.literal(arn),
-        ),
-      ),
-    );
-
-    add(
       AwsCloudfrontDistributionTenant(
         localName: 'cloudfront_distribution_tenant',
         distributionId: TfArg.literal(leftover),
@@ -2851,16 +2810,6 @@ final class AwsLeftoverStack extends Stack {
             ],
           ),
         ],
-      ),
-    );
-
-    add(
-      AwsCloudfrontOriginAccessControl(
-        localName: 'cloudfront_origin_access_control',
-        name: TfArg.literal(leftover),
-        originAccessControlOriginType: TfArg.literal('s3'),
-        signingBehavior: TfArg.literal('never'),
-        signingProtocol: TfArg.literal('sigv4'),
       ),
     );
 
@@ -6104,14 +6053,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsEcrLifecyclePolicy(
-        localName: 'ecr_lifecycle_policy',
-        policy: TfArg.literal(policy),
-        repository: TfArg.literal(leftover),
-      ),
-    );
-
-    add(
       AwsEcrPullThroughCacheRule(
         localName: 'ecr_pull_through_cache_rule',
         ecrRepositoryPrefix: TfArg.literal(leftover),
@@ -6143,13 +6084,6 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsEcrReplicationConfiguration(
         localName: 'ecr_replication_configuration',
-      ),
-    );
-
-    add(
-      AwsEcrRepository(
-        localName: 'ecr_repository',
-        name: TfArg.literal(leftover),
       ),
     );
 
@@ -6200,13 +6134,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsEcsCluster(
-        localName: 'ecs_cluster',
-        name: TfArg.literal(leftover),
-      ),
-    );
-
-    add(
       AwsEcsClusterCapacityProviders(
         localName: 'ecs_cluster_capacity_providers',
         clusterName: TfArg.literal(leftover),
@@ -6228,19 +6155,6 @@ final class AwsLeftoverStack extends Stack {
         family: TfArg.literal(leftover),
         containerDefinition: [
           EcsDaemonTaskDefinitionContainerDefinition(
-            image: TfArg.literal(leftover),
-          ),
-        ],
-      ),
-    );
-
-    add(
-      AwsEcsExpressGatewayService(
-        localName: 'ecs_express_gateway_service',
-        executionRoleArn: TfArg.literal(arn),
-        infrastructureRoleArn: TfArg.literal(arn),
-        primaryContainer: [
-          EcsExpressGatewayServicePrimaryContainer(
             image: TfArg.literal(leftover),
           ),
         ],
@@ -12443,20 +12357,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsRoute53Record(
-        localName: 'route53_record',
-        name: TfArg.literal(leftover),
-        type: TfArg.literal('A'),
-        zoneId: TfArg.literal(leftover),
-        alias: Route53RecordAlias(
-          evaluateTargetHealth: TfArg.literal(true),
-          name: TfArg.literal(leftover),
-          zoneId: TfArg.literal(leftover),
-        ),
-      ),
-    );
-
-    add(
       AwsRoute53RecordsExclusive(
         localName: 'route53_records_exclusive',
         zoneId: TfArg.literal(leftover),
@@ -12789,12 +12689,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     add(
-      AwsS3Bucket(
-        localName: 's3_bucket',
-      ),
-    );
-
-    add(
       AwsS3BucketAbac(
         localName: 's3_bucket_abac',
         bucket: TfArg.literal(leftover),
@@ -12957,21 +12851,6 @@ final class AwsLeftoverStack extends Stack {
         rule: S3BucketOwnershipControlsRule(
           objectOwnership: TfArg.literal('BucketOwnerPreferred'),
         ),
-      ),
-    );
-
-    add(
-      AwsS3BucketPolicy(
-        localName: 's3_bucket_policy',
-        bucket: TfArg.literal(leftover),
-        policy: TfArg.literal(policy),
-      ),
-    );
-
-    add(
-      AwsS3BucketPublicAccessBlock(
-        localName: 's3_bucket_public_access_block',
-        bucket: TfArg.literal(leftover),
       ),
     );
 
@@ -17515,13 +17394,6 @@ final class AwsLeftoverStack extends Stack {
     );
 
     addData(
-      DataAwsCloudfrontCachePolicy(
-        localName: 'd_cloudfront_cache_policy',
-        name: TfArg.literal(leftover),
-      ),
-    );
-
-    addData(
       DataAwsCloudfrontConnectionGroup(
         localName: 'd_cloudfront_connection_group',
         routingEndpoint: TfArg.literal(leftover),
@@ -20684,12 +20556,6 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsRoute53TrafficPolicyDocument(
         localName: 'd_route53_traffic_policy_document',
-      ),
-    );
-
-    addData(
-      DataAwsRoute53Zone(
-        localName: 'd_route53_zone',
       ),
     );
 
