@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/cli/lint_override_command.dart';
 import 'package:test/test.dart';
 
 import 'wrap_lanes.dart';
@@ -120,6 +121,112 @@ providers:
             'tool/providers.yaml has no providers: entries',
           ),
         ),
+      );
+    });
+  });
+
+  test('every committed lane resolves the shared lint ledgers under tool/', () {
+    for (final lane in parseWrapLanes(File(providersPath).readAsStringSync())) {
+      expect(
+        lintDebtToolDirForOverrideRoot(lane.overridesRoot),
+        p.absolute('tool'),
+        reason: 'lane ${lane.name}',
+      );
+    }
+  });
+
+  group('unownedLedgerEntries', () {
+    test('names each entry no lane owns, per ledger', () {
+      expect(
+        unownedLedgerEntries(
+          {
+            'tool/exactly_one_lint_debt.yaml': ['google_a', 'ghost'],
+            'tool/migrate_manifest_debt.yaml': ['aws_b', 'data.google_c'],
+          },
+          {'google_a', 'aws_b'},
+        ),
+        [
+          'tool/exactly_one_lint_debt.yaml: ghost names no override in any '
+              'lane',
+          'tool/migrate_manifest_debt.yaml: data.google_c names no override '
+              'in any lane',
+        ],
+      );
+    });
+
+    test('is empty when every entry has an owner', () {
+      expect(
+        unownedLedgerEntries(
+          {
+            'tool/exactly_one_lint_debt.yaml': ['google_a'],
+          },
+          {'google_a'},
+        ),
+        isEmpty,
+      );
+    });
+  });
+
+  group('ledgerOwnershipFailures', () {
+    late Directory root;
+    const overrides = 'packages/terradart_codegen/lib/src/codegen/'
+        'wrapper_overrides';
+
+    setUp(() {
+      root = Directory.systemTemp.createTempSync('wrap_lanes_ledger_');
+      for (final (lane, override) in [('a', 'a_one'), ('b', 'b_two')]) {
+        Directory(p.join(root.path, overrides, lane, 'yaml'))
+            .createSync(recursive: true);
+        File(p.join(root.path, overrides, lane, 'yaml', '$override.yaml'))
+            .writeAsStringSync('outputDir: x\n');
+      }
+      Directory(p.join(root.path, 'tool')).createSync();
+    });
+    tearDown(() => root.deleteSync(recursive: true));
+
+    List<WrapLane> lanes(Map<String, String> overridesRoots) {
+      final yaml = StringBuffer('providers:\n');
+      for (final MapEntry(key: name, value: root) in overridesRoots.entries) {
+        yaml
+          ..writeln('  $name:')
+          ..writeln('    source: example/$name')
+          ..writeln('    schemaDir: fixtures/source_$name')
+          ..writeln('    outputPackage: packages/terradart_$name')
+          ..writeln('    overridesRoot: $root')
+          ..writeln('    barrelsManifest: barrels_$name.yaml')
+          ..writeln('    migrateManifest: manifest/$name.g.dart');
+      }
+      return parseWrapLanes(yaml.toString());
+    }
+
+    test('an entry owned by another lane passes; one owned by none fails', () {
+      File(p.join(root.path, 'tool', 'exactly_one_lint_debt.yaml'))
+          .writeAsStringSync('b_two: lane b owns it\nghost: owned by none\n');
+      File(p.join(root.path, 'tool', 'migrate_manifest_debt.yaml'))
+          .writeAsStringSync('a_one: lane a owns it\n');
+      expect(
+        ledgerOwnershipFailures(
+          lanes({'a': '$overrides/a/yaml', 'b': '$overrides/b/yaml'}),
+          root.path,
+        ),
+        [
+          'tool/exactly_one_lint_debt.yaml: ghost names no override in any '
+              'lane',
+        ],
+      );
+    });
+
+    test('a lane outside wrapper_overrides is reported, not skipped', () {
+      Directory(p.join(root.path, 'elsewhere')).createSync();
+      expect(
+        ledgerOwnershipFailures(
+          lanes({'a': '$overrides/a/yaml', 'x': 'elsewhere'}),
+          root.path,
+        ),
+        [
+          'lane x: overridesRoot elsewhere resolves the lint ledgers to '
+              'nothing, not ${p.join(root.path, 'tool')}',
+        ],
       );
     });
   });
