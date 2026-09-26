@@ -153,7 +153,7 @@ Before claiming work is done, run from the repository root:
 tool/agent_verify.sh
 ```
 
-This is the shared agent gate (docs consistency, analyze incl. `tool/`, every package's tests, `terradart wrap --check`, `lint-override`, enum gaps, example synth gates, pubsub smoke). The example synth gates synth every quickstart and enforce catalog coverage plus the API-enablement dependency graph: an example that enables any API must enable **every** API its resources need (`tool/example_api_debt.yaml` is the audited escape hatch). The gate does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge. The three override gates (`lint-override`, `check_override_enum_gaps`, `check_mm_upstream_fingerprint`) also run per PR in CI (`override_gates` job) — they used to live only in this script, which let them rot silently when nobody ran it.
+This is the shared agent gate (docs consistency, analyze incl. `tool/`, the CI format check, every package's tests, every `tool/*_test.dart`, `terradart wrap --check`, `lint-override`, enum gaps, example synth gates, pubsub smoke). The example synth gates synth every quickstart and enforce catalog coverage plus the API-enablement dependency graph: an example that enables any API must enable **every** API its resources need (`tool/example_api_debt.yaml` is the audited escape hatch). The gate does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge. The three override gates (`lint-override`, `check_override_enum_gaps`, `check_mm_upstream_fingerprint`) also run per PR in CI (`override_gates` job) — they used to live only in this script, which let them rot silently when nobody ran it.
 
 **Ad-hoc verification pitfall:** when you compose your own check instead of `agent_verify.sh`, never rely on `&&` after piping a test/build command into `tail` / `grep` / `head` — the pipeline's exit status is the LAST command's, so the pipe swallows a failure and the chain keeps going (this hid a red `dart test` behind a green-looking `| tail -1` once). Run the command bare and check its exit code directly, or use `agent_verify.sh`, which sets `pipefail`.
 
@@ -164,7 +164,6 @@ tool/agent_verify.sh --quick        # iteration loop: static + unit gates only
                                     # (skips example synth, package suites,
                                     # cookbook, smoke) — run the FULL gate
                                     # before opening or updating a PR
-tool/agent_verify.sh --format       # scoped dart format (hand-written packages)
 tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 ```
 
@@ -172,7 +171,7 @@ tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 
 Cursor sessions (including Cursor Cloud Agent) get hooks from `.cursor/hooks.json`:
 
-- `afterFileEdit` — `dart format` on hand-written Dart only (not `terradart_google/lib/src`).
+- `afterFileEdit` — `dart format` on the packages the CI format step checks, plus `tool/` and `examples/` (never the provider packages, whose wrappers keep `terradart wrap`'s format).
 - `preToolUse` (`Write|Edit`) — blocks direct edits to generated wrappers, the migration manifests, wrap goldens, and `.github/workflows/`.
 
 Claude Code sessions get the symmetric guardrails from the committed `.claude/settings.json`: `Edit`/`Write` are **denied** on generated wrappers (`terradart_google/lib/src` and the beta / appwrite / cloudflare / aws equivalents), the migration manifests (`terradart_migrate/lib/src/manifest/*.g.dart`) and wrap goldens (`fixtures/wrap/expected_output`), and require **explicit confirmation** on `.github/workflows/`. Regenerate via `terradart wrap`; refresh goldens through the maintainer flow, not in-place edits.
