@@ -111,11 +111,12 @@ String terraformTypeFromOverrideStem(
 ///
 /// Validation:
 /// - File names must match `^[a-z][a-z0-9_]*$`.
-/// - Top-level keys must be in the allowed set (20 axes — 16 wrapper axes
+/// - Top-level keys must be in the allowed set (21 axes — 17 wrapper axes
 ///   plus the 4 Phase 4.1 axes: `kind`, `outputDir`, `schemaStubBodyMode`,
 ///   `fileLeadingComment`).
-/// - `nestedTypeExcludes` requires `deriveNestedTypes: true` (checked eagerly,
-///   like the `argMapOrder`-must-permute-`paramOrder` rule below).
+/// - `nestedTypeExcludes` and `dedupeNestedTypes` require
+///   `deriveNestedTypes: true` (checked eagerly, like the
+///   `argMapOrder`-must-permute-`paramOrder` rule below).
 /// - `List<String>` fields must not be empty and entries must be strings.
 /// - `Map<String, String>` fields' values must be strings.
 /// - `customSlots[x].paramDeclaration` and `customSlots[x].argMapEntry`
@@ -150,6 +151,7 @@ class YamlOverrideLoader {
     'customSlots',
     'deriveNestedTypes',
     'nestedTypeExcludes',
+    'dedupeNestedTypes',
     // 4 Phase 4.1 axes (kind dispatch + emitter routing).
     'kind',
     'outputDir',
@@ -354,6 +356,15 @@ class YamlOverrideLoader {
         '`nestedTypeExcludes`.',
       );
     }
+    final dedupeNestedTypes =
+        _readBool(yaml, 'dedupeNestedTypes', filePath) ?? false;
+    if (dedupeNestedTypes && !deriveNestedTypes) {
+      throw FormatException(
+        '$filePath: dedupeNestedTypes requires deriveNestedTypes: true. Set '
+        '`deriveNestedTypes: true` on this override, or remove '
+        '`dedupeNestedTypes`.',
+      );
+    }
     final kind = _parseKind(yaml, filePath, errors);
     if (kind == null) return null;
     final outputDir = _parseOutputDir(yaml, filePath, errors);
@@ -435,6 +446,7 @@ class YamlOverrideLoader {
       customSlots: _readCustomSlots(yaml, filePath),
       deriveNestedTypes: deriveNestedTypes,
       nestedTypeExcludes: nestedTypeExcludes,
+      dedupeNestedTypes: dedupeNestedTypes,
     );
   }
 

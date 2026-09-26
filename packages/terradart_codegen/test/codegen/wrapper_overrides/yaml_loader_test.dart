@@ -383,6 +383,20 @@ schemaStubComment: |-
         );
       });
 
+      test('dedupeNestedTypes without deriveNestedTypes -> FormatException',
+          () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+              'dedupe_nested_types_without_derive',
+        );
+        expect(
+          loader.load,
+          throwsFormatExceptionWith(
+            'dedupeNestedTypes requires deriveNestedTypes',
+          ),
+        );
+      });
+
       test('deprecatedParams value not string -> FormatException', () {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/failure/'

@@ -1,8 +1,8 @@
 outputDir: quicksight
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
-# Nesting reaches depth 14 with thousands of blocks; typed helpers would emit
-# a single file of tens of MB. Nested blocks stay map passthroughs until the
-# shared-shape helpers land.
-deriveNestedTypes: false
+# Nesting reaches depth 14 with thousands of blocks that repeat a few hundred
+# shapes; one helper per shape keeps the file small.
+dedupeNestedTypes: true

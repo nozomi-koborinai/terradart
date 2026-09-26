@@ -159,6 +159,7 @@ MigrateEntryBuild buildMigrateEntry({
           : shortResourcePascal(tfType),
       customSlotKeys: customSlots.keys.toSet(),
       excludedPaths: (override.nestedTypeExcludes ?? const []).toSet(),
+      shareIdenticalShapes: override.dedupeNestedTypes,
     );
     for (final s in collected) {
       specs[s.tfName] = s;
