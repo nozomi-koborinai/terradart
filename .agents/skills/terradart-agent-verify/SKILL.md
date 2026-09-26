@@ -43,7 +43,7 @@ Use `--maintainer` when changing `wrap-init`, `wrap-promote`, or their tests.
 
 - **Never trust `cmd | tail -1 && next`.** A pipeline's exit status is the last command's, so `tail`/`grep`/`head` swallow a failing `dart test` and the `&&` chain continues. Run the command bare and check `$?` directly, or use `agent_verify.sh` (it sets `pipefail`).
 - **Golden refresh is a copy, not an edit.** When `wrap` output legitimately changes: Level A factory goldens (`test/golden/*.factory.expected.dart.golden`) take the regenerated wrapper with the 3-line banner stripped (`tail -n +4`); wrap fixture goldens (`test/fixtures/wrap/expected_output/**`) take the file verbatim, banner included. Never hand-edit golden contents to make a diff pass.
-- **Migration manifests are generator output.** `packages/terradart_migrate/lib/src/manifest/*.g.dart` are written by the four `wrap --migrate-manifest` lanes (`agent_verify.sh` and CI `wrap_check` fail on a stale one) — regenerate with the lane, never edit. A shape the generator cannot derive is a `lint-override` finding (`migrate-shape-underivable`) to resolve in the override YAML or the debt ledger, not a manifest edit.
+- **Migration manifests are generator output.** `packages/terradart_migrate/lib/src/manifest/*.g.dart` are written by the five `wrap --migrate-manifest` lanes (`agent_verify.sh` and CI `wrap_check` fail on a stale one) — regenerate with the lane, never edit. A shape the generator cannot derive is a `lint-override` finding (`migrate-shape-underivable`) to resolve in the override YAML or the debt ledger, not a manifest edit.
 
 ## What this does not cover
 

@@ -94,6 +94,11 @@ Future<void> main() async {
   );
   _checkPhrase(
     errors,
+    'website/src/components/PitchCode.astro',
+    '(GA catalog, $catalogEntryCount entries)',
+  );
+  _checkPhrase(
+    errors,
     'packages/terradart_agent/README.md',
     agentCatalogEntriesPhrase,
     agentResourceFactoriesPhrase,
