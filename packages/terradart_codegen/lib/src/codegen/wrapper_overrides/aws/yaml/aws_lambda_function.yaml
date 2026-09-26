@@ -1,0 +1,16 @@
+outputDir: lambda
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+curatedDoc: |-
+  /// AWS **Lambda function**. A Dart backend runs on the `provided.al2023`
+  /// custom runtime: compile it with `dart compile exe` to a binary named
+  /// `bootstrap`, zip it, and pass the zip as `filename` with
+  /// `handler: TfArg.literal('bootstrap')`.
+  ///
+  /// `role` takes the execution role's ARN (`TfArg.ref(role.arn)`).
+  /// Supply the code through exactly one of `filename`, `s3Bucket` +
+  /// `s3Key`, or `imageUri`; the Dart API does not enforce that choice,
+  /// `terraform validate` does. Pair `sourceCodeHash` with `filename` so a
+  /// rebuilt zip redeploys.

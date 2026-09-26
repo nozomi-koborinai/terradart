@@ -8,6 +8,7 @@ void main() {
       'terradart_google_beta',
       'terradart_appwrite',
       'terradart_cloudflare',
+      'terradart_aws',
       'terradart_google', // hand-written extras: time_sleep
     ]);
     expect(allMigrateManifests.last, same(googleExtrasMigrateManifest));
@@ -15,6 +16,7 @@ void main() {
       manifestForPackage('terradart_cloudflare'),
       cloudflareMigrateManifest,
     );
+    expect(manifestForPackage('terradart_aws'), awsMigrateManifest);
     expect(manifestForPackage('terradart_nope'), isNull);
   });
 
@@ -47,6 +49,7 @@ void main() {
           'terradart_google' || 'terradart_google_beta' => 'google_',
           'terradart_appwrite' => 'appwrite_',
           'terradart_cloudflare' => 'cloudflare_',
+          'terradart_aws' => 'aws_',
           _ => throw StateError(manifest.package),
         };
         for (final e in manifest.entries) {
@@ -125,7 +128,16 @@ void main() {
     expect(zone!.manifest.package, 'terradart_cloudflare');
     expect(zone.entry.className, 'CloudflareZone');
 
-    expect(findMigrateEntry('aws_s3_bucket', CatalogKind.resource), isNull);
+    final fn = findMigrateEntry('aws_lambda_function', CatalogKind.resource);
+    expect(fn, isNotNull);
+    expect(fn!.manifest.package, 'terradart_aws');
+    expect(fn.entry.className, 'AwsLambdaFunction');
+    expect(fn.entry.barrel, 'lambda');
+
+    expect(
+      findMigrateEntry('azurerm_resource_group', CatalogKind.resource),
+      isNull,
+    );
     expect(
       googleMigrateManifest.entryFor(
         'google_pubsub_topic',

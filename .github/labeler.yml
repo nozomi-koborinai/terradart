@@ -32,6 +32,14 @@
           - 'examples/cloudflare_dns_quickstart/**'
           - 'examples/cloudflare_leftover_quickstart/**'
 
+'area:aws':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'packages/terradart_aws/**'
+          - 'packages/terradart_codegen/lib/src/codegen/wrapper_overrides/aws/**'
+          - 'packages/terradart_codegen/test/fixtures/wrap/source_aws/**'
+          - 'examples/aws_*_quickstart/**'
+
 'area:agent':
   - changed-files:
       - any-glob-to-any-file: 'packages/terradart_agent/**'

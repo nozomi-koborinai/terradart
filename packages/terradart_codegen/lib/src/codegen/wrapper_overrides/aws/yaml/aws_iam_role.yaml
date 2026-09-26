@@ -1,0 +1,13 @@
+outputDir: iam
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+curatedDoc: |-
+  /// AWS **IAM role** — the identity a Lambda function, ECS task, or other
+  /// AWS service assumes at runtime.
+  ///
+  /// `assumeRolePolicy` is the trust policy JSON. Build it with a
+  /// [DataAwsIamPolicyDocument] and pass `TfArg.ref(doc.json)`, so the
+  /// statements are typed Dart rather than a hand-written JSON string.
+  /// Attach managed policies with [AwsIamRolePolicyAttachment].

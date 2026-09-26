@@ -464,10 +464,10 @@ resource "google_pubsub_topic" "x" {
     });
 
     test('a provider with no TerraDart factory', () {
-      final r = _migrateJson(module({'name': 'x', 'provider': 'aws'}));
+      final r = _migrateJson(module({'name': 'x', 'provider': 'azurerm'}));
       expect(
         reasonOf(r, 'google_pubsub_topic.x'),
-        contains('provider "aws" has no TerraDart factory'),
+        contains('provider "azurerm" has no TerraDart factory'),
       );
     });
 
@@ -553,6 +553,114 @@ resource "google_pubsub_topic" "x" {
         expect(r.report.packages, ['terradart_cloudflare', 'terradart_google']);
       },
     );
+
+    test('aws nested provider blocks translate, credentials never do', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    aws = { source = "hashicorp/aws", version = "6.66.0" }
+  }
+}
+provider "aws" {
+  region              = "eu-west-1"
+  access_key          = "AKIAEXAMPLE"
+  secret_key          = "wJalrEXAMPLE"
+  allowed_account_ids = ["111111111111"]
+  default_tags {
+    tags = { env = "prod", team = "platform" }
+  }
+  assume_role {
+    role_arn     = "arn:aws:iam::111111111111:role/deploy"
+    session_name = "ci"
+    tags         = { via = "terradart" }
+  }
+  assume_role {
+    role_arn = "arn:aws:iam::222222222222:role/chain"
+  }
+  ignore_tags {
+    key_prefixes = ["kube:"]
+  }
+  endpoints {
+    s3 = "http://localhost:4566"
+  }
+}
+resource "aws_cloudwatch_log_group" "fn" {
+  name = "/aws/lambda/hello"
+}
+''');
+      expect(
+        r.stackSource,
+        contains(
+          "const AwsProvider(region: r'eu-west-1', "
+          "allowedAccountIds: [r'111111111111'], "
+          "defaultTags: {r'env': r'prod', r'team': r'platform'}, "
+          "assumeRole: [AwsAssumeRole(roleArn: "
+          "r'arn:aws:iam::111111111111:role/deploy', sessionName: r'ci', "
+          "tags: {r'via': r'terradart'}), AwsAssumeRole(roleArn: "
+          "r'arn:aws:iam::222222222222:role/chain')], "
+          "ignoreTags: AwsIgnoreTags(keyPrefixes: [r'kube:']), "
+          "endpoints: {r's3': r'http://localhost:4566'})",
+        ),
+      );
+      expect(r.stackSource, isNot(contains('AKIAEXAMPLE')));
+      expect(r.stackSource, isNot(contains('wJalrEXAMPLE')));
+      expect(r.report.warnings, hasLength(2));
+      expect(r.report.warnings.join('\n'), contains('"access_key"'));
+      expect(r.report.warnings.join('\n'), contains('"secret_key"'));
+    });
+
+    test('repeated aws endpoints blocks merge into one map', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    aws = { source = "hashicorp/aws", version = "6.66.0" }
+  }
+}
+provider "aws" {
+  endpoints {
+    s3 = "http://localhost:4566"
+  }
+  endpoints {
+    dynamodb = "http://localhost:4566"
+    s3       = "http://localhost:4566"
+  }
+}
+resource "aws_cloudwatch_log_group" "fn" {
+  name = "/aws/lambda/hello"
+}
+''');
+      expect(
+        r.stackSource,
+        contains(
+          "const AwsProvider(endpoints: {r's3': r'http://localhost:4566', "
+          "r'dynamodb': r'http://localhost:4566'})",
+        ),
+      );
+      expect(r.report.warnings, isEmpty);
+    });
+
+    test('aws endpoints blocks that disagree on a key are dropped', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    aws = { source = "hashicorp/aws", version = "6.66.0" }
+  }
+}
+provider "aws" {
+  endpoints {
+    s3 = "http://localhost:4566"
+  }
+  endpoints {
+    s3 = "http://localhost:9000"
+  }
+}
+resource "aws_cloudwatch_log_group" "fn" {
+  name = "/aws/lambda/hello"
+}
+''');
+      expect(r.stackSource, contains('const AwsProvider()'));
+      expect(r.report.warnings.single, contains('"endpoints"'));
+    });
 
     test('an unknown provider argument is dropped with a warning', () {
       final r = _migrateJson({

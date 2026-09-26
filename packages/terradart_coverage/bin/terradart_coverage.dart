@@ -23,7 +23,7 @@ Future<int> run(List<String> argv) async {
     stdout.writeln(
       'Reports how much of a Terraform configuration is covered by curated '
       'TerraDart factories (terradart_google, terradart_google_beta, '
-      'terradart_appwrite, terradart_cloudflare).\n'
+      'terradart_appwrite, terradart_cloudflare, terradart_aws).\n'
       'By default it scans .tf / .tf.json under --dir (or the current '
       'directory), with no terraform run, init, or credentials. Pipe '
       '`terraform show -json` (or pass it as a file) for an evaluated view '
