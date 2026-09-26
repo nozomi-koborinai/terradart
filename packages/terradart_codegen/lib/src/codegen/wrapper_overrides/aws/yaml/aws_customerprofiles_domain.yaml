@@ -1,0 +1,4 @@
+outputDir: customerprofiles
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

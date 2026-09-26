@@ -1,0 +1,4 @@
+outputDir: appintegrations
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

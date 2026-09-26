@@ -1,0 +1,4 @@
+outputDir: codeartifact
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

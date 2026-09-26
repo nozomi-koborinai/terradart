@@ -1,0 +1,13 @@
+outputDir: s3
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+# These inline blocks derive helpers with the same names as the ones from the
+# split resources aws_s3_bucket_object_lock_configuration and
+# aws_s3_bucket_server_side_encryption_configuration, but with different
+# shapes: the s3 barrel would export them ambiguously and the migrate manifest
+# refuses a helper declared twice. They stay map passthroughs here.
+nestedTypeExcludes:
+  - object_lock_configuration
+  - server_side_encryption_configuration

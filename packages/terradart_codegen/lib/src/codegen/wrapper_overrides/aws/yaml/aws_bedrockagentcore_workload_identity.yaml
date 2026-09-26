@@ -1,0 +1,4 @@
+outputDir: bedrockagentcore
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: accessanalyzer
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

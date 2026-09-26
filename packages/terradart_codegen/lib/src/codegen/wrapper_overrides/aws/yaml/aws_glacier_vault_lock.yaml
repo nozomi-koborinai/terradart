@@ -1,0 +1,4 @@
+outputDir: glacier
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

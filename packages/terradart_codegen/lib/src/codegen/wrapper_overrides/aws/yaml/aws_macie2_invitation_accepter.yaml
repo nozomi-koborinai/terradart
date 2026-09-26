@@ -1,0 +1,4 @@
+outputDir: macie2
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

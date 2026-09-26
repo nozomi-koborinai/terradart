@@ -9,12 +9,16 @@ umbrellaDoc: |-
   /// Curated **AWS** surface for TerraDart (`hashicorp/aws` Terraform
   /// provider, pinned at `6.66.0`).
   ///
-  /// The catalog is a seed: the resources a Dart backend on Lambda needs
-  /// (IAM role, policy attachment, function, function URL, log group) plus
-  /// the `aws_iam_policy_document` and `aws_caller_identity` data sources.
-  /// Credentials never appear in synth output: authentication happens at
-  /// apply time via the AWS SDK credential chain (`AWS_*` environment
-  /// variables, shared config, or an instance role).
+  /// The catalog at that pin is filled: every resource and data source in
+  /// the schema has a typed factory, and nested blocks are Dart helper
+  /// classes. Six resources whose nesting runs 14 levels deep
+  /// (`aws_wafv2_web_acl`, `aws_wafv2_web_acl_rule`, `aws_wafv2_rule_group`,
+  /// `aws_quicksight_analysis`, `aws_quicksight_dashboard`,
+  /// `aws_quicksight_template`) take those blocks as
+  /// `TfArg<Map<String, dynamic>>` for now. A later pin that adds names
+  /// lands on request. Credentials never appear in synth output:
+  /// authentication happens at apply time via the AWS SDK credential chain
+  /// (`AWS_*` environment variables, shared config, or an instance role).
   ///
   /// This umbrella re-exports every per-service barrel. Prefer the
   /// per-service imports in new code.
@@ -23,15 +27,714 @@ umbrellaExtraExports:
   - "export 'provider.dart';"
 
 barrels:
+  accessanalyzer:
+    doc: |-
+      /// AWS IAM Access Analyzer.
+  account:
+    doc: |-
+      /// AWS Account Management (contacts and opt-in Regions).
+  accountaccess:
+    doc: |-
+      /// `accountaccess` applications and entitlements.
+  acm:
+    doc: |-
+      /// AWS Certificate Manager (ACM).
+  acmpca:
+    doc: |-
+      /// AWS Private Certificate Authority.
+  agentregistry:
+    doc: |-
+      /// `agentregistry` registries.
+  amplify:
+    doc: |-
+      /// AWS Amplify.
+  api_gateway:
+    doc: |-
+      /// AWS API Gateway (REST APIs).
+  apigatewayv2:
+    doc: |-
+      /// AWS API Gateway V2 (HTTP and WebSocket APIs).
+  appautoscaling:
+    doc: |-
+      /// AWS Application Auto Scaling.
+  appconfig:
+    doc: |-
+      /// AWS AppConfig.
+  appfabric:
+    doc: |-
+      /// AWS AppFabric.
+  appflow:
+    doc: |-
+      /// AWS AppFlow.
+  appintegrations:
+    doc: |-
+      /// AWS AppIntegrations.
+  applicationinsights:
+    doc: |-
+      /// AWS CloudWatch Application Insights.
+  appmesh:
+    doc: |-
+      /// AWS App Mesh.
+  apprunner:
+    doc: |-
+      /// AWS App Runner.
+  appstream:
+    doc: |-
+      /// AWS AppStream 2.0.
+  appsync:
+    doc: |-
+      /// AWS AppSync.
+  arcregionswitch:
+    doc: |-
+      /// AWS ARC Region switch plans.
+  arczonalshift:
+    doc: |-
+      /// AWS ARC zonal shift.
+  athena:
+    doc: |-
+      /// AWS Athena.
+  auditmanager:
+    doc: |-
+      /// AWS Audit Manager.
+  autoscaling:
+    doc: |-
+      /// AWS EC2 Auto Scaling and launch configurations.
+  autoscalingplans:
+    doc: |-
+      /// AWS Auto Scaling plans.
+  backup:
+    doc: |-
+      /// AWS Backup.
+  batch:
+    doc: |-
+      /// AWS Batch.
+  bcmdataexports:
+    doc: |-
+      /// AWS Billing and Cost Management Data Exports.
+  bedrock:
+    doc: |-
+      /// AWS Bedrock.
+  bedrockagent:
+    doc: |-
+      /// AWS Bedrock Agents and knowledge bases.
+  bedrockagentcore:
+    doc: |-
+      /// AWS Bedrock AgentCore.
+  billing:
+    doc: |-
+      /// AWS Billing views.
+  budgets:
+    doc: |-
+      /// AWS Budgets.
+  ce:
+    doc: |-
+      /// AWS Cost Explorer (anomaly detection and cost categories).
+  chatbot:
+    doc: |-
+      /// AWS Chatbot.
+  chime:
+    doc: |-
+      /// AWS Chime.
+  chimesdkmediapipelines:
+    doc: |-
+      /// AWS Chime SDK media pipelines.
+  chimesdkvoice:
+    doc: |-
+      /// AWS Chime SDK Voice.
+  cleanrooms:
+    doc: |-
+      /// AWS Clean Rooms.
+  cloud9:
+    doc: |-
+      /// AWS Cloud9.
+  cloudcontrolapi:
+    doc: |-
+      /// AWS Cloud Control API.
+  cloudformation:
+    doc: |-
+      /// AWS CloudFormation.
+  cloudfront:
+    doc: |-
+      /// AWS CloudFront.
+  cloudfrontkeyvaluestore:
+    doc: |-
+      /// AWS CloudFront KeyValueStore.
+  cloudhsm:
+    doc: |-
+      /// AWS CloudHSM.
+  cloudsearch:
+    doc: |-
+      /// AWS CloudSearch.
+  cloudtrail:
+    doc: |-
+      /// AWS CloudTrail.
   cloudwatch:
     doc: |-
-      /// AWS CloudWatch log groups.
+      /// AWS CloudWatch (alarms, dashboards, logs, and events).
+  codeartifact:
+    doc: |-
+      /// AWS CodeArtifact.
+  codebuild:
+    doc: |-
+      /// AWS CodeBuild.
+  codecatalyst:
+    doc: |-
+      /// AWS CodeCatalyst.
+  codecommit:
+    doc: |-
+      /// AWS CodeCommit.
+  codeconnections:
+    doc: |-
+      /// AWS CodeConnections.
+  codedeploy:
+    doc: |-
+      /// AWS CodeDeploy.
+  codeguruprofiler:
+    doc: |-
+      /// AWS CodeGuru Profiler.
+  codegurureviewer:
+    doc: |-
+      /// AWS CodeGuru Reviewer.
+  codepipeline:
+    doc: |-
+      /// AWS CodePipeline.
+  codestarconnections:
+    doc: |-
+      /// AWS CodeStar Connections.
+  codestarnotifications:
+    doc: |-
+      /// AWS CodeStar Notifications.
+  cognito:
+    doc: |-
+      /// AWS Cognito.
+  comprehend:
+    doc: |-
+      /// AWS Comprehend.
+  computeoptimizer:
+    doc: |-
+      /// AWS Compute Optimizer.
+  config:
+    doc: |-
+      /// AWS Config.
+  connect:
+    doc: |-
+      /// AWS Connect.
+  controltower:
+    doc: |-
+      /// AWS Control Tower.
+  costoptimizationhub:
+    doc: |-
+      /// AWS Cost Optimization Hub.
+  cur:
+    doc: |-
+      /// AWS Cost and Usage Reports.
+  customerprofiles:
+    doc: |-
+      /// AWS Customer Profiles.
   data:
     doc: |-
       /// AWS data sources (read-only lookups).
+  dataexchange:
+    doc: |-
+      /// AWS Data Exchange.
+  datapipeline:
+    doc: |-
+      /// AWS Data Pipeline.
+  datasync:
+    doc: |-
+      /// AWS DataSync.
+  datazone:
+    doc: |-
+      /// AWS DataZone.
+  dax:
+    doc: |-
+      /// AWS DynamoDB Accelerator (DAX).
+  db:
+    doc: |-
+      /// AWS RDS DB instances, snapshots, and option and parameter groups.
+  detective:
+    doc: |-
+      /// AWS Detective.
+  devicefarm:
+    doc: |-
+      /// AWS Device Farm.
+  devopsguru:
+    doc: |-
+      /// AWS DevOps Guru.
+  directory_service:
+    doc: |-
+      /// AWS Directory Service.
+  dlm:
+    doc: |-
+      /// AWS Data Lifecycle Manager.
+  dms:
+    doc: |-
+      /// AWS Database Migration Service.
+  docdb:
+    doc: |-
+      /// AWS DocumentDB.
+  docdbelastic:
+    doc: |-
+      /// AWS DocumentDB elastic clusters.
+  drs:
+    doc: |-
+      /// AWS Elastic Disaster Recovery.
+  dsql:
+    doc: |-
+      /// AWS Aurora DSQL.
+  dx:
+    doc: |-
+      /// AWS Direct Connect.
+  dynamodb:
+    doc: |-
+      /// AWS DynamoDB.
+  ec2:
+    doc: |-
+      /// AWS EC2 and VPC (instances, networking, EBS, and transit gateways).
+  ecr:
+    doc: |-
+      /// AWS Elastic Container Registry (ECR).
+  ecrpublic:
+    doc: |-
+      /// AWS ECR Public.
+  ecs:
+    doc: |-
+      /// AWS Elastic Container Service (ECS).
+  efs:
+    doc: |-
+      /// AWS Elastic File System (EFS).
+  eks:
+    doc: |-
+      /// AWS Elastic Kubernetes Service (EKS).
+  elastic_beanstalk:
+    doc: |-
+      /// AWS Elastic Beanstalk.
+  elasticache:
+    doc: |-
+      /// AWS ElastiCache.
+  elasticsearch:
+    doc: |-
+      /// AWS Elasticsearch Service (legacy).
+  elastictranscoder:
+    doc: |-
+      /// AWS Elastic Transcoder.
+  elb:
+    doc: |-
+      /// AWS Elastic Load Balancing (ALB, NLB, and Classic).
+  emr:
+    doc: |-
+      /// AWS EMR.
+  emrcontainers:
+    doc: |-
+      /// AWS EMR on EKS.
+  emrserverless:
+    doc: |-
+      /// AWS EMR Serverless.
+  evidently:
+    doc: |-
+      /// AWS CloudWatch Evidently.
+  finspace:
+    doc: |-
+      /// AWS FinSpace.
+  fis:
+    doc: |-
+      /// AWS Fault Injection Service.
+  fms:
+    doc: |-
+      /// AWS Firewall Manager.
+  fsx:
+    doc: |-
+      /// AWS FSx.
+  gamelift:
+    doc: |-
+      /// AWS GameLift.
+  glacier:
+    doc: |-
+      /// AWS S3 Glacier vaults.
+  globalaccelerator:
+    doc: |-
+      /// AWS Global Accelerator.
+  glue:
+    doc: |-
+      /// AWS Glue.
+  grafana:
+    doc: |-
+      /// AWS Managed Grafana.
+  guardduty:
+    doc: |-
+      /// AWS GuardDuty.
   iam:
     doc: |-
-      /// AWS IAM roles and policy attachments.
+      /// AWS IAM.
+  identitystore:
+    doc: |-
+      /// AWS IAM Identity Center identity store.
+  imagebuilder:
+    doc: |-
+      /// AWS EC2 Image Builder.
+  inspector:
+    doc: |-
+      /// AWS Inspector Classic.
+  inspector2:
+    doc: |-
+      /// AWS Inspector.
+  internetmonitor:
+    doc: |-
+      /// AWS CloudWatch Internet Monitor.
+  invoicing:
+    doc: |-
+      /// AWS Invoicing invoice units.
+  iot:
+    doc: |-
+      /// AWS IoT Core.
+  ivs:
+    doc: |-
+      /// AWS Interactive Video Service (IVS).
+  ivschat:
+    doc: |-
+      /// AWS IVS Chat.
+  kendra:
+    doc: |-
+      /// AWS Kendra.
+  keyspaces:
+    doc: |-
+      /// AWS Keyspaces (for Apache Cassandra).
+  kinesis:
+    doc: |-
+      /// AWS Kinesis (Data Streams, Firehose, and Video Streams).
+  kinesisanalyticsv2:
+    doc: |-
+      /// AWS Managed Service for Apache Flink.
+  kms:
+    doc: |-
+      /// AWS Key Management Service (KMS).
+  lakeformation:
+    doc: |-
+      /// AWS Lake Formation.
   lambda:
     doc: |-
-      /// AWS Lambda functions and function URLs.
+      /// AWS Lambda.
+  lambdacore:
+    doc: |-
+      /// `lambdacore` network connectors.
+  lambdamicrovms:
+    doc: |-
+      /// `lambdamicrovms` images and microVMs.
+  lex:
+    doc: |-
+      /// AWS Lex (V1).
+  lexv2models:
+    doc: |-
+      /// AWS Lex V2.
+  licensemanager:
+    doc: |-
+      /// AWS License Manager.
+  lightsail:
+    doc: |-
+      /// AWS Lightsail.
+  location:
+    doc: |-
+      /// AWS Location Service.
+  m2:
+    doc: |-
+      /// AWS Mainframe Modernization.
+  macie2:
+    doc: |-
+      /// AWS Macie.
+  mailmanager:
+    doc: |-
+      /// AWS SES Mail Manager.
+  media:
+    doc: |-
+      /// AWS Elemental MediaConvert, MediaPackage, and MediaStore.
+  medialive:
+    doc: |-
+      /// AWS Elemental MediaLive.
+  memorydb:
+    doc: |-
+      /// AWS MemoryDB.
+  mq:
+    doc: |-
+      /// AWS MQ.
+  msk:
+    doc: |-
+      /// AWS Managed Streaming for Apache Kafka (MSK).
+  mskconnect:
+    doc: |-
+      /// AWS MSK Connect.
+  mwaa:
+    doc: |-
+      /// AWS Managed Workflows for Apache Airflow.
+  neptune:
+    doc: |-
+      /// AWS Neptune.
+  neptunegraph:
+    doc: |-
+      /// AWS Neptune Analytics.
+  networkfirewall:
+    doc: |-
+      /// AWS Network Firewall.
+  networkflowmonitor:
+    doc: |-
+      /// AWS CloudWatch Network Flow Monitor.
+  networkmanager:
+    doc: |-
+      /// AWS Network Manager (Cloud WAN).
+  networkmonitor:
+    doc: |-
+      /// AWS CloudWatch Network Monitor.
+  notifications:
+    doc: |-
+      /// AWS User Notifications.
+  notificationscontacts:
+    doc: |-
+      /// AWS User Notifications contacts.
+  oam:
+    doc: |-
+      /// AWS CloudWatch Observability Access Manager.
+  observabilityadmin:
+    doc: |-
+      /// AWS CloudWatch Observability Admin.
+  odb:
+    doc: |-
+      /// AWS Oracle Database@AWS.
+  opensearch:
+    doc: |-
+      /// AWS OpenSearch Service.
+  opensearchserverless:
+    doc: |-
+      /// AWS OpenSearch Serverless.
+  organizations:
+    doc: |-
+      /// AWS Organizations.
+  osis:
+    doc: |-
+      /// AWS OpenSearch Ingestion.
+  outposts:
+    doc: |-
+      /// AWS Outposts.
+  paymentcryptography:
+    doc: |-
+      /// AWS Payment Cryptography.
+  pinpoint:
+    doc: |-
+      /// AWS Pinpoint.
+  pinpointsmsvoicev2:
+    doc: |-
+      /// AWS End User Messaging SMS.
+  pipes:
+    doc: |-
+      /// AWS EventBridge Pipes.
+  prometheus:
+    doc: |-
+      /// AWS Managed Service for Prometheus.
+  qbusiness:
+    doc: |-
+      /// AWS Q Business.
+  qldb:
+    doc: |-
+      /// AWS QLDB.
+  quicksight:
+    doc: |-
+      /// AWS QuickSight.
+  ram:
+    doc: |-
+      /// AWS Resource Access Manager (RAM).
+  rbin:
+    doc: |-
+      /// AWS Recycle Bin.
+  rds:
+    doc: |-
+      /// AWS RDS clusters, proxies, and Aurora.
+  redshift:
+    doc: |-
+      /// AWS Redshift.
+  redshiftdata:
+    doc: |-
+      /// AWS Redshift Data API.
+  redshiftserverless:
+    doc: |-
+      /// AWS Redshift Serverless.
+  rekognition:
+    doc: |-
+      /// AWS Rekognition.
+  resiliencehub:
+    doc: |-
+      /// AWS Resilience Hub.
+  resiliencehubv2:
+    doc: |-
+      /// AWS Resilience Hub (`resiliencehubv2` systems and policies).
+  resourceexplorer2:
+    doc: |-
+      /// AWS Resource Explorer.
+  resourcegroups:
+    doc: |-
+      /// AWS Resource Groups.
+  rolesanywhere:
+    doc: |-
+      /// AWS IAM Roles Anywhere.
+  route53:
+    doc: |-
+      /// AWS Route 53.
+  route53domains:
+    doc: |-
+      /// AWS Route 53 Domains.
+  route53profiles:
+    doc: |-
+      /// AWS Route 53 Profiles.
+  route53recoverycontrolconfig:
+    doc: |-
+      /// AWS Route 53 ARC recovery control.
+  route53recoveryreadiness:
+    doc: |-
+      /// AWS Route 53 ARC readiness.
+  rum:
+    doc: |-
+      /// AWS CloudWatch RUM.
+  s3:
+    doc: |-
+      /// AWS S3.
+  s3control:
+    doc: |-
+      /// AWS S3 Control (account-level S3).
+  s3files:
+    doc: |-
+      /// `s3files` file systems, access points, and mount targets.
+  s3outposts:
+    doc: |-
+      /// AWS S3 on Outposts.
+  s3tables:
+    doc: |-
+      /// AWS S3 Tables.
+  s3vectors:
+    doc: |-
+      /// AWS S3 Vectors.
+  sagemaker:
+    doc: |-
+      /// AWS SageMaker.
+  savingsplans:
+    doc: |-
+      /// AWS Savings Plans.
+  scheduler:
+    doc: |-
+      /// AWS EventBridge Scheduler.
+  schemas:
+    doc: |-
+      /// AWS EventBridge Schemas.
+  secretsmanager:
+    doc: |-
+      /// AWS Secrets Manager.
+  securityhub:
+    doc: |-
+      /// AWS Security Hub.
+  securitylake:
+    doc: |-
+      /// AWS Security Lake.
+  serverlessapplicationrepository:
+    doc: |-
+      /// AWS Serverless Application Repository.
+  service_discovery:
+    doc: |-
+      /// AWS Cloud Map (service discovery).
+  servicecatalog:
+    doc: |-
+      /// AWS Service Catalog.
+  servicecatalogappregistry:
+    doc: |-
+      /// AWS Service Catalog AppRegistry.
+  servicequotas:
+    doc: |-
+      /// AWS Service Quotas.
+  ses:
+    doc: |-
+      /// AWS SES (V1).
+  sesv2:
+    doc: |-
+      /// AWS SES.
+  sfn:
+    doc: |-
+      /// AWS Step Functions.
+  shield:
+    doc: |-
+      /// AWS Shield.
+  signer:
+    doc: |-
+      /// AWS Signer.
+  sns:
+    doc: |-
+      /// AWS SNS.
+  sqs:
+    doc: |-
+      /// AWS SQS.
+  ssm:
+    doc: |-
+      /// AWS Systems Manager.
+  ssmcontacts:
+    doc: |-
+      /// AWS Systems Manager Incident Manager contacts.
+  ssmincidents:
+    doc: |-
+      /// AWS Systems Manager Incident Manager.
+  ssmquicksetup:
+    doc: |-
+      /// AWS Systems Manager Quick Setup.
+  ssoadmin:
+    doc: |-
+      /// AWS IAM Identity Center administration.
+  storagegateway:
+    doc: |-
+      /// AWS Storage Gateway.
+  swf:
+    doc: |-
+      /// AWS Simple Workflow Service.
+  synthetics:
+    doc: |-
+      /// AWS CloudWatch Synthetics.
+  timestreaminfluxdb:
+    doc: |-
+      /// AWS Timestream for InfluxDB.
+  timestreamquery:
+    doc: |-
+      /// AWS Timestream scheduled queries.
+  timestreamwrite:
+    doc: |-
+      /// AWS Timestream for LiveAnalytics.
+  transcribe:
+    doc: |-
+      /// AWS Transcribe.
+  transfer:
+    doc: |-
+      /// AWS Transfer Family.
+  uxc:
+    doc: |-
+      /// `uxc` account customizations.
+  verifiedaccess:
+    doc: |-
+      /// AWS Verified Access.
+  verifiedpermissions:
+    doc: |-
+      /// AWS Verified Permissions.
+  vpclattice:
+    doc: |-
+      /// AWS VPC Lattice.
+  waf:
+    doc: |-
+      /// AWS WAF Classic.
+  wafregional:
+    doc: |-
+      /// AWS WAF Classic Regional.
+  wafv2:
+    doc: |-
+      /// AWS WAF.
+  workmail:
+    doc: |-
+      /// AWS WorkMail.
+  workspaces:
+    doc: |-
+      /// AWS WorkSpaces.
+  workspacesweb:
+    doc: |-
+      /// AWS WorkSpaces Secure Browser.
+  xray:
+    doc: |-
+      /// AWS X-Ray.

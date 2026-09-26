@@ -1,0 +1,4 @@
+outputDir: rekognition
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

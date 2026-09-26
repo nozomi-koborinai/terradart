@@ -1,0 +1,4 @@
+outputDir: mailmanager
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: db
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

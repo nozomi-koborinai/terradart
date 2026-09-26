@@ -6,6 +6,14 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+### Added
+
+- **`terradart_aws`** — fill the curated catalog at the `hashicorp/aws`
+  `6.66.0` pin (**1725 resource factories + 683 data sources**).
+  Coverage via [`aws_lambda_quickstart`](examples/aws_lambda_quickstart/)
+  and [`aws_leftover_quickstart`](examples/aws_leftover_quickstart/)
+  (synth + `terraform validate`).
+
 ### Removed
 
 - The cost ledger (`tool/apply_cost_denylist.yaml`), the apply-smoke skip ledgers, `tool/apply_smoke.sh` and its selection tests, the wave skiplist gate, the read-only orphan probe, and the gcp-cost transport used for cost classification. They partitioned examples for the live apply harness retired in #624; nothing consumed them any more. The knowledge the skip ledgers held moved into each example README's `## Before you apply` section. The repository no longer registers the gcp-cost MCP server (`.mcp.json`, `.cursor/mcp.json`).

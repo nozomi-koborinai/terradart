@@ -1,0 +1,4 @@
+outputDir: medialive
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: s3tables
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

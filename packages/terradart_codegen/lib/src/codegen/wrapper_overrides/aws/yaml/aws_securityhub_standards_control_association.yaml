@@ -1,0 +1,4 @@
+outputDir: securityhub
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

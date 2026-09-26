@@ -1,0 +1,4 @@
+outputDir: redshiftdata
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

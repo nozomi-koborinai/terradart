@@ -1,0 +1,4 @@
+outputDir: lakeformation
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: signer
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

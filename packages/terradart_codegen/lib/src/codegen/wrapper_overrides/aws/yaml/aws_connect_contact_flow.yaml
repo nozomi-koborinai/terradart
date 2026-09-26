@@ -1,0 +1,4 @@
+outputDir: connect
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

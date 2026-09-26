@@ -1,0 +1,4 @@
+outputDir: cloudsearch
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: lex
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,6 @@
+kind: data_source
+outputDir: data
+schemaStubBodyMode: bare
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

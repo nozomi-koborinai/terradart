@@ -1,0 +1,4 @@
+outputDir: kendra
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

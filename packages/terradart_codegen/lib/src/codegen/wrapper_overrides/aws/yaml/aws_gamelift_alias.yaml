@@ -1,0 +1,4 @@
+outputDir: gamelift
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

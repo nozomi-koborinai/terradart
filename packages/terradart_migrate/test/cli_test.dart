@@ -318,7 +318,7 @@ resource "acme_widget" "w" {
     );
     Directory(p.join(input.path, 'modules/m')).createSync(recursive: true);
     File(p.join(input.path, 'modules/m/main.tf')).writeAsStringSync(
-      'resource "aws_s3_bucket" "logs" { bucket = "logs" }\n',
+      'resource "azurerm_resource_group" "logs" { name = "logs" }\n',
     );
     final out = p.join(tmp.path, 'out');
     final r = await _run(['--dir', input.path, '--out', out, '--json']);
@@ -341,7 +341,7 @@ resource "acme_widget" "w" {
       File(
         p.join(out, 'tf-out/modules/m/$leftoverFileName'),
       ).readAsStringSync(),
-      contains('resource "aws_s3_bucket" "logs"'),
+      contains('resource "azurerm_resource_group" "logs"'),
     );
     expect(
       File(p.join(out, 'MIGRATION.md')).readAsStringSync(),
@@ -386,7 +386,7 @@ resource "acme_widget" "w" {
     ).writeAsStringSync('resource "google_pubsub_topic" "t" { name = "t" }\n');
     Directory(p.join(input.path, 'modules/m')).createSync(recursive: true);
     File(p.join(input.path, 'modules/m/main.tf')).writeAsStringSync(
-      'resource "aws_s3_bucket" "logs" { bucket = "logs" }\n',
+      'resource "azurerm_resource_group" "logs" { name = "logs" }\n',
     );
     final out = p.join(tmp.path, 'out');
     final r = await _run([
@@ -458,7 +458,7 @@ resource "acme_widget" "w" {
     ).writeAsStringSync('resource "google_pubsub_topic" "t" { name = "t" }\n');
     Directory(p.join(input.path, weird)).createSync();
     File(p.join(input.path, weird, 'main.tf')).writeAsStringSync(
-      'resource "aws_s3_bucket" "logs" { bucket = "logs" }\n',
+      'resource "azurerm_resource_group" "logs" { name = "logs" }\n',
     );
     final out = p.join(tmp.path, 'out');
     final r = await _run(['--dir', input.path, '--out', out, '--json']);

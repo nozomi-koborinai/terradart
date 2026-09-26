@@ -1,0 +1,4 @@
+outputDir: timestreaminfluxdb
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

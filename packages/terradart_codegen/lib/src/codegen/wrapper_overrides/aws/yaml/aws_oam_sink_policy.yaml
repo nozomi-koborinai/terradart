@@ -1,0 +1,4 @@
+outputDir: oam
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

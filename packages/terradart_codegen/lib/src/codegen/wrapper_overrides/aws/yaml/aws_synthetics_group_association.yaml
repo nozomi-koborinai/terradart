@@ -1,0 +1,4 @@
+outputDir: synthetics
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

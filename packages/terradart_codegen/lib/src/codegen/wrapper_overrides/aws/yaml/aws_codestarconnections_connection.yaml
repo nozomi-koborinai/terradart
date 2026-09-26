@@ -1,0 +1,4 @@
+outputDir: codestarconnections
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

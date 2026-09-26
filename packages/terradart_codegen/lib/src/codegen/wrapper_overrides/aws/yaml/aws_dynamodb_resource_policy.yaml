@@ -1,0 +1,4 @@
+outputDir: dynamodb
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

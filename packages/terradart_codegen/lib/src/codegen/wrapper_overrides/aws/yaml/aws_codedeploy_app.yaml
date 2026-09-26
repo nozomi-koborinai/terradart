@@ -1,0 +1,4 @@
+outputDir: codedeploy
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

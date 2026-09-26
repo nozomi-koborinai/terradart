@@ -1,0 +1,4 @@
+outputDir: sagemaker
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

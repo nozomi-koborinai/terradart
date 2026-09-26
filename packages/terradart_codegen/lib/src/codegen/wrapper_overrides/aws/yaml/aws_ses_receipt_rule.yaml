@@ -1,0 +1,4 @@
+outputDir: ses
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: neptune
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

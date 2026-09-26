@@ -1,0 +1,4 @@
+outputDir: codestarnotifications
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

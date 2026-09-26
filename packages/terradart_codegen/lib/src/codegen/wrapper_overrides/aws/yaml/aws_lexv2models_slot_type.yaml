@@ -1,0 +1,4 @@
+outputDir: lexv2models
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

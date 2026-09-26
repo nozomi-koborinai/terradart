@@ -1,0 +1,4 @@
+outputDir: codeconnections
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

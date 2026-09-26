@@ -1,0 +1,4 @@
+outputDir: elastic_beanstalk
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

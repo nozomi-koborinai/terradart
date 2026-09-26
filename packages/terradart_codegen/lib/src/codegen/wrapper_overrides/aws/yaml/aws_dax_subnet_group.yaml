@@ -1,0 +1,4 @@
+outputDir: dax
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: costoptimizationhub
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

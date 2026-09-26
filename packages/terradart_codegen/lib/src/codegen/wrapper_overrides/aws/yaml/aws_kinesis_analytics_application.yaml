@@ -1,0 +1,4 @@
+outputDir: kinesis
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

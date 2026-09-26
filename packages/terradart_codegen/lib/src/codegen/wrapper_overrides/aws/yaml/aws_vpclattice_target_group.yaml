@@ -1,0 +1,4 @@
+outputDir: vpclattice
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

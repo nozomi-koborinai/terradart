@@ -1,0 +1,4 @@
+outputDir: cloudfrontkeyvaluestore
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

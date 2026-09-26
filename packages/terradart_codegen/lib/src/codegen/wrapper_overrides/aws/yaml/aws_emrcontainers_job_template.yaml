@@ -1,0 +1,4 @@
+outputDir: emrcontainers
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

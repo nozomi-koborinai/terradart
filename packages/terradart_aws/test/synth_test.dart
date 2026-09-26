@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:terradart_aws/catalog.dart';
 import 'package:terradart_aws/data.dart';
 import 'package:terradart_aws/iam.dart';
 import 'package:terradart_aws/lambda.dart';
@@ -112,6 +113,17 @@ void main() {
             as Map<String, dynamic>)['aws'] as Map<String, dynamic>;
     expect(required['source'], 'hashicorp/aws');
     expect(required['version'], '6.66.0');
+  });
+
+  test('catalog lists every factory at the current pin', () {
+    expect(
+      terradartCatalog.where((e) => e.kind == CatalogKind.resource).length,
+      1725,
+    );
+    expect(
+      terradartCatalog.where((e) => e.kind == CatalogKind.dataSource).length,
+      683,
+    );
   });
 
   test('credentials cannot appear in synth output by construction', () {

@@ -1,0 +1,4 @@
+outputDir: appfabric
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

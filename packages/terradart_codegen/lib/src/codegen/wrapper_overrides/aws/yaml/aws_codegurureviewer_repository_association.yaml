@@ -1,0 +1,4 @@
+outputDir: codegurureviewer
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: pinpoint
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: lightsail
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

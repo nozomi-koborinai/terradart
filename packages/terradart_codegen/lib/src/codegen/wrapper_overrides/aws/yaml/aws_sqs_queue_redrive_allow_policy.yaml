@@ -1,0 +1,4 @@
+outputDir: sqs
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

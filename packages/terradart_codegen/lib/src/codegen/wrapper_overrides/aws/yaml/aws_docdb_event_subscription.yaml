@@ -1,0 +1,4 @@
+outputDir: docdb
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: appmesh
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

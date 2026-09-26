@@ -1,0 +1,4 @@
+outputDir: rbin
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

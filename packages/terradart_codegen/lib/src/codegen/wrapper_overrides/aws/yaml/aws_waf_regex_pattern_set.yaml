@@ -1,0 +1,4 @@
+outputDir: waf
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

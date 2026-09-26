@@ -1,0 +1,4 @@
+outputDir: route53recoveryreadiness
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
