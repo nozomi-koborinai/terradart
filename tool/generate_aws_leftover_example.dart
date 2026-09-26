@@ -16,12 +16,29 @@ const _skipResourceTypes = {
   'aws_iam_role_policy_attachment',
   'aws_lambda_function',
   'aws_lambda_function_url',
+  // Covered by aws_static_site_quickstart.
+  'aws_acm_certificate',
+  'aws_acm_certificate_validation',
+  'aws_cloudfront_distribution',
+  'aws_cloudfront_origin_access_control',
+  'aws_route53_record',
+  'aws_s3_bucket',
+  'aws_s3_bucket_policy',
+  'aws_s3_bucket_public_access_block',
+  // Covered by aws_ecs_express_quickstart.
+  'aws_ecr_lifecycle_policy',
+  'aws_ecr_repository',
+  'aws_ecs_cluster',
+  'aws_ecs_express_gateway_service',
 };
 
 const _skipDataTypes = {
   // Covered by aws_lambda_quickstart.
   'aws_caller_identity',
   'aws_iam_policy_document',
+  // Covered by aws_static_site_quickstart.
+  'aws_cloudfront_cache_policy',
+  'aws_route53_zone',
 };
 
 const _srcRoot = 'packages/terradart_aws/lib/src';
@@ -374,7 +391,6 @@ const _extraParams = <String, List<String>>{
   ],
   'AwsAccountaccessApplication': ['identitySource'],
   'AwsAccountaccessEntitlement': ['entitlement'],
-  'AwsAcmCertificate': ['domainName'],
   'AwsAgentregistryRegistry': ['discoveryConfiguration'],
   'AwsAlb': ['subnetMapping'],
   'AwsAmiLaunchPermission': ['accountId'],
@@ -497,7 +513,6 @@ const _extraParams = <String, List<String>>{
   'AwsEc2InstanceMetadataDefaults': ['httpEndpoint', 'httpPutResponseHopLimit'],
   'AwsEc2TrafficMirrorTarget': ['gatewayLoadBalancerEndpointId'],
   'AwsEcsDaemonTaskDefinition': ['containerDefinition'],
-  'AwsEcsExpressGatewayService': ['primaryContainer'],
   'AwsEipAssociation': ['instanceId'],
   'AwsElasticacheCluster': ['engine'],
   'AwsEmrStudioSessionMapping': ['identityId'],
@@ -603,7 +618,6 @@ const _extraParams = <String, List<String>>{
   'AwsResiliencehubv2Policy': ['multiAz'],
   'AwsResiliencehubv2Service': ['permissionModel'],
   'AwsRoute': ['destinationCidrBlock', 'carrierGatewayId'],
-  'AwsRoute53Record': ['alias'],
   'AwsRoute53domainsDomain': [
     'adminContact',
     'registrantContact',
@@ -721,7 +735,6 @@ const _extraParams = <String, List<String>>{
   'DataAwsAccountaccessEntitlements': ['filter'],
   'DataAwsAcmCertificate': ['domain', 'tags'],
   'DataAwsAppconfigApplication': ['name'],
-  'DataAwsCloudfrontCachePolicy': ['name'],
   'DataAwsCloudfrontConnectionGroup': ['routingEndpoint'],
   'DataAwsCloudfrontDistributionTenant': ['arn'],
   'DataAwsCloudfrontOriginRequestPolicy': ['name'],
@@ -1219,9 +1232,6 @@ const _literalByKey = <String, String>{
   'AwsCloudformationType.typeName': '\'Leftover::Example::Thing\'',
   'AwsCloudfrontAnycastIpList.ipCount': '3',
   'AwsCloudfrontFunction.runtime': '\'cloudfront-js-1.0\'',
-  'AwsCloudfrontOriginAccessControl.originAccessControlOriginType': '\'s3\'',
-  'AwsCloudfrontOriginAccessControl.signingBehavior': '\'never\'',
-  'AwsCloudfrontOriginAccessControl.signingProtocol': '\'sigv4\'',
   'AwsCloudfrontRealtimeLogConfig.samplingRate': '1',
   'AwsCloudhsmV2Cluster.hsmType': '\'hsm1.medium\'',
   'AwsCloudwatchContributorInsightRule.ruleDefinition': 'policy',
@@ -1573,7 +1583,6 @@ const _literalByKey = <String, String>{
   'AwsResiliencehubv2ServiceFunction.criticality': '\'PRIMARY\'',
   'AwsResourceexplorer2Index.type': '\'LOCAL\'',
   'AwsRoute53HealthCheck.type': '\'HTTP\'',
-  'AwsRoute53Record.type': '\'A\'',
   'AwsRoute53ResolverConfig.autodefinedReverseFlag': '\'ENABLE\'',
   'AwsRoute53ResolverEndpoint.direction': '\'INBOUND\'',
   'AwsRoute53ResolverFirewallRule.action': '\'ALLOW\'',
@@ -1754,10 +1763,6 @@ const _literalByKey = <String, String>{
       '\'none\'',
   'CloudfrontConnectionFunctionConnectionFunctionConfig.runtime':
       '\'cloudfront-js-1.0\'',
-  'CloudfrontDistributionDefaultCacheBehavior.viewerProtocolPolicy':
-      '\'allow-all\'',
-  'CloudfrontDistributionRestrictionsGeoRestriction.restrictionType':
-      '\'blacklist\'',
   'CloudfrontFieldLevelEncryptionConfigContentTypeProfileConfigContentTypeProfilesItems.format':
       '\'URLEncoded\'',
   'CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfig.realtimeMetricsSubscriptionStatus':
