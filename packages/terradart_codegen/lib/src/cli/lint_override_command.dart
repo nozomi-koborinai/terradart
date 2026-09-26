@@ -83,8 +83,10 @@ class LintOverrideCommand extends Command<int> {
         : defaultMmFixtureDirForOverrideRoot(rootDir);
     final lintBag = loaded.asLintMap();
     final mmByType = loadMmFixtures(mmDir, lintBag.keys);
-    final debtPath = exactlyOneLintDebtPathForOverrideRoot(rootDir);
-    final debt = loadExactlyOneLintDebt(debtPath);
+    final debt = laneLedgerEntries(
+      _loadLedger(exactlyOneLintDebtPathForOverrideRoot(rootDir)),
+      lintBag.keys,
+    );
     final staleDebt = staleExactlyOneOptionalFanoutDebt(
       lintBag,
       mmByType: mmByType,
@@ -99,17 +101,11 @@ class LintOverrideCommand extends Command<int> {
       }
       return CliExitCodes.dataError;
     }
-    for (final tf in debt.keys) {
-      if (!lintBag.containsKey(tf)) {
-        stderr.writeln(
-          'lint-override: tool/exactly_one_lint_debt.yaml lists unknown override $tf',
-        );
-        return CliExitCodes.dataError;
-      }
-    }
     final migrateContext = preludeShapeContext(lintBag);
-    final migrateDebtPath = migrateManifestDebtPathForOverrideRoot(rootDir);
-    final migrateDebt = loadLintDebtLedger(migrateDebtPath);
+    final migrateDebt = laneLedgerEntries(
+      _loadLedger(migrateManifestDebtPathForOverrideRoot(rootDir)),
+      lintBag.keys,
+    );
     final staleMigrateDebt = staleMigrateManifestDebt(
       lintBag,
       context: migrateContext,
@@ -120,9 +116,7 @@ class LintOverrideCommand extends Command<int> {
           'lint-override: stale tool/migrate_manifest_debt.yaml entries:');
       for (final tf in staleMigrateDebt) {
         stderr.writeln(
-          lintBag.containsKey(tf)
-              ? '  $tf (override no longer violates migrate-shape-underivable)'
-              : '  $tf (unknown override)',
+          '  $tf (override no longer violates migrate-shape-underivable)',
         );
       }
       return CliExitCodes.dataError;
@@ -164,33 +158,72 @@ String defaultMmFixtureDirForOverrideRoot(String overrideYamlRoot) {
   return p.join(codegenPackageRoot, 'test', 'fixtures', 'wrap', 'source', 'mm');
 }
 
-@visibleForTesting
-String exactlyOneLintDebtPathForOverrideRoot(String overrideYamlRoot) {
-  final codegenPackageRoot = p.normalize(
-    p.join(overrideYamlRoot, '..', '..', '..', '..', '..'),
-  );
-  final repoRoot = p.normalize(p.join(codegenPackageRoot, '..', '..'));
-  return p.join(repoRoot, 'tool', 'exactly_one_lint_debt.yaml');
+/// The debt ledgers every lane shares, under the repository `tool/`
+/// directory.
+const lintDebtLedgerFileNames = [
+  'exactly_one_lint_debt.yaml',
+  'migrate_manifest_debt.yaml',
+];
+
+/// The repository `tool/` directory holding the shared debt ledgers, found
+/// from the `packages/terradart_codegen/lib/src/codegen/wrapper_overrides`
+/// directory [overrideYamlRoot] sits in. The bundled registry
+/// (`wrapper_overrides/yaml`) and a lane (`wrapper_overrides/<lane>/yaml`)
+/// resolve to the same directory. Null outside that tree, which reads as
+/// empty ledgers.
+String? lintDebtToolDirForOverrideRoot(String overrideYamlRoot) {
+  final parts = p.split(p.normalize(p.absolute(overrideYamlRoot)));
+  final i = parts.lastIndexOf('wrapper_overrides');
+  const codegenPath = [
+    'packages',
+    'terradart_codegen',
+    'lib',
+    'src',
+    'codegen'
+  ];
+  if (i < codegenPath.length) return null;
+  final above = parts.sublist(i - codegenPath.length, i);
+  for (var k = 0; k < codegenPath.length; k++) {
+    if (above[k] != codegenPath[k]) return null;
+  }
+  return p.joinAll([...parts.take(i - codegenPath.length), 'tool']);
 }
+
+/// `tool/exactly_one_lint_debt.yaml`: overrides accepted as
+/// `exactly-one-optional-fanout` debt.
+String? exactlyOneLintDebtPathForOverrideRoot(String overrideYamlRoot) =>
+    _ledgerPath(overrideYamlRoot, lintDebtLedgerFileNames[0]);
 
 /// `tool/migrate_manifest_debt.yaml` beside `tool/exactly_one_lint_debt.yaml`:
 /// overrides accepted as `migrate-shape-underivable` debt.
-@visibleForTesting
-String migrateManifestDebtPathForOverrideRoot(String overrideYamlRoot) {
-  return p.join(
-    p.dirname(exactlyOneLintDebtPathForOverrideRoot(overrideYamlRoot)),
-    'migrate_manifest_debt.yaml',
-  );
+String? migrateManifestDebtPathForOverrideRoot(String overrideYamlRoot) =>
+    _ledgerPath(overrideYamlRoot, lintDebtLedgerFileNames[1]);
+
+String? _ledgerPath(String overrideYamlRoot, String fileName) {
+  final toolDir = lintDebtToolDirForOverrideRoot(overrideYamlRoot);
+  return toolDir == null ? null : p.join(toolDir, fileName);
 }
 
-@visibleForTesting
-Map<String, String> loadExactlyOneLintDebt(String path) =>
-    loadLintDebtLedger(path);
+Map<String, String> _loadLedger(String? path) =>
+    path == null ? const {} : loadLintDebtLedger(path);
+
+/// The entries of a shared [ledger] that name one of [overrideNames]. A lane
+/// validates only its own entries; `tool/wrap_lanes.dart` fails on entries
+/// that name an override in no lane.
+Map<String, String> laneLedgerEntries(
+  Map<String, String> ledger,
+  Iterable<String> overrideNames,
+) {
+  final names = overrideNames.toSet();
+  return {
+    for (final MapEntry(:key, :value) in ledger.entries)
+      if (names.contains(key)) key: value,
+  };
+}
 
 /// Parses a `name: reason` debt ledger (one entry per line, `#` comments
 /// and blank lines ignored). A missing file is an empty ledger; a line
 /// without a reason is an error, so every accepted debt stays explained.
-@visibleForTesting
 Map<String, String> loadLintDebtLedger(String path) {
   final file = File(path);
   if (!file.existsSync()) return const {};

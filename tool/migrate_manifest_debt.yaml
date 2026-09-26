@@ -7,6 +7,9 @@
 # Stale entries (override no longer violates) fail `terradart lint-override`.
 # New entries are a reviewed maintainer decision — prefer reshaping the
 # helper to a field-per-key `encode()` map literal (see #659).
+# Shared by every tool/providers.yaml lane: each lane's lint checks the
+# entries naming its own overrides, and `tool/wrap_lanes.dart` fails on an
+# entry that names an override in no lane.
 
 google_chronicle_dashboard_chart: ChronicleDashboardChartVisualization spreads a `...axisType.encode()` enum into the block; the manifest has no merged-enum shape
 google_compute_autoscaler: AutoscalingPolicy.scalingSchedules is a `Map<String, ScalingSchedule>` keyed nested block; the manifest has no map-of-helper shape
