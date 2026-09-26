@@ -1,0 +1,4 @@
+outputDir: internetmonitor
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

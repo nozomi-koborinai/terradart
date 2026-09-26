@@ -1,0 +1,4 @@
+outputDir: s3control
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

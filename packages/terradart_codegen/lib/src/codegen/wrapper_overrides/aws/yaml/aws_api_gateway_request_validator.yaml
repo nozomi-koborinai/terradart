@@ -1,0 +1,4 @@
+outputDir: api_gateway
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: cur
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

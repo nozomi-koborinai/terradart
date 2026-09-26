@@ -257,6 +257,7 @@ Docs: [terradart.dev/docs/migrate-from-hcl/](https://terradart.dev/docs/migrate-
 - [`terradart_google_beta`](packages/terradart_google_beta/README.md) ships the **beta-only** `hashicorp/google-beta` catalog (**128 resource factories**, schema pin tracking the weekly GA bump).
 - [`terradart_appwrite`](packages/terradart_appwrite/README.md) ships the filled `appwrite/appwrite` catalog at `2.0.0-beta.1` (38 resource factories + 24 data sources).
 - [`terradart_cloudflare`](packages/terradart_cloudflare/README.md) ships the filled `cloudflare/cloudflare` catalog at `5.23.0` (**257 resource factories + 446 data sources**). Nested plugin-framework objects are typed Dart helpers.
+- [`terradart_aws`](packages/terradart_aws/README.md) fills the `hashicorp/aws` catalog at `6.66.0` (**1725 resource factories + 683 data sources**). It is not on pub.dev yet.
 
 Explore ready-to-run examples in [`examples/`](examples/):
 - **Foundational & IAM**: [Pub/Sub](examples/pubsub_quickstart/), [Cloud Tasks](examples/cloud_tasks_quickstart/), [Secret Manager](examples/secret_manager_quickstart/), [IAM](examples/iam_quickstart/)

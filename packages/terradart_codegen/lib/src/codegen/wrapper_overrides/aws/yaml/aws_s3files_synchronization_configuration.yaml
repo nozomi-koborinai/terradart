@@ -1,0 +1,4 @@
+outputDir: s3files
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

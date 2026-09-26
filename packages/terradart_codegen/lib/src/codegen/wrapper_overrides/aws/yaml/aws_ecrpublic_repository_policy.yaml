@@ -1,0 +1,4 @@
+outputDir: ecrpublic
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

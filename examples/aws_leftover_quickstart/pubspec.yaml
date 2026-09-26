@@ -1,0 +1,15 @@
+name: terradart_example_aws_leftover_quickstart
+description: Fills remaining terradart_aws factories at pin 6.66.0 — synth + terraform validate only; never apply.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.28.1
+  terradart_aws: ^0.28.1
+
+dev_dependencies:
+  lints: ^6.0.0

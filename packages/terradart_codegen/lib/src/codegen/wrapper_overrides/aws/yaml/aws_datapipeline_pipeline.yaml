@@ -1,0 +1,4 @@
+outputDir: datapipeline
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

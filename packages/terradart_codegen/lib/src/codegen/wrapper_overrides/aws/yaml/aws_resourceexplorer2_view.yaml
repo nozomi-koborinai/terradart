@@ -1,0 +1,4 @@
+outputDir: resourceexplorer2
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

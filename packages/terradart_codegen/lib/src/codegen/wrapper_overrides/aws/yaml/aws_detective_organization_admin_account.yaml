@@ -1,0 +1,4 @@
+outputDir: detective
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

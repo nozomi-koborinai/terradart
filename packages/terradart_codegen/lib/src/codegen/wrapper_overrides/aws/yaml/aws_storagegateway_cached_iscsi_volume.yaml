@@ -1,0 +1,4 @@
+outputDir: storagegateway
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

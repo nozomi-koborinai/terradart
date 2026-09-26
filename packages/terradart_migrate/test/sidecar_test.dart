@@ -326,12 +326,12 @@ variable "name" {
   type = string
 }
 
-resource "aws_s3_bucket" "logs" {
-  bucket = var.name
+resource "azurerm_resource_group" "logs" {
+  name = var.name
 }
 
-output "arn" {
-  value = aws_s3_bucket.logs.arn
+output "id" {
+  value = azurerm_resource_group.logs.id
 }
 ''';
     for (final allowTodo in [false, true]) {
@@ -347,15 +347,15 @@ output "arn" {
           'terraform.required_version',
           'terraform.backend',
           'variable.name',
-          'aws_s3_bucket.logs',
-          'output.arn',
+          'azurerm_resource_group.logs',
+          'output.id',
         ]),
       );
       final sidecar = r.sidecar!;
       expect(sidecar.files[backendFileName], contains('backend "gcs"'));
       expect(sidecar.files[backendFileName], contains('required_version'));
       expect(sidecar.files[variablesFileName], contains('variable "name"'));
-      expect(sidecar.files[outputsFileName], contains('output "arn"'));
+      expect(sidecar.files[outputsFileName], contains('output "id"'));
       for (final k in r.report.kept) {
         expect(sidecar.placements[k.address], isNotNull, reason: k.address);
       }

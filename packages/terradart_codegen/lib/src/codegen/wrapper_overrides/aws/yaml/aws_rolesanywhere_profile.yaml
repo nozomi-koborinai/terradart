@@ -1,0 +1,4 @@
+outputDir: rolesanywhere
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

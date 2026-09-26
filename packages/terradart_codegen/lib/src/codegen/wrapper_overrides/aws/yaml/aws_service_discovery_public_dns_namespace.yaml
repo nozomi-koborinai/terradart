@@ -1,0 +1,4 @@
+outputDir: service_discovery
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -260,9 +260,14 @@ resource "google_pubsub_topic_iam_member" "viewer" {
         r.report.kept.singleWhere((k) => k.address == address).reason;
 
     test('a type outside every catalog', () {
-      final r = _migrateJson(module({'name': 'x'}, type: 'aws_s3_bucket'));
-      expect(reasonOf(r, 'aws_s3_bucket.x'), contains('no curated factory'));
-      expect(r.stackSource, isNot(contains('aws_s3_bucket')));
+      final r = _migrateJson(
+        module({'name': 'x'}, type: 'azurerm_resource_group'),
+      );
+      expect(
+        reasonOf(r, 'azurerm_resource_group.x'),
+        contains('no curated factory'),
+      );
+      expect(r.stackSource, isNot(contains('azurerm_resource_group')));
     });
 
     test('count / for_each / dynamic / provisioner', () {

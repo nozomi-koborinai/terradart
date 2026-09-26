@@ -1,0 +1,4 @@
+outputDir: swf
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

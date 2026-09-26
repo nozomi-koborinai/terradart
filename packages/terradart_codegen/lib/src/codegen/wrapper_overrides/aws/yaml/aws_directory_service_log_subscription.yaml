@@ -1,0 +1,4 @@
+outputDir: directory_service
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

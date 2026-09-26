@@ -21,6 +21,7 @@ workspace:
   - examples/apigee_quickstart
   - examples/appwrite_quickstart
   - examples/aws_lambda_quickstart
+  - examples/aws_leftover_quickstart
   - examples/cloudflare_dns_quickstart
   - examples/cloudflare_leftover_quickstart
   - examples/api_security_quickstart

@@ -1,0 +1,4 @@
+outputDir: eks
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: glue
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
