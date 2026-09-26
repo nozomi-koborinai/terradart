@@ -1185,6 +1185,23 @@ final class StackEmitter {
         return items.isEmpty ? '<String>[]' : dartValue(items);
       case _StringMap(:final key):
         var map = objectMap(expr);
+        if (key == null && expr is TupleExpr && expr.elements.length > 1) {
+          // Repeated map blocks (`endpoints { s3 = ... }` twice) are one
+          // map to the provider; a key set to two values has no one-map form.
+          final merged = <String, Expr>{};
+          for (final block in expr.elements) {
+            final m = objectMap(block);
+            if (m == null) return drop();
+            for (final MapEntry(key: k, :value) in m.entries) {
+              final prior = merged[k];
+              if (prior != null && jsonValue(prior) != jsonValue(value)) {
+                return drop();
+              }
+              merged[k] = value;
+            }
+          }
+          map = merged;
+        }
         if (key != null) {
           final inner = map?[key];
           map = inner == null ? null : objectMap(inner);

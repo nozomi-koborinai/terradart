@@ -609,6 +609,59 @@ resource "aws_cloudwatch_log_group" "fn" {
       expect(r.report.warnings.join('\n'), contains('"secret_key"'));
     });
 
+    test('repeated aws endpoints blocks merge into one map', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    aws = { source = "hashicorp/aws", version = "6.66.0" }
+  }
+}
+provider "aws" {
+  endpoints {
+    s3 = "http://localhost:4566"
+  }
+  endpoints {
+    dynamodb = "http://localhost:4566"
+    s3       = "http://localhost:4566"
+  }
+}
+resource "aws_cloudwatch_log_group" "fn" {
+  name = "/aws/lambda/hello"
+}
+''');
+      expect(
+        r.stackSource,
+        contains(
+          "const AwsProvider(endpoints: {r's3': r'http://localhost:4566', "
+          "r'dynamodb': r'http://localhost:4566'})",
+        ),
+      );
+      expect(r.report.warnings, isEmpty);
+    });
+
+    test('aws endpoints blocks that disagree on a key are dropped', () {
+      final r = _migrateHcl('''
+terraform {
+  required_providers {
+    aws = { source = "hashicorp/aws", version = "6.66.0" }
+  }
+}
+provider "aws" {
+  endpoints {
+    s3 = "http://localhost:4566"
+  }
+  endpoints {
+    s3 = "http://localhost:9000"
+  }
+}
+resource "aws_cloudwatch_log_group" "fn" {
+  name = "/aws/lambda/hello"
+}
+''');
+      expect(r.stackSource, contains('const AwsProvider()'));
+      expect(r.report.warnings.single, contains('"endpoints"'));
+    });
+
     test('an unknown provider argument is dropped with a warning', () {
       final r = _migrateJson({
         'terraform': _google,
