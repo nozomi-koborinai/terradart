@@ -1,6 +1,6 @@
 # Release Checklist
 
-terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, and `terradart_cloudflare`. `terradart_agent`, `terradart_coverage` and `terradart_migrate` are `publish_to: none` and ship as Homebrew binaries (`terradart-mcp`, `terradart-coverage`, `terradart-migrate`) via `release-binary.yml`, which also pushes their formulas to `nozomi-koborinai/homebrew-tap`.
+terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare`, and `terradart_aws`. `terradart_agent`, `terradart_coverage` and `terradart_migrate` are `publish_to: none` and ship as Homebrew binaries (`terradart-mcp`, `terradart-coverage`, `terradart-migrate`) via `release-binary.yml`, which also pushes their formulas to `nozomi-koborinai/homebrew-tap`.
 
 ## Pre-flight (local)
 
