@@ -174,7 +174,13 @@ const lintDebtLedgerFileNames = [
 String? lintDebtToolDirForOverrideRoot(String overrideYamlRoot) {
   final parts = p.split(p.normalize(p.absolute(overrideYamlRoot)));
   final i = parts.lastIndexOf('wrapper_overrides');
-  const codegenPath = ['packages', 'terradart_codegen', 'lib', 'src', 'codegen'];
+  const codegenPath = [
+    'packages',
+    'terradart_codegen',
+    'lib',
+    'src',
+    'codegen'
+  ];
   if (i < codegenPath.length) return null;
   final above = parts.sublist(i - codegenPath.length, i);
   for (var k = 0; k < codegenPath.length; k++) {
