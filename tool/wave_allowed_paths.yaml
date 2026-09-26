@@ -49,6 +49,7 @@ website/src/content/docs/docs/coverage.md
 website/src/content/docs/docs/status.md
 website/src/content/docs/docs/agent/index.md
 website/src/content/docs/docs/agent/tools-reference.md
+website/src/components/PitchCode.astro
 
 # Root workspace manifest — a NEW example must be listed as a workspace
 # member (Dart workspaces enumerate members explicitly). The executor

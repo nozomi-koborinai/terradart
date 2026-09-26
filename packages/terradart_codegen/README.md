@@ -12,7 +12,7 @@ This package ships the `terradart` CLI for **maintainers** and contributors cura
 - **`terradart wrap-init`** — scaffold a new wrapper override YAML from schema + MM hints.
 - **`terradart wrap-promote`** — propose `enum_values` and `dartTypeOverrides` blocks for human review.
 
-End users depend on [`terradart_google`](https://pub.dev/packages/terradart_google), [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta), [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite), or [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) directly; they do not run generation locally.
+End users depend on [`terradart_google`](https://pub.dev/packages/terradart_google), [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta), [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite), [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare), or [`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) directly; they do not run generation locally.
 
 ## Installation
 

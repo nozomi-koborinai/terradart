@@ -170,6 +170,7 @@ void main() {
           'website/src/content/docs/docs/status.md',
           'website/src/content/docs/docs/agent/index.md',
           'website/src/content/docs/docs/agent/tools-reference.md',
+          'website/src/components/PitchCode.astro',
           'packages/terradart_codegen/test/codegen/wrapper_overrides/yaml_loader_test.dart',
           'pubspec.yaml',
           'tool/curation_backlog.yaml',
