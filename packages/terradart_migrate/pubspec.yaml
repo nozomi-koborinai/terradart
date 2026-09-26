@@ -1,5 +1,5 @@
 name: terradart_migrate
-description: HCL → Dart migrator for existing Terraform users (terradart-migrate) — the migration manifests of the four curated catalogs and the emitter that turns a Terraform module into a Stack.
+description: HCL → Dart migrator for existing Terraform users (terradart-migrate) — the migration manifests of the five curated catalogs and the emitter that turns a Terraform module into a Stack.
 version: 0.28.1
 publish_to: none
 homepage: https://github.com/nozomi-koborinai/terradart
@@ -19,6 +19,7 @@ dependencies:
   dart_style: ^3.0.0
   path: ^1.9.0
   terradart_appwrite: ^0.28.1
+  terradart_aws: ^0.28.1
   terradart_cloudflare: ^0.28.1
   terradart_core: ^0.28.1
   terradart_google: ^0.28.1

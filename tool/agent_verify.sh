@@ -93,7 +93,7 @@ if [[ "$WITH_FORMAT" == "1" ]]; then
 fi
 
 if [[ "$QUICK" == "0" ]]; then
-  PACKAGES=(terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_agent terradart_coverage terradart_hcl terradart_migrate)
+  PACKAGES=(terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_agent terradart_coverage terradart_hcl terradart_migrate)
   for pkg in "${PACKAGES[@]}"; do
     echo ">> dart test packages/$pkg"
     (cd "packages/$pkg" && dart test --reporter=expanded)

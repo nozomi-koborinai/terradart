@@ -5,7 +5,7 @@
 
 `terradart-coverage` — a read-only CLI that reports how much of an existing Terraform configuration is already covered by curated [TerraDart](https://terradart.dev) factories.
 
-Point it at a Terraform directory and it tells you which `resource` / `data` types already have a curated factory in `terradart_google`, `terradart_google_beta`, `terradart_appwrite` or `terradart_cloudflare`, which are not in any catalog yet, and roughly how big a migration would be — **with no setup**: no `terraform init`, no backend, no credentials, not even a `terraform` binary. It reads only the `.tf` / `.tf.json` source you already have.
+Point it at a Terraform directory and it tells you which `resource` / `data` types already have a curated factory in `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare` or `terradart_aws`, which are not in any catalog yet, and roughly how big a migration would be — **with no setup**: no `terraform init`, no backend, no credentials, not even a `terraform` binary. It reads only the `.tf` / `.tf.json` source you already have.
 
 It matches Terraform type strings against the static catalogs compiled into the four provider packages (`package:terradart_<provider>/catalog.dart`). Anything it can't analyze (a registry/git module, a file it can't parse) is reported explicitly rather than dropped silently.
 

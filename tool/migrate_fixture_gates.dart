@@ -55,6 +55,7 @@ const _workspacePackages = [
   'terradart_google_beta',
   'terradart_appwrite',
   'terradart_cloudflare',
+  'terradart_aws',
 ];
 
 Future<void> main(List<String> args) async {

@@ -15,10 +15,10 @@ void main() {
     String wrap(String lane) => WrapGate.wrap.args(lanes[lane]!).join(' ');
     String lint(String lane) => WrapGate.lint.args(lanes[lane]!).join(' ');
 
-    test('declares the four lanes in order', () {
+    test('declares the five lanes in order', () {
       expect(
         lanes.keys,
-        equals(['google', 'google-beta', 'appwrite', 'cloudflare']),
+        equals(['google', 'google-beta', 'appwrite', 'cloudflare', 'aws']),
       );
     });
 
@@ -60,6 +60,19 @@ void main() {
         '--barrels-manifest lib/src/codegen/barrels/barrels_cloudflare.yaml '
         '--migrate-manifest '
         '../terradart_migrate/lib/src/manifest/cloudflare.g.dart '
+        '--check',
+      );
+    });
+
+    test('aws wrap omits --resource-provider', () {
+      expect(
+        wrap('aws'),
+        'wrap --provider hashicorp/aws '
+        '--source test/fixtures/wrap/source_aws '
+        '--output ../terradart_aws/lib/src '
+        '--overrides-root lib/src/codegen/wrapper_overrides/aws/yaml '
+        '--barrels-manifest lib/src/codegen/barrels/barrels_aws.yaml '
+        '--migrate-manifest ../terradart_migrate/lib/src/manifest/aws.g.dart '
         '--check',
       );
     });

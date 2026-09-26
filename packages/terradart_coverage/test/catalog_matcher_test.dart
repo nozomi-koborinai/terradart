@@ -38,7 +38,7 @@ void main() {
   group('CatalogIndex.all() — every provider package', () {
     final index = CatalogIndex.all();
 
-    test('matches google, google-beta, appwrite and cloudflare types', () {
+    test('matches google, google-beta, appwrite, cloudflare and aws types', () {
       final bucket = index.lookup(
         'google_storage_bucket',
         CatalogKind.resource,
@@ -63,6 +63,11 @@ void main() {
       final zoneData = index.lookup('cloudflare_zone', CatalogKind.dataSource)!;
       expect(zoneData.className, 'DataCloudflareZone');
       expect(zoneData.import, 'package:terradart_cloudflare/data.dart');
+
+      final fn = index.lookup('aws_lambda_function', CatalogKind.resource)!;
+      expect(fn.package, 'terradart_aws');
+      expect(fn.className, 'AwsLambdaFunction');
+      expect(fn.import, 'package:terradart_aws/lambda.dart');
     });
 
     test('the same type can be a data source in GA and a resource in beta', () {
@@ -79,7 +84,10 @@ void main() {
     });
 
     test('a fabricated type is in no catalog', () {
-      expect(index.lookup('aws_s3_bucket', CatalogKind.resource), isNull);
+      expect(
+        index.lookup('azurerm_resource_group', CatalogKind.resource),
+        isNull,
+      );
     });
 
     test('lists every entry of every catalog', () {
@@ -90,6 +98,7 @@ void main() {
         'terradart_google_beta',
         'terradart_appwrite',
         'terradart_cloudflare',
+        'terradart_aws',
       });
     });
   });

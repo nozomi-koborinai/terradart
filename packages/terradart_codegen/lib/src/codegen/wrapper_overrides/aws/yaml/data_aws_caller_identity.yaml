@@ -1,0 +1,10 @@
+kind: data_source
+outputDir: data
+schemaStubBodyMode: bare
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+curatedDoc: |-
+  /// The AWS account, user ID and ARN the provider authenticated as. Read
+  /// [accountId] instead of hard-coding the account number in ARNs.

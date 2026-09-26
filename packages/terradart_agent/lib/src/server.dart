@@ -149,9 +149,9 @@ Future<GenkitMcpServer> buildTerradartMcpServer() async {
         'Given `terraform show -json` output (the "tf_json" arg), report how '
         'much of the Terraform config is covered by curated TerraDart '
         'factories (terradart_google, terradart_google_beta, '
-        'terradart_appwrite, terradart_cloudflare): coverage %, supported '
-        'types with their package, not-in-catalog types, and a per-module '
-        'breakdown.',
+        'terradart_appwrite, terradart_cloudflare, terradart_aws): '
+        'coverage %, supported types with their package, not-in-catalog '
+        'types, and a per-module breakdown.',
     inputSchema: _objectSchema(
       properties: {
         'tf_json': $Schema.string(

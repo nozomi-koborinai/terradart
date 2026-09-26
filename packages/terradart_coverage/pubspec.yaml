@@ -19,6 +19,7 @@ dependencies:
   terradart_google_beta: ^0.28.1
   terradart_appwrite: ^0.28.1
   terradart_cloudflare: ^0.28.1
+  terradart_aws: ^0.28.1
   terradart_hcl: ^0.28.1
   args: ^2.5.0
 

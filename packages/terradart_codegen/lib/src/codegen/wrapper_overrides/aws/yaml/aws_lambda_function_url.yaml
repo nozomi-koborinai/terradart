@@ -1,0 +1,12 @@
+outputDir: lambda
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+curatedDoc: |-
+  /// A dedicated HTTPS endpoint for an [AwsLambdaFunction], without API
+  /// Gateway in front.
+  ///
+  /// `authorizationType: TfArg.literal('NONE')` makes the URL public;
+  /// `AWS_IAM` requires SigV4-signed callers. Read the endpoint through
+  /// [functionUrl].

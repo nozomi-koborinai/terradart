@@ -1,0 +1,24 @@
+include: package:lints/recommended.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    # Factory dartdoc references like `[topic.id]` resolve at compile time;
+    # leave them as warnings so we surface broken references locally.
+    dead_code: error
+    unused_import: error
+    unused_local_variable: error
+    # Existing factories use `if (x != null) 'k': x.toTfJson()` for optional
+    # argMap entries. Dart SDK upgrades surface this as `use_null_aware_elements`;
+    # migrating all factories is a separate cleanup, ignore for now.
+    use_null_aware_elements: ignore
+
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_const_constructors_in_immutables
+    - prefer_final_locals
+    - prefer_relative_imports

@@ -202,6 +202,7 @@ void _checkSynthCoverage(
     'packages/terradart_google_beta/lib/src/_catalog.g.dart',
     'packages/terradart_appwrite/lib/src/_catalog.g.dart',
     'packages/terradart_cloudflare/lib/src/_catalog.g.dart',
+    'packages/terradart_aws/lib/src/_catalog.g.dart',
   ];
   final factories = <({String tfType, String className, String kind})>[];
   final catalogClasses = <String>{};

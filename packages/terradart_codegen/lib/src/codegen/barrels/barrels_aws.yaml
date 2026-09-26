@@ -1,0 +1,37 @@
+# Authored barrel manifest for terradart_aws — the human-decided axes of
+# the generated barrels under terradart_aws/lib/.
+# Same contract as barrels.yaml (fail-closed both directions); consumed via
+# `terradart wrap --barrels-manifest`.
+
+umbrellaFile: terradart_aws
+
+umbrellaDoc: |-
+  /// Curated **AWS** surface for TerraDart (`hashicorp/aws` Terraform
+  /// provider, pinned at `6.66.0`).
+  ///
+  /// The catalog is a seed: the resources a Dart backend on Lambda needs
+  /// (IAM role, policy attachment, function, function URL, log group) plus
+  /// the `aws_iam_policy_document` and `aws_caller_identity` data sources.
+  /// Credentials never appear in synth output: authentication happens at
+  /// apply time via the AWS SDK credential chain (`AWS_*` environment
+  /// variables, shared config, or an instance role).
+  ///
+  /// This umbrella re-exports every per-service barrel. Prefer the
+  /// per-service imports in new code.
+
+umbrellaExtraExports:
+  - "export 'provider.dart';"
+
+barrels:
+  cloudwatch:
+    doc: |-
+      /// AWS CloudWatch log groups.
+  data:
+    doc: |-
+      /// AWS data sources (read-only lookups).
+  iam:
+    doc: |-
+      /// AWS IAM roles and policy attachments.
+  lambda:
+    doc: |-
+      /// AWS Lambda functions and function URLs.
