@@ -67,6 +67,7 @@ TerraDart supports multiple official Terraform providers with curated, typed Dar
 - **[`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)** — **beta-only** types from `hashicorp/google-beta` (128 resource factories at the current pin).
 - **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — official `appwrite/appwrite` provider resources (filled at the current pin).
 - **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — official `cloudflare/cloudflare` provider resources (filled at `5.23.0`: 257 resource factories + 446 data sources; nested plugin-framework objects are typed Dart helpers).
+- **[`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws)** — HashiCorp [`aws`](https://registry.terraform.io/providers/hashicorp/aws/latest) provider resources (filled at `6.66.0`: 1725 resource factories + 683 data sources; not on pub.dev yet). See [Dart apps on AWS](/docs/aws/).
 
 For the Google provider, TerraDart depends on upstream sources reconciled automatically on a weekly cadence:
 
@@ -127,5 +128,6 @@ See [README — Non-goals](https://github.com/nozomi-koborinai/terradart#non-goa
 - [`terradart_google` on pub.dev](https://pub.dev/packages/terradart_google) — the curated Google factory catalog.
 - [`terradart_appwrite` on pub.dev](https://pub.dev/packages/terradart_appwrite) — curated Appwrite factories.
 - [`terradart_cloudflare` on pub.dev](https://pub.dev/packages/terradart_cloudflare) — curated Cloudflare factories.
+- [Dart apps on AWS](/docs/aws/) — `terradart_aws` for Lambda, ECS Express Mode, and S3 + CloudFront.
 - [`terradart_codegen` on pub.dev](https://pub.dev/packages/terradart_codegen) — `wrap` / `codegen` CLI reference.
 - [`examples/` on GitHub](https://github.com/nozomi-koborinai/terradart/tree/main/examples) — runnable quickstart Stacks.

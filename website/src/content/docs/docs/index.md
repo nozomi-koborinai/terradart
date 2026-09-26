@@ -16,6 +16,7 @@ TerraDart is organized as a multi-package monorepo:
 - **[`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)** — Curated factories for beta-only Google Cloud resources (`hashicorp/google-beta`).
 - **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — Curated factories for Appwrite (`appwrite/appwrite`).
 - **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — Curated factories for Cloudflare edge infrastructure (`cloudflare/cloudflare`, filled at `5.23.0`: 257 resource factories + 446 data sources).
+- **[`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws)** — Curated factories for AWS (`hashicorp/aws`, filled at `6.66.0`: 1725 resource factories + 683 data sources). Not on pub.dev yet.
 - **[`terradart_agent`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_agent)** — MCP server (`terradart-mcp`) exposing the curated catalog to AI coding agents.
 - **[`terradart_codegen`](https://pub.dev/packages/terradart_codegen)** — Maintainer generation CLI (`terradart wrap`).
 - **[`terradart_migrate`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_migrate)** — HCL → Dart migrator (`terradart-migrate`), reading Terraform through **[`terradart_hcl`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_hcl)**.
@@ -27,6 +28,7 @@ TerraDart is organized as a multi-package monorepo:
 - [Architecture](/docs/architecture/) — generate `*.tf.json`, `synth()` / `writeTo()`, AppExport
 - [Coverage](/docs/coverage/) — every curated factory, its barrel, and runnable examples
 - [How it's built](/docs/how-its-built/) — the generation pipeline, verification harness, and sustainability
+- [Dart apps on AWS](/docs/aws/) — Lambda custom runtime, ECS Express Mode, and Flutter Web on S3 + CloudFront with `terradart_aws`
 - [Migrating from HCL](/docs/migrate-from-hcl/) — `terradart-migrate`: bring an existing Terraform tree into TerraDart with a plan that reports *No changes*
 - [Migrating](/docs/migrating/) — breaking-change guides for minor bumps
 - [Status & versioning](/docs/status/) — alpha, path to beta, 1.0
