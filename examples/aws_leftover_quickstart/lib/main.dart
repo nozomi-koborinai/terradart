@@ -132,7 +132,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'acmpca_certificate',
         certificateAuthorityArn: TfArg.literal(arn),
         certificateSigningRequest: TfArg.literal(leftover),
-        signingAlgorithm: TfArg.literal('SHA256WITHECDSA'),
+        signingAlgorithm: TfArg.literal('SHA256WITHRSA'),
         validity: AcmpcaCertificateValidity(
           type: TfArg.literal('END_DATE'),
           value: TfArg.literal('2026-01-01T00:00:00Z'),
@@ -146,7 +146,7 @@ final class AwsLeftoverStack extends Stack {
         certificateAuthorityConfiguration:
             AcmpcaCertificateAuthorityCertificateAuthorityConfiguration(
           keyAlgorithm: TfArg.literal('RSA_2048'),
-          signingAlgorithm: TfArg.literal('SHA256WITHECDSA'),
+          signingAlgorithm: TfArg.literal('SHA256WITHRSA'),
           subject:
               AcmpcaCertificateAuthorityCertificateAuthorityConfigurationSubject(
             commonName: TfArg.literal(leftover),
@@ -3999,7 +3999,6 @@ final class AwsLeftoverStack extends Stack {
       AwsConfigConformancePack(
         localName: 'config_conformance_pack',
         name: TfArg.literal(leftover),
-        templateBody: TfArg.literal(leftover),
         templateS3Uri: TfArg.literal('s3://leftover-bucket/leftover'),
       ),
     );
@@ -4115,7 +4114,6 @@ final class AwsLeftoverStack extends Stack {
         identityManagementType: TfArg.literal('SAML'),
         inboundCallsEnabled: TfArg.literal(true),
         outboundCallsEnabled: TfArg.literal(true),
-        directoryId: TfArg.literal('d-1234567890'),
         instanceAlias: TfArg.literal(leftover),
       ),
     );
@@ -5060,7 +5058,6 @@ final class AwsLeftoverStack extends Stack {
         localName: 'dms_certificate',
         certificateId: TfArg.literal(leftover),
         certificatePem: TfArg.variable('leftover_secret'),
-        certificateWallet: TfArg.variable('leftover_secret'),
       ),
     );
 
@@ -5423,10 +5420,9 @@ final class AwsLeftoverStack extends Stack {
       AwsDxMacsecKeyAssociation(
         localName: 'dx_macsec_key_association',
         connectionId: TfArg.literal(leftover),
-        ckn: TfArg.literal(
-          '0000000000000000000000000000000000000000000000000000000000000000',
+        secretArn: TfArg.literal(
+          'arn:aws:secretsmanager:us-east-1:123456789012:secret:leftover',
         ),
-        secretArn: TfArg.literal(arn),
       ),
     );
 
@@ -11218,7 +11214,6 @@ final class AwsLeftoverStack extends Stack {
       AwsPinpointGcmChannel(
         localName: 'pinpoint_gcm_channel',
         applicationId: TfArg.literal(leftover),
-        apiKey: TfArg.variable('leftover_secret'),
         serviceJson: TfArg.variable('leftover_secret'),
       ),
     );
@@ -11502,10 +11497,9 @@ final class AwsLeftoverStack extends Stack {
         sourceEntity: TfArg.literal({
           'source_template': {
             'arn': arn,
-            'data_set_references': {
-              'data_set_arn': arn,
-              'data_set_placeholder': leftover,
-            },
+            'data_set_references': [
+              {'data_set_arn': arn, 'data_set_placeholder': leftover},
+            ],
           },
         }),
       ),
@@ -11532,10 +11526,9 @@ final class AwsLeftoverStack extends Stack {
         sourceEntity: TfArg.literal({
           'source_template': {
             'arn': arn,
-            'data_set_references': {
-              'data_set_arn': arn,
-              'data_set_placeholder': leftover,
-            },
+            'data_set_references': [
+              {'data_set_arn': arn, 'data_set_placeholder': leftover},
+            ],
           },
         }),
       ),
@@ -12439,7 +12432,7 @@ final class AwsLeftoverStack extends Stack {
       AwsRoute53Record(
         localName: 'route53_record',
         name: TfArg.literal(leftover),
-        type: TfArg.literal('SOA'),
+        type: TfArg.literal('A'),
         zoneId: TfArg.literal(leftover),
         alias: Route53RecordAlias(
           evaluateTargetHealth: TfArg.literal(true),
@@ -13534,7 +13527,7 @@ final class AwsLeftoverStack extends Stack {
           workteamArn: TfArg.literal(arn),
         ),
         outputConfig: SagemakerFlowDefinitionOutputConfig(
-          s3OutputPath: TfArg.literal('s3://&/L'),
+          s3OutputPath: TfArg.literal('s3://leftover-bucket/leftover'),
         ),
       ),
     );
@@ -13794,16 +13787,6 @@ final class AwsLeftoverStack extends Stack {
         cognitoConfig: SagemakerWorkforceCognitoConfig(
           clientId: TfArg.literal(leftover),
           userPool: TfArg.literal(leftover),
-        ),
-        oidcConfig: SagemakerWorkforceOidcConfig(
-          authorizationEndpoint: TfArg.literal(leftover),
-          clientId: TfArg.literal(leftover),
-          clientSecret: TfArg.variable('leftover_secret'),
-          issuer: TfArg.literal(leftover),
-          jwksUri: TfArg.literal('https://example.com'),
-          logoutEndpoint: TfArg.literal(leftover),
-          tokenEndpoint: TfArg.literal(leftover),
-          userInfoEndpoint: TfArg.literal(leftover),
         ),
       ),
     );
@@ -15555,7 +15538,6 @@ final class AwsLeftoverStack extends Stack {
       AwsTransferHostKey(
         localName: 'transfer_host_key',
         serverId: TfArg.literal(leftover),
-        hostKeyBody: TfArg.variable('leftover_secret'),
         hostKeyBodyWo: TfArg.variable('leftover_secret'),
       ),
     );
