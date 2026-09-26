@@ -115,6 +115,7 @@ class DataSourceWrapperEmitter {
             customSlotKeys: const <String>{},
             excludedPaths:
                 (override.nestedTypeExcludes ?? const <String>[]).toSet(),
+            shareIdenticalShapes: override.dedupeNestedTypes,
           )
         : const <NestedBlockSpec>[];
 

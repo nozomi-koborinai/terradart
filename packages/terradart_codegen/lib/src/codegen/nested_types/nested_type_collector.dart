@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../enum_value_parser.dart';
 import '../naming.dart';
 
@@ -45,6 +47,10 @@ final class NestedBlockSpec {
   final List<NestedBlockSpec> children;
   final List<ExcludedNestedBlock> excludedChildren;
 
+  /// Whether other blocks in the same resource share this spec's
+  /// [className] (see `collectNestedTypes`'s `shareIdenticalShapes`).
+  final bool shared;
+
   const NestedBlockSpec({
     required this.tfName,
     required this.path,
@@ -54,6 +60,7 @@ final class NestedBlockSpec {
     required this.attrs,
     required this.children,
     required this.excludedChildren,
+    this.shared = false,
   });
 }
 
@@ -104,11 +111,18 @@ final class ExcludedNestedBlock {
 ///   A root-level exclusion has no parent spec to record into, so it is
 ///   simply absent from the returned list (root-level slot selection is
 ///   already the constructor's `paramOrder`'s job, not this collector's).
+///
+/// With [shareIdenticalShapes], blocks whose class bodies are structurally
+/// identical (same attributes, same child fields, recursively) share one
+/// helper class and its enums. The shared class keeps the name and path of
+/// its shallowest occurrence, ties broken by comparing paths segment by
+/// segment, so that occurrence's name matches the unshared scheme.
 List<NestedBlockSpec> collectNestedTypes({
   required Map<String, dynamic> resourceBlock,
   required String resourcePrefix,
   required Set<String> customSlotKeys,
   required Set<String> excludedPaths,
+  bool shareIdenticalShapes = false,
 }) {
   final scan = _scanChildren(
     resourceBlock,
@@ -117,7 +131,76 @@ List<NestedBlockSpec> collectNestedTypes({
     customSlotKeys: customSlotKeys,
     excludedPaths: excludedPaths,
   );
-  return scan.children;
+  return shareIdenticalShapes
+      ? _shareIdenticalShapes(scan.children)
+      : scan.children;
+}
+
+List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
+  final shapeIds = <String, int>{};
+  final shapeOf = Map<NestedBlockSpec, int>.identity();
+  final canonical = <int, NestedBlockSpec>{};
+  final occurrences = <int, int>{};
+
+  int visit(NestedBlockSpec spec) {
+    final attrKeys = [
+      for (final a in spec.attrs)
+        [
+          a.tfName,
+          a.enumValues == null
+              ? a.dartType
+              : 'enum:${jsonEncode(a.enumValues)}',
+          a.required,
+          a.repeated,
+        ].join('|'),
+    ]..sort();
+    final childKeys = [
+      for (final c in spec.children)
+        [c.tfName, c.repeated, c.required, visit(c)].join('|'),
+      for (final e in spec.excludedChildren)
+        [e.tfName, e.repeated, e.required, 'excluded'].join('|'),
+    ]..sort();
+    final key = '${attrKeys.join(';')}#${childKeys.join(';')}';
+    final id = shapeIds.putIfAbsent(key, () => shapeIds.length);
+    shapeOf[spec] = id;
+    occurrences[id] = (occurrences[id] ?? 0) + 1;
+    final current = canonical[id];
+    if (current == null || _comparePaths(spec.path, current.path) < 0) {
+      canonical[id] = spec;
+    }
+    return id;
+  }
+
+  for (final root in roots) {
+    visit(root);
+  }
+
+  NestedBlockSpec rebuild(NestedBlockSpec spec) {
+    final id = shapeOf[spec]!;
+    final shape = canonical[id]!;
+    return NestedBlockSpec(
+      tfName: spec.tfName,
+      path: shape.path,
+      className: shape.className,
+      repeated: spec.repeated,
+      required: spec.required,
+      attrs: shape.attrs,
+      children: [for (final c in spec.children) rebuild(c)],
+      excludedChildren: spec.excludedChildren,
+      shared: occurrences[id]! > 1,
+    );
+  }
+
+  return [for (final root in roots) rebuild(root)];
+}
+
+int _comparePaths(List<String> a, List<String> b) {
+  if (a.length != b.length) return a.length.compareTo(b.length);
+  for (var i = 0; i < a.length; i++) {
+    final c = a[i].compareTo(b[i]);
+    if (c != 0) return c;
+  }
+  return 0;
 }
 
 typedef _ChildScan = ({

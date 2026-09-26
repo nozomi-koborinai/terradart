@@ -108,6 +108,7 @@ class WrapperEmitter {
             customSlotKeys: customSlots.keys.toSet(),
             excludedPaths:
                 (override?.nestedTypeExcludes ?? const <String>[]).toSet(),
+            shareIdenticalShapes: override?.dedupeNestedTypes ?? false,
           )
         : const <NestedBlockSpec>[];
 

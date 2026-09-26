@@ -28,11 +28,12 @@ String renderNestedTypes(
   required String resourceTerraformType,
 }) {
   final buf = StringBuffer();
-  var first = true;
+  final rendered = <String>{};
   for (final spec in _byTfName(specs, (NestedBlockSpec s) => s.tfName)) {
-    if (!first) buf.writeln();
-    first = false;
-    buf.write(_renderBlockTree(spec, resourceTerraformType));
+    final tree = _renderBlockTree(spec, resourceTerraformType, rendered);
+    if (tree.isEmpty) continue;
+    if (buf.isNotEmpty) buf.writeln();
+    buf.write(tree);
   }
   return buf.toString();
 }
@@ -77,7 +78,15 @@ String _bareNestedType(NestedBlockSpec s) =>
 /// Renders one block's own class, then its attribute enums, then recurses
 /// depth-first into its children — the full subtree [spec] roots, as a
 /// sequence of top-level declarations separated by single blank lines.
-String _renderBlockTree(NestedBlockSpec spec, String resourceTerraformType) {
+///
+/// A class already in [rendered] renders nothing, subtree included: blocks
+/// share a class name only when their whole subtrees have the same shape.
+String _renderBlockTree(
+  NestedBlockSpec spec,
+  String resourceTerraformType,
+  Set<String> rendered,
+) {
+  if (!rendered.add(spec.className)) return '';
   final buf = StringBuffer()..write(_renderClass(spec, resourceTerraformType));
 
   final enumAttrs = _byTfName(
@@ -92,9 +101,11 @@ String _renderBlockTree(NestedBlockSpec spec, String resourceTerraformType) {
 
   for (final child
       in _byTfName(spec.children, (NestedBlockSpec s) => s.tfName)) {
+    final tree = _renderBlockTree(child, resourceTerraformType, rendered);
+    if (tree.isEmpty) continue;
     buf
       ..writeln()
-      ..write(_renderBlockTree(child, resourceTerraformType));
+      ..write(tree);
   }
 
   return buf.toString();
@@ -113,7 +124,11 @@ String _renderClass(NestedBlockSpec spec, String resourceTerraformType) {
 
   final buf = StringBuffer()
     ..writeln('/// Typed helper for the `$blockPath` block of')
-    ..writeln('/// `$resourceTerraformType` (derived from provider schema).')
+    ..writeln('/// `$resourceTerraformType` (derived from provider schema).');
+  if (spec.shared) {
+    buf.writeln('/// Shared by every block of this shape in the resource.');
+  }
+  buf
     ..writeln('@immutable')
     ..writeln('final class ${spec.className} {');
   if (plans.isEmpty) {
