@@ -74,7 +74,7 @@ jobs:
       - if: matrix.package == 'terradart_core'
         run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
       - if: matrix.package == 'terradart_core'
-        run: dart test tool/
+        run: dart test tool/*_test.dart
       - run: dart test --reporter=github
         working-directory: packages/${{ matrix.package }}
 

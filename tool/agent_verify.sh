@@ -95,8 +95,9 @@ else
   echo ">> package test suites: SKIPPED (--quick)"
 fi
 
-echo ">> dart test tool/"
-dart test tool/
+# Top-level only: subdirectories such as tool/spike/ hold throwaway code.
+echo ">> dart test tool/*_test.dart"
+dart test tool/*_test.dart
 
 echo ">> wrap lanes (terradart wrap --check + lint-override for every tool/providers.yaml lane)"
 dart tool/wrap_lanes.dart
