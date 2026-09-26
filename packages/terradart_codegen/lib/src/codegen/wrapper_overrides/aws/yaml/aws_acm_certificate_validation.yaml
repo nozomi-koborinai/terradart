@@ -1,0 +1,4 @@
+outputDir: acm
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

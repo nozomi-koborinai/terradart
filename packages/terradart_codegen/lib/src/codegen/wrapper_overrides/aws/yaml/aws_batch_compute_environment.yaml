@@ -1,0 +1,4 @@
+outputDir: batch
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

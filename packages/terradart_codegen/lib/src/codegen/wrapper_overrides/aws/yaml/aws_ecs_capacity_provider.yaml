@@ -1,0 +1,4 @@
+outputDir: ecs
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

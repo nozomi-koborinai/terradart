@@ -1,0 +1,4 @@
+outputDir: cloud9
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

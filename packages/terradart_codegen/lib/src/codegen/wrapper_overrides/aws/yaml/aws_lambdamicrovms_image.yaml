@@ -1,0 +1,4 @@
+outputDir: lambdamicrovms
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

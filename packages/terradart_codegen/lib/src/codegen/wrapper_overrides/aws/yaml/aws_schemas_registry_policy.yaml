@@ -1,0 +1,4 @@
+outputDir: schemas
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: osis
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: devicefarm
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

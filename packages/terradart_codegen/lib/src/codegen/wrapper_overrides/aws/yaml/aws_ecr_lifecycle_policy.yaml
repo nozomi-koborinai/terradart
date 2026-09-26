@@ -1,0 +1,4 @@
+outputDir: ecr
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: ivschat
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

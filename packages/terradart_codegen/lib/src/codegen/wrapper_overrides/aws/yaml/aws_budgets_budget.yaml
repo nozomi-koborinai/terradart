@@ -1,0 +1,4 @@
+outputDir: budgets
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

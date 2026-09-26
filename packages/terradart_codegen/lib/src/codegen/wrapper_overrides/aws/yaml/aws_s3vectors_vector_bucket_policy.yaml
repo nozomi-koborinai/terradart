@@ -1,0 +1,4 @@
+outputDir: s3vectors
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: elasticsearch
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

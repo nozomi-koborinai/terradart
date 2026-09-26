@@ -1,0 +1,4 @@
+outputDir: apprunner
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

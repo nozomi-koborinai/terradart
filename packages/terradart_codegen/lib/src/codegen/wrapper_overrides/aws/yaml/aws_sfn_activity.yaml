@@ -1,0 +1,4 @@
+outputDir: sfn
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

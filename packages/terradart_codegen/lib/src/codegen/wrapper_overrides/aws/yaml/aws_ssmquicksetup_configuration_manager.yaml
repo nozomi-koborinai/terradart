@@ -1,0 +1,4 @@
+outputDir: ssmquicksetup
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

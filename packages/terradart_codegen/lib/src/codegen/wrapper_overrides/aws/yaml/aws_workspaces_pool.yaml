@@ -1,0 +1,4 @@
+outputDir: workspaces
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

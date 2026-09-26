@@ -1,0 +1,4 @@
+outputDir: verifiedpermissions
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

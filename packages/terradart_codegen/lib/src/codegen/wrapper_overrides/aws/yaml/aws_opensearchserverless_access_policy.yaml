@@ -1,0 +1,4 @@
+outputDir: opensearchserverless
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

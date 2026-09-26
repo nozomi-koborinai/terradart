@@ -1,0 +1,4 @@
+outputDir: acmpca
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

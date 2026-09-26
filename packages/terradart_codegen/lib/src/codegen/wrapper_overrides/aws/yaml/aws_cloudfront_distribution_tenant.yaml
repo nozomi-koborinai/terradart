@@ -1,0 +1,4 @@
+outputDir: cloudfront
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

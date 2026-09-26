@@ -1,0 +1,4 @@
+outputDir: paymentcryptography
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

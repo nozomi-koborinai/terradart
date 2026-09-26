@@ -1,0 +1,4 @@
+outputDir: networkflowmonitor
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

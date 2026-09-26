@@ -1,0 +1,4 @@
+outputDir: identitystore
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

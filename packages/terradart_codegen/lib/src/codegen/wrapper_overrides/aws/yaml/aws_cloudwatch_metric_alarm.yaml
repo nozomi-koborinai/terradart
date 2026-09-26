@@ -1,0 +1,4 @@
+outputDir: cloudwatch
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

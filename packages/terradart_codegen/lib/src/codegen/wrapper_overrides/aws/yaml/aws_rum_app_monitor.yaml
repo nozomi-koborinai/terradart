@@ -1,0 +1,4 @@
+outputDir: rum
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
