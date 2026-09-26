@@ -1,7 +1,10 @@
 # Overrides exempt from `exactly-one-optional-fanout` (canonical MM groups).
 #
-# Each line is `google_<type>: reason`. Stale entries (override no longer
+# Each line is `<override name>: reason`. Stale entries (override no longer
 # violates) fail `terradart lint-override`. New entries are a reviewed
 # maintainer decision — prefer sealed virtual slots (see #107).
+# Shared by every tool/providers.yaml lane: each lane's lint checks the
+# entries naming its own overrides, and `tool/wrap_lanes.dart` fails on an
+# entry that names an override in no lane.
 
 google_bigquery_dataset_access: MM sync surfaced exactly_one_of on dataset/routine/view customSlots; sealed principal/target slot follow-up tracked in #107

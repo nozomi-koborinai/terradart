@@ -14,6 +14,8 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/cli/lint_override_command.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:yaml/yaml.dart';
 
 const providersPath = 'tool/providers.yaml';
@@ -150,6 +152,51 @@ List<String> missingLanePaths(List<WrapLane> lanes, String repoRoot) => [
             'lane ${lane.name}: missing $field $path',
     ];
 
+/// `<ledger>: <entry> names no override in any lane` for every entry of
+/// [ledgers] (repo-relative ledger path to its entry names) outside
+/// [overrideNames]. Each lane's lint validates only its own entries, so an
+/// entry no lane owns is caught here or nowhere.
+List<String> unownedLedgerEntries(
+  Map<String, Iterable<String>> ledgers,
+  Set<String> overrideNames,
+) =>
+    [
+      for (final MapEntry(key: ledger, value: entries) in ledgers.entries)
+        for (final entry in entries)
+          if (!overrideNames.contains(entry))
+            '$ledger: $entry names no override in any lane',
+    ];
+
+/// Ledger failures across every lane in [lanes]: a lane whose overrides
+/// root does not resolve the shared ledgers under `<repoRoot>/tool`, and
+/// [unownedLedgerEntries] over the override names of all lanes.
+List<String> ledgerOwnershipFailures(List<WrapLane> lanes, String repoRoot) {
+  final toolDir = p.normalize(p.absolute(repoRoot, 'tool'));
+  final failures = <String>[
+    for (final lane in lanes)
+      if (lintDebtToolDirForOverrideRoot(p.join(repoRoot, lane.overridesRoot))
+          case final resolved when resolved != toolDir)
+        'lane ${lane.name}: overridesRoot ${lane.overridesRoot} resolves the '
+            'lint ledgers to ${resolved ?? 'nothing'}, not $toolDir',
+  ];
+  final names = <String>{
+    for (final lane in lanes)
+      ...loadWrapperOverrides(rootDir: p.join(repoRoot, lane.overridesRoot))
+          .asLintMap()
+          .keys,
+  };
+  return [
+    ...failures,
+    ...unownedLedgerEntries(
+      {
+        for (final file in lintDebtLedgerFileNames)
+          'tool/$file': loadLintDebtLedger(p.join(toolDir, file)).keys,
+      },
+      names,
+    ),
+  ];
+}
+
 Never _usage(String message) {
   print('wrap_lanes: $message');
   print('usage: dart tool/wrap_lanes.dart [--gate wrap|lint] [--lane NAME]');
@@ -220,6 +267,12 @@ Future<void> main(List<String> args) async {
       final code = await process.exitCode;
       if (code != 0) failed.add('${lane.name} (${gate.name}, exit $code)');
     }
+  }
+  if (gates.contains(WrapGate.lint)) {
+    print('>> lint ledgers (every entry names an override in some lane)');
+    final ledgerFailures = ledgerOwnershipFailures(allLanes, repoRoot);
+    ledgerFailures.forEach(print);
+    if (ledgerFailures.isNotEmpty) failed.add('ledgers (lint)');
   }
   if (failed.isNotEmpty) {
     print('wrap_lanes: FAILED ${failed.join(', ')}');
