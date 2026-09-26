@@ -23,5 +23,7 @@
   helpers. A block shape that repeats inside one resource gets one helper,
   named after its shallowest occurrence. The inline `rule` blocks on
   `AwsWafv2WebAcl` stay a map; `AwsWafv2WebAclRule` carries the typed form.
-- Coverage: `examples/aws_lambda_quickstart` and
+- Coverage: `examples/aws_lambda_quickstart`,
+  `examples/aws_static_site_quickstart` (S3 + CloudFront + ACM + Route 53),
+  `examples/aws_ecs_express_quickstart` (ECR + ECS Express Mode + IAM) and
   `examples/aws_leftover_quickstart` (synth + `terraform validate`).

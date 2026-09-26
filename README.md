@@ -266,6 +266,7 @@ Explore ready-to-run examples in [`examples/`](examples/):
 - **Application Platform**: [Cloud Run v2](examples/cloud_run_quickstart/), [Cloud Monitoring](examples/monitoring_quickstart/), [Workflows](examples/workflows_quickstart/), [Eventarc](examples/eventarc_quickstart/)
 - **AI & Agents**: [Vertex AI](examples/vertex_ai_quickstart/), [Agentic Applications](examples/agentic_applications_quickstart/)
 - **Multi-provider & Edge**: [Cloudflare DNS](examples/cloudflare_dns_quickstart/), [Appwrite](examples/appwrite_quickstart/)
+- **AWS**: [Lambda](examples/aws_lambda_quickstart/), [Static site on S3 + CloudFront](examples/aws_static_site_quickstart/), [ECS Express Mode](examples/aws_ecs_express_quickstart/)
 
 See the full factory table on [terradart.dev/docs/coverage/](https://terradart.dev/docs/coverage/).
 

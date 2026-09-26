@@ -13,6 +13,12 @@ Per-package changelogs live alongside each package and are the system of record 
   Coverage via [`aws_lambda_quickstart`](examples/aws_lambda_quickstart/)
   and [`aws_leftover_quickstart`](examples/aws_leftover_quickstart/)
   (synth + `terraform validate`).
+- **Examples** — [`aws_static_site_quickstart`](examples/aws_static_site_quickstart/)
+  hosts a Flutter Web build on a private S3 bucket behind CloudFront, on a
+  custom domain with an ACM certificate validated through Route 53, and
+  [`aws_ecs_express_quickstart`](examples/aws_ecs_express_quickstart/) runs a
+  Dart server on ECS Express Mode from an ECR image. Both are gated examples
+  (`## Before you apply`); CI runs synth + `terraform validate` only.
 
 ### Removed
 
