@@ -6,7 +6,10 @@
 // full google-beta schema is >9 MB and the beta catalog is curated on
 // request, so the committed fixture stays exactly as small as the
 // catalog. The GA google fixture stays full (its backlog detection needs
-// every resource key); this tool is NOT for it.
+// every resource key); this tool is NOT for it. Filled-at-pin lanes
+// (cloudflare, aws) extract their whole catalog with --all-resources
+// --all-data-sources, and the emitted README then says it is the full
+// catalog instead of a curated subset.
 //
 // The committed output must never be hand-edited — always re-extract
 // (the MM-fixture local patch that PR #595 clobbered is the cautionary
@@ -138,6 +141,76 @@ Map<String, dynamic> filterSchemaSubset(
       },
     },
   };
+}
+
+/// Whether [resources] and [dataSources] are every resource and data
+/// source `registry.terraform.io/<providerSource>` declares in [full].
+/// Decided from the extracted set rather than the flags, so re-extracting
+/// a full fixture with `--resources-from` keeps describing it as full.
+bool coversFullCatalog(
+  Map<String, dynamic> full, {
+  required String providerSource,
+  required List<String> resources,
+  required List<String> dataSources,
+}) {
+  final providerBody = ((full['provider_schemas']
+          as Map?)?['registry.terraform.io/$providerSource'] as Map?)
+      ?.cast<String, dynamic>();
+  if (providerBody == null) return false;
+  Set<String> keys(String field) =>
+      ((providerBody[field] as Map?)?.keys.cast<String>() ?? const <String>[])
+          .toSet();
+  final allResources = keys('resource_schemas');
+  final allDataSources = keys('data_source_schemas');
+  return allResources.isNotEmpty &&
+      resources.toSet().containsAll(allResources) &&
+      dataSources.toSet().containsAll(allDataSources);
+}
+
+/// The README written next to an extracted fixture. [fullCatalog] picks
+/// the opening that says what the set is: the whole provider catalog at
+/// [version], or only the curated types.
+String fixtureReadme({
+  required String provider,
+  required String? version,
+  required String fixtureDir,
+  required bool fullCatalog,
+}) {
+  final opening = fullCatalog
+      ? '''
+# Schema fixture — $provider
+
+Full catalog at the current pin${version == null ? '' : ' (`$version`)'}: every resource and data source.
+The keys of `schema.json` are the single source of truth for the set, and'''
+      : '''
+# Filtered schema fixture — $provider
+
+Machine-extracted subset containing ONLY the curated resources. The keys of
+`schema.json` are the single source of truth for the set, and''';
+  return '''
+$opening
+`provider_version.txt` records the extraction version. Never hand-edit
+either file. Re-extract the SAME set at the pinned version with:
+
+```bash
+dart tool/extract_schema_subset.dart \\
+  --provider=$provider \\
+  --version="\$(cat $fixtureDir/provider_version.txt)" \\
+  --resources-from=$fixtureDir/schema.json \\
+  --out=$fixtureDir
+```
+
+To ADD a resource, append it via union:
+`--resources-from=$fixtureDir/schema.json --resources=<new_type>`.
+To ADD a data source: `--data-sources=<type>` (combined with
+`--resources-from` so the current resource set is kept).
+To REMOVE one, pass an explicit `--resources=` / `--data-sources=` list
+without it.
+
+To extract the FULL catalog at this pin (filled-at-pin providers):
+`--all-resources --all-data-sources` (optionally with `--schema-json=`
+to reuse a dump).
+''';
 }
 
 Future<void> main(List<String> args) async {
@@ -297,34 +370,19 @@ terraform {
   if (version != null) {
     File('${outDir.path}/provider_version.txt').writeAsStringSync('$version\n');
   }
-  final fixtureDir = out.replaceAll(r'\', '/');
-  File('${outDir.path}/README.md').writeAsStringSync('''
-# Filtered schema fixture — $provider
-
-Machine-extracted subset containing ONLY the curated resources. The keys of
-`schema.json` are the single source of truth for the set, and
-`provider_version.txt` records the extraction version. Never hand-edit
-either file. Re-extract the SAME set at the pinned version with:
-
-```bash
-dart tool/extract_schema_subset.dart \\
-  --provider=$provider \\
-  --version="\$(cat $fixtureDir/provider_version.txt)" \\
-  --resources-from=$fixtureDir/schema.json \\
-  --out=$fixtureDir
-```
-
-To ADD a resource, append it via union:
-`--resources-from=$fixtureDir/schema.json --resources=<new_type>`.
-To ADD a data source: `--data-sources=<type>` (combined with
-`--resources-from` so the current resource set is kept).
-To REMOVE one, pass an explicit `--resources=` / `--data-sources=` list
-without it.
-
-To extract the FULL catalog at this pin (filled-at-pin providers):
-`--all-resources --all-data-sources` (optionally with `--schema-json=`
-to reuse a dump).
-''');
+  File('${outDir.path}/README.md').writeAsStringSync(
+    fixtureReadme(
+      provider: provider,
+      version: version,
+      fixtureDir: out.replaceAll(r'\', '/'),
+      fullCatalog: coversFullCatalog(
+        decoded,
+        providerSource: provider,
+        resources: resources,
+        dataSources: dataSources,
+      ),
+    ),
+  );
   print(
     'extract_schema_subset: wrote ${resources.length} resource(s)'
     '${dataSources.isEmpty ? '' : ' + ${dataSources.length} data source(s)'} '
