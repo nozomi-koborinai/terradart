@@ -1,0 +1,92 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `aws_networkmanager_connect_attachment`.
+const Set<String> _awsNetworkmanagerConnectAttachmentSensitive = <String>{};
+
+/// Typed helper for the `options` block of
+/// `aws_networkmanager_connect_attachment` (derived from provider schema).
+@immutable
+final class NetworkmanagerConnectAttachmentOptions {
+  const NetworkmanagerConnectAttachmentOptions({this.protocol});
+
+  final TfArg<String>? protocol;
+
+  Map<String, Object?> encode() => {
+    if (protocol != null) 'protocol': protocol!.toTfJson(),
+  };
+}
+
+/// Factory wrapper for `aws_networkmanager_connect_attachment`.
+final class AwsNetworkmanagerConnectAttachment extends Resource {
+  static const String tfType = 'aws_networkmanager_connect_attachment';
+
+  AwsNetworkmanagerConnectAttachment({
+    required super.localName,
+    required TfArg<String> coreNetworkId,
+    required TfArg<String> edgeLocation,
+    TfArg<String>? routingPolicyLabel,
+    TfArg<Map<String, String>>? tags,
+    required TfArg<String> transportAttachmentId,
+    required NetworkmanagerConnectAttachmentOptions options,
+    super.lifecycle,
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           'core_network_id': coreNetworkId,
+           'edge_location': edgeLocation,
+           if (routingPolicyLabel != null)
+             'routing_policy_label': routingPolicyLabel,
+           if (tags != null) 'tags': tags,
+           'transport_attachment_id': transportAttachmentId,
+           'options': TfArg.literal(options.encode()),
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields =>
+      _awsNetworkmanagerConnectAttachmentSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `attachment_id` attribute.
+  TfRef<String> get attachmentId =>
+      TfRef.attribute<String>(this, 'attachment_id');
+
+  /// Reference to `attachment_policy_rule_number` attribute.
+  TfRef<num> get attachmentPolicyRuleNumber =>
+      TfRef.attribute<num>(this, 'attachment_policy_rule_number');
+
+  /// Reference to `attachment_type` attribute.
+  TfRef<String> get attachmentType =>
+      TfRef.attribute<String>(this, 'attachment_type');
+
+  /// Reference to `core_network_arn` attribute.
+  TfRef<String> get coreNetworkArn =>
+      TfRef.attribute<String>(this, 'core_network_arn');
+
+  /// Reference to `owner_account_id` attribute.
+  TfRef<String> get ownerAccountId =>
+      TfRef.attribute<String>(this, 'owner_account_id');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArn =>
+      TfRef.attribute<String>(this, 'resource_arn');
+
+  /// Reference to `segment_name` attribute.
+  TfRef<String> get segmentName =>
+      TfRef.attribute<String>(this, 'segment_name');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+}
