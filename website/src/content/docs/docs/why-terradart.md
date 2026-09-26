@@ -100,6 +100,7 @@ HCL has provider schema types; CDKTF bindings are typed in TypeScript and other 
 - [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) wraps beta-only types (128 resource factories).
 - [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) wraps official `appwrite/appwrite` provider resources (filled at `2.0.0-beta.1`: 38 resource factories + 24 data sources).
 - [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) wraps official `cloudflare/cloudflare` provider resources (filled at `5.23.0`: **257 resource factories + 446 data sources**).
+- [`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) wraps the HashiCorp `aws` provider (filled at `6.66.0`: **1725 resource factories + 683 data sources**; not on pub.dev yet). See [Dart apps on AWS](/docs/aws/).
 
 The full factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook). Upgrading across minors? Read [Migrating](/docs/migrating/) first.
 
