@@ -114,6 +114,110 @@ void main() {
     );
   });
 
+  group('coversFullCatalog', () {
+    bool covers(List<String> resources, List<String> dataSources) =>
+        coversFullCatalog(
+          full,
+          providerSource: 'hashicorp/google-beta',
+          resources: resources,
+          dataSources: dataSources,
+        );
+
+    test('is true when every resource and data source is kept', () {
+      expect(
+        covers(
+          ['google_compute_instance', 'google_project_service_identity'],
+          ['google_project'],
+        ),
+        isTrue,
+      );
+    });
+
+    test('is false when a resource is left out', () {
+      expect(
+        covers(['google_project_service_identity'], ['google_project']),
+        isFalse,
+      );
+    });
+
+    test('is false when the data sources are left out', () {
+      expect(
+        covers(
+          ['google_compute_instance', 'google_project_service_identity'],
+          const [],
+        ),
+        isFalse,
+      );
+    });
+
+    test('is false for a provider the schema does not declare', () {
+      expect(
+        coversFullCatalog(
+          full,
+          providerSource: 'hashicorp/cloudflare',
+          resources: const ['google_compute_instance'],
+          dataSources: const [],
+        ),
+        isFalse,
+      );
+    });
+  });
+
+  group('fixtureReadme', () {
+    const dir = 'packages/terradart_codegen/test/fixtures/wrap/source_x';
+
+    test('a full-catalog fixture names the pin and never says curated', () {
+      final readme = fixtureReadme(
+        provider: 'hashicorp/aws',
+        version: '6.66.0',
+        fixtureDir: dir,
+        fullCatalog: true,
+      );
+      expect(
+        readme,
+        startsWith(
+          '# Schema fixture — hashicorp/aws\n\n'
+          'Full catalog at the current pin (`6.66.0`): every resource and '
+          'data source.\nThe keys of `schema.json` are the single source '
+          'of truth for the set, and\n`provider_version.txt` records',
+        ),
+      );
+      expect(readme, isNot(contains('Filtered')));
+      expect(readme, isNot(contains('ONLY the curated')));
+    });
+
+    test('a full-catalog fixture without --version omits the pin', () {
+      expect(
+        fixtureReadme(
+          provider: 'hashicorp/aws',
+          version: null,
+          fixtureDir: dir,
+          fullCatalog: true,
+        ),
+        contains('Full catalog at the current pin: every resource'),
+      );
+    });
+
+    test('a curated subset keeps the filtered wording', () {
+      final readme = fixtureReadme(
+        provider: 'hashicorp/google-beta',
+        version: '7.44.0',
+        fixtureDir: dir,
+        fullCatalog: false,
+      );
+      expect(
+        readme,
+        startsWith(
+          '# Filtered schema fixture — hashicorp/google-beta\n\n'
+          'Machine-extracted subset containing ONLY the curated resources. '
+          'The keys of\n`schema.json` are the single source of truth for the '
+          'set, and\n`provider_version.txt` records',
+        ),
+      );
+      expect(readme, contains('--resources-from=$dir/schema.json \\\n'));
+    });
+  });
+
   group('resourceNamesFromFixture', () {
     test('returns the sorted resource keys of the fixture', () {
       expect(
