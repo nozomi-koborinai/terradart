@@ -11494,14 +11494,17 @@ final class AwsLeftoverStack extends Stack {
         localName: 'quicksight_analysis',
         analysisId: TfArg.literal(leftover),
         name: TfArg.literal(leftover),
-        sourceEntity: TfArg.literal({
-          'source_template': {
-            'arn': arn,
-            'data_set_references': [
-              {'data_set_arn': arn, 'data_set_placeholder': leftover},
+        sourceEntity: QuicksightAnalysisSourceEntity(
+          sourceTemplate: QuicksightAnalysisSourceEntitySourceTemplate(
+            arn: TfArg.literal(arn),
+            dataSetReferences: [
+              QuicksightAnalysisSourceEntitySourceTemplateDataSetReferences(
+                dataSetArn: TfArg.literal(arn),
+                dataSetPlaceholder: TfArg.literal(leftover),
+              ),
             ],
-          },
-        }),
+          ),
+        ),
       ),
     );
 
@@ -11523,14 +11526,17 @@ final class AwsLeftoverStack extends Stack {
         dashboardId: TfArg.literal(leftover),
         name: TfArg.literal(leftover),
         versionDescription: TfArg.literal(leftover),
-        sourceEntity: TfArg.literal({
-          'source_template': {
-            'arn': arn,
-            'data_set_references': [
-              {'data_set_arn': arn, 'data_set_placeholder': leftover},
+        sourceEntity: QuicksightDashboardSourceEntity(
+          sourceTemplate: QuicksightDashboardSourceEntitySourceTemplate(
+            arn: TfArg.literal(arn),
+            dataSetReferences: [
+              QuicksightDashboardSourceEntitySourceTemplateDataSetReferences(
+                dataSetArn: TfArg.literal(arn),
+                dataSetPlaceholder: TfArg.literal(leftover),
+              ),
             ],
-          },
-        }),
+          ),
+        ),
       ),
     );
 
@@ -11671,9 +11677,17 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         templateId: TfArg.literal(leftover),
         versionDescription: TfArg.literal(leftover),
-        sourceEntity: TfArg.literal({
-          'source_template': {'arn': arn},
-        }),
+        sourceEntity: QuicksightTemplateSourceEntity(
+          sourceAnalysis: QuicksightTemplateSourceEntitySourceAnalysis(
+            arn: TfArg.literal(arn),
+            dataSetReferences: [
+              QuicksightTemplateSourceEntitySourceAnalysisDataSetReferences(
+                dataSetArn: TfArg.literal(arn),
+                dataSetPlaceholder: TfArg.literal(leftover),
+              ),
+            ],
+          ),
+        ),
       ),
     );
 
@@ -16480,11 +16494,11 @@ final class AwsLeftoverStack extends Stack {
         localName: 'wafv2_rule_group',
         capacity: TfArg.literal(200),
         scope: TfArg.literal('REGIONAL'),
-        visibilityConfig: TfArg.literal({
-          'cloudwatch_metrics_enabled': false,
-          'metric_name': leftover,
-          'sampled_requests_enabled': false,
-        }),
+        visibilityConfig: Wafv2RuleGroupVisibilityConfig(
+          cloudwatchMetricsEnabled: TfArg.literal(true),
+          metricName: TfArg.literal(leftover),
+          sampledRequestsEnabled: TfArg.literal(true),
+        ),
       ),
     );
 
@@ -16492,12 +16506,24 @@ final class AwsLeftoverStack extends Stack {
       AwsWafv2WebAcl(
         localName: 'wafv2_web_acl',
         scope: TfArg.literal('REGIONAL'),
-        defaultAction: TfArg.literal({'allow': <String, dynamic>{}}),
-        visibilityConfig: TfArg.literal({
-          'cloudwatch_metrics_enabled': false,
-          'metric_name': leftover,
-          'sampled_requests_enabled': false,
-        }),
+        defaultAction: Wafv2WebAclDefaultAction(
+          allow: Wafv2WebAclDefaultActionAllow(
+            customRequestHandling:
+                Wafv2WebAclDefaultActionAllowCustomRequestHandling(
+              insertHeader: [
+                Wafv2WebAclDefaultActionAllowCustomRequestHandlingInsertHeader(
+                  name: TfArg.literal(leftover),
+                  value: TfArg.literal(leftover),
+                ),
+              ],
+            ),
+          ),
+        ),
+        visibilityConfig: Wafv2WebAclVisibilityConfig(
+          cloudwatchMetricsEnabled: TfArg.literal(true),
+          metricName: TfArg.literal(leftover),
+          sampledRequestsEnabled: TfArg.literal(true),
+        ),
       ),
     );
 
@@ -16523,6 +16549,64 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         priority: TfArg.literal(200),
         webAclArn: TfArg.literal(arn),
+        action: [
+          Wafv2WebAclRuleAction(
+            allow: [
+              Wafv2WebAclRuleActionAllow(
+                customRequestHandling: [
+                  Wafv2WebAclRuleActionAllowCustomRequestHandling(
+                    insertHeader: [
+                      Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader(
+                        name: TfArg.literal(leftover),
+                        value: TfArg.literal(leftover),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+        statement: [
+          Wafv2WebAclRuleStatement(
+            andStatement: [
+              Wafv2WebAclRuleStatementAndStatement(
+                statement: [
+                  Wafv2WebAclRuleStatementAndStatementStatement(
+                    andStatement: [
+                      Wafv2WebAclRuleStatementAndStatementStatementAndStatement(
+                        statement: [
+                          Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatement(
+                            andStatement: [
+                              Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAndStatement(
+                                statement: [
+                                  Wafv2WebAclRuleStatementAndStatementStatementAndStatementStatementAndStatementStatement(
+                                    asnMatchStatement: [
+                                      Wafv2WebAclRuleStatementAsnMatchStatement(
+                                        asnList: TfArg.literal([64512]),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+        visibilityConfig: [
+          Wafv2WebAclRuleVisibilityConfig(
+            cloudwatchMetricsEnabled: TfArg.literal(true),
+            metricName: TfArg.literal(leftover),
+            sampledRequestsEnabled: TfArg.literal(true),
+          ),
+        ],
       ),
     );
 

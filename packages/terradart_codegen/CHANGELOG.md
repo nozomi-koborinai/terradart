@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- New wrapper override axis `dedupeNestedTypes: true` (requires `deriveNestedTypes: true`): nested blocks with an identical shape inside one resource share one helper class, named after the shallowest occurrence (ties broken by path segments). Opt-in and off by default, because it renames the deeper occurrences' helpers.
+
 ## 0.28.1 - 2026-09-13
 
 Lockstep release with `terradart_migrate` 0.28.1 (passthrough emission fix — a bare `Map` / `List` parameter no longer comes out as `TfArg.literal`). No `terradart_codegen` API changes.

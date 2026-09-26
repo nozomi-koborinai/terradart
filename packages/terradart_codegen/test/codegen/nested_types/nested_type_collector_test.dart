@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:terradart_codegen/src/codegen/naming.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
+import 'package:terradart_codegen/src/codegen/nested_types/nested_type_emitter.dart';
 import 'package:test/test.dart';
 
 const _schemaPath = 'test/fixtures/wrap/source/schema.json';
@@ -396,5 +397,90 @@ void main() {
     );
     expect(
         dnsSpecs.map((s) => s.tfName).toList()..sort(), ['data', 'settings']);
+  });
+
+  group('shareIdenticalShapes', () {
+    const leaf = {
+      'nesting_mode': 'list',
+      'max_items': 1,
+      'block': {
+        'attributes': {
+          'value': {'type': 'string', 'optional': true},
+        },
+      },
+    };
+    const side = {
+      'nesting_mode': 'list',
+      'block': {
+        'attributes': {
+          'name': {'type': 'string', 'required': true},
+        },
+        'block_types': {'leaf': leaf},
+      },
+    };
+    const block = {
+      'block_types': {
+        'beta': side,
+        'alpha': side,
+        'outer': {
+          'nesting_mode': 'list',
+          'max_items': 1,
+          'block': {
+            'block_types': {'deep': side},
+          },
+        },
+      },
+    };
+
+    List<String> renderedClasses(bool share) {
+      final specs = collectNestedTypes(
+        resourceBlock: block,
+        resourcePrefix: 'Res',
+        customSlotKeys: const {},
+        excludedPaths: const {},
+        shareIdenticalShapes: share,
+      );
+      final source = renderNestedTypes(specs, resourceTerraformType: 'res');
+      return [
+        for (final m in RegExp(r'^final class (\w+)', multiLine: true)
+            .allMatches(source))
+          m.group(1)!,
+      ];
+    }
+
+    test('two identical sibling blocks and a deeper copy emit one helper', () {
+      expect(renderedClasses(true), ['ResAlpha', 'ResAlphaLeaf', 'ResOuter']);
+    });
+
+    test('is off by default: every path keeps its own helper', () {
+      expect(renderedClasses(false), [
+        'ResAlpha',
+        'ResAlphaLeaf',
+        'ResBeta',
+        'ResBetaLeaf',
+        'ResOuter',
+        'ResOuterDeep',
+        'ResOuterDeepLeaf',
+      ]);
+    });
+
+    test('every occurrence points at the shared class', () {
+      final specs = collectNestedTypes(
+        resourceBlock: block,
+        resourcePrefix: 'Res',
+        customSlotKeys: const {},
+        excludedPaths: const {},
+        shareIdenticalShapes: true,
+      );
+      final byName = {for (final s in specs) s.tfName: s};
+      expect(byName['beta']!.className, 'ResAlpha');
+      expect(byName['beta']!.shared, isTrue);
+      expect(byName['beta']!.repeated, isTrue);
+      final deep = byName['outer']!.children.single;
+      expect(deep.tfName, 'deep');
+      expect(deep.className, 'ResAlpha');
+      expect(deep.children.single.className, 'ResAlphaLeaf');
+      expect(byName['outer']!.shared, isFalse);
+    });
   });
 }

@@ -691,6 +691,7 @@ const _extraParams = <String, List<String>>{
     'resourceGatewayIdentifier',
     'protocol',
   ],
+  'AwsWafv2WebAclRule': ['action', 'statement', 'visibilityConfig'],
   'AwsWafv2WebAclRuleGroupAssociation': ['managedRuleGroup'],
   'AwsWorkspaceswebIpAccessSettings': ['ipRule'],
   'AwsWorkspaceswebSessionLogger': ['logConfiguration', 'eventFilter'],
@@ -1542,10 +1543,6 @@ const _literalByKey = <String, String>{
   'AwsQuicksightAccountSubscription.authenticationMethod':
       '\'IAM_AND_QUICKSIGHT\'',
   'AwsQuicksightAccountSubscription.edition': '\'STANDARD\'',
-  'AwsQuicksightAnalysis.sourceEntity':
-      '{\'source_template\': {\'arn\': arn, \'data_set_references\': [{\'data_set_arn\': arn, \'data_set_placeholder\': leftover}]}}',
-  'AwsQuicksightDashboard.sourceEntity':
-      '{\'source_template\': {\'arn\': arn, \'data_set_references\': [{\'data_set_arn\': arn, \'data_set_placeholder\': leftover}]}}',
   'AwsQuicksightDataSet.importMode': '\'SPICE\'',
   'AwsQuicksightDataSource.type': '\'ADOBE_ANALYTICS\'',
   'AwsQuicksightFolderMembership.memberType': '\'DASHBOARD\'',
@@ -1553,7 +1550,6 @@ const _literalByKey = <String, String>{
   'AwsQuicksightIngestion.ingestionType': '\'INCREMENTAL_REFRESH\'',
   'AwsQuicksightRoleCustomPermission.role': '\'ADMIN\'',
   'AwsQuicksightRoleMembership.role': '\'ADMIN\'',
-  'AwsQuicksightTemplate.sourceEntity': '{\'source_template\': {\'arn\': arn}}',
   'AwsQuicksightUser.identityType': '\'IAM\'',
   'AwsQuicksightUser.userRole': '\'ADMIN\'',
   'AwsQuicksightVpcConnection.securityGroupIds': '[\'sg-tq\']',
@@ -1697,12 +1693,7 @@ const _literalByKey = <String, String>{
   'AwsWafv2IpSet.scope': '\'CLOUDFRONT\'',
   'AwsWafv2RegexPatternSet.scope': '\'CLOUDFRONT\'',
   'AwsWafv2RuleGroup.scope': '\'REGIONAL\'',
-  'AwsWafv2RuleGroup.visibilityConfig':
-      '{\'cloudwatch_metrics_enabled\': false, \'metric_name\': leftover, \'sampled_requests_enabled\': false}',
-  'AwsWafv2WebAcl.defaultAction': '{\'allow\': <String, dynamic>{}}',
   'AwsWafv2WebAcl.scope': '\'REGIONAL\'',
-  'AwsWafv2WebAcl.visibilityConfig':
-      '{\'cloudwatch_metrics_enabled\': false, \'metric_name\': leftover, \'sampled_requests_enabled\': false}',
   'AwsWafv2WebAclLoggingConfiguration.logDestinationConfigs': '[arn]',
   'AwsWorkspacesPool.bundleId': '\'wsb-leftover1\'',
   'AwsWorkspacesPool.directoryId': '\'wsd-leftover1\'',
@@ -2071,6 +2062,7 @@ const _literalByKey = <String, String>{
   'VpcIpamOperatingRegions.regionName': '\'us-east-1\'',
   'VpcIpamResourceDiscoveryOperatingRegions.regionName': '\'us-east-1\'',
   'WafregionalWebAclDefaultAction.type': '\'BLOCK\'',
+  'Wafv2WebAclRuleStatementAsnMatchStatement.asnList': '[64512]',
   'WorkspaceswebSessionLoggerEventFilter.include': '[\'WebsiteInteract\']',
   'WorkspaceswebSessionLoggerLogConfigurationS3.folderStructure': '\'Flat\'',
   'WorkspaceswebSessionLoggerLogConfigurationS3.logFileFormat': '\'JSONLines\'',

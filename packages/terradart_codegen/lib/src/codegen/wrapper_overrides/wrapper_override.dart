@@ -249,6 +249,16 @@ final class WrapperOverride {
   /// root" (subject only to the [customSlots] skip).
   final List<String>? nestedTypeExcludes;
 
+  /// Opt-in: blocks whose [deriveNestedTypes] classes would be structurally
+  /// identical share one helper class, named after the shallowest such
+  /// block (`collectNestedTypes`'s `shareIdenticalShapes`). Off by default
+  /// because turning it on renames the helpers of the deeper occurrences,
+  /// which breaks callers of an already published wrapper.
+  ///
+  /// Only meaningful when [deriveNestedTypes] is `true`; the loader rejects
+  /// it otherwise.
+  final bool dedupeNestedTypes;
+
   /// Snake-case slot name → custom constructor / argMap snippets.
   ///
   /// Two use cases:
@@ -331,6 +341,7 @@ final class WrapperOverride {
     this.curatedDoc,
     this.deriveNestedTypes = false,
     this.nestedTypeExcludes,
+    this.dedupeNestedTypes = false,
   });
 }
 
