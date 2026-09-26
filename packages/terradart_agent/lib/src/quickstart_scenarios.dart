@@ -4,7 +4,7 @@
 /// Every snippet is adapted from a CI-validated example under
 /// `examples/<name>_quickstart/lib/main.dart`, so the class names,
 /// constructor parameters, enums, and imports compile against the current
-/// terradart v0.11 API. Each snippet shows a small, self-contained slice of
+/// terradart API. Each snippet shows a small, self-contained slice of
 /// the example (2-5 resources whose cross-references all resolve within the
 /// slice) and elides the rest with a `// ... (see full example)` comment;
 /// consult the linked `gcsRefs` example for the full, deployable Stack.
@@ -42,7 +42,6 @@ const Map<String, QuickstartScenario> kScenarios = {
     dartCode: r'''
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
-import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 
 final class ApiServiceStack extends Stack {
@@ -240,7 +239,6 @@ final class ComputeLbStack extends Stack {
     dartCode: r'''
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firestore.dart';
-import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
 final class FirestoreDocumentQuickstart extends Stack {
