@@ -205,6 +205,8 @@ final class DartServerStack extends Stack {
 
 The image must exist before `terraform apply`. A two-stage Dockerfile that runs `dart compile exe` and copies the binary onto `scratch` keeps it small. The service bills by the hour while it runs, and without network settings it uses the account's default VPC. After apply, the service's public endpoint is in its `ingress_paths` attribute.
 
+The runnable version, with an ECR repository, a log group, the `dart:io` server and its `Dockerfile`, is [`examples/aws_ecs_express_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_ecs_express_quickstart). Its README lists what apply needs and what it bills.
+
 ## A Flutter Web build on S3 + CloudFront
 
 `flutter build web` produces static files. Serve them from a private S3 bucket that only CloudFront can read, through an origin access control and a bucket policy scoped to the distribution:
@@ -327,6 +329,8 @@ flutter build web
 aws s3 sync build/web s3://<bucket> --delete
 aws cloudfront create-invalidation --distribution-id <id> --paths '/*'
 ```
+
+The runnable version, with the custom domain, ACM certificate and Route 53 aliases wired in, is [`examples/aws_static_site_quickstart`](https://github.com/nozomi-koborinai/terradart/tree/main/examples/aws_static_site_quickstart). Its README lists the hosted zone apply needs.
 
 ## Synth and apply
 
