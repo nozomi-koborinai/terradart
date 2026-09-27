@@ -46,7 +46,9 @@
 
 'area:agent':
   - changed-files:
-      - any-glob-to-any-file: 'packages/terradart_agent/**'
+      - any-glob-to-any-file:
+          - 'skills/**'
+          - 'website/src/content/docs/docs/agents.md'
 
 'area:website':
   - changed-files:

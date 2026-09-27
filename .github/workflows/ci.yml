@@ -56,7 +56,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_aws, terradart_agent, terradart_coverage, terradart_hcl, terradart_migrate]
+        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_aws, terradart_coverage, terradart_hcl, terradart_migrate]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -70,7 +70,7 @@ jobs:
       # CLI. wrap CLI output is the authoritative format for generated wrappers
       # and is guarded by the `wrap_check` job (`terradart wrap --check`).
       - if: matrix.package == 'terradart_core'
-        run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/ packages/terradart_agent/ packages/terradart_coverage/ packages/terradart_hcl/ packages/terradart_migrate/
+        run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/ packages/terradart_coverage/ packages/terradart_hcl/ packages/terradart_migrate/
       - if: matrix.package == 'terradart_core'
         run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
       - if: matrix.package == 'terradart_core'
@@ -140,8 +140,8 @@ jobs:
     needs: test
     # Pre-merge dry-run catches what previously broke publish AFTER merge:
     # MM/cert fixtures tripping pub.dev's secret scanner (fixed reactively in
-    # 0.12.5 and 0.12.11 by adding false_secrets). terradart_agent is excluded
-    # — it ships as a brew binary, not a pub.dev package.
+    # 0.12.5 and 0.12.11 by adding false_secrets). The publish_to: none
+    # packages are excluded — they ship as brew binaries, not pub.dev packages.
     strategy:
       fail-fast: false
       matrix:

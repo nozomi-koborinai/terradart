@@ -20,8 +20,8 @@ hook_is_handwritten_dart() {
   [[ "$rel" == *.dart ]] || return 1
   case "$rel" in
     packages/terradart_core/* | packages/terradart_codegen/*) return 0 ;;
-    packages/terradart_agent/* | packages/terradart_coverage/*) return 0 ;;
-    packages/terradart_hcl/* | packages/terradart_migrate/*) return 0 ;;
+    packages/terradart_coverage/* | packages/terradart_hcl/*) return 0 ;;
+    packages/terradart_migrate/*) return 0 ;;
     tool/* | examples/*) return 0 ;;
     *) return 1 ;;
   esac

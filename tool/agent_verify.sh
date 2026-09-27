@@ -77,11 +77,10 @@ fi
 
 # Same scope as the CI format step: generated wrappers keep the format of
 # wrap's pinned dart_style, which `wrap --check` guards instead.
-echo ">> dart format (terradart_core, terradart_codegen, terradart_agent, terradart_coverage, terradart_hcl, terradart_migrate)"
+echo ">> dart format (terradart_core, terradart_codegen, terradart_coverage, terradart_hcl, terradart_migrate)"
 dart format --output=none --set-exit-if-changed \
   packages/terradart_core/ \
   packages/terradart_codegen/ \
-  packages/terradart_agent/ \
   packages/terradart_coverage/ \
   packages/terradart_hcl/ \
   packages/terradart_migrate/

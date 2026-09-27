@@ -16,8 +16,6 @@
 #   - packages/terradart_appwrite/pubspec.yaml    (version: + terradart_core caret)
 #   - packages/terradart_cloudflare/pubspec.yaml  (version: + terradart_core caret)
 #   - packages/terradart_aws/pubspec.yaml         (version: + terradart_core caret)
-#   - packages/terradart_agent/pubspec.yaml       (version: + terradart_{core,google,coverage,hcl,migrate} carets)
-#   - packages/terradart_agent/lib/src/version.dart  (packageVersion const — lockstep with its pubspec)
 #   - packages/terradart_coverage/pubspec.yaml    (version: + terradart_{google,google_beta,appwrite,cloudflare,aws,hcl} carets)
 #   - packages/terradart_hcl/pubspec.yaml         (version: line)
 #   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{core,google,google_beta,appwrite,cloudflare,aws,hcl} carets)
@@ -104,7 +102,7 @@ sed_inplace() {
 
 # 1. `version:` field on the package pubspecs.
 echo "  Package versions:"
-for pkg in terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_agent terradart_coverage terradart_hcl terradart_migrate; do
+for pkg in terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_cloudflare terradart_aws terradart_coverage terradart_hcl terradart_migrate; do
   sed_inplace "s#^version: ${OLD_RE}\$#version: ${NEW}#" "packages/$pkg/pubspec.yaml"
   echo "    - packages/$pkg/pubspec.yaml -> $NEW"
 done
@@ -128,16 +126,11 @@ sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terra
 echo "    - terradart_cloudflare.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_aws/pubspec.yaml
 echo "    - terradart_aws.dependencies.terradart_core: ^${NEW}"
-sed_inplace "s#^( *terradart_(core|google|coverage|hcl|migrate)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
-echo "    - terradart_agent.dependencies.terradart_{core,google,coverage,hcl,migrate}: ^${NEW}"
 sed_inplace "s#^( *terradart_(google|google_beta|appwrite|cloudflare|aws|hcl)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_coverage/pubspec.yaml
 echo "    - terradart_coverage.dependencies.terradart_{google,google_beta,appwrite,cloudflare,aws,hcl}: ^${NEW}"
 
-# 2b. terradart_agent binary version const (lockstep with its pubspec;
-#     guarded by packages/terradart_agent/test/version_test.dart).
+# 2b. terradart_migrate binary version const (lockstep with its pubspec).
 echo "  Binary version const:"
-sed_inplace "s#^const String packageVersion = '${OLD_RE}';\$#const String packageVersion = '${NEW}';#" packages/terradart_agent/lib/src/version.dart
-echo "    - packages/terradart_agent/lib/src/version.dart -> $NEW"
 sed_inplace "s#^const String packageVersion = '${OLD_RE}';\$#const String packageVersion = '${NEW}';#" packages/terradart_migrate/lib/src/version.dart
 echo "    - packages/terradart_migrate/lib/src/version.dart -> $NEW"
 
@@ -315,7 +308,6 @@ STALE=$(
     README.md \
     website/src/content/docs/docs/getting-started.md \
     packages/terradart_codegen/README.md 2>/dev/null
-  grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_agent/lib/src/version.dart 2>/dev/null
   grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_migrate/lib/src/version.dart 2>/dev/null
   if [ "$OLD_MINOR" != "$NEW_MINOR" ]; then
     grep -nE "\\^${OLD_MINOR_RE}\\.x" \

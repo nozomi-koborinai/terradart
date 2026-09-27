@@ -116,8 +116,6 @@ final report = buildCoverageReport(parsed, CatalogIndex.all());
 print(renderText(report)); // or renderJson(report)
 ```
 
-The MCP server [`terradart_agent`](../terradart_agent/) wraps the evaluated path as the `check_coverage` tool for AI coding agents.
-
 ## Development
 
 This package is `publish_to: none`. Source lives under `packages/terradart_coverage/`; release binaries are built by `.github/workflows/release-binary.yml`.

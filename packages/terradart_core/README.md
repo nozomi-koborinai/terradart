@@ -25,7 +25,6 @@ This package is the **runtime layer only**. It is intentionally small and depend
 | [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) | Curated factory wrappers for Appwrite resources (`appwrite/appwrite`). |
 | [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) | Curated factory wrappers for Cloudflare resources (`cloudflare/cloudflare`). |
 | [`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) | Curated factory wrappers for AWS resources (`hashicorp/aws`). |
-| [`terradart_agent`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_agent) | MCP server (`terradart-mcp`) exposing the curated factory catalog to AI agents. |
 | [`terradart_codegen`](https://pub.dev/packages/terradart_codegen) | Maintainer generation tooling and CLI (`terradart wrap`). |
 
 For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme) and [terradart.dev](https://terradart.dev/docs/getting-started/).

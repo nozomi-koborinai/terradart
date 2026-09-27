@@ -17,7 +17,6 @@ TerraDart is organized as a multi-package monorepo:
 - **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — Curated factories for Appwrite (`appwrite/appwrite`).
 - **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — Curated factories for Cloudflare edge infrastructure (`cloudflare/cloudflare`, filled at `5.23.0`: 257 resource factories + 446 data sources).
 - **[`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws)** — Curated factories for AWS (`hashicorp/aws`, filled at `6.66.0`: 1725 resource factories + 683 data sources). Not on pub.dev yet.
-- **[`terradart_agent`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_agent)** — MCP server (`terradart-mcp`) exposing the curated catalog to AI coding agents.
 - **[`terradart_codegen`](https://pub.dev/packages/terradart_codegen)** — Maintainer generation CLI (`terradart wrap`).
 - **[`terradart_migrate`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_migrate)** — HCL → Dart migrator (`terradart-migrate`), reading Terraform through **[`terradart_hcl`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_hcl)**.
 
@@ -35,5 +34,5 @@ TerraDart is organized as a multi-package monorepo:
 
 ## For AI assistants
 
-- [terradart-mcp](/docs/agent/) — MCP catalog server for coding agents (alpha)
+- [Coding agents](/docs/agents/) — the TerraDart Agent Skill: how an agent finds the right factory
 - [llms.txt](/llms.txt) — condensed site map for LLM crawlers

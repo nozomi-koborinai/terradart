@@ -1,5 +1,24 @@
 # Migrating terradart
 
+## 0.28.x → next release
+
+**`terradart-mcp` is retired.** The `terradart_agent` package, the `terradart-mcp` binary and its Homebrew formula are gone; the Dart packages you depend on are unchanged. If you installed it:
+
+```sh
+brew uninstall terradart-mcp
+```
+
+and remove the `terradart` entry (`"command": "terradart-mcp"`) from your MCP client configuration (`.mcp.json`, `.cursor/mcp.json`, `claude mcp remove terradart`, ...).
+
+Give your coding agent the [TerraDart Agent Skill](skills/terradart/SKILL.md) instead (`npx skills add nozomi-koborinai/terradart --skill terradart`). It points the agent at what the MCP tools used to return, for every provider package rather than only `terradart_google`:
+
+| `terradart-mcp` tool | Replacement |
+|----------------------|-------------|
+| `list_resources`, `list_barrels`, `get_resource_schema` | the package's generated `lib/src/_catalog.g.dart` and wrapper sources, or the [coverage page](https://terradart.dev/docs/coverage/) |
+| `get_quickstart` | the CI-validated [`examples/`](examples/) |
+| `check_coverage` | the `terradart-coverage` CLI |
+| `migrate_module` | the `terradart-migrate` CLI |
+
 ## 0.27.0 → 0.28.0
 
 **`terradart_core`** — `TfArg` gains a fourth variant, `TfArgExpression`
