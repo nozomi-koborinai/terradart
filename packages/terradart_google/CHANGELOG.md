@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.29.0 - 2026-09-27
 
+- `GoogleChronicleSoarNetwork` (`google_chronicle_soar_network`), exercised by the gated `chronicle_quickstart`. The catalog is now 1338 curated resource factories + 461 data sources (1799 entries).
+- Weekly schema bumps 2026-09-13 and 2026-09-20 (Magic Modules YAML; `hashicorp/google` stays at `7.46.1`) change generated doc comments only.
 - **Breaking** — `TimeProvider` / `TimeSleep` moved to the new `terradart_time` package; `package:terradart_google/time.dart` is gone. `Apis.enable` still inserts the propagation `TimeSleep` (now through a `terradart_time` dependency) and still requires `const TimeProvider()` on the stack, imported from `package:terradart_time/terradart_time.dart`. See [MIGRATING.md](../../MIGRATING.md).
 
 ## 0.28.1 - 2026-09-13
