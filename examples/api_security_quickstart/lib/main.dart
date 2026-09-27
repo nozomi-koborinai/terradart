@@ -7,7 +7,7 @@ import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/recaptcha.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class ApiSecurityStack extends Stack {
   ApiSecurityStack({required String projectId})

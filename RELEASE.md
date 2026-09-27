@@ -1,6 +1,6 @@
 # Release Checklist
 
-terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare`, and `terradart_aws`. `terradart_agent`, `terradart_coverage` and `terradart_migrate` are `publish_to: none` and ship as Homebrew binaries (`terradart-mcp`, `terradart-coverage`, `terradart-migrate`) via `release-binary.yml`, which also pushes their formulas to `nozomi-koborinai/homebrew-tap`.
+terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core`, `terradart_codegen`, `terradart_time`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare`, and `terradart_aws`. `terradart_agent`, `terradart_coverage` and `terradart_migrate` are `publish_to: none` and ship as Homebrew binaries (`terradart-mcp`, `terradart-coverage`, `terradart-migrate`) via `release-binary.yml`, which also pushes their formulas to `nozomi-koborinai/homebrew-tap`.
 
 ## Pre-flight (local)
 
@@ -46,8 +46,8 @@ git push origin v0.X.Y
 Watch `publish.yml` on GitHub Actions. The workflow ships the 3 packages in 3 serial phases (each waits 5 minutes for pub.dev index propagation before the next):
 
 1. **`publish-no-deps`** job: `terradart_core` (no terradart_* dependencies).
-2. **`publish-codegen`** job: `terradart_codegen` (depends on `terradart_core`).
-3. **`publish-google`** job: `terradart_google` (depends on `terradart_core` + `terradart_codegen`).
+2. **`publish-codegen`** job: `terradart_codegen` (depends on `terradart_core`), in parallel with the **`publish-time`** job: `terradart_time` (depends on `terradart_core`).
+3. **`publish-google`** job: `terradart_google` (depends on `terradart_core` + `terradart_time`, dev-depends on `terradart_codegen`).
 
 `prepare_publish.sh` runs in CI and:
 
@@ -74,7 +74,10 @@ sleep 300  # wait for pub.dev to index terradart_core
 tool/prepare_publish.sh v0.X.Y terradart_codegen
 (cd packages/terradart_codegen && dart pub publish)
 
-sleep 300  # wait for pub.dev to index terradart_codegen
+tool/prepare_publish.sh v0.X.Y terradart_time
+(cd packages/terradart_time && dart pub publish)
+
+sleep 300  # wait for pub.dev to index terradart_codegen + terradart_time
 
 tool/prepare_publish.sh v0.X.Y terradart_google
 (cd packages/terradart_google && dart pub publish)

@@ -6,7 +6,7 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 import 'src/apis.dart';
 import 'src/cloud_run.dart';

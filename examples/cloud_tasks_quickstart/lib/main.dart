@@ -11,7 +11,7 @@ import 'package:terradart_google/cloud_tasks.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 /// Cloud Tasks queue + IAM enqueuer Stack.
 final class EmailJobsStack extends Stack {

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking** — `TimeProvider` / `TimeSleep` moved to the new `terradart_time` package; `package:terradart_google/time.dart` is gone. `Apis.enable` still inserts the propagation `TimeSleep` (now through a `terradart_time` dependency) and still requires `const TimeProvider()` on the stack, imported from `package:terradart_time/terradart_time.dart`. See [MIGRATING.md](../../MIGRATING.md).
+
 ## 0.28.1 - 2026-09-13
 
 Lockstep release with `terradart_migrate` 0.28.1 (passthrough emission fix — a bare `Map` / `List` parameter no longer comes out as `TfArg.literal`). No `terradart_google` API changes.

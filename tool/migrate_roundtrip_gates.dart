@@ -165,6 +165,7 @@ Future<bool> runMigrateRoundtripGates(
     'terradart_appwrite',
     'terradart_cloudflare',
     'terradart_aws',
+    'terradart_time',
   ]) {
     overrides.writeln('  $p:');
     overrides.writeln('    path: $repoRoot/packages/$p');

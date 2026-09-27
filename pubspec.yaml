@@ -13,6 +13,7 @@ workspace:
   - packages/terradart_appwrite
   - packages/terradart_cloudflare
   - packages/terradart_aws
+  - packages/terradart_time
   - packages/terradart_agent
   - packages/terradart_coverage
   - packages/terradart_hcl

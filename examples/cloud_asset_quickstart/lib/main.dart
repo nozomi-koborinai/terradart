@@ -16,7 +16,7 @@ import 'package:terradart_google/google_beta.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 /// Cloud Asset stack: Pub/Sub topic + project feed.
 final class CloudAssetStack extends Stack {
