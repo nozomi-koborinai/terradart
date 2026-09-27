@@ -21,7 +21,7 @@ Or copy the file into your agent's skills directory, for example `.claude/skills
 - **How to find the class and barrel.** Each package's generated `lib/src/_catalog.g.dart` maps every Terraform type to its class name and barrel, and the wrapper's doc comment lists its arguments.
 - **Where the runnable examples are.** More than 100 quickstarts under [`examples/`](https://github.com/nozomi-koborinai/terradart/tree/main/examples) are synthesized and checked with `terraform validate` in CI.
 - **How to check the result**: `dart analyze`, then synth, then `terraform validate`.
-- **When to use the CLIs instead**: [`terradart-migrate`](/docs/migrate-from-hcl/) for existing Terraform, `terradart-migrate --report` to see how much of it translates first.
+- **How to migrate existing Terraform**: run [`terradart-migrate`](/docs/migrate-from-hcl/) first (`--report` to size the tree, then a real run), port the leftover sidecar blocks into the Stack one at a time, synthesize, and require `terraform plan` to report *No changes*. The migrator does the mechanical translation; the agent only finishes what it kept in Terraform.
 
 ## Without a checkout
 

@@ -73,11 +73,23 @@ cd tf-out && terraform init -backend=false && terraform validate
 
 ## Existing Terraform
 
-To translate an existing Terraform tree, run the migrator instead of rewriting it by hand:
+Do not rewrite an existing Terraform tree by hand. Run the migrator first; it translates every block it can, keeps the rest in Terraform verbatim, and preserves every resource address. Your job is the part it left behind.
 
-```bash
-dart pub global activate terradart_migrate
-terradart-migrate --dir infra --out infra_dart
-```
+1. **Size it.** `terradart-migrate --report --dir infra` writes nothing. It lists every `resource` / `data` type with how many blocks translate and how many stay in Terraform, and why.
 
-See [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/). To see how much of a tree translates before writing anything, run `terradart-migrate --report --dir infra`: every resource type with how many blocks translate, how many stay in Terraform and why.
+2. **Migrate.**
+
+   ```bash
+   dart pub global activate terradart_migrate
+   terradart-migrate --dir infra --out infra_dart
+   ```
+
+   The package has one `Stack` per module directory (`lib/`) and a `tf-out/` tree that mirrors the source. Beside each `main.tf.json` is the **sidecar**: `terradart_leftover.tf`, `backend.tf`, `variables.tf`, `locals.tf` and `outputs.tf`, holding what did not translate. `MIGRATION.md` lists every kept block with its reason.
+
+3. **Port the leftovers, one block at a time.** For each block in `MIGRATION.md` whose reason you can resolve (an argument the migrator had no typed slot for, a `depends_on` on a block you have since ported), look the factory up (sections 1–2), add it to the Stack with the **same `localName`** so the address does not change, and delete the block from the sidecar. A `locals` entry with a literal value can become a Dart `final`; drop it from `locals.tf` only once nothing left in the sidecar reads it. Leave a block in the sidecar when it has no factory (`not in any catalog`). Never copy a sensitive literal into Dart; pass it as a variable instead.
+
+4. **Synthesize.** `cd infra_dart && dart pub get && dart analyze && dart run bin/infra.dart`
+
+5. **Plan.** In each root under `tf-out/`, run `terraform init` and then `terraform plan`. It must report *No changes*. A diff means the port changed something, so fix the Dart rather than the plan. Do not run `terraform apply` for the user.
+
+See [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/) for the flags (`--merge-envs` folds `envs/dev` and `envs/prod` into one Stack; `--lift-workspace` turns `terraform.workspace` into a Stack parameter).

@@ -17,6 +17,16 @@ Per-package changelogs live alongside each package and are the system of record 
   block actually translates. The `config_tree/` and `real_plan_src/` fixtures
   move from `terradart_coverage` to `terradart_migrate/test/fixtures/`.
 
+### Changed
+
+- **Docs** — the agent skill and the *Migrating from HCL* guide describe one
+  loop: `terradart-migrate --report`, then a migration, then porting the
+  sidecar leftovers into the Stack, synth, and `terraform plan` with *No
+  changes*. The `terradart-migrate` beta gate reads "installed from pub.dev".
+  `terradart_aws` and `terradart_time` are on pub.dev, so the "not on pub.dev
+  yet" notes and the Git dependency on the AWS page are gone; `RELEASE.md`
+  covers all ten packages and eight publish phases.
+
 ### Removed
 
 - **`terradart-coverage` (`packages/terradart_coverage`)** — the coverage
