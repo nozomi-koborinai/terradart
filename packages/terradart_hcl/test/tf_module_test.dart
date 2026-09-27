@@ -167,9 +167,9 @@ void main() {
       expect(m.resources.map((r) => r.name), ['a', 'b']);
     });
 
-    test('loads the coverage config_tree fixture', () {
+    test('loads the migrator config_tree fixture', () {
       final m = loadTfModule(
-        Directory('../terradart_coverage/test/fixtures/config_tree/dev'),
+        Directory('../terradart_migrate/test/fixtures/config_tree/dev'),
       );
       expect(m.files.map((f) => f.fileName!.split('/').last), [
         'backend.tf',

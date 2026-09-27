@@ -32,6 +32,26 @@ terradart-migrate --version
 
 The generated package needs the Dart SDK (`dart pub get`, `dart run`) and `terraform` for the plan; the migrator itself needs neither.
 
+## Size it first
+
+`--report` runs the whole migration in memory and writes nothing — no `--out`, no files, no `terraform`:
+
+```sh
+terradart-migrate --report --dir infra
+```
+
+It lists every `resource` and `data` type in the tree with how many of its blocks translate, how many stay in Terraform, and the curated factory it maps to — or `not in any catalog`. Because it is the migration itself, not a catalog lookup, a type with a factory can still show kept blocks: a non-literal `count`, a sensitive literal, an argument with no Dart parameter. Every kept block is listed with its reason, and a `module` call whose source is outside the tree (a registry or git module) is listed as not scanned, since its resources are not counted. A literal `count` / `for_each` counts once per instance; a child module counts once however many times it is called. `--dir` defaults to the current directory, and `--json` prints the same report as JSON.
+
+```text
+terradart-migrate 0.x.y --report: infra
+  37 of 42 resource and data blocks translate (88%); 19 of 20 types have a curated factory. Nothing was written.
+
+Types (20):
+  google_storage_bucket [resource] x6: 5 translate, 1 kept -> GoogleStorageBucket (terradart_google/storage)
+  acme_widget [resource] x1: not in any catalog
+  ...
+```
+
 ## Migrate a tree
 
 ```sh
@@ -225,6 +245,7 @@ Two things a re-run cannot know, because it reads the sidecar and not your Dart:
 
 | Flag | Meaning |
 | :--- | :--- |
+| `--report` | Report what a migration would translate and keep, per type, and write nothing. Takes no `--out`; `--dir` defaults to the current directory. |
 | `--dir <tree>` | The Terraform source tree to migrate. Never written, unless `--in-place` is given. |
 | `--out <package>` | Where the Dart package goes. Must not exist or be empty unless `--force` is given; nothing is written outside it, unless `--in-place` rewrites the tree under `--dir`. |
 | `--name <name>` | The package name and the root Stack class. Defaults to the base name of `--dir`. |
@@ -234,7 +255,7 @@ Two things a re-run cannot know, because it reads the sidecar and not your Dart:
 | `--lift-workspace` | Turn `terraform.workspace` into a `workspace` parameter on the Stack. |
 | `--inline-locals` | Declare the `locals` entries whose value is a literal as Dart `final`s. Cannot be combined with `--merge-envs`. |
 | `--in-place` | Rewrite the tree under `--dir` to keep only what stays in Terraform. Destructive; refuses unless that tree is a clean git working tree. |
-| `--update <package>` | Re-run over a package already generated: snippets for what the catalog covers today. Takes neither `--dir` nor `--out`. |
+| `--update <package>` | Re-run over a package already generated: snippets for what the catalog covers today. Takes neither `--dir`, `--out` nor `--report`. |
 | `--allow-todo` | TODO comments in the Stack instead of a sidecar; the plan differs until they are ported. |
 | `--json` | Print the report as JSON instead of the summary. |
 | `--force` | Write into a non-empty `--out`, overwriting only the files the migrator generates. |

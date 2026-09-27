@@ -1,4 +1,4 @@
-/// Migrate fixture gate (#661): migrates the coverage fixtures `config_tree/`
+/// Migrate fixture gate (#661): migrates the tree fixtures `config_tree/`
 /// (two environment roots sharing six local modules) and `real_plan_src/`
 /// (a root with one child module) with `terradart_migrate`, writes the
 /// generated package to a temp directory, analyzes and synthesizes it, and
@@ -104,7 +104,7 @@ Future<bool> _mergeEnvGate({
   final input = Directory(
     p.join(
       repoRoot,
-      'packages/terradart_coverage/test/fixtures',
+      'packages/terradart_migrate/test/fixtures',
       _mergeFixture,
     ),
   );
@@ -199,7 +199,7 @@ Future<bool> _rerunGate({
   final input = Directory(
     p.join(
       repoRoot,
-      'packages/terradart_coverage/test/fixtures',
+      'packages/terradart_migrate/test/fixtures',
       _mergeFixture,
     ),
   );
@@ -586,7 +586,7 @@ Future<bool> _gate(
   required bool keep,
 }) async {
   final input = Directory(
-    p.join(repoRoot, 'packages/terradart_coverage/test/fixtures', fixture),
+    p.join(repoRoot, 'packages/terradart_migrate/test/fixtures', fixture),
   );
   final temp = Directory.systemTemp.createTempSync(
     'terradart_migrate_fixture_',

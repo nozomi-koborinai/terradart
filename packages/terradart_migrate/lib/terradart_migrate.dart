@@ -17,6 +17,7 @@ import 'src/migrate_manifest.dart';
 import 'src/report.dart';
 
 export 'src/cli.dart';
+export 'src/coverage.dart';
 export 'src/emit/env_plan.dart'
     show EnvBinding, EnvField, EnvPlan, planEnvironments;
 export 'src/in_place.dart';

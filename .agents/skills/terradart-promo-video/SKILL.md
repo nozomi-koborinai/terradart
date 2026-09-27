@@ -42,7 +42,7 @@ When a claim is tempting but unsupported, cut the claim, not the caveat.
 - [ ] 1. **Pick the story** — one capability, three beats (below). Write the beats down before recording.
 - [ ] 2. **Stage a demo source** you may show. A coverage fixture is a good one; copy it out of the repo first so the recording does not show repo paths:
       ```bash
-      cp -r packages/terradart_coverage/test/fixtures/config_tree /tmp/promo-demo/infra
+      cp -r packages/terradart_migrate/test/fixtures/config_tree /tmp/promo-demo/infra
       ```
 - [ ] 3. **Set up the terminal** — see [Recording the beats](#recording-the-beats).
 - [ ] 4. **Record** with `RecordScreen` + the `computerUse` subagent. One take per story; do not narrate setup.

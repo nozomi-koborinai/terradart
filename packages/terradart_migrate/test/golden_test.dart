@@ -4,13 +4,13 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
-// The coverage fixtures migrated end to end, compared file by file against
+// The tree fixtures migrated end to end, compared file by file against
 // test/golden/<fixture>/<path>.golden (the package version replaced by
 // `{{version}}`). `config_tree_merged` is `config_tree` again with
 // `--merge-envs`: one Stack for both environment roots. Regenerate with:
 //
 //   UPDATE_GOLDENS=1 dart test test/golden_test.dart
-const _fixtures = '../terradart_coverage/test/fixtures';
+const _fixtures = 'test/fixtures';
 const _goldenRoot = 'test/golden';
 final _update = Platform.environment['UPDATE_GOLDENS'] == '1';
 
