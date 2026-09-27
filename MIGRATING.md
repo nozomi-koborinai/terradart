@@ -1,5 +1,32 @@
 # Migrating terradart
 
+## 0.28.x → next release
+
+### `TimeProvider` / `TimeSleep` moved to `terradart_time`
+
+They are no longer part of `terradart_google`, so a stack on any provider
+package can use them. Add the package, at the same caret as your
+`terradart_google` dependency (the workspace releases in lockstep), and
+change the import:
+
+```yaml
+dependencies:
+  terradart_google: ^X.Y.Z
+  terradart_time: ^X.Y.Z
+```
+
+```dart
+// Before
+import 'package:terradart_google/time.dart';
+
+// After
+import 'package:terradart_time/terradart_time.dart';
+```
+
+The classes, their parameters and the synthesized JSON are unchanged.
+`Apis.enable` still inserts the propagation `TimeSleep` and still throws
+`StateError` unless `const TimeProvider()` is in `Stack.providers`.
+
 ## 0.27.0 → 0.28.0
 
 **`terradart_core`** — `TfArg` gains a fourth variant, `TfArgExpression`

@@ -12,7 +12,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/ces.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 /// CES stack: app + agent + association + version + guardrail + search
 /// tool + OpenAPI toolset + few-shot example + API deployment.

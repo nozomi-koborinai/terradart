@@ -1613,11 +1613,14 @@ resource "google_pubsub_topic" "x" {
         },
       });
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(r.report.packages, ['terradart_google']);
+      expect(r.report.packages, ['terradart_time']);
       final src = r.stackSource;
       expect(src, contains('providers: [const TimeProvider()]'));
       expect(src, isNot(contains('GoogleProvider(')));
-      expect(src, contains("import 'package:terradart_google/time.dart';"));
+      expect(
+        src,
+        contains("import 'package:terradart_time/terradart_time.dart';"),
+      );
       expect(
         src,
         contains(

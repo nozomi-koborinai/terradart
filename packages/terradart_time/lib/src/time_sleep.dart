@@ -3,8 +3,9 @@ import 'package:terradart_core/terradart_core.dart';
 /// Hand-written wrapper for `time_sleep` (`hashicorp/time`).
 ///
 /// Waits after create (and optionally before destroy) — commonly inserted
-/// after `google_project_service` enablement to absorb GCP API propagation
-/// lag (`Apis.enable` wires this automatically).
+/// to absorb eventual consistency, such as GCP API enablement propagation
+/// (`terradart_google`'s `Apis.enable` wires this automatically) or AWS IAM
+/// role propagation.
 ///
 /// Durations are Terraform duration strings; use [TfArg.duration] to convert
 /// from a Dart [Duration]:

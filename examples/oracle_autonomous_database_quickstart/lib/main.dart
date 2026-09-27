@@ -6,7 +6,7 @@ import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/oracle.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class OracleAutonomousDatabaseStack extends Stack {
   OracleAutonomousDatabaseStack({required String projectId})

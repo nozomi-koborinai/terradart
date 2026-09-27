@@ -30,7 +30,7 @@ import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class CloudBuildStack extends Stack {
   CloudBuildStack({required String projectId})

@@ -12,7 +12,7 @@ import 'package:terradart_google/container_analysis.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 String _iamPolicyDataJson({
   required String role,

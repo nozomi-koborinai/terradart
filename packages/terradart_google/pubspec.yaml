@@ -23,6 +23,7 @@ resolution: workspace
 
 dependencies:
   terradart_core: ^0.28.1
+  terradart_time: ^0.28.1
   meta: ^1.15.0
 
 dev_dependencies:
