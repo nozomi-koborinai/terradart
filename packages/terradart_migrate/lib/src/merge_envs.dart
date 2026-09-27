@@ -110,7 +110,6 @@ MergedEnvironment mergeEnvironments({
   required String version,
   Map<String, Map<String, LocalModule>> localModules = const {},
   List<MigrateManifest>? manifests,
-  bool allowTodo = false,
   bool liftWorkspace = false,
   bool format = true,
 }) {
@@ -126,7 +125,6 @@ MergedEnvironment mergeEnvironments({
     stackClass: stackClass,
     stackFile: stackFile,
     version: version,
-    allowTodo: allowTodo,
     localModules: localModules[env.member] ?? const {},
     envValues: plan.overrides[env.member] ?? const {},
     forceLocals: forceLocals,
@@ -200,7 +198,6 @@ MergedEnvironment mergeEnvironments({
   final statements = <String, Map<String, StackStatement>>{};
   for (final env in envs) {
     for (final s in emitted[env.member]!.statements) {
-      if (s.tag == 'todo' || s.tag.startsWith('todo.')) continue;
       statements.putIfAbsent(s.tag, () => {})[env.member] = s;
     }
   }
@@ -333,19 +330,6 @@ MergedEnvironment mergeEnvironments({
       );
     }
     if (run.guard != null) body.writeln('}');
-  }
-  for (final env in envs) {
-    final kept = emitted[env.member]!.report.kept;
-    if (!allowTodo || kept.isEmpty) continue;
-    body.writeln(
-      '// TODO(terradart-migrate): ${env.member}: ${kept.length} block(s) '
-      'stay untranslated with no sidecar (--allow-todo).',
-    );
-    for (final k in kept) {
-      body.writeln(
-        '// TODO(terradart-migrate): ${env.member}: ${k.address}: ${k.reason}',
-      );
-    }
   }
 
   final usesWorkspace = envs.any((e) => emitted[e.member]!.usesWorkspace);

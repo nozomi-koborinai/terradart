@@ -1030,7 +1030,7 @@ output "count" {
         ),
       );
       // Outputs that are not one attribute stay in outputs.tf, rewritten.
-      final outputs = r.sidecar!.files[outputsFileName]!;
+      final outputs = r.sidecar.files[outputsFileName]!;
       expect(
         outputs,
         contains(
@@ -1148,7 +1148,7 @@ resource "google_pubsub_topic" "kept" {
         contains('"google_pubsub_topic.kept" stays in Terraform'),
       );
       expect(
-        r.sidecar!.files[leftoverFileName],
+        r.sidecar.files[leftoverFileName],
         contains('moved {\n  from = google_pubsub_topic.elsewhere'),
       );
     });
@@ -1285,7 +1285,7 @@ resource "google_pubsub_subscription" "s" {
         ),
       );
       expect(
-        r.sidecar!.files[leftoverFileName],
+        r.sidecar.files[leftoverFileName],
         contains('resource "google_pubsub_topic" "t" {\n  count       = 2'),
       );
     });

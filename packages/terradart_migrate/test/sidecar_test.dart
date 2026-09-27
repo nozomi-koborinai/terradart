@@ -4,16 +4,11 @@ import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
-MigrationResult _hcl(
-  String hcl, {
-  bool childModule = false,
-  bool allowTodo = false,
-}) => migrateModule(
+MigrationResult _hcl(String hcl, {bool childModule = false}) => migrateModule(
   TfModule.fromHcl(hcl, fileName: 'main.tf'),
   name: 'demo',
   format: false,
   childModule: childModule,
-  allowTodo: allowTodo,
 );
 
 void main() {
@@ -85,7 +80,7 @@ output "label" {
   value = "${local.prefix}-${google_pubsub_topic.t.name}"
 }
 ''');
-    final sidecar = r.sidecar!;
+    final sidecar = r.sidecar;
 
     test('splits the kept blocks into the conventional files', () {
       expect(
@@ -238,7 +233,7 @@ output "label" {
       name: 'demo',
       format: false,
     );
-    final sidecar = r.sidecar!;
+    final sidecar = r.sidecar;
     expect(
       sidecar.files[leftoverFileName],
       contains(
@@ -282,36 +277,12 @@ output "id" {
     );
     expect(r.report.providers, ['google']);
     expect(
-      r.sidecar!.files[leftoverFileName],
+      r.sidecar.files[leftoverFileName],
       contains('provider "google" {\n  project = "p"\n}'),
     );
     expect(
-      r.sidecar!.files[backendFileName],
+      r.sidecar.files[backendFileName],
       contains('  backend "gcs" { bucket = "b" }'),
-    );
-  });
-
-  test('allowTodo writes TODOs into the Stack and no sidecar', () {
-    final r = _hcl(r'''
-resource "google_pubsub_topic" "ok" {
-  name = "ok"
-}
-
-resource "google_pubsub_topic" "t" {
-  name        = "t"
-  no_such_arg = 2
-}
-''', allowTodo: true);
-    expect(r.hasStack, isTrue);
-    expect(r.stackSource, contains("localName: r'ok'"));
-    expect(r.sidecar, isNull);
-    expect(r.files.keys.where((k) => k.startsWith('tf-out/')), isEmpty);
-    expect(
-      r.stackSource,
-      contains(
-        '// TODO(terradart-migrate): google_pubsub_topic.t: no Dart '
-        'parameter for argument "no_such_arg"',
-      ),
     );
   });
 
@@ -334,31 +305,29 @@ output "id" {
   value = azurerm_resource_group.logs.id
 }
 ''';
-    for (final allowTodo in [false, true]) {
-      final r = _hcl(hcl, allowTodo: allowTodo);
-      expect(r.hasStack, isFalse, reason: 'allowTodo: $allowTodo');
-      expect(r.stackSource, isEmpty);
-      expect(r.files.keys.where((k) => k.startsWith('lib/')), isEmpty);
-      expect(r.files['bin/infra.dart'], contains('nothing yet'));
-      expect(r.report.migrated, isEmpty);
-      expect(
-        r.report.kept.map((k) => k.address),
-        unorderedEquals([
-          'terraform.required_version',
-          'terraform.backend',
-          'variable.name',
-          'azurerm_resource_group.logs',
-          'output.id',
-        ]),
-      );
-      final sidecar = r.sidecar!;
-      expect(sidecar.files[backendFileName], contains('backend "gcs"'));
-      expect(sidecar.files[backendFileName], contains('required_version'));
-      expect(sidecar.files[variablesFileName], contains('variable "name"'));
-      expect(sidecar.files[outputsFileName], contains('output "id"'));
-      for (final k in r.report.kept) {
-        expect(sidecar.placements[k.address], isNotNull, reason: k.address);
-      }
+    final r = _hcl(hcl);
+    expect(r.hasStack, isFalse);
+    expect(r.stackSource, isEmpty);
+    expect(r.files.keys.where((k) => k.startsWith('lib/')), isEmpty);
+    expect(r.files['bin/infra.dart'], contains('nothing yet'));
+    expect(r.report.migrated, isEmpty);
+    expect(
+      r.report.kept.map((k) => k.address),
+      unorderedEquals([
+        'terraform.required_version',
+        'terraform.backend',
+        'variable.name',
+        'azurerm_resource_group.logs',
+        'output.id',
+      ]),
+    );
+    final sidecar = r.sidecar;
+    expect(sidecar.files[backendFileName], contains('backend "gcs"'));
+    expect(sidecar.files[backendFileName], contains('required_version'));
+    expect(sidecar.files[variablesFileName], contains('variable "name"'));
+    expect(sidecar.files[outputsFileName], contains('output "id"'));
+    for (final k in r.report.kept) {
+      expect(sidecar.placements[k.address], isNotNull, reason: k.address);
     }
   });
 
@@ -379,6 +348,6 @@ resource "google_sql_user" "app" {
     expect(r.stackSource, isNot(contains('hunter2-secret')));
     expect(r.files['bin/infra.dart'], isNot(contains('hunter2-secret')));
     expect(r.report.kept.single.address, 'google_sql_user.app');
-    expect(r.sidecar!.files[leftoverFileName], contains('hunter2-secret'));
+    expect(r.sidecar.files[leftoverFileName], contains('hunter2-secret'));
   });
 }

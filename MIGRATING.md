@@ -27,6 +27,25 @@ source with no `terraform` run, and writes nothing:
 A file that does not parse now stops the report with its error (exit 65),
 where `terradart-coverage` skipped it.
 
+### `terradart-migrate` flags removed
+
+`--update`, `--in-place`, `--allow-todo` and `--inline-locals` are gone; each
+now exits 64. Every migration writes what stays in Terraform to the sidecar,
+and finishing it is an edit to the Stack, checked by `terraform plan`:
+
+| Removed flag | Instead |
+|--------------|---------|
+| `--update <package>` | port the sidecar block into the Stack by hand (`terradart-migrate --report` over the sidecar files shows what translates today), delete it from the sidecar, synthesize, plan |
+| `--in-place` | delete the migrated blocks from your source tree yourself, or retire it once the package plans with *No changes* |
+| `--allow-todo` | the sidecar: every kept block is listed in `MIGRATION.md` with its reason |
+| `--inline-locals` | declare the literal `locals` as Dart `final`s in the Stack and drop them from `locals.tf` |
+
+On the library side `migrateModule` / `migrateTree` lose `allowTodo` and
+`inlineLocals`, `MigrationResult.sidecar` and `MigratedModule.sidecar` are
+never null, and `rerunProject`, `writeRerun`, `rewriteInPlace` and their
+types are removed. The report JSON drops `allowTodo`, `planDiffers` and
+`todos`.
+
 ## 0.28.x → 0.29.0
 
 Two breaking changes, neither of which changes synthesized JSON: an import

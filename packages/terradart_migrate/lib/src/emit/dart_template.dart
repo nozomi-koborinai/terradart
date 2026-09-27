@@ -1,11 +1,8 @@
 /// Rewriting a Terraform template into a Dart string that interpolates the
 /// Dart values the migrator has for the references inside it.
 ///
-/// Two flags need this. `--lift-workspace` turns `${terraform.workspace}`
-/// into the Stack's `workspace` parameter, and `--inline-locals` turns
-/// `${local.prefix}` into the `final` it declared for that local. Both are
-/// the same rewrite over a different set of names, so both go through
-/// [dartTemplate].
+/// `--lift-workspace` needs this: it turns `${terraform.workspace}` into the
+/// Stack's `workspace` parameter.
 library;
 
 import 'dart_literal.dart';
