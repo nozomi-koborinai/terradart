@@ -26,18 +26,8 @@ int get dataSourceCount => _counts.dataSources;
 String get dataSourceCatalogPhrase =>
     dataSourceCount == 1 ? '1 data source' : '$dataSourceCount data sources';
 
-/// Distinct per-service barrels (excludes the synthetic `data` barrel).
-int get serviceBarrelCount => _counts.serviceBarrels;
-
 String get curatedCatalogPhrase => '$curatedFactoryCount curated';
 String get catalogEntriesPhrase => '$catalogEntryCount catalog';
-
-/// MCP / agent docs (terradart-mcp catalog intros).
-String get agentCatalogEntriesPhrase => '$catalogEntryCount entries';
-String get agentResourceFactoriesPhrase =>
-    '$curatedFactoryCount curated resource factories';
-String get serviceBarrelCountPhrase => '$serviceBarrelCount service barrels';
-String get listBarrelsOutputCountPhrase => '${_counts.allBarrels} in total';
 
 /// The Homebrew install line of the migrator binary (#664): README, the
 /// package README and the website guide must all carry it.
@@ -48,15 +38,11 @@ class _CatalogCounts {
     required this.total,
     required this.resources,
     required this.dataSources,
-    required this.serviceBarrels,
-    required this.allBarrels,
   });
 
   final int total;
   final int resources;
   final int dataSources;
-  final int serviceBarrels;
-  final int allBarrels;
 }
 
 _CatalogCounts _readCatalogCounts() {
@@ -89,15 +75,9 @@ _CatalogCounts _readCatalogCounts() {
   if (kinds.isEmpty) {
     throw StateError('doc_expectations: no CatalogEntry kinds in ${file.path}');
   }
-  final barrels = RegExp(r"barrel: '([^']+)'")
-      .allMatches(text)
-      .map((m) => m.group(1)!)
-      .toSet();
   return _CatalogCounts(
     total: kinds.length,
     resources: kinds.where((k) => k == 'resource').length,
     dataSources: kinds.where((k) => k == 'dataSource').length,
-    serviceBarrels: barrels.where((b) => b != 'data').length,
-    allBarrels: barrels.length,
   );
 }

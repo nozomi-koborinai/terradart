@@ -9,8 +9,7 @@ The GA `hashicorp/google` catalog is **filled** (alpha). The curation push is ov
 | Loop | Cadence | Actor → merge path |
 |------|---------|--------------------|
 | Schema bump (GA + google-beta ride-along) | Sundays 22:00 UTC ([`schema-bump.yml`](.github/workflows/schema-bump.yml)) | the workflow opens the PR and enables auto-merge (squash) when the drift report finds nothing for a human; any other bump waits for the maintainer |
-| Wave shipping | Weekly, Tuesday mornings (Cursor schedule); no-op while [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml) is empty | agent ([runbook](.cursor/agents/wave-shipper.md)) → [`wave-open.yml`](.github/workflows/wave-open.yml) + [`wave-merge.yml`](.github/workflows/wave-merge.yml) executor, gated by `WAVE_MERGE_ENABLED` |
-| Loop health | Mondays 03:00 UTC ([`loop-health.yml`](.github/workflows/loop-health.yml)) | report appended to the `loop-health` issue |
+| Wave shipping | On demand, when [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml) has entries | the maintainer, or a cloud agent asked to follow [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md) → an ordinary PR the maintainer merges |
 
 Human / maintainer focus in this phase:
 
@@ -35,10 +34,9 @@ TerraDart is a Dart-first infrastructure-as-code project that synthesizes Terraf
 - `terradart_cloudflare` for curated Cloudflare factories (`cloudflare/cloudflare`, filled at the current pin).
 - `terradart_aws` for curated AWS factories (`hashicorp/aws`, filled at the current pin).
 - `terradart_time` for `TimeProvider` / `TimeSleep` (`hashicorp/time`), the propagation wait any provider package's stack can use.
-- `terradart_agent` for the MCP catalog server.
 - `terradart_codegen` for maintainer generation commands such as `wrap`, `wrap-init`, and `wrap-promote`.
 - `terradart_hcl` for the HCL / `*.tf.json` front-end (`parseHcl`, `decodeTfJson`, `TfModule`) that `terradart-migrate` reads existing Terraform through (#80).
-- `terradart_migrate` for the HCL → Dart migrator itself: the five generated migration manifests, and `migrateModule` — a `TfModule` in, a Dart package (Stack + `bin/infra.dart` + `pubspec.yaml`) and a report out, resource-atomic (#660). `terradart-migrate` (`bin/terradart_migrate.dart`) migrates a whole source tree: `scanModuleTree` infers roots, children and environment siblings, `migrateTree` writes one Stack per directory into one package with a `tf-out/` tree mirroring the source, the leftover sidecar beside each `main.tf.json`, and `MIGRATION.md`; `tool/migrate_fixture_gates.dart` terraform-validates the migrated coverage fixtures (#661). Ships as a single binary like `terradart-mcp`: `release-binary.yml` builds `terradart-migrate` for every tag and `tool/render_to_file.dart` renders its Homebrew formula (`brew install nozomi-koborinai/tap/terradart-migrate`); the website guide is *Migrating from HCL* (#664).
+- `terradart_migrate` for the HCL → Dart migrator itself: the five generated migration manifests, and `migrateModule` — a `TfModule` in, a Dart package (Stack + `bin/infra.dart` + `pubspec.yaml`) and a report out, resource-atomic (#660). `terradart-migrate` (`bin/terradart_migrate.dart`) migrates a whole source tree: `scanModuleTree` infers roots, children and environment siblings, `migrateTree` writes one Stack per directory into one package with a `tf-out/` tree mirroring the source, the leftover sidecar beside each `main.tf.json`, and `MIGRATION.md`; `tool/migrate_fixture_gates.dart` terraform-validates the migrated coverage fixtures (#661). Ships as a single binary like `terradart-coverage`: `release-binary.yml` builds `terradart-migrate` for every tag and `tool/render_to_file.dart` renders its Homebrew formula (`brew install nozomi-koborinai/tap/terradart-migrate`); the website guide is *Migrating from HCL* (#664).
 
 Read `CONTEXT.md` before design work. It defines project-specific terms such as Curated factory, Beta-only factory, Maintainer generation pipeline, Merged IR, Wrapper override, Agent guide, Local notes, and the migrator's Migration manifest, Resource-atomic translation, Leftover sidecar, Child-module mode, Environment root, Round-trip gate, and Zero-diff plan.
 
@@ -74,7 +72,7 @@ When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer 
 ## Branch and merge policy
 
 - **Never push directly to `main`.** All changes land through a pull request, including CI/publish hotfixes. Branch protection should enforce this for maintainers and automation alike.
-- `schema-bump.yml` opens `chore/schema-bump-*` PRs and is the only producer that enables auto-merge. The wave-shipper delivers by push only, to a `wave/*` branch; it never opens PRs itself — `wave-open.yml` owns those — and the wave executor accepts only that branch pattern. Ad-hoc cloud sessions use any descriptive branch and let the platform open the PR; such PRs are never auto-merged.
+- `schema-bump.yml` is the only scheduled producer of PRs (`chore/schema-bump-*`), and the only one that enables auto-merge. Every other change, Waves included, comes from an ad-hoc session on a descriptive branch; the platform opens the PR and it is never auto-merged.
 - Emergency publish fixes still get a PR (can merge immediately after CI green); do not bypass review habit.
 - Release tags and GitHub release bodies follow [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md).
 
@@ -94,7 +92,7 @@ When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer 
 - `migrate-shape-underivable` — a `prelude` helper whose `encode()` is not a field-per-key map literal, a helper field or custom slot with a type the manifest cannot express, or a custom slot whose argMap entry has no static key. Reshape it, declare `customSlots.<slot>.migrate: {kind: manual, reason: ...}` when the slot is manual by design, or add a reasoned entry to [`tool/migrate_manifest_debt.yaml`](tool/migrate_manifest_debt.yaml) (stale entries fail the lint).
 - `migrate-hint-stale` — a `migrate:` hint on a slot the manifest derives fine; remove the hint.
 
-The runtime types (`MigrateManifest`, `MigrateSlot`, ...) are hand-written in `packages/terradart_migrate/lib/src/migrate_manifest.dart`; the generated values are regenerated by the wrap lanes, never edited. A Wave or schema-bump PR therefore carries the regenerated manifest next to its wrappers: `tool/wave_allowed_paths.yaml` admits `packages/terradart_migrate/lib/src/manifest/`, while `tool/migrate_manifest_debt.yaml` and `tool/migrate_roundtrip_debt.yaml` stay outside it — a manual shape, or a resource the round-trip gate lets the migrator keep in Terraform, is a maintainer decision. A bump that needs one fails CI (`lint-override`, the round-trip gate), so it never auto-merges.
+The runtime types (`MigrateManifest`, `MigrateSlot`, ...) are hand-written in `packages/terradart_migrate/lib/src/migrate_manifest.dart`; the generated values are regenerated by the wrap lanes, never edited. A Wave or schema-bump PR therefore carries the regenerated manifest next to its wrappers. A manual shape (`tool/migrate_manifest_debt.yaml`), or a resource the round-trip gate lets the migrator keep in Terraform (`tool/migrate_roundtrip_debt.yaml`), is a maintainer decision; a bump that needs one fails CI (`lint-override`, the round-trip gate), so it never auto-merges.
 
 ### Round-trip gate (`tool/migrate_roundtrip_gates.dart`)
 
@@ -115,13 +113,9 @@ Live `terraform apply` / `destroy` against `terradart-validate` is **retired**, 
 
 [`schema-bump.yml`](.github/workflows/schema-bump.yml) runs Sundays 22:00 UTC. It refreshes the GA schema, MM YAML and the google-beta fixture, regenerates both lanes, and opens a `chore/schema-bump-*` PR whose body is the drift report ([`tool/generate_drift_report.dart`](tool/generate_drift_report.dart)). It enables auto-merge (squash) only when `autoMergeBlockers` is empty: clean `wrap --check` on both lanes, green universal QA gates, no MM sync failure, no new or removed resource, no new provider major, and no breaking change to the generated Dart API ([`tool/bump_api_surface.dart`](tool/bump_api_surface.dart) diffs the migration manifests before and after the regenerate). The required `ci gate` check still decides the merge, so a bump that needs a repair (a golden, a count, an example) stays open with a red check. Everything else — new resources (appended to [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml)), a breaking diff needing `MIGRATING.md`, a new `exactly_one_of` sealed design — is maintainer work on the same branch.
 
-### Wave shipping (weekly)
+### Wave shipping (on demand)
 
-Waves are implemented by a scheduled agent on Tuesday mornings — instructions AND the delivery pipeline (marker pushes, `wave-open.yml`, the `wave-merge.yml` executor's independent re-verification — including a block on unresolved Bugbot review threads, since CI green is not review clean — WIP-1, repair rounds) live in [`.cursor/agents/wave-shipper.md`](.cursor/agents/wave-shipper.md). The agent never merges; merging stays disarmed unless the `WAVE_MERGE_ENABLED` repository variable is `true`. An empty backlog is a normal no-op — the loop idles until the weekly schema bump detects new resources. Escalations (`exactly_one_of` sealed designs, out-of-scope files) stay maintainer work.
-
-### Loop health (weekly)
-
-Every Monday noon JST, [`loop-health.yml`](.github/workflows/loop-health.yml) appends a metrics + stall report to the open issue labeled `loop-health`: per-loop throughput and verdict counts (bump / wave), backlog depth, executor arm state, and stalls — open `wave/*` PRs quiet too long (WIP-1 halts silently behind them), bump PRs the Monday agent missed, verdict-labeled bump PRs missing their mandated report comment (a contentless maintainer handoff), and an actionable backlog with no wave PR opened and none in flight (a run that left no trace). Runs are attributed to the model each schedule was on via [`tool/loop_models.yaml`](tool/loop_models.yaml) — the maintainer appends an entry whenever a loop's model is flipped in the Cursor UI — so per-loop precision (first-pass green rate, `fix(repair):` commit counts, comment-marked escalations, Bugbot findings per merged wave) stays comparable across models. The two loops run with different token capabilities: the wave-shipper's token is push-only (probed in #597), so its escalation comments arrive via [`escalation-relay.yml`](.github/workflows/escalation-relay.yml), which turns an empty-commit `[agent-relay]` push on an `escalation/*` branch into a verbatim comment on the loop-health issue; the Monday bump agent's token can comment and label, so the bump loop delivers verdicts as PR comments plus the `bump-approved` / `bump-escalated` labels. The report also carries a credential probe — whether `SCHEMA_BUMP_PAT` is valid and how soon it expires, and whether the executor labels exist — because that one PAT authenticates schema-bump, bump-merge, wave-open, and wave-merge. Stall thresholds live as constants in [`tool/loop_health_report.dart`](tool/loop_health_report.dart). This is the input to the outer loop: a human reads it and improves instructions or ledgers, not the code under them.
+No scheduled agent ships Waves. The weekly schema bump appends newly detected GA types to [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml); that file is the queue. To ship, the maintainer works it by hand or asks a cloud agent to follow [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md) for named backlog entries. The Wave lands as an ordinary PR — CI green and Bugbot review clean — and the maintainer merges it. An entry that needs a design decision first (a sealed `exactly_one_of` slot, a breaking change) keeps a `note:` saying so and stays in the backlog until that decision is made.
 
 ## Documentation Policy
 
@@ -254,7 +248,7 @@ When a resource can't be applied on a plain standalone project — org-only (Sha
 
 ## Cursor Cloud specific instructions
 
-Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; most packages require ^3.6, `terradart_agent` and `terradart_coverage` require ^3.10) from the official apt repo and **Terraform** (≥ 1.11) from HashiCorp apt, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot.
+Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; most packages require ^3.6, `terradart_coverage` requires ^3.10) from the official apt repo and **Terraform** (≥ 1.11) from HashiCorp apt, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot.
 
 There is no long-running dev server for core work. Primary flows:
 
@@ -269,7 +263,6 @@ There is no long-running dev server for core work. Primary flows:
 | Publish readiness (per package) | `cd packages/<pkg> && dart pub publish --dry-run` |
 | Synth example stack | `cd examples/pubsub_quickstart && GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart` |
 | Validate synth output | `cd examples/pubsub_quickstart/tf-out && terraform init -backend=false && terraform validate` |
-| MCP catalog server (stdio) | `cd packages/terradart_agent && dart run terradart-mcp` |
 | Release demo clip (cut a `RecordScreen` take) | `tool/promo_video.sh --in RAW.mp4 --out EDIT.mp4 --deliver DELIVERY.mp4` |
 | Docs site (optional) | `cd website && bun install && bun run dev` (needs Bun + Node ≥ 22) |
 

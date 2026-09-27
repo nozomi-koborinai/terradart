@@ -52,18 +52,9 @@ export default defineConfig({
             "docs/coverage",
             "docs/aws",
             "docs/migrate-from-hcl",
+            "docs/agents",
             "docs/migrating",
             "docs/status",
-          ],
-        },
-        {
-          label: "Agent",
-          items: [
-            "docs/agent",
-            "docs/agent/install",
-            "docs/agent/clients",
-            "docs/agent/tools-reference",
-            "docs/agent/recipes",
           ],
         },
       ],
@@ -112,5 +103,10 @@ export default defineConfig({
   },
   redirects: {
     "/docs/how-it-works/": "/docs/architecture/",
+    "/docs/agent/": "/docs/agents/",
+    "/docs/agent/install/": "/docs/agents/",
+    "/docs/agent/clients/": "/docs/agents/",
+    "/docs/agent/tools-reference/": "/docs/agents/",
+    "/docs/agent/recipes/": "/docs/agents/",
   },
 });

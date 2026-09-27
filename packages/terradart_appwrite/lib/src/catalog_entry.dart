@@ -12,7 +12,7 @@ enum CatalogKind {
 /// Static metadata describing one curated terradart_appwrite factory.
 ///
 /// This type is **hand-written** (it is part of the public catalog API
-/// consumed by terradart_agent's MCP server). Only the `terradartCatalog`
+/// consumed by terradart_coverage). Only the `terradartCatalog`
 /// *list* of [CatalogEntry] values lives in the generated `_catalog.g.dart`,
 /// which `terradart wrap` regenerates — one entry per curated resource and
 /// data source. Edit this type by hand; never hand-edit the generated list

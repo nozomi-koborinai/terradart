@@ -2,7 +2,7 @@
 
 All notable changes to terradart are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
+Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
 ## Unreleased
 
@@ -25,7 +25,9 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Removed
 
+- **`terradart-mcp` (`packages/terradart_agent`)** — the local MCP catalog server, its Homebrew formula and release binaries, and the website's Agent pages. Its catalog tools only covered `terradart_google`, and `check_coverage` / `migrate_module` duplicated the `terradart-coverage` and `terradart-migrate` CLIs. A coding agent now reads the generated sources directly, guided by the new [TerraDart Agent Skill](skills/terradart/SKILL.md) ([Coding agents](https://terradart.dev/docs/agents/)). The generated `terradartCatalog` stays: `terradart_coverage` and the coverage page use it. See `MIGRATING.md`.
 - The cost ledger (`tool/apply_cost_denylist.yaml`), the apply-smoke skip ledgers, `tool/apply_smoke.sh` and its selection tests, the wave skiplist gate, the read-only orphan probe, and the gcp-cost transport used for cost classification. They partitioned examples for the live apply harness retired in #624; nothing consumed them any more. The knowledge the skip ledgers held moved into each example README's `## Before you apply` section. The repository no longer registers the gcp-cost MCP server (`.mcp.json`, `.cursor/mcp.json`).
+- The scheduled wave loop and its monitoring: `wave-open.yml`, `wave-merge.yml`, `escalation-relay.yml`, `loop-health.yml`, the wave-shipper runbook, `tool/wave_allowed_paths.yaml`, `tool/loop_health_report.dart` and `tool/loop_models.yaml`. After the GA catalog fill it shipped four one-resource Waves in two months, and the rest of the backlog needed design decisions it could only escalate. Waves now ship on demand through the `terradart-ship-wave` skill; `tool/curation_backlog.yaml` stays as their queue.
 
 ### Changed
 

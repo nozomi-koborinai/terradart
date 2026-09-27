@@ -8,7 +8,9 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy is in
 
 The GA catalog is filled: Waves now originate from new resources the
 weekly schema bump appends to `tool/curation_backlog.yaml`, and catalog counts
-move as increments on the completed baseline.
+move as increments on the completed baseline. No scheduled agent ships them:
+the maintainer runs this skill (or asks a cloud agent to) for named backlog
+entries, and removes each shipped entry from the backlog in the same PR.
 
 ## PR scope
 
@@ -38,14 +40,14 @@ A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done 
 - [ ] 1. **Scope the Wave** — list Terraform types, target barrel(s), and which example will exercise them.
 - [ ] 2. **Curate each resource** — `terradart-add-curated-resource` workflow per type (`mm_yaml_sources.yaml`, override, lint, wrap with `--migrate-manifest`).
 - [ ] 3. **Example / docs debt** — implement or extend quickstart **or** (for `*IamBinding`/`*IamPolicy` with sibling `*IamMember` already in synth) add `tool/example_debt.yaml` lines with `iam-adjunct-debt:`; update README Examples only when an example changes; website counts if the minor bumps; sync `tool/example_debt.yaml` (remove covered entries); if the quickstart is gated, write or update its README `## Before you apply` section.
-- [ ] 3b. **Migrator round-trip** — the round-trip gate (`dart tool/migrate_roundtrip_gates.dart --reuse-tf-out`, in the full `agent_verify.sh` and CI) migrates every quickstart back to Dart; a new factory the migrator keeps in Terraform needs a reasoned `tool/migrate_roundtrip_debt.yaml` entry (slug → address → reason) — a maintainer decision outside the Wave scope ledger, so the wave-shipper escalates instead.
+- [ ] 3b. **Migrator round-trip** — the round-trip gate (`dart tool/migrate_roundtrip_gates.dart --reuse-tf-out`, in the full `agent_verify.sh` and CI) migrates every quickstart back to Dart; a new factory the migrator keeps in Terraform needs a reasoned `tool/migrate_roundtrip_debt.yaml` entry (slug → address → reason) — a maintainer decision, so an agent running this skill stops and asks instead of adding the entry itself.
 - [ ] 4. **Breaking API** — `MIGRATING.md` + migrate any affected examples in the same PR.
 - [ ] 5. **Counts** — bump `catalogEntryCount` / `curatedFactoryCount` and every phrase in `tool/doc_expectations.dart`; sync tests.
 - [ ] 5b. **Coverage page** — regenerate the site coverage page: `dart tool/example_synth_gates.dart --skip-validate` then `dart tool/render_coverage_page.dart` (needs ALL tf-out present — the renderer fails closed on partial synth; CI's freshness check fails otherwise).
-- [ ] 6. **Version & CHANGELOG** (maintainer, release time — not part of a Wave PR; the wave-shipper skips this) — lockstep `0.N.P` across every workspace package (`tool/bump_version.sh`); root + per-package CHANGELOG entries.
+- [ ] 6. **Version & CHANGELOG** (maintainer, release time — not part of a Wave PR) — lockstep `0.N.P` across every workspace package (`tool/bump_version.sh`); root + per-package CHANGELOG entries.
 - [ ] 7. **CI** — nothing to wire: the `terraform_validate` matrix derives from `examples/` automatically (tool/select_changed_examples.dart).
 - [ ] 8. **Verify** — `tool/agent_verify.sh` (add `--maintainer` when touching wrap-init / wrap-promote).
-- [ ] 9. **Tag & GitHub release** (maintainer — the wave-shipper skips this) — after merge and green CI: push `v0.N.P`, publish via `.github/workflows/publish.yml`, create the GitHub release using the template below (title is **`v0.N.P` only** — no Wave subtitle in the release name).
+- [ ] 9. **Tag & GitHub release** (maintainer) — after merge and green CI: push `v0.N.P`, publish via `.github/workflows/publish.yml`, create the GitHub release using the template below (title is **`v0.N.P` only** — no Wave subtitle in the release name).
 
 ## Example patterns
 
@@ -78,7 +80,7 @@ Release tags and GitHub releases are **maintainer manual** (see [`AGENTS.md`](..
 Replace placeholders; duplicate the Wave section when shipping multiple Waves in one semver.
 
 ```markdown
-Lockstep release across `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage`. **No breaking changes** vs `0.PREV`.
+Lockstep release across `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_coverage`. **No breaking changes** vs `0.PREV`.
 
 ## Highlights
 
