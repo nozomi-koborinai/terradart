@@ -48,6 +48,22 @@
   - changed-files:
       - any-glob-to-any-file: 'packages/terradart_agent/**'
 
+'area:migrate':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'packages/terradart_migrate/**'
+          - 'tool/migrate_*_gates.dart'
+          - 'tool/migrate_*_debt.yaml'
+          - 'website/src/content/docs/docs/migrate-from-hcl.md'
+
+'area:coverage':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/terradart_coverage/**'
+
+'area:hcl':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/terradart_hcl/**'
+
 'area:website':
   - changed-files:
       - any-glob-to-any-file: 'website/**'
