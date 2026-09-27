@@ -15,7 +15,6 @@ jobs:
       fail-fast: false
       matrix:
         tool:
-          - { name: terradart-coverage, dir: packages/terradart_coverage,  entry: bin/terradart_coverage.dart, smoke: --help    }
           - { name: terradart-migrate,  dir: packages/terradart_migrate,   entry: bin/terradart_migrate.dart,  smoke: --version }
         target:
           - { os: macos-14,       suffix: darwin-arm64,  dart_arch: arm64 }
@@ -93,15 +92,14 @@ jobs:
           dart run tool/render_to_file.dart \
             --version "$V" \
             --sha-dir shas \
-            --out-coverage tap/Formula/terradart-coverage.rb \
             --out-migrate tap/Formula/terradart-migrate.rb
       - name: Commit + push tap
         working-directory: tap
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Formula/terradart-coverage.rb Formula/terradart-migrate.rb
-          git commit -m "terradart ${GITHUB_REF_NAME#v}: update formulas" || echo "no changes"
+          git add Formula/terradart-migrate.rb
+          git commit -m "terradart ${GITHUB_REF_NAME#v}: update formula" || echo "no changes"
           git push
         env:
           GITHUB_REF_NAME: ${{ github.ref_name }}

@@ -1,5 +1,32 @@
 # Migrating terradart
 
+## 0.29.x → next release
+
+### `terradart-coverage` retired
+
+**`terradart-coverage` is retired** — the `terradart_coverage` package, its
+release binaries and its Homebrew formula are gone. The Dart packages you
+depend on are unchanged. If you installed it:
+
+```sh
+brew uninstall terradart-coverage
+```
+
+`terradart-migrate --report` replaces it. It reads the same `.tf` / `.tf.json`
+source with no `terraform` run, and writes nothing:
+
+| `terradart-coverage` | `terradart-migrate` |
+|----------------------|---------------------|
+| `terradart-coverage` / `--dir <dir>` | `terradart-migrate --report` / `--report --dir <dir>` |
+| `--json` | `--report --json` |
+| "Supported" / "Not in catalog" per type | per type: blocks that translate, blocks kept in Terraform (each with its reason), `not in any catalog` |
+| "Not analyzed" (remote module) | "Not scanned" |
+| `terraform show -json` piped in | not supported: the report reads source. A `count` / `for_each` that is not a literal counts once |
+| `package:terradart_coverage` (`scanConfigDir`, `buildCoverageReport`) | `package:terradart_migrate` (`scanModuleTree`, `migrateTree`, `MigrationCoverage.of`) |
+
+A file that does not parse now stops the report with its error (exit 65),
+where `terradart-coverage` skipped it.
+
 ## 0.28.x → 0.29.0
 
 Two breaking changes, neither of which changes synthesized JSON: an import

@@ -14,7 +14,6 @@ workspace:
   - packages/terradart_cloudflare
   - packages/terradart_aws
   - packages/terradart_time
-  - packages/terradart_coverage
   - packages/terradart_hcl
   - packages/terradart_migrate
   - examples/agentic_applications_quickstart
