@@ -51,7 +51,7 @@ Full walkthroughs: [terradart.dev — terradart-mcp](https://terradart.dev/docs/
 | `list_resources` | Resources / data sources (optional `barrel` filter) |
 | `get_resource_schema` | Constructor params and nested types for one factory |
 | `get_quickstart` | Ready-made `Stack` template for a resource |
-| `check_coverage` | Coverage report for `terraform show -json` input, against all four provider catalogs |
+| `check_coverage` | Coverage report for `terraform show -json` input, against all five provider catalogs (google, google-beta, appwrite, cloudflare, aws) |
 | `migrate_module` | One Terraform module's text (HCL or `.tf.json`) → a `Stack`, a sidecar of what stays in Terraform, and a report |
 
 The catalog currently holds 1799 entries (1338 curated resource factories + 461 data sources) across 132 service barrels.

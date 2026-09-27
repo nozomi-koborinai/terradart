@@ -148,7 +148,7 @@ Each template is adapted from a CI-validated example in the repository, so the c
 
 ## `check_coverage`
 
-Returns a coverage report for an existing Terraform plan or state JSON. Pass the full output of `terraform show -json`; the tool reports how much of the config is already covered by curated `terradart_google` factories and which Terraform types are not in the catalog.
+Returns a coverage report for an existing Terraform plan or state JSON. Pass the full output of `terraform show -json`; the tool reports how much of the config is already covered by curated factories in any provider package (`terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws`) and which Terraform types are not in any catalog. Each supported type names the package that ships it.
 
 **Input** (required `tf_json`)
 

@@ -6,7 +6,7 @@ Thanks for taking time to look at this. terradart is an **alpha** single-maintai
 
 terradart ships one consumer surface:
 
-- **Curated factories** — the `google_*` factory wrappers in [`terradart_google`](packages/terradart_google/README.md) (**1338 curated resource factories + 461 data sources** as of 0.28.x) and the beta-only catalog in [`terradart_google_beta`](packages/terradart_google_beta/README.md) (**128 resource factories**). Bug fixes, tests, and doc improvements welcome. The GA catalog is filled; new beta-only types that appear after the current provider pin still land via `terradart wrap` overrides — open an issue first to discuss scope.
+- **Curated factories** — the `google_*` factory wrappers in [`terradart_google`](packages/terradart_google/README.md) (**1338 curated resource factories + 461 data sources** as of 0.28.x) and the beta-only catalog in [`terradart_google_beta`](packages/terradart_google_beta/README.md) (**128 resource factories**), plus the filled catalogs of [`terradart_appwrite`](packages/terradart_appwrite/README.md), [`terradart_cloudflare`](packages/terradart_cloudflare/README.md), and [`terradart_aws`](packages/terradart_aws/README.md). Bug fixes, tests, and doc improvements welcome. The GA catalog is filled; new beta-only types that appear after the current provider pin still land via `terradart wrap` overrides — open an issue first to discuss scope.
 
 Within a **minor** line (`^0.28.x`), no breaking public API changes. Across **minors**, breaking changes are allowed with `MIGRATING.md` coverage (the alpha change policy — see [status](https://terradart.dev/docs/status/)).
 
