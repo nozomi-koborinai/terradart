@@ -12,8 +12,8 @@
 //   dart tool/render_coverage_page.dart --check          # verify freshness
 //
 // --check exits 1 when the committed page differs from a fresh render (CI
-// runs it on the synth-equipped job; the weekly bump agent regenerates as a
-// Tier-2 repair when the catalog moved).
+// runs it on the synth-equipped job; a bump that moves the catalog needs
+// the page regenerated before it can merge).
 // ignore_for_file: avoid_print
 
 import 'dart:convert';

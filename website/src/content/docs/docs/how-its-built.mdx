@@ -96,24 +96,23 @@ routine work does not depend on the maintainer being present.
 <Mermaid
   code={`flowchart LR
   cron["Weekly schedule"] --> pr["Provider bump PR<br/>(opened automatically)"]
-  pr --> agent["Scheduled agent<br/>classifies · repairs · labels"]
-  agent -- "clean / mechanical" --> gate{"Mechanical gate<br/>path allow-list + full CI"}
-  agent -- "needs design judgment" --> human["Maintainer"]
-  gate -- "verified" --> merge["Merged — unattended"]
+  pr --> report{"Drift report<br/>new resources? breaking API?"}
+  report -- "routine" --> gate{"Full CI"}
+  report -- "needs design judgment" --> human["Maintainer"]
+  gate -- "green" --> merge["Auto-merged"]
   human --> merge`}
 />
 
 - **The update loop runs unattended.** Provider schema updates arrive as
-  automatic weekly pull requests; a scheduled agent triages each one; merging
-  is guarded by an independent mechanical gate (an allow-list of touchable
-  paths plus the full CI battery), not by anyone's availability. Routine
+  automatic weekly pull requests. A routine one — no new resources, no
+  breaking change to the generated Dart API — merges itself once the full CI
+  battery is green, without waiting on anyone's availability. Routine
   Google Cloud drift is absorbed on a cadence.
 - **The repository is deliberately maintainable by others — human or AI.** A
   single agent guide is the source of truth for how to work on the codebase;
   the ledgers make every standing decision explicit; determinism makes every
   regeneration verifiable. A successor does not need tribal knowledge, and
-  most routine maintenance is already performed by agents under the gates
-  above.
+  routine maintenance runs under the gates above.
 - **Lock-in is shallow by design.** The output is standard Terraform JSON. If
   the project stopped tomorrow, your existing configurations would keep
   working with plain `terraform apply` — and migrating away is a file-format

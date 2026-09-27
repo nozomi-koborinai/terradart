@@ -1,5 +1,13 @@
 name: schema-bump
 
+# Weekly provider schema / MM YAML bump. Opens a chore/schema-bump-* PR whose
+# body is the drift report, and enables auto-merge (squash) on it when the
+# report finds nothing for a human: no new or removed resources, no breaking
+# change to the generated Dart API, clean regenerate and QA gates
+# (tool/generate_drift_report.dart autoMergeBlockers). Branch protection's
+# required checks still gate the merge. Any other bump waits for a
+# maintainer.
+
 on:
   schedule:
     # Weekly: Monday 07:00 JST (Sunday 22:00 UTC).
@@ -37,6 +45,9 @@ jobs:
 
       - name: Resolve workspace deps
         run: dart pub get
+
+      - name: Snapshot generated API surface (before)
+        run: dart tool/bump_api_surface.dart dump --out=/tmp/api_before.json
 
       - name: Read current provider version
         id: current_version
@@ -263,6 +274,19 @@ jobs:
             > /tmp/beta_bump.json
           cat /tmp/beta_bump.json
 
+      - name: Diff generated API surface
+        run: |
+          # Fail-soft: without api_diff.json the drift report blocks
+          # auto-merge ("not compared") instead of failing the bump.
+          set +e
+          dart tool/bump_api_surface.dart dump --out=/tmp/api_after.json \
+            && dart tool/bump_api_surface.dart diff \
+              --before=/tmp/api_before.json --after=/tmp/api_after.json \
+              --out=/tmp/api_diff.json
+          echo "Exit: $?"
+          [ -f /tmp/api_diff.json ] && cat /tmp/api_diff.json
+          exit 0
+
       - name: Run universal QA gates
         id: gates
         run: |
@@ -289,6 +313,9 @@ jobs:
           if [ -f /tmp/beta_bump.json ]; then
             cp /tmp/beta_bump.json /tmp/inputs/beta_bump.json
           fi
+          if [ -f /tmp/api_diff.json ]; then
+            cp /tmp/api_diff.json /tmp/inputs/api_diff.json
+          fi
           # Add bump_date to state.json for the report title.
           today=$(date -u +%Y-%m-%d)
           jq --arg d "$today" '. + {bump_date: $d}' /tmp/state.json \
@@ -300,7 +327,8 @@ jobs:
           mkdir -p .schema-bump
           dart tool/generate_drift_report.dart \
             --inputs-dir=/tmp/inputs \
-            --out=.schema-bump/drift_report.md
+            --out=.schema-bump/drift_report.md \
+            --decision-out=/tmp/auto_merge.json
 
       - name: Append new resources to curation backlog
         run: |
@@ -365,12 +393,16 @@ jobs:
             --description "Dependency / provider schema bumps" 2>/dev/null || true
           gh label create schema-bump --color D4C5F9 \
             --description "Weekly provider schema / MM bump automation" 2>/dev/null || true
-          # The Monday agent's verdict labels, which bump-merge keys on.
-          gh label create bump-approved --color 0E8A16 \
-            --description "Post-process agent verdict: bump PR verified, executor may merge" 2>/dev/null || true
-          gh label create bump-escalated --color B60205 \
-            --description "Post-process agent verdict: needs maintainer design judgment" 2>/dev/null || true
-          gh pr create \
+          url=$(gh pr create \
             --title "chore(schema): weekly bump $today" \
             --body-file .schema-bump/drift_report.md \
-            --label dependencies --label schema-bump
+            --label dependencies --label schema-bump)
+          echo "$url"
+          if [ "$(jq -r '.auto_merge' /tmp/auto_merge.json)" = "true" ]; then
+            # Needs the repository's "Allow auto-merge" setting; without it
+            # the PR simply waits for a maintainer.
+            gh pr merge "$url" --auto --squash \
+              || echo "::warning::could not enable auto-merge on $url; merge it by hand."
+          else
+            echo "Auto-merge not enabled: $(jq -r '.blockers | join("; ")' /tmp/auto_merge.json)"
+          fi
