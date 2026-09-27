@@ -1,6 +1,6 @@
 # Agent Guide
 
-This file is the shared source of truth for coding agents working on TerraDart. Tool-specific files such as `CLAUDE.md` or `.cursor/rules/*` should point back here instead of duplicating policy.
+This file is the shared source of truth for coding agents working on TerraDart. Tool-specific files such as `.cursor/rules/*` should point back here instead of duplicating policy.
 
 ## Current phase — maintenance + path to beta
 
@@ -162,14 +162,14 @@ tool/agent_verify.sh --quick        # iteration loop: static + unit gates only
 tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 ```
 
-### Agent guardrails (Cursor + Claude Code)
+### Agent guardrails (Cursor)
 
 Cursor sessions (including Cursor Cloud Agent) get hooks from `.cursor/hooks.json`:
 
 - `afterFileEdit` — `dart format` on the packages the CI format step checks, plus `tool/` and `examples/` (never the provider packages, whose wrappers keep `terradart wrap`'s format).
 - `preToolUse` (`Write|Edit`) — blocks direct edits to generated wrappers, the migration manifests, wrap goldens, and `.github/workflows/`.
 
-Claude Code sessions get the symmetric guardrails from the committed `.claude/settings.json`: `Edit`/`Write` are **denied** on generated wrappers (`terradart_google/lib/src` and the beta / appwrite / cloudflare / aws equivalents), the migration manifests (`terradart_migrate/lib/src/manifest/*.g.dart`) and wrap goldens (`fixtures/wrap/expected_output`), and require **explicit confirmation** on `.github/workflows/`. Regenerate via `terradart wrap`; refresh goldens through the maintainer flow, not in-place edits.
+Regenerate via `terradart wrap`; refresh goldens through the maintainer flow, not in-place edits.
 
 Run `tool/agent_verify.sh` explicitly before claiming work is done (all agents, cloud and local).
 
@@ -207,7 +207,7 @@ dart tool/wrap_lanes.dart --lane aws --gate wrap  # wrap --check for one tool/pr
 
 ## Cloud Agent Runbooks
 
-Cloud agents such as Devin, Cursor Cloud Agent, and Claude Code on the Web should prefer checked-in scripts, provided inputs, and CI gates over local notes, hidden prompts, ad hoc downloads, or machine-local Terraform/GCP state.
+Cloud agents such as Devin and Cursor Cloud Agent should prefer checked-in scripts, provided inputs, and CI gates over local notes, hidden prompts, ad hoc downloads, or machine-local Terraform/GCP state.
 
 ### Add Or Update A Curated Google Resource
 
