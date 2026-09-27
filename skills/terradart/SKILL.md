@@ -80,4 +80,4 @@ brew install nozomi-koborinai/tap/terradart-migrate
 terradart-migrate --dir infra --out infra_dart
 ```
 
-See [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/). To see how much of a plan TerraDart already covers, use `terradart-coverage` (`brew install nozomi-koborinai/tap/terradart-coverage`).
+See [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/). To see how much of a tree translates before writing anything, run `terradart-migrate --report --dir infra`: every resource type with how many blocks translate, how many stay in Terraform and why.
