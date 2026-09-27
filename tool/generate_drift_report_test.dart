@@ -6,7 +6,15 @@ import 'package:test/test.dart';
 
 import 'generate_drift_report.dart';
 
-ReportInputs inputs({Map<String, dynamic>? betaBump}) => ReportInputs(
+const _noBreaks = <String, dynamic>{'breaking': <String>[], 'added': 0};
+
+ReportInputs inputs({
+  Map<String, dynamic>? betaBump,
+  Map<String, dynamic>? apiDiff = _noBreaks,
+  List<String> added = const [],
+  int wrapCheckExitCode = 0,
+}) =>
+    ReportInputs(
       state: {
         'bump_date': '2026-08-24',
         'v7_current': '7.44.0',
@@ -15,15 +23,16 @@ ReportInputs inputs({Map<String, dynamic>? betaBump}) => ReportInputs(
         'v8_available': false,
       },
       wrapCheckStdout: 'clean',
-      wrapCheckExitCode: 0,
+      wrapCheckExitCode: wrapCheckExitCode,
       gatesStdout: 'ok',
       gatesExitCode: 0,
       mmYamlSync: {'changed': <String>[], 'failed': <String>[]},
       schemaDiff: {
-        'added_resources': <String>[],
+        'added_resources': added,
         'removed_resources': <String>[],
       },
       betaBump: betaBump,
+      apiDiff: apiDiff,
     );
 
 void main() {
@@ -83,5 +92,59 @@ void main() {
     expect(section, contains('divergence (exit 1)'));
     expect(section, contains('MISMATCH'));
     expect(betaSummaryRow(i), contains('⚠️'));
+  });
+
+  test('routine bump: auto-merge enabled', () {
+    expect(autoMergeBlockers(inputs()), isEmpty);
+    expect(buildReport(inputs()), contains('## ✅ Auto-merge enabled'));
+    expect(
+      buildApiSection(inputs()),
+      contains('no breaking change; 0 entries added'),
+    );
+  });
+
+  test('new resources block auto-merge', () {
+    final i = inputs(added: ['google_foo']);
+    expect(autoMergeBlockers(i), [
+      '1 new resource(s) for the curation backlog',
+    ]);
+    expect(buildReport(i), contains('## ✋ Needs a maintainer'));
+  });
+
+  test('a breaking API change blocks auto-merge and is listed', () {
+    final i = inputs(
+      apiDiff: {
+        'breaking': ['removed slot:terradart_google:GooglePubsubTopic.name'],
+        'added': 2,
+      },
+    );
+    expect(autoMergeBlockers(i), ['1 breaking API change(s)']);
+    expect(
+      buildApiSection(i),
+      contains('`removed slot:terradart_google:GooglePubsubTopic.name`'),
+    );
+  });
+
+  test('a missing API comparison blocks auto-merge', () {
+    expect(autoMergeBlockers(inputs(apiDiff: null)), [
+      'the generated API surface was not compared',
+    ]);
+  });
+
+  test('wrap divergence and a failed beta ride-along block auto-merge', () {
+    final i = inputs(
+      wrapCheckExitCode: 1,
+      betaBump: {
+        'previous_version': '7.44.0',
+        'version': '7.46.0',
+        'extract_exit': 69,
+        'wrap_check_exit': null,
+        'log_excerpt': '',
+      },
+    );
+    expect(autoMergeBlockers(i), [
+      '`terradart wrap --check` diverged',
+      'the google-beta ride-along failed',
+    ]);
   });
 }

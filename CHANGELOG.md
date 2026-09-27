@@ -29,6 +29,7 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- The weekly schema bump merges itself when it is routine. `schema-bump.yml` enables auto-merge (squash) on its PR when the drift report finds no new or removed resources, no breaking change to the generated Dart API (new `tool/bump_api_surface.dart`, which diffs the migration manifests before and after the regenerate), a clean regenerate and green QA gates; the required CI checks still gate the merge. The Monday post-process agent, its runbook, the `bump-merge.yml` executor, its scope ledger (`tool/bump_allowed_paths.yaml`, `tool/check_bump_scope.dart`) and the `bump-approved` / `bump-escalated` labels are gone. Any other bump waits for the maintainer.
 - **Breaking** — `TimeProvider` / `TimeSleep` move from `terradart_google`
   to `terradart_time`; `package:terradart_google/time.dart` is gone. Add
   `terradart_time` to your dependencies and import
