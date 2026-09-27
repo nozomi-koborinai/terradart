@@ -11,7 +11,7 @@ import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/filestore.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class FilestoreSnapshotStack extends Stack {
   FilestoreSnapshotStack({required String projectId})

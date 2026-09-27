@@ -16,7 +16,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/identity.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class IdentityPlatformStack extends Stack {
   IdentityPlatformStack({required String projectId})

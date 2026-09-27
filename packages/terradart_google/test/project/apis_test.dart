@@ -1,5 +1,5 @@
 import 'package:terradart_google/project.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 import 'package:test/test.dart';
 
 import '../_helpers.dart';

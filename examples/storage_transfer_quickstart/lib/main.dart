@@ -17,7 +17,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/storage.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 /// Transfer / inventory / ACL stack.
 final class StorageTransferStack extends Stack {

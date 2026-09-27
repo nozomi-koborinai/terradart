@@ -16,7 +16,7 @@ import 'package:terradart_google/dataform.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 /// Dataform stack: team folder + nested folder + repository with IAM.
 final class DataformStack extends Stack {

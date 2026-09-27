@@ -12,7 +12,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/os_config.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 /// Test PGP public key generated for this quickstart (not a production secret).
 const _quickstartPgpPublicKey = '''

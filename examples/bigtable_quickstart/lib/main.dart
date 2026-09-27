@@ -13,7 +13,7 @@ import 'package:terradart_google/bigtable.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 /// Cloud Bigtable stack for the applyable Wave 73 surface (schema bundle deferred).
 final class EventsStack extends Stack {

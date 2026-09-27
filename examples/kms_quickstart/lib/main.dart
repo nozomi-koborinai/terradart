@@ -25,7 +25,7 @@ import 'package:terradart_google/kms.dart';
 import 'package:terradart_google/contact.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class CryptoStack extends Stack {
   CryptoStack({required String projectId})

@@ -17,7 +17,7 @@ import 'package:terradart_google/endpoints.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 /// Dummy Swagger 2.0 whose `host` matches [serviceName].
 String _openapiConfig(String host) {

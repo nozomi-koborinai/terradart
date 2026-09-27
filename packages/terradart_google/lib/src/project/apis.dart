@@ -1,7 +1,7 @@
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_time/terradart_time.dart' show TimeSleep;
 
 import '../../catalog.dart';
-import '../time/time_sleep.dart';
 import 'barrels.dart';
 import 'google_project_service.dart';
 import 'terraform_api_requirements.dart';
@@ -81,7 +81,7 @@ abstract final class Apis {
   /// Validation happens before any resource is added to [stack]:
   /// - Throws [StateError] when propagation is enabled but [Stack.providers]
   ///   contains no `time` provider — add `const TimeProvider()` (from
-  ///   `package:terradart_google/time.dart`).
+  ///   `package:terradart_time/terradart_time.dart`).
   /// - Throws [ArgumentError] when [propagationDelay] is positive but not a
   ///   whole number of seconds.
   static List<ResourceDependency> enable(
@@ -111,7 +111,7 @@ abstract final class Apis {
           'has no `time` provider — synth would omit the hashicorp/time '
           'entry from required_providers and Terraform would fall back to '
           'an unpinned implied provider. Add `const TimeProvider()` (from '
-          'package:terradart_google/time.dart) to Stack.providers, or pass '
+          'package:terradart_time/terradart_time.dart) to Stack.providers, or pass '
           'propagationDelay: Duration.zero to skip the propagation sleep.',
         );
       }
