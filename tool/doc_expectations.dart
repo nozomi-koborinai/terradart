@@ -29,9 +29,9 @@ String get dataSourceCatalogPhrase =>
 String get curatedCatalogPhrase => '$curatedFactoryCount curated';
 String get catalogEntriesPhrase => '$catalogEntryCount catalog';
 
-/// The Homebrew install line of the migrator binary (#664): README, the
-/// package README and the website guide must all carry it.
-const migrateBrewPhrase = 'brew install nozomi-koborinai/tap/terradart-migrate';
+/// The pub.dev install line of the migrator: README, the package README and
+/// the website guide must all carry it.
+const migrateInstallPhrase = 'dart pub global activate terradart_migrate';
 
 class _CatalogCounts {
   const _CatalogCounts({

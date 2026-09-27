@@ -76,7 +76,7 @@ cd tf-out && terraform init -backend=false && terraform validate
 To translate an existing Terraform tree, run the migrator instead of rewriting it by hand:
 
 ```bash
-brew install nozomi-koborinai/tap/terradart-migrate
+dart pub global activate terradart_migrate
 terradart-migrate --dir infra --out infra_dart
 ```
 

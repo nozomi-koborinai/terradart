@@ -32,6 +32,11 @@ Per-package changelogs live alongside each package and are the system of record 
   Dart value, the source tree's cleanup — is an edit to your Stack, reviewed
   by `terraform plan`. `--merge-envs` and `--lift-workspace` stay. See
   `MIGRATING.md`.
+- **`terradart-migrate` release binaries and Homebrew formula** — the
+  migrator is published to pub.dev instead
+  (`dart pub global activate terradart_migrate`), with `terradart_hcl` as a
+  package of its own. `release-binary.yml`, `tool/render_formula.dart` and
+  `tool/render_to_file.dart` are removed. See `MIGRATING.md`.
 
 ## [0.29.0] - 2026-09-27
 

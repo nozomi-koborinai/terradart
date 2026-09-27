@@ -1,6 +1,6 @@
 # Release Checklist
 
-terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core`, `terradart_codegen`, `terradart_time`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare`, and `terradart_aws`. `terradart_migrate` is `publish_to: none` and ships as a Homebrew binary (`terradart-migrate`) via `release-binary.yml`, which also pushes its formula to `nozomi-koborinai/homebrew-tap`.
+terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); all share the same version. The pub.dev publish workflow (`publish.yml`) publishes the hosted packages in phases: `terradart_core` and `terradart_hcl`, `terradart_codegen`, `terradart_time`, `terradart_google`, `terradart_google_beta`, `terradart_appwrite`, `terradart_cloudflare`, `terradart_aws`, and last `terradart_migrate`, whose `terradart-migrate` executable users install with `dart pub global activate terradart_migrate`.
 
 ## Pre-flight (local)
 
@@ -109,5 +109,4 @@ If a phase succeeds for some packages but fails for the next (e.g. `publish-code
 - [ ] All 3 listings on pub.dev show the correct version
 - [ ] GitHub Release created (`gh release create v0.X.Y --notes ...`)
 - [ ] Verified publisher badge appears on all 3 pub.dev pages
-- [ ] `release-binary.yml` succeeded: the `terradart-migrate` binaries and their `.sha256` sidecars are attached to the GitHub Release, and the tap received the formula update
-- [ ] Binary install verified on a clean machine: `brew install nozomi-koborinai/tap/terradart-migrate && terradart-migrate --version`, then one real tree migrates and plans with *No changes* per [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/)
+- [ ] `terradart-migrate` install verified on a clean machine: `dart pub global activate terradart_migrate && terradart-migrate --version`, then one real tree migrates and plans with *No changes* per [Migrating from HCL](https://terradart.dev/docs/migrate-from-hcl/)

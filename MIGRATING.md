@@ -46,6 +46,19 @@ never null, and `rerunProject`, `writeRerun`, `rewriteInPlace` and their
 types are removed. The report JSON drops `allowTodo`, `planDiffers` and
 `todos`.
 
+### `terradart-migrate` moves from Homebrew to pub.dev
+
+The release binaries and the `nozomi-koborinai/tap/terradart-migrate` formula
+are gone; `terradart-migrate` is a pub.dev package now. Switch with:
+
+```sh
+brew uninstall terradart-migrate
+dart pub global activate terradart_migrate
+```
+
+The executable keeps its name and flags. It needs a Dart SDK on the machine,
+and `~/.pub-cache/bin` on your `PATH`.
+
 ## 0.28.x → 0.29.0
 
 Two breaking changes, neither of which changes synthesized JSON: an import
