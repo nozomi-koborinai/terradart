@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.29.0 - 2026-09-27
+
+Lockstep release. No `terradart_google_beta` API changes.
+
 ## 0.28.1 - 2026-09-13
 
 Lockstep release with `terradart_migrate` 0.28.1 (passthrough emission fix — a bare `Map` / `List` parameter no longer comes out as `TfArg.literal`). No `terradart_google_beta` API changes.

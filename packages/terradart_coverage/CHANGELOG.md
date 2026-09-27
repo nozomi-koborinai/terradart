@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.29.0 - 2026-09-27
 
+- `aws_*` types are matched against the `terradart_aws` catalog, so `terradart-coverage` now reports on five provider catalogs.
 - `time_sleep` counts as supported, by `TimeSleep` from `terradart_time` (`allCuratedFactories()` gains `timeSleepFactory`). It used to be reported as not in any catalog.
 
 ## 0.28.1 - 2026-09-13

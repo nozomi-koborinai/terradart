@@ -4,7 +4,9 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
-## Unreleased
+## [0.29.0] - 2026-09-27
+
+Lockstep release across the workspace, with two new published packages: `terradart_aws` and `terradart_time`. **Breaking** — `TimeProvider` / `TimeSleep` move from `terradart_google` to `terradart_time` (an import change), and `terradart-mcp` is retired in favour of the TerraDart Agent Skill. See [MIGRATING.md](MIGRATING.md).
 
 ### Added
 
@@ -12,7 +14,10 @@ Per-package changelogs live alongside each package and are the system of record 
   `6.66.0` pin (**1725 resource factories + 683 data sources**).
   Coverage via [`aws_lambda_quickstart`](examples/aws_lambda_quickstart/)
   and [`aws_leftover_quickstart`](examples/aws_leftover_quickstart/)
-  (synth + `terraform validate`).
+  (synth + `terraform validate`). `terradart-migrate` translates `aws_*`
+  blocks and the `provider "aws"` settings into it (credential arguments are
+  dropped, never written into Dart), and `terradart-coverage` matches
+  against its catalog. Guide: [Dart apps on AWS](https://terradart.dev/docs/aws/).
 - **Examples** — [`aws_static_site_quickstart`](examples/aws_static_site_quickstart/)
   hosts a Flutter Web build on a private S3 bucket behind CloudFront, on a
   custom domain with an ACM certificate validated through Route 53, and
@@ -22,6 +27,13 @@ Per-package changelogs live alongside each package and are the system of record 
 - New package **`terradart_time`** — `TimeProvider` / `TimeSleep`
   (`hashicorp/time`), so a stack on any provider package can use the
   propagation wait without depending on `terradart_google`.
+- **`terradart_google`** — `GoogleChronicleSoarNetwork`
+  (`google_chronicle_soar_network`), covered by the gated
+  [`chronicle_quickstart`](examples/chronicle_quickstart/). The catalog is
+  now **1338 curated resource factories + 461 data sources** (1799 entries).
+- **`terradart_codegen`** — the `dedupeNestedTypes: true` override axis: nested
+  blocks with an identical shape inside one resource share one helper class.
+  The six depth-14 wafv2 / quicksight resources in `terradart_aws` use it.
 
 ### Removed
 
@@ -41,6 +53,8 @@ Per-package changelogs live alongside each package and are the system of record 
   Cloudflare module no longer pulls in `terradart_google`.
 - A reason that only matters at apply time (billing, entitlements, an organization, undeletable resources) is no longer a reason to skip an example. Such factories ship in gated examples, and the `tool/example_debt.yaml` entries that cited those reasons are payable.
 - The CI job `apply_smoke.sh selection test` is now `example gates (synth, topology, coverage page)`; `ci gate` remains the single required check.
+- The wrap and lint lanes are driven from `tool/providers.yaml`, and the shared lint ledgers (`tool/exactly_one_lint_debt.yaml`, `tool/migrate_manifest_debt.yaml`) are read by every lane; an entry that names an override in no lane fails.
+- Weekly schema bumps 2026-09-13 and 2026-09-20 (Magic Modules YAML; `hashicorp/google` stays at `7.46.1`): generated doc comments only, no Dart API changes.
 
 ## [0.28.1] - 2026-09-13
 
