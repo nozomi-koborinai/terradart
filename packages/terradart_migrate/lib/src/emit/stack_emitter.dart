@@ -13,6 +13,8 @@ import 'package:terradart_google/provider.dart' show kProviderVersionConstraint;
 import 'package:terradart_google_beta/provider.dart'
     show kBetaProviderVersionConstraint;
 import 'package:terradart_hcl/terradart_hcl.dart';
+import 'package:terradart_time/terradart_time.dart'
+    show kTimeProviderVersionConstraint;
 
 import '../migrate_manifest.dart';
 import '../report.dart';
@@ -262,13 +264,12 @@ const _providerRecipes = <String, _ProviderRecipe>{
     'use_fips_endpoint': _Scalar('useFipsEndpoint'),
     'use_dualstack_endpoint': _Scalar('useDualstackEndpoint'),
   }, kAwsProviderVersionConstraint),
-  // Hand-written in terradart_google next to TimeSleep (`time.dart`).
   'time': _ProviderRecipe(
-    'terradart_google',
+    'terradart_time',
     'TimeProvider',
     {},
-    '~> 0.12',
-    barrel: 'time',
+    kTimeProviderVersionConstraint,
+    barrel: 'terradart_time',
   ),
 };
 

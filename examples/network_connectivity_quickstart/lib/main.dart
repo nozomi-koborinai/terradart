@@ -6,7 +6,7 @@ import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class NetworkConnectivityStack extends Stack {
   NetworkConnectivityStack({required String projectId})

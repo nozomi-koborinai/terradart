@@ -11,7 +11,7 @@ import 'package:terradart_google/dataproc.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class DataprocMetastoreStack extends Stack {
   DataprocMetastoreStack({required String projectId})

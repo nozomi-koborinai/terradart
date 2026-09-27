@@ -40,6 +40,7 @@ Future<void> main() async {
     mustContain: [curatedCatalogPhrase],
   );
   _checkCaretMinor(errors, minor, 'packages/terradart_codegen/README.md');
+  _checkCaretMinor(errors, minor, 'packages/terradart_time/README.md');
   _checkCaretMinor(
     errors,
     minor,

@@ -42,7 +42,7 @@ import 'package:terradart_google/memcache.dart';
 import 'package:terradart_google/redis.dart';
 import 'package:terradart_google/secret_manager.dart';
 import 'package:terradart_google/service_networking.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class ApiServiceStack extends Stack {
   ApiServiceStack({required String projectId})

@@ -19,7 +19,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/integrations.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 /// Application Integration stack: regional client + dummy auth config.
 final class IntegrationsStack extends Stack {

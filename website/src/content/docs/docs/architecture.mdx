@@ -69,6 +69,8 @@ TerraDart supports multiple official Terraform providers with curated, typed Dar
 - **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — official `cloudflare/cloudflare` provider resources (filled at `5.23.0`: 257 resource factories + 446 data sources; nested plugin-framework objects are typed Dart helpers).
 - **[`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws)** — HashiCorp [`aws`](https://registry.terraform.io/providers/hashicorp/aws/latest) provider resources (filled at `6.66.0`: 1725 resource factories + 683 data sources; not on pub.dev yet). See [Dart apps on AWS](/docs/aws/).
 
+**[`terradart_time`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_time)** is a hand-written utility package beside them: `TimeProvider` / `TimeSleep` for HashiCorp [`time`](https://registry.terraform.io/providers/hashicorp/time/latest), usable from a stack on any of the provider packages (not on pub.dev yet).
+
 For the Google provider, TerraDart depends on upstream sources reconciled automatically on a weekly cadence:
 
 ```mermaid

@@ -20,7 +20,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 /// NCC hub stack: hub, group, VPC spoke, internal range, regional endpoint,
 /// policy-based route, IAM.

@@ -21,7 +21,7 @@ hook_is_handwritten_dart() {
   case "$rel" in
     packages/terradart_core/* | packages/terradart_codegen/*) return 0 ;;
     packages/terradart_coverage/* | packages/terradart_hcl/*) return 0 ;;
-    packages/terradart_migrate/*) return 0 ;;
+    packages/terradart_migrate/* | packages/terradart_time/*) return 0 ;;
     tool/* | examples/*) return 0 ;;
     *) return 1 ;;
   esac
@@ -32,7 +32,7 @@ hook_is_protected_write_path() {
   # Only the GENERATED surface is protected: per-service wrappers
   # (lib/src/<service>/google_*.dart), the catalog and the migration
   # manifests (terradart_migrate/lib/src/manifest/*.g.dart). Hand-written files
-  # under lib/src (google_provider.dart, _provider_meta.dart, time/,
+  # under lib/src (google_provider.dart, _provider_meta.dart,
   # firestore_fields.dart, project/apis.dart, ...) stay editable — the
   # earlier lib/src/* blanket wrongly blocked them.
   case "$rel" in

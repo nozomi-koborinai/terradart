@@ -19,7 +19,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_remote_config.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class RemoteConfigStack extends Stack {
   RemoteConfigStack({required String projectId})

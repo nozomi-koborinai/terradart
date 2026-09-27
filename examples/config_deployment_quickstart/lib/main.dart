@@ -8,7 +8,7 @@ import 'package:terradart_google/config.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class ConfigDeploymentStack extends Stack {
   ConfigDeploymentStack({required String projectId})

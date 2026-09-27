@@ -1,19 +1,18 @@
-/// Hand-written manifest entries for factories that `terradart wrap` does
-/// not generate — today the `time` helpers `terradart_google` ships next to
-/// its catalog (`package:terradart_google/time.dart`).
+/// Hand-written manifest for `terradart_time`, the one provider package
+/// `terradart wrap` does not generate.
 library;
 
 import '../migrate_manifest.dart';
 
 /// `TimeSleep` (`time_sleep`), the API-propagation wait every quickstart
 /// uses. Its provider, `TimeProvider`, is a provider recipe in the emitter.
-const MigrateManifest googleExtrasMigrateManifest = MigrateManifest(
-  package: 'terradart_google',
+const MigrateManifest timeMigrateManifest = MigrateManifest(
+  package: 'terradart_time',
   entries: <MigrateEntry>[
     MigrateEntry(
       tfType: 'time_sleep',
       className: 'TimeSleep',
-      barrel: 'time',
+      barrel: 'terradart_time',
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(

@@ -7,10 +7,10 @@
 # an entry here plus its directories: tool/wrap_lanes.dart reads every
 # entry and runs `terradart wrap --check` and `terradart lint-override`
 # for it, and both tool/agent_verify.sh and the CI wrap_check /
-# override_gates jobs run that script. The regeneration invocations (GA
-# google + the google-beta ride-along in .github/workflows/schema-bump.yml,
-# .github/workflows/regenerate.yml) still spell their coordinates out and
-# must move in step with an entry here.
+# override_gates jobs run that script. The regeneration invocations in
+# .github/workflows/schema-bump.yml (GA google + the google-beta
+# ride-along) still spell their coordinates out and must move in step with
+# an entry here.
 #
 # Fields:
 #   source:          terraform registry source (NAMESPACE/NAME)

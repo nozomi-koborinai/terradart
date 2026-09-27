@@ -19,6 +19,9 @@ Per-package changelogs live alongside each package and are the system of record 
   [`aws_ecs_express_quickstart`](examples/aws_ecs_express_quickstart/) runs a
   Dart server on ECS Express Mode from an ECR image. Both are gated examples
   (`## Before you apply`); CI runs synth + `terraform validate` only.
+- New package **`terradart_time`** — `TimeProvider` / `TimeSleep`
+  (`hashicorp/time`), so a stack on any provider package can use the
+  propagation wait without depending on `terradart_google`.
 
 ### Removed
 
@@ -27,6 +30,13 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **Breaking** — `TimeProvider` / `TimeSleep` move from `terradart_google`
+  to `terradart_time`; `package:terradart_google/time.dart` is gone. Add
+  `terradart_time` to your dependencies and import
+  `package:terradart_time/terradart_time.dart` (see
+  [MIGRATING.md](MIGRATING.md)). `terradart-migrate` now emits that import
+  and a `terradart_time` dependency for `time_sleep`, so a migrated AWS or
+  Cloudflare module no longer pulls in `terradart_google`.
 - A reason that only matters at apply time (billing, entitlements, an organization, undeletable resources) is no longer a reason to skip an example. Such factories ship in gated examples, and the `tool/example_debt.yaml` entries that cited those reasons are payable.
 - The CI job `apply_smoke.sh selection test` is now `example gates (synth, topology, coverage page)`; `ci gate` remains the single required check.
 

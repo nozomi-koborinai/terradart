@@ -11,7 +11,7 @@ import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/storage_control.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 
 final class OrgLeftoverStack extends Stack {
   OrgLeftoverStack({required String projectId})

@@ -1,8 +1,10 @@
 import 'package:terradart_core/terradart_core.dart';
-import 'package:terradart_google/time.dart';
+import 'package:terradart_time/terradart_time.dart';
 import 'package:test/test.dart';
 
-import '../_helpers.dart';
+final class TestStack extends Stack {
+  TestStack({super.providers = const []});
+}
 
 void main() {
   group('TimeSleep', () {

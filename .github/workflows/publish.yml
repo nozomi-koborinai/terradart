@@ -29,8 +29,10 @@ env:
 # on pub.dev.
 #
 # Phase 1 publishes the two no-deps packages in parallel.
-# Phase 2 waits for pub.dev's index to catch up, then publishes terradart_codegen.
-# Phase 3 waits again, then publishes terradart_google.
+# Phase 2 waits for pub.dev's index to catch up, then publishes terradart_codegen
+# and, in a parallel job, terradart_time (depends only on terradart_core).
+# Phase 3 waits again, then publishes terradart_google, which depends on
+# terradart_time for Apis.enable's propagation wait.
 # Phase 4 publishes terradart_google_beta (depends only on terradart_core,
 # which has been indexed since Phase 2's wait — no extra sleep needed).
 # Phase 5 publishes terradart_appwrite (same shape and rationale).
@@ -127,14 +129,55 @@ jobs:
         run: dart pub publish --force
         working-directory: packages/terradart_codegen
 
-  publish-google:
-    name: publish terradart_google
-    needs: publish-codegen
+  publish-time:
+    name: publish terradart_time
+    needs: publish-no-deps
     runs-on: ubuntu-latest
     steps:
       - name: Wait for pub.dev index propagation
         run: |
-          echo "Waiting 5 minutes for pub.dev to index terradart_codegen + terradart_core before publishing terradart_google..."
+          echo "Waiting 5 minutes for pub.dev to index terradart_core before publishing terradart_time..."
+          sleep 300
+
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
+          echo "a2c097180dd884a8d50c956ee16a9cec070f30a7947cf4ebf87d5f36213e9ed7  /usr/local/bin/yq" | sha256sum -c -
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
+      - run: dart pub get
+
+      - name: Pre-publish pubspec mutations
+        run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_time
+
+      - name: Check if already on pub.dev
+        id: pub
+        run: |
+          TAG="${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}"
+          VERSION="${TAG#v}"
+          if tool/skip_if_published.sh terradart_time "$VERSION"; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to pub.dev
+        if: steps.pub.outputs.skip != 'true'
+        run: dart pub publish --force
+        working-directory: packages/terradart_time
+
+  publish-google:
+    name: publish terradart_google
+    needs: [publish-codegen, publish-time]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for pub.dev index propagation
+        run: |
+          echo "Waiting 5 minutes for pub.dev to index terradart_codegen + terradart_time + terradart_core before publishing terradart_google..."
           sleep 300
 
       - uses: actions/checkout@v6
