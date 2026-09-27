@@ -12,25 +12,19 @@ hook_rel_path() {
   fi
 }
 
-# SDK dart format applies (not terradart_google generated wrappers).
+# SDK dart format applies: the packages the CI format step checks, plus
+# tool/ and examples/. Provider packages are left out because their
+# wrappers keep the format of wrap's pinned dart_style.
 hook_is_handwritten_dart() {
   local rel="$1"
   [[ "$rel" == *.dart ]] || return 1
-  [[ "$rel" == packages/terradart_google/lib/src/* ]] && return 1
-  [[ "$rel" == packages/terradart_google_beta/lib/src/*/google_*.dart ]] && return 1
-  [[ "$rel" == packages/terradart_google_beta/lib/src/_catalog.g.dart ]] && return 1
-  [[ "$rel" == packages/terradart_appwrite/lib/src/*/appwrite_*.dart ]] && return 1
-  [[ "$rel" == packages/terradart_appwrite/lib/src/_catalog.g.dart ]] && return 1
-  [[ "$rel" == packages/terradart_cloudflare/lib/src/*/cloudflare_*.dart ]] && return 1
-  [[ "$rel" == packages/terradart_cloudflare/lib/src/_catalog.g.dart ]] && return 1
-  [[ "$rel" == packages/terradart_aws/lib/src/*/aws_*.dart ]] && return 1
-  [[ "$rel" == packages/terradart_aws/lib/src/_catalog.g.dart ]] && return 1
-  [[ "$rel" == packages/terradart_core/* ]] && return 0
-  [[ "$rel" == packages/terradart_codegen/* ]] && return 0
-  [[ "$rel" == packages/terradart_agent/* ]] && return 0
-  [[ "$rel" == tool/* ]] && return 0
-  [[ "$rel" == examples/* ]] && return 0
-  return 1
+  case "$rel" in
+    packages/terradart_core/* | packages/terradart_codegen/*) return 0 ;;
+    packages/terradart_agent/* | packages/terradart_coverage/*) return 0 ;;
+    packages/terradart_hcl/* | packages/terradart_migrate/*) return 0 ;;
+    tool/* | examples/*) return 0 ;;
+    *) return 1 ;;
+  esac
 }
 
 hook_is_protected_write_path() {

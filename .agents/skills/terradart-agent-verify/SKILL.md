@@ -33,7 +33,6 @@ Policy and pitfalls live in [`AGENTS.md`](../../../AGENTS.md) at the repo root. 
 ## Optional flags
 
 ```bash
-tool/agent_verify.sh --format       # scoped dart format (hand-written packages)
 tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 ```
 
