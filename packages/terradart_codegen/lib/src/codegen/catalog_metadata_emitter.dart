@@ -51,8 +51,8 @@ class CatalogEntryData {
 /// Renders the static `const List<CatalogEntry> terradartCatalog` that lands
 /// in `packages/terradart_google/lib/src/_catalog.g.dart`.
 ///
-/// The compiled `terradart-coverage` binary cannot use `dart:mirrors`, so the
-/// curated factory catalog is generated statically by `terradart wrap` (one
+/// A compiled Dart executable cannot use `dart:mirrors`, so the curated
+/// factory catalog is generated statically by `terradart wrap` (one
 /// [CatalogEntry] per curated resource + data source) and consumed at runtime
 /// via each provider package's `catalog.dart` barrel.
 ///

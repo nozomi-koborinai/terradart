@@ -17,12 +17,6 @@ typedef BinaryTool = ({
 /// Keep in sync with the `tool` matrix of `.github/workflows/release-binary.yml`
 /// (`render_to_file_test.dart` checks that).
 const tools = <String, BinaryTool>{
-  'coverage': (
-    className: 'TerradartCoverage',
-    binName: 'terradart-coverage',
-    desc: 'Terraform coverage checker for TerraDart',
-    testCmd: '--help',
-  ),
   'migrate': (
     className: 'TerradartMigrate',
     binName: 'terradart-migrate',

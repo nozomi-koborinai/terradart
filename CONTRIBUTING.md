@@ -43,7 +43,6 @@ tool/smoke_quickstart.sh
 dart format --output=none --set-exit-if-changed \
   packages/terradart_core/ \
   packages/terradart_codegen/ \
-  packages/terradart_coverage/ \
   packages/terradart_hcl/ \
   packages/terradart_migrate/ \
   packages/terradart_time/

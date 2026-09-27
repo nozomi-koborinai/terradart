@@ -2,7 +2,7 @@
 
 All notable changes to terradart are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
+Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
 ## Unreleased
 
@@ -16,6 +16,15 @@ Per-package changelogs live alongside each package and are the system of record 
   which only asks whether a type is in a catalog, it reports whether each
   block actually translates. The `config_tree/` and `real_plan_src/` fixtures
   move from `terradart_coverage` to `terradart_migrate/test/fixtures/`.
+
+### Removed
+
+- **`terradart-coverage` (`packages/terradart_coverage`)** — the coverage
+  CLI, its release binaries and its Homebrew formula. With every provider
+  catalog filled, "does this type have a factory" is nearly always yes;
+  `terradart-migrate --report` answers the question that matters, whether
+  each block translates, from the same `.tf` / `.tf.json` source. The
+  `terraform show -json` input goes with it. See `MIGRATING.md`.
 
 ## [0.29.0] - 2026-09-27
 

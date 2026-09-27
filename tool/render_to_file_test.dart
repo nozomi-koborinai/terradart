@@ -34,16 +34,16 @@ void main() {
   });
 
   test('assetUrl includes v-prefix tag segment', () {
-    final url = rif.assetUrl('1.0.0', 'terradart-coverage-linux-amd64');
+    final url = rif.assetUrl('1.0.0', 'terradart-migrate-linux-amd64');
     expect(url, contains('/download/v1.0.0/'));
-    expect(url, endsWith('terradart-coverage-linux-amd64'));
+    expect(url, endsWith('terradart-migrate-linux-amd64'));
   });
 
   test('readSha strips trailing whitespace from digest', () {
-    final sidecar = File(p.join(tmpDir.path, 'terradart-coverage-linux-amd64.sha256'));
+    final sidecar = File(p.join(tmpDir.path, 'terradart-migrate-linux-amd64.sha256'));
     sidecar.writeAsStringSync('  abc123  \n');
 
-    final sha = rif.readSha(tmpDir.path, 'terradart-coverage-linux-amd64');
+    final sha = rif.readSha(tmpDir.path, 'terradart-migrate-linux-amd64');
     expect(sha, equals('abc123'));
   });
 
@@ -55,7 +55,7 @@ void main() {
       }
     }
     final formulas = rif.renderFormulas(version: '0.28.0', shaDir: tmpDir.path);
-    expect(formulas.keys, unorderedEquals(['coverage', 'migrate']));
+    expect(formulas.keys, unorderedEquals(['migrate']));
 
     final migrate = formulas['migrate']!;
     expect(migrate, contains('class TerradartMigrate < Formula'));
@@ -72,9 +72,6 @@ void main() {
       contains('bin.install "terradart-migrate-darwin-amd64" => "terradart-migrate"'),
     );
     expect(migrate, contains('shell_output("#{bin}/terradart-migrate --version")'));
-    expect(migrate, isNot(contains('terradart-coverage')));
-
-    expect(formulas['coverage'], contains('shell_output("#{bin}/terradart-coverage --help")'));
   });
 
   test('renderFormulas fails on a missing sha256 sidecar', () {
