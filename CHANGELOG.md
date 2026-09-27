@@ -26,19 +26,6 @@ Per-package changelogs live alongside each package and are the system of record 
   each block translates, from the same `.tf` / `.tf.json` source. The
   `terraform show -json` input goes with it. See `MIGRATING.md`.
 
-## Unreleased
-
-### Added
-
-- **`terradart-migrate --report`** — runs the migration in memory and writes
-  nothing: every `resource` / `data` type of the tree with how many blocks
-  translate, how many stay in Terraform (each with its reason), the factory
-  it maps to or `not in any catalog`, and the `module` calls whose source is
-  outside the tree. `--json` prints it as JSON. Unlike `terradart-coverage`,
-  which only asks whether a type is in a catalog, it reports whether each
-  block actually translates. The `config_tree/` and `real_plan_src/` fixtures
-  move from `terradart_coverage` to `terradart_migrate/test/fixtures/`.
-
 ## [0.29.0] - 2026-09-27
 
 Lockstep release across the workspace, with two new published packages: `terradart_aws` and `terradart_time`. **Breaking** — `TimeProvider` / `TimeSleep` move from `terradart_google` to `terradart_time` (an import change), and `terradart-mcp` is retired in favour of the TerraDart Agent Skill. See [MIGRATING.md](MIGRATING.md).
