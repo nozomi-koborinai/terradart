@@ -1,6 +1,6 @@
 # Migration report
 
-`terradart-migrate {{version}}` migrated `../terradart_coverage/test/fixtures/real_plan_src` into the Dart package `real_plan_src`: 2 module directories, 12 blocks became Dart, 1 stays in Terraform (listed below, each with its reason).
+`terradart-migrate {{version}}` migrated `test/fixtures/real_plan_src` into the Dart package `real_plan_src`: 2 module directories, 12 blocks became Dart, 1 stays in Terraform (listed below, each with its reason).
 
 ## Next steps
 

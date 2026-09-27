@@ -8,6 +8,7 @@ import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
 import 'package:terradart_hcl/terradart_hcl.dart' show HclParseException;
 
+import 'coverage.dart';
 import 'in_place.dart';
 import 'project.dart';
 import 'rerun.dart';
@@ -61,17 +62,28 @@ Future<int> runMigrateCli(
   }
   final updateArg = args['update'] as String?;
   if (updateArg != null) {
-    if (args['dir'] != null || args['out'] != null) {
+    if (args['dir'] != null || args['out'] != null || args['report'] as bool) {
       e
         ..writeln(
           'terradart-migrate: --update reads and writes one package; it '
-          'takes neither --dir nor --out',
+          'takes neither --dir, --out nor --report',
         )
         ..writeln()
         ..writeln(_usage(parser));
       return MigrateExitCodes.usage;
     }
     return _runUpdate(updateArg, o, e, json: args['json'] as bool);
+  }
+  final report = args['report'] as bool;
+  if (report && (args['out'] != null || args['in-place'] as bool)) {
+    e
+      ..writeln(
+        'terradart-migrate: --report writes nothing; it takes neither --out '
+        'nor --in-place',
+      )
+      ..writeln()
+      ..writeln(_usage(parser));
+    return MigrateExitCodes.usage;
   }
   final inlineLocals = args['inline-locals'] as bool;
   if (inlineLocals && args['merge-envs'] as bool) {
@@ -88,9 +100,9 @@ Future<int> runMigrateCli(
       ..writeln(_usage(parser));
     return MigrateExitCodes.usage;
   }
-  final dirArg = args['dir'] as String?;
+  final dirArg = args['dir'] as String? ?? (report ? '.' : null);
   final outArg = args['out'] as String?;
-  if (dirArg == null || outArg == null) {
+  if (dirArg == null || (outArg == null && !report)) {
     e
       ..writeln('terradart-migrate: --dir and --out are required')
       ..writeln()
@@ -112,9 +124,12 @@ Future<int> runMigrateCli(
       return MigrateExitCodes.cannotCreate;
     }
   }
-  final outDir = Directory(outArg);
+  final outDir = report ? null : Directory(outArg!);
   final force = args['force'] as bool;
-  if (!force && outDir.existsSync() && outDir.listSync().isNotEmpty) {
+  if (outDir != null &&
+      !force &&
+      outDir.existsSync() &&
+      outDir.listSync().isNotEmpty) {
     e.writeln(
       'terradart-migrate: --out "$outArg" exists and is not empty; pass '
       '--force to write into it (only the files the migrator generates are '
@@ -152,12 +167,22 @@ Future<int> runMigrateCli(
       mergeEnvs: args['merge-envs'] as bool,
       liftWorkspace: args['lift-workspace'] as bool,
       inlineLocals: inlineLocals,
+      format: !report,
     );
   } on Object catch (x, st) {
     e
       ..writeln('terradart-migrate: internal error: $x')
       ..writeln(st);
     return MigrateExitCodes.software;
+  }
+  if (outDir == null) {
+    final coverage = MigrationCoverage.of(project);
+    o.write(
+      args['json'] as bool
+          ? '${coverage.renderJson()}\n'
+          : coverage.renderText(),
+    );
+    return MigrateExitCodes.success;
   }
   try {
     writeProject(project, outDir);
@@ -183,7 +208,7 @@ Future<int> runMigrateCli(
       }),
     );
   } else {
-    o.write(project.renderText(outArg));
+    o.write(project.renderText(outArg!));
     if (rewrite != null) o.write(rewrite.renderText());
   }
   return MigrateExitCodes.success;
@@ -306,6 +331,15 @@ ArgParser _parser() => ArgParser(usageLineLength: 80)
         'as lib/<stack>.snippets.dart plus terradart_leftover.next.tf. Your '
         'Dart is never overwritten.',
   )
+  ..addFlag(
+    'report',
+    negatable: false,
+    help:
+        'Report what migrating --dir (default: the current directory) would '
+        'do, and write nothing: every resource and data type, how many of '
+        'its blocks translate and how many stay in Terraform (with the '
+        'reason), and which types no catalog curates. Takes no --out.',
+  )
   ..addOption(
     'dir',
     valueHelp: 'terraform dir',
@@ -411,6 +445,11 @@ MIGRATION.md with a reason for every kept block. With --merge-envs, sibling
 environment roots become one Stack per group, parameterised by a generated
 Env enum. Reads .tf and .tf.json with no terraform run, init or credentials;
 never writes into --dir.
+
+  terradart-migrate --report [--dir <terraform dir>] [--json]
+
+reports what a migration would translate and keep, per Terraform type,
+without writing anything.
 
   terradart-migrate --update <package dir>
 

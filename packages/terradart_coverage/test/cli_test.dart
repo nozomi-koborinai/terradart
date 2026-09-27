@@ -41,7 +41,7 @@ void main() {
       'bin/terradart_coverage.dart',
       '--json',
       '--dir',
-      'test/fixtures/config_tree',
+      '../terradart_migrate/test/fixtures/config_tree',
     ]);
     expect(result.exitCode, 0, reason: result.stderr.toString());
     final decoded = jsonDecode(result.stdout as String) as Map<String, dynamic>;

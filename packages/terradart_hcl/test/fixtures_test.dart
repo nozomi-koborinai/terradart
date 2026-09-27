@@ -3,6 +3,13 @@ import 'dart:io';
 import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:test/test.dart';
 
+/// The migrator's tree fixtures: a multi-environment GCP repo and a root
+/// with one local child module.
+const _trees = [
+  '../terradart_migrate/test/fixtures/config_tree',
+  '../terradart_migrate/test/fixtures/real_plan_src',
+];
+
 int _count(String src, String pattern) =>
     RegExp(pattern, multiLine: true).allMatches(src).length;
 
@@ -34,13 +41,12 @@ void main() {
     expect(file.body.blocksOf('provider'), hasLength(2));
   });
 
-  group('coverage fixtures parse with every top-level block intact', () {
+  group('migrator tree fixtures parse with every top-level block intact', () {
     final files =
-        Directory('../terradart_coverage/test/fixtures')
-            .listSync(recursive: true)
-            .whereType<File>()
-            .where((f) => f.path.endsWith('.tf'))
-            .toList()
+        [
+            for (final tree in _trees)
+              ...Directory(tree).listSync(recursive: true),
+          ].whereType<File>().where((f) => f.path.endsWith('.tf')).toList()
           ..sort((a, b) => a.path.compareTo(b.path));
     test('fixtures exist', () => expect(files, isNotEmpty));
     for (final f in files) {

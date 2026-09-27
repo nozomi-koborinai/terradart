@@ -12,7 +12,7 @@ void main() {
   // secret_manager, service_account, workload_identity). All HCL, all local
   // modules, no terraform run.
   group('scanConfigDir on a realistic multi-env tree', () {
-    const fixture = 'test/fixtures/config_tree';
+    const fixture = '../terradart_migrate/test/fixtures/config_tree';
 
     test('recursively extracts every resource/data block across envs '
         'and modules', () {

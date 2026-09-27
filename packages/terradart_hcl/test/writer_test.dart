@@ -4,6 +4,13 @@ import 'package:terradart_hcl/src/dump.dart';
 import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:test/test.dart';
 
+/// The migrator's tree fixtures: a multi-environment GCP repo and a root
+/// with one local child module.
+const _trees = [
+  '../terradart_migrate/test/fixtures/config_tree',
+  '../terradart_migrate/test/fixtures/real_plan_src',
+];
+
 String _roundTrip(String src) => serializeHcl(parseHcl(src));
 
 void main() {
@@ -96,10 +103,11 @@ b "l1" l2 {
   group('round trip', () {
     final fixtures = [
       File('test/fixtures/repeated_blocks.tf'),
-      ...Directory('../terradart_coverage/test/fixtures')
-          .listSync(recursive: true)
-          .whereType<File>()
-          .where((f) => f.path.endsWith('.tf')),
+      for (final tree in _trees)
+        ...Directory(tree)
+            .listSync(recursive: true)
+            .whereType<File>()
+            .where((f) => f.path.endsWith('.tf')),
     ];
     for (final f in fixtures) {
       test('parse → write → parse is structurally identical: ${f.path}', () {

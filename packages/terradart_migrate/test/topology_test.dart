@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
-const _fixtures = '../terradart_coverage/test/fixtures';
+const _fixtures = 'test/fixtures';
 
 void main() {
   group('config_tree', () {
