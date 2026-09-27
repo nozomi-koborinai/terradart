@@ -1,6 +1,6 @@
 # Migration report
 
-`terradart-migrate {{version}}` migrated `../terradart_coverage/test/fixtures/config_tree` into the Dart package `config_tree`: 8 module directories, 82 blocks became Dart, 0 stay in Terraform.
+`terradart-migrate {{version}}` migrated `test/fixtures/config_tree` into the Dart package `config_tree`: 8 module directories, 82 blocks became Dart, 0 stay in Terraform.
 
 ## Next steps
 

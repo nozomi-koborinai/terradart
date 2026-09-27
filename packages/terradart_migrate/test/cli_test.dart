@@ -5,7 +5,7 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
-const _fixtures = '../terradart_coverage/test/fixtures';
+const _fixtures = 'test/fixtures';
 
 Future<({int code, String out, String err})> _run(List<String> args) async {
   final out = StringBuffer();
@@ -555,7 +555,7 @@ resource "acme_widget" "w" {
     test('--update takes neither --dir nor --out', () async {
       final r = await _run(['--update', tmp.path, '--dir', tmp.path]);
       expect(r.code, MigrateExitCodes.usage);
-      expect(r.err, contains('neither --dir nor --out'));
+      expect(r.err, contains('neither --dir, --out nor --report'));
     });
 
     test('a directory the migrator did not write exits 65', () async {
