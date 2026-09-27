@@ -17,7 +17,7 @@
 #   - packages/terradart_cloudflare/pubspec.yaml  (version: + terradart_core caret)
 #   - packages/terradart_aws/pubspec.yaml         (version: + terradart_core caret)
 #   - packages/terradart_time/pubspec.yaml        (version: + terradart_core caret)
-#   - packages/terradart_coverage/pubspec.yaml    (version: + terradart_{google,google_beta,appwrite,cloudflare,aws,hcl} carets)
+#   - packages/terradart_coverage/pubspec.yaml    (version: + terradart_{core,google,google_beta,appwrite,cloudflare,aws,hcl,time} carets)
 #   - packages/terradart_hcl/pubspec.yaml         (version: line)
 #   - packages/terradart_migrate/pubspec.yaml     (version: + terradart_{core,google,google_beta,appwrite,cloudflare,aws,hcl,time} carets)
 #   - packages/terradart_migrate/lib/src/version.dart (packageVersion const — pinned into migrated pubspecs and printed by `terradart-migrate --version`)
@@ -130,8 +130,8 @@ sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terra
 echo "    - terradart_aws.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_time/pubspec.yaml
 echo "    - terradart_time.dependencies.terradart_core: ^${NEW}"
-sed_inplace "s#^( *terradart_(google|google_beta|appwrite|cloudflare|aws|hcl)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_coverage/pubspec.yaml
-echo "    - terradart_coverage.dependencies.terradart_{google,google_beta,appwrite,cloudflare,aws,hcl}: ^${NEW}"
+sed_inplace "s#^( *terradart_(core|google|google_beta|appwrite|cloudflare|aws|hcl|time)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_coverage/pubspec.yaml
+echo "    - terradart_coverage.dependencies.terradart_{core,google,google_beta,appwrite,cloudflare,aws,hcl,time}: ^${NEW}"
 
 # 2b. terradart_migrate binary version const (lockstep with its pubspec).
 echo "  Binary version const:"

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- `time_sleep` counts as supported, by `TimeSleep` from `terradart_time` (`allCuratedFactories()` gains `timeSleepFactory`). It used to be reported as not in any catalog.
+
 ## 0.28.1 - 2026-09-13
 
 Lockstep release with `terradart_migrate` 0.28.1 (passthrough emission fix — a bare `Map` / `List` parameter no longer comes out as `TfArg.literal`). No `terradart_coverage` API changes.

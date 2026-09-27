@@ -16,8 +16,9 @@ TerraDart factories are generated Dart classes, one per Terraform resource or da
 | `aws_*` | `terradart_aws` | `package:terradart_aws/<barrel>.dart` |
 | `cloudflare_*` | `terradart_cloudflare` | `package:terradart_cloudflare/<barrel>.dart` |
 | `appwrite_*` | `terradart_appwrite` | `package:terradart_appwrite/<barrel>.dart` |
+| `time_sleep` (`TimeSleep`, with `TimeProvider`) | `terradart_time` | `package:terradart_time/terradart_time.dart` |
 
-Every stack also depends on `terradart_core` (`Stack`, `TfArg`, synth). Data sources are exported from the `data` barrel of each package.
+Every stack also depends on `terradart_core` (`Stack`, `TfArg`, synth). Data sources are exported from the `data` barrel of each generated package. `terradart_time` is hand-written and has no catalog.
 
 ## 2. Find the class and its barrel
 
