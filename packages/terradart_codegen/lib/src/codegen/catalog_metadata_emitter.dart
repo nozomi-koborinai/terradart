@@ -51,10 +51,10 @@ class CatalogEntryData {
 /// Renders the static `const List<CatalogEntry> terradartCatalog` that lands
 /// in `packages/terradart_google/lib/src/_catalog.g.dart`.
 ///
-/// The Dart-compiled `terradart_agent` MCP server cannot use `dart:mirrors`,
-/// so the curated factory catalog is generated statically by `terradart wrap`
-/// (one [CatalogEntry] per curated resource + data source) and consumed at
-/// runtime via the `package:terradart_google/catalog.dart` barrel.
+/// The compiled `terradart-coverage` binary cannot use `dart:mirrors`, so the
+/// curated factory catalog is generated statically by `terradart wrap` (one
+/// [CatalogEntry] per curated resource + data source) and consumed at runtime
+/// via each provider package's `catalog.dart` barrel.
 ///
 /// Entries are sorted by [CatalogEntryData.tfType] so the output is
 /// deterministic regardless of override-load order, keeping `wrap --check`

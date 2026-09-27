@@ -40,7 +40,8 @@ final class CuratedFactory {
 
 /// Every curated factory of every provider package, in lookup precedence:
 /// `terradart_google`, then `terradart_google_beta`, `terradart_appwrite`,
-/// `terradart_cloudflare` and `terradart_aws`.
+/// `terradart_cloudflare` and `terradart_aws`, plus `terradart_time`'s
+/// [timeSleepFactory].
 List<CuratedFactory> allCuratedFactories() => [
   for (final e in terradartCatalog) _google(e),
   for (final e in beta.terradartCatalog)
@@ -75,7 +76,18 @@ List<CuratedFactory> allCuratedFactories() => [
       barrel: e.barrel,
       package: 'terradart_aws',
     ),
+  timeSleepFactory,
 ];
+
+/// `TimeSleep` (`time_sleep`) from `terradart_time`. The hand-written package
+/// has no generated catalog, so its single factory is listed here.
+const timeSleepFactory = CuratedFactory(
+  tfType: 'time_sleep',
+  kind: CatalogKind.resource,
+  className: 'TimeSleep',
+  barrel: 'terradart_time',
+  package: 'terradart_time',
+);
 
 CuratedFactory _google(CatalogEntry e) => CuratedFactory(
   tfType: e.tfType,

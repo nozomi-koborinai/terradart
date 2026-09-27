@@ -31,7 +31,6 @@ See [terradart.dev](https://terradart.dev) for documentation, guides, and API re
 | [`terradart_cloudflare`](packages/terradart_cloudflare) | Curated factory wrappers for Cloudflare edge infrastructure (`cloudflare/cloudflare`). | [![pub](https://img.shields.io/pub/v/terradart_cloudflare.svg)](https://pub.dev/packages/terradart_cloudflare) |
 | [`terradart_aws`](packages/terradart_aws) | Curated factory wrappers for AWS resources (`hashicorp/aws`). Guide: [Dart apps on AWS](https://terradart.dev/docs/aws/). | *(not on pub.dev yet)* |
 | [`terradart_time`](packages/terradart_time) | `TimeProvider` / `TimeSleep` (`hashicorp/time`) — the propagation wait for stacks on any provider package. | *(not on pub.dev yet)* |
-| [`terradart_agent`](packages/terradart_agent) | MCP server (`terradart-mcp`) exposing the curated factory catalog to AI agents. | *(unlisted)* |
 | [`terradart_codegen`](packages/terradart_codegen) | Maintainer generation tooling and CLI (`terradart wrap`). | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
 | [`terradart_hcl`](packages/terradart_hcl) | Pure Dart HCL / `*.tf.json` front-end and Terraform module model — the input side of `terradart-migrate`. | *(unlisted)* |
 | [`terradart_migrate`](packages/terradart_migrate) | HCL → Dart migrator (`terradart-migrate`): migration manifests, emitter, leftover sidecar and the CLI that turns a Terraform source tree into a Stack per directory. `brew install nozomi-koborinai/tap/terradart-migrate`. | *(unlisted)* |
@@ -226,16 +225,15 @@ GoogleCloudRunV2Service(
 
 ---
 
-## AI Agent MCP Server (`terradart-mcp`)
+## Coding agents (Agent Skill)
 
-**Alpha.** [`terradart-mcp`](packages/terradart_agent/) is an MCP server that exposes the curated factory **catalog** — and the migrator — to coding agents (Claude Code, Cursor, Claude Desktop). Six tools — `list_barrels`, `list_resources`, `get_resource_schema`, `get_quickstart`, `check_coverage`, and `migrate_module` — help agents author correct Dart without guessing factory names, and translate an existing Terraform module into a Stack. Every one of them answers from the text you pass and the catalog compiled into the binary: it does **not** run Terraform, write files, or touch GCP.
+The factories are generated Dart committed to the provider packages, so a coding agent can read the exact constructor, its doc comment and a CI-validated example instead of guessing a name. The [TerraDart Agent Skill](skills/terradart/SKILL.md) tells the agent where to look: each package's generated catalog (`lib/src/_catalog.g.dart`, Terraform type → class and barrel), the [`examples/`](examples/), [`/llms.txt`](https://terradart.dev/llms.txt) and the [coverage page](https://terradart.dev/docs/coverage/).
 
 ```sh
-brew install nozomi-koborinai/tap/terradart-mcp
-# or download from GitHub releases — see packages/terradart_agent/README.md
+npx skills add nozomi-koborinai/terradart --skill terradart
 ```
 
-Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
+Docs: [terradart.dev/docs/agents/](https://terradart.dev/docs/agents/). The earlier `terradart-mcp` server was retired in favour of the skill (see [MIGRATING.md](MIGRATING.md)).
 
 ---
 

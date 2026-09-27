@@ -35,10 +35,9 @@ TerraDart is a Dart-first infrastructure-as-code project that synthesizes Terraf
 - `terradart_cloudflare` for curated Cloudflare factories (`cloudflare/cloudflare`, filled at the current pin).
 - `terradart_aws` for curated AWS factories (`hashicorp/aws`, filled at the current pin).
 - `terradart_time` for `TimeProvider` / `TimeSleep` (`hashicorp/time`), the propagation wait any provider package's stack can use.
-- `terradart_agent` for the MCP catalog server.
 - `terradart_codegen` for maintainer generation commands such as `wrap`, `wrap-init`, and `wrap-promote`.
 - `terradart_hcl` for the HCL / `*.tf.json` front-end (`parseHcl`, `decodeTfJson`, `TfModule`) that `terradart-migrate` reads existing Terraform through (#80).
-- `terradart_migrate` for the HCL → Dart migrator itself: the five generated migration manifests, and `migrateModule` — a `TfModule` in, a Dart package (Stack + `bin/infra.dart` + `pubspec.yaml`) and a report out, resource-atomic (#660). `terradart-migrate` (`bin/terradart_migrate.dart`) migrates a whole source tree: `scanModuleTree` infers roots, children and environment siblings, `migrateTree` writes one Stack per directory into one package with a `tf-out/` tree mirroring the source, the leftover sidecar beside each `main.tf.json`, and `MIGRATION.md`; `tool/migrate_fixture_gates.dart` terraform-validates the migrated coverage fixtures (#661). Ships as a single binary like `terradart-mcp`: `release-binary.yml` builds `terradart-migrate` for every tag and `tool/render_to_file.dart` renders its Homebrew formula (`brew install nozomi-koborinai/tap/terradart-migrate`); the website guide is *Migrating from HCL* (#664).
+- `terradart_migrate` for the HCL → Dart migrator itself: the five generated migration manifests, and `migrateModule` — a `TfModule` in, a Dart package (Stack + `bin/infra.dart` + `pubspec.yaml`) and a report out, resource-atomic (#660). `terradart-migrate` (`bin/terradart_migrate.dart`) migrates a whole source tree: `scanModuleTree` infers roots, children and environment siblings, `migrateTree` writes one Stack per directory into one package with a `tf-out/` tree mirroring the source, the leftover sidecar beside each `main.tf.json`, and `MIGRATION.md`; `tool/migrate_fixture_gates.dart` terraform-validates the migrated coverage fixtures (#661). Ships as a single binary like `terradart-coverage`: `release-binary.yml` builds `terradart-migrate` for every tag and `tool/render_to_file.dart` renders its Homebrew formula (`brew install nozomi-koborinai/tap/terradart-migrate`); the website guide is *Migrating from HCL* (#664).
 
 Read `CONTEXT.md` before design work. It defines project-specific terms such as Curated factory, Beta-only factory, Maintainer generation pipeline, Merged IR, Wrapper override, Agent guide, Local notes, and the migrator's Migration manifest, Resource-atomic translation, Leftover sidecar, Child-module mode, Environment root, Round-trip gate, and Zero-diff plan.
 
@@ -254,7 +253,7 @@ When a resource can't be applied on a plain standalone project — org-only (Sha
 
 ## Cursor Cloud specific instructions
 
-Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; most packages require ^3.6, `terradart_agent` and `terradart_coverage` require ^3.10) from the official apt repo and **Terraform** (≥ 1.11) from HashiCorp apt, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot.
+Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; most packages require ^3.6, `terradart_coverage` requires ^3.10) from the official apt repo and **Terraform** (≥ 1.11) from HashiCorp apt, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot.
 
 There is no long-running dev server for core work. Primary flows:
 
@@ -269,7 +268,6 @@ There is no long-running dev server for core work. Primary flows:
 | Publish readiness (per package) | `cd packages/<pkg> && dart pub publish --dry-run` |
 | Synth example stack | `cd examples/pubsub_quickstart && GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart` |
 | Validate synth output | `cd examples/pubsub_quickstart/tf-out && terraform init -backend=false && terraform validate` |
-| MCP catalog server (stdio) | `cd packages/terradart_agent && dart run terradart-mcp` |
 | Release demo clip (cut a `RecordScreen` take) | `tool/promo_video.sh --in RAW.mp4 --out EDIT.mp4 --deliver DELIVERY.mp4` |
 | Docs site (optional) | `cd website && bun install && bun run dev` (needs Bun + Node ≥ 22) |
 

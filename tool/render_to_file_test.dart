@@ -16,19 +16,19 @@ void main() {
 
   test('readSha reads hex digest from sidecar file', () {
     // Write a fake .sha256 sidecar (one-line hex digest, as Task 8 produces).
-    final sidecar = File(p.join(tmpDir.path, 'terradart-mcp-darwin-arm64.sha256'));
+    final sidecar = File(p.join(tmpDir.path, 'terradart-migrate-darwin-arm64.sha256'));
     sidecar.writeAsStringSync('deadbeef1234\n');
 
-    final sha = rif.readSha(tmpDir.path, 'terradart-mcp-darwin-arm64');
+    final sha = rif.readSha(tmpDir.path, 'terradart-migrate-darwin-arm64');
     expect(sha, equals('deadbeef1234'));
   });
 
   test('assetUrl assembles correct download URL', () {
-    final url = rif.assetUrl('0.13.1', 'terradart-mcp-darwin-arm64');
+    final url = rif.assetUrl('0.13.1', 'terradart-migrate-darwin-arm64');
     expect(
       url,
       equals(
-        'https://github.com/nozomi-koborinai/terradart/releases/download/v0.13.1/terradart-mcp-darwin-arm64',
+        'https://github.com/nozomi-koborinai/terradart/releases/download/v0.13.1/terradart-migrate-darwin-arm64',
       ),
     );
   });
@@ -55,7 +55,7 @@ void main() {
       }
     }
     final formulas = rif.renderFormulas(version: '0.28.0', shaDir: tmpDir.path);
-    expect(formulas.keys, unorderedEquals(['mcp', 'coverage', 'migrate']));
+    expect(formulas.keys, unorderedEquals(['coverage', 'migrate']));
 
     final migrate = formulas['migrate']!;
     expect(migrate, contains('class TerradartMigrate < Formula'));
@@ -72,9 +72,8 @@ void main() {
       contains('bin.install "terradart-migrate-darwin-amd64" => "terradart-migrate"'),
     );
     expect(migrate, contains('shell_output("#{bin}/terradart-migrate --version")'));
-    expect(migrate, isNot(contains('terradart-mcp')));
+    expect(migrate, isNot(contains('terradart-coverage')));
 
-    expect(formulas['mcp'], contains('class TerradartMcp < Formula'));
     expect(formulas['coverage'], contains('shell_output("#{bin}/terradart-coverage --help")'));
   });
 

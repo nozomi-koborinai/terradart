@@ -1,5 +1,7 @@
 import 'package:terradart_coverage/terradart_coverage.dart';
+import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/catalog.dart';
+import 'package:terradart_time/terradart_time.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -70,6 +72,20 @@ void main() {
       expect(fn.import, 'package:terradart_aws/lambda.dart');
     });
 
+    test('time_sleep is covered by terradart_time', () {
+      final sleep = index.lookup('time_sleep', CatalogKind.resource)!;
+      expect(sleep.package, 'terradart_time');
+      expect(sleep.import, 'package:terradart_time/terradart_time.dart');
+      expect(
+        TimeSleep(
+          localName: 'wait',
+          createDuration: TfArg.literal('30s'),
+        ).terraformType,
+        sleep.tfType,
+      );
+      expect('$TimeSleep', sleep.className);
+    });
+
     test('the same type can be a data source in GA and a resource in beta', () {
       final data = index.lookup(
         'google_cloud_identity_policy',
@@ -99,6 +115,7 @@ void main() {
         'terradart_appwrite',
         'terradart_cloudflare',
         'terradart_aws',
+        'terradart_time',
       });
     });
   });

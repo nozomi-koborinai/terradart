@@ -281,14 +281,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.9"
-  genkit_mcp:
-    dependency: transitive
-    description:
-      name: genkit_mcp
-      sha256: f106ed651216dc82651066672b92d747b0aa9330d8ba71f837db6e8812262d57
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.1"
   genkit_shelf:
     dependency: transitive
     description:
