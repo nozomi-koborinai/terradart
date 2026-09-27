@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.29.0 - 2026-09-27
 
+- `aws_*` resources and data sources migrate to `terradart_aws` through its generated manifest (`lib/src/manifest/aws.g.dart`). The `provider "aws"` block translates to `AwsProvider`, nested settings included (`default_tags`, `assume_role`, `ignore_tags`, `endpoints`); credential arguments (`access_key`, `secret_key`, `token`, `assume_role_with_web_identity`) are dropped with a warning, never written into Dart.
 - `time_sleep` migrates to `terradart_time` (`package:terradart_time/terradart_time.dart`, a `terradart_time` dependency in the migrated pubspec) instead of `terradart_google`, so a migrated AWS or Cloudflare module no longer depends on the Google package. `googleExtrasMigrateManifest` is now `timeMigrateManifest` (package `terradart_time`), and the `time` provider recipe reads the pin from `kTimeProviderVersionConstraint` instead of repeating it.
 
 ## 0.28.1 - 2026-09-13

@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.29.0 - 2026-09-27
 
+- `terradart lint-override` reads the shared lint ledgers (`tool/exactly_one_lint_debt.yaml`, `tool/migrate_manifest_debt.yaml`) for every override lane and validates only the entries naming its own overrides.
 - New wrapper override axis `dedupeNestedTypes: true` (requires `deriveNestedTypes: true`): nested blocks with an identical shape inside one resource share one helper class, named after the shallowest occurrence (ties broken by path segments). Opt-in and off by default, because it renames the deeper occurrences' helpers.
 
 ## 0.28.1 - 2026-09-13

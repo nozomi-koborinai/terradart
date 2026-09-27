@@ -16,8 +16,8 @@ The catalog is the full `hashicorp/aws` `6.66.0` provider: 1725 resource factori
 
 ```yaml
 dependencies:
-  terradart_core: ^0.28.x
-  terradart_aws: ^0.28.x
+  terradart_core: ^0.29.x
+  terradart_aws: ^0.29.x
 ```
 
 ## Usage example

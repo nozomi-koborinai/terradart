@@ -16,8 +16,8 @@ The catalog at the current provider pin is filled (every `appwrite_*` resource a
 
 ```yaml
 dependencies:
-  terradart_core: ^0.28.x
-  terradart_appwrite: ^0.28.x
+  terradart_core: ^0.29.x
+  terradart_appwrite: ^0.29.x
 ```
 
 ## Usage example

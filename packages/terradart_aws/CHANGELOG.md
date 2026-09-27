@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.29.0 - 2026-09-27
 
 - New package: curated factories for the `hashicorp/aws` provider,
   exact-pinned at `6.66.0`. The seed catalog covers a Dart backend on
