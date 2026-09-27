@@ -16,39 +16,17 @@
 #       provider_version: 7.X.Y (the v7 release that introduced it)
 #       note: (optional, maintainer-added)
 #
-# 2026-08-12 maintainer triage: refilled from the GA fixture gap (~245
-# uncured non-IAM). Product order is intentional for wave-shipper (first
-# un-skipped product group, then first 3–6 resources): compute →
-# network_services → dialogflow → discovery_engine → storage.
-# Org/folder/BYOIP and artifact-gated entries carry
-# `skipped by wave-shipper` notes so daily runs do not stall on them.
-#
-# 2026-08-13 follow-up: CES leftovers (toolset / example / deployment)
-# shipped. Remaining un-skipped product groups in this file are empty —
-# compute/network_services/dialogflow/discovery_engine/storage and IAM
-# workforce / SCC / ACM leftovers stay skip-noted. Other remaining gap
-# families (logging org/folder, identity platform IdP configs, billing,
-# DMS, Datastream, …) stay deferred.
-#
-# 2026-08-15 leftover batch: all 53 skip-noted GA-fixture leftovers
-# (compute org/BYOIP, Wasm plugin, Dialogflow encryption spec, Discovery
-# Engine CMEK/connector, Storage Intelligence folder/org, IAM workforce,
-# SCC v1/v2/management, ACM attachments) shipped on the apply-excluded
-# path.
-#
-# 2026-08-15 remaining-uncurated batch: the other 89 GA-fixture leftovers
-# (logging org/folder/billing, Identity Platform IdP configs except
-# `google_identity_platform_oauth_idp_config`, billing, DMS, Datastream,
-# Assured Workloads, Cloud Domains, …) shipped on the apply-excluded path.
-# 2026-08-15: that last GA type was curated after the coverage real-plan
-# test stopped requiring a live uncurated sentinel. An empty backlog is a
-# normal wave-shipper no-op until the weekly schema bump appends newly
-# detected types.
+# This file is the queue for on-demand Waves: no scheduled agent reads it.
+# Ship entries with the terradart-ship-wave skill (by hand or via a cloud
+# agent), removing each shipped entry in that PR. An entry that needs a
+# design decision first (e.g. a sealed exactly_one_of slot) carries a
+# `note:` saying so. An empty list is normal.
 
 entries:
   - resource: google_firestore_change_stream
     detected_at: 2026-08-23
     provider_version: 7.45.0
+    note: needs a sealed exactly_one_of design (database_scope / collection_group_scope) before it can ship
   - resource: google_iam_folder_access_policy
     detected_at: 2026-08-16
     provider_version: 7.44.0

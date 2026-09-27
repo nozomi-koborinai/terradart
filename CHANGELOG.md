@@ -26,6 +26,7 @@ Per-package changelogs live alongside each package and are the system of record 
 ### Removed
 
 - The cost ledger (`tool/apply_cost_denylist.yaml`), the apply-smoke skip ledgers, `tool/apply_smoke.sh` and its selection tests, the wave skiplist gate, the read-only orphan probe, and the gcp-cost transport used for cost classification. They partitioned examples for the live apply harness retired in #624; nothing consumed them any more. The knowledge the skip ledgers held moved into each example README's `## Before you apply` section. The repository no longer registers the gcp-cost MCP server (`.mcp.json`, `.cursor/mcp.json`).
+- The scheduled wave loop and its monitoring: `wave-open.yml`, `wave-merge.yml`, `escalation-relay.yml`, `loop-health.yml`, the wave-shipper runbook, `tool/wave_allowed_paths.yaml`, `tool/loop_health_report.dart` and `tool/loop_models.yaml`. After the GA catalog fill it shipped four one-resource Waves in two months, and the rest of the backlog needed design decisions it could only escalate. Waves now ship on demand through the `terradart-ship-wave` skill; `tool/curation_backlog.yaml` stays as their queue.
 
 ### Changed
 
