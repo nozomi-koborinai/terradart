@@ -81,30 +81,8 @@ Future<void> main() async {
   }
   _checkPhrase(
     errors,
-    'website/src/content/docs/docs/agent/index.md',
-    agentCatalogEntriesPhrase,
-    agentResourceFactoriesPhrase,
-    dataSourceCatalogPhrase,
-    serviceBarrelCountPhrase,
-  );
-  _checkPhrase(
-    errors,
-    'website/src/content/docs/docs/agent/tools-reference.md',
-    "list all $catalogEntryCount",
-    listBarrelsOutputCountPhrase,
-  );
-  _checkPhrase(
-    errors,
     'website/src/components/PitchCode.astro',
     '(GA catalog, $catalogEntryCount entries)',
-  );
-  _checkPhrase(
-    errors,
-    'packages/terradart_agent/README.md',
-    agentCatalogEntriesPhrase,
-    agentResourceFactoriesPhrase,
-    dataSourceCatalogPhrase,
-    serviceBarrelCountPhrase,
   );
   // terradart-migrate distribution (#664): the install line and the guide.
   for (final page in [

@@ -60,9 +60,8 @@ String renderText(CoverageReport r) {
   return b.toString();
 }
 
-/// Returns the coverage report as a plain [Map] suitable for JSON encoding or
-/// MCP structuredContent. This is the canonical map structure shared by
-/// [renderJson] and `check_coverage` in terradart_agent.
+/// Returns the coverage report as a plain [Map] suitable for JSON encoding.
+/// This is the canonical map structure behind [renderJson].
 Map<String, Object?> reportToJsonMap(CoverageReport r) => {
   'summary': {
     'distinctTypes': r.summary.distinctTypes,

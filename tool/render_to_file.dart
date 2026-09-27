@@ -17,12 +17,6 @@ typedef BinaryTool = ({
 /// Keep in sync with the `tool` matrix of `.github/workflows/release-binary.yml`
 /// (`render_to_file_test.dart` checks that).
 const tools = <String, BinaryTool>{
-  'mcp': (
-    className: 'TerradartMcp',
-    binName: 'terradart-mcp',
-    desc: 'MCP server exposing the curated GCP factory catalog of TerraDart',
-    testCmd: '--version',
-  ),
   'coverage': (
     className: 'TerradartCoverage',
     binName: 'terradart-coverage',

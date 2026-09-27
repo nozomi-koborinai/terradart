@@ -78,7 +78,7 @@ Release tags and GitHub releases are **maintainer manual** (see [`AGENTS.md`](..
 Replace placeholders; duplicate the Wave section when shipping multiple Waves in one semver.
 
 ```markdown
-Lockstep release across `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage`. **No breaking changes** vs `0.PREV`.
+Lockstep release across `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_coverage`. **No breaking changes** vs `0.PREV`.
 
 ## Highlights
 
