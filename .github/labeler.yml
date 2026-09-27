@@ -64,6 +64,10 @@
   - changed-files:
       - any-glob-to-any-file: 'packages/terradart_hcl/**'
 
+'area:time':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/terradart_time/**'
+
 'area:website':
   - changed-files:
       - any-glob-to-any-file: 'website/**'
