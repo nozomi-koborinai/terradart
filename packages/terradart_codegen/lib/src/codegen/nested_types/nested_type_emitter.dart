@@ -276,21 +276,34 @@ typedef _SealedGroup = ({
 /// group folded into one required sealed field, at its first member's
 /// position. A group is sealable when every member is an optional typed
 /// input of this block and no earlier group took one of them.
-({List<_FieldPlan> plans, List<_SealedGroup> sealed}) _layout(
-  NestedBlockSpec spec,
-) {
+({
+  List<_FieldPlan> plans,
+  List<_SealedGroup> sealed,
+  List<String> skipped,
+}) _layout(NestedBlockSpec spec) {
   final members = _members(spec);
   final byName = {for (final m in members) m.tfName: m};
   final taken = <String>{};
   final sealed = <_SealedGroup>[];
+  final skipped = <String>[];
   final firstOf = <String, _SealedGroup>{};
   for (final group in spec.exactlyOne) {
     final ms = [for (final name in group) byName[name]];
-    if (ms.any((m) =>
-        m == null ||
-        m.required ||
-        m.variant == null ||
-        taken.contains(m.tfName))) {
+    String? reason;
+    for (final (i, m) in ms.indexed) {
+      if (m == null) {
+        reason = '${group[i]} is not an input of this block';
+      } else if (m.required) {
+        reason = '${m.tfName} is required';
+      } else if (m.variant == null) {
+        reason = '${m.tfName} has no typed shape';
+      } else if (taken.contains(m.tfName)) {
+        reason = '${m.tfName} is in an earlier group';
+      }
+      if (reason != null) break;
+    }
+    if (reason != null) {
+      skipped.add('${spec.path.join('.')} [${group.join(', ')}]: $reason');
       continue;
     }
     taken.addAll(group);
@@ -318,7 +331,32 @@ typedef _SealedGroup = ({
       plans.add(m.plan);
     }
   }
-  return (plans: plans, sealed: sealed);
+  return (plans: plans, sealed: sealed, skipped: skipped);
+}
+
+/// The nested exactly-one [groups] (parent path → member names, as
+/// `collectNestedTypes` takes them) that [renderNestedTypes] leaves unsealed
+/// for [specs], each as `<path> [<members>]: <reason>`.
+List<String> unsealedNestedGroups(
+  List<NestedBlockSpec> specs,
+  Map<String, List<List<String>>> groups,
+) {
+  final out = <String>[];
+  final seen = <String>{};
+  void walk(NestedBlockSpec spec) {
+    if (!seen.add(spec.path.join('.'))) return;
+    out.addAll(_layout(spec).skipped);
+    spec.children.forEach(walk);
+  }
+
+  specs.forEach(walk);
+  for (final MapEntry(key: path, value: list) in groups.entries) {
+    if (seen.contains(path)) continue;
+    for (final group in list) {
+      out.add('$path [${group.join(', ')}]: the block has no typed helper');
+    }
+  }
+  return out;
 }
 
 /// The sealed-variant shape of a typed member: the required field and the

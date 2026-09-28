@@ -124,6 +124,7 @@ void main() {
     );
     expect(derived.skipped, [
       'aws_thing [c, d]: c is required or has no typed shape',
+      'aws_thing settings [x, y]: the block has no typed helper',
     ]);
     final o = derived.overrides['aws_thing']!;
     expect(
@@ -177,5 +178,75 @@ void main() {
     expect(src, contains('final class ThingSettingsYOption'));
     expect(src, isNot(contains('this.x,')));
     expect(src, contains('this.z'));
+  });
+
+  test('unsealedNestedGroups reports the nested groups left unsealed', () {
+    final specs = collectNestedTypes(
+      resourceBlock: {
+        'block_types': {
+          'settings': {
+            'nesting_mode': 'list',
+            'max_items': 1,
+            'block': {
+              'attributes': {
+                'x': {'type': 'string', 'optional': true},
+                'y': {'type': 'string', 'required': true},
+              },
+            },
+          },
+        },
+      },
+      resourcePrefix: 'Thing',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      exactlyOneGroups: const {
+        'settings': [
+          ['x', 'y'],
+        ],
+      },
+    );
+    expect(
+      unsealedNestedGroups(specs, const {
+        'settings': [
+          ['x', 'y'],
+        ],
+        'gone': [
+          ['p', 'q'],
+        ],
+      }),
+      [
+        'settings [x, y]: y is required',
+        'gone [p, q]: the block has no typed helper',
+      ],
+    );
+  });
+
+  test('deriveExactlyOneSlots reports nested groups without a typed helper',
+      () {
+    final derived = deriveExactlyOneSlots(
+      {
+        'aws_thing': const WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+        ),
+      },
+      {
+        'aws_thing': ResourceDef(
+          terraformType: 'aws_thing',
+          root: BlockDef(attributes: [_attr('a'), _attr('b')]),
+        ),
+      },
+      providerEnums: const ProviderEnums.on(
+        exactlyOneGroups: {
+          'aws_thing': [
+            ['settings.x', 'settings.y'],
+          ],
+        },
+      ),
+      rawSchemas: const {},
+    );
+    expect(derived.skipped, [
+      'aws_thing settings [x, y]: the block has no typed helper',
+    ]);
   });
 }

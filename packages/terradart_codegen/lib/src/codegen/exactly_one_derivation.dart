@@ -33,12 +33,28 @@ import 'wrapper_overrides/wrapper_override.dart';
   final out = <String, WrapperOverride>{};
   for (final MapEntry(key: type, value: o) in overrides.entries) {
     final def = defs[type];
-    final groups = o.deriveExactlyOne && def != null
-        ? providerEnums.exactlyOneGroupsByBlock(type)['']
-        : null;
-    out[type] = groups == null
-        ? o
-        : _derive(type, o, def!, groups, providerEnums, rawSchemas, skipped);
+    final groups = providerEnums.exactlyOneGroupsByBlock(type)[''];
+    final nested = providerEnums.nestedExactlyOneGroups(type, o);
+    if (!o.deriveExactlyOne || def == null || (groups == null && nested.isEmpty)) {
+      out[type] = o;
+      continue;
+    }
+    final specs = o.deriveNestedTypes
+        ? collectNestedTypes(
+            resourceBlock: rawSchemas[type]!,
+            resourcePrefix: shortResourcePascal(type),
+            customSlotKeys: {...?o.customSlots?.keys},
+            excludedPaths: (o.nestedTypeExcludes ?? const <String>[]).toSet(),
+            shareIdenticalShapes: o.dedupeNestedTypes,
+            enumValues: providerEnums.resolver(type),
+            exactlyOneGroups: nested,
+          )
+        : const <NestedBlockSpec>[];
+    out[type] =
+        groups == null ? o : _derive(type, o, def, groups, specs, skipped);
+    skipped.addAll([
+      for (final s in unsealedNestedGroups(specs, nested)) '$type $s',
+    ]);
   }
   return (overrides: out, skipped: skipped);
 }
@@ -48,8 +64,7 @@ WrapperOverride _derive(
   WrapperOverride o,
   ResourceDef def,
   List<List<String>> groups,
-  ProviderEnums providerEnums,
-  Map<String, Map<String, dynamic>> rawSchemas,
+  List<NestedBlockSpec> nestedSpecs,
   List<String> skipped,
 ) {
   final prefix = shortResourcePascal(type);
@@ -58,20 +73,7 @@ WrapperOverride _derive(
   final required = {...?o.requiredParams};
   final attrs = {for (final a in def.root.attributes) a.name: a};
   final blocks = {for (final b in def.root.nestedBlocks) b.name: b};
-  final specs = o.deriveNestedTypes
-      ? {
-          for (final s in collectNestedTypes(
-            resourceBlock: rawSchemas[type]!,
-            resourcePrefix: prefix,
-            customSlotKeys: slots.keys.toSet(),
-            excludedPaths: (o.nestedTypeExcludes ?? const <String>[]).toSet(),
-            shareIdenticalShapes: o.dedupeNestedTypes,
-            enumValues: providerEnums.resolver(type),
-            exactlyOneGroups: providerEnums.nestedExactlyOneGroups(type, o),
-          ))
-            s.tfName: s,
-        }
-      : const <String, NestedBlockSpec>{};
+  final specs = {for (final s in nestedSpecs) s.tfName: s};
 
   ExactlyOneVariant? variant(String m) {
     final ident = snakeToDartIdent(m);
