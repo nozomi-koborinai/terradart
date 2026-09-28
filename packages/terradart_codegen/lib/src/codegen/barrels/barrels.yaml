@@ -527,10 +527,6 @@ barrels:
       /// Cloud LB Forwarding Rule Minimum $0.025/h), Wasm plugin metadata
       /// (apply-excluded — needs an uploaded plugin image), and Network
       /// Services gateways (Secure Web Gateway is never_apply — $1.25/h).
-  notebooks:
-    doc: |-
-      /// Vertex AI Workbench (Notebooks) — environments, user-managed
-      /// instances, managed runtimes, and IAM members.
   observability:
     doc: |-
       /// Cloud Observability — trace scopes that group projects' trace data for

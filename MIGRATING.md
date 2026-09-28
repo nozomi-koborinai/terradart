@@ -2,6 +2,32 @@
 
 ## 0.29.x → next release
 
+### `terradart_google`: factories `hashicorp/google` 8.0 removes
+
+Provider 8.0 deletes these Terraform types, so their factories are gone from
+`terradart_google` with no deprecation release (a factory for a type the
+provider no longer has cannot synthesize a plan). The Dart compiler points at
+every use:
+
+| Removed factory (Terraform type) | Move to |
+|----------------------------------|---------|
+| `GoogleBeyondcorpAppConnection`, `GoogleBeyondcorpAppConnector`, `GoogleBeyondcorpAppGateway` (`google_beyondcorp_app_*`) and their `DataGoogleBeyondcorpApp*` data sources | `GoogleBeyondcorpSecurityGateway` / `GoogleBeyondcorpSecurityGatewayApplication` |
+| `GoogleIapBrand`, `GoogleIapClient` (`google_iap_brand`, `google_iap_client`) and `DataGoogleIapClient` | manage the OAuth brand and clients in the Google Cloud console |
+| `GoogleMlEngineModel` (`google_ml_engine_model`) | Vertex AI (`GoogleVertexAiEndpoint`) |
+| `GoogleNotebooksEnvironment`, `GoogleNotebooksInstance`, `GoogleNotebooksRuntime` (`google_notebooks_*`), their `*IamMember` / `*IamBinding` / `*IamPolicy` factories and the `DataGoogleNotebooks*IamPolicy` data sources | `GoogleWorkbenchInstance` (+ `GoogleWorkbenchInstanceIam*`) |
+| `GoogleVertexAiSchedule` (`google_vertex_ai_schedule`) | `GoogleColabSchedule` |
+
+`package:terradart_google/notebooks.dart` is gone with them; drop the import.
+
+**Before you upgrade**, take these resources out of Terraform state, or
+Terraform on provider 8.x cannot read them:
+
+- To keep the cloud resource and stop managing it:
+  `terraform state rm <address>` for each of them.
+- To replace it with the successor: create the successor first on your
+  current version, move the workload, then delete the old resource from the
+  Stack and apply — all before you upgrade.
+
 ### `terradart_cloudflare` follows `cloudflare/cloudflare` 5.26.0
 
 **Breaking (`terradart_cloudflare`)** — the provider pin moves from `5.23.0`

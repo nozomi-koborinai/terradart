@@ -14,7 +14,7 @@ void main() {
         terradartCatalog.where((e) => e.kind == CatalogKind.dataSource).length;
     expect(resources + dataSources, terradartCatalog.length);
     expect(terradartCatalog, isNotEmpty);
-    expect(dataSources, 461);
+    expect(dataSources, 455);
     final classNames = terradartCatalog.map((e) => e.className).toList();
     expect(
       classNames.toSet().length,

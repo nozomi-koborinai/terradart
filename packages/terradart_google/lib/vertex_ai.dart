@@ -9,8 +9,6 @@
 /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
 library;
 
-export 'src/vertex_ai/google_ml_engine_model.dart'
-    show GoogleMlEngineModel, MlEngineModelDefaultVersion;
 export 'src/vertex_ai/google_vertex_ai_cache_config.dart'
     show GoogleVertexAiCacheConfig;
 export 'src/vertex_ai/google_vertex_ai_dataset.dart' show GoogleVertexAiDataset;
@@ -168,8 +166,6 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_member.dart'
     show GoogleVertexAiReasoningEngineIamMember;
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_policy.dart'
     show GoogleVertexAiReasoningEngineIamPolicy;
-export 'src/vertex_ai/google_vertex_ai_schedule.dart'
-    show GoogleVertexAiSchedule;
 export 'src/vertex_ai/google_vertex_ai_semantic_governance_policy_engine.dart'
     show GoogleVertexAiSemanticGovernancePolicyEngine;
 export 'src/vertex_ai/google_vertex_ai_tensorboard.dart'
