@@ -65,14 +65,16 @@ void main() {
     expect(enums.resolver(null)(['settings', 'level'], available), ['a', 'b']);
   });
 
-  test('only top-level string inputs are enriched', () {
+  test('top-level string and list-of-string inputs are enriched', () {
     final ir = const ProviderEnums.on().enrich(_ir([
       _attr('status', description: available, computedOnly: true),
       _attr('tags', type: const ListType(StringType()), description: available),
+      _attr('ports', type: const SetType(NumberType()), description: available),
       _attr('mode', description: available),
     ]));
     expect(_values(ir, 'status'), isNull);
-    expect(_values(ir, 'tags'), isNull);
+    expect(_values(ir, 'tags'), ['a', 'b']);
+    expect(_values(ir, 'ports'), isNull);
     expect(_values(ir, 'mode'), ['a', 'b']);
   });
 
@@ -82,6 +84,7 @@ void main() {
       _attr('mode', description: available),
       _attr('kind', description: available),
       _attr('slot', description: available),
+      _attr('tags', type: const SetType(StringType()), description: available),
     ]));
     final typed = enums.typeDerivedEnums({
       'x_thing': const WrapperOverride(
@@ -95,8 +98,11 @@ void main() {
     }, ir.resources);
     expect(typed['x_thing']!.dartTypeOverrides, {
       'mode': 'XThingMode',
+      'tags': 'List<TfArg<XThingTags>>',
       'kind': 'String',
     });
+    expect(isEnumListType('List<TfArg<XThingTags>>'), isTrue);
+    expect(isEnumListType('XThingMode'), isFalse);
 
     final untouched = enums.typeDerivedEnums({
       'x_thing': const WrapperOverride(outputDir: 'thing'),
