@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:terradart_google/catalog.dart';
 import 'package:test/test.dart';
 
@@ -14,12 +17,28 @@ void main() {
         terradartCatalog.where((e) => e.kind == CatalogKind.dataSource).length;
     expect(resources + dataSources, terradartCatalog.length);
     expect(terradartCatalog, isNotEmpty);
-    expect(dataSources, 455);
     final classNames = terradartCatalog.map((e) => e.className).toList();
     expect(
       classNames.toSet().length,
       classNames.length,
       reason: 'resource / data-source class names must stay unique',
+    );
+  });
+
+  test('catalog wraps every data source of the GA fixture', () {
+    // The weekly schema bump scaffolds a factory for each data source a new
+    // pin adds (tool/bump_new_factories.dart); a type it misses fails here.
+    final root = jsonDecode(
+      File('../terradart_codegen/test/fixtures/wrap/source/schema.json')
+          .readAsStringSync(),
+    ) as Map<String, dynamic>;
+    final schema = (root['provider_schemas'] as Map).values.single as Map;
+    expect(
+      {
+        for (final e in terradartCatalog)
+          if (e.kind == CatalogKind.dataSource) e.tfType,
+      },
+      (schema['data_source_schemas'] as Map).keys.toSet(),
     );
   });
 

@@ -51,7 +51,7 @@ void main() {
     expect(google['refresh'], 'dump');
     expect(google['scaffold'], 'wrap-init');
     expect(google['mm'], isTrue);
-    expect(google['data_sources'], isFalse);
+    expect(google['data_sources'], isTrue);
     expect(google['api_lanes'], 'google,google-beta');
     expect(google['ride_along'], 'google-beta');
     expect(
