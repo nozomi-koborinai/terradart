@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `appwrite_mongo_backup_policy`.
 const Set<String> _appwriteMongoBackupPolicySensitive = <String>{};
 
+/// Mongo Backup Policy enum for `type`.
+enum MongoBackupPolicyType implements TerraformEnum {
+  full('full'),
+  incremental('incremental');
+
+  const MongoBackupPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_mongo_backup_policy`.
 ///
 /// Manages a scheduled backup policy for a dedicated Appwrite MongoDB database.
@@ -22,7 +32,7 @@ final class AppwriteMongoBackupPolicy extends Resource {
     TfArg<String>? projectId,
     required TfArg<num> retention,
     required TfArg<String> schedule,
-    TfArg<String>? type,
+    TfArg<MongoBackupPolicyType>? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

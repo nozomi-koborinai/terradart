@@ -1,3 +1,4 @@
 outputDir: mongo
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true

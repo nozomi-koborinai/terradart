@@ -4,14 +4,20 @@
 library;
 
 export 'src/postgresql/appwrite_postgresql_backup_policy.dart'
-    show AppwritePostgresqlBackupPolicy;
+    show AppwritePostgresqlBackupPolicy, PostgresqlBackupPolicyType;
 export 'src/postgresql/appwrite_postgresql_backup_storage.dart'
-    show AppwritePostgresqlBackupStorage;
+    show
+        AppwritePostgresqlBackupStorage,
+        PostgresqlBackupStorageStorageProvider;
 export 'src/postgresql/appwrite_postgresql_branch.dart'
     show AppwritePostgresqlBranch;
 export 'src/postgresql/appwrite_postgresql_database.dart'
-    show AppwritePostgresqlDatabase;
+    show
+        AppwritePostgresqlDatabase,
+        PostgresqlDatabaseMaintenanceWindowDay,
+        PostgresqlDatabaseStatus,
+        PostgresqlDatabaseSyncMode;
 export 'src/postgresql/appwrite_postgresql_extension.dart'
     show AppwritePostgresqlExtension;
 export 'src/postgresql/appwrite_postgresql_pooler.dart'
-    show AppwritePostgresqlPooler;
+    show AppwritePostgresqlPooler, PostgresqlPoolerMode;

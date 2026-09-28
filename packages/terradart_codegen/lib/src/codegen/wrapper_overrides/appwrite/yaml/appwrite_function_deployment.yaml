@@ -1,3 +1,4 @@
 outputDir: functions
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true

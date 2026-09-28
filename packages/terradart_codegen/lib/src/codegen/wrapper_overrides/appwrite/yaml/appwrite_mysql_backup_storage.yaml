@@ -1,6 +1,7 @@
 outputDir: mysql
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 curatedDoc: |-
   /// Custom MySQL backup destination. The API has no read route, so

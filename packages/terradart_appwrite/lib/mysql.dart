@@ -4,9 +4,15 @@
 library;
 
 export 'src/mysql/appwrite_mysql_backup_policy.dart'
-    show AppwriteMysqlBackupPolicy;
+    show AppwriteMysqlBackupPolicy, MysqlBackupPolicyType;
 export 'src/mysql/appwrite_mysql_backup_storage.dart'
-    show AppwriteMysqlBackupStorage;
+    show AppwriteMysqlBackupStorage, MysqlBackupStorageStorageProvider;
 export 'src/mysql/appwrite_mysql_branch.dart' show AppwriteMysqlBranch;
-export 'src/mysql/appwrite_mysql_database.dart' show AppwriteMysqlDatabase;
-export 'src/mysql/appwrite_mysql_pooler.dart' show AppwriteMysqlPooler;
+export 'src/mysql/appwrite_mysql_database.dart'
+    show
+        AppwriteMysqlDatabase,
+        MysqlDatabaseMaintenanceWindowDay,
+        MysqlDatabaseStatus,
+        MysqlDatabaseSyncMode;
+export 'src/mysql/appwrite_mysql_pooler.dart'
+    show AppwriteMysqlPooler, MysqlPoolerMode;

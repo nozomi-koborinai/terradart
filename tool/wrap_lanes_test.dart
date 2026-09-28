@@ -186,6 +186,13 @@ providers:
       expect(cloudflare.hintsRepo, 'cloudflare/terraform-provider-cloudflare');
       expect(staleHints(cloudflare.schemaDir), isEmpty);
     });
+
+    test('the committed appwrite lane types enums from current hints', () {
+      final appwrite = parseWrapLanes(File(providersPath).readAsStringSync())
+          .singleWhere((l) => l.name == 'appwrite');
+      expect(appwrite.providerEnums, isTrue);
+      expect(staleHints(appwrite.schemaDir), isEmpty);
+    });
   });
 
   group('staleHints', () {

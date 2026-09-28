@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `appwrite_storage_bucket`.
 const Set<String> _appwriteStorageBucketSensitive = <String>{};
 
+/// Storage Bucket enum for `compression`.
+enum StorageBucketCompression implements TerraformEnum {
+  none('none'),
+  gzip('gzip'),
+  zstd('zstd');
+
+  const StorageBucketCompression(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_storage_bucket`.
 ///
 /// Manages an Appwrite storage bucket.
@@ -26,7 +37,7 @@ final class AppwriteStorageBucket extends Resource {
     TfArg<bool>? fileSecurity,
     TfArg<num>? maximumFileSize,
     TfArg<List<String>>? allowedFileExtensions,
-    TfArg<String>? compression,
+    TfArg<StorageBucketCompression>? compression,
     TfArg<bool>? encryption,
     TfArg<bool>? antivirus,
     super.lifecycle,

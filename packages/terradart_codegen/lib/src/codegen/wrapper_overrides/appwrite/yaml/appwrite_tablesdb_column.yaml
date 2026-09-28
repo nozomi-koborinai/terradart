@@ -1,6 +1,7 @@
 outputDir: tablesdb
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 # `default` and `required` are Dart reserved / contextual keywords — virtual
 # slots keep the constructor parseable (`defaultValue`, `columnRequired`).
@@ -33,3 +34,36 @@ customSlots:
   columnRequired:
     paramDeclaration: 'TfArg<bool>? columnRequired'
     argMapEntry: "if (columnRequired != null) 'required': columnRequired,"
+
+# The provider enforces this set (`allColumnTypes`) in Create's `switch`, not
+# with a validator, so tool/extract_provider_hints.dart cannot see it.
+# Re-check internal/services/column/resource.go when the pin moves.
+prelude: |
+  /// Tablesdb Column enum for `type`.
+  enum TablesdbColumnType implements TerraformEnum {
+    varchar('varchar'),
+    text('text'),
+    longtext('longtext'),
+    mediumtext('mediumtext'),
+    integer('integer'),
+    bigint('bigint'),
+    float('float'),
+    boolean('boolean'),
+    enumCase('enum'),
+    email('email'),
+    datetime('datetime'),
+    url('url'),
+    ip('ip'),
+    point('point'),
+    line('line'),
+    polygon('polygon'),
+    relationship('relationship'),
+    string('string');
+
+    const TablesdbColumnType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  type: TablesdbColumnType
