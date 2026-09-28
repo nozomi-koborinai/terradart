@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:terradart_cloudflare/catalog.dart';
 import 'package:terradart_cloudflare/dns.dart';
 import 'package:terradart_cloudflare/provider.dart';
 import 'package:terradart_cloudflare/zone.dart';
@@ -33,17 +37,50 @@ final class _TestStack extends Stack {
   }
 }
 
+/// The lane's schema fixture in the monorepo: the pin and the full catalog
+/// are both derived from it.
+const _fixtureDir = '../terradart_codegen/test/fixtures/wrap/source_cloudflare';
+
+Map<String, dynamic> _fixtureSchema() {
+  final root = jsonDecode(File('$_fixtureDir/schema.json').readAsStringSync())
+      as Map<String, dynamic>;
+  return (root['provider_schemas'] as Map<String, dynamic>).values.single
+      as Map<String, dynamic>;
+}
+
+Set<String> _catalogTypes(CatalogKind kind) =>
+    {for (final e in terradartCatalog.where((e) => e.kind == kind)) e.tfType};
+
 void main() {
-  test('synths the cloudflare provider block with the exact 5.23.0 pin', () {
+  test('synths the cloudflare provider block with the exact fixture pin', () {
     final json = _TestStack().synth().tfJson;
     final requiredProviders =
         ((json['terraform'] as Map<String, dynamic>)['required_providers']
             as Map<String, dynamic>)['cloudflare'] as Map<String, dynamic>;
     expect(requiredProviders['source'], 'cloudflare/cloudflare');
     expect(requiredProviders['version'], kCloudflareProviderVersionConstraint);
-    // Exact pin, not a caret range: no bump lane exists for cloudflare,
-    // so the wrapper surface and the provider version move together.
-    expect(kCloudflareProviderVersionConstraint, '5.23.0');
+    // Exact pin, not a range: the wrapper surface and the provider version
+    // move together.
+    expect(
+      kCloudflareProviderVersionConstraint,
+      File('$_fixtureDir/provider_version.txt').readAsStringSync().trim(),
+    );
+    expect(
+      kCloudflareProviderVersionConstraint,
+      matches(RegExp(r'^\d+\.\d+\.\d+$')),
+    );
+  });
+
+  test('catalog lists every resource and data source at the pin', () {
+    final schema = _fixtureSchema();
+    expect(
+      _catalogTypes(CatalogKind.resource),
+      (schema['resource_schemas'] as Map).keys.toSet(),
+    );
+    expect(
+      _catalogTypes(CatalogKind.dataSource),
+      (schema['data_source_schemas'] as Map).keys.toSet(),
+    );
   });
 
   test('secrets cannot appear in synth output by construction', () {

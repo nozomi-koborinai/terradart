@@ -6,7 +6,7 @@
 
 Curated factory wrappers for **AWS** resources (the [`hashicorp/aws`](https://registry.terraform.io/providers/hashicorp/aws) Terraform provider) for Dart-first Terraform stacks.
 
-The catalog is the full `hashicorp/aws` `6.66.0` provider: 1725 resource factories and 683 data sources. Start from a Dart backend on AWS Lambda: an execution role, a managed-policy attachment, the function, a function URL, and a log group, plus the `aws_iam_policy_document` and `aws_caller_identity` data sources.
+The catalog is the full `hashicorp/aws` provider at its exact pin: every resource and data source. Start from a Dart backend on AWS Lambda: an execution role, a managed-policy attachment, the function, a function URL, and a log group, plus the `aws_iam_policy_document` and `aws_caller_identity` data sources.
 
 ## Security & Credentials
 
@@ -77,7 +77,7 @@ cd tf-out && terraform init && AWS_PROFILE=... terraform apply
 
 ## Curated surface
 
-**1725 resource factories + 683 data sources** (2408 catalog entries) across per-service barrels (`ec2`, `iam`, `lambda`, `s3`, `rds`, …) plus `data`. Provider pinned exactly at `6.66.0`. Start with [`examples/aws_lambda_quickstart`](../../examples/aws_lambda_quickstart), which builds the `bootstrap` zip from a Dart handler. [`examples/aws_static_site_quickstart`](../../examples/aws_static_site_quickstart) hosts a Flutter Web build on S3 + CloudFront with a custom domain, and [`examples/aws_ecs_express_quickstart`](../../examples/aws_ecs_express_quickstart) runs a Dart server on ECS Express Mode; both need real AWS setup to apply (their READMEs' "Before you apply"). The rest of the catalog is exercised by [`examples/aws_leftover_quickstart`](../../examples/aws_leftover_quickstart) (synth + `terraform validate` only).
+Every resource and data source of the pinned provider, across per-service barrels (`ec2`, `iam`, `lambda`, `s3`, `rds`, …) plus `data`. The provider is pinned exactly (`kAwsProviderVersionConstraint`, the release the wrappers were generated from). Start with [`examples/aws_lambda_quickstart`](../../examples/aws_lambda_quickstart), which builds the `bootstrap` zip from a Dart handler. [`examples/aws_static_site_quickstart`](../../examples/aws_static_site_quickstart) hosts a Flutter Web build on S3 + CloudFront with a custom domain, and [`examples/aws_ecs_express_quickstart`](../../examples/aws_ecs_express_quickstart) runs a Dart server on ECS Express Mode; both need real AWS setup to apply (their READMEs' "Before you apply"). The rest of the catalog is exercised by [`examples/aws_leftover_quickstart`](../../examples/aws_leftover_quickstart) (synth + `terraform validate` only).
 
 The six most deeply nested resources (`AwsWafv2WebAcl`, `AwsWafv2WebAclRule`, `AwsWafv2RuleGroup`, `AwsQuicksightAnalysis`, `AwsQuicksightDashboard`, `AwsQuicksightTemplate`) take typed nested helpers, but a block shape that repeats inside one resource gets one helper, named after its shallowest occurrence. `AwsWafv2WebAclRule(challengeConfig: ...)` therefore takes `Wafv2WebAclRuleCaptchaConfig`, and an `asnMatchStatement` nested inside `andStatement` levels takes the same `Wafv2WebAclRuleStatementAsnMatchStatement` as a top-level one. The inline `rule` blocks on `AwsWafv2WebAcl` stay a `TfArg<Map<String, dynamic>>` map; manage rules through `AwsWafv2WebAclRule` for the typed form.
 

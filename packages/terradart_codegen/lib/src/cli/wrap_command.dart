@@ -14,6 +14,7 @@ import '../codegen/data_source_wrapper_emitter.dart';
 import '../codegen/generated_file_header.dart';
 import '../codegen/migrate/migrate_entry_builder.dart';
 import '../codegen/migrate/migrate_manifest_emitter.dart';
+import '../codegen/provider_version_emitter.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
 import '../codegen/wrapper_overrides/yaml_loader.dart';
@@ -413,6 +414,16 @@ class WrapCommand extends Command<int> {
     if (only == null) {
       final catalogRaw = CatalogMetadataEmitter().emit(catalogEntries);
       buffer['_catalog.g.dart'] = formatter.format(catalogRaw);
+
+      // The fixture's release, for packages that pin their provider
+      // exactly: the pin moves with the wrappers instead of living in a
+      // hand-written copy. Kept out of the catalog so importing the pin
+      // does not pull the whole catalog into a user's compile.
+      final providerVersion = readProviderVersion(source);
+      if (providerVersion.isNotEmpty) {
+        buffer['_provider_version.g.dart'] =
+            formatter.format(providerVersionSource(providerVersion));
+      }
 
       // Barrels: every per-service barrel (+ `data` + the umbrella) derives
       // from the catalog entries joined with the authored barrels.yaml

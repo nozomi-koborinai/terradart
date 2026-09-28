@@ -98,6 +98,9 @@ Future<void> main() async {
     'website/src/content/docs/docs/index.md',
     '/docs/migrate-from-hcl/',
   );
+  for (final lane in exactPinLanes) {
+    _checkNoExactPinCopies(errors, lane);
+  }
   for (final template in [
     '.github/ISSUE_TEMPLATE/bug.yml',
     '.github/ISSUE_TEMPLATE/feature.yml',
@@ -220,6 +223,69 @@ void _checkCaretMinor(
       errors.add('$path: expected phrase "$phrase"');
     }
   }
+}
+
+/// Prose that restates an exact pin or its catalog counts goes stale on the
+/// next schema bump; point at the generated constant instead. History
+/// (CHANGELOG, MIGRATING) and the schema fixtures themselves are exempt.
+void _checkNoExactPinCopies(List<String> errors, ExactPinLane lane) {
+  final phrases = lane.stalePhrases;
+  for (final path in _proseFiles()) {
+    final lines = File(path).readAsLinesSync();
+    for (var i = 0; i < lines.length; i++) {
+      for (final phrase in phrases) {
+        final match = phrase.firstMatch(lines[i]);
+        if (match == null) continue;
+        errors.add(
+          '$path:${i + 1}: "${match.group(0)}" copies the ${lane.package} '
+          'pin or catalog count; name `${lane.pinConstant}` or say "at the '
+          'current pin" instead',
+        );
+      }
+    }
+  }
+}
+
+/// Hand-written prose a reader sees: root guides, package / example
+/// READMEs, example pubspec descriptions, the barrels manifests (their docs
+/// land in generated library comments), skills and the website.
+List<String> _proseFiles() {
+  final files = <String>[
+    for (final name in [
+      'README.md',
+      'AGENTS.md',
+      'CONTEXT.md',
+      'CONTRIBUTING.md',
+      'SECURITY.md',
+    ])
+      if (File(name).existsSync()) name,
+  ];
+  for (final dir in ['packages', 'examples']) {
+    for (final entry in Directory(dir).listSync().whereType<Directory>()) {
+      for (final name in ['README.md', 'pubspec.yaml']) {
+        final f = File('${entry.path}/$name');
+        if (f.existsSync()) files.add(f.path);
+      }
+    }
+  }
+  void under(String root, bool Function(String) keep) {
+    final d = Directory(root);
+    if (!d.existsSync()) return;
+    for (final f in d.listSync(recursive: true).whereType<File>()) {
+      if (keep(f.path)) files.add(f.path);
+    }
+  }
+
+  under(
+    'packages/terradart_codegen/lib/src/codegen/barrels',
+    (p) => p.endsWith('.yaml'),
+  );
+  under('.agents/skills', (p) => p.endsWith('.md'));
+  under(
+    'website/src',
+    (p) => p.endsWith('.md') || p.endsWith('.mdx') || p.endsWith('.astro'),
+  );
+  return files..sort();
 }
 
 List<String> _exampleDirs() {
