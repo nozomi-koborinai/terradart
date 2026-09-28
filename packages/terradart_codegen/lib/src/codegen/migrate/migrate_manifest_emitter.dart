@@ -20,8 +20,13 @@ import 'migrate_manifest_data.dart';
 class MigrateManifestEmitter {
   /// [package] is the Dart package whose factories the manifest describes
   /// (`terradart_google`); it is recorded in `MigrateManifest.package` and
-  /// names the constant.
-  String emit(List<MigrateEntryBuild> builds, {required String package}) {
+  /// names the constant. [caseInsensitiveEnums] is recorded as
+  /// `MigrateManifest.caseInsensitiveEnums`, and only written when set.
+  String emit(
+    List<MigrateEntryBuild> builds, {
+    required String package,
+    bool caseInsensitiveEnums = false,
+  }) {
     final constName = constNameFor(package);
     final entries = [for (final b in builds) b.entry]..sort((a, b) {
         final byType = a.tfType.compareTo(b.tfType);
@@ -65,9 +70,9 @@ class MigrateManifestEmitter {
     for (final name in enumNames) {
       buf.writeln('    ${_str(name)}: ${enums[name]},');
     }
-    buf
-      ..writeln('  },')
-      ..writeln(');');
+    buf.writeln('  },');
+    if (caseInsensitiveEnums) buf.writeln('  caseInsensitiveEnums: true,');
+    buf.writeln(');');
     return buf.toString();
   }
 
