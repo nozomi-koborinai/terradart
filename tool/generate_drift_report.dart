@@ -512,10 +512,13 @@ String? buildMmYamlSection(ReportInputs i) {
   if (mm == null) return null;
   final changed = (mm['changed'] as List?) ?? [];
   final failed = (mm['failed'] as List?) ?? [];
+  final ref = mm['ref'] as String?;
+  final at = ref == null ? '' : '- Read at magic-modules `$ref`.\n';
   if (changed.isEmpty && failed.isEmpty) {
-    return '## MM YAML updates\n\n- ✅ no upstream changes since last sync.';
+    return '## MM YAML updates\n\n$at- ✅ no upstream changes since last sync.';
   }
-  final b = StringBuffer('## MM YAML updates (${changed.length} files)\n\n');
+  final b = StringBuffer('## MM YAML updates (${changed.length} files)\n\n$at');
+  if (at.isNotEmpty) b.writeln();
   if (changed.isNotEmpty) {
     b.writeln('| File | Upstream URL |');
     b.writeln('|---|---|');

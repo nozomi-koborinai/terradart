@@ -15,6 +15,10 @@ ReportInputs inputs({
   int wrapCheckExitCode = 0,
   Map<String, dynamic>? newFactories,
   Map<String, dynamic>? scaffold,
+  Map<String, dynamic> mmYamlSync = const {
+    'changed': <String>[],
+    'failed': <String>[],
+  },
 }) =>
     ReportInputs(
       state: {
@@ -29,7 +33,7 @@ ReportInputs inputs({
       wrapCheckExitCode: wrapCheckExitCode,
       gatesStdout: 'ok',
       gatesExitCode: 0,
-      mmYamlSync: {'changed': <String>[], 'failed': <String>[]},
+      mmYamlSync: mmYamlSync,
       schemaDiff: {
         'added_resources': added,
         'removed_resources': <String>[],
@@ -41,6 +45,37 @@ ReportInputs inputs({
     );
 
 void main() {
+  test('MM YAML section names the pinned magic-modules commit', () {
+    final sha = 'd' * 40;
+    expect(
+      buildMmYamlSection(
+        inputs(
+          mmYamlSync: {
+            'ref': sha,
+            'changed': <String>[],
+            'failed': <String>[],
+          },
+        ),
+      ),
+      contains('Read at magic-modules `$sha`.'),
+    );
+    final section = buildMmYamlSection(
+      inputs(
+        mmYamlSync: {
+          'ref': sha,
+          'changed': [
+            {'file': 'google_x.yaml', 'upstream_url': 'https://example/x'},
+          ],
+          'failed': <String>[],
+        },
+      ),
+    )!;
+    expect(section, contains('## MM YAML updates (1 files)'));
+    expect(section, contains('Read at magic-modules `$sha`.'));
+    expect(section, contains('| `google_x.yaml` |'));
+    expect(buildMmYamlSection(inputs()), isNot(contains('Read at')));
+  });
+
   test('no beta input: no beta section, no beta summary row', () {
     final report = buildReport(inputs());
     expect(report, isNot(contains('google-beta')));

@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleGkeHubNamespaceSensitive = <String>{};
 
 /// Factory wrapper for `google_gke_hub_namespace`.
+///
+/// Namespace represents a namespace across the Fleet.
 final class GoogleGkeHubNamespace extends Resource {
   static const String tfType = 'google_gke_hub_namespace';
 

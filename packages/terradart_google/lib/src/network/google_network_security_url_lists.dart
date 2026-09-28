@@ -7,6 +7,9 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkSecurityUrlListsSensitive = <String>{};
 
 /// Factory wrapper for `google_network_security_url_lists`.
+///
+/// UrlList proto helps users to set reusable, independently manageable lists of
+/// hosts, host patterns, URLs, URL patterns.
 final class GoogleNetworkSecurityUrlLists extends Resource {
   static const String tfType = 'google_network_security_url_lists';
 
