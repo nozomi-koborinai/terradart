@@ -4,8 +4,13 @@
 library;
 
 export 'src/mongo/appwrite_mongo_backup_policy.dart'
-    show AppwriteMongoBackupPolicy;
+    show AppwriteMongoBackupPolicy, MongoBackupPolicyType;
 export 'src/mongo/appwrite_mongo_backup_storage.dart'
-    show AppwriteMongoBackupStorage;
+    show AppwriteMongoBackupStorage, MongoBackupStorageStorageProvider;
 export 'src/mongo/appwrite_mongo_branch.dart' show AppwriteMongoBranch;
-export 'src/mongo/appwrite_mongo_database.dart' show AppwriteMongoDatabase;
+export 'src/mongo/appwrite_mongo_database.dart'
+    show
+        AppwriteMongoDatabase,
+        MongoDatabaseMaintenanceWindowDay,
+        MongoDatabaseStatus,
+        MongoDatabaseSyncMode;

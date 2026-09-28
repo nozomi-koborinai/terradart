@@ -152,7 +152,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'type',
       'waitForReady',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['FunctionDeploymentSourceType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `appwrite_function_deployment`.\n\nManages an Appwrite function deployment.',
@@ -215,7 +215,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'type',
       'username',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['MessagingProviderType'],
     sensitiveFields: <String>[
       'api_key',
       'api_secret',
@@ -284,7 +284,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'schedule',
       'type',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['MongoBackupPolicyType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `appwrite_mongo_backup_policy`.\n\nManages a scheduled backup policy for a dedicated Appwrite MongoDB database.\nUse `appwrite_backup_policy` instead for databases running on Appwrite\'s\nshared infrastructure.',
@@ -307,7 +307,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'secretKey',
       'storageProvider',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['MongoBackupStorageStorageProvider'],
     sensitiveFields: <String>['access_key', 'secret_key'],
     docComment:
         'Factory wrapper for `appwrite_mongo_backup_storage`.\n\nSends the backups of a dedicated Appwrite MongoDB database to a bucket you\nown rather than Appwrite\'s default storage.\n\nThe API offers no route to read this configuration back, so Terraform cannot\ndetect drift, cannot verify what the server currently has, and cannot import\nan existing configuration. Destroying this resource only removes it from\nstate; backups continue going to the last destination applied. Change the\ndestination by applying a new one.\n\nCustom MongoDB backup destination. The API has no read route, so\nTerraform cannot detect drift or import an existing configuration.\n[accessKey] / [secretKey] are sensitive — use `TfArg.variable`.',
@@ -378,7 +378,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'syncMode',
       'version',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'MongoDatabaseMaintenanceWindowDay',
+      'MongoDatabaseStatus',
+      'MongoDatabaseSyncMode',
+    ],
     sensitiveFields: <String>['connection_password', 'connection_string'],
     docComment:
         'Factory wrapper for `appwrite_mongo_database`.\n\nManages a dedicated Appwrite MongoDB database. A dedicated database runs on\ninfrastructure reserved for one project, so creating, resizing or upgrading\none takes several minutes; Terraform waits for the database to settle before\ncontinuing.\n\nDedicated MongoDB database (reserved compute, billed while it exists).\nProvisioning takes several minutes; apply waits for settle.',
@@ -447,7 +451,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'schedule',
       'type',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['MysqlBackupPolicyType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `appwrite_mysql_backup_policy`.\n\nManages a scheduled backup policy for a dedicated Appwrite MySQL database.\nUse `appwrite_backup_policy` instead for databases running on Appwrite\'s\nshared infrastructure.',
@@ -470,7 +474,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'secretKey',
       'storageProvider',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['MysqlBackupStorageStorageProvider'],
     sensitiveFields: <String>['access_key', 'secret_key'],
     docComment:
         'Factory wrapper for `appwrite_mysql_backup_storage`.\n\nSends the backups of a dedicated Appwrite MySQL database to a bucket you own\nrather than Appwrite\'s default storage.\n\nThe API offers no route to read this configuration back, so Terraform cannot\ndetect drift, cannot verify what the server currently has, and cannot import\nan existing configuration. Destroying this resource only removes it from\nstate; backups continue going to the last destination applied. Change the\ndestination by applying a new one.\n\nCustom MySQL backup destination. The API has no read route, so\nTerraform cannot detect drift or import an existing configuration.\n[accessKey] / [secretKey] are sensitive — use `TfArg.variable`.',
@@ -541,7 +545,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'syncMode',
       'version',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'MysqlDatabaseMaintenanceWindowDay',
+      'MysqlDatabaseStatus',
+      'MysqlDatabaseSyncMode',
+    ],
     sensitiveFields: <String>['connection_password', 'connection_string'],
     docComment:
         'Factory wrapper for `appwrite_mysql_database`.\n\nManages a dedicated Appwrite MySQL database. A dedicated database runs on\ninfrastructure reserved for one project, so creating, resizing or upgrading\none takes several minutes; Terraform waits for the database to settle before\ncontinuing.\n\nDedicated MySQL database (reserved compute, billed while it exists).\nProvisioning takes several minutes; apply waits for settle.',
@@ -601,7 +609,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'projectId',
       'readWriteSplitting',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['MysqlPoolerMode'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `appwrite_mysql_pooler`.\n\nConfigures the connection pooler of a dedicated Appwrite MySQL database. The\npooler exists for the lifetime of the database, so this resource only ever\nupdates its settings: destroying it leaves the pooler running with its last\napplied configuration.',
@@ -634,7 +642,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'schedule',
       'type',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PostgresqlBackupPolicyType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `appwrite_postgresql_backup_policy`.\n\nManages a scheduled backup policy for a dedicated Appwrite PostgreSQL\ndatabase. Use `appwrite_backup_policy` instead for databases running on\nAppwrite\'s shared infrastructure.',
@@ -657,7 +665,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'secretKey',
       'storageProvider',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PostgresqlBackupStorageStorageProvider'],
     sensitiveFields: <String>['access_key', 'secret_key'],
     docComment:
         'Factory wrapper for `appwrite_postgresql_backup_storage`.\n\nSends the backups of a dedicated Appwrite PostgreSQL database to a bucket\nyou own rather than Appwrite\'s default storage.\n\nThe API offers no route to read this configuration back, so Terraform cannot\ndetect drift, cannot verify what the server currently has, and cannot import\nan existing configuration. Destroying this resource only removes it from\nstate; backups continue going to the last destination applied. Change the\ndestination by applying a new one.\n\nCustom PostgreSQL backup destination. The API has no read route, so\nTerraform cannot detect drift or import an existing configuration.\n[accessKey] / [secretKey] are sensitive — use `TfArg.variable`.',
@@ -728,7 +736,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'syncMode',
       'version',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'PostgresqlDatabaseMaintenanceWindowDay',
+      'PostgresqlDatabaseStatus',
+      'PostgresqlDatabaseSyncMode',
+    ],
     sensitiveFields: <String>['connection_password', 'connection_string'],
     docComment:
         'Factory wrapper for `appwrite_postgresql_database`.\n\nManages a dedicated Appwrite PostgreSQL database. A dedicated database runs\non infrastructure reserved for one project, so creating, resizing or\nupgrading one takes several minutes; Terraform waits for the database to\nsettle before continuing.\n\nDedicated PostgreSQL database (reserved compute, billed while it\nexists). Provisioning takes several minutes; apply waits for settle.',
@@ -811,7 +823,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'projectId',
       'readWriteSplitting',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PostgresqlPoolerMode'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `appwrite_postgresql_pooler`.\n\nConfigures the connection pooler of a dedicated Appwrite PostgreSQL\ndatabase. The pooler exists for the lifetime of the database, so this\nresource only ever updates its settings: destroying it leaves the pooler\nrunning with its last applied configuration.',
@@ -878,7 +890,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'resourceId',
       'type',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ProxyRuleType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `appwrite_proxy_rule`.\n\nManages a custom domain proxy rule for an Appwrite site or function.',
@@ -954,7 +966,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'type',
       'waitForReady',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SiteDeploymentSourceType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `appwrite_site_deployment`.\n\nManages an Appwrite site deployment.',
@@ -995,7 +1007,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'encryption',
       'antivirus',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['StorageBucketCompression'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `appwrite_storage_bucket`.\n\nManages an Appwrite storage bucket.\n\nAppwrite **storage bucket** — file storage with per-bucket security,\nsize limits, allowed extensions, compression, encryption, and\nantivirus toggles.\n\nProject-scoped: apply resolves the target project from the provider\'s\n`project_id` (or `APPWRITE_PROJECT_ID`).',
@@ -1084,7 +1096,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'twoWayKey',
       'projectId',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['TablesdbColumnType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `appwrite_tablesdb_column`.\n\nManages a column in an Appwrite table.',

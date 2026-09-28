@@ -9,6 +9,43 @@ const Set<String> _appwriteMongoDatabaseSensitive = <String>{
   'connection_string',
 };
 
+/// Mongo Database Maintenance Window enum for `maintenance_window_day`.
+enum MongoDatabaseMaintenanceWindowDay implements TerraformEnum {
+  sun('sun'),
+  mon('mon'),
+  tue('tue'),
+  wed('wed'),
+  thu('thu'),
+  fri('fri'),
+  sat('sat');
+
+  const MongoDatabaseMaintenanceWindowDay(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mongo Database enum for `status`.
+enum MongoDatabaseStatus implements TerraformEnum {
+  ready('ready'),
+  paused('paused'),
+  inactive('inactive');
+
+  const MongoDatabaseStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mongo Database Sync enum for `sync_mode`.
+enum MongoDatabaseSyncMode implements TerraformEnum {
+  async('async'),
+  sync('sync'),
+  quorum('quorum');
+
+  const MongoDatabaseSyncMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_mongo_database`.
 ///
 /// Manages a dedicated Appwrite MongoDB database. A dedicated database runs on
@@ -24,7 +61,7 @@ final class AppwriteMongoDatabase extends Resource {
   AppwriteMongoDatabase({
     required super.localName,
     TfArg<num>? idleTimeoutMinutes,
-    TfArg<String>? maintenanceWindowDay,
+    TfArg<MongoDatabaseMaintenanceWindowDay>? maintenanceWindowDay,
     TfArg<num>? maintenanceWindowHourUtc,
     required TfArg<String> name,
     TfArg<num>? networkIdleTimeoutSeconds,
@@ -39,11 +76,11 @@ final class AppwriteMongoDatabase extends Resource {
     TfArg<num>? sqlApiMaxBytes,
     TfArg<num>? sqlApiMaxRows,
     TfArg<num>? sqlApiTimeoutSeconds,
-    TfArg<String>? status,
+    TfArg<MongoDatabaseStatus>? status,
     TfArg<bool>? storageAutoscaling,
     TfArg<num>? storageAutoscalingMaxGb,
     TfArg<num>? storageAutoscalingThresholdPercent,
-    TfArg<String>? syncMode,
+    TfArg<MongoDatabaseSyncMode>? syncMode,
     TfArg<String>? version,
     super.lifecycle,
     super.dependsOn,

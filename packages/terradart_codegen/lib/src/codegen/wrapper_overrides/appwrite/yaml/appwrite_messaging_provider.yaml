@@ -1,3 +1,31 @@
 outputDir: messaging
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
+
+# The provider enforces this set in Create's `switch` (an unknown type is an
+# error), not with a validator, so tool/extract_provider_hints.dart cannot
+# see it. Re-check the switch in internal/services/provider/resource.go when
+# the pin moves.
+prelude: |
+  /// Messaging Provider enum for `type`.
+  enum MessagingProviderType implements TerraformEnum {
+    sendgrid('sendgrid'),
+    mailgun('mailgun'),
+    smtp('smtp'),
+    resend('resend'),
+    twilio('twilio'),
+    vonage('vonage'),
+    msg91('msg91'),
+    telesign('telesign'),
+    textmagic('textmagic'),
+    apns('apns'),
+    fcm('fcm');
+
+    const MessagingProviderType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  type: MessagingProviderType

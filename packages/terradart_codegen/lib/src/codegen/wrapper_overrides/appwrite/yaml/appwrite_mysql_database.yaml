@@ -1,6 +1,7 @@
 outputDir: mysql
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 curatedDoc: |-
   /// Dedicated MySQL database (reserved compute, billed while it exists).
