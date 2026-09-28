@@ -31,6 +31,15 @@ Per-package changelogs live alongside each package and are the system of record 
   lane's `providerEnums: true`). `terradart-migrate` matches cloudflare enum
   values case-insensitively and warns when it normalizes one. Synth output
   is unchanged. See `MIGRATING.md`.
+- **`terradart_cloudflare` map-of-object attributes** (**breaking**) — an
+  attribute declared as a map of objects (`nesting_mode: "map"`) takes
+  `Map<String, Helper>` instead of a single helper, which no value could
+  make pass `terraform validate`: 34 inputs across 7 resources, including
+  `CloudflareZeroTrustRiskBehavior.behaviors` (now covered by the leftover
+  example) and the Pages project bindings. Sensitive-field paths gain a `*`
+  segment for map entries, so synth checks `env_vars.*.value` per entry,
+  and `terradart-migrate` translates these maps (`MigrateSlot.keyed`). No
+  other lane has such attributes. See `MIGRATING.md`.
 - **Docs** — the agent skill and the *Migrating from HCL* guide describe one
   loop: `terradart-migrate --report`, then a migration, then porting the
   sidecar leftovers into the Stack, synth, and `terraform plan` with *No
