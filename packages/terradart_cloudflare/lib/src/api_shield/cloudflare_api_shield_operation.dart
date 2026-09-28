@@ -6,6 +6,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_api_shield_operation`.
 const Set<String> _cloudflareApiShieldOperationSensitive = <String>{};
 
+/// Api Shield Operation enum for `feature`.
+enum ApiShieldOperationFeature implements TerraformEnum {
+  thresholds('thresholds'),
+  parameterSchemas('parameter_schemas'),
+  schemaInfo('schema_info'),
+  confidenceIntervals('confidence_intervals');
+
+  const ApiShieldOperationFeature(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Api Shield Operation enum for `method`.
 enum ApiShieldOperationMethod implements TerraformEnum {
   get('GET'),
@@ -35,7 +47,7 @@ final class CloudflareApiShieldOperation extends Resource {
   CloudflareApiShieldOperation({
     required super.localName,
     required TfArg<String> endpoint,
-    TfArg<List<String>>? feature,
+    List<TfArg<ApiShieldOperationFeature>>? feature,
     required TfArg<String> host,
     required TfArg<ApiShieldOperationMethod> method,
     TfArg<bool>? withSchemas,
@@ -48,7 +60,8 @@ final class CloudflareApiShieldOperation extends Resource {
          terraformType: tfType,
          argMap: {
            'endpoint': endpoint,
-           if (feature != null) 'feature': feature,
+           if (feature != null)
+             'feature': TfArg.literal([for (final e in feature) e.toTfJson()]),
            'host': host,
            'method': method,
            if (withSchemas != null) 'with_schemas': withSchemas,

@@ -29,7 +29,8 @@ export 'src/magic/cloudflare_magic_transit_site_acl.dart'
     show
         CloudflareMagicTransitSiteAcl,
         MagicTransitSiteAclLan1,
-        MagicTransitSiteAclLan2;
+        MagicTransitSiteAclLan2,
+        MagicTransitSiteAclProtocols;
 export 'src/magic/cloudflare_magic_transit_site_lan.dart'
     show
         CloudflareMagicTransitSiteLan,

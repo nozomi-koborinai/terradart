@@ -6,6 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_oauth_client`.
 const Set<String> _cloudflareOauthClientSensitive = <String>{'client_secret'};
 
+/// Oauth Client Grant enum for `grant_types`.
+enum OauthClientGrantTypes implements TerraformEnum {
+  authorizationCode('authorization_code'),
+  refreshToken('refresh_token');
+
+  const OauthClientGrantTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Oauth Client Response enum for `response_types`.
+enum OauthClientResponseTypes implements TerraformEnum {
+  token('token'),
+  idToken('id_token'),
+  code('code');
+
+  const OauthClientResponseTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Oauth Client Token Endpoint Auth enum for `token_endpoint_auth_method`.
 enum OauthClientTokenEndpointAuthMethod implements TerraformEnum {
   none('none'),
@@ -40,14 +61,14 @@ final class CloudflareOauthClient extends Resource {
     TfArg<List<String>>? allowedCorsOrigins,
     required TfArg<String> clientName,
     TfArg<String>? clientUri,
-    required TfArg<List<String>> grantTypes,
+    required List<TfArg<OauthClientGrantTypes>> grantTypes,
     TfArg<String>? logoUri,
     TfArg<String>? oauthClientId,
     TfArg<List<String>>? optionalScopes,
     TfArg<String>? policyUri,
     TfArg<List<String>>? postLogoutRedirectUris,
     required TfArg<List<String>> redirectUris,
-    required TfArg<List<String>> responseTypes,
+    required List<TfArg<OauthClientResponseTypes>> responseTypes,
     required TfArg<List<String>> scopes,
     required TfArg<OauthClientTokenEndpointAuthMethod> tokenEndpointAuthMethod,
     TfArg<String>? tosUri,
@@ -64,7 +85,9 @@ final class CloudflareOauthClient extends Resource {
              'allowed_cors_origins': allowedCorsOrigins,
            'client_name': clientName,
            if (clientUri != null) 'client_uri': clientUri,
-           'grant_types': grantTypes,
+           'grant_types': TfArg.literal([
+             for (final e in grantTypes) e.toTfJson(),
+           ]),
            if (logoUri != null) 'logo_uri': logoUri,
            if (oauthClientId != null) 'oauth_client_id': oauthClientId,
            if (optionalScopes != null) 'optional_scopes': optionalScopes,
@@ -72,7 +95,9 @@ final class CloudflareOauthClient extends Resource {
            if (postLogoutRedirectUris != null)
              'post_logout_redirect_uris': postLogoutRedirectUris,
            'redirect_uris': redirectUris,
-           'response_types': responseTypes,
+           'response_types': TfArg.literal([
+             for (final e in responseTypes) e.toTfJson(),
+           ]),
            'scopes': scopes,
            'token_endpoint_auth_method': tokenEndpointAuthMethod,
            if (tosUri != null) 'tos_uri': tosUri,

@@ -526,6 +526,7 @@ export 'src/zero_trust/cloudflare_zero_trust_gateway_policy.dart'
         CloudflareZeroTrustGatewayPolicy,
         ZeroTrustGatewayPolicyAction,
         ZeroTrustGatewayPolicyExpiration,
+        ZeroTrustGatewayPolicyFilters,
         ZeroTrustGatewayPolicyRuleSettings,
         ZeroTrustGatewayPolicyRuleSettingsAuditSsh,
         ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls,

@@ -942,7 +942,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'withSchemas',
       'zoneId',
     ],
-    nestedTypes: <String>['ApiShieldOperationMethod'],
+    nestedTypes: <String>[
+      'ApiShieldOperationFeature',
+      'ApiShieldOperationMethod',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_api_shield_operation`.\n\nAccepted Permissions\n\n- `Account API Gateway` - `Account API Gateway Read` - `Domain API Gateway`\n- `Domain API Gateway Read`',
@@ -2437,6 +2440,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'readReplication',
     ],
     nestedTypes: <String>[
+      'D1DatabaseFields',
       'D1DatabaseJurisdiction',
       'D1DatabasePrimaryLocationHint',
       'D1DatabaseReadReplication',
@@ -3710,6 +3714,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'tcpConfig',
     ],
     nestedTypes: <String>[
+      'HealthcheckCheckRegions',
       'HealthcheckHttpConfig',
       'HealthcheckHttpConfigMethod',
       'HealthcheckTcpConfig',
@@ -4339,6 +4344,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'origins',
     ],
     nestedTypes: <String>[
+      'LoadBalancerPoolCheckRegions',
+      'LoadBalancerPoolHealthSources',
       'LoadBalancerPoolLoadShedding',
       'LoadBalancerPoolLoadSheddingDefaultPolicy',
       'LoadBalancerPoolLoadSheddingSessionPolicy',
@@ -4774,7 +4781,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'lan1',
       'lan2',
     ],
-    nestedTypes: <String>['MagicTransitSiteAclLan1', 'MagicTransitSiteAclLan2'],
+    nestedTypes: <String>[
+      'MagicTransitSiteAclProtocols',
+      'MagicTransitSiteAclLan1',
+      'MagicTransitSiteAclLan2',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_magic_transit_site_acl`.\n\nAccepted Permissions\n\n- `Magic Transit Read` - `Magic Transit Write` - `Magic WAN Read` - `Magic\nWAN Write`',
@@ -5367,6 +5378,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'visibility',
     ],
     nestedTypes: <String>[
+      'OauthClientGrantTypes',
+      'OauthClientResponseTypes',
       'OauthClientTokenEndpointAuthMethod',
       'OauthClientVisibility',
     ],
@@ -8561,6 +8574,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'WaitingRoomDefaultTemplateLanguage',
+      'WaitingRoomEnabledOriginCommands',
       'WaitingRoomQueueingMethod',
       'WaitingRoomTurnstileAction',
       'WaitingRoomTurnstileMode',
@@ -12317,6 +12331,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'ZeroTrustGatewayPolicyAction',
+      'ZeroTrustGatewayPolicyFilters',
       'ZeroTrustGatewayPolicyExpiration',
       'ZeroTrustGatewayPolicyRuleSettings',
       'ZeroTrustGatewayPolicyRuleSettingsAuditSsh',

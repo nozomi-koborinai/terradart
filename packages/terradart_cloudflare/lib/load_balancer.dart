@@ -38,6 +38,8 @@ export 'src/load_balancer/cloudflare_load_balancer_monitor_group.dart'
 export 'src/load_balancer/cloudflare_load_balancer_pool.dart'
     show
         CloudflareLoadBalancerPool,
+        LoadBalancerPoolCheckRegions,
+        LoadBalancerPoolHealthSources,
         LoadBalancerPoolLoadShedding,
         LoadBalancerPoolLoadSheddingDefaultPolicy,
         LoadBalancerPoolLoadSheddingSessionPolicy,

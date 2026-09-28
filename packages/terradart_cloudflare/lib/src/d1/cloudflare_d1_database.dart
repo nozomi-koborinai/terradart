@@ -7,6 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_d1_database`.
 const Set<String> _cloudflareD1DatabaseSensitive = <String>{};
 
+/// D1 Database enum for `fields`.
+enum D1DatabaseFields implements TerraformEnum {
+  uuid('uuid'),
+  name('name'),
+  createdAt('created_at'),
+  version('version'),
+  jurisdiction('jurisdiction'),
+  numTables('num_tables'),
+  fileSize('file_size'),
+  runningInRegion('running_in_region'),
+  readReplication('read_replication');
+
+  const D1DatabaseFields(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// D1 Database enum for `jurisdiction`.
 enum D1DatabaseJurisdiction implements TerraformEnum {
   eu('eu'),
@@ -64,7 +81,7 @@ final class CloudflareD1Database extends Resource {
   CloudflareD1Database({
     required super.localName,
     required TfArg<String> accountId,
-    TfArg<List<String>>? fields,
+    List<TfArg<D1DatabaseFields>>? fields,
     TfArg<D1DatabaseJurisdiction>? jurisdiction,
     required TfArg<String> name,
     TfArg<D1DatabasePrimaryLocationHint>? primaryLocationHint,
@@ -77,7 +94,8 @@ final class CloudflareD1Database extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (fields != null) 'fields': fields,
+           if (fields != null)
+             'fields': TfArg.literal([for (final e in fields) e.toTfJson()]),
            if (jurisdiction != null) 'jurisdiction': jurisdiction,
            'name': name,
            if (primaryLocationHint != null)

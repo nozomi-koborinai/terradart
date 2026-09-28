@@ -13,7 +13,10 @@ export 'src/api_shield/cloudflare_api_shield_discovery_operation.dart'
         ApiShieldDiscoveryOperationState,
         CloudflareApiShieldDiscoveryOperation;
 export 'src/api_shield/cloudflare_api_shield_operation.dart'
-    show ApiShieldOperationMethod, CloudflareApiShieldOperation;
+    show
+        ApiShieldOperationFeature,
+        ApiShieldOperationMethod,
+        CloudflareApiShieldOperation;
 export 'src/api_shield/cloudflare_api_shield_operation_schema_validation_settings.dart'
     show
         ApiShieldOperationSchemaValidationSettingsMitigationAction,

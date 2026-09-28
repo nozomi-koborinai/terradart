@@ -11,6 +11,7 @@ export 'src/waiting_room/cloudflare_waiting_room.dart'
         WaitingRoomCookieAttributesSamesite,
         WaitingRoomCookieAttributesSecure,
         WaitingRoomDefaultTemplateLanguage,
+        WaitingRoomEnabledOriginCommands,
         WaitingRoomQueueingMethod,
         WaitingRoomTurnstileAction,
         WaitingRoomTurnstileMode;

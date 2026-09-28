@@ -56,6 +56,8 @@ export 'src/account/cloudflare_api_token.dart'
 export 'src/account/cloudflare_oauth_client.dart'
     show
         CloudflareOauthClient,
+        OauthClientGrantTypes,
+        OauthClientResponseTypes,
         OauthClientTokenEndpointAuthMethod,
         OauthClientVisibility;
 export 'src/account/cloudflare_organization.dart'

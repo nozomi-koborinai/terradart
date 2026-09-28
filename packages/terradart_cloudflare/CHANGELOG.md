@@ -13,7 +13,7 @@
   with new `ct`, `field`, `nel` and `precursor` barrels. The catalog stays
   filled at the pin; `examples/cloudflare_leftover_quickstart` covers them.
 - **Breaking:** inputs with a fixed value set are generated enums instead
-  of `String`s — 540 string slots and 31 list slots, 571 enums (for example
+  of `String`s — 540 string slots and 41 list slots, 581 enums (for example
   `CloudflareDnsRecord.type` takes `DnsRecordType.cname`). The value sets
   come from the provider's `stringvalidator.OneOf` validators and its
   `Available values:` descriptions at the pin; synth output is unchanged.

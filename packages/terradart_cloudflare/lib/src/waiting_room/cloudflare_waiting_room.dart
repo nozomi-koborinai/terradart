@@ -54,6 +54,15 @@ enum WaitingRoomDefaultTemplateLanguage implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Waiting Room Enabled Origin enum for `enabled_origin_commands`.
+enum WaitingRoomEnabledOriginCommands implements TerraformEnum {
+  revoke('revoke');
+
+  const WaitingRoomEnabledOriginCommands(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Waiting Room Queueing enum for `queueing_method`.
 enum WaitingRoomQueueingMethod implements TerraformEnum {
   fifo('fifo'),
@@ -158,7 +167,7 @@ final class CloudflareWaitingRoom extends Resource {
     TfArg<WaitingRoomDefaultTemplateLanguage>? defaultTemplateLanguage,
     TfArg<String>? description,
     TfArg<bool>? disableSessionRenewal,
-    TfArg<List<String>>? enabledOriginCommands,
+    List<TfArg<WaitingRoomEnabledOriginCommands>>? enabledOriginCommands,
     required TfArg<String> host,
     TfArg<bool>? jsonResponseEnabled,
     required TfArg<String> name,
@@ -190,7 +199,9 @@ final class CloudflareWaitingRoom extends Resource {
            if (disableSessionRenewal != null)
              'disable_session_renewal': disableSessionRenewal,
            if (enabledOriginCommands != null)
-             'enabled_origin_commands': enabledOriginCommands,
+             'enabled_origin_commands': TfArg.literal([
+               for (final e in enabledOriginCommands) e.toTfJson(),
+             ]),
            'host': host,
            if (jsonResponseEnabled != null)
              'json_response_enabled': jsonResponseEnabled,

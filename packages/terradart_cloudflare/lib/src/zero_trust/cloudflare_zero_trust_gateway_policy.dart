@@ -31,6 +31,19 @@ enum ZeroTrustGatewayPolicyAction implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Zero Trust Gateway Policy enum for `filters`.
+enum ZeroTrustGatewayPolicyFilters implements TerraformEnum {
+  http('http'),
+  dns('dns'),
+  l4('l4'),
+  egress('egress'),
+  dnsResolver('dns_resolver');
+
+  const ZeroTrustGatewayPolicyFilters(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `expiration` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
@@ -740,7 +753,7 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
     TfArg<String>? description,
     TfArg<String>? devicePosture,
     TfArg<bool>? enabled,
-    TfArg<List<String>>? filters,
+    List<TfArg<ZeroTrustGatewayPolicyFilters>>? filters,
     TfArg<String>? identity,
     required TfArg<String> name,
     TfArg<num>? precedence,
@@ -760,7 +773,8 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
            if (description != null) 'description': description,
            if (devicePosture != null) 'device_posture': devicePosture,
            if (enabled != null) 'enabled': enabled,
-           if (filters != null) 'filters': filters,
+           if (filters != null)
+             'filters': TfArg.literal([for (final e in filters) e.toTfJson()]),
            if (identity != null) 'identity': identity,
            'name': name,
            if (precedence != null) 'precedence': precedence,

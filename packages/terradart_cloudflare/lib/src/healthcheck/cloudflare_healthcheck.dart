@@ -7,6 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_healthcheck`.
 const Set<String> _cloudflareHealthcheckSensitive = <String>{};
 
+/// Healthcheck Check enum for `check_regions`.
+enum HealthcheckCheckRegions implements TerraformEnum {
+  wnam('WNAM'),
+  enam('ENAM'),
+  weu('WEU'),
+  eeu('EEU'),
+  nsam('NSAM'),
+  ssam('SSAM'),
+  oc('OC'),
+  me('ME'),
+  naf('NAF'),
+  saf('SAF'),
+  inCase('IN'),
+  seas('SEAS'),
+  neas('NEAS'),
+  allRegions('ALL_REGIONS');
+
+  const HealthcheckCheckRegions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `http_config` block of
 /// `cloudflare_healthcheck` (derived from provider schema).
 @immutable
@@ -97,7 +119,7 @@ final class CloudflareHealthcheck extends Resource {
   CloudflareHealthcheck({
     required super.localName,
     required TfArg<String> address,
-    TfArg<List<String>>? checkRegions,
+    List<TfArg<HealthcheckCheckRegions>>? checkRegions,
     TfArg<num>? consecutiveFails,
     TfArg<num>? consecutiveSuccesses,
     TfArg<String>? description,
@@ -118,7 +140,10 @@ final class CloudflareHealthcheck extends Resource {
          terraformType: tfType,
          argMap: {
            'address': address,
-           if (checkRegions != null) 'check_regions': checkRegions,
+           if (checkRegions != null)
+             'check_regions': TfArg.literal([
+               for (final e in checkRegions) e.toTfJson(),
+             ]),
            if (consecutiveFails != null) 'consecutive_fails': consecutiveFails,
            if (consecutiveSuccesses != null)
              'consecutive_successes': consecutiveSuccesses,
