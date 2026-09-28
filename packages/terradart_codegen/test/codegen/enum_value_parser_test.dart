@@ -57,6 +57,22 @@ void main() {
       expect(parseAvailableValues('Possible values: ["A", "B"]'), isNull);
       expect(parseAvailableValues(null), isNull);
     });
+    test('an expression attribute lists fields, not values', () {
+      expect(
+        parseAvailableValues(
+          'The wirefilter expression to match registrations. Available '
+          'values: "identity.name", "identity.email".',
+        ),
+        isNull,
+      );
+      expect(
+        parseAvailableValues(
+          'The action to take if the expression matches\n'
+          'Available values: "allow", "log".',
+        ),
+        ['allow', 'log'],
+      );
+    });
     test('the lane-wide parser does not read it', () {
       expect(
         parseEnumValuesFromDescription('Available values: "a", "b".'),

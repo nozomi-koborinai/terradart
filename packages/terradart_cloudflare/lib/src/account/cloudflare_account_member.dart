@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_account_member`.
 const Set<String> _cloudflareAccountMemberSensitive = <String>{};
 
+/// Account Member enum for `status`.
+enum AccountMemberStatus implements TerraformEnum {
+  accepted('accepted'),
+  pending('pending');
+
+  const AccountMemberStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `policies` block of
 /// `cloudflare_account_member` (derived from provider schema).
 @immutable
@@ -17,7 +27,7 @@ final class AccountMemberPolicies {
     required this.resourceGroups,
   });
 
-  final TfArg<String> access;
+  final TfArg<AccountMemberPoliciesAccess> access;
 
   final List<AccountMemberPoliciesPermissionGroups> permissionGroups;
 
@@ -28,6 +38,16 @@ final class AccountMemberPolicies {
     'permission_groups': [for (final e in permissionGroups) e.encode()],
     'resource_groups': [for (final e in resourceGroups) e.encode()],
   };
+}
+
+/// `access` — derived from the provider schema description.
+enum AccountMemberPoliciesAccess implements TerraformEnum {
+  allow('allow'),
+  deny('deny');
+
+  const AccountMemberPoliciesAccess(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policies.permission_groups` block of
@@ -65,7 +85,7 @@ final class CloudflareAccountMember extends Resource {
     required TfArg<String> accountId,
     required TfArg<String> email,
     TfArg<List<String>>? roles,
-    TfArg<String>? status,
+    TfArg<AccountMemberStatus>? status,
     List<AccountMemberPolicies>? policies,
     super.lifecycle,
     super.dependsOn,

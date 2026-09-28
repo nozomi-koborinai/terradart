@@ -8,4 +8,5 @@ export 'src/hyperdrive/cloudflare_hyperdrive_config.dart'
         CloudflareHyperdriveConfig,
         HyperdriveConfigCaching,
         HyperdriveConfigMtls,
-        HyperdriveConfigOrigin;
+        HyperdriveConfigOrigin,
+        HyperdriveConfigOriginScheme;

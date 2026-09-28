@@ -13,7 +13,7 @@ const Set<String> _cloudflareAccessRulesSensitive = <String>{};
 final class DataAccessRulesConfiguration {
   const DataAccessRulesConfiguration({this.target, this.value});
 
-  final TfArg<String>? target;
+  final TfArg<DataAccessRulesConfigurationTarget>? target;
 
   final TfArg<String>? value;
 
@@ -21,6 +21,18 @@ final class DataAccessRulesConfiguration {
     if (target != null) 'target': target!.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `target` — derived from the provider schema description.
+enum DataAccessRulesConfigurationTarget implements TerraformEnum {
+  ip('ip'),
+  ipRange('ip_range'),
+  asn('asn'),
+  country('country');
+
+  const DataAccessRulesConfigurationTarget(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_access_rules`.

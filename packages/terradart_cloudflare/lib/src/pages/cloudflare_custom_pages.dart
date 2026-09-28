@@ -6,6 +6,34 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_custom_pages`.
 const Set<String> _cloudflareCustomPagesSensitive = <String>{};
 
+/// Custom Pages enum for `identifier`.
+enum CustomPagesIdentifier implements TerraformEnum {
+  v1000Errors('1000_errors'),
+  v500Errors('500_errors'),
+  basicChallenge('basic_challenge'),
+  countryChallenge('country_challenge'),
+  ipBlock('ip_block'),
+  managedChallenge('managed_challenge'),
+  ratelimitBlock('ratelimit_block'),
+  underAttack('under_attack'),
+  wafBlock('waf_block'),
+  wafChallenge('waf_challenge');
+
+  const CustomPagesIdentifier(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Custom Pages enum for `state`.
+enum CustomPagesState implements TerraformEnum {
+  defaultCase('default'),
+  customized('customized');
+
+  const CustomPagesState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_custom_pages`.
 ///
 /// Accepted Permissions
@@ -18,8 +46,8 @@ final class CloudflareCustomPages extends Resource {
   CloudflareCustomPages({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<String> identifier,
-    required TfArg<String> state,
+    required TfArg<CustomPagesIdentifier> identifier,
+    required TfArg<CustomPagesState> state,
     TfArg<String>? url,
     TfArg<String>? zoneId,
     super.lifecycle,

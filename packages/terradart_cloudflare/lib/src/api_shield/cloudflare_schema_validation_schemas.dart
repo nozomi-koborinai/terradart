@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_schema_validation_schemas`.
 const Set<String> _cloudflareSchemaValidationSchemasSensitive = <String>{};
 
+/// Schema Validation Schemas enum for `kind`.
+enum SchemaValidationSchemasKind implements TerraformEnum {
+  openapiV3('openapi_v3');
+
+  const SchemaValidationSchemasKind(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_schema_validation_schemas`.
 ///
 /// Accepted Permissions
@@ -17,7 +26,7 @@ final class CloudflareSchemaValidationSchemas extends Resource {
 
   CloudflareSchemaValidationSchemas({
     required super.localName,
-    required TfArg<String> kind,
+    required TfArg<SchemaValidationSchemasKind> kind,
     required TfArg<String> name,
     TfArg<bool>? omitSource,
     required TfArg<String> source,

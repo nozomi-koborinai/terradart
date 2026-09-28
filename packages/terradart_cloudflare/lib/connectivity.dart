@@ -6,7 +6,9 @@ library;
 export 'src/connectivity/cloudflare_connectivity_directory_service.dart'
     show
         CloudflareConnectivityDirectoryService,
+        ConnectivityDirectoryServiceAppProtocol,
         ConnectivityDirectoryServiceHost,
         ConnectivityDirectoryServiceHostNetwork,
         ConnectivityDirectoryServiceHostResolverNetwork,
-        ConnectivityDirectoryServiceTlsSettings;
+        ConnectivityDirectoryServiceTlsSettings,
+        ConnectivityDirectoryServiceType;

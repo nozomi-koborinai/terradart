@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_origin_ca_certificate`.
 const Set<String> _cloudflareOriginCaCertificateSensitive = <String>{};
 
+/// Origin Ca Certificate Request enum for `request_type`.
+enum OriginCaCertificateRequestType implements TerraformEnum {
+  originRsa('origin-rsa'),
+  originEcc('origin-ecc'),
+  keylessCertificate('keyless-certificate');
+
+  const OriginCaCertificateRequestType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_origin_ca_certificate`.
 final class CloudflareOriginCaCertificate extends Resource {
   static const String tfType = 'cloudflare_origin_ca_certificate';
@@ -14,7 +25,7 @@ final class CloudflareOriginCaCertificate extends Resource {
     required super.localName,
     required TfArg<String> csr,
     required TfArg<List<String>> hostnames,
-    required TfArg<String> requestType,
+    required TfArg<OriginCaCertificateRequestType> requestType,
     TfArg<num>? requestedValidity,
     super.lifecycle,
     super.dependsOn,

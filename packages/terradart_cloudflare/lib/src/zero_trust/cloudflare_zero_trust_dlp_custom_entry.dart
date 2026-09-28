@@ -15,12 +15,21 @@ final class ZeroTrustDlpCustomEntryPattern {
 
   final TfArg<String> regex;
 
-  final TfArg<String>? validation;
+  final TfArg<ZeroTrustDlpCustomEntryPatternValidation>? validation;
 
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
     if (validation != null) 'validation': validation!.toTfJson(),
   };
+}
+
+/// `validation` — derived from the provider schema description.
+enum ZeroTrustDlpCustomEntryPatternValidation implements TerraformEnum {
+  luhn('luhn');
+
+  const ZeroTrustDlpCustomEntryPatternValidation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dlp_custom_entry`.

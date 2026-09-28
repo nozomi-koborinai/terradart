@@ -14,4 +14,17 @@ export 'src/flagship/cloudflare_flagship_flag.dart'
         FlagshipFlagRulesConditionsClausesClausesClauses,
         FlagshipFlagRulesConditionsClausesClausesClausesClauses,
         FlagshipFlagRulesConditionsClausesClausesClausesClausesClauses,
-        FlagshipFlagRulesRollout;
+        FlagshipFlagRulesConditionsClausesClausesClausesClausesClausesLogicalOperator,
+        FlagshipFlagRulesConditionsClausesClausesClausesClausesClausesOperator,
+        FlagshipFlagRulesConditionsClausesClausesClausesClausesLogicalOperator,
+        FlagshipFlagRulesConditionsClausesClausesClausesClausesOperator,
+        FlagshipFlagRulesConditionsClausesClausesClausesLogicalOperator,
+        FlagshipFlagRulesConditionsClausesClausesClausesOperator,
+        FlagshipFlagRulesConditionsClausesClausesLogicalOperator,
+        FlagshipFlagRulesConditionsClausesClausesOperator,
+        FlagshipFlagRulesConditionsClausesLogicalOperator,
+        FlagshipFlagRulesConditionsClausesOperator,
+        FlagshipFlagRulesConditionsLogicalOperator,
+        FlagshipFlagRulesConditionsOperator,
+        FlagshipFlagRulesRollout,
+        FlagshipFlagType;

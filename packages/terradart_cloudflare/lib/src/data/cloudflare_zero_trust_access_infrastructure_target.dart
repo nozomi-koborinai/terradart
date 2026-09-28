@@ -38,7 +38,8 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 
   final TfArg<String>? createdBefore;
 
-  final TfArg<String>? direction;
+  final TfArg<DataZeroTrustAccessInfrastructureTargetFilterDirection>?
+  direction;
 
   final TfArg<String>? hostname;
 
@@ -64,7 +65,7 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 
   final TfArg<String>? modifiedBefore;
 
-  final TfArg<String>? order;
+  final TfArg<DataZeroTrustAccessInfrastructureTargetFilterOrder>? order;
 
   final TfArg<List<Object?>>? tag;
 
@@ -95,6 +96,30 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
     if (virtualNetworkId != null)
       'virtual_network_id': virtualNetworkId!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataZeroTrustAccessInfrastructureTargetFilterDirection
+    implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataZeroTrustAccessInfrastructureTargetFilterDirection(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataZeroTrustAccessInfrastructureTargetFilterOrder
+    implements TerraformEnum {
+  hostname('hostname'),
+  createdAt('created_at');
+
+  const DataZeroTrustAccessInfrastructureTargetFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_infrastructure_target`.

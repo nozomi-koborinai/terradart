@@ -63,6 +63,7 @@ void main() {
   final parsedFiles = <String, _ParsedFile>{};
   for (final file in files) {
     parsedFiles[file.path] = _parseFile(file);
+    _collectEnums(file.readAsStringSync());
   }
 
   final helpers = <String, _ClassInfo>{};
@@ -551,7 +552,19 @@ String _dummyForType(
       return _secretVarRef;
     }
     final inner = t.substring(6, t.length - 1);
-    return 'TfArg.literal(${_literalInner(inner, helpers, depth: depth, name: name, sensitive: sensitive, owner: owner)})';
+    final value = _literalInner(
+      inner,
+      helpers,
+      depth: depth,
+      name: name,
+      sensitive: sensitive,
+      owner: owner,
+    );
+    // An enum member's long name makes the formatter wrap the call; the
+    // trailing comma keeps the wrapped shape `require_trailing_commas` wants.
+    return _enums.containsKey(inner.trim())
+        ? 'TfArg.literal($value,)'
+        : 'TfArg.literal($value)';
   }
   if (t.startsWith('List<') && t.endsWith('>')) {
     final inner = t.substring(5, t.length - 1);
@@ -563,6 +576,7 @@ String _dummyForType(
   if (helpers.containsKey(t)) {
     return _constructHelper(t, helpers, depth: depth + 1, sensitive: sensitive);
   }
+  if (_enums.containsKey(t)) return _enumMember(t, name, owner: owner);
   if (_primitives.contains(_headType(t))) {
     return _literalInner(
       t,
@@ -587,6 +601,7 @@ String _literalInner(
   var t = inner.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
   if (t == 'String') return _stringLiteral(name, owner: owner);
+  if (_enums.containsKey(t)) return _enumMember(t, name, owner: owner);
   if (t == 'num' || t == 'int' || t == 'double') {
     return _numberByKey['$owner.$name'] ?? '200';
   }
@@ -614,6 +629,39 @@ String _literalInner(
 }
 
 const _hex32 = '00000000000000000000000000000001';
+
+/// Every `TerraformEnum` the package declares: name → (member, raw value)
+/// in declaration order.
+final _enums = <String, List<(String, String)>>{};
+
+final _enumDecl = RegExp(
+  r'enum\s+(\w+)\s+implements\s+TerraformEnum\s*\{([^;]*);',
+);
+final _enumEntry = RegExp(r"(\w+)\(\s*'((?:[^'\\]|\\.)*)'\s*,?\s*\)");
+
+void _collectEnums(String source) {
+  for (final m in _enumDecl.allMatches(source)) {
+    _enums[m.group(1)!] = [
+      for (final e in _enumEntry.allMatches(m.group(2)!))
+        (e.group(1)!, e.group(2)!.replaceAll(r'\', '')),
+    ];
+  }
+}
+
+/// The member whose value [_stringLiteral] would have written for the slot
+/// (the value its provider validator accepts), else the first member.
+String _enumMember(String enumName, String name, {required String owner}) {
+  final members = _enums[enumName]!;
+  final literal = _stringLiteral(name, owner: owner);
+  final preferred = literal.startsWith("'") && literal.endsWith("'")
+      ? literal.substring(1, literal.length - 1)
+      : null;
+  final pick = members.firstWhere(
+    (m) => m.$2 == preferred,
+    orElse: () => members.first,
+  );
+  return '$enumName.${pick.$1}';
+}
 
 const _literalByKey = <String, String>{
   'settingId': "'ciphers'",

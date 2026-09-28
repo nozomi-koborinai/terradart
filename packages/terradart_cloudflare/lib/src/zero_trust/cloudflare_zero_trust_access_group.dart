@@ -492,11 +492,27 @@ final class ZeroTrustAccessGroupExcludeServiceToken {
 final class ZeroTrustAccessGroupExcludeUserRiskScore {
   const ZeroTrustAccessGroupExcludeUserRiskScore({required this.userRiskScore});
 
-  final TfArg<List<Object?>> userRiskScore;
+  final List<TfArg<ZeroTrustAccessGroupExcludeUserRiskScoreUserRiskScore>>
+  userRiskScore;
 
   Map<String, Object?> encode() => {
-    'user_risk_score': userRiskScore.toTfJson(),
+    'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
   };
+}
+
+/// `user_risk_score` — derived from the provider schema description.
+enum ZeroTrustAccessGroupExcludeUserRiskScoreUserRiskScore
+    implements TerraformEnum {
+  low('low'),
+  medium('medium'),
+  high('high'),
+  unscored('unscored');
+
+  const ZeroTrustAccessGroupExcludeUserRiskScoreUserRiskScore(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `include` block of
@@ -984,11 +1000,27 @@ final class ZeroTrustAccessGroupIncludeServiceToken {
 final class ZeroTrustAccessGroupIncludeUserRiskScore {
   const ZeroTrustAccessGroupIncludeUserRiskScore({required this.userRiskScore});
 
-  final TfArg<List<Object?>> userRiskScore;
+  final List<TfArg<ZeroTrustAccessGroupIncludeUserRiskScoreUserRiskScore>>
+  userRiskScore;
 
   Map<String, Object?> encode() => {
-    'user_risk_score': userRiskScore.toTfJson(),
+    'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
   };
+}
+
+/// `user_risk_score` — derived from the provider schema description.
+enum ZeroTrustAccessGroupIncludeUserRiskScoreUserRiskScore
+    implements TerraformEnum {
+  low('low'),
+  medium('medium'),
+  high('high'),
+  unscored('unscored');
+
+  const ZeroTrustAccessGroupIncludeUserRiskScoreUserRiskScore(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `require` block of
@@ -1476,11 +1508,27 @@ final class ZeroTrustAccessGroupRequireServiceToken {
 final class ZeroTrustAccessGroupRequireUserRiskScore {
   const ZeroTrustAccessGroupRequireUserRiskScore({required this.userRiskScore});
 
-  final TfArg<List<Object?>> userRiskScore;
+  final List<TfArg<ZeroTrustAccessGroupRequireUserRiskScoreUserRiskScore>>
+  userRiskScore;
 
   Map<String, Object?> encode() => {
-    'user_risk_score': userRiskScore.toTfJson(),
+    'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
   };
+}
+
+/// `user_risk_score` — derived from the provider schema description.
+enum ZeroTrustAccessGroupRequireUserRiskScoreUserRiskScore
+    implements TerraformEnum {
+  low('low'),
+  medium('medium'),
+  high('high'),
+  unscored('unscored');
+
+  const ZeroTrustAccessGroupRequireUserRiskScoreUserRiskScore(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_group`.

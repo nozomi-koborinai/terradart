@@ -6,6 +6,65 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_magic_network_monitoring_rule`.
 const Set<String> _cloudflareMagicNetworkMonitoringRuleSensitive = <String>{};
 
+/// Magic Network Monitoring Rule enum for `duration`.
+enum MagicNetworkMonitoringRuleDuration implements TerraformEnum {
+  v1m('1m'),
+  v5m('5m'),
+  v10m('10m'),
+  v15m('15m'),
+  v20m('20m'),
+  v30m('30m'),
+  v45m('45m'),
+  v60m('60m');
+
+  const MagicNetworkMonitoringRuleDuration(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Magic Network Monitoring Rule Prefix enum for `prefix_match`.
+enum MagicNetworkMonitoringRulePrefixMatch implements TerraformEnum {
+  exact('exact'),
+  subnet('subnet'),
+  supernet('supernet');
+
+  const MagicNetworkMonitoringRulePrefixMatch(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Magic Network Monitoring Rule enum for `type`.
+enum MagicNetworkMonitoringRuleType implements TerraformEnum {
+  threshold('threshold'),
+  zscore('zscore'),
+  advancedDdos('advanced_ddos');
+
+  const MagicNetworkMonitoringRuleType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Magic Network Monitoring Rule Zscore enum for `zscore_sensitivity`.
+enum MagicNetworkMonitoringRuleZscoreSensitivity implements TerraformEnum {
+  low('low'),
+  medium('medium'),
+  high('high');
+
+  const MagicNetworkMonitoringRuleZscoreSensitivity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Magic Network Monitoring Rule Zscore enum for `zscore_target`.
+enum MagicNetworkMonitoringRuleZscoreTarget implements TerraformEnum {
+  bits('bits'),
+  packets('packets');
+
+  const MagicNetworkMonitoringRuleZscoreTarget(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_magic_network_monitoring_rule`.
 ///
 /// Accepted Permissions
@@ -20,14 +79,14 @@ final class CloudflareMagicNetworkMonitoringRule extends Resource {
     required TfArg<String> accountId,
     required TfArg<bool> automaticAdvertisement,
     TfArg<num>? bandwidthThreshold,
-    TfArg<String>? duration,
+    TfArg<MagicNetworkMonitoringRuleDuration>? duration,
     required TfArg<String> name,
     TfArg<num>? packetThreshold,
-    TfArg<String>? prefixMatch,
+    TfArg<MagicNetworkMonitoringRulePrefixMatch>? prefixMatch,
     required TfArg<List<String>> prefixes,
-    required TfArg<String> type,
-    TfArg<String>? zscoreSensitivity,
-    TfArg<String>? zscoreTarget,
+    required TfArg<MagicNetworkMonitoringRuleType> type,
+    TfArg<MagicNetworkMonitoringRuleZscoreSensitivity>? zscoreSensitivity,
+    TfArg<MagicNetworkMonitoringRuleZscoreTarget>? zscoreTarget,
     super.lifecycle,
     super.dependsOn,
     super.provider,

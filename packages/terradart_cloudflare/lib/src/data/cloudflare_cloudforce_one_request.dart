@@ -40,9 +40,9 @@ final class DataCloudforceOneRequestFilter {
 
   final TfArg<String>? sortBy;
 
-  final TfArg<String>? sortOrder;
+  final TfArg<DataCloudforceOneRequestFilterSortOrder>? sortOrder;
 
-  final TfArg<String>? status;
+  final TfArg<DataCloudforceOneRequestFilterStatus>? status;
 
   Map<String, Object?> encode() => {
     if (completedAfter != null) 'completed_after': completedAfter!.toTfJson(),
@@ -57,6 +57,30 @@ final class DataCloudforceOneRequestFilter {
     if (sortOrder != null) 'sort_order': sortOrder!.toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `sort_order` — derived from the provider schema description.
+enum DataCloudforceOneRequestFilterSortOrder implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataCloudforceOneRequestFilterSortOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `status` — derived from the provider schema description.
+enum DataCloudforceOneRequestFilterStatus implements TerraformEnum {
+  open('open'),
+  accepted('accepted'),
+  reported('reported'),
+  approved('approved'),
+  completed('completed'),
+  declined('declined');
+
+  const DataCloudforceOneRequestFilterStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_cloudforce_one_request`.

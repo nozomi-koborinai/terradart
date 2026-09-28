@@ -7,17 +7,59 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_custom_ssl`.
 const Set<String> _cloudflareCustomSslSensitive = <String>{'private_key'};
 
+/// Custom Ssl Bundle enum for `bundle_method`.
+enum CustomSslBundleMethod implements TerraformEnum {
+  ubiquitous('ubiquitous'),
+  optimal('optimal'),
+  force('force');
+
+  const CustomSslBundleMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Custom Ssl enum for `deploy`.
+enum CustomSslDeploy implements TerraformEnum {
+  staging('staging'),
+  production('production');
+
+  const CustomSslDeploy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Custom Ssl enum for `type`.
+enum CustomSslType implements TerraformEnum {
+  legacyCustom('legacy_custom'),
+  sniCustom('sni_custom');
+
+  const CustomSslType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `geo_restrictions` block of
 /// `cloudflare_custom_ssl` (derived from provider schema).
 @immutable
 final class CustomSslGeoRestrictions {
   const CustomSslGeoRestrictions({this.label});
 
-  final TfArg<String>? label;
+  final TfArg<CustomSslGeoRestrictionsLabel>? label;
 
   Map<String, Object?> encode() => {
     if (label != null) 'label': label!.toTfJson(),
   };
+}
+
+/// `label` — derived from the provider schema description.
+enum CustomSslGeoRestrictionsLabel implements TerraformEnum {
+  us('us'),
+  eu('eu'),
+  highestSecurity('highest_security');
+
+  const CustomSslGeoRestrictionsLabel(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_custom_ssl`.
@@ -31,13 +73,13 @@ final class CloudflareCustomSsl extends Resource {
 
   CloudflareCustomSsl({
     required super.localName,
-    TfArg<String>? bundleMethod,
+    TfArg<CustomSslBundleMethod>? bundleMethod,
     required TfArg<String> certificate,
     TfArg<String>? customCsrId,
-    TfArg<String>? deploy,
+    TfArg<CustomSslDeploy>? deploy,
     TfArg<String>? policy,
     TfArg<String>? privateKey,
-    TfArg<String>? type,
+    TfArg<CustomSslType>? type,
     required TfArg<String> zoneId,
     CustomSslGeoRestrictions? geoRestrictions,
     super.lifecycle,

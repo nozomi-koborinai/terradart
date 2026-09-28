@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_account`.
 const Set<String> _cloudflareAccountSensitive = <String>{};
 
+/// Account enum for `type`.
+enum AccountType implements TerraformEnum {
+  standard('standard'),
+  enterprise('enterprise');
+
+  const AccountType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `managed_by` block of
 /// `cloudflare_account` (derived from provider schema).
 @immutable
@@ -67,7 +77,7 @@ final class CloudflareAccount extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<bool>? standalone,
-    TfArg<String>? type,
+    TfArg<AccountType>? type,
     AccountManagedBy? managedBy,
     AccountSettings? settings,
     AccountUnit? unit,

@@ -20,7 +20,7 @@ final class AiGatewayDynamicRoutingElements {
 
   final TfArg<String> id;
 
-  final TfArg<String> type;
+  final TfArg<AiGatewayDynamicRoutingElementsType> type;
 
   final AiGatewayDynamicRoutingElementsOutputs outputs;
 
@@ -32,6 +32,20 @@ final class AiGatewayDynamicRoutingElements {
     'outputs': outputs.encode(),
     if (properties != null) 'properties': properties!.encode(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum AiGatewayDynamicRoutingElementsType implements TerraformEnum {
+  start('start'),
+  conditional('conditional'),
+  percentage('percentage'),
+  rate('rate'),
+  model('model'),
+  end('end');
+
+  const AiGatewayDynamicRoutingElementsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `elements.outputs` block of
@@ -152,7 +166,7 @@ final class AiGatewayDynamicRoutingElementsProperties {
 
   final TfArg<num>? limit;
 
-  final TfArg<String>? limitType;
+  final TfArg<AiGatewayDynamicRoutingElementsPropertiesLimitType>? limitType;
 
   final TfArg<String>? model;
 
@@ -175,6 +189,17 @@ final class AiGatewayDynamicRoutingElementsProperties {
     if (timeout != null) 'timeout': timeout!.toTfJson(),
     if (window != null) 'window': window!.toTfJson(),
   };
+}
+
+/// `limit_type` — derived from the provider schema description.
+enum AiGatewayDynamicRoutingElementsPropertiesLimitType
+    implements TerraformEnum {
+  count('count'),
+  cost('cost');
+
+  const AiGatewayDynamicRoutingElementsPropertiesLimitType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_ai_gateway_dynamic_routing`.

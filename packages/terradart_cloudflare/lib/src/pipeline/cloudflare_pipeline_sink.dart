@@ -10,6 +10,16 @@ const Set<String> _cloudflarePipelineSinkSensitive = <String>{
   'config.token',
 };
 
+/// Pipeline Sink enum for `type`.
+enum PipelineSinkType implements TerraformEnum {
+  r2('r2'),
+  r2DataCatalog('r2_data_catalog');
+
+  const PipelineSinkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `config` block of
 /// `cloudflare_pipeline_sink` (derived from provider schema).
 @immutable
@@ -92,7 +102,7 @@ final class PipelineSinkConfigFileNaming {
 
   final TfArg<String>? prefix;
 
-  final TfArg<String>? strategy;
+  final TfArg<PipelineSinkConfigFileNamingStrategy>? strategy;
 
   final TfArg<String>? suffix;
 
@@ -101,6 +111,18 @@ final class PipelineSinkConfigFileNaming {
     if (strategy != null) 'strategy': strategy!.toTfJson(),
     if (suffix != null) 'suffix': suffix!.toTfJson(),
   };
+}
+
+/// `strategy` — derived from the provider schema description.
+enum PipelineSinkConfigFileNamingStrategy implements TerraformEnum {
+  serial('serial'),
+  uuid('uuid'),
+  uuidV7('uuid_v7'),
+  ulid('ulid');
+
+  const PipelineSinkConfigFileNamingStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `config.partitioning` block of
@@ -154,15 +176,15 @@ final class PipelineSinkFormat {
     this.unstructured,
   });
 
-  final TfArg<String>? compression;
+  final TfArg<PipelineSinkFormatCompression>? compression;
 
-  final TfArg<String>? decimalEncoding;
+  final TfArg<PipelineSinkFormatDecimalEncoding>? decimalEncoding;
 
   final TfArg<num>? rowGroupBytes;
 
-  final TfArg<String>? timestampFormat;
+  final TfArg<PipelineSinkFormatTimestampFormat>? timestampFormat;
 
-  final TfArg<String> type;
+  final TfArg<PipelineSinkFormatType> type;
 
   final TfArg<bool>? unstructured;
 
@@ -176,6 +198,50 @@ final class PipelineSinkFormat {
     'type': type.toTfJson(),
     if (unstructured != null) 'unstructured': unstructured!.toTfJson(),
   };
+}
+
+/// `compression` — derived from the provider schema description.
+enum PipelineSinkFormatCompression implements TerraformEnum {
+  uncompressed('uncompressed'),
+  gzip('gzip'),
+  snappy('snappy'),
+  zstd('zstd'),
+  lz4('lz4');
+
+  const PipelineSinkFormatCompression(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `decimal_encoding` — derived from the provider schema description.
+enum PipelineSinkFormatDecimalEncoding implements TerraformEnum {
+  number('number'),
+  string('string'),
+  bytes('bytes');
+
+  const PipelineSinkFormatDecimalEncoding(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `timestamp_format` — derived from the provider schema description.
+enum PipelineSinkFormatTimestampFormat implements TerraformEnum {
+  rfc3339('rfc3339'),
+  unixMillis('unix_millis');
+
+  const PipelineSinkFormatTimestampFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum PipelineSinkFormatType implements TerraformEnum {
+  json('json'),
+  parquet('parquet');
+
+  const PipelineSinkFormatType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `schema` block of
@@ -215,9 +281,9 @@ final class PipelineSinkSchemaFields {
 
   final TfArg<String>? sqlName;
 
-  final TfArg<String> type;
+  final TfArg<PipelineSinkSchemaFieldsType> type;
 
-  final TfArg<String>? unit;
+  final TfArg<PipelineSinkSchemaFieldsUnit>? unit;
 
   Map<String, Object?> encode() => {
     if (metadataKey != null) 'metadata_key': metadataKey!.toTfJson(),
@@ -227,6 +293,35 @@ final class PipelineSinkSchemaFields {
     'type': type.toTfJson(),
     if (unit != null) 'unit': unit!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PipelineSinkSchemaFieldsType implements TerraformEnum {
+  int32('int32'),
+  int64('int64'),
+  float32('float32'),
+  float64('float64'),
+  bool('bool'),
+  string('string'),
+  binary('binary'),
+  timestamp('timestamp'),
+  json('json');
+
+  const PipelineSinkSchemaFieldsType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `unit` — derived from the provider schema description.
+enum PipelineSinkSchemaFieldsUnit implements TerraformEnum {
+  second('second'),
+  millisecond('millisecond'),
+  microsecond('microsecond'),
+  nanosecond('nanosecond');
+
+  const PipelineSinkSchemaFieldsUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_pipeline_sink`.
@@ -241,7 +336,7 @@ final class CloudflarePipelineSink extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> name,
-    required TfArg<String> type,
+    required TfArg<PipelineSinkType> type,
     PipelineSinkConfig? config,
     PipelineSinkFormat? format,
     PipelineSinkSchema? schema,

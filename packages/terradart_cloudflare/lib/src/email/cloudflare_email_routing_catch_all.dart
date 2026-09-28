@@ -7,13 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_email_routing_catch_all`.
 const Set<String> _cloudflareEmailRoutingCatchAllSensitive = <String>{};
 
+/// Email Routing Catch All enum for `source`.
+enum EmailRoutingCatchAllSource implements TerraformEnum {
+  api('api'),
+  wrangler('wrangler');
+
+  const EmailRoutingCatchAllSource(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `actions` block of
 /// `cloudflare_email_routing_catch_all` (derived from provider schema).
 @immutable
 final class EmailRoutingCatchAllActions {
   const EmailRoutingCatchAllActions({required this.type, this.value});
 
-  final TfArg<String> type;
+  final TfArg<EmailRoutingCatchAllActionsType> type;
 
   final TfArg<List<Object?>>? value;
 
@@ -23,15 +33,35 @@ final class EmailRoutingCatchAllActions {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum EmailRoutingCatchAllActionsType implements TerraformEnum {
+  drop('drop'),
+  forward('forward'),
+  worker('worker');
+
+  const EmailRoutingCatchAllActionsType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `matchers` block of
 /// `cloudflare_email_routing_catch_all` (derived from provider schema).
 @immutable
 final class EmailRoutingCatchAllMatchers {
   const EmailRoutingCatchAllMatchers({required this.type});
 
-  final TfArg<String> type;
+  final TfArg<EmailRoutingCatchAllMatchersType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum EmailRoutingCatchAllMatchersType implements TerraformEnum {
+  all('all');
+
+  const EmailRoutingCatchAllMatchersType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_email_routing_catch_all`.
@@ -47,7 +77,7 @@ final class CloudflareEmailRoutingCatchAll extends Resource {
     TfArg<bool>? enabled,
     TfArg<String>? name,
     TfArg<String>? ownerWorkerTag,
-    TfArg<String>? source,
+    TfArg<EmailRoutingCatchAllSource>? source,
     required TfArg<String> zoneId,
     required List<EmailRoutingCatchAllActions> actions,
     required List<EmailRoutingCatchAllMatchers> matchers,

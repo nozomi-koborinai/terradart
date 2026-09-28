@@ -4,10 +4,12 @@
 library;
 
 export 'src/cloudforce_one/cloudflare_cloudforce_one_request.dart'
-    show CloudflareCloudforceOneRequest;
+    show CloudflareCloudforceOneRequest, CloudforceOneRequestTlp;
 export 'src/cloudforce_one/cloudflare_cloudforce_one_request_asset.dart'
     show CloudflareCloudforceOneRequestAsset;
 export 'src/cloudforce_one/cloudflare_cloudforce_one_request_message.dart'
     show CloudflareCloudforceOneRequestMessage;
 export 'src/cloudforce_one/cloudflare_cloudforce_one_request_priority.dart'
-    show CloudflareCloudforceOneRequestPriority;
+    show
+        CloudflareCloudforceOneRequestPriority,
+        CloudforceOneRequestPriorityTlp;

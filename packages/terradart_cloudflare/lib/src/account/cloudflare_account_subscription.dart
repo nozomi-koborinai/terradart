@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_account_subscription`.
 const Set<String> _cloudflareAccountSubscriptionSensitive = <String>{};
 
+/// Account Subscription enum for `frequency`.
+enum AccountSubscriptionFrequency implements TerraformEnum {
+  weekly('weekly'),
+  monthly('monthly'),
+  quarterly('quarterly'),
+  yearly('yearly'),
+  notApplicable('not-applicable');
+
+  const AccountSubscriptionFrequency(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rate_plan` block of
 /// `cloudflare_account_subscription` (derived from provider schema).
 @immutable
 final class AccountSubscriptionRatePlan {
   const AccountSubscriptionRatePlan({this.id, this.scope});
 
-  final TfArg<String>? id;
+  final TfArg<AccountSubscriptionRatePlanId>? id;
 
   final TfArg<String>? scope;
 
@@ -21,6 +34,24 @@ final class AccountSubscriptionRatePlan {
     if (id != null) 'id': id!.toTfJson(),
     if (scope != null) 'scope': scope!.toTfJson(),
   };
+}
+
+/// `id` — derived from the provider schema description.
+enum AccountSubscriptionRatePlanId implements TerraformEnum {
+  free('free'),
+  lite('lite'),
+  pro('pro'),
+  proPlus('pro_plus'),
+  business('business'),
+  enterprise('enterprise'),
+  partnersFree('partners_free'),
+  partnersPro('partners_pro'),
+  partnersBusiness('partners_business'),
+  partnersEnterprise('partners_enterprise');
+
+  const AccountSubscriptionRatePlanId(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_account_subscription`.
@@ -34,7 +65,7 @@ final class CloudflareAccountSubscription extends Resource {
   CloudflareAccountSubscription({
     required super.localName,
     TfArg<String>? accountId,
-    TfArg<String>? frequency,
+    TfArg<AccountSubscriptionFrequency>? frequency,
     AccountSubscriptionRatePlan? ratePlan,
     super.lifecycle,
     super.dependsOn,

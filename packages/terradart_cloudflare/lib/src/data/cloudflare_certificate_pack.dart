@@ -13,14 +13,33 @@ const Set<String> _cloudflareCertificatePackSensitive = <String>{};
 final class DataCertificatePackFilter {
   const DataCertificatePackFilter({this.deploy, this.status});
 
-  final TfArg<String>? deploy;
+  final TfArg<DataCertificatePackFilterDeploy>? deploy;
 
-  final TfArg<String>? status;
+  final TfArg<DataCertificatePackFilterStatus>? status;
 
   Map<String, Object?> encode() => {
     if (deploy != null) 'deploy': deploy!.toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `deploy` — derived from the provider schema description.
+enum DataCertificatePackFilterDeploy implements TerraformEnum {
+  staging('staging'),
+  production('production');
+
+  const DataCertificatePackFilterDeploy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `status` — derived from the provider schema description.
+enum DataCertificatePackFilterStatus implements TerraformEnum {
+  all('all');
+
+  const DataCertificatePackFilterStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_certificate_pack`.
