@@ -87,6 +87,10 @@ Future<void> main(List<String> args) async {
       'bin/terradart.dart',
       'wrap-init',
       resource,
+      // Every file this tool writes is `<type>.yaml`, a resource override;
+      // a type that is also a data source needs the kind spelled out.
+      '--kind',
+      'resource',
       '--source',
       sourceDir,
       '--output',

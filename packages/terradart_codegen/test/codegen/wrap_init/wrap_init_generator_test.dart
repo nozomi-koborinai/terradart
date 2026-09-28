@@ -65,6 +65,26 @@ void main() {
       expect(kindAxis.value, 'data_source');
     });
 
+    test('authoritative IAM adjuncts seed a replace-semantics curatedDoc', () {
+      TodoAxis curatedDoc(String type) => generator()
+          .generate(
+            terraformType: type,
+            def: googlePubsubTopic,
+            kind: WrapperOverrideKind.resource,
+            mm: null,
+          )
+          .axes
+          .firstWhere((WrapInitAxis a) => a.key == 'curatedDoc') as TodoAxis;
+      expect(curatedDoc('google_pubsub_topic').seed, isNull);
+      final binding = curatedDoc('google_pubsub_topic_iam_binding').seed;
+      expect(binding, startsWith('/// Authoritative IAM binding'));
+      expect(binding, contains('`google_pubsub_topic_iam_member`'));
+      expect(
+        curatedDoc('google_pubsub_topic_iam_policy').seed,
+        contains('Replaces the entire IAM policy'),
+      );
+    });
+
     test('schemaStubBodyMode=bare for data source (explicit)', () {
       final draft = generator().generate(
         terraformType: 'google_project',

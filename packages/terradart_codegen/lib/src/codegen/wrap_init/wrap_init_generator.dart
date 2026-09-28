@@ -59,7 +59,18 @@ class WrapInitGenerator {
       axes.add(const FilledAxis('deriveNestedTypes', 'true'));
       axes.add(const FilledAxis('deriveOutputGetters', 'true'));
     }
-    axes.add(const TodoAxis('curatedDoc', todoMessage: todoCuratedDoc));
+    final authoritativeIam = kind == WrapperOverrideKind.resource
+        ? authoritativeIamCuratedDoc(terraformType)
+        : null;
+    axes.add(
+      authoritativeIam == null
+          ? const TodoAxis('curatedDoc', todoMessage: todoCuratedDoc)
+          : TodoAxis(
+              'curatedDoc',
+              todoMessage: todoCuratedDocAuthoritativeIam,
+              seed: authoritativeIam,
+            ),
+    );
 
     // paramOrder — commented scaffold from schema natural order.
     final paramOrder = def.root.attributes.map((a) => a.name).toList();
