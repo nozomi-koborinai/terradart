@@ -7,19 +7,14 @@ description: Run a Dart backend on Lambda or ECS Express Mode and a Flutter Web 
 
 ## Install
 
-`terradart_aws` is not on pub.dev yet. Until its first release, depend on it from Git:
-
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.28.x
-  terradart_aws:
-    git:
-      url: https://github.com/nozomi-koborinai/terradart
-      path: packages/terradart_aws
+  terradart_core: ^0.29.x
+  terradart_aws: ^0.29.x
 ```
 
-After the first release the dependency becomes `terradart_aws: ^0.28.x`, like the other provider packages.
+Check [pub.dev](https://pub.dev/packages/terradart_aws) for the latest patch, then run `dart pub get`.
 
 ## Credentials
 

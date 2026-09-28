@@ -29,8 +29,8 @@ See [terradart.dev](https://terradart.dev) for documentation, guides, and API re
 | [`terradart_google_beta`](packages/terradart_google_beta) | Curated factory wrappers for beta-only Google Cloud resources (`hashicorp/google-beta`). | [![pub](https://img.shields.io/pub/v/terradart_google_beta.svg)](https://pub.dev/packages/terradart_google_beta) |
 | [`terradart_appwrite`](packages/terradart_appwrite) | Curated factory wrappers for Appwrite resources (`appwrite/appwrite`). | [![pub](https://img.shields.io/pub/v/terradart_appwrite.svg)](https://pub.dev/packages/terradart_appwrite) |
 | [`terradart_cloudflare`](packages/terradart_cloudflare) | Curated factory wrappers for Cloudflare edge infrastructure (`cloudflare/cloudflare`). | [![pub](https://img.shields.io/pub/v/terradart_cloudflare.svg)](https://pub.dev/packages/terradart_cloudflare) |
-| [`terradart_aws`](packages/terradart_aws) | Curated factory wrappers for AWS resources (`hashicorp/aws`). Guide: [Dart apps on AWS](https://terradart.dev/docs/aws/). | *(not on pub.dev yet)* |
-| [`terradart_time`](packages/terradart_time) | `TimeProvider` / `TimeSleep` (`hashicorp/time`) — the propagation wait for stacks on any provider package. | *(not on pub.dev yet)* |
+| [`terradart_aws`](packages/terradart_aws) | Curated factory wrappers for AWS resources (`hashicorp/aws`). Guide: [Dart apps on AWS](https://terradart.dev/docs/aws/). | [![pub](https://img.shields.io/pub/v/terradart_aws.svg)](https://pub.dev/packages/terradart_aws) |
+| [`terradart_time`](packages/terradart_time) | `TimeProvider` / `TimeSleep` (`hashicorp/time`) — the propagation wait for stacks on any provider package. | [![pub](https://img.shields.io/pub/v/terradart_time.svg)](https://pub.dev/packages/terradart_time) |
 | [`terradart_codegen`](packages/terradart_codegen) | Maintainer generation tooling and CLI (`terradart wrap`). | [![pub](https://img.shields.io/pub/v/terradart_codegen.svg)](https://pub.dev/packages/terradart_codegen) |
 | [`terradart_hcl`](packages/terradart_hcl) | Pure Dart HCL / `*.tf.json` front-end and Terraform module model — the input side of `terradart-migrate`. | [![pub](https://img.shields.io/pub/v/terradart_hcl.svg)](https://pub.dev/packages/terradart_hcl) |
 | [`terradart_migrate`](packages/terradart_migrate) | HCL → Dart migrator (`terradart-migrate`): migration manifests, emitter, leftover sidecar and the CLI that turns a Terraform source tree into a Stack per directory. `dart pub global activate terradart_migrate`. | [![pub](https://img.shields.io/pub/v/terradart_migrate.svg)](https://pub.dev/packages/terradart_migrate) |
@@ -257,7 +257,7 @@ Docs: [terradart.dev/docs/migrate-from-hcl/](https://terradart.dev/docs/migrate-
 - [`terradart_google_beta`](packages/terradart_google_beta/README.md) ships the **beta-only** `hashicorp/google-beta` catalog (**128 resource factories**, schema pin tracking the weekly GA bump).
 - [`terradart_appwrite`](packages/terradart_appwrite/README.md) ships the filled `appwrite/appwrite` catalog at `2.0.0-beta.1` (38 resource factories + 24 data sources).
 - [`terradart_cloudflare`](packages/terradart_cloudflare/README.md) ships the filled `cloudflare/cloudflare` catalog at `5.23.0` (**257 resource factories + 446 data sources**). Nested plugin-framework objects are typed Dart helpers.
-- [`terradart_aws`](packages/terradart_aws/README.md) fills the `hashicorp/aws` catalog at `6.66.0` (**1725 resource factories + 683 data sources**). It is not on pub.dev yet.
+- [`terradart_aws`](packages/terradart_aws/README.md) fills the `hashicorp/aws` catalog at `6.66.0` (**1725 resource factories + 683 data sources**).
 
 Explore ready-to-run examples in [`examples/`](examples/):
 - **Foundational & IAM**: [Pub/Sub](examples/pubsub_quickstart/), [Cloud Tasks](examples/cloud_tasks_quickstart/), [Secret Manager](examples/secret_manager_quickstart/), [IAM](examples/iam_quickstart/)
