@@ -7,23 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zero_trust_device_custom_profile`.
 const Set<String> _cloudflareZeroTrustDeviceCustomProfileSensitive = <String>{};
 
-/// Zero Trust Device Custom Profile enum for `match`.
-enum ZeroTrustDeviceCustomProfileMatch implements TerraformEnum {
-  identityEmail('identity.email'),
-  identityGroupsId('identity.groups.id'),
-  identityGroupsName('identity.groups.name'),
-  identityGroupsEmail('identity.groups.email'),
-  identityServiceTokenUuid('identity.service_token_uuid'),
-  identitySamlAttributes('identity.saml_attributes'),
-  network('network'),
-  osName('os.name'),
-  osVersion('os.version');
-
-  const ZeroTrustDeviceCustomProfileMatch(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Zero Trust Device Custom Profile Profile enum for `profile_type`.
 enum ZeroTrustDeviceCustomProfileProfileType implements TerraformEnum {
   warp('warp'),
@@ -216,7 +199,7 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
     TfArg<bool>? excludeOfficeIps,
     TfArg<num>? lanAllowMinutes,
     TfArg<num>? lanAllowSubnetSize,
-    TfArg<ZeroTrustDeviceCustomProfileMatch>? match,
+    TfArg<String>? match,
     required TfArg<String> name,
     TfArg<num>? precedence,
     TfArg<ZeroTrustDeviceCustomProfileProfileType>? profileType,

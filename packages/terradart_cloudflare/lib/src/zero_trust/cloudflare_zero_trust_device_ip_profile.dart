@@ -6,20 +6,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zero_trust_device_ip_profile`.
 const Set<String> _cloudflareZeroTrustDeviceIpProfileSensitive = <String>{};
 
-/// Zero Trust Device Ip Profile enum for `match`.
-enum ZeroTrustDeviceIpProfileMatch implements TerraformEnum {
-  identityName('identity.name'),
-  identityEmail('identity.email'),
-  identityGroupsId('identity.groups.id'),
-  identityGroupsName('identity.groups.name'),
-  identityGroupsEmail('identity.groups.email'),
-  identitySamlAttributes('identity.saml_attributes');
-
-  const ZeroTrustDeviceIpProfileMatch(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Factory wrapper for `cloudflare_zero_trust_device_ip_profile`.
 ///
 /// Accepted Permissions
@@ -33,7 +19,7 @@ final class CloudflareZeroTrustDeviceIpProfile extends Resource {
     required TfArg<String> accountId,
     TfArg<String>? description,
     TfArg<bool>? enabled,
-    required TfArg<ZeroTrustDeviceIpProfileMatch> match,
+    required TfArg<String> match,
     required TfArg<String> name,
     required TfArg<num> precedence,
     required TfArg<String> subnetId,

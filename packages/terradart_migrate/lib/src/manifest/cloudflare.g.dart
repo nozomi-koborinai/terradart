@@ -31388,9 +31388,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          dartType: 'ZeroTrustDeviceCustomProfileMatch',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -32319,9 +32319,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match',
           dartName: 'match',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'ZeroTrustDeviceIpProfileMatch',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -70310,36 +70310,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
               'ZeroTrustDeviceCustomProfileBrowserExtensionConfigProxyControl',
           members: <String, String>{'unlocked': 'unlocked', 'locked': 'locked'},
         ),
-    'ZeroTrustDeviceCustomProfileMatch': MigrateEnum(
-      name: 'ZeroTrustDeviceCustomProfileMatch',
-      members: <String, String>{
-        'identity.email': 'identityEmail',
-        'identity.groups.id': 'identityGroupsId',
-        'identity.groups.name': 'identityGroupsName',
-        'identity.groups.email': 'identityGroupsEmail',
-        'identity.service_token_uuid': 'identityServiceTokenUuid',
-        'identity.saml_attributes': 'identitySamlAttributes',
-        'network': 'network',
-        'os.name': 'osName',
-        'os.version': 'osVersion',
-      },
-    ),
     'ZeroTrustDeviceCustomProfileProfileType': MigrateEnum(
       name: 'ZeroTrustDeviceCustomProfileProfileType',
       members: <String, String>{
         'warp': 'warp',
         'browser_extension': 'browserExtension',
-      },
-    ),
-    'ZeroTrustDeviceIpProfileMatch': MigrateEnum(
-      name: 'ZeroTrustDeviceIpProfileMatch',
-      members: <String, String>{
-        'identity.name': 'identityName',
-        'identity.email': 'identityEmail',
-        'identity.groups.id': 'identityGroupsId',
-        'identity.groups.name': 'identityGroupsName',
-        'identity.groups.email': 'identityGroupsEmail',
-        'identity.saml_attributes': 'identitySamlAttributes',
       },
     ),
     'ZeroTrustDeviceManagedNetworksType': MigrateEnum(

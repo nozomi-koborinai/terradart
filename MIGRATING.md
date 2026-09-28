@@ -33,9 +33,9 @@ too (`CloudflareCtAlerting`, `CloudflareFieldExtractor`,
 
 **Breaking (`terradart_cloudflare`)** — every constructor slot and helper
 field whose provider attribute takes one of a fixed set of values is now a
-generated `TerraformEnum` instead of a `String`: 540 string slots and 41
+generated `TerraformEnum` instead of a `String`: 538 string slots and 41
 list slots across resources, data sources and their nested helpers, with
-581 new enums. The value sets come from the provider's own validators
+579 new enums. The value sets come from the provider's own validators
 (`stringvalidator.OneOf`) and its `Available values:` descriptions at the
 pinned version. Synth output is unchanged: each member synthesizes its
 Terraform value.

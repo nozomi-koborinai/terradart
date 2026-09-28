@@ -2068,9 +2068,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustDeviceIpProfile(
         localName: 'zero_trust_device_ip_profile',
         accountId: TfArg.literal(accountId),
-        match: TfArg.literal(
-          ZeroTrustDeviceIpProfileMatch.identityName,
-        ),
+        match: TfArg.literal(leftover),
         name: TfArg.literal(leftover),
         precedence: TfArg.literal(200),
         subnetId: TfArg.literal('00000000000000000000000000000001'),

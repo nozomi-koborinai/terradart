@@ -10785,7 +10785,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'virtualNetworks',
     ],
     nestedTypes: <String>[
-      'ZeroTrustDeviceCustomProfileMatch',
       'ZeroTrustDeviceCustomProfileProfileType',
       'ZeroTrustDeviceCustomProfileBrowserExtensionConfig',
       'ZeroTrustDeviceCustomProfileBrowserExtensionConfigProxyControl',
@@ -11041,7 +11040,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'precedence',
       'subnetId',
     ],
-    nestedTypes: <String>['ZeroTrustDeviceIpProfileMatch'],
+    nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `cloudflare_zero_trust_device_ip_profile`.\n\nAccepted Permissions\n\n- `Zero Trust Read` - `Zero Trust Write`',

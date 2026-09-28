@@ -374,7 +374,6 @@ export 'src/zero_trust/cloudflare_zero_trust_device_custom_profile.dart'
         ZeroTrustDeviceCustomProfileExclude,
         ZeroTrustDeviceCustomProfileGlobalAcceleration,
         ZeroTrustDeviceCustomProfileInclude,
-        ZeroTrustDeviceCustomProfileMatch,
         ZeroTrustDeviceCustomProfileProfileType,
         ZeroTrustDeviceCustomProfileServiceModeV2,
         ZeroTrustDeviceCustomProfileVirtualNetworks;
@@ -402,7 +401,7 @@ export 'src/zero_trust/cloudflare_zero_trust_device_deployment_groups.dart'
         CloudflareZeroTrustDeviceDeploymentGroups,
         ZeroTrustDeviceDeploymentGroupsVersionConfig;
 export 'src/zero_trust/cloudflare_zero_trust_device_ip_profile.dart'
-    show CloudflareZeroTrustDeviceIpProfile, ZeroTrustDeviceIpProfileMatch;
+    show CloudflareZeroTrustDeviceIpProfile;
 export 'src/zero_trust/cloudflare_zero_trust_device_managed_networks.dart'
     show
         CloudflareZeroTrustDeviceManagedNetworks,
