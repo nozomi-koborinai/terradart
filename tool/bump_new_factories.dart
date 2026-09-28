@@ -16,7 +16,9 @@
 // fills every schema type that has no override yet. Existing overrides are
 // never touched. A lane with Magic Modules YAML (`mm: true`) first gives
 // each added resource its tool/mm_yaml_sources.yaml row, fetching the MM
-// fixture when a guessed mmv1 path resolves ([guessMmUpstreams]).
+// fixture when a guessed mmv1 path resolves ([guessMmUpstreams]). A new
+// override whose barrel the lane's barrels manifest lacks gets a placeholder
+// entry there ([addMissingBarrels]).
 // --out receives `{exit, log_excerpt}`.
 //
 // record runs after the regenerate. Every added type the lane's catalog now
@@ -175,6 +177,45 @@ Future<Map<String, String?>> resolveMmUpstreams(
     }
   }
   return out;
+}
+
+/// Every `outputDir` the override YAMLs under [overridesRoot] name.
+Set<String> overrideBarrels(String overridesRoot) => {
+      for (final f in Directory(overridesRoot).listSync().whereType<File>())
+        if (f.path.endsWith('.yaml'))
+          if (loadYaml(f.readAsStringSync()) case {'outputDir': final String d})
+            d,
+    };
+
+/// [manifest] (a barrels manifest, `barrels:` last) with a placeholder
+/// entry for every barrel of [barrels] it lacks, in key order. `wrap` fails
+/// closed on a catalog barrel without an entry, so a new type in a new
+/// service would otherwise stop the whole regenerate.
+@visibleForTesting
+String addMissingBarrels(String manifest, Set<String> barrels) {
+  final existing =
+      ((loadYaml(manifest) as YamlMap)['barrels'] as YamlMap).keys.toSet();
+  final missing = barrels.difference(existing).toList()..sort();
+  if (missing.isEmpty) return manifest;
+  final lines = manifest.trimRight().split('\n');
+  final start = lines.indexOf('barrels:');
+  final key = RegExp(r'^  ([a-z0-9_]+):$');
+  for (final barrel in missing) {
+    var at = lines.length;
+    for (var i = start + 1; i < lines.length; i++) {
+      final m = key.firstMatch(lines[i]);
+      if (m != null && m[1]!.compareTo(barrel) > 0) {
+        at = i;
+        break;
+      }
+    }
+    lines.insertAll(at, [
+      '  $barrel:',
+      '    doc: |-',
+      '      /// `$barrel` factories, added by the weekly schema bump.',
+    ]);
+  }
+  return '${lines.join('\n')}\n';
 }
 
 /// One catalog entry: what the drift report and the ledgers name.
@@ -336,8 +377,18 @@ Future<int> _scaffold(
     );
   }
   final code = result?.exitCode ?? 0;
-  final log =
+  var log =
       result == null ? 'no new types' : '${result.stdout}${result.stderr}';
+  if (result != null && code == 0) {
+    final manifest = File(lane.lane.barrelsManifest);
+    final text = manifest.readAsStringSync();
+    final next =
+        addMissingBarrels(text, overrideBarrels(lane.lane.overridesRoot));
+    if (next != text) {
+      manifest.writeAsStringSync(next);
+      log += '\nadded barrel entries to ${lane.lane.barrelsManifest}';
+    }
+  }
   print(log);
   File(outPath)
     ..createSync(recursive: true)

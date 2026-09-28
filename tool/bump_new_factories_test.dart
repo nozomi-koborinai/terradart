@@ -7,6 +7,7 @@ import 'dart:io';
 import 'package:test/test.dart';
 
 import 'bump_new_factories.dart';
+import 'wrap_lanes.dart';
 
 void main() {
   const catalog = '''
@@ -111,6 +112,49 @@ const terradartCatalog = <CatalogEntry>[
             '(schema bump 2026-10-04)',
       ],
     );
+  });
+
+  group('barrels', () {
+    const manifest = '''
+umbrellaFile: terradart_x
+
+barrels:
+  alpha:
+    doc: |-
+      /// Alpha.
+  gamma:
+    doc: |-
+      /// Gamma.
+''';
+
+    test('adds a placeholder entry per missing barrel, in key order', () {
+      final next = addMissingBarrels(manifest, {'alpha', 'beta', 'zeta'});
+      expect(
+        next,
+        contains('      /// Alpha.\n'
+            '  beta:\n'
+            '    doc: |-\n'
+            '      /// `beta` factories, added by the weekly schema bump.\n'
+            '  gamma:'),
+      );
+      expect(
+          next,
+          endsWith('  zeta:\n    doc: |-\n'
+              '      /// `zeta` factories, added by the weekly schema bump.\n'));
+      expect(addMissingBarrels(next, {'alpha', 'beta', 'zeta'}), next);
+    });
+
+    test('every committed lane already has an entry per override barrel', () {
+      for (final lane
+          in parseWrapLanes(File(providersPath).readAsStringSync())) {
+        final text = File(lane.barrelsManifest).readAsStringSync();
+        expect(
+          addMissingBarrels(text, overrideBarrels(lane.overridesRoot)),
+          text,
+          reason: lane.name,
+        );
+      }
+    });
   });
 
   group('MM upstreams', () {
