@@ -460,6 +460,7 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'custom_ssl',
         certificate: TfArg.literal(leftover),
         zoneId: TfArg.literal(zoneId),
+        customCsrId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
 
@@ -971,7 +972,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareMagicWanBgpFilterProfile(
         localName: 'magic_wan_bgp_filter_profile',
         accountId: TfArg.literal(accountId),
-        matchAction: TfArg.literal(leftover),
+        matchAction: TfArg.literal('allow'),
         name: TfArg.literal(leftover),
         targets: TfArg.literal([leftover]),
       ),
@@ -1887,7 +1888,7 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustCasbWebhook(
         localName: 'zero_trust_casb_webhook',
         accountId: TfArg.literal(accountId),
-        authenticationType: TfArg.literal(leftover),
+        authenticationType: TfArg.literal('None'),
         destinationUrl: TfArg.literal('https://example.com'),
         label: TfArg.literal(leftover),
       ),
@@ -2395,12 +2396,12 @@ final class CloudflareLeftoverStack extends Stack {
         zoneId: TfArg.literal(zoneId),
         rules: [
           ZoneTracingRulesRules(
-            action: TfArg.literal('allow'),
+            action: TfArg.literal('set_trace_settings'),
             description: TfArg.literal(leftover),
             enabled: TfArg.literal(true),
             expression: TfArg.literal(leftover),
             actionParameters: ZoneTracingRulesRulesActionParameters(
-              samplingRatio: TfArg.literal(200),
+              samplingRatio: TfArg.literal(1),
             ),
           ),
         ],
