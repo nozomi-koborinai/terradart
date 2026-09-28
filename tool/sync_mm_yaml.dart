@@ -68,7 +68,7 @@ Future<void> main(List<String> args) async {
   final String ref;
   try {
     ref = await resolveUpstreamRef(manifest, override: parsed.ref);
-  } on Exception catch (e) {
+  } catch (e) {
     stderr.writeln('Cannot resolve the magic-modules ref: $e');
     exit(_exitUpstream);
   }
