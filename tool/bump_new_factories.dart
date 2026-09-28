@@ -11,7 +11,8 @@
 //
 // scaffold writes a default override for every added type, the way the
 // lane's `bump.scaffold` says: `wrap-init` runs tool/batch_wrap_init.dart
-// for the added resources; `lane` runs scaffold_lane_overrides.dart, which
+// for the added resources (with --fill-param-order, so the override passes
+// the universal invariants unedited); `lane` runs scaffold_lane_overrides.dart, which
 // fills every schema type that has no override yet. Existing overrides are
 // never touched. A lane with Magic Modules YAML (`mm: true`) first gives
 // each added resource its tool/mm_yaml_sources.yaml row, fetching the MM
@@ -320,6 +321,7 @@ Future<int> _scaffold(
       '--resources=${resources.join(',')}',
       '--source=${lane.lane.schemaDir}',
       '--output=${lane.lane.overridesRoot}',
+      '--fill-param-order',
     ]);
   } else {
     result = await Process.run(

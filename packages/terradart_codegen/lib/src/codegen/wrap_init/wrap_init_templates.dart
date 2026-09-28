@@ -46,8 +46,9 @@ String? authoritativeIamCuratedDoc(String terraformType) {
       '_iam_member';
   return '/// Authoritative $what.\n'
       '///\n'
-      '/// $replaced, overwriting grants made outside this stack. Prefer the\n'
-      '/// additive `$member` for single grants.';
+      '/// $replaced, overwriting grants\n'
+      '/// made outside this stack. Prefer the additive\n'
+      '/// `$member` for single grants.';
 }
 
 /// TODO note above the commented-out `extraGetters` skeleton.

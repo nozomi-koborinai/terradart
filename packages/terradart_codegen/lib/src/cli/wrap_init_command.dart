@@ -52,6 +52,13 @@ class WrapInitCommand extends Command<int> {
         negatable: false,
         help:
             'Overwrite an existing <output>/<resource>.yaml (default: refuse).',
+      )
+      ..addFlag(
+        'fill-param-order',
+        negatable: false,
+        help: 'Write paramOrder in the natural constructor order instead of '
+            'the commented schema list, so the override passes the '
+            'universal invariants unedited (the schema bump scaffold).',
       );
   }
 
@@ -202,6 +209,7 @@ class WrapInitCommand extends Command<int> {
       def: def,
       kind: kind,
       mm: mm,
+      fillParamOrder: argResults!['fill-param-order'] as bool,
     );
     final yaml = emitter.emit(draft);
 

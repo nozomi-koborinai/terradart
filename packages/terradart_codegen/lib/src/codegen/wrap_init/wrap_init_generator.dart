@@ -1,5 +1,6 @@
 import '../../ir/resource_def.dart';
 import '../../parser/mm_yaml_parser.dart';
+import '../constructor_params.dart';
 import '../providers/provider_rules.dart';
 import '../wrapper_overrides/wrapper_override.dart';
 import 'clock.dart';
@@ -29,6 +30,7 @@ class WrapInitGenerator {
     required ResourceDef def,
     required WrapperOverrideKind kind,
     required MmResourceOverrides? mm,
+    bool fillParamOrder = false,
   }) {
     final axes = <WrapInitAxis>[];
 
@@ -72,13 +74,23 @@ class WrapInitGenerator {
             ),
     );
 
-    // paramOrder — commented scaffold from schema natural order.
-    final paramOrder = def.root.attributes.map((a) => a.name).toList();
-    axes.add(CommentedAxis(
-      'paramOrder',
-      value: paramOrder,
-      banner: paramOrderCommentedBanner,
-    ));
+    // paramOrder — commented scaffold from schema natural order, or (when
+    // [fillParamOrder]) the constructor's own natural order, filled.
+    if (fillParamOrder) {
+      axes.add(FilledAxis(
+        'paramOrder',
+        kind == WrapperOverrideKind.dataSource
+            ? orderedDataSourceConstructorParams(def, null)
+            : orderedConstructorParams(def, null),
+      ));
+    } else {
+      final paramOrder = def.root.attributes.map((a) => a.name).toList();
+      axes.add(CommentedAxis(
+        'paramOrder',
+        value: paramOrder,
+        banner: paramOrderCommentedBanner,
+      ));
+    }
 
     // extraGetters — TODO skeleton (commented YAML key + body).
     axes.add(_buildExtraGettersAxis(def));
