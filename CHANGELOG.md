@@ -25,6 +25,13 @@ Per-package changelogs live alongside each package and are the system of record 
   `terradart-migrate --report` answers the question that matters, whether
   each block translates, from the same `.tf` / `.tf.json` source. The
   `terraform show -json` input goes with it. See `MIGRATING.md`.
+- **`terradart-migrate --update`, `--in-place`, `--allow-todo` and
+  `--inline-locals`** — the flags that finished a migration on the
+  migrator's side. What stays in Terraform always lands in the sidecar now,
+  and porting it — a block a later catalog covers, a local that could be a
+  Dart value, the source tree's cleanup — is an edit to your Stack, reviewed
+  by `terraform plan`. `--merge-envs` and `--lift-workspace` stay. See
+  `MIGRATING.md`.
 
 ## [0.29.0] - 2026-09-27
 

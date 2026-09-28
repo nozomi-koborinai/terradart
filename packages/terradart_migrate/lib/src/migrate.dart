@@ -48,7 +48,7 @@ final class MigratedStack {
   final String source;
 
   /// False when nothing in the module translates: no Stack is generated,
-  /// every block stays in Terraform, and the sidecar is always written.
+  /// every block stays in Terraform, in the sidecar.
   final bool hasStack;
 
   /// The TerraDart packages the Stack imports, sorted.
@@ -71,17 +71,12 @@ final class MigratedStack {
 /// mode for a directory a `module` block's `source` points at: providers are
 /// registered without configuration so synth emits only `required_providers`,
 /// and provider configurations or a backend found there stay in Terraform.
-/// [allowTodo] writes a `TODO` per block that stays in Terraform into the
-/// Stack instead of leaving it to a sidecar. [localModules] maps a `module`
+/// [localModules] maps a `module`
 /// call's name to the typed wrapper of the local directory its `source`
 /// points at (see [localModuleOf]); a call with no entry becomes a bare
 /// `ModuleCall`. [liftWorkspace] turns `terraform.workspace` into a
 /// `workspace` parameter on the Stack, so its synth names one workspace
-/// instead of deferring to `terraform workspace select`. [inlineLocals]
-/// declares a `locals` entry whose value is a literal as a Dart `final`
-/// instead of reading it from the sidecar as a `${local.x}` template.
-/// [manifests]
-/// defaults to [allMigrateManifests]; [format] runs the emitted Dart through
+/// instead of deferring to `terraform workspace select`. [manifests] defaults to [allMigrateManifests]; [format] runs the emitted Dart through
 /// `dart_style`.
 MigratedStack migrateStack(
   TfModule module, {
@@ -89,9 +84,7 @@ MigratedStack migrateStack(
   List<MigrateManifest>? manifests,
   bool format = true,
   bool childModule = false,
-  bool allowTodo = false,
   bool liftWorkspace = false,
-  bool inlineLocals = false,
   Map<String, LocalModule> localModules = const {},
 }) {
   final names = stackNames(name);
@@ -107,10 +100,8 @@ MigratedStack migrateStack(
     stackFile: names.stackFile,
     version: packageVersion,
     childModule: childModule,
-    allowTodo: allowTodo,
     localModules: localModules,
     liftWorkspace: liftWorkspace,
-    inlineLocals: inlineLocals,
   ).emit();
   return MigratedStack(
     stackClass: names.stackClass,
@@ -135,7 +126,7 @@ final class MigrationResult {
     required this.stackClass,
     required this.stackFile,
     required this.packageName,
-    this.sidecar,
+    required this.sidecar,
   });
 
   /// `lib/<stack_file>.dart`, `bin/infra.dart`, `pubspec.yaml`, and the
@@ -152,9 +143,9 @@ final class MigrationResult {
   /// The generated package's name.
   final String packageName;
 
-  /// The leftover sidecar (`null` with `allowTodo`, unless there is no
-  /// Stack — then the sidecar is the whole output).
-  final Sidecar? sidecar;
+  /// The leftover sidecar: what stays in Terraform, beside the Stack's
+  /// `main.tf.json` (the whole output when there is no Stack).
+  final Sidecar sidecar;
 
   /// True when a Stack was generated (something in the module translates).
   bool get hasStack => files.containsKey('lib/$stackFile.dart');
@@ -172,16 +163,14 @@ final class MigrationResult {
 /// verbatim, in the sidecar files under `tf-out/` (see [buildSidecar]).
 ///
 /// See [migrateStack] for [manifests], [format], [childModule] and
-/// [allowTodo].
+/// [liftWorkspace].
 MigrationResult migrateModule(
   TfModule module, {
   required String name,
   List<MigrateManifest>? manifests,
   bool format = true,
   bool childModule = false,
-  bool allowTodo = false,
   bool liftWorkspace = false,
-  bool inlineLocals = false,
 }) {
   final stack = migrateStack(
     module,
@@ -189,14 +178,10 @@ MigrationResult migrateModule(
     manifests: manifests,
     format: format,
     childModule: childModule,
-    allowTodo: allowTodo,
     liftWorkspace: liftWorkspace,
-    inlineLocals: inlineLocals,
   );
   final packageName = packageNameFor(name);
-  final sidecar = allowTodo && stack.hasStack
-      ? null
-      : buildSidecar(module, stack.report, version: packageVersion);
+  final sidecar = buildSidecar(module, stack.report, version: packageVersion);
   return MigrationResult(
     files: {
       if (stack.hasStack) 'lib/${stack.stackFile}.dart': stack.source,
@@ -210,8 +195,7 @@ MigrationResult migrateModule(
           ),
       ], format: format),
       'pubspec.yaml': renderPubspec(packageName, name, stack.packages),
-      if (sidecar != null)
-        for (final e in sidecar.files.entries) 'tf-out/${e.key}': e.value,
+      for (final e in sidecar.files.entries) 'tf-out/${e.key}': e.value,
     },
     report: stack.report,
     stackClass: stack.stackClass,

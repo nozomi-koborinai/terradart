@@ -373,11 +373,7 @@ jobs:
     #
     # Then the merged-environment gate (#668): config_tree/ migrated again
     # with --merge-envs must synthesize, per environment, exactly the JSON
-    # the two separate Stacks did; the re-run gate (#669); and the
-    # inlined-locals gate (#672), which migrates the inline_locals fixture
-    # with and without --inline-locals and requires terraform to plan both
-    # packages identically — the value a local was inlined to is the one
-    # Terraform resolved from the sidecar before.
+    # the two separate Stacks did.
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1

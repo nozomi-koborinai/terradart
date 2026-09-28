@@ -187,10 +187,9 @@ final class _SidecarBuilder {
 
   /// The `locals` blocks, holding the entries that stay in Terraform.
   ///
-  /// A block every entry of which is kept is copied as written; once
-  /// `--inline-locals` has taken some of them into the Stack, what is left
-  /// is re-rendered around the entries that remain, so the sidecar defines
-  /// exactly the locals something still reads.
+  /// A block every entry of which is kept is copied as written; when the
+  /// report migrated some of them, what is left is re-rendered around the
+  /// entries that remain.
   void _locals() {
     final seen = <Block>{};
     for (final l in module.locals) {
