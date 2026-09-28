@@ -108,7 +108,7 @@ void main() {
     ..writeln('// ignore_for_file: unused_element')
     ..writeln()
     ..writeln(
-      '/// Coverage stack for leftover Cloudflare factories at pin 5.23.0.',
+      '/// Coverage stack for leftover Cloudflare factories at the current pin.',
     )
     ..writeln('/// Dummy constructor values; synth + terraform validate only.')
     ..writeln('/// Never apply.')

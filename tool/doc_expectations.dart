@@ -81,3 +81,59 @@ _CatalogCounts _readCatalogCounts() {
     dataSources: kinds.where((k) => k == 'dataSource').length,
   );
 }
+
+/// A lane pinned to one exact provider release whose docs must not carry a
+/// copy of that pin or of its catalog counts: the pin is the fixture's
+/// `provider_version.txt` (`terradart wrap` emits it into the package) and
+/// the counts are the generated catalog, so a schema bump touches no prose.
+class ExactPinLane {
+  const ExactPinLane(this.package, this.fixtureDir, this.pinConstant);
+
+  final String package;
+  final String fixtureDir;
+
+  /// The generated-pin constant prose should name instead of the version.
+  final String pinConstant;
+
+  String get pin =>
+      File('$fixtureDir/provider_version.txt').readAsStringSync().trim();
+
+  /// `(resources, dataSources)` from the package's `_catalog.g.dart`.
+  (int, int) get counts {
+    final text =
+        File('packages/$package/lib/src/_catalog.g.dart').readAsStringSync();
+    final kinds = RegExp(r'kind: CatalogKind\.(\w+)')
+        .allMatches(text)
+        .map((m) => m.group(1))
+        .toList();
+    return (
+      kinds.where((k) => k == 'resource').length,
+      kinds.where((k) => k == 'dataSource').length,
+    );
+  }
+
+  /// Doc phrases that would go stale on the next bump: the pin itself and
+  /// the `N resource` / `N data source` / `N catalog` counts.
+  List<RegExp> get stalePhrases {
+    final (resources, dataSources) = counts;
+    return [
+      RegExp('(?<![\\d.])${RegExp.escape(pin)}(?![\\d.])'),
+      RegExp('\\b$resources resource'),
+      RegExp('\\b$dataSources data source'),
+      RegExp('\\b${resources + dataSources} catalog'),
+    ];
+  }
+}
+
+const exactPinLanes = [
+  ExactPinLane(
+    'terradart_aws',
+    'packages/terradart_codegen/test/fixtures/wrap/source_aws',
+    'kAwsProviderVersionConstraint',
+  ),
+  ExactPinLane(
+    'terradart_cloudflare',
+    'packages/terradart_codegen/test/fixtures/wrap/source_cloudflare',
+    'kCloudflareProviderVersionConstraint',
+  ),
+];

@@ -32,7 +32,7 @@ Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, t
 dart pub get
 ```
 
-The GA `hashicorp/google` catalog is filled. Beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) (128 resource factories). [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) is filled at the current pin (38 resource factories + 24 data sources). [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) is filled at `cloudflare/cloudflare` `5.23.0` (257 resource factories + 446 data sources). [`terradart_aws`](/docs/aws/) is filled at `hashicorp/aws` `6.66.0` (1725 resource factories + 683 data sources) and installs from Git until its first pub.dev release.
+The GA `hashicorp/google` catalog is filled. Beta-only types live in [`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta) (128 resource factories). [`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite) is filled at the current pin (38 resource factories + 24 data sources). [`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare) is filled at its exact `cloudflare/cloudflare` pin (every resource and data source). [`terradart_aws`](/docs/aws/) is filled at its exact `hashicorp/aws` pin and installs from Git until its first pub.dev release.
 
 ## 2. Define a Stack
 

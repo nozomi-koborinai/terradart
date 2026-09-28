@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:terradart_aws/provider.dart' show kAwsProviderVersionConstraint;
+import 'package:terradart_cloudflare/provider.dart'
+    show kCloudflareProviderVersionConstraint;
 import 'package:terradart_hcl/terradart_hcl.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
@@ -540,7 +543,7 @@ resource "google_pubsub_topic" "x" {
               'google': {'source': 'hashicorp/google', 'version': '~> 7.0'},
               'cloudflare': {
                 'source': 'cloudflare/cloudflare',
-                'version': '5.23.0',
+                'version': kCloudflareProviderVersionConstraint,
               },
             },
           },
@@ -563,7 +566,7 @@ resource "google_pubsub_topic" "x" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    aws = { source = "hashicorp/aws", version = "6.66.0" }
+    aws = { source = "hashicorp/aws", version = "$kAwsProviderVersionConstraint" }
   }
 }
 provider "aws" {
@@ -618,7 +621,7 @@ resource "aws_cloudwatch_log_group" "fn" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    aws = { source = "hashicorp/aws", version = "6.66.0" }
+    aws = { source = "hashicorp/aws", version = "$kAwsProviderVersionConstraint" }
   }
 }
 provider "aws" {
@@ -648,7 +651,7 @@ resource "aws_cloudwatch_log_group" "fn" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    aws = { source = "hashicorp/aws", version = "6.66.0" }
+    aws = { source = "hashicorp/aws", version = "$kAwsProviderVersionConstraint" }
   }
 }
 provider "aws" {

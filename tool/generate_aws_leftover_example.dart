@@ -110,7 +110,7 @@ void main() {
     ..writeln('// ignore_for_file: unused_element')
     ..writeln()
     ..writeln(
-      '/// Coverage stack for leftover AWS factories at pin 6.66.0.',
+      '/// Coverage stack for leftover AWS factories at the current pin.',
     )
     ..writeln('/// Dummy constructor values; synth + terraform validate only.')
     ..writeln('/// Never apply.')
