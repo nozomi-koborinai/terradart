@@ -6,7 +6,10 @@
 //   dart tool/wrap_lanes.dart                    # every gate, every lane
 //   dart tool/wrap_lanes.dart --gate wrap        # terradart wrap --check only
 //   dart tool/wrap_lanes.dart --gate lint        # terradart lint-override only
+//   dart tool/wrap_lanes.dart --gate regen --lane aws  # terradart wrap (writes)
 //   dart tool/wrap_lanes.dart --lane cloudflare  # one lane
+// `regen` rewrites the lane's generated files (the schema bump runs it after
+// refreshing a fixture), so it only runs when named.
 // exit: 0 every selected gate passed; 1 a gate failed, a lane path is
 //       missing, or the arguments / providers.yaml are invalid.
 // ignore_for_file: avoid_print
@@ -59,7 +62,8 @@ class WrapLane {
 
 enum WrapGate {
   wrap('terradart wrap --check'),
-  lint('terradart lint-override');
+  lint('terradart lint-override'),
+  regen('terradart wrap');
 
   const WrapGate(this.label);
 
@@ -69,7 +73,7 @@ enum WrapGate {
   List<String> args(WrapLane lane) {
     String rel(String repoPath) => p.relative(repoPath, from: codegenDir);
     return switch (this) {
-      WrapGate.wrap => [
+      WrapGate.wrap || WrapGate.regen => [
           'wrap',
           '--provider',
           lane.source,
@@ -87,7 +91,7 @@ enum WrapGate {
           ],
           '--migrate-manifest',
           rel(lane.migrateManifest),
-          '--check',
+          if (this == WrapGate.wrap) '--check',
         ],
       // wrap reads MM YAML from <schemaDir>/mm; lint reads the same place.
       WrapGate.lint => [
@@ -199,12 +203,14 @@ List<String> ledgerOwnershipFailures(List<WrapLane> lanes, String repoRoot) {
 
 Never _usage(String message) {
   print('wrap_lanes: $message');
-  print('usage: dart tool/wrap_lanes.dart [--gate wrap|lint] [--lane NAME]');
+  print(
+    'usage: dart tool/wrap_lanes.dart [--gate wrap|lint|regen] [--lane NAME]',
+  );
   exit(1);
 }
 
 Future<void> main(List<String> args) async {
-  var gates = WrapGate.values;
+  var gates = const [WrapGate.wrap, WrapGate.lint];
   String? only;
   for (var i = 0; i < args.length; i++) {
     final arg = args[i];

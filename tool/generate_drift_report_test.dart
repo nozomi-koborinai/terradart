@@ -17,10 +17,11 @@ ReportInputs inputs({
     ReportInputs(
       state: {
         'bump_date': '2026-08-24',
-        'v7_current': '7.44.0',
-        'v7_latest': '7.46.0',
+        'current': '7.44.0',
+        'latest': '7.46.0',
         'bump_needed': true,
-        'v8_available': false,
+        'major': 7,
+        'new_major_available': false,
       },
       wrapCheckStdout: 'clean',
       wrapCheckExitCode: wrapCheckExitCode,
