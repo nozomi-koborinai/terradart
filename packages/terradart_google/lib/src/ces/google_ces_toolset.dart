@@ -147,6 +147,7 @@ final class CesToolsetMcpToolset {
     this.apiAuthentication,
     this.serviceDirectoryConfig,
     this.tlsConfig,
+    this.toolOverrides,
   });
 
   final TfArg<Map<String, String>>? customHeaders;
@@ -159,6 +160,8 @@ final class CesToolsetMcpToolset {
 
   final CesToolsetMcpToolsetTlsConfig? tlsConfig;
 
+  final List<CesToolsetMcpToolsetToolOverrides>? toolOverrides;
+
   Map<String, Object?> encode() => {
     if (customHeaders != null) 'custom_headers': customHeaders!.toTfJson(),
     'server_address': serverAddress.toTfJson(),
@@ -167,6 +170,8 @@ final class CesToolsetMcpToolset {
     if (serviceDirectoryConfig != null)
       'service_directory_config': serviceDirectoryConfig!.encode(),
     if (tlsConfig != null) 'tls_config': tlsConfig!.encode(),
+    if (toolOverrides != null)
+      'tool_overrides': [for (final e in toolOverrides!) e.encode()],
   };
 }
 
@@ -343,6 +348,30 @@ final class CesToolsetMcpToolsetTlsConfigCaCerts {
   Map<String, Object?> encode() => {
     'cert': cert.toTfJson(),
     'display_name': displayName.toTfJson(),
+  };
+}
+
+/// Typed helper for the `mcp_toolset.tool_overrides` block of
+/// `google_ces_toolset` (derived from provider schema).
+@immutable
+final class CesToolsetMcpToolsetToolOverrides {
+  const CesToolsetMcpToolsetToolOverrides({
+    this.descriptionOverride,
+    this.nameOverride,
+    required this.tool,
+  });
+
+  final TfArg<String>? descriptionOverride;
+
+  final TfArg<String>? nameOverride;
+
+  final TfArg<String> tool;
+
+  Map<String, Object?> encode() => {
+    if (descriptionOverride != null)
+      'description_override': descriptionOverride!.toTfJson(),
+    if (nameOverride != null) 'name_override': nameOverride!.toTfJson(),
+    'tool': tool.toTfJson(),
   };
 }
 

@@ -420,10 +420,6 @@ final class DataGoogleContainerCluster extends Data {
   TfRef<String> get servicesIpv4Cidr =>
       TfRef.attribute<String>(this, 'services_ipv4_cidr');
 
-  /// Reference to `skip_node_pool_refresh` attribute.
-  TfRef<bool> get skipNodePoolRefresh =>
-      TfRef.attribute<bool>(this, 'skip_node_pool_refresh');
-
   /// Reference to `subnetwork` attribute.
   TfRef<String> get subnetwork => TfRef.attribute<String>(this, 'subnetwork');
 

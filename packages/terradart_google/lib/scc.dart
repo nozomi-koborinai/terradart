@@ -67,6 +67,8 @@ export 'src/scc/google_scc_mute_config.dart'
     show GoogleSccMuteConfig, SccMuteConfigType;
 export 'src/scc/google_scc_notification_config.dart'
     show GoogleSccNotificationConfig, SccNotificationConfigStreamingConfig;
+export 'src/scc/google_scc_notification_service_account.dart'
+    show GoogleSccNotificationServiceAccount;
 export 'src/scc/google_scc_organization_custom_module.dart'
     show
         GoogleSccOrganizationCustomModule,

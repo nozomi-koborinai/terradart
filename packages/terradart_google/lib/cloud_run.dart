@@ -124,6 +124,8 @@ export 'src/cloud_run/google_cloud_run_v2_service.dart'
         CloudRunV2ServiceVolumeSource,
         CloudRunV2ServiceVpcAccess,
         CloudRunV2ServiceVpcNetworkInterface,
+        CloudRunV2ServiceWorkloadIdentityConfig,
+        CloudRunV2ServiceWorkloadIdentityType,
         EmptyDirMedium,
         ExecutionEnvironment,
         GoogleCloudRunV2Service,

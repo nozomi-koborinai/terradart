@@ -15,7 +15,7 @@
 umbrellaDoc: |-
   /// terradart_google — curated GCP factory wrappers for `terradart`.
   ///
-  /// Pinned to `hashicorp/google ~> 7.0`. See [kProviderSource] /
+  /// Pinned to `hashicorp/google ~> 8.0`. See [kProviderSource] /
   /// [kProviderVersionConstraint].
   ///
   /// This umbrella re-exports every per-service barrel. New code is encouraged
@@ -118,8 +118,9 @@ barrels:
       /// `terraform-provider-google-beta` and adds that resource.
   biglake:
     doc: |-
-      /// BigLake Metastore — Hive-compatible catalogs, databases, and tables.
-      /// Nested `hive_options` config is passed as a structured map.
+      /// BigLake Metastore — catalogs, databases, and tables (nested
+      /// `hive_options` config is passed as a structured map), Iceberg and
+      /// Hive catalogs, and their resource IAM.
   bigquery:
     doc: |-
       /// BigQuery datasets, tables, jobs, routines, transfers, reservations,
@@ -529,8 +530,8 @@ barrels:
       /// Services gateways (Secure Web Gateway is never_apply — $1.25/h).
   observability:
     doc: |-
-      /// Cloud Observability — trace scopes that group projects' trace data for
-      /// unified querying.
+      /// Cloud Observability — trace scopes, buckets and links, and the
+      /// folder / organization / project settings.
   oracle:
     doc: |-
       /// Oracle Database@Google Cloud — Autonomous Database, Base DB, Exadata

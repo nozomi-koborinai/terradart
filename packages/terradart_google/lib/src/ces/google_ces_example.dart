@@ -31,6 +31,7 @@ final class CesExampleMessagesChunks {
     this.text,
     this.updatedVariables,
     this.agentTransfer,
+    this.blob,
     this.image,
     this.toolCall,
     this.toolResponse,
@@ -41,6 +42,8 @@ final class CesExampleMessagesChunks {
   final TfArg<String>? updatedVariables;
 
   final CesExampleMessagesChunksAgentTransfer? agentTransfer;
+
+  final CesExampleMessagesChunksBlob? blob;
 
   final CesExampleMessagesChunksImage? image;
 
@@ -53,6 +56,7 @@ final class CesExampleMessagesChunks {
     if (updatedVariables != null)
       'updated_variables': updatedVariables!.toTfJson(),
     if (agentTransfer != null) 'agent_transfer': agentTransfer!.encode(),
+    if (blob != null) 'blob': blob!.encode(),
     if (image != null) 'image': image!.encode(),
     if (toolCall != null) 'tool_call': toolCall!.encode(),
     if (toolResponse != null) 'tool_response': toolResponse!.encode(),
@@ -70,11 +74,11 @@ final class CesExampleMessagesChunksAgentTransfer {
   Map<String, Object?> encode() => {'target_agent': targetAgent.toTfJson()};
 }
 
-/// Typed helper for the `messages.chunks.image` block of
+/// Typed helper for the `messages.chunks.blob` block of
 /// `google_ces_example` (derived from provider schema).
 @immutable
-final class CesExampleMessagesChunksImage {
-  const CesExampleMessagesChunksImage({
+final class CesExampleMessagesChunksBlob {
+  const CesExampleMessagesChunksBlob({
     required this.data,
     required this.mimeType,
   });
@@ -84,6 +88,29 @@ final class CesExampleMessagesChunksImage {
   final TfArg<String> mimeType;
 
   Map<String, Object?> encode() => {
+    'data': data.toTfJson(),
+    'mime_type': mimeType.toTfJson(),
+  };
+}
+
+/// Typed helper for the `messages.chunks.image` block of
+/// `google_ces_example` (derived from provider schema).
+@immutable
+final class CesExampleMessagesChunksImage {
+  const CesExampleMessagesChunksImage({
+    this.altText,
+    required this.data,
+    required this.mimeType,
+  });
+
+  final TfArg<String>? altText;
+
+  final TfArg<String> data;
+
+  final TfArg<String> mimeType;
+
+  Map<String, Object?> encode() => {
+    if (altText != null) 'alt_text': altText!.toTfJson(),
     'data': data.toTfJson(),
     'mime_type': mimeType.toTfJson(),
   };

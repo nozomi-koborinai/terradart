@@ -64,7 +64,7 @@ final class AppInfraStack extends Stack { /* ... */ }
 TerraDart supports multiple official Terraform providers with curated, typed Dart factories:
 
 - **[`terradart_google`](https://pub.dev/packages/terradart_google)** — **GA** HashiCorp [`google`](https://registry.terraform.io/providers/hashicorp/google/latest) provider catalog. See [status](/docs/status/) and the [package README](https://pub.dev/packages/terradart_google) for counts; the full list is on [Coverage](/docs/coverage/).
-- **[`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)** — **beta-only** types from `hashicorp/google-beta` (128 resource factories at the current pin).
+- **[`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)** — **beta-only** types from `hashicorp/google-beta` (112 resource factories at the current pin).
 - **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — official `appwrite/appwrite` provider resources (filled at the current pin).
 - **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — official `cloudflare/cloudflare` provider resources (filled at the current pin; nested plugin-framework objects are typed Dart helpers).
 - **[`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws)** — HashiCorp [`aws`](https://registry.terraform.io/providers/hashicorp/aws/latest) provider resources (filled at the current pin). See [Dart apps on AWS](/docs/aws/).
@@ -86,9 +86,9 @@ graph LR
 
 The MM YAML overlay carries metadata that the provider schema does not surface — `sensitive_fields`, `force_new`, free-form description text. `terradart_codegen` merges inputs into typed `<resource>.schema.dart` files that compose into the `terradart_google` package.
 
-Provider tracking for Google is pinned to GA `~> 7.0`. Beta-only types live in `terradart_google_beta` (128 resource factories at the current pin); overlapping GA names stay in `terradart_google`.
+Provider tracking for Google is pinned to GA `~> 8.0`. Beta-only types live in `terradart_google_beta` (112 resource factories at the current pin); overlapping GA names stay in `terradart_google`.
 
-A weekly GitHub Actions workflow (`.github/workflows/schema-bump.yml`) bumps each provider in its own job and PR: Google (with the google-beta ride-along) Sunday 22:00 UTC, AWS on Monday, Cloudflare on Tuesday. Each job detects the latest release in the provider's tracked major (Google v7 plus its MM YAML overlay changes, AWS v6, Cloudflare v5), refreshes the local schema fixture, regenerates the wrappers, and opens a drift-report PR. New upstream resources ship straight away as factories generated from a default override, queued for API polish and an example. A routine Google or AWS bump — no removed resources and no breaking change to the generated Dart API — auto-merges once CI is green; Cloudflare bumps and anything else wait for the maintainer. Quiet weeks produce no PR.
+A weekly GitHub Actions workflow (`.github/workflows/schema-bump.yml`) bumps each provider in its own job and PR: Google (with the google-beta ride-along) Sunday 22:00 UTC, AWS on Monday, Cloudflare on Tuesday. Each job detects the latest release in the provider's tracked major (Google v8 plus its MM YAML overlay changes, AWS v6, Cloudflare v5), refreshes the local schema fixture, regenerates the wrappers, and opens a drift-report PR. New upstream resources ship straight away as factories generated from a default override, queued for API polish and an example. A routine Google or AWS bump — no removed resources and no breaking change to the generated Dart API — auto-merges once CI is green; Cloudflare bumps and anything else wait for the maintainer. Quiet weeks produce no PR.
 
 You don't need to track this loop to use TerraDart. The reason it's documented here is so that, when a v0.x.x release adds new curated factories or shifts an existing one, you can see exactly which upstream change drove it.
 

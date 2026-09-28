@@ -97,6 +97,8 @@ export 'src/network/google_network_management_connectivity_test.dart'
         NetworkManagementConnectivityTestSourceCloudFunction,
         NetworkManagementConnectivityTestSourceCloudRunRevision,
         NetworkManagementConnectivityTestSourceNetworkType;
+export 'src/network/google_network_management_network_monitoring_provider.dart'
+    show GoogleNetworkManagementNetworkMonitoringProvider;
 export 'src/network/google_network_management_organization_vpc_flow_logs_config.dart'
     show GoogleNetworkManagementOrganizationVpcFlowLogsConfig;
 export 'src/network/google_network_management_vpc_flow_logs_config.dart'
@@ -262,6 +264,13 @@ export 'src/network/google_network_security_ull_mirroring_engine.dart'
         NetworkSecurityUllMirroringEngineDeletionPolicy;
 export 'src/network/google_network_security_url_lists.dart'
     show GoogleNetworkSecurityUrlLists;
+export 'src/network/google_network_services_agent_connectivity_template.dart'
+    show
+        GoogleNetworkServicesAgentConnectivityTemplate,
+        NetworkServicesAgentConnectivityTemplateAccessPath,
+        NetworkServicesAgentConnectivityTemplateEgressNetworkConfig,
+        NetworkServicesAgentConnectivityTemplateEgressNetworkConfigDnsPeeringConfig,
+        NetworkServicesAgentConnectivityTemplateEgressNetworkConfigVpcEgress;
 export 'src/network/google_network_services_agent_gateway.dart'
     show
         GoogleNetworkServicesAgentGateway,

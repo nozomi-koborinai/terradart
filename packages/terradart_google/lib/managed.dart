@@ -14,6 +14,7 @@ export 'src/managed/google_managed_kafka_cluster.dart'
         ManagedKafkaClusterGcpConfig,
         ManagedKafkaClusterGcpConfigAccessConfig,
         ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs,
+        ManagedKafkaClusterGcpConfigAccessConfigPublicClusterConfig,
         ManagedKafkaClusterRebalanceConfig,
         ManagedKafkaClusterTlsConfig,
         ManagedKafkaClusterTlsConfigTrustConfig,

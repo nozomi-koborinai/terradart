@@ -6,9 +6,9 @@ const String kBetaProviderSource = 'hashicorp/google-beta';
 
 /// Version constraint pinning to provider major v7, tracking the GA
 /// `terradart_google` pin (google-beta versions in lockstep upstream).
-const String kBetaProviderVersionConstraint = '~> 7.0';
+const String kBetaProviderVersionConstraint = '~> 8.0';
 
-/// Concrete `StackProvider` for `hashicorp/google-beta ~> 7.0`.
+/// Concrete `StackProvider` for `hashicorp/google-beta ~> 8.0`.
 ///
 /// `StackSynth.synth(...)` reads [source] / [versionConstraint] to populate
 /// the `terraform.required_providers.google-beta` block, and [configArgs]
@@ -50,7 +50,7 @@ final class GoogleBetaProvider implements StackProvider {
   @override
   String get source => kBetaProviderSource;
 
-  /// Version constraint — `~> 7.0`.
+  /// Version constraint — `~> 8.0`.
   @override
   String get versionConstraint => kBetaProviderVersionConstraint;
 

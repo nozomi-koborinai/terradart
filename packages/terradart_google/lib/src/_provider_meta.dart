@@ -16,4 +16,4 @@ const String kProviderSource = 'hashicorp/google';
 const String kBetaProviderSource = 'hashicorp/google-beta';
 
 /// Version constraint pinning to provider major v7.
-const String kProviderVersionConstraint = '~> 7.0';
+const String kProviderVersionConstraint = '~> 8.0';

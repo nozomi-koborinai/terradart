@@ -63,10 +63,6 @@ final class DataGoogleCloudRunV2WorkerPool extends Data {
   /// Reference to `creator` attribute.
   TfRef<String> get creator => TfRef.attribute<String>(this, 'creator');
 
-  /// Reference to `custom_audiences` attribute.
-  TfRef<List<String>> get customAudiences =>
-      TfRef.attribute<List<String>>(this, 'custom_audiences');
-
   /// Reference to `delete_time` attribute.
   TfRef<String> get deleteTime => TfRef.attribute<String>(this, 'delete_time');
 

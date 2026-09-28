@@ -115,6 +115,38 @@ final class DiscoveryEngineDataConnectorEntities {
   };
 }
 
+/// Typed helper for the `metadata` block of
+/// `google_discovery_engine_data_connector` (derived from provider schema).
+@immutable
+final class DiscoveryEngineDataConnectorMetadata {
+  const DiscoveryEngineDataConnectorMetadata({
+    this.author,
+    this.description,
+    this.note,
+    this.shortDescription,
+    this.title,
+  });
+
+  final TfArg<String>? author;
+
+  final TfArg<String>? description;
+
+  final TfArg<String>? note;
+
+  final TfArg<String>? shortDescription;
+
+  final TfArg<String>? title;
+
+  Map<String, Object?> encode() => {
+    if (author != null) 'author': author!.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
+    if (note != null) 'note': note!.toTfJson(),
+    if (shortDescription != null)
+      'short_description': shortDescription!.toTfJson(),
+    if (title != null) 'title': title!.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_discovery_engine_data_connector`.
 ///
 /// DataConnector manages the connection to external data sources for all data

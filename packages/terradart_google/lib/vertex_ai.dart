@@ -133,6 +133,8 @@ export 'src/vertex_ai/google_vertex_ai_persistent_resource.dart'
         VertexAiPersistentResourceResourcePoolsMachineSpec,
         VertexAiPersistentResourceResourceRuntimeSpec,
         VertexAiPersistentResourceResourceRuntimeSpecServiceAccountSpec;
+export 'src/vertex_ai/google_vertex_ai_rag_corpus.dart'
+    show GoogleVertexAiRagCorpus;
 export 'src/vertex_ai/google_vertex_ai_rag_engine_config.dart'
     show
         GoogleVertexAiRagEngineConfig,
@@ -143,10 +145,48 @@ export 'src/vertex_ai/google_vertex_ai_rag_engine_config.dart'
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
     show
         GoogleVertexAiReasoningEngine,
+        VertexAiReasoningEngineContextSpec,
+        VertexAiReasoningEngineContextSpecMemoryBankConfig,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigs,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsConsolidationConfig,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamples,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSource,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEvents,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContent,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentParts,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscription,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscriptionWords,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResult,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResultOutcome,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCode,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCodeLanguage,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFileData,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionCall,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionResponse,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsInlineData,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsVideoMetadata,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemories,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopics,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopicsManagedMemoryTopic,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfig,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfigGenerationRule,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigs,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigsSchemaConfigs,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig,
         VertexAiReasoningEngineEncryptionSpec,
         VertexAiReasoningEngineSpec,
+        VertexAiReasoningEngineSpecBuildSpec,
         VertexAiReasoningEngineSpecContainerSpec,
         VertexAiReasoningEngineSpecDeploymentSpec,
+        VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfig,
+        VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig,
+        VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig,
         VertexAiReasoningEngineSpecDeploymentSpecEnv,
         VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfig,
         VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfigDnsPeeringConfigs,
@@ -155,6 +195,9 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineSpecIdentityType,
         VertexAiReasoningEngineSpecPackageSpec,
         VertexAiReasoningEngineSpecSourceCodeSpec,
+        VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSource,
+        VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig,
+        VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceInlineSource,
         VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSource,
         VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSourceConfig,
         VertexAiReasoningEngineSpecSourceCodeSpecImageSpec,
@@ -167,7 +210,9 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_member.dart'
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_policy.dart'
     show GoogleVertexAiReasoningEngineIamPolicy;
 export 'src/vertex_ai/google_vertex_ai_semantic_governance_policy_engine.dart'
-    show GoogleVertexAiSemanticGovernancePolicyEngine;
+    show
+        GoogleVertexAiSemanticGovernancePolicyEngine,
+        VertexAiSemanticGovernancePolicyEngineGatewayConfigs;
 export 'src/vertex_ai/google_vertex_ai_tensorboard.dart'
     show GoogleVertexAiTensorboard;
 export 'src/vertex_ai/google_vertex_ai_tensorboard_experiment.dart'

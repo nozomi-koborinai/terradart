@@ -319,10 +319,6 @@ final class GoogleComputeReservation extends Resource {
   TfRef<List<String>> get linkedCommitments =>
       TfRef.attribute<List<String>>(this, 'linked_commitments');
 
-  /// Reference to `reservation_block_count` attribute.
-  TfRef<num> get reservationBlockCount =>
-      TfRef.attribute<num>(this, 'reservation_block_count');
-
   /// Reference to `resource_status` attribute.
   TfRef<List<Map<String, Object?>>> get resourceStatus =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'resource_status');

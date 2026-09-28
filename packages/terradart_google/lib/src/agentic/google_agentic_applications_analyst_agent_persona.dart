@@ -221,12 +221,16 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceRawFil
 final class AgenticApplicationsAnalystAgentPersonaArtifactsConfig {
   const AgenticApplicationsAnalystAgentPersonaArtifactsConfig({
     this.documentGenerationOptions,
+    this.methodologyExportOptions,
     this.slideGenerationOptions,
     this.visualizationOptions,
   });
 
   final AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptions?
   documentGenerationOptions;
+
+  final AgenticApplicationsAnalystAgentPersonaArtifactsConfigMethodologyExportOptions?
+  methodologyExportOptions;
 
   final AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGenerationOptions?
   slideGenerationOptions;
@@ -237,6 +241,8 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfig {
   Map<String, Object?> encode() => {
     if (documentGenerationOptions != null)
       'document_generation_options': documentGenerationOptions!.encode(),
+    if (methodologyExportOptions != null)
+      'methodology_export_options': methodologyExportOptions!.encode(),
     if (slideGenerationOptions != null)
       'slide_generation_options': slideGenerationOptions!.encode(),
     if (visualizationOptions != null)
@@ -433,6 +439,31 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerat
     'file_content': fileContent.toTfJson(),
     'file_title': fileTitle.toTfJson(),
     'mime_type': mimeType.toTfJson(),
+  };
+}
+
+/// Typed helper for the `artifacts_config.methodology_export_options` block of
+/// `google_agentic_applications_analyst_agent_persona` (derived from provider schema).
+@immutable
+final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigMethodologyExportOptions {
+  const AgenticApplicationsAnalystAgentPersonaArtifactsConfigMethodologyExportOptions({
+    this.appendMethodology,
+    this.exportFormat,
+    this.exportMethodologyArtifact,
+  });
+
+  final TfArg<bool>? appendMethodology;
+
+  final TfArg<String>? exportFormat;
+
+  final TfArg<bool>? exportMethodologyArtifact;
+
+  Map<String, Object?> encode() => {
+    if (appendMethodology != null)
+      'append_methodology': appendMethodology!.toTfJson(),
+    if (exportFormat != null) 'export_format': exportFormat!.toTfJson(),
+    if (exportMethodologyArtifact != null)
+      'export_methodology_artifact': exportMethodologyArtifact!.toTfJson(),
   };
 }
 

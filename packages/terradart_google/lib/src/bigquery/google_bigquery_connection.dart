@@ -589,7 +589,7 @@ final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
 ///
 /// Variants the plan mentioned but the schema does not yet expose:
 /// `vertex_ai`, `salesforce_data_cloud`. These are gated behind the
-/// beta provider as of the pinned `~> 7.0` GA schema and will surface
+/// beta provider as of the pinned `~> 8.0` GA schema and will surface
 /// once the upstream MagicModules definitions promote to GA.
 ///
 /// Example (Cloud SQL — federated queries against a Postgres replica):

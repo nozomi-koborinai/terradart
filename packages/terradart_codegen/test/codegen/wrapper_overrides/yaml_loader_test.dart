@@ -940,7 +940,7 @@ deriveClassDoc: true
     );
 
     test(
-      'google_beta/yaml/ loads 128 resources',
+      'google_beta/yaml/ loads 112 resources',
       () {
         final loaded = loadWrapperOverrides(
           rootDir: p.absolute(
@@ -952,7 +952,7 @@ deriveClassDoc: true
             'yaml',
           ),
         );
-        expect(loaded.resources.length, 128);
+        expect(loaded.resources.length, 112);
         expect(loaded.dataSources, isEmpty);
       },
     );

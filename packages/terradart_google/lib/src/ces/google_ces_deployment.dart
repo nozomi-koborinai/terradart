@@ -5,7 +5,11 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_ces_deployment`.
-const Set<String> _googleCesDeploymentSensitive = <String>{};
+const Set<String> _googleCesDeploymentSensitive = <String>{
+  'instagram_credentials.auth_code',
+  'whatsapp_credentials.auth_code',
+  'whatsapp_credentials.pin',
+};
 
 /// Typed helper for the `channel_profile` block of
 /// `google_ces_deployment` (derived from provider schema).
@@ -18,6 +22,7 @@ final class CesDeploymentChannelProfile {
     this.profileId,
     this.personaProperty,
     this.webWidgetConfig,
+    this.whatsappConfig,
   });
 
   final TfArg<String>? channelType;
@@ -32,6 +37,8 @@ final class CesDeploymentChannelProfile {
 
   final CesDeploymentChannelProfileWebWidgetConfig? webWidgetConfig;
 
+  final CesDeploymentChannelProfileWhatsappConfig? whatsappConfig;
+
   Map<String, Object?> encode() => {
     if (channelType != null) 'channel_type': channelType!.toTfJson(),
     if (disableBargeInControl != null)
@@ -40,6 +47,7 @@ final class CesDeploymentChannelProfile {
     if (profileId != null) 'profile_id': profileId!.toTfJson(),
     if (personaProperty != null) 'persona_property': personaProperty!.encode(),
     if (webWidgetConfig != null) 'web_widget_config': webWidgetConfig!.encode(),
+    if (whatsappConfig != null) 'whatsapp_config': whatsappConfig!.encode(),
   };
 }
 
@@ -112,6 +120,111 @@ final class CesDeploymentChannelProfileWebWidgetConfigSecuritySettings {
       'enable_public_access': enablePublicAccess!.toTfJson(),
     if (enableRecaptcha != null)
       'enable_recaptcha': enableRecaptcha!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `channel_profile.whatsapp_config` block of
+/// `google_ces_deployment` (derived from provider schema).
+@immutable
+final class CesDeploymentChannelProfileWhatsappConfig {
+  const CesDeploymentChannelProfileWhatsappConfig({
+    this.phoneNumber,
+    required this.phoneNumberId,
+    required this.wabaId,
+  });
+
+  final TfArg<String>? phoneNumber;
+
+  final TfArg<String> phoneNumberId;
+
+  final TfArg<String> wabaId;
+
+  Map<String, Object?> encode() => {
+    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
+    'phone_number_id': phoneNumberId.toTfJson(),
+    'waba_id': wabaId.toTfJson(),
+  };
+}
+
+/// Typed helper for the `instagram_credentials` block of
+/// `google_ces_deployment` (derived from provider schema).
+@immutable
+final class CesDeploymentInstagramCredentials {
+  const CesDeploymentInstagramCredentials({
+    this.authCode,
+    this.authCodeWo,
+    this.authCodeWoVersion,
+    this.conversationProfileId,
+  });
+
+  final TfArg<String>? authCode;
+
+  final TfArg<String>? authCodeWo;
+
+  final TfArg<String>? authCodeWoVersion;
+
+  final TfArg<String>? conversationProfileId;
+
+  Map<String, Object?> encode() => {
+    if (authCode != null) 'auth_code': authCode!.toTfJson(),
+    if (authCodeWo != null) 'auth_code_wo': authCodeWo!.toTfJson(),
+    if (authCodeWoVersion != null)
+      'auth_code_wo_version': authCodeWoVersion!.toTfJson(),
+    if (conversationProfileId != null)
+      'conversation_profile_id': conversationProfileId!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `whatsapp_credentials` block of
+/// `google_ces_deployment` (derived from provider schema).
+@immutable
+final class CesDeploymentWhatsappCredentials {
+  const CesDeploymentWhatsappCredentials({
+    this.authCode,
+    this.authCodeWo,
+    this.authCodeWoVersion,
+    required this.businessAccountId,
+    this.conversationProfileId,
+    required this.phoneNumber,
+    this.pin,
+    this.pinWo,
+    this.pinWoVersion,
+    required this.wabaId,
+  });
+
+  final TfArg<String>? authCode;
+
+  final TfArg<String>? authCodeWo;
+
+  final TfArg<String>? authCodeWoVersion;
+
+  final TfArg<String> businessAccountId;
+
+  final TfArg<String>? conversationProfileId;
+
+  final TfArg<String> phoneNumber;
+
+  final TfArg<String>? pin;
+
+  final TfArg<String>? pinWo;
+
+  final TfArg<String>? pinWoVersion;
+
+  final TfArg<String> wabaId;
+
+  Map<String, Object?> encode() => {
+    if (authCode != null) 'auth_code': authCode!.toTfJson(),
+    if (authCodeWo != null) 'auth_code_wo': authCodeWo!.toTfJson(),
+    if (authCodeWoVersion != null)
+      'auth_code_wo_version': authCodeWoVersion!.toTfJson(),
+    'business_account_id': businessAccountId.toTfJson(),
+    if (conversationProfileId != null)
+      'conversation_profile_id': conversationProfileId!.toTfJson(),
+    'phone_number': phoneNumber.toTfJson(),
+    if (pin != null) 'pin': pin!.toTfJson(),
+    if (pinWo != null) 'pin_wo': pinWo!.toTfJson(),
+    if (pinWoVersion != null) 'pin_wo_version': pinWoVersion!.toTfJson(),
+    'waba_id': wabaId.toTfJson(),
   };
 }
 

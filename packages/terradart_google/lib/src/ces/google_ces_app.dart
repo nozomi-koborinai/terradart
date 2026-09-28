@@ -144,6 +144,7 @@ final class CesAppDefaultChannelProfile {
     this.profileId,
     this.personaProperty,
     this.webWidgetConfig,
+    this.whatsappConfig,
   });
 
   final TfArg<String>? channelType;
@@ -158,6 +159,8 @@ final class CesAppDefaultChannelProfile {
 
   final CesAppDefaultChannelProfileWebWidgetConfig? webWidgetConfig;
 
+  final CesAppDefaultChannelProfileWhatsappConfig? whatsappConfig;
+
   Map<String, Object?> encode() => {
     if (channelType != null) 'channel_type': channelType!.toTfJson(),
     if (disableBargeInControl != null)
@@ -166,6 +169,7 @@ final class CesAppDefaultChannelProfile {
     if (profileId != null) 'profile_id': profileId!.toTfJson(),
     if (personaProperty != null) 'persona_property': personaProperty!.encode(),
     if (webWidgetConfig != null) 'web_widget_config': webWidgetConfig!.encode(),
+    if (whatsappConfig != null) 'whatsapp_config': whatsappConfig!.encode(),
   };
 }
 
@@ -190,6 +194,7 @@ final class CesAppDefaultChannelProfileWebWidgetConfig {
     this.modality,
     this.theme,
     this.webWidgetTitle,
+    this.securitySettings,
   });
 
   final TfArg<String>? modality;
@@ -198,10 +203,130 @@ final class CesAppDefaultChannelProfileWebWidgetConfig {
 
   final TfArg<String>? webWidgetTitle;
 
+  final CesAppDefaultChannelProfileWebWidgetConfigSecuritySettings?
+  securitySettings;
+
   Map<String, Object?> encode() => {
     if (modality != null) 'modality': modality!.toTfJson(),
     if (theme != null) 'theme': theme!.toTfJson(),
     if (webWidgetTitle != null) 'web_widget_title': webWidgetTitle!.toTfJson(),
+    if (securitySettings != null)
+      'security_settings': securitySettings!.encode(),
+  };
+}
+
+/// Typed helper for the `default_channel_profile.web_widget_config.security_settings` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppDefaultChannelProfileWebWidgetConfigSecuritySettings {
+  const CesAppDefaultChannelProfileWebWidgetConfigSecuritySettings({
+    this.allowedOrigins,
+    this.enableOriginCheck,
+    this.enablePublicAccess,
+    this.enableRecaptcha,
+  });
+
+  final TfArg<List<Object?>>? allowedOrigins;
+
+  final TfArg<bool>? enableOriginCheck;
+
+  final TfArg<bool>? enablePublicAccess;
+
+  final TfArg<bool>? enableRecaptcha;
+
+  Map<String, Object?> encode() => {
+    if (allowedOrigins != null) 'allowed_origins': allowedOrigins!.toTfJson(),
+    if (enableOriginCheck != null)
+      'enable_origin_check': enableOriginCheck!.toTfJson(),
+    if (enablePublicAccess != null)
+      'enable_public_access': enablePublicAccess!.toTfJson(),
+    if (enableRecaptcha != null)
+      'enable_recaptcha': enableRecaptcha!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_channel_profile.whatsapp_config` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppDefaultChannelProfileWhatsappConfig {
+  const CesAppDefaultChannelProfileWhatsappConfig({
+    this.phoneNumber,
+    required this.phoneNumberId,
+    required this.wabaId,
+  });
+
+  final TfArg<String>? phoneNumber;
+
+  final TfArg<String> phoneNumberId;
+
+  final TfArg<String> wabaId;
+
+  Map<String, Object?> encode() => {
+    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
+    'phone_number_id': phoneNumberId.toTfJson(),
+    'waba_id': wabaId.toTfJson(),
+  };
+}
+
+/// Typed helper for the `error_handling_settings` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppErrorHandlingSettings {
+  const CesAppErrorHandlingSettings({
+    this.errorHandlingStrategy,
+    this.endSessionConfig,
+    this.fallbackResponseConfig,
+  });
+
+  final TfArg<String>? errorHandlingStrategy;
+
+  final CesAppErrorHandlingSettingsEndSessionConfig? endSessionConfig;
+
+  final CesAppErrorHandlingSettingsFallbackResponseConfig?
+  fallbackResponseConfig;
+
+  Map<String, Object?> encode() => {
+    if (errorHandlingStrategy != null)
+      'error_handling_strategy': errorHandlingStrategy!.toTfJson(),
+    if (endSessionConfig != null)
+      'end_session_config': endSessionConfig!.encode(),
+    if (fallbackResponseConfig != null)
+      'fallback_response_config': fallbackResponseConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `error_handling_settings.end_session_config` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppErrorHandlingSettingsEndSessionConfig {
+  const CesAppErrorHandlingSettingsEndSessionConfig({this.escalateSession});
+
+  final TfArg<bool>? escalateSession;
+
+  Map<String, Object?> encode() => {
+    if (escalateSession != null)
+      'escalate_session': escalateSession!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `error_handling_settings.fallback_response_config` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppErrorHandlingSettingsFallbackResponseConfig {
+  const CesAppErrorHandlingSettingsFallbackResponseConfig({
+    this.customFallbackMessages,
+    this.maxFallbackAttempts,
+  });
+
+  final TfArg<Map<String, String>>? customFallbackMessages;
+
+  final TfArg<num>? maxFallbackAttempts;
+
+  Map<String, Object?> encode() => {
+    if (customFallbackMessages != null)
+      'custom_fallback_messages': customFallbackMessages!.toTfJson(),
+    if (maxFallbackAttempts != null)
+      'max_fallback_attempts': maxFallbackAttempts!.toTfJson(),
   };
 }
 
@@ -210,17 +335,61 @@ final class CesAppDefaultChannelProfileWebWidgetConfig {
 @immutable
 final class CesAppEvaluationMetricsThresholds {
   const CesAppEvaluationMetricsThresholds({
+    this.goldenHallucinationMetricBehavior,
+    this.scenarioHallucinationMetricBehavior,
     this.goldenEvaluationMetricsThresholds,
   });
+
+  final TfArg<
+    CesAppEvaluationMetricsThresholdsGoldenHallucinationMetricBehavior
+  >?
+  goldenHallucinationMetricBehavior;
+
+  final TfArg<
+    CesAppEvaluationMetricsThresholdsScenarioHallucinationMetricBehavior
+  >?
+  scenarioHallucinationMetricBehavior;
 
   final CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds?
   goldenEvaluationMetricsThresholds;
 
   Map<String, Object?> encode() => {
+    if (goldenHallucinationMetricBehavior != null)
+      'golden_hallucination_metric_behavior': goldenHallucinationMetricBehavior!
+          .toTfJson(),
+    if (scenarioHallucinationMetricBehavior != null)
+      'scenario_hallucination_metric_behavior':
+          scenarioHallucinationMetricBehavior!.toTfJson(),
     if (goldenEvaluationMetricsThresholds != null)
       'golden_evaluation_metrics_thresholds': goldenEvaluationMetricsThresholds!
           .encode(),
   };
+}
+
+/// `golden_hallucination_metric_behavior` — derived from the provider schema description.
+enum CesAppEvaluationMetricsThresholdsGoldenHallucinationMetricBehavior
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED');
+
+  const CesAppEvaluationMetricsThresholdsGoldenHallucinationMetricBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `scenario_hallucination_metric_behavior` — derived from the provider schema description.
+enum CesAppEvaluationMetricsThresholdsScenarioHallucinationMetricBehavior
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED');
+
+  const CesAppEvaluationMetricsThresholdsScenarioHallucinationMetricBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `evaluation_metrics_thresholds.golden_evaluation_metrics_thresholds` block of
@@ -229,11 +398,15 @@ final class CesAppEvaluationMetricsThresholds {
 final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds {
   const CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds({
     this.expectationLevelMetricsThresholds,
+    this.toolMatchingSettings,
     this.turnLevelMetricsThresholds,
   });
 
   final CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds?
   expectationLevelMetricsThresholds;
+
+  final CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettings?
+  toolMatchingSettings;
 
   final CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds?
   turnLevelMetricsThresholds;
@@ -242,6 +415,8 @@ final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds {
     if (expectationLevelMetricsThresholds != null)
       'expectation_level_metrics_thresholds': expectationLevelMetricsThresholds!
           .encode(),
+    if (toolMatchingSettings != null)
+      'tool_matching_settings': toolMatchingSettings!.encode(),
     if (turnLevelMetricsThresholds != null)
       'turn_level_metrics_thresholds': turnLevelMetricsThresholds!.encode(),
   };
@@ -264,16 +439,51 @@ final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsEx
   };
 }
 
+/// Typed helper for the `evaluation_metrics_thresholds.golden_evaluation_metrics_thresholds.tool_matching_settings` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettings {
+  const CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettings({
+    this.extraToolCallBehavior,
+  });
+
+  final TfArg<
+    CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettingsExtraToolCallBehavior
+  >?
+  extraToolCallBehavior;
+
+  Map<String, Object?> encode() => {
+    if (extraToolCallBehavior != null)
+      'extra_tool_call_behavior': extraToolCallBehavior!.toTfJson(),
+  };
+}
+
+/// `extra_tool_call_behavior` — derived from the provider schema description.
+enum CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettingsExtraToolCallBehavior
+    implements TerraformEnum {
+  fail('FAIL'),
+  allow('ALLOW');
+
+  const CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsToolMatchingSettingsExtraToolCallBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `evaluation_metrics_thresholds.golden_evaluation_metrics_thresholds.turn_level_metrics_thresholds` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
 final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds {
   const CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds({
     this.overallToolInvocationCorrectnessThreshold,
+    this.semanticSimilarityChannel,
     this.semanticSimilaritySuccessThreshold,
   });
 
   final TfArg<num>? overallToolInvocationCorrectnessThreshold;
+
+  final TfArg<String>? semanticSimilarityChannel;
 
   final TfArg<num>? semanticSimilaritySuccessThreshold;
 
@@ -281,6 +491,8 @@ final class CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTu
     if (overallToolInvocationCorrectnessThreshold != null)
       'overall_tool_invocation_correctness_threshold':
           overallToolInvocationCorrectnessThreshold!.toTfJson(),
+    if (semanticSimilarityChannel != null)
+      'semantic_similarity_channel': semanticSimilarityChannel!.toTfJson(),
     if (semanticSimilaritySuccessThreshold != null)
       'semantic_similarity_success_threshold':
           semanticSimilaritySuccessThreshold!.toTfJson(),
@@ -326,6 +538,7 @@ final class CesAppLoggingSettings {
     this.bigqueryExportSettings,
     this.cloudLoggingSettings,
     this.conversationLoggingSettings,
+    this.metricAnalysisSettings,
     this.redactionConfig,
   });
 
@@ -338,6 +551,8 @@ final class CesAppLoggingSettings {
   final CesAppLoggingSettingsConversationLoggingSettings?
   conversationLoggingSettings;
 
+  final CesAppLoggingSettingsMetricAnalysisSettings? metricAnalysisSettings;
+
   final CesAppLoggingSettingsRedactionConfig? redactionConfig;
 
   Map<String, Object?> encode() => {
@@ -349,6 +564,8 @@ final class CesAppLoggingSettings {
       'cloud_logging_settings': cloudLoggingSettings!.encode(),
     if (conversationLoggingSettings != null)
       'conversation_logging_settings': conversationLoggingSettings!.encode(),
+    if (metricAnalysisSettings != null)
+      'metric_analysis_settings': metricAnalysisSettings!.encode(),
     if (redactionConfig != null) 'redaction_config': redactionConfig!.encode(),
   };
 }
@@ -415,13 +632,32 @@ final class CesAppLoggingSettingsCloudLoggingSettings {
 final class CesAppLoggingSettingsConversationLoggingSettings {
   const CesAppLoggingSettingsConversationLoggingSettings({
     this.disableConversationLogging,
+    this.retentionWindow,
   });
 
   final TfArg<bool>? disableConversationLogging;
 
+  final TfArg<String>? retentionWindow;
+
   Map<String, Object?> encode() => {
     if (disableConversationLogging != null)
       'disable_conversation_logging': disableConversationLogging!.toTfJson(),
+    if (retentionWindow != null)
+      'retention_window': retentionWindow!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `logging_settings.metric_analysis_settings` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppLoggingSettingsMetricAnalysisSettings {
+  const CesAppLoggingSettingsMetricAnalysisSettings({this.llmMetricsOptedOut});
+
+  final TfArg<bool>? llmMetricsOptedOut;
+
+  Map<String, Object?> encode() => {
+    if (llmMetricsOptedOut != null)
+      'llm_metrics_opted_out': llmMetricsOptedOut!.toTfJson(),
   };
 }
 
@@ -572,6 +808,19 @@ final class CesAppVariableDeclarationsSchema {
     if (title != null) 'title': title!.toTfJson(),
     'type': type.toTfJson(),
     if (uniqueItems != null) 'unique_items': uniqueItems!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `vpc_sc_settings` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppVpcScSettings {
+  const CesAppVpcScSettings({this.allowedOrigins});
+
+  final TfArg<List<Object?>>? allowedOrigins;
+
+  Map<String, Object?> encode() => {
+    if (allowedOrigins != null) 'allowed_origins': allowedOrigins!.toTfJson(),
   };
 }
 

@@ -29,8 +29,6 @@ export 'src/compute/google_compute_machine_image_iam_member.dart'
     show GoogleComputeMachineImageIamMember;
 export 'src/compute/google_compute_machine_image_iam_policy.dart'
     show GoogleComputeMachineImageIamPolicy;
-export 'src/compute/google_compute_network_edge_security_service.dart'
-    show GoogleComputeNetworkEdgeSecurityService;
 export 'src/compute/google_compute_network_firewall_policy_packet_mirroring_rule.dart'
     show GoogleComputeNetworkFirewallPolicyPacketMirroringRule;
 export 'src/compute/google_compute_region_backend_bucket.dart'
