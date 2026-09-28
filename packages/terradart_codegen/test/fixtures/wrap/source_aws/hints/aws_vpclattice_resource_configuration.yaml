@@ -19,3 +19,6 @@ properties:
             enum_values:
               - "IPV4"
               - "IPV6"
+exactly_one_of_groups:
+  - ["resource_configuration_definition.arn_resource", "resource_configuration_definition.dns_resource", "resource_configuration_definition.ip_resource"]
+  - ["resource_configuration_group_id", "resource_gateway_identifier"]

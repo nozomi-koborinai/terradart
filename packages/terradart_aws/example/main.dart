@@ -46,7 +46,9 @@ final class HelloStack extends Stack {
         role: TfArg.ref(role.arn),
         runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023),
         handler: TfArg.literal('bootstrap'),
-        filename: TfArg.literal('build/bootstrap.zip'),
+        filenameOrImageUriOrS3Bucket: LambdaFunctionFilenameOption(
+          filename: TfArg.literal('build/bootstrap.zip'),
+        ),
       ),
     );
   }

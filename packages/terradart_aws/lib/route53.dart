@@ -24,6 +24,8 @@ export 'src/route53/aws_route53_record.dart'
     show
         AwsRoute53Record,
         Route53RecordAlias,
+        Route53RecordAliasOption,
+        Route53RecordAliasOrRecords,
         Route53RecordCidrRoutingPolicy,
         Route53RecordFailoverRoutingPolicy,
         Route53RecordFailoverRoutingPolicyType,
@@ -32,6 +34,7 @@ export 'src/route53/aws_route53_record.dart'
         Route53RecordGeoproximityRoutingPolicyCoordinates,
         Route53RecordLatencyRoutingPolicy,
         Route53RecordLatencyRoutingPolicyRegion,
+        Route53RecordRecordsOption,
         Route53RecordType,
         Route53RecordWeightedRoutingPolicy;
 export 'src/route53/aws_route53_records_exclusive.dart'

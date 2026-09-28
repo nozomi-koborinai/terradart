@@ -88,20 +88,60 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTls {
 @immutable
 final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate {
   const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate({
-    this.file,
-    this.sds,
+    required this.fileOrSds,
   });
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFile?
+  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds
+  fileOrSds;
+
+  Map<String, Object?> encode() => {...fileOrSds.encode()};
+}
+
+/// Exactly one of `file`, `sds` on the `spec.backend_defaults.client_policy.tls.certificate` block of `aws_appmesh_virtual_gateway`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds {
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `file` (one of the [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds] choices).
+final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOption
+    extends
+        AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds {
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOption({
+    required this.file,
+  });
+
+  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFile
   file;
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSds?
+  @override
+  String get blockKey => 'file';
+
+  @override
+  Map<String, Object?> encode() => {'file': file.encode()};
+}
+
+/// Sets `sds` (one of the [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds] choices).
+final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSdsOption
+    extends
+        AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds {
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSdsOption({
+    required this.sds,
+  });
+
+  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSds
   sds;
 
-  Map<String, Object?> encode() => {
-    if (file != null) 'file': file!.encode(),
-    if (sds != null) 'sds': sds!.encode(),
-  };
+  @override
+  String get blockKey => 'sds';
+
+  @override
+  Map<String, Object?> encode() => {'sds': sds.encode()};
 }
 
 /// Typed helper for the `spec.backend_defaults.client_policy.tls.certificate.file` block of
@@ -190,25 +230,78 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationSub
 @immutable
 final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust {
   const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust({
-    this.acm,
-    this.file,
-    this.sds,
+    required this.acmOrFileOrSds,
   });
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcm?
+  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds
+  acmOrFileOrSds;
+
+  Map<String, Object?> encode() => {...acmOrFileOrSds.encode()};
+}
+
+/// Exactly one of `acm`, `file`, `sds` on the `spec.backend_defaults.client_policy.tls.validation.trust` block of `aws_appmesh_virtual_gateway`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds {
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `acm` (one of the [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds] choices).
+final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOption
+    extends
+        AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds {
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOption({
+    required this.acm,
+  });
+
+  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcm
   acm;
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFile?
+  @override
+  String get blockKey => 'acm';
+
+  @override
+  Map<String, Object?> encode() => {'acm': acm.encode()};
+}
+
+/// Sets `file` (one of the [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds] choices).
+final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFileOption
+    extends
+        AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds {
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFileOption({
+    required this.file,
+  });
+
+  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFile
   file;
 
-  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSds?
+  @override
+  String get blockKey => 'file';
+
+  @override
+  Map<String, Object?> encode() => {'file': file.encode()};
+}
+
+/// Sets `sds` (one of the [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds] choices).
+final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSdsOption
+    extends
+        AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds {
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSdsOption({
+    required this.sds,
+  });
+
+  final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSds
   sds;
 
-  Map<String, Object?> encode() => {
-    if (acm != null) 'acm': acm!.encode(),
-    if (file != null) 'file': file!.encode(),
-    if (sds != null) 'sds': sds!.encode(),
-  };
+  @override
+  String get blockKey => 'sds';
+
+  @override
+  Map<String, Object?> encode() => {'sds': sds.encode()};
 }
 
 /// Typed helper for the `spec.backend_defaults.client_policy.tls.validation.trust.acm` block of

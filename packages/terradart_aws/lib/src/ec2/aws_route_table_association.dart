@@ -6,16 +6,64 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_route_table_association`.
 const Set<String> _awsRouteTableAssociationSensitive = <String>{};
 
+/// Exactly one of `gateway_id`, `subnet_id` on `aws_route_table_association`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RouteTableAssociationGatewayIdOrSubnetId {
+  const RouteTableAssociationGatewayIdOrSubnetId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `gateway_id` (one of the [RouteTableAssociationGatewayIdOrSubnetId] choices).
+final class RouteTableAssociationGatewayIdOption
+    extends RouteTableAssociationGatewayIdOrSubnetId {
+  const RouteTableAssociationGatewayIdOption({required this.gatewayId});
+
+  final TfArg<String> gatewayId;
+
+  @override
+  String get blockKey => 'gateway_id';
+
+  @override
+  Map<String, Object?> encode() => {'gateway_id': gatewayId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'gateway_id': gatewayId};
+}
+
+/// Sets `subnet_id` (one of the [RouteTableAssociationGatewayIdOrSubnetId] choices).
+final class RouteTableAssociationSubnetIdOption
+    extends RouteTableAssociationGatewayIdOrSubnetId {
+  const RouteTableAssociationSubnetIdOption({required this.subnetId});
+
+  final TfArg<String> subnetId;
+
+  @override
+  String get blockKey => 'subnet_id';
+
+  @override
+  Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'subnet_id': subnetId};
+}
+
 /// Factory wrapper for `aws_route_table_association`.
 final class AwsRouteTableAssociation extends Resource {
   static const String tfType = 'aws_route_table_association';
 
   AwsRouteTableAssociation({
     required super.localName,
-    TfArg<String>? gatewayId,
+    required RouteTableAssociationGatewayIdOrSubnetId gatewayIdOrSubnetId,
     TfArg<String>? region,
     required TfArg<String> routeTableId,
-    TfArg<String>? subnetId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -23,10 +71,9 @@ final class AwsRouteTableAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (gatewayId != null) 'gateway_id': gatewayId,
+           ...gatewayIdOrSubnetId.argMap,
            if (region != null) 'region': region,
            'route_table_id': routeTableId,
-           if (subnetId != null) 'subnet_id': subnetId,
          },
        );
 

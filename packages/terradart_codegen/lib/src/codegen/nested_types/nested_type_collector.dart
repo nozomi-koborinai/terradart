@@ -51,6 +51,10 @@ final class NestedBlockSpec {
   /// [className] (see `collectNestedTypes`'s `shareIdenticalShapes`).
   final bool shared;
 
+  /// Sets of this block's inputs (bare Terraform names) the provider
+  /// requires exactly one of; the emitter seals each one it can.
+  final List<List<String>> exactlyOne;
+
   const NestedBlockSpec({
     required this.tfName,
     required this.path,
@@ -61,6 +65,7 @@ final class NestedBlockSpec {
     required this.children,
     required this.excludedChildren,
     this.shared = false,
+    this.exactlyOne = const [],
   });
 }
 
@@ -134,6 +139,9 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 /// dotted path and description; the default reads the description with
 /// [parseEnumValuesFromDescription] (`provider_enums.dart` supplies the
 /// `--provider-enums` resolver).
+///
+/// [exactlyOneGroups] maps a block's dotted path to the member sets the
+/// provider requires exactly one of ([NestedBlockSpec.exactlyOne]).
 List<NestedBlockSpec> collectNestedTypes({
   required Map<String, dynamic> resourceBlock,
   required String resourcePrefix,
@@ -141,6 +149,7 @@ List<NestedBlockSpec> collectNestedTypes({
   required Set<String> excludedPaths,
   bool shareIdenticalShapes = false,
   EnumValuesResolver enumValues = descriptionEnumValues,
+  Map<String, List<List<String>>> exactlyOneGroups = const {},
 }) {
   final scan = _scanChildren(
     resourceBlock,
@@ -149,6 +158,7 @@ List<NestedBlockSpec> collectNestedTypes({
     customSlotKeys: customSlotKeys,
     excludedPaths: excludedPaths,
     enumValues: enumValues,
+    exactlyOneGroups: exactlyOneGroups,
   );
   return shareIdenticalShapes
       ? _shareIdenticalShapes(scan.children)
@@ -179,7 +189,8 @@ List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
       for (final e in spec.excludedChildren)
         [e.tfName, e.repeated, e.required, 'excluded'].join('|'),
     ]..sort();
-    final key = '${attrKeys.join(';')}#${childKeys.join(';')}';
+    final key = '${attrKeys.join(';')}#${childKeys.join(';')}'
+        '#${jsonEncode(spec.exactlyOne)}';
     final id = shapeIds.putIfAbsent(key, () => shapeIds.length);
     shapeOf[spec] = id;
     occurrences[id] = (occurrences[id] ?? 0) + 1;
@@ -207,6 +218,7 @@ List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
       children: [for (final c in spec.children) rebuild(c)],
       excludedChildren: spec.excludedChildren,
       shared: occurrences[id]! > 1,
+      exactlyOne: shape.exactlyOne,
     );
   }
 
@@ -242,6 +254,7 @@ _ChildScan _scanChildren(
   required Set<String> customSlotKeys,
   required Set<String> excludedPaths,
   required EnumValuesResolver enumValues,
+  required Map<String, List<List<String>>> exactlyOneGroups,
 }) {
   final children = <NestedBlockSpec>[];
   final excludedChildren = <ExcludedNestedBlock>[];
@@ -271,6 +284,7 @@ _ChildScan _scanChildren(
       customSlotKeys: customSlotKeys,
       excludedPaths: excludedPaths,
       enumValues: enumValues,
+      exactlyOneGroups: exactlyOneGroups,
     ));
   }
 
@@ -359,6 +373,7 @@ NestedBlockSpec _buildSpec(
   required Set<String> customSlotKeys,
   required Set<String> excludedPaths,
   required EnumValuesResolver enumValues,
+  required Map<String, List<List<String>>> exactlyOneGroups,
 }) {
   final cardinality = _blockCardinality(nestedBlockBody, tfName: tfName);
   final className = resourcePrefix + path.map(snakeToPascal).join();
@@ -374,6 +389,7 @@ NestedBlockSpec _buildSpec(
     customSlotKeys: customSlotKeys,
     excludedPaths: excludedPaths,
     enumValues: enumValues,
+    exactlyOneGroups: exactlyOneGroups,
   );
 
   return NestedBlockSpec(
@@ -390,6 +406,7 @@ NestedBlockSpec _buildSpec(
     ),
     children: scan.children,
     excludedChildren: scan.excludedChildren,
+    exactlyOne: exactlyOneGroups[path.join('.')] ?? const [],
   );
 }
 

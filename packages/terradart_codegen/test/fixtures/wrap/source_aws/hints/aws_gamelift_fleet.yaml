@@ -551,3 +551,5 @@ properties:
     enum_values:
       - "NoProtection"
       - "FullProtection"
+exactly_one_of_groups:
+  - ["build_id", "script_id"]

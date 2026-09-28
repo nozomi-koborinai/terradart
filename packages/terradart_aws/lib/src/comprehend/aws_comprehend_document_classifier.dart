@@ -38,9 +38,8 @@ final class ComprehendDocumentClassifierInputDataConfig {
   const ComprehendDocumentClassifierInputDataConfig({
     this.dataFormat,
     this.labelDelimiter,
-    this.s3Uri,
+    required this.augmentedManifestsOrS3Uri,
     this.testS3Uri,
-    this.augmentedManifests,
   });
 
   final TfArg<ComprehendDocumentClassifierInputDataConfigDataFormat>?
@@ -49,21 +48,65 @@ final class ComprehendDocumentClassifierInputDataConfig {
   final TfArg<ComprehendDocumentClassifierInputDataConfigLabelDelimiter>?
   labelDelimiter;
 
-  final TfArg<String>? s3Uri;
+  final ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri
+  augmentedManifestsOrS3Uri;
 
   final TfArg<String>? testS3Uri;
-
-  final List<ComprehendDocumentClassifierInputDataConfigAugmentedManifests>?
-  augmentedManifests;
 
   Map<String, Object?> encode() => {
     if (dataFormat != null) 'data_format': dataFormat!.toTfJson(),
     if (labelDelimiter != null) 'label_delimiter': labelDelimiter!.toTfJson(),
-    if (s3Uri != null) 's3_uri': s3Uri!.toTfJson(),
+    ...augmentedManifestsOrS3Uri.encode(),
     if (testS3Uri != null) 'test_s3_uri': testS3Uri!.toTfJson(),
-    if (augmentedManifests != null)
-      'augmented_manifests': [for (final e in augmentedManifests!) e.encode()],
   };
+}
+
+/// Exactly one of `augmented_manifests`, `s3_uri` on the `input_data_config` block of `aws_comprehend_document_classifier`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri {
+  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `augmented_manifests` (one of the [ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri] choices).
+final class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOption
+    extends
+        ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri {
+  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOption({
+    required this.augmentedManifests,
+  });
+
+  final List<ComprehendDocumentClassifierInputDataConfigAugmentedManifests>
+  augmentedManifests;
+
+  @override
+  String get blockKey => 'augmented_manifests';
+
+  @override
+  Map<String, Object?> encode() => {
+    'augmented_manifests': [for (final e in augmentedManifests) e.encode()],
+  };
+}
+
+/// Sets `s3_uri` (one of the [ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri] choices).
+final class ComprehendDocumentClassifierInputDataConfigS3UriOption
+    extends
+        ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri {
+  const ComprehendDocumentClassifierInputDataConfigS3UriOption({
+    required this.s3Uri,
+  });
+
+  final TfArg<String> s3Uri;
+
+  @override
+  String get blockKey => 's3_uri';
+
+  @override
+  Map<String, Object?> encode() => {'s3_uri': s3Uri.toTfJson()};
 }
 
 /// `data_format` — derived from the provider schema description.

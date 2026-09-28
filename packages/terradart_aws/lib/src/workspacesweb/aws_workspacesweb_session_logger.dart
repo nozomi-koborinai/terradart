@@ -11,15 +11,55 @@ const Set<String> _awsWorkspaceswebSessionLoggerSensitive = <String>{};
 /// `aws_workspacesweb_session_logger` (derived from provider schema).
 @immutable
 final class WorkspaceswebSessionLoggerEventFilter {
-  const WorkspaceswebSessionLoggerEventFilter({this.include, this.all});
+  const WorkspaceswebSessionLoggerEventFilter({required this.allOrInclude});
 
-  final List<TfArg<WorkspaceswebSessionLoggerEventFilterInclude>>? include;
+  final WorkspaceswebSessionLoggerEventFilterAllOrInclude allOrInclude;
 
-  final List<WorkspaceswebSessionLoggerEventFilterAll>? all;
+  Map<String, Object?> encode() => {...allOrInclude.encode()};
+}
 
+/// Exactly one of `all`, `include` on the `event_filter` block of `aws_workspacesweb_session_logger`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class WorkspaceswebSessionLoggerEventFilterAllOrInclude {
+  const WorkspaceswebSessionLoggerEventFilterAllOrInclude();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `all` (one of the [WorkspaceswebSessionLoggerEventFilterAllOrInclude] choices).
+final class WorkspaceswebSessionLoggerEventFilterAllOption
+    extends WorkspaceswebSessionLoggerEventFilterAllOrInclude {
+  const WorkspaceswebSessionLoggerEventFilterAllOption({required this.all});
+
+  final List<WorkspaceswebSessionLoggerEventFilterAll> all;
+
+  @override
+  String get blockKey => 'all';
+
+  @override
   Map<String, Object?> encode() => {
-    if (include != null) 'include': [for (final e in include!) e.toTfJson()],
-    if (all != null) 'all': [for (final e in all!) e.encode()],
+    'all': [for (final e in all) e.encode()],
+  };
+}
+
+/// Sets `include` (one of the [WorkspaceswebSessionLoggerEventFilterAllOrInclude] choices).
+final class WorkspaceswebSessionLoggerEventFilterIncludeOption
+    extends WorkspaceswebSessionLoggerEventFilterAllOrInclude {
+  const WorkspaceswebSessionLoggerEventFilterIncludeOption({
+    required this.include,
+  });
+
+  final List<TfArg<WorkspaceswebSessionLoggerEventFilterInclude>> include;
+
+  @override
+  String get blockKey => 'include';
+
+  @override
+  Map<String, Object?> encode() => {
+    'include': [for (final e in include) e.toTfJson()],
   };
 }
 

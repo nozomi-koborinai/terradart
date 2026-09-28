@@ -11,6 +11,11 @@ requires), as a Magic Modules YAML subset
 and the nested helper types. `provider_version` must match
 `../provider_version.txt`; `wrap` fails otherwise.
 
+`exactly_one_of_groups` lists the input sets the provider requires
+exactly one of (`ExactlyOneOf` in SDKv2 schemas, `*validator.ExactlyOneOf`
+in framework schemas and `ConfigValidators`), as dotted paths that share
+one parent block; `wrap` turns each into a sealed type.
+
 Never hand-edit. Re-extract at the fixture's pin with:
 
 ```bash

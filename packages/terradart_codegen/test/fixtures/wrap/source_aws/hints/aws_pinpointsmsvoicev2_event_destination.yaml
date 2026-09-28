@@ -57,3 +57,5 @@ properties:
       - "RCS_TTL_EXPIRED"
       - "RCS_PROTECT_BLOCKED"
       - "RCS_FALLEN_BACK_TO_SMS"
+exactly_one_of_groups:
+  - ["cloudwatch_logs_destination", "kinesis_firehose_destination", "sns_destination"]

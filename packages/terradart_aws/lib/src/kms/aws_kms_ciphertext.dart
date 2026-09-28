@@ -9,6 +9,55 @@ const Set<String> _awsKmsCiphertextSensitive = <String>{
   'plaintext_wo',
 };
 
+/// Exactly one of `plaintext`, `plaintext_wo` on `aws_kms_ciphertext`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class KmsCiphertextPlaintextOrPlaintextWo {
+  const KmsCiphertextPlaintextOrPlaintextWo();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `plaintext` (one of the [KmsCiphertextPlaintextOrPlaintextWo] choices).
+final class KmsCiphertextPlaintextOption
+    extends KmsCiphertextPlaintextOrPlaintextWo {
+  const KmsCiphertextPlaintextOption({required this.plaintext});
+
+  final TfArg<String> plaintext;
+
+  @override
+  String get blockKey => 'plaintext';
+
+  @override
+  Map<String, Object?> encode() => {'plaintext': plaintext.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'plaintext': plaintext};
+}
+
+/// Sets `plaintext_wo` (one of the [KmsCiphertextPlaintextOrPlaintextWo] choices).
+final class KmsCiphertextPlaintextWoOption
+    extends KmsCiphertextPlaintextOrPlaintextWo {
+  const KmsCiphertextPlaintextWoOption({required this.plaintextWo});
+
+  final TfArg<String> plaintextWo;
+
+  @override
+  String get blockKey => 'plaintext_wo';
+
+  @override
+  Map<String, Object?> encode() => {'plaintext_wo': plaintextWo.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'plaintext_wo': plaintextWo};
+}
+
 /// Factory wrapper for `aws_kms_ciphertext`.
 final class AwsKmsCiphertext extends Resource {
   static const String tfType = 'aws_kms_ciphertext';
@@ -17,8 +66,7 @@ final class AwsKmsCiphertext extends Resource {
     required super.localName,
     TfArg<Map<String, String>>? context,
     required TfArg<String> keyId,
-    TfArg<String>? plaintext,
-    TfArg<String>? plaintextWo,
+    required KmsCiphertextPlaintextOrPlaintextWo plaintextOrPlaintextWo,
     TfArg<String>? plaintextWoVersion,
     TfArg<String>? region,
     super.lifecycle,
@@ -30,8 +78,7 @@ final class AwsKmsCiphertext extends Resource {
          argMap: {
            if (context != null) 'context': context,
            'key_id': keyId,
-           if (plaintext != null) 'plaintext': plaintext,
-           if (plaintextWo != null) 'plaintext_wo': plaintextWo,
+           ...plaintextOrPlaintextWo.argMap,
            if (plaintextWoVersion != null)
              'plaintext_wo_version': plaintextWoVersion,
            if (region != null) 'region': region,

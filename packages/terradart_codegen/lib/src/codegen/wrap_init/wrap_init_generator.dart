@@ -65,6 +65,10 @@ class WrapInitGenerator {
         kind == WrapperOverrideKind.resource) {
       axes.add(const FilledAxis('deriveEnums', 'true'));
     }
+    if (providerRules.exactlyOneDefaults &&
+        kind == WrapperOverrideKind.resource) {
+      axes.add(const FilledAxis('deriveExactlyOne', 'true'));
+    }
     final authoritativeIam = kind == WrapperOverrideKind.resource
         ? authoritativeIamCuratedDoc(terraformType)
         : null;

@@ -7,6 +7,82 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lakeformation_resource_lf_tags`.
 const Set<String> _awsLakeformationResourceLfTagsSensitive = <String>{};
 
+/// Exactly one of `database`, `table`, `table_with_columns` on `aws_lakeformation_resource_lf_tags`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns {
+  const LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `database` (one of the [LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns] choices).
+final class LakeformationResourceLfTagsDatabaseOption
+    extends LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns {
+  const LakeformationResourceLfTagsDatabaseOption({required this.database});
+
+  final LakeformationResourceLfTagsDatabase database;
+
+  @override
+  String get blockKey => 'database';
+
+  @override
+  Map<String, Object?> encode() => {'database': database.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'database': TfArg.literal(database.encode()),
+  };
+}
+
+/// Sets `table` (one of the [LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns] choices).
+final class LakeformationResourceLfTagsTableOption
+    extends LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns {
+  const LakeformationResourceLfTagsTableOption({required this.table});
+
+  final LakeformationResourceLfTagsTable table;
+
+  @override
+  String get blockKey => 'table';
+
+  @override
+  Map<String, Object?> encode() => {'table': table.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'table': TfArg.literal(table.encode()),
+  };
+}
+
+/// Sets `table_with_columns` (one of the [LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns] choices).
+final class LakeformationResourceLfTagsTableWithColumnsOption
+    extends LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns {
+  const LakeformationResourceLfTagsTableWithColumnsOption({
+    required this.tableWithColumns,
+  });
+
+  final LakeformationResourceLfTagsTableWithColumns tableWithColumns;
+
+  @override
+  String get blockKey => 'table_with_columns';
+
+  @override
+  Map<String, Object?> encode() => {
+    'table_with_columns': tableWithColumns.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'table_with_columns': TfArg.literal(tableWithColumns.encode()),
+  };
+}
+
 /// Typed helper for the `database` block of
 /// `aws_lakeformation_resource_lf_tags` (derived from provider schema).
 @immutable
@@ -120,10 +196,9 @@ final class AwsLakeformationResourceLfTags extends Resource {
     required super.localName,
     TfArg<String>? catalogId,
     TfArg<String>? region,
-    LakeformationResourceLfTagsDatabase? database,
+    required LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns
+    databaseOrTableOrTableWithColumns,
     required List<LakeformationResourceLfTagsLfTag> lfTag,
-    LakeformationResourceLfTagsTable? table,
-    LakeformationResourceLfTagsTableWithColumns? tableWithColumns,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -133,11 +208,8 @@ final class AwsLakeformationResourceLfTags extends Resource {
          argMap: {
            if (catalogId != null) 'catalog_id': catalogId,
            if (region != null) 'region': region,
-           if (database != null) 'database': TfArg.literal(database.encode()),
+           ...databaseOrTableOrTableWithColumns.argMap,
            'lf_tag': TfArg.literal([for (final e in lfTag) e.encode()]),
-           if (table != null) 'table': TfArg.literal(table.encode()),
-           if (tableWithColumns != null)
-             'table_with_columns': TfArg.literal(tableWithColumns.encode()),
          },
        );
 

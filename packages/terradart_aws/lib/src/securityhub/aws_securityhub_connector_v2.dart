@@ -12,19 +12,59 @@ const Set<String> _awsSecurityhubConnectorV2Sensitive = <String>{};
 @immutable
 final class SecurityhubConnectorV2ConnectorProvider {
   const SecurityhubConnectorV2ConnectorProvider({
-    this.jiraCloud,
-    this.serviceNow,
+    required this.jiraCloudOrServiceNow,
   });
 
-  final List<SecurityhubConnectorV2ConnectorProviderJiraCloud>? jiraCloud;
+  final SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow
+  jiraCloudOrServiceNow;
 
-  final List<SecurityhubConnectorV2ConnectorProviderServiceNow>? serviceNow;
+  Map<String, Object?> encode() => {...jiraCloudOrServiceNow.encode()};
+}
 
+/// Exactly one of `jira_cloud`, `service_now` on the `connector_provider` block of `aws_securityhub_connector_v2`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow {
+  const SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `jira_cloud` (one of the [SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow] choices).
+final class SecurityhubConnectorV2ConnectorProviderJiraCloudOption
+    extends SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow {
+  const SecurityhubConnectorV2ConnectorProviderJiraCloudOption({
+    required this.jiraCloud,
+  });
+
+  final List<SecurityhubConnectorV2ConnectorProviderJiraCloud> jiraCloud;
+
+  @override
+  String get blockKey => 'jira_cloud';
+
+  @override
   Map<String, Object?> encode() => {
-    if (jiraCloud != null)
-      'jira_cloud': [for (final e in jiraCloud!) e.encode()],
-    if (serviceNow != null)
-      'service_now': [for (final e in serviceNow!) e.encode()],
+    'jira_cloud': [for (final e in jiraCloud) e.encode()],
+  };
+}
+
+/// Sets `service_now` (one of the [SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow] choices).
+final class SecurityhubConnectorV2ConnectorProviderServiceNowOption
+    extends SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow {
+  const SecurityhubConnectorV2ConnectorProviderServiceNowOption({
+    required this.serviceNow,
+  });
+
+  final List<SecurityhubConnectorV2ConnectorProviderServiceNow> serviceNow;
+
+  @override
+  String get blockKey => 'service_now';
+
+  @override
+  Map<String, Object?> encode() => {
+    'service_now': [for (final e in serviceNow) e.encode()],
   };
 }
 

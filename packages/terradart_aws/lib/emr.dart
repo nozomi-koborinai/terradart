@@ -58,4 +58,9 @@ export 'src/emr/aws_emr_security_configuration.dart'
     show AwsEmrSecurityConfiguration;
 export 'src/emr/aws_emr_studio.dart' show AwsEmrStudio, EmrStudioAuthMode;
 export 'src/emr/aws_emr_studio_session_mapping.dart'
-    show AwsEmrStudioSessionMapping, EmrStudioSessionMappingIdentityType;
+    show
+        AwsEmrStudioSessionMapping,
+        EmrStudioSessionMappingIdentityIdOption,
+        EmrStudioSessionMappingIdentityIdOrIdentityName,
+        EmrStudioSessionMappingIdentityNameOption,
+        EmrStudioSessionMappingIdentityType;

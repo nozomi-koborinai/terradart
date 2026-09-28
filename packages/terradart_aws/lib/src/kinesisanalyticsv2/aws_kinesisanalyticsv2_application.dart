@@ -578,8 +578,7 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
     this.inputProcessingConfiguration,
     required this.inputSchema,
     this.inputStartingPositionConfiguration,
-    this.kinesisFirehoseInput,
-    this.kinesisStreamsInput,
+    required this.kinesisFirehoseInputOrKinesisStreamsInput,
   });
 
   final TfArg<String> namePrefix;
@@ -598,11 +597,8 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
   >?
   inputStartingPositionConfiguration;
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInput?
-  kinesisFirehoseInput;
-
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInput?
-  kinesisStreamsInput;
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputOrKinesisStreamsInput
+  kinesisFirehoseInputOrKinesisStreamsInput;
 
   Map<String, Object?> encode() => {
     'name_prefix': namePrefix.toTfJson(),
@@ -615,10 +611,58 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
       'input_starting_position_configuration': [
         for (final e in inputStartingPositionConfiguration!) e.encode(),
       ],
-    if (kinesisFirehoseInput != null)
-      'kinesis_firehose_input': kinesisFirehoseInput!.encode(),
-    if (kinesisStreamsInput != null)
-      'kinesis_streams_input': kinesisStreamsInput!.encode(),
+    ...kinesisFirehoseInputOrKinesisStreamsInput.encode(),
+  };
+}
+
+/// Exactly one of `kinesis_firehose_input`, `kinesis_streams_input` on the `application_configuration.sql_application_configuration.input` block of `aws_kinesisanalyticsv2_application`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputOrKinesisStreamsInput {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputOrKinesisStreamsInput();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `kinesis_firehose_input` (one of the [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputOrKinesisStreamsInput] choices).
+final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputOption
+    extends
+        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputOrKinesisStreamsInput {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputOption({
+    required this.kinesisFirehoseInput,
+  });
+
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInput
+  kinesisFirehoseInput;
+
+  @override
+  String get blockKey => 'kinesis_firehose_input';
+
+  @override
+  Map<String, Object?> encode() => {
+    'kinesis_firehose_input': kinesisFirehoseInput.encode(),
+  };
+}
+
+/// Sets `kinesis_streams_input` (one of the [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputOrKinesisStreamsInput] choices).
+final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInputOption
+    extends
+        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisFirehoseInputOrKinesisStreamsInput {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInputOption({
+    required this.kinesisStreamsInput,
+  });
+
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesisStreamsInput
+  kinesisStreamsInput;
+
+  @override
+  String get blockKey => 'kinesis_streams_input';
+
+  @override
+  Map<String, Object?> encode() => {
+    'kinesis_streams_input': kinesisStreamsInput.encode(),
   };
 }
 
@@ -757,21 +801,65 @@ enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigur
 @immutable
 final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters {
   const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters({
-    this.csvMappingParameters,
-    this.jsonMappingParameters,
+    required this.csvMappingParametersOrJsonMappingParameters,
   });
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParameters?
-  csvMappingParameters;
-
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParameters?
-  jsonMappingParameters;
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters
+  csvMappingParametersOrJsonMappingParameters;
 
   Map<String, Object?> encode() => {
-    if (csvMappingParameters != null)
-      'csv_mapping_parameters': csvMappingParameters!.encode(),
-    if (jsonMappingParameters != null)
-      'json_mapping_parameters': jsonMappingParameters!.encode(),
+    ...csvMappingParametersOrJsonMappingParameters.encode(),
+  };
+}
+
+/// Exactly one of `csv_mapping_parameters`, `json_mapping_parameters` on the `application_configuration.sql_application_configuration.input.input_schema.record_format.mapping_parameters` block of `aws_kinesisanalyticsv2_application`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `csv_mapping_parameters` (one of the [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters] choices).
+final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersOption
+    extends
+        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersOption({
+    required this.csvMappingParameters,
+  });
+
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParameters
+  csvMappingParameters;
+
+  @override
+  String get blockKey => 'csv_mapping_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'csv_mapping_parameters': csvMappingParameters.encode(),
+  };
+}
+
+/// Sets `json_mapping_parameters` (one of the [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters] choices).
+final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParametersOption
+    extends
+        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParametersOption({
+    required this.jsonMappingParameters,
+  });
+
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersJsonMappingParameters
+  jsonMappingParameters;
+
+  @override
+  String get blockKey => 'json_mapping_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'json_mapping_parameters': jsonMappingParameters.encode(),
   };
 }
 
@@ -1091,21 +1179,65 @@ enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigur
 @immutable
 final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters {
   const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters({
-    this.csvMappingParameters,
-    this.jsonMappingParameters,
+    required this.csvMappingParametersOrJsonMappingParameters,
   });
 
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParameters?
-  csvMappingParameters;
-
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParameters?
-  jsonMappingParameters;
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters
+  csvMappingParametersOrJsonMappingParameters;
 
   Map<String, Object?> encode() => {
-    if (csvMappingParameters != null)
-      'csv_mapping_parameters': csvMappingParameters!.encode(),
-    if (jsonMappingParameters != null)
-      'json_mapping_parameters': jsonMappingParameters!.encode(),
+    ...csvMappingParametersOrJsonMappingParameters.encode(),
+  };
+}
+
+/// Exactly one of `csv_mapping_parameters`, `json_mapping_parameters` on the `application_configuration.sql_application_configuration.reference_data_source.reference_schema.record_format.mapping_parameters` block of `aws_kinesisanalyticsv2_application`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `csv_mapping_parameters` (one of the [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters] choices).
+final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersOption
+    extends
+        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersOption({
+    required this.csvMappingParameters,
+  });
+
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParameters
+  csvMappingParameters;
+
+  @override
+  String get blockKey => 'csv_mapping_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'csv_mapping_parameters': csvMappingParameters.encode(),
+  };
+}
+
+/// Sets `json_mapping_parameters` (one of the [Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters] choices).
+final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParametersOption
+    extends
+        Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersCsvMappingParametersOrJsonMappingParameters {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParametersOption({
+    required this.jsonMappingParameters,
+  });
+
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersJsonMappingParameters
+  jsonMappingParameters;
+
+  @override
+  String get blockKey => 'json_mapping_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'json_mapping_parameters': jsonMappingParameters.encode(),
   };
 }
 

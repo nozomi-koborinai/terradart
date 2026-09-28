@@ -20,3 +20,5 @@ properties:
           - "DUALSTACK"
           - "IPV4"
           - "IPV6"
+exactly_one_of_groups:
+  - ["transit_gateway_id", "vpc_id"]

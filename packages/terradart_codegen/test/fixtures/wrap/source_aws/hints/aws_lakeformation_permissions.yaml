@@ -45,3 +45,5 @@ properties:
       - "CREATE_LF_TAG_EXPRESSION"
       - "CREATE_CATALOG"
       - "SUPER_USER"
+exactly_one_of_groups:
+  - ["catalog_resource", "data_cells_filter", "data_location", "database", "lf_tag", "lf_tag_policy", "table", "table_with_columns"]

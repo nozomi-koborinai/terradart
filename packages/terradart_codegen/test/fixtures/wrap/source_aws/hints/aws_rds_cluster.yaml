@@ -55,3 +55,6 @@ properties:
         enum_values:
           - "ForceApplyCapacityChange"
           - "RollbackCapacityChange"
+exactly_one_of_groups:
+  - ["restore_to_point_in_time.restore_to_time", "restore_to_point_in_time.use_latest_restorable_time"]
+  - ["restore_to_point_in_time.source_cluster_identifier", "restore_to_point_in_time.source_cluster_resource_id"]

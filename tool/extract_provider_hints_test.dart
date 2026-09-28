@@ -207,10 +207,12 @@ func resourceWidget() *schema.Resource {
 			names.AttrType: {
 				Type:             schema.TypeString,
 				ValidateDiagFunc: enum.Validate[awstypes.Mode](),
+				ExactlyOneOf:     []string{"color", names.AttrType},
 			},
 			"color": {
 				Type:         schema.TypeString,
 				ValidateFunc: validation.StringInSlice(color_Values(), true),
+				ExactlyOneOf: []string{"color", names.AttrType},
 			},
 			"settings": {
 				Type: schema.TypeList,
@@ -219,6 +221,7 @@ func resourceWidget() *schema.Resource {
 			"opaque": {
 				Type:         schema.TypeString,
 				ValidateFunc: validation.StringInSlice(unknownValues(), false),
+				ExactlyOneOf: unknownKeys(),
 			},
 		},
 	}
@@ -230,6 +233,7 @@ func settingsSchema() *schema.Resource {
 			"level": {
 				Type:         schema.TypeString,
 				ValidateFunc: validation.StringInSlice([]string{"low", "high"}, false),
+				ExactlyOneOf: []string{"settings.0.level", "settings.0.depth"},
 			},
 		},
 	}
@@ -258,9 +262,19 @@ func (r *gadgetResource) Schema(ctx context.Context, req resource.SchemaRequest,
 			names.AttrName: schema.StringAttribute{
 				Validators: []validator.String{
 					stringvalidator.OneOf("a", "b"),
+					stringvalidator.ExactlyOneOf(path.MatchRelative().AtParent().AtName("mode")),
 				},
 			},
 		},
+	}
+}
+
+func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigValidator {
+	return []resource.ConfigValidator{
+		resourcevalidator.ExactlyOneOf(
+			path.MatchRoot("left"),
+			path.MatchRoot("right"),
+		),
 	}
 }
 ''');
@@ -307,6 +321,23 @@ func (r *gadgetResource) Schema(ctx context.Context, req resource.SchemaRequest,
       });
       expect(scan.validators, 6);
       expect(scan.unresolved, 1, reason: 'unknownValues() is not evaluable');
+    });
+
+    test('reads SDKv2 and framework exactly-one groups', () {
+      writeProvider();
+      final scan = scanAwsProvider(root, sdkDir: sdkDir);
+      Set<String> groups(String type) => {
+            for (final g in scan.byType[type]!.groups)
+              g.map((m) => m.join('.')).join(','),
+          };
+      expect(groups('aws_widget'), {
+        'color,type',
+        'settings.depth,settings.level',
+      });
+      expect(groups('aws_widget_gadget'), {'mode,name', 'left,right'});
+      expect(scan.groupValidators, 6);
+      expect(scan.unresolvedGroups, 1,
+          reason: 'unknownKeys() is not evaluable');
     });
   });
 
@@ -367,6 +398,78 @@ func (r *gadgetResource) Schema(ctx context.Context, req resource.SchemaRequest,
     final parsed = const MmYamlParser().parseString(yaml).fieldOverrides;
     expect(parsed['mode']!.enumValues, ['a.b', r'$x']);
     expect(parsed['settings.level']!.enumValues, ['low', 'high']);
+  });
+
+  test('renderHintsYaml writes exactly-one groups, with or without enums', () {
+    final yaml = renderHintsYaml(
+      repo: 'hashicorp/terraform-provider-aws',
+      version: '1.0.0',
+      sourcePath: 'internal/service/thing/thing.go',
+      hints: const [],
+      groups: const [
+        [
+          ['a'],
+          ['b'],
+        ],
+        [
+          ['settings', 'x'],
+          ['settings', 'y'],
+        ],
+      ],
+    );
+    final doc = loadYaml(yaml) as YamlMap;
+    expect(doc.containsKey('properties'), isFalse);
+    expect(doc['exactly_one_of_groups'], [
+      ['a', 'b'],
+      ['settings.x', 'settings.y'],
+    ]);
+  });
+
+  test('groupSkipReason keeps sibling inputs that schema.json declares', () {
+    final block = {
+      'attributes': {
+        'a': {'type': 'string', 'optional': true},
+        'b': {'type': 'string', 'optional': true},
+        'id': {'type': 'string', 'computed': true},
+      },
+      'block_types': {
+        'settings': {
+          'block': {
+            'attributes': {
+              'x': {'type': 'string', 'optional': true},
+            },
+          },
+        },
+      },
+    };
+    expect(
+      groupSkipReason(block, [
+        ['a'],
+        ['b'],
+      ]),
+      isNull,
+    );
+    expect(
+      groupSkipReason(block, [
+        ['a'],
+        ['settings', 'x'],
+      ]),
+      'members in different blocks',
+    );
+    expect(
+      groupSkipReason(block, [
+        ['a'],
+        ['gone'],
+      ]),
+      'gone is not in schema.json',
+    );
+    expect(
+      groupSkipReason(block, [
+        ['a'],
+        ['id'],
+      ]),
+      'id is computed-only',
+    );
   });
 
   for (final fixture in _fixtures) {

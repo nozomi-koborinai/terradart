@@ -42,3 +42,6 @@ properties:
               - "REDSHIFT"
               - "ATHENA"
               - "SPARK"
+exactly_one_of_groups:
+  - ["storage_descriptor.schema_reference.schema_id", "storage_descriptor.schema_reference.schema_version_id"]
+  - ["storage_descriptor.schema_reference.schema_id.schema_arn", "storage_descriptor.schema_reference.schema_id.schema_name"]

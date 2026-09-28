@@ -25,3 +25,5 @@ properties:
   - api_name: tape_drive_type
     enum_values:
       - "IBM-ULT3580-TD5"
+exactly_one_of_groups:
+  - ["activation_key", "gateway_ip_address"]

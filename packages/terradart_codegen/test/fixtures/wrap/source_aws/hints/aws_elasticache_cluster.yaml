@@ -38,3 +38,5 @@ properties:
     enum_values:
       - "single-outpost"
       - "cross-outpost"
+exactly_one_of_groups:
+  - ["engine", "replication_group_id"]

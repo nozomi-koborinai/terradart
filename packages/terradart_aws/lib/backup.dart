@@ -48,7 +48,10 @@ export 'src/backup/aws_backup_restore_testing_selection.dart'
     show
         AwsBackupRestoreTestingSelection,
         BackupRestoreTestingSelectionProtectedResourceArns,
+        BackupRestoreTestingSelectionProtectedResourceArnsOption,
+        BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions,
         BackupRestoreTestingSelectionProtectedResourceConditions,
+        BackupRestoreTestingSelectionProtectedResourceConditionsOption,
         BackupRestoreTestingSelectionProtectedResourceConditionsStringEquals,
         BackupRestoreTestingSelectionProtectedResourceConditionsStringNotEquals;
 export 'src/backup/aws_backup_selection.dart'

@@ -25,19 +25,59 @@ enum BedrockagentcoreEvaluatorLevel implements TerraformEnum {
 @immutable
 final class BedrockagentcoreEvaluatorEvaluatorConfig {
   const BedrockagentcoreEvaluatorEvaluatorConfig({
-    this.codeBased,
-    this.llmAsAJudge,
+    required this.codeBasedOrLlmAsAJudge,
   });
 
-  final List<BedrockagentcoreEvaluatorEvaluatorConfigCodeBased>? codeBased;
+  final BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOrLlmAsAJudge
+  codeBasedOrLlmAsAJudge;
 
-  final List<BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudge>? llmAsAJudge;
+  Map<String, Object?> encode() => {...codeBasedOrLlmAsAJudge.encode()};
+}
 
+/// Exactly one of `code_based`, `llm_as_a_judge` on the `evaluator_config` block of `aws_bedrockagentcore_evaluator`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOrLlmAsAJudge {
+  const BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOrLlmAsAJudge();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `code_based` (one of the [BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOrLlmAsAJudge] choices).
+final class BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOption
+    extends BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOrLlmAsAJudge {
+  const BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOption({
+    required this.codeBased,
+  });
+
+  final List<BedrockagentcoreEvaluatorEvaluatorConfigCodeBased> codeBased;
+
+  @override
+  String get blockKey => 'code_based';
+
+  @override
   Map<String, Object?> encode() => {
-    if (codeBased != null)
-      'code_based': [for (final e in codeBased!) e.encode()],
-    if (llmAsAJudge != null)
-      'llm_as_a_judge': [for (final e in llmAsAJudge!) e.encode()],
+    'code_based': [for (final e in codeBased) e.encode()],
+  };
+}
+
+/// Sets `llm_as_a_judge` (one of the [BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOrLlmAsAJudge] choices).
+final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeOption
+    extends BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOrLlmAsAJudge {
+  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeOption({
+    required this.llmAsAJudge,
+  });
+
+  final List<BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudge> llmAsAJudge;
+
+  @override
+  String get blockKey => 'llm_as_a_judge';
+
+  @override
+  Map<String, Object?> encode() => {
+    'llm_as_a_judge': [for (final e in llmAsAJudge) e.encode()],
   };
 }
 
@@ -185,25 +225,67 @@ final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedroc
 @immutable
 final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale {
   const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale({
-    this.categorical,
-    this.numerical,
+    required this.categoricalOrNumerical,
+  });
+
+  final BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOrNumerical
+  categoricalOrNumerical;
+
+  Map<String, Object?> encode() => {...categoricalOrNumerical.encode()};
+}
+
+/// Exactly one of `categorical`, `numerical` on the `evaluator_config.llm_as_a_judge.rating_scale` block of `aws_bedrockagentcore_evaluator`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOrNumerical {
+  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOrNumerical();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `categorical` (one of the [BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOrNumerical] choices).
+final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOption
+    extends
+        BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOrNumerical {
+  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOption({
+    required this.categorical,
   });
 
   final List<
     BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategorical
-  >?
+  >
   categorical;
+
+  @override
+  String get blockKey => 'categorical';
+
+  @override
+  Map<String, Object?> encode() => {
+    'categorical': [for (final e in categorical) e.encode()],
+  };
+}
+
+/// Sets `numerical` (one of the [BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOrNumerical] choices).
+final class BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumericalOption
+    extends
+        BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOrNumerical {
+  const BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumericalOption({
+    required this.numerical,
+  });
 
   final List<
     BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumerical
-  >?
+  >
   numerical;
 
+  @override
+  String get blockKey => 'numerical';
+
+  @override
   Map<String, Object?> encode() => {
-    if (categorical != null)
-      'categorical': [for (final e in categorical!) e.encode()],
-    if (numerical != null)
-      'numerical': [for (final e in numerical!) e.encode()],
+    'numerical': [for (final e in numerical) e.encode()],
   };
 }
 

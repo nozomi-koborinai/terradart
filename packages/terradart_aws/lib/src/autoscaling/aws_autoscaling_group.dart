@@ -18,6 +18,89 @@ enum AutoscalingGroupDesiredCapacityType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `launch_configuration`, `launch_template`, `mixed_instances_policy` on `aws_autoscaling_group`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy {
+  const AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `launch_configuration` (one of the [AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy] choices).
+final class AutoscalingGroupLaunchConfigurationOption
+    extends
+        AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy {
+  const AutoscalingGroupLaunchConfigurationOption({
+    required this.launchConfiguration,
+  });
+
+  final TfArg<String> launchConfiguration;
+
+  @override
+  String get blockKey => 'launch_configuration';
+
+  @override
+  Map<String, Object?> encode() => {
+    'launch_configuration': launchConfiguration.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'launch_configuration': launchConfiguration,
+  };
+}
+
+/// Sets `launch_template` (one of the [AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy] choices).
+final class AutoscalingGroupLaunchTemplateOption
+    extends
+        AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy {
+  const AutoscalingGroupLaunchTemplateOption({required this.launchTemplate});
+
+  final AutoscalingGroupLaunchTemplate launchTemplate;
+
+  @override
+  String get blockKey => 'launch_template';
+
+  @override
+  Map<String, Object?> encode() => {'launch_template': launchTemplate.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'launch_template': TfArg.literal(launchTemplate.encode()),
+  };
+}
+
+/// Sets `mixed_instances_policy` (one of the [AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy] choices).
+final class AutoscalingGroupMixedInstancesPolicyOption
+    extends
+        AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy {
+  const AutoscalingGroupMixedInstancesPolicyOption({
+    required this.mixedInstancesPolicy,
+  });
+
+  final AutoscalingGroupMixedInstancesPolicy mixedInstancesPolicy;
+
+  @override
+  String get blockKey => 'mixed_instances_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'mixed_instances_policy': mixedInstancesPolicy.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'mixed_instances_policy': TfArg.literal(mixedInstancesPolicy.encode()),
+  };
+}
+
 /// Typed helper for the `availability_zone_distribution` block of
 /// `aws_autoscaling_group` (derived from provider schema).
 @immutable
@@ -1165,7 +1248,8 @@ final class AwsAutoscalingGroup extends Resource {
     TfArg<num>? healthCheckGracePeriod,
     TfArg<String>? healthCheckType,
     TfArg<bool>? ignoreFailedScalingActivities,
-    TfArg<String>? launchConfiguration,
+    required AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy
+    launchConfigurationOrLaunchTemplateOrMixedInstancesPolicy,
     TfArg<List<String>>? loadBalancers,
     TfArg<num>? maxInstanceLifetime,
     required TfArg<num> maxSize,
@@ -1191,8 +1275,6 @@ final class AwsAutoscalingGroup extends Resource {
     AutoscalingGroupInstanceLifecyclePolicy? instanceLifecyclePolicy,
     AutoscalingGroupInstanceMaintenancePolicy? instanceMaintenancePolicy,
     AutoscalingGroupInstanceRefresh? instanceRefresh,
-    AutoscalingGroupLaunchTemplate? launchTemplate,
-    AutoscalingGroupMixedInstancesPolicy? mixedInstancesPolicy,
     List<AutoscalingGroupTag>? tag,
     List<AutoscalingGroupTrafficSource>? trafficSource,
     AutoscalingGroupWarmPool? warmPool,
@@ -1223,8 +1305,7 @@ final class AwsAutoscalingGroup extends Resource {
            if (healthCheckType != null) 'health_check_type': healthCheckType,
            if (ignoreFailedScalingActivities != null)
              'ignore_failed_scaling_activities': ignoreFailedScalingActivities,
-           if (launchConfiguration != null)
-             'launch_configuration': launchConfiguration,
+           ...launchConfigurationOrLaunchTemplateOrMixedInstancesPolicy.argMap,
            if (loadBalancers != null) 'load_balancers': loadBalancers,
            if (maxInstanceLifetime != null)
              'max_instance_lifetime': maxInstanceLifetime,
@@ -1274,12 +1355,6 @@ final class AwsAutoscalingGroup extends Resource {
              ),
            if (instanceRefresh != null)
              'instance_refresh': TfArg.literal(instanceRefresh.encode()),
-           if (launchTemplate != null)
-             'launch_template': TfArg.literal(launchTemplate.encode()),
-           if (mixedInstancesPolicy != null)
-             'mixed_instances_policy': TfArg.literal(
-               mixedInstancesPolicy.encode(),
-             ),
            if (tag != null)
              'tag': TfArg.literal([for (final e in tag) e.encode()]),
            if (trafficSource != null)

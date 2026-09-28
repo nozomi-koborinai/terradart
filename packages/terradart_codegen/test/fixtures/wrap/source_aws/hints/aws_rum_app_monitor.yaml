@@ -16,3 +16,5 @@ properties:
         enum_values:
           - "ENABLED"
           - "DISABLED"
+exactly_one_of_groups:
+  - ["domain", "domain_list"]

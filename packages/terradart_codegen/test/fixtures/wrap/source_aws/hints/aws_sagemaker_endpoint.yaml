@@ -40,3 +40,5 @@ properties:
                 enum_values:
                   - "INSTANCE_COUNT"
                   - "CAPACITY_PERCENT"
+exactly_one_of_groups:
+  - ["deployment_config.blue_green_update_policy", "deployment_config.rolling_update_policy"]

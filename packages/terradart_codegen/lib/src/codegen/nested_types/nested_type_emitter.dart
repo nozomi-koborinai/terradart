@@ -1,3 +1,4 @@
+import '../exactly_one_types.dart';
 import '../naming.dart';
 import 'nested_type_collector.dart';
 
@@ -87,7 +88,19 @@ String _renderBlockTree(
   Set<String> rendered,
 ) {
   if (!rendered.add(spec.className)) return '';
-  final buf = StringBuffer()..write(_renderClass(spec, resourceTerraformType));
+  final layout = _layout(spec);
+  final buf = StringBuffer()
+    ..write(_renderClass(spec, resourceTerraformType, layout.plans));
+  for (final group in layout.sealed) {
+    buf
+      ..writeln()
+      ..write(renderExactlyOneTypes(
+        prefix: spec.className,
+        members: group.members,
+        where: 'the `${spec.path.join('.')}` block of `$resourceTerraformType`',
+        variants: group.variants,
+      ));
+  }
 
   final enumAttrs = _byTfName(
     spec.attrs.where((a) => a.enumValues != null),
@@ -118,8 +131,11 @@ String _renderBlockTree(
 /// passthroughs, merged into one alphabetical-by-Terraform-name group —
 /// mirroring `constructor_params.dart`'s "attributes first, then nested
 /// blocks" grouping for top-level wrapper constructors.
-String _renderClass(NestedBlockSpec spec, String resourceTerraformType) {
-  final plans = _fieldPlans(spec);
+String _renderClass(
+  NestedBlockSpec spec,
+  String resourceTerraformType,
+  List<_FieldPlan> plans,
+) {
   final blockPath = spec.path.join('.');
 
   final buf = StringBuffer()
@@ -194,24 +210,137 @@ String _renderEnum(NestedAttrSpec attr) {
 /// once (see [_plan]) instead of re-derived at each call site.
 typedef _FieldPlan = ({String ctorParam, String fieldDecl, String encodeEntry});
 
+/// One class member before layout: its plan, and the shape a sealed
+/// variant holding it takes (null for an excluded child).
+typedef _Member = ({
+  String tfName,
+  bool required,
+  _FieldPlan plan,
+  ExactlyOneVariant? variant,
+});
+
 /// [spec]'s own class members, in render order: attrs first, then
 /// block-type children (derived + excluded, merged), each group
 /// alphabetical by Terraform name.
-List<_FieldPlan> _fieldPlans(NestedBlockSpec spec) {
-  final plans = <_FieldPlan>[
+List<_Member> _members(NestedBlockSpec spec) {
+  final members = <_Member>[
     for (final attr in _byTfName(spec.attrs, (NestedAttrSpec a) => a.tfName))
-      _planAttr(attr),
+      (
+        tfName: attr.tfName,
+        required: attr.required,
+        plan: _planAttr(attr),
+        variant: _variant(
+          tfName: attr.tfName,
+          ident: safeDartIdentifier(attr.dartName),
+          elementType: attr.dartType,
+          repeated: attr.repeated,
+          wrapInTfArg: true,
+        ),
+      ),
   ];
 
-  final blockChildren = <({String tfName, _FieldPlan plan})>[
+  final blockChildren = <_Member>[
     for (final child in spec.children)
-      (tfName: child.tfName, plan: _planChild(child)),
+      (
+        tfName: child.tfName,
+        required: child.required,
+        plan: _planChild(child),
+        variant: _variant(
+          tfName: child.tfName,
+          ident: safeDartIdentifier(snakeToCamel(child.tfName)),
+          elementType: child.className,
+          repeated: child.repeated,
+          wrapInTfArg: false,
+        ),
+      ),
     for (final excluded in spec.excludedChildren)
-      (tfName: excluded.tfName, plan: _planExcludedChild(excluded)),
+      (
+        tfName: excluded.tfName,
+        required: excluded.required,
+        plan: _planExcludedChild(excluded),
+        variant: null,
+      ),
   ]..sort((a, b) => a.tfName.compareTo(b.tfName));
-  plans.addAll(blockChildren.map((e) => e.plan));
+  members.addAll(blockChildren);
 
-  return plans;
+  return members;
+}
+
+/// One sealed exactly-one field of a helper class.
+typedef _SealedGroup = ({
+  List<String> members,
+  List<ExactlyOneVariant> variants,
+});
+
+/// [spec]'s field plans with each sealable [NestedBlockSpec.exactlyOne]
+/// group folded into one required sealed field, at its first member's
+/// position. A group is sealable when every member is an optional typed
+/// input of this block and no earlier group took one of them.
+({List<_FieldPlan> plans, List<_SealedGroup> sealed}) _layout(
+  NestedBlockSpec spec,
+) {
+  final members = _members(spec);
+  final byName = {for (final m in members) m.tfName: m};
+  final taken = <String>{};
+  final sealed = <_SealedGroup>[];
+  final firstOf = <String, _SealedGroup>{};
+  for (final group in spec.exactlyOne) {
+    final ms = [for (final name in group) byName[name]];
+    if (ms.any((m) =>
+        m == null ||
+        m.required ||
+        m.variant == null ||
+        taken.contains(m.tfName))) {
+      continue;
+    }
+    taken.addAll(group);
+    final g = (
+      members: group,
+      variants: [for (final m in ms) m!.variant!],
+    );
+    sealed.add(g);
+    firstOf[members.firstWhere((m) => group.contains(m.tfName)).tfName] = g;
+  }
+  final plans = <_FieldPlan>[];
+  for (final m in members) {
+    final g = firstOf[m.tfName];
+    if (g != null) {
+      final ident = safeDartIdentifier(snakeToCamel(
+        exactlyOneSlotName(g.members),
+      ));
+      plans.add((
+        ctorParam: 'required this.$ident,',
+        fieldDecl:
+            'final ${exactlyOneSealedName(spec.className, g.members)} $ident;',
+        encodeEntry: '...$ident.encode(),',
+      ));
+    } else if (!taken.contains(m.tfName)) {
+      plans.add(m.plan);
+    }
+  }
+  return (plans: plans, sealed: sealed);
+}
+
+/// The sealed-variant shape of a typed member: the required field and the
+/// value `encode()` writes.
+ExactlyOneVariant _variant({
+  required String tfName,
+  required String ident,
+  required String elementType,
+  required bool repeated,
+  required bool wrapInTfArg,
+}) {
+  final accessor = wrapInTfArg ? '.toTfJson()' : '.encode()';
+  final elementDartType = wrapInTfArg ? 'TfArg<$elementType>' : elementType;
+  return (
+    tfName: tfName,
+    ident: ident,
+    fieldType: repeated ? 'List<$elementDartType>' : elementDartType,
+    encodeExpr:
+        repeated ? '[for (final e in $ident) e$accessor]' : '$ident$accessor',
+    argMapExpr: null,
+    deprecation: null,
+  );
 }
 
 _FieldPlan _planAttr(NestedAttrSpec attr) => _plan(

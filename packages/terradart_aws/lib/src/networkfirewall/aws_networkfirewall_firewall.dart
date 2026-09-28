@@ -17,6 +17,61 @@ enum NetworkfirewallFirewallEnabledAnalysisTypes implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `transit_gateway_id`, `vpc_id` on `aws_networkfirewall_firewall`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class NetworkfirewallFirewallTransitGatewayIdOrVpcId {
+  const NetworkfirewallFirewallTransitGatewayIdOrVpcId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `transit_gateway_id` (one of the [NetworkfirewallFirewallTransitGatewayIdOrVpcId] choices).
+final class NetworkfirewallFirewallTransitGatewayIdOption
+    extends NetworkfirewallFirewallTransitGatewayIdOrVpcId {
+  const NetworkfirewallFirewallTransitGatewayIdOption({
+    required this.transitGatewayId,
+  });
+
+  final TfArg<String> transitGatewayId;
+
+  @override
+  String get blockKey => 'transit_gateway_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'transit_gateway_id': transitGatewayId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'transit_gateway_id': transitGatewayId,
+  };
+}
+
+/// Sets `vpc_id` (one of the [NetworkfirewallFirewallTransitGatewayIdOrVpcId] choices).
+final class NetworkfirewallFirewallVpcIdOption
+    extends NetworkfirewallFirewallTransitGatewayIdOrVpcId {
+  const NetworkfirewallFirewallVpcIdOption({required this.vpcId});
+
+  final TfArg<String> vpcId;
+
+  @override
+  String get blockKey => 'vpc_id';
+
+  @override
+  Map<String, Object?> encode() => {'vpc_id': vpcId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId};
+}
+
 /// Typed helper for the `availability_zone_mapping` block of
 /// `aws_networkfirewall_firewall` (derived from provider schema).
 @immutable
@@ -110,8 +165,8 @@ final class AwsNetworkfirewallFirewall extends Resource {
     TfArg<String>? region,
     TfArg<bool>? subnetChangeProtection,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? transitGatewayId,
-    TfArg<String>? vpcId,
+    required NetworkfirewallFirewallTransitGatewayIdOrVpcId
+    transitGatewayIdOrVpcId,
     List<NetworkfirewallFirewallAvailabilityZoneMapping>?
     availabilityZoneMapping,
     NetworkfirewallFirewallEncryptionConfiguration? encryptionConfiguration,
@@ -141,8 +196,7 @@ final class AwsNetworkfirewallFirewall extends Resource {
            if (subnetChangeProtection != null)
              'subnet_change_protection': subnetChangeProtection,
            if (tags != null) 'tags': tags,
-           if (transitGatewayId != null) 'transit_gateway_id': transitGatewayId,
-           if (vpcId != null) 'vpc_id': vpcId,
+           ...transitGatewayIdOrVpcId.argMap,
            if (availabilityZoneMapping != null)
              'availability_zone_mapping': TfArg.literal([
                for (final e in availabilityZoneMapping) e.encode(),

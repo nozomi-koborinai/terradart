@@ -16,6 +16,8 @@ export 'src/gamelift/aws_gamelift_build.dart'
 export 'src/gamelift/aws_gamelift_fleet.dart'
     show
         AwsGameliftFleet,
+        GameliftFleetBuildIdOption,
+        GameliftFleetBuildIdOrScriptId,
         GameliftFleetCertificateConfiguration,
         GameliftFleetCertificateConfigurationCertificateType,
         GameliftFleetEc2InboundPermission,
@@ -25,7 +27,8 @@ export 'src/gamelift/aws_gamelift_fleet.dart'
         GameliftFleetNewGameSessionProtectionPolicy,
         GameliftFleetResourceCreationLimitPolicy,
         GameliftFleetRuntimeConfiguration,
-        GameliftFleetRuntimeConfigurationServerProcess;
+        GameliftFleetRuntimeConfigurationServerProcess,
+        GameliftFleetScriptIdOption;
 export 'src/gamelift/aws_gamelift_game_server_group.dart'
     show
         AwsGameliftGameServerGroup,
@@ -41,4 +44,9 @@ export 'src/gamelift/aws_gamelift_game_session_queue.dart'
         AwsGameliftGameSessionQueue,
         GameliftGameSessionQueuePlayerLatencyPolicy;
 export 'src/gamelift/aws_gamelift_script.dart'
-    show AwsGameliftScript, GameliftScriptStorageLocation;
+    show
+        AwsGameliftScript,
+        GameliftScriptStorageLocation,
+        GameliftScriptStorageLocationOption,
+        GameliftScriptStorageLocationOrZipFile,
+        GameliftScriptZipFileOption;

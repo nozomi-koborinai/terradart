@@ -17,6 +17,67 @@ enum ImagebuilderImagePipelineStatus implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `container_recipe_arn`, `image_recipe_arn` on `aws_imagebuilder_image_pipeline`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
+  const ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `container_recipe_arn` (one of the [ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn] choices).
+final class ImagebuilderImagePipelineContainerRecipeArnOption
+    extends ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
+  const ImagebuilderImagePipelineContainerRecipeArnOption({
+    required this.containerRecipeArn,
+  });
+
+  final TfArg<String> containerRecipeArn;
+
+  @override
+  String get blockKey => 'container_recipe_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'container_recipe_arn': containerRecipeArn.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'container_recipe_arn': containerRecipeArn,
+  };
+}
+
+/// Sets `image_recipe_arn` (one of the [ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn] choices).
+final class ImagebuilderImagePipelineImageRecipeArnOption
+    extends ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
+  const ImagebuilderImagePipelineImageRecipeArnOption({
+    required this.imageRecipeArn,
+  });
+
+  final TfArg<String> imageRecipeArn;
+
+  @override
+  String get blockKey => 'image_recipe_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'image_recipe_arn': imageRecipeArn.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'image_recipe_arn': imageRecipeArn,
+  };
+}
+
 /// Typed helper for the `image_scanning_configuration` block of
 /// `aws_imagebuilder_image_pipeline` (derived from provider schema).
 @immutable
@@ -203,12 +264,12 @@ final class AwsImagebuilderImagePipeline extends Resource {
 
   AwsImagebuilderImagePipeline({
     required super.localName,
-    TfArg<String>? containerRecipeArn,
+    required ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn
+    containerRecipeArnOrImageRecipeArn,
     TfArg<String>? description,
     TfArg<String>? distributionConfigurationArn,
     TfArg<bool>? enhancedImageMetadataEnabled,
     TfArg<String>? executionRole,
-    TfArg<String>? imageRecipeArn,
     required TfArg<String> infrastructureConfigurationArn,
     required TfArg<String> name,
     TfArg<String>? region,
@@ -227,15 +288,13 @@ final class AwsImagebuilderImagePipeline extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (containerRecipeArn != null)
-             'container_recipe_arn': containerRecipeArn,
+           ...containerRecipeArnOrImageRecipeArn.argMap,
            if (description != null) 'description': description,
            if (distributionConfigurationArn != null)
              'distribution_configuration_arn': distributionConfigurationArn,
            if (enhancedImageMetadataEnabled != null)
              'enhanced_image_metadata_enabled': enhancedImageMetadataEnabled,
            if (executionRole != null) 'execution_role': executionRole,
-           if (imageRecipeArn != null) 'image_recipe_arn': imageRecipeArn,
            'infrastructure_configuration_arn': infrastructureConfigurationArn,
            'name': name,
            if (region != null) 'region': region,

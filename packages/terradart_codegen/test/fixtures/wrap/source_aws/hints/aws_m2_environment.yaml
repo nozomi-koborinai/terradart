@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "microfocus"
       - "bluage"
+exactly_one_of_groups:
+  - ["storage_configuration.efs", "storage_configuration.fsx"]

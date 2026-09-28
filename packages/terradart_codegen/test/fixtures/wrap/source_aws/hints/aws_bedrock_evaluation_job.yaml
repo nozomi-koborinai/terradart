@@ -64,3 +64,11 @@ properties:
       - "Stopping"
       - "Stopped"
       - "Deleting"
+exactly_one_of_groups:
+  - ["evaluation_config.automated", "evaluation_config.human"]
+  - ["evaluation_config.automated.custom_metric_config.custom_metric.custom_metric_definition.rating_scale.value.float_value", "evaluation_config.automated.custom_metric_config.custom_metric.custom_metric_definition.rating_scale.value.string_value"]
+  - ["inference_config.model", "inference_config.rag_config"]
+  - ["inference_config.model.bedrock_model", "inference_config.model.precomputed_inference_source"]
+  - ["inference_config.rag_config.knowledge_base_config", "inference_config.rag_config.precomputed_rag_source_config"]
+  - ["inference_config.rag_config.knowledge_base_config.retrieve_and_generate_config", "inference_config.rag_config.knowledge_base_config.retrieve_config"]
+  - ["inference_config.rag_config.precomputed_rag_source_config.retrieve_and_generate_source_config", "inference_config.rag_config.precomputed_rag_source_config.retrieve_source_config"]

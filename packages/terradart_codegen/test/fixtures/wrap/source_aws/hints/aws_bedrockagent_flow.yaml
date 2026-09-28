@@ -117,3 +117,12 @@ properties:
       - "Prepared"
       - "Preparing"
       - "NotPrepared"
+exactly_one_of_groups:
+  - ["definition.connection.configuration.conditional", "definition.connection.configuration.data"]
+  - ["definition.node.configuration.agent", "definition.node.configuration.collector", "definition.node.configuration.condition", "definition.node.configuration.inline_code", "definition.node.configuration.input", "definition.node.configuration.iterator", "definition.node.configuration.knowledge_base", "definition.node.configuration.lambda_function", "definition.node.configuration.lex", "definition.node.configuration.output", "definition.node.configuration.prompt", "definition.node.configuration.retrieval", "definition.node.configuration.storage"]
+  - ["definition.node.configuration.prompt.source_configuration.inline", "definition.node.configuration.prompt.source_configuration.resource"]
+  - ["definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat", "definition.node.configuration.prompt.source_configuration.inline.template_configuration.text"]
+  - ["definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.message.content.cache_point", "definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.message.content.text"]
+  - ["definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.system.cache_point", "definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.system.text"]
+  - ["definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.tool_configuration.tool.cache_point", "definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.tool_configuration.tool.tool_spec"]
+  - ["definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.tool_configuration.tool_choice.any", "definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.tool_configuration.tool_choice.auto", "definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.tool_configuration.tool_choice.tool"]

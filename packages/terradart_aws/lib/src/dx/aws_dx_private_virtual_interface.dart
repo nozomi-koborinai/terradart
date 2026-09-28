@@ -16,6 +16,57 @@ enum DxPrivateVirtualInterfaceAddressFamily implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `dx_gateway_id`, `vpn_gateway_id` on `aws_dx_private_virtual_interface`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
+  const DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `dx_gateway_id` (one of the [DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId] choices).
+final class DxPrivateVirtualInterfaceDxGatewayIdOption
+    extends DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
+  const DxPrivateVirtualInterfaceDxGatewayIdOption({required this.dxGatewayId});
+
+  final TfArg<String> dxGatewayId;
+
+  @override
+  String get blockKey => 'dx_gateway_id';
+
+  @override
+  Map<String, Object?> encode() => {'dx_gateway_id': dxGatewayId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'dx_gateway_id': dxGatewayId};
+}
+
+/// Sets `vpn_gateway_id` (one of the [DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId] choices).
+final class DxPrivateVirtualInterfaceVpnGatewayIdOption
+    extends DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
+  const DxPrivateVirtualInterfaceVpnGatewayIdOption({
+    required this.vpnGatewayId,
+  });
+
+  final TfArg<String> vpnGatewayId;
+
+  @override
+  String get blockKey => 'vpn_gateway_id';
+
+  @override
+  Map<String, Object?> encode() => {'vpn_gateway_id': vpnGatewayId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'vpn_gateway_id': vpnGatewayId};
+}
+
 /// Factory wrapper for `aws_dx_private_virtual_interface`.
 final class AwsDxPrivateVirtualInterface extends Resource {
   static const String tfType = 'aws_dx_private_virtual_interface';
@@ -29,7 +80,8 @@ final class AwsDxPrivateVirtualInterface extends Resource {
     TfArg<String>? bgpAuthKey,
     required TfArg<String> connectionId,
     TfArg<String>? customerAddress,
-    TfArg<String>? dxGatewayId,
+    required DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId
+    dxGatewayIdOrVpnGatewayId,
     TfArg<num>? mtu,
     required TfArg<String> name,
     TfArg<num>? prefixPoolAllocatedCountIpv4,
@@ -39,7 +91,6 @@ final class AwsDxPrivateVirtualInterface extends Resource {
     TfArg<bool>? sitelinkEnabled,
     TfArg<Map<String, String>>? tags,
     required TfArg<num> vlan,
-    TfArg<String>? vpnGatewayId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -54,7 +105,7 @@ final class AwsDxPrivateVirtualInterface extends Resource {
            if (bgpAuthKey != null) 'bgp_auth_key': bgpAuthKey,
            'connection_id': connectionId,
            if (customerAddress != null) 'customer_address': customerAddress,
-           if (dxGatewayId != null) 'dx_gateway_id': dxGatewayId,
+           ...dxGatewayIdOrVpnGatewayId.argMap,
            if (mtu != null) 'mtu': mtu,
            'name': name,
            if (prefixPoolAllocatedCountIpv4 != null)
@@ -66,7 +117,6 @@ final class AwsDxPrivateVirtualInterface extends Resource {
            if (sitelinkEnabled != null) 'sitelink_enabled': sitelinkEnabled,
            if (tags != null) 'tags': tags,
            'vlan': vlan,
-           if (vpnGatewayId != null) 'vpn_gateway_id': vpnGatewayId,
          },
        );
 

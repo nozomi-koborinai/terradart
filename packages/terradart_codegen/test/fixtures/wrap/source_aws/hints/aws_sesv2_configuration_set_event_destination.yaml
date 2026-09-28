@@ -26,3 +26,5 @@ properties:
           - "RENDERING_FAILURE"
           - "DELIVERY_DELAY"
           - "SUBSCRIPTION"
+exactly_one_of_groups:
+  - ["event_destination.cloud_watch_destination", "event_destination.event_bridge_destination", "event_destination.kinesis_firehose_destination", "event_destination.pinpoint_destination", "event_destination.sns_destination"]

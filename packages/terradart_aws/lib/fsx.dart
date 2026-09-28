@@ -44,7 +44,10 @@ export 'src/fsx/aws_fsx_ontap_file_system.dart'
         FsxOntapFileSystemDiskIopsConfiguration,
         FsxOntapFileSystemDiskIopsConfigurationMode,
         FsxOntapFileSystemNetworkType,
-        FsxOntapFileSystemStorageType;
+        FsxOntapFileSystemStorageType,
+        FsxOntapFileSystemThroughputCapacityOption,
+        FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair,
+        FsxOntapFileSystemThroughputCapacityPerHaPairOption;
 export 'src/fsx/aws_fsx_ontap_storage_virtual_machine.dart'
     show
         AwsFsxOntapStorageVirtualMachine,
@@ -57,6 +60,9 @@ export 'src/fsx/aws_fsx_ontap_volume.dart'
         FsxOntapVolumeAggregateConfiguration,
         FsxOntapVolumeOntapVolumeType,
         FsxOntapVolumeSecurityStyle,
+        FsxOntapVolumeSizeInBytesOption,
+        FsxOntapVolumeSizeInBytesOrSizeInMegabytes,
+        FsxOntapVolumeSizeInMegabytesOption,
         FsxOntapVolumeSnaplockConfiguration,
         FsxOntapVolumeSnaplockConfigurationAutocommitPeriod,
         FsxOntapVolumeSnaplockConfigurationAutocommitPeriodType,

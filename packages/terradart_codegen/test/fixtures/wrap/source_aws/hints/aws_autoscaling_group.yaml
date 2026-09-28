@@ -123,3 +123,5 @@ properties:
           - "Stopped"
           - "Running"
           - "Hibernated"
+exactly_one_of_groups:
+  - ["launch_configuration", "launch_template", "mixed_instances_policy"]

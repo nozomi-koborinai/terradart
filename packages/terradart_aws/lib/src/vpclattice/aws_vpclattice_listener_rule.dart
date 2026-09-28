@@ -11,16 +11,53 @@ const Set<String> _awsVpclatticeListenerRuleSensitive = <String>{};
 /// `aws_vpclattice_listener_rule` (derived from provider schema).
 @immutable
 final class VpclatticeListenerRuleAction {
-  const VpclatticeListenerRuleAction({this.fixedResponse, this.forward});
+  const VpclatticeListenerRuleAction({required this.fixedResponseOrForward});
 
-  final VpclatticeListenerRuleActionFixedResponse? fixedResponse;
+  final VpclatticeListenerRuleActionFixedResponseOrForward
+  fixedResponseOrForward;
 
-  final VpclatticeListenerRuleActionForward? forward;
+  Map<String, Object?> encode() => {...fixedResponseOrForward.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (fixedResponse != null) 'fixed_response': fixedResponse!.encode(),
-    if (forward != null) 'forward': forward!.encode(),
-  };
+/// Exactly one of `fixed_response`, `forward` on the `action` block of `aws_vpclattice_listener_rule`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class VpclatticeListenerRuleActionFixedResponseOrForward {
+  const VpclatticeListenerRuleActionFixedResponseOrForward();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `fixed_response` (one of the [VpclatticeListenerRuleActionFixedResponseOrForward] choices).
+final class VpclatticeListenerRuleActionFixedResponseOption
+    extends VpclatticeListenerRuleActionFixedResponseOrForward {
+  const VpclatticeListenerRuleActionFixedResponseOption({
+    required this.fixedResponse,
+  });
+
+  final VpclatticeListenerRuleActionFixedResponse fixedResponse;
+
+  @override
+  String get blockKey => 'fixed_response';
+
+  @override
+  Map<String, Object?> encode() => {'fixed_response': fixedResponse.encode()};
+}
+
+/// Sets `forward` (one of the [VpclatticeListenerRuleActionFixedResponseOrForward] choices).
+final class VpclatticeListenerRuleActionForwardOption
+    extends VpclatticeListenerRuleActionFixedResponseOrForward {
+  const VpclatticeListenerRuleActionForwardOption({required this.forward});
+
+  final VpclatticeListenerRuleActionForward forward;
+
+  @override
+  String get blockKey => 'forward';
+
+  @override
+  Map<String, Object?> encode() => {'forward': forward.encode()};
 }
 
 /// Typed helper for the `action.fixed_response` block of

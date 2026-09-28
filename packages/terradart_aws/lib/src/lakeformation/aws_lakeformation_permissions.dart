@@ -56,6 +56,195 @@ enum LakeformationPermissionsPermissionsWithGrantOption
   final String terraformValue;
 }
 
+/// Exactly one of `catalog_resource`, `data_cells_filter`, `data_location`, `database`, `lf_tag`, `lf_tag_policy`, `table`, `table_with_columns` on `aws_lakeformation_permissions`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `catalog_resource` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationPermissionsCatalogResourceOption
+    extends
+        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationPermissionsCatalogResourceOption({
+    required this.catalogResource,
+  });
+
+  final TfArg<bool> catalogResource;
+
+  @override
+  String get blockKey => 'catalog_resource';
+
+  @override
+  Map<String, Object?> encode() => {
+    'catalog_resource': catalogResource.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'catalog_resource': catalogResource,
+  };
+}
+
+/// Sets `data_cells_filter` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationPermissionsDataCellsFilterOption
+    extends
+        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationPermissionsDataCellsFilterOption({
+    required this.dataCellsFilter,
+  });
+
+  final LakeformationPermissionsDataCellsFilter dataCellsFilter;
+
+  @override
+  String get blockKey => 'data_cells_filter';
+
+  @override
+  Map<String, Object?> encode() => {
+    'data_cells_filter': dataCellsFilter.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'data_cells_filter': TfArg.literal(dataCellsFilter.encode()),
+  };
+}
+
+/// Sets `data_location` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationPermissionsDataLocationOption
+    extends
+        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationPermissionsDataLocationOption({
+    required this.dataLocation,
+  });
+
+  final LakeformationPermissionsDataLocation dataLocation;
+
+  @override
+  String get blockKey => 'data_location';
+
+  @override
+  Map<String, Object?> encode() => {'data_location': dataLocation.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'data_location': TfArg.literal(dataLocation.encode()),
+  };
+}
+
+/// Sets `database` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationPermissionsDatabaseOption
+    extends
+        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationPermissionsDatabaseOption({required this.database});
+
+  final LakeformationPermissionsDatabase database;
+
+  @override
+  String get blockKey => 'database';
+
+  @override
+  Map<String, Object?> encode() => {'database': database.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'database': TfArg.literal(database.encode()),
+  };
+}
+
+/// Sets `lf_tag` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationPermissionsLfTagOption
+    extends
+        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationPermissionsLfTagOption({required this.lfTag});
+
+  final LakeformationPermissionsLfTag lfTag;
+
+  @override
+  String get blockKey => 'lf_tag';
+
+  @override
+  Map<String, Object?> encode() => {'lf_tag': lfTag.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'lf_tag': TfArg.literal(lfTag.encode()),
+  };
+}
+
+/// Sets `lf_tag_policy` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationPermissionsLfTagPolicyOption
+    extends
+        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationPermissionsLfTagPolicyOption({required this.lfTagPolicy});
+
+  final LakeformationPermissionsLfTagPolicy lfTagPolicy;
+
+  @override
+  String get blockKey => 'lf_tag_policy';
+
+  @override
+  Map<String, Object?> encode() => {'lf_tag_policy': lfTagPolicy.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'lf_tag_policy': TfArg.literal(lfTagPolicy.encode()),
+  };
+}
+
+/// Sets `table` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationPermissionsTableOption
+    extends
+        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationPermissionsTableOption({required this.table});
+
+  final LakeformationPermissionsTable table;
+
+  @override
+  String get blockKey => 'table';
+
+  @override
+  Map<String, Object?> encode() => {'table': table.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'table': TfArg.literal(table.encode()),
+  };
+}
+
+/// Sets `table_with_columns` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationPermissionsTableWithColumnsOption
+    extends
+        LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationPermissionsTableWithColumnsOption({
+    required this.tableWithColumns,
+  });
+
+  final LakeformationPermissionsTableWithColumns tableWithColumns;
+
+  @override
+  String get blockKey => 'table_with_columns';
+
+  @override
+  Map<String, Object?> encode() => {
+    'table_with_columns': tableWithColumns.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'table_with_columns': TfArg.literal(tableWithColumns.encode()),
+  };
+}
+
 /// Typed helper for the `data_cells_filter` block of
 /// `aws_lakeformation_permissions` (derived from provider schema).
 @immutable
@@ -263,19 +452,13 @@ final class AwsLakeformationPermissions extends Resource {
   AwsLakeformationPermissions({
     required super.localName,
     TfArg<String>? catalogId,
-    TfArg<bool>? catalogResource,
+    required LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns
+    catalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns,
     required List<TfArg<LakeformationPermissionsPermissions>> permissions,
     List<TfArg<LakeformationPermissionsPermissionsWithGrantOption>>?
     permissionsWithGrantOption,
     required TfArg<String> principal,
     TfArg<String>? region,
-    LakeformationPermissionsDataCellsFilter? dataCellsFilter,
-    LakeformationPermissionsDataLocation? dataLocation,
-    LakeformationPermissionsDatabase? database,
-    LakeformationPermissionsLfTag? lfTag,
-    LakeformationPermissionsLfTagPolicy? lfTagPolicy,
-    LakeformationPermissionsTable? table,
-    LakeformationPermissionsTableWithColumns? tableWithColumns,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -284,7 +467,8 @@ final class AwsLakeformationPermissions extends Resource {
          terraformType: tfType,
          argMap: {
            if (catalogId != null) 'catalog_id': catalogId,
-           if (catalogResource != null) 'catalog_resource': catalogResource,
+           ...catalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns
+               .argMap,
            'permissions': TfArg.literal([
              for (final e in permissions) e.toTfJson(),
            ]),
@@ -294,17 +478,6 @@ final class AwsLakeformationPermissions extends Resource {
              ]),
            'principal': principal,
            if (region != null) 'region': region,
-           if (dataCellsFilter != null)
-             'data_cells_filter': TfArg.literal(dataCellsFilter.encode()),
-           if (dataLocation != null)
-             'data_location': TfArg.literal(dataLocation.encode()),
-           if (database != null) 'database': TfArg.literal(database.encode()),
-           if (lfTag != null) 'lf_tag': TfArg.literal(lfTag.encode()),
-           if (lfTagPolicy != null)
-             'lf_tag_policy': TfArg.literal(lfTagPolicy.encode()),
-           if (table != null) 'table': TfArg.literal(table.encode()),
-           if (tableWithColumns != null)
-             'table_with_columns': TfArg.literal(tableWithColumns.encode()),
          },
        );
 

@@ -7,6 +7,88 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lakeformation_resource_lf_tag`.
 const Set<String> _awsLakeformationResourceLfTagSensitive = <String>{};
 
+/// Exactly one of `database`, `table`, `table_with_columns` on `aws_lakeformation_resource_lf_tag`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns {
+  const LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `database` (one of the [LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns] choices).
+final class LakeformationResourceLfTagDatabaseOption
+    extends LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns {
+  const LakeformationResourceLfTagDatabaseOption({required this.database});
+
+  final List<LakeformationResourceLfTagDatabase> database;
+
+  @override
+  String get blockKey => 'database';
+
+  @override
+  Map<String, Object?> encode() => {
+    'database': [for (final e in database) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'database': TfArg.literal([for (final e in database) e.encode()]),
+  };
+}
+
+/// Sets `table` (one of the [LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns] choices).
+final class LakeformationResourceLfTagTableOption
+    extends LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns {
+  const LakeformationResourceLfTagTableOption({required this.table});
+
+  final List<LakeformationResourceLfTagTable> table;
+
+  @override
+  String get blockKey => 'table';
+
+  @override
+  Map<String, Object?> encode() => {
+    'table': [for (final e in table) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'table': TfArg.literal([for (final e in table) e.encode()]),
+  };
+}
+
+/// Sets `table_with_columns` (one of the [LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns] choices).
+final class LakeformationResourceLfTagTableWithColumnsOption
+    extends LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns {
+  const LakeformationResourceLfTagTableWithColumnsOption({
+    required this.tableWithColumns,
+  });
+
+  final List<LakeformationResourceLfTagTableWithColumns> tableWithColumns;
+
+  @override
+  String get blockKey => 'table_with_columns';
+
+  @override
+  Map<String, Object?> encode() => {
+    'table_with_columns': [for (final e in tableWithColumns) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'table_with_columns': TfArg.literal([
+      for (final e in tableWithColumns) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `database` block of
 /// `aws_lakeformation_resource_lf_tag` (derived from provider schema).
 @immutable
@@ -133,10 +215,9 @@ final class AwsLakeformationResourceLfTag extends Resource {
     required super.localName,
     TfArg<String>? catalogId,
     TfArg<String>? region,
-    List<LakeformationResourceLfTagDatabase>? database,
+    required LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns
+    databaseOrTableOrTableWithColumns,
     List<LakeformationResourceLfTagLfTag>? lfTag,
-    List<LakeformationResourceLfTagTable>? table,
-    List<LakeformationResourceLfTagTableWithColumns>? tableWithColumns,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -146,16 +227,9 @@ final class AwsLakeformationResourceLfTag extends Resource {
          argMap: {
            if (catalogId != null) 'catalog_id': catalogId,
            if (region != null) 'region': region,
-           if (database != null)
-             'database': TfArg.literal([for (final e in database) e.encode()]),
+           ...databaseOrTableOrTableWithColumns.argMap,
            if (lfTag != null)
              'lf_tag': TfArg.literal([for (final e in lfTag) e.encode()]),
-           if (table != null)
-             'table': TfArg.literal([for (final e in table) e.encode()]),
-           if (tableWithColumns != null)
-             'table_with_columns': TfArg.literal([
-               for (final e in tableWithColumns) e.encode(),
-             ]),
          },
        );
 

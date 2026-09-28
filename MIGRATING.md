@@ -269,6 +269,32 @@ The analyzer names the enum at every call site. Data sources and map-typed
 inputs are unchanged. `terradart-migrate` maps existing values onto the
 members, as for Cloudflare.
 
+### `terradart_aws` exactly-one inputs are sealed types
+
+**Breaking (`terradart_aws`)** — 160 input groups across 116 resources that
+the provider requires exactly one of take one required sealed-type argument
+instead of several optional ones. These are the provider's `ExactlyOneOf`
+groups at the pinned `6.66.0`, 74 of them on resource arguments and 86 inside
+nested blocks. The argument is named after its members joined by `Or`, and
+each member is a variant class named `<Prefix><Member>Option`. Synth output
+is unchanged.
+
+| Before | After |
+|--------|-------|
+| `AwsLambdaFunction(filename: TfArg.literal('bootstrap.zip'), ...)` | `AwsLambdaFunction(filenameOrImageUriOrS3Bucket: LambdaFunctionFilenameOption(filename: TfArg.literal('bootstrap.zip')), ...)` |
+| `AwsAcmCertificate(domainName: TfArg.literal('example.com'), ...)` | `AwsAcmCertificate(domainNameOrPrivateKeyOrPrivateKeyWo: AcmCertificateDomainNameOption(domainName: TfArg.literal('example.com')), ...)` |
+| `AwsRoute53Record(records: TfArg.literal(['192.0.2.1']), ...)` | `AwsRoute53Record(aliasOrRecords: Route53RecordRecordsOption(records: TfArg.literal(['192.0.2.1'])), ...)` |
+| `AwsRoute53Record(alias: Route53RecordAlias(...), ...)` | `AwsRoute53Record(aliasOrRecords: Route53RecordAliasOption(alias: Route53RecordAlias(...)), ...)` |
+
+Leaving the argument out, or setting two members, used to fail at
+`terraform validate`; now it doesn't compile. A group inside a nested block
+works the same way on the helper class:
+`WorkspaceswebSessionLoggerEventFilter(allOrInclude:
+WorkspaceswebSessionLoggerEventFilterIncludeOption(include: [...]))`. The
+other inputs are unchanged, and a member's own type (an enum, a nested
+helper) stays what it was. `terradart-migrate` picks the variant from whichever member the source
+sets.
+
 ### `terradart-coverage` retired
 
 **`terradart-coverage` is retired** — the `terradart_coverage` package, its

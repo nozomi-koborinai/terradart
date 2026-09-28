@@ -6,14 +6,75 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_db_proxy_target`.
 const Set<String> _awsDbProxyTargetSensitive = <String>{};
 
+/// Exactly one of `db_cluster_identifier`, `db_instance_identifier` on `aws_db_proxy_target`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier {
+  const DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `db_cluster_identifier` (one of the [DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier] choices).
+final class DbProxyTargetDbClusterIdentifierOption
+    extends DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier {
+  const DbProxyTargetDbClusterIdentifierOption({
+    required this.dbClusterIdentifier,
+  });
+
+  final TfArg<String> dbClusterIdentifier;
+
+  @override
+  String get blockKey => 'db_cluster_identifier';
+
+  @override
+  Map<String, Object?> encode() => {
+    'db_cluster_identifier': dbClusterIdentifier.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'db_cluster_identifier': dbClusterIdentifier,
+  };
+}
+
+/// Sets `db_instance_identifier` (one of the [DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier] choices).
+final class DbProxyTargetDbInstanceIdentifierOption
+    extends DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier {
+  const DbProxyTargetDbInstanceIdentifierOption({
+    required this.dbInstanceIdentifier,
+  });
+
+  final TfArg<String> dbInstanceIdentifier;
+
+  @override
+  String get blockKey => 'db_instance_identifier';
+
+  @override
+  Map<String, Object?> encode() => {
+    'db_instance_identifier': dbInstanceIdentifier.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'db_instance_identifier': dbInstanceIdentifier,
+  };
+}
+
 /// Factory wrapper for `aws_db_proxy_target`.
 final class AwsDbProxyTarget extends Resource {
   static const String tfType = 'aws_db_proxy_target';
 
   AwsDbProxyTarget({
     required super.localName,
-    TfArg<String>? dbClusterIdentifier,
-    TfArg<String>? dbInstanceIdentifier,
+    required DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier
+    dbClusterIdentifierOrDbInstanceIdentifier,
     required TfArg<String> dbProxyName,
     TfArg<String>? region,
     required TfArg<String> targetGroupName,
@@ -24,10 +85,7 @@ final class AwsDbProxyTarget extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dbClusterIdentifier != null)
-             'db_cluster_identifier': dbClusterIdentifier,
-           if (dbInstanceIdentifier != null)
-             'db_instance_identifier': dbInstanceIdentifier,
+           ...dbClusterIdentifierOrDbInstanceIdentifier.argMap,
            'db_proxy_name': dbProxyName,
            if (region != null) 'region': region,
            'target_group_name': targetGroupName,

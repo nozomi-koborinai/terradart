@@ -52,16 +52,14 @@ enum CognitoUserPoolClientPreventUserExistenceErrors implements TerraformEnum {
 @immutable
 final class CognitoUserPoolClientAnalyticsConfiguration {
   const CognitoUserPoolClientAnalyticsConfiguration({
-    this.applicationArn,
-    this.applicationId,
+    required this.applicationArnOrApplicationId,
     this.externalId,
     this.roleArn,
     this.userDataShared,
   });
 
-  final TfArg<String>? applicationArn;
-
-  final TfArg<String>? applicationId;
+  final CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId
+  applicationArnOrApplicationId;
 
   final TfArg<String>? externalId;
 
@@ -70,12 +68,58 @@ final class CognitoUserPoolClientAnalyticsConfiguration {
   final TfArg<bool>? userDataShared;
 
   Map<String, Object?> encode() => {
-    if (applicationArn != null) 'application_arn': applicationArn!.toTfJson(),
-    if (applicationId != null) 'application_id': applicationId!.toTfJson(),
+    ...applicationArnOrApplicationId.encode(),
     if (externalId != null) 'external_id': externalId!.toTfJson(),
     if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
     if (userDataShared != null) 'user_data_shared': userDataShared!.toTfJson(),
   };
+}
+
+/// Exactly one of `application_arn`, `application_id` on the `analytics_configuration` block of `aws_cognito_user_pool_client`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
+  const CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `application_arn` (one of the [CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId] choices).
+final class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOption
+    extends
+        CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
+  const CognitoUserPoolClientAnalyticsConfigurationApplicationArnOption({
+    required this.applicationArn,
+  });
+
+  final TfArg<String> applicationArn;
+
+  @override
+  String get blockKey => 'application_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'application_arn': applicationArn.toTfJson(),
+  };
+}
+
+/// Sets `application_id` (one of the [CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId] choices).
+final class CognitoUserPoolClientAnalyticsConfigurationApplicationIdOption
+    extends
+        CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
+  const CognitoUserPoolClientAnalyticsConfigurationApplicationIdOption({
+    required this.applicationId,
+  });
+
+  final TfArg<String> applicationId;
+
+  @override
+  String get blockKey => 'application_id';
+
+  @override
+  Map<String, Object?> encode() => {'application_id': applicationId.toTfJson()};
 }
 
 /// Typed helper for the `refresh_token_rotation` block of

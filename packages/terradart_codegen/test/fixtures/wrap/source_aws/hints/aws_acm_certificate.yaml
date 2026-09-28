@@ -27,3 +27,5 @@ properties:
       - "EMAIL"
       - "DNS"
       - "HTTP"
+exactly_one_of_groups:
+  - ["domain_name", "private_key", "private_key_wo"]

@@ -194,3 +194,5 @@ properties:
           - "ml.g7e.12xlarge"
           - "ml.g7e.24xlarge"
           - "ml.g7e.48xlarge"
+exactly_one_of_groups:
+  - ["space_name", "user_profile_name"]

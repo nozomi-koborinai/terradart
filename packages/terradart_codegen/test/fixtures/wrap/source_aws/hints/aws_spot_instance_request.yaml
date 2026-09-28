@@ -88,3 +88,6 @@ properties:
       - "default"
       - "dedicated"
       - "host"
+exactly_one_of_groups:
+  - ["capacity_reservation_specification.capacity_reservation_preference", "capacity_reservation_specification.capacity_reservation_target"]
+  - ["launch_template.id", "launch_template.name"]

@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "microfocus"
       - "bluage"
+exactly_one_of_groups:
+  - ["definition.content", "definition.s3_location"]

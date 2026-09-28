@@ -401,11 +401,26 @@ typedef _LocalHint = ({List<String> path, List<String> values, bool ci});
 /// A call to a package function, with the keys open at the call site.
 typedef _Call = ({List<String> path, String callee});
 
+/// One member of an exactly-one group: a path from the resource root
+/// ([abs]) or from the function's root.
+typedef _Member = ({List<String> path, bool abs});
+
 final class _FuncScan {
   final hints = <_LocalHint>[];
   final calls = <_Call>[];
+  final groups = <List<_Member>>[];
   var unresolved = 0;
+  var unresolvedGroups = 0;
 }
+
+const _exactlyOneValidators = {
+  'boolvalidator',
+  'int64validator',
+  'listvalidator',
+  'objectvalidator',
+  'setvalidator',
+  'stringvalidator',
+};
 
 /// Scans one function body: value sets under attribute keys and calls to
 /// package helpers.
@@ -493,6 +508,50 @@ _FuncScan _scanFunc(
       i = _matching(t, i + 3) + 1;
       continue;
     }
+    // SDKv2: `ExactlyOneOf: []string{"a", "b.0.c"}`, paths from the root.
+    if (_isIdent(t, i, 'ExactlyOneOf') && _isPunct(t, i + 1, ':')) {
+      final r = eval.expr(t, i + 2, self, f.imports, 0);
+      if (r == null) {
+        scan.unresolvedGroups++;
+        i += 2;
+      } else {
+        scan.groups.add([
+          for (final v in r.values)
+            (
+              path: [
+                for (final s in v.split('.'))
+                  if (int.tryParse(s) == null) s,
+              ],
+              abs: true,
+            ),
+        ]);
+        i = r.end;
+      }
+      continue;
+    }
+    // Framework: `resourcevalidator.ExactlyOneOf(path.MatchRoot(...), ...)`
+    // in ConfigValidators, or `<kind>validator.ExactlyOneOf(...)` on an
+    // attribute, which counts the attribute itself as a member.
+    if (tok.kind == GoTok.ident &&
+        (tok.text == 'resourcevalidator' ||
+            _exactlyOneValidators.contains(tok.text)) &&
+        _isPunct(t, i + 1, '.') &&
+        _isIdent(t, i + 2, 'ExactlyOneOf') &&
+        _isPunct(t, i + 3, '(')) {
+      final close = _matching(t, i + 3);
+      final here = openKeys();
+      final members = _pathExprs(t, i + 4, close, here, names);
+      if (members == null) {
+        scan.unresolvedGroups++;
+      } else {
+        scan.groups.add([
+          if (tok.text != 'resourcevalidator') (path: here, abs: false),
+          ...members,
+        ]);
+      }
+      i = close + 1;
+      continue;
+    }
     if (_isIdent(t, i, 'validation') &&
         _isPunct(t, i + 1, '.') &&
         _isIdent(t, i + 2, 'StringInSlice') &&
@@ -542,6 +601,90 @@ _FuncScan _scanFunc(
     i++;
   }
   return scan;
+}
+
+/// An attribute key at [i] — a string literal or `names.Attr*` — and the
+/// index after it.
+(String, int)? _keyAt(List<GoToken> t, int i, GoPackage names) {
+  if (i < t.length && t[i].kind == GoTok.string) return (t[i].text, i + 1);
+  if (_isIdent(t, i, 'names') &&
+      _isPunct(t, i + 1, '.') &&
+      _isIdent(t, i + 2)) {
+    final v = names.consts[t[i + 2].text];
+    return v == null ? null : (v, i + 3);
+  }
+  return null;
+}
+
+/// The comma-separated path expressions from [i] up to [close], optionally
+/// wrapped in `path.Expressions{...}`: `path.MatchRoot(k)` (from the
+/// resource root) or `path.MatchRelative()` (from [here], the attribute the
+/// validator sits on), each followed by `.AtParent()` / `.AtName(k)` /
+/// list-index steps. Null when any part is something else.
+List<_Member>? _pathExprs(
+  List<GoToken> t,
+  int i,
+  int close,
+  List<String> here,
+  GoPackage names,
+) {
+  if (_isIdent(t, i, 'path') &&
+      _isPunct(t, i + 1, '.') &&
+      _isIdent(t, i + 2, 'Expressions') &&
+      _isPunct(t, i + 3, '{')) {
+    final inner = _matching(t, i + 3);
+    if (inner + 1 != close &&
+        !(inner + 2 == close && _isPunct(t, inner + 1, ','))) {
+      return null;
+    }
+    return _pathExprs(t, i + 4, inner, here, names);
+  }
+  final out = <_Member>[];
+  while (i < close) {
+    if (!_isIdent(t, i, 'path') || !_isPunct(t, i + 1, '.')) return null;
+    final List<String> path;
+    final bool abs;
+    if (_isIdent(t, i + 2, 'MatchRoot') && _isPunct(t, i + 3, '(')) {
+      final key = _keyAt(t, i + 4, names);
+      if (key == null || !_isPunct(t, key.$2, ')')) return null;
+      path = [key.$1];
+      abs = true;
+      i = key.$2 + 1;
+    } else if (_isIdent(t, i + 2, 'MatchRelative') &&
+        _isPunct(t, i + 3, '(') &&
+        _isPunct(t, i + 4, ')')) {
+      path = [...here];
+      abs = false;
+      i += 5;
+    } else {
+      return null;
+    }
+    while (
+        _isPunct(t, i, '.') && _isIdent(t, i + 1) && _isPunct(t, i + 2, '(')) {
+      final step = t[i + 1].text;
+      final end = _matching(t, i + 2);
+      if (step == 'AtParent' && end == i + 3) {
+        if (path.isEmpty) return null;
+        path.removeLast();
+      } else if (step == 'AtName') {
+        final key = _keyAt(t, i + 3, names);
+        if (key == null || key.$2 != end) return null;
+        path.add(key.$1);
+      } else if (step != 'AtListIndex' &&
+          step != 'AtAnyListIndex' &&
+          step != 'AtAnySetValue') {
+        return null;
+      }
+      i = end + 1;
+    }
+    out.add((path: path, abs: abs));
+    if (_isPunct(t, i, ',')) {
+      i++;
+    } else if (i != close) {
+      return null;
+    }
+  }
+  return out;
 }
 
 /// Every aws-sdk-go-v2 service `types` package the provider imports, with
@@ -626,11 +769,21 @@ Iterable<File> _goFiles(Directory dir) => dir
 final class AwsHintsScan {
   AwsHintsScan(this.byType);
 
-  /// Terraform type → the file that declares it and its hints.
-  final Map<String, ({String sourcePath, List<GoEnumHint> hints})> byType;
+  /// Terraform type → the file that declares it, its hints and its
+  /// exactly-one groups (member paths from the resource root).
+  final Map<String, AwsTypeHints> byType;
   var validators = 0;
   var unresolved = 0;
+  var groupValidators = 0;
+  var unresolvedGroups = 0;
 }
+
+/// What [scanAwsProvider] found for one Terraform type.
+typedef AwsTypeHints = ({
+  String sourcePath,
+  List<GoEnumHint> hints,
+  List<List<List<String>>> groups,
+});
 
 /// Scans hashicorp/aws at [root], with SDK enums read from [sdkDir].
 AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
@@ -683,18 +836,33 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
           final s = _scanFunc(pkg.funcs[key]!, pkg, names, eval);
           result.validators += s.hints.length + s.unresolved;
           result.unresolved += s.unresolved;
+          result.groupValidators += s.groups.length + s.unresolvedGroups;
+          result.unresolvedGroups += s.unresolvedGroups;
           return s;
         }();
-    List<_LocalHint> expand(String key, Set<String> seen) {
-      if (!pkg.funcs.containsKey(key) || !seen.add(key)) return const [];
+    ({List<_LocalHint> hints, List<List<_Member>> groups}) expand(
+      String key,
+      Set<String> seen,
+    ) {
+      if (!pkg.funcs.containsKey(key) || !seen.add(key)) {
+        return (hints: const [], groups: const []);
+      }
       final s = scanOf(key);
-      final out = [...s.hints];
+      final hints = [...s.hints];
+      final groups = [...s.groups];
       for (final c in s.calls) {
-        for (final h in expand(c.callee, {...seen})) {
-          out.add((path: [...c.path, ...h.path], values: h.values, ci: h.ci));
+        final inner = expand(c.callee, {...seen});
+        for (final h in inner.hints) {
+          hints.add((path: [...c.path, ...h.path], values: h.values, ci: h.ci));
+        }
+        for (final g in inner.groups) {
+          groups.add([
+            for (final m in g)
+              m.abs ? m : (path: [...c.path, ...m.path], abs: false),
+          ]);
         }
       }
-      return out;
+      return (hints: hints, groups: groups);
     }
 
     for (final MapEntry(key: fn, value: types) in pkg.resourceFuncs.entries) {
@@ -706,13 +874,19 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
             _isIdent(ctor.body, k + 1) &&
             _isPunct(ctor.body, k + 2, '{') &&
             pkg.funcs.containsKey('${ctor.body[k + 1].text}.Schema')) {
-          roots.add('${ctor.body[k + 1].text}.Schema');
+          final struct = ctor.body[k + 1].text;
+          roots.add('$struct.Schema');
+          if (pkg.funcs.containsKey('$struct.ConfigValidators')) {
+            roots.add('$struct.ConfigValidators');
+          }
           break;
         }
       }
       final byPath = <String, GoEnumHint>{};
+      final groups = <String, List<List<String>>>{};
       for (final root in roots) {
-        for (final h in expand(root, {})) {
+        final found = expand(root, {});
+        for (final h in found.hints) {
           byPath.putIfAbsent(
             h.path.join('.'),
             () => GoEnumHint(
@@ -722,11 +896,21 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
             ),
           );
         }
+        for (final g in found.groups) {
+          final members = {for (final m in g) m.path.join('.')}.toList()
+            ..sort();
+          if (members.length < 2) continue;
+          groups.putIfAbsent(
+            members.join(','),
+            () => [for (final m in members) m.split('.')],
+          );
+        }
       }
       for (final type in types) {
         result.byType[type] = (
           sourcePath: ctor.file,
           hints: byPath.values.toList(),
+          groups: groups.values.toList(),
         );
       }
     }

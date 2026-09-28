@@ -92,7 +92,9 @@ final class AwsLambdaStack extends Stack {
       runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023),
       handler: TfArg.literal('bootstrap'),
       architectures: [TfArg.literal(LambdaFunctionArchitectures.x8664)],
-      filename: TfArg.literal('../build/bootstrap.zip'),
+      filenameOrImageUriOrS3Bucket: LambdaFunctionFilenameOption(
+        filename: TfArg.literal('../build/bootstrap.zip'),
+      ),
       memorySize: TfArg.literal(128),
       timeout: TfArg.literal(10),
       loggingConfig: LambdaFunctionLoggingConfig(

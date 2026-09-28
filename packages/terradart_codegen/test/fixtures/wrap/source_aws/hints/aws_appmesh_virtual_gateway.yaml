@@ -28,3 +28,6 @@ properties:
                   - "STRICT"
                   - "PERMISSIVE"
                   - "DISABLED"
+exactly_one_of_groups:
+  - ["spec.backend_defaults.client_policy.tls.certificate.file", "spec.backend_defaults.client_policy.tls.certificate.sds"]
+  - ["spec.backend_defaults.client_policy.tls.validation.trust.acm", "spec.backend_defaults.client_policy.tls.validation.trust.file", "spec.backend_defaults.client_policy.tls.validation.trust.sds"]

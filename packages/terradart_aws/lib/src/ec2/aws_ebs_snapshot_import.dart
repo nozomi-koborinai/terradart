@@ -41,24 +41,61 @@ final class EbsSnapshotImportDiskContainer {
   const EbsSnapshotImportDiskContainer({
     this.description,
     required this.format,
-    this.url,
-    this.userBucket,
+    required this.urlOrUserBucket,
   });
 
   final TfArg<String>? description;
 
   final TfArg<EbsSnapshotImportDiskContainerFormat> format;
 
-  final TfArg<String>? url;
-
-  final EbsSnapshotImportDiskContainerUserBucket? userBucket;
+  final EbsSnapshotImportDiskContainerUrlOrUserBucket urlOrUserBucket;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
     'format': format.toTfJson(),
-    if (url != null) 'url': url!.toTfJson(),
-    if (userBucket != null) 'user_bucket': userBucket!.encode(),
+    ...urlOrUserBucket.encode(),
   };
+}
+
+/// Exactly one of `url`, `user_bucket` on the `disk_container` block of `aws_ebs_snapshot_import`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class EbsSnapshotImportDiskContainerUrlOrUserBucket {
+  const EbsSnapshotImportDiskContainerUrlOrUserBucket();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `url` (one of the [EbsSnapshotImportDiskContainerUrlOrUserBucket] choices).
+final class EbsSnapshotImportDiskContainerUrlOption
+    extends EbsSnapshotImportDiskContainerUrlOrUserBucket {
+  const EbsSnapshotImportDiskContainerUrlOption({required this.url});
+
+  final TfArg<String> url;
+
+  @override
+  String get blockKey => 'url';
+
+  @override
+  Map<String, Object?> encode() => {'url': url.toTfJson()};
+}
+
+/// Sets `user_bucket` (one of the [EbsSnapshotImportDiskContainerUrlOrUserBucket] choices).
+final class EbsSnapshotImportDiskContainerUserBucketOption
+    extends EbsSnapshotImportDiskContainerUrlOrUserBucket {
+  const EbsSnapshotImportDiskContainerUserBucketOption({
+    required this.userBucket,
+  });
+
+  final EbsSnapshotImportDiskContainerUserBucket userBucket;
+
+  @override
+  String get blockKey => 'user_bucket';
+
+  @override
+  Map<String, Object?> encode() => {'user_bucket': userBucket.encode()};
 }
 
 /// `format` — derived from the provider schema description.

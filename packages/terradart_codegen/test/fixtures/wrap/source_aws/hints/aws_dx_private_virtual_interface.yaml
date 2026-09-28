@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "ipv4"
       - "ipv6"
+exactly_one_of_groups:
+  - ["dx_gateway_id", "vpn_gateway_id"]

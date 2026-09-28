@@ -26,6 +26,57 @@ enum Ec2HostHostRecovery implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `instance_family`, `instance_type` on `aws_ec2_host`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class Ec2HostInstanceFamilyOrInstanceType {
+  const Ec2HostInstanceFamilyOrInstanceType();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `instance_family` (one of the [Ec2HostInstanceFamilyOrInstanceType] choices).
+final class Ec2HostInstanceFamilyOption
+    extends Ec2HostInstanceFamilyOrInstanceType {
+  const Ec2HostInstanceFamilyOption({required this.instanceFamily});
+
+  final TfArg<String> instanceFamily;
+
+  @override
+  String get blockKey => 'instance_family';
+
+  @override
+  Map<String, Object?> encode() => {
+    'instance_family': instanceFamily.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'instance_family': instanceFamily};
+}
+
+/// Sets `instance_type` (one of the [Ec2HostInstanceFamilyOrInstanceType] choices).
+final class Ec2HostInstanceTypeOption
+    extends Ec2HostInstanceFamilyOrInstanceType {
+  const Ec2HostInstanceTypeOption({required this.instanceType});
+
+  final TfArg<String> instanceType;
+
+  @override
+  String get blockKey => 'instance_type';
+
+  @override
+  Map<String, Object?> encode() => {'instance_type': instanceType.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'instance_type': instanceType};
+}
+
 /// Factory wrapper for `aws_ec2_host`.
 final class AwsEc2Host extends Resource {
   static const String tfType = 'aws_ec2_host';
@@ -36,8 +87,7 @@ final class AwsEc2Host extends Resource {
     TfArg<Ec2HostAutoPlacement>? autoPlacement,
     required TfArg<String> availabilityZone,
     TfArg<Ec2HostHostRecovery>? hostRecovery,
-    TfArg<String>? instanceFamily,
-    TfArg<String>? instanceType,
+    required Ec2HostInstanceFamilyOrInstanceType instanceFamilyOrInstanceType,
     TfArg<String>? outpostArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -52,8 +102,7 @@ final class AwsEc2Host extends Resource {
            if (autoPlacement != null) 'auto_placement': autoPlacement,
            'availability_zone': availabilityZone,
            if (hostRecovery != null) 'host_recovery': hostRecovery,
-           if (instanceFamily != null) 'instance_family': instanceFamily,
-           if (instanceType != null) 'instance_type': instanceType,
+           ...instanceFamilyOrInstanceType.argMap,
            if (outpostArn != null) 'outpost_arn': outpostArn,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

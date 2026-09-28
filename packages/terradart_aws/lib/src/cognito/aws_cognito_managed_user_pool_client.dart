@@ -50,21 +50,72 @@ enum CognitoManagedUserPoolClientPreventUserExistenceErrors
   final String terraformValue;
 }
 
+/// Exactly one of `name_pattern`, `name_prefix` on `aws_cognito_managed_user_pool_client`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class CognitoManagedUserPoolClientNamePatternOrNamePrefix {
+  const CognitoManagedUserPoolClientNamePatternOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name_pattern` (one of the [CognitoManagedUserPoolClientNamePatternOrNamePrefix] choices).
+final class CognitoManagedUserPoolClientNamePatternOption
+    extends CognitoManagedUserPoolClientNamePatternOrNamePrefix {
+  const CognitoManagedUserPoolClientNamePatternOption({
+    required this.namePattern,
+  });
+
+  final TfArg<String> namePattern;
+
+  @override
+  String get blockKey => 'name_pattern';
+
+  @override
+  Map<String, Object?> encode() => {'name_pattern': namePattern.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_pattern': namePattern};
+}
+
+/// Sets `name_prefix` (one of the [CognitoManagedUserPoolClientNamePatternOrNamePrefix] choices).
+final class CognitoManagedUserPoolClientNamePrefixOption
+    extends CognitoManagedUserPoolClientNamePatternOrNamePrefix {
+  const CognitoManagedUserPoolClientNamePrefixOption({
+    required this.namePrefix,
+  });
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `analytics_configuration` block of
 /// `aws_cognito_managed_user_pool_client` (derived from provider schema).
 @immutable
 final class CognitoManagedUserPoolClientAnalyticsConfiguration {
   const CognitoManagedUserPoolClientAnalyticsConfiguration({
-    this.applicationArn,
-    this.applicationId,
+    required this.applicationArnOrApplicationId,
     this.externalId,
     this.roleArn,
     this.userDataShared,
   });
 
-  final TfArg<String>? applicationArn;
-
-  final TfArg<String>? applicationId;
+  final CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId
+  applicationArnOrApplicationId;
 
   final TfArg<String>? externalId;
 
@@ -73,12 +124,58 @@ final class CognitoManagedUserPoolClientAnalyticsConfiguration {
   final TfArg<bool>? userDataShared;
 
   Map<String, Object?> encode() => {
-    if (applicationArn != null) 'application_arn': applicationArn!.toTfJson(),
-    if (applicationId != null) 'application_id': applicationId!.toTfJson(),
+    ...applicationArnOrApplicationId.encode(),
     if (externalId != null) 'external_id': externalId!.toTfJson(),
     if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
     if (userDataShared != null) 'user_data_shared': userDataShared!.toTfJson(),
   };
+}
+
+/// Exactly one of `application_arn`, `application_id` on the `analytics_configuration` block of `aws_cognito_managed_user_pool_client`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
+  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `application_arn` (one of the [CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId] choices).
+final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOption
+    extends
+        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
+  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOption({
+    required this.applicationArn,
+  });
+
+  final TfArg<String> applicationArn;
+
+  @override
+  String get blockKey => 'application_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'application_arn': applicationArn.toTfJson(),
+  };
+}
+
+/// Sets `application_id` (one of the [CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId] choices).
+final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationIdOption
+    extends
+        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
+  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationIdOption({
+    required this.applicationId,
+  });
+
+  final TfArg<String> applicationId;
+
+  @override
+  String get blockKey => 'application_id';
+
+  @override
+  Map<String, Object?> encode() => {'application_id': applicationId.toTfJson()};
 }
 
 /// Typed helper for the `refresh_token_rotation` block of
@@ -157,8 +254,8 @@ final class AwsCognitoManagedUserPoolClient extends Resource {
     explicitAuthFlows,
     TfArg<num>? idTokenValidity,
     TfArg<List<String>>? logoutUrls,
-    TfArg<String>? namePattern,
-    TfArg<String>? namePrefix,
+    required CognitoManagedUserPoolClientNamePatternOrNamePrefix
+    namePatternOrNamePrefix,
     TfArg<CognitoManagedUserPoolClientPreventUserExistenceErrors>?
     preventUserExistenceErrors,
     TfArg<List<String>>? readAttributes,
@@ -206,8 +303,7 @@ final class AwsCognitoManagedUserPoolClient extends Resource {
              ]),
            if (idTokenValidity != null) 'id_token_validity': idTokenValidity,
            if (logoutUrls != null) 'logout_urls': logoutUrls,
-           if (namePattern != null) 'name_pattern': namePattern,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...namePatternOrNamePrefix.argMap,
            if (preventUserExistenceErrors != null)
              'prevent_user_existence_errors': preventUserExistenceErrors,
            if (readAttributes != null) 'read_attributes': readAttributes,

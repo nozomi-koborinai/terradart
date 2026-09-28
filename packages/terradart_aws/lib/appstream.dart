@@ -24,6 +24,9 @@ export 'src/appstream/aws_appstream_image_builder.dart'
         AppstreamImageBuilderAccessEndpoint,
         AppstreamImageBuilderAccessEndpointEndpointType,
         AppstreamImageBuilderDomainJoinInfo,
+        AppstreamImageBuilderImageArnOption,
+        AppstreamImageBuilderImageArnOrImageName,
+        AppstreamImageBuilderImageNameOption,
         AppstreamImageBuilderVpcConfig,
         AwsAppstreamImageBuilder;
 export 'src/appstream/aws_appstream_stack.dart'

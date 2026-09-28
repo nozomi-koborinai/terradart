@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "KEY"
       - "TOKEN"
+exactly_one_of_groups:
+  - ["api_key", "service_json"]

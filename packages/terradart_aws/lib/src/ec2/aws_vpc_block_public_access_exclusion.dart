@@ -19,6 +19,55 @@ enum VpcBlockPublicAccessExclusionInternetGatewayExclusionMode
   final String terraformValue;
 }
 
+/// Exactly one of `subnet_id`, `vpc_id` on `aws_vpc_block_public_access_exclusion`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
+  const VpcBlockPublicAccessExclusionSubnetIdOrVpcId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `subnet_id` (one of the [VpcBlockPublicAccessExclusionSubnetIdOrVpcId] choices).
+final class VpcBlockPublicAccessExclusionSubnetIdOption
+    extends VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
+  const VpcBlockPublicAccessExclusionSubnetIdOption({required this.subnetId});
+
+  final TfArg<String> subnetId;
+
+  @override
+  String get blockKey => 'subnet_id';
+
+  @override
+  Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'subnet_id': subnetId};
+}
+
+/// Sets `vpc_id` (one of the [VpcBlockPublicAccessExclusionSubnetIdOrVpcId] choices).
+final class VpcBlockPublicAccessExclusionVpcIdOption
+    extends VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
+  const VpcBlockPublicAccessExclusionVpcIdOption({required this.vpcId});
+
+  final TfArg<String> vpcId;
+
+  @override
+  String get blockKey => 'vpc_id';
+
+  @override
+  Map<String, Object?> encode() => {'vpc_id': vpcId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId};
+}
+
 /// Factory wrapper for `aws_vpc_block_public_access_exclusion`.
 final class AwsVpcBlockPublicAccessExclusion extends Resource {
   static const String tfType = 'aws_vpc_block_public_access_exclusion';
@@ -28,9 +77,8 @@ final class AwsVpcBlockPublicAccessExclusion extends Resource {
     required TfArg<VpcBlockPublicAccessExclusionInternetGatewayExclusionMode>
     internetGatewayExclusionMode,
     TfArg<String>? region,
-    TfArg<String>? subnetId,
+    required VpcBlockPublicAccessExclusionSubnetIdOrVpcId subnetIdOrVpcId,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -40,9 +88,8 @@ final class AwsVpcBlockPublicAccessExclusion extends Resource {
          argMap: {
            'internet_gateway_exclusion_mode': internetGatewayExclusionMode,
            if (region != null) 'region': region,
-           if (subnetId != null) 'subnet_id': subnetId,
+           ...subnetIdOrVpcId.argMap,
            if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
          },
        );
 

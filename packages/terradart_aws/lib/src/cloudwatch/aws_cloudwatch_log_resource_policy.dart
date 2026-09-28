@@ -6,6 +6,57 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_log_resource_policy`.
 const Set<String> _awsCloudwatchLogResourcePolicySensitive = <String>{};
 
+/// Exactly one of `policy_name`, `resource_arn` on `aws_cloudwatch_log_resource_policy`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
+  const CloudwatchLogResourcePolicyPolicyNameOrResourceArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `policy_name` (one of the [CloudwatchLogResourcePolicyPolicyNameOrResourceArn] choices).
+final class CloudwatchLogResourcePolicyPolicyNameOption
+    extends CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
+  const CloudwatchLogResourcePolicyPolicyNameOption({required this.policyName});
+
+  final TfArg<String> policyName;
+
+  @override
+  String get blockKey => 'policy_name';
+
+  @override
+  Map<String, Object?> encode() => {'policy_name': policyName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'policy_name': policyName};
+}
+
+/// Sets `resource_arn` (one of the [CloudwatchLogResourcePolicyPolicyNameOrResourceArn] choices).
+final class CloudwatchLogResourcePolicyResourceArnOption
+    extends CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
+  const CloudwatchLogResourcePolicyResourceArnOption({
+    required this.resourceArn,
+  });
+
+  final TfArg<String> resourceArn;
+
+  @override
+  String get blockKey => 'resource_arn';
+
+  @override
+  Map<String, Object?> encode() => {'resource_arn': resourceArn.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'resource_arn': resourceArn};
+}
+
 /// Factory wrapper for `aws_cloudwatch_log_resource_policy`.
 final class AwsCloudwatchLogResourcePolicy extends Resource {
   static const String tfType = 'aws_cloudwatch_log_resource_policy';
@@ -13,9 +64,9 @@ final class AwsCloudwatchLogResourcePolicy extends Resource {
   AwsCloudwatchLogResourcePolicy({
     required super.localName,
     required TfArg<String> policyDocument,
-    TfArg<String>? policyName,
+    required CloudwatchLogResourcePolicyPolicyNameOrResourceArn
+    policyNameOrResourceArn,
     TfArg<String>? region,
-    TfArg<String>? resourceArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -24,9 +75,8 @@ final class AwsCloudwatchLogResourcePolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_document': policyDocument,
-           if (policyName != null) 'policy_name': policyName,
+           ...policyNameOrResourceArn.argMap,
            if (region != null) 'region': region,
-           if (resourceArn != null) 'resource_arn': resourceArn,
          },
        );
 

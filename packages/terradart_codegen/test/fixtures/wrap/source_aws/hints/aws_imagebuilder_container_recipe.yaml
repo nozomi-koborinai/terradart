@@ -30,3 +30,5 @@ properties:
       - api_name: service
         enum_values:
           - "ECR"
+exactly_one_of_groups:
+  - ["dockerfile_template_data", "dockerfile_template_uri"]

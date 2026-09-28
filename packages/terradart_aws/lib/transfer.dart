@@ -24,7 +24,12 @@ export 'src/transfer/aws_transfer_connector.dart'
         TransferConnectorEgressConfig,
         TransferConnectorEgressConfigVpcLattice,
         TransferConnectorSftpConfig;
-export 'src/transfer/aws_transfer_host_key.dart' show AwsTransferHostKey;
+export 'src/transfer/aws_transfer_host_key.dart'
+    show
+        AwsTransferHostKey,
+        TransferHostKeyHostKeyBodyOption,
+        TransferHostKeyHostKeyBodyOrHostKeyBodyWo,
+        TransferHostKeyHostKeyBodyWoOption;
 export 'src/transfer/aws_transfer_profile.dart'
     show AwsTransferProfile, TransferProfileProfileType;
 export 'src/transfer/aws_transfer_server.dart'

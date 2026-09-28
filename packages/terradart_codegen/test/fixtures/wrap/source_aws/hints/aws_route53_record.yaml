@@ -71,3 +71,5 @@ properties:
       - "SSHFP"
       - "SVCB"
       - "HTTPS"
+exactly_one_of_groups:
+  - ["alias", "records"]

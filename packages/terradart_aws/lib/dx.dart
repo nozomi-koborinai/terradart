@@ -20,7 +20,11 @@ export 'src/dx/aws_dx_hosted_private_virtual_interface.dart'
         AwsDxHostedPrivateVirtualInterface,
         DxHostedPrivateVirtualInterfaceAddressFamily;
 export 'src/dx/aws_dx_hosted_private_virtual_interface_accepter.dart'
-    show AwsDxHostedPrivateVirtualInterfaceAccepter;
+    show
+        AwsDxHostedPrivateVirtualInterfaceAccepter,
+        DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOption,
+        DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId,
+        DxHostedPrivateVirtualInterfaceAccepterVpnGatewayIdOption;
 export 'src/dx/aws_dx_hosted_public_virtual_interface.dart'
     show
         AwsDxHostedPublicVirtualInterface,
@@ -37,7 +41,12 @@ export 'src/dx/aws_dx_lag.dart' show AwsDxLag;
 export 'src/dx/aws_dx_macsec_key_association.dart'
     show AwsDxMacsecKeyAssociation;
 export 'src/dx/aws_dx_private_virtual_interface.dart'
-    show AwsDxPrivateVirtualInterface, DxPrivateVirtualInterfaceAddressFamily;
+    show
+        AwsDxPrivateVirtualInterface,
+        DxPrivateVirtualInterfaceAddressFamily,
+        DxPrivateVirtualInterfaceDxGatewayIdOption,
+        DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId,
+        DxPrivateVirtualInterfaceVpnGatewayIdOption;
 export 'src/dx/aws_dx_public_virtual_interface.dart'
     show AwsDxPublicVirtualInterface, DxPublicVirtualInterfaceAddressFamily;
 export 'src/dx/aws_dx_transit_virtual_interface.dart'
