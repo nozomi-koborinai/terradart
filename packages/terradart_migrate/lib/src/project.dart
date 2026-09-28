@@ -37,9 +37,8 @@ final class MigratedModule {
   final String name;
   final MigratedStack stack;
 
-  /// `null` with `allowTodo`, unless the directory has no Stack — then the
-  /// sidecar is its whole output.
-  final Sidecar? sidecar;
+  /// What stays in Terraform; with no Stack, the directory's whole output.
+  final Sidecar sidecar;
 
   /// Where the Stack synthesizes, relative to the package (`tf-out/dev`).
   final String terraformDir;
@@ -57,10 +56,6 @@ final class MigratedModule {
 
   MigrationReport get report => stack.report;
 
-  /// Kept blocks written as `TODO` comments into the Stack rather than as
-  /// sidecar blocks (`allowTodo`, on a directory that has a Stack).
-  int get todoCount => sidecar == null ? report.kept.length : 0;
-
   /// Scan notes and emitter warnings together.
   List<String> get warnings => [...dir.warnings, ...report.warnings];
 
@@ -74,7 +69,7 @@ final class MigratedModule {
     'stackFile': stack.hasStack ? 'lib/${stack.stackFile}.dart' : null,
     if (mergedInto != null) 'mergedInto': mergedInto,
     'terraformDir': terraformDir,
-    'sidecar': sidecar?.placements ?? const <String, String>{},
+    'sidecar': sidecar.placements,
     'copied': copied,
     'varFilesNotCopied': varFilesNotCopied,
     'scanWarnings': dir.warnings,
@@ -88,7 +83,6 @@ final class MigratedProject {
     required this.name,
     required this.packageName,
     required this.inputPath,
-    required this.allowTodo,
     required this.modules,
     required this.environments,
     required this.files,
@@ -101,7 +95,6 @@ final class MigratedProject {
 
   /// The scanned directory, as the caller named it.
   final String inputPath;
-  final bool allowTodo;
   final List<MigratedModule> modules;
   final List<EnvironmentComparison> environments;
 
@@ -121,14 +114,6 @@ final class MigratedProject {
   int get keptCount => modules.fold(0, (n, m) => n + m.report.kept.length);
   bool get isComplete => keptCount == 0;
 
-  /// Kept blocks written as `TODO` comments instead of sidecar blocks.
-  int get todoCount => modules.fold(0, (n, m) => n + m.todoCount);
-
-  /// With `allowTodo`, a Stack's untranslated blocks are TODO comments, gone
-  /// from the configuration. A directory with no Stack keeps its sidecar
-  /// even then, so its blocks never make the plan differ.
-  bool get planDiffers => allowTodo && todoCount > 0;
-
   List<MigratedModule> get roots => [
     for (final m in modules)
       if (m.dir.isRoot) m,
@@ -138,12 +123,9 @@ final class MigratedProject {
     'version': packageVersion,
     'input': inputPath,
     'package': packageName,
-    'allowTodo': allowTodo,
-    'planDiffers': planDiffers,
     'complete': isComplete,
     'migrated': migratedCount,
     'kept': keptCount,
-    'todos': todoCount,
     'modules': [for (final m in modules) m.toJson()],
     'environments': [for (final e in environments) e.toJson()],
     if (merged.isNotEmpty)
@@ -199,12 +181,6 @@ final class MigratedProject {
                   'one Stack each — ${m.refusal}',
       );
     }
-    if (planDiffers) {
-      b.writeln(
-        '  --allow-todo: ${_todoPhrase()} in the Stacks instead of sidecar '
-        'blocks; the plan differs until they are ported by hand.',
-      );
-    }
     b
       ..writeln('Report: ${p.join(outPath, 'MIGRATION.md')}')
       ..writeln('Next: cd $outPath && dart pub get && dart run bin/infra.dart');
@@ -225,15 +201,6 @@ final class MigratedProject {
         'stay${keptCount == 1 ? 's' : ''} in Terraform'
         '${isComplete ? '.' : ' (listed below, each with its reason).'}',
       );
-    if (planDiffers) {
-      b
-        ..writeln()
-        ..writeln(
-          '> **`--allow-todo`**: ${_todoPhrase()} (`TODO(terradart-migrate)`) '
-          'in the Stacks instead of sidecar blocks. The plan differs from '
-          'the current state until they are ported by hand.',
-        );
-    }
     final rootDirs = roots.map((r) => '`${r.terraformDir}`').join(', ');
     b
       ..writeln()
@@ -288,7 +255,7 @@ final class MigratedProject {
           'Terraform (sidecar files only)',
         );
       }
-      final sidecarFiles = m.sidecar?.files.keys.toList() ?? const <String>[];
+      final sidecarFiles = m.sidecar.files.keys.toList();
       b.writeln(
         '- Terraform directory: `${m.terraformDir}`'
         '${sidecarFiles.isEmpty ? '' : '; sidecar: ${_codes(sidecarFiles)}'}'
@@ -317,12 +284,8 @@ final class MigratedProject {
           ..writeln('  | Address | Reason | File |')
           ..writeln('  | :--- | :--- | :--- |');
         for (final k in m.report.kept) {
-          final file = m.sidecar?.placements[k.address];
-          final where = file != null
-              ? '`$file`'
-              : allowTodo
-              ? 'TODO in the Stack'
-              : '—';
+          final file = m.sidecar.placements[k.address];
+          final where = file != null ? '`$file`' : '—';
           b.writeln('  | `${k.address}` | ${_cell(k.reason)} | $where |');
         }
       }
@@ -410,11 +373,6 @@ final class MigratedProject {
     return b.toString();
   }
 
-  /// `1 block became a TODO comment` / `3 blocks became TODO comments`.
-  String _todoPhrase() => todoCount == 1
-      ? '1 block became a TODO comment'
-      : '$todoCount blocks became TODO comments';
-
   static String _role(MigratedModule m) => m.dir.isRoot
       ? (m.dir.environment == null
             ? 'root'
@@ -435,11 +393,9 @@ final class MigratedProject {
 MigratedProject migrateTree(
   ModuleTree tree, {
   required String name,
-  bool allowTodo = false,
   bool format = true,
   bool mergeEnvs = false,
   bool liftWorkspace = false,
-  bool inlineLocals = false,
   List<MigrateManifest>? manifests,
 }) {
   final packageName = packageNameFor(name);
@@ -512,7 +468,6 @@ MigratedProject migrateTree(
         version: packageVersion,
         localModules: {for (final r in roots) members[r.relPath]!: callsOf(r)},
         manifests: manifests,
-        allowTodo: allowTodo,
         liftWorkspace: liftWorkspace,
         format: format,
       );
@@ -538,9 +493,7 @@ MigratedProject migrateTree(
           manifests: manifests,
           format: format,
           childModule: !m.isRoot,
-          allowTodo: allowTodo,
           liftWorkspace: liftWorkspace,
-          inlineLocals: inlineLocals,
           localModules: localModules,
         );
     for (final used in stack.moduleWrappers) {
@@ -551,17 +504,17 @@ MigratedProject migrateTree(
     final terraformDir = single || m.relPath == '.'
         ? 'tf-out'
         : 'tf-out/${m.relPath}';
-    final sidecar = allowTodo && stack.hasStack
-        ? null
-        : buildSidecar(m.module, stack.report, version: packageVersion);
+    final sidecar = buildSidecar(
+      m.module,
+      stack.report,
+      version: packageVersion,
+    );
     // A merged root's Stack is written once for the whole group, below.
     if (stack.hasStack && merged == null) {
       files['lib/${stack.stackFile}.dart'] = stack.source;
     }
-    if (sidecar != null) {
-      for (final e in sidecar.files.entries) {
-        files['$terraformDir/${e.key}'] = e.value;
-      }
+    for (final e in sidecar.files.entries) {
+      files['$terraformDir/${e.key}'] = e.value;
     }
     final copied = <String>[];
     final notCopied = <String>[];
@@ -632,7 +585,6 @@ MigratedProject migrateTree(
     name: name,
     packageName: packageName,
     inputPath: tree.root.path,
-    allowTodo: allowTodo,
     modules: modules,
     environments: [
       for (final e in tree.environments.entries)

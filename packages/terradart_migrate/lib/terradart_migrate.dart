@@ -20,14 +20,12 @@ export 'src/cli.dart';
 export 'src/coverage.dart';
 export 'src/emit/env_plan.dart'
     show EnvBinding, EnvField, EnvPlan, planEnvironments;
-export 'src/in_place.dart';
 export 'src/manifests.dart';
 export 'src/merge_envs.dart';
 export 'src/migrate.dart';
 export 'src/migrate_manifest.dart';
 export 'src/project.dart';
 export 'src/report.dart';
-export 'src/rerun.dart';
 export 'src/sidecar.dart';
 export 'src/topology.dart';
 export 'src/version.dart';

@@ -6,12 +6,9 @@ import 'dart:io';
 
 import 'package:args/args.dart';
 import 'package:path/path.dart' as p;
-import 'package:terradart_hcl/terradart_hcl.dart' show HclParseException;
 
 import 'coverage.dart';
-import 'in_place.dart';
 import 'project.dart';
-import 'rerun.dart';
 import 'topology.dart';
 import 'version.dart';
 
@@ -60,42 +57,10 @@ Future<int> runMigrateCli(
     o.writeln('terradart-migrate $packageVersion');
     return MigrateExitCodes.success;
   }
-  final updateArg = args['update'] as String?;
-  if (updateArg != null) {
-    if (args['dir'] != null || args['out'] != null || args['report'] as bool) {
-      e
-        ..writeln(
-          'terradart-migrate: --update reads and writes one package; it '
-          'takes neither --dir, --out nor --report',
-        )
-        ..writeln()
-        ..writeln(_usage(parser));
-      return MigrateExitCodes.usage;
-    }
-    return _runUpdate(updateArg, o, e, json: args['json'] as bool);
-  }
   final report = args['report'] as bool;
-  if (report && (args['out'] != null || args['in-place'] as bool)) {
+  if (report && args['out'] != null) {
     e
-      ..writeln(
-        'terradart-migrate: --report writes nothing; it takes neither --out '
-        'nor --in-place',
-      )
-      ..writeln()
-      ..writeln(_usage(parser));
-    return MigrateExitCodes.usage;
-  }
-  final inlineLocals = args['inline-locals'] as bool;
-  if (inlineLocals && args['merge-envs'] as bool) {
-    // Both move a value out of Terraform and into Dart, and --merge-envs
-    // does it better: what the environments disagree on becomes a constant
-    // on the `Env` enum, which one `final` per Stack cannot express.
-    e
-      ..writeln(
-        'terradart-migrate: --inline-locals and --merge-envs cannot be '
-        'combined; --merge-envs already lifts the values the environments '
-        'disagree on onto the generated Env enum',
-      )
+      ..writeln('terradart-migrate: --report writes nothing; it takes no --out')
       ..writeln()
       ..writeln(_usage(parser));
     return MigrateExitCodes.usage;
@@ -113,16 +78,6 @@ Future<int> runMigrateCli(
   if (!dir.existsSync()) {
     e.writeln('terradart-migrate: --dir "$dirArg" is not a directory');
     return MigrateExitCodes.dataError;
-  }
-  // Checked before a single file is written, --out included: the rewrite
-  // deletes the user's own Terraform, and `git checkout` is the only undo.
-  final inPlace = args['in-place'] as bool;
-  if (inPlace) {
-    final blocker = inPlaceGitBlocker(dir);
-    if (blocker != null) {
-      e.writeln('terradart-migrate: --in-place refuses to run: $blocker');
-      return MigrateExitCodes.cannotCreate;
-    }
   }
   final outDir = report ? null : Directory(outArg!);
   final force = args['force'] as bool;
@@ -163,10 +118,8 @@ Future<int> runMigrateCli(
     project = migrateTree(
       tree,
       name: name,
-      allowTodo: args['allow-todo'] as bool,
       mergeEnvs: args['merge-envs'] as bool,
       liftWorkspace: args['lift-workspace'] as bool,
-      inlineLocals: inlineLocals,
       format: !report,
     );
   } on Object catch (x, st) {
@@ -190,101 +143,12 @@ Future<int> runMigrateCli(
     e.writeln('terradart-migrate: $x');
     return MigrateExitCodes.cannotCreate;
   }
-  InPlaceResult? rewrite;
-  if (inPlace) {
-    rewrite = planInPlace(project);
-    try {
-      writeInPlace(rewrite, dir);
-    } on FileSystemException catch (x) {
-      e.writeln('terradart-migrate: $x');
-      return MigrateExitCodes.cannotCreate;
-    }
-  }
   if (args['json'] as bool) {
-    o.writeln(
-      const JsonEncoder.withIndent('  ').convert({
-        ...project.toJson(),
-        if (rewrite != null) 'inPlace': rewrite.toJson(),
-      }),
-    );
+    o.writeln(const JsonEncoder.withIndent('  ').convert(project.toJson()));
   } else {
     o.write(project.renderText(outArg!));
-    if (rewrite != null) o.write(rewrite.renderText());
   }
   return MigrateExitCodes.success;
-}
-
-/// `--update`: re-runs over a package the migrator generated.
-Future<int> _runUpdate(
-  String path,
-  StringSink o,
-  StringSink e, {
-  required bool json,
-}) async {
-  final dir = Directory(path);
-  if (!dir.existsSync()) {
-    e.writeln('terradart-migrate: --update "$path" is not a directory');
-    return MigrateExitCodes.dataError;
-  }
-  final RerunResult result;
-  try {
-    result = rerunProject(dir);
-  } on FileSystemException catch (x) {
-    e.writeln('terradart-migrate: ${x.message} (${x.path})');
-    return MigrateExitCodes.dataError;
-  } on HclParseException catch (x) {
-    e.writeln('terradart-migrate: $x');
-    return MigrateExitCodes.dataError;
-  } on Object catch (x, st) {
-    e
-      ..writeln('terradart-migrate: internal error: $x')
-      ..writeln(st);
-    return MigrateExitCodes.software;
-  }
-  try {
-    writeRerun(result, dir);
-  } on FileSystemException catch (x) {
-    e.writeln('terradart-migrate: $x');
-    return MigrateExitCodes.cannotCreate;
-  }
-  if (json) {
-    o.writeln(const JsonEncoder.withIndent('  ').convert(result.toJson()));
-  } else {
-    o.write(result.renderText());
-  }
-  return MigrateExitCodes.success;
-}
-
-/// Writes a re-run's files into [packageDir].
-///
-/// The whole point of `--update` is that it cannot damage a package it did
-/// not write, so this refuses any path that is not one of the three the
-/// re-run owns — a snippets library, a `.next.tf`, or the report — before
-/// writing anything.
-void writeRerun(RerunResult result, Directory packageDir) {
-  final root = p.normalize(packageDir.absolute.path);
-  final targets = <File, String>{};
-  for (final entry in result.files.entries) {
-    final rel = entry.key;
-    final base = p.basename(rel);
-    final owned =
-        rel == rerunReportFileName ||
-        base.endsWith(snippetsSuffix) ||
-        base == nextLeftoverFileName;
-    final path = p.normalize(p.join(root, rel));
-    if (!owned || !p.isWithin(root, path)) {
-      throw FileSystemException(
-        'refusing to write "$rel": a re-run writes only $rerunReportFileName, '
-        '*$snippetsSuffix and $nextLeftoverFileName',
-        path,
-      );
-    }
-    targets[File(path)] = entry.value;
-  }
-  for (final w in targets.entries) {
-    w.key.parent.createSync(recursive: true);
-    w.key.writeAsStringSync(w.value);
-  }
 }
 
 /// Writes [project]'s files and copies under [outDir]; never touches the
@@ -321,16 +185,6 @@ void writeProject(MigratedProject project, Directory outDir) {
 }
 
 ArgParser _parser() => ArgParser(usageLineLength: 80)
-  ..addOption(
-    'update',
-    valueHelp: 'package dir',
-    help:
-        'Re-run over a package terradart-migrate already generated, instead '
-        'of migrating a tree. Reads each Terraform directory\'s sidecar (not '
-        'the main.tf.json a Stack writes), and writes what translates today '
-        'as lib/<stack>.snippets.dart plus terradart_leftover.next.tf. Your '
-        'Dart is never overwritten.',
-  )
   ..addFlag(
     'report',
     negatable: false,
@@ -346,8 +200,7 @@ ArgParser _parser() => ArgParser(usageLineLength: 80)
     help:
         'The Terraform source tree to migrate. Every directory holding .tf or '
         '.tf.json files becomes one Stack; no terraform run, init, backend or '
-        'credentials, and nothing here is written unless --in-place is '
-        'given.',
+        'credentials, and nothing here is written.',
   )
   ..addOption(
     'out',
@@ -396,33 +249,6 @@ ArgParser _parser() => ArgParser(usageLineLength: 80)
         'for one workspace by name instead of leaving the template for '
         '`terraform workspace select` to resolve.',
   )
-  ..addFlag(
-    'inline-locals',
-    negatable: false,
-    help:
-        'Declare a `locals` entry whose value is a literal as a Dart final '
-        'in the Stack, and read it from there instead of the `\${local.x}` '
-        'template Terraform resolves from the sidecar. A local nothing in '
-        'the Stack reads, or that something still in Terraform reads, keeps '
-        'its sidecar entry.',
-  )
-  ..addFlag(
-    'in-place',
-    negatable: false,
-    help:
-        'Rewrite the Terraform tree under --dir so its .tf files keep only '
-        'the blocks that stay in Terraform. Destructive, and the one mode '
-        'that writes to --dir: it refuses unless that directory is inside a '
-        'git working tree with nothing uncommitted, so `git diff` afterwards '
-        'is the migration and `git checkout` is the undo.',
-  )
-  ..addFlag(
-    'allow-todo',
-    negatable: false,
-    help:
-        'Write a TODO comment per untranslated block into the Stack instead '
-        'of a sidecar. The plan then differs until the TODOs are ported.',
-  )
   ..addFlag('json', negatable: false, help: 'Print the report as JSON.')
   ..addFlag(
     'force',
@@ -450,11 +276,5 @@ never writes into --dir.
 
 reports what a migration would translate and keep, per Terraform type,
 without writing anything.
-
-  terradart-migrate --update <package dir>
-
-re-runs over a package it already generated: what the catalog covers today
-but did not before becomes a pasteable snippet, and nothing of yours is
-overwritten.
 
 ${parser.usage}''';

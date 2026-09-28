@@ -25,117 +25,12 @@ void main() {
     final help = await _run(['--help']);
     expect(help.code, MigrateExitCodes.success);
     expect(help.out, contains('Usage: terradart-migrate --dir'));
-    expect(help.out, contains('--allow-todo'));
-    expect(help.out, contains('--inline-locals'));
-    expect(help.out, contains('--in-place'));
+    expect(help.out, contains('--report'));
+    expect(help.out, contains('--merge-envs'));
+    expect(help.out, contains('--lift-workspace'));
     final version = await _run(['--version']);
     expect(version.code, MigrateExitCodes.success);
     expect(version.out.trim(), 'terradart-migrate $packageVersion');
-  });
-
-  test('--inline-locals and --merge-envs cannot be combined', () async {
-    // Both move a value out of Terraform; --merge-envs does it per
-    // environment, which one `final` per Stack cannot express.
-    final r = await _run([
-      '--dir',
-      '$_fixtures/config_tree',
-      '--out',
-      p.join(tmp.path, 'out'),
-      '--inline-locals',
-      '--merge-envs',
-    ]);
-    expect(r.code, MigrateExitCodes.usage);
-    expect(r.err, contains('cannot be combined'));
-    expect(r.err, contains('Env enum'));
-    expect(Directory(p.join(tmp.path, 'out')).existsSync(), isFalse);
-  });
-
-  group('--in-place', () {
-    /// A committed git repository holding [main] as `tf/main.tf`.
-    Directory repo(String main) {
-      final root = Directory(p.join(tmp.path, 'repo'))
-        ..createSync(recursive: true);
-      File(p.join(root.path, 'tf', 'main.tf'))
-        ..createSync(recursive: true)
-        ..writeAsStringSync(main);
-      for (final args in const [
-        ['init', '-q'],
-        ['config', 'user.email', 'cli@terradart'],
-        ['config', 'user.name', 'cli'],
-        ['add', '-A'],
-        ['commit', '-qm', 'fixture'],
-      ]) {
-        Process.runSync('git', args, workingDirectory: root.path);
-      }
-      return root;
-    }
-
-    const bucket = '''
-resource "google_storage_bucket" "assets" {
-  name     = "a"
-  location = "US"
-}
-
-resource "acme_widget" "w" {
-  size = 3
-}
-''';
-
-    test('rewrites the tree and reports what it cut', () async {
-      final root = repo(bucket);
-      final r = await _run([
-        '--dir',
-        p.join(root.path, 'tf'),
-        '--out',
-        p.join(tmp.path, 'out'),
-        '--in-place',
-      ]);
-      expect(r.code, MigrateExitCodes.success);
-      expect(r.out, contains('--in-place'));
-      expect(r.out, contains('google_storage_bucket.assets'));
-      final rewritten = File(
-        p.join(root.path, 'tf', 'main.tf'),
-      ).readAsStringSync();
-      expect(rewritten, contains('acme_widget'));
-      expect(rewritten, isNot(contains('google_storage_bucket')));
-    });
-
-    test('refuses a dirty working tree, and writes nothing at all', () async {
-      final root = repo(bucket);
-      File(
-        p.join(root.path, 'tf', 'main.tf'),
-      ).writeAsStringSync('$bucket\n# edited\n');
-      final r = await _run([
-        '--dir',
-        p.join(root.path, 'tf'),
-        '--out',
-        p.join(tmp.path, 'out'),
-        '--in-place',
-      ]);
-      expect(r.code, MigrateExitCodes.cannotCreate);
-      expect(r.err, contains('uncommitted changes'));
-      // The refusal comes before the package is written, so --out is not
-      // left half-made either.
-      expect(Directory(p.join(tmp.path, 'out')).existsSync(), isFalse);
-      expect(
-        File(p.join(root.path, 'tf', 'main.tf')).readAsStringSync(),
-        endsWith('# edited\n'),
-      );
-    });
-
-    test('refuses a tree that is not in git', () async {
-      final dir = Directory(p.join(tmp.path, 'bare'))..createSync();
-      File(p.join(dir.path, 'main.tf')).writeAsStringSync(bucket);
-      final r = await _run([
-        '--dir',
-        dir.path,
-        '--out',
-        p.join(tmp.path, 'out'),
-        '--in-place',
-      ]);
-      expect(r.code, MigrateExitCodes.cannotCreate);
-      expect(r.err, contains('git'));
-    });
   });
 
   test('usage errors exit 64', () async {
@@ -144,6 +39,22 @@ resource "acme_widget" "w" {
     final bogus = await _run(['--bogus']);
     expect(bogus.code, MigrateExitCodes.usage);
     expect(bogus.err, contains('Usage:'));
+    for (final retired in [
+      ['--update', tmp.path],
+      ['--in-place'],
+      ['--allow-todo'],
+      ['--inline-locals'],
+    ]) {
+      final r = await _run([
+        '--dir',
+        '$_fixtures/real_plan_src',
+        '--out',
+        p.join(tmp.path, 'out'),
+        ...retired,
+      ]);
+      expect(r.code, MigrateExitCodes.usage, reason: retired.first);
+    }
+    expect(Directory(p.join(tmp.path, 'out')).existsSync(), isFalse);
   });
 
   test('a missing or empty input exits 65', () async {
@@ -180,7 +91,6 @@ resource "acme_widget" "w" {
       final json = jsonDecode(r.out) as Map<String, dynamic>;
       expect(json['package'], 'real_plan_src');
       expect(json['complete'], isFalse);
-      expect(json['planDiffers'], isFalse);
       final modules = json['modules'] as List;
       expect(modules, hasLength(2));
       expect((modules[0] as Map)['directory'], '.');
@@ -240,30 +150,6 @@ resource "acme_widget" "w" {
       expect(File(p.join(out, 'lib/dogfood_stack.dart')).existsSync(), isTrue);
     },
   );
-
-  test('--allow-todo writes TODOs and no sidecar', () async {
-    final out = p.join(tmp.path, 'todo');
-    final r = await _run([
-      '--dir',
-      '$_fixtures/real_plan_src',
-      '--out',
-      out,
-      '--allow-todo',
-    ]);
-    expect(r.code, MigrateExitCodes.success, reason: r.err);
-    expect(r.out, contains('--allow-todo'));
-    expect(File(p.join(out, 'tf-out/$leftoverFileName')).existsSync(), isFalse);
-    expect(
-      File(p.join(out, 'lib/real_plan_src_stack.dart')).readAsStringSync(),
-      contains(
-        '// TODO(terradart-migrate): google_storage_bucket_object.config: ',
-      ),
-    );
-    expect(
-      File(p.join(out, 'MIGRATION.md')).readAsStringSync(),
-      contains('**`--allow-todo`**'),
-    );
-  });
 
   test(
     'tfvars and the lockfile are copied; other var files are listed',
@@ -347,79 +233,6 @@ resource "acme_widget" "w" {
       File(p.join(out, 'MIGRATION.md')).readAsStringSync(),
       contains('Stack: none'),
     );
-
-    // With --allow-todo the root's blocked module call becomes a TODO (the
-    // plan differs), while the child, having no Stack, keeps its sidecar.
-    final todo = p.join(tmp.path, 'todo');
-    final t = await _run([
-      '--dir',
-      input.path,
-      '--out',
-      todo,
-      '--allow-todo',
-      '--json',
-    ]);
-    expect(t.code, MigrateExitCodes.success, reason: t.err);
-    final tj = jsonDecode(t.out) as Map<String, dynamic>;
-    expect(tj['kept'], 2);
-    expect(tj['todos'], 1);
-    expect(tj['planDiffers'], isTrue);
-    expect(
-      File(p.join(todo, 'tf-out/$leftoverFileName')).existsSync(),
-      isFalse,
-    );
-    expect(
-      File(p.join(todo, 'tf-out/modules/m/$leftoverFileName')).existsSync(),
-      isTrue,
-    );
-    expect(
-      File(p.join(todo, 'MIGRATION.md')).readAsStringSync(),
-      contains('1 block became a TODO comment (`TODO(terradart-migrate)`)'),
-    );
-  });
-
-  test('--allow-todo: a directory with no Stack keeps its sidecar and does not '
-      'make the plan differ', () async {
-    final input = Directory(p.join(tmp.path, 'infra'))..createSync();
-    File(
-      p.join(input.path, 'main.tf'),
-    ).writeAsStringSync('resource "google_pubsub_topic" "t" { name = "t" }\n');
-    Directory(p.join(input.path, 'modules/m')).createSync(recursive: true);
-    File(p.join(input.path, 'modules/m/main.tf')).writeAsStringSync(
-      'resource "azurerm_resource_group" "logs" { name = "logs" }\n',
-    );
-    final out = p.join(tmp.path, 'out');
-    final r = await _run([
-      '--dir',
-      input.path,
-      '--out',
-      out,
-      '--allow-todo',
-      '--json',
-    ]);
-    expect(r.code, MigrateExitCodes.success, reason: r.err);
-    final json = jsonDecode(r.out) as Map<String, dynamic>;
-    expect(json['complete'], isFalse);
-    expect(json['kept'], 1);
-    expect(json['todos'], 0);
-    expect(json['planDiffers'], isFalse);
-    expect(
-      File(p.join(out, 'tf-out/modules/m/$leftoverFileName')).existsSync(),
-      isTrue,
-    );
-    final md = File(p.join(out, 'MIGRATION.md')).readAsStringSync();
-    expect(md, isNot(contains('--allow-todo')));
-    expect(md, contains('Stack: none'));
-    final text = await _run([
-      '--dir',
-      input.path,
-      '--out',
-      out,
-      '--allow-todo',
-      '--force',
-    ]);
-    expect(text.code, MigrateExitCodes.success, reason: text.err);
-    expect(text.out, isNot(contains('--allow-todo')));
   });
 
   test('writeProject refuses a path that resolves outside --out', () {
@@ -427,7 +240,6 @@ resource "acme_widget" "w" {
       name: 'x',
       packageName: 'x',
       inputPath: '.',
-      allowTodo: false,
       modules: const [],
       environments: const [],
       files: {'ok.txt': '', '../escape.txt': ''},
@@ -481,89 +293,5 @@ resource "acme_widget" "w" {
     ]);
     expect(result.exitCode, 0, reason: result.stderr.toString());
     expect(result.stdout, contains('Usage: terradart-migrate'));
-  });
-
-  group('--update', () {
-    /// A package migrated with no factory for `google_storage_bucket`, so
-    /// its sidecar holds blocks a later catalog covers.
-    Future<Directory> migrated() async {
-      final out = Directory(p.join(tmp.path, 'pkg'));
-      final tree = scanModuleTree(Directory('$_fixtures/real_plan_src'));
-      writeProject(
-        migrateTree(
-          tree,
-          name: 'real_plan_src',
-          manifests: [
-            for (final m in allMigrateManifests)
-              MigrateManifest(
-                package: m.package,
-                entries: [
-                  for (final e in m.entries)
-                    if (e.tfType != 'google_storage_bucket') e,
-                ],
-                helpers: m.helpers,
-                enums: m.enums,
-              ),
-          ],
-        ),
-        out,
-      );
-      return out;
-    }
-
-    test('re-runs a package and writes only what it owns', () async {
-      final pkg = await migrated();
-      final before = {
-        for (final f in pkg.listSync(recursive: true).whereType<File>())
-          p.relative(f.path, from: pkg.path): f.readAsStringSync(),
-      };
-      final r = await _run(['--update', pkg.path]);
-      expect(r.code, MigrateExitCodes.success, reason: r.err);
-      expect(r.out, contains('re-run on'));
-
-      final after = {
-        for (final f in pkg.listSync(recursive: true).whereType<File>())
-          p.relative(f.path, from: pkg.path): f.readAsStringSync(),
-      };
-      // Every file the migration wrote is byte for byte what it was.
-      for (final entry in before.entries) {
-        expect(after[entry.key], entry.value, reason: entry.key);
-      }
-      final added = after.keys.toSet().difference(before.keys.toSet());
-      expect(added, contains('RERUN.md'));
-      for (final path in added) {
-        expect(
-          path == 'RERUN.md' ||
-              path.endsWith('.snippets.dart') ||
-              p.basename(path) == 'terradart_leftover.next.tf',
-          isTrue,
-          reason: 'a re-run wrote $path',
-        );
-      }
-    });
-
-    test('--json reports what translates now', () async {
-      final pkg = await migrated();
-      final r = await _run(['--update', pkg.path, '--json']);
-      expect(r.code, MigrateExitCodes.success, reason: r.err);
-      final json = jsonDecode(r.out) as Map<String, Object?>;
-      expect(json['package'], pkg.path);
-      expect(json['translated'], greaterThan(0));
-      expect(json['files'], contains('RERUN.md'));
-    });
-
-    test('--update takes neither --dir nor --out', () async {
-      final r = await _run(['--update', tmp.path, '--dir', tmp.path]);
-      expect(r.code, MigrateExitCodes.usage);
-      expect(r.err, contains('neither --dir, --out nor --report'));
-    });
-
-    test('a directory the migrator did not write exits 65', () async {
-      final missing = await _run(['--update', p.join(tmp.path, 'nope')]);
-      expect(missing.code, MigrateExitCodes.dataError);
-      final bare = await _run(['--update', tmp.path]);
-      expect(bare.code, MigrateExitCodes.dataError);
-      expect(bare.err, contains('no tf-out/'));
-    });
   });
 }

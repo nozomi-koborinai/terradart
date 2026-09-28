@@ -67,8 +67,8 @@ resource "google_pubsub_topic" "t" {
     });
 
     test("the migrator's own annotations never come back", () {
-      // What a sidecar carries above every kept block, which `--update`
-      // reads as its input.
+      // What a sidecar carries above every kept block, which a second
+      // migration reads as its input.
       final source = _stack('''
 # terradart-migrate: no curated factory for resource type "x" (request curation)
 # A real comment under it still carries.

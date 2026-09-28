@@ -12,7 +12,6 @@ import 'body_map.dart';
 import 'context.dart';
 import 'dart_literal.dart';
 import 'dart_template.dart';
-import 'locals_plan.dart';
 import 'tf_expr.dart';
 
 /// One nesting level of a block body: the values under it and which of them
@@ -105,7 +104,6 @@ final class ValueEmitter {
     required this.sensitivePaths,
     this.envValues = const {},
     this.liftWorkspace = false,
-    this.inlinedLocals = const {},
   });
 
   final EmitContext ctx;
@@ -135,15 +133,6 @@ final class ValueEmitter {
 
   /// True once something read the `workspace` parameter.
   bool usedWorkspace = false;
-
-  /// `--inline-locals`: Terraform name → the `final` the Stack declares for
-  /// that local, for the locals whose value is a literal. A `${local.x}`
-  /// naming one of these becomes the Dart value instead of an expression
-  /// Terraform resolves from the sidecar.
-  final Map<String, InlinedLocal> inlinedLocals;
-
-  /// Names of the inlined locals something actually read.
-  final Set<String> usedLocals = {};
 
   final Set<String> usedTargets = {};
   final Set<String> usedVariables = {};
@@ -369,15 +358,18 @@ final class ValueEmitter {
     // own type — `"${local.port}"` is the number Terraform resolved, not its
     // digits — so the whole-value case is left to [_refArg], which knows the
     // slot it fills. Here only a template with text around it is rewritten.
-    if ((liftWorkspace || inlinedLocals.isNotEmpty) &&
-        !_isBareReference(value)) {
-      final read = <String>{};
-      final lifted = dartTemplate(template, (r) => _substitution(r, read));
+    if (liftWorkspace && !_isBareReference(value)) {
+      var read = false;
+      final lifted = dartTemplate(template, (r) {
+        if (r != _workspaceRead) return null;
+        read = true;
+        return 'workspace';
+      });
       if (lifted != null) {
-        _readSubstituted(read);
+        if (read) usedWorkspace = true;
         return 'TfArg.literal($lifted)';
       }
-      if (liftWorkspace && template.contains(_workspace)) {
+      if (template.contains(_workspace)) {
         ctx.warnings.add(
           'the template "$template" mixes `terraform.workspace` with other '
           'references; it stays a Terraform expression (--lift-workspace)',
@@ -390,32 +382,7 @@ final class ValueEmitter {
 
   static const _workspace = r'${terraform.workspace}';
 
-  /// The Dart source for one `${ ... }` sequence, recording what it read in
-  /// [read] — the substitution is only committed when the whole template
-  /// rewrites, so a partial pass leaves nothing behind.
-  String? _substitution(String reference, Set<String> read) {
-    if (liftWorkspace && reference == _workspaceRead) {
-      read.add(_workspaceRead);
-      return 'workspace';
-    }
-    final local = inlinedLocal(reference, inlinedLocals);
-    if (local == null) return null;
-    read.add(local.name);
-    return local.dartName;
-  }
-
-  void _readSubstituted(Set<String> read) {
-    for (final name in read) {
-      if (name == _workspaceRead) {
-        usedWorkspace = true;
-        continue;
-      }
-      usedLocals.add(name);
-    }
-  }
-
-  /// The marker [_substitution] records for the workspace parameter; no
-  /// Terraform local can be called this.
+  /// What `${terraform.workspace}` reads, as [dartTemplate] hands it over.
   static const _workspaceRead = 'terraform.workspace';
 
   /// True when [value] is one reference and nothing else, in either of the
@@ -577,26 +544,8 @@ final class ValueEmitter {
           }
           return 'TfArg.workspace<$type>()';
         }
-        // `--inline-locals`: the whole value is one local the Stack declares
-        // as a `final`, so the argument reads it. Only where the slot takes
-        // the type the literal has — Terraform resolves `"${local.port}"`
-        // back to a number, and a Dart string would not.
-        final local = _inlinedLocal(t);
-        if (local != null && (type == local.dartType || type == 'Object?')) {
-          usedLocals.add(local.name);
-          return 'TfArg.literal(${local.dartName})';
-        }
         return null;
     }
-  }
-
-  /// The inlined local [t] names, or `null` when it names something else.
-  InlinedLocal? _inlinedLocal(TraversalExpr t) {
-    if (inlinedLocals.isEmpty || t.root != 'local' || t.steps.length != 1) {
-      return null;
-    }
-    final step = t.steps.single;
-    return step is AttrStep ? inlinedLocals[step.name] : null;
   }
 
   /// The `${...}` string of a reference inside a collection: the wrapper's
