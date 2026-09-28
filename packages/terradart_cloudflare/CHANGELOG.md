@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** the `cloudflare/cloudflare` pin moves from `5.23.0` to
+  `5.26.0`, and the factories follow the provider's schema changes:
+  `DataCloudflareRateLimits` is removed, and 45 constructor slots, getters
+  and helpers are removed, renamed, retyped or now required (for example
+  `CloudflareFlagshipFlag.flagKey`, `CloudConnectorRulesRules.provider` →
+  `cloudConnectorRulesProvider`, the pipeline `schema.format` helpers). See
+  [MIGRATING.md](../../MIGRATING.md).
+- Factories for the 14 resources and 22 data sources added in 5.24.0–5.26.0,
+  with new `ct`, `field`, `nel` and `precursor` barrels. The catalog stays
+  filled at the pin; `examples/cloudflare_leftover_quickstart` covers them.
+
 ## 0.29.0 - 2026-09-27
 
 Lockstep release. No `terradart_cloudflare` API changes.

@@ -142,5 +142,21 @@ void main() {
         contains("'PubsubTarget': MigrateHelper("),
       );
     });
+
+    test('records caseInsensitiveEnums only when set', () {
+      final builds = [_build('google_a')];
+      expect(
+        MigrateManifestEmitter().emit(builds, package: 'terradart_google'),
+        isNot(contains('caseInsensitiveEnums')),
+      );
+      expect(
+        MigrateManifestEmitter().emit(
+          builds,
+          package: 'terradart_cloudflare',
+          caseInsensitiveEnums: true,
+        ),
+        endsWith('  },\n  caseInsensitiveEnums: true,\n);\n'),
+      );
+    });
   });
 }

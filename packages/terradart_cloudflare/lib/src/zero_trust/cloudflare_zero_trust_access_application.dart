@@ -72,6 +72,7 @@ final class ZeroTrustAccessApplicationDestinations {
     this.type,
     this.uri,
     this.vnetId,
+    this.workerId,
   });
 
   final TfArg<String>? cidr;
@@ -90,6 +91,8 @@ final class ZeroTrustAccessApplicationDestinations {
 
   final TfArg<String>? vnetId;
 
+  final TfArg<String>? workerId;
+
   Map<String, Object?> encode() => {
     if (cidr != null) 'cidr': cidr!.toTfJson(),
     if (hostname != null) 'hostname': hostname!.toTfJson(),
@@ -99,6 +102,7 @@ final class ZeroTrustAccessApplicationDestinations {
     if (type != null) 'type': type!.toTfJson(),
     if (uri != null) 'uri': uri!.toTfJson(),
     if (vnetId != null) 'vnet_id': vnetId!.toTfJson(),
+    if (workerId != null) 'worker_id': workerId!.toTfJson(),
   };
 }
 

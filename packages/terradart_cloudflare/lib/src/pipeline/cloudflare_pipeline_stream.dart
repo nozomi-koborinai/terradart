@@ -84,18 +84,15 @@ final class PipelineStreamHttpCors {
 /// `cloudflare_pipeline_stream` (derived from provider schema).
 @immutable
 final class PipelineStreamSchema {
-  const PipelineStreamSchema({this.inferred, this.fields, this.format});
+  const PipelineStreamSchema({this.inferred, this.fields});
 
   final TfArg<bool>? inferred;
 
   final List<PipelineStreamSchemaFields>? fields;
 
-  final PipelineStreamSchemaFormat? format;
-
   Map<String, Object?> encode() => {
     if (inferred != null) 'inferred': inferred!.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
-    if (format != null) 'format': format!.encode(),
   };
 }
 
@@ -131,43 +128,6 @@ final class PipelineStreamSchemaFields {
     if (sqlName != null) 'sql_name': sqlName!.toTfJson(),
     'type': type.toTfJson(),
     if (unit != null) 'unit': unit!.toTfJson(),
-  };
-}
-
-/// Typed helper for the `schema.format` block of
-/// `cloudflare_pipeline_stream` (derived from provider schema).
-@immutable
-final class PipelineStreamSchemaFormat {
-  const PipelineStreamSchemaFormat({
-    this.compression,
-    this.decimalEncoding,
-    this.rowGroupBytes,
-    this.timestampFormat,
-    required this.type,
-    this.unstructured,
-  });
-
-  final TfArg<String>? compression;
-
-  final TfArg<String>? decimalEncoding;
-
-  final TfArg<num>? rowGroupBytes;
-
-  final TfArg<String>? timestampFormat;
-
-  final TfArg<String> type;
-
-  final TfArg<bool>? unstructured;
-
-  Map<String, Object?> encode() => {
-    if (compression != null) 'compression': compression!.toTfJson(),
-    if (decimalEncoding != null)
-      'decimal_encoding': decimalEncoding!.toTfJson(),
-    if (rowGroupBytes != null) 'row_group_bytes': rowGroupBytes!.toTfJson(),
-    if (timestampFormat != null)
-      'timestamp_format': timestampFormat!.toTfJson(),
-    'type': type.toTfJson(),
-    if (unstructured != null) 'unstructured': unstructured!.toTfJson(),
   };
 }
 

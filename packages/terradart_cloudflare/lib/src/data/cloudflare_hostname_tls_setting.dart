@@ -7,15 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareHostnameTlsSettingSensitive = <String>{};
 
 /// Factory wrapper for `cloudflare_hostname_tls_setting`.
-///
-/// Accepted Permissions
-///
-/// - `SSL and Certificates Read` - `SSL and Certificates Write`
 final class DataCloudflareHostnameTlsSetting extends Data {
   static const String tfType = 'cloudflare_hostname_tls_setting';
 
   DataCloudflareHostnameTlsSetting({
     required super.localName,
+    required TfArg<String> hostname,
     required TfArg<String> settingId,
     TfArg<String>? zoneId,
     super.provider,
@@ -23,6 +20,7 @@ final class DataCloudflareHostnameTlsSetting extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
+           'hostname': hostname,
            'setting_id': settingId,
            if (zoneId != null) 'zone_id': zoneId,
          },
@@ -31,14 +29,8 @@ final class DataCloudflareHostnameTlsSetting extends Data {
   @override
   Set<String> get sensitiveFields => _cloudflareHostnameTlsSettingSensitive;
 
-  /// Reference to `id` attribute.
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
-
-  /// Reference to `hostname` attribute.
-  TfRef<String> get hostname => TfRef.attribute<String>(this, 'hostname');
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');

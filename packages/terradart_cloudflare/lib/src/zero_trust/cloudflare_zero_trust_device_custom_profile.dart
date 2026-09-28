@@ -7,6 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zero_trust_device_custom_profile`.
 const Set<String> _cloudflareZeroTrustDeviceCustomProfileSensitive = <String>{};
 
+/// Typed helper for the `browser_extension_config` block of
+/// `cloudflare_zero_trust_device_custom_profile` (derived from provider schema).
+@immutable
+final class ZeroTrustDeviceCustomProfileBrowserExtensionConfig {
+  const ZeroTrustDeviceCustomProfileBrowserExtensionConfig({
+    required this.proxyControl,
+    required this.proxyEnabled,
+  });
+
+  final TfArg<String> proxyControl;
+
+  final TfArg<bool> proxyEnabled;
+
+  Map<String, Object?> encode() => {
+    'proxy_control': proxyControl.toTfJson(),
+    'proxy_enabled': proxyEnabled.toTfJson(),
+  };
+}
+
 /// Typed helper for the `dns_search_suffixes` block of
 /// `cloudflare_zero_trust_device_custom_profile` (derived from provider schema).
 @immutable
@@ -156,14 +175,17 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
     TfArg<bool>? excludeOfficeIps,
     TfArg<num>? lanAllowMinutes,
     TfArg<num>? lanAllowSubnetSize,
-    required TfArg<String> match,
+    TfArg<String>? match,
     required TfArg<String> name,
     TfArg<num>? precedence,
+    TfArg<String>? profileType,
     TfArg<bool>? registerInterfaceIpWithDns,
     TfArg<bool>? sccmVpnBoundarySupport,
     TfArg<String>? supportUrl,
     TfArg<bool>? switchLocked,
     TfArg<String>? tunnelProtocol,
+    TfArg<bool>? uninstallProtection,
+    ZeroTrustDeviceCustomProfileBrowserExtensionConfig? browserExtensionConfig,
     List<ZeroTrustDeviceCustomProfileDnsSearchSuffixes>? dnsSearchSuffixes,
     List<ZeroTrustDeviceCustomProfileExclude>? exclude,
     ZeroTrustDeviceCustomProfileGlobalAcceleration? globalAcceleration,
@@ -191,9 +213,10 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
            if (lanAllowMinutes != null) 'lan_allow_minutes': lanAllowMinutes,
            if (lanAllowSubnetSize != null)
              'lan_allow_subnet_size': lanAllowSubnetSize,
-           'match': match,
+           if (match != null) 'match': match,
            'name': name,
            if (precedence != null) 'precedence': precedence,
+           if (profileType != null) 'profile_type': profileType,
            if (registerInterfaceIpWithDns != null)
              'register_interface_ip_with_dns': registerInterfaceIpWithDns,
            if (sccmVpnBoundarySupport != null)
@@ -201,6 +224,12 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
            if (supportUrl != null) 'support_url': supportUrl,
            if (switchLocked != null) 'switch_locked': switchLocked,
            if (tunnelProtocol != null) 'tunnel_protocol': tunnelProtocol,
+           if (uninstallProtection != null)
+             'uninstall_protection': uninstallProtection,
+           if (browserExtensionConfig != null)
+             'browser_extension_config': TfArg.literal(
+               browserExtensionConfig.encode(),
+             ),
            if (dnsSearchSuffixes != null)
              'dns_search_suffixes': TfArg.literal([
                for (final e in dnsSearchSuffixes) e.encode(),

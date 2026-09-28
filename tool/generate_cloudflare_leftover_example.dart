@@ -410,6 +410,7 @@ List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
   if (optional.containsKey('roles') && !requiredNames.contains('roles')) {
     add('roles');
   }
+  _optionalExtras[f.className]?.forEach(add);
   return out;
 }
 
@@ -586,7 +587,9 @@ String _literalInner(
   var t = inner.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
   if (t == 'String') return _stringLiteral(name, owner: owner);
-  if (t == 'num' || t == 'int' || t == 'double') return '200';
+  if (t == 'num' || t == 'int' || t == 'double') {
+    return _numberByKey['$owner.$name'] ?? '200';
+  }
   if (t == 'bool') return 'true';
   if (t.startsWith('List<') && t.endsWith('>')) {
     final listInner = t.substring(5, t.length - 1).trim().replaceAll('?', '');
@@ -690,6 +693,21 @@ const _literalByKey = <String, String>{
   'ImageVariantOptions.fit': "'scale-down'",
   'ImageVariantOptions.metadata': "'none'",
   'CloudflareZeroTrustAccessAiControlsMcpServer.authType': "'unauthenticated'",
+  'CloudflareMagicWanBgpFilterProfile.matchAction': "'allow'",
+  'CloudflareZeroTrustCasbWebhook.authenticationType': "'None'",
+  'ZoneTracingRulesRules.action': "'set_trace_settings'",
+};
+
+/// Number literals for slots whose provider validator bounds the value
+/// below the default `200`.
+const _numberByKey = <String, String>{
+  'ZoneTracingRulesRulesActionParameters.samplingRatio': '1',
+};
+
+/// Optional slots a factory needs anyway: the provider requires at least
+/// one of a group the generated constructor leaves optional.
+const _optionalExtras = <String, List<String>>{
+  'CloudflareCustomSsl': ['customCsrId'],
 };
 
 String _stringLiteral(String name, {String owner = ''}) {

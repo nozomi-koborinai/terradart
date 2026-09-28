@@ -17,6 +17,8 @@ final class CloudflareWorkersKv extends Resource {
   CloudflareWorkersKv({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<num>? expiration,
+    TfArg<num>? expirationTtl,
     required TfArg<String> keyName,
     TfArg<String>? metadata,
     required TfArg<String> namespaceId,
@@ -29,6 +31,8 @@ final class CloudflareWorkersKv extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           if (expiration != null) 'expiration': expiration,
+           if (expirationTtl != null) 'expiration_ttl': expirationTtl,
            'key_name': keyName,
            if (metadata != null) 'metadata': metadata,
            'namespace_id': namespaceId,

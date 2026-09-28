@@ -10,7 +10,7 @@ const Set<String> _cloudflareHostnameTlsSettingSensitive = <String>{};
 ///
 /// Accepted Permissions
 ///
-/// - `SSL and Certificates Read` - `SSL and Certificates Write`
+/// - `SSL and Certificates Write`
 final class CloudflareHostnameTlsSetting extends Resource {
   static const String tfType = 'cloudflare_hostname_tls_setting';
 

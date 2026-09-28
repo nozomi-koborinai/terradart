@@ -14,8 +14,7 @@ export 'src/pipeline/cloudflare_pipeline_sink.dart'
         PipelineSinkConfigRollingPolicy,
         PipelineSinkFormat,
         PipelineSinkSchema,
-        PipelineSinkSchemaFields,
-        PipelineSinkSchemaFormat;
+        PipelineSinkSchemaFields;
 export 'src/pipeline/cloudflare_pipeline_stream.dart'
     show
         CloudflarePipelineStream,
@@ -24,5 +23,4 @@ export 'src/pipeline/cloudflare_pipeline_stream.dart'
         PipelineStreamHttpCors,
         PipelineStreamSchema,
         PipelineStreamSchemaFields,
-        PipelineStreamSchemaFormat,
         PipelineStreamWorkerBinding;

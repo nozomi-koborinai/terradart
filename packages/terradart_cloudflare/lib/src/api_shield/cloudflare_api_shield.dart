@@ -37,6 +37,7 @@ final class CloudflareApiShield extends Resource {
 
   CloudflareApiShield({
     required super.localName,
+    TfArg<bool>? normalize,
     required TfArg<String> zoneId,
     required List<ApiShieldAuthIdCharacteristics> authIdCharacteristics,
     super.lifecycle,
@@ -46,6 +47,7 @@ final class CloudflareApiShield extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
+           if (normalize != null) 'normalize': normalize,
            'zone_id': zoneId,
            'auth_id_characteristics': TfArg.literal([
              for (final e in authIdCharacteristics) e.encode(),

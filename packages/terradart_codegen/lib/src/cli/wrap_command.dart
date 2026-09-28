@@ -14,6 +14,7 @@ import '../codegen/data_source_wrapper_emitter.dart';
 import '../codegen/generated_file_header.dart';
 import '../codegen/migrate/migrate_entry_builder.dart';
 import '../codegen/migrate/migrate_manifest_emitter.dart';
+import '../codegen/provider_enums.dart';
 import '../codegen/provider_version_emitter.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
@@ -111,6 +112,14 @@ class WrapCommand extends Command<int> {
             'that share the default provider\'s type prefix; omit for the '
             'implied default.',
         valueHelp: 'NAME',
+      )
+      ..addFlag(
+        'provider-enums',
+        negatable: false,
+        help: 'Type enum-valued inputs from provider-sourced value sets: '
+            '<source>/hints/*.yaml (extracted from the provider source) and '
+            'the `Available values:` description dialect. Off for lanes '
+            'whose schema carries that dialect without a validator behind it.',
       );
   }
 
@@ -217,9 +226,26 @@ class WrapCommand extends Command<int> {
         }
       }
     }
-    final ir = mmOverrides.isEmpty
+    final mergedIr = mmOverrides.isEmpty
         ? baseIr
         : const IrMerger().merge(base: baseIr, overrides: mmOverrides);
+
+    // 1c. `--provider-enums`: hints + the `Available values:` dialect.
+    final ProviderEnums providerEnums;
+    if (results['provider-enums'] as bool) {
+      try {
+        providerEnums = ProviderEnums.load(
+          source,
+          providerVersion: readProviderVersion(source),
+        );
+      } on FormatException catch (e) {
+        stderr.writeln('[E405] terradart wrap: malformed provider hints: $e');
+        return CliExitCodes.dataError;
+      }
+    } else {
+      providerEnums = ProviderEnums.off;
+    }
+    final ir = providerEnums.enrich(mergedIr);
 
     // 2. Resolve the YAML override root: the --overrides-root flag when
     //    given (non-google providers carry their own registry), else the
@@ -257,6 +283,8 @@ class WrapCommand extends Command<int> {
       stderr.writeln('terradart wrap: $e');
       return CliExitCodes.dataError;
     }
+    final resourceOverrides =
+        providerEnums.typeDerivedEnums(loaded.resources, ir.resources);
 
     // 3. Emit every override into an in-memory map keyed by repo-relative
     //    output path. Doing this before any filesystem mutation lets the
@@ -293,7 +321,7 @@ class WrapCommand extends Command<int> {
     // exactly as cheap as before this gate existed — every committed
     // override currently leaves `deriveNestedTypes` at its `false` default.
     final needsRawResourceSchemas =
-        loaded.resources.values.any((o) => o.deriveNestedTypes);
+        resourceOverrides.values.any((o) => o.deriveNestedTypes);
     final needsRawDataSourceSchemas =
         loaded.dataSources.values.any((o) => o.deriveNestedTypes);
     final rawResourceSchemas = needsRawResourceSchemas
@@ -303,13 +331,15 @@ class WrapCommand extends Command<int> {
         ? _rawSchemaBlocks(schemaSrc, schemasKey: 'data_source_schemas')
         : const <String, Map<String, dynamic>>{};
     final resourceEmitter = WrapperEmitter(
-      overrides: loaded.resources,
+      overrides: resourceOverrides,
       rawResourceSchemas: rawResourceSchemas,
       resourceProvider: argResults?['resource-provider'] as String?,
+      providerEnums: providerEnums,
     );
     final dataSourceEmitter = DataSourceWrapperEmitter(
       overrides: loaded.dataSources,
       rawDataSourceSchemas: rawDataSourceSchemas,
+      providerEnums: providerEnums,
     );
     // Layer 2 emit output is unformatted; match the WrapperEmitter /
     // DataSourceWrapperEmitter Level A test convention (dart_style 3.x with
@@ -319,7 +349,7 @@ class WrapCommand extends Command<int> {
       languageVersion: DartFormatter.latestLanguageVersion,
     );
 
-    for (final entry in loaded.resources.entries) {
+    for (final entry in resourceOverrides.entries) {
       final def = ir.resources[entry.key];
       if (def == null) {
         stderr.writeln(
@@ -355,6 +385,7 @@ class WrapCommand extends Command<int> {
             kind: 'resource',
             emittedSource: dartSrc,
             rawSchemaBlock: rawResourceSchemas[entry.key],
+            enumValues: providerEnums.resolver(entry.key),
           ),
         );
       }
@@ -391,6 +422,7 @@ class WrapCommand extends Command<int> {
             kind: 'dataSource',
             emittedSource: layer2,
             rawSchemaBlock: rawDataSourceSchemas[entry.key],
+            enumValues: providerEnums.resolver(null),
           ),
         );
       }
@@ -479,6 +511,7 @@ class WrapCommand extends Command<int> {
             },
           ),
           package: migratePackage!,
+          caseInsensitiveEnums: providerEnums.enabled,
         );
         buffer[p.relative(migrateManifestPath, from: output)] =
             formatter.format(manifestRaw);
