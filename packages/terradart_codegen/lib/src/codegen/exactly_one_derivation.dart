@@ -35,7 +35,9 @@ import 'wrapper_overrides/wrapper_override.dart';
     final def = defs[type];
     final groups = providerEnums.exactlyOneGroupsByBlock(type)[''];
     final nested = providerEnums.nestedExactlyOneGroups(type, o);
-    if (!o.deriveExactlyOne || def == null || (groups == null && nested.isEmpty)) {
+    if (!o.deriveExactlyOne ||
+        def == null ||
+        (groups == null && nested.isEmpty)) {
       out[type] = o;
       continue;
     }
