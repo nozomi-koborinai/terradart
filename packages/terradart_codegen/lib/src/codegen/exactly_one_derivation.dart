@@ -20,8 +20,10 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// derives (`google_secret_manager_secret_version`'s `payload`).
 ///
 /// A group is sealable when every member is an optional constructor input
-/// no custom slot owns and no earlier group took; the others are returned
-/// in `skipped` with a reason and keep their plain slots.
+/// no custom slot owns and no earlier group took, and none is a keyed
+/// (`nesting_mode: map`) block, which the migration manifest has no shape
+/// for; the others are returned in `skipped` with a reason and keep their
+/// plain slots.
 ({Map<String, WrapperOverride> overrides, List<String> skipped})
     deriveExactlyOneSlots(
   Map<String, WrapperOverride> overrides,
@@ -145,6 +147,8 @@ WrapperOverride _derive(
         reason = '$m is in requiredParams';
       } else if (taken.contains(m)) {
         reason = '$m is in an earlier group';
+      } else if (specs[m]?.keyed ?? false) {
+        reason = '$m is a keyed block';
       } else {
         final v = variant(m);
         if (v == null) {

@@ -221,6 +221,82 @@ void main() {
     );
   });
 
+  test('unsealedNestedGroups follows shared helpers to every copy', () {
+    Map<String, dynamic> settings() => {
+          'nesting_mode': 'list',
+          'max_items': 1,
+          'block': {
+            'attributes': {
+              'x': {'type': 'string', 'optional': true},
+              'y': {'type': 'string', 'optional': true},
+            },
+          },
+        };
+    const groups = {
+      'one': [
+        ['x', 'y'],
+      ],
+      'two': [
+        ['x', 'y'],
+      ],
+    };
+    final specs = collectNestedTypes(
+      resourceBlock: {
+        'block_types': {'one': settings(), 'two': settings()},
+      },
+      resourcePrefix: 'Thing',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      shareIdenticalShapes: true,
+      exactlyOneGroups: groups,
+    );
+    expect(specs.map((s) => s.className).toSet(), hasLength(1));
+    expect(unsealedNestedGroups(specs, groups), isEmpty);
+  });
+
+  test('a keyed block leaves its nested group unsealed', () {
+    const groups = {
+      'settings': [
+        ['m', 'n'],
+      ],
+    };
+    final specs = collectNestedTypes(
+      resourceBlock: {
+        'block_types': {
+          'settings': {
+            'nesting_mode': 'list',
+            'max_items': 1,
+            'block': {
+              'attributes': {
+                'n': {'type': 'string', 'optional': true},
+              },
+              'block_types': {
+                'm': {
+                  'nesting_mode': 'map',
+                  'block': {
+                    'attributes': {
+                      'v': {'type': 'string', 'optional': true},
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      resourcePrefix: 'Thing',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      exactlyOneGroups: groups,
+    );
+    expect(unsealedNestedGroups(specs, groups), [
+      'settings [m, n]: m is a keyed block',
+    ]);
+    final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+    expect(src, isNot(contains('sealed class')));
+    expect(src, contains('final Map<String, ThingSettingsM>? m;'));
+  });
+
   test('deriveExactlyOneSlots reports nested groups without a typed helper',
       () {
     final derived = deriveExactlyOneSlots(

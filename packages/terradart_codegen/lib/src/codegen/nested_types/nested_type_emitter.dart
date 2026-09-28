@@ -220,6 +220,7 @@ typedef _FieldPlan = ({String ctorParam, String fieldDecl, String encodeEntry});
 typedef _Member = ({
   String tfName,
   bool required,
+  bool keyed,
   _FieldPlan plan,
   ExactlyOneVariant? variant,
 });
@@ -233,6 +234,7 @@ List<_Member> _members(NestedBlockSpec spec) {
       (
         tfName: attr.tfName,
         required: attr.required,
+        keyed: false,
         plan: _planAttr(attr),
         variant: _variant(
           tfName: attr.tfName,
@@ -249,6 +251,7 @@ List<_Member> _members(NestedBlockSpec spec) {
       (
         tfName: child.tfName,
         required: child.required,
+        keyed: child.keyed,
         plan: _planChild(child),
         variant: _variant(
           tfName: child.tfName,
@@ -262,6 +265,7 @@ List<_Member> _members(NestedBlockSpec spec) {
       (
         tfName: excluded.tfName,
         required: excluded.required,
+        keyed: excluded.keyed,
         plan: _planExcludedChild(excluded),
         variant: null,
       ),
@@ -280,7 +284,8 @@ typedef _SealedGroup = ({
 /// [spec]'s field plans with each sealable [NestedBlockSpec.exactlyOne]
 /// group folded into one required sealed field, at its first member's
 /// position. A group is sealable when every member is an optional typed
-/// input of this block and no earlier group took one of them.
+/// input of this block, not a keyed block, and no earlier group took one of
+/// them.
 ({
   List<_FieldPlan> plans,
   List<_SealedGroup> sealed,
@@ -300,6 +305,8 @@ typedef _SealedGroup = ({
         reason = '${group[i]} is not an input of this block';
       } else if (m.required) {
         reason = '${m.tfName} is required';
+      } else if (m.keyed) {
+        reason = '${m.tfName} is a keyed block';
       } else if (m.variant == null) {
         reason = '${m.tfName} has no typed shape';
       } else if (taken.contains(m.tfName)) {
@@ -348,13 +355,20 @@ List<String> unsealedNestedGroups(
 ) {
   final out = <String>[];
   final seen = <String>{};
-  void walk(NestedBlockSpec spec) {
-    if (!seen.add(spec.path.join('.'))) return;
-    out.addAll(_layout(spec).skipped);
-    spec.children.forEach(walk);
+  final laidOut = <String>{};
+  // A shared helper carries its canonical occurrence's `path`, so the walk
+  // tracks where each copy actually sits.
+  void walk(NestedBlockSpec spec, List<String> at) {
+    if (!seen.add(at.join('.'))) return;
+    if (laidOut.add(spec.path.join('.'))) out.addAll(_layout(spec).skipped);
+    for (final c in spec.children) {
+      walk(c, [...at, c.tfName]);
+    }
   }
 
-  specs.forEach(walk);
+  for (final s in specs) {
+    walk(s, [s.tfName]);
+  }
   for (final MapEntry(key: path, value: list) in groups.entries) {
     if (seen.contains(path)) continue;
     for (final group in list) {
