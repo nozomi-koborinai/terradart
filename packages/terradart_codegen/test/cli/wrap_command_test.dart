@@ -268,6 +268,94 @@ void main() {
     });
   });
 
+  group('WrapCommand orphaned generated files', () {
+    const generatedOrphan = '// GENERATED FILE - DO NOT EDIT\n'
+        '// Run `terradart wrap` to regenerate.\n'
+        'final class GoogleRemovedThing {}\n';
+    const handWritten = '// hand-written, not generated\nclass Foo {}\n';
+
+    List<String> wrapArgs(Directory tmp, [List<String> extra = const []]) => [
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          _libSrcOut(tmp),
+          ...extra,
+        ];
+
+    test('--check fails on a generated wrapper and barrel nothing emits',
+        () async {
+      final tmpOut = await Directory.systemTemp.createTemp('orphan_check_');
+      try {
+        expect(await buildCliRunner().run(wrapArgs(tmpOut)), 0);
+        final wrapper = File(
+            p.join(_libSrcOut(tmpOut), 'removed', 'google_removed_thing.dart'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync(generatedOrphan);
+        final barrel = File(p.join(tmpOut.path, 'lib', 'removed.dart'))
+          ..writeAsStringSync(generatedOrphan);
+
+        expect(
+          await buildCliRunner().run(wrapArgs(tmpOut, ['--check'])),
+          CliExitCodes.dataError,
+        );
+        expect(wrapper.existsSync(), isTrue, reason: '--check never writes');
+        expect(barrel.existsSync(), isTrue, reason: '--check never writes');
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+
+    test('a full wrap deletes orphans and leaves hand-written files alone',
+        () async {
+      final tmpOut = await Directory.systemTemp.createTemp('orphan_regen_');
+      try {
+        expect(await buildCliRunner().run(wrapArgs(tmpOut)), 0);
+        final orphanDir = Directory(p.join(_libSrcOut(tmpOut), 'removed'));
+        final wrapper =
+            File(p.join(orphanDir.path, 'google_removed_thing.dart'))
+              ..createSync(recursive: true)
+              ..writeAsStringSync(generatedOrphan);
+        final barrel = File(p.join(tmpOut.path, 'lib', 'removed.dart'))
+          ..writeAsStringSync(generatedOrphan);
+        final manual = File(p.join(_libSrcOut(tmpOut), 'apis.dart'))
+          ..writeAsStringSync(handWritten);
+        final manualBarrel = File(p.join(tmpOut.path, 'lib', 'provider.dart'))
+          ..writeAsStringSync(handWritten);
+
+        expect(await buildCliRunner().run(wrapArgs(tmpOut)), 0);
+        expect(wrapper.existsSync(), isFalse);
+        expect(orphanDir.existsSync(), isFalse);
+        expect(barrel.existsSync(), isFalse);
+        expect(manual.readAsStringSync(), handWritten);
+        expect(manualBarrel.readAsStringSync(), handWritten);
+        expect(await buildCliRunner().run(wrapArgs(tmpOut, ['--check'])), 0);
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+
+    test('--only never judges or deletes the rest of the tree', () async {
+      final tmpOut = await Directory.systemTemp.createTemp('orphan_only_');
+      try {
+        final wrapper = File(
+            p.join(_libSrcOut(tmpOut), 'removed', 'google_removed_thing.dart'))
+          ..createSync(recursive: true)
+          ..writeAsStringSync(generatedOrphan);
+        expect(
+          await buildCliRunner()
+              .run(wrapArgs(tmpOut, ['--only', 'google_pubsub_topic'])),
+          0,
+        );
+        expect(wrapper.existsSync(), isTrue);
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+  });
+
   group('WrapCommand --force', () {
     test('refuses to overwrite non-generated file by default (E401)', () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_force_');

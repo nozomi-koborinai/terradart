@@ -9,6 +9,8 @@
 
 import 'dart:io';
 
+import 'catalog_class_names.dart';
+
 const _skipResourceTypes = {
   // Covered by aws_lambda_quickstart.
   'aws_cloudwatch_log_group',
@@ -50,6 +52,7 @@ const _secretVar = 'leftover_secret';
 const _secretVarRef = "TfArg.variable('$_secretVar')";
 
 void main() {
+  final catalogued = catalogClassNames(_srcRoot);
   final files = Directory(_srcRoot)
       .listSync(recursive: true)
       .whereType<File>()
@@ -74,7 +77,7 @@ void main() {
       if (cls.kind == _Kind.helper) {
         helpers[cls.name] = cls;
       } else if (cls.kind == _Kind.resource || cls.kind == _Kind.data) {
-        if (cls.tfType == null) continue;
+        if (cls.tfType == null || !catalogued.contains(cls.name)) continue;
         if (cls.kind == _Kind.resource &&
             _skipResourceTypes.contains(cls.tfType)) {
           continue;
