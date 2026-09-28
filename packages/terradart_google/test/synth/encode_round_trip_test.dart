@@ -551,6 +551,39 @@ final Map<String, Object Function()> _syntheticInstances = {
         ),
       ),
 
+  // --- MonitoringUptimeCheckConfigHttpAuthPassword (2) — uptime_check -----
+  'MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword': () =>
+      MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword(
+        passwordWo: TfArg.literal('mock-password'),
+        passwordWoVersion: TfArg.literal('1'),
+      ),
+  'MonitoringUptimeCheckConfigHttpAuthPlaintextPassword': () =>
+      MonitoringUptimeCheckConfigHttpAuthPlaintextPassword(
+        password: TfArg.literal('mock-password'),
+      ),
+
+  // --- BigqueryDataTransferConfigSecretAccessKey (2) — data_transfer_config -
+  'BigqueryDataTransferConfigWriteOnlySecretAccessKey': () =>
+      BigqueryDataTransferConfigWriteOnlySecretAccessKey(
+        secretAccessKeyWo: TfArg.literal('mock-key'),
+        secretAccessKeyWoVersion: TfArg.literal('1'),
+      ),
+  'BigqueryDataTransferConfigPlaintextSecretAccessKey': () =>
+      BigqueryDataTransferConfigPlaintextSecretAccessKey(
+        secretAccessKey: TfArg.literal('mock-key'),
+      ),
+
+  // --- SecretManagerSecretVersionPayload (2) — secret_manager_secret_version
+  'SecretManagerSecretVersionWriteOnlyPayload': () =>
+      SecretManagerSecretVersionWriteOnlyPayload(
+        secretDataWo: TfArg.literal('mock-secret'),
+        secretDataWoVersion: TfArg.literal('1'),
+      ),
+  'SecretManagerSecretVersionPlaintextPayload': () =>
+      SecretManagerSecretVersionPlaintextPayload(
+        secretData: TfArg.literal('mock-secret'),
+      ),
+
   // --- AppHostingBuildSource (2) — firebase_app_hosting_build --------------
   'FirebaseAppHostingBuildAppHostingBuildSourceCodebase': () =>
       const FirebaseAppHostingBuildAppHostingBuildSourceCodebase(),

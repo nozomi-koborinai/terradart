@@ -211,6 +211,7 @@ final class CustomSlotShape {
     required this.typeSource,
     required this.required,
     required this.dynamicKey,
+    this.spread = false,
     this.tfKey,
   });
 
@@ -222,6 +223,15 @@ final class CustomSlotShape {
 
   /// True when the argMap entry uses `<slot>.blockKey:` (a sealed choice).
   final bool dynamicKey;
+
+  /// True when the argMap entry is `...<slot>.argMap,`: a sealed choice
+  /// whose variant writes one or more keys straight into the resource's
+  /// arguments (`secret_data_wo` + `secret_data_wo_version`).
+  final bool spread;
+
+  /// The value lands in the enclosing block's arguments rather than under
+  /// a key of its own.
+  bool get merged => dynamicKey || spread;
 
   /// The static `'tf_key'` the argMap entry writes, when it has one.
   final String? tfKey;
@@ -240,12 +250,16 @@ CustomSlotShape parseCustomSlot(CustomSlot slot) {
   final typeSource = decl.substring(0, decl.length - dartName.length).trim();
   final entry = slot.argMapEntry;
   final dynamicKey = RegExp(r'\b\w+\.blockKey\s*:').hasMatch(entry);
+  final spread =
+      RegExp(r'^\s*\.\.\.' + RegExp.escape(dartName) + r'\.argMap\s*,?\s*$')
+          .hasMatch(entry);
   final tfKey = RegExp(r"'([a-z0-9_]+)'\s*:").firstMatch(entry)?.group(1);
   return CustomSlotShape(
     dartName: dartName,
     typeSource: typeSource,
     required: required,
     dynamicKey: dynamicKey,
+    spread: spread,
     tfKey: tfKey,
   );
 }
@@ -276,7 +290,12 @@ SlotShape deriveCustomSlotShape(CustomSlotShape parsed, ShapeContext ctx) {
       'argMap uses a dynamic blockKey but the type is not a sealed class',
     );
   }
-  if (!parsed.dynamicKey && parsed.tfKey == null) {
+  if (parsed.spread && shape.kind != MigrateSlotKind.sealed) {
+    return const SlotShape.manual(
+      'argMap spreads the slot but the type is not a sealed class',
+    );
+  }
+  if (!parsed.merged && parsed.tfKey == null) {
     return const SlotShape.manual('argMap entry has no static key');
   }
   return shape;

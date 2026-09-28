@@ -43,8 +43,9 @@ applies in full; the steps below are the TerraDart side of it.
 
 | Change | What to do |
 |--------|------------|
-| `GoogleSecretManagerSecretVersion.secretDataWoVersion` is `TfArg<String>` (was `int`) | `TfArg.literal(1)` → `TfArg.literal('1')`. `'0'` counts as unset; start at `'1'`. State migrates automatically. |
-| `BigqueryDataTransferConfigSensitiveParams.secretAccessKeyWoVersion` is `TfArg<String>` (was `num`) | Same: pass the version as a string. |
+| `GoogleSecretManagerSecretVersion` takes a required sealed `payload:` instead of `secretData` / `secretDataWo` / `secretDataWoVersion` (8.0 makes the version required with `secret_data_wo`, and a string) | `payload: SecretManagerSecretVersionWriteOnlyPayload(secretDataWo: ..., secretDataWoVersion: TfArg.literal('1'))`, or the deprecated `SecretManagerSecretVersionPlaintextPayload(secretData: ...)`. The version was `int`: `TfArg.literal(1)` → `TfArg.literal('1')`; `'0'` counts as unset. State migrates automatically. |
+| `BigqueryDataTransferConfigSensitiveParams` takes a required sealed `secretAccessKey:` (8.0 makes `secret_access_key` / `secret_access_key_wo` exactly-one-of) | `BigqueryDataTransferConfigSensitiveParams(secretAccessKey: BigqueryDataTransferConfigWriteOnlySecretAccessKey(secretAccessKeyWo: ..., secretAccessKeyWoVersion: TfArg.literal('1')))`, or `BigqueryDataTransferConfigPlaintextSecretAccessKey(secretAccessKey: ...)`. The version is a string now (was `num`). |
+| `MonitoringUptimeCheckConfigHttpAuthInfo` takes a required sealed `password:` (8.0 makes `password` / `password_wo` exactly-one-of) | `password: MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword(passwordWo: ..., passwordWoVersion: ...)`, or `MonitoringUptimeCheckConfigHttpAuthPlaintextPassword(password: ...)`. |
 | `GoogleWorkflowsWorkflow.sourceContents` is required | Pass the workflow definition. |
 | `GoogleIamWorkforcePoolProviderScimTenant.claimMapping` is required | Pass the SCIM attribute mapping, e.g. `{'google.subject': 'user.externalId', 'google.group': 'group.externalId'}`. |
 | `GoogleCloudRunV2WorkerPool.customAudiences` and the `DataGoogleCloudRunV2WorkerPool.customAudiences` getter are removed | Drop them; the API no longer accepts custom audiences on worker pools. |
@@ -70,9 +71,6 @@ needs `tolist(...)` now.
 - **`guest_accelerator` on `GoogleComputeInstance`** can now be updated to
   `count = 0` in place, which detaches the accelerators. Removing the block
   still detaches nothing (the field is computed); set `count = 0` explicitly.
-- **Write-only secrets**: `secret_data_wo` needs `secret_data_wo_version`,
-  and the plaintext and write-only forms of the BigQuery Data Transfer
-  `secret_access_key` and the uptime check `password` are exactly-one-of.
 - **`GoogleBigqueryDataset.defaultCollation`** is no longer computed: a
   dataset whose collation was set outside Terraform now shows a diff until
   the Stack sets it.
