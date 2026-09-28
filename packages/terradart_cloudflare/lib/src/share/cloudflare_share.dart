@@ -58,6 +58,8 @@ final class CloudflareShare extends Resource {
   CloudflareShare({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<bool>? includeRecipientCounts,
+    TfArg<bool>? includeResources,
     required TfArg<String> name,
     required List<ShareRecipients> recipients,
     required List<ShareResources> resources,
@@ -69,6 +71,9 @@ final class CloudflareShare extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           if (includeRecipientCounts != null)
+             'include_recipient_counts': includeRecipientCounts,
+           if (includeResources != null) 'include_resources': includeResources,
            'name': name,
            'recipients': TfArg.literal([
              for (final e in recipients) e.encode(),

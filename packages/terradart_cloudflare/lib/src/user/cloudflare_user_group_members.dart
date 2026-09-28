@@ -29,6 +29,10 @@ final class CloudflareUserGroupMembers extends Resource {
   CloudflareUserGroupMembers({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<String>? direction,
+    TfArg<String>? fuzzyEmail,
+    TfArg<num>? page,
+    TfArg<num>? perPage,
     required TfArg<String> userGroupId,
     required List<UserGroupMembersMembers> members,
     super.lifecycle,
@@ -39,6 +43,10 @@ final class CloudflareUserGroupMembers extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           if (direction != null) 'direction': direction,
+           if (fuzzyEmail != null) 'fuzzy_email': fuzzyEmail,
+           if (page != null) 'page': page,
+           if (perPage != null) 'per_page': perPage,
            'user_group_id': userGroupId,
            'members': TfArg.literal([for (final e in members) e.encode()]),
          },

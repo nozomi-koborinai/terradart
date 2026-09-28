@@ -15,7 +15,7 @@ final class DataCloudflareZeroTrustResourceLibraryCategory extends Data {
   DataCloudflareZeroTrustResourceLibraryCategory({
     required super.localName,
     required TfArg<String> accountId,
-    required TfArg<String> id,
+    required TfArg<num> id,
     super.provider,
     super.timeouts,
   }) : super(

@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareSnippetRulesListSensitive = <String>{};
 
 /// Factory wrapper for `cloudflare_snippet_rules_list`.
+///
+/// Accepted Permissions
+///
+/// - `Snippets Read` - `Snippets Write`
 final class DataCloudflareSnippetRulesList extends Data {
   static const String tfType = 'cloudflare_snippet_rules_list';
 

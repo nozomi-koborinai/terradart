@@ -70,6 +70,10 @@ final class DataCloudflareLoadBalancerPool extends Data {
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 
+  /// Reference to `health_sources` attribute.
+  TfRef<List<String>> get healthSources =>
+      TfRef.attribute<List<String>>(this, 'health_sources');
+
   /// Reference to `latitude` attribute.
   TfRef<num> get latitude => TfRef.attribute<num>(this, 'latitude');
 

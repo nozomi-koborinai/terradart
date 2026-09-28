@@ -1,10 +1,38 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_dns_location`.
 const Set<String> _cloudflareZeroTrustDnsLocationSensitive = <String>{};
+
+/// Typed helper for the `filter` block of
+/// `cloudflare_zero_trust_dns_location` (derived from provider schema).
+@immutable
+final class DataZeroTrustDnsLocationFilter {
+  const DataZeroTrustDnsLocationFilter({
+    this.direction,
+    this.filter,
+    this.orderBy,
+    this.search,
+  });
+
+  final TfArg<String>? direction;
+
+  final TfArg<List<Object?>>? filter;
+
+  final TfArg<String>? orderBy;
+
+  final TfArg<String>? search;
+
+  Map<String, Object?> encode() => {
+    if (direction != null) 'direction': direction!.toTfJson(),
+    if (filter != null) 'filter': filter!.toTfJson(),
+    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
+    if (search != null) 'search': search!.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `cloudflare_zero_trust_dns_location`.
 ///
@@ -18,14 +46,16 @@ final class DataCloudflareZeroTrustDnsLocation extends Data {
   DataCloudflareZeroTrustDnsLocation({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<String> locationId,
+    TfArg<String>? locationId,
+    DataZeroTrustDnsLocationFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
            if (accountId != null) 'account_id': accountId,
-           'location_id': locationId,
+           if (locationId != null) 'location_id': locationId,
+           if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );
 

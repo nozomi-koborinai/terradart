@@ -1,10 +1,24 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `cloudflare_flagship_flag`.
 const Set<String> _cloudflareFlagshipFlagSensitive = <String>{};
+
+/// Typed helper for the `filter` block of
+/// `cloudflare_flagship_flag` (derived from provider schema).
+@immutable
+final class DataFlagshipFlagFilter {
+  const DataFlagshipFlagFilter({this.limit});
+
+  final TfArg<String>? limit;
+
+  Map<String, Object?> encode() => {
+    if (limit != null) 'limit': limit!.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `cloudflare_flagship_flag`.
 ///
@@ -18,7 +32,8 @@ final class DataCloudflareFlagshipFlag extends Data {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> appId,
-    required TfArg<String> flagKey,
+    TfArg<String>? flagKey,
+    DataFlagshipFlagFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
@@ -26,12 +41,16 @@ final class DataCloudflareFlagshipFlag extends Data {
          argMap: {
            'account_id': accountId,
            'app_id': appId,
-           'flag_key': flagKey,
+           if (flagKey != null) 'flag_key': flagKey,
+           if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );
 
   @override
   Set<String> get sensitiveFields => _cloudflareFlagshipFlagSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `default_variation` attribute.
   TfRef<String> get defaultVariation =>

@@ -17,6 +17,7 @@ final class CloudflareWorkersKvNamespace extends Resource {
   CloudflareWorkersKvNamespace({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<String>? jurisdiction,
     required TfArg<String> title,
     super.lifecycle,
     super.dependsOn,
@@ -24,7 +25,11 @@ final class CloudflareWorkersKvNamespace extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'title': title},
+         argMap: {
+           'account_id': accountId,
+           if (jurisdiction != null) 'jurisdiction': jurisdiction,
+           'title': title,
+         },
        );
 
   @override

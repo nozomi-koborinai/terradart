@@ -16,12 +16,20 @@ final class CloudflareEmailRoutingSettings extends Resource {
 
   CloudflareEmailRoutingSettings({
     required super.localName,
+    TfArg<bool>? supportSubaddress,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'zone_id': zoneId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           if (supportSubaddress != null)
+             'support_subaddress': supportSubaddress,
+           'zone_id': zoneId,
+         },
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareEmailRoutingSettingsSensitive;

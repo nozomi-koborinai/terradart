@@ -49,6 +49,7 @@ final class NotificationPolicyFilters {
     this.targetHostname,
     this.targetIp,
     this.targetZoneName,
+    this.tokenId,
     this.trafficExclusions,
     this.tunnelId,
     this.tunnelName,
@@ -131,6 +132,8 @@ final class NotificationPolicyFilters {
 
   final TfArg<List<Object?>>? targetZoneName;
 
+  final TfArg<List<Object?>>? tokenId;
+
   final TfArg<List<Object?>>? trafficExclusions;
 
   final TfArg<List<Object?>>? tunnelId;
@@ -189,6 +192,7 @@ final class NotificationPolicyFilters {
     if (targetHostname != null) 'target_hostname': targetHostname!.toTfJson(),
     if (targetIp != null) 'target_ip': targetIp!.toTfJson(),
     if (targetZoneName != null) 'target_zone_name': targetZoneName!.toTfJson(),
+    if (tokenId != null) 'token_id': tokenId!.toTfJson(),
     if (trafficExclusions != null)
       'traffic_exclusions': trafficExclusions!.toTfJson(),
     if (tunnelId != null) 'tunnel_id': tunnelId!.toTfJson(),

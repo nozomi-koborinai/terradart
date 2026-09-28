@@ -19,9 +19,15 @@ export 'src/email/cloudflare_email_routing_rule.dart'
         EmailRoutingRuleMatchers;
 export 'src/email/cloudflare_email_routing_settings.dart'
     show CloudflareEmailRoutingSettings;
+export 'src/email/cloudflare_email_security_allow_policy.dart'
+    show CloudflareEmailSecurityAllowPolicy;
 export 'src/email/cloudflare_email_security_block_sender.dart'
     show CloudflareEmailSecurityBlockSender;
+export 'src/email/cloudflare_email_security_domain.dart'
+    show CloudflareEmailSecurityDomain;
 export 'src/email/cloudflare_email_security_impersonation_registry.dart'
     show CloudflareEmailSecurityImpersonationRegistry;
 export 'src/email/cloudflare_email_security_trusted_domains.dart'
     show CloudflareEmailSecurityTrustedDomains;
+export 'src/email/cloudflare_email_sending_subdomain.dart'
+    show CloudflareEmailSendingSubdomain;

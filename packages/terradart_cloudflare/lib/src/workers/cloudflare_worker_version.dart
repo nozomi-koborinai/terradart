@@ -52,10 +52,13 @@ final class WorkerVersionAssets {
 @immutable
 final class WorkerVersionAssetsConfig {
   const WorkerVersionAssetsConfig({
+    this.basePath,
     this.htmlHandling,
     this.notFoundHandling,
     this.runWorkerFirst,
   });
+
+  final TfArg<String>? basePath;
 
   final TfArg<String>? htmlHandling;
 
@@ -64,6 +67,7 @@ final class WorkerVersionAssetsConfig {
   final TfArg<Object?>? runWorkerFirst;
 
   Map<String, Object?> encode() => {
+    if (basePath != null) 'base_path': basePath!.toTfJson(),
     if (htmlHandling != null) 'html_handling': htmlHandling!.toTfJson(),
     if (notFoundHandling != null)
       'not_found_handling': notFoundHandling!.toTfJson(),
@@ -91,6 +95,7 @@ final class WorkerVersionBindings {
     this.environment,
     this.format,
     this.id,
+    this.identity,
     this.indexName,
     this.instanceName,
     this.json,
@@ -110,6 +115,7 @@ final class WorkerVersionBindings {
     this.service,
     this.serviceId,
     this.storeId,
+    this.stream,
     this.text,
     this.tunnelId,
     required this.type,
@@ -150,6 +156,8 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? id;
 
+  final TfArg<String>? identity;
+
   final TfArg<String>? indexName;
 
   final TfArg<String>? instanceName;
@@ -188,6 +196,8 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? storeId;
 
+  final TfArg<String>? stream;
+
   final TfArg<String>? text;
 
   final TfArg<String>? tunnelId;
@@ -224,6 +234,7 @@ final class WorkerVersionBindings {
     if (environment != null) 'environment': environment!.toTfJson(),
     if (format != null) 'format': format!.toTfJson(),
     if (id != null) 'id': id!.toTfJson(),
+    if (identity != null) 'identity': identity!.toTfJson(),
     if (indexName != null) 'index_name': indexName!.toTfJson(),
     if (instanceName != null) 'instance_name': instanceName!.toTfJson(),
     if (json != null) 'json': json!.toTfJson(),
@@ -243,6 +254,7 @@ final class WorkerVersionBindings {
     if (service != null) 'service': service!.toTfJson(),
     if (serviceId != null) 'service_id': serviceId!.toTfJson(),
     if (storeId != null) 'store_id': storeId!.toTfJson(),
+    if (stream != null) 'stream': stream!.toTfJson(),
     if (text != null) 'text': text!.toTfJson(),
     if (tunnelId != null) 'tunnel_id': tunnelId!.toTfJson(),
     'type': type.toTfJson(),
@@ -694,6 +706,8 @@ final class CloudflareWorkerVersion extends Resource {
     required TfArg<String> accountId,
     TfArg<String>? compatibilityDate,
     TfArg<List<String>>? compatibilityFlags,
+    TfArg<bool>? deploy,
+    TfArg<String>? include,
     TfArg<String>? mainModule,
     TfArg<String>? usageModel,
     required TfArg<String> workerId,
@@ -720,6 +734,8 @@ final class CloudflareWorkerVersion extends Resource {
              'compatibility_date': compatibilityDate,
            if (compatibilityFlags != null)
              'compatibility_flags': compatibilityFlags,
+           if (deploy != null) 'deploy': deploy,
+           if (include != null) 'include': include,
            if (mainModule != null) 'main_module': mainModule,
            if (usageModel != null) 'usage_model': usageModel,
            'worker_id': workerId,
@@ -754,6 +770,13 @@ final class CloudflareWorkerVersion extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `author_email` attribute.
+  TfRef<String> get authorEmail =>
+      TfRef.attribute<String>(this, 'author_email');
+
+  /// Reference to `author_id` attribute.
+  TfRef<String> get authorId => TfRef.attribute<String>(this, 'author_id');
 
   /// Reference to `created_on` attribute.
   TfRef<String> get createdOn => TfRef.attribute<String>(this, 'created_on');

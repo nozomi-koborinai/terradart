@@ -32,4 +32,8 @@ final class DataCloudflareLogpushDatasetField extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareLogpushDatasetFieldSensitive;
+
+  /// Reference to `fields` attribute.
+  TfRef<Map<String, String>> get fields =>
+      TfRef.attribute<Map<String, String>>(this, 'fields');
 }

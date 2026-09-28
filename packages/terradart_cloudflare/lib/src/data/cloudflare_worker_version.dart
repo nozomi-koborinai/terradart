@@ -43,6 +43,13 @@ final class DataCloudflareWorkerVersion extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `author_email` attribute.
+  TfRef<String> get authorEmail =>
+      TfRef.attribute<String>(this, 'author_email');
+
+  /// Reference to `author_id` attribute.
+  TfRef<String> get authorId => TfRef.attribute<String>(this, 'author_id');
+
   /// Reference to `compatibility_date` attribute.
   TfRef<String> get compatibilityDate =>
       TfRef.attribute<String>(this, 'compatibility_date');

@@ -70,6 +70,10 @@ final class DataCloudflareZeroTrustOrganization extends Data {
   TfRef<String> get sessionDuration =>
       TfRef.attribute<String>(this, 'session_duration');
 
+  /// Reference to `trusted_accounts` attribute.
+  TfRef<List<String>> get trustedAccounts =>
+      TfRef.attribute<List<String>>(this, 'trusted_accounts');
+
   /// Reference to `ui_read_only_toggle_reason` attribute.
   TfRef<String> get uiReadOnlyToggleReason =>
       TfRef.attribute<String>(this, 'ui_read_only_toggle_reason');
@@ -77,6 +81,10 @@ final class DataCloudflareZeroTrustOrganization extends Data {
   /// Reference to `user_seat_expiration_inactive_time` attribute.
   TfRef<String> get userSeatExpirationInactiveTime =>
       TfRef.attribute<String>(this, 'user_seat_expiration_inactive_time');
+
+  /// Reference to `warp_auth_non_browser_401` attribute.
+  TfRef<bool> get warpAuthNonBrowser401 =>
+      TfRef.attribute<bool>(this, 'warp_auth_non_browser_401');
 
   /// Reference to `warp_auth_session_duration` attribute.
   TfRef<String> get warpAuthSessionDuration =>
