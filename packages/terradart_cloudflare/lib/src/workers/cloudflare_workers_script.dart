@@ -12,6 +12,30 @@ const Set<String> _cloudflareWorkersScriptSensitive = <String>{
   'bindings.text',
 };
 
+/// Workers Script Content enum for `content_type`.
+enum WorkersScriptContentType implements TerraformEnum {
+  applicationJavascriptModule('application/javascript+module'),
+  applicationJavascript('application/javascript'),
+  textJavascriptModule('text/javascript+module'),
+  textJavascript('text/javascript'),
+  textXPython('text/x-python');
+
+  const WorkersScriptContentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Workers Script Usage enum for `usage_model`.
+enum WorkersScriptUsageModel implements TerraformEnum {
+  standard('standard'),
+  bundled('bundled'),
+  unbound('unbound');
+
+  const WorkersScriptUsageModel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `annotations` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
@@ -65,9 +89,9 @@ final class WorkersScriptAssetsConfig {
 
   final TfArg<String>? headers;
 
-  final TfArg<String>? htmlHandling;
+  final TfArg<WorkersScriptAssetsConfigHtmlHandling>? htmlHandling;
 
-  final TfArg<String>? notFoundHandling;
+  final TfArg<WorkersScriptAssetsConfigNotFoundHandling>? notFoundHandling;
 
   final TfArg<String>? redirects;
 
@@ -85,6 +109,29 @@ final class WorkersScriptAssetsConfig {
     if (runWorkerFirst != null) 'run_worker_first': runWorkerFirst!.toTfJson(),
     if (serveDirectly != null) 'serve_directly': serveDirectly!.toTfJson(),
   };
+}
+
+/// `html_handling` — derived from the provider schema description.
+enum WorkersScriptAssetsConfigHtmlHandling implements TerraformEnum {
+  autoTrailingSlash('auto-trailing-slash'),
+  forceTrailingSlash('force-trailing-slash'),
+  dropTrailingSlash('drop-trailing-slash'),
+  none('none');
+
+  const WorkersScriptAssetsConfigHtmlHandling(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `not_found_handling` — derived from the provider schema description.
+enum WorkersScriptAssetsConfigNotFoundHandling implements TerraformEnum {
+  none('none'),
+  v404Page('404-page'),
+  singlePageApplication('single-page-application');
+
+  const WorkersScriptAssetsConfigNotFoundHandling(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `bindings` block of
@@ -163,7 +210,7 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? environment;
 
-  final TfArg<String>? format;
+  final TfArg<WorkersScriptBindingsFormat>? format;
 
   final TfArg<String>? id;
 
@@ -173,7 +220,7 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? json;
 
-  final TfArg<String>? jurisdiction;
+  final TfArg<WorkersScriptBindingsJurisdiction>? jurisdiction;
 
   final TfArg<String>? keyBase64;
 
@@ -211,9 +258,9 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? tunnelId;
 
-  final TfArg<String> type;
+  final TfArg<WorkersScriptBindingsType> type;
 
-  final TfArg<List<Object?>>? usages;
+  final List<TfArg<WorkersScriptBindingsUsages>>? usages;
 
   final TfArg<String>? versionId;
 
@@ -266,12 +313,94 @@ final class WorkersScriptBindings {
     if (text != null) 'text': text!.toTfJson(),
     if (tunnelId != null) 'tunnel_id': tunnelId!.toTfJson(),
     'type': type.toTfJson(),
-    if (usages != null) 'usages': usages!.toTfJson(),
+    if (usages != null) 'usages': [for (final e in usages!) e.toTfJson()],
     if (versionId != null) 'version_id': versionId!.toTfJson(),
     if (workflowName != null) 'workflow_name': workflowName!.toTfJson(),
     if (outbound != null) 'outbound': outbound!.encode(),
     if (simple != null) 'simple': simple!.encode(),
   };
+}
+
+/// `format` — derived from the provider schema description.
+enum WorkersScriptBindingsFormat implements TerraformEnum {
+  raw('raw'),
+  pkcs8('pkcs8'),
+  spki('spki'),
+  jwk('jwk');
+
+  const WorkersScriptBindingsFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `jurisdiction` — derived from the provider schema description.
+enum WorkersScriptBindingsJurisdiction implements TerraformEnum {
+  eu('eu'),
+  fedramp('fedramp'),
+  fedrampHigh('fedramp-high');
+
+  const WorkersScriptBindingsJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum WorkersScriptBindingsType implements TerraformEnum {
+  ai('ai'),
+  aiSearch('ai_search'),
+  aiSearchNamespace('ai_search_namespace'),
+  analyticsEngine('analytics_engine'),
+  assets('assets'),
+  browser('browser'),
+  d1('d1'),
+  dataBlob('data_blob'),
+  dispatchNamespace('dispatch_namespace'),
+  durableObjectNamespace('durable_object_namespace'),
+  hyperdrive('hyperdrive'),
+  inherit('inherit'),
+  images('images'),
+  json('json'),
+  kvNamespace('kv_namespace'),
+  media('media'),
+  mtlsCertificate('mtls_certificate'),
+  plainText('plain_text'),
+  pipelines('pipelines'),
+  queue('queue'),
+  ratelimit('ratelimit'),
+  r2Bucket('r2_bucket'),
+  secretText('secret_text'),
+  sendEmail('send_email'),
+  service('service'),
+  tailConsumer('tail_consumer'),
+  textBlob('text_blob'),
+  vectorize('vectorize'),
+  versionMetadata('version_metadata'),
+  secretsStoreSecret('secrets_store_secret'),
+  secretKey('secret_key'),
+  workflow('workflow'),
+  wasmModule('wasm_module'),
+  vpcService('vpc_service'),
+  vpcNetwork('vpc_network');
+
+  const WorkersScriptBindingsType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `usages` — derived from the provider schema description.
+enum WorkersScriptBindingsUsages implements TerraformEnum {
+  encrypt('encrypt'),
+  decrypt('decrypt'),
+  sign('sign'),
+  verify('verify'),
+  derivekey('deriveKey'),
+  derivebits('deriveBits'),
+  wrapkey('wrapKey'),
+  unwrapkey('unwrapKey');
+
+  const WorkersScriptBindingsUsages(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `bindings.outbound` block of
@@ -669,7 +798,8 @@ final class WorkersScriptObservabilityTraces {
 
   final TfArg<bool>? persist;
 
-  final TfArg<String>? propagationPolicy;
+  final TfArg<WorkersScriptObservabilityTracesPropagationPolicy>?
+  propagationPolicy;
 
   Map<String, Object?> encode() => {
     if (destinations != null) 'destinations': destinations!.toTfJson(),
@@ -680,6 +810,17 @@ final class WorkersScriptObservabilityTraces {
     if (propagationPolicy != null)
       'propagation_policy': propagationPolicy!.toTfJson(),
   };
+}
+
+/// `propagation_policy` — derived from the provider schema description.
+enum WorkersScriptObservabilityTracesPropagationPolicy
+    implements TerraformEnum {
+  authenticated('authenticated'),
+  accept('accept');
+
+  const WorkersScriptObservabilityTracesPropagationPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `package_dependencies` block of
@@ -711,9 +852,19 @@ final class WorkersScriptPackageDependencies {
 final class WorkersScriptPlacement {
   const WorkersScriptPlacement({this.mode});
 
-  final TfArg<String>? mode;
+  final TfArg<WorkersScriptPlacementMode>? mode;
 
   Map<String, Object?> encode() => {if (mode != null) 'mode': mode!.toTfJson()};
+}
+
+/// `mode` — derived from the provider schema description.
+enum WorkersScriptPlacementMode implements TerraformEnum {
+  smart('smart'),
+  targeted('targeted');
+
+  const WorkersScriptPlacementMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `tail_consumers` block of
@@ -756,14 +907,14 @@ final class CloudflareWorkersScript extends Resource {
     TfArg<String>? content,
     TfArg<String>? contentFile,
     TfArg<String>? contentSha256,
-    TfArg<String>? contentType,
+    TfArg<WorkersScriptContentType>? contentType,
     TfArg<bool>? force,
     TfArg<bool>? keepAssets,
     TfArg<List<String>>? keepBindings,
     TfArg<bool>? logpush,
     TfArg<String>? mainModule,
     required TfArg<String> scriptName,
-    TfArg<String>? usageModel,
+    TfArg<WorkersScriptUsageModel>? usageModel,
     WorkersScriptAnnotations? annotations,
     WorkersScriptAssets? assets,
     List<WorkersScriptBindings>? bindings,

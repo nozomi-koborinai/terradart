@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_content_scanning`.
 const Set<String> _cloudflareContentScanningSensitive = <String>{};
 
+/// Content Scanning enum for `value`.
+enum ContentScanningValue implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled');
+
+  const ContentScanningValue(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_content_scanning`.
 ///
 /// Accepted Permissions
@@ -17,7 +27,7 @@ final class CloudflareContentScanning extends Resource {
 
   CloudflareContentScanning({
     required super.localName,
-    required TfArg<String> value,
+    required TfArg<ContentScanningValue> value,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

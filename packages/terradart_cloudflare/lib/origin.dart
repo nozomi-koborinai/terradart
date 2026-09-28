@@ -4,4 +4,4 @@
 library;
 
 export 'src/origin/cloudflare_origin_cloud_region.dart'
-    show CloudflareOriginCloudRegion;
+    show CloudflareOriginCloudRegion, OriginCloudRegionVendor;

@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_api_token`.
 const Set<String> _cloudflareApiTokenSensitive = <String>{'value'};
 
+/// Api Token enum for `status`.
+enum ApiTokenStatus implements TerraformEnum {
+  active('active'),
+  disabled('disabled'),
+  expired('expired');
+
+  const ApiTokenStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `condition` block of
 /// `cloudflare_api_token` (derived from provider schema).
 @immutable
@@ -46,7 +57,7 @@ final class ApiTokenPolicies {
     required this.permissionGroups,
   });
 
-  final TfArg<String> effect;
+  final TfArg<ApiTokenPoliciesEffect> effect;
 
   final TfArg<String> resources;
 
@@ -57,6 +68,16 @@ final class ApiTokenPolicies {
     'resources': resources.toTfJson(),
     'permission_groups': [for (final e in permissionGroups) e.encode()],
   };
+}
+
+/// `effect` — derived from the provider schema description.
+enum ApiTokenPoliciesEffect implements TerraformEnum {
+  allow('allow'),
+  deny('deny');
+
+  const ApiTokenPoliciesEffect(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policies.permission_groups` block of
@@ -83,7 +104,7 @@ final class CloudflareApiToken extends Resource {
     TfArg<String>? expiresOn,
     required TfArg<String> name,
     TfArg<String>? notBefore,
-    TfArg<String>? status,
+    TfArg<ApiTokenStatus>? status,
     ApiTokenCondition? condition,
     required List<ApiTokenPolicies> policies,
     super.lifecycle,

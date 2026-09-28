@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zero_trust_access_policy`.
 const Set<String> _cloudflareZeroTrustAccessPolicySensitive = <String>{};
 
+/// Zero Trust Access Policy enum for `decision`.
+enum ZeroTrustAccessPolicyDecision implements TerraformEnum {
+  allow('allow'),
+  deny('deny'),
+  nonIdentity('non_identity'),
+  bypass('bypass');
+
+  const ZeroTrustAccessPolicyDecision(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `approval_groups` block of
 /// `cloudflare_zero_trust_access_policy` (derived from provider schema).
 @immutable
@@ -50,18 +62,54 @@ final class ZeroTrustAccessPolicyConnectionRulesRdp {
     this.allowedClipboardRemoteToLocalFormats,
   });
 
-  final TfArg<List<Object?>>? allowedClipboardLocalToRemoteFormats;
+  final List<
+    TfArg<
+      ZeroTrustAccessPolicyConnectionRulesRdpAllowedClipboardLocalToRemoteFormats
+    >
+  >?
+  allowedClipboardLocalToRemoteFormats;
 
-  final TfArg<List<Object?>>? allowedClipboardRemoteToLocalFormats;
+  final List<
+    TfArg<
+      ZeroTrustAccessPolicyConnectionRulesRdpAllowedClipboardRemoteToLocalFormats
+    >
+  >?
+  allowedClipboardRemoteToLocalFormats;
 
   Map<String, Object?> encode() => {
     if (allowedClipboardLocalToRemoteFormats != null)
-      'allowed_clipboard_local_to_remote_formats':
-          allowedClipboardLocalToRemoteFormats!.toTfJson(),
+      'allowed_clipboard_local_to_remote_formats': [
+        for (final e in allowedClipboardLocalToRemoteFormats!) e.toTfJson(),
+      ],
     if (allowedClipboardRemoteToLocalFormats != null)
-      'allowed_clipboard_remote_to_local_formats':
-          allowedClipboardRemoteToLocalFormats!.toTfJson(),
+      'allowed_clipboard_remote_to_local_formats': [
+        for (final e in allowedClipboardRemoteToLocalFormats!) e.toTfJson(),
+      ],
   };
+}
+
+/// `allowed_clipboard_local_to_remote_formats` — derived from the provider schema description.
+enum ZeroTrustAccessPolicyConnectionRulesRdpAllowedClipboardLocalToRemoteFormats
+    implements TerraformEnum {
+  text('text');
+
+  const ZeroTrustAccessPolicyConnectionRulesRdpAllowedClipboardLocalToRemoteFormats(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `allowed_clipboard_remote_to_local_formats` — derived from the provider schema description.
+enum ZeroTrustAccessPolicyConnectionRulesRdpAllowedClipboardRemoteToLocalFormats
+    implements TerraformEnum {
+  text('text');
+
+  const ZeroTrustAccessPolicyConnectionRulesRdpAllowedClipboardRemoteToLocalFormats(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `exclude` block of
@@ -551,11 +599,27 @@ final class ZeroTrustAccessPolicyExcludeUserRiskScore {
     required this.userRiskScore,
   });
 
-  final TfArg<List<Object?>> userRiskScore;
+  final List<TfArg<ZeroTrustAccessPolicyExcludeUserRiskScoreUserRiskScore>>
+  userRiskScore;
 
   Map<String, Object?> encode() => {
-    'user_risk_score': userRiskScore.toTfJson(),
+    'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
   };
+}
+
+/// `user_risk_score` — derived from the provider schema description.
+enum ZeroTrustAccessPolicyExcludeUserRiskScoreUserRiskScore
+    implements TerraformEnum {
+  low('low'),
+  medium('medium'),
+  high('high'),
+  unscored('unscored');
+
+  const ZeroTrustAccessPolicyExcludeUserRiskScoreUserRiskScore(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `include` block of
@@ -1045,11 +1109,27 @@ final class ZeroTrustAccessPolicyIncludeUserRiskScore {
     required this.userRiskScore,
   });
 
-  final TfArg<List<Object?>> userRiskScore;
+  final List<TfArg<ZeroTrustAccessPolicyIncludeUserRiskScoreUserRiskScore>>
+  userRiskScore;
 
   Map<String, Object?> encode() => {
-    'user_risk_score': userRiskScore.toTfJson(),
+    'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
   };
+}
+
+/// `user_risk_score` — derived from the provider schema description.
+enum ZeroTrustAccessPolicyIncludeUserRiskScoreUserRiskScore
+    implements TerraformEnum {
+  low('low'),
+  medium('medium'),
+  high('high'),
+  unscored('unscored');
+
+  const ZeroTrustAccessPolicyIncludeUserRiskScoreUserRiskScore(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `mfa_config` block of
@@ -1062,7 +1142,8 @@ final class ZeroTrustAccessPolicyMfaConfig {
     this.sessionDuration,
   });
 
-  final TfArg<List<Object?>>? allowedAuthenticators;
+  final List<TfArg<ZeroTrustAccessPolicyMfaConfigAllowedAuthenticators>>?
+  allowedAuthenticators;
 
   final TfArg<bool>? mfaDisabled;
 
@@ -1070,11 +1151,27 @@ final class ZeroTrustAccessPolicyMfaConfig {
 
   Map<String, Object?> encode() => {
     if (allowedAuthenticators != null)
-      'allowed_authenticators': allowedAuthenticators!.toTfJson(),
+      'allowed_authenticators': [
+        for (final e in allowedAuthenticators!) e.toTfJson(),
+      ],
     if (mfaDisabled != null) 'mfa_disabled': mfaDisabled!.toTfJson(),
     if (sessionDuration != null)
       'session_duration': sessionDuration!.toTfJson(),
   };
+}
+
+/// `allowed_authenticators` — derived from the provider schema description.
+enum ZeroTrustAccessPolicyMfaConfigAllowedAuthenticators
+    implements TerraformEnum {
+  totp('totp'),
+  biometrics('biometrics'),
+  securityKey('security_key');
+
+  const ZeroTrustAccessPolicyMfaConfigAllowedAuthenticators(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `require` block of
@@ -1564,11 +1661,27 @@ final class ZeroTrustAccessPolicyRequireUserRiskScore {
     required this.userRiskScore,
   });
 
-  final TfArg<List<Object?>> userRiskScore;
+  final List<TfArg<ZeroTrustAccessPolicyRequireUserRiskScoreUserRiskScore>>
+  userRiskScore;
 
   Map<String, Object?> encode() => {
-    'user_risk_score': userRiskScore.toTfJson(),
+    'user_risk_score': [for (final e in userRiskScore) e.toTfJson()],
   };
+}
+
+/// `user_risk_score` — derived from the provider schema description.
+enum ZeroTrustAccessPolicyRequireUserRiskScoreUserRiskScore
+    implements TerraformEnum {
+  low('low'),
+  medium('medium'),
+  high('high'),
+  unscored('unscored');
+
+  const ZeroTrustAccessPolicyRequireUserRiskScoreUserRiskScore(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_policy`.
@@ -1583,7 +1696,7 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<bool>? approvalRequired,
-    required TfArg<String> decision,
+    required TfArg<ZeroTrustAccessPolicyDecision> decision,
     TfArg<bool>? isolationRequired,
     required TfArg<String> name,
     TfArg<String>? purposeJustificationPrompt,

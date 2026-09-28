@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_account_token`.
 const Set<String> _cloudflareAccountTokenSensitive = <String>{'value'};
 
+/// Account Token enum for `status`.
+enum AccountTokenStatus implements TerraformEnum {
+  active('active'),
+  disabled('disabled'),
+  expired('expired');
+
+  const AccountTokenStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `condition` block of
 /// `cloudflare_account_token` (derived from provider schema).
 @immutable
@@ -46,7 +57,7 @@ final class AccountTokenPolicies {
     required this.permissionGroups,
   });
 
-  final TfArg<String> effect;
+  final TfArg<AccountTokenPoliciesEffect> effect;
 
   final TfArg<String> resources;
 
@@ -57,6 +68,16 @@ final class AccountTokenPolicies {
     'resources': resources.toTfJson(),
     'permission_groups': [for (final e in permissionGroups) e.encode()],
   };
+}
+
+/// `effect` — derived from the provider schema description.
+enum AccountTokenPoliciesEffect implements TerraformEnum {
+  allow('allow'),
+  deny('deny');
+
+  const AccountTokenPoliciesEffect(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policies.permission_groups` block of
@@ -84,7 +105,7 @@ final class CloudflareAccountToken extends Resource {
     TfArg<String>? expiresOn,
     required TfArg<String> name,
     TfArg<String>? notBefore,
-    TfArg<String>? status,
+    TfArg<AccountTokenStatus>? status,
     AccountTokenCondition? condition,
     required List<AccountTokenPolicies> policies,
     super.lifecycle,

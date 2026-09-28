@@ -4,4 +4,10 @@
 library;
 
 export 'src/turnstile/cloudflare_turnstile_widget.dart'
-    show CloudflareTurnstileWidget;
+    show
+        CloudflareTurnstileWidget,
+        TurnstileWidgetClearanceLevel,
+        TurnstileWidgetDirection,
+        TurnstileWidgetMode,
+        TurnstileWidgetOrder,
+        TurnstileWidgetRegion;

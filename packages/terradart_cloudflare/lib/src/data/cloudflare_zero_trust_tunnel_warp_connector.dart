@@ -33,7 +33,7 @@ final class DataZeroTrustTunnelWarpConnectorFilter {
 
   final TfArg<String>? name;
 
-  final TfArg<String>? status;
+  final TfArg<DataZeroTrustTunnelWarpConnectorFilterStatus>? status;
 
   final TfArg<String>? uuid;
 
@@ -52,6 +52,18 @@ final class DataZeroTrustTunnelWarpConnectorFilter {
     if (wasActiveAt != null) 'was_active_at': wasActiveAt!.toTfJson(),
     if (wasInactiveAt != null) 'was_inactive_at': wasInactiveAt!.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum DataZeroTrustTunnelWarpConnectorFilterStatus implements TerraformEnum {
+  inactive('inactive'),
+  degraded('degraded'),
+  healthy('healthy'),
+  down('down');
+
+  const DataZeroTrustTunnelWarpConnectorFilterStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_tunnel_warp_connector`.

@@ -7,6 +7,35 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_dns_record`.
 const Set<String> _cloudflareDnsRecordSensitive = <String>{};
 
+/// Dns Record enum for `type`.
+enum DnsRecordType implements TerraformEnum {
+  a('A'),
+  aaaa('AAAA'),
+  cname('CNAME'),
+  mx('MX'),
+  ns('NS'),
+  openpgpkey('OPENPGPKEY'),
+  ptr('PTR'),
+  txt('TXT'),
+  caa('CAA'),
+  cert('CERT'),
+  dnskey('DNSKEY'),
+  ds('DS'),
+  https('HTTPS'),
+  loc('LOC'),
+  naptr('NAPTR'),
+  smimea('SMIMEA'),
+  srv('SRV'),
+  sshfp('SSHFP'),
+  svcb('SVCB'),
+  tlsa('TLSA'),
+  uri('URI');
+
+  const DnsRecordType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `data` block of
 /// `cloudflare_dns_record` (derived from provider schema).
 @immutable
@@ -68,7 +97,7 @@ final class DnsRecordData {
 
   final TfArg<num>? latDegrees;
 
-  final TfArg<String>? latDirection;
+  final TfArg<DnsRecordDataLatDirection>? latDirection;
 
   final TfArg<num>? latMinutes;
 
@@ -76,7 +105,7 @@ final class DnsRecordData {
 
   final TfArg<num>? longDegrees;
 
-  final TfArg<String>? longDirection;
+  final TfArg<DnsRecordDataLongDirection>? longDirection;
 
   final TfArg<num>? longMinutes;
 
@@ -162,6 +191,26 @@ final class DnsRecordData {
   };
 }
 
+/// `lat_direction` — derived from the provider schema description.
+enum DnsRecordDataLatDirection implements TerraformEnum {
+  n('N'),
+  s('S');
+
+  const DnsRecordDataLatDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `long_direction` — derived from the provider schema description.
+enum DnsRecordDataLongDirection implements TerraformEnum {
+  e('E'),
+  w('W');
+
+  const DnsRecordDataLongDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `settings` block of
 /// `cloudflare_dns_record` (derived from provider schema).
 @immutable
@@ -204,7 +253,7 @@ final class CloudflareDnsRecord extends Resource {
     required super.localName,
     required TfArg<String> zoneId,
     required TfArg<String> name,
-    required TfArg<String> type,
+    required TfArg<DnsRecordType> type,
     required TfArg<num> ttl,
     TfArg<String>? content,
     TfArg<bool>? proxied,

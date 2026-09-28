@@ -20,15 +20,15 @@ final class DataAccessRuleFilter {
     this.configuration,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataAccessRuleFilterDirection>? direction;
 
-  final TfArg<String>? match;
+  final TfArg<DataAccessRuleFilterMatch>? match;
 
-  final TfArg<String>? mode;
+  final TfArg<DataAccessRuleFilterMode>? mode;
 
   final TfArg<String>? notes;
 
-  final TfArg<String>? order;
+  final TfArg<DataAccessRuleFilterOrder>? order;
 
   final DataAccessRuleFilterConfiguration? configuration;
 
@@ -42,13 +42,57 @@ final class DataAccessRuleFilter {
   };
 }
 
+/// `direction` — derived from the provider schema description.
+enum DataAccessRuleFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataAccessRuleFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `match` — derived from the provider schema description.
+enum DataAccessRuleFilterMatch implements TerraformEnum {
+  any('any'),
+  all('all');
+
+  const DataAccessRuleFilterMatch(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `mode` — derived from the provider schema description.
+enum DataAccessRuleFilterMode implements TerraformEnum {
+  block('block'),
+  challenge('challenge'),
+  whitelist('whitelist'),
+  jsChallenge('js_challenge'),
+  managedChallenge('managed_challenge');
+
+  const DataAccessRuleFilterMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataAccessRuleFilterOrder implements TerraformEnum {
+  configurationTarget('configuration.target'),
+  configurationValue('configuration.value'),
+  mode('mode');
+
+  const DataAccessRuleFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `filter.configuration` block of
 /// `cloudflare_access_rule` (derived from provider schema).
 @immutable
 final class DataAccessRuleFilterConfiguration {
   const DataAccessRuleFilterConfiguration({this.target, this.value});
 
-  final TfArg<String>? target;
+  final TfArg<DataAccessRuleFilterConfigurationTarget>? target;
 
   final TfArg<String>? value;
 
@@ -56,6 +100,18 @@ final class DataAccessRuleFilterConfiguration {
     if (target != null) 'target': target!.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `target` — derived from the provider schema description.
+enum DataAccessRuleFilterConfigurationTarget implements TerraformEnum {
+  ip('ip'),
+  ipRange('ip_range'),
+  asn('asn'),
+  country('country');
+
+  const DataAccessRuleFilterConfigurationTarget(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_access_rule`.

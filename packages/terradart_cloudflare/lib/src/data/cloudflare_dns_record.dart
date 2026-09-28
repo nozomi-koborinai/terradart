@@ -27,11 +27,11 @@ final class DataDnsRecordFilter {
     this.tag,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataDnsRecordFilterDirection>? direction;
 
-  final TfArg<String>? match;
+  final TfArg<DataDnsRecordFilterMatch>? match;
 
-  final TfArg<String>? order;
+  final TfArg<DataDnsRecordFilterOrder>? order;
 
   final TfArg<bool>? proxied;
 
@@ -41,9 +41,9 @@ final class DataDnsRecordFilter {
 
   final TfArg<String>? shadowingName;
 
-  final TfArg<String>? tagMatch;
+  final TfArg<DataDnsRecordFilterTagMatch>? tagMatch;
 
-  final TfArg<String>? type;
+  final TfArg<DataDnsRecordFilterType>? type;
 
   final DataDnsRecordFilterComment? comment;
 
@@ -68,6 +68,78 @@ final class DataDnsRecordFilter {
     if (name != null) 'name': name!.encode(),
     if (tag != null) 'tag': tag!.encode(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataDnsRecordFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataDnsRecordFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `match` — derived from the provider schema description.
+enum DataDnsRecordFilterMatch implements TerraformEnum {
+  any('any'),
+  all('all');
+
+  const DataDnsRecordFilterMatch(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataDnsRecordFilterOrder implements TerraformEnum {
+  type('type'),
+  name('name'),
+  content('content'),
+  ttl('ttl'),
+  proxied('proxied');
+
+  const DataDnsRecordFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `tag_match` — derived from the provider schema description.
+enum DataDnsRecordFilterTagMatch implements TerraformEnum {
+  any('any'),
+  all('all');
+
+  const DataDnsRecordFilterTagMatch(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum DataDnsRecordFilterType implements TerraformEnum {
+  a('A'),
+  aaaa('AAAA'),
+  caa('CAA'),
+  cert('CERT'),
+  cname('CNAME'),
+  dnskey('DNSKEY'),
+  ds('DS'),
+  https('HTTPS'),
+  loc('LOC'),
+  mx('MX'),
+  naptr('NAPTR'),
+  ns('NS'),
+  openpgpkey('OPENPGPKEY'),
+  ptr('PTR'),
+  smimea('SMIMEA'),
+  srv('SRV'),
+  sshfp('SSHFP'),
+  svcb('SVCB'),
+  tlsa('TLSA'),
+  txt('TXT'),
+  uri('URI');
+
+  const DataDnsRecordFilterType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter.comment` block of

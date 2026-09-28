@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_argo_tiered_caching`.
 const Set<String> _cloudflareArgoTieredCachingSensitive = <String>{};
 
+/// Argo Tiered Caching enum for `value`.
+enum ArgoTieredCachingValue implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const ArgoTieredCachingValue(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_argo_tiered_caching`.
 final class CloudflareArgoTieredCaching extends Resource {
   static const String tfType = 'cloudflare_argo_tiered_caching';
 
   CloudflareArgoTieredCaching({
     required super.localName,
-    required TfArg<String> value,
+    required TfArg<ArgoTieredCachingValue> value,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

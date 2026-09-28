@@ -18,9 +18,9 @@ final class DataSecretsStoreSecretFilter {
     this.search,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataSecretsStoreSecretFilterDirection>? direction;
 
-  final TfArg<String>? order;
+  final TfArg<DataSecretsStoreSecretFilterOrder>? order;
 
   final TfArg<List<Object?>>? scopes;
 
@@ -32,6 +32,29 @@ final class DataSecretsStoreSecretFilter {
     if (scopes != null) 'scopes': scopes!.toTfJson(),
     if (search != null) 'search': search!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataSecretsStoreSecretFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataSecretsStoreSecretFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataSecretsStoreSecretFilterOrder implements TerraformEnum {
+  name('name'),
+  comment('comment'),
+  created('created'),
+  modified('modified'),
+  status('status');
+
+  const DataSecretsStoreSecretFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_secrets_store_secret`.

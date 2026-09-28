@@ -60,7 +60,7 @@ void main() {
       }
     });
 
-    test('cloudflare wrap omits --resource-provider', () {
+    test('cloudflare wrap omits --resource-provider, types provider enums', () {
       expect(
         wrap('cloudflare'),
         'wrap --provider cloudflare/cloudflare '
@@ -68,6 +68,7 @@ void main() {
         '--output ../terradart_cloudflare/lib/src '
         '--overrides-root lib/src/codegen/wrapper_overrides/cloudflare/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels_cloudflare.yaml '
+        '--provider-enums '
         '--migrate-manifest '
         '../terradart_migrate/lib/src/manifest/cloudflare.g.dart '
         '--check',
@@ -166,6 +167,50 @@ providers:
           ),
         ),
       );
+    });
+
+    test('hintsRepo is the bump repo', () {
+      expect(parseWrapLanes(lane).single.hintsRepo, isNull);
+      expect(
+        parseWrapLanes('$lane    bump:\n      repo: acme/terraform-x\n')
+            .single
+            .hintsRepo,
+        'acme/terraform-x',
+      );
+    });
+
+    test('the committed cloudflare lane re-extracts hints from its repo', () {
+      final cloudflare = parseWrapLanes(File(providersPath).readAsStringSync())
+          .singleWhere((l) => l.name == 'cloudflare');
+      expect(cloudflare.providerEnums, isTrue);
+      expect(cloudflare.hintsRepo, 'cloudflare/terraform-provider-cloudflare');
+      expect(staleHints(cloudflare.schemaDir), isEmpty);
+    });
+  });
+
+  group('staleHints', () {
+    late Directory dir;
+    setUp(() => dir = Directory.systemTemp.createTempSync('hints_'));
+    tearDown(() => dir.deleteSync(recursive: true));
+
+    void hint(String name, String version) =>
+        File(p.join(dir.path, 'hints', name))
+          ..createSync(recursive: true)
+          ..writeAsStringSync('provider_version: $version\nproperties: []\n');
+
+    test('is empty without hints', () {
+      File(p.join(dir.path, 'provider_version.txt')).writeAsStringSync('5.2.0');
+      expect(staleHints(dir.path), isEmpty);
+    });
+
+    test('names each hints file extracted at another version', () {
+      File(p.join(dir.path, 'provider_version.txt'))
+          .writeAsStringSync('5.2.0\n');
+      hint('b.yaml', '5.1.0');
+      hint('a.yaml', '5.2.0');
+      hint('c.yaml', '5.0.0');
+      File(p.join(dir.path, 'hints', 'README.md')).writeAsStringSync('x');
+      expect(staleHints(dir.path), ['b.yaml: 5.1.0', 'c.yaml: 5.0.0']);
     });
   });
 

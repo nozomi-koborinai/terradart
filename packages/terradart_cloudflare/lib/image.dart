@@ -5,4 +5,8 @@ library;
 
 export 'src/image/cloudflare_image.dart' show CloudflareImage;
 export 'src/image/cloudflare_image_variant.dart'
-    show CloudflareImageVariant, ImageVariantOptions;
+    show
+        CloudflareImageVariant,
+        ImageVariantOptions,
+        ImageVariantOptionsFit,
+        ImageVariantOptionsMetadata;

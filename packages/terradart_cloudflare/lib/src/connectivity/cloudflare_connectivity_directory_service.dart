@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_connectivity_directory_service`.
 const Set<String> _cloudflareConnectivityDirectoryServiceSensitive = <String>{};
 
+/// Connectivity Directory Service App enum for `app_protocol`.
+enum ConnectivityDirectoryServiceAppProtocol implements TerraformEnum {
+  postgresql('postgresql'),
+  mysql('mysql');
+
+  const ConnectivityDirectoryServiceAppProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Connectivity Directory Service enum for `type`.
+enum ConnectivityDirectoryServiceType implements TerraformEnum {
+  tcp('tcp'),
+  http('http');
+
+  const ConnectivityDirectoryServiceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `host` block of
 /// `cloudflare_connectivity_directory_service` (derived from provider schema).
 @immutable
@@ -90,12 +110,12 @@ final class CloudflareConnectivityDirectoryService extends Resource {
   CloudflareConnectivityDirectoryService({
     required super.localName,
     required TfArg<String> accountId,
-    TfArg<String>? appProtocol,
+    TfArg<ConnectivityDirectoryServiceAppProtocol>? appProtocol,
     TfArg<num>? httpPort,
     TfArg<num>? httpsPort,
     required TfArg<String> name,
     TfArg<num>? tcpPort,
-    required TfArg<String> type,
+    required TfArg<ConnectivityDirectoryServiceType> type,
     required ConnectivityDirectoryServiceHost host,
     ConnectivityDirectoryServiceTlsSettings? tlsSettings,
     super.lifecycle,

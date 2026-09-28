@@ -28,7 +28,7 @@ final class _TestStack extends Stack {
         localName: 'api',
         zoneId: TfArg.ref(zone.id),
         name: TfArg.literal('api.example.com'),
-        type: TfArg.literal('CNAME'),
+        type: TfArg.literal(DnsRecordType.cname),
         ttl: TfArg.literal(1),
         content: TfArg.literal('ghs.googlehosted.com'),
         proxied: TfArg.literal(true),

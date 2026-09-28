@@ -13,14 +13,40 @@ const Set<String> _cloudflareShareResourceSensitive = <String>{};
 final class DataShareResourceFilter {
   const DataShareResourceFilter({this.resourceType, this.status});
 
-  final TfArg<String>? resourceType;
+  final TfArg<DataShareResourceFilterResourceType>? resourceType;
 
-  final TfArg<String>? status;
+  final TfArg<DataShareResourceFilterStatus>? status;
 
   Map<String, Object?> encode() => {
     if (resourceType != null) 'resource_type': resourceType!.toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `resource_type` — derived from the provider schema description.
+enum DataShareResourceFilterResourceType implements TerraformEnum {
+  customRuleset('custom-ruleset'),
+  gatewayPolicy('gateway-policy'),
+  gatewayDestinationIp('gateway-destination-ip'),
+  gatewayBlockPageSettings('gateway-block-page-settings'),
+  gatewayExtendedEmailMatching('gateway-extended-email-matching'),
+  idpFederationGrant('idp-federation-grant'),
+  trustGrant('trust-grant');
+
+  const DataShareResourceFilterResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `status` — derived from the provider schema description.
+enum DataShareResourceFilterStatus implements TerraformEnum {
+  active('active'),
+  deleting('deleting'),
+  deleted('deleted');
+
+  const DataShareResourceFilterStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_share_resource`.

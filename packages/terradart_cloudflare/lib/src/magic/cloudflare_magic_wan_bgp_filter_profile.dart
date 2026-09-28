@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_magic_wan_bgp_filter_profile`.
 const Set<String> _cloudflareMagicWanBgpFilterProfileSensitive = <String>{};
 
+/// Magic Wan Bgp Filter Profile Match enum for `match_action`.
+enum MagicWanBgpFilterProfileMatchAction implements TerraformEnum {
+  allow('allow'),
+  deny('deny');
+
+  const MagicWanBgpFilterProfileMatchAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_magic_wan_bgp_filter_profile`.
 final class CloudflareMagicWanBgpFilterProfile extends Resource {
   static const String tfType = 'cloudflare_magic_wan_bgp_filter_profile';
@@ -14,7 +24,7 @@ final class CloudflareMagicWanBgpFilterProfile extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<String>? description,
-    required TfArg<String> matchAction,
+    required TfArg<MagicWanBgpFilterProfileMatchAction> matchAction,
     required TfArg<String> name,
     required TfArg<List<String>> targets,
     super.lifecycle,

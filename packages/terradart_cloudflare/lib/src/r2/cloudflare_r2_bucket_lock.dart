@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_r2_bucket_lock`.
 const Set<String> _cloudflareR2BucketLockSensitive = <String>{};
 
+/// R2 Bucket Lock enum for `jurisdiction`.
+enum R2BucketLockJurisdiction implements TerraformEnum {
+  defaultCase('default'),
+  eu('eu'),
+  fedramp('fedramp');
+
+  const R2BucketLockJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rules` block of
 /// `cloudflare_r2_bucket_lock` (derived from provider schema).
 @immutable
@@ -48,13 +59,24 @@ final class R2BucketLockRulesCondition {
 
   final TfArg<num>? maxAgeSeconds;
 
-  final TfArg<String> type;
+  final TfArg<R2BucketLockRulesConditionType> type;
 
   Map<String, Object?> encode() => {
     if (date != null) 'date': date!.toTfJson(),
     if (maxAgeSeconds != null) 'max_age_seconds': maxAgeSeconds!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum R2BucketLockRulesConditionType implements TerraformEnum {
+  age('Age'),
+  date('Date'),
+  indefinite('Indefinite');
+
+  const R2BucketLockRulesConditionType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_r2_bucket_lock`.
@@ -65,7 +87,7 @@ final class CloudflareR2BucketLock extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> bucketName,
-    TfArg<String>? jurisdiction,
+    TfArg<R2BucketLockJurisdiction>? jurisdiction,
     List<R2BucketLockRules>? rules,
     super.lifecycle,
     super.dependsOn,

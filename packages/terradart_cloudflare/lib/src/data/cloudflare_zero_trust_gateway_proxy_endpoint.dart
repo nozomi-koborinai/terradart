@@ -19,11 +19,11 @@ final class DataZeroTrustGatewayProxyEndpointFilter {
     this.search,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataZeroTrustGatewayProxyEndpointFilterDirection>? direction;
 
   final TfArg<List<Object?>>? filter;
 
-  final TfArg<String>? orderBy;
+  final TfArg<DataZeroTrustGatewayProxyEndpointFilterOrderBy>? orderBy;
 
   final TfArg<String>? search;
 
@@ -33,6 +33,27 @@ final class DataZeroTrustGatewayProxyEndpointFilter {
     if (orderBy != null) 'order_by': orderBy!.toTfJson(),
     if (search != null) 'search': search!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataZeroTrustGatewayProxyEndpointFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataZeroTrustGatewayProxyEndpointFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order_by` — derived from the provider schema description.
+enum DataZeroTrustGatewayProxyEndpointFilterOrderBy implements TerraformEnum {
+  name('name'),
+  createdAt('created_at'),
+  updatedAt('updated_at');
+
+  const DataZeroTrustGatewayProxyEndpointFilterOrderBy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_gateway_proxy_endpoint`.

@@ -63,13 +63,13 @@ final class MagicWanIpsecTunnelHealthCheck {
     this.target,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<MagicWanIpsecTunnelHealthCheckDirection>? direction;
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? rate;
+  final TfArg<MagicWanIpsecTunnelHealthCheckRate>? rate;
 
-  final TfArg<String>? type;
+  final TfArg<MagicWanIpsecTunnelHealthCheckType>? type;
 
   final MagicWanIpsecTunnelHealthCheckTarget? target;
 
@@ -80,6 +80,37 @@ final class MagicWanIpsecTunnelHealthCheck {
     if (type != null) 'type': type!.toTfJson(),
     if (target != null) 'target': target!.encode(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum MagicWanIpsecTunnelHealthCheckDirection implements TerraformEnum {
+  unidirectional('unidirectional'),
+  bidirectional('bidirectional');
+
+  const MagicWanIpsecTunnelHealthCheckDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `rate` — derived from the provider schema description.
+enum MagicWanIpsecTunnelHealthCheckRate implements TerraformEnum {
+  low('low'),
+  mid('mid'),
+  high('high');
+
+  const MagicWanIpsecTunnelHealthCheckRate(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum MagicWanIpsecTunnelHealthCheckType implements TerraformEnum {
+  reply('reply'),
+  request('request');
+
+  const MagicWanIpsecTunnelHealthCheckType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `health_check.target` block of
