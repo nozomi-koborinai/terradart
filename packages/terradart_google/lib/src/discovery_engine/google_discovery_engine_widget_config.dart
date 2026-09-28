@@ -128,8 +128,10 @@ final class DiscoveryEngineWidgetConfigUiSettings {
     this.enableVisualContentSummary,
     this.interactionType,
     this.resultDescriptionType,
+    this.sourceAdminDisplayNameEnabled,
     this.dataStoreUiConfigs,
     this.generativeAnswerConfig,
+    this.searchAddonSpec,
   });
 
   final TfArg<String>? defaultSearchRequestOrderBy;
@@ -156,11 +158,15 @@ final class DiscoveryEngineWidgetConfigUiSettings {
   final TfArg<DiscoveryEngineWidgetConfigUiSettingsResultDescriptionType>?
   resultDescriptionType;
 
+  final TfArg<bool>? sourceAdminDisplayNameEnabled;
+
   final List<DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigs>?
   dataStoreUiConfigs;
 
   final DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfig?
   generativeAnswerConfig;
+
+  final DiscoveryEngineWidgetConfigUiSettingsSearchAddonSpec? searchAddonSpec;
 
   Map<String, Object?> encode() => {
     if (defaultSearchRequestOrderBy != null)
@@ -186,12 +192,16 @@ final class DiscoveryEngineWidgetConfigUiSettings {
       'interaction_type': interactionType!.toTfJson(),
     if (resultDescriptionType != null)
       'result_description_type': resultDescriptionType!.toTfJson(),
+    if (sourceAdminDisplayNameEnabled != null)
+      'source_admin_display_name_enabled': sourceAdminDisplayNameEnabled!
+          .toTfJson(),
     if (dataStoreUiConfigs != null)
       'data_store_ui_configs': [
         for (final e in dataStoreUiConfigs!) e.encode(),
       ],
     if (generativeAnswerConfig != null)
       'generative_answer_config': generativeAnswerConfig!.encode(),
+    if (searchAddonSpec != null) 'search_addon_spec': searchAddonSpec!.encode(),
   };
 }
 
@@ -392,6 +402,34 @@ enum DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfigImageSource
   );
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `ui_settings.search_addon_spec` block of
+/// `google_discovery_engine_widget_config` (derived from provider schema).
+@immutable
+final class DiscoveryEngineWidgetConfigUiSettingsSearchAddonSpec {
+  const DiscoveryEngineWidgetConfigUiSettingsSearchAddonSpec({
+    this.generativeAnswerAddOnDisabled,
+    this.kpiPersonalizationAddOnDisabled,
+    this.semanticAddOnDisabled,
+  });
+
+  final TfArg<bool>? generativeAnswerAddOnDisabled;
+
+  final TfArg<bool>? kpiPersonalizationAddOnDisabled;
+
+  final TfArg<bool>? semanticAddOnDisabled;
+
+  Map<String, Object?> encode() => {
+    if (generativeAnswerAddOnDisabled != null)
+      'generative_answer_add_on_disabled': generativeAnswerAddOnDisabled!
+          .toTfJson(),
+    if (kpiPersonalizationAddOnDisabled != null)
+      'kpi_personalization_add_on_disabled': kpiPersonalizationAddOnDisabled!
+          .toTfJson(),
+    if (semanticAddOnDisabled != null)
+      'semantic_add_on_disabled': semanticAddOnDisabled!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_discovery_engine_widget_config`.

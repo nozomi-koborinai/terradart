@@ -230,6 +230,123 @@ final class CesAgentToolsets {
   };
 }
 
+/// Typed helper for the `transfer_rules` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentTransferRules {
+  const CesAgentTransferRules({
+    required this.childAgent,
+    required this.direction,
+    this.deterministicTransfer,
+    this.disablePlannerTransfer,
+  });
+
+  final TfArg<String> childAgent;
+
+  final TfArg<CesAgentTransferRulesDirection> direction;
+
+  final CesAgentTransferRulesDeterministicTransfer? deterministicTransfer;
+
+  final CesAgentTransferRulesDisablePlannerTransfer? disablePlannerTransfer;
+
+  Map<String, Object?> encode() => {
+    'child_agent': childAgent.toTfJson(),
+    'direction': direction.toTfJson(),
+    if (deterministicTransfer != null)
+      'deterministic_transfer': deterministicTransfer!.encode(),
+    if (disablePlannerTransfer != null)
+      'disable_planner_transfer': disablePlannerTransfer!.encode(),
+  };
+}
+
+/// `direction` — derived from the provider schema description.
+enum CesAgentTransferRulesDirection implements TerraformEnum {
+  parentToChild('PARENT_TO_CHILD'),
+  childToParent('CHILD_TO_PARENT');
+
+  const CesAgentTransferRulesDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `transfer_rules.deterministic_transfer` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentTransferRulesDeterministicTransfer {
+  const CesAgentTransferRulesDeterministicTransfer({
+    this.expressionCondition,
+    this.pythonCodeCondition,
+  });
+
+  final CesAgentTransferRulesDeterministicTransferExpressionCondition?
+  expressionCondition;
+
+  final CesAgentTransferRulesDeterministicTransferPythonCodeCondition?
+  pythonCodeCondition;
+
+  Map<String, Object?> encode() => {
+    if (expressionCondition != null)
+      'expression_condition': expressionCondition!.encode(),
+    if (pythonCodeCondition != null)
+      'python_code_condition': pythonCodeCondition!.encode(),
+  };
+}
+
+/// Typed helper for the `transfer_rules.deterministic_transfer.expression_condition` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentTransferRulesDeterministicTransferExpressionCondition {
+  const CesAgentTransferRulesDeterministicTransferExpressionCondition({
+    required this.expression,
+  });
+
+  final TfArg<String> expression;
+
+  Map<String, Object?> encode() => {'expression': expression.toTfJson()};
+}
+
+/// Typed helper for the `transfer_rules.deterministic_transfer.python_code_condition` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentTransferRulesDeterministicTransferPythonCodeCondition {
+  const CesAgentTransferRulesDeterministicTransferPythonCodeCondition({
+    required this.pythonCode,
+  });
+
+  final TfArg<String> pythonCode;
+
+  Map<String, Object?> encode() => {'python_code': pythonCode.toTfJson()};
+}
+
+/// Typed helper for the `transfer_rules.disable_planner_transfer` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentTransferRulesDisablePlannerTransfer {
+  const CesAgentTransferRulesDisablePlannerTransfer({
+    required this.expressionCondition,
+  });
+
+  final CesAgentTransferRulesDisablePlannerTransferExpressionCondition
+  expressionCondition;
+
+  Map<String, Object?> encode() => {
+    'expression_condition': expressionCondition.encode(),
+  };
+}
+
+/// Typed helper for the `transfer_rules.disable_planner_transfer.expression_condition` block of
+/// `google_ces_agent` (derived from provider schema).
+@immutable
+final class CesAgentTransferRulesDisablePlannerTransferExpressionCondition {
+  const CesAgentTransferRulesDisablePlannerTransferExpressionCondition({
+    required this.expression,
+  });
+
+  final TfArg<String> expression;
+
+  Map<String, Object?> encode() => {'expression': expression.toTfJson()};
+}
+
 /// Factory wrapper for `google_ces_agent`.
 ///
 /// Description

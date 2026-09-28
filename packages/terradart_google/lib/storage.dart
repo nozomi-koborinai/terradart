@@ -66,6 +66,21 @@ export 'src/storage/google_storage_default_object_access_control.dart'
 export 'src/storage/google_storage_default_object_acl.dart'
     show GoogleStorageDefaultObjectAcl;
 export 'src/storage/google_storage_folder.dart' show GoogleStorageFolder;
+export 'src/storage/google_storage_ftp_server.dart'
+    show
+        GoogleStorageFtpServer,
+        StorageFtpServerAccessType,
+        StorageFtpServerConfig,
+        StorageFtpServerConsumerAccept,
+        StorageFtpServerConsumerReject,
+        StorageFtpServerExternalConfig,
+        StorageFtpServerInternalConfig;
+export 'src/storage/google_storage_ftp_user.dart'
+    show
+        GoogleStorageFtpUser,
+        StorageFtpUserStorageDirectoryMappings,
+        StorageFtpUserStorageDirectoryMappingsPermission,
+        StorageFtpUserUserCredentials;
 export 'src/storage/google_storage_hmac_key.dart'
     show GoogleStorageHmacKey, StorageHmacKeyState;
 export 'src/storage/google_storage_insights_dataset_config.dart'

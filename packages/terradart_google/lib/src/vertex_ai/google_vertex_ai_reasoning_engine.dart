@@ -7,6 +7,804 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_vertex_ai_reasoning_engine`.
 const Set<String> _googleVertexAiReasoningEngineSensitive = <String>{};
 
+/// Typed helper for the `context_spec` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpec {
+  const VertexAiReasoningEngineContextSpec({this.memoryBankConfig});
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfig? memoryBankConfig;
+
+  Map<String, Object?> encode() => {
+    if (memoryBankConfig != null)
+      'memory_bank_config': memoryBankConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfig {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfig({
+    this.disableMemoryRevisions,
+    this.customizationConfigs,
+    this.generationConfig,
+    this.similaritySearchConfig,
+    this.structuredMemoryConfigs,
+    this.ttlConfig,
+  });
+
+  final TfArg<bool>? disableMemoryRevisions;
+
+  final List<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigs
+  >?
+  customizationConfigs;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig?
+  generationConfig;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig?
+  similaritySearchConfig;
+
+  final List<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigs
+  >?
+  structuredMemoryConfigs;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig? ttlConfig;
+
+  Map<String, Object?> encode() => {
+    if (disableMemoryRevisions != null)
+      'disable_memory_revisions': disableMemoryRevisions!.toTfJson(),
+    if (customizationConfigs != null)
+      'customization_configs': [
+        for (final e in customizationConfigs!) e.encode(),
+      ],
+    if (generationConfig != null)
+      'generation_config': generationConfig!.encode(),
+    if (similaritySearchConfig != null)
+      'similarity_search_config': similaritySearchConfig!.encode(),
+    if (structuredMemoryConfigs != null)
+      'structured_memory_configs': [
+        for (final e in structuredMemoryConfigs!) e.encode(),
+      ],
+    if (ttlConfig != null) 'ttl_config': ttlConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigs {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigs({
+    this.disableNaturalLanguageMemories,
+    this.enableThirdPersonMemories,
+    this.scopeKeys,
+    this.consolidationConfig,
+    this.generateMemoriesExamples,
+    this.memoryTopics,
+  });
+
+  final TfArg<bool>? disableNaturalLanguageMemories;
+
+  final TfArg<bool>? enableThirdPersonMemories;
+
+  final TfArg<List<Object?>>? scopeKeys;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsConsolidationConfig?
+  consolidationConfig;
+
+  final List<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamples
+  >?
+  generateMemoriesExamples;
+
+  final List<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics
+  >?
+  memoryTopics;
+
+  Map<String, Object?> encode() => {
+    if (disableNaturalLanguageMemories != null)
+      'disable_natural_language_memories': disableNaturalLanguageMemories!
+          .toTfJson(),
+    if (enableThirdPersonMemories != null)
+      'enable_third_person_memories': enableThirdPersonMemories!.toTfJson(),
+    if (scopeKeys != null) 'scope_keys': scopeKeys!.toTfJson(),
+    if (consolidationConfig != null)
+      'consolidation_config': consolidationConfig!.encode(),
+    if (generateMemoriesExamples != null)
+      'generate_memories_examples': [
+        for (final e in generateMemoriesExamples!) e.encode(),
+      ],
+    if (memoryTopics != null)
+      'memory_topics': [for (final e in memoryTopics!) e.encode()],
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.consolidation_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsConsolidationConfig {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsConsolidationConfig({
+    this.revisionsPerCandidateCount,
+  });
+
+  final TfArg<num>? revisionsPerCandidateCount;
+
+  Map<String, Object?> encode() => {
+    if (revisionsPerCandidateCount != null)
+      'revisions_per_candidate_count': revisionsPerCandidateCount!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamples {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamples({
+    this.conversationSource,
+    this.generatedMemories,
+  });
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSource?
+  conversationSource;
+
+  final List<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemories
+  >?
+  generatedMemories;
+
+  Map<String, Object?> encode() => {
+    if (conversationSource != null)
+      'conversation_source': conversationSource!.encode(),
+    if (generatedMemories != null)
+      'generated_memories': [for (final e in generatedMemories!) e.encode()],
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSource {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSource({
+    this.events,
+  });
+
+  final List<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEvents
+  >?
+  events;
+
+  Map<String, Object?> encode() => {
+    if (events != null) 'events': [for (final e in events!) e.encode()],
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEvents {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEvents({
+    required this.content,
+  });
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContent
+  content;
+
+  Map<String, Object?> encode() => {'content': content.encode()};
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContent {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContent({
+    this.role,
+    required this.parts,
+  });
+
+  final TfArg<String>? role;
+
+  final List<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentParts
+  >
+  parts;
+
+  Map<String, Object?> encode() => {
+    if (role != null) 'role': role!.toTfJson(),
+    'parts': [for (final e in parts) e.encode()],
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentParts {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentParts({
+    this.text,
+    this.thought,
+    this.audioTranscription,
+    this.codeExecutionResult,
+    this.executableCode,
+    this.fileData,
+    this.functionCall,
+    this.functionResponse,
+    this.inlineData,
+    this.videoMetadata,
+  });
+
+  final TfArg<String>? text;
+
+  final TfArg<bool>? thought;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscription?
+  audioTranscription;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResult?
+  codeExecutionResult;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCode?
+  executableCode;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFileData?
+  fileData;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionCall?
+  functionCall;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionResponse?
+  functionResponse;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsInlineData?
+  inlineData;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsVideoMetadata?
+  videoMetadata;
+
+  Map<String, Object?> encode() => {
+    if (text != null) 'text': text!.toTfJson(),
+    if (thought != null) 'thought': thought!.toTfJson(),
+    if (audioTranscription != null)
+      'audio_transcription': audioTranscription!.encode(),
+    if (codeExecutionResult != null)
+      'code_execution_result': codeExecutionResult!.encode(),
+    if (executableCode != null) 'executable_code': executableCode!.encode(),
+    if (fileData != null) 'file_data': fileData!.encode(),
+    if (functionCall != null) 'function_call': functionCall!.encode(),
+    if (functionResponse != null)
+      'function_response': functionResponse!.encode(),
+    if (inlineData != null) 'inline_data': inlineData!.encode(),
+    if (videoMetadata != null) 'video_metadata': videoMetadata!.encode(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.audio_transcription` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscription {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscription({
+    this.speakerLabel,
+    required this.text,
+    this.words,
+  });
+
+  final TfArg<String>? speakerLabel;
+
+  final TfArg<String> text;
+
+  final List<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscriptionWords
+  >?
+  words;
+
+  Map<String, Object?> encode() => {
+    if (speakerLabel != null) 'speaker_label': speakerLabel!.toTfJson(),
+    'text': text.toTfJson(),
+    if (words != null) 'words': [for (final e in words!) e.encode()],
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.audio_transcription.words` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscriptionWords {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsAudioTranscriptionWords({
+    this.endOffset,
+    this.startOffset,
+    required this.word,
+  });
+
+  final TfArg<String>? endOffset;
+
+  final TfArg<String>? startOffset;
+
+  final TfArg<String> word;
+
+  Map<String, Object?> encode() => {
+    if (endOffset != null) 'end_offset': endOffset!.toTfJson(),
+    if (startOffset != null) 'start_offset': startOffset!.toTfJson(),
+    'word': word.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.code_execution_result` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResult {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResult({
+    this.id,
+    required this.outcome,
+    this.output,
+  });
+
+  final TfArg<String>? id;
+
+  final TfArg<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResultOutcome
+  >
+  outcome;
+
+  final TfArg<String>? output;
+
+  Map<String, Object?> encode() => {
+    if (id != null) 'id': id!.toTfJson(),
+    'outcome': outcome.toTfJson(),
+    if (output != null) 'output': output!.toTfJson(),
+  };
+}
+
+/// `outcome` — derived from the provider schema description.
+enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResultOutcome
+    implements TerraformEnum {
+  outcomeUnspecified('OUTCOME_UNSPECIFIED'),
+  outcomeOk('OUTCOME_OK'),
+  outcomeFailed('OUTCOME_FAILED'),
+  outcomeDeadlineExceeded('OUTCOME_DEADLINE_EXCEEDED');
+
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsCodeExecutionResultOutcome(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.executable_code` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCode {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCode({
+    required this.code,
+    this.id,
+    required this.language,
+  });
+
+  final TfArg<String> code;
+
+  final TfArg<String>? id;
+
+  final TfArg<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCodeLanguage
+  >
+  language;
+
+  Map<String, Object?> encode() => {
+    'code': code.toTfJson(),
+    if (id != null) 'id': id!.toTfJson(),
+    'language': language.toTfJson(),
+  };
+}
+
+/// `language` — derived from the provider schema description.
+enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCodeLanguage
+    implements TerraformEnum {
+  languageUnspecified('LANGUAGE_UNSPECIFIED'),
+  python('PYTHON'),
+  bash('BASH');
+
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsExecutableCodeLanguage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.file_data` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFileData {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFileData({
+    required this.fileUri,
+    required this.mimeType,
+  });
+
+  final TfArg<String> fileUri;
+
+  final TfArg<String> mimeType;
+
+  Map<String, Object?> encode() => {
+    'file_uri': fileUri.toTfJson(),
+    'mime_type': mimeType.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.function_call` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionCall {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionCall({
+    this.args,
+    this.id,
+    this.name,
+  });
+
+  final TfArg<String>? args;
+
+  final TfArg<String>? id;
+
+  final TfArg<String>? name;
+
+  Map<String, Object?> encode() => {
+    if (args != null) 'args': args!.toTfJson(),
+    if (id != null) 'id': id!.toTfJson(),
+    if (name != null) 'name': name!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.function_response` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionResponse {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsFunctionResponse({
+    this.id,
+    required this.name,
+    this.response,
+  });
+
+  final TfArg<String>? id;
+
+  final TfArg<String> name;
+
+  final TfArg<String>? response;
+
+  Map<String, Object?> encode() => {
+    if (id != null) 'id': id!.toTfJson(),
+    'name': name.toTfJson(),
+    if (response != null) 'response': response!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.inline_data` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsInlineData {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsInlineData({
+    required this.data,
+    required this.mimeType,
+  });
+
+  final TfArg<String> data;
+
+  final TfArg<String> mimeType;
+
+  Map<String, Object?> encode() => {
+    'data': data.toTfJson(),
+    'mime_type': mimeType.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.conversation_source.events.content.parts.video_metadata` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsVideoMetadata {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesConversationSourceEventsContentPartsVideoMetadata({
+    this.endOffset,
+    this.startOffset,
+  });
+
+  final TfArg<String>? endOffset;
+
+  final TfArg<String>? startOffset;
+
+  Map<String, Object?> encode() => {
+    if (endOffset != null) 'end_offset': endOffset!.toTfJson(),
+    if (startOffset != null) 'start_offset': startOffset!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.generated_memories` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemories {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemories({
+    required this.fact,
+    this.topics,
+  });
+
+  final TfArg<String> fact;
+
+  final List<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopics
+  >?
+  topics;
+
+  Map<String, Object?> encode() => {
+    'fact': fact.toTfJson(),
+    if (topics != null) 'topics': [for (final e in topics!) e.encode()],
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.generate_memories_examples.generated_memories.topics` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopics {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopics({
+    this.customMemoryTopicLabel,
+    this.managedMemoryTopic,
+  });
+
+  final TfArg<String>? customMemoryTopicLabel;
+
+  final TfArg<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopicsManagedMemoryTopic
+  >?
+  managedMemoryTopic;
+
+  Map<String, Object?> encode() => {
+    if (customMemoryTopicLabel != null)
+      'custom_memory_topic_label': customMemoryTopicLabel!.toTfJson(),
+    if (managedMemoryTopic != null)
+      'managed_memory_topic': managedMemoryTopic!.toTfJson(),
+  };
+}
+
+/// `managed_memory_topic` — derived from the provider schema description.
+enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopicsManagedMemoryTopic
+    implements TerraformEnum {
+  userPersonalInfo('USER_PERSONAL_INFO'),
+  userPreferences('USER_PREFERENCES'),
+  keyConversationDetails('KEY_CONVERSATION_DETAILS'),
+  explicitInstructions('EXPLICIT_INSTRUCTIONS');
+
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopicsManagedMemoryTopic(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.memory_topics` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics({
+    this.customMemoryTopic,
+    this.managedMemoryTopic,
+  });
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic?
+  customMemoryTopic;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic?
+  managedMemoryTopic;
+
+  Map<String, Object?> encode() => {
+    if (customMemoryTopic != null)
+      'custom_memory_topic': customMemoryTopic!.encode(),
+    if (managedMemoryTopic != null)
+      'managed_memory_topic': managedMemoryTopic!.encode(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.memory_topics.custom_memory_topic` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic({
+    this.description,
+    this.label,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String>? label;
+
+  Map<String, Object?> encode() => {
+    if (description != null) 'description': description!.toTfJson(),
+    if (label != null) 'label': label!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.customization_configs.memory_topics.managed_memory_topic` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic({
+    this.managedTopicEnum,
+  });
+
+  final TfArg<String>? managedTopicEnum;
+
+  Map<String, Object?> encode() => {
+    if (managedTopicEnum != null)
+      'managed_topic_enum': managedTopicEnum!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.generation_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig({
+    required this.model,
+    this.generationTriggerConfig,
+  });
+
+  final TfArg<String> model;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfig?
+  generationTriggerConfig;
+
+  Map<String, Object?> encode() => {
+    'model': model.toTfJson(),
+    if (generationTriggerConfig != null)
+      'generation_trigger_config': generationTriggerConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.generation_config.generation_trigger_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfig {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfig({
+    this.generationRule,
+  });
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfigGenerationRule?
+  generationRule;
+
+  Map<String, Object?> encode() => {
+    if (generationRule != null) 'generation_rule': generationRule!.encode(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.generation_config.generation_trigger_config.generation_rule` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfigGenerationRule {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfigGenerationRule({
+    this.eventCount,
+    this.fixedInterval,
+    this.idleDuration,
+    this.overlapEventCount,
+  });
+
+  final TfArg<num>? eventCount;
+
+  final TfArg<String>? fixedInterval;
+
+  final TfArg<String>? idleDuration;
+
+  final TfArg<num>? overlapEventCount;
+
+  Map<String, Object?> encode() => {
+    if (eventCount != null) 'event_count': eventCount!.toTfJson(),
+    if (fixedInterval != null) 'fixed_interval': fixedInterval!.toTfJson(),
+    if (idleDuration != null) 'idle_duration': idleDuration!.toTfJson(),
+    if (overlapEventCount != null)
+      'overlap_event_count': overlapEventCount!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.similarity_search_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig({
+    required this.embeddingModel,
+  });
+
+  final TfArg<String> embeddingModel;
+
+  Map<String, Object?> encode() => {
+    'embedding_model': embeddingModel.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.structured_memory_configs` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigs {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigs({
+    this.scopeKeys,
+    this.schemaConfigs,
+  });
+
+  final TfArg<List<Object?>>? scopeKeys;
+
+  final List<
+    VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigsSchemaConfigs
+  >?
+  schemaConfigs;
+
+  Map<String, Object?> encode() => {
+    if (scopeKeys != null) 'scope_keys': scopeKeys!.toTfJson(),
+    if (schemaConfigs != null)
+      'schema_configs': [for (final e in schemaConfigs!) e.encode()],
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.structured_memory_configs.schema_configs` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigsSchemaConfigs {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigsSchemaConfigs({
+    required this.id,
+    this.memorySchema,
+  });
+
+  final TfArg<String> id;
+
+  final TfArg<String>? memorySchema;
+
+  Map<String, Object?> encode() => {
+    'id': id.toTfJson(),
+    if (memorySchema != null) 'memory_schema': memorySchema!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.ttl_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig({
+    this.defaultTtl,
+    this.memoryRevisionDefaultTtl,
+    this.granularTtlConfig,
+  });
+
+  final TfArg<String>? defaultTtl;
+
+  final TfArg<String>? memoryRevisionDefaultTtl;
+
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig?
+  granularTtlConfig;
+
+  Map<String, Object?> encode() => {
+    if (defaultTtl != null) 'default_ttl': defaultTtl!.toTfJson(),
+    if (memoryRevisionDefaultTtl != null)
+      'memory_revision_default_ttl': memoryRevisionDefaultTtl!.toTfJson(),
+    if (granularTtlConfig != null)
+      'granular_ttl_config': granularTtlConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `context_spec.memory_bank_config.ttl_config.granular_ttl_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig({
+    this.createTtl,
+    this.generateCreatedTtl,
+    this.generateUpdatedTtl,
+  });
+
+  final TfArg<String>? createTtl;
+
+  final TfArg<String>? generateCreatedTtl;
+
+  final TfArg<String>? generateUpdatedTtl;
+
+  Map<String, Object?> encode() => {
+    if (createTtl != null) 'create_ttl': createTtl!.toTfJson(),
+    if (generateCreatedTtl != null)
+      'generate_created_ttl': generateCreatedTtl!.toTfJson(),
+    if (generateUpdatedTtl != null)
+      'generate_updated_ttl': generateUpdatedTtl!.toTfJson(),
+  };
+}
+
 /// Typed helper for the `encryption_spec` block of
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable

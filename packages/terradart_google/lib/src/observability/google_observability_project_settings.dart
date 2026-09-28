@@ -1,0 +1,39 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_observability_project_settings`.
+const Set<String> _googleObservabilityProjectSettingsSensitive = <String>{};
+
+/// Factory wrapper for `google_observability_project_settings`.
+///
+/// Manages Cloud Observability settings for a project.
+final class GoogleObservabilityProjectSettings extends Resource {
+  static const String tfType = 'google_observability_project_settings';
+
+  GoogleObservabilityProjectSettings({
+    required super.localName,
+    TfArg<String>? defaultStorageLocation,
+    TfArg<String>? kmsKeyName,
+    required TfArg<String> location,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+    super.provider,
+    super.timeouts,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           if (defaultStorageLocation != null)
+             'default_storage_location': defaultStorageLocation,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           'location': location,
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields =>
+      _googleObservabilityProjectSettingsSensitive;
+}

@@ -75,6 +75,8 @@ export 'src/bigquery/google_bigquery_data_transfer_config.dart'
         BigqueryDataTransferConfigScheduleOptions,
         BigqueryDataTransferConfigSensitiveParams,
         GoogleBigqueryDataTransferConfig;
+export 'src/bigquery/google_bigquery_data_transfer_data_source_enrollment.dart'
+    show GoogleBigqueryDataTransferDataSourceEnrollment;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
     show
         BigqueryDatapolicyDataPolicyDataMaskingPolicy,

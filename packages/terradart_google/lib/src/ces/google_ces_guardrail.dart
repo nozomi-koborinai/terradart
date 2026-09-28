@@ -124,6 +124,7 @@ final class CesGuardrailCodeCallbackAfterAgentCallback {
   const CesGuardrailCodeCallbackAfterAgentCallback({
     this.description,
     this.disabled,
+    this.proactiveExecutionEnabled,
     required this.pythonCode,
   });
 
@@ -131,11 +132,15 @@ final class CesGuardrailCodeCallbackAfterAgentCallback {
 
   final TfArg<bool>? disabled;
 
+  final TfArg<bool>? proactiveExecutionEnabled;
+
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
     if (disabled != null) 'disabled': disabled!.toTfJson(),
+    if (proactiveExecutionEnabled != null)
+      'proactive_execution_enabled': proactiveExecutionEnabled!.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -147,6 +152,7 @@ final class CesGuardrailCodeCallbackAfterModelCallback {
   const CesGuardrailCodeCallbackAfterModelCallback({
     this.description,
     this.disabled,
+    this.proactiveExecutionEnabled,
     required this.pythonCode,
   });
 
@@ -154,11 +160,15 @@ final class CesGuardrailCodeCallbackAfterModelCallback {
 
   final TfArg<bool>? disabled;
 
+  final TfArg<bool>? proactiveExecutionEnabled;
+
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
     if (disabled != null) 'disabled': disabled!.toTfJson(),
+    if (proactiveExecutionEnabled != null)
+      'proactive_execution_enabled': proactiveExecutionEnabled!.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -170,6 +180,7 @@ final class CesGuardrailCodeCallbackBeforeAgentCallback {
   const CesGuardrailCodeCallbackBeforeAgentCallback({
     this.description,
     this.disabled,
+    this.proactiveExecutionEnabled,
     required this.pythonCode,
   });
 
@@ -177,11 +188,15 @@ final class CesGuardrailCodeCallbackBeforeAgentCallback {
 
   final TfArg<bool>? disabled;
 
+  final TfArg<bool>? proactiveExecutionEnabled;
+
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
     if (disabled != null) 'disabled': disabled!.toTfJson(),
+    if (proactiveExecutionEnabled != null)
+      'proactive_execution_enabled': proactiveExecutionEnabled!.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -193,6 +208,7 @@ final class CesGuardrailCodeCallbackBeforeModelCallback {
   const CesGuardrailCodeCallbackBeforeModelCallback({
     this.description,
     this.disabled,
+    this.proactiveExecutionEnabled,
     required this.pythonCode,
   });
 
@@ -200,11 +216,15 @@ final class CesGuardrailCodeCallbackBeforeModelCallback {
 
   final TfArg<bool>? disabled;
 
+  final TfArg<bool>? proactiveExecutionEnabled;
+
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
     if (disabled != null) 'disabled': disabled!.toTfJson(),
+    if (proactiveExecutionEnabled != null)
+      'proactive_execution_enabled': proactiveExecutionEnabled!.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }

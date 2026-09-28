@@ -51,6 +51,8 @@ applies in full; the steps below are the TerraDart side of it.
 | `GoogleIntegrationsClient.runAsServiceAccount` is removed | Drop it. |
 | `DataGoogleBackupDrBackupPlanAssociations.resourceType` and `DataGoogleBackupDrDataSourceReferences.resourceType` are removed | Drop them. |
 | `GoogleComputeReservation.reservationBlockCount` (and the data source getter) is removed | Drop the reference. |
+| `DataGoogleContainerCluster.skipNodePoolRefresh` getter is removed (8.4) | Drop the reference. |
+| The 16 types of [Beta-only types now in `terradart_google`](#beta-only-types-now-in-terradart_google) are gone from `terradart_google_beta` | Import them from `terradart_google`. |
 
 Blocks 8.0 turned from lists into sets
 (`compute_service_attachment.nat_subnets` / `consumer_reject_lists`,
@@ -85,9 +87,42 @@ needs `tolist(...)` now.
   `http_get.http_headers.port` from Cloud Run v2 worker pool probes (and set
   `http_headers.name`, now required), `actions.publish_findings_to_cloud_data_catalog`
   from `GoogleDataLossPreventionJobTrigger` (use
-  `publish_findings_to_dataplex_catalog`). The
+  `publish_findings_to_dataplex_catalog`), and
+  `node_config.host_maintenance_policy` from `GoogleContainerCluster` /
+  `GoogleContainerNodePool` (removed in 8.4). The
   `logical_structure[*].zones[*].attachment` output of
   `GoogleComputeInterconnectAttachmentGroup` is gone too.
+
+#### Beta-only types now in `terradart_google`
+
+Provider 8.2 and 8.3 promoted 16 beta-only types to GA, so their factories
+move from `terradart_google_beta` to `terradart_google` (same fields; one
+constructor change, noted after the list):
+
+- `GoogleBiglakeHiveCatalog`, `GoogleBiglakeHiveDatabase`,
+  `GoogleBiglakeHiveTable`, and their `*IamMember` / `*IamBinding` /
+  `*IamPolicy` factories (`package:terradart_google/biglake.dart`)
+- `GoogleObservabilityFolderSettings`,
+  `GoogleObservabilityOrganizationSettings`,
+  `GoogleObservabilityProjectSettings`
+  (`package:terradart_google/observability.dart`)
+- `GoogleComputeNetworkEdgeSecurityService`
+  (`package:terradart_google/compute.dart`)
+
+`package:terradart_google_beta/biglake.dart` and
+`package:terradart_google_beta/observability.dart` are gone. Change the
+import; the compiler finds every use. `GoogleBiglakeHiveTable` also takes
+typed blocks now: `storageDescriptor` is a
+`BiglakeHiveTableStorageDescriptor` (with
+`BiglakeHiveTableStorageDescriptorColumns` entries) and `partitionKeys` a
+`List<BiglakeHiveTablePartitionKeys>`, instead of `TfArg` maps. The synth
+output is the same. The factories no longer pin
+`provider = google-beta`, so the resources move to the `google` provider
+(`GoogleProvider` must be in the Stack). The type and schema are identical
+in both providers, so Terraform switches the provider in state without
+replacing anything; confirm that `terraform plan` shows no replacement
+before you apply. Pass `provider: 'google-beta'` to keep a resource on the
+beta provider.
 
 #### `terradart-migrate` users
 

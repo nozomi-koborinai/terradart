@@ -61,13 +61,19 @@ final class ManagedKafkaClusterGcpConfig {
 final class ManagedKafkaClusterGcpConfigAccessConfig {
   const ManagedKafkaClusterGcpConfigAccessConfig({
     required this.networkConfigs,
+    this.publicClusterConfig,
   });
 
   final List<ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs>
   networkConfigs;
 
+  final ManagedKafkaClusterGcpConfigAccessConfigPublicClusterConfig?
+  publicClusterConfig;
+
   Map<String, Object?> encode() => {
     'network_configs': [for (final e in networkConfigs) e.encode()],
+    if (publicClusterConfig != null)
+      'public_cluster_config': publicClusterConfig!.encode(),
   };
 }
 
@@ -82,6 +88,21 @@ final class ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs {
   final TfArg<String> subnet;
 
   Map<String, Object?> encode() => {'subnet': subnet.toTfJson()};
+}
+
+/// Typed helper for the `gcp_config.access_config.public_cluster_config` block of
+/// `google_managed_kafka_cluster` (derived from provider schema).
+@immutable
+final class ManagedKafkaClusterGcpConfigAccessConfigPublicClusterConfig {
+  const ManagedKafkaClusterGcpConfigAccessConfigPublicClusterConfig({
+    required this.allowedSourceIpRanges,
+  });
+
+  final TfArg<List<Object?>> allowedSourceIpRanges;
+
+  Map<String, Object?> encode() => {
+    'allowed_source_ip_ranges': allowedSourceIpRanges.toTfJson(),
+  };
 }
 
 /// Typed helper for the `rebalance_config` block of
@@ -227,12 +248,23 @@ final class GoogleManagedKafkaCluster extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `bootstrap_address` attribute.
+  TfRef<String> get bootstrapAddress =>
+      TfRef.attribute<String>(this, 'bootstrap_address');
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
   /// Reference to `effective_labels` attribute.
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `public_cluster_details` attribute.
+  TfRef<List<Map<String, Object?>>> get publicClusterDetails =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'public_cluster_details',
+      );
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
