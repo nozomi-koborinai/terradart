@@ -231,5 +231,76 @@ files:
       );
       expect(addMmSourceRows(next, upstreams), next);
     });
+
+    test('adds a data-source row per new data source, in key order', () {
+      final next = addMmDataSourceRows(
+        sources,
+        ['google_zeta', 'google_alpha', 'google_compute_network'],
+      );
+      expect(
+        next,
+        endsWith(
+          '  data_google_alpha:\n'
+          '    upstream: null  # data source; no mmv1 YAML (schema bump)\n'
+          '  data_google_compute_network:\n'
+          '    upstream: null  # data source\n'
+          '  data_google_zeta:\n'
+          '    upstream: null  # data source; no mmv1 YAML (schema bump)\n',
+        ),
+      );
+      expect(addMmDataSourceRows(next, ['google_zeta']), next);
+    });
+  });
+
+  group('data-source overrides', () {
+    const schema = '''
+{"provider_schemas": {"registry.terraform.io/hashicorp/google": {
+  "provider": {"version": 0, "block": {}},
+  "resource_schemas": {},
+  "data_source_schemas": {
+    "google_foo": {"version": 0, "block": {
+      "attributes": {
+        "id": {"type": "string", "optional": true, "computed": true},
+        "name": {"type": "string", "required": true},
+        "project": {"type": "string", "optional": true},
+        "state": {"type": "string", "computed": true}
+      }
+    }}
+  }
+}}}''';
+
+    test('writes a leftover-thin override per data source lacking one', () {
+      final dir = Directory.systemTemp.createTempSync('ds');
+      addTearDown(() => dir.deleteSync(recursive: true));
+      File('${dir.path}/data_google_kept.yaml').writeAsStringSync('kept\n');
+      expect(
+        scaffoldDataSourceOverrides(
+          ['google_foo', 'google_kept'],
+          schema: schema,
+          overridesRoot: dir.path,
+        ),
+        ['google_foo'],
+      );
+      final yaml = File('${dir.path}/data_google_foo.yaml').readAsStringSync();
+      expect(yaml, startsWith('kind: data_source\noutputDir: data\n'));
+      expect(yaml, endsWith('paramOrder:\n  - name\n  - project\n'));
+      expect(
+        File('${dir.path}/data_google_kept.yaml').readAsStringSync(),
+        'kept\n',
+      );
+    });
+
+    test('fails on a type the schema does not have', () {
+      final dir = Directory.systemTemp.createTempSync('ds');
+      addTearDown(() => dir.deleteSync(recursive: true));
+      expect(
+        () => scaffoldDataSourceOverrides(
+          ['google_missing'],
+          schema: schema,
+          overridesRoot: dir.path,
+        ),
+        throwsStateError,
+      );
+    });
   });
 }

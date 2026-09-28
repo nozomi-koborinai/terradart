@@ -3921,6 +3921,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_biglake_hive_catalog_iam_policy`.\n\nAuthoritative IAM policy for a Biglake Hive Catalog.\n\nOverwrites every role binding on the resource. Prefer\n[GoogleBiglakeHiveCatalogIamMember] for additive grants.',
   ),
   CatalogEntry(
+    tfType: 'google_biglake_hive_catalog_iam_policy',
+    className: 'DataGoogleBiglakeHiveCatalogIamPolicy',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_biglake_hive_catalog_iam_policy`.',
+    constructorParams: <String>['localName', 'name', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_hive_catalog_iam_policy`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
+  ),
+  CatalogEntry(
     tfType: 'google_biglake_hive_database',
     className: 'GoogleBiglakeHiveDatabase',
     barrel: 'biglake',
@@ -3998,6 +4010,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_hive_database_iam_policy`.\n\nAuthoritative IAM policy for a Biglake Hive Database.\n\nOverwrites every role binding on the resource. Prefer\n[GoogleBiglakeHiveDatabaseIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_biglake_hive_database_iam_policy',
+    className: 'DataGoogleBiglakeHiveDatabaseIamPolicy',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_biglake_hive_database_iam_policy`.',
+    constructorParams: <String>['localName', 'catalog', 'name', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_hive_database_iam_policy`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
   ),
   CatalogEntry(
     tfType: 'google_biglake_hive_table',
@@ -4093,6 +4117,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_hive_table_iam_policy`.\n\nAuthoritative IAM policy for a Biglake Hive Table.\n\nOverwrites every role binding on the resource. Prefer\n[GoogleBiglakeHiveTableIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_biglake_hive_table_iam_policy',
+    className: 'DataGoogleBiglakeHiveTableIamPolicy',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_biglake_hive_table_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'catalog',
+      'database',
+      'name',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_hive_table_iam_policy`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
   ),
   CatalogEntry(
     tfType: 'google_biglake_iceberg_catalog',
@@ -9177,6 +9219,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_cloudbuild_worker_pool`.\n\nA **private pool** runs Cloud Build jobs on dedicated worker VMs inside\na project-private network, providing isolation from the shared default\npool. Triggers reference a pool via `build.options.pool` (the worker\npool\'s `id` attribute). Worker pools are **regional** — pin the region\nvia [location] and reference the pool from triggers in the same region.\n\n**Network invariant**: pick at most ONE of [networkConfig] (legacy VPC\npeering form, uses `network_config.peered_network` + an optional CIDR)\nor [privateServiceConnect] (newer Private Service Connect form, uses\n`private_service_connect.network_attachment`). Omitting both leaves\nworkers on Google\'s service-producer network (no VPC reach).\n\nExample (minimal regional pool on the service-producer network):\n```dart\nfinal pool = GoogleCloudbuildWorkerPool(\n  localName: \'main_pool\',\n  name: TfArg.literal(\'main-pool\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  workerConfig: const CloudbuildWorkerPoolWorkerConfig(\n    diskSizeGb: TfArg.literal(100),\n    machineType: TfArg.literal(\'e2-medium\'),\n    noExternalIp: TfArg.literal(true),\n  ),\n);\n```\n\nExample (pool peered into an existing VPC):\n```dart\nfinal pool = GoogleCloudbuildWorkerPool(\n  localName: \'vpc_pool\',\n  name: TfArg.literal(\'vpc-pool\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  workerConfig: const CloudbuildWorkerPoolWorkerConfig(\n    machineType: TfArg.literal(\'e2-standard-4\'),\n    noExternalIp: TfArg.literal(true),\n  ),\n  networkConfig: CloudbuildWorkerPoolNetworkConfig(\n    peeredNetwork: TfArg.ref(vpc.selfLink),\n    peeredNetworkIpRange: TfArg.literal(\'/29\'),\n  ),\n);\n```\n\nCross-resource references:\n- Consumed by `google_cloudbuild_trigger` via\n  `build.options.pool = <pool.id>` (regional pools require the trigger\n  to be in the same `location`).',
+  ),
+  CatalogEntry(
+    tfType: 'google_cloudbuild_worker_pool',
+    className: 'DataGoogleCloudbuildWorkerPool',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_cloudbuild_worker_pool`.',
+    constructorParams: <String>['localName', 'location', 'name', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloudbuild_worker_pool`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
   ),
   CatalogEntry(
     tfType: 'google_cloudbuildv2_connection',
@@ -15143,6 +15197,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_service_attachment`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_service_attachments',
+    className: 'DataGoogleComputeServiceAttachments',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_compute_service_attachments`.',
+    constructorParams: <String>['localName', 'filter', 'project', 'region'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_service_attachments`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_shared_vpc_host_project',
     className: 'GoogleComputeSharedVpcHostProject',
     barrel: 'compute',
@@ -18003,6 +18069,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataform_repository_iam_policy`.\n\nAuthoritative IAM policy for a Dataform repository.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleDataformRepositoryIamMember] for\nsingle-principal grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataform_repository_iam_policy',
+    className: 'DataGoogleDataformRepositoryIamPolicy',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_dataform_repository_iam_policy`.',
+    constructorParams: <String>['localName', 'project', 'region', 'repository'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataform_repository_iam_policy`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
   ),
   CatalogEntry(
     tfType: 'google_dataform_team_folder',
@@ -22958,6 +23036,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_eventarc_pipeline_iam_policy`.\n\nAuthoritative IAM policy.\n\nReplaces the entire IAM policy, overwriting grants\nmade outside this stack. Prefer the additive\n`google_eventarc_pipeline_iam_member` for single grants.',
   ),
   CatalogEntry(
+    tfType: 'google_eventarc_pipeline_iam_policy',
+    className: 'DataGoogleEventarcPipelineIamPolicy',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_eventarc_pipeline_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'pipelineId',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_eventarc_pipeline_iam_policy`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
+  ),
+  CatalogEntry(
     tfType: 'google_eventarc_trigger',
     className: 'GoogleEventarcTrigger',
     barrel: 'eventarc',
@@ -26356,6 +26451,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iam_workload_identity_pool_namespace`.\n\nRepresents a namespace for a workload identity pool. Namespaces are used to\nsegment identities within the pool.\n\nWorkload Identity Federation **namespace** — segments identities\ninside a [GoogleIamWorkloadIdentityPool] that uses\n[WorkloadIdentityPoolMode.trustDomain]. Federation-only pools cannot\nhost namespaces.\n\n**Cost:** gcp-cost: no Cloud Billing Catalog SKU for IAM Workload\nIdentity Federation namespaces after list_services / list_skus.\nbilling-behavior: namespace metadata is free identity config;\ncreating one does not issue tokens or attach compute.\n\nExample:\n```dart\nGoogleIamWorkloadIdentityPoolNamespace(\n  localName: \'apps\',\n  workloadIdentityPoolId: TfArg.literal(\'terradart-trust\'),\n  workloadIdentityPoolNamespaceId: TfArg.literal(\'terradart-apps\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_iam_workload_identity_pool_openid_config',
+    className: 'DataGoogleIamWorkloadIdentityPoolOpenidConfig',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary:
+        'Factory wrapper for `google_iam_workload_identity_pool_openid_config`.',
+    constructorParams: <String>['localName', 'resourceName'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iam_workload_identity_pool_openid_config`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
+  ),
+  CatalogEntry(
     tfType: 'google_iam_workload_identity_pool_provider',
     className: 'GoogleIamWorkloadIdentityPoolProvider',
     barrel: 'iam',
@@ -29505,6 +29613,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_memcache_instance`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
+  ),
+  CatalogEntry(
+    tfType: 'google_memorystore_acl_policy',
+    className: 'DataGoogleMemorystoreAclPolicy',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_memorystore_acl_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'aclPolicyId',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_memorystore_acl_policy`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
   ),
   CatalogEntry(
     tfType: 'google_memorystore_instance',
@@ -32751,6 +32876,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_observability_folder_settings`.\n\nManages Cloud Observability settings for a folder.',
   ),
   CatalogEntry(
+    tfType: 'google_observability_folder_settings',
+    className: 'DataGoogleObservabilityFolderSettings',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_observability_folder_settings`.',
+    constructorParams: <String>['localName', 'folder', 'location'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_observability_folder_settings`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
+  ),
+  CatalogEntry(
     tfType: 'google_observability_link',
     className: 'GoogleObservabilityLink',
     barrel: 'observability',
@@ -32792,6 +32929,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_observability_organization_settings`.\n\nManages Cloud Observability settings for an organization.',
   ),
   CatalogEntry(
+    tfType: 'google_observability_organization_settings',
+    className: 'DataGoogleObservabilityOrganizationSettings',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary:
+        'Factory wrapper for `google_observability_organization_settings`.',
+    constructorParams: <String>['localName', 'location', 'organization'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_observability_organization_settings`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
+  ),
+  CatalogEntry(
     tfType: 'google_observability_project_settings',
     className: 'GoogleObservabilityProjectSettings',
     barrel: 'observability',
@@ -32808,6 +32958,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_observability_project_settings`.\n\nManages Cloud Observability settings for a project.',
+  ),
+  CatalogEntry(
+    tfType: 'google_observability_project_settings',
+    className: 'DataGoogleObservabilityProjectSettings',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_observability_project_settings`.',
+    constructorParams: <String>['localName', 'location', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_observability_project_settings`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
   ),
   CatalogEntry(
     tfType: 'google_observability_trace_scope',
@@ -35294,6 +35456,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_redis_cluster`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
+  ),
+  CatalogEntry(
+    tfType: 'google_redis_cluster_acl_policy',
+    className: 'DataGoogleRedisClusterAclPolicy',
+    barrel: 'data',
+    kind: CatalogKind.dataSource,
+    summary: 'Factory wrapper for `google_redis_cluster_acl_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'aclPolicyId',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_redis_cluster_acl_policy`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
   ),
   CatalogEntry(
     tfType: 'google_redis_cluster_user_created_connections',
