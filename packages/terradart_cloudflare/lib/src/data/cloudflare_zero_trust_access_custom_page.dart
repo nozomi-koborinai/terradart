@@ -38,6 +38,10 @@ final class DataCloudflareZeroTrustAccessCustomPage extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `contract_version` attribute.
+  TfRef<num> get contractVersion =>
+      TfRef.attribute<num>(this, 'contract_version');
+
   /// Reference to `custom_html` attribute.
   TfRef<String> get customHtml => TfRef.attribute<String>(this, 'custom_html');
 

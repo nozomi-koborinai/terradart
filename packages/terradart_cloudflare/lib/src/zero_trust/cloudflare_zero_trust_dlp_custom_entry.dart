@@ -72,6 +72,9 @@ final class CloudflareZeroTrustDlpCustomEntry extends Resource {
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 
+  /// Reference to `deprecated` attribute.
+  TfRef<bool> get deprecated => TfRef.attribute<bool>(this, 'deprecated');
+
   /// Reference to `secret` attribute.
   TfRef<bool> get secret => TfRef.attribute<bool>(this, 'secret');
 

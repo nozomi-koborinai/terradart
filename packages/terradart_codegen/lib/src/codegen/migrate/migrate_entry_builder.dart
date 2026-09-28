@@ -5,6 +5,7 @@ import '../constructor_params.dart';
 import '../dart_type_writer.dart';
 import '../naming.dart';
 import '../nested_types/nested_type_collector.dart';
+import '../provider_enums.dart';
 import '../universal_invariants/enum_extractor.dart';
 import '../wrapper_overrides/wrapper_override.dart';
 import 'helper_class_extractor.dart';
@@ -43,6 +44,7 @@ final class MigrateEntryInput {
     required this.kind,
     required this.emittedSource,
     this.rawSchemaBlock,
+    this.enumValues = descriptionEnumValues,
   });
 
   final String tfType;
@@ -58,6 +60,10 @@ final class MigrateEntryInput {
   /// Raw provider-schema `block` for the type; required when
   /// `override.deriveNestedTypes` is set.
   final Map<String, dynamic>? rawSchemaBlock;
+
+  /// The nested-type collector's enum resolver — the one the wrapper
+  /// emitter used for this type.
+  final EnumValuesResolver enumValues;
 }
 
 /// Builds every factory's recipe against one package-wide symbol table.
@@ -101,6 +107,7 @@ List<MigrateEntryBuild> buildMigrateEntries(
         kind: inputs[i].kind,
         emittedSource: inputs[i].emittedSource,
         rawSchemaBlock: inputs[i].rawSchemaBlock,
+        enumValues: inputs[i].enumValues,
         context: ctx,
         fileHelpers: perFileHelpers[i],
         fileEnums: perFileEnums[i],
@@ -120,6 +127,7 @@ MigrateEntryBuild buildMigrateEntry({
   required String kind,
   required String emittedSource,
   Map<String, dynamic>? rawSchemaBlock,
+  EnumValuesResolver enumValues = descriptionEnumValues,
   ShapeContext? context,
   HelperExtraction? fileHelpers,
   List<EmittedEnum>? fileEnums,
@@ -160,6 +168,7 @@ MigrateEntryBuild buildMigrateEntry({
       customSlotKeys: customSlots.keys.toSet(),
       excludedPaths: (override.nestedTypeExcludes ?? const []).toSet(),
       shareIdenticalShapes: override.dedupeNestedTypes,
+      enumValues: enumValues,
     );
     for (final s in collected) {
       specs[s.tfName] = s;
@@ -262,7 +271,10 @@ MigrateSlotData _attributeSlot(
 ) {
   final payload = dartTypeOverrides[attr.name] ?? writeDartType(attr.type);
   final shape = resolveEnumPayload(
-    classifyDartType('TfArg<$payload>', ctx),
+    classifyDartType(
+      isEnumListType(payload) ? payload : 'TfArg<$payload>',
+      ctx,
+    ),
     ctx,
   );
   return _fromShape(

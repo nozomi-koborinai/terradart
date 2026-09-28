@@ -58,6 +58,9 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpPortal extends Data {
   TfRef<bool> get allowCodeMode =>
       TfRef.attribute<bool>(this, 'allow_code_mode');
 
+  /// Reference to `code_mode` attribute.
+  TfRef<String> get codeMode => TfRef.attribute<String>(this, 'code_mode');
+
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 

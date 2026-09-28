@@ -124,6 +124,10 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `authentication_status` attribute.
+  TfRef<String> get authenticationStatus =>
+      TfRef.attribute<String>(this, 'authentication_status');
+
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 

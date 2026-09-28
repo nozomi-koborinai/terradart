@@ -338,6 +338,124 @@ resource "google_pubsub_topic_iam_member" "viewer" {
       );
     });
 
+    group('an enum value that differs from a member only in case', () {
+      const module = {
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_schema': {
+            's': {'name': 's', 'type': 'avro'},
+          },
+        },
+      };
+      MigrationResult migrate({required bool caseInsensitive}) => migrateModule(
+        TfModule.fromTfJson(jsonEncode(module), fileName: 'main.tf.json'),
+        name: 'demo',
+        format: false,
+        manifests: [
+          MigrateManifest(
+            package: googleMigrateManifest.package,
+            entries: googleMigrateManifest.entries,
+            helpers: googleMigrateManifest.helpers,
+            enums: googleMigrateManifest.enums,
+            caseInsensitiveEnums: caseInsensitive,
+          ),
+        ],
+      );
+
+      test('stays in Terraform for a case-sensitive provider', () {
+        expect(
+          reasonOf(migrate(caseInsensitive: false), 'google_pubsub_schema.s'),
+          contains('"avro" is not a member of PubsubSchemaType'),
+        );
+      });
+
+      test('names the canonical member, with a warning, otherwise', () {
+        final r = migrate(caseInsensitive: true);
+        expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));
+        expect(
+          r.files['lib/demo_stack.dart'],
+          contains('PubsubSchemaType.avro'),
+        );
+        expect(
+          r.report.warnings.single,
+          contains(
+            '"avro" becomes PubsubSchemaType.avro, which synthesizes '
+            'as "AVRO"',
+          ),
+        );
+      });
+    });
+
+    group('a list of enum values', () {
+      // `selected_regions` is a bare `List<MonitoringUptimeCheckRegion>`:
+      // one member per element, and no single reference fits it.
+      MigrationResult migrate(Object regions) => _migrateJson({
+        'terraform': _google,
+        'resource': {
+          'google_monitoring_uptime_check_config': {
+            'u': {
+              'display_name': 'u',
+              'timeout': '10s',
+              'monitored_resource': [
+                {
+                  'type': 'uptime_url',
+                  'labels': {'host': 'example.com'},
+                },
+              ],
+              'selected_regions': regions,
+            },
+          },
+        },
+      });
+
+      test('names one member per element', () {
+        final r = migrate(['USA', 'EUROPE']);
+        expect(
+          r.report.migratedAddresses,
+          contains('google_monitoring_uptime_check_config.u'),
+        );
+        expect(
+          r.files['lib/demo_stack.dart'],
+          contains(
+            'selectedRegions: [MonitoringUptimeCheckRegion.usa, '
+            'MonitoringUptimeCheckRegion.europe]',
+          ),
+        );
+      });
+
+      test('a reference to a whole list stays in Terraform', () {
+        final r = _migrateJson({
+          'terraform': _google,
+          'variable': {
+            'regions': {'type': 'list(string)'},
+          },
+          'resource': {
+            'google_monitoring_uptime_check_config': {
+              'u': {
+                'display_name': 'u',
+                'timeout': '10s',
+                'monitored_resource': [
+                  {
+                    'type': 'uptime_url',
+                    'labels': {'host': 'example.com'},
+                  },
+                ],
+                'selected_regions': r'${var.regions}',
+              },
+            },
+          },
+        });
+        expect(
+          reasonOf(r, 'google_monitoring_uptime_check_config.u'),
+          contains(
+            'argument "selected_regions" takes a list of '
+            'MonitoringUptimeCheckRegion values, not a reference to a '
+            'whole list',
+          ),
+        );
+      });
+    });
+
     test('an expression on a non-string argument is TfArg.expression', () {
       final r = _migrateJson(
         module({

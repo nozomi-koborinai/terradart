@@ -33,6 +33,11 @@
 #   migrateManifest: the migration manifest wrap emits for the lane
 #                    (wrap --migrate-manifest), generated into
 #                    terradart_migrate and verified by the same --check.
+#   providerEnums:   (optional, default false) wrap --provider-enums: type
+#                    enum-valued inputs from <schemaDir>/hints/*.yaml
+#                    (tool/extract_provider_hints.dart) and the
+#                    `Available values:` description dialect. Never set it
+#                    on a google lane — the GA schema carries that dialect.
 #   bump:            (optional) the weekly schema bump's coordinates for
 #                    the lane; a lane without it is never bumped by the
 #                    workflow (google-beta rides the google bump at the

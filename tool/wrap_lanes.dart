@@ -38,6 +38,7 @@ class WrapLane {
     required this.barrelsManifest,
     required this.resourceProvider,
     required this.migrateManifest,
+    this.providerEnums = false,
   });
 
   final String name;
@@ -48,6 +49,10 @@ class WrapLane {
   final String barrelsManifest;
   final String? resourceProvider;
   final String migrateManifest;
+
+  /// `wrap --provider-enums`: type enum-valued inputs from `<schemaDir>/hints`
+  /// and the `Available values:` description dialect.
+  final bool providerEnums;
 
   /// Paths that must exist before any gate can say something meaningful.
   /// The migration manifest is absent until the lane's first wrap, so it is
@@ -89,6 +94,7 @@ enum WrapGate {
             '--resource-provider',
             provider,
           ],
+          if (lane.providerEnums) '--provider-enums',
           '--migrate-manifest',
           rel(lane.migrateManifest),
           if (this == WrapGate.wrap) '--check',
@@ -133,6 +139,10 @@ WrapLane _parseLane(String name, Object? entry) {
   if (resourceProvider != null && resourceProvider is! String) {
     throw FormatException('lane $name: resourceProvider must be a string');
   }
+  final providerEnums = entry['providerEnums'] ?? false;
+  if (providerEnums is! bool) {
+    throw FormatException('lane $name: providerEnums must be a bool');
+  }
   return WrapLane(
     name: name,
     source: field('source'),
@@ -142,6 +152,7 @@ WrapLane _parseLane(String name, Object? entry) {
     barrelsManifest: field('barrelsManifest'),
     resourceProvider: resourceProvider as String?,
     migrateManifest: field('migrateManifest'),
+    providerEnums: providerEnums,
   );
 }
 

@@ -101,5 +101,22 @@ enum B {
       final enums = const EnumExtractor().extract(src);
       expect(enums.map((e) => e.name).toSet(), equals({'A', 'B'}));
     });
+
+    test('unescapes escaped member values', () {
+      const src = r'''
+enum A implements TerraformEnum {
+  thresholdsKey('thresholds.\$key'),
+  quote('it\'s');
+  const A(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+''';
+      final enums = const EnumExtractor.lenient().extract(src);
+      expect(enums.single.members, {
+        'thresholdsKey': r'thresholds.$key',
+        'quote': "it's",
+      });
+    });
   });
 }

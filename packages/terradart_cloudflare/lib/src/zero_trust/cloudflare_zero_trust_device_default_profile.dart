@@ -160,6 +160,7 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
     TfArg<String>? supportUrl,
     TfArg<bool>? switchLocked,
     TfArg<String>? tunnelProtocol,
+    TfArg<bool>? uninstallProtection,
     List<ZeroTrustDeviceDefaultProfileDnsSearchSuffixes>? dnsSearchSuffixes,
     List<ZeroTrustDeviceDefaultProfileExclude>? exclude,
     ZeroTrustDeviceDefaultProfileGlobalAcceleration? globalAcceleration,
@@ -192,6 +193,8 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
            if (supportUrl != null) 'support_url': supportUrl,
            if (switchLocked != null) 'switch_locked': switchLocked,
            if (tunnelProtocol != null) 'tunnel_protocol': tunnelProtocol,
+           if (uninstallProtection != null)
+             'uninstall_protection': uninstallProtection,
            if (dnsSearchSuffixes != null)
              'dns_search_suffixes': TfArg.literal([
                for (final e in dnsSearchSuffixes) e.encode(),
@@ -228,4 +231,8 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
 
   /// Reference to `policy_id` attribute.
   TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
+
+  /// Reference to `profile_type` attribute.
+  TfRef<String> get profileType =>
+      TfRef.attribute<String>(this, 'profile_type');
 }

@@ -73,6 +73,7 @@ final class CloudflareZeroTrustAccessInfrastructureTarget extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> hostname,
+    TfArg<Map<String, String>>? tags,
     required ZeroTrustAccessInfrastructureTargetIp ip,
     super.lifecycle,
     super.dependsOn,
@@ -83,6 +84,7 @@ final class CloudflareZeroTrustAccessInfrastructureTarget extends Resource {
          argMap: {
            'account_id': accountId,
            'hostname': hostname,
+           if (tags != null) 'tags': tags,
            'ip': TfArg.literal(ip.encode()),
          },
        );

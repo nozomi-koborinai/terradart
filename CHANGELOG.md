@@ -55,6 +55,11 @@ Per-package changelogs live alongside each package and are the system of record 
   (`generate_data_source_leftover_example.dart`,
   `generate_aws_leftover_example.dart`) cover only the factories the
   catalog lists.
+- **`terradart_cloudflare` follows `cloudflare/cloudflare` 5.26.0**
+  (**breaking**) — the pin moves from `5.23.0`, `DataCloudflareRateLimits`
+  is removed with the upstream data source, the factories follow the
+  provider's 5.24.0 schema changes, and the 14 resources and 22 data sources
+  added since get factories. See `MIGRATING.md`.
 - **Docs** — the agent skill and the *Migrating from HCL* guide describe one
   loop: `terradart-migrate --report`, then a migration, then porting the
   sidecar leftovers into the Stack, synth, and `terraform plan` with *No
