@@ -36,6 +36,8 @@ export 'src/magic/cloudflare_magic_transit_site_lan.dart'
         MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions;
 export 'src/magic/cloudflare_magic_transit_site_wan.dart'
     show CloudflareMagicTransitSiteWan, MagicTransitSiteWanStaticAddressing;
+export 'src/magic/cloudflare_magic_wan_bgp_filter_profile.dart'
+    show CloudflareMagicWanBgpFilterProfile;
 export 'src/magic/cloudflare_magic_wan_gre_tunnel.dart'
     show
         CloudflareMagicWanGreTunnel,

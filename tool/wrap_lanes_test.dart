@@ -132,6 +132,41 @@ providers:
         ),
       );
     });
+
+    const lane = '''
+providers:
+  x:
+    source: example/x
+    schemaDir: fixtures/source_x
+    outputPackage: packages/terradart_x
+    overridesRoot: overrides/x/yaml
+    barrelsManifest: barrels_x.yaml
+    migrateManifest: manifest/x.g.dart
+''';
+
+    test('providerEnums: true adds --provider-enums to wrap and regen', () {
+      final x = parseWrapLanes('$lane    providerEnums: true\n').single;
+      expect(WrapGate.wrap.args(x), contains('--provider-enums'));
+      expect(WrapGate.regen.args(x), contains('--provider-enums'));
+      expect(WrapGate.lint.args(x), isNot(contains('--provider-enums')));
+    });
+
+    test('providerEnums defaults to off', () {
+      expect(parseWrapLanes(lane).single.providerEnums, isFalse);
+    });
+
+    test('rejects a non-bool providerEnums', () {
+      expect(
+        () => parseWrapLanes('$lane    providerEnums: yes please\n'),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            'lane x: providerEnums must be a bool',
+          ),
+        ),
+      );
+    });
   });
 
   test('every committed lane resolves the shared lint ledgers under tool/', () {

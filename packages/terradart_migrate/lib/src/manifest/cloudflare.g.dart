@@ -211,6 +211,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'standalone',
+          dartName: 'standalone',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'type',
           dartName: 'type',
           kind: MigrateSlotKind.scalar,
@@ -1295,6 +1302,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
+          tfName: 'byok_only',
+          dartName: 'byokOnly',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'cache_invalidate_on_update',
           dartName: 'cacheInvalidateOnUpdate',
           kind: MigrateSlotKind.scalar,
@@ -1321,6 +1335,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'log_classification',
+          dartName: 'logClassification',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
         MigrateSlot(
           tfName: 'log_management',
@@ -1504,6 +1525,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateGetter(
+          tfName: 'byok_only',
+          dartName: 'byokOnly',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
           tfName: 'cache_invalidate_on_update',
           dartName: 'cacheInvalidateOnUpdate',
           dartType: 'bool',
@@ -1526,6 +1552,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'is_default',
           dartName: 'isDefault',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'log_classification',
+          dartName: 'logClassification',
           dartType: 'bool',
         ),
         MigrateGetter(
@@ -2029,11 +2060,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
-        MigrateGetter(
-          tfName: 'vectorize_name',
-          dartName: 'vectorizeName',
-          dartType: 'String',
-        ),
       ],
     ),
     MigrateEntry(
@@ -2271,12 +2297,25 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           required: true,
           dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: 'public_endpoint_params',
+          dartName: 'publicEndpointParams',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'AiSearchNamespacePublicEndpointParams',
+        ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(
           tfName: 'created_at',
           dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'public_endpoint_id',
+          dartName: 'publicEndpointId',
           dartType: 'String',
         ),
       ],
@@ -2312,6 +2351,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'description',
           dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'public_endpoint_id',
+          dartName: 'publicEndpointId',
           dartType: 'String',
         ),
       ],
@@ -2505,6 +2549,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'normalize',
+          dartName: 'normalize',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
           kind: MigrateSlotKind.scalar,
@@ -2675,6 +2726,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'feature',
+          dartName: 'feature',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
           tfName: 'host',
           dartName: 'host',
           kind: MigrateSlotKind.scalar,
@@ -2687,6 +2745,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'with_schemas',
+          dartName: 'withSchemas',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -2921,6 +2986,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'omit_source',
+          dartName: 'omitSource',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
         MigrateSlot(
           tfName: 'schema_id',
@@ -3894,8 +3966,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'ai_bots_migration_opt_out',
+          dartName: 'aiBotsMigrationOptOut',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'ai_bots_protection',
           dartName: 'aiBotsProtection',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ai_training',
+          dartName: 'aiTraining',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ai_user',
+          dartName: 'aiUser',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'aisearch',
+          dartName: 'aisearch',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -3910,6 +4010,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bm_cookie_enabled',
           dartName: 'bmCookieEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'bot_preference_sync_enabled',
+          dartName: 'botPreferenceSyncEnabled',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
@@ -3952,6 +4059,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'is_robots_txt_managed',
           dartName: 'isRobotsTxtManaged',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'jsd_api_results_enabled',
+          dartName: 'jsdApiResultsEnabled',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
@@ -4032,8 +4146,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
+          tfName: 'ai_bots_migration_opt_out',
+          dartName: 'aiBotsMigrationOptOut',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
           tfName: 'ai_bots_protection',
           dartName: 'aiBotsProtection',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ai_training',
+          dartName: 'aiTraining',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ai_user',
+          dartName: 'aiUser',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'aisearch',
+          dartName: 'aisearch',
           dartType: 'String',
         ),
         MigrateGetter(
@@ -4044,6 +4178,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'bm_cookie_enabled',
           dartName: 'bmCookieEnabled',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'bot_preference_sync_enabled',
+          dartName: 'botPreferenceSyncEnabled',
           dartType: 'bool',
         ),
         MigrateGetter(
@@ -4074,6 +4213,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'is_robots_txt_managed',
           dartName: 'isRobotsTxtManaged',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'jsd_api_results_enabled',
+          dartName: 'jsdApiResultsEnabled',
           dartType: 'bool',
         ),
         MigrateGetter(
@@ -5070,12 +5214,28 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'zone_id',
           dartName: 'zoneId',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'cloud_connector_rules_provider',
+          dartName: 'cloudConnectorRulesProvider',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'expression',
+          dartName: 'expression',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5986,6 +6146,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'payload',
+          dartName: 'payload',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
           kind: MigrateSlotKind.scalar,
@@ -6028,6 +6195,62 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_ct_alerting',
+      className: 'CloudflareCtAlerting',
+      barrel: 'ct',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'emails',
+          dartName: 'emails',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_ct_alerting',
+      className: 'DataCloudflareCtAlerting',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'emails',
+          dartName: 'emails',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_custom_csr',
@@ -7038,7 +7261,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'private_key',
           dartName: 'privateKey',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -7234,6 +7457,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'fields',
+          dartName: 'fields',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
         ),
         MigrateSlot(
           tfName: 'jurisdiction',
@@ -8787,6 +9017,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'subdomain',
+          dartName: 'subdomain',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
           kind: MigrateSlotKind.scalar,
@@ -8814,7 +9051,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
-        MigrateGetter(tfName: 'success', dartName: 'success', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'support_subaddress',
+          dartName: 'supportSubaddress',
+          dartType: 'bool',
+        ),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
       ],
     ),
@@ -8835,13 +9076,12 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'zone_id',
           dartName: 'zoneId',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
-        MigrateGetter(tfName: 'success', dartName: 'success', dartType: 'bool'),
       ],
     ),
     MigrateEntry(
@@ -8996,6 +9236,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'support_subaddress',
+          dartName: 'supportSubaddress',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'zone_id',
           dartName: 'zoneId',
           kind: MigrateSlotKind.scalar,
@@ -9061,6 +9308,305 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
         MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_email_security_allow_policies',
+      className: 'DataCloudflareEmailSecurityAllowPolicies',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'is_acceptable_sender',
+          dartName: 'isAcceptableSender',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'is_exempt_recipient',
+          dartName: 'isExemptRecipient',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'is_trusted_sender',
+          dartName: 'isTrustedSender',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'max_items',
+          dartName: 'maxItems',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'order',
+          dartName: 'order',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pattern',
+          dartName: 'pattern',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pattern_type',
+          dartName: 'patternType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'verify_sender',
+          dartName: 'verifySender',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+      getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_email_security_allow_policy',
+      className: 'CloudflareEmailSecurityAllowPolicy',
+      barrel: 'email',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'comments',
+          dartName: 'comments',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'is_acceptable_sender',
+          dartName: 'isAcceptableSender',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'is_exempt_recipient',
+          dartName: 'isExemptRecipient',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'is_recipient',
+          dartName: 'isRecipient',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'is_regex',
+          dartName: 'isRegex',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'is_sender',
+          dartName: 'isSender',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'is_spoof',
+          dartName: 'isSpoof',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'is_trusted_sender',
+          dartName: 'isTrustedSender',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'pattern',
+          dartName: 'pattern',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pattern_type',
+          dartName: 'patternType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'verify_sender',
+          dartName: 'verifySender',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'created_at',
+          dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'last_modified',
+          dartName: 'lastModified',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'modified_at',
+          dartName: 'modifiedAt',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_email_security_allow_policy',
+      className: 'DataCloudflareEmailSecurityAllowPolicy',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'policy_id',
+          dartName: 'policyId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataEmailSecurityAllowPolicyFilter',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'comments',
+          dartName: 'comments',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'created_at',
+          dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'is_acceptable_sender',
+          dartName: 'isAcceptableSender',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_exempt_recipient',
+          dartName: 'isExemptRecipient',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_recipient',
+          dartName: 'isRecipient',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_regex',
+          dartName: 'isRegex',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_sender',
+          dartName: 'isSender',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_spoof',
+          dartName: 'isSpoof',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'is_trusted_sender',
+          dartName: 'isTrustedSender',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'last_modified',
+          dartName: 'lastModified',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'modified_at',
+          dartName: 'modifiedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pattern',
+          dartName: 'pattern',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'pattern_type',
+          dartName: 'patternType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'verify_sender',
+          dartName: 'verifySender',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -9134,7 +9680,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'account_id',
           dartName: 'accountId',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -9202,7 +9748,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'account_id',
           dartName: 'accountId',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -9243,6 +9789,332 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'search',
           dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_email_security_domain',
+      className: 'CloudflareEmailSecurityDomain',
+      barrel: 'email',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'allowed_delivery_modes',
+          dartName: 'allowedDeliveryModes',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'domain',
+          dartName: 'domain',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'drop_dispositions',
+          dartName: 'dropDispositions',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'folder',
+          dartName: 'folder',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'integration_id',
+          dartName: 'integrationId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ip_restrictions',
+          dartName: 'ipRestrictions',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'lookback_hops',
+          dartName: 'lookbackHops',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'regions',
+          dartName: 'regions',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'require_tls_inbound',
+          dartName: 'requireTlsInbound',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'require_tls_outbound',
+          dartName: 'requireTlsOutbound',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'transport',
+          dartName: 'transport',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'created_at',
+          dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dmarc_status',
+          dartName: 'dmarcStatus',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'inbox_provider',
+          dartName: 'inboxProvider',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'last_modified',
+          dartName: 'lastModified',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'modified_at',
+          dartName: 'modifiedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'o365_tenant_id',
+          dartName: 'o365TenantId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'spf_status',
+          dartName: 'spfStatus',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_email_security_domain',
+      className: 'DataCloudflareEmailSecurityDomain',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'domain_id',
+          dartName: 'domainId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataEmailSecurityDomainFilter',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'allowed_delivery_modes',
+          dartName: 'allowedDeliveryModes',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'created_at',
+          dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dmarc_status',
+          dartName: 'dmarcStatus',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'domain', dartName: 'domain', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'drop_dispositions',
+          dartName: 'dropDispositions',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'folder', dartName: 'folder', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'inbox_provider',
+          dartName: 'inboxProvider',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'integration_id',
+          dartName: 'integrationId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ip_restrictions',
+          dartName: 'ipRestrictions',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'last_modified',
+          dartName: 'lastModified',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'lookback_hops',
+          dartName: 'lookbackHops',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'modified_at',
+          dartName: 'modifiedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'o365_tenant_id',
+          dartName: 'o365TenantId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'regions',
+          dartName: 'regions',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'require_tls_inbound',
+          dartName: 'requireTlsInbound',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'require_tls_outbound',
+          dartName: 'requireTlsOutbound',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'spf_status',
+          dartName: 'spfStatus',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'transport',
+          dartName: 'transport',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_email_security_domains',
+      className: 'DataCloudflareEmailSecurityDomains',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'active_delivery_mode',
+          dartName: 'activeDeliveryMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'allowed_delivery_mode',
+          dartName: 'allowedDeliveryMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'domain',
+          dartName: 'domain',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'integration_id',
+          dartName: 'integrationId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_items',
+          dartName: 'maxItems',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'order',
+          dartName: 'order',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'status',
+          dartName: 'status',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -9672,6 +10544,206 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'search',
           kind: MigrateSlotKind.scalar,
           required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_email_sending_subdomain',
+      className: 'CloudflareEmailSendingSubdomain',
+      barrel: 'email',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'drop_suppressed_recipients',
+          dartName: 'dropSuppressedRecipients',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'preview_enabled',
+          dartName: 'previewEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'created',
+          dartName: 'created',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dkim_selector',
+          dartName: 'dkimSelector',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'modified',
+          dartName: 'modified',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'return_path_domain',
+          dartName: 'returnPathDomain',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_email_sending_subdomain',
+      className: 'DataCloudflareEmailSendingSubdomain',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'subdomain_id',
+          dartName: 'subdomainId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'created',
+          dartName: 'created',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dkim_selector',
+          dartName: 'dkimSelector',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'drop_suppressed_recipients',
+          dartName: 'dropSuppressedRecipients',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'modified',
+          dartName: 'modified',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'preview_enabled',
+          dartName: 'previewEnabled',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'return_path_domain',
+          dartName: 'returnPathDomain',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'tag', dartName: 'tag', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_email_sending_subdomains',
+      className: 'DataCloudflareEmailSendingSubdomains',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_items',
+          dartName: 'maxItems',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_field_extractor',
+      className: 'CloudflareFieldExtractor',
+      barrel: 'field',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'extractor',
+          dartName: 'extractor',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'rules',
+          dartName: 'rules',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          helper: 'FieldExtractorRules',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_field_extractor',
+      className: 'DataCloudflareFieldExtractor',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'extractor',
+          dartName: 'extractor',
+          kind: MigrateSlotKind.scalar,
+          required: true,
           dartType: 'String',
         ),
       ],
@@ -10117,13 +11189,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
-          tfName: 'flag_key',
-          dartName: 'flagKey',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
           tfName: 'key',
           dartName: 'key',
           kind: MigrateSlotKind.scalar,
@@ -10155,6 +11220,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
           tfName: 'updated_at',
           dartName: 'updatedAt',
@@ -10191,11 +11257,20 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'flag_key',
           dartName: 'flagKey',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataFlagshipFlagFilter',
         ),
       ],
       getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
           tfName: 'default_variation',
           dartName: 'defaultVariation',
@@ -10643,6 +11718,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       kind: CatalogKind.dataSource,
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'hostname',
+          dartName: 'hostname',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'setting_id',
           dartName: 'settingId',
           kind: MigrateSlotKind.scalar,
@@ -10658,15 +11740,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
-        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
           tfName: 'created_at',
           dartName: 'createdAt',
-          dartType: 'String',
-        ),
-        MigrateGetter(
-          tfName: 'hostname',
-          dartName: 'hostname',
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
@@ -10679,6 +11755,36 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
     ),
     MigrateEntry(
+      tfType: 'cloudflare_hostname_tls_settings',
+      className: 'DataCloudflareHostnameTlsSettings',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_items',
+          dartName: 'maxItems',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'setting_id',
+          dartName: 'settingId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
       tfType: 'cloudflare_hyperdrive_config',
       className: 'CloudflareHyperdriveConfig',
       barrel: 'hyperdrive',
@@ -10689,6 +11795,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'accountId',
           kind: MigrateSlotKind.scalar,
           required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'integration',
+          dartName: 'integration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -10725,7 +11838,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'origin',
           dartName: 'origin',
           kind: MigrateSlotKind.helper,
-          required: true,
+          required: false,
           wrapped: false,
           helper: 'HyperdriveConfigOrigin',
         ),
@@ -12342,6 +13455,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
+          tfName: 'health_sources',
+          dartName: 'healthSources',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
           tfName: 'latitude',
           dartName: 'latitude',
           kind: MigrateSlotKind.scalar,
@@ -12502,6 +13622,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'health_sources',
+          dartName: 'healthSources',
+          dartType: 'List<String>',
+        ),
         MigrateGetter(
           tfName: 'latitude',
           dartName: 'latitude',
@@ -12669,7 +13794,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(
+          tfName: 'fields',
+          dartName: 'fields',
+          dartType: 'Map<String, String>',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'cloudflare_logpush_dataset_job',
@@ -12718,6 +13849,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'error_message',
           dartName: 'errorMessage',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'filter_attack_traffic',
+          dartName: 'filterAttackTraffic',
+          dartType: 'bool',
         ),
         MigrateGetter(
           tfName: 'frequency',
@@ -12796,6 +13932,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter_attack_traffic',
+          dartName: 'filterAttackTraffic',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
         MigrateSlot(
           tfName: 'frequency',
@@ -12937,6 +14080,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'error_message',
           dartName: 'errorMessage',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'filter_attack_traffic',
+          dartName: 'filterAttackTraffic',
+          dartType: 'bool',
         ),
         MigrateGetter(
           tfName: 'frequency',
@@ -13502,7 +14650,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'account_id',
           dartName: 'accountId',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -13586,7 +14734,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'account_id',
           dartName: 'accountId',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -14223,6 +15371,137 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'connectorid',
           kind: MigrateSlotKind.scalar,
           required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_items',
+          dartName: 'maxItems',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+      getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_magic_wan_bgp_filter_profile',
+      className: 'CloudflareMagicWanBgpFilterProfile',
+      barrel: 'magic',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'description',
+          dartName: 'description',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'match_action',
+          dartName: 'matchAction',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'targets',
+          dartName: 'targets',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<String>',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'created_on',
+          dartName: 'createdOn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'modified_on',
+          dartName: 'modifiedOn',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_magic_wan_bgp_filter_profile',
+      className: 'DataCloudflareMagicWanBgpFilterProfile',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'profile_id',
+          dartName: 'profileId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'created_on',
+          dartName: 'createdOn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'match_action',
+          dartName: 'matchAction',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'modified_on',
+          dartName: 'modifiedOn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'targets',
+          dartName: 'targets',
+          dartType: 'List<String>',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_magic_wan_bgp_filter_profiles',
+      className: 'DataCloudflareMagicWanBgpFilterProfiles',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -14997,6 +16276,70 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[],
     ),
     MigrateEntry(
+      tfType: 'cloudflare_nel_setting',
+      className: 'CloudflareNelSetting',
+      barrel: 'nel',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'NelSettingValue',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'editable',
+          dartName: 'editable',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'modified_on',
+          dartName: 'modifiedOn',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_nel_setting',
+      className: 'DataCloudflareNelSetting',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'editable',
+          dartName: 'editable',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'modified_on',
+          dartName: 'modifiedOn',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'cloudflare_notification_policies',
       className: 'DataCloudflareNotificationPolicies',
       barrel: 'data',
@@ -15330,6 +16673,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'optional_scopes',
+          dartName: 'optionalScopes',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
           tfName: 'policy_uri',
           dartName: 'policyUri',
           kind: MigrateSlotKind.scalar,
@@ -15480,6 +16830,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'logo_uri',
           dartName: 'logoUri',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'optional_scopes',
+          dartName: 'optionalScopes',
+          dartType: 'List<String>',
         ),
         MigrateGetter(
           tfName: 'policy_uri',
@@ -17733,6 +19088,63 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
     ),
     MigrateEntry(
+      tfType: 'cloudflare_precursor',
+      className: 'CloudflarePrecursor',
+      barrel: 'precursor',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_mode',
+          dartName: 'defaultMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enforcement_rules',
+          dartName: 'enforcementRules',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'PrecursorEnforcementRules',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_precursor',
+      className: 'DataCloudflarePrecursor',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'default_mode',
+          dartName: 'defaultMode',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'cloudflare_queue',
       className: 'CloudflareQueue',
       barrel: 'queues',
@@ -17743,6 +19155,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'accountId',
           kind: MigrateSlotKind.scalar,
           required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdiction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -17821,6 +19240,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'created_on',
           dartName: 'createdOn',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdiction',
           dartType: 'String',
         ),
         MigrateGetter(
@@ -18703,6 +20127,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateSlot(
+          tfName: 'rate_limit_id',
+          dartName: 'rateLimitId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'threshold',
           dartName: 'threshold',
           kind: MigrateSlotKind.scalar,
@@ -18733,19 +20164,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'RateLimitMatch',
         ),
       ],
-      getters: <MigrateGetter>[
-        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
-        MigrateGetter(
-          tfName: 'description',
-          dartName: 'description',
-          dartType: 'String',
-        ),
-        MigrateGetter(
-          tfName: 'disabled',
-          dartName: 'disabled',
-          dartType: 'bool',
-        ),
-      ],
+      getters: <MigrateGetter>[],
     ),
     MigrateEntry(
       tfType: 'cloudflare_rate_limit',
@@ -18787,29 +20206,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
-    ),
-    MigrateEntry(
-      tfType: 'cloudflare_rate_limits',
-      className: 'DataCloudflareRateLimits',
-      barrel: 'data',
-      kind: CatalogKind.dataSource,
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'max_items',
-          dartName: 'maxItems',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'zone_id',
-          dartName: 'zoneId',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-      ],
-      getters: <MigrateGetter>[],
     ),
     MigrateEntry(
       tfType: 'cloudflare_regional_hostname',
@@ -19059,7 +20455,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'account_id',
           dartName: 'accountId',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -19388,6 +20784,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'omit_source',
+          dartName: 'omitSource',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'source',
           dartName: 'source',
           kind: MigrateSlotKind.scalar,
@@ -19584,6 +20987,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'force',
+          dartName: 'force',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -19888,6 +21298,20 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'include_recipient_counts',
+          dartName: 'includeRecipientCounts',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'include_resources',
+          dartName: 'includeResources',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'name',
           dartName: 'name',
           kind: MigrateSlotKind.scalar,
@@ -20072,6 +21496,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'include_resources',
+          dartName: 'includeResources',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
         MigrateSlot(
           tfName: 'organization_id',
@@ -20795,6 +22226,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'Object',
         ),
         MigrateSlot(
+          tfName: 'origin_worker_id',
+          dartName: 'originWorkerId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'protocol',
           dartName: 'protocol',
           kind: MigrateSlotKind.scalar,
@@ -20937,6 +22375,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'Object?',
         ),
         MigrateGetter(
+          tfName: 'origin_worker_id',
+          dartName: 'originWorkerId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
           tfName: 'protocol',
           dartName: 'protocol',
           dartType: 'String',
@@ -20991,6 +22434,29 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'zoneId',
           kind: MigrateSlotKind.scalar,
           required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_spectrum_protocols',
+      className: 'DataCloudflareSpectrumProtocols',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_items',
+          dartName: 'maxItems',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
           dartType: 'String',
         ),
       ],
@@ -21147,6 +22613,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'direct_user',
+          dartName: 'directUser',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
         MigrateSlot(
           tfName: 'identifier',
@@ -22606,6 +24079,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'domains',
           dartName: 'domains',
           kind: MigrateSlotKind.scalar,
@@ -22618,6 +24098,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'mode',
@@ -22639,6 +24126,27 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'order',
+          dartName: 'order',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'page',
+          dartName: 'page',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'per_page',
+          dartName: 'perPage',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -23286,6 +24794,34 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'fuzzy_email',
+          dartName: 'fuzzyEmail',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'page',
+          dartName: 'page',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'per_page',
+          dartName: 'perPage',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
         ),
         MigrateSlot(
           tfName: 'user_group_id',
@@ -24818,6 +26354,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'force',
+          dartName: 'force',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'logpush',
           dartName: 'logpush',
           kind: MigrateSlotKind.scalar,
@@ -24845,6 +26388,14 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'WorkerObservability',
+        ),
+        MigrateSlot(
+          tfName: 'previews_base_config',
+          dartName: 'previewsBaseConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfig',
         ),
         MigrateSlot(
           tfName: 'subdomain',
@@ -24967,6 +26518,20 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateSlot(
+          tfName: 'deploy',
+          dartName: 'deploy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'include',
+          dartName: 'include',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'main_module',
           dartName: 'mainModule',
           kind: MigrateSlotKind.scalar,
@@ -25083,6 +26648,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
+          tfName: 'author_email',
+          dartName: 'authorEmail',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'author_id',
+          dartName: 'authorId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
           tfName: 'created_on',
           dartName: 'createdOn',
           dartType: 'String',
@@ -25148,6 +26723,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'author_email',
+          dartName: 'authorEmail',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'author_id',
+          dartName: 'authorId',
+          dartType: 'String',
+        ),
         MigrateGetter(
           tfName: 'compatibility_date',
           dartName: 'compatibilityDate',
@@ -25516,6 +27101,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'force',
+          dartName: 'force',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'script_name',
           dartName: 'scriptName',
           kind: MigrateSlotKind.scalar,
@@ -25609,6 +27201,50 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_workers_deployments',
+      className: 'DataCloudflareWorkersDeployments',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_items',
+          dartName: 'maxItems',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'script_name',
+          dartName: 'scriptName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'since',
+          dartName: 'since',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'until',
+          dartName: 'until',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[],
     ),
     MigrateEntry(
       tfType: 'cloudflare_workers_for_platforms_dispatch_namespace',
@@ -25778,6 +27414,20 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'expiration',
+          dartName: 'expiration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'expiration_ttl',
+          dartName: 'expirationTtl',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
           tfName: 'key_name',
           dartName: 'keyName',
           kind: MigrateSlotKind.scalar,
@@ -25857,6 +27507,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdiction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'title',
           dartName: 'title',
           kind: MigrateSlotKind.scalar,
@@ -25904,6 +27561,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'jurisdiction',
+          dartName: 'jurisdiction',
+          dartType: 'String',
+        ),
         MigrateGetter(
           tfName: 'supports_url_encoding',
           dartName: 'supportsUrlEncoding',
@@ -26098,6 +27760,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'force',
+          dartName: 'force',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'keep_assets',
           dartName: 'keepAssets',
           kind: MigrateSlotKind.scalar,
@@ -26179,6 +27848,14 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'WorkersScriptExports',
+        ),
+        MigrateSlot(
+          tfName: 'files',
+          dartName: 'files',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkersScriptFiles',
         ),
         MigrateSlot(
           tfName: 'limits',
@@ -26454,6 +28131,14 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'concurrency',
+          dartName: 'concurrency',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkflowConcurrency',
+        ),
+        MigrateSlot(
           tfName: 'default_retention',
           dartName: 'defaultRetention',
           kind: MigrateSlotKind.helper,
@@ -26488,6 +28173,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(
+          tfName: 'instances',
+          dartName: 'instances',
+          dartType: 'Map<String, num>',
+        ),
+        MigrateGetter(
           tfName: 'is_deleted',
           dartName: 'isDeleted',
           dartType: 'num',
@@ -26496,6 +28186,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'modified_on',
           dartName: 'modifiedOn',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script_deleted',
+          dartName: 'scriptDeleted',
+          dartType: 'bool',
         ),
         MigrateGetter(
           tfName: 'terminator_running',
@@ -26557,9 +28252,19 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(
+          tfName: 'instances',
+          dartName: 'instances',
+          dartType: 'Map<String, num>',
+        ),
+        MigrateGetter(
           tfName: 'modified_on',
           dartName: 'modifiedOn',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'script_deleted',
+          dartName: 'scriptDeleted',
+          dartType: 'bool',
         ),
         MigrateGetter(
           tfName: 'script_name',
@@ -26622,6 +28327,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'code_mode',
+          dartName: 'codeMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -26722,6 +28434,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'allow_code_mode',
           dartName: 'allowCodeMode',
           dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'code_mode',
+          dartName: 'codeMode',
+          dartType: 'String',
         ),
         MigrateGetter(
           tfName: 'created_at',
@@ -26889,6 +28606,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
+          tfName: 'authentication_status',
+          dartName: 'authenticationStatus',
+          dartType: 'String',
+        ),
+        MigrateGetter(
           tfName: 'created_at',
           dartName: 'createdAt',
           dartType: 'String',
@@ -26960,6 +28682,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'auth_type',
           dartName: 'authType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'authentication_status',
+          dartName: 'authenticationStatus',
           dartType: 'String',
         ),
         MigrateGetter(
@@ -27613,6 +29340,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'contract_version',
+          dartName: 'contractVersion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
           tfName: 'custom_html',
           dartName: 'customHtml',
           kind: MigrateSlotKind.scalar,
@@ -27664,6 +29398,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'contract_version',
+          dartName: 'contractVersion',
+          dartType: 'num',
+        ),
         MigrateGetter(
           tfName: 'custom_html',
           dartName: 'customHtml',
@@ -28030,6 +29769,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'tags',
+          dartName: 'tags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
           tfName: 'ip',
           dartName: 'ip',
           kind: MigrateSlotKind.helper,
@@ -28097,6 +29843,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'modified_at',
           dartName: 'modifiedAt',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tags',
+          dartType: 'Map<String, String>',
         ),
       ],
     ),
@@ -28231,6 +29982,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'tag',
+          dartName: 'tag',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
         ),
         MigrateSlot(
           tfName: 'target_ids',
@@ -28806,6 +30564,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'name',
           dartName: 'name',
           kind: MigrateSlotKind.scalar,
@@ -28896,6 +30661,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'duration',
           dartType: 'String',
         ),
+        MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
         MigrateGetter(
           tfName: 'expires_at',
           dartName: 'expiresAt',
@@ -29131,6 +30897,392 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[],
     ),
     MigrateEntry(
+      tfType: 'cloudflare_zero_trust_casb_policies',
+      className: 'DataCloudflareZeroTrustCasbPolicies',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_items',
+          dartName: 'maxItems',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+      getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zero_trust_casb_policy',
+      className: 'CloudflareZeroTrustCasbPolicy',
+      barrel: 'zero_trust',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'applies_to_all_integrations',
+          dartName: 'appliesToAllIntegrations',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'description',
+          dartName: 'description',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'finding_type_id',
+          dartName: 'findingTypeId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'integration_ids',
+          dartName: 'integrationIds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'actions',
+          dartName: 'actions',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ZeroTrustCasbPolicyActions',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'created_at',
+          dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disabled_at',
+          dartName: 'disabledAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'last_triggered_at',
+          dartName: 'lastTriggeredAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'updated_at',
+          dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zero_trust_casb_policy',
+      className: 'DataCloudflareZeroTrustCasbPolicy',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'policy_id',
+          dartName: 'policyId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'applies_to_all_integrations',
+          dartName: 'appliesToAllIntegrations',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'created_at',
+          dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disabled_at',
+          dartName: 'disabledAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'finding_type_id',
+          dartName: 'findingTypeId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'integration_ids',
+          dartName: 'integrationIds',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'last_triggered_at',
+          dartName: 'lastTriggeredAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'updated_at',
+          dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zero_trust_casb_webhook',
+      className: 'CloudflareZeroTrustCasbWebhook',
+      barrel: 'zero_trust',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'authentication_type',
+          dartName: 'authenticationType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'destination_url',
+          dartName: 'destinationUrl',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'label',
+          dartName: 'label',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'signing_secret',
+          dartName: 'signingSecret',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'status',
+          dartName: 'status',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'headers',
+          dartName: 'headers',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ZeroTrustCasbWebhookHeaders',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'created_at',
+          dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'updated_at',
+          dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'version', dartName: 'version', dartType: 'num'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zero_trust_casb_webhook',
+      className: 'DataCloudflareZeroTrustCasbWebhook',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'webhook_id',
+          dartName: 'webhookId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'authentication_type',
+          dartName: 'authenticationType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'created_at',
+          dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'destination_url',
+          dartName: 'destinationUrl',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'label', dartName: 'label', dartType: 'String'),
+        MigrateGetter(tfName: 'status', dartName: 'status', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'updated_at',
+          dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'version', dartName: 'version', dartType: 'num'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zero_trust_casb_webhooks',
+      className: 'DataCloudflareZeroTrustCasbWebhooks',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_items',
+          dartName: 'maxItems',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+      getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zero_trust_connectivity_settings',
+      className: 'CloudflareZeroTrustConnectivitySettings',
+      barrel: 'zero_trust',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'icmp_proxy_enabled',
+          dartName: 'icmpProxyEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'offramp_warp_enabled',
+          dartName: 'offrampWarpEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zero_trust_connectivity_settings',
+      className: 'DataCloudflareZeroTrustConnectivitySettings',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'icmp_proxy_enabled',
+          dartName: 'icmpProxyEnabled',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'offramp_warp_enabled',
+          dartName: 'offrampWarpEnabled',
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'cloudflare_zero_trust_device_custom_profile',
       className: 'CloudflareZeroTrustDeviceCustomProfile',
       barrel: 'zero_trust',
@@ -29224,7 +31376,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'match',
           dartName: 'match',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -29240,6 +31392,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'profile_type',
+          dartName: 'profileType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'register_interface_ip_with_dns',
@@ -29275,6 +31434,21 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'uninstall_protection',
+          dartName: 'uninstallProtection',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'browser_extension_config',
+          dartName: 'browserExtensionConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ZeroTrustDeviceCustomProfileBrowserExtensionConfig',
         ),
         MigrateSlot(
           tfName: 'dns_search_suffixes',
@@ -29365,8 +31539,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'policy_id',
           dartName: 'policyId',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataZeroTrustDeviceCustomProfileFilter',
         ),
       ],
       getters: <MigrateGetter>[
@@ -29440,6 +31622,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateGetter(
+          tfName: 'profile_type',
+          dartName: 'profileType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
           tfName: 'register_interface_ip_with_dns',
           dartName: 'registerInterfaceIpWithDns',
           dartType: 'bool',
@@ -29463,6 +31650,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'tunnel_protocol',
           dartName: 'tunnelProtocol',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'uninstall_protection',
+          dartName: 'uninstallProtection',
+          dartType: 'bool',
         ),
       ],
     ),
@@ -29558,6 +31750,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'profile_type',
+          dartName: 'profileType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -29674,6 +31873,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'uninstall_protection',
+          dartName: 'uninstallProtection',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'dns_search_suffixes',
           dartName: 'dnsSearchSuffixes',
           kind: MigrateSlotKind.helper,
@@ -29741,6 +31947,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'policy_id',
           dartName: 'policyId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'profile_type',
+          dartName: 'profileType',
           dartType: 'String',
         ),
       ],
@@ -29813,6 +32024,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(
+          tfName: 'profile_type',
+          dartName: 'profileType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
           tfName: 'register_interface_ip_with_dns',
           dartName: 'registerInterfaceIpWithDns',
           dartType: 'bool',
@@ -29836,6 +32052,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'tunnel_protocol',
           dartName: 'tunnelProtocol',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'uninstall_protection',
+          dartName: 'uninstallProtection',
+          dartType: 'bool',
         ),
       ],
     ),
@@ -31224,6 +33445,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'createdAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'deprecated',
+          dartName: 'deprecated',
+          dartType: 'bool',
+        ),
         MigrateGetter(tfName: 'secret', dartName: 'secret', dartType: 'bool'),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
         MigrateGetter(
@@ -31276,6 +33502,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'created_at',
           dartName: 'createdAt',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deprecated',
+          dartName: 'deprecated',
+          dartType: 'bool',
         ),
         MigrateGetter(
           tfName: 'description',
@@ -31421,6 +33652,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(
+          tfName: 'integration_id',
+          dartName: 'integrationId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
           tfName: 'open_access',
           dartName: 'openAccess',
           dartType: 'bool',
@@ -31490,6 +33726,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'description',
           dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'integration_id',
+          dartName: 'integrationId',
           dartType: 'String',
         ),
         MigrateGetter(
@@ -32223,6 +34464,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'createdAt',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'deprecated',
+          dartName: 'deprecated',
+          dartType: 'bool',
+        ),
         MigrateGetter(tfName: 'secret', dartName: 'secret', dartType: 'bool'),
         MigrateGetter(
           tfName: 'updated_at',
@@ -32274,6 +34520,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'created_at',
           dartName: 'createdAt',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deprecated',
+          dartName: 'deprecated',
+          dartType: 'bool',
         ),
         MigrateGetter(
           tfName: 'description',
@@ -32377,6 +34628,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(
+          tfName: 'deprecated',
+          dartName: 'deprecated',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
           tfName: 'description',
           dartName: 'description',
           dartType: 'String',
@@ -32433,6 +34689,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'created_at',
           dartName: 'createdAt',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deprecated',
+          dartName: 'deprecated',
+          dartType: 'bool',
         ),
         MigrateGetter(
           tfName: 'description',
@@ -32536,6 +34797,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(
+          tfName: 'deprecated',
+          dartName: 'deprecated',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
           tfName: 'description',
           dartName: 'description',
           dartType: 'String',
@@ -32592,6 +34858,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'created_at',
           dartName: 'createdAt',
           dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deprecated',
+          dartName: 'deprecated',
+          dartType: 'bool',
         ),
         MigrateGetter(
           tfName: 'description',
@@ -33245,8 +35516,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'location_id',
           dartName: 'locationId',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataZeroTrustDnsLocationFilter',
         ),
       ],
       getters: <MigrateGetter>[
@@ -33314,11 +35593,39 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
           tfName: 'max_items',
           dartName: 'maxItems',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'order_by',
+          dartName: 'orderBy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -33742,11 +36049,39 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
           tfName: 'max_items',
           dartName: 'maxItems',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'order_by',
+          dartName: 'orderBy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -33910,8 +36245,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'rule_id',
           dartName: 'ruleId',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataZeroTrustGatewayPolicyFilter',
         ),
       ],
       getters: <MigrateGetter>[
@@ -34060,8 +36403,16 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           tfName: 'proxy_endpoint_id',
           dartName: 'proxyEndpointId',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataZeroTrustGatewayProxyEndpointFilter',
         ),
       ],
       getters: <MigrateGetter>[
@@ -34100,11 +36451,39 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
           tfName: 'max_items',
           dartName: 'maxItems',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'order_by',
+          dartName: 'orderBy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -34306,11 +36685,39 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
           tfName: 'max_items',
           dartName: 'maxItems',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'order_by',
+          dartName: 'orderBy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -34607,6 +37014,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'warp_auth_non_browser_401',
+          dartName: 'warpAuthNonBrowser401',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'warp_auth_session_duration',
           dartName: 'warpAuthSessionDuration',
           kind: MigrateSlotKind.scalar,
@@ -34652,9 +37066,22 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           wrapped: false,
           helper: 'ZeroTrustOrganizationMfaSshPivKeyRequirements',
         ),
+        MigrateSlot(
+          tfName: 'service_token_inactivity',
+          dartName: 'serviceTokenInactivity',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ZeroTrustOrganizationServiceTokenInactivity',
+        ),
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'trusted_accounts',
+          dartName: 'trustedAccounts',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -34721,6 +37148,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(
+          tfName: 'trusted_accounts',
+          dartName: 'trustedAccounts',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
           tfName: 'ui_read_only_toggle_reason',
           dartName: 'uiReadOnlyToggleReason',
           dartType: 'String',
@@ -34731,6 +37163,11 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(
+          tfName: 'warp_auth_non_browser_401',
+          dartName: 'warpAuthNonBrowser401',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
           tfName: 'warp_auth_session_duration',
           dartName: 'warpAuthSessionDuration',
           dartType: 'String',
@@ -34739,9 +37176,9 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     ),
     MigrateEntry(
       tfType: 'cloudflare_zero_trust_resource_library_application',
-      className: 'DataCloudflareZeroTrustResourceLibraryApplication',
-      barrel: 'data',
-      kind: CatalogKind.dataSource,
+      className: 'CloudflareZeroTrustResourceLibraryApplication',
+      barrel: 'zero_trust',
+      kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'account_id',
@@ -34751,11 +37188,53 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'id',
-          dartName: 'id',
+          tfName: 'category_id',
+          dartName: 'categoryId',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'hostnames',
+          dartName: 'hostnames',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'human_id',
+          dartName: 'humanId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ip_subnets',
+          dartName: 'ipSubnets',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'port_protocols',
+          dartName: 'portProtocols',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'support_domains',
+          dartName: 'supportDomains',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
         ),
       ],
       getters: <MigrateGetter>[
@@ -34797,6 +37276,88 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateGetter(
+          tfName: 'supported',
+          dartName: 'supported',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'updated_at',
+          dartName: 'updatedAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'version',
+          dartName: 'version',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zero_trust_resource_library_application',
+      className: 'DataCloudflareZeroTrustResourceLibraryApplication',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'DataZeroTrustResourceLibraryApplicationFilter',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'application_confidence_score',
+          dartName: 'applicationConfidenceScore',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'application_score_composition',
+          dartName: 'applicationScoreComposition',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'application_source',
+          dartName: 'applicationSource',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'application_type',
+          dartName: 'applicationType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'application_type_description',
+          dartName: 'applicationTypeDescription',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'category_id',
+          dartName: 'categoryId',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'created_at',
+          dartName: 'createdAt',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'gen_ai_score',
+          dartName: 'genAiScore',
+          dartType: 'num',
+        ),
+        MigrateGetter(
           tfName: 'hostnames',
           dartName: 'hostnames',
           dartType: 'List<String>',
@@ -34806,7 +37367,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'humanId',
           dartType: 'String',
         ),
-        MigrateGetter(tfName: 'intel_id', dartName: 'intelId', dartType: 'num'),
         MigrateGetter(
           tfName: 'ip_subnets',
           dartName: 'ipSubnets',
@@ -34850,6 +37410,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'accountId',
           kind: MigrateSlotKind.scalar,
           required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'fields',
+          dartName: 'fields',
+          kind: MigrateSlotKind.scalar,
+          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -34952,7 +37519,7 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'id',
           kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'String',
+          dartType: 'num',
         ),
       ],
       getters: <MigrateGetter>[
@@ -37332,6 +39899,151 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       ],
     ),
     MigrateEntry(
+      tfType: 'cloudflare_zone_tracing',
+      className: 'CloudflareZoneTracing',
+      barrel: 'zone',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'destinations',
+          dartName: 'destinations',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'forward_context',
+          dartName: 'forwardContext',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'persist',
+          dartName: 'persist',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'propagation_policy',
+          dartName: 'propagationPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'sampling_ratio',
+          dartName: 'samplingRatio',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zone_tracing',
+      className: 'DataCloudflareZoneTracing',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'destinations',
+          dartName: 'destinations',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'enabled', dartName: 'enabled', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'forward_context',
+          dartName: 'forwardContext',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'persist', dartName: 'persist', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'propagation_policy',
+          dartName: 'propagationPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sampling_ratio',
+          dartName: 'samplingRatio',
+          dartType: 'num',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zone_tracing_rules',
+      className: 'CloudflareZoneTracingRules',
+      barrel: 'zone',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'rules',
+          dartName: 'rules',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          helper: 'ZoneTracingRulesRules',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'cloudflare_zone_tracing_rules',
+      className: 'DataCloudflareZoneTracingRules',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'zone_id',
+          dartName: 'zoneId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'cloudflare_zones',
       className: 'DataCloudflareZones',
       barrel: 'data',
@@ -38548,6 +41260,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           required: false,
           dartType: 'String',
         ),
+        MigrateSlot(
+          tfName: 'use_ocr',
+          dartName: 'useOcr',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
       ],
     ),
     'AiSearchInstanceMetadata': MigrateHelper(
@@ -38797,6 +41516,14 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'discover_options',
+          dartName: 'discoverOptions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions',
+        ),
+        MigrateSlot(
           tfName: 'parse_options',
           dartName: 'parseOptions',
           kind: MigrateSlotKind.helper,
@@ -38804,13 +41531,52 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           wrapped: false,
           helper: 'AiSearchInstanceSourceParamsWebCrawlerParseOptions',
         ),
+      ],
+    ),
+    'AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions': MigrateHelper(
+      className: 'AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions',
+      slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'store_options',
-          dartName: 'storeOptions',
-          kind: MigrateSlotKind.helper,
+          tfName: 'depth',
+          dartName: 'depth',
+          kind: MigrateSlotKind.scalar,
           required: false,
-          wrapped: false,
-          helper: 'AiSearchInstanceSourceParamsWebCrawlerStoreOptions',
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'include_external_links',
+          dartName: 'includeExternalLinks',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'include_subdomains',
+          dartName: 'includeSubdomains',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'limit',
+          dartName: 'limit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'max_age',
+          dartName: 'maxAge',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'source',
+          dartName: 'source',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
       ],
     ),
@@ -38878,29 +41644,147 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'AiSearchInstanceSourceParamsWebCrawlerStoreOptions': MigrateHelper(
-      className: 'AiSearchInstanceSourceParamsWebCrawlerStoreOptions',
+    'AiSearchNamespacePublicEndpointParams': MigrateHelper(
+      className: 'AiSearchNamespacePublicEndpointParams',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'r2_jurisdiction',
-          dartName: 'r2Jurisdiction',
+          tfName: 'authorized_hosts',
+          dartName: 'authorizedHosts',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'custom_domains',
+          dartName: 'customDomains',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'default_domain_enabled',
+          dartName: 'defaultDomainEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'instances_allowed',
+          dartName: 'instancesAllowed',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'chat_completions_endpoint',
+          dartName: 'chatCompletionsEndpoint',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'AiSearchNamespacePublicEndpointParamsChatCompletionsEndpoint',
+        ),
+        MigrateSlot(
+          tfName: 'mcp',
+          dartName: 'mcp',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'AiSearchNamespacePublicEndpointParamsMcp',
+        ),
+        MigrateSlot(
+          tfName: 'rate_limit',
+          dartName: 'rateLimit',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'AiSearchNamespacePublicEndpointParamsRateLimit',
+        ),
+        MigrateSlot(
+          tfName: 'search_endpoint',
+          dartName: 'searchEndpoint',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'AiSearchNamespacePublicEndpointParamsSearchEndpoint',
+        ),
+      ],
+    ),
+    'AiSearchNamespacePublicEndpointParamsChatCompletionsEndpoint':
+        MigrateHelper(
+          className:
+              'AiSearchNamespacePublicEndpointParamsChatCompletionsEndpoint',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disabled',
+              dartName: 'disabled',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'AiSearchNamespacePublicEndpointParamsMcp': MigrateHelper(
+      className: 'AiSearchNamespacePublicEndpointParamsMcp',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'description',
+          dartName: 'description',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'storage_id',
-          dartName: 'storageId',
+          tfName: 'disabled',
+          dartName: 'disabled',
           kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'AiSearchNamespacePublicEndpointParamsRateLimit': MigrateHelper(
+      className: 'AiSearchNamespacePublicEndpointParamsRateLimit',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'period_ms',
+          dartName: 'periodMs',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
         ),
         MigrateSlot(
-          tfName: 'storage_type',
-          dartName: 'storageType',
+          tfName: 'requests',
+          dartName: 'requests',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'technique',
+          dartName: 'technique',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'AiSearchNamespacePublicEndpointParamsSearchEndpoint': MigrateHelper(
+      className: 'AiSearchNamespacePublicEndpointParamsSearchEndpoint',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disabled',
+          dartName: 'disabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
       ],
     ),
@@ -39025,6 +41909,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       className: 'CloudConnectorRulesRules',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'cloud_connector_rules_provider',
+          dartName: 'cloudConnectorRulesProvider',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'description',
           dartName: 'description',
           kind: MigrateSlotKind.scalar,
@@ -39041,13 +41932,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'expression',
           dartName: 'expression',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'provider',
-          dartName: 'provider',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -40491,6 +43375,74 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataEmailSecurityAllowPolicyFilter': MigrateHelper(
+      className: 'DataEmailSecurityAllowPolicyFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'is_acceptable_sender',
+          dartName: 'isAcceptableSender',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'is_exempt_recipient',
+          dartName: 'isExemptRecipient',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'is_trusted_sender',
+          dartName: 'isTrustedSender',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'order',
+          dartName: 'order',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pattern',
+          dartName: 'pattern',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pattern_type',
+          dartName: 'patternType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'verify_sender',
+          dartName: 'verifySender',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
     'DataEmailSecurityBlockSenderFilter': MigrateHelper(
       className: 'DataEmailSecurityBlockSenderFilter',
       slots: <MigrateSlot>[
@@ -40525,6 +43477,67 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'search',
           dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'DataEmailSecurityDomainFilter': MigrateHelper(
+      className: 'DataEmailSecurityDomainFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'active_delivery_mode',
+          dartName: 'activeDeliveryMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'allowed_delivery_mode',
+          dartName: 'allowedDeliveryMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'domain',
+          dartName: 'domain',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'integration_id',
+          dartName: 'integrationId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'order',
+          dartName: 'order',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'status',
+          dartName: 'status',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -40645,6 +43658,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'ref',
           dartName: 'ref',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'DataFlagshipFlagFilter': MigrateHelper(
+      className: 'DataFlagshipFlagFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'limit',
+          dartName: 'limit',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -41567,6 +44592,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'tag',
+          dartName: 'tag',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
           tfName: 'target_ids',
           dartName: 'targetIds',
           kind: MigrateSlotKind.scalar,
@@ -41595,6 +44627,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'search',
           dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'DataZeroTrustDeviceCustomProfileFilter': MigrateHelper(
+      className: 'DataZeroTrustDeviceCustomProfileFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'profile_type',
+          dartName: 'profileType',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -41636,9 +44680,136 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       className: 'DataZeroTrustDexTestTargetPolicies',
       slots: <MigrateSlot>[],
     ),
+    'DataZeroTrustDnsLocationFilter': MigrateHelper(
+      className: 'DataZeroTrustDnsLocationFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'order_by',
+          dartName: 'orderBy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'DataZeroTrustGatewayPolicyFilter': MigrateHelper(
+      className: 'DataZeroTrustGatewayPolicyFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'order_by',
+          dartName: 'orderBy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'DataZeroTrustGatewayProxyEndpointFilter': MigrateHelper(
+      className: 'DataZeroTrustGatewayProxyEndpointFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'order_by',
+          dartName: 'orderBy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'DataZeroTrustListFilter': MigrateHelper(
       className: 'DataZeroTrustListFilter',
       slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'direction',
+          dartName: 'direction',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'order_by',
+          dartName: 'orderBy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
@@ -41689,6 +44860,53 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'tunnel_id',
           dartName: 'tunnelId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'DataZeroTrustResourceLibraryApplicationFilter': MigrateHelper(
+      className: 'DataZeroTrustResourceLibraryApplicationFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'fields',
+          dartName: 'fields',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'limit',
+          dartName: 'limit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'offset',
+          dartName: 'offset',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'order_by',
+          dartName: 'orderBy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'search',
+          dartName: 'search',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -42467,6 +45685,53 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'value',
           kind: MigrateSlotKind.scalar,
           required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'FieldExtractorRules': MigrateHelper(
+      className: 'FieldExtractorRules',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'description',
+          dartName: 'description',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ref',
+          dartName: 'ref',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'fields',
+          dartName: 'fields',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          helper: 'FieldExtractorRulesFields',
+        ),
+      ],
+    ),
+    'FieldExtractorRulesFields': MigrateHelper(
+      className: 'FieldExtractorRulesFields',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'expression',
+          dartName: 'expression',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
           dartType: 'String',
         ),
       ],
@@ -44468,11 +47733,25 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateSlot(
+          tfName: 'export_filter_id',
+          dartName: 'exportFilterId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'extra_prefixes',
           dartName: 'extraPrefixes',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'import_filter_id',
+          dartName: 'importFilterId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'md5_key',
@@ -44547,11 +47826,25 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateSlot(
+          tfName: 'export_filter_id',
+          dartName: 'exportFilterId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'extra_prefixes',
           dartName: 'extraPrefixes',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'import_filter_id',
+          dartName: 'importFilterId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'md5_key',
@@ -44754,6 +48047,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'NelSettingValue': MigrateHelper(
+      className: 'NelSettingValue',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
         ),
       ],
     ),
@@ -45015,6 +48320,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'target_zone_name',
           dartName: 'targetZoneName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'token_id',
+          dartName: 'tokenId',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'List<Object?>',
@@ -46771,14 +50083,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           wrapped: false,
           helper: 'PipelineSinkSchemaFields',
         ),
-        MigrateSlot(
-          tfName: 'format',
-          dartName: 'format',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PipelineSinkSchemaFormat',
-        ),
       ],
     ),
     'PipelineSinkSchemaFields': MigrateHelper(
@@ -46825,53 +50129,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
-        ),
-      ],
-    ),
-    'PipelineSinkSchemaFormat': MigrateHelper(
-      className: 'PipelineSinkSchemaFormat',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'compression',
-          dartName: 'compression',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'decimal_encoding',
-          dartName: 'decimalEncoding',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'row_group_bytes',
-          dartName: 'rowGroupBytes',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'timestamp_format',
-          dartName: 'timestampFormat',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'type',
-          dartName: 'type',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'unstructured',
-          dartName: 'unstructured',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
         ),
       ],
     ),
@@ -46980,14 +50237,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           wrapped: false,
           helper: 'PipelineStreamSchemaFields',
         ),
-        MigrateSlot(
-          tfName: 'format',
-          dartName: 'format',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PipelineStreamSchemaFormat',
-        ),
       ],
     ),
     'PipelineStreamSchemaFields': MigrateHelper(
@@ -47037,53 +50286,6 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PipelineStreamSchemaFormat': MigrateHelper(
-      className: 'PipelineStreamSchemaFormat',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'compression',
-          dartName: 'compression',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'decimal_encoding',
-          dartName: 'decimalEncoding',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'row_group_bytes',
-          dartName: 'rowGroupBytes',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'timestamp_format',
-          dartName: 'timestampFormat',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'type',
-          dartName: 'type',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'unstructured',
-          dartName: 'unstructured',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-      ],
-    ),
     'PipelineStreamWorkerBinding': MigrateHelper(
       className: 'PipelineStreamWorkerBinding',
       slots: <MigrateSlot>[
@@ -47093,6 +50295,39 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'bool',
+        ),
+      ],
+    ),
+    'PrecursorEnforcementRules': MigrateHelper(
+      className: 'PrecursorEnforcementRules',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'description',
+          dartName: 'description',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'expression',
+          dartName: 'expression',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
       ],
     ),
@@ -47140,6 +50375,69 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'email',
+          dartName: 'email',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'QueueConsumerSettingsEmail',
+        ),
+        MigrateSlot(
+          tfName: 'pagerduty',
+          dartName: 'pagerduty',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'QueueConsumerSettingsPagerduty',
+        ),
+        MigrateSlot(
+          tfName: 'webhooks',
+          dartName: 'webhooks',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'QueueConsumerSettingsWebhooks',
+        ),
+      ],
+    ),
+    'QueueConsumerSettingsEmail': MigrateHelper(
+      className: 'QueueConsumerSettingsEmail',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'id',
+          dartName: 'id',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'QueueConsumerSettingsPagerduty': MigrateHelper(
+      className: 'QueueConsumerSettingsPagerduty',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'id',
+          dartName: 'id',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'QueueConsumerSettingsWebhooks': MigrateHelper(
+      className: 'QueueConsumerSettingsWebhooks',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'id',
+          dartName: 'id',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
       ],
     ),
@@ -48299,6 +51597,14 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           helper: 'RulesetRulesActionParametersOrigin',
         ),
         MigrateSlot(
+          tfName: 'origin_range_requests',
+          dartName: 'originRangeRequests',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'RulesetRulesActionParametersOriginRangeRequests',
+        ),
+        MigrateSlot(
           tfName: 'overrides',
           dartName: 'overrides',
           kind: MigrateSlotKind.helper,
@@ -49097,6 +52403,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+      ],
+    ),
+    'RulesetRulesActionParametersOriginRangeRequests': MigrateHelper(
+      className: 'RulesetRulesActionParametersOriginRangeRequests',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
       ],
     ),
@@ -50282,6 +53600,14 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateSlot(
+          tfName: 'issues',
+          dartName: 'issues',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkerObservabilityIssues',
+        ),
+        MigrateSlot(
           tfName: 'logs',
           dartName: 'logs',
           kind: MigrateSlotKind.helper,
@@ -50296,6 +53622,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'WorkerObservabilityTraces',
+        ),
+      ],
+    ),
+    'WorkerObservabilityIssues': MigrateHelper(
+      className: 'WorkerObservabilityIssues',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
       ],
     ),
@@ -50375,6 +53713,339 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartName: 'propagationPolicy',
           kind: MigrateSlotKind.scalar,
           required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfig': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'logpush',
+          dartName: 'logpush',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'cache_options',
+          dartName: 'cacheOptions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfigCacheOptions',
+        ),
+        MigrateSlot(
+          tfName: 'env',
+          dartName: 'env',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfigEnv',
+        ),
+        MigrateSlot(
+          tfName: 'limits',
+          dartName: 'limits',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfigLimits',
+        ),
+        MigrateSlot(
+          tfName: 'observability',
+          dartName: 'observability',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfigObservability',
+        ),
+        MigrateSlot(
+          tfName: 'placement',
+          dartName: 'placement',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfigPlacement',
+        ),
+        MigrateSlot(
+          tfName: 'tail_consumers',
+          dartName: 'tailConsumers',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfigTailConsumers',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfigCacheOptions': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfigCacheOptions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cross_version_cache',
+          dartName: 'crossVersionCache',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfigEnv': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfigEnv',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfigLimits': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfigLimits',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cpu_ms',
+          dartName: 'cpuMs',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'subrequests',
+          dartName: 'subrequests',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfigObservability': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfigObservability',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'head_sampling_rate',
+          dartName: 'headSamplingRate',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'redact_query_string',
+          dartName: 'redactQueryString',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'issues',
+          dartName: 'issues',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfigObservabilityIssues',
+        ),
+        MigrateSlot(
+          tfName: 'logs',
+          dartName: 'logs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfigObservabilityLogs',
+        ),
+        MigrateSlot(
+          tfName: 'traces',
+          dartName: 'traces',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfigObservabilityTraces',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfigObservabilityIssues': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfigObservabilityIssues',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfigObservabilityLogs': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfigObservabilityLogs',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'destinations',
+          dartName: 'destinations',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'head_sampling_rate',
+          dartName: 'headSamplingRate',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'invocation_logs',
+          dartName: 'invocationLogs',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'persist',
+          dartName: 'persist',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfigObservabilityTraces': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfigObservabilityTraces',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'destinations',
+          dartName: 'destinations',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'head_sampling_rate',
+          dartName: 'headSamplingRate',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'persist',
+          dartName: 'persist',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'propagation_policy',
+          dartName: 'propagationPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfigPlacement': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfigPlacement',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'host',
+          dartName: 'host',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'hostname',
+          dartName: 'hostname',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'region',
+          dartName: 'region',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'target',
+          dartName: 'target',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'WorkerPreviewsBaseConfigPlacementTarget',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfigPlacementTarget': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfigPlacementTarget',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'host',
+          dartName: 'host',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'hostname',
+          dartName: 'hostname',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'region',
+          dartName: 'region',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'WorkerPreviewsBaseConfigTailConsumers': MigrateHelper(
+      className: 'WorkerPreviewsBaseConfigTailConsumers',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
           dartType: 'String',
         ),
       ],
@@ -50459,6 +54130,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     'WorkerVersionAssetsConfig': MigrateHelper(
       className: 'WorkerVersionAssetsConfig',
       slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'base_path',
+          dartName: 'basePath',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
         MigrateSlot(
           tfName: 'html_handling',
           dartName: 'htmlHandling',
@@ -50586,6 +54264,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'id',
           dartName: 'id',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'identity',
+          dartName: 'identity',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -50719,6 +54404,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'store_id',
           dartName: 'storeId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'stream',
+          dartName: 'stream',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -51407,6 +55099,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       className: 'WorkersScriptAssetsConfig',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'base_path',
+          dartName: 'basePath',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'headers',
           dartName: 'headers',
           kind: MigrateSlotKind.scalar,
@@ -51692,6 +55391,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'stream',
+          dartName: 'stream',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'text',
           dartName: 'text',
           kind: MigrateSlotKind.scalar,
@@ -51864,6 +55570,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'bool',
+        ),
+      ],
+    ),
+    'WorkersScriptFiles': MigrateHelper(
+      className: 'WorkersScriptFiles',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'content_base64',
+          dartName: 'contentBase64',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'content_file',
+          dartName: 'contentFile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'content_type',
+          dartName: 'contentType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
       ],
     ),
@@ -52105,6 +55837,14 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateSlot(
+          tfName: 'issues',
+          dartName: 'issues',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'WorkersScriptObservabilityIssues',
+        ),
+        MigrateSlot(
           tfName: 'logs',
           dartName: 'logs',
           kind: MigrateSlotKind.helper,
@@ -52119,6 +55859,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'WorkersScriptObservabilityTraces',
+        ),
+      ],
+    ),
+    'WorkersScriptObservabilityIssues': MigrateHelper(
+      className: 'WorkersScriptObservabilityIssues',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
       ],
     ),
@@ -52263,6 +56015,18 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'WorkflowConcurrency': MigrateHelper(
+      className: 'WorkflowConcurrency',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'limit',
+          dartName: 'limit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
         ),
       ],
     ),
@@ -52601,6 +56365,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vnet_id',
           dartName: 'vnetId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'worker_id',
+          dartName: 'workerId',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -55435,6 +59206,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       className: 'ZeroTrustAccessGroupExcludeDevicePosture',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'integration_uid',
           dartName: 'integrationUid',
           kind: MigrateSlotKind.scalar,
@@ -56019,6 +59797,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     'ZeroTrustAccessGroupIncludeDevicePosture': MigrateHelper(
       className: 'ZeroTrustAccessGroupIncludeDevicePosture',
       slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
         MigrateSlot(
           tfName: 'integration_uid',
           dartName: 'integrationUid',
@@ -56605,6 +60390,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       className: 'ZeroTrustAccessGroupRequireDevicePosture',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'integration_uid',
           dartName: 'integrationUid',
           kind: MigrateSlotKind.scalar,
@@ -56993,6 +60785,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
         MigrateSlot(
+          tfName: 'force_authn',
+          dartName: 'forceAuthn',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'idp_public_certs',
           dartName: 'idpPublicCerts',
           kind: MigrateSlotKind.scalar,
@@ -57005,6 +60804,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_sso_url_length',
+          dartName: 'maxSsoUrlLength',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
         ),
         MigrateSlot(
           tfName: 'okta_account',
@@ -57082,6 +60888,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'use_login_hint',
+          dartName: 'useLoginHint',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
         ),
         MigrateSlot(
           tfName: 'header_attributes',
@@ -57594,6 +61407,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     'ZeroTrustAccessPolicyExcludeDevicePosture': MigrateHelper(
       className: 'ZeroTrustAccessPolicyExcludeDevicePosture',
       slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
         MigrateSlot(
           tfName: 'integration_uid',
           dartName: 'integrationUid',
@@ -58179,6 +61999,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
     'ZeroTrustAccessPolicyIncludeDevicePosture': MigrateHelper(
       className: 'ZeroTrustAccessPolicyIncludeDevicePosture',
       slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
         MigrateSlot(
           tfName: 'integration_uid',
           dartName: 'integrationUid',
@@ -58791,6 +62618,13 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
       className: 'ZeroTrustAccessPolicyRequireDevicePosture',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'account_id',
+          dartName: 'accountId',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'integration_uid',
           dartName: 'integrationUid',
           kind: MigrateSlotKind.scalar,
@@ -59067,6 +62901,91 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ZeroTrustCasbPolicyActions': MigrateHelper(
+      className: 'ZeroTrustCasbPolicyActions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'remediation_types',
+          dartName: 'remediationTypes',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ZeroTrustCasbPolicyActionsRemediationTypes',
+        ),
+        MigrateSlot(
+          tfName: 'webhook_configs',
+          dartName: 'webhookConfigs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ZeroTrustCasbPolicyActionsWebhookConfigs',
+        ),
+      ],
+    ),
+    'ZeroTrustCasbPolicyActionsRemediationTypes': MigrateHelper(
+      className: 'ZeroTrustCasbPolicyActionsRemediationTypes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'remediation_type_id',
+          dartName: 'remediationTypeId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ZeroTrustCasbPolicyActionsWebhookConfigs': MigrateHelper(
+      className: 'ZeroTrustCasbPolicyActionsWebhookConfigs',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'webhook_config_id',
+          dartName: 'webhookConfigId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ZeroTrustCasbWebhookHeaders': MigrateHelper(
+      className: 'ZeroTrustCasbWebhookHeaders',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ZeroTrustDeviceCustomProfileBrowserExtensionConfig': MigrateHelper(
+      className: 'ZeroTrustDeviceCustomProfileBrowserExtensionConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'proxy_control',
+          dartName: 'proxyControl',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'proxy_enabled',
+          dartName: 'proxyEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
         ),
       ],
     ),
@@ -61720,6 +65639,32 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ZeroTrustOrganizationServiceTokenInactivity': MigrateHelper(
+      className: 'ZeroTrustOrganizationServiceTokenInactivity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'action',
+          dartName: 'action',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'inactivity_threshold_days',
+          dartName: 'inactivityThresholdDays',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
     'ZeroTrustRiskBehaviorBehaviors': MigrateHelper(
       className: 'ZeroTrustRiskBehaviorBehaviors',
       slots: <MigrateSlot>[
@@ -62340,6 +66285,59 @@ const MigrateManifest cloudflareMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'ZoneTracingRulesRules': MigrateHelper(
+      className: 'ZoneTracingRulesRules',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'action',
+          dartName: 'action',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'description',
+          dartName: 'description',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'expression',
+          dartName: 'expression',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'action_parameters',
+          dartName: 'actionParameters',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ZoneTracingRulesRulesActionParameters',
+        ),
+      ],
+    ),
+    'ZoneTracingRulesRulesActionParameters': MigrateHelper(
+      className: 'ZoneTracingRulesRulesActionParameters',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'sampling_ratio',
+          dartName: 'samplingRatio',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
         ),
       ],
     ),

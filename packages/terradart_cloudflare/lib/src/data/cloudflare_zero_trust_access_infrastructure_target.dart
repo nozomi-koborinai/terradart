@@ -29,6 +29,7 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
     this.modifiedAfter,
     this.modifiedBefore,
     this.order,
+    this.tag,
     this.targetIds,
     this.virtualNetworkId,
   });
@@ -65,6 +66,8 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
 
   final TfArg<String>? order;
 
+  final TfArg<List<Object?>>? tag;
+
   final TfArg<List<Object?>>? targetIds;
 
   final TfArg<String>? virtualNetworkId;
@@ -87,6 +90,7 @@ final class DataZeroTrustAccessInfrastructureTargetFilter {
     if (modifiedAfter != null) 'modified_after': modifiedAfter!.toTfJson(),
     if (modifiedBefore != null) 'modified_before': modifiedBefore!.toTfJson(),
     if (order != null) 'order': order!.toTfJson(),
+    if (tag != null) 'tag': tag!.toTfJson(),
     if (targetIds != null) 'target_ids': targetIds!.toTfJson(),
     if (virtualNetworkId != null)
       'virtual_network_id': virtualNetworkId!.toTfJson(),
@@ -129,4 +133,8 @@ final class DataCloudflareZeroTrustAccessInfrastructureTarget extends Data {
 
   /// Reference to `modified_at` attribute.
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tags =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

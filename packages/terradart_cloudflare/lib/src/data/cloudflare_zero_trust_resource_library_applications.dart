@@ -15,6 +15,7 @@ final class DataCloudflareZeroTrustResourceLibraryApplications extends Data {
   DataCloudflareZeroTrustResourceLibraryApplications({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<String>? fields,
     TfArg<String>? filter,
     TfArg<num>? limit,
     TfArg<num>? maxItems,
@@ -27,6 +28,7 @@ final class DataCloudflareZeroTrustResourceLibraryApplications extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           if (fields != null) 'fields': fields,
            if (filter != null) 'filter': filter,
            if (limit != null) 'limit': limit,
            if (maxItems != null) 'max_items': maxItems,

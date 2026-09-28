@@ -47,6 +47,7 @@ final class CloudflareStream extends Resource {
     required TfArg<String> accountId,
     TfArg<List<String>>? allowedOrigins,
     TfArg<String>? creator,
+    TfArg<bool>? directUser,
     TfArg<String>? identifier,
     TfArg<num>? maxDurationSeconds,
     TfArg<String>? meta,
@@ -66,6 +67,7 @@ final class CloudflareStream extends Resource {
            'account_id': accountId,
            if (allowedOrigins != null) 'allowed_origins': allowedOrigins,
            if (creator != null) 'creator': creator,
+           if (directUser != null) 'direct_user': directUser,
            if (identifier != null) 'identifier': identifier,
            if (maxDurationSeconds != null)
              'max_duration_seconds': maxDurationSeconds,

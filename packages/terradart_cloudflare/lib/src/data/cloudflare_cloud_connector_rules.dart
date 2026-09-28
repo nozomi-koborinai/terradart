@@ -16,17 +16,27 @@ final class DataCloudflareCloudConnectorRules extends Data {
 
   DataCloudflareCloudConnectorRules({
     required super.localName,
-    TfArg<String>? zoneId,
+    required TfArg<String> zoneId,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (zoneId != null) 'zone_id': zoneId},
-       );
+  }) : super(terraformType: tfType, argMap: {'zone_id': zoneId});
 
   @override
   Set<String> get sensitiveFields => _cloudflareCloudConnectorRulesSensitive;
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cloud_connector_rules_provider` attribute.
+  TfRef<String> get cloudConnectorRulesProvider =>
+      TfRef.attribute<String>(this, 'cloud_connector_rules_provider');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `expression` attribute.
+  TfRef<String> get expression => TfRef.attribute<String>(this, 'expression');
 }

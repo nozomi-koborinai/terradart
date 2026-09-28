@@ -52,6 +52,7 @@ final class WorkersScriptAssets {
 @immutable
 final class WorkersScriptAssetsConfig {
   const WorkersScriptAssetsConfig({
+    this.basePath,
     this.headers,
     this.htmlHandling,
     this.notFoundHandling,
@@ -59,6 +60,8 @@ final class WorkersScriptAssetsConfig {
     this.runWorkerFirst,
     this.serveDirectly,
   });
+
+  final TfArg<String>? basePath;
 
   final TfArg<String>? headers;
 
@@ -73,6 +76,7 @@ final class WorkersScriptAssetsConfig {
   final TfArg<bool>? serveDirectly;
 
   Map<String, Object?> encode() => {
+    if (basePath != null) 'base_path': basePath!.toTfJson(),
     if (headers != null) 'headers': headers!.toTfJson(),
     if (htmlHandling != null) 'html_handling': htmlHandling!.toTfJson(),
     if (notFoundHandling != null)
@@ -122,6 +126,7 @@ final class WorkersScriptBindings {
     this.service,
     this.serviceId,
     this.storeId,
+    this.stream,
     this.text,
     this.tunnelId,
     required this.type,
@@ -200,6 +205,8 @@ final class WorkersScriptBindings {
 
   final TfArg<String>? storeId;
 
+  final TfArg<String>? stream;
+
   final TfArg<String>? text;
 
   final TfArg<String>? tunnelId;
@@ -255,6 +262,7 @@ final class WorkersScriptBindings {
     if (service != null) 'service': service!.toTfJson(),
     if (serviceId != null) 'service_id': serviceId!.toTfJson(),
     if (storeId != null) 'store_id': storeId!.toTfJson(),
+    if (stream != null) 'stream': stream!.toTfJson(),
     if (text != null) 'text': text!.toTfJson(),
     if (tunnelId != null) 'tunnel_id': tunnelId!.toTfJson(),
     'type': type.toTfJson(),
@@ -364,6 +372,29 @@ final class WorkersScriptExportsCache {
   final TfArg<bool> enabled;
 
   Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
+}
+
+/// Typed helper for the `files` block of
+/// `cloudflare_workers_script` (derived from provider schema).
+@immutable
+final class WorkersScriptFiles {
+  const WorkersScriptFiles({
+    this.contentBase64,
+    this.contentFile,
+    required this.contentType,
+  });
+
+  final TfArg<String>? contentBase64;
+
+  final TfArg<String>? contentFile;
+
+  final TfArg<String> contentType;
+
+  Map<String, Object?> encode() => {
+    if (contentBase64 != null) 'content_base64': contentBase64!.toTfJson(),
+    if (contentFile != null) 'content_file': contentFile!.toTfJson(),
+    'content_type': contentType.toTfJson(),
+  };
 }
 
 /// Typed helper for the `limits` block of
@@ -548,6 +579,7 @@ final class WorkersScriptObservability {
   const WorkersScriptObservability({
     required this.enabled,
     this.headSamplingRate,
+    this.issues,
     this.logs,
     this.traces,
   });
@@ -555,6 +587,8 @@ final class WorkersScriptObservability {
   final TfArg<bool> enabled;
 
   final TfArg<num>? headSamplingRate;
+
+  final WorkersScriptObservabilityIssues? issues;
 
   final WorkersScriptObservabilityLogs? logs;
 
@@ -564,8 +598,22 @@ final class WorkersScriptObservability {
     'enabled': enabled.toTfJson(),
     if (headSamplingRate != null)
       'head_sampling_rate': headSamplingRate!.toTfJson(),
+    if (issues != null) 'issues': issues!.encode(),
     if (logs != null) 'logs': logs!.encode(),
     if (traces != null) 'traces': traces!.encode(),
+  };
+}
+
+/// Typed helper for the `observability.issues` block of
+/// `cloudflare_workers_script` (derived from provider schema).
+@immutable
+final class WorkersScriptObservabilityIssues {
+  const WorkersScriptObservabilityIssues({this.enabled});
+
+  final TfArg<bool>? enabled;
+
+  Map<String, Object?> encode() => {
+    if (enabled != null) 'enabled': enabled!.toTfJson(),
   };
 }
 
@@ -709,6 +757,7 @@ final class CloudflareWorkersScript extends Resource {
     TfArg<String>? contentFile,
     TfArg<String>? contentSha256,
     TfArg<String>? contentType,
+    TfArg<bool>? force,
     TfArg<bool>? keepAssets,
     TfArg<List<String>>? keepBindings,
     TfArg<bool>? logpush,
@@ -720,6 +769,7 @@ final class CloudflareWorkersScript extends Resource {
     List<WorkersScriptBindings>? bindings,
     WorkersScriptCacheOptions? cacheOptions,
     WorkersScriptExports? exports,
+    WorkersScriptFiles? files,
     WorkersScriptLimits? limits,
     WorkersScriptMigrations? migrations,
     WorkersScriptObservability? observability,
@@ -743,6 +793,7 @@ final class CloudflareWorkersScript extends Resource {
            if (contentFile != null) 'content_file': contentFile,
            if (contentSha256 != null) 'content_sha256': contentSha256,
            if (contentType != null) 'content_type': contentType,
+           if (force != null) 'force': force,
            if (keepAssets != null) 'keep_assets': keepAssets,
            if (keepBindings != null) 'keep_bindings': keepBindings,
            if (logpush != null) 'logpush': logpush,
@@ -757,6 +808,7 @@ final class CloudflareWorkersScript extends Resource {
            if (cacheOptions != null)
              'cache_options': TfArg.literal(cacheOptions.encode()),
            if (exports != null) 'exports': TfArg.literal(exports.encode()),
+           if (files != null) 'files': TfArg.literal(files.encode()),
            if (limits != null) 'limits': TfArg.literal(limits.encode()),
            if (migrations != null)
              'migrations': TfArg.literal(migrations.encode()),

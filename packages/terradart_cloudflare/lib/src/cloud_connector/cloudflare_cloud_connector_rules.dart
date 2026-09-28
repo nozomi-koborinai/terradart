@@ -12,12 +12,14 @@ const Set<String> _cloudflareCloudConnectorRulesSensitive = <String>{};
 @immutable
 final class CloudConnectorRulesRules {
   const CloudConnectorRulesRules({
+    this.cloudConnectorRulesProvider,
     this.description,
     this.enabled,
     this.expression,
-    this.provider,
     this.parameters,
   });
+
+  final TfArg<String>? cloudConnectorRulesProvider;
 
   final TfArg<String>? description;
 
@@ -25,15 +27,14 @@ final class CloudConnectorRulesRules {
 
   final TfArg<String>? expression;
 
-  final TfArg<String>? provider;
-
   final CloudConnectorRulesRulesParameters? parameters;
 
   Map<String, Object?> encode() => {
+    if (cloudConnectorRulesProvider != null)
+      'cloud_connector_rules_provider': cloudConnectorRulesProvider!.toTfJson(),
     if (description != null) 'description': description!.toTfJson(),
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (expression != null) 'expression': expression!.toTfJson(),
-    if (provider != null) 'provider': provider!.toTfJson(),
     if (parameters != null) 'parameters': parameters!.encode(),
   };
 }

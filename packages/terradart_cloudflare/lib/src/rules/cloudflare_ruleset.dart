@@ -124,6 +124,7 @@ final class RulesetRulesActionParameters {
     this.noStore,
     this.noTransform,
     this.origin,
+    this.originRangeRequests,
     this.overrides,
     this.private,
     this.proxyRevalidate,
@@ -268,6 +269,8 @@ final class RulesetRulesActionParameters {
 
   final RulesetRulesActionParametersOrigin? origin;
 
+  final RulesetRulesActionParametersOriginRangeRequests? originRangeRequests;
+
   final RulesetRulesActionParametersOverrides? overrides;
 
   final RulesetRulesActionParametersPrivate? private;
@@ -381,6 +384,8 @@ final class RulesetRulesActionParameters {
     if (noStore != null) 'no_store': noStore!.encode(),
     if (noTransform != null) 'no_transform': noTransform!.encode(),
     if (origin != null) 'origin': origin!.encode(),
+    if (originRangeRequests != null)
+      'origin_range_requests': originRangeRequests!.encode(),
     if (overrides != null) 'overrides': overrides!.encode(),
     if (private != null) 'private': private!.encode(),
     if (proxyRevalidate != null) 'proxy_revalidate': proxyRevalidate!.encode(),
@@ -1007,6 +1012,17 @@ final class RulesetRulesActionParametersOrigin {
     if (host != null) 'host': host!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
   };
+}
+
+/// Typed helper for the `rules.action_parameters.origin_range_requests` block of
+/// `cloudflare_ruleset` (derived from provider schema).
+@immutable
+final class RulesetRulesActionParametersOriginRangeRequests {
+  const RulesetRulesActionParametersOriginRangeRequests({required this.mode});
+
+  final TfArg<String> mode;
+
+  Map<String, Object?> encode() => {'mode': mode.toTfJson()};
 }
 
 /// Typed helper for the `rules.action_parameters.overrides` block of

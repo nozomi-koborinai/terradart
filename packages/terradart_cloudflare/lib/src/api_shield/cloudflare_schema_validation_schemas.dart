@@ -19,6 +19,7 @@ final class CloudflareSchemaValidationSchemas extends Resource {
     required super.localName,
     required TfArg<String> kind,
     required TfArg<String> name,
+    TfArg<bool>? omitSource,
     required TfArg<String> source,
     required TfArg<bool> validationEnabled,
     required TfArg<String> zoneId,
@@ -31,6 +32,7 @@ final class CloudflareSchemaValidationSchemas extends Resource {
          argMap: {
            'kind': kind,
            'name': name,
+           if (omitSource != null) 'omit_source': omitSource,
            'source': source,
            'validation_enabled': validationEnabled,
            'zone_id': zoneId,

@@ -62,6 +62,9 @@ barrels:
   connectivity:
     doc: |-
       /// Cloudflare Connectivity Directory services.
+  ct:
+    doc: |-
+      /// Cloudflare Certificate Transparency alerting.
   custom_hostname:
     doc: |-
       /// Cloudflare for SaaS custom hostnames.
@@ -80,6 +83,9 @@ barrels:
   email:
     doc: |-
       /// Cloudflare Email Routing and Email Security.
+  field:
+    doc: |-
+      /// Cloudflare account-level field extractors.
   flagship:
     doc: |-
       /// Cloudflare Flagship apps and flags.
@@ -107,6 +113,9 @@ barrels:
   moq:
     doc: |-
       /// Cloudflare Media over QUIC relays.
+  nel:
+    doc: |-
+      /// Cloudflare Network Error Logging (NEL) zone setting.
   notifications:
     doc: |-
       /// Cloudflare notification policies and webhooks.
@@ -122,6 +131,9 @@ barrels:
   pipeline:
     doc: |-
       /// Cloudflare Pipelines (streams and sinks).
+  precursor:
+    doc: |-
+      /// Cloudflare Precursor zone enforcement modes and rules.
   queues:
     doc: |-
       /// Cloudflare Queues and consumers.

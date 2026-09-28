@@ -1,10 +1,38 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_gateway_policy`.
 const Set<String> _cloudflareZeroTrustGatewayPolicySensitive = <String>{};
+
+/// Typed helper for the `filter` block of
+/// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
+@immutable
+final class DataZeroTrustGatewayPolicyFilter {
+  const DataZeroTrustGatewayPolicyFilter({
+    this.direction,
+    this.filter,
+    this.orderBy,
+    this.search,
+  });
+
+  final TfArg<String>? direction;
+
+  final TfArg<List<Object?>>? filter;
+
+  final TfArg<String>? orderBy;
+
+  final TfArg<String>? search;
+
+  Map<String, Object?> encode() => {
+    if (direction != null) 'direction': direction!.toTfJson(),
+    if (filter != null) 'filter': filter!.toTfJson(),
+    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
+    if (search != null) 'search': search!.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `cloudflare_zero_trust_gateway_policy`.
 final class DataCloudflareZeroTrustGatewayPolicy extends Data {
@@ -13,14 +41,16 @@ final class DataCloudflareZeroTrustGatewayPolicy extends Data {
   DataCloudflareZeroTrustGatewayPolicy({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<String> ruleId,
+    TfArg<String>? ruleId,
+    DataZeroTrustGatewayPolicyFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
            if (accountId != null) 'account_id': accountId,
-           'rule_id': ruleId,
+           if (ruleId != null) 'rule_id': ruleId,
+           if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );
 

@@ -55,6 +55,10 @@ final class DataCloudflareOauthClient extends Data {
   /// Reference to `logo_uri` attribute.
   TfRef<String> get logoUri => TfRef.attribute<String>(this, 'logo_uri');
 
+  /// Reference to `optional_scopes` attribute.
+  TfRef<List<String>> get optionalScopes =>
+      TfRef.attribute<List<String>>(this, 'optional_scopes');
+
   /// Reference to `policy_uri` attribute.
   TfRef<String> get policyUri => TfRef.attribute<String>(this, 'policy_uri');
 

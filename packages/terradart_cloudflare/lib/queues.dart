@@ -5,4 +5,9 @@ library;
 
 export 'src/queues/cloudflare_queue.dart' show CloudflareQueue, QueueSettings;
 export 'src/queues/cloudflare_queue_consumer.dart'
-    show CloudflareQueueConsumer, QueueConsumerSettings;
+    show
+        CloudflareQueueConsumer,
+        QueueConsumerSettings,
+        QueueConsumerSettingsEmail,
+        QueueConsumerSettingsPagerduty,
+        QueueConsumerSettingsWebhooks;

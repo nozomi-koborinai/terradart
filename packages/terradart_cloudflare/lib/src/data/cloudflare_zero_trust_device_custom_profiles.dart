@@ -15,6 +15,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfiles extends Data {
     required super.localName,
     TfArg<String>? accountId,
     TfArg<num>? maxItems,
+    TfArg<String>? profileType,
     super.provider,
     super.timeouts,
   }) : super(
@@ -22,6 +23,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfiles extends Data {
          argMap: {
            if (accountId != null) 'account_id': accountId,
            if (maxItems != null) 'max_items': maxItems,
+           if (profileType != null) 'profile_type': profileType,
          },
        );
 

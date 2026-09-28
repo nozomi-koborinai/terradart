@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- `terradart wrap --provider-enums` (a lane's `providerEnums: true` in `tool/providers.yaml`) types enum-valued string attributes, top-level and nested (a list of strings becomes `List<TfArg<Enum>>`), from `<schemaDir>/hints/*.yaml` (Magic Modules YAML subset, extracted from the provider's Go validators by `tool/extract_provider_hints.dart`) and from `Available values:` descriptions. Hints extracted at another provider version than the fixture fail the wrap with E405. Off by default; no lane's output changes until one opts in.
+- Enum member names cover any value: operators (`<` → `lt`), leading digits (`1.2` → `v1p2`), names an enum cannot declare (`values` → `valuesCase`, `override` → `overrideCase`), and repeats get a numeric suffix. Emitted literals escape `\`, `'`, `$` and newlines.
+
 ## 0.29.0 - 2026-09-27
 
 - `terradart lint-override` reads the shared lint ledgers (`tool/exactly_one_lint_debt.yaml`, `tool/migrate_manifest_debt.yaml`) for every override lane and validates only the entries naming its own overrides.

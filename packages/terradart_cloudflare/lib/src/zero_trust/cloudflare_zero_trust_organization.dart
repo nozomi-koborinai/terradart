@@ -118,6 +118,29 @@ final class ZeroTrustOrganizationMfaSshPivKeyRequirements {
   };
 }
 
+/// Typed helper for the `service_token_inactivity` block of
+/// `cloudflare_zero_trust_organization` (derived from provider schema).
+@immutable
+final class ZeroTrustOrganizationServiceTokenInactivity {
+  const ZeroTrustOrganizationServiceTokenInactivity({
+    required this.action,
+    required this.enabled,
+    required this.inactivityThresholdDays,
+  });
+
+  final TfArg<String> action;
+
+  final TfArg<bool> enabled;
+
+  final TfArg<num> inactivityThresholdDays;
+
+  Map<String, Object?> encode() => {
+    'action': action.toTfJson(),
+    'enabled': enabled.toTfJson(),
+    'inactivity_threshold_days': inactivityThresholdDays.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_organization`.
 ///
 /// Accepted Permissions
@@ -143,12 +166,14 @@ final class CloudflareZeroTrustOrganization extends Resource {
     TfArg<String>? sessionDuration,
     TfArg<String>? uiReadOnlyToggleReason,
     TfArg<String>? userSeatExpirationInactiveTime,
+    TfArg<bool>? warpAuthNonBrowser401,
     TfArg<String>? warpAuthSessionDuration,
     TfArg<String>? zoneId,
     ZeroTrustOrganizationCustomPages? customPages,
     ZeroTrustOrganizationLoginDesign? loginDesign,
     ZeroTrustOrganizationMfaConfig? mfaConfig,
     ZeroTrustOrganizationMfaSshPivKeyRequirements? mfaSshPivKeyRequirements,
+    ZeroTrustOrganizationServiceTokenInactivity? serviceTokenInactivity,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -179,6 +204,8 @@ final class CloudflareZeroTrustOrganization extends Resource {
            if (userSeatExpirationInactiveTime != null)
              'user_seat_expiration_inactive_time':
                  userSeatExpirationInactiveTime,
+           if (warpAuthNonBrowser401 != null)
+             'warp_auth_non_browser_401': warpAuthNonBrowser401,
            if (warpAuthSessionDuration != null)
              'warp_auth_session_duration': warpAuthSessionDuration,
            if (zoneId != null) 'zone_id': zoneId,
@@ -192,6 +219,10 @@ final class CloudflareZeroTrustOrganization extends Resource {
              'mfa_ssh_piv_key_requirements': TfArg.literal(
                mfaSshPivKeyRequirements.encode(),
              ),
+           if (serviceTokenInactivity != null)
+             'service_token_inactivity': TfArg.literal(
+               serviceTokenInactivity.encode(),
+             ),
          },
        );
 
@@ -200,4 +231,8 @@ final class CloudflareZeroTrustOrganization extends Resource {
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `trusted_accounts` attribute.
+  TfRef<List<String>> get trustedAccounts =>
+      TfRef.attribute<List<String>>(this, 'trusted_accounts');
 }

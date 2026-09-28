@@ -45,3 +45,25 @@ List<String>? parseEnumValuesFromDescription(String? description) {
 
   return null;
 }
+
+final RegExp _availableValues = RegExp(
+  r'Available values:[ \t]*("(?:[^"\\]|\\.)*"(?:[ \t]*,[ \t]*"(?:[^"\\]|\\.)*")*)',
+);
+final RegExp _quoted = RegExp(r'"((?:[^"\\]|\\.)*)"');
+
+/// Parses the Stainless-generated dialect the Cloudflare v5 provider
+/// appends to every enum-validated attribute:
+/// `Available values: "ip", "ip6", "asn".`
+///
+/// Only the quoted form counts — `Available values: 301, 302.` documents a
+/// number attribute. One value is enough: the provider's validator enforces
+/// it all the same.
+List<String>? parseAvailableValues(String? description) {
+  if (description == null) return null;
+  final m = _availableValues.firstMatch(description);
+  if (m == null) return null;
+  return [
+    for (final q in _quoted.allMatches(m.group(1)!))
+      q.group(1)!.replaceAllMapped(RegExp(r'\\(.)'), (e) => e.group(1)!),
+  ];
+}

@@ -65,6 +65,9 @@ final class DataCloudflareZeroTrustAccessServiceToken extends Data {
   /// Reference to `duration` attribute.
   TfRef<String> get duration => TfRef.attribute<String>(this, 'duration');
 
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
+
   /// Reference to `expires_at` attribute.
   TfRef<String> get expiresAt => TfRef.attribute<String>(this, 'expires_at');
 }

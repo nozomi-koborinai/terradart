@@ -402,10 +402,12 @@ final class CloudflareAiGateway extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<bool>? authentication,
+    TfArg<bool>? byokOnly,
     required TfArg<bool> cacheInvalidateOnUpdate,
     required TfArg<num> cacheTtl,
     required TfArg<bool> collectLogs,
     required TfArg<String> id,
+    TfArg<bool>? logClassification,
     TfArg<num>? logManagement,
     TfArg<String>? logManagementStrategy,
     TfArg<bool>? logpush,
@@ -433,10 +435,13 @@ final class CloudflareAiGateway extends Resource {
          argMap: {
            'account_id': accountId,
            if (authentication != null) 'authentication': authentication,
+           if (byokOnly != null) 'byok_only': byokOnly,
            'cache_invalidate_on_update': cacheInvalidateOnUpdate,
            'cache_ttl': cacheTtl,
            'collect_logs': collectLogs,
            'id': id,
+           if (logClassification != null)
+             'log_classification': logClassification,
            if (logManagement != null) 'log_management': logManagement,
            if (logManagementStrategy != null)
              'log_management_strategy': logManagementStrategy,
