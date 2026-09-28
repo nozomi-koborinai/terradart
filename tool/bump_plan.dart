@@ -30,6 +30,7 @@ class BumpLane {
     required this.mode,
     required this.cron,
     required this.refresh,
+    required this.scaffold,
     required this.dataSources,
     required this.rideAlong,
     required this.exampleGenerator,
@@ -44,6 +45,9 @@ class BumpLane {
 
   /// `dump` or `extract`.
   final String refresh;
+
+  /// `wrap-init` or `lane`.
+  final String scaffold;
   final bool dataSources;
   final WrapLane? rideAlong;
   final String? exampleGenerator;
@@ -55,6 +59,8 @@ class BumpLane {
         'mode': mode,
         'source': lane.source,
         'refresh': refresh,
+        'scaffold': scaffold,
+        'overrides_root': lane.overridesRoot,
         'schema_dir': lane.schemaDir,
         'package': lane.outputPackage,
         'catalog': p.join(lane.outputPackage, 'lib', 'src', '_catalog.g.dart'),
@@ -114,6 +120,7 @@ List<BumpLane> parseBumpLanes(String providersYaml) {
         mode: field('mode', oneOf: {'auto', 'pr-only'}),
         cron: field('cron'),
         refresh: field('refresh', oneOf: {'dump', 'extract'}),
+        scaffold: field('scaffold', oneOf: {'wrap-init', 'lane'}),
         dataSources: bump['dataSources'] == true,
         rideAlong: rideAlong,
         exampleGenerator: generator as String?,

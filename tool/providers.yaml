@@ -55,6 +55,11 @@
 #                              --all-resources --all-data-sources
 #     dataSources:   (optional, default false) diff data sources too: the
 #                    lane wraps every data source at the pin
+#     scaffold:      how a new upstream type gets its default override
+#                    (tool/bump_new_factories.dart scaffold):
+#                    wrap-init — `terradart wrap-init` per new resource
+#                    lane      — scaffold_lane_overrides.dart, which fills
+#                                every schema type that lacks one
 #     rideAlong:     (optional) a lane re-extracted and regenerated at the
 #                    same version inside this lane's bump (google-beta)
 #     exampleGenerator: (optional) a tool/ script the bump reruns after a
@@ -77,6 +82,7 @@ providers:
       major: 7
       cron: '0 22 * * 0' # Sunday 22:00 UTC (Monday 07:00 JST)
       refresh: dump
+      scaffold: wrap-init
       rideAlong: google-beta
   google-beta:
     source: hashicorp/google-beta
@@ -115,6 +121,7 @@ providers:
       cron: '0 22 * * 2' # Tuesday 22:00 UTC
       refresh: extract
       dataSources: true
+      scaffold: lane
       exampleGenerator: tool/generate_cloudflare_leftover_example.dart
   aws:
     source: hashicorp/aws
@@ -133,4 +140,5 @@ providers:
       cron: '0 22 * * 1' # Monday 22:00 UTC
       refresh: extract
       dataSources: true
+      scaffold: lane
       exampleGenerator: tool/generate_aws_leftover_example.dart

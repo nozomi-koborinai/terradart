@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/constructor_params.dart';
 import 'package:terradart_codegen/src/codegen/providers/google_provider_rules.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/clock.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/output_dir_resolver.dart';
@@ -63,6 +64,48 @@ void main() {
       final kindAxis = draft.axes
           .firstWhere((WrapInitAxis a) => a.key == 'kind') as FilledAxis;
       expect(kindAxis.value, 'data_source');
+    });
+
+    test('authoritative IAM adjuncts seed a replace-semantics curatedDoc', () {
+      TodoAxis curatedDoc(String type) => generator()
+          .generate(
+            terraformType: type,
+            def: googlePubsubTopic,
+            kind: WrapperOverrideKind.resource,
+            mm: null,
+          )
+          .axes
+          .firstWhere((WrapInitAxis a) => a.key == 'curatedDoc') as TodoAxis;
+      expect(curatedDoc('google_pubsub_topic').seed, isNull);
+      final binding = curatedDoc('google_pubsub_topic_iam_binding').seed;
+      expect(binding, startsWith('/// Authoritative IAM binding'));
+      expect(binding, contains('`google_pubsub_topic_iam_member`'));
+      expect(
+        curatedDoc('google_pubsub_topic_iam_policy').seed,
+        contains('Replaces the entire IAM policy'),
+      );
+    });
+
+    test('fillParamOrder writes the natural constructor order', () {
+      Object? paramOrder({required bool fill}) {
+        final axis = generator()
+            .generate(
+              terraformType: 'google_pubsub_topic',
+              def: googlePubsubTopic,
+              kind: WrapperOverrideKind.resource,
+              mm: null,
+              fillParamOrder: fill,
+            )
+            .axes
+            .firstWhere((WrapInitAxis a) => a.key == 'paramOrder');
+        return axis is FilledAxis ? axis.value : null;
+      }
+
+      expect(paramOrder(fill: false), isNull);
+      expect(paramOrder(fill: true),
+          orderedConstructorParams(googlePubsubTopic, null));
+      expect(paramOrder(fill: true), contains('name'));
+      expect(paramOrder(fill: true), isNot(contains('id')));
     });
 
     test('schemaStubBodyMode=bare for data source (explicit)', () {

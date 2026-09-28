@@ -49,6 +49,7 @@ void main() {
     final google = lanes.first.toMatrix();
     expect(google['mode'], 'auto');
     expect(google['refresh'], 'dump');
+    expect(google['scaffold'], 'wrap-init');
     expect(google['mm'], isTrue);
     expect(google['data_sources'], isFalse);
     expect(google['api_lanes'], 'google,google-beta');
@@ -64,6 +65,7 @@ void main() {
     final cf = lanes.firstWhere((l) => l.lane.name == 'cloudflare').toMatrix();
     expect(cf['mode'], 'pr-only');
     expect(cf['refresh'], 'extract');
+    expect(cf['scaffold'], 'lane');
     expect(cf['data_sources'], isTrue);
     expect(cf['api_lanes'], 'cloudflare');
     expect(
@@ -81,6 +83,7 @@ void main() {
       final m = lane.toMatrix();
       for (final key in [
         'schema_dir',
+        'overrides_root',
         'package',
         'catalog',
         'manifest',
@@ -110,7 +113,7 @@ providers:
     overridesRoot: r
     barrelsManifest: b
     migrateManifest: m
-    bump: {mode: sometimes, cron: '0 0 * * 0', refresh: dump}
+    bump: {mode: sometimes, cron: '0 0 * * 0', refresh: dump, scaffold: lane}
 ''';
     expect(() => parseBumpLanes(yaml), throwsFormatException);
   });

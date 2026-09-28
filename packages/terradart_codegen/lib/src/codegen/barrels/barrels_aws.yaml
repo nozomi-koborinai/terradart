@@ -15,8 +15,9 @@ umbrellaDoc: |-
   /// (`aws_wafv2_web_acl`, `aws_wafv2_web_acl_rule`, `aws_wafv2_rule_group`,
   /// `aws_quicksight_analysis`, `aws_quicksight_dashboard`,
   /// `aws_quicksight_template`) take those blocks as
-  /// `TfArg<Map<String, dynamic>>` for now. A later pin that adds names
-  /// lands on request. Credentials never appear in synth output:
+  /// `TfArg<Map<String, dynamic>>` for now. The weekly schema bump gives
+  /// every name a later pin adds a factory with a default override.
+  /// Credentials never appear in synth output:
   /// authentication happens at apply time via the AWS SDK credential chain
   /// (`AWS_*` environment variables, shared config, or an instance role).
   ///

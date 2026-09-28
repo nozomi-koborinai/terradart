@@ -17,6 +17,40 @@ const String todoCuratedDoc =
     'curatedDoc only for artisanal notes the IR cannot derive (worked example, '
     'variant guidance, ForceNew callouts) — otherwise delete this placeholder.';
 
+/// TODO note above the seeded `curatedDoc` of an authoritative IAM adjunct.
+const String todoCuratedDocAuthoritativeIam =
+    'every *_iam_binding / *_iam_policy override states its authoritative '
+    'replace semantics (AGENTS.md Generation Policy); refine the seed below.';
+
+/// The seeded `curatedDoc` of a `*_iam_binding` / `*_iam_policy` resource,
+/// or null for any other type.
+String? authoritativeIamCuratedDoc(String terraformType) {
+  final String suffix, what, replaced;
+  if (terraformType.endsWith('_iam_binding')) {
+    (suffix, what, replaced) = (
+      '_iam_binding',
+      'IAM binding for a single `role`',
+      'Replaces the entire member list for that role',
+    );
+  } else if (terraformType.endsWith('_iam_policy')) {
+    (suffix, what, replaced) = (
+      '_iam_policy',
+      'IAM policy',
+      'Replaces the entire IAM policy',
+    );
+  } else {
+    return null;
+  }
+  final member =
+      '${terraformType.substring(0, terraformType.length - suffix.length)}'
+      '_iam_member';
+  return '/// Authoritative $what.\n'
+      '///\n'
+      '/// $replaced, overwriting grants\n'
+      '/// made outside this stack. Prefer the additive\n'
+      '/// `$member` for single grants.';
+}
+
 /// TODO note above the commented-out `extraGetters` skeleton.
 const String todoExtraGetters =
     'verify the `id` / `name` attrs exist on this resource; uncomment the block below '

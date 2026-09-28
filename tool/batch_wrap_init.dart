@@ -16,6 +16,7 @@
 //   --source      wrap fixture dir (default: packages/terradart_codegen/...)
 //   --output      override yaml dir (default: packages/terradart_codegen/...)
 //   --force       overwrite existing override yaml files
+//   --fill-param-order  pass wrap-init --fill-param-order (natural order)
 //   --dry-run     print planned commands without running wrap-init
 //
 // Output (stdout, JSON):
@@ -87,11 +88,16 @@ Future<void> main(List<String> args) async {
       'bin/terradart.dart',
       'wrap-init',
       resource,
+      // Every file this tool writes is `<type>.yaml`, a resource override;
+      // a type that is also a data source needs the kind spelled out.
+      '--kind',
+      'resource',
       '--source',
       sourceDir,
       '--output',
       outputDir,
       if (parsed.force) '--force',
+      if (parsed.fillParamOrder) '--fill-param-order',
     ];
 
     if (parsed.dryRun) {
@@ -141,6 +147,7 @@ class BatchWrapInitArgs {
     required this.output,
     required this.force,
     required this.dryRun,
+    this.fillParamOrder = false,
   });
 
   final List<String>? resources;
@@ -149,6 +156,7 @@ class BatchWrapInitArgs {
   final String output;
   final bool force;
   final bool dryRun;
+  final bool fillParamOrder;
 }
 
 @visibleForTesting
@@ -159,6 +167,7 @@ BatchWrapInitArgs? parseArgs(List<String> args) {
   var output = _defaultOutput;
   var force = false;
   var dryRun = false;
+  var fillParamOrder = false;
 
   for (final a in args) {
     if (a.startsWith('--resources=')) {
@@ -178,6 +187,8 @@ BatchWrapInitArgs? parseArgs(List<String> args) {
       force = true;
     } else if (a == '--dry-run') {
       dryRun = true;
+    } else if (a == '--fill-param-order') {
+      fillParamOrder = true;
     } else {
       stderr.writeln('Unknown argument: $a');
       return null;
@@ -198,6 +209,7 @@ BatchWrapInitArgs? parseArgs(List<String> args) {
     output: output,
     force: force,
     dryRun: dryRun,
+    fillParamOrder: fillParamOrder,
   );
 }
 

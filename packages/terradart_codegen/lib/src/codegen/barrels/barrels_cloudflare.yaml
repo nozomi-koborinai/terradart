@@ -13,8 +13,9 @@ umbrellaDoc: |-
   /// (`kCloudflareProviderVersionConstraint`) is filled — every resource
   /// and data source in that schema has a typed factory.
   /// Nested plugin-framework objects are Dart helper classes, not
-  /// `TfArg<Map<String, dynamic>>`. A later pin that adds names lands
-  /// on request. Credentials never appear in synth output:
+  /// `TfArg<Map<String, dynamic>>`. The weekly schema bump gives every
+  /// name a later pin adds a factory with a default override. Credentials
+  /// never appear in synth output:
   /// authentication happens at apply time via CLOUDFLARE_* environment
   /// variables.
   ///

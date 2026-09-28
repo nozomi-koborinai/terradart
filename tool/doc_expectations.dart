@@ -29,6 +29,35 @@ String get dataSourceCatalogPhrase =>
 String get curatedCatalogPhrase => '$curatedFactoryCount curated';
 String get catalogEntriesPhrase => '$catalogEntryCount catalog';
 
+/// The pages whose prose carries the terradart_google catalog counts.
+const googleCountPages = [
+  'README.md',
+  'CONTRIBUTING.md',
+  'packages/terradart_google/README.md',
+  'website/src/content/docs/docs/status.md',
+  'website/src/content/docs/docs/coverage.md',
+  'website/src/content/docs/docs/why-terradart.md',
+  'website/src/components/PitchCode.astro',
+];
+
+/// [text] with every terradart_google count phrase set to the catalog's
+/// counts: `N curated resource factories + M data sources`,
+/// `(T catalog entries)` and `(GA catalog, T entries)`.
+String fixGoogleCounts(String text) => text
+    .replaceAll(
+      RegExp(r'\d+ curated resource factories \+ \d+ data sources?\b'),
+      '$curatedFactoryCount curated resource factories + '
+      '$dataSourceCatalogPhrase',
+    )
+    .replaceAll(
+      RegExp(r'\(\d+ catalog entries\)'),
+      '($catalogEntryCount catalog entries)',
+    )
+    .replaceAll(
+      RegExp(r'\(GA catalog, \d+ entries\)'),
+      '(GA catalog, $catalogEntryCount entries)',
+    );
+
 /// The pub.dev install line of the migrator: README, the package README and
 /// the website guide must all carry it.
 const migrateInstallPhrase = 'dart pub global activate terradart_migrate';

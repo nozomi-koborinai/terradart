@@ -12,6 +12,14 @@ move as increments on the completed baseline. No scheduled agent ships them:
 the maintainer runs this skill (or asks a cloud agent to) for named backlog
 entries, and removes each shipped entry from the backlog in the same PR.
 
+A backlog entry whose `note:` says the schema bump generated its factory
+already has a default override (from `wrap-init`, or the lane scaffold on
+aws / cloudflare) and a published factory: skip `wrap-init`, polish the
+override (`paramOrder`, sealed slots, `curatedDoc`), and replace its
+`ClassName: awaiting-example:` line in `tool/example_debt.yaml` with an
+example (or a reasoned entry). Once a release has published the factory,
+an API change to it is breaking and needs a `MIGRATING.md` entry.
+
 ## PR scope
 
 Ship **one Wave per PR** when possible. Do not bundle:

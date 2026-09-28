@@ -12,6 +12,12 @@ name: schema-bump
 # (tool/generate_drift_report.dart autoMergeBlockers): a pr-only lane
 # (cloudflare) always waits for a maintainer. Branch protection's required
 # checks still gate every merge.
+#
+# A new upstream type does not block auto-merge: the bump scaffolds a
+# default override for it (tool/bump_new_factories.dart scaffold), wraps it
+# into a factory, and records it in tool/curation_backlog.yaml (API polish)
+# and — unless the lane's leftover example covers it — tool/example_debt.yaml
+# (`awaiting-example:`). A removed type or a breaking API diff still blocks.
 
 on:
   schedule:
@@ -76,7 +82,7 @@ jobs:
     needs: plan
     if: needs.plan.outputs.lanes != '[]'
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
     strategy:
       # A lane's failure (terraform init, a fail-closed extraction) must not
       # cancel the other lanes' bumps.
@@ -91,6 +97,7 @@ jobs:
       MODE: ${{ matrix.mode }}
       SOURCE: ${{ matrix.source }}
       REFRESH: ${{ matrix.refresh }}
+      OVERRIDES_ROOT: ${{ matrix.overrides_root }}
       SCHEMA_DIR: ${{ matrix.schema_dir }}
       PACKAGE: ${{ matrix.package }}
       CATALOG: ${{ matrix.catalog }}
@@ -210,6 +217,22 @@ jobs:
             --out=/tmp/schema_diff.json
           cat /tmp/schema_diff.json
 
+      - name: Scaffold default overrides for new types
+        run: |
+          # Fail-soft: a failed scaffold leaves the overrides as they were;
+          # the regenerate then skips the new types and the drift report
+          # blocks auto-merge on scaffold.json.
+          set +e
+          dart tool/bump_new_factories.dart scaffold --lane="$LANE" \
+            --diff=/tmp/schema_diff.json --out=/tmp/scaffold.json
+          rc=$?
+          set -e
+          echo "Exit: $rc"
+          if [ "$rc" != "0" ]; then
+            git checkout -- "$OVERRIDES_ROOT" tool/mm_yaml_sources.yaml
+            git clean -fdq -- "$OVERRIDES_ROOT" "$SCHEMA_DIR/mm"
+          fi
+
       - name: Regenerate wrappers (`terradart wrap`)
         run: |
           set +e
@@ -228,14 +251,26 @@ jobs:
             echo "wrap failed; bump PR will carry inputs only (see drift report)."
             exit 0
           fi
+          example_ok=true
           if [ -n "$EXAMPLE_GENERATOR" ]; then
             # The leftover example covers every factory no other example
             # does; a regenerate can add, drop or reshape them.
             if ! dart "$EXAMPLE_GENERATOR"; then
               git checkout -- examples
-              echo "::warning::$EXAMPLE_GENERATOR failed; the example is unchanged (the lane gates analyze it)."
+              git clean -fdq -- examples
+              example_ok=false
+              echo "::warning::$EXAMPLE_GENERATOR failed; the example is unchanged and the new factories are recorded as awaiting an example."
             fi
           fi
+          # Every new type the catalog now wraps goes into the curation
+          # backlog (API polish) and, when no leftover example covers it,
+          # into tool/example_debt.yaml as awaiting an example.
+          dart tool/bump_new_factories.dart record --lane="$LANE" \
+            --diff=/tmp/schema_diff.json \
+            --detected-at="$(date -u +%Y-%m-%d)" \
+            --provider-version="$(jq -r '.latest' /tmp/state.json)" \
+            --example-generator-ok="$example_ok" \
+            --out=/tmp/new_factories.json
 
       - name: Run `terradart wrap --check`
         run: |
@@ -248,6 +283,25 @@ jobs:
           echo "$rc" > /tmp/wrap_check_exit
           echo "Exit: $rc"
           cat /tmp/wrap_check.txt
+
+      - name: Sync catalog counts in the docs
+        run: |
+          # Only the terradart_google catalog is restated in prose
+          # (tool/doc_expectations.dart); the coverage page renders from the
+          # catalog plus every example's synth output.
+          if git diff --quiet -- "$CATALOG" || [ "$LANE" != "google" ]; then
+            echo "Catalog unchanged or not restated; docs untouched."
+            exit 0
+          fi
+          dart tool/check_docs_consistency.dart --fix \
+            || echo "::warning::docs consistency still fails after --fix (the lane gates report it)."
+          if dart tool/example_synth_gates.dart --skip-validate > /tmp/synth_gates.txt 2>&1; then
+            echo "Synth gates green."
+          else
+            echo "::warning::example synth gates fail; the coverage page renders from what synthed."
+            tail -n 40 /tmp/synth_gates.txt
+          fi
+          dart tool/render_coverage_page.dart
 
       - name: Refresh the ride-along lane's fixture + regenerate
         if: matrix.ride_along != ''
@@ -345,7 +399,9 @@ jobs:
           cp /tmp/schema_diff.json /tmp/inputs/schema_diff.json
           # Optional inputs: MM sync (lanes with Magic Modules YAML), the
           # ride-along (bump weeks only), the API diff (absent → blocks).
-          for f in mm_yaml_sync.json beta_bump.json api_diff.json; do
+          # The new-type scaffold and record (absent → nothing new, or wrap
+          # failed before record ran).
+          for f in mm_yaml_sync.json beta_bump.json api_diff.json scaffold.json new_factories.json; do
             if [ -f "/tmp/$f" ]; then cp "/tmp/$f" "/tmp/inputs/$f"; fi
           done
           # Add bump_date to state.json for the report title.
@@ -365,6 +421,8 @@ jobs:
 
       - name: Append new types to curation backlog
         run: |
+          # The types record already listed are skipped; what is left are
+          # types that did not become factories (a failed scaffold or wrap).
           added_count=$(jq '(.added_resources | length) + ((.added_data_sources // []) | length)' /tmp/schema_diff.json)
           if [ "$added_count" = "0" ]; then
             echo "No new types; backlog unchanged."
@@ -426,12 +484,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$branch"
-          paths=(tool/curation_backlog.yaml "$SCHEMA_DIR" "$PACKAGE/lib" "$MANIFEST")
-          if [ -n "$RIDE_ALONG" ]; then
-            paths+=("$RIDE_ALONG_SCHEMA_DIR" "$RIDE_ALONG_PACKAGE/lib" "$RIDE_ALONG_MANIFEST")
-          fi
-          if [ -n "$EXAMPLE_GENERATOR" ]; then paths+=(examples); fi
-          git add -A -- "${paths[@]}"
+          # Everything the bump wrote: fixtures, overrides, wrappers,
+          # manifests, ledgers, docs, examples. The drift report is the PR
+          # body, and tf-out/ synth output is gitignored.
+          git add -A -- . ':(exclude).schema-bump'
           # --allow-empty: a new-major week with nothing to regenerate still
           # opens a PR so the drift report's new-major banner reaches a human.
           git commit --allow-empty -m "chore(schema): weekly $LANE bump $today"

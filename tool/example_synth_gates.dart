@@ -3,7 +3,9 @@
 // - Coverage v2: curated factory tfTypes (GA + google-beta + appwrite) must
 //   appear in synth output (or tool/example_debt.yaml by className). Reasons
 //   containing `iam-adjunct-debt:` additionally require *IamBinding/*IamPolicy
-//   + sibling *IamMember in synth.
+//   + sibling *IamMember in synth. Reasons containing `awaiting-example:`
+//   (written by the weekly schema bump for the factories it generates)
+//   require the type's tool/curation_backlog.yaml entry.
 // - API enablement: when an example enables APIs via google_project_service,
 //   EVERY resource requiring an API must have its API enabled in the same
 //   stack (or be listed in tool/example_api_debt.yaml) and transitively
@@ -18,6 +20,8 @@
 
 import 'dart:convert';
 import 'dart:io';
+
+import 'package:yaml/yaml.dart';
 
 import 'terraform_api_requirements.dart';
 
@@ -252,7 +256,21 @@ void _checkSynthCoverage(
       errors.add('tool/example_debt.yaml: unknown catalog class $name');
     }
   }
+  final backlog = File('tool/curation_backlog.yaml');
+  final backlogTypes = backlog.existsSync()
+      ? backlogKeys(backlog.readAsStringSync())
+      : <String>{};
+  final classToKey = {
+    for (final f in factories) f.className: '${f.kind}:${f.tfType}',
+  };
   for (final entry in debt.entries) {
+    checkAwaitingExampleEntry(
+      className: entry.key,
+      reason: entry.value,
+      catalogKey: classToKey[entry.key],
+      backlogTypes: backlogTypes,
+      errors: errors,
+    );
     checkIamAdjunctDebtEntry(
       className: entry.key,
       reason: entry.value,
@@ -266,6 +284,42 @@ void _checkSynthCoverage(
     'example coverage (synth): ${factories.length} factories, '
     '$covered in synth output, ${debt.length} in tool/example_debt.yaml',
   );
+}
+
+/// The types of a tool/curation_backlog.yaml [source], as
+/// `resource:<type>` / `dataSource:<type>` keys.
+Set<String> backlogKeys(String source) {
+  final doc = loadYaml(source);
+  final entries = doc is YamlMap ? doc['entries'] : null;
+  return {
+    if (entries is YamlList)
+      for (final e in entries.whereType<YamlMap>()) ...[
+        if (e['resource'] case final String t) 'resource:$t',
+        if (e['data_source'] case final String t) 'dataSource:$t',
+      ],
+  };
+}
+
+/// A debt line whose [reason] contains `awaiting-example:` (the schema
+/// bump generated the factory) needs its type in the curation backlog: the
+/// backlog is where the missing example and the API polish get picked up.
+/// [catalogKey] is the class's `kind:tfType`, null when not in a catalog
+/// (reported separately as an unknown class).
+void checkAwaitingExampleEntry({
+  required String className,
+  required String reason,
+  required String? catalogKey,
+  required Set<String> backlogTypes,
+  required List<String> errors,
+}) {
+  if (!reason.contains('awaiting-example:') || catalogKey == null) return;
+  if (!backlogTypes.contains(catalogKey)) {
+    errors.add(
+      'tool/example_debt.yaml: $className is awaiting-example: but '
+      '${catalogKey.substring(catalogKey.indexOf(':') + 1)} has no '
+      'tool/curation_backlog.yaml entry',
+    );
+  }
 }
 
 /// Enforces AGENTS.md IAM binding/policy debt path when [reason] contains

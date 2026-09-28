@@ -5,13 +5,28 @@
 // their own step in agent_verify.sh and CI.
 //
 // Run from repo root: dart tool/check_docs_consistency.dart
+//   --fix  first rewrite the terradart_google catalog counts in the pages
+//          that carry them (the weekly schema bump generates factories, so
+//          it moves the counts; every other check stays read-only).
 // ignore_for_file: avoid_print
 
 import 'dart:io';
 
 import 'doc_expectations.dart';
 
-Future<void> main() async {
+Future<void> main(List<String> args) async {
+  if (args.contains('--fix')) {
+    for (final path in googleCountPages) {
+      final file = File(path);
+      if (!file.existsSync()) continue;
+      final text = file.readAsStringSync();
+      final fixed = fixGoogleCounts(text);
+      if (fixed != text) {
+        file.writeAsStringSync(fixed);
+        print('fixed catalog counts: $path');
+      }
+    }
+  }
   final errors = <String>[];
 
   final minor = _workspaceMinor();

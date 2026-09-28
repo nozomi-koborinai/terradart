@@ -18,8 +18,9 @@
 //   state.json (tool/fetch_schema.dart + bump_date), wrap_check.txt,
 //   wrap_check_exit, gates.txt, gates_exit, schema_diff.json
 //   (tool/schema_resource_diff.dart); optional mm_yaml_sync.json (lanes
-//   with Magic Modules YAML), beta_bump.json (the google-beta ride-along)
-//   and api_diff.json (tool/bump_api_surface.dart diff).
+//   with Magic Modules YAML), beta_bump.json (the google-beta ride-along),
+//   api_diff.json (tool/bump_api_surface.dart diff), scaffold.json and
+//   new_factories.json (tool/bump_new_factories.dart scaffold / record).
 //
 // --decision-out (optional) receives `{auto_merge, blockers}`: the
 // workflow enables auto-merge only when `blockers` is empty.
@@ -173,6 +174,8 @@ class ReportInputs {
     this.mmYamlSync,
     this.betaBump,
     this.apiDiff,
+    this.scaffold,
+    this.newFactories,
     this.lane = ReportLane.google,
   });
   final Map<String, dynamic> state;
@@ -196,6 +199,15 @@ class ReportInputs {
   /// `{breaking: [..], added: n}`. Absent → the surface was not compared,
   /// which blocks auto-merge.
   final Map<String, dynamic>? apiDiff;
+
+  /// Optional `scaffold.json`: `{exit, log_excerpt}` of the default-override
+  /// scaffolding for the new types. A nonzero exit blocks auto-merge.
+  final Map<String, dynamic>? scaffold;
+
+  /// Optional `new_factories.json`: `{factories: [{tf_type, class_name,
+  /// kind}], example_generator}` — the new types the regenerate made
+  /// factories.
+  final Map<String, dynamic>? newFactories;
 }
 
 @visibleForTesting
@@ -220,10 +232,14 @@ ReportInputs readInputs(String dir, {ReportLane lane = ReportLane.google}) {
   final beta = betaFile.existsSync()
       ? jsonDecode(betaFile.readAsStringSync()) as Map<String, dynamic>
       : null;
-  final apiFile = File('$dir/api_diff.json');
-  final api = apiFile.existsSync()
-      ? jsonDecode(apiFile.readAsStringSync()) as Map<String, dynamic>
-      : null;
+  Map<String, dynamic>? optional(String name) {
+    final file = File('$dir/$name');
+    return file.existsSync()
+        ? jsonDecode(file.readAsStringSync()) as Map<String, dynamic>
+        : null;
+  }
+
+  final api = optional('api_diff.json');
   return ReportInputs(
     state: state,
     wrapCheckStdout: wrapCheck,
@@ -234,6 +250,8 @@ ReportInputs readInputs(String dir, {ReportLane lane = ReportLane.google}) {
     schemaDiff: schema,
     betaBump: beta,
     apiDiff: api,
+    scaffold: optional('scaffold.json'),
+    newFactories: optional('new_factories.json'),
     lane: lane,
   );
 }
@@ -288,9 +306,11 @@ String buildReport(ReportInputs i) {
 /// Why this bump must wait for a human; empty when it may auto-merge.
 ///
 /// Auto-merge is for the routine week only: a clean regenerate, green QA
-/// gates, no MM sync failure, no new or removed resource (or data source,
+/// gates, no MM sync failure, no removed curated resource (or data source,
 /// on lanes that diff them), no new major, and no breaking change to the
-/// generated Dart API. CI's required checks still gate the merge itself.
+/// generated Dart API. A new upstream type is routine: the bump scaffolds
+/// its default override and records it for later polish, so only a failed
+/// scaffold blocks. CI's required checks still gate the merge itself.
 @visibleForTesting
 List<String> autoMergeBlockers(ReportInputs i) {
   final blockers = <String>[
@@ -308,13 +328,9 @@ List<String> autoMergeBlockers(ReportInputs i) {
   if (((i.mmYamlSync?['failed'] as List?) ?? const []).isNotEmpty) {
     blockers.add('MM YAML sync failures');
   }
-  final added = _count(i, 'added_resources');
-  if (added > 0) {
-    blockers.add('$added new resource(s) for the curation backlog');
-  }
-  final addedData = _count(i, 'added_data_sources');
-  if (addedData > 0) {
-    blockers.add('$addedData new data source(s) for the curation backlog');
+  final scaffold = i.scaffold;
+  if (scaffold != null && scaffold['exit'] != 0) {
+    blockers.add('scaffolding default overrides for the new types failed');
   }
   final removed = _count(i, 'removed_resources');
   if (removed > 0) {
@@ -351,8 +367,9 @@ String buildAutoMergeSection(ReportInputs i) {
   final blockers = autoMergeBlockers(i);
   if (blockers.isEmpty) {
     return '## ✅ Auto-merge enabled\n\n'
-        'Routine bump: no new or removed resources and no breaking API '
-        'change. It squash-merges once the required checks pass.';
+        'Routine bump: no removed curated types and no breaking API change '
+        '(new types became factories with default overrides). It '
+        'squash-merges once the required checks pass.';
   }
   return '## ✋ Needs a maintainer\n\n'
       'Auto-merge is off for this bump:\n\n'
@@ -550,11 +567,24 @@ String buildGateSection(ReportInputs i) {
 @visibleForTesting
 String buildNewResourceSection(ReportInputs i) {
   final prefix = i.lane.typePrefix;
+  final generated = {
+    for (final f in ((i.newFactories?['factories'] as List?) ?? const [])
+        .cast<Map<String, dynamic>>())
+      '${f['kind']}:${f['tf_type']}': f['class_name'] as String,
+  };
+  String line(String type, String kind) {
+    final dataSource = kind == 'dataSource' ? ' (data source)' : '';
+    final className = generated['$kind:$type'];
+    return className == null
+        ? '- `$type`$dataSource — no factory generated (see the wrap log)'
+        : '- `$type`$dataSource → `$className`';
+  }
+
   final added = [
     for (final r in (i.schemaDiff['added_resources'] as List?) ?? const [])
-      '`$r`',
+      line('$r', 'resource'),
     for (final d in (i.schemaDiff['added_data_sources'] as List?) ?? const [])
-      '`$d` (data source)',
+      line('$d', 'dataSource'),
   ];
   final what = _tracksDataSources(i) ? 'types' : 'resources';
   if (added.isEmpty) {
@@ -564,12 +594,31 @@ String buildNewResourceSection(ReportInputs i) {
     '## 🆕 New `$prefix*` $what (${added.length} detected)\n\n',
   );
   for (final r in added) {
-    b.writeln('- $r');
+    b.writeln(r);
   }
   b.writeln();
+  final scaffold = i.scaffold;
+  if (scaffold != null && scaffold['exit'] != 0) {
+    b
+      ..writeln(
+        '⚠️ Scaffolding their default overrides failed (exit '
+        '${scaffold['exit']}); no override was kept.',
+      )
+      ..writeln()
+      ..writeln('```')
+      ..writeln('${scaffold['log_excerpt'] ?? ''}'.trim())
+      ..writeln('```')
+      ..writeln();
+  }
+  final coveredByGenerator =
+      (i.newFactories?['example_generator'] as String?)?.isNotEmpty ?? false;
   b.writeln(
-    'These entries have been appended to `tool/curation_backlog.yaml` '
-    'for tracking.',
+    'New types do not block auto-merge. Each generated factory has a '
+    'default override (review it later) and a `tool/curation_backlog.yaml` '
+    'entry for API polish; ${coveredByGenerator ? 'the lane\'s leftover '
+        'example generator covers it in an example' : 'an `awaiting-example:` '
+        'line in `tool/example_debt.yaml` holds its example coverage'}. Types '
+    'without a factory are in the backlog only.',
   );
   return b.toString().trimRight();
 }
