@@ -243,7 +243,7 @@ void main() {
       expect(out, isNot(contains('magic-modules')));
       expect(out, isNot(contains('MM YAML')));
       expect(out, contains('source_aws/schema.json'));
-      expect(out, contains('## ✅ Aws lane gates pass'));
+      expect(out, contains('## ✅ Lane QA gates (aws) pass'));
     });
 
     test('summary uses the lane prefix and counts data sources', () {
@@ -275,7 +275,7 @@ providers:
 ''';
       final lane = ReportLane.fromProviders(yaml, 'aws');
       expect(lane.typePrefix, 'aws_');
-      expect(lane.gatesLabel, 'aws lane gates');
+      expect(lane.gatesLabel, 'lane QA gates (aws)');
       expect(
         () => ReportLane.fromProviders(yaml, 'nope'),
         throwsFormatException,

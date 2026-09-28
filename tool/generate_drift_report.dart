@@ -150,7 +150,7 @@ class ReportLane {
   String get typePrefix => '${source.split('/').last}_';
 
   String get gatesLabel =>
-      name == 'google' ? 'universal QA gates' : '$name lane gates';
+      name == 'google' ? 'universal QA gates' : 'lane QA gates ($name)';
 }
 
 @visibleForTesting
