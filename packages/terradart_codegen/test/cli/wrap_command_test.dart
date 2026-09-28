@@ -55,8 +55,9 @@ void main() {
 
   group('WrapCommand integration', () {
     test(
-        'emits 1934 files (1799 wrappers + _catalog.g.dart + 133 barrels + umbrella)',
-        () async {
+        'emits exactly the generated files committed to terradart_google '
+        '(wrappers, _catalog.g.dart, _provider_version.g.dart, barrels, '
+        'umbrella)', () async {
       // Plan 5.X (v0.5.0-dev): the schemantic Layer 1 chain
       // (`generated/<type>.schema.dart` + `generated/<type>.schema.g.dart`
       // + `generated/data_<type>.schema.dart`) is retired. Only Layer 2
@@ -81,12 +82,27 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        // 1799 wrappers (1338 resource Layer 2 + 461 data source Layer 2) plus
-        // the generated static catalog `_catalog.g.dart`, plus the derived
-        // barrels: 133 per-catalog barrels (132 service + `data`) and the
-        // `terradart_google.dart` umbrella → 1934 emitted .dart files.
-        expect(files, hasLength(1934));
+        // One wrapper per override plus the catalog, the provider pin, the
+        // per-catalog barrels and the umbrella: the committed package's
+        // generated files, so a catalog that grows needs no count here.
+        final committedRoot = p.join('..', 'terradart_google');
+        final committed = <String>[
+          for (final ent in Directory(p.join(committedRoot, 'lib'))
+              .listSync(recursive: true))
+            if (ent is File &&
+                ent.path.endsWith('.dart') &&
+                ent
+                    .readAsLinesSync()
+                    .first
+                    .startsWith('// GENERATED FILE - DO NOT EDIT'))
+              p.relative(ent.path, from: committedRoot),
+        ];
+        expect(files.toSet(), committed.toSet());
         expect(files, contains(p.join('lib', 'src', '_catalog.g.dart')));
+        expect(
+          files,
+          contains(p.join('lib', 'src', '_provider_version.g.dart')),
+        );
         expect(
           files,
           contains(p.join('lib', 'src', 'pubsub', 'google_pubsub_topic.dart')),

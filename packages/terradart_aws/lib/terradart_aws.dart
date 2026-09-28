@@ -1,7 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Curated **AWS** surface for TerraDart (`hashicorp/aws` Terraform
-/// provider, pinned at `6.66.0`).
+/// provider, pinned exactly at `kAwsProviderVersionConstraint`).
 ///
 /// The catalog at that pin is filled: every resource and data source in
 /// the schema has a typed factory, and nested blocks are Dart helper

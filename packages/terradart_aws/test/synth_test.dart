@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_aws/catalog.dart';
@@ -105,24 +106,44 @@ Iterable<String> _keysDeep(Object? value) sync* {
   }
 }
 
+/// The lane's schema fixture in the monorepo: the pin and the full catalog
+/// are both derived from it.
+const _fixtureDir = '../terradart_codegen/test/fixtures/wrap/source_aws';
+
+Map<String, dynamic> _fixtureSchema() {
+  final root = jsonDecode(File('$_fixtureDir/schema.json').readAsStringSync())
+      as Map<String, dynamic>;
+  return (root['provider_schemas'] as Map<String, dynamic>).values.single
+      as Map<String, dynamic>;
+}
+
+Set<String> _catalogTypes(CatalogKind kind) =>
+    {for (final e in terradartCatalog.where((e) => e.kind == kind)) e.tfType};
+
 void main() {
-  test('synths the aws provider with the exact 6.66.0 pin', () {
+  test('synths the aws provider with the exact fixture pin', () {
     final json = _TestStack().synth().tfJson;
     final required =
         ((json['terraform'] as Map<String, dynamic>)['required_providers']
             as Map<String, dynamic>)['aws'] as Map<String, dynamic>;
     expect(required['source'], 'hashicorp/aws');
-    expect(required['version'], '6.66.0');
+    expect(required['version'], kAwsProviderVersionConstraint);
+    expect(
+      kAwsProviderVersionConstraint,
+      File('$_fixtureDir/provider_version.txt').readAsStringSync().trim(),
+    );
+    expect(kAwsProviderVersionConstraint, matches(RegExp(r'^\d+\.\d+\.\d+$')));
   });
 
-  test('catalog lists every factory at the current pin', () {
+  test('catalog lists every resource and data source at the pin', () {
+    final schema = _fixtureSchema();
     expect(
-      terradartCatalog.where((e) => e.kind == CatalogKind.resource).length,
-      1725,
+      _catalogTypes(CatalogKind.resource),
+      (schema['resource_schemas'] as Map).keys.toSet(),
     );
     expect(
-      terradartCatalog.where((e) => e.kind == CatalogKind.dataSource).length,
-      683,
+      _catalogTypes(CatalogKind.dataSource),
+      (schema['data_source_schemas'] as Map).keys.toSet(),
     );
   });
 
