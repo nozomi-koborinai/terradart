@@ -17,6 +17,7 @@ final class CloudflareSecretsStore extends Resource {
   CloudflareSecretsStore({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<bool>? force,
     required TfArg<String> name,
     super.lifecycle,
     super.dependsOn,
@@ -24,7 +25,11 @@ final class CloudflareSecretsStore extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'name': name},
+         argMap: {
+           'account_id': accountId,
+           if (force != null) 'force': force,
+           'name': name,
+         },
        );
 
   @override

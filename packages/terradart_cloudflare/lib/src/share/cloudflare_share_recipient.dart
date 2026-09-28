@@ -13,6 +13,7 @@ final class CloudflareShareRecipient extends Resource {
   CloudflareShareRecipient({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<bool>? includeResources,
     TfArg<String>? organizationId,
     TfArg<String>? recipientAccountId,
     required TfArg<String> shareId,
@@ -24,6 +25,7 @@ final class CloudflareShareRecipient extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           if (includeResources != null) 'include_resources': includeResources,
            if (organizationId != null) 'organization_id': organizationId,
            if (recipientAccountId != null)
              'recipient_account_id': recipientAccountId,

@@ -45,10 +45,16 @@ export 'src/ai/cloudflare_ai_search_instance.dart'
         AiSearchInstanceRetrievalOptionsBoostBy,
         AiSearchInstanceSourceParams,
         AiSearchInstanceSourceParamsWebCrawler,
+        AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions,
         AiSearchInstanceSourceParamsWebCrawlerParseOptions,
         AiSearchInstanceSourceParamsWebCrawlerParseOptionsContentSelector,
-        AiSearchInstanceSourceParamsWebCrawlerStoreOptions,
         CloudflareAiSearchInstance;
 export 'src/ai/cloudflare_ai_search_namespace.dart'
-    show CloudflareAiSearchNamespace;
+    show
+        AiSearchNamespacePublicEndpointParams,
+        AiSearchNamespacePublicEndpointParamsChatCompletionsEndpoint,
+        AiSearchNamespacePublicEndpointParamsMcp,
+        AiSearchNamespacePublicEndpointParamsRateLimit,
+        AiSearchNamespacePublicEndpointParamsSearchEndpoint,
+        CloudflareAiSearchNamespace;
 export 'src/ai/cloudflare_ai_search_token.dart' show CloudflareAiSearchToken;

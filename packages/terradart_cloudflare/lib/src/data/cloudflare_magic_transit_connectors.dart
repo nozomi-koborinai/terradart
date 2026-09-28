@@ -16,7 +16,7 @@ final class DataCloudflareMagicTransitConnectors extends Data {
 
   DataCloudflareMagicTransitConnectors({
     required super.localName,
-    TfArg<String>? accountId,
+    required TfArg<String> accountId,
     TfArg<String>? deviceType,
     TfArg<num>? maxItems,
     super.provider,
@@ -24,7 +24,7 @@ final class DataCloudflareMagicTransitConnectors extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': accountId,
            if (deviceType != null) 'device_type': deviceType,
            if (maxItems != null) 'max_items': maxItems,
          },

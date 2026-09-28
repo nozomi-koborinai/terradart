@@ -45,6 +45,9 @@ final class DataCloudflareZeroTrustDlpIntegrationEntry extends Data {
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 
+  /// Reference to `deprecated` attribute.
+  TfRef<bool> get deprecated => TfRef.attribute<bool>(this, 'deprecated');
+
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 

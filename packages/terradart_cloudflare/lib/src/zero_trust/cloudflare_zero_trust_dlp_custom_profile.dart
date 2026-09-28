@@ -197,6 +197,10 @@ final class CloudflareZeroTrustDlpCustomProfile extends Resource {
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 
+  /// Reference to `integration_id` attribute.
+  TfRef<String> get integrationId =>
+      TfRef.attribute<String>(this, 'integration_id');
+
   /// Reference to `open_access` attribute.
   TfRef<bool> get openAccess => TfRef.attribute<bool>(this, 'open_access');
 

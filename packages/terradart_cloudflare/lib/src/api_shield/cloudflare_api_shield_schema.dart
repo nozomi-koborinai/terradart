@@ -20,6 +20,7 @@ final class CloudflareApiShieldSchema extends Resource {
     required TfArg<String> file,
     required TfArg<String> kind,
     TfArg<String>? name,
+    TfArg<bool>? omitSource,
     TfArg<String>? schemaId,
     TfArg<String>? validationEnabled,
     required TfArg<String> zoneId,
@@ -33,6 +34,7 @@ final class CloudflareApiShieldSchema extends Resource {
            'file': file,
            'kind': kind,
            if (name != null) 'name': name,
+           if (omitSource != null) 'omit_source': omitSource,
            if (schemaId != null) 'schema_id': schemaId,
            if (validationEnabled != null)
              'validation_enabled': validationEnabled,

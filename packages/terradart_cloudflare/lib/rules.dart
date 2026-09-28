@@ -54,6 +54,7 @@ export 'src/rules/cloudflare_ruleset.dart'
         RulesetRulesActionParametersNoStore,
         RulesetRulesActionParametersNoTransform,
         RulesetRulesActionParametersOrigin,
+        RulesetRulesActionParametersOriginRangeRequests,
         RulesetRulesActionParametersOverrides,
         RulesetRulesActionParametersOverridesCategories,
         RulesetRulesActionParametersOverridesRules,

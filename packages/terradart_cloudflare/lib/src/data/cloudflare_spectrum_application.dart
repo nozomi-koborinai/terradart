@@ -74,6 +74,10 @@ final class DataCloudflareSpectrumApplication extends Data {
   TfRef<Object?> get originPort =>
       TfRef.attribute<Object?>(this, 'origin_port');
 
+  /// Reference to `origin_worker_id` attribute.
+  TfRef<String> get originWorkerId =>
+      TfRef.attribute<String>(this, 'origin_worker_id');
+
   /// Reference to `protocol` attribute.
   TfRef<String> get protocol => TfRef.attribute<String>(this, 'protocol');
 

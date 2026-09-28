@@ -162,6 +162,33 @@ Terraform on provider 8.x cannot read them:
   current version, move the workload, then delete the old resource from the
   Stack and apply — all before you upgrade.
 
+### `terradart_cloudflare` follows `cloudflare/cloudflare` 5.26.0
+
+**Breaking (`terradart_cloudflare`)** — the provider pin moves from `5.23.0`
+to `5.26.0`, and the factories follow the provider's own schema changes
+(upstream ships breaking changes in 5.24.0; see its
+[CHANGELOG](https://github.com/cloudflare/terraform-provider-cloudflare/blob/v5.26.0/CHANGELOG.md)).
+Synth output now pins `version = "5.26.0"`; run `terraform init -upgrade`.
+
+| Before (5.23.0) | After (5.26.0) |
+|-----------------|----------------|
+| `DataCloudflareRateLimits` | removed upstream; read one rule with `DataCloudflareRateLimit` |
+| `CloudflareRateLimit(...).id`, `.description`, `.disabled` (and the `bypass` block) | removed upstream; `rateLimitId:` names the rule |
+| `CloudflareFlagshipFlag(flagKey: ...)` | removed; the flag is identified by `key:`, and `.id` is a computed getter |
+| `CloudConnectorRulesRules(provider: ...)` | `CloudConnectorRulesRules(cloudConnectorRulesProvider: ...)` |
+| `PipelineSinkSchema(format: PipelineSinkSchemaFormat(...))`, `PipelineStreamSchema(format: PipelineStreamSchemaFormat(...))` | the nested `format` is gone from `schema`; drop it |
+| `AiSearchInstanceSourceParamsWebCrawler(storeOptions: ...)` and `CloudflareAiSearchInstance.vectorizeName` | removed; `discoverOptions:` (`AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions`) is the new crawl setting |
+| `CloudflareEmailRoutingDns.success`, `DataCloudflareEmailRoutingDns.success` | removed |
+| `DataCloudflareHostnameTlsSetting(...)` returning `.hostname` / `.id` | `hostname:` is a required input; read `settingId` instead of `id` |
+| `DataCloudflareZeroTrustResourceLibraryApplication(id: ...)`, `.intelId` | `id` is computed now, so look the application up with `filter:`; `.intelId` is removed |
+| `DataCloudflareZeroTrustResourceLibraryCategory(id: TfArg<String>)` | `id: TfArg<num>` |
+| optional `zoneId:` / `accountId:` on `DataCloudflareCloudConnectorRules`, `DataCloudflareEmailRoutingDns`, `DataCloudflareEmailSecurityBlockSender(s)`, `DataCloudflareMagicTransitConnector(s)`, `DataCloudflareRegistrarDomains` | required |
+
+The 14 resources and 22 data sources that 5.24.0–5.26.0 add get factories
+too (`CloudflareCtAlerting`, `CloudflareFieldExtractor`,
+`CloudflareZeroTrustCasbPolicy`, `CloudflareZoneTracing`, ...), with new
+`ct`, `field`, `nel` and `precursor` barrels.
+
 ### `terradart-coverage` retired
 
 **`terradart-coverage` is retired** — the `terradart_coverage` package, its

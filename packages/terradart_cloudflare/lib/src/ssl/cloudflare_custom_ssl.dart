@@ -36,7 +36,7 @@ final class CloudflareCustomSsl extends Resource {
     TfArg<String>? customCsrId,
     TfArg<String>? deploy,
     TfArg<String>? policy,
-    required TfArg<String> privateKey,
+    TfArg<String>? privateKey,
     TfArg<String>? type,
     required TfArg<String> zoneId,
     CustomSslGeoRestrictions? geoRestrictions,
@@ -52,7 +52,7 @@ final class CloudflareCustomSsl extends Resource {
            if (customCsrId != null) 'custom_csr_id': customCsrId,
            if (deploy != null) 'deploy': deploy,
            if (policy != null) 'policy': policy,
-           'private_key': privateKey,
+           if (privateKey != null) 'private_key': privateKey,
            if (type != null) 'type': type,
            'zone_id': zoneId,
            if (geoRestrictions != null)

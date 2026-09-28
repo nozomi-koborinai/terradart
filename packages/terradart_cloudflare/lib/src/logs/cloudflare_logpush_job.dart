@@ -91,6 +91,7 @@ final class CloudflareLogpushJob extends Resource {
     required TfArg<String> destinationConf,
     TfArg<bool>? enabled,
     TfArg<String>? filter,
+    TfArg<bool>? filterAttackTraffic,
     TfArg<String>? frequency,
     TfArg<String>? kind,
     TfArg<String>? logpullOptions,
@@ -113,6 +114,8 @@ final class CloudflareLogpushJob extends Resource {
            'destination_conf': destinationConf,
            if (enabled != null) 'enabled': enabled,
            if (filter != null) 'filter': filter,
+           if (filterAttackTraffic != null)
+             'filter_attack_traffic': filterAttackTraffic,
            if (frequency != null) 'frequency': frequency,
            if (kind != null) 'kind': kind,
            if (logpullOptions != null) 'logpull_options': logpullOptions,

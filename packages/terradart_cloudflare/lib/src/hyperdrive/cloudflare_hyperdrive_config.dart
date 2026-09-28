@@ -118,11 +118,12 @@ final class CloudflareHyperdriveConfig extends Resource {
   CloudflareHyperdriveConfig({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<String>? integration,
     required TfArg<String> name,
     TfArg<num>? originConnectionLimit,
     HyperdriveConfigCaching? caching,
     HyperdriveConfigMtls? mtls,
-    required HyperdriveConfigOrigin origin,
+    HyperdriveConfigOrigin? origin,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -131,12 +132,13 @@ final class CloudflareHyperdriveConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           if (integration != null) 'integration': integration,
            'name': name,
            if (originConnectionLimit != null)
              'origin_connection_limit': originConnectionLimit,
            if (caching != null) 'caching': TfArg.literal(caching.encode()),
            if (mtls != null) 'mtls': TfArg.literal(mtls.encode()),
-           'origin': TfArg.literal(origin.encode()),
+           if (origin != null) 'origin': TfArg.literal(origin.encode()),
          },
        );
 
