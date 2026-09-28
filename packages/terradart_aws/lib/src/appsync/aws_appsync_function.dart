@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appsync_function`.
 const Set<String> _awsAppsyncFunctionSensitive = <String>{};
 
+/// Appsync Function Function enum for `function_version`.
+enum AppsyncFunctionFunctionVersion implements TerraformEnum {
+  v2018x05x29('2018-05-29');
+
+  const AppsyncFunctionFunctionVersion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `runtime` block of
 /// `aws_appsync_function` (derived from provider schema).
 @immutable
@@ -16,7 +25,7 @@ final class AppsyncFunctionRuntime {
     required this.runtimeVersion,
   });
 
-  final TfArg<String> name;
+  final TfArg<AppsyncFunctionRuntimeName> name;
 
   final TfArg<String> runtimeVersion;
 
@@ -24,6 +33,15 @@ final class AppsyncFunctionRuntime {
     'name': name.toTfJson(),
     'runtime_version': runtimeVersion.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+enum AppsyncFunctionRuntimeName implements TerraformEnum {
+  appsyncJs('APPSYNC_JS');
+
+  const AppsyncFunctionRuntimeName(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `sync_config` block of
@@ -36,9 +54,9 @@ final class AppsyncFunctionSyncConfig {
     this.lambdaConflictHandlerConfig,
   });
 
-  final TfArg<String>? conflictDetection;
+  final TfArg<AppsyncFunctionSyncConfigConflictDetection>? conflictDetection;
 
-  final TfArg<String>? conflictHandler;
+  final TfArg<AppsyncFunctionSyncConfigConflictHandler>? conflictHandler;
 
   final AppsyncFunctionSyncConfigLambdaConflictHandlerConfig?
   lambdaConflictHandlerConfig;
@@ -51,6 +69,28 @@ final class AppsyncFunctionSyncConfig {
     if (lambdaConflictHandlerConfig != null)
       'lambda_conflict_handler_config': lambdaConflictHandlerConfig!.encode(),
   };
+}
+
+/// `conflict_detection` — derived from the provider schema description.
+enum AppsyncFunctionSyncConfigConflictDetection implements TerraformEnum {
+  version('VERSION'),
+  none('NONE');
+
+  const AppsyncFunctionSyncConfigConflictDetection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `conflict_handler` — derived from the provider schema description.
+enum AppsyncFunctionSyncConfigConflictHandler implements TerraformEnum {
+  optimisticConcurrency('OPTIMISTIC_CONCURRENCY'),
+  lambda('LAMBDA'),
+  automerge('AUTOMERGE'),
+  none('NONE');
+
+  const AppsyncFunctionSyncConfigConflictHandler(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `sync_config.lambda_conflict_handler_config` block of
@@ -79,7 +119,7 @@ final class AwsAppsyncFunction extends Resource {
     TfArg<String>? code,
     required TfArg<String> dataSource,
     TfArg<String>? description,
-    TfArg<String>? functionVersion,
+    TfArg<AppsyncFunctionFunctionVersion>? functionVersion,
     TfArg<num>? maxBatchSize,
     required TfArg<String> name,
     TfArg<String>? region,

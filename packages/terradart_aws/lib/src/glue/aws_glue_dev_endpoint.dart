@@ -6,6 +6,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_glue_dev_endpoint`.
 const Set<String> _awsGlueDevEndpointSensitive = <String>{};
 
+/// Glue Dev Endpoint Worker enum for `worker_type`.
+enum GlueDevEndpointWorkerType implements TerraformEnum {
+  standard('Standard'),
+  g1x('G.1X'),
+  g2x('G.2X'),
+  g025x('G.025X'),
+  g4x('G.4X'),
+  g8x('G.8X'),
+  z2x('Z.2X');
+
+  const GlueDevEndpointWorkerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_glue_dev_endpoint`.
 final class AwsGlueDevEndpoint extends Resource {
   static const String tfType = 'aws_glue_dev_endpoint';
@@ -27,7 +42,7 @@ final class AwsGlueDevEndpoint extends Resource {
     TfArg<List<String>>? securityGroupIds,
     TfArg<String>? subnetId,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? workerType,
+    TfArg<GlueDevEndpointWorkerType>? workerType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

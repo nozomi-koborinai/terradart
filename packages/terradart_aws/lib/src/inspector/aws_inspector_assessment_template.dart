@@ -16,7 +16,7 @@ final class InspectorAssessmentTemplateEventSubscription {
     required this.topicArn,
   });
 
-  final TfArg<String> event;
+  final TfArg<InspectorAssessmentTemplateEventSubscriptionEvent> event;
 
   final TfArg<String> topicArn;
 
@@ -24,6 +24,20 @@ final class InspectorAssessmentTemplateEventSubscription {
     'event': event.toTfJson(),
     'topic_arn': topicArn.toTfJson(),
   };
+}
+
+/// `event` — derived from the provider schema description.
+enum InspectorAssessmentTemplateEventSubscriptionEvent
+    implements TerraformEnum {
+  assessmentRunStarted('ASSESSMENT_RUN_STARTED'),
+  assessmentRunCompleted('ASSESSMENT_RUN_COMPLETED'),
+  assessmentRunStateChanged('ASSESSMENT_RUN_STATE_CHANGED'),
+  findingReported('FINDING_REPORTED'),
+  other('OTHER');
+
+  const InspectorAssessmentTemplateEventSubscriptionEvent(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_inspector_assessment_template`.

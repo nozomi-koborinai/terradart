@@ -7,4 +7,5 @@ export 'src/schemas/aws_schemas_discoverer.dart' show AwsSchemasDiscoverer;
 export 'src/schemas/aws_schemas_registry.dart' show AwsSchemasRegistry;
 export 'src/schemas/aws_schemas_registry_policy.dart'
     show AwsSchemasRegistryPolicy;
-export 'src/schemas/aws_schemas_schema.dart' show AwsSchemasSchema;
+export 'src/schemas/aws_schemas_schema.dart'
+    show AwsSchemasSchema, SchemasSchemaType;

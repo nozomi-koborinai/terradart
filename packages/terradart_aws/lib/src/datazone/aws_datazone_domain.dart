@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_datazone_domain`.
 const Set<String> _awsDatazoneDomainSensitive = <String>{};
 
+/// Datazone Domain Domain enum for `domain_version`.
+enum DatazoneDomainDomainVersion implements TerraformEnum {
+  v1('V1'),
+  v2('V2');
+
+  const DatazoneDomainDomainVersion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `single_sign_on` block of
 /// `aws_datazone_domain` (derived from provider schema).
 @immutable
@@ -15,12 +25,22 @@ final class DatazoneDomainSingleSignOn {
 
   final TfArg<String>? type;
 
-  final TfArg<String>? userAssignment;
+  final TfArg<DatazoneDomainSingleSignOnUserAssignment>? userAssignment;
 
   Map<String, Object?> encode() => {
     if (type != null) 'type': type!.toTfJson(),
     if (userAssignment != null) 'user_assignment': userAssignment!.toTfJson(),
   };
+}
+
+/// `user_assignment` — derived from the provider schema description.
+enum DatazoneDomainSingleSignOnUserAssignment implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  manual('MANUAL');
+
+  const DatazoneDomainSingleSignOnUserAssignment(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_datazone_domain`.
@@ -31,7 +51,7 @@ final class AwsDatazoneDomain extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> domainExecutionRole,
-    TfArg<String>? domainVersion,
+    TfArg<DatazoneDomainDomainVersion>? domainVersion,
     TfArg<String>? kmsKeyIdentifier,
     required TfArg<String> name,
     TfArg<String>? region,

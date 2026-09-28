@@ -17,9 +17,9 @@ final class CloudwatchEventPermissionCondition {
     required this.value,
   });
 
-  final TfArg<String> key;
+  final TfArg<CloudwatchEventPermissionConditionKey> key;
 
-  final TfArg<String> type;
+  final TfArg<CloudwatchEventPermissionConditionType> type;
 
   final TfArg<String> value;
 
@@ -28,6 +28,24 @@ final class CloudwatchEventPermissionCondition {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `key` — derived from the provider schema description.
+enum CloudwatchEventPermissionConditionKey implements TerraformEnum {
+  awsPrincipalorgid('aws:PrincipalOrgID');
+
+  const CloudwatchEventPermissionConditionKey(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum CloudwatchEventPermissionConditionType implements TerraformEnum {
+  stringequals('StringEquals');
+
+  const CloudwatchEventPermissionConditionType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_cloudwatch_event_permission`.

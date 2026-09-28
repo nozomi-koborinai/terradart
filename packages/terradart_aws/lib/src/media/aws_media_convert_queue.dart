@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_media_convert_queue`.
 const Set<String> _awsMediaConvertQueueSensitive = <String>{};
 
+/// Media Convert Queue Pricing enum for `pricing_plan`.
+enum MediaConvertQueuePricingPlan implements TerraformEnum {
+  onDemand('ON_DEMAND'),
+  reserved('RESERVED');
+
+  const MediaConvertQueuePricingPlan(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Media Convert Queue enum for `status`.
+enum MediaConvertQueueStatus implements TerraformEnum {
+  active('ACTIVE'),
+  paused('PAUSED');
+
+  const MediaConvertQueueStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `reservation_plan_settings` block of
 /// `aws_media_convert_queue` (derived from provider schema).
 @immutable
@@ -17,9 +37,9 @@ final class MediaConvertQueueReservationPlanSettings {
     required this.reservedSlots,
   });
 
-  final TfArg<String> commitment;
+  final TfArg<MediaConvertQueueReservationPlanSettingsCommitment> commitment;
 
-  final TfArg<String> renewalType;
+  final TfArg<MediaConvertQueueReservationPlanSettingsRenewalType> renewalType;
 
   final TfArg<num> reservedSlots;
 
@@ -28,6 +48,29 @@ final class MediaConvertQueueReservationPlanSettings {
     'renewal_type': renewalType.toTfJson(),
     'reserved_slots': reservedSlots.toTfJson(),
   };
+}
+
+/// `commitment` — derived from the provider schema description.
+enum MediaConvertQueueReservationPlanSettingsCommitment
+    implements TerraformEnum {
+  oneYear('ONE_YEAR');
+
+  const MediaConvertQueueReservationPlanSettingsCommitment(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `renewal_type` — derived from the provider schema description.
+enum MediaConvertQueueReservationPlanSettingsRenewalType
+    implements TerraformEnum {
+  autoRenew('AUTO_RENEW'),
+  expire('EXPIRE');
+
+  const MediaConvertQueueReservationPlanSettingsRenewalType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_media_convert_queue`.
@@ -39,9 +82,9 @@ final class AwsMediaConvertQueue extends Resource {
     TfArg<num>? concurrentJobs,
     TfArg<String>? description,
     required TfArg<String> name,
-    TfArg<String>? pricingPlan,
+    TfArg<MediaConvertQueuePricingPlan>? pricingPlan,
     TfArg<String>? region,
-    TfArg<String>? status,
+    TfArg<MediaConvertQueueStatus>? status,
     TfArg<Map<String, String>>? tags,
     MediaConvertQueueReservationPlanSettings? reservationPlanSettings,
     super.lifecycle,

@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_pinpointsmsvoicev2_keyword`.
 const Set<String> _awsPinpointsmsvoicev2KeywordSensitive = <String>{};
 
+/// Pinpointsmsvoicev2 Keyword Keyword enum for `keyword_action`.
+enum Pinpointsmsvoicev2KeywordKeywordAction implements TerraformEnum {
+  automaticResponse('AUTOMATIC_RESPONSE'),
+  optOut('OPT_OUT'),
+  optIn('OPT_IN');
+
+  const Pinpointsmsvoicev2KeywordKeywordAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_pinpointsmsvoicev2_keyword`.
 final class AwsPinpointsmsvoicev2Keyword extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_keyword';
@@ -13,7 +24,7 @@ final class AwsPinpointsmsvoicev2Keyword extends Resource {
   AwsPinpointsmsvoicev2Keyword({
     required super.localName,
     required TfArg<String> keyword,
-    TfArg<String>? keywordAction,
+    TfArg<Pinpointsmsvoicev2KeywordKeywordAction>? keywordAction,
     required TfArg<String> keywordMessage,
     required TfArg<String> originationIdentityArn,
     TfArg<String>? region,

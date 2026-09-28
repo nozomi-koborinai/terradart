@@ -4,7 +4,10 @@
 library;
 
 export 'src/dax/aws_dax_cluster.dart'
-    show AwsDaxCluster, DaxClusterServerSideEncryption;
+    show
+        AwsDaxCluster,
+        DaxClusterClusterEndpointEncryptionType,
+        DaxClusterServerSideEncryption;
 export 'src/dax/aws_dax_parameter_group.dart'
     show AwsDaxParameterGroup, DaxParameterGroupParameters;
 export 'src/dax/aws_dax_subnet_group.dart' show AwsDaxSubnetGroup;

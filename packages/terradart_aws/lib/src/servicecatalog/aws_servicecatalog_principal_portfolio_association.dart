@@ -7,6 +7,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsServicecatalogPrincipalPortfolioAssociationSensitive =
     <String>{};
 
+/// Servicecatalog Principal Portfolio Association Accept enum for `accept_language`.
+enum ServicecatalogPrincipalPortfolioAssociationAcceptLanguage
+    implements TerraformEnum {
+  en('en'),
+  jp('jp'),
+  zh('zh');
+
+  const ServicecatalogPrincipalPortfolioAssociationAcceptLanguage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Servicecatalog Principal Portfolio Association Principal enum for `principal_type`.
+enum ServicecatalogPrincipalPortfolioAssociationPrincipalType
+    implements TerraformEnum {
+  iam('IAM'),
+  iamPattern('IAM_PATTERN');
+
+  const ServicecatalogPrincipalPortfolioAssociationPrincipalType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_servicecatalog_principal_portfolio_association`.
 final class AwsServicecatalogPrincipalPortfolioAssociation extends Resource {
   static const String tfType =
@@ -14,10 +41,12 @@ final class AwsServicecatalogPrincipalPortfolioAssociation extends Resource {
 
   AwsServicecatalogPrincipalPortfolioAssociation({
     required super.localName,
-    TfArg<String>? acceptLanguage,
+    TfArg<ServicecatalogPrincipalPortfolioAssociationAcceptLanguage>?
+    acceptLanguage,
     required TfArg<String> portfolioId,
     required TfArg<String> principalArn,
-    TfArg<String>? principalType,
+    TfArg<ServicecatalogPrincipalPortfolioAssociationPrincipalType>?
+    principalType,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

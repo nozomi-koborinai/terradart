@@ -21,7 +21,7 @@ final class SfnActivityEncryptionConfiguration {
 
   final TfArg<String>? kmsKeyId;
 
-  final TfArg<String>? type;
+  final TfArg<SfnActivityEncryptionConfigurationType>? type;
 
   Map<String, Object?> encode() => {
     if (kmsDataKeyReusePeriodSeconds != null)
@@ -30,6 +30,16 @@ final class SfnActivityEncryptionConfiguration {
     if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SfnActivityEncryptionConfigurationType implements TerraformEnum {
+  awsOwnedKey('AWS_OWNED_KEY'),
+  customerManagedKmsKey('CUSTOMER_MANAGED_KMS_KEY');
+
+  const SfnActivityEncryptionConfigurationType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_sfn_activity`.

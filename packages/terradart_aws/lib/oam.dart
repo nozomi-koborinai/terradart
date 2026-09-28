@@ -8,6 +8,7 @@ export 'src/oam/aws_oam_link.dart'
         AwsOamLink,
         OamLinkLinkConfiguration,
         OamLinkLinkConfigurationLogGroupConfiguration,
-        OamLinkLinkConfigurationMetricConfiguration;
+        OamLinkLinkConfigurationMetricConfiguration,
+        OamLinkResourceTypes;
 export 'src/oam/aws_oam_sink.dart' show AwsOamSink;
 export 'src/oam/aws_oam_sink_policy.dart' show AwsOamSinkPolicy;

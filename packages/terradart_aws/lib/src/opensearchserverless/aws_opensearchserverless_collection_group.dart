@@ -6,6 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_opensearchserverless_collection_group`.
 const Set<String> _awsOpensearchserverlessCollectionGroupSensitive = <String>{};
 
+/// Opensearchserverless Collection Group enum for `generation`.
+enum OpensearchserverlessCollectionGroupGeneration implements TerraformEnum {
+  classic('CLASSIC'),
+  nextgen('NEXTGEN');
+
+  const OpensearchserverlessCollectionGroupGeneration(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Opensearchserverless Collection Group Standby enum for `standby_replicas`.
+enum OpensearchserverlessCollectionGroupStandbyReplicas
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const OpensearchserverlessCollectionGroupStandbyReplicas(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_opensearchserverless_collection_group`.
 final class AwsOpensearchserverlessCollectionGroup extends Resource {
   static const String tfType = 'aws_opensearchserverless_collection_group';
@@ -14,10 +35,11 @@ final class AwsOpensearchserverlessCollectionGroup extends Resource {
     required super.localName,
     TfArg<List<Map<String, Object?>>>? capacityLimits,
     TfArg<String>? description,
-    TfArg<String>? generation,
+    TfArg<OpensearchserverlessCollectionGroupGeneration>? generation,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> standbyReplicas,
+    required TfArg<OpensearchserverlessCollectionGroupStandbyReplicas>
+    standbyReplicas,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

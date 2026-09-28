@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_guardduty_detector`.
 const Set<String> _awsGuarddutyDetectorSensitive = <String>{};
 
+/// Guardduty Detector Finding Publishing enum for `finding_publishing_frequency`.
+enum GuarddutyDetectorFindingPublishingFrequency implements TerraformEnum {
+  fifteenMinutes('FIFTEEN_MINUTES'),
+  oneHour('ONE_HOUR'),
+  sixHours('SIX_HOURS');
+
+  const GuarddutyDetectorFindingPublishingFrequency(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `datasources` block of
 /// `aws_guardduty_detector` (derived from provider schema).
 @immutable
@@ -114,7 +125,8 @@ final class AwsGuarddutyDetector extends Resource {
   AwsGuarddutyDetector({
     required super.localName,
     TfArg<bool>? enable,
-    TfArg<String>? findingPublishingFrequency,
+    TfArg<GuarddutyDetectorFindingPublishingFrequency>?
+    findingPublishingFrequency,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     GuarddutyDetectorDatasources? datasources,

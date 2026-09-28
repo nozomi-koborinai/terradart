@@ -6,6 +6,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_wafv2_ip_set`.
 const Set<String> _awsWafv2IpSetSensitive = <String>{};
 
+/// Wafv2 Ip Set Ip Address enum for `ip_address_version`.
+enum Wafv2IpSetIpAddressVersion implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const Wafv2IpSetIpAddressVersion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Wafv2 Ip Set enum for `scope`.
+enum Wafv2IpSetScope implements TerraformEnum {
+  cloudfront('CLOUDFRONT'),
+  regional('REGIONAL');
+
+  const Wafv2IpSetScope(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_wafv2_ip_set`.
 final class AwsWafv2IpSet extends Resource {
   static const String tfType = 'aws_wafv2_ip_set';
@@ -14,11 +34,11 @@ final class AwsWafv2IpSet extends Resource {
     required super.localName,
     TfArg<List<String>>? addresses,
     TfArg<String>? description,
-    required TfArg<String> ipAddressVersion,
+    required TfArg<Wafv2IpSetIpAddressVersion> ipAddressVersion,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<String>? region,
-    required TfArg<String> scope,
+    required TfArg<Wafv2IpSetScope> scope,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

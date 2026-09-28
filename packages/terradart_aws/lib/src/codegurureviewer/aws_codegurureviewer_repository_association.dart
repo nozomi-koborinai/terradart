@@ -17,7 +17,10 @@ final class CodegurureviewerRepositoryAssociationKmsKeyDetails {
     this.kmsKeyId,
   });
 
-  final TfArg<String>? encryptionOption;
+  final TfArg<
+    CodegurureviewerRepositoryAssociationKmsKeyDetailsEncryptionOption
+  >?
+  encryptionOption;
 
   final TfArg<String>? kmsKeyId;
 
@@ -26,6 +29,19 @@ final class CodegurureviewerRepositoryAssociationKmsKeyDetails {
       'encryption_option': encryptionOption!.toTfJson(),
     if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
   };
+}
+
+/// `encryption_option` — derived from the provider schema description.
+enum CodegurureviewerRepositoryAssociationKmsKeyDetailsEncryptionOption
+    implements TerraformEnum {
+  awsOwnedCmk('AWS_OWNED_CMK'),
+  customerManagedCmk('CUSTOMER_MANAGED_CMK');
+
+  const CodegurureviewerRepositoryAssociationKmsKeyDetailsEncryptionOption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `repository` block of

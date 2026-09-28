@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lambda_runtime_management_config`.
 const Set<String> _awsLambdaRuntimeManagementConfigSensitive = <String>{};
 
+/// Lambda Runtime Management Config Update Runtime enum for `update_runtime_on`.
+enum LambdaRuntimeManagementConfigUpdateRuntimeOn implements TerraformEnum {
+  auto('Auto'),
+  manual('Manual'),
+  functionupdate('FunctionUpdate');
+
+  const LambdaRuntimeManagementConfigUpdateRuntimeOn(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_lambda_runtime_management_config`.
 final class AwsLambdaRuntimeManagementConfig extends Resource {
   static const String tfType = 'aws_lambda_runtime_management_config';
@@ -16,7 +27,7 @@ final class AwsLambdaRuntimeManagementConfig extends Resource {
     TfArg<String>? qualifier,
     TfArg<String>? region,
     TfArg<String>? runtimeVersionArn,
-    TfArg<String>? updateRuntimeOn,
+    TfArg<LambdaRuntimeManagementConfigUpdateRuntimeOn>? updateRuntimeOn,
     super.lifecycle,
     super.dependsOn,
     super.provider,

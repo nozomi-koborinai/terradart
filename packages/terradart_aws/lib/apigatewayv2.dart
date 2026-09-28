@@ -4,28 +4,51 @@
 library;
 
 export 'src/apigatewayv2/aws_apigatewayv2_api.dart'
-    show Apigatewayv2ApiCorsConfiguration, AwsApigatewayv2Api;
+    show
+        Apigatewayv2ApiApiKeySelectionExpression,
+        Apigatewayv2ApiCorsConfiguration,
+        Apigatewayv2ApiIpAddressType,
+        Apigatewayv2ApiProtocolType,
+        AwsApigatewayv2Api;
 export 'src/apigatewayv2/aws_apigatewayv2_api_mapping.dart'
     show AwsApigatewayv2ApiMapping;
 export 'src/apigatewayv2/aws_apigatewayv2_authorizer.dart'
-    show Apigatewayv2AuthorizerJwtConfiguration, AwsApigatewayv2Authorizer;
+    show
+        Apigatewayv2AuthorizerAuthorizerPayloadFormatVersion,
+        Apigatewayv2AuthorizerAuthorizerType,
+        Apigatewayv2AuthorizerJwtConfiguration,
+        AwsApigatewayv2Authorizer;
 export 'src/apigatewayv2/aws_apigatewayv2_deployment.dart'
     show AwsApigatewayv2Deployment;
 export 'src/apigatewayv2/aws_apigatewayv2_domain_name.dart'
     show
         Apigatewayv2DomainNameDomainNameConfiguration,
+        Apigatewayv2DomainNameDomainNameConfigurationEndpointType,
+        Apigatewayv2DomainNameDomainNameConfigurationIpAddressType,
+        Apigatewayv2DomainNameDomainNameConfigurationSecurityPolicy,
         Apigatewayv2DomainNameMutualTlsAuthentication,
+        Apigatewayv2DomainNameRoutingMode,
         AwsApigatewayv2DomainName;
 export 'src/apigatewayv2/aws_apigatewayv2_integration.dart'
     show
+        Apigatewayv2IntegrationConnectionType,
+        Apigatewayv2IntegrationContentHandlingStrategy,
+        Apigatewayv2IntegrationIntegrationType,
+        Apigatewayv2IntegrationPassthroughBehavior,
+        Apigatewayv2IntegrationPayloadFormatVersion,
         Apigatewayv2IntegrationResponseParameters,
         Apigatewayv2IntegrationTlsConfig,
         AwsApigatewayv2Integration;
 export 'src/apigatewayv2/aws_apigatewayv2_integration_response.dart'
-    show AwsApigatewayv2IntegrationResponse;
+    show
+        Apigatewayv2IntegrationResponseContentHandlingStrategy,
+        AwsApigatewayv2IntegrationResponse;
 export 'src/apigatewayv2/aws_apigatewayv2_model.dart' show AwsApigatewayv2Model;
 export 'src/apigatewayv2/aws_apigatewayv2_route.dart'
-    show Apigatewayv2RouteRequestParameter, AwsApigatewayv2Route;
+    show
+        Apigatewayv2RouteAuthorizationType,
+        Apigatewayv2RouteRequestParameter,
+        AwsApigatewayv2Route;
 export 'src/apigatewayv2/aws_apigatewayv2_route_response.dart'
     show AwsApigatewayv2RouteResponse;
 export 'src/apigatewayv2/aws_apigatewayv2_routing_rule.dart'
@@ -41,7 +64,9 @@ export 'src/apigatewayv2/aws_apigatewayv2_stage.dart'
     show
         Apigatewayv2StageAccessLogSettings,
         Apigatewayv2StageDefaultRouteSettings,
+        Apigatewayv2StageDefaultRouteSettingsLoggingLevel,
         Apigatewayv2StageRouteSettings,
+        Apigatewayv2StageRouteSettingsLoggingLevel,
         AwsApigatewayv2Stage;
 export 'src/apigatewayv2/aws_apigatewayv2_vpc_link.dart'
     show AwsApigatewayv2VpcLink;

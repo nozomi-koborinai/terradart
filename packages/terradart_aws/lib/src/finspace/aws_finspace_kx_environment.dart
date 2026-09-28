@@ -72,7 +72,10 @@ final class FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAcl
 
   final TfArg<String> protocol;
 
-  final TfArg<String> ruleAction;
+  final TfArg<
+    FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationRuleAction
+  >
+  ruleAction;
 
   final TfArg<num> ruleNumber;
 
@@ -90,6 +93,19 @@ final class FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAcl
     if (icmpTypeCode != null) 'icmp_type_code': icmpTypeCode!.encode(),
     if (portRange != null) 'port_range': portRange!.encode(),
   };
+}
+
+/// `rule_action` — derived from the provider schema description.
+enum FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationRuleAction
+    implements TerraformEnum {
+  allow('allow'),
+  deny('deny');
+
+  const FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationRuleAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `transit_gateway_configuration.attachment_network_acl_configuration.icmp_type_code` block of

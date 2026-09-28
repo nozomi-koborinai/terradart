@@ -85,11 +85,11 @@ final class CloudwatchEventTargetEcsTarget {
 
   final TfArg<String>? group;
 
-  final TfArg<String>? launchType;
+  final TfArg<CloudwatchEventTargetEcsTargetLaunchType>? launchType;
 
   final TfArg<String>? platformVersion;
 
-  final TfArg<String>? propagateTags;
+  final TfArg<CloudwatchEventTargetEcsTargetPropagateTags>? propagateTags;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -137,6 +137,26 @@ final class CloudwatchEventTargetEcsTarget {
         for (final e in placementConstraint!) e.encode(),
       ],
   };
+}
+
+/// `launch_type` — derived from the provider schema description.
+enum CloudwatchEventTargetEcsTargetLaunchType implements TerraformEnum {
+  ec2('EC2'),
+  fargate('FARGATE'),
+  external('EXTERNAL');
+
+  const CloudwatchEventTargetEcsTargetLaunchType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `propagate_tags` — derived from the provider schema description.
+enum CloudwatchEventTargetEcsTargetPropagateTags implements TerraformEnum {
+  taskDefinition('TASK_DEFINITION');
+
+  const CloudwatchEventTargetEcsTargetPropagateTags(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `ecs_target.capacity_provider_strategy` block of
@@ -196,12 +216,26 @@ final class CloudwatchEventTargetEcsTargetOrderedPlacementStrategy {
 
   final TfArg<String>? field;
 
-  final TfArg<String> type;
+  final TfArg<CloudwatchEventTargetEcsTargetOrderedPlacementStrategyType> type;
 
   Map<String, Object?> encode() => {
     if (field != null) 'field': field!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CloudwatchEventTargetEcsTargetOrderedPlacementStrategyType
+    implements TerraformEnum {
+  random('random'),
+  spread('spread'),
+  binpack('binpack');
+
+  const CloudwatchEventTargetEcsTargetOrderedPlacementStrategyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `ecs_target.placement_constraint` block of
@@ -215,12 +249,25 @@ final class CloudwatchEventTargetEcsTargetPlacementConstraint {
 
   final TfArg<String>? expression;
 
-  final TfArg<String> type;
+  final TfArg<CloudwatchEventTargetEcsTargetPlacementConstraintType> type;
 
   Map<String, Object?> encode() => {
     if (expression != null) 'expression': expression!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CloudwatchEventTargetEcsTargetPlacementConstraintType
+    implements TerraformEnum {
+  distinctinstance('distinctInstance'),
+  memberof('memberOf');
+
+  const CloudwatchEventTargetEcsTargetPlacementConstraintType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `http_target` block of

@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_xray_trace_segment_destination`.
 const Set<String> _awsXrayTraceSegmentDestinationSensitive = <String>{};
 
+/// Xray Trace Segment Destination enum for `destination`.
+enum XrayTraceSegmentDestinationDestination implements TerraformEnum {
+  xray('XRay'),
+  cloudwatchlogs('CloudWatchLogs');
+
+  const XrayTraceSegmentDestinationDestination(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_xray_trace_segment_destination`.
 final class AwsXrayTraceSegmentDestination extends Resource {
   static const String tfType = 'aws_xray_trace_segment_destination';
 
   AwsXrayTraceSegmentDestination({
     required super.localName,
-    required TfArg<String> destination,
+    required TfArg<XrayTraceSegmentDestinationDestination> destination,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

@@ -7,6 +7,49 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_budgets_budget`.
 const Set<String> _awsBudgetsBudgetSensitive = <String>{};
 
+/// Budgets Budget Budget enum for `budget_type`.
+enum BudgetsBudgetBudgetType implements TerraformEnum {
+  usage('USAGE'),
+  cost('COST'),
+  riUtilization('RI_UTILIZATION'),
+  riCoverage('RI_COVERAGE'),
+  savingsPlansUtilization('SAVINGS_PLANS_UTILIZATION'),
+  savingsPlansCoverage('SAVINGS_PLANS_COVERAGE');
+
+  const BudgetsBudgetBudgetType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Budgets Budget enum for `metrics`.
+enum BudgetsBudgetMetrics implements TerraformEnum {
+  blendedcost('BlendedCost'),
+  unblendedcost('UnblendedCost'),
+  amortizedcost('AmortizedCost'),
+  netunblendedcost('NetUnblendedCost'),
+  netamortizedcost('NetAmortizedCost'),
+  usagequantity('UsageQuantity'),
+  normalizedusageamount('NormalizedUsageAmount'),
+  hours('Hours');
+
+  const BudgetsBudgetMetrics(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Budgets Budget Time enum for `time_unit`.
+enum BudgetsBudgetTimeUnit implements TerraformEnum {
+  daily('DAILY'),
+  monthly('MONTHLY'),
+  quarterly('QUARTERLY'),
+  annually('ANNUALLY'),
+  custom('CUSTOM');
+
+  const BudgetsBudgetTimeUnit(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `auto_adjust_data` block of
 /// `aws_budgets_budget` (derived from provider schema).
 @immutable
@@ -16,7 +59,7 @@ final class BudgetsBudgetAutoAdjustData {
     this.historicalOptions,
   });
 
-  final TfArg<String> autoAdjustType;
+  final TfArg<BudgetsBudgetAutoAdjustDataAutoAdjustType> autoAdjustType;
 
   final BudgetsBudgetAutoAdjustDataHistoricalOptions? historicalOptions;
 
@@ -25,6 +68,16 @@ final class BudgetsBudgetAutoAdjustData {
     if (historicalOptions != null)
       'historical_options': historicalOptions!.encode(),
   };
+}
+
+/// `auto_adjust_type` — derived from the provider schema description.
+enum BudgetsBudgetAutoAdjustDataAutoAdjustType implements TerraformEnum {
+  historical('HISTORICAL'),
+  forecast('FORECAST');
+
+  const BudgetsBudgetAutoAdjustDataAutoAdjustType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `auto_adjust_data.historical_options` block of
@@ -544,15 +597,36 @@ final class BudgetsBudgetFilterExpressionCostCategories {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final List<TfArg<BudgetsBudgetFilterExpressionCostCategoriesMatchOptions>>?
+  matchOptions;
 
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
     if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    if (matchOptions != null)
+      'match_options': [for (final e in matchOptions!) e.toTfJson()],
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `match_options` — derived from the provider schema description.
+enum BudgetsBudgetFilterExpressionCostCategoriesMatchOptions
+    implements TerraformEnum {
+  equals('EQUALS'),
+  absent('ABSENT'),
+  startsWith('STARTS_WITH'),
+  endsWith('ENDS_WITH'),
+  contains('CONTAINS'),
+  greaterThanOrEqual('GREATER_THAN_OR_EQUAL'),
+  caseSensitive('CASE_SENSITIVE'),
+  caseInsensitive('CASE_INSENSITIVE');
+
+  const BudgetsBudgetFilterExpressionCostCategoriesMatchOptions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_expression.dimensions` block of
@@ -565,17 +639,79 @@ final class BudgetsBudgetFilterExpressionDimensions {
     required this.values,
   });
 
-  final TfArg<String> key;
+  final TfArg<BudgetsBudgetFilterExpressionDimensionsKey> key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final List<TfArg<BudgetsBudgetFilterExpressionDimensionsMatchOptions>>?
+  matchOptions;
 
   final TfArg<List<Object?>> values;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    if (matchOptions != null)
+      'match_options': [for (final e in matchOptions!) e.toTfJson()],
     'values': values.toTfJson(),
   };
+}
+
+/// `key` — derived from the provider schema description.
+enum BudgetsBudgetFilterExpressionDimensionsKey implements TerraformEnum {
+  az('AZ'),
+  instanceType('INSTANCE_TYPE'),
+  linkedAccount('LINKED_ACCOUNT'),
+  linkedAccountName('LINKED_ACCOUNT_NAME'),
+  operation('OPERATION'),
+  purchaseType('PURCHASE_TYPE'),
+  region('REGION'),
+  service('SERVICE'),
+  serviceCode('SERVICE_CODE'),
+  usageType('USAGE_TYPE'),
+  usageTypeGroup('USAGE_TYPE_GROUP'),
+  recordType('RECORD_TYPE'),
+  operatingSystem('OPERATING_SYSTEM'),
+  tenancy('TENANCY'),
+  scope('SCOPE'),
+  platform('PLATFORM'),
+  subscriptionId('SUBSCRIPTION_ID'),
+  legalEntityName('LEGAL_ENTITY_NAME'),
+  invoicingEntity('INVOICING_ENTITY'),
+  deploymentOption('DEPLOYMENT_OPTION'),
+  databaseEngine('DATABASE_ENGINE'),
+  cacheEngine('CACHE_ENGINE'),
+  instanceTypeFamily('INSTANCE_TYPE_FAMILY'),
+  billingEntity('BILLING_ENTITY'),
+  reservationId('RESERVATION_ID'),
+  resourceId('RESOURCE_ID'),
+  rightsizingType('RIGHTSIZING_TYPE'),
+  savingsPlansType('SAVINGS_PLANS_TYPE'),
+  savingsPlanArn('SAVINGS_PLAN_ARN'),
+  paymentOption('PAYMENT_OPTION'),
+  reservationModified('RESERVATION_MODIFIED'),
+  tagKey('TAG_KEY'),
+  costCategoryName('COST_CATEGORY_NAME');
+
+  const BudgetsBudgetFilterExpressionDimensionsKey(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `match_options` — derived from the provider schema description.
+enum BudgetsBudgetFilterExpressionDimensionsMatchOptions
+    implements TerraformEnum {
+  equals('EQUALS'),
+  absent('ABSENT'),
+  startsWith('STARTS_WITH'),
+  endsWith('ENDS_WITH'),
+  contains('CONTAINS'),
+  greaterThanOrEqual('GREATER_THAN_OR_EQUAL'),
+  caseSensitive('CASE_SENSITIVE'),
+  caseInsensitive('CASE_INSENSITIVE');
+
+  const BudgetsBudgetFilterExpressionDimensionsMatchOptions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_expression.not` block of
@@ -1350,15 +1486,33 @@ final class BudgetsBudgetFilterExpressionTags {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final List<TfArg<BudgetsBudgetFilterExpressionTagsMatchOptions>>?
+  matchOptions;
 
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
     if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    if (matchOptions != null)
+      'match_options': [for (final e in matchOptions!) e.toTfJson()],
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `match_options` — derived from the provider schema description.
+enum BudgetsBudgetFilterExpressionTagsMatchOptions implements TerraformEnum {
+  equals('EQUALS'),
+  absent('ABSENT'),
+  startsWith('STARTS_WITH'),
+  endsWith('ENDS_WITH'),
+  contains('CONTAINS'),
+  greaterThanOrEqual('GREATER_THAN_OR_EQUAL'),
+  caseSensitive('CASE_SENSITIVE'),
+  caseInsensitive('CASE_INSENSITIVE');
+
+  const BudgetsBudgetFilterExpressionTagsMatchOptions(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `notification` block of
@@ -1374,9 +1528,9 @@ final class BudgetsBudgetNotification {
     required this.thresholdType,
   });
 
-  final TfArg<String> comparisonOperator;
+  final TfArg<BudgetsBudgetNotificationComparisonOperator> comparisonOperator;
 
-  final TfArg<String> notificationType;
+  final TfArg<BudgetsBudgetNotificationNotificationType> notificationType;
 
   final TfArg<List<Object?>>? subscriberEmailAddresses;
 
@@ -1384,7 +1538,7 @@ final class BudgetsBudgetNotification {
 
   final TfArg<num> threshold;
 
-  final TfArg<String> thresholdType;
+  final TfArg<BudgetsBudgetNotificationThresholdType> thresholdType;
 
   Map<String, Object?> encode() => {
     'comparison_operator': comparisonOperator.toTfJson(),
@@ -1396,6 +1550,37 @@ final class BudgetsBudgetNotification {
     'threshold': threshold.toTfJson(),
     'threshold_type': thresholdType.toTfJson(),
   };
+}
+
+/// `comparison_operator` — derived from the provider schema description.
+enum BudgetsBudgetNotificationComparisonOperator implements TerraformEnum {
+  greaterThan('GREATER_THAN'),
+  lessThan('LESS_THAN'),
+  equalTo('EQUAL_TO');
+
+  const BudgetsBudgetNotificationComparisonOperator(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `notification_type` — derived from the provider schema description.
+enum BudgetsBudgetNotificationNotificationType implements TerraformEnum {
+  actual('ACTUAL'),
+  forecasted('FORECASTED');
+
+  const BudgetsBudgetNotificationNotificationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `threshold_type` — derived from the provider schema description.
+enum BudgetsBudgetNotificationThresholdType implements TerraformEnum {
+  percentage('PERCENTAGE'),
+  absoluteValue('ABSOLUTE_VALUE');
+
+  const BudgetsBudgetNotificationThresholdType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `planned_limit` block of
@@ -1429,16 +1614,16 @@ final class AwsBudgetsBudget extends Resource {
     required super.localName,
     TfArg<String>? accountId,
     TfArg<String>? billingViewArn,
-    required TfArg<String> budgetType,
+    required TfArg<BudgetsBudgetBudgetType> budgetType,
     TfArg<String>? limitAmount,
     TfArg<String>? limitUnit,
-    TfArg<List<String>>? metrics,
+    List<TfArg<BudgetsBudgetMetrics>>? metrics,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? timePeriodEnd,
     TfArg<String>? timePeriodStart,
-    required TfArg<String> timeUnit,
+    required TfArg<BudgetsBudgetTimeUnit> timeUnit,
     BudgetsBudgetAutoAdjustData? autoAdjustData,
     List<BudgetsBudgetCostFilter>? costFilter,
     BudgetsBudgetCostTypes? costTypes,
@@ -1457,7 +1642,8 @@ final class AwsBudgetsBudget extends Resource {
            'budget_type': budgetType,
            if (limitAmount != null) 'limit_amount': limitAmount,
            if (limitUnit != null) 'limit_unit': limitUnit,
-           if (metrics != null) 'metrics': metrics,
+           if (metrics != null)
+             'metrics': TfArg.literal([for (final e in metrics) e.toTfJson()]),
            if (name != null) 'name': name,
            if (namePrefix != null) 'name_prefix': namePrefix,
            if (tags != null) 'tags': tags,

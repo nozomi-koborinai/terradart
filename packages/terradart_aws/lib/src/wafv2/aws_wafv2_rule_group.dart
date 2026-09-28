@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_wafv2_rule_group`.
 const Set<String> _awsWafv2RuleGroupSensitive = <String>{};
 
+/// Wafv2 Rule Group enum for `scope`.
+enum Wafv2RuleGroupScope implements TerraformEnum {
+  cloudfront('CLOUDFRONT'),
+  regional('REGIONAL');
+
+  const Wafv2RuleGroupScope(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `custom_response_body` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
@@ -1305,7 +1315,8 @@ final class Wafv2RuleGroupRuleStatementRateBasedStatement {
     this.scopeDownStatement,
   });
 
-  final TfArg<String>? aggregateKeyType;
+  final TfArg<Wafv2RuleGroupRuleStatementRateBasedStatementAggregateKeyType>?
+  aggregateKeyType;
 
   final TfArg<num>? evaluationWindowSec;
 
@@ -1331,6 +1342,21 @@ final class Wafv2RuleGroupRuleStatementRateBasedStatement {
     if (scopeDownStatement != null)
       'scope_down_statement': scopeDownStatement!.encode(),
   };
+}
+
+/// `aggregate_key_type` — derived from the provider schema description.
+enum Wafv2RuleGroupRuleStatementRateBasedStatementAggregateKeyType
+    implements TerraformEnum {
+  ip('IP'),
+  forwardedIp('FORWARDED_IP'),
+  customKeys('CUSTOM_KEYS'),
+  constant('CONSTANT');
+
+  const Wafv2RuleGroupRuleStatementRateBasedStatementAggregateKeyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.statement.rate_based_statement.custom_key` block of
@@ -1493,7 +1519,7 @@ final class AwsWafv2RuleGroup extends Resource {
     TfArg<String>? namePrefix,
     TfArg<String>? region,
     TfArg<String>? rulesJson,
-    required TfArg<String> scope,
+    required TfArg<Wafv2RuleGroupScope> scope,
     TfArg<Map<String, String>>? tags,
     List<Wafv2RuleGroupCustomResponseBody>? customResponseBody,
     List<Wafv2RuleGroupRule>? rule,

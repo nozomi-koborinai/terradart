@@ -19,7 +19,7 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfiguration {
     this.vectorKnowledgeBaseConfiguration,
   });
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentKnowledgeBaseKnowledgeBaseConfigurationType> type;
 
   final List<
     BedrockagentKnowledgeBaseKnowledgeBaseConfigurationKendraKnowledgeBaseConfiguration
@@ -62,6 +62,21 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfiguration {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationType
+    implements TerraformEnum {
+  vector('VECTOR'),
+  kendra('KENDRA'),
+  sql('SQL'),
+  managed('MANAGED');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `knowledge_base_configuration.kendra_knowledge_base_configuration` block of
 /// `aws_bedrockagent_knowledge_base` (derived from provider schema).
 @immutable
@@ -90,7 +105,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeB
 
   final TfArg<String>? embeddingModelArn;
 
-  final TfArg<String>? embeddingModelType;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelType
+  >?
+  embeddingModelType;
 
   final List<
     BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfiguration
@@ -116,6 +134,19 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeB
         for (final e in serverSideEncryptionConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `embedding_model_type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelType
+    implements TerraformEnum {
+  custom('CUSTOM'),
+  managed('MANAGED');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `knowledge_base_configuration.managed_knowledge_base_configuration.embedding_model_configuration` block of
@@ -152,7 +183,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeB
 
   final TfArg<num>? dimensions;
 
-  final TfArg<String>? embeddingDataType;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationEmbeddingDataType
+  >?
+  embeddingDataType;
 
   final List<
     BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationAudio
@@ -171,6 +205,19 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeB
     if (audio != null) 'audio': [for (final e in audio!) e.encode()],
     if (video != null) 'video': [for (final e in video!) e.encode()],
   };
+}
+
+/// `embedding_data_type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationEmbeddingDataType
+    implements TerraformEnum {
+  float32('FLOAT32'),
+  binary('BINARY');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationEmbeddingDataType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `knowledge_base_configuration.managed_knowledge_base_configuration.embedding_model_configuration.bedrock_embedding_model_configuration.audio` block of
@@ -269,7 +316,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
     this.redshiftConfiguration,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationType
+  >
+  type;
 
   final List<
     BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfiguration
@@ -283,6 +333,18 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
         for (final e in redshiftConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationType
+    implements TerraformEnum {
+  redshift('REDSHIFT');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration` block of
@@ -336,7 +398,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
     this.serverlessConfiguration,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationType
+  >
+  type;
 
   final List<
     BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationProvisionedConfiguration
@@ -359,6 +424,19 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
         for (final e in serverlessConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationType
+    implements TerraformEnum {
+  serverless('SERVERLESS'),
+  provisioned('PROVISIONED');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.query_engine_configuration.provisioned_configuration` block of
@@ -396,7 +474,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
 
   final TfArg<String>? databaseUser;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationProvisionedConfigurationAuthConfigurationType
+  >
+  type;
 
   final TfArg<String>? usernamePasswordSecretArn;
 
@@ -406,6 +487,20 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
     if (usernamePasswordSecretArn != null)
       'username_password_secret_arn': usernamePasswordSecretArn!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationProvisionedConfigurationAuthConfigurationType
+    implements TerraformEnum {
+  iam('IAM'),
+  usernamePassword('USERNAME_PASSWORD'),
+  username('USERNAME');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationProvisionedConfigurationAuthConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.query_engine_configuration.serverless_configuration` block of
@@ -440,7 +535,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
     this.usernamePasswordSecretArn,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationServerlessConfigurationAuthConfigurationType
+  >
+  type;
 
   final TfArg<String>? usernamePasswordSecretArn;
 
@@ -449,6 +547,19 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
     if (usernamePasswordSecretArn != null)
       'username_password_secret_arn': usernamePasswordSecretArn!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationServerlessConfigurationAuthConfigurationType
+    implements TerraformEnum {
+  iam('IAM'),
+  usernamePassword('USERNAME_PASSWORD');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationServerlessConfigurationAuthConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.query_generation_configuration` block of
@@ -533,7 +644,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
 
   final TfArg<String>? description;
 
-  final TfArg<String>? inclusion;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextTableInclusion
+  >?
+  inclusion;
 
   final TfArg<String> name;
 
@@ -550,6 +664,19 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
   };
 }
 
+/// `inclusion` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextTableInclusion
+    implements TerraformEnum {
+  include('INCLUDE'),
+  exclude('EXCLUDE');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextTableInclusion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.query_generation_configuration.generation_context.table.column` block of
 /// `aws_bedrockagent_knowledge_base` (derived from provider schema).
 @immutable
@@ -562,7 +689,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
 
   final TfArg<String>? description;
 
-  final TfArg<String>? inclusion;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextTableColumnInclusion
+  >?
+  inclusion;
 
   final TfArg<String>? name;
 
@@ -571,6 +701,19 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
     if (inclusion != null) 'inclusion': inclusion!.toTfJson(),
     if (name != null) 'name': name!.toTfJson(),
   };
+}
+
+/// `inclusion` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextTableColumnInclusion
+    implements TerraformEnum {
+  include('INCLUDE'),
+  exclude('EXCLUDE');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextTableColumnInclusion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.storage_configuration` block of
@@ -583,7 +726,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
     this.redshiftConfiguration,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationStorageConfigurationType
+  >
+  type;
 
   final List<
     BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationStorageConfigurationAwsDataCatalogConfiguration
@@ -606,6 +752,19 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseC
         for (final e in redshiftConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationStorageConfigurationType
+    implements TerraformEnum {
+  redshift('REDSHIFT'),
+  awsDataCatalog('AWS_DATA_CATALOG');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationStorageConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `knowledge_base_configuration.sql_knowledge_base_configuration.redshift_configuration.storage_configuration.aws_data_catalog_configuration` block of
@@ -703,7 +862,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBa
 
   final TfArg<num>? dimensions;
 
-  final TfArg<String>? embeddingDataType;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationEmbeddingDataType
+  >?
+  embeddingDataType;
 
   final List<
     BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationAudio
@@ -722,6 +884,19 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBa
     if (audio != null) 'audio': [for (final e in audio!) e.encode()],
     if (video != null) 'video': [for (final e in video!) e.encode()],
   };
+}
+
+/// `embedding_data_type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationEmbeddingDataType
+    implements TerraformEnum {
+  float32('FLOAT32'),
+  binary('BINARY');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationEmbeddingDataType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `knowledge_base_configuration.vector_knowledge_base_configuration.embedding_model_configuration.bedrock_embedding_model_configuration.audio` block of
@@ -824,7 +999,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBa
     this.s3Location,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationSupplementalDataStorageConfigurationStorageLocationType
+  >
+  type;
 
   final List<
     BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationSupplementalDataStorageConfigurationStorageLocationS3Location
@@ -836,6 +1014,18 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBa
     if (s3Location != null)
       's3_location': [for (final e in s3Location!) e.encode()],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationSupplementalDataStorageConfigurationStorageLocationType
+    implements TerraformEnum {
+  s3('S3');
+
+  const BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationSupplementalDataStorageConfigurationStorageLocationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `knowledge_base_configuration.vector_knowledge_base_configuration.supplemental_data_storage_configuration.storage_location.s3_location` block of
@@ -867,7 +1057,7 @@ final class BedrockagentKnowledgeBaseStorageConfiguration {
     this.s3VectorsConfiguration,
   });
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentKnowledgeBaseStorageConfigurationType> type;
 
   final List<
     BedrockagentKnowledgeBaseStorageConfigurationMongoDbAtlasConfiguration
@@ -940,6 +1130,23 @@ final class BedrockagentKnowledgeBaseStorageConfiguration {
         for (final e in s3VectorsConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentKnowledgeBaseStorageConfigurationType
+    implements TerraformEnum {
+  opensearchServerless('OPENSEARCH_SERVERLESS'),
+  pinecone('PINECONE'),
+  redisEnterpriseCloud('REDIS_ENTERPRISE_CLOUD'),
+  rds('RDS'),
+  mongoDbAtlas('MONGO_DB_ATLAS'),
+  neptuneAnalytics('NEPTUNE_ANALYTICS'),
+  opensearchManagedCluster('OPENSEARCH_MANAGED_CLUSTER'),
+  s3Vectors('S3_VECTORS');
+
+  const BedrockagentKnowledgeBaseStorageConfigurationType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `storage_configuration.mongo_db_atlas_configuration` block of

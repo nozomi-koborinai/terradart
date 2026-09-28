@@ -6,6 +6,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_apigatewayv2_integration_response`.
 const Set<String> _awsApigatewayv2IntegrationResponseSensitive = <String>{};
 
+/// Apigatewayv2 Integration Response Content Handling enum for `content_handling_strategy`.
+enum Apigatewayv2IntegrationResponseContentHandlingStrategy
+    implements TerraformEnum {
+  convertToBinary('CONVERT_TO_BINARY'),
+  convertToText('CONVERT_TO_TEXT');
+
+  const Apigatewayv2IntegrationResponseContentHandlingStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_apigatewayv2_integration_response`.
 final class AwsApigatewayv2IntegrationResponse extends Resource {
   static const String tfType = 'aws_apigatewayv2_integration_response';
@@ -13,7 +26,8 @@ final class AwsApigatewayv2IntegrationResponse extends Resource {
   AwsApigatewayv2IntegrationResponse({
     required super.localName,
     required TfArg<String> apiId,
-    TfArg<String>? contentHandlingStrategy,
+    TfArg<Apigatewayv2IntegrationResponseContentHandlingStrategy>?
+    contentHandlingStrategy,
     required TfArg<String> integrationId,
     required TfArg<String> integrationResponseKey,
     TfArg<String>? region,

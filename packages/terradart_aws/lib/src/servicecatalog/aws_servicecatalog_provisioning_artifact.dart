@@ -6,23 +6,58 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_servicecatalog_provisioning_artifact`.
 const Set<String> _awsServicecatalogProvisioningArtifactSensitive = <String>{};
 
+/// Servicecatalog Provisioning Artifact Accept enum for `accept_language`.
+enum ServicecatalogProvisioningArtifactAcceptLanguage implements TerraformEnum {
+  en('en'),
+  jp('jp'),
+  zh('zh');
+
+  const ServicecatalogProvisioningArtifactAcceptLanguage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Servicecatalog Provisioning Artifact enum for `guidance`.
+enum ServicecatalogProvisioningArtifactGuidance implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  deprecated('DEPRECATED');
+
+  const ServicecatalogProvisioningArtifactGuidance(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Servicecatalog Provisioning Artifact enum for `type`.
+enum ServicecatalogProvisioningArtifactType implements TerraformEnum {
+  cloudFormationTemplate('CLOUD_FORMATION_TEMPLATE'),
+  marketplaceAmi('MARKETPLACE_AMI'),
+  marketplaceCar('MARKETPLACE_CAR'),
+  terraformOpenSource('TERRAFORM_OPEN_SOURCE'),
+  terraformCloud('TERRAFORM_CLOUD'),
+  external('EXTERNAL');
+
+  const ServicecatalogProvisioningArtifactType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_servicecatalog_provisioning_artifact`.
 final class AwsServicecatalogProvisioningArtifact extends Resource {
   static const String tfType = 'aws_servicecatalog_provisioning_artifact';
 
   AwsServicecatalogProvisioningArtifact({
     required super.localName,
-    TfArg<String>? acceptLanguage,
+    TfArg<ServicecatalogProvisioningArtifactAcceptLanguage>? acceptLanguage,
     TfArg<bool>? active,
     TfArg<String>? description,
     TfArg<bool>? disableTemplateValidation,
-    TfArg<String>? guidance,
+    TfArg<ServicecatalogProvisioningArtifactGuidance>? guidance,
     TfArg<String>? name,
     required TfArg<String> productId,
     TfArg<String>? region,
     TfArg<String>? templatePhysicalId,
     TfArg<String>? templateUrl,
-    TfArg<String>? type,
+    TfArg<ServicecatalogProvisioningArtifactType>? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -10,7 +10,9 @@ export 'src/lex/aws_lex_bot.dart'
         LexBotAbortStatementMessage,
         LexBotClarificationPrompt,
         LexBotClarificationPromptMessage,
-        LexBotIntent;
+        LexBotIntent,
+        LexBotLocale,
+        LexBotProcessBehavior;
 export 'src/lex/aws_lex_bot_alias.dart'
     show
         AwsLexBotAlias,
@@ -31,10 +33,15 @@ export 'src/lex/aws_lex_intent.dart'
         LexIntentFollowUpPromptRejectionStatementMessage,
         LexIntentFulfillmentActivity,
         LexIntentFulfillmentActivityCodeHook,
+        LexIntentFulfillmentActivityType,
         LexIntentRejectionStatement,
         LexIntentRejectionStatementMessage,
         LexIntentSlot,
+        LexIntentSlotSlotConstraint,
         LexIntentSlotValueElicitationPrompt,
         LexIntentSlotValueElicitationPromptMessage;
 export 'src/lex/aws_lex_slot_type.dart'
-    show AwsLexSlotType, LexSlotTypeEnumerationValue;
+    show
+        AwsLexSlotType,
+        LexSlotTypeEnumerationValue,
+        LexSlotTypeValueSelectionStrategy;

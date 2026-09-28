@@ -6,4 +6,8 @@ library;
 export 'src/drs/aws_drs_replication_configuration_template.dart'
     show
         AwsDrsReplicationConfigurationTemplate,
-        DrsReplicationConfigurationTemplatePitPolicy;
+        DrsReplicationConfigurationTemplateDataPlaneRouting,
+        DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType,
+        DrsReplicationConfigurationTemplateEbsEncryption,
+        DrsReplicationConfigurationTemplatePitPolicy,
+        DrsReplicationConfigurationTemplatePitPolicyUnits;

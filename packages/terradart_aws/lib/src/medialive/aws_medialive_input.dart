@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_medialive_input`.
 const Set<String> _awsMedialiveInputSensitive = <String>{};
 
+/// Medialive Input enum for `type`.
+enum MedialiveInputType implements TerraformEnum {
+  udpPush('UDP_PUSH'),
+  rtpPush('RTP_PUSH'),
+  rtmpPush('RTMP_PUSH'),
+  rtmpPull('RTMP_PULL'),
+  urlPull('URL_PULL'),
+  mp4File('MP4_FILE'),
+  mediaconnect('MEDIACONNECT'),
+  inputDevice('INPUT_DEVICE'),
+  awsCdi('AWS_CDI'),
+  tsFile('TS_FILE'),
+  srtCaller('SRT_CALLER'),
+  multicast('MULTICAST'),
+  smpte2110ReceiverGroup('SMPTE_2110_RECEIVER_GROUP'),
+  sdi('SDI'),
+  mediaconnectRouter('MEDIACONNECT_ROUTER'),
+  srtListener('SRT_LISTENER');
+
+  const MedialiveInputType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `destinations` block of
 /// `aws_medialive_input` (derived from provider schema).
 @immutable
@@ -91,7 +115,7 @@ final class AwsMedialiveInput extends Resource {
     TfArg<String>? region,
     TfArg<String>? roleArn,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<MedialiveInputType> type,
     List<MedialiveInputDestinations>? destinations,
     List<MedialiveInputInputDevices>? inputDevices,
     List<MedialiveInputMediaConnectFlows>? mediaConnectFlows,

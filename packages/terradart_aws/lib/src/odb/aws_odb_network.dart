@@ -6,6 +6,46 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_odb_network`.
 const Set<String> _awsOdbNetworkSensitive = <String>{};
 
+/// Odb Network Kms enum for `kms_access`.
+enum OdbNetworkKmsAccess implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const OdbNetworkKmsAccess(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Odb Network S3 enum for `s3_access`.
+enum OdbNetworkS3Access implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const OdbNetworkS3Access(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Odb Network Sts enum for `sts_access`.
+enum OdbNetworkStsAccess implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const OdbNetworkStsAccess(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Odb Network Zero Etl enum for `zero_etl_access`.
+enum OdbNetworkZeroEtlAccess implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const OdbNetworkZeroEtlAccess(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_odb_network`.
 final class AwsOdbNetwork extends Resource {
   static const String tfType = 'aws_odb_network';
@@ -21,15 +61,15 @@ final class AwsOdbNetwork extends Resource {
     TfArg<String>? defaultDnsPrefix,
     TfArg<bool>? deleteAssociatedResources,
     required TfArg<String> displayName,
-    TfArg<String>? kmsAccess,
+    TfArg<OdbNetworkKmsAccess>? kmsAccess,
     TfArg<String>? kmsPolicyDocument,
     TfArg<String>? region,
-    required TfArg<String> s3Access,
+    required TfArg<OdbNetworkS3Access> s3Access,
     TfArg<String>? s3PolicyDocument,
-    TfArg<String>? stsAccess,
+    TfArg<OdbNetworkStsAccess>? stsAccess,
     TfArg<String>? stsPolicyDocument,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> zeroEtlAccess,
+    required TfArg<OdbNetworkZeroEtlAccess> zeroEtlAccess,
     super.lifecycle,
     super.dependsOn,
     super.provider,

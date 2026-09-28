@@ -7,6 +7,31 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_kms_grant`.
 const Set<String> _awsKmsGrantSensitive = <String>{'grant_token'};
 
+/// Kms Grant enum for `operations`.
+enum KmsGrantOperations implements TerraformEnum {
+  decrypt('Decrypt'),
+  encrypt('Encrypt'),
+  generatedatakey('GenerateDataKey'),
+  generatedatakeywithoutplaintext('GenerateDataKeyWithoutPlaintext'),
+  reencryptfrom('ReEncryptFrom'),
+  reencryptto('ReEncryptTo'),
+  sign('Sign'),
+  verify('Verify'),
+  getpublickey('GetPublicKey'),
+  creategrant('CreateGrant'),
+  retiregrant('RetireGrant'),
+  describekey('DescribeKey'),
+  generatedatakeypair('GenerateDataKeyPair'),
+  generatedatakeypairwithoutplaintext('GenerateDataKeyPairWithoutPlaintext'),
+  generatemac('GenerateMac'),
+  verifymac('VerifyMac'),
+  derivesharedsecret('DeriveSharedSecret');
+
+  const KmsGrantOperations(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `constraints` block of
 /// `aws_kms_grant` (derived from provider schema).
 @immutable
@@ -38,7 +63,7 @@ final class AwsKmsGrant extends Resource {
     required TfArg<String> granteePrincipal,
     required TfArg<String> keyId,
     TfArg<String>? name,
-    required TfArg<List<String>> operations,
+    required List<TfArg<KmsGrantOperations>> operations,
     TfArg<String>? region,
     TfArg<bool>? retireOnDelete,
     TfArg<String>? retiringPrincipal,
@@ -55,7 +80,9 @@ final class AwsKmsGrant extends Resource {
            'grantee_principal': granteePrincipal,
            'key_id': keyId,
            if (name != null) 'name': name,
-           'operations': operations,
+           'operations': TfArg.literal([
+             for (final e in operations) e.toTfJson(),
+           ]),
            if (region != null) 'region': region,
            if (retireOnDelete != null) 'retire_on_delete': retireOnDelete,
            if (retiringPrincipal != null)

@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_config_remediation_configuration`.
 const Set<String> _awsConfigRemediationConfigurationSensitive = <String>{};
 
+/// Config Remediation Configuration Target enum for `target_type`.
+enum ConfigRemediationConfigurationTargetType implements TerraformEnum {
+  ssmDocument('SSM_DOCUMENT');
+
+  const ConfigRemediationConfigurationTargetType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `execution_controls` block of
 /// `aws_config_remediation_configuration` (derived from provider schema).
 @immutable
@@ -82,7 +91,7 @@ final class AwsConfigRemediationConfiguration extends Resource {
     TfArg<String>? resourceType,
     TfArg<num>? retryAttemptSeconds,
     required TfArg<String> targetId,
-    required TfArg<String> targetType,
+    required TfArg<ConfigRemediationConfigurationTargetType> targetType,
     TfArg<String>? targetVersion,
     ConfigRemediationConfigurationExecutionControls? executionControls,
     List<ConfigRemediationConfigurationParameter>? parameter,

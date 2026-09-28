@@ -9,6 +9,17 @@ const Set<String> _awsCodepipelineWebhookSensitive = <String>{
   'authentication_configuration.secret_token',
 };
 
+/// Codepipeline Webhook enum for `authentication`.
+enum CodepipelineWebhookAuthentication implements TerraformEnum {
+  githubHmac('GITHUB_HMAC'),
+  ip('IP'),
+  unauthenticated('UNAUTHENTICATED');
+
+  const CodepipelineWebhookAuthentication(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `authentication_configuration` block of
 /// `aws_codepipeline_webhook` (derived from provider schema).
 @immutable
@@ -53,7 +64,7 @@ final class AwsCodepipelineWebhook extends Resource {
 
   AwsCodepipelineWebhook({
     required super.localName,
-    required TfArg<String> authentication,
+    required TfArg<CodepipelineWebhookAuthentication> authentication,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

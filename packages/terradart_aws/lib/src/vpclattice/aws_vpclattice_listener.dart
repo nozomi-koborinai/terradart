@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpclattice_listener`.
 const Set<String> _awsVpclatticeListenerSensitive = <String>{};
 
+/// Vpclattice Listener enum for `protocol`.
+enum VpclatticeListenerProtocol implements TerraformEnum {
+  http('HTTP'),
+  https('HTTPS'),
+  tlsPassthrough('TLS_PASSTHROUGH');
+
+  const VpclatticeListenerProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `default_action` block of
 /// `aws_vpclattice_listener` (derived from provider schema).
 @immutable
@@ -78,7 +89,7 @@ final class AwsVpclatticeListener extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<num>? port,
-    required TfArg<String> protocol,
+    required TfArg<VpclatticeListenerProtocol> protocol,
     TfArg<String>? region,
     TfArg<String>? serviceArn,
     TfArg<String>? serviceIdentifier,

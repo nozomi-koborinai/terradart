@@ -28,7 +28,7 @@ final class CloudwatchLogMetricFilterMetricTransformation {
 
   final TfArg<String> namespace;
 
-  final TfArg<String>? unit;
+  final TfArg<CloudwatchLogMetricFilterMetricTransformationUnit>? unit;
 
   final TfArg<String> value;
 
@@ -40,6 +40,42 @@ final class CloudwatchLogMetricFilterMetricTransformation {
     if (unit != null) 'unit': unit!.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum CloudwatchLogMetricFilterMetricTransformationUnit
+    implements TerraformEnum {
+  seconds('Seconds'),
+  microseconds('Microseconds'),
+  milliseconds('Milliseconds'),
+  bytes('Bytes'),
+  kilobytes('Kilobytes'),
+  megabytes('Megabytes'),
+  gigabytes('Gigabytes'),
+  terabytes('Terabytes'),
+  bits('Bits'),
+  kilobits('Kilobits'),
+  megabits('Megabits'),
+  gigabits('Gigabits'),
+  terabits('Terabits'),
+  percent('Percent'),
+  count('Count'),
+  bytesSecond('Bytes/Second'),
+  kilobytesSecond('Kilobytes/Second'),
+  megabytesSecond('Megabytes/Second'),
+  gigabytesSecond('Gigabytes/Second'),
+  terabytesSecond('Terabytes/Second'),
+  bitsSecond('Bits/Second'),
+  kilobitsSecond('Kilobits/Second'),
+  megabitsSecond('Megabits/Second'),
+  gigabitsSecond('Gigabits/Second'),
+  terabitsSecond('Terabits/Second'),
+  countSecond('Count/Second'),
+  none('None');
+
+  const CloudwatchLogMetricFilterMetricTransformationUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_cloudwatch_log_metric_filter`.

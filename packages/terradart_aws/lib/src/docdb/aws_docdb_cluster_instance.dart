@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_docdb_cluster_instance`.
 const Set<String> _awsDocdbClusterInstanceSensitive = <String>{};
 
+/// Docdb Cluster Instance enum for `engine`.
+enum DocdbClusterInstanceEngine implements TerraformEnum {
+  docdb('docdb');
+
+  const DocdbClusterInstanceEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_docdb_cluster_instance`.
 final class AwsDocdbClusterInstance extends Resource {
   static const String tfType = 'aws_docdb_cluster_instance';
@@ -20,7 +29,7 @@ final class AwsDocdbClusterInstance extends Resource {
     required TfArg<String> clusterIdentifier,
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<bool>? enablePerformanceInsights,
-    TfArg<String>? engine,
+    TfArg<DocdbClusterInstanceEngine>? engine,
     TfArg<String>? identifier,
     TfArg<String>? identifierPrefix,
     required TfArg<String> instanceClass,

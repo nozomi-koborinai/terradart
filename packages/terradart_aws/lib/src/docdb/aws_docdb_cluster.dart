@@ -7,6 +7,45 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_docdb_cluster`.
 const Set<String> _awsDocdbClusterSensitive = <String>{'master_password'};
 
+/// Docdb Cluster Enabled Cloudwatch Logs enum for `enabled_cloudwatch_logs_exports`.
+enum DocdbClusterEnabledCloudwatchLogsExports implements TerraformEnum {
+  audit('audit'),
+  profiler('profiler');
+
+  const DocdbClusterEnabledCloudwatchLogsExports(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Docdb Cluster enum for `engine`.
+enum DocdbClusterEngine implements TerraformEnum {
+  docdb('docdb');
+
+  const DocdbClusterEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Docdb Cluster Network enum for `network_type`.
+enum DocdbClusterNetworkType implements TerraformEnum {
+  dual('DUAL'),
+  ipv4('IPV4');
+
+  const DocdbClusterNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Docdb Cluster Storage enum for `storage_type`.
+enum DocdbClusterStorageType implements TerraformEnum {
+  iopt1('iopt1'),
+  standard('standard');
+
+  const DocdbClusterStorageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `restore_to_point_in_time` block of
 /// `aws_docdb_cluster` (derived from provider schema).
 @immutable
@@ -20,7 +59,7 @@ final class DocdbClusterRestoreToPointInTime {
 
   final TfArg<String>? restoreToTime;
 
-  final TfArg<String>? restoreType;
+  final TfArg<DocdbClusterRestoreToPointInTimeRestoreType>? restoreType;
 
   final TfArg<String> sourceClusterIdentifier;
 
@@ -33,6 +72,16 @@ final class DocdbClusterRestoreToPointInTime {
     if (useLatestRestorableTime != null)
       'use_latest_restorable_time': useLatestRestorableTime!.toTfJson(),
   };
+}
+
+/// `restore_type` — derived from the provider schema description.
+enum DocdbClusterRestoreToPointInTimeRestoreType implements TerraformEnum {
+  copyOnWrite('copy-on-write'),
+  fullCopy('full-copy');
+
+  const DocdbClusterRestoreToPointInTimeRestoreType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `serverless_v2_scaling_configuration` block of
@@ -70,8 +119,9 @@ final class AwsDocdbCluster extends Resource {
     TfArg<String>? dbClusterParameterGroupName,
     TfArg<String>? dbSubnetGroupName,
     TfArg<bool>? deletionProtection,
-    TfArg<List<String>>? enabledCloudwatchLogsExports,
-    TfArg<String>? engine,
+    List<TfArg<DocdbClusterEnabledCloudwatchLogsExports>>?
+    enabledCloudwatchLogsExports,
+    TfArg<DocdbClusterEngine>? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalClusterIdentifier,
@@ -81,7 +131,7 @@ final class AwsDocdbCluster extends Resource {
     TfArg<String>? masterPasswordWo,
     TfArg<num>? masterPasswordWoVersion,
     TfArg<String>? masterUsername,
-    TfArg<String>? networkType,
+    TfArg<DocdbClusterNetworkType>? networkType,
     TfArg<num>? port,
     TfArg<String>? preferredBackupWindow,
     TfArg<String>? preferredMaintenanceWindow,
@@ -89,7 +139,7 @@ final class AwsDocdbCluster extends Resource {
     TfArg<bool>? skipFinalSnapshot,
     TfArg<String>? snapshotIdentifier,
     TfArg<bool>? storageEncrypted,
-    TfArg<String>? storageType,
+    TfArg<DocdbClusterStorageType>? storageType,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? vpcSecurityGroupIds,
     DocdbClusterRestoreToPointInTime? restoreToPointInTime,
@@ -121,7 +171,9 @@ final class AwsDocdbCluster extends Resource {
            if (deletionProtection != null)
              'deletion_protection': deletionProtection,
            if (enabledCloudwatchLogsExports != null)
-             'enabled_cloudwatch_logs_exports': enabledCloudwatchLogsExports,
+             'enabled_cloudwatch_logs_exports': TfArg.literal([
+               for (final e in enabledCloudwatchLogsExports) e.toTfJson(),
+             ]),
            if (engine != null) 'engine': engine,
            if (engineVersion != null) 'engine_version': engineVersion,
            if (finalSnapshotIdentifier != null)

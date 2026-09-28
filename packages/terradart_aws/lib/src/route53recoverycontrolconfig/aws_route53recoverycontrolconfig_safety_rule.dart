@@ -22,13 +22,27 @@ final class Route53recoverycontrolconfigSafetyRuleRuleConfig {
 
   final TfArg<num> threshold;
 
-  final TfArg<String> type;
+  final TfArg<Route53recoverycontrolconfigSafetyRuleRuleConfigType> type;
 
   Map<String, Object?> encode() => {
     'inverted': inverted.toTfJson(),
     'threshold': threshold.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum Route53recoverycontrolconfigSafetyRuleRuleConfigType
+    implements TerraformEnum {
+  atleast('ATLEAST'),
+  and('AND'),
+  or('OR');
+
+  const Route53recoverycontrolconfigSafetyRuleRuleConfigType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_route53recoverycontrolconfig_safety_rule`.

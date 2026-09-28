@@ -28,7 +28,8 @@ final class OdbCloudAutonomousVmClusterMaintenanceWindow {
 
   final TfArg<List<Object?>>? months;
 
-  final TfArg<String> preference;
+  final TfArg<OdbCloudAutonomousVmClusterMaintenanceWindowPreference>
+  preference;
 
   final TfArg<List<Object?>>? weeksOfMonth;
 
@@ -41,6 +42,19 @@ final class OdbCloudAutonomousVmClusterMaintenanceWindow {
     'preference': preference.toTfJson(),
     if (weeksOfMonth != null) 'weeks_of_month': weeksOfMonth!.toTfJson(),
   };
+}
+
+/// `preference` — derived from the provider schema description.
+enum OdbCloudAutonomousVmClusterMaintenanceWindowPreference
+    implements TerraformEnum {
+  noPreference('NO_PREFERENCE'),
+  customPreference('CUSTOM_PREFERENCE');
+
+  const OdbCloudAutonomousVmClusterMaintenanceWindowPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_odb_cloud_autonomous_vm_cluster`.

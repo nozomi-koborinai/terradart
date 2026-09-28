@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_chatbot_teams_channel_configuration`.
 const Set<String> _awsChatbotTeamsChannelConfigurationSensitive = <String>{};
 
+/// Chatbot Teams Channel Configuration Logging enum for `logging_level`.
+enum ChatbotTeamsChannelConfigurationLoggingLevel implements TerraformEnum {
+  error('ERROR'),
+  info('INFO'),
+  none('NONE');
+
+  const ChatbotTeamsChannelConfigurationLoggingLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_chatbot_teams_channel_configuration`.
 final class AwsChatbotTeamsChannelConfiguration extends Resource {
   static const String tfType = 'aws_chatbot_teams_channel_configuration';
@@ -17,7 +28,7 @@ final class AwsChatbotTeamsChannelConfiguration extends Resource {
     required TfArg<String> configurationName,
     TfArg<List<String>>? guardrailPolicyArns,
     required TfArg<String> iamRoleArn,
-    TfArg<String>? loggingLevel,
+    TfArg<ChatbotTeamsChannelConfigurationLoggingLevel>? loggingLevel,
     TfArg<String>? region,
     TfArg<List<String>>? snsTopicArns,
     TfArg<Map<String, String>>? tags,

@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ecs_daemon`.
 const Set<String> _awsEcsDaemonSensitive = <String>{};
 
+/// Ecs Daemon Propagate enum for `propagate_tags`.
+enum EcsDaemonPropagateTags implements TerraformEnum {
+  daemon('DAEMON'),
+  none('NONE');
+
+  const EcsDaemonPropagateTags(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `deployment_configuration` block of
 /// `aws_ecs_daemon` (derived from provider schema).
 @immutable
@@ -59,7 +69,7 @@ final class AwsEcsDaemon extends Resource {
     TfArg<bool>? enableEcsManagedTags,
     TfArg<bool>? enableExecuteCommand,
     required TfArg<String> name,
-    TfArg<String>? propagateTags,
+    TfArg<EcsDaemonPropagateTags>? propagateTags,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<EcsDaemonDeploymentConfiguration>? deploymentConfiguration,

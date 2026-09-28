@@ -4,7 +4,10 @@
 library;
 
 export 'src/servicequotas/aws_servicequotas_auto_management.dart'
-    show AwsServicequotasAutoManagement;
+    show
+        AwsServicequotasAutoManagement,
+        ServicequotasAutoManagementOptInLevel,
+        ServicequotasAutoManagementOptInType;
 export 'src/servicequotas/aws_servicequotas_service_quota.dart'
     show AwsServicequotasServiceQuota;
 export 'src/servicequotas/aws_servicequotas_template.dart'

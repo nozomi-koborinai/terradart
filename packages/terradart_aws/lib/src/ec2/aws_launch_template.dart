@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_launch_template`.
 const Set<String> _awsLaunchTemplateSensitive = <String>{};
 
+/// Launch Template Instance Initiated Shutdown enum for `instance_initiated_shutdown_behavior`.
+enum LaunchTemplateInstanceInitiatedShutdownBehavior implements TerraformEnum {
+  stop('stop'),
+  terminate('terminate');
+
+  const LaunchTemplateInstanceInitiatedShutdownBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `block_device_mappings` block of
 /// `aws_launch_template` (derived from provider schema).
 @immutable
@@ -66,7 +76,7 @@ final class LaunchTemplateBlockDeviceMappingsEbs {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<String>? volumeType;
+  final TfArg<LaunchTemplateBlockDeviceMappingsEbsVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     if (deleteOnTermination != null)
@@ -83,6 +93,21 @@ final class LaunchTemplateBlockDeviceMappingsEbs {
   };
 }
 
+/// `volume_type` — derived from the provider schema description.
+enum LaunchTemplateBlockDeviceMappingsEbsVolumeType implements TerraformEnum {
+  standard('standard'),
+  io1('io1'),
+  io2('io2'),
+  gp2('gp2'),
+  sc1('sc1'),
+  st1('st1'),
+  gp3('gp3');
+
+  const LaunchTemplateBlockDeviceMappingsEbsVolumeType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `capacity_reservation_specification` block of
 /// `aws_launch_template` (derived from provider schema).
 @immutable
@@ -92,7 +117,10 @@ final class LaunchTemplateCapacityReservationSpecification {
     this.capacityReservationTarget,
   });
 
-  final TfArg<String>? capacityReservationPreference;
+  final TfArg<
+    LaunchTemplateCapacityReservationSpecificationCapacityReservationPreference
+  >?
+  capacityReservationPreference;
 
   final LaunchTemplateCapacityReservationSpecificationCapacityReservationTarget?
   capacityReservationTarget;
@@ -104,6 +132,20 @@ final class LaunchTemplateCapacityReservationSpecification {
     if (capacityReservationTarget != null)
       'capacity_reservation_target': capacityReservationTarget!.encode(),
   };
+}
+
+/// `capacity_reservation_preference` — derived from the provider schema description.
+enum LaunchTemplateCapacityReservationSpecificationCapacityReservationPreference
+    implements TerraformEnum {
+  capacityReservationsOnly('capacity-reservations-only'),
+  open('open'),
+  none('none');
+
+  const LaunchTemplateCapacityReservationSpecificationCapacityReservationPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `capacity_reservation_specification.capacity_reservation_target` block of
@@ -139,11 +181,12 @@ final class LaunchTemplateCpuOptions {
     this.threadsPerCore,
   });
 
-  final TfArg<String>? amdSevSnp;
+  final TfArg<LaunchTemplateCpuOptionsAmdSevSnp>? amdSevSnp;
 
   final TfArg<num>? coreCount;
 
-  final TfArg<String>? nestedVirtualization;
+  final TfArg<LaunchTemplateCpuOptionsNestedVirtualization>?
+  nestedVirtualization;
 
   final TfArg<num>? threadsPerCore;
 
@@ -156,17 +199,47 @@ final class LaunchTemplateCpuOptions {
   };
 }
 
+/// `amd_sev_snp` — derived from the provider schema description.
+enum LaunchTemplateCpuOptionsAmdSevSnp implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled');
+
+  const LaunchTemplateCpuOptionsAmdSevSnp(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `nested_virtualization` — derived from the provider schema description.
+enum LaunchTemplateCpuOptionsNestedVirtualization implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled');
+
+  const LaunchTemplateCpuOptionsNestedVirtualization(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `credit_specification` block of
 /// `aws_launch_template` (derived from provider schema).
 @immutable
 final class LaunchTemplateCreditSpecification {
   const LaunchTemplateCreditSpecification({this.cpuCredits});
 
-  final TfArg<String>? cpuCredits;
+  final TfArg<LaunchTemplateCreditSpecificationCpuCredits>? cpuCredits;
 
   Map<String, Object?> encode() => {
     if (cpuCredits != null) 'cpu_credits': cpuCredits!.toTfJson(),
   };
+}
+
+/// `cpu_credits` — derived from the provider schema description.
+enum LaunchTemplateCreditSpecificationCpuCredits implements TerraformEnum {
+  standard('standard'),
+  unlimited('unlimited');
+
+  const LaunchTemplateCreditSpecificationCpuCredits(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `enclave_options` block of
@@ -218,7 +291,7 @@ final class LaunchTemplateInstanceMarketOptions {
     this.spotOptions,
   });
 
-  final TfArg<String>? marketType;
+  final TfArg<LaunchTemplateInstanceMarketOptionsMarketType>? marketType;
 
   final LaunchTemplateInstanceMarketOptionsSpotOptions? spotOptions;
 
@@ -226,6 +299,18 @@ final class LaunchTemplateInstanceMarketOptions {
     if (marketType != null) 'market_type': marketType!.toTfJson(),
     if (spotOptions != null) 'spot_options': spotOptions!.encode(),
   };
+}
+
+/// `market_type` — derived from the provider schema description.
+enum LaunchTemplateInstanceMarketOptionsMarketType implements TerraformEnum {
+  spot('spot'),
+  capacityBlock('capacity-block'),
+  interruptibleCapacityReservation('interruptible-capacity-reservation'),
+  onDemand('on-demand');
+
+  const LaunchTemplateInstanceMarketOptionsMarketType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `instance_market_options.spot_options` block of
@@ -242,11 +327,15 @@ final class LaunchTemplateInstanceMarketOptionsSpotOptions {
 
   final TfArg<num>? blockDurationMinutes;
 
-  final TfArg<String>? instanceInterruptionBehavior;
+  final TfArg<
+    LaunchTemplateInstanceMarketOptionsSpotOptionsInstanceInterruptionBehavior
+  >?
+  instanceInterruptionBehavior;
 
   final TfArg<String>? maxPrice;
 
-  final TfArg<String>? spotInstanceType;
+  final TfArg<LaunchTemplateInstanceMarketOptionsSpotOptionsSpotInstanceType>?
+  spotInstanceType;
 
   final TfArg<String>? validUntil;
 
@@ -261,6 +350,33 @@ final class LaunchTemplateInstanceMarketOptionsSpotOptions {
       'spot_instance_type': spotInstanceType!.toTfJson(),
     if (validUntil != null) 'valid_until': validUntil!.toTfJson(),
   };
+}
+
+/// `instance_interruption_behavior` — derived from the provider schema description.
+enum LaunchTemplateInstanceMarketOptionsSpotOptionsInstanceInterruptionBehavior
+    implements TerraformEnum {
+  hibernate('hibernate'),
+  stop('stop'),
+  terminate('terminate');
+
+  const LaunchTemplateInstanceMarketOptionsSpotOptionsInstanceInterruptionBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `spot_instance_type` — derived from the provider schema description.
+enum LaunchTemplateInstanceMarketOptionsSpotOptionsSpotInstanceType
+    implements TerraformEnum {
+  oneTime('one-time'),
+  persistent('persistent');
+
+  const LaunchTemplateInstanceMarketOptionsSpotOptionsSpotInstanceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `instance_requirements` block of
@@ -294,27 +410,34 @@ final class LaunchTemplateInstanceRequirements {
     required this.vcpuCount,
   });
 
-  final TfArg<List<Object?>>? acceleratorManufacturers;
+  final List<TfArg<LaunchTemplateInstanceRequirementsAcceleratorManufacturers>>?
+  acceleratorManufacturers;
 
-  final TfArg<List<Object?>>? acceleratorNames;
+  final List<TfArg<LaunchTemplateInstanceRequirementsAcceleratorNames>>?
+  acceleratorNames;
 
-  final TfArg<List<Object?>>? acceleratorTypes;
+  final List<TfArg<LaunchTemplateInstanceRequirementsAcceleratorTypes>>?
+  acceleratorTypes;
 
   final TfArg<List<Object?>>? allowedInstanceTypes;
 
-  final TfArg<String>? bareMetal;
+  final TfArg<LaunchTemplateInstanceRequirementsBareMetal>? bareMetal;
 
-  final TfArg<String>? burstablePerformance;
+  final TfArg<LaunchTemplateInstanceRequirementsBurstablePerformance>?
+  burstablePerformance;
 
-  final TfArg<List<Object?>>? cpuManufacturers;
+  final List<TfArg<LaunchTemplateInstanceRequirementsCpuManufacturers>>?
+  cpuManufacturers;
 
   final TfArg<List<Object?>>? excludedInstanceTypes;
 
-  final TfArg<List<Object?>>? instanceGenerations;
+  final List<TfArg<LaunchTemplateInstanceRequirementsInstanceGenerations>>?
+  instanceGenerations;
 
-  final TfArg<String>? localStorage;
+  final TfArg<LaunchTemplateInstanceRequirementsLocalStorage>? localStorage;
 
-  final TfArg<List<Object?>>? localStorageTypes;
+  final List<TfArg<LaunchTemplateInstanceRequirementsLocalStorageTypes>>?
+  localStorageTypes;
 
   final TfArg<num>? maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
 
@@ -349,25 +472,29 @@ final class LaunchTemplateInstanceRequirements {
 
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
-      'accelerator_manufacturers': acceleratorManufacturers!.toTfJson(),
+      'accelerator_manufacturers': [
+        for (final e in acceleratorManufacturers!) e.toTfJson(),
+      ],
     if (acceleratorNames != null)
-      'accelerator_names': acceleratorNames!.toTfJson(),
+      'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
     if (acceleratorTypes != null)
-      'accelerator_types': acceleratorTypes!.toTfJson(),
+      'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
     if (allowedInstanceTypes != null)
       'allowed_instance_types': allowedInstanceTypes!.toTfJson(),
     if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
     if (burstablePerformance != null)
       'burstable_performance': burstablePerformance!.toTfJson(),
     if (cpuManufacturers != null)
-      'cpu_manufacturers': cpuManufacturers!.toTfJson(),
+      'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
     if (excludedInstanceTypes != null)
       'excluded_instance_types': excludedInstanceTypes!.toTfJson(),
     if (instanceGenerations != null)
-      'instance_generations': instanceGenerations!.toTfJson(),
+      'instance_generations': [
+        for (final e in instanceGenerations!) e.toTfJson(),
+      ],
     if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
     if (localStorageTypes != null)
-      'local_storage_types': localStorageTypes!.toTfJson(),
+      'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
     if (maxSpotPriceAsPercentageOfOptimalOnDemandPrice != null)
       'max_spot_price_as_percentage_of_optimal_on_demand_price':
           maxSpotPriceAsPercentageOfOptimalOnDemandPrice!.toTfJson(),
@@ -396,6 +523,138 @@ final class LaunchTemplateInstanceRequirements {
       'total_local_storage_gb': totalLocalStorageGb!.encode(),
     'vcpu_count': vcpuCount.encode(),
   };
+}
+
+/// `accelerator_manufacturers` — derived from the provider schema description.
+enum LaunchTemplateInstanceRequirementsAcceleratorManufacturers
+    implements TerraformEnum {
+  amazonWebServices('amazon-web-services'),
+  amd('amd'),
+  nvidia('nvidia'),
+  xilinx('xilinx'),
+  habana('habana');
+
+  const LaunchTemplateInstanceRequirementsAcceleratorManufacturers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `accelerator_names` — derived from the provider schema description.
+enum LaunchTemplateInstanceRequirementsAcceleratorNames
+    implements TerraformEnum {
+  a100('a100'),
+  inferentia('inferentia'),
+  k520('k520'),
+  k80('k80'),
+  m60('m60'),
+  radeonProV520('radeon-pro-v520'),
+  t4('t4'),
+  vu9p('vu9p'),
+  v100('v100'),
+  a10g('a10g'),
+  h100('h100'),
+  t4g('t4g'),
+  l40s('l40s'),
+  l4('l4'),
+  gaudiHl205('gaudi-hl-205'),
+  inferentia2('inferentia2'),
+  trainium('trainium'),
+  trainium2('trainium2'),
+  u30('u30');
+
+  const LaunchTemplateInstanceRequirementsAcceleratorNames(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `accelerator_types` — derived from the provider schema description.
+enum LaunchTemplateInstanceRequirementsAcceleratorTypes
+    implements TerraformEnum {
+  gpu('gpu'),
+  fpga('fpga'),
+  inference('inference'),
+  media('media');
+
+  const LaunchTemplateInstanceRequirementsAcceleratorTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `bare_metal` — derived from the provider schema description.
+enum LaunchTemplateInstanceRequirementsBareMetal implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const LaunchTemplateInstanceRequirementsBareMetal(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `burstable_performance` — derived from the provider schema description.
+enum LaunchTemplateInstanceRequirementsBurstablePerformance
+    implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const LaunchTemplateInstanceRequirementsBurstablePerformance(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `cpu_manufacturers` — derived from the provider schema description.
+enum LaunchTemplateInstanceRequirementsCpuManufacturers
+    implements TerraformEnum {
+  intel('intel'),
+  amd('amd'),
+  amazonWebServices('amazon-web-services'),
+  apple('apple');
+
+  const LaunchTemplateInstanceRequirementsCpuManufacturers(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `instance_generations` — derived from the provider schema description.
+enum LaunchTemplateInstanceRequirementsInstanceGenerations
+    implements TerraformEnum {
+  current('current'),
+  previous('previous');
+
+  const LaunchTemplateInstanceRequirementsInstanceGenerations(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `local_storage` — derived from the provider schema description.
+enum LaunchTemplateInstanceRequirementsLocalStorage implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const LaunchTemplateInstanceRequirementsLocalStorage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `local_storage_types` — derived from the provider schema description.
+enum LaunchTemplateInstanceRequirementsLocalStorageTypes
+    implements TerraformEnum {
+  hdd('hdd'),
+  ssd('ssd');
+
+  const LaunchTemplateInstanceRequirementsLocalStorageTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `instance_requirements.accelerator_count` block of
@@ -590,11 +849,21 @@ final class LaunchTemplateLicenseSpecification {
 final class LaunchTemplateMaintenanceOptions {
   const LaunchTemplateMaintenanceOptions({this.autoRecovery});
 
-  final TfArg<String>? autoRecovery;
+  final TfArg<LaunchTemplateMaintenanceOptionsAutoRecovery>? autoRecovery;
 
   Map<String, Object?> encode() => {
     if (autoRecovery != null) 'auto_recovery': autoRecovery!.toTfJson(),
   };
+}
+
+/// `auto_recovery` — derived from the provider schema description.
+enum LaunchTemplateMaintenanceOptionsAutoRecovery implements TerraformEnum {
+  defaultCase('default'),
+  disabled('disabled');
+
+  const LaunchTemplateMaintenanceOptionsAutoRecovery(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `metadata_options` block of
@@ -609,15 +878,16 @@ final class LaunchTemplateMetadataOptions {
     this.instanceMetadataTags,
   });
 
-  final TfArg<String>? httpEndpoint;
+  final TfArg<LaunchTemplateMetadataOptionsHttpEndpoint>? httpEndpoint;
 
-  final TfArg<String>? httpProtocolIpv6;
+  final TfArg<LaunchTemplateMetadataOptionsHttpProtocolIpv6>? httpProtocolIpv6;
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<String>? httpTokens;
+  final TfArg<LaunchTemplateMetadataOptionsHttpTokens>? httpTokens;
 
-  final TfArg<String>? instanceMetadataTags;
+  final TfArg<LaunchTemplateMetadataOptionsInstanceMetadataTags>?
+  instanceMetadataTags;
 
   Map<String, Object?> encode() => {
     if (httpEndpoint != null) 'http_endpoint': httpEndpoint!.toTfJson(),
@@ -629,6 +899,47 @@ final class LaunchTemplateMetadataOptions {
     if (instanceMetadataTags != null)
       'instance_metadata_tags': instanceMetadataTags!.toTfJson(),
   };
+}
+
+/// `http_endpoint` — derived from the provider schema description.
+enum LaunchTemplateMetadataOptionsHttpEndpoint implements TerraformEnum {
+  disabled('disabled'),
+  enabled('enabled');
+
+  const LaunchTemplateMetadataOptionsHttpEndpoint(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `http_protocol_ipv6` — derived from the provider schema description.
+enum LaunchTemplateMetadataOptionsHttpProtocolIpv6 implements TerraformEnum {
+  disabled('disabled'),
+  enabled('enabled');
+
+  const LaunchTemplateMetadataOptionsHttpProtocolIpv6(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `http_tokens` — derived from the provider schema description.
+enum LaunchTemplateMetadataOptionsHttpTokens implements TerraformEnum {
+  optional('optional'),
+  required('required');
+
+  const LaunchTemplateMetadataOptionsHttpTokens(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `instance_metadata_tags` — derived from the provider schema description.
+enum LaunchTemplateMetadataOptionsInstanceMetadataTags
+    implements TerraformEnum {
+  disabled('disabled'),
+  enabled('enabled');
+
+  const LaunchTemplateMetadataOptionsInstanceMetadataTags(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `monitoring` block of
@@ -686,7 +997,7 @@ final class LaunchTemplateNetworkInterfaces {
 
   final TfArg<num>? enaQueueCount;
 
-  final TfArg<String>? interfaceType;
+  final TfArg<LaunchTemplateNetworkInterfacesInterfaceType>? interfaceType;
 
   final TfArg<num>? ipv4AddressCount;
 
@@ -761,6 +1072,17 @@ final class LaunchTemplateNetworkInterfaces {
   };
 }
 
+/// `interface_type` — derived from the provider schema description.
+enum LaunchTemplateNetworkInterfacesInterfaceType implements TerraformEnum {
+  efa('efa'),
+  efaOnly('efa-only'),
+  interface('interface');
+
+  const LaunchTemplateNetworkInterfacesInterfaceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `network_interfaces.connection_tracking_specification` block of
 /// `aws_launch_template` (derived from provider schema).
 @immutable
@@ -829,12 +1151,27 @@ final class LaunchTemplateNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecifica
 final class LaunchTemplateNetworkPerformanceOptions {
   const LaunchTemplateNetworkPerformanceOptions({this.bandwidthWeighting});
 
-  final TfArg<String>? bandwidthWeighting;
+  final TfArg<LaunchTemplateNetworkPerformanceOptionsBandwidthWeighting>?
+  bandwidthWeighting;
 
   Map<String, Object?> encode() => {
     if (bandwidthWeighting != null)
       'bandwidth_weighting': bandwidthWeighting!.toTfJson(),
   };
+}
+
+/// `bandwidth_weighting` — derived from the provider schema description.
+enum LaunchTemplateNetworkPerformanceOptionsBandwidthWeighting
+    implements TerraformEnum {
+  defaultCase('default'),
+  vpc1('vpc-1'),
+  ebs1('ebs-1');
+
+  const LaunchTemplateNetworkPerformanceOptionsBandwidthWeighting(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `placement` block of
@@ -869,7 +1206,7 @@ final class LaunchTemplatePlacement {
 
   final TfArg<String>? spreadDomain;
 
-  final TfArg<String>? tenancy;
+  final TfArg<LaunchTemplatePlacementTenancy>? tenancy;
 
   Map<String, Object?> encode() => {
     if (affinity != null) 'affinity': affinity!.toTfJson(),
@@ -887,6 +1224,17 @@ final class LaunchTemplatePlacement {
   };
 }
 
+/// `tenancy` — derived from the provider schema description.
+enum LaunchTemplatePlacementTenancy implements TerraformEnum {
+  defaultCase('default'),
+  dedicated('dedicated'),
+  host('host');
+
+  const LaunchTemplatePlacementTenancy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `private_dns_name_options` block of
 /// `aws_launch_template` (derived from provider schema).
 @immutable
@@ -901,7 +1249,7 @@ final class LaunchTemplatePrivateDnsNameOptions {
 
   final TfArg<bool>? enableResourceNameDnsAaaaRecord;
 
-  final TfArg<String>? hostnameType;
+  final TfArg<LaunchTemplatePrivateDnsNameOptionsHostnameType>? hostnameType;
 
   Map<String, Object?> encode() => {
     if (enableResourceNameDnsARecord != null)
@@ -912,6 +1260,16 @@ final class LaunchTemplatePrivateDnsNameOptions {
           .toTfJson(),
     if (hostnameType != null) 'hostname_type': hostnameType!.toTfJson(),
   };
+}
+
+/// `hostname_type` — derived from the provider schema description.
+enum LaunchTemplatePrivateDnsNameOptionsHostnameType implements TerraformEnum {
+  ipName('ip-name'),
+  resourceName('resource-name');
+
+  const LaunchTemplatePrivateDnsNameOptionsHostnameType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `secondary_interfaces` block of
@@ -932,7 +1290,7 @@ final class LaunchTemplateSecondaryInterfaces {
 
   final TfArg<num>? deviceIndex;
 
-  final TfArg<String>? interfaceType;
+  final TfArg<LaunchTemplateSecondaryInterfacesInterfaceType>? interfaceType;
 
   final TfArg<num>? networkCardIndex;
 
@@ -958,13 +1316,22 @@ final class LaunchTemplateSecondaryInterfaces {
   };
 }
 
+/// `interface_type` — derived from the provider schema description.
+enum LaunchTemplateSecondaryInterfacesInterfaceType implements TerraformEnum {
+  secondary('secondary');
+
+  const LaunchTemplateSecondaryInterfacesInterfaceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `tag_specifications` block of
 /// `aws_launch_template` (derived from provider schema).
 @immutable
 final class LaunchTemplateTagSpecifications {
   const LaunchTemplateTagSpecifications({this.resourceType, this.tags});
 
-  final TfArg<String>? resourceType;
+  final TfArg<LaunchTemplateTagSpecificationsResourceType>? resourceType;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -972,6 +1339,135 @@ final class LaunchTemplateTagSpecifications {
     if (resourceType != null) 'resource_type': resourceType!.toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
   };
+}
+
+/// `resource_type` — derived from the provider schema description.
+enum LaunchTemplateTagSpecificationsResourceType implements TerraformEnum {
+  capacityReservation('capacity-reservation'),
+  clientVpnEndpoint('client-vpn-endpoint'),
+  customerGateway('customer-gateway'),
+  carrierGateway('carrier-gateway'),
+  coipPool('coip-pool'),
+  declarativePoliciesReport('declarative-policies-report'),
+  dedicatedHost('dedicated-host'),
+  dhcpOptions('dhcp-options'),
+  egressOnlyInternetGateway('egress-only-internet-gateway'),
+  elasticIp('elastic-ip'),
+  elasticGpu('elastic-gpu'),
+  exportImageTask('export-image-task'),
+  exportInstanceTask('export-instance-task'),
+  fleet('fleet'),
+  fpgaImage('fpga-image'),
+  hostReservation('host-reservation'),
+  image('image'),
+  imageUsageReport('image-usage-report'),
+  importImageTask('import-image-task'),
+  importSnapshotTask('import-snapshot-task'),
+  instance('instance'),
+  instanceEventWindow('instance-event-window'),
+  internetGateway('internet-gateway'),
+  ipam('ipam'),
+  ipamPool('ipam-pool'),
+  ipamScope('ipam-scope'),
+  ipv4poolEc2('ipv4pool-ec2'),
+  ipv6poolEc2('ipv6pool-ec2'),
+  keyPair('key-pair'),
+  launchTemplate('launch-template'),
+  localGateway('local-gateway'),
+  localGatewayRouteTable('local-gateway-route-table'),
+  localGatewayVirtualInterface('local-gateway-virtual-interface'),
+  localGatewayVirtualInterfaceGroup('local-gateway-virtual-interface-group'),
+  localGatewayRouteTableVpcAssociation(
+    'local-gateway-route-table-vpc-association',
+  ),
+  localGatewayRouteTableVirtualInterfaceGroupAssociation(
+    'local-gateway-route-table-virtual-interface-group-association',
+  ),
+  natgateway('natgateway'),
+  networkAcl('network-acl'),
+  networkInterface('network-interface'),
+  networkInsightsAnalysis('network-insights-analysis'),
+  networkInsightsPath('network-insights-path'),
+  networkInsightsAccessScope('network-insights-access-scope'),
+  networkInsightsAccessScopeAnalysis('network-insights-access-scope-analysis'),
+  outpostLag('outpost-lag'),
+  placementGroup('placement-group'),
+  prefixList('prefix-list'),
+  replaceRootVolumeTask('replace-root-volume-task'),
+  reservedInstances('reserved-instances'),
+  routeTable('route-table'),
+  securityGroup('security-group'),
+  securityGroupRule('security-group-rule'),
+  serviceLinkVirtualInterface('service-link-virtual-interface'),
+  snapshot('snapshot'),
+  spotFleetRequest('spot-fleet-request'),
+  spotInstancesRequest('spot-instances-request'),
+  subnet('subnet'),
+  subnetCidrReservation('subnet-cidr-reservation'),
+  trafficMirrorFilter('traffic-mirror-filter'),
+  trafficMirrorSession('traffic-mirror-session'),
+  trafficMirrorTarget('traffic-mirror-target'),
+  transitGateway('transit-gateway'),
+  transitGatewayAttachment('transit-gateway-attachment'),
+  transitGatewayConnectPeer('transit-gateway-connect-peer'),
+  transitGatewayMulticastDomain('transit-gateway-multicast-domain'),
+  transitGatewayPolicyTable('transit-gateway-policy-table'),
+  transitGatewayMeteringPolicy('transit-gateway-metering-policy'),
+  transitGatewayRouteTable('transit-gateway-route-table'),
+  transitGatewayRouteTableAnnouncement(
+    'transit-gateway-route-table-announcement',
+  ),
+  volume('volume'),
+  vpc('vpc'),
+  vpcEndpoint('vpc-endpoint'),
+  vpcEndpointConnection('vpc-endpoint-connection'),
+  vpcEndpointService('vpc-endpoint-service'),
+  vpcEndpointServicePermission('vpc-endpoint-service-permission'),
+  vpcPeeringConnection('vpc-peering-connection'),
+  vpnConnection('vpn-connection'),
+  vpnGateway('vpn-gateway'),
+  vpcFlowLog('vpc-flow-log'),
+  capacityReservationFleet('capacity-reservation-fleet'),
+  trafficMirrorFilterRule('traffic-mirror-filter-rule'),
+  vpcEndpointConnectionDeviceType('vpc-endpoint-connection-device-type'),
+  verifiedAccessInstance('verified-access-instance'),
+  verifiedAccessGroup('verified-access-group'),
+  verifiedAccessEndpoint('verified-access-endpoint'),
+  verifiedAccessPolicy('verified-access-policy'),
+  verifiedAccessTrustProvider('verified-access-trust-provider'),
+  vpnConnectionDeviceType('vpn-connection-device-type'),
+  vpcBlockPublicAccessExclusion('vpc-block-public-access-exclusion'),
+  vpcEncryptionControl('vpc-encryption-control'),
+  routeServer('route-server'),
+  routeServerEndpoint('route-server-endpoint'),
+  routeServerPeer('route-server-peer'),
+  ipamResourceDiscovery('ipam-resource-discovery'),
+  ipamResourceDiscoveryAssociation('ipam-resource-discovery-association'),
+  instanceConnectEndpoint('instance-connect-endpoint'),
+  verifiedAccessEndpointTarget('verified-access-endpoint-target'),
+  ipamExternalResourceVerificationToken(
+    'ipam-external-resource-verification-token',
+  ),
+  capacityBlock('capacity-block'),
+  macModificationTask('mac-modification-task'),
+  ipamPrefixListResolver('ipam-prefix-list-resolver'),
+  ipamPolicy('ipam-policy'),
+  ipamPrefixListResolverTarget('ipam-prefix-list-resolver-target'),
+  ipamInternetRegistryAssociation('ipam-internet-registry-association'),
+  secondaryInterface('secondary-interface'),
+  secondaryNetwork('secondary-network'),
+  secondarySubnet('secondary-subnet'),
+  capacityManagerDataExport('capacity-manager-data-export'),
+  vpnConcentrator('vpn-concentrator'),
+  ipamPoolAllocation('ipam-pool-allocation'),
+  capacityReservationCancellationQuote(
+    'capacity-reservation-cancellation-quote',
+  ),
+  applicationStatusCheck('application-status-check');
+
+  const LaunchTemplateTagSpecificationsResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_launch_template`.
@@ -986,7 +1482,8 @@ final class AwsLaunchTemplate extends Resource {
     TfArg<bool>? disableApiTermination,
     TfArg<String>? ebsOptimized,
     TfArg<String>? imageId,
-    TfArg<String>? instanceInitiatedShutdownBehavior,
+    TfArg<LaunchTemplateInstanceInitiatedShutdownBehavior>?
+    instanceInitiatedShutdownBehavior,
     TfArg<String>? instanceType,
     TfArg<String>? kernelId,
     TfArg<String>? keyName,

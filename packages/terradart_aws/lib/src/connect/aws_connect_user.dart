@@ -51,7 +51,7 @@ final class ConnectUserPhoneConfig {
 
   final TfArg<String>? deskPhoneNumber;
 
-  final TfArg<String> phoneType;
+  final TfArg<ConnectUserPhoneConfigPhoneType> phoneType;
 
   Map<String, Object?> encode() => {
     if (afterContactWorkTimeLimit != null)
@@ -61,6 +61,16 @@ final class ConnectUserPhoneConfig {
       'desk_phone_number': deskPhoneNumber!.toTfJson(),
     'phone_type': phoneType.toTfJson(),
   };
+}
+
+/// `phone_type` — derived from the provider schema description.
+enum ConnectUserPhoneConfigPhoneType implements TerraformEnum {
+  softPhone('SOFT_PHONE'),
+  deskPhone('DESK_PHONE');
+
+  const ConnectUserPhoneConfigPhoneType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_connect_user`.

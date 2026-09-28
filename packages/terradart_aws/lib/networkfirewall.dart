@@ -7,25 +7,33 @@ export 'src/networkfirewall/aws_networkfirewall_container_association.dart'
     show
         AwsNetworkfirewallContainerAssociation,
         NetworkfirewallContainerAssociationContainerMonitoringConfiguration,
-        NetworkfirewallContainerAssociationContainerMonitoringConfigurationAttributeFilter;
+        NetworkfirewallContainerAssociationContainerMonitoringConfigurationAttributeFilter,
+        NetworkfirewallContainerAssociationType;
 export 'src/networkfirewall/aws_networkfirewall_firewall.dart'
     show
         AwsNetworkfirewallFirewall,
         NetworkfirewallFirewallAvailabilityZoneMapping,
+        NetworkfirewallFirewallEnabledAnalysisTypes,
         NetworkfirewallFirewallEncryptionConfiguration,
-        NetworkfirewallFirewallSubnetMapping;
+        NetworkfirewallFirewallEncryptionConfigurationType,
+        NetworkfirewallFirewallSubnetMapping,
+        NetworkfirewallFirewallSubnetMappingIpAddressType;
 export 'src/networkfirewall/aws_networkfirewall_firewall_policy.dart'
     show
         AwsNetworkfirewallFirewallPolicy,
         NetworkfirewallFirewallPolicyEncryptionConfiguration,
+        NetworkfirewallFirewallPolicyEncryptionConfigurationType,
         NetworkfirewallFirewallPolicyFirewallPolicy,
         NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariables,
         NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariables,
         NetworkfirewallFirewallPolicyFirewallPolicyPolicyVariablesRuleVariablesIpSet,
         NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptions,
         NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsFlowTimeouts,
+        NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsRuleOrder,
+        NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsStreamExceptionPolicy,
         NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReference,
         NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverride,
+        NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverrideAction,
         NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomAction,
         NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinition,
         NetworkfirewallFirewallPolicyFirewallPolicyStatelessCustomActionActionDefinitionPublishMetricAction,
@@ -37,13 +45,16 @@ export 'src/networkfirewall/aws_networkfirewall_logging_configuration.dart'
     show
         AwsNetworkfirewallLoggingConfiguration,
         NetworkfirewallLoggingConfigurationLoggingConfiguration,
-        NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfig;
+        NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfig,
+        NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogDestinationType,
+        NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogType;
 export 'src/networkfirewall/aws_networkfirewall_resource_policy.dart'
     show AwsNetworkfirewallResourcePolicy;
 export 'src/networkfirewall/aws_networkfirewall_rule_group.dart'
     show
         AwsNetworkfirewallRuleGroup,
         NetworkfirewallRuleGroupEncryptionConfiguration,
+        NetworkfirewallRuleGroupEncryptionConfigurationType,
         NetworkfirewallRuleGroupRuleGroup,
         NetworkfirewallRuleGroupRuleGroupReferenceSets,
         NetworkfirewallRuleGroupRuleGroupReferenceSetsIpSetReferences,
@@ -55,8 +66,13 @@ export 'src/networkfirewall/aws_networkfirewall_rule_group.dart'
         NetworkfirewallRuleGroupRuleGroupRuleVariablesPortSetsPortSet,
         NetworkfirewallRuleGroupRuleGroupRulesSource,
         NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceList,
+        NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceListGeneratedRulesType,
+        NetworkfirewallRuleGroupRuleGroupRulesSourceRulesSourceListTargetTypes,
         NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRule,
+        NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleAction,
         NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeader,
+        NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeaderDirection,
+        NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleHeaderProtocol,
         NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleRuleOption,
         NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActions,
         NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsCustomAction,
@@ -71,13 +87,19 @@ export 'src/networkfirewall/aws_networkfirewall_rule_group.dart'
         NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesSource,
         NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesSourcePort,
         NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlag,
-        NetworkfirewallRuleGroupRuleGroupStatefulRuleOptions;
+        NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlagFlags,
+        NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomActionsStatelessRuleRuleDefinitionMatchAttributesTcpFlagMasks,
+        NetworkfirewallRuleGroupRuleGroupStatefulRuleOptions,
+        NetworkfirewallRuleGroupRuleGroupStatefulRuleOptionsRuleOrder,
+        NetworkfirewallRuleGroupType;
 export 'src/networkfirewall/aws_networkfirewall_tls_inspection_configuration.dart'
     show
         AwsNetworkfirewallTlsInspectionConfiguration,
         NetworkfirewallTlsInspectionConfigurationTlsInspectionConfiguration,
         NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfiguration,
         NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatus,
+        NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusRevokedStatusAction,
+        NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusUnknownStatusAction,
         NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScope,
         NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeDestination,
         NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationScopeDestinationPorts,
@@ -87,4 +109,5 @@ export 'src/networkfirewall/aws_networkfirewall_tls_inspection_configuration.dar
 export 'src/networkfirewall/aws_networkfirewall_vpc_endpoint_association.dart'
     show
         AwsNetworkfirewallVpcEndpointAssociation,
-        NetworkfirewallVpcEndpointAssociationSubnetMapping;
+        NetworkfirewallVpcEndpointAssociationSubnetMapping,
+        NetworkfirewallVpcEndpointAssociationSubnetMappingIpAddressType;

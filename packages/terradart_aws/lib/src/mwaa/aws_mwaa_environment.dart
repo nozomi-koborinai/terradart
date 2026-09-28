@@ -9,6 +9,37 @@ const Set<String> _awsMwaaEnvironmentSensitive = <String>{
   'airflow_configuration_options',
 };
 
+/// Mwaa Environment Endpoint enum for `endpoint_management`.
+enum MwaaEnvironmentEndpointManagement implements TerraformEnum {
+  customer('CUSTOMER'),
+  service('SERVICE');
+
+  const MwaaEnvironmentEndpointManagement(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mwaa Environment Webserver Access enum for `webserver_access_mode`.
+enum MwaaEnvironmentWebserverAccessMode implements TerraformEnum {
+  privateOnly('PRIVATE_ONLY'),
+  publicOnly('PUBLIC_ONLY'),
+  publicAndPrivate('PUBLIC_AND_PRIVATE');
+
+  const MwaaEnvironmentWebserverAccessMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mwaa Environment Worker Replacement enum for `worker_replacement_strategy`.
+enum MwaaEnvironmentWorkerReplacementStrategy implements TerraformEnum {
+  forced('FORCED'),
+  graceful('GRACEFUL');
+
+  const MwaaEnvironmentWorkerReplacementStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `logging_configuration` block of
 /// `aws_mwaa_environment` (derived from provider schema).
 @immutable
@@ -52,12 +83,29 @@ final class MwaaEnvironmentLoggingConfigurationDagProcessingLogs {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logLevel;
+  final TfArg<MwaaEnvironmentLoggingConfigurationDagProcessingLogsLogLevel>?
+  logLevel;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (logLevel != null) 'log_level': logLevel!.toTfJson(),
   };
+}
+
+/// `log_level` — derived from the provider schema description.
+enum MwaaEnvironmentLoggingConfigurationDagProcessingLogsLogLevel
+    implements TerraformEnum {
+  critical('CRITICAL'),
+  error('ERROR'),
+  warning('WARNING'),
+  info('INFO'),
+  debug('DEBUG');
+
+  const MwaaEnvironmentLoggingConfigurationDagProcessingLogsLogLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `logging_configuration.scheduler_logs` block of
@@ -71,12 +119,29 @@ final class MwaaEnvironmentLoggingConfigurationSchedulerLogs {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logLevel;
+  final TfArg<MwaaEnvironmentLoggingConfigurationSchedulerLogsLogLevel>?
+  logLevel;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (logLevel != null) 'log_level': logLevel!.toTfJson(),
   };
+}
+
+/// `log_level` — derived from the provider schema description.
+enum MwaaEnvironmentLoggingConfigurationSchedulerLogsLogLevel
+    implements TerraformEnum {
+  critical('CRITICAL'),
+  error('ERROR'),
+  warning('WARNING'),
+  info('INFO'),
+  debug('DEBUG');
+
+  const MwaaEnvironmentLoggingConfigurationSchedulerLogsLogLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `logging_configuration.task_logs` block of
@@ -90,12 +155,28 @@ final class MwaaEnvironmentLoggingConfigurationTaskLogs {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logLevel;
+  final TfArg<MwaaEnvironmentLoggingConfigurationTaskLogsLogLevel>? logLevel;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (logLevel != null) 'log_level': logLevel!.toTfJson(),
   };
+}
+
+/// `log_level` — derived from the provider schema description.
+enum MwaaEnvironmentLoggingConfigurationTaskLogsLogLevel
+    implements TerraformEnum {
+  critical('CRITICAL'),
+  error('ERROR'),
+  warning('WARNING'),
+  info('INFO'),
+  debug('DEBUG');
+
+  const MwaaEnvironmentLoggingConfigurationTaskLogsLogLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `logging_configuration.webserver_logs` block of
@@ -109,12 +190,29 @@ final class MwaaEnvironmentLoggingConfigurationWebserverLogs {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logLevel;
+  final TfArg<MwaaEnvironmentLoggingConfigurationWebserverLogsLogLevel>?
+  logLevel;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (logLevel != null) 'log_level': logLevel!.toTfJson(),
   };
+}
+
+/// `log_level` — derived from the provider schema description.
+enum MwaaEnvironmentLoggingConfigurationWebserverLogsLogLevel
+    implements TerraformEnum {
+  critical('CRITICAL'),
+  error('ERROR'),
+  warning('WARNING'),
+  info('INFO'),
+  debug('DEBUG');
+
+  const MwaaEnvironmentLoggingConfigurationWebserverLogsLogLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `logging_configuration.worker_logs` block of
@@ -128,12 +226,28 @@ final class MwaaEnvironmentLoggingConfigurationWorkerLogs {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? logLevel;
+  final TfArg<MwaaEnvironmentLoggingConfigurationWorkerLogsLogLevel>? logLevel;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (logLevel != null) 'log_level': logLevel!.toTfJson(),
   };
+}
+
+/// `log_level` — derived from the provider schema description.
+enum MwaaEnvironmentLoggingConfigurationWorkerLogsLogLevel
+    implements TerraformEnum {
+  critical('CRITICAL'),
+  error('ERROR'),
+  warning('WARNING'),
+  info('INFO'),
+  debug('DEBUG');
+
+  const MwaaEnvironmentLoggingConfigurationWorkerLogsLogLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `network_configuration` block of
@@ -164,7 +278,7 @@ final class AwsMwaaEnvironment extends Resource {
     TfArg<Map<String, String>>? airflowConfigurationOptions,
     TfArg<String>? airflowVersion,
     required TfArg<String> dagS3Path,
-    TfArg<String>? endpointManagement,
+    TfArg<MwaaEnvironmentEndpointManagement>? endpointManagement,
     TfArg<String>? environmentClass,
     required TfArg<String> executionRoleArn,
     TfArg<String>? kmsKey,
@@ -183,9 +297,9 @@ final class AwsMwaaEnvironment extends Resource {
     TfArg<String>? startupScriptS3ObjectVersion,
     TfArg<String>? startupScriptS3Path,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? webserverAccessMode,
+    TfArg<MwaaEnvironmentWebserverAccessMode>? webserverAccessMode,
     TfArg<String>? weeklyMaintenanceWindowStart,
-    TfArg<String>? workerReplacementStrategy,
+    TfArg<MwaaEnvironmentWorkerReplacementStrategy>? workerReplacementStrategy,
     MwaaEnvironmentLoggingConfiguration? loggingConfiguration,
     required MwaaEnvironmentNetworkConfiguration networkConfiguration,
     super.lifecycle,

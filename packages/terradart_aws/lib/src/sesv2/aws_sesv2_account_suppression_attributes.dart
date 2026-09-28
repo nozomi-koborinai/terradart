@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_sesv2_account_suppression_attributes`.
 const Set<String> _awsSesv2AccountSuppressionAttributesSensitive = <String>{};
 
+/// Sesv2 Account Suppression Attributes Suppressed enum for `suppressed_reasons`.
+enum Sesv2AccountSuppressionAttributesSuppressedReasons
+    implements TerraformEnum {
+  bounce('BOUNCE'),
+  complaint('COMPLAINT');
+
+  const Sesv2AccountSuppressionAttributesSuppressedReasons(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_sesv2_account_suppression_attributes`.
 final class AwsSesv2AccountSuppressionAttributes extends Resource {
   static const String tfType = 'aws_sesv2_account_suppression_attributes';
@@ -13,7 +24,8 @@ final class AwsSesv2AccountSuppressionAttributes extends Resource {
   AwsSesv2AccountSuppressionAttributes({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<List<String>> suppressedReasons,
+    required List<TfArg<Sesv2AccountSuppressionAttributesSuppressedReasons>>
+    suppressedReasons,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -22,7 +34,9 @@ final class AwsSesv2AccountSuppressionAttributes extends Resource {
          terraformType: tfType,
          argMap: {
            if (region != null) 'region': region,
-           'suppressed_reasons': suppressedReasons,
+           'suppressed_reasons': TfArg.literal([
+             for (final e in suppressedReasons) e.toTfJson(),
+           ]),
          },
        );
 

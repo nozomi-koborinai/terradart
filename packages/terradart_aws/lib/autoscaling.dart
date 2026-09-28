@@ -8,15 +8,24 @@ export 'src/autoscaling/aws_autoscaling_attachment.dart'
 export 'src/autoscaling/aws_autoscaling_group.dart'
     show
         AutoscalingGroupAvailabilityZoneDistribution,
+        AutoscalingGroupAvailabilityZoneDistributionCapacityDistributionStrategy,
         AutoscalingGroupCapacityReservationSpecification,
+        AutoscalingGroupCapacityReservationSpecificationCapacityReservationPreference,
         AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget,
+        AutoscalingGroupDesiredCapacityType,
         AutoscalingGroupInitialLifecycleHook,
+        AutoscalingGroupInitialLifecycleHookDefaultResult,
+        AutoscalingGroupInitialLifecycleHookLifecycleTransition,
         AutoscalingGroupInstanceLifecyclePolicy,
         AutoscalingGroupInstanceLifecyclePolicyRetentionTriggers,
+        AutoscalingGroupInstanceLifecyclePolicyRetentionTriggersTerminateHookAbandon,
         AutoscalingGroupInstanceMaintenancePolicy,
         AutoscalingGroupInstanceRefresh,
         AutoscalingGroupInstanceRefreshPreferences,
         AutoscalingGroupInstanceRefreshPreferencesAlarmSpecification,
+        AutoscalingGroupInstanceRefreshPreferencesScaleInProtectedInstances,
+        AutoscalingGroupInstanceRefreshPreferencesStandbyInstances,
+        AutoscalingGroupInstanceRefreshStrategy,
         AutoscalingGroupLaunchTemplate,
         AutoscalingGroupMixedInstancesPolicy,
         AutoscalingGroupMixedInstancesPolicyInstancesDistribution,
@@ -25,8 +34,17 @@ export 'src/autoscaling/aws_autoscaling_group.dart'
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverride,
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirements,
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorCount,
+        AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorManufacturers,
+        AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorNames,
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorTotalMemoryMib,
+        AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorTypes,
+        AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsBareMetal,
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsBaselineEbsBandwidthMbps,
+        AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsBurstablePerformance,
+        AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsCpuManufacturers,
+        AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsInstanceGenerations,
+        AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsLocalStorage,
+        AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsLocalStorageTypes,
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsMemoryGibPerVcpu,
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsMemoryMib,
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsNetworkBandwidthGbps,
@@ -38,16 +56,22 @@ export 'src/autoscaling/aws_autoscaling_group.dart'
         AutoscalingGroupTrafficSource,
         AutoscalingGroupWarmPool,
         AutoscalingGroupWarmPoolInstanceReusePolicy,
+        AutoscalingGroupWarmPoolPoolState,
         AwsAutoscalingGroup;
 export 'src/autoscaling/aws_autoscaling_group_tag.dart'
     show AutoscalingGroupTagTag, AwsAutoscalingGroupTag;
 export 'src/autoscaling/aws_autoscaling_lifecycle_hook.dart'
-    show AwsAutoscalingLifecycleHook;
+    show
+        AutoscalingLifecycleHookDefaultResult,
+        AutoscalingLifecycleHookLifecycleTransition,
+        AwsAutoscalingLifecycleHook;
 export 'src/autoscaling/aws_autoscaling_notification.dart'
     show AwsAutoscalingNotification;
 export 'src/autoscaling/aws_autoscaling_policy.dart'
     show
+        AutoscalingPolicyPolicyType,
         AutoscalingPolicyPredictiveScalingConfiguration,
+        AutoscalingPolicyPredictiveScalingConfigurationMaxCapacityBreachBehavior,
         AutoscalingPolicyPredictiveScalingConfigurationMetricSpecification,
         AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedCapacityMetricSpecification,
         AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedCapacityMetricSpecificationMetricDataQueries,
@@ -65,8 +89,12 @@ export 'src/autoscaling/aws_autoscaling_policy.dart'
         AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueriesMetricStatMetric,
         AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationMetricDataQueriesMetricStatMetricDimensions,
         AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedLoadMetricSpecification,
+        AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedLoadMetricSpecificationPredefinedMetricType,
         AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedMetricPairSpecification,
+        AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedMetricPairSpecificationPredefinedMetricType,
         AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedScalingMetricSpecification,
+        AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedScalingMetricSpecificationPredefinedMetricType,
+        AutoscalingPolicyPredictiveScalingConfigurationMode,
         AutoscalingPolicyStepAdjustment,
         AutoscalingPolicyTargetTrackingConfiguration,
         AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecification,
@@ -89,4 +117,6 @@ export 'src/autoscaling/aws_launch_configuration.dart'
         LaunchConfigurationEbsBlockDevice,
         LaunchConfigurationEphemeralBlockDevice,
         LaunchConfigurationMetadataOptions,
+        LaunchConfigurationMetadataOptionsHttpEndpoint,
+        LaunchConfigurationMetadataOptionsHttpTokens,
         LaunchConfigurationRootBlockDevice;

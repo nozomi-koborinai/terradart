@@ -4,14 +4,25 @@
 library;
 
 export 'src/gamelift/aws_gamelift_alias.dart'
-    show AwsGameliftAlias, GameliftAliasRoutingStrategy;
+    show
+        AwsGameliftAlias,
+        GameliftAliasRoutingStrategy,
+        GameliftAliasRoutingStrategyType;
 export 'src/gamelift/aws_gamelift_build.dart'
-    show AwsGameliftBuild, GameliftBuildStorageLocation;
+    show
+        AwsGameliftBuild,
+        GameliftBuildOperatingSystem,
+        GameliftBuildStorageLocation;
 export 'src/gamelift/aws_gamelift_fleet.dart'
     show
         AwsGameliftFleet,
         GameliftFleetCertificateConfiguration,
+        GameliftFleetCertificateConfigurationCertificateType,
         GameliftFleetEc2InboundPermission,
+        GameliftFleetEc2InboundPermissionProtocol,
+        GameliftFleetEc2InstanceType,
+        GameliftFleetFleetType,
+        GameliftFleetNewGameSessionProtectionPolicy,
         GameliftFleetResourceCreationLimitPolicy,
         GameliftFleetRuntimeConfiguration,
         GameliftFleetRuntimeConfigurationServerProcess;
@@ -20,7 +31,10 @@ export 'src/gamelift/aws_gamelift_game_server_group.dart'
         AwsGameliftGameServerGroup,
         GameliftGameServerGroupAutoScalingPolicy,
         GameliftGameServerGroupAutoScalingPolicyTargetTrackingConfiguration,
+        GameliftGameServerGroupBalancingStrategy,
+        GameliftGameServerGroupGameServerProtectionPolicy,
         GameliftGameServerGroupInstanceDefinition,
+        GameliftGameServerGroupInstanceDefinitionInstanceType,
         GameliftGameServerGroupLaunchTemplate;
 export 'src/gamelift/aws_gamelift_game_session_queue.dart'
     show

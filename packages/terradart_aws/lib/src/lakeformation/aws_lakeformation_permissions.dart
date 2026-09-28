@@ -7,6 +7,55 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lakeformation_permissions`.
 const Set<String> _awsLakeformationPermissionsSensitive = <String>{};
 
+/// Lakeformation Permissions enum for `permissions`.
+enum LakeformationPermissionsPermissions implements TerraformEnum {
+  all('ALL'),
+  select('SELECT'),
+  alter('ALTER'),
+  drop('DROP'),
+  delete('DELETE'),
+  insert('INSERT'),
+  describe('DESCRIBE'),
+  createDatabase('CREATE_DATABASE'),
+  createTable('CREATE_TABLE'),
+  dataLocationAccess('DATA_LOCATION_ACCESS'),
+  createLfTag('CREATE_LF_TAG'),
+  associate('ASSOCIATE'),
+  grantWithLfTagExpression('GRANT_WITH_LF_TAG_EXPRESSION'),
+  createLfTagExpression('CREATE_LF_TAG_EXPRESSION'),
+  createCatalog('CREATE_CATALOG'),
+  superUser('SUPER_USER');
+
+  const LakeformationPermissionsPermissions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lakeformation Permissions Permissions With Grant enum for `permissions_with_grant_option`.
+enum LakeformationPermissionsPermissionsWithGrantOption
+    implements TerraformEnum {
+  all('ALL'),
+  select('SELECT'),
+  alter('ALTER'),
+  drop('DROP'),
+  delete('DELETE'),
+  insert('INSERT'),
+  describe('DESCRIBE'),
+  createDatabase('CREATE_DATABASE'),
+  createTable('CREATE_TABLE'),
+  dataLocationAccess('DATA_LOCATION_ACCESS'),
+  createLfTag('CREATE_LF_TAG'),
+  associate('ASSOCIATE'),
+  grantWithLfTagExpression('GRANT_WITH_LF_TAG_EXPRESSION'),
+  createLfTagExpression('CREATE_LF_TAG_EXPRESSION'),
+  createCatalog('CREATE_CATALOG'),
+  superUser('SUPER_USER');
+
+  const LakeformationPermissionsPermissionsWithGrantOption(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `data_cells_filter` block of
 /// `aws_lakeformation_permissions` (derived from provider schema).
 @immutable
@@ -104,7 +153,7 @@ final class LakeformationPermissionsLfTagPolicy {
 
   final TfArg<String>? catalogId;
 
-  final TfArg<String> resourceType;
+  final TfArg<LakeformationPermissionsLfTagPolicyResourceType> resourceType;
 
   final List<LakeformationPermissionsLfTagPolicyExpression> expression;
 
@@ -113,6 +162,16 @@ final class LakeformationPermissionsLfTagPolicy {
     'resource_type': resourceType.toTfJson(),
     'expression': [for (final e in expression) e.encode()],
   };
+}
+
+/// `resource_type` — derived from the provider schema description.
+enum LakeformationPermissionsLfTagPolicyResourceType implements TerraformEnum {
+  database('DATABASE'),
+  table('TABLE');
+
+  const LakeformationPermissionsLfTagPolicyResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `lf_tag_policy.expression` block of
@@ -205,8 +264,9 @@ final class AwsLakeformationPermissions extends Resource {
     required super.localName,
     TfArg<String>? catalogId,
     TfArg<bool>? catalogResource,
-    required TfArg<List<String>> permissions,
-    TfArg<List<String>>? permissionsWithGrantOption,
+    required List<TfArg<LakeformationPermissionsPermissions>> permissions,
+    List<TfArg<LakeformationPermissionsPermissionsWithGrantOption>>?
+    permissionsWithGrantOption,
     required TfArg<String> principal,
     TfArg<String>? region,
     LakeformationPermissionsDataCellsFilter? dataCellsFilter,
@@ -225,9 +285,13 @@ final class AwsLakeformationPermissions extends Resource {
          argMap: {
            if (catalogId != null) 'catalog_id': catalogId,
            if (catalogResource != null) 'catalog_resource': catalogResource,
-           'permissions': permissions,
+           'permissions': TfArg.literal([
+             for (final e in permissions) e.toTfJson(),
+           ]),
            if (permissionsWithGrantOption != null)
-             'permissions_with_grant_option': permissionsWithGrantOption,
+             'permissions_with_grant_option': TfArg.literal([
+               for (final e in permissionsWithGrantOption) e.toTfJson(),
+             ]),
            'principal': principal,
            if (region != null) 'region': region,
            if (dataCellsFilter != null)

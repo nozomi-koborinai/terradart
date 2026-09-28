@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_macie2_findings_filter`.
 const Set<String> _awsMacie2FindingsFilterSensitive = <String>{};
 
+/// Macie2 Findings Filter enum for `action`.
+enum Macie2FindingsFilterAction implements TerraformEnum {
+  archive('ARCHIVE'),
+  noop('NOOP');
+
+  const Macie2FindingsFilterAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `finding_criteria` block of
 /// `aws_macie2_findings_filter` (derived from provider schema).
 @immutable
@@ -70,7 +80,7 @@ final class AwsMacie2FindingsFilter extends Resource {
 
   AwsMacie2FindingsFilter({
     required super.localName,
-    required TfArg<String> action,
+    required TfArg<Macie2FindingsFilterAction> action,
     TfArg<String>? description,
     TfArg<String>? name,
     TfArg<String>? namePrefix,

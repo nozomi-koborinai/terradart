@@ -41,11 +41,29 @@ final class DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptions {
     this.version,
   });
 
-  final TfArg<String>? version;
+  final TfArg<
+    DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptionsVersion
+  >?
+  version;
 
   Map<String, Object?> encode() => {
     if (version != null) 'version': version!.toTfJson(),
   };
+}
+
+/// `version` — derived from the provider schema description.
+enum DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptionsVersion
+    implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  nfs3('NFS3'),
+  nfs40('NFS4_0'),
+  nfs41('NFS4_1');
+
+  const DatasyncLocationFsxOpenzfsFileSystemProtocolNfsMountOptionsVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_datasync_location_fsx_openzfs_file_system`.

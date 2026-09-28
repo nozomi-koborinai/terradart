@@ -6,6 +6,7 @@ library;
 export 'src/cleanrooms/aws_cleanrooms_collaboration.dart'
     show
         AwsCleanroomsCollaboration,
+        CleanroomsCollaborationAnalyticsEngine,
         CleanroomsCollaborationDataEncryptionMetadata,
         CleanroomsCollaborationMember;
 export 'src/cleanrooms/aws_cleanrooms_configured_table.dart'
@@ -17,4 +18,5 @@ export 'src/cleanrooms/aws_cleanrooms_membership.dart'
         CleanroomsMembershipDefaultResultConfigurationOutputConfiguration,
         CleanroomsMembershipDefaultResultConfigurationOutputConfigurationS3,
         CleanroomsMembershipPaymentConfiguration,
-        CleanroomsMembershipPaymentConfigurationQueryCompute;
+        CleanroomsMembershipPaymentConfigurationQueryCompute,
+        CleanroomsMembershipQueryLogStatus;

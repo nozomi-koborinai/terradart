@@ -8,6 +8,16 @@ const Set<String> _awsDocdbelasticClusterSensitive = <String>{
   'admin_user_password',
 };
 
+/// Docdbelastic Cluster Auth enum for `auth_type`.
+enum DocdbelasticClusterAuthType implements TerraformEnum {
+  plainText('PLAIN_TEXT'),
+  secretArn('SECRET_ARN');
+
+  const DocdbelasticClusterAuthType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_docdbelastic_cluster`.
 final class AwsDocdbelasticCluster extends Resource {
   static const String tfType = 'aws_docdbelastic_cluster';
@@ -16,7 +26,7 @@ final class AwsDocdbelasticCluster extends Resource {
     required super.localName,
     required TfArg<String> adminUserName,
     required TfArg<String> adminUserPassword,
-    required TfArg<String> authType,
+    required TfArg<DocdbelasticClusterAuthType> authType,
     TfArg<num>? backupRetentionPeriod,
     TfArg<String>? kmsKeyId,
     required TfArg<String> name,

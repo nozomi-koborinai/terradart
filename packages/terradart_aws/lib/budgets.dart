@@ -7,7 +7,9 @@ export 'src/budgets/aws_budgets_budget.dart'
     show
         AwsBudgetsBudget,
         BudgetsBudgetAutoAdjustData,
+        BudgetsBudgetAutoAdjustDataAutoAdjustType,
         BudgetsBudgetAutoAdjustDataHistoricalOptions,
+        BudgetsBudgetBudgetType,
         BudgetsBudgetCostFilter,
         BudgetsBudgetCostTypes,
         BudgetsBudgetFilterExpression,
@@ -28,7 +30,10 @@ export 'src/budgets/aws_budgets_budget.dart'
         BudgetsBudgetFilterExpressionAndOrTags,
         BudgetsBudgetFilterExpressionAndTags,
         BudgetsBudgetFilterExpressionCostCategories,
+        BudgetsBudgetFilterExpressionCostCategoriesMatchOptions,
         BudgetsBudgetFilterExpressionDimensions,
+        BudgetsBudgetFilterExpressionDimensionsKey,
+        BudgetsBudgetFilterExpressionDimensionsMatchOptions,
         BudgetsBudgetFilterExpressionNot,
         BudgetsBudgetFilterExpressionNotAnd,
         BudgetsBudgetFilterExpressionNotAndCostCategories,
@@ -62,14 +67,26 @@ export 'src/budgets/aws_budgets_budget.dart'
         BudgetsBudgetFilterExpressionOrOrTags,
         BudgetsBudgetFilterExpressionOrTags,
         BudgetsBudgetFilterExpressionTags,
+        BudgetsBudgetFilterExpressionTagsMatchOptions,
+        BudgetsBudgetMetrics,
         BudgetsBudgetNotification,
-        BudgetsBudgetPlannedLimit;
+        BudgetsBudgetNotificationComparisonOperator,
+        BudgetsBudgetNotificationNotificationType,
+        BudgetsBudgetNotificationThresholdType,
+        BudgetsBudgetPlannedLimit,
+        BudgetsBudgetTimeUnit;
 export 'src/budgets/aws_budgets_budget_action.dart'
     show
         AwsBudgetsBudgetAction,
         BudgetsBudgetActionActionThreshold,
+        BudgetsBudgetActionActionThresholdActionThresholdType,
+        BudgetsBudgetActionActionType,
+        BudgetsBudgetActionApprovalModel,
         BudgetsBudgetActionDefinition,
         BudgetsBudgetActionDefinitionIamActionDefinition,
         BudgetsBudgetActionDefinitionScpActionDefinition,
         BudgetsBudgetActionDefinitionSsmActionDefinition,
-        BudgetsBudgetActionSubscriber;
+        BudgetsBudgetActionDefinitionSsmActionDefinitionActionSubType,
+        BudgetsBudgetActionNotificationType,
+        BudgetsBudgetActionSubscriber,
+        BudgetsBudgetActionSubscriberSubscriptionType;

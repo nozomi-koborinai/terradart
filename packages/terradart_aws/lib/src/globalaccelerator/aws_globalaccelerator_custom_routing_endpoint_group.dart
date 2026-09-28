@@ -20,15 +20,33 @@ final class GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration 
 
   final TfArg<num> fromPort;
 
-  final TfArg<List<Object?>> protocols;
+  final List<
+    TfArg<
+      GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationProtocols
+    >
+  >
+  protocols;
 
   final TfArg<num> toPort;
 
   Map<String, Object?> encode() => {
     'from_port': fromPort.toTfJson(),
-    'protocols': protocols.toTfJson(),
+    'protocols': [for (final e in protocols) e.toTfJson()],
     'to_port': toPort.toTfJson(),
   };
+}
+
+/// `protocols` — derived from the provider schema description.
+enum GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationProtocols
+    implements TerraformEnum {
+  tcp('TCP'),
+  udp('UDP');
+
+  const GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationProtocols(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `endpoint_configuration` block of

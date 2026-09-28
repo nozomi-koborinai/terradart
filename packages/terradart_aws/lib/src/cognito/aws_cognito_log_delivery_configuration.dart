@@ -19,9 +19,11 @@ final class CognitoLogDeliveryConfigurationLogConfigurations {
     this.s3Configuration,
   });
 
-  final TfArg<String> eventSource;
+  final TfArg<CognitoLogDeliveryConfigurationLogConfigurationsEventSource>
+  eventSource;
 
-  final TfArg<String> logLevel;
+  final TfArg<CognitoLogDeliveryConfigurationLogConfigurationsLogLevel>
+  logLevel;
 
   final List<
     CognitoLogDeliveryConfigurationLogConfigurationsCloudWatchLogsConfiguration
@@ -50,6 +52,32 @@ final class CognitoLogDeliveryConfigurationLogConfigurations {
     if (s3Configuration != null)
       's3_configuration': [for (final e in s3Configuration!) e.encode()],
   };
+}
+
+/// `event_source` — derived from the provider schema description.
+enum CognitoLogDeliveryConfigurationLogConfigurationsEventSource
+    implements TerraformEnum {
+  usernotification('userNotification'),
+  userauthevents('userAuthEvents');
+
+  const CognitoLogDeliveryConfigurationLogConfigurationsEventSource(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `log_level` — derived from the provider schema description.
+enum CognitoLogDeliveryConfigurationLogConfigurationsLogLevel
+    implements TerraformEnum {
+  error('ERROR'),
+  info('INFO');
+
+  const CognitoLogDeliveryConfigurationLogConfigurationsLogLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `log_configurations.cloud_watch_logs_configuration` block of

@@ -6,6 +6,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_inspector2_enabler`.
 const Set<String> _awsInspector2EnablerSensitive = <String>{};
 
+/// Inspector2 Enabler Resource enum for `resource_types`.
+enum Inspector2EnablerResourceTypes implements TerraformEnum {
+  ec2('EC2'),
+  ecr('ECR'),
+  lambda('LAMBDA'),
+  lambdaCode('LAMBDA_CODE'),
+  codeRepository('CODE_REPOSITORY');
+
+  const Inspector2EnablerResourceTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_inspector2_enabler`.
 final class AwsInspector2Enabler extends Resource {
   static const String tfType = 'aws_inspector2_enabler';
@@ -14,7 +27,7 @@ final class AwsInspector2Enabler extends Resource {
     required super.localName,
     required TfArg<List<String>> accountIds,
     TfArg<String>? region,
-    required TfArg<List<String>> resourceTypes,
+    required List<TfArg<Inspector2EnablerResourceTypes>> resourceTypes,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -24,7 +37,9 @@ final class AwsInspector2Enabler extends Resource {
          argMap: {
            'account_ids': accountIds,
            if (region != null) 'region': region,
-           'resource_types': resourceTypes,
+           'resource_types': TfArg.literal([
+             for (final e in resourceTypes) e.toTfJson(),
+           ]),
          },
        );
 

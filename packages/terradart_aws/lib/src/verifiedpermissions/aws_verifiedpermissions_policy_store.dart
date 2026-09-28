@@ -7,15 +7,38 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_verifiedpermissions_policy_store`.
 const Set<String> _awsVerifiedpermissionsPolicyStoreSensitive = <String>{};
 
+/// Verifiedpermissions Policy Store Deletion enum for `deletion_protection`.
+enum VerifiedpermissionsPolicyStoreDeletionProtection implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const VerifiedpermissionsPolicyStoreDeletionProtection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `validation_settings` block of
 /// `aws_verifiedpermissions_policy_store` (derived from provider schema).
 @immutable
 final class VerifiedpermissionsPolicyStoreValidationSettings {
   const VerifiedpermissionsPolicyStoreValidationSettings({required this.mode});
 
-  final TfArg<String> mode;
+  final TfArg<VerifiedpermissionsPolicyStoreValidationSettingsMode> mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
+}
+
+/// `mode` — derived from the provider schema description.
+enum VerifiedpermissionsPolicyStoreValidationSettingsMode
+    implements TerraformEnum {
+  off('OFF'),
+  strict('STRICT');
+
+  const VerifiedpermissionsPolicyStoreValidationSettingsMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_verifiedpermissions_policy_store`.
@@ -24,7 +47,7 @@ final class AwsVerifiedpermissionsPolicyStore extends Resource {
 
   AwsVerifiedpermissionsPolicyStore({
     required super.localName,
-    TfArg<String>? deletionProtection,
+    TfArg<VerifiedpermissionsPolicyStoreDeletionProtection>? deletionProtection,
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

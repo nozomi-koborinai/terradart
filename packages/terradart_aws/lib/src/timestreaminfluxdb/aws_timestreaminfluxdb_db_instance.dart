@@ -9,6 +9,54 @@ const Set<String> _awsTimestreaminfluxdbDbInstanceSensitive = <String>{
   'password',
 };
 
+/// Timestreaminfluxdb Db Instance Db Instance enum for `db_instance_type`.
+enum TimestreaminfluxdbDbInstanceDbInstanceType implements TerraformEnum {
+  dbInfluxMedium('db.influx.medium'),
+  dbInfluxLarge('db.influx.large'),
+  dbInfluxXlarge('db.influx.xlarge'),
+  dbInflux2xlarge('db.influx.2xlarge'),
+  dbInflux4xlarge('db.influx.4xlarge'),
+  dbInflux8xlarge('db.influx.8xlarge'),
+  dbInflux12xlarge('db.influx.12xlarge'),
+  dbInflux16xlarge('db.influx.16xlarge'),
+  dbInflux24xlarge('db.influx.24xlarge');
+
+  const TimestreaminfluxdbDbInstanceDbInstanceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Timestreaminfluxdb Db Instance Db Storage enum for `db_storage_type`.
+enum TimestreaminfluxdbDbInstanceDbStorageType implements TerraformEnum {
+  influxioincludedt1('InfluxIOIncludedT1'),
+  influxioincludedt2('InfluxIOIncludedT2'),
+  influxioincludedt3('InfluxIOIncludedT3');
+
+  const TimestreaminfluxdbDbInstanceDbStorageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Timestreaminfluxdb Db Instance Deployment enum for `deployment_type`.
+enum TimestreaminfluxdbDbInstanceDeploymentType implements TerraformEnum {
+  singleAz('SINGLE_AZ'),
+  withMultiazStandby('WITH_MULTIAZ_STANDBY');
+
+  const TimestreaminfluxdbDbInstanceDeploymentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Timestreaminfluxdb Db Instance Network enum for `network_type`.
+enum TimestreaminfluxdbDbInstanceNetworkType implements TerraformEnum {
+  ipv4('IPV4'),
+  dual('DUAL');
+
+  const TimestreaminfluxdbDbInstanceNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `log_delivery_configuration` block of
 /// `aws_timestreaminfluxdb_db_instance` (derived from provider schema).
 @immutable
@@ -74,12 +122,12 @@ final class AwsTimestreaminfluxdbDbInstance extends Resource {
     required super.localName,
     required TfArg<num> allocatedStorage,
     required TfArg<String> bucket,
-    required TfArg<String> dbInstanceType,
+    required TfArg<TimestreaminfluxdbDbInstanceDbInstanceType> dbInstanceType,
     TfArg<String>? dbParameterGroupIdentifier,
-    TfArg<String>? dbStorageType,
-    TfArg<String>? deploymentType,
+    TfArg<TimestreaminfluxdbDbInstanceDbStorageType>? dbStorageType,
+    TfArg<TimestreaminfluxdbDbInstanceDeploymentType>? deploymentType,
     required TfArg<String> name,
-    TfArg<String>? networkType,
+    TfArg<TimestreaminfluxdbDbInstanceNetworkType>? networkType,
     required TfArg<String> organization,
     required TfArg<String> password,
     TfArg<num>? port,

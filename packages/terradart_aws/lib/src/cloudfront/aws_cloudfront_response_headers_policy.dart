@@ -260,7 +260,10 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptions {
     required this.override,
   });
 
-  final TfArg<String> frameOption;
+  final TfArg<
+    CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptionsFrameOption
+  >
+  frameOption;
 
   final TfArg<bool> override;
 
@@ -268,6 +271,19 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptions {
     'frame_option': frameOption.toTfJson(),
     'override': override.toTfJson(),
   };
+}
+
+/// `frame_option` — derived from the provider schema description.
+enum CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptionsFrameOption
+    implements TerraformEnum {
+  deny('DENY'),
+  sameorigin('SAMEORIGIN');
+
+  const CloudfrontResponseHeadersPolicySecurityHeadersConfigFrameOptionsFrameOption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `security_headers_config.referrer_policy` block of
@@ -281,12 +297,34 @@ final class CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicy {
 
   final TfArg<bool> override;
 
-  final TfArg<String> referrerPolicy;
+  final TfArg<
+    CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicyReferrerPolicy
+  >
+  referrerPolicy;
 
   Map<String, Object?> encode() => {
     'override': override.toTfJson(),
     'referrer_policy': referrerPolicy.toTfJson(),
   };
+}
+
+/// `referrer_policy` — derived from the provider schema description.
+enum CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicyReferrerPolicy
+    implements TerraformEnum {
+  noReferrer('no-referrer'),
+  noReferrerWhenDowngrade('no-referrer-when-downgrade'),
+  origin('origin'),
+  originWhenCrossOrigin('origin-when-cross-origin'),
+  sameOrigin('same-origin'),
+  strictOrigin('strict-origin'),
+  strictOriginWhenCrossOrigin('strict-origin-when-cross-origin'),
+  unsafeUrl('unsafe-url');
+
+  const CloudfrontResponseHeadersPolicySecurityHeadersConfigReferrerPolicyReferrerPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `security_headers_config.strict_transport_security` block of

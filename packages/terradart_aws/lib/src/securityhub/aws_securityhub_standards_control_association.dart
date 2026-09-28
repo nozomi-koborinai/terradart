@@ -7,13 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSecurityhubStandardsControlAssociationSensitive =
     <String>{};
 
+/// Securityhub Standards Control Association Association enum for `association_status`.
+enum SecurityhubStandardsControlAssociationAssociationStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SecurityhubStandardsControlAssociationAssociationStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_securityhub_standards_control_association`.
 final class AwsSecurityhubStandardsControlAssociation extends Resource {
   static const String tfType = 'aws_securityhub_standards_control_association';
 
   AwsSecurityhubStandardsControlAssociation({
     required super.localName,
-    required TfArg<String> associationStatus,
+    required TfArg<SecurityhubStandardsControlAssociationAssociationStatus>
+    associationStatus,
     TfArg<String>? region,
     required TfArg<String> securityControlId,
     required TfArg<String> standardsArn,

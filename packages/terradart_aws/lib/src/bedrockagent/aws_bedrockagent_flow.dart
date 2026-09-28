@@ -42,7 +42,7 @@ final class BedrockagentFlowDefinitionConnection {
 
   final TfArg<String> target;
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentFlowDefinitionConnectionType> type;
 
   final List<BedrockagentFlowDefinitionConnectionConfiguration>? configuration;
 
@@ -54,6 +54,16 @@ final class BedrockagentFlowDefinitionConnection {
     if (configuration != null)
       'configuration': [for (final e in configuration!) e.encode()],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionConnectionType implements TerraformEnum {
+  data('Data'),
+  conditional('Conditional');
+
+  const BedrockagentFlowDefinitionConnectionType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `definition.connection.configuration` block of
@@ -123,7 +133,7 @@ final class BedrockagentFlowDefinitionNode {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentFlowDefinitionNodeType> type;
 
   final List<BedrockagentFlowDefinitionNodeConfiguration>? configuration;
 
@@ -139,6 +149,30 @@ final class BedrockagentFlowDefinitionNode {
     if (input != null) 'input': [for (final e in input!) e.encode()],
     if (output != null) 'output': [for (final e in output!) e.encode()],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeType implements TerraformEnum {
+  input('Input'),
+  output('Output'),
+  knowledgebase('KnowledgeBase'),
+  condition('Condition'),
+  lex('Lex'),
+  prompt('Prompt'),
+  lambdafunction('LambdaFunction'),
+  storage('Storage'),
+  agent('Agent'),
+  retrieval('Retrieval'),
+  iterator('Iterator'),
+  collector('Collector'),
+  inlinecode('InlineCode'),
+  loop('Loop'),
+  loopinput('LoopInput'),
+  loopcontroller('LoopController');
+
+  const BedrockagentFlowDefinitionNodeType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `definition.node.configuration` block of
@@ -281,12 +315,25 @@ final class BedrockagentFlowDefinitionNodeConfigurationInlineCode {
 
   final TfArg<String> code;
 
-  final TfArg<String> language;
+  final TfArg<BedrockagentFlowDefinitionNodeConfigurationInlineCodeLanguage>
+  language;
 
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
     'language': language.toTfJson(),
   };
+}
+
+/// `language` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeConfigurationInlineCodeLanguage
+    implements TerraformEnum {
+  python3('Python_3');
+
+  const BedrockagentFlowDefinitionNodeConfigurationInlineCodeLanguage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `definition.node.configuration.input` block of
@@ -547,7 +594,10 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
 
   final TfArg<String> modelId;
 
-  final TfArg<String> templateType;
+  final TfArg<
+    BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateType
+  >
+  templateType;
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineInferenceConfiguration
@@ -574,6 +624,19 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
         for (final e in templateConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `template_type` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateType
+    implements TerraformEnum {
+  text('TEXT'),
+  chat('CHAT');
+
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `definition.node.configuration.prompt.source_configuration.inline.inference_configuration` block of
@@ -709,7 +772,10 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
     this.content,
   });
 
-  final TfArg<String> role;
+  final TfArg<
+    BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageRole
+  >
+  role;
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContent
@@ -720,6 +786,19 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
     'role': role.toTfJson(),
     if (content != null) 'content': [for (final e in content!) e.encode()],
   };
+}
+
+/// `role` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageRole
+    implements TerraformEnum {
+  user('user'),
+  assistant('assistant');
+
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageRole(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.message.content` block of
@@ -753,9 +832,24 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
     required this.type,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointType
+  >
+  type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointType
+    implements TerraformEnum {
+  defaultCase('default');
+
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.system` block of
@@ -789,9 +883,24 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
     required this.type,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointType
+  >
+  type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointType
+    implements TerraformEnum {
+  defaultCase('default');
+
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.tool_configuration` block of
@@ -854,9 +963,24 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
     required this.type,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointType
+  >
+  type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointType
+    implements TerraformEnum {
+  defaultCase('default');
+
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.tool_configuration.tool.tool_spec` block of
@@ -1001,9 +1125,24 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
     required this.type,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationTextCachePointType
+  >
+  type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationTextCachePointType
+    implements TerraformEnum {
+  defaultCase('default');
+
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationTextCachePointType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.text.input_variable` block of
@@ -1147,13 +1286,13 @@ final class BedrockagentFlowDefinitionNodeInput {
     required this.type,
   });
 
-  final TfArg<String>? category;
+  final TfArg<BedrockagentFlowDefinitionNodeInputCategory>? category;
 
   final TfArg<String> expression;
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentFlowDefinitionNodeInputType> type;
 
   Map<String, Object?> encode() => {
     if (category != null) 'category': category!.toTfJson(),
@@ -1161,6 +1300,30 @@ final class BedrockagentFlowDefinitionNodeInput {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `category` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeInputCategory implements TerraformEnum {
+  loopcondition('LoopCondition'),
+  returnvaluetoloopstart('ReturnValueToLoopStart'),
+  exitloop('ExitLoop');
+
+  const BedrockagentFlowDefinitionNodeInputCategory(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeInputType implements TerraformEnum {
+  string('String'),
+  number('Number'),
+  boolean('Boolean'),
+  object('Object'),
+  array('Array');
+
+  const BedrockagentFlowDefinitionNodeInputType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `definition.node.output` block of
@@ -1174,12 +1337,25 @@ final class BedrockagentFlowDefinitionNodeOutput {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentFlowDefinitionNodeOutputType> type;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentFlowDefinitionNodeOutputType implements TerraformEnum {
+  string('String'),
+  number('Number'),
+  boolean('Boolean'),
+  object('Object'),
+  array('Array');
+
+  const BedrockagentFlowDefinitionNodeOutputType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_bedrockagent_flow`.

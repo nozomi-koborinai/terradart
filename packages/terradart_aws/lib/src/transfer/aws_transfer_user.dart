@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_transfer_user`.
 const Set<String> _awsTransferUserSensitive = <String>{};
 
+/// Transfer User Home Directory enum for `home_directory_type`.
+enum TransferUserHomeDirectoryType implements TerraformEnum {
+  path('PATH'),
+  logical('LOGICAL');
+
+  const TransferUserHomeDirectoryType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `home_directory_mappings` block of
 /// `aws_transfer_user` (derived from provider schema).
 @immutable
@@ -56,7 +66,7 @@ final class AwsTransferUser extends Resource {
   AwsTransferUser({
     required super.localName,
     TfArg<String>? homeDirectory,
-    TfArg<String>? homeDirectoryType,
+    TfArg<TransferUserHomeDirectoryType>? homeDirectoryType,
     TfArg<String>? policy,
     TfArg<String>? region,
     required TfArg<String> role,

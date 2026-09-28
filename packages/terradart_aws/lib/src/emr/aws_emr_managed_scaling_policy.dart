@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_emr_managed_scaling_policy`.
 const Set<String> _awsEmrManagedScalingPolicySensitive = <String>{};
 
+/// Emr Managed Scaling Policy Scaling enum for `scaling_strategy`.
+enum EmrManagedScalingPolicyScalingStrategy implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  advanced('ADVANCED');
+
+  const EmrManagedScalingPolicyScalingStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `compute_limits` block of
 /// `aws_emr_managed_scaling_policy` (derived from provider schema).
 @immutable
@@ -27,7 +37,7 @@ final class EmrManagedScalingPolicyComputeLimits {
 
   final TfArg<num> minimumCapacityUnits;
 
-  final TfArg<String> unitType;
+  final TfArg<EmrManagedScalingPolicyComputeLimitsUnitType> unitType;
 
   Map<String, Object?> encode() => {
     'maximum_capacity_units': maximumCapacityUnits.toTfJson(),
@@ -41,6 +51,17 @@ final class EmrManagedScalingPolicyComputeLimits {
   };
 }
 
+/// `unit_type` — derived from the provider schema description.
+enum EmrManagedScalingPolicyComputeLimitsUnitType implements TerraformEnum {
+  instancefleetunits('InstanceFleetUnits'),
+  instances('Instances'),
+  vcpu('VCPU');
+
+  const EmrManagedScalingPolicyComputeLimitsUnitType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_emr_managed_scaling_policy`.
 final class AwsEmrManagedScalingPolicy extends Resource {
   static const String tfType = 'aws_emr_managed_scaling_policy';
@@ -49,7 +70,7 @@ final class AwsEmrManagedScalingPolicy extends Resource {
     required super.localName,
     required TfArg<String> clusterId,
     TfArg<String>? region,
-    TfArg<String>? scalingStrategy,
+    TfArg<EmrManagedScalingPolicyScalingStrategy>? scalingStrategy,
     TfArg<num>? utilizationPerformanceIndex,
     required List<EmrManagedScalingPolicyComputeLimits> computeLimits,
     super.lifecycle,

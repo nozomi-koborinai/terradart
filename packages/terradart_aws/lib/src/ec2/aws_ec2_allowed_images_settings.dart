@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_allowed_images_settings`.
 const Set<String> _awsEc2AllowedImagesSettingsSensitive = <String>{};
 
+/// Ec2 Allowed Images Settings enum for `state`.
+enum Ec2AllowedImagesSettingsState implements TerraformEnum {
+  enabled('enabled'),
+  auditMode('audit-mode');
+
+  const Ec2AllowedImagesSettingsState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `image_criterion` block of
 /// `aws_ec2_allowed_images_settings` (derived from provider schema).
 @immutable
@@ -86,7 +96,7 @@ final class AwsEc2AllowedImagesSettings extends Resource {
   AwsEc2AllowedImagesSettings({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> state,
+    required TfArg<Ec2AllowedImagesSettingsState> state,
     List<Ec2AllowedImagesSettingsImageCriterion>? imageCriterion,
     super.lifecycle,
     super.dependsOn,

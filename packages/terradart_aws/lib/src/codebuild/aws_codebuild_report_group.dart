@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_codebuild_report_group`.
 const Set<String> _awsCodebuildReportGroupSensitive = <String>{};
 
+/// Codebuild Report Group enum for `type`.
+enum CodebuildReportGroupType implements TerraformEnum {
+  test('TEST'),
+  codeCoverage('CODE_COVERAGE');
+
+  const CodebuildReportGroupType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `export_config` block of
 /// `aws_codebuild_report_group` (derived from provider schema).
 @immutable
@@ -16,7 +26,7 @@ final class CodebuildReportGroupExportConfig {
     this.s3Destination,
   });
 
-  final TfArg<String> type;
+  final TfArg<CodebuildReportGroupExportConfigType> type;
 
   final CodebuildReportGroupExportConfigS3Destination? s3Destination;
 
@@ -24,6 +34,16 @@ final class CodebuildReportGroupExportConfig {
     'type': type.toTfJson(),
     if (s3Destination != null) 's3_destination': s3Destination!.encode(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CodebuildReportGroupExportConfigType implements TerraformEnum {
+  s3('S3'),
+  noExport('NO_EXPORT');
+
+  const CodebuildReportGroupExportConfigType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `export_config.s3_destination` block of
@@ -44,7 +64,8 @@ final class CodebuildReportGroupExportConfigS3Destination {
 
   final TfArg<String> encryptionKey;
 
-  final TfArg<String>? packaging;
+  final TfArg<CodebuildReportGroupExportConfigS3DestinationPackaging>?
+  packaging;
 
   final TfArg<String>? path;
 
@@ -58,6 +79,19 @@ final class CodebuildReportGroupExportConfigS3Destination {
   };
 }
 
+/// `packaging` — derived from the provider schema description.
+enum CodebuildReportGroupExportConfigS3DestinationPackaging
+    implements TerraformEnum {
+  zip('ZIP'),
+  none('NONE');
+
+  const CodebuildReportGroupExportConfigS3DestinationPackaging(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_codebuild_report_group`.
 final class AwsCodebuildReportGroup extends Resource {
   static const String tfType = 'aws_codebuild_report_group';
@@ -68,7 +102,7 @@ final class AwsCodebuildReportGroup extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<CodebuildReportGroupType> type,
     required CodebuildReportGroupExportConfig exportConfig,
     super.lifecycle,
     super.dependsOn,

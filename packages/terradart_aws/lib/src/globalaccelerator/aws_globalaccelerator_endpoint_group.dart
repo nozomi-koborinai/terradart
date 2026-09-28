@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_globalaccelerator_endpoint_group`.
 const Set<String> _awsGlobalacceleratorEndpointGroupSensitive = <String>{};
 
+/// Globalaccelerator Endpoint Group Health Check enum for `health_check_protocol`.
+enum GlobalacceleratorEndpointGroupHealthCheckProtocol
+    implements TerraformEnum {
+  tcp('TCP'),
+  http('HTTP'),
+  https('HTTPS');
+
+  const GlobalacceleratorEndpointGroupHealthCheckProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `endpoint_configuration` block of
 /// `aws_globalaccelerator_endpoint_group` (derived from provider schema).
 @immutable
@@ -64,7 +76,8 @@ final class AwsGlobalacceleratorEndpointGroup extends Resource {
     TfArg<num>? healthCheckIntervalSeconds,
     TfArg<String>? healthCheckPath,
     TfArg<num>? healthCheckPort,
-    TfArg<String>? healthCheckProtocol,
+    TfArg<GlobalacceleratorEndpointGroupHealthCheckProtocol>?
+    healthCheckProtocol,
     required TfArg<String> listenerArn,
     TfArg<num>? thresholdCount,
     TfArg<num>? trafficDialPercentage,

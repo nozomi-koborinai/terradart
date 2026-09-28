@@ -6,6 +6,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_memorydb_multi_region_cluster`.
 const Set<String> _awsMemorydbMultiRegionClusterSensitive = <String>{};
 
+/// Memorydb Multi Region Cluster enum for `engine`.
+enum MemorydbMultiRegionClusterEngine implements TerraformEnum {
+  redis('redis'),
+  valkey('valkey');
+
+  const MemorydbMultiRegionClusterEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Memorydb Multi Region Cluster Update enum for `update_strategy`.
+enum MemorydbMultiRegionClusterUpdateStrategy implements TerraformEnum {
+  coordinated('coordinated'),
+  uncoordinated('uncoordinated');
+
+  const MemorydbMultiRegionClusterUpdateStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_memorydb_multi_region_cluster`.
 final class AwsMemorydbMultiRegionCluster extends Resource {
   static const String tfType = 'aws_memorydb_multi_region_cluster';
@@ -13,7 +33,7 @@ final class AwsMemorydbMultiRegionCluster extends Resource {
   AwsMemorydbMultiRegionCluster({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? engine,
+    TfArg<MemorydbMultiRegionClusterEngine>? engine,
     TfArg<String>? engineVersion,
     required TfArg<String> multiRegionClusterNameSuffix,
     TfArg<String>? multiRegionParameterGroupName,
@@ -22,7 +42,7 @@ final class AwsMemorydbMultiRegionCluster extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? tlsEnabled,
-    TfArg<String>? updateStrategy,
+    TfArg<MemorydbMultiRegionClusterUpdateStrategy>? updateStrategy,
     super.lifecycle,
     super.dependsOn,
     super.provider,

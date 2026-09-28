@@ -7,6 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_gamelift_build`.
 const Set<String> _awsGameliftBuildSensitive = <String>{};
 
+/// Gamelift Build Operating enum for `operating_system`.
+enum GameliftBuildOperatingSystem implements TerraformEnum {
+  windows2012('WINDOWS_2012'),
+  amazonLinux('AMAZON_LINUX'),
+  amazonLinux2('AMAZON_LINUX_2'),
+  windows2016('WINDOWS_2016'),
+  amazonLinux2023('AMAZON_LINUX_2023'),
+  windows2022('WINDOWS_2022');
+
+  const GameliftBuildOperatingSystem(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `storage_location` block of
 /// `aws_gamelift_build` (derived from provider schema).
 @immutable
@@ -41,7 +55,7 @@ final class AwsGameliftBuild extends Resource {
   AwsGameliftBuild({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> operatingSystem,
+    required TfArg<GameliftBuildOperatingSystem> operatingSystem,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? version,

@@ -42,7 +42,7 @@ final class Apigatewayv2StageDefaultRouteSettings {
 
   final TfArg<bool>? detailedMetricsEnabled;
 
-  final TfArg<String>? loggingLevel;
+  final TfArg<Apigatewayv2StageDefaultRouteSettingsLoggingLevel>? loggingLevel;
 
   final TfArg<num>? throttlingBurstLimit;
 
@@ -59,6 +59,18 @@ final class Apigatewayv2StageDefaultRouteSettings {
     if (throttlingRateLimit != null)
       'throttling_rate_limit': throttlingRateLimit!.toTfJson(),
   };
+}
+
+/// `logging_level` — derived from the provider schema description.
+enum Apigatewayv2StageDefaultRouteSettingsLoggingLevel
+    implements TerraformEnum {
+  error('ERROR'),
+  info('INFO'),
+  off('OFF');
+
+  const Apigatewayv2StageDefaultRouteSettingsLoggingLevel(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `route_settings` block of
@@ -78,7 +90,7 @@ final class Apigatewayv2StageRouteSettings {
 
   final TfArg<bool>? detailedMetricsEnabled;
 
-  final TfArg<String>? loggingLevel;
+  final TfArg<Apigatewayv2StageRouteSettingsLoggingLevel>? loggingLevel;
 
   final TfArg<String> routeKey;
 
@@ -98,6 +110,17 @@ final class Apigatewayv2StageRouteSettings {
     if (throttlingRateLimit != null)
       'throttling_rate_limit': throttlingRateLimit!.toTfJson(),
   };
+}
+
+/// `logging_level` — derived from the provider schema description.
+enum Apigatewayv2StageRouteSettingsLoggingLevel implements TerraformEnum {
+  error('ERROR'),
+  info('INFO'),
+  off('OFF');
+
+  const Apigatewayv2StageRouteSettingsLoggingLevel(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_apigatewayv2_stage`.

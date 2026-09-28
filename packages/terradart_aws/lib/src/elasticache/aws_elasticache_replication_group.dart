@@ -10,6 +10,82 @@ const Set<String> _awsElasticacheReplicationGroupSensitive = <String>{
   'auth_token_wo',
 };
 
+/// Elasticache Replication Group Auth Token Update enum for `auth_token_update_strategy`.
+enum ElasticacheReplicationGroupAuthTokenUpdateStrategy
+    implements TerraformEnum {
+  set('SET'),
+  rotate('ROTATE'),
+  delete('DELETE');
+
+  const ElasticacheReplicationGroupAuthTokenUpdateStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Elasticache Replication Group Cluster enum for `cluster_mode`.
+enum ElasticacheReplicationGroupClusterMode implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled'),
+  compatible('compatible');
+
+  const ElasticacheReplicationGroupClusterMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Elasticache Replication Group enum for `durability`.
+enum ElasticacheReplicationGroupDurability implements TerraformEnum {
+  defaultCase('default'),
+  async('async'),
+  sync('sync'),
+  disabled('disabled');
+
+  const ElasticacheReplicationGroupDurability(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Elasticache Replication Group enum for `engine`.
+enum ElasticacheReplicationGroupEngine implements TerraformEnum {
+  redis('redis'),
+  valkey('valkey');
+
+  const ElasticacheReplicationGroupEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Elasticache Replication Group Ip enum for `ip_discovery`.
+enum ElasticacheReplicationGroupIpDiscovery implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const ElasticacheReplicationGroupIpDiscovery(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Elasticache Replication Group Network enum for `network_type`.
+enum ElasticacheReplicationGroupNetworkType implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6'),
+  dualStack('dual_stack');
+
+  const ElasticacheReplicationGroupNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Elasticache Replication Group Transit Encryption enum for `transit_encryption_mode`.
+enum ElasticacheReplicationGroupTransitEncryptionMode implements TerraformEnum {
+  preferred('preferred'),
+  required('required');
+
+  const ElasticacheReplicationGroupTransitEncryptionMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `log_delivery_configuration` block of
 /// `aws_elasticache_replication_group` (derived from provider schema).
 @immutable
@@ -23,11 +99,16 @@ final class ElasticacheReplicationGroupLogDeliveryConfiguration {
 
   final TfArg<String> destination;
 
-  final TfArg<String> destinationType;
+  final TfArg<
+    ElasticacheReplicationGroupLogDeliveryConfigurationDestinationType
+  >
+  destinationType;
 
-  final TfArg<String> logFormat;
+  final TfArg<ElasticacheReplicationGroupLogDeliveryConfigurationLogFormat>
+  logFormat;
 
-  final TfArg<String> logType;
+  final TfArg<ElasticacheReplicationGroupLogDeliveryConfigurationLogType>
+  logType;
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
@@ -35,6 +116,45 @@ final class ElasticacheReplicationGroupLogDeliveryConfiguration {
     'log_format': logFormat.toTfJson(),
     'log_type': logType.toTfJson(),
   };
+}
+
+/// `destination_type` — derived from the provider schema description.
+enum ElasticacheReplicationGroupLogDeliveryConfigurationDestinationType
+    implements TerraformEnum {
+  cloudwatchLogs('cloudwatch-logs'),
+  kinesisFirehose('kinesis-firehose');
+
+  const ElasticacheReplicationGroupLogDeliveryConfigurationDestinationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `log_format` — derived from the provider schema description.
+enum ElasticacheReplicationGroupLogDeliveryConfigurationLogFormat
+    implements TerraformEnum {
+  text('text'),
+  json('json');
+
+  const ElasticacheReplicationGroupLogDeliveryConfigurationLogFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `log_type` — derived from the provider schema description.
+enum ElasticacheReplicationGroupLogDeliveryConfigurationLogType
+    implements TerraformEnum {
+  slowLog('slow-log'),
+  engineLog('engine-log');
+
+  const ElasticacheReplicationGroupLogDeliveryConfigurationLogType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `node_group_configuration` block of
@@ -89,24 +209,25 @@ final class AwsElasticacheReplicationGroup extends Resource {
     TfArg<bool>? applyImmediately,
     TfArg<String>? atRestEncryptionEnabled,
     TfArg<String>? authToken,
-    TfArg<String>? authTokenUpdateStrategy,
+    TfArg<ElasticacheReplicationGroupAuthTokenUpdateStrategy>?
+    authTokenUpdateStrategy,
     TfArg<String>? authTokenWo,
     TfArg<num>? authTokenWoVersion,
     TfArg<String>? autoMinorVersionUpgrade,
     TfArg<bool>? automaticFailoverEnabled,
-    TfArg<String>? clusterMode,
+    TfArg<ElasticacheReplicationGroupClusterMode>? clusterMode,
     TfArg<bool>? dataTieringEnabled,
     required TfArg<String> description,
-    TfArg<String>? durability,
-    TfArg<String>? engine,
+    TfArg<ElasticacheReplicationGroupDurability>? durability,
+    TfArg<ElasticacheReplicationGroupEngine>? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalReplicationGroupId,
-    TfArg<String>? ipDiscovery,
+    TfArg<ElasticacheReplicationGroupIpDiscovery>? ipDiscovery,
     TfArg<String>? kmsKeyId,
     TfArg<String>? maintenanceWindow,
     TfArg<bool>? multiAzEnabled,
-    TfArg<String>? networkType,
+    TfArg<ElasticacheReplicationGroupNetworkType>? networkType,
     TfArg<String>? nodeType,
     TfArg<String>? notificationTopicArn,
     TfArg<num>? numCacheClusters,
@@ -126,7 +247,8 @@ final class AwsElasticacheReplicationGroup extends Resource {
     TfArg<String>? subnetGroupName,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? transitEncryptionEnabled,
-    TfArg<String>? transitEncryptionMode,
+    TfArg<ElasticacheReplicationGroupTransitEncryptionMode>?
+    transitEncryptionMode,
     TfArg<List<String>>? userGroupIds,
     List<ElasticacheReplicationGroupLogDeliveryConfiguration>?
     logDeliveryConfiguration,

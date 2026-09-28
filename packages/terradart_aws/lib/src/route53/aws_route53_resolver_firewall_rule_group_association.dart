@@ -7,6 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRoute53ResolverFirewallRuleGroupAssociationSensitive =
     <String>{};
 
+/// Route53 Resolver Firewall Rule Group Association Mutation enum for `mutation_protection`.
+enum Route53ResolverFirewallRuleGroupAssociationMutationProtection
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const Route53ResolverFirewallRuleGroupAssociationMutationProtection(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_route53_resolver_firewall_rule_group_association`.
 final class AwsRoute53ResolverFirewallRuleGroupAssociation extends Resource {
   static const String tfType =
@@ -15,7 +28,8 @@ final class AwsRoute53ResolverFirewallRuleGroupAssociation extends Resource {
   AwsRoute53ResolverFirewallRuleGroupAssociation({
     required super.localName,
     required TfArg<String> firewallRuleGroupId,
-    TfArg<String>? mutationProtection,
+    TfArg<Route53ResolverFirewallRuleGroupAssociationMutationProtection>?
+    mutationProtection,
     required TfArg<String> name,
     required TfArg<num> priority,
     TfArg<String>? region,

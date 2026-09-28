@@ -7,6 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsServicecatalogProductPortfolioAssociationSensitive =
     <String>{};
 
+/// Servicecatalog Product Portfolio Association Accept enum for `accept_language`.
+enum ServicecatalogProductPortfolioAssociationAcceptLanguage
+    implements TerraformEnum {
+  en('en'),
+  jp('jp'),
+  zh('zh');
+
+  const ServicecatalogProductPortfolioAssociationAcceptLanguage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_servicecatalog_product_portfolio_association`.
 final class AwsServicecatalogProductPortfolioAssociation extends Resource {
   static const String tfType =
@@ -14,7 +28,8 @@ final class AwsServicecatalogProductPortfolioAssociation extends Resource {
 
   AwsServicecatalogProductPortfolioAssociation({
     required super.localName,
-    TfArg<String>? acceptLanguage,
+    TfArg<ServicecatalogProductPortfolioAssociationAcceptLanguage>?
+    acceptLanguage,
     required TfArg<String> portfolioId,
     required TfArg<String> productId,
     TfArg<String>? region,

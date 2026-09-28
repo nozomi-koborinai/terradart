@@ -13,7 +13,11 @@ export 'src/signer/aws_signer_signing_job.dart'
 export 'src/signer/aws_signer_signing_profile.dart'
     show
         AwsSignerSigningProfile,
+        SignerSigningProfilePlatformId,
         SignerSigningProfileSignatureValidityPeriod,
+        SignerSigningProfileSignatureValidityPeriodType,
         SignerSigningProfileSigningMaterial;
 export 'src/signer/aws_signer_signing_profile_permission.dart'
-    show AwsSignerSigningProfilePermission;
+    show
+        AwsSignerSigningProfilePermission,
+        SignerSigningProfilePermissionAction;

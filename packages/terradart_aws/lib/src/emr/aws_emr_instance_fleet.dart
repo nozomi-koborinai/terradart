@@ -127,11 +127,27 @@ final class EmrInstanceFleetLaunchSpecificationsOnDemandSpecification {
     required this.allocationStrategy,
   });
 
-  final TfArg<String> allocationStrategy;
+  final TfArg<
+    EmrInstanceFleetLaunchSpecificationsOnDemandSpecificationAllocationStrategy
+  >
+  allocationStrategy;
 
   Map<String, Object?> encode() => {
     'allocation_strategy': allocationStrategy.toTfJson(),
   };
+}
+
+/// `allocation_strategy` — derived from the provider schema description.
+enum EmrInstanceFleetLaunchSpecificationsOnDemandSpecificationAllocationStrategy
+    implements TerraformEnum {
+  lowestPrice('lowest-price'),
+  prioritized('prioritized');
+
+  const EmrInstanceFleetLaunchSpecificationsOnDemandSpecificationAllocationStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `launch_specifications.spot_specification` block of
@@ -145,11 +161,17 @@ final class EmrInstanceFleetLaunchSpecificationsSpotSpecification {
     required this.timeoutDurationMinutes,
   });
 
-  final TfArg<String> allocationStrategy;
+  final TfArg<
+    EmrInstanceFleetLaunchSpecificationsSpotSpecificationAllocationStrategy
+  >
+  allocationStrategy;
 
   final TfArg<num>? blockDurationMinutes;
 
-  final TfArg<String> timeoutAction;
+  final TfArg<
+    EmrInstanceFleetLaunchSpecificationsSpotSpecificationTimeoutAction
+  >
+  timeoutAction;
 
   final TfArg<num> timeoutDurationMinutes;
 
@@ -160,6 +182,35 @@ final class EmrInstanceFleetLaunchSpecificationsSpotSpecification {
     'timeout_action': timeoutAction.toTfJson(),
     'timeout_duration_minutes': timeoutDurationMinutes.toTfJson(),
   };
+}
+
+/// `allocation_strategy` — derived from the provider schema description.
+enum EmrInstanceFleetLaunchSpecificationsSpotSpecificationAllocationStrategy
+    implements TerraformEnum {
+  capacityOptimized('capacity-optimized'),
+  priceCapacityOptimized('price-capacity-optimized'),
+  lowestPrice('lowest-price'),
+  diversified('diversified'),
+  capacityOptimizedPrioritized('capacity-optimized-prioritized');
+
+  const EmrInstanceFleetLaunchSpecificationsSpotSpecificationAllocationStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `timeout_action` — derived from the provider schema description.
+enum EmrInstanceFleetLaunchSpecificationsSpotSpecificationTimeoutAction
+    implements TerraformEnum {
+  switchToOnDemand('SWITCH_TO_ON_DEMAND'),
+  terminateCluster('TERMINATE_CLUSTER');
+
+  const EmrInstanceFleetLaunchSpecificationsSpotSpecificationTimeoutAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_emr_instance_fleet`.

@@ -6,6 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_directory_service_trust`.
 const Set<String> _awsDirectoryServiceTrustSensitive = <String>{};
 
+/// Directory Service Trust Selective enum for `selective_auth`.
+enum DirectoryServiceTrustSelectiveAuth implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const DirectoryServiceTrustSelectiveAuth(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Directory Service Trust Trust enum for `trust_direction`.
+enum DirectoryServiceTrustTrustDirection implements TerraformEnum {
+  oneWayOutgoing('One-Way: Outgoing'),
+  oneWayIncoming('One-Way: Incoming'),
+  twoWay('Two-Way');
+
+  const DirectoryServiceTrustTrustDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_directory_service_trust`.
 final class AwsDirectoryServiceTrust extends Resource {
   static const String tfType = 'aws_directory_service_trust';
@@ -17,8 +38,8 @@ final class AwsDirectoryServiceTrust extends Resource {
     required TfArg<String> directoryId,
     TfArg<String>? region,
     required TfArg<String> remoteDomainName,
-    TfArg<String>? selectiveAuth,
-    required TfArg<String> trustDirection,
+    TfArg<DirectoryServiceTrustSelectiveAuth>? selectiveAuth,
+    required TfArg<DirectoryServiceTrustTrustDirection> trustDirection,
     required TfArg<String> trustPassword,
     TfArg<String>? trustType,
     super.lifecycle,

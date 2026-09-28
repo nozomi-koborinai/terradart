@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_efs_mount_target`.
 const Set<String> _awsEfsMountTargetSensitive = <String>{};
 
+/// Efs Mount Target Ip Address enum for `ip_address_type`.
+enum EfsMountTargetIpAddressType implements TerraformEnum {
+  ipv4Only('IPV4_ONLY'),
+  ipv6Only('IPV6_ONLY'),
+  dualStack('DUAL_STACK');
+
+  const EfsMountTargetIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_efs_mount_target`.
 final class AwsEfsMountTarget extends Resource {
   static const String tfType = 'aws_efs_mount_target';
@@ -14,7 +25,7 @@ final class AwsEfsMountTarget extends Resource {
     required super.localName,
     required TfArg<String> fileSystemId,
     TfArg<String>? ipAddress,
-    TfArg<String>? ipAddressType,
+    TfArg<EfsMountTargetIpAddressType>? ipAddressType,
     TfArg<String>? ipv6Address,
     TfArg<String>? region,
     TfArg<List<String>>? securityGroups,

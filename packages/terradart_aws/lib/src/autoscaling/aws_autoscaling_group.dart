@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_autoscaling_group`.
 const Set<String> _awsAutoscalingGroupSensitive = <String>{};
 
+/// Autoscaling Group Desired Capacity enum for `desired_capacity_type`.
+enum AutoscalingGroupDesiredCapacityType implements TerraformEnum {
+  memoryMib('memory-mib'),
+  units('units'),
+  vcpu('vcpu');
+
+  const AutoscalingGroupDesiredCapacityType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `availability_zone_distribution` block of
 /// `aws_autoscaling_group` (derived from provider schema).
 @immutable
@@ -15,13 +26,30 @@ final class AutoscalingGroupAvailabilityZoneDistribution {
     this.capacityDistributionStrategy,
   });
 
-  final TfArg<String>? capacityDistributionStrategy;
+  final TfArg<
+    AutoscalingGroupAvailabilityZoneDistributionCapacityDistributionStrategy
+  >?
+  capacityDistributionStrategy;
 
   Map<String, Object?> encode() => {
     if (capacityDistributionStrategy != null)
       'capacity_distribution_strategy': capacityDistributionStrategy!
           .toTfJson(),
   };
+}
+
+/// `capacity_distribution_strategy` — derived from the provider schema description.
+enum AutoscalingGroupAvailabilityZoneDistributionCapacityDistributionStrategy
+    implements TerraformEnum {
+  balancedOnly('balanced-only'),
+  balancedBestEffort('balanced-best-effort'),
+  reservationsThenBalanced('reservations-then-balanced');
+
+  const AutoscalingGroupAvailabilityZoneDistributionCapacityDistributionStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `capacity_reservation_specification` block of
@@ -33,7 +61,10 @@ final class AutoscalingGroupCapacityReservationSpecification {
     this.capacityReservationTarget,
   });
 
-  final TfArg<String>? capacityReservationPreference;
+  final TfArg<
+    AutoscalingGroupCapacityReservationSpecificationCapacityReservationPreference
+  >?
+  capacityReservationPreference;
 
   final AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget?
   capacityReservationTarget;
@@ -45,6 +76,21 @@ final class AutoscalingGroupCapacityReservationSpecification {
     if (capacityReservationTarget != null)
       'capacity_reservation_target': capacityReservationTarget!.encode(),
   };
+}
+
+/// `capacity_reservation_preference` — derived from the provider schema description.
+enum AutoscalingGroupCapacityReservationSpecificationCapacityReservationPreference
+    implements TerraformEnum {
+  capacityReservationsOnly('capacity-reservations-only'),
+  capacityReservationsFirst('capacity-reservations-first'),
+  none('none'),
+  defaultCase('default');
+
+  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `capacity_reservation_specification.capacity_reservation_target` block of
@@ -83,11 +129,12 @@ final class AutoscalingGroupInitialLifecycleHook {
     this.roleArn,
   });
 
-  final TfArg<String>? defaultResult;
+  final TfArg<AutoscalingGroupInitialLifecycleHookDefaultResult>? defaultResult;
 
   final TfArg<num>? heartbeatTimeout;
 
-  final TfArg<String> lifecycleTransition;
+  final TfArg<AutoscalingGroupInitialLifecycleHookLifecycleTransition>
+  lifecycleTransition;
 
   final TfArg<String> name;
 
@@ -109,6 +156,30 @@ final class AutoscalingGroupInitialLifecycleHook {
       'notification_target_arn': notificationTargetArn!.toTfJson(),
     if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
   };
+}
+
+/// `default_result` — derived from the provider schema description.
+enum AutoscalingGroupInitialLifecycleHookDefaultResult
+    implements TerraformEnum {
+  abandon('ABANDON'),
+  continueCase('CONTINUE');
+
+  const AutoscalingGroupInitialLifecycleHookDefaultResult(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `lifecycle_transition` — derived from the provider schema description.
+enum AutoscalingGroupInitialLifecycleHookLifecycleTransition
+    implements TerraformEnum {
+  autoscalingEc2InstanceLaunching('autoscaling:EC2_INSTANCE_LAUNCHING'),
+  autoscalingEc2InstanceTerminating('autoscaling:EC2_INSTANCE_TERMINATING');
+
+  const AutoscalingGroupInitialLifecycleHookLifecycleTransition(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `instance_lifecycle_policy` block of
@@ -134,12 +205,28 @@ final class AutoscalingGroupInstanceLifecyclePolicyRetentionTriggers {
     this.terminateHookAbandon,
   });
 
-  final TfArg<String>? terminateHookAbandon;
+  final TfArg<
+    AutoscalingGroupInstanceLifecyclePolicyRetentionTriggersTerminateHookAbandon
+  >?
+  terminateHookAbandon;
 
   Map<String, Object?> encode() => {
     if (terminateHookAbandon != null)
       'terminate_hook_abandon': terminateHookAbandon!.toTfJson(),
   };
+}
+
+/// `terminate_hook_abandon` — derived from the provider schema description.
+enum AutoscalingGroupInstanceLifecyclePolicyRetentionTriggersTerminateHookAbandon
+    implements TerraformEnum {
+  retain('retain'),
+  terminate('terminate');
+
+  const AutoscalingGroupInstanceLifecyclePolicyRetentionTriggersTerminateHookAbandon(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `instance_maintenance_policy` block of
@@ -171,7 +258,7 @@ final class AutoscalingGroupInstanceRefresh {
     this.preferences,
   });
 
-  final TfArg<String> strategy;
+  final TfArg<AutoscalingGroupInstanceRefreshStrategy> strategy;
 
   final TfArg<List<Object?>>? triggers;
 
@@ -182,6 +269,16 @@ final class AutoscalingGroupInstanceRefresh {
     if (triggers != null) 'triggers': triggers!.toTfJson(),
     if (preferences != null) 'preferences': preferences!.encode(),
   };
+}
+
+/// `strategy` — derived from the provider schema description.
+enum AutoscalingGroupInstanceRefreshStrategy implements TerraformEnum {
+  rolling('Rolling'),
+  replacerootvolume('ReplaceRootVolume');
+
+  const AutoscalingGroupInstanceRefreshStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `instance_refresh.preferences` block of
@@ -213,11 +310,15 @@ final class AutoscalingGroupInstanceRefreshPreferences {
 
   final TfArg<num>? minHealthyPercentage;
 
-  final TfArg<String>? scaleInProtectedInstances;
+  final TfArg<
+    AutoscalingGroupInstanceRefreshPreferencesScaleInProtectedInstances
+  >?
+  scaleInProtectedInstances;
 
   final TfArg<bool>? skipMatching;
 
-  final TfArg<String>? standbyInstances;
+  final TfArg<AutoscalingGroupInstanceRefreshPreferencesStandbyInstances>?
+  standbyInstances;
 
   final AutoscalingGroupInstanceRefreshPreferencesAlarmSpecification?
   alarmSpecification;
@@ -241,6 +342,34 @@ final class AutoscalingGroupInstanceRefreshPreferences {
     if (alarmSpecification != null)
       'alarm_specification': alarmSpecification!.encode(),
   };
+}
+
+/// `scale_in_protected_instances` — derived from the provider schema description.
+enum AutoscalingGroupInstanceRefreshPreferencesScaleInProtectedInstances
+    implements TerraformEnum {
+  refresh('Refresh'),
+  ignore('Ignore'),
+  wait('Wait');
+
+  const AutoscalingGroupInstanceRefreshPreferencesScaleInProtectedInstances(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `standby_instances` — derived from the provider schema description.
+enum AutoscalingGroupInstanceRefreshPreferencesStandbyInstances
+    implements TerraformEnum {
+  terminate('Terminate'),
+  ignore('Ignore'),
+  wait('Wait');
+
+  const AutoscalingGroupInstanceRefreshPreferencesStandbyInstances(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `instance_refresh.preferences.alarm_specification` block of
@@ -448,27 +577,66 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
     this.vcpuCount,
   });
 
-  final TfArg<List<Object?>>? acceleratorManufacturers;
+  final List<
+    TfArg<
+      AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorManufacturers
+    >
+  >?
+  acceleratorManufacturers;
 
-  final TfArg<List<Object?>>? acceleratorNames;
+  final List<
+    TfArg<
+      AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorNames
+    >
+  >?
+  acceleratorNames;
 
-  final TfArg<List<Object?>>? acceleratorTypes;
+  final List<
+    TfArg<
+      AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorTypes
+    >
+  >?
+  acceleratorTypes;
 
   final TfArg<List<Object?>>? allowedInstanceTypes;
 
-  final TfArg<String>? bareMetal;
+  final TfArg<
+    AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsBareMetal
+  >?
+  bareMetal;
 
-  final TfArg<String>? burstablePerformance;
+  final TfArg<
+    AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsBurstablePerformance
+  >?
+  burstablePerformance;
 
-  final TfArg<List<Object?>>? cpuManufacturers;
+  final List<
+    TfArg<
+      AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsCpuManufacturers
+    >
+  >?
+  cpuManufacturers;
 
   final TfArg<List<Object?>>? excludedInstanceTypes;
 
-  final TfArg<List<Object?>>? instanceGenerations;
+  final List<
+    TfArg<
+      AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsInstanceGenerations
+    >
+  >?
+  instanceGenerations;
 
-  final TfArg<String>? localStorage;
+  final TfArg<
+    AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsLocalStorage
+  >?
+  localStorage;
 
-  final TfArg<List<Object?>>? localStorageTypes;
+  final List<
+    TfArg<
+      AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsLocalStorageTypes
+    >
+  >?
+  localStorageTypes;
 
   final TfArg<num>? maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
 
@@ -507,25 +675,29 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
 
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
-      'accelerator_manufacturers': acceleratorManufacturers!.toTfJson(),
+      'accelerator_manufacturers': [
+        for (final e in acceleratorManufacturers!) e.toTfJson(),
+      ],
     if (acceleratorNames != null)
-      'accelerator_names': acceleratorNames!.toTfJson(),
+      'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
     if (acceleratorTypes != null)
-      'accelerator_types': acceleratorTypes!.toTfJson(),
+      'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
     if (allowedInstanceTypes != null)
       'allowed_instance_types': allowedInstanceTypes!.toTfJson(),
     if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
     if (burstablePerformance != null)
       'burstable_performance': burstablePerformance!.toTfJson(),
     if (cpuManufacturers != null)
-      'cpu_manufacturers': cpuManufacturers!.toTfJson(),
+      'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
     if (excludedInstanceTypes != null)
       'excluded_instance_types': excludedInstanceTypes!.toTfJson(),
     if (instanceGenerations != null)
-      'instance_generations': instanceGenerations!.toTfJson(),
+      'instance_generations': [
+        for (final e in instanceGenerations!) e.toTfJson(),
+      ],
     if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
     if (localStorageTypes != null)
-      'local_storage_types': localStorageTypes!.toTfJson(),
+      'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
     if (maxSpotPriceAsPercentageOfOptimalOnDemandPrice != null)
       'max_spot_price_as_percentage_of_optimal_on_demand_price':
           maxSpotPriceAsPercentageOfOptimalOnDemandPrice!.toTfJson(),
@@ -554,6 +726,136 @@ final class AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRe
       'total_local_storage_gb': totalLocalStorageGb!.encode(),
     if (vcpuCount != null) 'vcpu_count': vcpuCount!.encode(),
   };
+}
+
+/// `accelerator_manufacturers` — derived from the provider schema description.
+enum AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorManufacturers
+    implements TerraformEnum {
+  nvidia('nvidia'),
+  amd('amd'),
+  amazonWebServices('amazon-web-services'),
+  xilinx('xilinx');
+
+  const AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorManufacturers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `accelerator_names` — derived from the provider schema description.
+enum AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorNames
+    implements TerraformEnum {
+  a100('a100'),
+  v100('v100'),
+  k80('k80'),
+  t4('t4'),
+  m60('m60'),
+  radeonProV520('radeon-pro-v520'),
+  vu9p('vu9p');
+
+  const AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorNames(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `accelerator_types` — derived from the provider schema description.
+enum AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorTypes
+    implements TerraformEnum {
+  gpu('gpu'),
+  fpga('fpga'),
+  inference('inference');
+
+  const AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsAcceleratorTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `bare_metal` — derived from the provider schema description.
+enum AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsBareMetal
+    implements TerraformEnum {
+  included('included'),
+  excluded('excluded'),
+  required('required');
+
+  const AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsBareMetal(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `burstable_performance` — derived from the provider schema description.
+enum AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsBurstablePerformance
+    implements TerraformEnum {
+  included('included'),
+  excluded('excluded'),
+  required('required');
+
+  const AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsBurstablePerformance(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `cpu_manufacturers` — derived from the provider schema description.
+enum AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsCpuManufacturers
+    implements TerraformEnum {
+  intel('intel'),
+  amd('amd'),
+  amazonWebServices('amazon-web-services'),
+  apple('apple');
+
+  const AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsCpuManufacturers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `instance_generations` — derived from the provider schema description.
+enum AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsInstanceGenerations
+    implements TerraformEnum {
+  current('current'),
+  previous('previous');
+
+  const AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsInstanceGenerations(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `local_storage` — derived from the provider schema description.
+enum AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsLocalStorage
+    implements TerraformEnum {
+  included('included'),
+  excluded('excluded'),
+  required('required');
+
+  const AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsLocalStorage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `local_storage_types` — derived from the provider schema description.
+enum AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsLocalStorageTypes
+    implements TerraformEnum {
+  hdd('hdd'),
+  ssd('ssd');
+
+  const AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsLocalStorageTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `mixed_instances_policy.launch_template.override.instance_requirements.accelerator_count` block of
@@ -806,7 +1108,7 @@ final class AutoscalingGroupWarmPool {
 
   final TfArg<num>? minSize;
 
-  final TfArg<String>? poolState;
+  final TfArg<AutoscalingGroupWarmPoolPoolState>? poolState;
 
   final AutoscalingGroupWarmPoolInstanceReusePolicy? instanceReusePolicy;
 
@@ -818,6 +1120,17 @@ final class AutoscalingGroupWarmPool {
     if (instanceReusePolicy != null)
       'instance_reuse_policy': instanceReusePolicy!.encode(),
   };
+}
+
+/// `pool_state` — derived from the provider schema description.
+enum AutoscalingGroupWarmPoolPoolState implements TerraformEnum {
+  stopped('Stopped'),
+  running('Running'),
+  hibernated('Hibernated');
+
+  const AutoscalingGroupWarmPoolPoolState(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `warm_pool.instance_reuse_policy` block of
@@ -845,7 +1158,7 @@ final class AwsAutoscalingGroup extends Resource {
     TfArg<num>? defaultCooldown,
     TfArg<num>? defaultInstanceWarmup,
     TfArg<num>? desiredCapacity,
-    TfArg<String>? desiredCapacityType,
+    TfArg<AutoscalingGroupDesiredCapacityType>? desiredCapacityType,
     TfArg<List<String>>? enabledMetrics,
     TfArg<bool>? forceDelete,
     TfArg<bool>? forceDeleteWarmPool,

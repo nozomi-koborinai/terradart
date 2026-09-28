@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_eks_access_entry`.
 const Set<String> _awsEksAccessEntrySensitive = <String>{};
 
+/// Eks Access Entry enum for `type`.
+enum EksAccessEntryType implements TerraformEnum {
+  ec2('EC2'),
+  ec2Linux('EC2_LINUX'),
+  ec2Windows('EC2_WINDOWS'),
+  fargateLinux('FARGATE_LINUX'),
+  hybridLinux('HYBRID_LINUX'),
+  standard('STANDARD');
+
+  const EksAccessEntryType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_eks_access_entry`.
 final class AwsEksAccessEntry extends Resource {
   static const String tfType = 'aws_eks_access_entry';
@@ -17,7 +31,7 @@ final class AwsEksAccessEntry extends Resource {
     required TfArg<String> principalArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    TfArg<EksAccessEntryType>? type,
     TfArg<String>? userName,
     super.lifecycle,
     super.dependsOn,

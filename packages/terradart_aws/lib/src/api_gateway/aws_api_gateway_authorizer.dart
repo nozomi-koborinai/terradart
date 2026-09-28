@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_api_gateway_authorizer`.
 const Set<String> _awsApiGatewayAuthorizerSensitive = <String>{};
 
+/// Api Gateway Authorizer enum for `type`.
+enum ApiGatewayAuthorizerType implements TerraformEnum {
+  token('TOKEN'),
+  request('REQUEST'),
+  cognitoUserPools('COGNITO_USER_POOLS');
+
+  const ApiGatewayAuthorizerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_api_gateway_authorizer`.
 final class AwsApiGatewayAuthorizer extends Resource {
   static const String tfType = 'aws_api_gateway_authorizer';
@@ -21,7 +32,7 @@ final class AwsApiGatewayAuthorizer extends Resource {
     TfArg<List<String>>? providerArns,
     TfArg<String>? region,
     required TfArg<String> restApiId,
-    TfArg<String>? type,
+    TfArg<ApiGatewayAuthorizerType>? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

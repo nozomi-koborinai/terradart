@@ -4,7 +4,7 @@
 library;
 
 export 'src/resourceexplorer2/aws_resourceexplorer2_index.dart'
-    show AwsResourceexplorer2Index;
+    show AwsResourceexplorer2Index, Resourceexplorer2IndexType;
 export 'src/resourceexplorer2/aws_resourceexplorer2_view.dart'
     show
         AwsResourceexplorer2View,

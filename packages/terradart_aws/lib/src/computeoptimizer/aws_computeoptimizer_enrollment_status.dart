@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_computeoptimizer_enrollment_status`.
 const Set<String> _awsComputeoptimizerEnrollmentStatusSensitive = <String>{};
 
+/// Computeoptimizer Enrollment Status enum for `status`.
+enum ComputeoptimizerEnrollmentStatusStatus implements TerraformEnum {
+  active('Active'),
+  inactive('Inactive');
+
+  const ComputeoptimizerEnrollmentStatusStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_computeoptimizer_enrollment_status`.
 final class AwsComputeoptimizerEnrollmentStatus extends Resource {
   static const String tfType = 'aws_computeoptimizer_enrollment_status';
@@ -14,7 +24,7 @@ final class AwsComputeoptimizerEnrollmentStatus extends Resource {
     required super.localName,
     TfArg<bool>? includeMemberAccounts,
     TfArg<String>? region,
-    required TfArg<String> status,
+    required TfArg<ComputeoptimizerEnrollmentStatusStatus> status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

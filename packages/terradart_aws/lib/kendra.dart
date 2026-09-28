@@ -17,6 +17,7 @@ export 'src/kendra/aws_kendra_data_source.dart'
         KendraDataSourceConfigurationWebCrawlerConfigurationProxyConfiguration,
         KendraDataSourceConfigurationWebCrawlerConfigurationUrls,
         KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfiguration,
+        KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfigurationWebCrawlerMode,
         KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSiteMapsConfiguration,
         KendraDataSourceCustomDocumentEnrichmentConfiguration,
         KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigurations,
@@ -29,26 +30,34 @@ export 'src/kendra/aws_kendra_data_source.dart'
         KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionHookConfigurationInvocationConditionConditionOnValue,
         KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfiguration,
         KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfigurationInvocationCondition,
-        KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfigurationInvocationConditionConditionOnValue;
+        KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHookConfigurationInvocationConditionConditionOnValue,
+        KendraDataSourceType;
 export 'src/kendra/aws_kendra_experience.dart'
     show
         AwsKendraExperience,
         KendraExperienceConfiguration,
         KendraExperienceConfigurationContentSourceConfiguration,
         KendraExperienceConfigurationUserIdentityConfiguration;
-export 'src/kendra/aws_kendra_faq.dart' show AwsKendraFaq, KendraFaqS3Path;
+export 'src/kendra/aws_kendra_faq.dart'
+    show AwsKendraFaq, KendraFaqFileFormat, KendraFaqS3Path;
 export 'src/kendra/aws_kendra_index.dart'
     show
         AwsKendraIndex,
         KendraIndexCapacityUnits,
         KendraIndexDocumentMetadataConfigurationUpdates,
         KendraIndexDocumentMetadataConfigurationUpdatesRelevance,
+        KendraIndexDocumentMetadataConfigurationUpdatesRelevanceRankOrder,
         KendraIndexDocumentMetadataConfigurationUpdatesSearch,
+        KendraIndexDocumentMetadataConfigurationUpdatesType,
+        KendraIndexEdition,
         KendraIndexServerSideEncryptionConfiguration,
+        KendraIndexUserContextPolicy,
         KendraIndexUserGroupResolutionConfiguration,
+        KendraIndexUserGroupResolutionConfigurationUserGroupResolutionMode,
         KendraIndexUserTokenConfigurations,
         KendraIndexUserTokenConfigurationsJsonTokenTypeConfiguration,
-        KendraIndexUserTokenConfigurationsJwtTokenTypeConfiguration;
+        KendraIndexUserTokenConfigurationsJwtTokenTypeConfiguration,
+        KendraIndexUserTokenConfigurationsJwtTokenTypeConfigurationKeyLocation;
 export 'src/kendra/aws_kendra_query_suggestions_block_list.dart'
     show
         AwsKendraQuerySuggestionsBlockList,

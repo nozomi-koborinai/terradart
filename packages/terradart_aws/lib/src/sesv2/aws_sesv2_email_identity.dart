@@ -23,7 +23,8 @@ final class Sesv2EmailIdentityDkimSigningAttributes {
 
   final TfArg<String>? domainSigningSelector;
 
-  final TfArg<String>? nextSigningKeyLength;
+  final TfArg<Sesv2EmailIdentityDkimSigningAttributesNextSigningKeyLength>?
+  nextSigningKeyLength;
 
   Map<String, Object?> encode() => {
     if (domainSigningPrivateKey != null)
@@ -33,6 +34,19 @@ final class Sesv2EmailIdentityDkimSigningAttributes {
     if (nextSigningKeyLength != null)
       'next_signing_key_length': nextSigningKeyLength!.toTfJson(),
   };
+}
+
+/// `next_signing_key_length` — derived from the provider schema description.
+enum Sesv2EmailIdentityDkimSigningAttributesNextSigningKeyLength
+    implements TerraformEnum {
+  rsa1024Bit('RSA_1024_BIT'),
+  rsa2048Bit('RSA_2048_BIT');
+
+  const Sesv2EmailIdentityDkimSigningAttributesNextSigningKeyLength(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_sesv2_email_identity`.

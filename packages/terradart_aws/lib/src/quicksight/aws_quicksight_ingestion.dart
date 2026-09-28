@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_quicksight_ingestion`.
 const Set<String> _awsQuicksightIngestionSensitive = <String>{};
 
+/// Quicksight Ingestion Ingestion enum for `ingestion_type`.
+enum QuicksightIngestionIngestionType implements TerraformEnum {
+  incrementalRefresh('INCREMENTAL_REFRESH'),
+  fullRefresh('FULL_REFRESH');
+
+  const QuicksightIngestionIngestionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_quicksight_ingestion`.
 final class AwsQuicksightIngestion extends Resource {
   static const String tfType = 'aws_quicksight_ingestion';
@@ -15,7 +25,7 @@ final class AwsQuicksightIngestion extends Resource {
     TfArg<String>? awsAccountId,
     required TfArg<String> dataSetId,
     required TfArg<String> ingestionId,
-    required TfArg<String> ingestionType,
+    required TfArg<QuicksightIngestionIngestionType> ingestionType,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

@@ -6,6 +6,33 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_quicksight_user`.
 const Set<String> _awsQuicksightUserSensitive = <String>{};
 
+/// Quicksight User Identity enum for `identity_type`.
+enum QuicksightUserIdentityType implements TerraformEnum {
+  iam('IAM'),
+  quicksight('QUICKSIGHT'),
+  iamIdentityCenter('IAM_IDENTITY_CENTER');
+
+  const QuicksightUserIdentityType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Quicksight User User enum for `user_role`.
+enum QuicksightUserUserRole implements TerraformEnum {
+  admin('ADMIN'),
+  author('AUTHOR'),
+  reader('READER'),
+  restrictedAuthor('RESTRICTED_AUTHOR'),
+  restrictedReader('RESTRICTED_READER'),
+  adminPro('ADMIN_PRO'),
+  authorPro('AUTHOR_PRO'),
+  readerPro('READER_PRO');
+
+  const QuicksightUserUserRole(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_quicksight_user`.
 final class AwsQuicksightUser extends Resource {
   static const String tfType = 'aws_quicksight_user';
@@ -15,12 +42,12 @@ final class AwsQuicksightUser extends Resource {
     TfArg<String>? awsAccountId,
     required TfArg<String> email,
     TfArg<String>? iamArn,
-    required TfArg<String> identityType,
+    required TfArg<QuicksightUserIdentityType> identityType,
     TfArg<String>? namespace,
     TfArg<String>? region,
     TfArg<String>? sessionName,
     TfArg<String>? userName,
-    required TfArg<String> userRole,
+    required TfArg<QuicksightUserUserRole> userRole,
     super.lifecycle,
     super.dependsOn,
     super.provider,

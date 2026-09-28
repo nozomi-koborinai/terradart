@@ -7,6 +7,84 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lb`.
 const Set<String> _awsLbSensitive = <String>{};
 
+/// Lb Desync Mitigation enum for `desync_mitigation_mode`.
+enum LbDesyncMitigationMode implements TerraformEnum {
+  monitor('monitor'),
+  defensive('defensive'),
+  strictest('strictest');
+
+  const LbDesyncMitigationMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Dns Record Client Routing enum for `dns_record_client_routing_policy`.
+enum LbDnsRecordClientRoutingPolicy implements TerraformEnum {
+  availabilityZoneAffinity('availability_zone_affinity'),
+  partialAvailabilityZoneAffinity('partial_availability_zone_affinity'),
+  anyAvailabilityZone('any_availability_zone');
+
+  const LbDnsRecordClientRoutingPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Enable Prefix For Ipv6 Source enum for `enable_prefix_for_ipv6_source_nat`.
+enum LbEnablePrefixForIpv6SourceNat implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const LbEnablePrefixForIpv6SourceNat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Enforce Security Group Inbound Rules On Private Link enum for `enforce_security_group_inbound_rules_on_private_link_traffic`.
+enum LbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic
+    implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const LbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Lb Ip Address enum for `ip_address_type`.
+enum LbIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  dualstack('dualstack'),
+  dualstackWithoutPublicIpv4('dualstack-without-public-ipv4');
+
+  const LbIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Load Balancer enum for `load_balancer_type`.
+enum LbLoadBalancerType implements TerraformEnum {
+  application('application'),
+  network('network'),
+  gateway('gateway');
+
+  const LbLoadBalancerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Xff Header Processing enum for `xff_header_processing_mode`.
+enum LbXffHeaderProcessingMode implements TerraformEnum {
+  append('append'),
+  preserve('preserve'),
+  remove('remove');
+
+  const LbXffHeaderProcessingMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `access_logs` block of
 /// `aws_lb` (derived from provider schema).
 @immutable
@@ -124,22 +202,23 @@ final class AwsLb extends Resource {
     required super.localName,
     TfArg<num>? clientKeepAlive,
     TfArg<String>? customerOwnedIpv4Pool,
-    TfArg<String>? desyncMitigationMode,
-    TfArg<String>? dnsRecordClientRoutingPolicy,
+    TfArg<LbDesyncMitigationMode>? desyncMitigationMode,
+    TfArg<LbDnsRecordClientRoutingPolicy>? dnsRecordClientRoutingPolicy,
     TfArg<bool>? dropInvalidHeaderFields,
     TfArg<bool>? enableCrossZoneLoadBalancing,
     TfArg<bool>? enableDeletionProtection,
     TfArg<bool>? enableHttp2,
-    TfArg<String>? enablePrefixForIpv6SourceNat,
+    TfArg<LbEnablePrefixForIpv6SourceNat>? enablePrefixForIpv6SourceNat,
     TfArg<bool>? enableTlsVersionAndCipherSuiteHeaders,
     TfArg<bool>? enableWafFailOpen,
     TfArg<bool>? enableXffClientPort,
     TfArg<bool>? enableZonalShift,
-    TfArg<String>? enforceSecurityGroupInboundRulesOnPrivateLinkTraffic,
+    TfArg<LbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic>?
+    enforceSecurityGroupInboundRulesOnPrivateLinkTraffic,
     TfArg<num>? idleTimeout,
     TfArg<bool>? internal,
-    TfArg<String>? ipAddressType,
-    TfArg<String>? loadBalancerType,
+    TfArg<LbIpAddressType>? ipAddressType,
+    TfArg<LbLoadBalancerType>? loadBalancerType,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<bool>? preserveHostHeader,
@@ -148,7 +227,7 @@ final class AwsLb extends Resource {
     TfArg<List<String>>? securityGroups,
     TfArg<List<String>>? subnets,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? xffHeaderProcessingMode,
+    TfArg<LbXffHeaderProcessingMode>? xffHeaderProcessingMode,
     LbAccessLogs? accessLogs,
     LbConnectionLogs? connectionLogs,
     LbHealthCheckLogs? healthCheckLogs,

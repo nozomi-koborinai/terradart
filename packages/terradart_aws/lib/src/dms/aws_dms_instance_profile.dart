@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dms_instance_profile`.
 const Set<String> _awsDmsInstanceProfileSensitive = <String>{};
 
+/// Dms Instance Profile Network enum for `network_type`.
+enum DmsInstanceProfileNetworkType implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6'),
+  dual('DUAL');
+
+  const DmsInstanceProfileNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dms_instance_profile`.
 final class AwsDmsInstanceProfile extends Resource {
   static const String tfType = 'aws_dms_instance_profile';
@@ -16,7 +27,7 @@ final class AwsDmsInstanceProfile extends Resource {
     TfArg<String>? description,
     TfArg<String>? kmsKeyArn,
     TfArg<String>? name,
-    TfArg<String>? networkType,
+    TfArg<DmsInstanceProfileNetworkType>? networkType,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
     TfArg<String>? subnetGroupIdentifier,

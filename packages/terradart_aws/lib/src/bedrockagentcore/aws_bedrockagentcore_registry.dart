@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrockagentcore_registry`.
 const Set<String> _awsBedrockagentcoreRegistrySensitive = <String>{};
 
+/// Bedrockagentcore Registry Authorizer enum for `authorizer_type`.
+enum BedrockagentcoreRegistryAuthorizerType implements TerraformEnum {
+  customJwt('CUSTOM_JWT'),
+  awsIam('AWS_IAM');
+
+  const BedrockagentcoreRegistryAuthorizerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `authorizer_configuration` block of
 /// `aws_bedrockagentcore_registry` (derived from provider schema).
 @immutable
@@ -141,7 +151,10 @@ final class BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCu
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<String> inboundTokenClaimValueType;
+  final TfArg<
+    BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+  >
+  inboundTokenClaimValueType;
 
   final List<
     BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue
@@ -158,6 +171,19 @@ final class BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCu
   };
 }
 
+/// `inbound_token_claim_value_type` — derived from the provider schema description.
+enum BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+    implements TerraformEnum {
+  string('STRING'),
+  stringArray('STRING_ARRAY');
+
+  const BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
 /// `aws_bedrockagentcore_registry` (derived from provider schema).
 @immutable
@@ -167,7 +193,10 @@ final class BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCu
     this.claimMatchValue,
   });
 
-  final TfArg<String> claimMatchOperator;
+  final TfArg<
+    BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
+  >
+  claimMatchOperator;
 
   final List<
     BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue
@@ -179,6 +208,20 @@ final class BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCu
     if (claimMatchValue != null)
       'claim_match_value': [for (final e in claimMatchValue!) e.encode()],
   };
+}
+
+/// `claim_match_operator` — derived from the provider schema description.
+enum BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
+    implements TerraformEnum {
+  equals('EQUALS'),
+  contains('CONTAINS'),
+  containsAny('CONTAINS_ANY');
+
+  const BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
@@ -244,7 +287,10 @@ final class BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPr
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -265,6 +311,19 @@ final class BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPr
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of
@@ -349,7 +408,10 @@ final class BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPr
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -370,6 +432,19 @@ final class BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPr
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint.self_managed_lattice_resource` block of
@@ -396,7 +471,7 @@ final class AwsBedrockagentcoreRegistry extends Resource {
   AwsBedrockagentcoreRegistry({
     required super.localName,
     TfArg<List<Map<String, Object?>>>? approvalConfiguration,
-    TfArg<String>? authorizerType,
+    TfArg<BedrockagentcoreRegistryAuthorizerType>? authorizerType,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

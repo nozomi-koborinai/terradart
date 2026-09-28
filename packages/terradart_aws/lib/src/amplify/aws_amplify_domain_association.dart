@@ -18,13 +18,23 @@ final class AmplifyDomainAssociationCertificateSettings {
 
   final TfArg<String>? customCertificateArn;
 
-  final TfArg<String> type;
+  final TfArg<AmplifyDomainAssociationCertificateSettingsType> type;
 
   Map<String, Object?> encode() => {
     if (customCertificateArn != null)
       'custom_certificate_arn': customCertificateArn!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum AmplifyDomainAssociationCertificateSettingsType implements TerraformEnum {
+  amplifyManaged('AMPLIFY_MANAGED'),
+  custom('CUSTOM');
+
+  const AmplifyDomainAssociationCertificateSettingsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `sub_domain` block of

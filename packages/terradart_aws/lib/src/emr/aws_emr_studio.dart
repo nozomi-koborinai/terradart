@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_emr_studio`.
 const Set<String> _awsEmrStudioSensitive = <String>{};
 
+/// Emr Studio Auth enum for `auth_mode`.
+enum EmrStudioAuthMode implements TerraformEnum {
+  sso('SSO'),
+  iam('IAM');
+
+  const EmrStudioAuthMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_emr_studio`.
 final class AwsEmrStudio extends Resource {
   static const String tfType = 'aws_emr_studio';
 
   AwsEmrStudio({
     required super.localName,
-    required TfArg<String> authMode,
+    required TfArg<EmrStudioAuthMode> authMode,
     required TfArg<String> defaultS3Location,
     TfArg<String>? description,
     TfArg<String>? encryptionKeyArn,

@@ -203,14 +203,30 @@ final class RekognitionStreamProcessorSettingsConnectedHome {
     this.minConfidence,
   });
 
-  final TfArg<List<Object?>>? labels;
+  final List<TfArg<RekognitionStreamProcessorSettingsConnectedHomeLabels>>?
+  labels;
 
   final TfArg<num>? minConfidence;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
+    if (labels != null) 'labels': [for (final e in labels!) e.toTfJson()],
     if (minConfidence != null) 'min_confidence': minConfidence!.toTfJson(),
   };
+}
+
+/// `labels` — derived from the provider schema description.
+enum RekognitionStreamProcessorSettingsConnectedHomeLabels
+    implements TerraformEnum {
+  person('PERSON'),
+  pet('PET'),
+  package('PACKAGE'),
+  all('ALL');
+
+  const RekognitionStreamProcessorSettingsConnectedHomeLabels(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `settings.face_search` block of

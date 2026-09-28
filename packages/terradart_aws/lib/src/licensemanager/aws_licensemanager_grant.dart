@@ -6,13 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_licensemanager_grant`.
 const Set<String> _awsLicensemanagerGrantSensitive = <String>{};
 
+/// Licensemanager Grant Allowed enum for `allowed_operations`.
+enum LicensemanagerGrantAllowedOperations implements TerraformEnum {
+  creategrant('CreateGrant'),
+  checkoutlicense('CheckoutLicense'),
+  checkoutborrowlicense('CheckoutBorrowLicense'),
+  checkinlicense('CheckInLicense'),
+  extendconsumptionlicense('ExtendConsumptionLicense'),
+  listpurchasedlicenses('ListPurchasedLicenses'),
+  createtoken('CreateToken');
+
+  const LicensemanagerGrantAllowedOperations(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_licensemanager_grant`.
 final class AwsLicensemanagerGrant extends Resource {
   static const String tfType = 'aws_licensemanager_grant';
 
   AwsLicensemanagerGrant({
     required super.localName,
-    required TfArg<List<String>> allowedOperations,
+    required List<TfArg<LicensemanagerGrantAllowedOperations>>
+    allowedOperations,
     required TfArg<String> licenseArn,
     required TfArg<String> name,
     required TfArg<String> principal,
@@ -24,7 +40,9 @@ final class AwsLicensemanagerGrant extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'allowed_operations': allowedOperations,
+           'allowed_operations': TfArg.literal([
+             for (final e in allowedOperations) e.toTfJson(),
+           ]),
            'license_arn': licenseArn,
            'name': name,
            'principal': principal,

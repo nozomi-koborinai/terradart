@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_chimesdkvoice_sip_rule`.
 const Set<String> _awsChimesdkvoiceSipRuleSensitive = <String>{};
 
+/// Chimesdkvoice Sip Rule Trigger enum for `trigger_type`.
+enum ChimesdkvoiceSipRuleTriggerType implements TerraformEnum {
+  tophonenumber('ToPhoneNumber'),
+  requesturihostname('RequestUriHostname');
+
+  const ChimesdkvoiceSipRuleTriggerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_applications` block of
 /// `aws_chimesdkvoice_sip_rule` (derived from provider schema).
 @immutable
@@ -39,7 +49,7 @@ final class AwsChimesdkvoiceSipRule extends Resource {
     TfArg<bool>? disabled,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> triggerType,
+    required TfArg<ChimesdkvoiceSipRuleTriggerType> triggerType,
     required TfArg<String> triggerValue,
     required List<ChimesdkvoiceSipRuleTargetApplications> targetApplications,
     super.lifecycle,

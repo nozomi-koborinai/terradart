@@ -6,15 +6,37 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ce_anomaly_monitor`.
 const Set<String> _awsCeAnomalyMonitorSensitive = <String>{};
 
+/// Ce Anomaly Monitor Monitor enum for `monitor_dimension`.
+enum CeAnomalyMonitorMonitorDimension implements TerraformEnum {
+  service('SERVICE'),
+  linkedAccount('LINKED_ACCOUNT'),
+  tag('TAG'),
+  costCategory('COST_CATEGORY');
+
+  const CeAnomalyMonitorMonitorDimension(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ce Anomaly Monitor Monitor enum for `monitor_type`.
+enum CeAnomalyMonitorMonitorType implements TerraformEnum {
+  dimensional('DIMENSIONAL'),
+  custom('CUSTOM');
+
+  const CeAnomalyMonitorMonitorType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ce_anomaly_monitor`.
 final class AwsCeAnomalyMonitor extends Resource {
   static const String tfType = 'aws_ce_anomaly_monitor';
 
   AwsCeAnomalyMonitor({
     required super.localName,
-    TfArg<String>? monitorDimension,
+    TfArg<CeAnomalyMonitorMonitorDimension>? monitorDimension,
     TfArg<String>? monitorSpecification,
-    required TfArg<String> monitorType,
+    required TfArg<CeAnomalyMonitorMonitorType> monitorType,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

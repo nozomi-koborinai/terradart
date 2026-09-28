@@ -7,6 +7,37 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lex_bot`.
 const Set<String> _awsLexBotSensitive = <String>{};
 
+/// Lex Bot enum for `locale`.
+enum LexBotLocale implements TerraformEnum {
+  deDe('de-DE'),
+  enAu('en-AU'),
+  enGb('en-GB'),
+  enIn('en-IN'),
+  enUs('en-US'),
+  es419('es-419'),
+  esEs('es-ES'),
+  esUs('es-US'),
+  frFr('fr-FR'),
+  frCa('fr-CA'),
+  itIt('it-IT'),
+  jaJp('ja-JP'),
+  koKr('ko-KR');
+
+  const LexBotLocale(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lex Bot Process enum for `process_behavior`.
+enum LexBotProcessBehavior implements TerraformEnum {
+  save('SAVE'),
+  build('BUILD');
+
+  const LexBotProcessBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `abort_statement` block of
 /// `aws_lex_bot` (derived from provider schema).
 @immutable
@@ -120,10 +151,10 @@ final class AwsLexBot extends Resource {
     TfArg<bool>? detectSentiment,
     TfArg<bool>? enableModelImprovements,
     TfArg<num>? idleSessionTtlInSeconds,
-    TfArg<String>? locale,
+    TfArg<LexBotLocale>? locale,
     required TfArg<String> name,
     TfArg<num>? nluIntentConfidenceThreshold,
-    TfArg<String>? processBehavior,
+    TfArg<LexBotProcessBehavior>? processBehavior,
     TfArg<String>? region,
     TfArg<String>? voiceId,
     required LexBotAbortStatement abortStatement,

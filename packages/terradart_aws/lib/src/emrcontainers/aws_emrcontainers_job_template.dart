@@ -123,7 +123,10 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitor
     this.s3MonitoringConfiguration,
   });
 
-  final TfArg<String>? persistentAppUi;
+  final TfArg<
+    EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationPersistentAppUi
+  >?
+  persistentAppUi;
 
   final EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationCloudWatchMonitoringConfiguration?
   cloudWatchMonitoringConfiguration;
@@ -140,6 +143,19 @@ final class EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitor
     if (s3MonitoringConfiguration != null)
       's3_monitoring_configuration': s3MonitoringConfiguration!.encode(),
   };
+}
+
+/// `persistent_app_ui` — derived from the provider schema description.
+enum EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationPersistentAppUi
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const EmrcontainersJobTemplateJobTemplateDataConfigurationOverridesMonitoringConfigurationPersistentAppUi(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `job_template_data.configuration_overrides.monitoring_configuration.cloud_watch_monitoring_configuration` block of

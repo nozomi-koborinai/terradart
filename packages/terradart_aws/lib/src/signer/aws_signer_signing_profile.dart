@@ -7,6 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_signer_signing_profile`.
 const Set<String> _awsSignerSigningProfileSensitive = <String>{};
 
+/// Signer Signing Profile Platform enum for `platform_id`.
+enum SignerSigningProfilePlatformId implements TerraformEnum {
+  awslambdaSha384Ecdsa('AWSLambda-SHA384-ECDSA'),
+  notationOciSha384Ecdsa('Notation-OCI-SHA384-ECDSA'),
+  awsiotdevicemanagementSha256Ecdsa('AWSIoTDeviceManagement-SHA256-ECDSA'),
+  amazonfreertosTiCc3220sf('AmazonFreeRTOS-TI-CC3220SF'),
+  amazonfreertosDefault('AmazonFreeRTOS-Default');
+
+  const SignerSigningProfilePlatformId(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `signature_validity_period` block of
 /// `aws_signer_signing_profile` (derived from provider schema).
 @immutable
@@ -16,7 +29,7 @@ final class SignerSigningProfileSignatureValidityPeriod {
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<SignerSigningProfileSignatureValidityPeriodType> type;
 
   final TfArg<num> value;
 
@@ -24,6 +37,17 @@ final class SignerSigningProfileSignatureValidityPeriod {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SignerSigningProfileSignatureValidityPeriodType implements TerraformEnum {
+  days('DAYS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const SignerSigningProfileSignatureValidityPeriodType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `signing_material` block of
@@ -47,7 +71,7 @@ final class AwsSignerSigningProfile extends Resource {
     required super.localName,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
-    required TfArg<String> platformId,
+    required TfArg<SignerSigningProfilePlatformId> platformId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? signingParameters,
     TfArg<Map<String, String>>? tags,

@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_devicefarm_network_profile`.
 const Set<String> _awsDevicefarmNetworkProfileSensitive = <String>{};
 
+/// Devicefarm Network Profile enum for `type`.
+enum DevicefarmNetworkProfileType implements TerraformEnum {
+  curated('CURATED'),
+  private('PRIVATE');
+
+  const DevicefarmNetworkProfileType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_devicefarm_network_profile`.
 final class AwsDevicefarmNetworkProfile extends Resource {
   static const String tfType = 'aws_devicefarm_network_profile';
@@ -21,7 +31,7 @@ final class AwsDevicefarmNetworkProfile extends Resource {
     required TfArg<String> projectArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    TfArg<DevicefarmNetworkProfileType>? type,
     TfArg<num>? uplinkBandwidthBits,
     TfArg<num>? uplinkDelayMs,
     TfArg<num>? uplinkJitterMs,

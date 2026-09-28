@@ -66,16 +66,22 @@ final class AwsStaticSiteStack extends Stack {
       localName: 'site',
       name: TfArg.literal('terradart-static-site'),
       description: TfArg.literal('CloudFront reads the site bucket'),
-      originAccessControlOriginType: TfArg.literal('s3'),
-      signingBehavior: TfArg.literal('always'),
-      signingProtocol: TfArg.literal('sigv4'),
+      originAccessControlOriginType: TfArg.literal(
+        CloudfrontOriginAccessControlOriginAccessControlOriginType.s3,
+      ),
+      signingBehavior: TfArg.literal(
+        CloudfrontOriginAccessControlSigningBehavior.always,
+      ),
+      signingProtocol: TfArg.literal(
+        CloudfrontOriginAccessControlSigningProtocol.sigv4,
+      ),
     );
     add(oac);
 
     final cert = AwsAcmCertificate(
       localName: 'site',
       domainName: TfArg.literal(siteDomain),
-      validationMethod: TfArg.literal('DNS'),
+      validationMethod: TfArg.literal(AcmCertificateValidationMethod.dns),
       lifecycle: const LifecycleOptions(createBeforeDestroy: true),
     );
     add(cert);
@@ -116,7 +122,7 @@ final class AwsStaticSiteStack extends Stack {
       comment: TfArg.literal(siteDomain),
       aliases: TfArg.literal([siteDomain]),
       defaultRootObject: TfArg.literal('index.html'),
-      priceClass: TfArg.literal('PriceClass_100'),
+      priceClass: TfArg.literal(CloudfrontDistributionPriceClass.priceclass100),
       origin: [
         CloudfrontDistributionOrigin(
           originId: TfArg.literal(_originId),
@@ -126,7 +132,10 @@ final class AwsStaticSiteStack extends Stack {
       ],
       defaultCacheBehavior: CloudfrontDistributionDefaultCacheBehavior(
         targetOriginId: TfArg.literal(_originId),
-        viewerProtocolPolicy: TfArg.literal('redirect-to-https'),
+        viewerProtocolPolicy: TfArg.literal(
+          CloudfrontDistributionDefaultCacheBehaviorViewerProtocolPolicy
+              .redirectToHttps,
+        ),
         allowedMethods: TfArg.literal(['GET', 'HEAD']),
         cachedMethods: TfArg.literal(['GET', 'HEAD']),
         cachePolicyId: TfArg.ref(cachingOptimized.id),
@@ -142,13 +151,21 @@ final class AwsStaticSiteStack extends Stack {
       ],
       restrictions: CloudfrontDistributionRestrictions(
         geoRestriction: CloudfrontDistributionRestrictionsGeoRestriction(
-          restrictionType: TfArg.literal('none'),
+          restrictionType: TfArg.literal(
+            CloudfrontDistributionRestrictionsGeoRestrictionRestrictionType
+                .none,
+          ),
         ),
       ),
       viewerCertificate: CloudfrontDistributionViewerCertificate(
         acmCertificateArn: TfArg.ref(cert.arn),
-        sslSupportMethod: TfArg.literal('sni-only'),
-        minimumProtocolVersion: TfArg.literal('TLSv1.2_2021'),
+        sslSupportMethod: TfArg.literal(
+          CloudfrontDistributionViewerCertificateSslSupportMethod.sniOnly,
+        ),
+        minimumProtocolVersion: TfArg.literal(
+          CloudfrontDistributionViewerCertificateMinimumProtocolVersion
+              .tlsv1p2x2021,
+        ),
       ),
       dependsOn: [ResourceDependency(validation)],
     );
@@ -187,10 +204,10 @@ final class AwsStaticSiteStack extends Stack {
       ),
     );
 
-    for (final type in ['A', 'AAAA']) {
+    for (final type in [Route53RecordType.a, Route53RecordType.aaaa]) {
       add(
         AwsRoute53Record(
-          localName: 'site_${type.toLowerCase()}',
+          localName: 'site_${type.name}',
           zoneId: TfArg.ref(zone.id),
           name: TfArg.literal(siteDomain),
           type: TfArg.literal(type),

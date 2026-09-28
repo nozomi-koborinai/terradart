@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_docdb_global_cluster`.
 const Set<String> _awsDocdbGlobalClusterSensitive = <String>{};
 
+/// Docdb Global Cluster enum for `engine`.
+enum DocdbGlobalClusterEngine implements TerraformEnum {
+  docdb('docdb');
+
+  const DocdbGlobalClusterEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_docdb_global_cluster`.
 final class AwsDocdbGlobalCluster extends Resource {
   static const String tfType = 'aws_docdb_global_cluster';
@@ -14,7 +23,7 @@ final class AwsDocdbGlobalCluster extends Resource {
     required super.localName,
     TfArg<String>? databaseName,
     TfArg<bool>? deletionProtection,
-    TfArg<String>? engine,
+    TfArg<DocdbGlobalClusterEngine>? engine,
     TfArg<String>? engineVersion,
     required TfArg<String> globalClusterIdentifier,
     TfArg<String>? region,

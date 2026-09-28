@@ -7,13 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ssoadmin_application`.
 const Set<String> _awsSsoadminApplicationSensitive = <String>{};
 
+/// Ssoadmin Application enum for `status`.
+enum SsoadminApplicationStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SsoadminApplicationStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `portal_options` block of
 /// `aws_ssoadmin_application` (derived from provider schema).
 @immutable
 final class SsoadminApplicationPortalOptions {
   const SsoadminApplicationPortalOptions({this.visibility, this.signInOptions});
 
-  final TfArg<String>? visibility;
+  final TfArg<SsoadminApplicationPortalOptionsVisibility>? visibility;
 
   final List<SsoadminApplicationPortalOptionsSignInOptions>? signInOptions;
 
@@ -22,6 +32,16 @@ final class SsoadminApplicationPortalOptions {
     if (signInOptions != null)
       'sign_in_options': [for (final e in signInOptions!) e.encode()],
   };
+}
+
+/// `visibility` — derived from the provider schema description.
+enum SsoadminApplicationPortalOptionsVisibility implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SsoadminApplicationPortalOptionsVisibility(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `portal_options.sign_in_options` block of
@@ -35,12 +55,25 @@ final class SsoadminApplicationPortalOptionsSignInOptions {
 
   final TfArg<String>? applicationUrl;
 
-  final TfArg<String> origin;
+  final TfArg<SsoadminApplicationPortalOptionsSignInOptionsOrigin> origin;
 
   Map<String, Object?> encode() => {
     if (applicationUrl != null) 'application_url': applicationUrl!.toTfJson(),
     'origin': origin.toTfJson(),
   };
+}
+
+/// `origin` — derived from the provider schema description.
+enum SsoadminApplicationPortalOptionsSignInOptionsOrigin
+    implements TerraformEnum {
+  identityCenter('IDENTITY_CENTER'),
+  application('APPLICATION');
+
+  const SsoadminApplicationPortalOptionsSignInOptionsOrigin(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ssoadmin_application`.
@@ -55,7 +88,7 @@ final class AwsSsoadminApplication extends Resource {
     required TfArg<String> instanceArn,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? status,
+    TfArg<SsoadminApplicationStatus>? status,
     TfArg<Map<String, String>>? tags,
     List<SsoadminApplicationPortalOptions>? portalOptions,
     super.lifecycle,

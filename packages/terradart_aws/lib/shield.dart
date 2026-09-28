@@ -4,7 +4,9 @@
 library;
 
 export 'src/shield/aws_shield_application_layer_automatic_response.dart'
-    show AwsShieldApplicationLayerAutomaticResponse;
+    show
+        AwsShieldApplicationLayerAutomaticResponse,
+        ShieldApplicationLayerAutomaticResponseAction;
 export 'src/shield/aws_shield_drt_access_log_bucket_association.dart'
     show AwsShieldDrtAccessLogBucketAssociation;
 export 'src/shield/aws_shield_drt_access_role_arn_association.dart'
@@ -15,7 +17,12 @@ export 'src/shield/aws_shield_proactive_engagement.dart'
         ShieldProactiveEngagementEmergencyContact;
 export 'src/shield/aws_shield_protection.dart' show AwsShieldProtection;
 export 'src/shield/aws_shield_protection_group.dart'
-    show AwsShieldProtectionGroup;
+    show
+        AwsShieldProtectionGroup,
+        ShieldProtectionGroupAggregation,
+        ShieldProtectionGroupPattern,
+        ShieldProtectionGroupResourceType;
 export 'src/shield/aws_shield_protection_health_check_association.dart'
     show AwsShieldProtectionHealthCheckAssociation;
-export 'src/shield/aws_shield_subscription.dart' show AwsShieldSubscription;
+export 'src/shield/aws_shield_subscription.dart'
+    show AwsShieldSubscription, ShieldSubscriptionAutoRenew;

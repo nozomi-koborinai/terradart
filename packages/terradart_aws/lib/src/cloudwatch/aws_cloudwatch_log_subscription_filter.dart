@@ -6,6 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_log_subscription_filter`.
 const Set<String> _awsCloudwatchLogSubscriptionFilterSensitive = <String>{};
 
+/// Cloudwatch Log Subscription Filter enum for `distribution`.
+enum CloudwatchLogSubscriptionFilterDistribution implements TerraformEnum {
+  random('Random'),
+  bylogstream('ByLogStream');
+
+  const CloudwatchLogSubscriptionFilterDistribution(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cloudwatch Log Subscription Filter Emit System enum for `emit_system_fields`.
+enum CloudwatchLogSubscriptionFilterEmitSystemFields implements TerraformEnum {
+  awsAccount('@aws.account'),
+  awsRegion('@aws.region'),
+  sourceLog('@source.log');
+
+  const CloudwatchLogSubscriptionFilterEmitSystemFields(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudwatch_log_subscription_filter`.
 final class AwsCloudwatchLogSubscriptionFilter extends Resource {
   static const String tfType = 'aws_cloudwatch_log_subscription_filter';
@@ -14,8 +35,9 @@ final class AwsCloudwatchLogSubscriptionFilter extends Resource {
     required super.localName,
     TfArg<bool>? applyOnTransformedLogs,
     required TfArg<String> destinationArn,
-    TfArg<String>? distribution,
-    TfArg<List<String>>? emitSystemFields,
+    TfArg<CloudwatchLogSubscriptionFilterDistribution>? distribution,
+    List<TfArg<CloudwatchLogSubscriptionFilterEmitSystemFields>>?
+    emitSystemFields,
     required TfArg<String> filterPattern,
     required TfArg<String> logGroupName,
     required TfArg<String> name,
@@ -32,7 +54,10 @@ final class AwsCloudwatchLogSubscriptionFilter extends Resource {
              'apply_on_transformed_logs': applyOnTransformedLogs,
            'destination_arn': destinationArn,
            if (distribution != null) 'distribution': distribution,
-           if (emitSystemFields != null) 'emit_system_fields': emitSystemFields,
+           if (emitSystemFields != null)
+             'emit_system_fields': TfArg.literal([
+               for (final e in emitSystemFields) e.toTfJson(),
+             ]),
            'filter_pattern': filterPattern,
            'log_group_name': logGroupName,
            'name': name,

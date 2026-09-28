@@ -4,4 +4,6 @@
 library;
 
 export 'src/applicationinsights/aws_applicationinsights_application.dart'
-    show AwsApplicationinsightsApplication;
+    show
+        ApplicationinsightsApplicationGroupingType,
+        AwsApplicationinsightsApplication;

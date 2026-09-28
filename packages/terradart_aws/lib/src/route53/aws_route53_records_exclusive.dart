@@ -29,7 +29,7 @@ final class Route53RecordsExclusiveResourceRecordSet {
     this.resourceRecords,
   });
 
-  final TfArg<String>? failover;
+  final TfArg<Route53RecordsExclusiveResourceRecordSetFailover>? failover;
 
   final TfArg<String>? healthCheckId;
 
@@ -37,7 +37,7 @@ final class Route53RecordsExclusiveResourceRecordSet {
 
   final TfArg<String> name;
 
-  final TfArg<String>? region;
+  final TfArg<Route53RecordsExclusiveResourceRecordSetRegion>? region;
 
   final TfArg<String>? setIdentifier;
 
@@ -45,7 +45,7 @@ final class Route53RecordsExclusiveResourceRecordSet {
 
   final TfArg<num>? ttl;
 
-  final TfArg<String>? type;
+  final TfArg<Route53RecordsExclusiveResourceRecordSetType>? type;
 
   final TfArg<num>? weight;
 
@@ -88,6 +88,88 @@ final class Route53RecordsExclusiveResourceRecordSet {
     if (resourceRecords != null)
       'resource_records': [for (final e in resourceRecords!) e.encode()],
   };
+}
+
+/// `failover` — derived from the provider schema description.
+enum Route53RecordsExclusiveResourceRecordSetFailover implements TerraformEnum {
+  primary('PRIMARY'),
+  secondary('SECONDARY');
+
+  const Route53RecordsExclusiveResourceRecordSetFailover(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `region` — derived from the provider schema description.
+enum Route53RecordsExclusiveResourceRecordSetRegion implements TerraformEnum {
+  usEast1('us-east-1'),
+  usEast2('us-east-2'),
+  usWest1('us-west-1'),
+  usWest2('us-west-2'),
+  caCentral1('ca-central-1'),
+  euWest1('eu-west-1'),
+  euWest2('eu-west-2'),
+  euWest3('eu-west-3'),
+  euCentral1('eu-central-1'),
+  euCentral2('eu-central-2'),
+  apSoutheast1('ap-southeast-1'),
+  apSoutheast2('ap-southeast-2'),
+  apSoutheast3('ap-southeast-3'),
+  apNortheast1('ap-northeast-1'),
+  apNortheast2('ap-northeast-2'),
+  apNortheast3('ap-northeast-3'),
+  euNorth1('eu-north-1'),
+  saEast1('sa-east-1'),
+  cnNorth1('cn-north-1'),
+  cnNorthwest1('cn-northwest-1'),
+  apEast1('ap-east-1'),
+  meSouth1('me-south-1'),
+  meCentral1('me-central-1'),
+  apSouth1('ap-south-1'),
+  apSouth2('ap-south-2'),
+  afSouth1('af-south-1'),
+  euSouth1('eu-south-1'),
+  euSouth2('eu-south-2'),
+  apSoutheast4('ap-southeast-4'),
+  ilCentral1('il-central-1'),
+  caWest1('ca-west-1'),
+  apSoutheast5('ap-southeast-5'),
+  mxCentral1('mx-central-1'),
+  apSoutheast7('ap-southeast-7'),
+  usGovEast1('us-gov-east-1'),
+  usGovWest1('us-gov-west-1'),
+  apEast2('ap-east-2'),
+  apSoutheast6('ap-southeast-6'),
+  euscDeEast1('eusc-de-east-1');
+
+  const Route53RecordsExclusiveResourceRecordSetRegion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum Route53RecordsExclusiveResourceRecordSetType implements TerraformEnum {
+  soa('SOA'),
+  a('A'),
+  txt('TXT'),
+  ns('NS'),
+  cname('CNAME'),
+  mx('MX'),
+  naptr('NAPTR'),
+  ptr('PTR'),
+  srv('SRV'),
+  spf('SPF'),
+  aaaa('AAAA'),
+  caa('CAA'),
+  ds('DS'),
+  tlsa('TLSA'),
+  sshfp('SSHFP'),
+  svcb('SVCB'),
+  https('HTTPS');
+
+  const Route53RecordsExclusiveResourceRecordSetType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `resource_record_set.alias_target` block of

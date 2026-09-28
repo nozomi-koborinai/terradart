@@ -3,10 +3,14 @@
 /// AWS WAF.
 library;
 
-export 'src/wafv2/aws_wafv2_api_key.dart' show AwsWafv2ApiKey;
-export 'src/wafv2/aws_wafv2_ip_set.dart' show AwsWafv2IpSet;
+export 'src/wafv2/aws_wafv2_api_key.dart' show AwsWafv2ApiKey, Wafv2ApiKeyScope;
+export 'src/wafv2/aws_wafv2_ip_set.dart'
+    show AwsWafv2IpSet, Wafv2IpSetIpAddressVersion, Wafv2IpSetScope;
 export 'src/wafv2/aws_wafv2_regex_pattern_set.dart'
-    show AwsWafv2RegexPatternSet, Wafv2RegexPatternSetRegularExpression;
+    show
+        AwsWafv2RegexPatternSet,
+        Wafv2RegexPatternSetRegularExpression,
+        Wafv2RegexPatternSetScope;
 export 'src/wafv2/aws_wafv2_rule_group.dart'
     show
         AwsWafv2RuleGroup,
@@ -49,6 +53,7 @@ export 'src/wafv2/aws_wafv2_rule_group.dart'
         Wafv2RuleGroupRuleStatementIpSetReferenceStatementIpSetForwardedIpConfig,
         Wafv2RuleGroupRuleStatementLabelMatchStatement,
         Wafv2RuleGroupRuleStatementRateBasedStatement,
+        Wafv2RuleGroupRuleStatementRateBasedStatementAggregateKeyType,
         Wafv2RuleGroupRuleStatementRateBasedStatementCustomKey,
         Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyCookie,
         Wafv2RuleGroupRuleStatementRateBasedStatementCustomKeyLabelNamespace,
@@ -58,6 +63,7 @@ export 'src/wafv2/aws_wafv2_rule_group.dart'
         Wafv2RuleGroupRuleStatementSizeConstraintStatement,
         Wafv2RuleGroupRuleStatementSqliMatchStatement,
         Wafv2RuleGroupRuleStatementXssMatchStatement,
+        Wafv2RuleGroupScope,
         Wafv2RuleGroupVisibilityConfig;
 export 'src/wafv2/aws_wafv2_web_acl.dart'
     show
@@ -70,13 +76,16 @@ export 'src/wafv2/aws_wafv2_web_acl.dart'
         Wafv2WebAclCustomResponseBody,
         Wafv2WebAclDataProtectionConfig,
         Wafv2WebAclDataProtectionConfigDataProtection,
+        Wafv2WebAclDataProtectionConfigDataProtectionAction,
         Wafv2WebAclDataProtectionConfigDataProtectionField,
+        Wafv2WebAclDataProtectionConfigDataProtectionFieldFieldType,
         Wafv2WebAclDefaultAction,
         Wafv2WebAclDefaultActionAllow,
         Wafv2WebAclDefaultActionAllowCustomRequestHandling,
         Wafv2WebAclDefaultActionAllowCustomRequestHandlingInsertHeader,
         Wafv2WebAclDefaultActionBlock,
         Wafv2WebAclDefaultActionBlockCustomResponse,
+        Wafv2WebAclScope,
         Wafv2WebAclVisibilityConfig;
 export 'src/wafv2/aws_wafv2_web_acl_association.dart'
     show AwsWafv2WebAclAssociation;
@@ -84,10 +93,14 @@ export 'src/wafv2/aws_wafv2_web_acl_logging_configuration.dart'
     show
         AwsWafv2WebAclLoggingConfiguration,
         Wafv2WebAclLoggingConfigurationLoggingFilter,
+        Wafv2WebAclLoggingConfigurationLoggingFilterDefaultBehavior,
         Wafv2WebAclLoggingConfigurationLoggingFilterFilter,
+        Wafv2WebAclLoggingConfigurationLoggingFilterFilterBehavior,
         Wafv2WebAclLoggingConfigurationLoggingFilterFilterCondition,
         Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionCondition,
+        Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionConditionAction,
         Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionLabelNameCondition,
+        Wafv2WebAclLoggingConfigurationLoggingFilterFilterRequirement,
         Wafv2WebAclLoggingConfigurationRedactedFields,
         Wafv2WebAclLoggingConfigurationRedactedFieldsMethod,
         Wafv2WebAclLoggingConfigurationRedactedFieldsQueryString,
@@ -213,6 +226,7 @@ export 'src/wafv2/aws_wafv2_web_acl_rule_group_association.dart'
         Wafv2WebAclRuleGroupAssociationManagedRuleGroupRuleActionOverrideActionToUseCount,
         Wafv2WebAclRuleGroupAssociationManagedRuleGroupRuleActionOverrideActionToUseCountCustomRequestHandling,
         Wafv2WebAclRuleGroupAssociationManagedRuleGroupRuleActionOverrideActionToUseCountCustomRequestHandlingInsertHeader,
+        Wafv2WebAclRuleGroupAssociationOverrideAction,
         Wafv2WebAclRuleGroupAssociationRuleGroupReference,
         Wafv2WebAclRuleGroupAssociationRuleGroupReferenceRuleActionOverride,
         Wafv2WebAclRuleGroupAssociationRuleGroupReferenceRuleActionOverrideActionToUse,

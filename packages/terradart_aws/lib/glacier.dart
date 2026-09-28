@@ -4,5 +4,8 @@
 library;
 
 export 'src/glacier/aws_glacier_vault.dart'
-    show AwsGlacierVault, GlacierVaultNotification;
+    show
+        AwsGlacierVault,
+        GlacierVaultNotification,
+        GlacierVaultNotificationEvents;
 export 'src/glacier/aws_glacier_vault_lock.dart' show AwsGlacierVaultLock;

@@ -6,6 +6,39 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ssm_parameter`.
 const Set<String> _awsSsmParameterSensitive = <String>{'value', 'value_wo'};
 
+/// Ssm Parameter Data enum for `data_type`.
+enum SsmParameterDataType implements TerraformEnum {
+  awsEc2Image('aws:ec2:image'),
+  awsSsmIntegration('aws:ssm:integration'),
+  text('text');
+
+  const SsmParameterDataType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ssm Parameter enum for `tier`.
+enum SsmParameterTier implements TerraformEnum {
+  standard('Standard'),
+  advanced('Advanced'),
+  intelligentTiering('Intelligent-Tiering');
+
+  const SsmParameterTier(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ssm Parameter enum for `type`.
+enum SsmParameterType implements TerraformEnum {
+  string('String'),
+  stringlist('StringList'),
+  securestring('SecureString');
+
+  const SsmParameterType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ssm_parameter`.
 final class AwsSsmParameter extends Resource {
   static const String tfType = 'aws_ssm_parameter';
@@ -14,7 +47,7 @@ final class AwsSsmParameter extends Resource {
     required super.localName,
     TfArg<String>? allowedPattern,
     TfArg<String>? arn,
-    TfArg<String>? dataType,
+    TfArg<SsmParameterDataType>? dataType,
     TfArg<String>? description,
     TfArg<String>? insecureValue,
     TfArg<String>? keyId,
@@ -22,8 +55,8 @@ final class AwsSsmParameter extends Resource {
     TfArg<bool>? overwrite,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? tier,
-    required TfArg<String> type,
+    TfArg<SsmParameterTier>? tier,
+    required TfArg<SsmParameterType> type,
     TfArg<String>? value,
     TfArg<String>? valueWo,
     TfArg<num>? valueWoVersion,

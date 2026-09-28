@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_guardduty_threatintelset`.
 const Set<String> _awsGuarddutyThreatintelsetSensitive = <String>{};
 
+/// Guardduty Threatintelset enum for `format`.
+enum GuarddutyThreatintelsetFormat implements TerraformEnum {
+  txt('TXT'),
+  stix('STIX'),
+  otxCsv('OTX_CSV'),
+  alienVault('ALIEN_VAULT'),
+  proofPoint('PROOF_POINT'),
+  fireEye('FIRE_EYE');
+
+  const GuarddutyThreatintelsetFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_guardduty_threatintelset`.
 final class AwsGuarddutyThreatintelset extends Resource {
   static const String tfType = 'aws_guardduty_threatintelset';
@@ -14,7 +28,7 @@ final class AwsGuarddutyThreatintelset extends Resource {
     required super.localName,
     required TfArg<bool> activate,
     required TfArg<String> detectorId,
-    required TfArg<String> format,
+    required TfArg<GuarddutyThreatintelsetFormat> format,
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? region,

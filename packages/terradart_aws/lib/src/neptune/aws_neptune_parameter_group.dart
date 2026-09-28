@@ -17,7 +17,7 @@ final class NeptuneParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<String>? applyMethod;
+  final TfArg<NeptuneParameterGroupParameterApplyMethod>? applyMethod;
 
   final TfArg<String> name;
 
@@ -28,6 +28,16 @@ final class NeptuneParameterGroupParameter {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `apply_method` — derived from the provider schema description.
+enum NeptuneParameterGroupParameterApplyMethod implements TerraformEnum {
+  immediate('immediate'),
+  pendingReboot('pending-reboot');
+
+  const NeptuneParameterGroupParameterApplyMethod(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_neptune_parameter_group`.

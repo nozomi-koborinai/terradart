@@ -30,12 +30,26 @@ final class LambdaCodeSigningConfigPolicies {
     required this.untrustedArtifactOnDeployment,
   });
 
-  final TfArg<String> untrustedArtifactOnDeployment;
+  final TfArg<LambdaCodeSigningConfigPoliciesUntrustedArtifactOnDeployment>
+  untrustedArtifactOnDeployment;
 
   Map<String, Object?> encode() => {
     'untrusted_artifact_on_deployment': untrustedArtifactOnDeployment
         .toTfJson(),
   };
+}
+
+/// `untrusted_artifact_on_deployment` — derived from the provider schema description.
+enum LambdaCodeSigningConfigPoliciesUntrustedArtifactOnDeployment
+    implements TerraformEnum {
+  warn('Warn'),
+  enforce('Enforce');
+
+  const LambdaCodeSigningConfigPoliciesUntrustedArtifactOnDeployment(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_lambda_code_signing_config`.

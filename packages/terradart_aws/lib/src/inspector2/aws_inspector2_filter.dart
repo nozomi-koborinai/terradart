@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_inspector2_filter`.
 const Set<String> _awsInspector2FilterSensitive = <String>{};
 
+/// Inspector2 Filter enum for `action`.
+enum Inspector2FilterAction implements TerraformEnum {
+  none('NONE'),
+  suppress('SUPPRESS');
+
+  const Inspector2FilterAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `filter_criteria` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
@@ -308,7 +318,7 @@ final class Inspector2FilterFilterCriteriaAwsAccountId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaAwsAccountIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -316,6 +326,20 @@ final class Inspector2FilterFilterCriteriaAwsAccountId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaAwsAccountIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaAwsAccountIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.code_repository_project_name` block of
@@ -327,7 +351,8 @@ final class Inspector2FilterFilterCriteriaCodeRepositoryProjectName {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaCodeRepositoryProjectNameComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -335,6 +360,20 @@ final class Inspector2FilterFilterCriteriaCodeRepositoryProjectName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaCodeRepositoryProjectNameComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaCodeRepositoryProjectNameComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.code_repository_provider_type` block of
@@ -346,7 +385,10 @@ final class Inspector2FilterFilterCriteriaCodeRepositoryProviderType {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    Inspector2FilterFilterCriteriaCodeRepositoryProviderTypeComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -354,6 +396,20 @@ final class Inspector2FilterFilterCriteriaCodeRepositoryProviderType {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaCodeRepositoryProviderTypeComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaCodeRepositoryProviderTypeComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.code_vulnerability_detector_name` block of
@@ -365,7 +421,10 @@ final class Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorName {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorNameComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -373,6 +432,20 @@ final class Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorNameComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorNameComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.code_vulnerability_detector_tags` block of
@@ -384,7 +457,10 @@ final class Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTags {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTagsComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -392,6 +468,20 @@ final class Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTags {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTagsComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaCodeVulnerabilityDetectorTagsComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.code_vulnerability_file_path` block of
@@ -403,7 +493,8 @@ final class Inspector2FilterFilterCriteriaCodeVulnerabilityFilePath {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaCodeVulnerabilityFilePathComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -411,6 +502,20 @@ final class Inspector2FilterFilterCriteriaCodeVulnerabilityFilePath {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaCodeVulnerabilityFilePathComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaCodeVulnerabilityFilePathComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.component_id` block of
@@ -422,7 +527,7 @@ final class Inspector2FilterFilterCriteriaComponentId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaComponentIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -430,6 +535,20 @@ final class Inspector2FilterFilterCriteriaComponentId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaComponentIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaComponentIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.component_type` block of
@@ -441,7 +560,7 @@ final class Inspector2FilterFilterCriteriaComponentType {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaComponentTypeComparison> comparison;
 
   final TfArg<String> value;
 
@@ -449,6 +568,20 @@ final class Inspector2FilterFilterCriteriaComponentType {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaComponentTypeComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaComponentTypeComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ec2_instance_image_id` block of
@@ -460,7 +593,8 @@ final class Inspector2FilterFilterCriteriaEc2InstanceImageId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaEc2InstanceImageIdComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -468,6 +602,20 @@ final class Inspector2FilterFilterCriteriaEc2InstanceImageId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaEc2InstanceImageIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaEc2InstanceImageIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ec2_instance_subnet_id` block of
@@ -479,7 +627,8 @@ final class Inspector2FilterFilterCriteriaEc2InstanceSubnetId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaEc2InstanceSubnetIdComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -487,6 +636,20 @@ final class Inspector2FilterFilterCriteriaEc2InstanceSubnetId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaEc2InstanceSubnetIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaEc2InstanceSubnetIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ec2_instance_vpc_id` block of
@@ -498,7 +661,8 @@ final class Inspector2FilterFilterCriteriaEc2InstanceVpcId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaEc2InstanceVpcIdComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -506,6 +670,20 @@ final class Inspector2FilterFilterCriteriaEc2InstanceVpcId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaEc2InstanceVpcIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaEc2InstanceVpcIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ecr_image_architecture` block of
@@ -517,7 +695,8 @@ final class Inspector2FilterFilterCriteriaEcrImageArchitecture {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaEcrImageArchitectureComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -525,6 +704,20 @@ final class Inspector2FilterFilterCriteriaEcrImageArchitecture {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaEcrImageArchitectureComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaEcrImageArchitectureComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ecr_image_hash` block of
@@ -536,7 +729,7 @@ final class Inspector2FilterFilterCriteriaEcrImageHash {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaEcrImageHashComparison> comparison;
 
   final TfArg<String> value;
 
@@ -544,6 +737,20 @@ final class Inspector2FilterFilterCriteriaEcrImageHash {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaEcrImageHashComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaEcrImageHashComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ecr_image_in_use_count` block of
@@ -612,7 +819,8 @@ final class Inspector2FilterFilterCriteriaEcrImageRegistry {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaEcrImageRegistryComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -620,6 +828,20 @@ final class Inspector2FilterFilterCriteriaEcrImageRegistry {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaEcrImageRegistryComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaEcrImageRegistryComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ecr_image_repository_name` block of
@@ -631,7 +853,8 @@ final class Inspector2FilterFilterCriteriaEcrImageRepositoryName {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaEcrImageRepositoryNameComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -639,6 +862,20 @@ final class Inspector2FilterFilterCriteriaEcrImageRepositoryName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaEcrImageRepositoryNameComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaEcrImageRepositoryNameComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.ecr_image_tags` block of
@@ -650,7 +887,7 @@ final class Inspector2FilterFilterCriteriaEcrImageTags {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaEcrImageTagsComparison> comparison;
 
   final TfArg<String> value;
 
@@ -658,6 +895,20 @@ final class Inspector2FilterFilterCriteriaEcrImageTags {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaEcrImageTagsComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaEcrImageTagsComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.epss_score` block of
@@ -688,7 +939,8 @@ final class Inspector2FilterFilterCriteriaExploitAvailable {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaExploitAvailableComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -696,6 +948,20 @@ final class Inspector2FilterFilterCriteriaExploitAvailable {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaExploitAvailableComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaExploitAvailableComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.finding_arn` block of
@@ -707,7 +973,7 @@ final class Inspector2FilterFilterCriteriaFindingArn {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaFindingArnComparison> comparison;
 
   final TfArg<String> value;
 
@@ -715,6 +981,18 @@ final class Inspector2FilterFilterCriteriaFindingArn {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaFindingArnComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaFindingArnComparison(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.finding_status` block of
@@ -726,7 +1004,7 @@ final class Inspector2FilterFilterCriteriaFindingStatus {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaFindingStatusComparison> comparison;
 
   final TfArg<String> value;
 
@@ -734,6 +1012,20 @@ final class Inspector2FilterFilterCriteriaFindingStatus {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaFindingStatusComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaFindingStatusComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.finding_type` block of
@@ -745,7 +1037,7 @@ final class Inspector2FilterFilterCriteriaFindingType {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaFindingTypeComparison> comparison;
 
   final TfArg<String> value;
 
@@ -753,6 +1045,20 @@ final class Inspector2FilterFilterCriteriaFindingType {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaFindingTypeComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaFindingTypeComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.first_observed_at` block of
@@ -783,7 +1089,7 @@ final class Inspector2FilterFilterCriteriaFixAvailable {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaFixAvailableComparison> comparison;
 
   final TfArg<String> value;
 
@@ -791,6 +1097,20 @@ final class Inspector2FilterFilterCriteriaFixAvailable {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaFixAvailableComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaFixAvailableComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.inspector_score` block of
@@ -821,7 +1141,10 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArn {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArnComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -829,6 +1152,20 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArn {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArnComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaLambdaFunctionExecutionRoleArnComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.lambda_function_last_modified_at` block of
@@ -859,7 +1196,8 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionLayers {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaLambdaFunctionLayersComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -867,6 +1205,20 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionLayers {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaLambdaFunctionLayersComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaLambdaFunctionLayersComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.lambda_function_name` block of
@@ -878,7 +1230,8 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionName {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaLambdaFunctionNameComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -886,6 +1239,20 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaLambdaFunctionNameComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaLambdaFunctionNameComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.lambda_function_runtime` block of
@@ -897,7 +1264,8 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionRuntime {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaLambdaFunctionRuntimeComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -905,6 +1273,20 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionRuntime {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaLambdaFunctionRuntimeComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaLambdaFunctionRuntimeComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.last_observed_at` block of
@@ -935,7 +1317,8 @@ final class Inspector2FilterFilterCriteriaNetworkProtocol {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaNetworkProtocolComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -943,6 +1326,20 @@ final class Inspector2FilterFilterCriteriaNetworkProtocol {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaNetworkProtocolComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaNetworkProtocolComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.port_range` block of
@@ -973,7 +1370,8 @@ final class Inspector2FilterFilterCriteriaRelatedVulnerabilities {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaRelatedVulnerabilitiesComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -981,6 +1379,20 @@ final class Inspector2FilterFilterCriteriaRelatedVulnerabilities {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaRelatedVulnerabilitiesComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaRelatedVulnerabilitiesComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.resource_id` block of
@@ -992,7 +1404,7 @@ final class Inspector2FilterFilterCriteriaResourceId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaResourceIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1000,6 +1412,18 @@ final class Inspector2FilterFilterCriteriaResourceId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaResourceIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaResourceIdComparison(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.resource_tags` block of
@@ -1012,7 +1436,7 @@ final class Inspector2FilterFilterCriteriaResourceTags {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaResourceTagsComparison> comparison;
 
   final TfArg<String> key;
 
@@ -1025,6 +1449,18 @@ final class Inspector2FilterFilterCriteriaResourceTags {
   };
 }
 
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaResourceTagsComparison
+    implements TerraformEnum {
+  equals('EQUALS');
+
+  const Inspector2FilterFilterCriteriaResourceTagsComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `filter_criteria.resource_type` block of
 /// `aws_inspector2_filter` (derived from provider schema).
 @immutable
@@ -1034,7 +1470,7 @@ final class Inspector2FilterFilterCriteriaResourceType {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaResourceTypeComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1042,6 +1478,20 @@ final class Inspector2FilterFilterCriteriaResourceType {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaResourceTypeComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaResourceTypeComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.severity` block of
@@ -1053,7 +1503,7 @@ final class Inspector2FilterFilterCriteriaSeverity {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaSeverityComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1061,6 +1511,17 @@ final class Inspector2FilterFilterCriteriaSeverity {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaSeverityComparison implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaSeverityComparison(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.title` block of
@@ -1072,7 +1533,7 @@ final class Inspector2FilterFilterCriteriaTitle {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaTitleComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1080,6 +1541,17 @@ final class Inspector2FilterFilterCriteriaTitle {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaTitleComparison implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaTitleComparison(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.updated_at` block of
@@ -1110,7 +1582,8 @@ final class Inspector2FilterFilterCriteriaVendorSeverity {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaVendorSeverityComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1118,6 +1591,20 @@ final class Inspector2FilterFilterCriteriaVendorSeverity {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaVendorSeverityComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaVendorSeverityComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerability_id` block of
@@ -1129,7 +1616,8 @@ final class Inspector2FilterFilterCriteriaVulnerabilityId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaVulnerabilityIdComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1137,6 +1625,20 @@ final class Inspector2FilterFilterCriteriaVulnerabilityId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaVulnerabilityIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaVulnerabilityIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerability_source` block of
@@ -1148,7 +1650,8 @@ final class Inspector2FilterFilterCriteriaVulnerabilitySource {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaVulnerabilitySourceComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1156,6 +1659,20 @@ final class Inspector2FilterFilterCriteriaVulnerabilitySource {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaVulnerabilitySourceComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaVulnerabilitySourceComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages` block of
@@ -1221,7 +1738,10 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesArchitecture {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    Inspector2FilterFilterCriteriaVulnerablePackagesArchitectureComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -1229,6 +1749,20 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesArchitecture {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaVulnerablePackagesArchitectureComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaVulnerablePackagesArchitectureComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.epoch` block of
@@ -1259,7 +1793,10 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesFilePath {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    Inspector2FilterFilterCriteriaVulnerablePackagesFilePathComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -1267,6 +1804,20 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesFilePath {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaVulnerablePackagesFilePathComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaVulnerablePackagesFilePathComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.name` block of
@@ -1278,7 +1829,8 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesName {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaVulnerablePackagesNameComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1286,6 +1838,20 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaVulnerablePackagesNameComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaVulnerablePackagesNameComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.release` block of
@@ -1297,7 +1863,8 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesRelease {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaVulnerablePackagesReleaseComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1305,6 +1872,20 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesRelease {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaVulnerablePackagesReleaseComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaVulnerablePackagesReleaseComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.source_lambda_layer_arn` block of
@@ -1316,7 +1897,10 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArn
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArnComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -1324,6 +1908,20 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArn
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArnComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaVulnerablePackagesSourceLambdaLayerArnComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.source_layer_hash` block of
@@ -1335,7 +1933,10 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHash {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHashComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -1343,6 +1944,20 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHash {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHashComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaVulnerablePackagesSourceLayerHashComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria.vulnerable_packages.version` block of
@@ -1354,7 +1969,8 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesVersion {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<Inspector2FilterFilterCriteriaVulnerablePackagesVersionComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1364,13 +1980,27 @@ final class Inspector2FilterFilterCriteriaVulnerablePackagesVersion {
   };
 }
 
+/// `comparison` — derived from the provider schema description.
+enum Inspector2FilterFilterCriteriaVulnerablePackagesVersionComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS');
+
+  const Inspector2FilterFilterCriteriaVulnerablePackagesVersionComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_inspector2_filter`.
 final class AwsInspector2Filter extends Resource {
   static const String tfType = 'aws_inspector2_filter';
 
   AwsInspector2Filter({
     required super.localName,
-    required TfArg<String> action,
+    required TfArg<Inspector2FilterAction> action,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? reason,

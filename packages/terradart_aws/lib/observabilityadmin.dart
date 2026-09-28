@@ -12,16 +12,22 @@ export 'src/observabilityadmin/aws_observabilityadmin_centralization_rule_for_or
         ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationBackupConfiguration,
         ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogGroupNameConfiguration,
         ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfiguration,
+        ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionConflictResolutionStrategy,
+        ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionScope,
+        ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionStrategy,
         ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfiguration,
+        ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfigurationTagConflictResolutionStrategy,
         ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationMetricsConfiguration,
         ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationMetricsConfigurationBackupConfiguration,
         ObservabilityadminCentralizationRuleForOrganizationRuleSource,
         ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfiguration,
+        ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfigurationEncryptedLogGroupStrategy,
         ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceMetricsConfiguration;
 export 'src/observabilityadmin/aws_observabilityadmin_s3_table_integration.dart'
     show
         AwsObservabilityadminS3TableIntegration,
-        ObservabilityadminS3TableIntegrationEncryption;
+        ObservabilityadminS3TableIntegrationEncryption,
+        ObservabilityadminS3TableIntegrationEncryptionSseAlgorithm;
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_enrichment.dart'
     show AwsObservabilityadminTelemetryEnrichment;
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_evaluation.dart'
@@ -40,18 +46,30 @@ export 'src/observabilityadmin/aws_observabilityadmin_telemetry_rule.dart'
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationCloudtrailParameters,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationCloudtrailParametersAdvancedEventSelectors,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationCloudtrailParametersAdvancedEventSelectorsFieldSelectors,
+        ObservabilityadminTelemetryRuleRuleDestinationConfigurationDestinationType,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationElbLoadBalancerLoggingParameters,
+        ObservabilityadminTelemetryRuleRuleDestinationConfigurationElbLoadBalancerLoggingParametersOutputFormat,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationLogDeliveryParameters,
+        ObservabilityadminTelemetryRuleRuleDestinationConfigurationLogDeliveryParametersLogTypes,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationMskMonitoringParameters,
+        ObservabilityadminTelemetryRuleRuleDestinationConfigurationMskMonitoringParametersEnhancedMonitoring,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationVpcFlowLogParameters,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParameters,
+        ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersLogType,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersLoggingFilter,
+        ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersLoggingFilterDefaultBehavior,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersLoggingFilterFilters,
+        ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersBehavior,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditions,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionCondition,
+        ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionConditionAction,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsLabelNameCondition,
+        ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersRequirement,
         ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersRedactedFields,
-        ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersRedactedFieldsSingleHeader;
+        ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggingParametersRedactedFieldsSingleHeader,
+        ObservabilityadminTelemetryRuleRuleResourceType,
+        ObservabilityadminTelemetryRuleRuleTelemetrySourceTypes,
+        ObservabilityadminTelemetryRuleRuleTelemetryType;
 export 'src/observabilityadmin/aws_observabilityadmin_telemetry_rule_for_organization.dart'
     show
         AwsObservabilityadminTelemetryRuleForOrganization,
@@ -60,15 +78,27 @@ export 'src/observabilityadmin/aws_observabilityadmin_telemetry_rule_for_organiz
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParameters,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParametersAdvancedEventSelectors,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationCloudtrailParametersAdvancedEventSelectorsFieldSelectors,
+        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationDestinationType,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParameters,
+        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParametersOutputFormat,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParameters,
+        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParametersLogTypes,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParameters,
+        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParametersEnhancedMonitoring,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationVpcFlowLogParameters,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParameters,
+        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLogType,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilter,
+        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterDefaultBehavior,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFilters,
+        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersBehavior,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditions,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionCondition,
+        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionConditionAction,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsLabelNameCondition,
+        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersRequirement,
         ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersRedactedFields,
-        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersRedactedFieldsSingleHeader;
+        ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersRedactedFieldsSingleHeader,
+        ObservabilityadminTelemetryRuleForOrganizationRuleResourceType,
+        ObservabilityadminTelemetryRuleForOrganizationRuleTelemetrySourceTypes,
+        ObservabilityadminTelemetryRuleForOrganizationRuleTelemetryType;

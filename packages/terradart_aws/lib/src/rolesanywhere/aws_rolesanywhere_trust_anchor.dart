@@ -18,11 +18,11 @@ final class RolesanywhereTrustAnchorNotificationSettings {
     this.threshold,
   });
 
-  final TfArg<String>? channel;
+  final TfArg<RolesanywhereTrustAnchorNotificationSettingsChannel>? channel;
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? event;
+  final TfArg<RolesanywhereTrustAnchorNotificationSettingsEvent>? event;
 
   final TfArg<num>? threshold;
 
@@ -34,6 +34,29 @@ final class RolesanywhereTrustAnchorNotificationSettings {
   };
 }
 
+/// `channel` — derived from the provider schema description.
+enum RolesanywhereTrustAnchorNotificationSettingsChannel
+    implements TerraformEnum {
+  all('ALL');
+
+  const RolesanywhereTrustAnchorNotificationSettingsChannel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `event` — derived from the provider schema description.
+enum RolesanywhereTrustAnchorNotificationSettingsEvent
+    implements TerraformEnum {
+  caCertificateExpiry('CA_CERTIFICATE_EXPIRY'),
+  endEntityCertificateExpiry('END_ENTITY_CERTIFICATE_EXPIRY');
+
+  const RolesanywhereTrustAnchorNotificationSettingsEvent(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `source` block of
 /// `aws_rolesanywhere_trust_anchor` (derived from provider schema).
 @immutable
@@ -43,7 +66,7 @@ final class RolesanywhereTrustAnchorSource {
     required this.sourceData,
   });
 
-  final TfArg<String> sourceType;
+  final TfArg<RolesanywhereTrustAnchorSourceSourceType> sourceType;
 
   final RolesanywhereTrustAnchorSourceSourceData sourceData;
 
@@ -51,6 +74,17 @@ final class RolesanywhereTrustAnchorSource {
     'source_type': sourceType.toTfJson(),
     'source_data': sourceData.encode(),
   };
+}
+
+/// `source_type` — derived from the provider schema description.
+enum RolesanywhereTrustAnchorSourceSourceType implements TerraformEnum {
+  awsAcmPca('AWS_ACM_PCA'),
+  certificateBundle('CERTIFICATE_BUNDLE'),
+  selfSignedRepository('SELF_SIGNED_REPOSITORY');
+
+  const RolesanywhereTrustAnchorSourceSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source.source_data` block of

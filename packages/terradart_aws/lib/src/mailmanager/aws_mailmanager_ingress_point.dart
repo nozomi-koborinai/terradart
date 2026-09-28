@@ -9,6 +9,38 @@ const Set<String> _awsMailmanagerIngressPointSensitive = <String>{
   'ingress_point_configuration.smtp_password_wo',
 };
 
+/// Mailmanager Ingress Point Status To enum for `status_to_update`.
+enum MailmanagerIngressPointStatusToUpdate implements TerraformEnum {
+  active('ACTIVE'),
+  closed('CLOSED');
+
+  const MailmanagerIngressPointStatusToUpdate(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mailmanager Ingress Point Tls enum for `tls_policy`.
+enum MailmanagerIngressPointTlsPolicy implements TerraformEnum {
+  required('REQUIRED'),
+  optional('OPTIONAL'),
+  fips('FIPS');
+
+  const MailmanagerIngressPointTlsPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mailmanager Ingress Point enum for `type`.
+enum MailmanagerIngressPointType implements TerraformEnum {
+  open('OPEN'),
+  auth('AUTH'),
+  mtls('MTLS');
+
+  const MailmanagerIngressPointType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `ingress_point_configuration` block of
 /// `aws_mailmanager_ingress_point` (derived from provider schema).
 @immutable
@@ -139,9 +171,25 @@ final class MailmanagerIngressPointNetworkConfigurationPublicNetworkConfiguratio
     required this.ipType,
   });
 
-  final TfArg<String> ipType;
+  final TfArg<
+    MailmanagerIngressPointNetworkConfigurationPublicNetworkConfigurationIpType
+  >
+  ipType;
 
   Map<String, Object?> encode() => {'ip_type': ipType.toTfJson()};
+}
+
+/// `ip_type` — derived from the provider schema description.
+enum MailmanagerIngressPointNetworkConfigurationPublicNetworkConfigurationIpType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  dualStack('DUAL_STACK');
+
+  const MailmanagerIngressPointNetworkConfigurationPublicNetworkConfigurationIpType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_mailmanager_ingress_point`.
@@ -153,11 +201,11 @@ final class AwsMailmanagerIngressPoint extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> ruleSetId,
-    TfArg<String>? statusToUpdate,
+    TfArg<MailmanagerIngressPointStatusToUpdate>? statusToUpdate,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? tlsPolicy,
+    TfArg<MailmanagerIngressPointTlsPolicy>? tlsPolicy,
     required TfArg<String> trafficPolicyId,
-    required TfArg<String> type,
+    required TfArg<MailmanagerIngressPointType> type,
     List<MailmanagerIngressPointIngressPointConfiguration>?
     ingressPointConfiguration,
     List<MailmanagerIngressPointNetworkConfiguration>? networkConfiguration,

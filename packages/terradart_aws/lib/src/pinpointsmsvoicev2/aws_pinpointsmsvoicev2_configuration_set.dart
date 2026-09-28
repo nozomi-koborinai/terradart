@@ -6,13 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_pinpointsmsvoicev2_configuration_set`.
 const Set<String> _awsPinpointsmsvoicev2ConfigurationSetSensitive = <String>{};
 
+/// Pinpointsmsvoicev2 Configuration Set Default Message enum for `default_message_type`.
+enum Pinpointsmsvoicev2ConfigurationSetDefaultMessageType
+    implements TerraformEnum {
+  transactional('TRANSACTIONAL'),
+  promotional('PROMOTIONAL');
+
+  const Pinpointsmsvoicev2ConfigurationSetDefaultMessageType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_pinpointsmsvoicev2_configuration_set`.
 final class AwsPinpointsmsvoicev2ConfigurationSet extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_configuration_set';
 
   AwsPinpointsmsvoicev2ConfigurationSet({
     required super.localName,
-    TfArg<String>? defaultMessageType,
+    TfArg<Pinpointsmsvoicev2ConfigurationSetDefaultMessageType>?
+    defaultMessageType,
     TfArg<String>? defaultSenderId,
     required TfArg<String> name,
     TfArg<String>? region,

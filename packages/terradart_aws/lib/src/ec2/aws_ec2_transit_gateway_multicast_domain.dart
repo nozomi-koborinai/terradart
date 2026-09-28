@@ -6,16 +6,54 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_transit_gateway_multicast_domain`.
 const Set<String> _awsEc2TransitGatewayMulticastDomainSensitive = <String>{};
 
+/// Ec2 Transit Gateway Multicast Domain Auto Accept Shared enum for `auto_accept_shared_associations`.
+enum Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations
+    implements TerraformEnum {
+  enable('enable'),
+  disable('disable');
+
+  const Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Ec2 Transit Gateway Multicast Domain Igmpv2 enum for `igmpv2_support`.
+enum Ec2TransitGatewayMulticastDomainIgmpv2Support implements TerraformEnum {
+  enable('enable'),
+  disable('disable');
+
+  const Ec2TransitGatewayMulticastDomainIgmpv2Support(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ec2 Transit Gateway Multicast Domain Static Sources enum for `static_sources_support`.
+enum Ec2TransitGatewayMulticastDomainStaticSourcesSupport
+    implements TerraformEnum {
+  enable('enable'),
+  disable('disable');
+
+  const Ec2TransitGatewayMulticastDomainStaticSourcesSupport(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_transit_gateway_multicast_domain`.
 final class AwsEc2TransitGatewayMulticastDomain extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_multicast_domain';
 
   AwsEc2TransitGatewayMulticastDomain({
     required super.localName,
-    TfArg<String>? autoAcceptSharedAssociations,
-    TfArg<String>? igmpv2Support,
+    TfArg<Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations>?
+    autoAcceptSharedAssociations,
+    TfArg<Ec2TransitGatewayMulticastDomainIgmpv2Support>? igmpv2Support,
     TfArg<String>? region,
-    TfArg<String>? staticSourcesSupport,
+    TfArg<Ec2TransitGatewayMulticastDomainStaticSourcesSupport>?
+    staticSourcesSupport,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> transitGatewayId,
     super.lifecycle,

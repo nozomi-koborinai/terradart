@@ -22,21 +22,23 @@ final class TransferConnectorAs2Config {
     required this.signingAlgorithm,
   });
 
-  final TfArg<String> compression;
+  final TfArg<TransferConnectorAs2ConfigCompression> compression;
 
-  final TfArg<String> encryptionAlgorithm;
+  final TfArg<TransferConnectorAs2ConfigEncryptionAlgorithm>
+  encryptionAlgorithm;
 
   final TfArg<String> localProfileId;
 
-  final TfArg<String> mdnResponse;
+  final TfArg<TransferConnectorAs2ConfigMdnResponse> mdnResponse;
 
-  final TfArg<String>? mdnSigningAlgorithm;
+  final TfArg<TransferConnectorAs2ConfigMdnSigningAlgorithm>?
+  mdnSigningAlgorithm;
 
   final TfArg<String>? messageSubject;
 
   final TfArg<String> partnerProfileId;
 
-  final TfArg<String> signingAlgorithm;
+  final TfArg<TransferConnectorAs2ConfigSigningAlgorithm> signingAlgorithm;
 
   Map<String, Object?> encode() => {
     'compression': compression.toTfJson(),
@@ -49,6 +51,67 @@ final class TransferConnectorAs2Config {
     'partner_profile_id': partnerProfileId.toTfJson(),
     'signing_algorithm': signingAlgorithm.toTfJson(),
   };
+}
+
+/// `compression` — derived from the provider schema description.
+enum TransferConnectorAs2ConfigCompression implements TerraformEnum {
+  zlib('ZLIB'),
+  disabled('DISABLED');
+
+  const TransferConnectorAs2ConfigCompression(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `encryption_algorithm` — derived from the provider schema description.
+enum TransferConnectorAs2ConfigEncryptionAlgorithm implements TerraformEnum {
+  aes128Cbc('AES128_CBC'),
+  aes192Cbc('AES192_CBC'),
+  aes256Cbc('AES256_CBC'),
+  desEde3Cbc('DES_EDE3_CBC'),
+  none('NONE');
+
+  const TransferConnectorAs2ConfigEncryptionAlgorithm(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `mdn_response` — derived from the provider schema description.
+enum TransferConnectorAs2ConfigMdnResponse implements TerraformEnum {
+  sync('SYNC'),
+  none('NONE'),
+  async('ASYNC');
+
+  const TransferConnectorAs2ConfigMdnResponse(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `mdn_signing_algorithm` — derived from the provider schema description.
+enum TransferConnectorAs2ConfigMdnSigningAlgorithm implements TerraformEnum {
+  sha256('SHA256'),
+  sha384('SHA384'),
+  sha512('SHA512'),
+  sha1('SHA1'),
+  none('NONE'),
+  defaultCase('DEFAULT');
+
+  const TransferConnectorAs2ConfigMdnSigningAlgorithm(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `signing_algorithm` — derived from the provider schema description.
+enum TransferConnectorAs2ConfigSigningAlgorithm implements TerraformEnum {
+  sha256('SHA256'),
+  sha384('SHA384'),
+  sha512('SHA512'),
+  sha1('SHA1'),
+  none('NONE');
+
+  const TransferConnectorAs2ConfigSigningAlgorithm(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `egress_config` block of

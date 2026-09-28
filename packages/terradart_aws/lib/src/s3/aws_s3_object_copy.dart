@@ -12,6 +12,124 @@ const Set<String> _awsS3ObjectCopySensitive = <String>{
   'source_customer_key',
 };
 
+/// S3 Object Copy enum for `acl`.
+enum S3ObjectCopyAcl implements TerraformEnum {
+  private('private'),
+  publicRead('public-read'),
+  publicReadWrite('public-read-write'),
+  authenticatedRead('authenticated-read'),
+  awsExecRead('aws-exec-read'),
+  bucketOwnerRead('bucket-owner-read'),
+  bucketOwnerFullControl('bucket-owner-full-control');
+
+  const S3ObjectCopyAcl(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// S3 Object Copy Checksum enum for `checksum_algorithm`.
+enum S3ObjectCopyChecksumAlgorithm implements TerraformEnum {
+  crc32('CRC32'),
+  crc32c('CRC32C'),
+  sha1('SHA1'),
+  sha256('SHA256'),
+  crc64nvme('CRC64NVME'),
+  sha512('SHA512'),
+  md5('MD5'),
+  xxhash64('XXHASH64'),
+  xxhash3('XXHASH3'),
+  xxhash128('XXHASH128');
+
+  const S3ObjectCopyChecksumAlgorithm(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// S3 Object Copy Metadata enum for `metadata_directive`.
+enum S3ObjectCopyMetadataDirective implements TerraformEnum {
+  copy('COPY'),
+  replace('REPLACE');
+
+  const S3ObjectCopyMetadataDirective(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// S3 Object Copy Object Lock Legal Hold enum for `object_lock_legal_hold_status`.
+enum S3ObjectCopyObjectLockLegalHoldStatus implements TerraformEnum {
+  on('ON'),
+  off('OFF');
+
+  const S3ObjectCopyObjectLockLegalHoldStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// S3 Object Copy Object Lock enum for `object_lock_mode`.
+enum S3ObjectCopyObjectLockMode implements TerraformEnum {
+  governance('GOVERNANCE'),
+  compliance('COMPLIANCE');
+
+  const S3ObjectCopyObjectLockMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// S3 Object Copy Request enum for `request_payer`.
+enum S3ObjectCopyRequestPayer implements TerraformEnum {
+  requester('requester');
+
+  const S3ObjectCopyRequestPayer(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// S3 Object Copy Server Side enum for `server_side_encryption`.
+enum S3ObjectCopyServerSideEncryption implements TerraformEnum {
+  aes256('AES256'),
+  awsFsx('aws:fsx'),
+  awsBackup('aws:backup'),
+  awsKms('aws:kms'),
+  awsKmsDsse('aws:kms:dsse');
+
+  const S3ObjectCopyServerSideEncryption(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// S3 Object Copy Storage enum for `storage_class`.
+enum S3ObjectCopyStorageClass implements TerraformEnum {
+  standard('STANDARD'),
+  reducedRedundancy('REDUCED_REDUNDANCY'),
+  glacier('GLACIER'),
+  standardIa('STANDARD_IA'),
+  onezoneIa('ONEZONE_IA'),
+  intelligentTiering('INTELLIGENT_TIERING'),
+  deepArchive('DEEP_ARCHIVE'),
+  outposts('OUTPOSTS'),
+  glacierIr('GLACIER_IR'),
+  snow('SNOW'),
+  expressOnezone('EXPRESS_ONEZONE'),
+  fsxOpenzfs('FSX_OPENZFS'),
+  fsxOntap('FSX_ONTAP'),
+  awsBackupWarm('AWS_BACKUP_WARM'),
+  awsBackupLowCostWarm('AWS_BACKUP_LOW_COST_WARM');
+
+  const S3ObjectCopyStorageClass(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// S3 Object Copy Tagging enum for `tagging_directive`.
+enum S3ObjectCopyTaggingDirective implements TerraformEnum {
+  copy('COPY'),
+  replace('REPLACE');
+
+  const S3ObjectCopyTaggingDirective(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `grant` block of
 /// `aws_s3_object_copy` (derived from provider schema).
 @immutable
@@ -28,19 +146,42 @@ final class S3ObjectCopyGrant {
 
   final TfArg<String>? id;
 
-  final TfArg<List<Object?>> permissions;
+  final List<TfArg<S3ObjectCopyGrantPermissions>> permissions;
 
-  final TfArg<String> type;
+  final TfArg<S3ObjectCopyGrantType> type;
 
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
     if (email != null) 'email': email!.toTfJson(),
     if (id != null) 'id': id!.toTfJson(),
-    'permissions': permissions.toTfJson(),
+    'permissions': [for (final e in permissions) e.toTfJson()],
     'type': type.toTfJson(),
     if (uri != null) 'uri': uri!.toTfJson(),
   };
+}
+
+/// `permissions` — derived from the provider schema description.
+enum S3ObjectCopyGrantPermissions implements TerraformEnum {
+  fullControl('FULL_CONTROL'),
+  read('READ'),
+  readAcp('READ_ACP'),
+  writeAcp('WRITE_ACP');
+
+  const S3ObjectCopyGrantPermissions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum S3ObjectCopyGrantType implements TerraformEnum {
+  canonicaluser('CanonicalUser'),
+  amazoncustomerbyemail('AmazonCustomerByEmail'),
+  group('Group');
+
+  const S3ObjectCopyGrantType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `override_provider` block of
@@ -73,11 +214,11 @@ final class AwsS3ObjectCopy extends Resource {
 
   AwsS3ObjectCopy({
     required super.localName,
-    TfArg<String>? acl,
+    TfArg<S3ObjectCopyAcl>? acl,
     required TfArg<String> bucket,
     TfArg<bool>? bucketKeyEnabled,
     TfArg<String>? cacheControl,
-    TfArg<String>? checksumAlgorithm,
+    TfArg<S3ObjectCopyChecksumAlgorithm>? checksumAlgorithm,
     TfArg<String>? contentDisposition,
     TfArg<String>? contentEncoding,
     TfArg<String>? contentLanguage,
@@ -97,19 +238,19 @@ final class AwsS3ObjectCopy extends Resource {
     TfArg<String>? kmsEncryptionContext,
     TfArg<String>? kmsKeyId,
     TfArg<Map<String, String>>? metadata,
-    TfArg<String>? metadataDirective,
-    TfArg<String>? objectLockLegalHoldStatus,
-    TfArg<String>? objectLockMode,
+    TfArg<S3ObjectCopyMetadataDirective>? metadataDirective,
+    TfArg<S3ObjectCopyObjectLockLegalHoldStatus>? objectLockLegalHoldStatus,
+    TfArg<S3ObjectCopyObjectLockMode>? objectLockMode,
     TfArg<String>? objectLockRetainUntilDate,
     TfArg<String>? region,
-    TfArg<String>? requestPayer,
-    TfArg<String>? serverSideEncryption,
+    TfArg<S3ObjectCopyRequestPayer>? requestPayer,
+    TfArg<S3ObjectCopyServerSideEncryption>? serverSideEncryption,
     required TfArg<String> source,
     TfArg<String>? sourceCustomerAlgorithm,
     TfArg<String>? sourceCustomerKey,
     TfArg<String>? sourceCustomerKeyMd5,
-    TfArg<String>? storageClass,
-    TfArg<String>? taggingDirective,
+    TfArg<S3ObjectCopyStorageClass>? storageClass,
+    TfArg<S3ObjectCopyTaggingDirective>? taggingDirective,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? websiteRedirect,
     List<S3ObjectCopyGrant>? grant,

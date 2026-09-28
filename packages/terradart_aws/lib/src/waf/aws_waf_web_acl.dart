@@ -88,7 +88,7 @@ final class WafWebAclRules {
 
   final TfArg<String> ruleId;
 
-  final TfArg<String>? type;
+  final TfArg<WafWebAclRulesType>? type;
 
   final WafWebAclRulesAction? action;
 
@@ -101,6 +101,17 @@ final class WafWebAclRules {
     if (action != null) 'action': action!.encode(),
     if (overrideAction != null) 'override_action': overrideAction!.encode(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum WafWebAclRulesType implements TerraformEnum {
+  regular('REGULAR'),
+  rateBased('RATE_BASED'),
+  group('GROUP');
+
+  const WafWebAclRulesType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action` block of

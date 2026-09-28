@@ -7,13 +7,34 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_acmpca_certificate`.
 const Set<String> _awsAcmpcaCertificateSensitive = <String>{};
 
+/// Acmpca Certificate Signing enum for `signing_algorithm`.
+enum AcmpcaCertificateSigningAlgorithm implements TerraformEnum {
+  sha256withecdsa('SHA256WITHECDSA'),
+  sha384withecdsa('SHA384WITHECDSA'),
+  sha512withecdsa('SHA512WITHECDSA'),
+  sha256withrsa('SHA256WITHRSA'),
+  sha384withrsa('SHA384WITHRSA'),
+  sha512withrsa('SHA512WITHRSA'),
+  sha256withrsaPss('SHA256WITHRSA_PSS'),
+  sha384withrsaPss('SHA384WITHRSA_PSS'),
+  sha512withrsaPss('SHA512WITHRSA_PSS'),
+  sm3withsm2('SM3WITHSM2'),
+  mlDsa44('ML_DSA_44'),
+  mlDsa65('ML_DSA_65'),
+  mlDsa87('ML_DSA_87');
+
+  const AcmpcaCertificateSigningAlgorithm(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `validity` block of
 /// `aws_acmpca_certificate` (derived from provider schema).
 @immutable
 final class AcmpcaCertificateValidity {
   const AcmpcaCertificateValidity({required this.type, required this.value});
 
-  final TfArg<String> type;
+  final TfArg<AcmpcaCertificateValidityType> type;
 
   final TfArg<String> value;
 
@@ -21,6 +42,19 @@ final class AcmpcaCertificateValidity {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum AcmpcaCertificateValidityType implements TerraformEnum {
+  endDate('END_DATE'),
+  absolute('ABSOLUTE'),
+  days('DAYS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const AcmpcaCertificateValidityType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_acmpca_certificate`.
@@ -33,7 +67,7 @@ final class AwsAcmpcaCertificate extends Resource {
     required TfArg<String> certificateAuthorityArn,
     required TfArg<String> certificateSigningRequest,
     TfArg<String>? region,
-    required TfArg<String> signingAlgorithm,
+    required TfArg<AcmpcaCertificateSigningAlgorithm> signingAlgorithm,
     TfArg<String>? templateArn,
     required AcmpcaCertificateValidity validity,
     super.lifecycle,

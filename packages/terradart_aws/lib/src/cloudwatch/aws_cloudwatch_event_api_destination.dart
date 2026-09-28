@@ -6,6 +6,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_event_api_destination`.
 const Set<String> _awsCloudwatchEventApiDestinationSensitive = <String>{};
 
+/// Cloudwatch Event Api Destination Http enum for `http_method`.
+enum CloudwatchEventApiDestinationHttpMethod implements TerraformEnum {
+  post('POST'),
+  get('GET'),
+  head('HEAD'),
+  options('OPTIONS'),
+  put('PUT'),
+  patch('PATCH'),
+  delete('DELETE');
+
+  const CloudwatchEventApiDestinationHttpMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudwatch_event_api_destination`.
 final class AwsCloudwatchEventApiDestination extends Resource {
   static const String tfType = 'aws_cloudwatch_event_api_destination';
@@ -14,7 +29,7 @@ final class AwsCloudwatchEventApiDestination extends Resource {
     required super.localName,
     required TfArg<String> connectionArn,
     TfArg<String>? description,
-    required TfArg<String> httpMethod,
+    required TfArg<CloudwatchEventApiDestinationHttpMethod> httpMethod,
     required TfArg<String> invocationEndpoint,
     TfArg<num>? invocationRateLimitPerSecond,
     required TfArg<String> name,

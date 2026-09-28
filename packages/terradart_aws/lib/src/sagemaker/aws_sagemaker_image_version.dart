@@ -6,6 +6,39 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_sagemaker_image_version`.
 const Set<String> _awsSagemakerImageVersionSensitive = <String>{};
 
+/// Sagemaker Image Version Job enum for `job_type`.
+enum SagemakerImageVersionJobType implements TerraformEnum {
+  training('TRAINING'),
+  inference('INFERENCE'),
+  notebookKernel('NOTEBOOK_KERNEL');
+
+  const SagemakerImageVersionJobType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Sagemaker Image Version enum for `processor`.
+enum SagemakerImageVersionProcessor implements TerraformEnum {
+  cpu('CPU'),
+  gpu('GPU');
+
+  const SagemakerImageVersionProcessor(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Sagemaker Image Version Vendor enum for `vendor_guidance`.
+enum SagemakerImageVersionVendorGuidance implements TerraformEnum {
+  notProvided('NOT_PROVIDED'),
+  stable('STABLE'),
+  toBeArchived('TO_BE_ARCHIVED'),
+  archived('ARCHIVED');
+
+  const SagemakerImageVersionVendorGuidance(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_sagemaker_image_version`.
 final class AwsSagemakerImageVersion extends Resource {
   static const String tfType = 'aws_sagemaker_image_version';
@@ -16,13 +49,13 @@ final class AwsSagemakerImageVersion extends Resource {
     required TfArg<String> baseImage,
     TfArg<bool>? horovod,
     required TfArg<String> imageName,
-    TfArg<String>? jobType,
+    TfArg<SagemakerImageVersionJobType>? jobType,
     TfArg<String>? mlFramework,
-    TfArg<String>? processor,
+    TfArg<SagemakerImageVersionProcessor>? processor,
     TfArg<String>? programmingLang,
     TfArg<String>? region,
     TfArg<String>? releaseNotes,
-    TfArg<String>? vendorGuidance,
+    TfArg<SagemakerImageVersionVendorGuidance>? vendorGuidance,
     super.lifecycle,
     super.dependsOn,
     super.provider,

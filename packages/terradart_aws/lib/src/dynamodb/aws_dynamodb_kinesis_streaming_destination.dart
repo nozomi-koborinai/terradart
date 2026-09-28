@@ -6,13 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dynamodb_kinesis_streaming_destination`.
 const Set<String> _awsDynamodbKinesisStreamingDestinationSensitive = <String>{};
 
+/// Dynamodb Kinesis Streaming Destination Approximate Creation Date Time enum for `approximate_creation_date_time_precision`.
+enum DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision
+    implements TerraformEnum {
+  millisecond('MILLISECOND'),
+  microsecond('MICROSECOND');
+
+  const DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dynamodb_kinesis_streaming_destination`.
 final class AwsDynamodbKinesisStreamingDestination extends Resource {
   static const String tfType = 'aws_dynamodb_kinesis_streaming_destination';
 
   AwsDynamodbKinesisStreamingDestination({
     required super.localName,
-    TfArg<String>? approximateCreationDateTimePrecision,
+    TfArg<
+      DynamodbKinesisStreamingDestinationApproximateCreationDateTimePrecision
+    >?
+    approximateCreationDateTimePrecision,
     TfArg<String>? region,
     required TfArg<String> streamArn,
     required TfArg<String> tableName,

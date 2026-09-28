@@ -39,15 +39,49 @@ final class NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinatio
 
   final TfArg<Map<String, String>> logDestination;
 
-  final TfArg<String> logDestinationType;
+  final TfArg<
+    NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogDestinationType
+  >
+  logDestinationType;
 
-  final TfArg<String> logType;
+  final TfArg<
+    NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogType
+  >
+  logType;
 
   Map<String, Object?> encode() => {
     'log_destination': logDestination.toTfJson(),
     'log_destination_type': logDestinationType.toTfJson(),
     'log_type': logType.toTfJson(),
   };
+}
+
+/// `log_destination_type` — derived from the provider schema description.
+enum NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogDestinationType
+    implements TerraformEnum {
+  s3('S3'),
+  cloudwatchlogs('CloudWatchLogs'),
+  kinesisdatafirehose('KinesisDataFirehose');
+
+  const NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogDestinationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `log_type` — derived from the provider schema description.
+enum NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogType
+    implements TerraformEnum {
+  alert('ALERT'),
+  flow('FLOW'),
+  tls('TLS');
+
+  const NetworkfirewallLoggingConfigurationLoggingConfigurationLogDestinationConfigLogType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_networkfirewall_logging_configuration`.

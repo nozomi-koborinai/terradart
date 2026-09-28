@@ -8,6 +8,7 @@ export 'src/synthetics/aws_synthetics_canary.dart'
         AwsSyntheticsCanary,
         SyntheticsCanaryArtifactConfig,
         SyntheticsCanaryArtifactConfigS3Encryption,
+        SyntheticsCanaryArtifactConfigS3EncryptionEncryptionMode,
         SyntheticsCanaryRunConfig,
         SyntheticsCanarySchedule,
         SyntheticsCanaryScheduleRetryConfig,

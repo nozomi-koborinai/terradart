@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_network_acl_rule`.
 const Set<String> _awsNetworkAclRuleSensitive = <String>{};
 
+/// Network Acl Rule Rule enum for `rule_action`.
+enum NetworkAclRuleRuleAction implements TerraformEnum {
+  allow('allow'),
+  deny('deny');
+
+  const NetworkAclRuleRuleAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_network_acl_rule`.
 final class AwsNetworkAclRule extends Resource {
   static const String tfType = 'aws_network_acl_rule';
@@ -21,7 +31,7 @@ final class AwsNetworkAclRule extends Resource {
     required TfArg<String> networkAclId,
     required TfArg<String> protocol,
     TfArg<String>? region,
-    required TfArg<String> ruleAction,
+    required TfArg<NetworkAclRuleRuleAction> ruleAction,
     required TfArg<num> ruleNumber,
     TfArg<num>? toPort,
     super.lifecycle,

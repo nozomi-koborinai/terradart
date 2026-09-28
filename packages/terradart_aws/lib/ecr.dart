@@ -3,7 +3,8 @@
 /// AWS Elastic Container Registry (ECR).
 library;
 
-export 'src/ecr/aws_ecr_account_setting.dart' show AwsEcrAccountSetting;
+export 'src/ecr/aws_ecr_account_setting.dart'
+    show AwsEcrAccountSetting, EcrAccountSettingName, EcrAccountSettingValue;
 export 'src/ecr/aws_ecr_lifecycle_policy.dart' show AwsEcrLifecyclePolicy;
 export 'src/ecr/aws_ecr_pull_through_cache_rule.dart'
     show AwsEcrPullThroughCacheRule;
@@ -14,23 +15,34 @@ export 'src/ecr/aws_ecr_registry_scanning_configuration.dart'
     show
         AwsEcrRegistryScanningConfiguration,
         EcrRegistryScanningConfigurationRule,
-        EcrRegistryScanningConfigurationRuleRepositoryFilter;
+        EcrRegistryScanningConfigurationRuleRepositoryFilter,
+        EcrRegistryScanningConfigurationRuleRepositoryFilterFilterType,
+        EcrRegistryScanningConfigurationRuleScanFrequency,
+        EcrRegistryScanningConfigurationScanType;
 export 'src/ecr/aws_ecr_replication_configuration.dart'
     show
         AwsEcrReplicationConfiguration,
         EcrReplicationConfigurationReplicationConfiguration,
         EcrReplicationConfigurationReplicationConfigurationRule,
         EcrReplicationConfigurationReplicationConfigurationRuleDestination,
-        EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilter;
+        EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilter,
+        EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilterFilterType;
 export 'src/ecr/aws_ecr_repository.dart'
     show
         AwsEcrRepository,
         EcrRepositoryEncryptionConfiguration,
+        EcrRepositoryEncryptionConfigurationEncryptionType,
         EcrRepositoryImageScanningConfiguration,
-        EcrRepositoryImageTagMutabilityExclusionFilter;
+        EcrRepositoryImageTagMutability,
+        EcrRepositoryImageTagMutabilityExclusionFilter,
+        EcrRepositoryImageTagMutabilityExclusionFilterFilterType;
 export 'src/ecr/aws_ecr_repository_creation_template.dart'
     show
         AwsEcrRepositoryCreationTemplate,
+        EcrRepositoryCreationTemplateAppliedFor,
         EcrRepositoryCreationTemplateEncryptionConfiguration,
-        EcrRepositoryCreationTemplateImageTagMutabilityExclusionFilter;
+        EcrRepositoryCreationTemplateEncryptionConfigurationEncryptionType,
+        EcrRepositoryCreationTemplateImageTagMutability,
+        EcrRepositoryCreationTemplateImageTagMutabilityExclusionFilter,
+        EcrRepositoryCreationTemplateImageTagMutabilityExclusionFilterFilterType;
 export 'src/ecr/aws_ecr_repository_policy.dart' show AwsEcrRepositoryPolicy;

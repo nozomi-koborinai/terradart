@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lightsail_lb`.
 const Set<String> _awsLightsailLbSensitive = <String>{};
 
+/// Lightsail Lb Ip Address enum for `ip_address_type`.
+enum LightsailLbIpAddressType implements TerraformEnum {
+  dualstack('dualstack'),
+  ipv4('ipv4');
+
+  const LightsailLbIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_lightsail_lb`.
 final class AwsLightsailLb extends Resource {
   static const String tfType = 'aws_lightsail_lb';
@@ -14,7 +24,7 @@ final class AwsLightsailLb extends Resource {
     required super.localName,
     TfArg<String>? healthCheckPath,
     required TfArg<num> instancePort,
-    TfArg<String>? ipAddressType,
+    TfArg<LightsailLbIpAddressType>? ipAddressType,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rds_custom_db_engine_version`.
 const Set<String> _awsRdsCustomDbEngineVersionSensitive = <String>{};
 
+/// Rds Custom Db Engine Version enum for `status`.
+enum RdsCustomDbEngineVersionStatus implements TerraformEnum {
+  available('available'),
+  inactive('inactive'),
+  inactiveExceptRestore('inactive-except-restore');
+
+  const RdsCustomDbEngineVersionStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_rds_custom_db_engine_version`.
 final class AwsRdsCustomDbEngineVersion extends Resource {
   static const String tfType = 'aws_rds_custom_db_engine_version';
@@ -23,7 +34,7 @@ final class AwsRdsCustomDbEngineVersion extends Resource {
     TfArg<String>? manifestHash,
     TfArg<String>? region,
     TfArg<String>? sourceImageId,
-    TfArg<String>? status,
+    TfArg<RdsCustomDbEngineVersionStatus>? status,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

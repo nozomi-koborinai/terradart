@@ -157,7 +157,8 @@ final class GlueCrawlerJdbcTarget {
 
   final TfArg<String> connectionName;
 
-  final TfArg<List<Object?>>? enableAdditionalMetadata;
+  final List<TfArg<GlueCrawlerJdbcTargetEnableAdditionalMetadata>>?
+  enableAdditionalMetadata;
 
   final TfArg<List<Object?>>? exclusions;
 
@@ -166,10 +167,22 @@ final class GlueCrawlerJdbcTarget {
   Map<String, Object?> encode() => {
     'connection_name': connectionName.toTfJson(),
     if (enableAdditionalMetadata != null)
-      'enable_additional_metadata': enableAdditionalMetadata!.toTfJson(),
+      'enable_additional_metadata': [
+        for (final e in enableAdditionalMetadata!) e.toTfJson(),
+      ],
     if (exclusions != null) 'exclusions': exclusions!.toTfJson(),
     'path': path.toTfJson(),
   };
+}
+
+/// `enable_additional_metadata` — derived from the provider schema description.
+enum GlueCrawlerJdbcTargetEnableAdditionalMetadata implements TerraformEnum {
+  comments('COMMENTS'),
+  rawtypes('RAWTYPES');
+
+  const GlueCrawlerJdbcTargetEnableAdditionalMetadata(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `lake_formation_configuration` block of
@@ -198,12 +211,26 @@ final class GlueCrawlerLakeFormationConfiguration {
 final class GlueCrawlerLineageConfiguration {
   const GlueCrawlerLineageConfiguration({this.crawlerLineageSettings});
 
-  final TfArg<String>? crawlerLineageSettings;
+  final TfArg<GlueCrawlerLineageConfigurationCrawlerLineageSettings>?
+  crawlerLineageSettings;
 
   Map<String, Object?> encode() => {
     if (crawlerLineageSettings != null)
       'crawler_lineage_settings': crawlerLineageSettings!.toTfJson(),
   };
+}
+
+/// `crawler_lineage_settings` — derived from the provider schema description.
+enum GlueCrawlerLineageConfigurationCrawlerLineageSettings
+    implements TerraformEnum {
+  enable('ENABLE'),
+  disable('DISABLE');
+
+  const GlueCrawlerLineageConfigurationCrawlerLineageSettings(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `mongodb_target` block of
@@ -235,12 +262,23 @@ final class GlueCrawlerMongodbTarget {
 final class GlueCrawlerRecrawlPolicy {
   const GlueCrawlerRecrawlPolicy({this.recrawlBehavior});
 
-  final TfArg<String>? recrawlBehavior;
+  final TfArg<GlueCrawlerRecrawlPolicyRecrawlBehavior>? recrawlBehavior;
 
   Map<String, Object?> encode() => {
     if (recrawlBehavior != null)
       'recrawl_behavior': recrawlBehavior!.toTfJson(),
   };
+}
+
+/// `recrawl_behavior` — derived from the provider schema description.
+enum GlueCrawlerRecrawlPolicyRecrawlBehavior implements TerraformEnum {
+  crawlEverything('CRAWL_EVERYTHING'),
+  crawlNewFoldersOnly('CRAWL_NEW_FOLDERS_ONLY'),
+  crawlEventMode('CRAWL_EVENT_MODE');
+
+  const GlueCrawlerRecrawlPolicyRecrawlBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `s3_target` block of
@@ -288,14 +326,35 @@ final class GlueCrawlerSchemaChangePolicy {
     this.updateBehavior,
   });
 
-  final TfArg<String>? deleteBehavior;
+  final TfArg<GlueCrawlerSchemaChangePolicyDeleteBehavior>? deleteBehavior;
 
-  final TfArg<String>? updateBehavior;
+  final TfArg<GlueCrawlerSchemaChangePolicyUpdateBehavior>? updateBehavior;
 
   Map<String, Object?> encode() => {
     if (deleteBehavior != null) 'delete_behavior': deleteBehavior!.toTfJson(),
     if (updateBehavior != null) 'update_behavior': updateBehavior!.toTfJson(),
   };
+}
+
+/// `delete_behavior` — derived from the provider schema description.
+enum GlueCrawlerSchemaChangePolicyDeleteBehavior implements TerraformEnum {
+  log('LOG'),
+  deleteFromDatabase('DELETE_FROM_DATABASE'),
+  deprecateInDatabase('DEPRECATE_IN_DATABASE');
+
+  const GlueCrawlerSchemaChangePolicyDeleteBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `update_behavior` — derived from the provider schema description.
+enum GlueCrawlerSchemaChangePolicyUpdateBehavior implements TerraformEnum {
+  log('LOG'),
+  updateInDatabase('UPDATE_IN_DATABASE');
+
+  const GlueCrawlerSchemaChangePolicyUpdateBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_glue_crawler`.

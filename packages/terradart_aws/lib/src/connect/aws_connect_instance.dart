@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_connect_instance`.
 const Set<String> _awsConnectInstanceSensitive = <String>{};
 
+/// Connect Instance Identity Management enum for `identity_management_type`.
+enum ConnectInstanceIdentityManagementType implements TerraformEnum {
+  saml('SAML'),
+  connectManaged('CONNECT_MANAGED'),
+  existingDirectory('EXISTING_DIRECTORY');
+
+  const ConnectInstanceIdentityManagementType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_connect_instance`.
 final class AwsConnectInstance extends Resource {
   static const String tfType = 'aws_connect_instance';
@@ -17,7 +28,8 @@ final class AwsConnectInstance extends Resource {
     TfArg<bool>? contactLensEnabled,
     TfArg<String>? directoryId,
     TfArg<bool>? earlyMediaEnabled,
-    required TfArg<String> identityManagementType,
+    required TfArg<ConnectInstanceIdentityManagementType>
+    identityManagementType,
     required TfArg<bool> inboundCallsEnabled,
     TfArg<String>? instanceAlias,
     TfArg<bool>? multiPartyConferenceEnabled,

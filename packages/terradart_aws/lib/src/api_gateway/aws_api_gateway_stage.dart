@@ -7,6 +7,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_api_gateway_stage`.
 const Set<String> _awsApiGatewayStageSensitive = <String>{};
 
+/// Api Gateway Stage Cache Cluster enum for `cache_cluster_size`.
+enum ApiGatewayStageCacheClusterSize implements TerraformEnum {
+  v0p5('0.5'),
+  v1p6('1.6'),
+  v6p1('6.1'),
+  v13p5('13.5'),
+  v28p4('28.4'),
+  v58p2('58.2'),
+  v118('118'),
+  v237('237');
+
+  const ApiGatewayStageCacheClusterSize(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `access_log_settings` block of
 /// `aws_api_gateway_stage` (derived from provider schema).
 @immutable
@@ -61,7 +77,7 @@ final class AwsApiGatewayStage extends Resource {
   AwsApiGatewayStage({
     required super.localName,
     TfArg<bool>? cacheClusterEnabled,
-    TfArg<String>? cacheClusterSize,
+    TfArg<ApiGatewayStageCacheClusterSize>? cacheClusterSize,
     TfArg<String>? clientCertificateId,
     required TfArg<String> deploymentId,
     TfArg<String>? description,

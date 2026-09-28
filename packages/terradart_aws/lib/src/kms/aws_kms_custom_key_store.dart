@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_kms_custom_key_store`.
 const Set<String> _awsKmsCustomKeyStoreSensitive = <String>{};
 
+/// Kms Custom Key Store Custom Key Store enum for `custom_key_store_type`.
+enum KmsCustomKeyStoreCustomKeyStoreType implements TerraformEnum {
+  awsCloudhsm('AWS_CLOUDHSM'),
+  externalKeyStore('EXTERNAL_KEY_STORE');
+
+  const KmsCustomKeyStoreCustomKeyStoreType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Kms Custom Key Store Xks Proxy enum for `xks_proxy_connectivity`.
+enum KmsCustomKeyStoreXksProxyConnectivity implements TerraformEnum {
+  publicEndpoint('PUBLIC_ENDPOINT'),
+  vpcEndpointService('VPC_ENDPOINT_SERVICE');
+
+  const KmsCustomKeyStoreXksProxyConnectivity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `xks_proxy_authentication_credential` block of
 /// `aws_kms_custom_key_store` (derived from provider schema).
 @immutable
@@ -34,11 +54,11 @@ final class AwsKmsCustomKeyStore extends Resource {
     required super.localName,
     TfArg<String>? cloudHsmClusterId,
     required TfArg<String> customKeyStoreName,
-    TfArg<String>? customKeyStoreType,
+    TfArg<KmsCustomKeyStoreCustomKeyStoreType>? customKeyStoreType,
     TfArg<String>? keyStorePassword,
     TfArg<String>? region,
     TfArg<String>? trustAnchorCertificate,
-    TfArg<String>? xksProxyConnectivity,
+    TfArg<KmsCustomKeyStoreXksProxyConnectivity>? xksProxyConnectivity,
     TfArg<String>? xksProxyUriEndpoint,
     TfArg<String>? xksProxyUriPath,
     TfArg<String>? xksProxyVpcEndpointServiceName,

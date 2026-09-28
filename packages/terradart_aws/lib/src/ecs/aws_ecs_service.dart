@@ -7,6 +7,49 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ecs_service`.
 const Set<String> _awsEcsServiceSensitive = <String>{};
 
+/// Ecs Service Availability Zone enum for `availability_zone_rebalancing`.
+enum EcsServiceAvailabilityZoneRebalancing implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const EcsServiceAvailabilityZoneRebalancing(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ecs Service Launch enum for `launch_type`.
+enum EcsServiceLaunchType implements TerraformEnum {
+  ec2('EC2'),
+  fargate('FARGATE'),
+  external('EXTERNAL'),
+  managedInstances('MANAGED_INSTANCES');
+
+  const EcsServiceLaunchType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ecs Service Propagate enum for `propagate_tags`.
+enum EcsServicePropagateTags implements TerraformEnum {
+  taskDefinition('TASK_DEFINITION'),
+  service('SERVICE'),
+  none('NONE');
+
+  const EcsServicePropagateTags(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ecs Service Scheduling enum for `scheduling_strategy`.
+enum EcsServiceSchedulingStrategy implements TerraformEnum {
+  replica('REPLICA'),
+  daemon('DAEMON');
+
+  const EcsServiceSchedulingStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `alarms` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
@@ -86,7 +129,7 @@ final class EcsServiceDeploymentConfiguration {
 
   final TfArg<String>? bakeTimeInMinutes;
 
-  final TfArg<String>? strategy;
+  final TfArg<EcsServiceDeploymentConfigurationStrategy>? strategy;
 
   final EcsServiceDeploymentConfigurationCanaryConfiguration?
   canaryConfiguration;
@@ -107,6 +150,18 @@ final class EcsServiceDeploymentConfiguration {
     if (linearConfiguration != null)
       'linear_configuration': linearConfiguration!.encode(),
   };
+}
+
+/// `strategy` — derived from the provider schema description.
+enum EcsServiceDeploymentConfigurationStrategy implements TerraformEnum {
+  rolling('ROLLING'),
+  blueGreen('BLUE_GREEN'),
+  linear('LINEAR'),
+  canary('CANARY');
+
+  const EcsServiceDeploymentConfigurationStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `deployment_configuration.canary_configuration` block of
@@ -146,11 +201,15 @@ final class EcsServiceDeploymentConfigurationLifecycleHook {
 
   final TfArg<String>? hookTargetArn;
 
-  final TfArg<List<Object?>> lifecycleStages;
+  final List<
+    TfArg<EcsServiceDeploymentConfigurationLifecycleHookLifecycleStages>
+  >
+  lifecycleStages;
 
   final TfArg<String>? roleArn;
 
-  final TfArg<String>? targetType;
+  final TfArg<EcsServiceDeploymentConfigurationLifecycleHookTargetType>?
+  targetType;
 
   final EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfiguration?
   timeoutConfiguration;
@@ -158,12 +217,44 @@ final class EcsServiceDeploymentConfigurationLifecycleHook {
   Map<String, Object?> encode() => {
     if (hookDetails != null) 'hook_details': hookDetails!.toTfJson(),
     if (hookTargetArn != null) 'hook_target_arn': hookTargetArn!.toTfJson(),
-    'lifecycle_stages': lifecycleStages.toTfJson(),
+    'lifecycle_stages': [for (final e in lifecycleStages) e.toTfJson()],
     if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
     if (targetType != null) 'target_type': targetType!.toTfJson(),
     if (timeoutConfiguration != null)
       'timeout_configuration': timeoutConfiguration!.encode(),
   };
+}
+
+/// `lifecycle_stages` — derived from the provider schema description.
+enum EcsServiceDeploymentConfigurationLifecycleHookLifecycleStages
+    implements TerraformEnum {
+  reconcileService('RECONCILE_SERVICE'),
+  preScaleUp('PRE_SCALE_UP'),
+  postScaleUp('POST_SCALE_UP'),
+  testTrafficShift('TEST_TRAFFIC_SHIFT'),
+  postTestTrafficShift('POST_TEST_TRAFFIC_SHIFT'),
+  preProductionTrafficShift('PRE_PRODUCTION_TRAFFIC_SHIFT'),
+  productionTrafficShift('PRODUCTION_TRAFFIC_SHIFT'),
+  postProductionTrafficShift('POST_PRODUCTION_TRAFFIC_SHIFT');
+
+  const EcsServiceDeploymentConfigurationLifecycleHookLifecycleStages(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `target_type` — derived from the provider schema description.
+enum EcsServiceDeploymentConfigurationLifecycleHookTargetType
+    implements TerraformEnum {
+  awsLambda('AWS_LAMBDA'),
+  pause('PAUSE');
+
+  const EcsServiceDeploymentConfigurationLifecycleHookTargetType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `deployment_configuration.lifecycle_hook.timeout_configuration` block of
@@ -175,7 +266,10 @@ final class EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfiguration {
     this.timeoutInMinutes,
   });
 
-  final TfArg<String>? action;
+  final TfArg<
+    EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfigurationAction
+  >?
+  action;
 
   final TfArg<String>? timeoutInMinutes;
 
@@ -184,6 +278,19 @@ final class EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfiguration {
     if (timeoutInMinutes != null)
       'timeout_in_minutes': timeoutInMinutes!.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfigurationAction
+    implements TerraformEnum {
+  rollback('ROLLBACK'),
+  continueCase('CONTINUE');
+
+  const EcsServiceDeploymentConfigurationLifecycleHookTimeoutConfigurationAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `deployment_configuration.linear_configuration` block of
@@ -212,9 +319,20 @@ final class EcsServiceDeploymentConfigurationLinearConfiguration {
 final class EcsServiceDeploymentController {
   const EcsServiceDeploymentController({this.type});
 
-  final TfArg<String>? type;
+  final TfArg<EcsServiceDeploymentControllerType>? type;
 
   Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum EcsServiceDeploymentControllerType implements TerraformEnum {
+  ecs('ECS'),
+  codeDeploy('CODE_DEPLOY'),
+  external('EXTERNAL');
+
+  const EcsServiceDeploymentControllerType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `load_balancer` block of
@@ -308,12 +426,23 @@ final class EcsServiceOrderedPlacementStrategy {
 
   final TfArg<String>? field;
 
-  final TfArg<String> type;
+  final TfArg<EcsServiceOrderedPlacementStrategyType> type;
 
   Map<String, Object?> encode() => {
     if (field != null) 'field': field!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum EcsServiceOrderedPlacementStrategyType implements TerraformEnum {
+  random('random'),
+  spread('spread'),
+  binpack('binpack');
+
+  const EcsServiceOrderedPlacementStrategyType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `placement_constraints` block of
@@ -324,12 +453,22 @@ final class EcsServicePlacementConstraints {
 
   final TfArg<String>? expression;
 
-  final TfArg<String> type;
+  final TfArg<EcsServicePlacementConstraintsType> type;
 
   Map<String, Object?> encode() => {
     if (expression != null) 'expression': expression!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum EcsServicePlacementConstraintsType implements TerraformEnum {
+  distinctinstance('distinctInstance'),
+  memberof('memberOf');
+
+  const EcsServicePlacementConstraintsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `service_connect_configuration` block of
@@ -375,15 +514,45 @@ final class EcsServiceServiceConnectConfigurationAccessLogConfiguration {
     this.includeQueryParameters,
   });
 
-  final TfArg<String> format;
+  final TfArg<EcsServiceServiceConnectConfigurationAccessLogConfigurationFormat>
+  format;
 
-  final TfArg<String>? includeQueryParameters;
+  final TfArg<
+    EcsServiceServiceConnectConfigurationAccessLogConfigurationIncludeQueryParameters
+  >?
+  includeQueryParameters;
 
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
     if (includeQueryParameters != null)
       'include_query_parameters': includeQueryParameters!.toTfJson(),
   };
+}
+
+/// `format` — derived from the provider schema description.
+enum EcsServiceServiceConnectConfigurationAccessLogConfigurationFormat
+    implements TerraformEnum {
+  text('TEXT'),
+  json('JSON');
+
+  const EcsServiceServiceConnectConfigurationAccessLogConfigurationFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `include_query_parameters` — derived from the provider schema description.
+enum EcsServiceServiceConnectConfigurationAccessLogConfigurationIncludeQueryParameters
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED');
+
+  const EcsServiceServiceConnectConfigurationAccessLogConfigurationIncludeQueryParameters(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `service_connect_configuration.log_configuration` block of
@@ -396,7 +565,8 @@ final class EcsServiceServiceConnectConfigurationLogConfiguration {
     this.secretOption,
   });
 
-  final TfArg<String> logDriver;
+  final TfArg<EcsServiceServiceConnectConfigurationLogConfigurationLogDriver>
+  logDriver;
 
   final TfArg<Map<String, String>>? options;
 
@@ -409,6 +579,25 @@ final class EcsServiceServiceConnectConfigurationLogConfiguration {
     if (secretOption != null)
       'secret_option': [for (final e in secretOption!) e.encode()],
   };
+}
+
+/// `log_driver` — derived from the provider schema description.
+enum EcsServiceServiceConnectConfigurationLogConfigurationLogDriver
+    implements TerraformEnum {
+  jsonFile('json-file'),
+  syslog('syslog'),
+  journald('journald'),
+  gelf('gelf'),
+  fluentd('fluentd'),
+  awslogs('awslogs'),
+  splunk('splunk'),
+  awsfirelens('awsfirelens');
+
+  const EcsServiceServiceConnectConfigurationLogConfigurationLogDriver(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `service_connect_configuration.log_configuration.secret_option` block of
@@ -668,7 +857,8 @@ final class EcsServiceVolumeConfigurationManagedEbsVolume {
 
   final TfArg<bool>? encrypted;
 
-  final TfArg<String>? fileSystemType;
+  final TfArg<EcsServiceVolumeConfigurationManagedEbsVolumeFileSystemType>?
+  fileSystemType;
 
   final TfArg<num>? iops;
 
@@ -706,6 +896,21 @@ final class EcsServiceVolumeConfigurationManagedEbsVolume {
   };
 }
 
+/// `file_system_type` — derived from the provider schema description.
+enum EcsServiceVolumeConfigurationManagedEbsVolumeFileSystemType
+    implements TerraformEnum {
+  ext3('ext3'),
+  ext4('ext4'),
+  xfs('xfs'),
+  ntfs('ntfs');
+
+  const EcsServiceVolumeConfigurationManagedEbsVolumeFileSystemType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `volume_configuration.managed_ebs_volume.tag_specifications` block of
 /// `aws_ecs_service` (derived from provider schema).
 @immutable
@@ -716,9 +921,15 @@ final class EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecifications {
     this.tags,
   });
 
-  final TfArg<String>? propagateTags;
+  final TfArg<
+    EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsPropagateTags
+  >?
+  propagateTags;
 
-  final TfArg<String> resourceType;
+  final TfArg<
+    EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsResourceType
+  >
+  resourceType;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -727,6 +938,32 @@ final class EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecifications {
     'resource_type': resourceType.toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
   };
+}
+
+/// `propagate_tags` — derived from the provider schema description.
+enum EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsPropagateTags
+    implements TerraformEnum {
+  taskDefinition('TASK_DEFINITION'),
+  service('SERVICE'),
+  none('NONE');
+
+  const EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsPropagateTags(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `resource_type` — derived from the provider schema description.
+enum EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsResourceType
+    implements TerraformEnum {
+  volume('volume');
+
+  const EcsServiceVolumeConfigurationManagedEbsVolumeTagSpecificationsResourceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `vpc_lattice_configurations` block of
@@ -758,7 +995,7 @@ final class AwsEcsService extends Resource {
 
   AwsEcsService({
     required super.localName,
-    TfArg<String>? availabilityZoneRebalancing,
+    TfArg<EcsServiceAvailabilityZoneRebalancing>? availabilityZoneRebalancing,
     TfArg<String>? cluster,
     TfArg<num>? deploymentMaximumPercent,
     TfArg<num>? deploymentMinimumHealthyPercent,
@@ -769,12 +1006,12 @@ final class AwsEcsService extends Resource {
     TfArg<bool>? forceNewDeployment,
     TfArg<num>? healthCheckGracePeriodSeconds,
     TfArg<String>? iamRole,
-    TfArg<String>? launchType,
+    TfArg<EcsServiceLaunchType>? launchType,
     required TfArg<String> name,
     TfArg<String>? platformVersion,
-    TfArg<String>? propagateTags,
+    TfArg<EcsServicePropagateTags>? propagateTags,
     TfArg<String>? region,
-    TfArg<String>? schedulingStrategy,
+    TfArg<EcsServiceSchedulingStrategy>? schedulingStrategy,
     TfArg<bool>? sigintRollback,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? taskDefinition,

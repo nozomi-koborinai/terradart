@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cleanrooms_membership`.
 const Set<String> _awsCleanroomsMembershipSensitive = <String>{};
 
+/// Cleanrooms Membership Query Log enum for `query_log_status`.
+enum CleanroomsMembershipQueryLogStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const CleanroomsMembershipQueryLogStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `default_result_configuration` block of
 /// `aws_cleanrooms_membership` (derived from provider schema).
 @immutable
@@ -106,7 +116,7 @@ final class AwsCleanroomsMembership extends Resource {
   AwsCleanroomsMembership({
     required super.localName,
     required TfArg<String> collaborationId,
-    required TfArg<String> queryLogStatus,
+    required TfArg<CleanroomsMembershipQueryLogStatus> queryLogStatus,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<CleanroomsMembershipDefaultResultConfiguration>?

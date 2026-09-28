@@ -28,7 +28,7 @@ final class SsmResourceDataSyncS3Destination {
 
   final TfArg<String> region;
 
-  final TfArg<String>? syncFormat;
+  final TfArg<SsmResourceDataSyncS3DestinationSyncFormat>? syncFormat;
 
   final SsmResourceDataSyncS3DestinationDestinationDataSharing?
   destinationDataSharing;
@@ -44,6 +44,15 @@ final class SsmResourceDataSyncS3Destination {
   };
 }
 
+/// `sync_format` — derived from the provider schema description.
+enum SsmResourceDataSyncS3DestinationSyncFormat implements TerraformEnum {
+  jsonserde('JsonSerDe');
+
+  const SsmResourceDataSyncS3DestinationSyncFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `s3_destination.destination_data_sharing` block of
 /// `aws_ssm_resource_data_sync` (derived from provider schema).
 @immutable
@@ -52,12 +61,27 @@ final class SsmResourceDataSyncS3DestinationDestinationDataSharing {
     this.destinationDataSharingType,
   });
 
-  final TfArg<String>? destinationDataSharingType;
+  final TfArg<
+    SsmResourceDataSyncS3DestinationDestinationDataSharingDestinationDataSharingType
+  >?
+  destinationDataSharingType;
 
   Map<String, Object?> encode() => {
     if (destinationDataSharingType != null)
       'destination_data_sharing_type': destinationDataSharingType!.toTfJson(),
   };
+}
+
+/// `destination_data_sharing_type` — derived from the provider schema description.
+enum SsmResourceDataSyncS3DestinationDestinationDataSharingDestinationDataSharingType
+    implements TerraformEnum {
+  organization('Organization');
+
+  const SsmResourceDataSyncS3DestinationDestinationDataSharingDestinationDataSharingType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ssm_resource_data_sync`.

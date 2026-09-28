@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_athena_workgroup`.
 const Set<String> _awsAthenaWorkgroupSensitive = <String>{};
 
+/// Athena Workgroup enum for `state`.
+enum AthenaWorkgroupState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const AthenaWorkgroupState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `configuration` block of
 /// `aws_athena_workgroup` (derived from provider schema).
 @immutable
@@ -310,7 +320,10 @@ final class AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfiguration 
     required this.enableS3AccessGrants,
   });
 
-  final TfArg<String> authenticationType;
+  final TfArg<
+    AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfigurationAuthenticationType
+  >
+  authenticationType;
 
   final TfArg<bool>? createUserLevelPrefix;
 
@@ -322,6 +335,18 @@ final class AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfiguration 
       'create_user_level_prefix': createUserLevelPrefix!.toTfJson(),
     'enable_s3_access_grants': enableS3AccessGrants.toTfJson(),
   };
+}
+
+/// `authentication_type` — derived from the provider schema description.
+enum AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfigurationAuthenticationType
+    implements TerraformEnum {
+  directoryIdentity('DIRECTORY_IDENTITY');
+
+  const AthenaWorkgroupConfigurationQueryResultsS3AccessGrantsConfigurationAuthenticationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.result_configuration` block of
@@ -364,9 +389,24 @@ final class AthenaWorkgroupConfigurationResultConfigurationAclConfiguration {
     required this.s3AclOption,
   });
 
-  final TfArg<String> s3AclOption;
+  final TfArg<
+    AthenaWorkgroupConfigurationResultConfigurationAclConfigurationS3AclOption
+  >
+  s3AclOption;
 
   Map<String, Object?> encode() => {'s3_acl_option': s3AclOption.toTfJson()};
+}
+
+/// `s3_acl_option` — derived from the provider schema description.
+enum AthenaWorkgroupConfigurationResultConfigurationAclConfigurationS3AclOption
+    implements TerraformEnum {
+  bucketOwnerFullControl('BUCKET_OWNER_FULL_CONTROL');
+
+  const AthenaWorkgroupConfigurationResultConfigurationAclConfigurationS3AclOption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.result_configuration.encryption_configuration` block of
@@ -378,7 +418,10 @@ final class AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurati
     this.kmsKeyArn,
   });
 
-  final TfArg<String>? encryptionOption;
+  final TfArg<
+    AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurationEncryptionOption
+  >?
+  encryptionOption;
 
   final TfArg<String>? kmsKeyArn;
 
@@ -387,6 +430,20 @@ final class AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurati
       'encryption_option': encryptionOption!.toTfJson(),
     if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
   };
+}
+
+/// `encryption_option` — derived from the provider schema description.
+enum AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurationEncryptionOption
+    implements TerraformEnum {
+  sseS3('SSE_S3'),
+  sseKms('SSE_KMS'),
+  cseKms('CSE_KMS');
+
+  const AthenaWorkgroupConfigurationResultConfigurationEncryptionConfigurationEncryptionOption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_athena_workgroup`.
@@ -399,7 +456,7 @@ final class AwsAthenaWorkgroup extends Resource {
     TfArg<bool>? forceDestroy,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? state,
+    TfArg<AthenaWorkgroupState>? state,
     TfArg<Map<String, String>>? tags,
     AthenaWorkgroupConfiguration? configuration,
     super.lifecycle,

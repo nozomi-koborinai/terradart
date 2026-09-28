@@ -32,12 +32,28 @@ final class CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetric
     required this.realtimeMetricsSubscriptionStatus,
   });
 
-  final TfArg<String> realtimeMetricsSubscriptionStatus;
+  final TfArg<
+    CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfigRealtimeMetricsSubscriptionStatus
+  >
+  realtimeMetricsSubscriptionStatus;
 
   Map<String, Object?> encode() => {
     'realtime_metrics_subscription_status': realtimeMetricsSubscriptionStatus
         .toTfJson(),
   };
+}
+
+/// `realtime_metrics_subscription_status` — derived from the provider schema description.
+enum CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfigRealtimeMetricsSubscriptionStatus
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const CloudfrontMonitoringSubscriptionMonitoringSubscriptionRealtimeMetricsSubscriptionConfigRealtimeMetricsSubscriptionStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_cloudfront_monitoring_subscription`.

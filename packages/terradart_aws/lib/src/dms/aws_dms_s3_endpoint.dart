@@ -6,6 +6,120 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dms_s3_endpoint`.
 const Set<String> _awsDmsS3EndpointSensitive = <String>{};
 
+/// Dms S3 Endpoint Canned Acl For enum for `canned_acl_for_objects`.
+enum DmsS3EndpointCannedAclForObjects implements TerraformEnum {
+  none('none'),
+  private('private'),
+  publicRead('public-read'),
+  publicReadWrite('public-read-write'),
+  authenticatedRead('authenticated-read'),
+  awsExecRead('aws-exec-read'),
+  bucketOwnerRead('bucket-owner-read'),
+  bucketOwnerFullControl('bucket-owner-full-control');
+
+  const DmsS3EndpointCannedAclForObjects(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dms S3 Endpoint Compression enum for `compression_type`.
+enum DmsS3EndpointCompressionType implements TerraformEnum {
+  none('none'),
+  gzip('gzip');
+
+  const DmsS3EndpointCompressionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dms S3 Endpoint Data enum for `data_format`.
+enum DmsS3EndpointDataFormat implements TerraformEnum {
+  csv('csv'),
+  parquet('parquet');
+
+  const DmsS3EndpointDataFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dms S3 Endpoint Date Partition enum for `date_partition_delimiter`.
+enum DmsS3EndpointDatePartitionDelimiter implements TerraformEnum {
+  slash('SLASH'),
+  underscore('UNDERSCORE'),
+  dash('DASH'),
+  none('NONE');
+
+  const DmsS3EndpointDatePartitionDelimiter(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dms S3 Endpoint Date Partition enum for `date_partition_sequence`.
+enum DmsS3EndpointDatePartitionSequence implements TerraformEnum {
+  yyyymmdd('YYYYMMDD'),
+  yyyymmddhh('YYYYMMDDHH'),
+  yyyymm('YYYYMM'),
+  mmyyyydd('MMYYYYDD'),
+  ddmmyyyy('DDMMYYYY');
+
+  const DmsS3EndpointDatePartitionSequence(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dms S3 Endpoint Encoding enum for `encoding_type`.
+enum DmsS3EndpointEncodingType implements TerraformEnum {
+  plain('plain'),
+  plainDictionary('plain-dictionary'),
+  rleDictionary('rle-dictionary');
+
+  const DmsS3EndpointEncodingType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dms S3 Endpoint Encryption enum for `encryption_mode`.
+enum DmsS3EndpointEncryptionMode implements TerraformEnum {
+  sseKms('SSE_KMS'),
+  sseS3('SSE_S3');
+
+  const DmsS3EndpointEncryptionMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dms S3 Endpoint Endpoint enum for `endpoint_type`.
+enum DmsS3EndpointEndpointType implements TerraformEnum {
+  source('source'),
+  target('target');
+
+  const DmsS3EndpointEndpointType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dms S3 Endpoint Parquet enum for `parquet_version`.
+enum DmsS3EndpointParquetVersion implements TerraformEnum {
+  parquet10('parquet-1-0'),
+  parquet20('parquet-2-0');
+
+  const DmsS3EndpointParquetVersion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dms S3 Endpoint Ssl enum for `ssl_mode`.
+enum DmsS3EndpointSslMode implements TerraformEnum {
+  none('none'),
+  require('require'),
+  verifyCa('verify-ca'),
+  verifyFull('verify-full');
+
+  const DmsS3EndpointSslMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dms_s3_endpoint`.
 final class AwsDmsS3Endpoint extends Resource {
   static const String tfType = 'aws_dms_s3_endpoint';
@@ -16,31 +130,31 @@ final class AwsDmsS3Endpoint extends Resource {
     TfArg<bool>? addTrailingPaddingCharacter,
     TfArg<String>? bucketFolder,
     required TfArg<String> bucketName,
-    TfArg<String>? cannedAclForObjects,
+    TfArg<DmsS3EndpointCannedAclForObjects>? cannedAclForObjects,
     TfArg<bool>? cdcInsertsAndUpdates,
     TfArg<bool>? cdcInsertsOnly,
     TfArg<num>? cdcMaxBatchInterval,
     TfArg<num>? cdcMinFileSize,
     TfArg<String>? cdcPath,
     TfArg<String>? certificateArn,
-    TfArg<String>? compressionType,
+    TfArg<DmsS3EndpointCompressionType>? compressionType,
     TfArg<String>? csvDelimiter,
     TfArg<String>? csvNoSupValue,
     TfArg<String>? csvNullValue,
     TfArg<String>? csvRowDelimiter,
-    TfArg<String>? dataFormat,
+    TfArg<DmsS3EndpointDataFormat>? dataFormat,
     TfArg<num>? dataPageSize,
-    TfArg<String>? datePartitionDelimiter,
+    TfArg<DmsS3EndpointDatePartitionDelimiter>? datePartitionDelimiter,
     TfArg<bool>? datePartitionEnabled,
-    TfArg<String>? datePartitionSequence,
+    TfArg<DmsS3EndpointDatePartitionSequence>? datePartitionSequence,
     TfArg<String>? datePartitionTimezone,
     TfArg<bool>? detachTargetOnLobLookupFailureParquet,
     TfArg<num>? dictPageSizeLimit,
     TfArg<bool>? enableStatistics,
-    TfArg<String>? encodingType,
-    TfArg<String>? encryptionMode,
+    TfArg<DmsS3EndpointEncodingType>? encodingType,
+    TfArg<DmsS3EndpointEncryptionMode>? encryptionMode,
     required TfArg<String> endpointId,
-    required TfArg<String> endpointType,
+    required TfArg<DmsS3EndpointEndpointType> endpointType,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? externalTableDefinition,
     TfArg<bool>? glueCatalogGeneration,
@@ -49,14 +163,14 @@ final class AwsDmsS3Endpoint extends Resource {
     TfArg<String>? kmsKeyArn,
     TfArg<num>? maxFileSize,
     TfArg<bool>? parquetTimestampInMillisecond,
-    TfArg<String>? parquetVersion,
+    TfArg<DmsS3EndpointParquetVersion>? parquetVersion,
     TfArg<bool>? preserveTransactions,
     TfArg<String>? region,
     TfArg<bool>? rfc4180,
     TfArg<num>? rowGroupLength,
     TfArg<String>? serverSideEncryptionKmsKeyId,
     required TfArg<String> serviceAccessRoleArn,
-    TfArg<String>? sslMode,
+    TfArg<DmsS3EndpointSslMode>? sslMode,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? timestampColumnName,
     TfArg<bool>? useCsvNoSupValue,

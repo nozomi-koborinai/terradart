@@ -7,6 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_fleet`.
 const Set<String> _awsEc2FleetSensitive = <String>{};
 
+/// Ec2 Fleet Excess Capacity Termination enum for `excess_capacity_termination_policy`.
+enum Ec2FleetExcessCapacityTerminationPolicy implements TerraformEnum {
+  noTermination('no-termination'),
+  termination('termination');
+
+  const Ec2FleetExcessCapacityTerminationPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ec2 Fleet enum for `type`.
+enum Ec2FleetType implements TerraformEnum {
+  request('request'),
+  maintain('maintain'),
+  instant('instant');
+
+  const Ec2FleetType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `fleet_instance_set` block of
 /// `aws_ec2_fleet` (derived from provider schema).
 @immutable
@@ -154,27 +175,66 @@ final class Ec2FleetLaunchTemplateConfigOverrideInstanceRequirements {
     required this.vcpuCount,
   });
 
-  final TfArg<List<Object?>>? acceleratorManufacturers;
+  final List<
+    TfArg<
+      Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorManufacturers
+    >
+  >?
+  acceleratorManufacturers;
 
-  final TfArg<List<Object?>>? acceleratorNames;
+  final List<
+    TfArg<
+      Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorNames
+    >
+  >?
+  acceleratorNames;
 
-  final TfArg<List<Object?>>? acceleratorTypes;
+  final List<
+    TfArg<
+      Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorTypes
+    >
+  >?
+  acceleratorTypes;
 
   final TfArg<List<Object?>>? allowedInstanceTypes;
 
-  final TfArg<String>? bareMetal;
+  final TfArg<
+    Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsBareMetal
+  >?
+  bareMetal;
 
-  final TfArg<String>? burstablePerformance;
+  final TfArg<
+    Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsBurstablePerformance
+  >?
+  burstablePerformance;
 
-  final TfArg<List<Object?>>? cpuManufacturers;
+  final List<
+    TfArg<
+      Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsCpuManufacturers
+    >
+  >?
+  cpuManufacturers;
 
   final TfArg<List<Object?>>? excludedInstanceTypes;
 
-  final TfArg<List<Object?>>? instanceGenerations;
+  final List<
+    TfArg<
+      Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsInstanceGenerations
+    >
+  >?
+  instanceGenerations;
 
-  final TfArg<String>? localStorage;
+  final TfArg<
+    Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsLocalStorage
+  >?
+  localStorage;
 
-  final TfArg<List<Object?>>? localStorageTypes;
+  final List<
+    TfArg<
+      Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsLocalStorageTypes
+    >
+  >?
+  localStorageTypes;
 
   final TfArg<num>? maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
 
@@ -213,25 +273,29 @@ final class Ec2FleetLaunchTemplateConfigOverrideInstanceRequirements {
 
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
-      'accelerator_manufacturers': acceleratorManufacturers!.toTfJson(),
+      'accelerator_manufacturers': [
+        for (final e in acceleratorManufacturers!) e.toTfJson(),
+      ],
     if (acceleratorNames != null)
-      'accelerator_names': acceleratorNames!.toTfJson(),
+      'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
     if (acceleratorTypes != null)
-      'accelerator_types': acceleratorTypes!.toTfJson(),
+      'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
     if (allowedInstanceTypes != null)
       'allowed_instance_types': allowedInstanceTypes!.toTfJson(),
     if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
     if (burstablePerformance != null)
       'burstable_performance': burstablePerformance!.toTfJson(),
     if (cpuManufacturers != null)
-      'cpu_manufacturers': cpuManufacturers!.toTfJson(),
+      'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
     if (excludedInstanceTypes != null)
       'excluded_instance_types': excludedInstanceTypes!.toTfJson(),
     if (instanceGenerations != null)
-      'instance_generations': instanceGenerations!.toTfJson(),
+      'instance_generations': [
+        for (final e in instanceGenerations!) e.toTfJson(),
+      ],
     if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
     if (localStorageTypes != null)
-      'local_storage_types': localStorageTypes!.toTfJson(),
+      'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
     if (maxSpotPriceAsPercentageOfOptimalOnDemandPrice != null)
       'max_spot_price_as_percentage_of_optimal_on_demand_price':
           maxSpotPriceAsPercentageOfOptimalOnDemandPrice!.toTfJson(),
@@ -260,6 +324,150 @@ final class Ec2FleetLaunchTemplateConfigOverrideInstanceRequirements {
       'total_local_storage_gb': totalLocalStorageGb!.encode(),
     'vcpu_count': vcpuCount.encode(),
   };
+}
+
+/// `accelerator_manufacturers` — derived from the provider schema description.
+enum Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorManufacturers
+    implements TerraformEnum {
+  amazonWebServices('amazon-web-services'),
+  amd('amd'),
+  nvidia('nvidia'),
+  xilinx('xilinx'),
+  habana('habana');
+
+  const Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorManufacturers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `accelerator_names` — derived from the provider schema description.
+enum Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorNames
+    implements TerraformEnum {
+  a100('a100'),
+  inferentia('inferentia'),
+  k520('k520'),
+  k80('k80'),
+  m60('m60'),
+  radeonProV520('radeon-pro-v520'),
+  t4('t4'),
+  vu9p('vu9p'),
+  v100('v100'),
+  a10g('a10g'),
+  h100('h100'),
+  t4g('t4g'),
+  l40s('l40s'),
+  l4('l4'),
+  gaudiHl205('gaudi-hl-205'),
+  inferentia2('inferentia2'),
+  trainium('trainium'),
+  trainium2('trainium2'),
+  u30('u30');
+
+  const Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorNames(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `accelerator_types` — derived from the provider schema description.
+enum Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorTypes
+    implements TerraformEnum {
+  gpu('gpu'),
+  fpga('fpga'),
+  inference('inference'),
+  media('media');
+
+  const Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `bare_metal` — derived from the provider schema description.
+enum Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsBareMetal
+    implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsBareMetal(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `burstable_performance` — derived from the provider schema description.
+enum Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsBurstablePerformance
+    implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsBurstablePerformance(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `cpu_manufacturers` — derived from the provider schema description.
+enum Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsCpuManufacturers
+    implements TerraformEnum {
+  intel('intel'),
+  amd('amd'),
+  amazonWebServices('amazon-web-services'),
+  apple('apple');
+
+  const Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsCpuManufacturers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `instance_generations` — derived from the provider schema description.
+enum Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsInstanceGenerations
+    implements TerraformEnum {
+  current('current'),
+  previous('previous');
+
+  const Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsInstanceGenerations(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `local_storage` — derived from the provider schema description.
+enum Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsLocalStorage
+    implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsLocalStorage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `local_storage_types` — derived from the provider schema description.
+enum Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsLocalStorageTypes
+    implements TerraformEnum {
+  hdd('hdd'),
+  ssd('ssd');
+
+  const Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsLocalStorageTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `launch_template_config.override.instance_requirements.accelerator_count` block of
@@ -480,11 +688,24 @@ final class Ec2FleetOnDemandOptions {
 final class Ec2FleetOnDemandOptionsCapacityReservationOptions {
   const Ec2FleetOnDemandOptionsCapacityReservationOptions({this.usageStrategy});
 
-  final TfArg<String>? usageStrategy;
+  final TfArg<Ec2FleetOnDemandOptionsCapacityReservationOptionsUsageStrategy>?
+  usageStrategy;
 
   Map<String, Object?> encode() => {
     if (usageStrategy != null) 'usage_strategy': usageStrategy!.toTfJson(),
   };
+}
+
+/// `usage_strategy` — derived from the provider schema description.
+enum Ec2FleetOnDemandOptionsCapacityReservationOptionsUsageStrategy
+    implements TerraformEnum {
+  useCapacityReservationsFirst('use-capacity-reservations-first');
+
+  const Ec2FleetOnDemandOptionsCapacityReservationOptionsUsageStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spot_options` block of
@@ -504,7 +725,8 @@ final class Ec2FleetSpotOptions {
 
   final TfArg<String>? allocationStrategy;
 
-  final TfArg<String>? instanceInterruptionBehavior;
+  final TfArg<Ec2FleetSpotOptionsInstanceInterruptionBehavior>?
+  instanceInterruptionBehavior;
 
   final TfArg<num>? instancePoolsToUseCount;
 
@@ -538,6 +760,17 @@ final class Ec2FleetSpotOptions {
   };
 }
 
+/// `instance_interruption_behavior` — derived from the provider schema description.
+enum Ec2FleetSpotOptionsInstanceInterruptionBehavior implements TerraformEnum {
+  hibernate('hibernate'),
+  stop('stop'),
+  terminate('terminate');
+
+  const Ec2FleetSpotOptionsInstanceInterruptionBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `spot_options.maintenance_strategies` block of
 /// `aws_ec2_fleet` (derived from provider schema).
 @immutable
@@ -562,7 +795,10 @@ final class Ec2FleetSpotOptionsMaintenanceStrategiesCapacityRebalance {
     this.terminationDelay,
   });
 
-  final TfArg<String>? replacementStrategy;
+  final TfArg<
+    Ec2FleetSpotOptionsMaintenanceStrategiesCapacityRebalanceReplacementStrategy
+  >?
+  replacementStrategy;
 
   final TfArg<num>? terminationDelay;
 
@@ -572,6 +808,19 @@ final class Ec2FleetSpotOptionsMaintenanceStrategiesCapacityRebalance {
     if (terminationDelay != null)
       'termination_delay': terminationDelay!.toTfJson(),
   };
+}
+
+/// `replacement_strategy` — derived from the provider schema description.
+enum Ec2FleetSpotOptionsMaintenanceStrategiesCapacityRebalanceReplacementStrategy
+    implements TerraformEnum {
+  launch('launch'),
+  launchBeforeTerminate('launch-before-terminate');
+
+  const Ec2FleetSpotOptionsMaintenanceStrategiesCapacityRebalanceReplacementStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_capacity_specification` block of
@@ -586,13 +835,15 @@ final class Ec2FleetTargetCapacitySpecification {
     required this.totalTargetCapacity,
   });
 
-  final TfArg<String> defaultTargetCapacityType;
+  final TfArg<Ec2FleetTargetCapacitySpecificationDefaultTargetCapacityType>
+  defaultTargetCapacityType;
 
   final TfArg<num>? onDemandTargetCapacity;
 
   final TfArg<num>? spotTargetCapacity;
 
-  final TfArg<String>? targetCapacityUnitType;
+  final TfArg<Ec2FleetTargetCapacitySpecificationTargetCapacityUnitType>?
+  targetCapacityUnitType;
 
   final TfArg<num> totalTargetCapacity;
 
@@ -608,6 +859,35 @@ final class Ec2FleetTargetCapacitySpecification {
   };
 }
 
+/// `default_target_capacity_type` — derived from the provider schema description.
+enum Ec2FleetTargetCapacitySpecificationDefaultTargetCapacityType
+    implements TerraformEnum {
+  spot('spot'),
+  onDemand('on-demand'),
+  capacityBlock('capacity-block'),
+  reservedCapacity('reserved-capacity');
+
+  const Ec2FleetTargetCapacitySpecificationDefaultTargetCapacityType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `target_capacity_unit_type` — derived from the provider schema description.
+enum Ec2FleetTargetCapacitySpecificationTargetCapacityUnitType
+    implements TerraformEnum {
+  vcpu('vcpu'),
+  memoryMib('memory-mib'),
+  units('units');
+
+  const Ec2FleetTargetCapacitySpecificationTargetCapacityUnitType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_fleet`.
 final class AwsEc2Fleet extends Resource {
   static const String tfType = 'aws_ec2_fleet';
@@ -615,7 +895,8 @@ final class AwsEc2Fleet extends Resource {
   AwsEc2Fleet({
     required super.localName,
     TfArg<String>? context,
-    TfArg<String>? excessCapacityTerminationPolicy,
+    TfArg<Ec2FleetExcessCapacityTerminationPolicy>?
+    excessCapacityTerminationPolicy,
     TfArg<String>? fleetState,
     TfArg<num>? fulfilledCapacity,
     TfArg<num>? fulfilledOnDemandCapacity,
@@ -624,7 +905,7 @@ final class AwsEc2Fleet extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? terminateInstances,
     TfArg<bool>? terminateInstancesWithExpiration,
-    TfArg<String>? type,
+    TfArg<Ec2FleetType>? type,
     TfArg<String>? validFrom,
     TfArg<String>? validUntil,
     List<Ec2FleetFleetInstanceSet>? fleetInstanceSet,

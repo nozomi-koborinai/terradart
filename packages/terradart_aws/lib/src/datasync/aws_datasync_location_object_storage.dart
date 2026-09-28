@@ -8,6 +8,16 @@ const Set<String> _awsDatasyncLocationObjectStorageSensitive = <String>{
   'secret_key',
 };
 
+/// Datasync Location Object Storage Server enum for `server_protocol`.
+enum DatasyncLocationObjectStorageServerProtocol implements TerraformEnum {
+  https('HTTPS'),
+  http('HTTP');
+
+  const DatasyncLocationObjectStorageServerProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_datasync_location_object_storage`.
 final class AwsDatasyncLocationObjectStorage extends Resource {
   static const String tfType = 'aws_datasync_location_object_storage';
@@ -22,7 +32,7 @@ final class AwsDatasyncLocationObjectStorage extends Resource {
     TfArg<String>? serverCertificate,
     required TfArg<String> serverHostname,
     TfArg<num>? serverPort,
-    TfArg<String>? serverProtocol,
+    TfArg<DatasyncLocationObjectStorageServerProtocol>? serverProtocol,
     TfArg<String>? subdirectory,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

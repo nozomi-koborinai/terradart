@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_imagebuilder_workflow`.
 const Set<String> _awsImagebuilderWorkflowSensitive = <String>{};
 
+/// Imagebuilder Workflow enum for `type`.
+enum ImagebuilderWorkflowType implements TerraformEnum {
+  build('BUILD'),
+  test('TEST'),
+  distribution('DISTRIBUTION');
+
+  const ImagebuilderWorkflowType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_imagebuilder_workflow`.
 final class AwsImagebuilderWorkflow extends Resource {
   static const String tfType = 'aws_imagebuilder_workflow';
@@ -19,7 +30,7 @@ final class AwsImagebuilderWorkflow extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<ImagebuilderWorkflowType> type,
     TfArg<String>? uri,
     required TfArg<String> version,
     super.lifecycle,

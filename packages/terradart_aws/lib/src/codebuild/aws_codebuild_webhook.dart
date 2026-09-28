@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_codebuild_webhook`.
 const Set<String> _awsCodebuildWebhookSensitive = <String>{'secret'};
 
+/// Codebuild Webhook Build enum for `build_type`.
+enum CodebuildWebhookBuildType implements TerraformEnum {
+  build('BUILD'),
+  buildBatch('BUILD_BATCH'),
+  runnerBuildkiteBuild('RUNNER_BUILDKITE_BUILD');
+
+  const CodebuildWebhookBuildType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `filter_group` block of
 /// `aws_codebuild_webhook` (derived from provider schema).
 @immutable
@@ -34,7 +45,7 @@ final class CodebuildWebhookFilterGroupFilter {
 
   final TfArg<String> pattern;
 
-  final TfArg<String> type;
+  final TfArg<CodebuildWebhookFilterGroupFilterType> type;
 
   Map<String, Object?> encode() => {
     if (excludeMatchedPattern != null)
@@ -42,6 +53,25 @@ final class CodebuildWebhookFilterGroupFilter {
     'pattern': pattern.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CodebuildWebhookFilterGroupFilterType implements TerraformEnum {
+  event('EVENT'),
+  baseRef('BASE_REF'),
+  headRef('HEAD_REF'),
+  actorAccountId('ACTOR_ACCOUNT_ID'),
+  filePath('FILE_PATH'),
+  commitMessage('COMMIT_MESSAGE'),
+  workflowName('WORKFLOW_NAME'),
+  tagName('TAG_NAME'),
+  releaseName('RELEASE_NAME'),
+  repositoryName('REPOSITORY_NAME'),
+  organizationName('ORGANIZATION_NAME');
+
+  const CodebuildWebhookFilterGroupFilterType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `pull_request_build_policy` block of
@@ -53,14 +83,56 @@ final class CodebuildWebhookPullRequestBuildPolicy {
     required this.requiresCommentApproval,
   });
 
-  final TfArg<List<Object?>>? approverRoles;
+  final List<TfArg<CodebuildWebhookPullRequestBuildPolicyApproverRoles>>?
+  approverRoles;
 
-  final TfArg<String> requiresCommentApproval;
+  final TfArg<CodebuildWebhookPullRequestBuildPolicyRequiresCommentApproval>
+  requiresCommentApproval;
 
   Map<String, Object?> encode() => {
-    if (approverRoles != null) 'approver_roles': approverRoles!.toTfJson(),
+    if (approverRoles != null)
+      'approver_roles': [for (final e in approverRoles!) e.toTfJson()],
     'requires_comment_approval': requiresCommentApproval.toTfJson(),
   };
+}
+
+/// `approver_roles` — derived from the provider schema description.
+enum CodebuildWebhookPullRequestBuildPolicyApproverRoles
+    implements TerraformEnum {
+  githubRead('GITHUB_READ'),
+  githubTriage('GITHUB_TRIAGE'),
+  githubWrite('GITHUB_WRITE'),
+  githubMaintain('GITHUB_MAINTAIN'),
+  githubAdmin('GITHUB_ADMIN'),
+  gitlabGuest('GITLAB_GUEST'),
+  gitlabPlanner('GITLAB_PLANNER'),
+  gitlabReporter('GITLAB_REPORTER'),
+  gitlabDeveloper('GITLAB_DEVELOPER'),
+  gitlabMaintainer('GITLAB_MAINTAINER'),
+  gitlabOwner('GITLAB_OWNER'),
+  bitbucketRead('BITBUCKET_READ'),
+  bitbucketWrite('BITBUCKET_WRITE'),
+  bitbucketAdmin('BITBUCKET_ADMIN');
+
+  const CodebuildWebhookPullRequestBuildPolicyApproverRoles(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `requires_comment_approval` — derived from the provider schema description.
+enum CodebuildWebhookPullRequestBuildPolicyRequiresCommentApproval
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  allPullRequests('ALL_PULL_REQUESTS'),
+  forkPullRequests('FORK_PULL_REQUESTS');
+
+  const CodebuildWebhookPullRequestBuildPolicyRequiresCommentApproval(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `scope_configuration` block of
@@ -77,13 +149,24 @@ final class CodebuildWebhookScopeConfiguration {
 
   final TfArg<String> name;
 
-  final TfArg<String> scope;
+  final TfArg<CodebuildWebhookScopeConfigurationScope> scope;
 
   Map<String, Object?> encode() => {
     if (domain != null) 'domain': domain!.toTfJson(),
     'name': name.toTfJson(),
     'scope': scope.toTfJson(),
   };
+}
+
+/// `scope` — derived from the provider schema description.
+enum CodebuildWebhookScopeConfigurationScope implements TerraformEnum {
+  githubOrganization('GITHUB_ORGANIZATION'),
+  githubGlobal('GITHUB_GLOBAL'),
+  gitlabGroup('GITLAB_GROUP');
+
+  const CodebuildWebhookScopeConfigurationScope(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_codebuild_webhook`.
@@ -93,7 +176,7 @@ final class AwsCodebuildWebhook extends Resource {
   AwsCodebuildWebhook({
     required super.localName,
     TfArg<String>? branchFilter,
-    TfArg<String>? buildType,
+    TfArg<CodebuildWebhookBuildType>? buildType,
     TfArg<bool>? manualCreation,
     required TfArg<String> projectName,
     TfArg<String>? region,

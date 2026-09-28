@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_grafana_license_association`.
 const Set<String> _awsGrafanaLicenseAssociationSensitive = <String>{};
 
+/// Grafana License Association License enum for `license_type`.
+enum GrafanaLicenseAssociationLicenseType implements TerraformEnum {
+  enterprise('ENTERPRISE'),
+  enterpriseFreeTrial('ENTERPRISE_FREE_TRIAL');
+
+  const GrafanaLicenseAssociationLicenseType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_grafana_license_association`.
 final class AwsGrafanaLicenseAssociation extends Resource {
   static const String tfType = 'aws_grafana_license_association';
@@ -13,7 +23,7 @@ final class AwsGrafanaLicenseAssociation extends Resource {
   AwsGrafanaLicenseAssociation({
     required super.localName,
     TfArg<String>? grafanaToken,
-    required TfArg<String> licenseType,
+    required TfArg<GrafanaLicenseAssociationLicenseType> licenseType,
     TfArg<String>? region,
     required TfArg<String> workspaceId,
     super.lifecycle,

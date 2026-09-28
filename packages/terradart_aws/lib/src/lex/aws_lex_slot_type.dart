@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lex_slot_type`.
 const Set<String> _awsLexSlotTypeSensitive = <String>{};
 
+/// Lex Slot Type Value Selection enum for `value_selection_strategy`.
+enum LexSlotTypeValueSelectionStrategy implements TerraformEnum {
+  originalValue('ORIGINAL_VALUE'),
+  topResolution('TOP_RESOLUTION');
+
+  const LexSlotTypeValueSelectionStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `enumeration_value` block of
 /// `aws_lex_slot_type` (derived from provider schema).
 @immutable
@@ -33,7 +43,7 @@ final class AwsLexSlotType extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? valueSelectionStrategy,
+    TfArg<LexSlotTypeValueSelectionStrategy>? valueSelectionStrategy,
     required List<LexSlotTypeEnumerationValue> enumerationValue,
     super.lifecycle,
     super.dependsOn,

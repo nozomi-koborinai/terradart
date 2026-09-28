@@ -45,7 +45,10 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExport {
     required this.destination,
   });
 
-  final TfArg<String>? outputSchemaVersion;
+  final TfArg<
+    S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportOutputSchemaVersion
+  >?
+  outputSchemaVersion;
 
   final S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestination
   destination;
@@ -55,6 +58,18 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExport {
       'output_schema_version': outputSchemaVersion!.toTfJson(),
     'destination': destination.encode(),
   };
+}
+
+/// `output_schema_version` — derived from the provider schema description.
+enum S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportOutputSchemaVersion
+    implements TerraformEnum {
+  v1('V_1');
+
+  const S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportOutputSchemaVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `storage_class_analysis.data_export.destination` block of
@@ -88,7 +103,10 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinat
 
   final TfArg<String> bucketArn;
 
-  final TfArg<String>? format;
+  final TfArg<
+    S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestinationFormat
+  >?
+  format;
 
   final TfArg<String>? prefix;
 
@@ -99,6 +117,18 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinat
     if (format != null) 'format': format!.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
+}
+
+/// `format` — derived from the provider schema description.
+enum S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestinationFormat
+    implements TerraformEnum {
+  csv('CSV');
+
+  const S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinationS3BucketDestinationFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_s3_bucket_analytics_configuration`.

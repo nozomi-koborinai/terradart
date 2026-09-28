@@ -9,6 +9,15 @@ const Set<String> _awsS3BucketObjectLockConfigurationSensitive = <String>{
   'token',
 };
 
+/// S3 Bucket Object Lock Configuration Object Lock enum for `object_lock_enabled`.
+enum S3BucketObjectLockConfigurationObjectLockEnabled implements TerraformEnum {
+  enabled('Enabled');
+
+  const S3BucketObjectLockConfigurationObjectLockEnabled(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule` block of
 /// `aws_s3_bucket_object_lock_configuration` (derived from provider schema).
 @immutable
@@ -34,7 +43,7 @@ final class S3BucketObjectLockConfigurationRuleDefaultRetention {
 
   final TfArg<num>? days;
 
-  final TfArg<String>? mode;
+  final TfArg<S3BucketObjectLockConfigurationRuleDefaultRetentionMode>? mode;
 
   final TfArg<num>? years;
 
@@ -45,6 +54,19 @@ final class S3BucketObjectLockConfigurationRuleDefaultRetention {
   };
 }
 
+/// `mode` — derived from the provider schema description.
+enum S3BucketObjectLockConfigurationRuleDefaultRetentionMode
+    implements TerraformEnum {
+  governance('GOVERNANCE'),
+  compliance('COMPLIANCE');
+
+  const S3BucketObjectLockConfigurationRuleDefaultRetentionMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_s3_bucket_object_lock_configuration`.
 final class AwsS3BucketObjectLockConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_object_lock_configuration';
@@ -53,7 +75,7 @@ final class AwsS3BucketObjectLockConfiguration extends Resource {
     required super.localName,
     required TfArg<String> bucket,
     TfArg<String>? expectedBucketOwner,
-    TfArg<String>? objectLockEnabled,
+    TfArg<S3BucketObjectLockConfigurationObjectLockEnabled>? objectLockEnabled,
     TfArg<String>? region,
     TfArg<String>? token,
     S3BucketObjectLockConfigurationRule? rule,

@@ -8,6 +8,16 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsS3BucketIntelligentTieringConfigurationSensitive =
     <String>{};
 
+/// S3 Bucket Intelligent Tiering Configuration enum for `status`.
+enum S3BucketIntelligentTieringConfigurationStatus implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const S3BucketIntelligentTieringConfigurationStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `filter` block of
 /// `aws_s3_bucket_intelligent_tiering_configuration` (derived from provider schema).
 @immutable
@@ -33,7 +43,8 @@ final class S3BucketIntelligentTieringConfigurationTiering {
     required this.days,
   });
 
-  final TfArg<String> accessTier;
+  final TfArg<S3BucketIntelligentTieringConfigurationTieringAccessTier>
+  accessTier;
 
   final TfArg<num> days;
 
@@ -41,6 +52,19 @@ final class S3BucketIntelligentTieringConfigurationTiering {
     'access_tier': accessTier.toTfJson(),
     'days': days.toTfJson(),
   };
+}
+
+/// `access_tier` — derived from the provider schema description.
+enum S3BucketIntelligentTieringConfigurationTieringAccessTier
+    implements TerraformEnum {
+  archiveAccess('ARCHIVE_ACCESS'),
+  deepArchiveAccess('DEEP_ARCHIVE_ACCESS');
+
+  const S3BucketIntelligentTieringConfigurationTieringAccessTier(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_s3_bucket_intelligent_tiering_configuration`.
@@ -53,7 +77,7 @@ final class AwsS3BucketIntelligentTieringConfiguration extends Resource {
     required TfArg<String> bucket,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? status,
+    TfArg<S3BucketIntelligentTieringConfigurationStatus>? status,
     S3BucketIntelligentTieringConfigurationFilter? filter,
     required List<S3BucketIntelligentTieringConfigurationTiering> tiering,
     super.lifecycle,

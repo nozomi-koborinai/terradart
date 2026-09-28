@@ -15,7 +15,9 @@ export 'src/mskconnect/aws_mskconnect_connector.dart'
         MskconnectConnectorKafkaClusterApacheKafkaCluster,
         MskconnectConnectorKafkaClusterApacheKafkaClusterVpc,
         MskconnectConnectorKafkaClusterClientAuthentication,
+        MskconnectConnectorKafkaClusterClientAuthenticationAuthenticationType,
         MskconnectConnectorKafkaClusterEncryptionInTransit,
+        MskconnectConnectorKafkaClusterEncryptionInTransitEncryptionType,
         MskconnectConnectorLogDelivery,
         MskconnectConnectorLogDeliveryWorkerLogDelivery,
         MskconnectConnectorLogDeliveryWorkerLogDeliveryCloudwatchLogs,
@@ -27,6 +29,7 @@ export 'src/mskconnect/aws_mskconnect_connector.dart'
 export 'src/mskconnect/aws_mskconnect_custom_plugin.dart'
     show
         AwsMskconnectCustomPlugin,
+        MskconnectCustomPluginContentType,
         MskconnectCustomPluginLocation,
         MskconnectCustomPluginLocationS3;
 export 'src/mskconnect/aws_mskconnect_worker_configuration.dart'

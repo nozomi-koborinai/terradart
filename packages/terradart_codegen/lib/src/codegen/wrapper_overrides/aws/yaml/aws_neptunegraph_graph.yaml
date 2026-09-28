@@ -2,3 +2,4 @@ outputDir: neptunegraph
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true

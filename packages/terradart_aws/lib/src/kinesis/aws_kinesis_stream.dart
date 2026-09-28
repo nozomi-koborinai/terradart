@@ -7,15 +7,51 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_kinesis_stream`.
 const Set<String> _awsKinesisStreamSensitive = <String>{};
 
+/// Kinesis Stream Encryption enum for `encryption_type`.
+enum KinesisStreamEncryptionType implements TerraformEnum {
+  none('NONE'),
+  kms('KMS');
+
+  const KinesisStreamEncryptionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Kinesis Stream Shard Level enum for `shard_level_metrics`.
+enum KinesisStreamShardLevelMetrics implements TerraformEnum {
+  incomingbytes('IncomingBytes'),
+  incomingrecords('IncomingRecords'),
+  outgoingbytes('OutgoingBytes'),
+  outgoingrecords('OutgoingRecords'),
+  writeprovisionedthroughputexceeded('WriteProvisionedThroughputExceeded'),
+  readprovisionedthroughputexceeded('ReadProvisionedThroughputExceeded'),
+  iteratoragemilliseconds('IteratorAgeMilliseconds'),
+  all('ALL');
+
+  const KinesisStreamShardLevelMetrics(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `stream_mode_details` block of
 /// `aws_kinesis_stream` (derived from provider schema).
 @immutable
 final class KinesisStreamStreamModeDetails {
   const KinesisStreamStreamModeDetails({required this.streamMode});
 
-  final TfArg<String> streamMode;
+  final TfArg<KinesisStreamStreamModeDetailsStreamMode> streamMode;
 
   Map<String, Object?> encode() => {'stream_mode': streamMode.toTfJson()};
+}
+
+/// `stream_mode` — derived from the provider schema description.
+enum KinesisStreamStreamModeDetailsStreamMode implements TerraformEnum {
+  provisioned('PROVISIONED'),
+  onDemand('ON_DEMAND');
+
+  const KinesisStreamStreamModeDetailsStreamMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_kinesis_stream`.
@@ -25,7 +61,7 @@ final class AwsKinesisStream extends Resource {
   AwsKinesisStream({
     required super.localName,
     TfArg<String>? arn,
-    TfArg<String>? encryptionType,
+    TfArg<KinesisStreamEncryptionType>? encryptionType,
     TfArg<bool>? enforceConsumerDeletion,
     TfArg<String>? kmsKeyId,
     TfArg<num>? maxRecordSizeInKib,
@@ -33,7 +69,7 @@ final class AwsKinesisStream extends Resource {
     TfArg<String>? region,
     TfArg<num>? retentionPeriod,
     TfArg<num>? shardCount,
-    TfArg<List<String>>? shardLevelMetrics,
+    List<TfArg<KinesisStreamShardLevelMetrics>>? shardLevelMetrics,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? warmThroughputMibPs,
     KinesisStreamStreamModeDetails? streamModeDetails,
@@ -56,7 +92,9 @@ final class AwsKinesisStream extends Resource {
            if (retentionPeriod != null) 'retention_period': retentionPeriod,
            if (shardCount != null) 'shard_count': shardCount,
            if (shardLevelMetrics != null)
-             'shard_level_metrics': shardLevelMetrics,
+             'shard_level_metrics': TfArg.literal([
+               for (final e in shardLevelMetrics) e.toTfJson(),
+             ]),
            if (tags != null) 'tags': tags,
            if (warmThroughputMibPs != null)
              'warm_throughput_mib_ps': warmThroughputMibPs,

@@ -9,6 +9,16 @@ const Set<String> _awsDirectoryServiceSharedDirectorySensitive = <String>{
   'notes',
 };
 
+/// Directory Service Shared Directory enum for `method`.
+enum DirectoryServiceSharedDirectoryMethod implements TerraformEnum {
+  organizations('ORGANIZATIONS'),
+  handshake('HANDSHAKE');
+
+  const DirectoryServiceSharedDirectoryMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target` block of
 /// `aws_directory_service_shared_directory` (derived from provider schema).
 @immutable
@@ -17,12 +27,21 @@ final class DirectoryServiceSharedDirectoryTarget {
 
   final TfArg<String> id;
 
-  final TfArg<String>? type;
+  final TfArg<DirectoryServiceSharedDirectoryTargetType>? type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum DirectoryServiceSharedDirectoryTargetType implements TerraformEnum {
+  account('ACCOUNT');
+
+  const DirectoryServiceSharedDirectoryTargetType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_directory_service_shared_directory`.
@@ -32,7 +51,7 @@ final class AwsDirectoryServiceSharedDirectory extends Resource {
   AwsDirectoryServiceSharedDirectory({
     required super.localName,
     required TfArg<String> directoryId,
-    TfArg<String>? method,
+    TfArg<DirectoryServiceSharedDirectoryMethod>? method,
     TfArg<String>? notes,
     TfArg<String>? region,
     required DirectoryServiceSharedDirectoryTarget target,

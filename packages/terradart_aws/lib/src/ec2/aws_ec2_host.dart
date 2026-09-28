@@ -6,6 +6,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_host`.
 const Set<String> _awsEc2HostSensitive = <String>{};
 
+/// Ec2 Host Auto enum for `auto_placement`.
+enum Ec2HostAutoPlacement implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const Ec2HostAutoPlacement(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ec2 Host Host enum for `host_recovery`.
+enum Ec2HostHostRecovery implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const Ec2HostHostRecovery(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_host`.
 final class AwsEc2Host extends Resource {
   static const String tfType = 'aws_ec2_host';
@@ -13,9 +33,9 @@ final class AwsEc2Host extends Resource {
   AwsEc2Host({
     required super.localName,
     TfArg<String>? assetId,
-    TfArg<String>? autoPlacement,
+    TfArg<Ec2HostAutoPlacement>? autoPlacement,
     required TfArg<String> availabilityZone,
-    TfArg<String>? hostRecovery,
+    TfArg<Ec2HostHostRecovery>? hostRecovery,
     TfArg<String>? instanceFamily,
     TfArg<String>? instanceType,
     TfArg<String>? outpostArn,

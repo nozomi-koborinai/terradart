@@ -7,6 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrockagentcore_memory_strategy`.
 const Set<String> _awsBedrockagentcoreMemoryStrategySensitive = <String>{};
 
+/// Bedrockagentcore Memory Strategy enum for `type`.
+enum BedrockagentcoreMemoryStrategyType implements TerraformEnum {
+  semantic('SEMANTIC'),
+  summarization('SUMMARIZATION'),
+  userPreference('USER_PREFERENCE'),
+  custom('CUSTOM'),
+  episodic('EPISODIC');
+
+  const BedrockagentcoreMemoryStrategyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `configuration` block of
 /// `aws_bedrockagentcore_memory_strategy` (derived from provider schema).
 @immutable
@@ -19,7 +32,7 @@ final class BedrockagentcoreMemoryStrategyConfiguration {
     this.selfManagedConfiguration,
   });
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentcoreMemoryStrategyConfigurationType> type;
 
   final List<BedrockagentcoreMemoryStrategyConfigurationConsolidation>?
   consolidation;
@@ -46,6 +59,19 @@ final class BedrockagentcoreMemoryStrategyConfiguration {
         for (final e in selfManagedConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreMemoryStrategyConfigurationType implements TerraformEnum {
+  semanticOverride('SEMANTIC_OVERRIDE'),
+  summaryOverride('SUMMARY_OVERRIDE'),
+  userPreferenceOverride('USER_PREFERENCE_OVERRIDE'),
+  selfManaged('SELF_MANAGED'),
+  episodicOverride('EPISODIC_OVERRIDE');
+
+  const BedrockagentcoreMemoryStrategyConfigurationType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.consolidation` block of
@@ -266,11 +292,17 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchema {
     this.extractionConfig,
   });
 
-  final TfArg<String>? extractionType;
+  final TfArg<
+    BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionType
+  >?
+  extractionType;
 
   final TfArg<String> key;
 
-  final TfArg<String>? type;
+  final TfArg<
+    BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaType
+  >?
+  type;
 
   final List<
     BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfig
@@ -284,6 +316,33 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchema {
     if (extractionConfig != null)
       'extraction_config': [for (final e in extractionConfig!) e.encode()],
   };
+}
+
+/// `extraction_type` — derived from the provider schema description.
+enum BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionType
+    implements TerraformEnum {
+  llmInferred('LLM_INFERRED'),
+  strictlyConsistent('STRICTLY_CONSISTENT');
+
+  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaType
+    implements TerraformEnum {
+  string('STRING'),
+  stringlist('STRINGLIST'),
+  number('NUMBER');
+
+  const BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `memory_record_schema.metadata_schema.extraction_config` block of
@@ -451,7 +510,7 @@ final class AwsBedrockagentcoreMemoryStrategy extends Resource {
     TfArg<List<String>>? namespaceTemplates,
     TfArg<List<String>>? namespaces,
     TfArg<String>? region,
-    required TfArg<String> type,
+    required TfArg<BedrockagentcoreMemoryStrategyType> type,
     List<BedrockagentcoreMemoryStrategyConfiguration>? configuration,
     List<BedrockagentcoreMemoryStrategyMemoryRecordSchema>? memoryRecordSchema,
     List<BedrockagentcoreMemoryStrategyReflectionConfiguration>?

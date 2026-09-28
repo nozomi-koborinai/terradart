@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_network_interface`.
 const Set<String> _awsNetworkInterfaceSensitive = <String>{};
 
+/// Network Interface Interface enum for `interface_type`.
+enum NetworkInterfaceInterfaceType implements TerraformEnum {
+  efa('efa'),
+  efaOnly('efa-only'),
+  branch('branch'),
+  trunk('trunk');
+
+  const NetworkInterfaceInterfaceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `attachment` block of
 /// `aws_network_interface` (derived from provider schema).
 @immutable
@@ -76,7 +88,7 @@ final class AwsNetworkInterface extends Resource {
     required super.localName,
     TfArg<String>? description,
     TfArg<bool>? enablePrimaryIpv6,
-    TfArg<String>? interfaceType,
+    TfArg<NetworkInterfaceInterfaceType>? interfaceType,
     TfArg<num>? ipv4PrefixCount,
     TfArg<List<String>>? ipv4Prefixes,
     TfArg<num>? ipv6AddressCount,

@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_wafv2_web_acl`.
 const Set<String> _awsWafv2WebAclSensitive = <String>{};
 
+/// Wafv2 Web Acl enum for `scope`.
+enum Wafv2WebAclScope implements TerraformEnum {
+  cloudfront('CLOUDFRONT'),
+  regional('REGIONAL');
+
+  const Wafv2WebAclScope(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `association_config` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
@@ -148,7 +158,7 @@ final class Wafv2WebAclDataProtectionConfigDataProtection {
     required this.field,
   });
 
-  final TfArg<String> action;
+  final TfArg<Wafv2WebAclDataProtectionConfigDataProtectionAction> action;
 
   final TfArg<bool>? excludeRateBasedDetails;
 
@@ -166,6 +176,19 @@ final class Wafv2WebAclDataProtectionConfigDataProtection {
   };
 }
 
+/// `action` — derived from the provider schema description.
+enum Wafv2WebAclDataProtectionConfigDataProtectionAction
+    implements TerraformEnum {
+  substitution('SUBSTITUTION'),
+  hash('HASH');
+
+  const Wafv2WebAclDataProtectionConfigDataProtectionAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `data_protection_config.data_protection.field` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
@@ -177,12 +200,29 @@ final class Wafv2WebAclDataProtectionConfigDataProtectionField {
 
   final TfArg<List<Object?>>? fieldKeys;
 
-  final TfArg<String> fieldType;
+  final TfArg<Wafv2WebAclDataProtectionConfigDataProtectionFieldFieldType>
+  fieldType;
 
   Map<String, Object?> encode() => {
     if (fieldKeys != null) 'field_keys': fieldKeys!.toTfJson(),
     'field_type': fieldType.toTfJson(),
   };
+}
+
+/// `field_type` — derived from the provider schema description.
+enum Wafv2WebAclDataProtectionConfigDataProtectionFieldFieldType
+    implements TerraformEnum {
+  singleHeader('SINGLE_HEADER'),
+  singleCookie('SINGLE_COOKIE'),
+  singleQueryArgument('SINGLE_QUERY_ARGUMENT'),
+  queryString('QUERY_STRING'),
+  body('BODY');
+
+  const Wafv2WebAclDataProtectionConfigDataProtectionFieldFieldType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `default_action` block of
@@ -325,7 +365,7 @@ final class AwsWafv2WebAcl extends Resource {
     TfArg<String>? namePrefix,
     TfArg<String>? region,
     TfArg<String>? ruleJson,
-    required TfArg<String> scope,
+    required TfArg<Wafv2WebAclScope> scope,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? tokenDomains,
     Wafv2WebAclAssociationConfig? associationConfig,

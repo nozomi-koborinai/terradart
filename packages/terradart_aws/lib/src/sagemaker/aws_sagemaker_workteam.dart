@@ -119,14 +119,46 @@ final class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstrai
     this.vpcSourceIp,
   });
 
-  final TfArg<String>? sourceIp;
+  final TfArg<
+    SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp
+  >?
+  sourceIp;
 
-  final TfArg<String>? vpcSourceIp;
+  final TfArg<
+    SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp
+  >?
+  vpcSourceIp;
 
   Map<String, Object?> encode() => {
     if (sourceIp != null) 'source_ip': sourceIp!.toTfJson(),
     if (vpcSourceIp != null) 'vpc_source_ip': vpcSourceIp!.toTfJson(),
   };
+}
+
+/// `source_ip` — derived from the provider schema description.
+enum SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `vpc_source_ip` — derived from the provider schema description.
+enum SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_sagemaker_workteam`.

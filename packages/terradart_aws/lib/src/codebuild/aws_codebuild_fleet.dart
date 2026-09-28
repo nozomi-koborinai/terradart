@@ -7,6 +7,56 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_codebuild_fleet`.
 const Set<String> _awsCodebuildFleetSensitive = <String>{};
 
+/// Codebuild Fleet Compute enum for `compute_type`.
+enum CodebuildFleetComputeType implements TerraformEnum {
+  buildGeneral1Small('BUILD_GENERAL1_SMALL'),
+  buildGeneral1Medium('BUILD_GENERAL1_MEDIUM'),
+  buildGeneral1Large('BUILD_GENERAL1_LARGE'),
+  buildGeneral1Xlarge('BUILD_GENERAL1_XLARGE'),
+  buildGeneral12xlarge('BUILD_GENERAL1_2XLARGE'),
+  buildLambda1gb('BUILD_LAMBDA_1GB'),
+  buildLambda2gb('BUILD_LAMBDA_2GB'),
+  buildLambda4gb('BUILD_LAMBDA_4GB'),
+  buildLambda8gb('BUILD_LAMBDA_8GB'),
+  buildLambda10gb('BUILD_LAMBDA_10GB'),
+  attributeBasedCompute('ATTRIBUTE_BASED_COMPUTE'),
+  customInstanceType('CUSTOM_INSTANCE_TYPE');
+
+  const CodebuildFleetComputeType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Codebuild Fleet Environment enum for `environment_type`.
+enum CodebuildFleetEnvironmentType implements TerraformEnum {
+  windowsContainer('WINDOWS_CONTAINER'),
+  linuxContainer('LINUX_CONTAINER'),
+  linuxGpuContainer('LINUX_GPU_CONTAINER'),
+  armContainer('ARM_CONTAINER'),
+  windowsServer2019Container('WINDOWS_SERVER_2019_CONTAINER'),
+  windowsServer2022Container('WINDOWS_SERVER_2022_CONTAINER'),
+  linuxLambdaContainer('LINUX_LAMBDA_CONTAINER'),
+  armLambdaContainer('ARM_LAMBDA_CONTAINER'),
+  linuxEc2('LINUX_EC2'),
+  armEc2('ARM_EC2'),
+  windowsEc2('WINDOWS_EC2'),
+  macArm('MAC_ARM');
+
+  const CodebuildFleetEnvironmentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Codebuild Fleet Overflow enum for `overflow_behavior`.
+enum CodebuildFleetOverflowBehavior implements TerraformEnum {
+  queue('QUEUE'),
+  onDemand('ON_DEMAND');
+
+  const CodebuildFleetOverflowBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `compute_configuration` block of
 /// `aws_codebuild_fleet` (derived from provider schema).
 @immutable
@@ -23,7 +73,7 @@ final class CodebuildFleetComputeConfiguration {
 
   final TfArg<String>? instanceType;
 
-  final TfArg<String>? machineType;
+  final TfArg<CodebuildFleetComputeConfigurationMachineType>? machineType;
 
   final TfArg<num>? memory;
 
@@ -38,6 +88,16 @@ final class CodebuildFleetComputeConfiguration {
   };
 }
 
+/// `machine_type` — derived from the provider schema description.
+enum CodebuildFleetComputeConfigurationMachineType implements TerraformEnum {
+  general('GENERAL'),
+  nvme('NVME');
+
+  const CodebuildFleetComputeConfigurationMachineType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `scaling_configuration` block of
 /// `aws_codebuild_fleet` (derived from provider schema).
 @immutable
@@ -50,7 +110,7 @@ final class CodebuildFleetScalingConfiguration {
 
   final TfArg<num>? maxCapacity;
 
-  final TfArg<String>? scalingType;
+  final TfArg<CodebuildFleetScalingConfigurationScalingType>? scalingType;
 
   final List<CodebuildFleetScalingConfigurationTargetTrackingScalingConfigs>?
   targetTrackingScalingConfigs;
@@ -65,6 +125,15 @@ final class CodebuildFleetScalingConfiguration {
   };
 }
 
+/// `scaling_type` — derived from the provider schema description.
+enum CodebuildFleetScalingConfigurationScalingType implements TerraformEnum {
+  targetTrackingScaling('TARGET_TRACKING_SCALING');
+
+  const CodebuildFleetScalingConfigurationScalingType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `scaling_configuration.target_tracking_scaling_configs` block of
 /// `aws_codebuild_fleet` (derived from provider schema).
 @immutable
@@ -74,7 +143,10 @@ final class CodebuildFleetScalingConfigurationTargetTrackingScalingConfigs {
     this.targetValue,
   });
 
-  final TfArg<String>? metricType;
+  final TfArg<
+    CodebuildFleetScalingConfigurationTargetTrackingScalingConfigsMetricType
+  >?
+  metricType;
 
   final TfArg<num>? targetValue;
 
@@ -82,6 +154,18 @@ final class CodebuildFleetScalingConfigurationTargetTrackingScalingConfigs {
     if (metricType != null) 'metric_type': metricType!.toTfJson(),
     if (targetValue != null) 'target_value': targetValue!.toTfJson(),
   };
+}
+
+/// `metric_type` — derived from the provider schema description.
+enum CodebuildFleetScalingConfigurationTargetTrackingScalingConfigsMetricType
+    implements TerraformEnum {
+  fleetUtilizationRate('FLEET_UTILIZATION_RATE');
+
+  const CodebuildFleetScalingConfigurationTargetTrackingScalingConfigsMetricType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `vpc_config` block of
@@ -114,12 +198,12 @@ final class AwsCodebuildFleet extends Resource {
   AwsCodebuildFleet({
     required super.localName,
     required TfArg<num> baseCapacity,
-    required TfArg<String> computeType,
-    required TfArg<String> environmentType,
+    required TfArg<CodebuildFleetComputeType> computeType,
+    required TfArg<CodebuildFleetEnvironmentType> environmentType,
     TfArg<String>? fleetServiceRole,
     TfArg<String>? imageId,
     required TfArg<String> name,
-    TfArg<String>? overflowBehavior,
+    TfArg<CodebuildFleetOverflowBehavior>? overflowBehavior,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     CodebuildFleetComputeConfiguration? computeConfiguration,

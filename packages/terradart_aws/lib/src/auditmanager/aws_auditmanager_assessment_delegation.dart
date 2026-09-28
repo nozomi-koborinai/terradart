@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_auditmanager_assessment_delegation`.
 const Set<String> _awsAuditmanagerAssessmentDelegationSensitive = <String>{};
 
+/// Auditmanager Assessment Delegation Role enum for `role_type`.
+enum AuditmanagerAssessmentDelegationRoleType implements TerraformEnum {
+  processOwner('PROCESS_OWNER'),
+  resourceOwner('RESOURCE_OWNER');
+
+  const AuditmanagerAssessmentDelegationRoleType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_auditmanager_assessment_delegation`.
 final class AwsAuditmanagerAssessmentDelegation extends Resource {
   static const String tfType = 'aws_auditmanager_assessment_delegation';
@@ -17,7 +27,7 @@ final class AwsAuditmanagerAssessmentDelegation extends Resource {
     required TfArg<String> controlSetId,
     TfArg<String>? region,
     required TfArg<String> roleArn,
-    required TfArg<String> roleType,
+    required TfArg<AuditmanagerAssessmentDelegationRoleType> roleType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

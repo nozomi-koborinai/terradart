@@ -6,17 +6,42 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpclattice_resource_gateway`.
 const Set<String> _awsVpclatticeResourceGatewaySensitive = <String>{};
 
+/// Vpclattice Resource Gateway Ip Address enum for `ip_address_type`.
+enum VpclatticeResourceGatewayIpAddressType implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6'),
+  dualstack('DUALSTACK');
+
+  const VpclatticeResourceGatewayIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpclattice Resource Gateway Resource Config Dns enum for `resource_config_dns_resolution`.
+enum VpclatticeResourceGatewayResourceConfigDnsResolution
+    implements TerraformEnum {
+  inVpc('IN_VPC'),
+  public('PUBLIC');
+
+  const VpclatticeResourceGatewayResourceConfigDnsResolution(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_vpclattice_resource_gateway`.
 final class AwsVpclatticeResourceGateway extends Resource {
   static const String tfType = 'aws_vpclattice_resource_gateway';
 
   AwsVpclatticeResourceGateway({
     required super.localName,
-    TfArg<String>? ipAddressType,
+    TfArg<VpclatticeResourceGatewayIpAddressType>? ipAddressType,
     TfArg<num>? ipv4AddressesPerEni,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? resourceConfigDnsResolution,
+    TfArg<VpclatticeResourceGatewayResourceConfigDnsResolution>?
+    resourceConfigDnsResolution,
     TfArg<List<String>>? securityGroupIds,
     required TfArg<List<String>> subnetIds,
     TfArg<Map<String, String>>? tags,

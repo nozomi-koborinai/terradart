@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dms_replication_config`.
 const Set<String> _awsDmsReplicationConfigSensitive = <String>{};
 
+/// Dms Replication Config Replication enum for `replication_type`.
+enum DmsReplicationConfigReplicationType implements TerraformEnum {
+  fullLoad('full-load'),
+  cdc('cdc'),
+  fullLoadAndCdc('full-load-and-cdc');
+
+  const DmsReplicationConfigReplicationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `compute_config` block of
 /// `aws_dms_replication_config` (derived from provider schema).
 @immutable
@@ -68,7 +79,7 @@ final class AwsDmsReplicationConfig extends Resource {
     TfArg<String>? region,
     required TfArg<String> replicationConfigIdentifier,
     TfArg<String>? replicationSettings,
-    required TfArg<String> replicationType,
+    required TfArg<DmsReplicationConfigReplicationType> replicationType,
     TfArg<String>? resourceIdentifier,
     required TfArg<String> sourceEndpointArn,
     TfArg<bool>? startReplication,

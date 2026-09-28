@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appautoscaling_policy`.
 const Set<String> _awsAppautoscalingPolicySensitive = <String>{};
 
+/// Appautoscaling Policy Policy enum for `policy_type`.
+enum AppautoscalingPolicyPolicyType implements TerraformEnum {
+  stepscaling('StepScaling'),
+  targettrackingscaling('TargetTrackingScaling'),
+  predictivescaling('PredictiveScaling');
+
+  const AppautoscalingPolicyPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `predictive_scaling_policy_configuration` block of
 /// `aws_appautoscaling_policy` (derived from provider schema).
 @immutable
@@ -19,11 +30,15 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfiguration {
     required this.metricSpecification,
   });
 
-  final TfArg<String>? maxCapacityBreachBehavior;
+  final TfArg<
+    AppautoscalingPolicyPredictiveScalingPolicyConfigurationMaxCapacityBreachBehavior
+  >?
+  maxCapacityBreachBehavior;
 
   final TfArg<num>? maxCapacityBuffer;
 
-  final TfArg<String>? mode;
+  final TfArg<AppautoscalingPolicyPredictiveScalingPolicyConfigurationMode>?
+  mode;
 
   final TfArg<num>? schedulingBufferTime;
 
@@ -42,6 +57,32 @@ final class AppautoscalingPolicyPredictiveScalingPolicyConfiguration {
       'scheduling_buffer_time': schedulingBufferTime!.toTfJson(),
     'metric_specification': [for (final e in metricSpecification) e.encode()],
   };
+}
+
+/// `max_capacity_breach_behavior` — derived from the provider schema description.
+enum AppautoscalingPolicyPredictiveScalingPolicyConfigurationMaxCapacityBreachBehavior
+    implements TerraformEnum {
+  honormaxcapacity('HonorMaxCapacity'),
+  increasemaxcapacity('IncreaseMaxCapacity');
+
+  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMaxCapacityBreachBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `mode` — derived from the provider schema description.
+enum AppautoscalingPolicyPredictiveScalingPolicyConfigurationMode
+    implements TerraformEnum {
+  forecastonly('ForecastOnly'),
+  forecastandscale('ForecastAndScale');
+
+  const AppautoscalingPolicyPredictiveScalingPolicyConfigurationMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `predictive_scaling_policy_configuration.metric_specification` block of
@@ -530,11 +571,15 @@ final class AppautoscalingPolicyStepScalingPolicyConfiguration {
     this.stepAdjustment,
   });
 
-  final TfArg<String>? adjustmentType;
+  final TfArg<AppautoscalingPolicyStepScalingPolicyConfigurationAdjustmentType>?
+  adjustmentType;
 
   final TfArg<num>? cooldown;
 
-  final TfArg<String>? metricAggregationType;
+  final TfArg<
+    AppautoscalingPolicyStepScalingPolicyConfigurationMetricAggregationType
+  >?
+  metricAggregationType;
 
   final TfArg<num>? minAdjustmentMagnitude;
 
@@ -551,6 +596,34 @@ final class AppautoscalingPolicyStepScalingPolicyConfiguration {
     if (stepAdjustment != null)
       'step_adjustment': [for (final e in stepAdjustment!) e.encode()],
   };
+}
+
+/// `adjustment_type` — derived from the provider schema description.
+enum AppautoscalingPolicyStepScalingPolicyConfigurationAdjustmentType
+    implements TerraformEnum {
+  changeincapacity('ChangeInCapacity'),
+  percentchangeincapacity('PercentChangeInCapacity'),
+  exactcapacity('ExactCapacity');
+
+  const AppautoscalingPolicyStepScalingPolicyConfigurationAdjustmentType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `metric_aggregation_type` — derived from the provider schema description.
+enum AppautoscalingPolicyStepScalingPolicyConfigurationMetricAggregationType
+    implements TerraformEnum {
+  average('Average'),
+  minimum('Minimum'),
+  maximum('Maximum');
+
+  const AppautoscalingPolicyStepScalingPolicyConfigurationMetricAggregationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `step_scaling_policy_configuration.step_adjustment` block of
@@ -638,7 +711,10 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
 
   final TfArg<String>? namespace;
 
-  final TfArg<String>? statistic;
+  final TfArg<
+    AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationStatistic
+  >?
+  statistic;
 
   final TfArg<String>? unit;
 
@@ -661,6 +737,22 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
       'dimensions': [for (final e in dimensions!) e.encode()],
     if (metrics != null) 'metrics': [for (final e in metrics!) e.encode()],
   };
+}
+
+/// `statistic` — derived from the provider schema description.
+enum AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationStatistic
+    implements TerraformEnum {
+  average('Average'),
+  minimum('Minimum'),
+  maximum('Maximum'),
+  samplecount('SampleCount'),
+  sum('Sum');
+
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationStatistic(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_tracking_scaling_policy_configuration.customized_metric_specification.dimensions` block of
@@ -810,7 +902,7 @@ final class AwsAppautoscalingPolicy extends Resource {
   AwsAppautoscalingPolicy({
     required super.localName,
     required TfArg<String> name,
-    TfArg<String>? policyType,
+    TfArg<AppautoscalingPolicyPolicyType>? policyType,
     TfArg<String>? region,
     required TfArg<String> resourceId,
     required TfArg<String> scalableDimension,

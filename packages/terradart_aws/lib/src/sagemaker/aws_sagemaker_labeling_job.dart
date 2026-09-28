@@ -184,12 +184,32 @@ final class SagemakerLabelingJobInputConfigDataAttributes {
     this.contentClassifiers,
   });
 
-  final TfArg<List<Object?>>? contentClassifiers;
+  final List<
+    TfArg<SagemakerLabelingJobInputConfigDataAttributesContentClassifiers>
+  >?
+  contentClassifiers;
 
   Map<String, Object?> encode() => {
     if (contentClassifiers != null)
-      'content_classifiers': contentClassifiers!.toTfJson(),
+      'content_classifiers': [
+        for (final e in contentClassifiers!) e.toTfJson(),
+      ],
   };
+}
+
+/// `content_classifiers` — derived from the provider schema description.
+enum SagemakerLabelingJobInputConfigDataAttributesContentClassifiers
+    implements TerraformEnum {
+  freeofpersonallyidentifiableinformation(
+    'FreeOfPersonallyIdentifiableInformation',
+  ),
+  freeofadultcontent('FreeOfAdultContent');
+
+  const SagemakerLabelingJobInputConfigDataAttributesContentClassifiers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_config.data_source` block of

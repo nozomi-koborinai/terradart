@@ -63,7 +63,10 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighA
     required this.notify,
   });
 
-  final TfArg<String> eventAction;
+  final TfArg<
+    CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighActionEventAction
+  >
+  eventAction;
 
   final TfArg<bool> notify;
 
@@ -71,6 +74,21 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighA
     'event_action': eventAction.toTfJson(),
     'notify': notify.toTfJson(),
   };
+}
+
+/// `event_action` — derived from the provider schema description.
+enum CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighActionEventAction
+    implements TerraformEnum {
+  block('BLOCK'),
+  mfaIfConfigured('MFA_IF_CONFIGURED'),
+  mfaRequired('MFA_REQUIRED'),
+  noAction('NO_ACTION');
+
+  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighActionEventAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `account_takeover_risk_configuration.actions.low_action` block of
@@ -82,7 +100,10 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowAc
     required this.notify,
   });
 
-  final TfArg<String> eventAction;
+  final TfArg<
+    CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowActionEventAction
+  >
+  eventAction;
 
   final TfArg<bool> notify;
 
@@ -90,6 +111,21 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowAc
     'event_action': eventAction.toTfJson(),
     'notify': notify.toTfJson(),
   };
+}
+
+/// `event_action` — derived from the provider schema description.
+enum CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowActionEventAction
+    implements TerraformEnum {
+  block('BLOCK'),
+  mfaIfConfigured('MFA_IF_CONFIGURED'),
+  mfaRequired('MFA_REQUIRED'),
+  noAction('NO_ACTION');
+
+  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowActionEventAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `account_takeover_risk_configuration.actions.medium_action` block of
@@ -101,7 +137,10 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediu
     required this.notify,
   });
 
-  final TfArg<String> eventAction;
+  final TfArg<
+    CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumActionEventAction
+  >
+  eventAction;
 
   final TfArg<bool> notify;
 
@@ -109,6 +148,21 @@ final class CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediu
     'event_action': eventAction.toTfJson(),
     'notify': notify.toTfJson(),
   };
+}
+
+/// `event_action` — derived from the provider schema description.
+enum CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumActionEventAction
+    implements TerraformEnum {
+  block('BLOCK'),
+  mfaIfConfigured('MFA_IF_CONFIGURED'),
+  mfaRequired('MFA_REQUIRED'),
+  noAction('NO_ACTION');
+
+  const CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumActionEventAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `account_takeover_risk_configuration.notify_configuration` block of
@@ -227,15 +281,35 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfiguration {
     required this.actions,
   });
 
-  final TfArg<List<Object?>>? eventFilter;
+  final List<
+    TfArg<
+      CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEventFilter
+    >
+  >?
+  eventFilter;
 
   final CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActions
   actions;
 
   Map<String, Object?> encode() => {
-    if (eventFilter != null) 'event_filter': eventFilter!.toTfJson(),
+    if (eventFilter != null)
+      'event_filter': [for (final e in eventFilter!) e.toTfJson()],
     'actions': actions.encode(),
   };
+}
+
+/// `event_filter` — derived from the provider schema description.
+enum CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEventFilter
+    implements TerraformEnum {
+  signIn('SIGN_IN'),
+  passwordChange('PASSWORD_CHANGE'),
+  signUp('SIGN_UP');
+
+  const CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEventFilter(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `compromised_credentials_risk_configuration.actions` block of
@@ -246,9 +320,25 @@ final class CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActio
     required this.eventAction,
   });
 
-  final TfArg<String> eventAction;
+  final TfArg<
+    CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActionsEventAction
+  >
+  eventAction;
 
   Map<String, Object?> encode() => {'event_action': eventAction.toTfJson()};
+}
+
+/// `event_action` — derived from the provider schema description.
+enum CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActionsEventAction
+    implements TerraformEnum {
+  block('BLOCK'),
+  noAction('NO_ACTION');
+
+  const CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActionsEventAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `risk_exception_configuration` block of

@@ -47,6 +47,42 @@ _awsBedrockagentcoreOauth2CredentialProviderSensitive = <String>{
   'oauth2_provider_config.slack_oauth2_provider_config.client_secret_wo',
 };
 
+/// Bedrockagentcore Oauth2 Credential Provider Credential Provider enum for `credential_provider_vendor`.
+enum BedrockagentcoreOauth2CredentialProviderCredentialProviderVendor
+    implements TerraformEnum {
+  googleoauth2('GoogleOauth2'),
+  githuboauth2('GithubOauth2'),
+  slackoauth2('SlackOauth2'),
+  salesforceoauth2('SalesforceOauth2'),
+  microsoftoauth2('MicrosoftOauth2'),
+  customoauth2('CustomOauth2'),
+  atlassianoauth2('AtlassianOauth2'),
+  linkedinoauth2('LinkedinOauth2'),
+  xoauth2('XOauth2'),
+  oktaoauth2('OktaOauth2'),
+  oneloginoauth2('OneLoginOauth2'),
+  pingoneoauth2('PingOneOauth2'),
+  facebookoauth2('FacebookOauth2'),
+  yandexoauth2('YandexOauth2'),
+  redditoauth2('RedditOauth2'),
+  zoomoauth2('ZoomOauth2'),
+  twitchoauth2('TwitchOauth2'),
+  spotifyoauth2('SpotifyOauth2'),
+  dropboxoauth2('DropboxOauth2'),
+  notionoauth2('NotionOauth2'),
+  hubspotoauth2('HubspotOauth2'),
+  cyberarkoauth2('CyberArkOauth2'),
+  fusionauthoauth2('FusionAuthOauth2'),
+  auth0oauth2('Auth0Oauth2'),
+  cognitooauth2('CognitoOauth2');
+
+  const BedrockagentcoreOauth2CredentialProviderCredentialProviderVendor(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `oauth2_provider_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
@@ -232,7 +268,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     this.privateKeyJwtConfig,
   });
 
-  final TfArg<String>? clientAuthenticationMethod;
+  final TfArg<
+    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientAuthenticationMethod
+  >?
+  clientAuthenticationMethod;
 
   final TfArg<num>? clientCredentialsWoVersion;
 
@@ -306,6 +345,21 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
         for (final e in privateKeyJwtConfig!) e.encode(),
       ],
   };
+}
+
+/// `client_authentication_method` — derived from the provider schema description.
+enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientAuthenticationMethod
+    implements TerraformEnum {
+  clientSecretBasic('CLIENT_SECRET_BASIC'),
+  clientSecretPost('CLIENT_SECRET_POST'),
+  awsIamIdTokenJwt('AWS_IAM_ID_TOKEN_JWT'),
+  privateKeyJwt('PRIVATE_KEY_JWT');
+
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientAuthenticationMethod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.client_secret_config` block of
@@ -393,7 +447,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     this.tokenExchangeGrantTypeConfig,
   });
 
-  final TfArg<String> grantType;
+  final TfArg<
+    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigGrantType
+  >
+  grantType;
 
   final List<
     BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfig
@@ -409,6 +466,19 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
   };
 }
 
+/// `grant_type` — derived from the provider schema description.
+enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigGrantType
+    implements TerraformEnum {
+  tokenExchange('TOKEN_EXCHANGE'),
+  jwtAuthorizationGrant('JWT_AUTHORIZATION_GRANT');
+
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigGrantType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.on_behalf_of_token_exchange_config.token_exchange_grant_type_config` block of
 /// `aws_bedrockagentcore_oauth2_credential_provider` (derived from provider schema).
 @immutable
@@ -418,7 +488,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     this.actorTokenScopes,
   });
 
-  final TfArg<String> actorTokenContent;
+  final TfArg<
+    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfigActorTokenContent
+  >
+  actorTokenContent;
 
   final TfArg<List<Object?>>? actorTokenScopes;
 
@@ -427,6 +500,20 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     if (actorTokenScopes != null)
       'actor_token_scopes': actorTokenScopes!.toTfJson(),
   };
+}
+
+/// `actor_token_content` — derived from the provider schema description.
+enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfigActorTokenContent
+    implements TerraformEnum {
+  none('NONE'),
+  m2m('M2M'),
+  awsIamIdTokenJwt('AWS_IAM_ID_TOKEN_JWT');
+
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfigActorTokenContent(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_endpoint` block of
@@ -471,7 +558,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -492,6 +582,19 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_endpoint.self_managed_lattice_resource` block of
@@ -576,7 +679,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -597,6 +703,19 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_endpoint_override.private_endpoint.self_managed_lattice_resource` block of
@@ -631,7 +750,10 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
 
   final TfArg<Map<String, String>>? additionalPayloadClaims;
 
-  final TfArg<String>? signingAlgorithm;
+  final TfArg<
+    BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigSigningAlgorithm
+  >?
+  signingAlgorithm;
 
   final List<
     BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigPrivateKeySource
@@ -648,6 +770,20 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOa
     if (privateKeySource != null)
       'private_key_source': [for (final e in privateKeySource!) e.encode()],
   };
+}
+
+/// `signing_algorithm` — derived from the provider schema description.
+enum BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigSigningAlgorithm
+    implements TerraformEnum {
+  rs256('RS256'),
+  ps256('PS256'),
+  es256('ES256');
+
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigSigningAlgorithm(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `oauth2_provider_config.custom_oauth2_provider_config.private_key_jwt_config.private_key_source` block of
@@ -1163,7 +1299,10 @@ final class AwsBedrockagentcoreOauth2CredentialProvider extends Resource {
 
   AwsBedrockagentcoreOauth2CredentialProvider({
     required super.localName,
-    required TfArg<String> credentialProviderVendor,
+    required TfArg<
+      BedrockagentcoreOauth2CredentialProviderCredentialProviderVendor
+    >
+    credentialProviderVendor,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

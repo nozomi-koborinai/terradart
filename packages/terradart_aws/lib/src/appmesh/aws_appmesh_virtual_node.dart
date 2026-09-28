@@ -649,7 +649,7 @@ final class AppmeshVirtualNodeSpecListenerHealthCheck {
 
   final TfArg<num>? port;
 
-  final TfArg<String> protocol;
+  final TfArg<AppmeshVirtualNodeSpecListenerHealthCheckProtocol> protocol;
 
   final TfArg<num> timeoutMillis;
 
@@ -664,6 +664,19 @@ final class AppmeshVirtualNodeSpecListenerHealthCheck {
     'timeout_millis': timeoutMillis.toTfJson(),
     'unhealthy_threshold': unhealthyThreshold.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerHealthCheckProtocol
+    implements TerraformEnum {
+  http('http'),
+  tcp('tcp'),
+  http2('http2'),
+  grpc('grpc');
+
+  const AppmeshVirtualNodeSpecListenerHealthCheckProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.outlier_detection` block of
@@ -703,7 +716,10 @@ final class AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDuration {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<
+    AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDurationUnit
+  >
+  unit;
 
   final TfArg<num> value;
 
@@ -711,6 +727,19 @@ final class AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDuration {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDurationUnit
+    implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshVirtualNodeSpecListenerOutlierDetectionBaseEjectionDurationUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.outlier_detection.interval` block of
@@ -722,7 +751,7 @@ final class AppmeshVirtualNodeSpecListenerOutlierDetectionInterval {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshVirtualNodeSpecListenerOutlierDetectionIntervalUnit> unit;
 
   final TfArg<num> value;
 
@@ -730,6 +759,19 @@ final class AppmeshVirtualNodeSpecListenerOutlierDetectionInterval {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerOutlierDetectionIntervalUnit
+    implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshVirtualNodeSpecListenerOutlierDetectionIntervalUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.port_mapping` block of
@@ -743,12 +785,25 @@ final class AppmeshVirtualNodeSpecListenerPortMapping {
 
   final TfArg<num> port;
 
-  final TfArg<String> protocol;
+  final TfArg<AppmeshVirtualNodeSpecListenerPortMappingProtocol> protocol;
 
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'protocol': protocol.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerPortMappingProtocol
+    implements TerraformEnum {
+  http('http'),
+  tcp('tcp'),
+  http2('http2'),
+  grpc('grpc');
+
+  const AppmeshVirtualNodeSpecListenerPortMappingProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.timeout` block of
@@ -803,7 +858,7 @@ final class AppmeshVirtualNodeSpecListenerTimeoutGrpcIdle {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutGrpcIdleUnit> unit;
 
   final TfArg<num> value;
 
@@ -811,6 +866,17 @@ final class AppmeshVirtualNodeSpecListenerTimeoutGrpcIdle {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerTimeoutGrpcIdleUnit
+    implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshVirtualNodeSpecListenerTimeoutGrpcIdleUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.timeout.grpc.per_request` block of
@@ -822,7 +888,7 @@ final class AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequest {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequestUnit> unit;
 
   final TfArg<num> value;
 
@@ -830,6 +896,19 @@ final class AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequest {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequestUnit
+    implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequestUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.timeout.http` block of
@@ -857,7 +936,7 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttpIdle {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutHttpIdleUnit> unit;
 
   final TfArg<num> value;
 
@@ -865,6 +944,17 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttpIdle {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerTimeoutHttpIdleUnit
+    implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshVirtualNodeSpecListenerTimeoutHttpIdleUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.timeout.http.per_request` block of
@@ -876,7 +966,7 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequest {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequestUnit> unit;
 
   final TfArg<num> value;
 
@@ -884,6 +974,19 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequest {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequestUnit
+    implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequestUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.timeout.http2` block of
@@ -914,7 +1017,7 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttp2Idle {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutHttp2IdleUnit> unit;
 
   final TfArg<num> value;
 
@@ -922,6 +1025,17 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttp2Idle {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerTimeoutHttp2IdleUnit
+    implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshVirtualNodeSpecListenerTimeoutHttp2IdleUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.timeout.http2.per_request` block of
@@ -933,7 +1047,7 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequest {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequestUnit> unit;
 
   final TfArg<num> value;
 
@@ -941,6 +1055,19 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequest {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequestUnit
+    implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequestUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.timeout.tcp` block of
@@ -963,7 +1090,7 @@ final class AppmeshVirtualNodeSpecListenerTimeoutTcpIdle {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshVirtualNodeSpecListenerTimeoutTcpIdleUnit> unit;
 
   final TfArg<num> value;
 
@@ -971,6 +1098,16 @@ final class AppmeshVirtualNodeSpecListenerTimeoutTcpIdle {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerTimeoutTcpIdleUnit implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshVirtualNodeSpecListenerTimeoutTcpIdleUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.tls` block of
@@ -983,7 +1120,7 @@ final class AppmeshVirtualNodeSpecListenerTls {
     this.validation,
   });
 
-  final TfArg<String> mode;
+  final TfArg<AppmeshVirtualNodeSpecListenerTlsMode> mode;
 
   final AppmeshVirtualNodeSpecListenerTlsCertificate certificate;
 
@@ -994,6 +1131,17 @@ final class AppmeshVirtualNodeSpecListenerTls {
     'certificate': certificate.encode(),
     if (validation != null) 'validation': validation!.encode(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecListenerTlsMode implements TerraformEnum {
+  strict('STRICT'),
+  permissive('PERMISSIVE'),
+  disabled('DISABLED');
+
+  const AppmeshVirtualNodeSpecListenerTlsMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.tls.certificate` block of
@@ -1290,15 +1438,45 @@ final class AppmeshVirtualNodeSpecServiceDiscoveryDns {
 
   final TfArg<String> hostname;
 
-  final TfArg<String>? ipPreference;
+  final TfArg<AppmeshVirtualNodeSpecServiceDiscoveryDnsIpPreference>?
+  ipPreference;
 
-  final TfArg<String>? responseType;
+  final TfArg<AppmeshVirtualNodeSpecServiceDiscoveryDnsResponseType>?
+  responseType;
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     if (ipPreference != null) 'ip_preference': ipPreference!.toTfJson(),
     if (responseType != null) 'response_type': responseType!.toTfJson(),
   };
+}
+
+/// `ip_preference` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecServiceDiscoveryDnsIpPreference
+    implements TerraformEnum {
+  ipv6Preferred('IPv6_PREFERRED'),
+  ipv4Preferred('IPv4_PREFERRED'),
+  ipv4Only('IPv4_ONLY'),
+  ipv6Only('IPv6_ONLY');
+
+  const AppmeshVirtualNodeSpecServiceDiscoveryDnsIpPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `response_type` — derived from the provider schema description.
+enum AppmeshVirtualNodeSpecServiceDiscoveryDnsResponseType
+    implements TerraformEnum {
+  loadbalancer('LOADBALANCER'),
+  endpoints('ENDPOINTS');
+
+  const AppmeshVirtualNodeSpecServiceDiscoveryDnsResponseType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_appmesh_virtual_node`.

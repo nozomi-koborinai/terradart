@@ -8,4 +8,6 @@ export 'src/internetmonitor/aws_internetmonitor_monitor.dart'
         AwsInternetmonitorMonitor,
         InternetmonitorMonitorHealthEventsConfig,
         InternetmonitorMonitorInternetMeasurementsLogDelivery,
-        InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config;
+        InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config,
+        InternetmonitorMonitorInternetMeasurementsLogDeliveryS3ConfigLogDeliveryStatus,
+        InternetmonitorMonitorStatus;

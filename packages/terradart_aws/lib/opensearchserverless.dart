@@ -4,20 +4,32 @@
 library;
 
 export 'src/opensearchserverless/aws_opensearchserverless_access_policy.dart'
-    show AwsOpensearchserverlessAccessPolicy;
+    show
+        AwsOpensearchserverlessAccessPolicy,
+        OpensearchserverlessAccessPolicyType;
 export 'src/opensearchserverless/aws_opensearchserverless_collection.dart'
     show AwsOpensearchserverlessCollection;
 export 'src/opensearchserverless/aws_opensearchserverless_collection_group.dart'
-    show AwsOpensearchserverlessCollectionGroup;
+    show
+        AwsOpensearchserverlessCollectionGroup,
+        OpensearchserverlessCollectionGroupGeneration,
+        OpensearchserverlessCollectionGroupStandbyReplicas;
 export 'src/opensearchserverless/aws_opensearchserverless_lifecycle_policy.dart'
-    show AwsOpensearchserverlessLifecyclePolicy;
+    show
+        AwsOpensearchserverlessLifecyclePolicy,
+        OpensearchserverlessLifecyclePolicyType;
 export 'src/opensearchserverless/aws_opensearchserverless_security_config.dart'
     show
         AwsOpensearchserverlessSecurityConfig,
         OpensearchserverlessSecurityConfigIamFederationOptions,
         OpensearchserverlessSecurityConfigIamIdentityCenterOptions,
-        OpensearchserverlessSecurityConfigSamlOptions;
+        OpensearchserverlessSecurityConfigIamIdentityCenterOptionsGroupAttribute,
+        OpensearchserverlessSecurityConfigIamIdentityCenterOptionsUserAttribute,
+        OpensearchserverlessSecurityConfigSamlOptions,
+        OpensearchserverlessSecurityConfigType;
 export 'src/opensearchserverless/aws_opensearchserverless_security_policy.dart'
-    show AwsOpensearchserverlessSecurityPolicy;
+    show
+        AwsOpensearchserverlessSecurityPolicy,
+        OpensearchserverlessSecurityPolicyType;
 export 'src/opensearchserverless/aws_opensearchserverless_vpc_endpoint.dart'
     show AwsOpensearchserverlessVpcEndpoint;

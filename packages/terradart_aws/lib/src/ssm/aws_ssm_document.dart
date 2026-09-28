@@ -7,6 +7,42 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ssm_document`.
 const Set<String> _awsSsmDocumentSensitive = <String>{};
 
+/// Ssm Document Document enum for `document_format`.
+enum SsmDocumentDocumentFormat implements TerraformEnum {
+  yaml('YAML'),
+  json('JSON'),
+  text('TEXT');
+
+  const SsmDocumentDocumentFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ssm Document Document enum for `document_type`.
+enum SsmDocumentDocumentType implements TerraformEnum {
+  command('Command'),
+  policy('Policy'),
+  automation('Automation'),
+  session('Session'),
+  package('Package'),
+  applicationconfiguration('ApplicationConfiguration'),
+  applicationconfigurationschema('ApplicationConfigurationSchema'),
+  deploymentstrategy('DeploymentStrategy'),
+  changecalendar('ChangeCalendar'),
+  automationChangetemplate('Automation.ChangeTemplate'),
+  problemanalysis('ProblemAnalysis'),
+  problemanalysistemplate('ProblemAnalysisTemplate'),
+  cloudformation('CloudFormation'),
+  conformancepacktemplate('ConformancePackTemplate'),
+  quicksetup('QuickSetup'),
+  manualapprovalpolicy('ManualApprovalPolicy'),
+  autoapprovalpolicy('AutoApprovalPolicy');
+
+  const SsmDocumentDocumentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `attachments_source` block of
 /// `aws_ssm_document` (derived from provider schema).
 @immutable
@@ -17,7 +53,7 @@ final class SsmDocumentAttachmentsSource {
     required this.values,
   });
 
-  final TfArg<String> key;
+  final TfArg<SsmDocumentAttachmentsSourceKey> key;
 
   final TfArg<String>? name;
 
@@ -30,6 +66,17 @@ final class SsmDocumentAttachmentsSource {
   };
 }
 
+/// `key` — derived from the provider schema description.
+enum SsmDocumentAttachmentsSourceKey implements TerraformEnum {
+  sourceurl('SourceUrl'),
+  s3fileurl('S3FileUrl'),
+  attachmentreference('AttachmentReference');
+
+  const SsmDocumentAttachmentsSourceKey(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ssm_document`.
 final class AwsSsmDocument extends Resource {
   static const String tfType = 'aws_ssm_document';
@@ -37,8 +84,8 @@ final class AwsSsmDocument extends Resource {
   AwsSsmDocument({
     required super.localName,
     required TfArg<String> content,
-    TfArg<String>? documentFormat,
-    required TfArg<String> documentType,
+    TfArg<SsmDocumentDocumentFormat>? documentFormat,
+    required TfArg<SsmDocumentDocumentType> documentType,
     required TfArg<String> name,
     TfArg<Map<String, String>>? permissions,
     TfArg<String>? region,

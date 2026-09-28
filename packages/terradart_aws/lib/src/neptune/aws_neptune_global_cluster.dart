@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_neptune_global_cluster`.
 const Set<String> _awsNeptuneGlobalClusterSensitive = <String>{};
 
+/// Neptune Global Cluster enum for `engine`.
+enum NeptuneGlobalClusterEngine implements TerraformEnum {
+  neptune('neptune');
+
+  const NeptuneGlobalClusterEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_neptune_global_cluster`.
 final class AwsNeptuneGlobalCluster extends Resource {
   static const String tfType = 'aws_neptune_global_cluster';
@@ -13,7 +22,7 @@ final class AwsNeptuneGlobalCluster extends Resource {
   AwsNeptuneGlobalCluster({
     required super.localName,
     TfArg<bool>? deletionProtection,
-    TfArg<String>? engine,
+    TfArg<NeptuneGlobalClusterEngine>? engine,
     TfArg<String>? engineVersion,
     required TfArg<String> globalClusterIdentifier,
     TfArg<String>? region,

@@ -6,14 +6,42 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_costoptimizationhub_preferences`.
 const Set<String> _awsCostoptimizationhubPreferencesSensitive = <String>{};
 
+/// Costoptimizationhub Preferences Member Account Discount enum for `member_account_discount_visibility`.
+enum CostoptimizationhubPreferencesMemberAccountDiscountVisibility
+    implements TerraformEnum {
+  all('All'),
+  none('None');
+
+  const CostoptimizationhubPreferencesMemberAccountDiscountVisibility(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Costoptimizationhub Preferences Savings Estimation enum for `savings_estimation_mode`.
+enum CostoptimizationhubPreferencesSavingsEstimationMode
+    implements TerraformEnum {
+  beforediscounts('BeforeDiscounts'),
+  afterdiscounts('AfterDiscounts');
+
+  const CostoptimizationhubPreferencesSavingsEstimationMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_costoptimizationhub_preferences`.
 final class AwsCostoptimizationhubPreferences extends Resource {
   static const String tfType = 'aws_costoptimizationhub_preferences';
 
   AwsCostoptimizationhubPreferences({
     required super.localName,
-    TfArg<String>? memberAccountDiscountVisibility,
-    TfArg<String>? savingsEstimationMode,
+    TfArg<CostoptimizationhubPreferencesMemberAccountDiscountVisibility>?
+    memberAccountDiscountVisibility,
+    TfArg<CostoptimizationhubPreferencesSavingsEstimationMode>?
+    savingsEstimationMode,
     super.lifecycle,
     super.dependsOn,
     super.provider,

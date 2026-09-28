@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_security_group_rule`.
 const Set<String> _awsSecurityGroupRuleSensitive = <String>{};
 
+/// Security Group Rule enum for `type`.
+enum SecurityGroupRuleType implements TerraformEnum {
+  egress('egress'),
+  ingress('ingress');
+
+  const SecurityGroupRuleType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_security_group_rule`.
 final class AwsSecurityGroupRule extends Resource {
   static const String tfType = 'aws_security_group_rule';
@@ -23,7 +33,7 @@ final class AwsSecurityGroupRule extends Resource {
     TfArg<bool>? self,
     TfArg<String>? sourceSecurityGroupId,
     required TfArg<num> toPort,
-    required TfArg<String> type,
+    required TfArg<SecurityGroupRuleType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

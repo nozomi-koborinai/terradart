@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_guardduty_publishing_destination`.
 const Set<String> _awsGuarddutyPublishingDestinationSensitive = <String>{};
 
+/// Guardduty Publishing Destination Destination enum for `destination_type`.
+enum GuarddutyPublishingDestinationDestinationType implements TerraformEnum {
+  s3('S3');
+
+  const GuarddutyPublishingDestinationDestinationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_guardduty_publishing_destination`.
 final class AwsGuarddutyPublishingDestination extends Resource {
   static const String tfType = 'aws_guardduty_publishing_destination';
@@ -13,7 +22,7 @@ final class AwsGuarddutyPublishingDestination extends Resource {
   AwsGuarddutyPublishingDestination({
     required super.localName,
     required TfArg<String> destinationArn,
-    TfArg<String>? destinationType,
+    TfArg<GuarddutyPublishingDestinationDestinationType>? destinationType,
     required TfArg<String> detectorId,
     required TfArg<String> kmsKeyArn,
     TfArg<String>? region,

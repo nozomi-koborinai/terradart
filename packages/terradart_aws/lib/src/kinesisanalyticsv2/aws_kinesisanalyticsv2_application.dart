@@ -7,6 +7,38 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_kinesisanalyticsv2_application`.
 const Set<String> _awsKinesisanalyticsv2ApplicationSensitive = <String>{};
 
+/// Kinesisanalyticsv2 Application Application enum for `application_mode`.
+enum Kinesisanalyticsv2ApplicationApplicationMode implements TerraformEnum {
+  streaming('STREAMING'),
+  interactive('INTERACTIVE');
+
+  const Kinesisanalyticsv2ApplicationApplicationMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Kinesisanalyticsv2 Application Runtime enum for `runtime_environment`.
+enum Kinesisanalyticsv2ApplicationRuntimeEnvironment implements TerraformEnum {
+  sql10('SQL-1_0'),
+  flink16('FLINK-1_6'),
+  flink18('FLINK-1_8'),
+  zeppelinFlink10('ZEPPELIN-FLINK-1_0'),
+  flink111('FLINK-1_11'),
+  flink113('FLINK-1_13'),
+  zeppelinFlink20('ZEPPELIN-FLINK-2_0'),
+  flink115('FLINK-1_15'),
+  zeppelinFlink30('ZEPPELIN-FLINK-3_0'),
+  flink118('FLINK-1_18'),
+  flink119('FLINK-1_19'),
+  flink120('FLINK-1_20'),
+  flink22('FLINK-2_2'),
+  flink23('FLINK-2_3');
+
+  const Kinesisanalyticsv2ApplicationRuntimeEnvironment(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `application_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
@@ -77,7 +109,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCode
     this.codeContent,
   });
 
-  final TfArg<String> codeContentType;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentType
+  >
+  codeContentType;
 
   final Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent?
   codeContent;
@@ -86,6 +121,19 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCode
     'code_content_type': codeContentType.toTfJson(),
     if (codeContent != null) 'code_content': codeContent!.encode(),
   };
+}
+
+/// `code_content_type` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentType
+    implements TerraformEnum {
+  plaintext('PLAINTEXT'),
+  zipfile('ZIPFILE');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `application_configuration.application_code_configuration.code_content` block of
@@ -143,12 +191,28 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncr
 
   final TfArg<String>? keyId;
 
-  final TfArg<String> keyType;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionConfigurationKeyType
+  >
+  keyType;
 
   Map<String, Object?> encode() => {
     if (keyId != null) 'key_id': keyId!.toTfJson(),
     'key_type': keyType.toTfJson(),
   };
+}
+
+/// `key_type` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionConfigurationKeyType
+    implements TerraformEnum {
+  awsOwnedKey('AWS_OWNED_KEY'),
+  customerManagedKey('CUSTOMER_MANAGED_KEY');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationEncryptionConfigurationKeyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `application_configuration.application_snapshot_configuration` block of
@@ -247,7 +311,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
 
   final TfArg<bool>? checkpointingEnabled;
 
-  final TfArg<String> configurationType;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationCheckpointConfigurationConfigurationType
+  >
+  configurationType;
 
   final TfArg<num>? minPauseBetweenCheckpoints;
 
@@ -262,6 +329,19 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
   };
 }
 
+/// `configuration_type` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationCheckpointConfigurationConfigurationType
+    implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  custom('CUSTOM');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationCheckpointConfigurationConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `application_configuration.flink_application_configuration.monitoring_configuration` block of
 /// `aws_kinesisanalyticsv2_application` (derived from provider schema).
 @immutable
@@ -272,17 +352,69 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
     this.metricsLevel,
   });
 
-  final TfArg<String> configurationType;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationConfigurationType
+  >
+  configurationType;
 
-  final TfArg<String>? logLevel;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationLogLevel
+  >?
+  logLevel;
 
-  final TfArg<String>? metricsLevel;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationMetricsLevel
+  >?
+  metricsLevel;
 
   Map<String, Object?> encode() => {
     'configuration_type': configurationType.toTfJson(),
     if (logLevel != null) 'log_level': logLevel!.toTfJson(),
     if (metricsLevel != null) 'metrics_level': metricsLevel!.toTfJson(),
   };
+}
+
+/// `configuration_type` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationConfigurationType
+    implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  custom('CUSTOM');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `log_level` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationLogLevel
+    implements TerraformEnum {
+  info('INFO'),
+  warn('WARN'),
+  error('ERROR'),
+  debug('DEBUG');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationLogLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `metrics_level` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationMetricsLevel
+    implements TerraformEnum {
+  application('APPLICATION'),
+  task('TASK'),
+  operator('OPERATOR'),
+  parallelism('PARALLELISM');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationMonitoringConfigurationMetricsLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `application_configuration.flink_application_configuration.parallelism_configuration` block of
@@ -298,7 +430,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
 
   final TfArg<bool>? autoScalingEnabled;
 
-  final TfArg<String> configurationType;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationParallelismConfigurationConfigurationType
+  >
+  configurationType;
 
   final TfArg<num>? parallelism;
 
@@ -312,6 +447,19 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicatio
     if (parallelismPerKpu != null)
       'parallelism_per_kpu': parallelismPerKpu!.toTfJson(),
   };
+}
+
+/// `configuration_type` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationParallelismConfigurationConfigurationType
+    implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  custom('CUSTOM');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationFlinkApplicationConfigurationParallelismConfigurationConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `application_configuration.run_configuration` block of
@@ -347,7 +495,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguratio
     this.snapshotName,
   });
 
-  final TfArg<String>? applicationRestoreType;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationApplicationRestoreConfigurationApplicationRestoreType
+  >?
+  applicationRestoreType;
 
   final TfArg<String>? snapshotName;
 
@@ -356,6 +507,20 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfiguratio
       'application_restore_type': applicationRestoreType!.toTfJson(),
     if (snapshotName != null) 'snapshot_name': snapshotName!.toTfJson(),
   };
+}
+
+/// `application_restore_type` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationApplicationRestoreConfigurationApplicationRestoreType
+    implements TerraformEnum {
+  skipRestoreFromSnapshot('SKIP_RESTORE_FROM_SNAPSHOT'),
+  restoreFromLatestSnapshot('RESTORE_FROM_LATEST_SNAPSHOT'),
+  restoreFromCustomSnapshot('RESTORE_FROM_CUSTOM_SNAPSHOT');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationRunConfigurationApplicationRestoreConfigurationApplicationRestoreType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `application_configuration.run_configuration.flink_run_configuration` block of
@@ -560,7 +725,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
     required this.mappingParameters,
   });
 
-  final TfArg<String> recordFormatType;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatRecordFormatType
+  >
+  recordFormatType;
 
   final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters
   mappingParameters;
@@ -569,6 +737,19 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
     'record_format_type': recordFormatType.toTfJson(),
     'mapping_parameters': mappingParameters.encode(),
   };
+}
+
+/// `record_format_type` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatRecordFormatType
+    implements TerraformEnum {
+  json('JSON'),
+  csv('CSV');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatRecordFormatType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `application_configuration.sql_application_configuration.input.input_schema.record_format.mapping_parameters` block of
@@ -636,12 +817,29 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
     this.inputStartingPosition,
   });
 
-  final TfArg<String>? inputStartingPosition;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputStartingPositionConfigurationInputStartingPosition
+  >?
+  inputStartingPosition;
 
   Map<String, Object?> encode() => {
     if (inputStartingPosition != null)
       'input_starting_position': inputStartingPosition!.toTfJson(),
   };
+}
+
+/// `input_starting_position` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputStartingPositionConfigurationInputStartingPosition
+    implements TerraformEnum {
+  now('NOW'),
+  trimHorizon('TRIM_HORIZON'),
+  lastStoppedPoint('LAST_STOPPED_POINT');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputStartingPositionConfigurationInputStartingPosition(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `application_configuration.sql_application_configuration.input.kinesis_firehose_input` block of
@@ -715,11 +913,27 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
     required this.recordFormatType,
   });
 
-  final TfArg<String> recordFormatType;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputDestinationSchemaRecordFormatType
+  >
+  recordFormatType;
 
   Map<String, Object?> encode() => {
     'record_format_type': recordFormatType.toTfJson(),
   };
+}
+
+/// `record_format_type` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputDestinationSchemaRecordFormatType
+    implements TerraformEnum {
+  json('JSON'),
+  csv('CSV');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationOutputDestinationSchemaRecordFormatType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `application_configuration.sql_application_configuration.output.kinesis_firehose_output` block of
@@ -845,7 +1059,10 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
     required this.mappingParameters,
   });
 
-  final TfArg<String> recordFormatType;
+  final TfArg<
+    Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatRecordFormatType
+  >
+  recordFormatType;
 
   final Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters
   mappingParameters;
@@ -854,6 +1071,19 @@ final class Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationC
     'record_format_type': recordFormatType.toTfJson(),
     'mapping_parameters': mappingParameters.encode(),
   };
+}
+
+/// `record_format_type` — derived from the provider schema description.
+enum Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatRecordFormatType
+    implements TerraformEnum {
+  json('JSON'),
+  csv('CSV');
+
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatRecordFormatType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `application_configuration.sql_application_configuration.reference_data_source.reference_schema.record_format.mapping_parameters` block of
@@ -970,12 +1200,13 @@ final class AwsKinesisanalyticsv2Application extends Resource {
 
   AwsKinesisanalyticsv2Application({
     required super.localName,
-    TfArg<String>? applicationMode,
+    TfArg<Kinesisanalyticsv2ApplicationApplicationMode>? applicationMode,
     TfArg<String>? description,
     TfArg<bool>? forceStop,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> runtimeEnvironment,
+    required TfArg<Kinesisanalyticsv2ApplicationRuntimeEnvironment>
+    runtimeEnvironment,
     required TfArg<String> serviceExecutionRole,
     TfArg<bool>? startApplication,
     TfArg<Map<String, String>>? tags,

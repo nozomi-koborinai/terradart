@@ -7,6 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_accessanalyzer_analyzer`.
 const Set<String> _awsAccessanalyzerAnalyzerSensitive = <String>{};
 
+/// Accessanalyzer Analyzer enum for `type`.
+enum AccessanalyzerAnalyzerType implements TerraformEnum {
+  account('ACCOUNT'),
+  organization('ORGANIZATION'),
+  accountUnusedAccess('ACCOUNT_UNUSED_ACCESS'),
+  organizationUnusedAccess('ORGANIZATION_UNUSED_ACCESS'),
+  accountInternalAccess('ACCOUNT_INTERNAL_ACCESS'),
+  organizationInternalAccess('ORGANIZATION_INTERNAL_ACCESS');
+
+  const AccessanalyzerAnalyzerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `configuration` block of
 /// `aws_accessanalyzer_analyzer` (derived from provider schema).
 @immutable
@@ -73,13 +87,47 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusi
 
   final TfArg<List<Object?>>? resourceArns;
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final List<
+    TfArg<
+      AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResourceTypes
+    >
+  >?
+  resourceTypes;
 
   Map<String, Object?> encode() => {
     if (accountIds != null) 'account_ids': accountIds!.toTfJson(),
     if (resourceArns != null) 'resource_arns': resourceArns!.toTfJson(),
-    if (resourceTypes != null) 'resource_types': resourceTypes!.toTfJson(),
+    if (resourceTypes != null)
+      'resource_types': [for (final e in resourceTypes!) e.toTfJson()],
   };
+}
+
+/// `resource_types` — derived from the provider schema description.
+enum AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResourceTypes
+    implements TerraformEnum {
+  awsS3Bucket('AWS::S3::Bucket'),
+  awsIamRole('AWS::IAM::Role'),
+  awsSqsQueue('AWS::SQS::Queue'),
+  awsLambdaFunction('AWS::Lambda::Function'),
+  awsLambdaLayerversion('AWS::Lambda::LayerVersion'),
+  awsKmsKey('AWS::KMS::Key'),
+  awsSecretsmanagerSecret('AWS::SecretsManager::Secret'),
+  awsEfsFilesystem('AWS::EFS::FileSystem'),
+  awsEc2Snapshot('AWS::EC2::Snapshot'),
+  awsEcrRepository('AWS::ECR::Repository'),
+  awsRdsDbsnapshot('AWS::RDS::DBSnapshot'),
+  awsRdsDbclustersnapshot('AWS::RDS::DBClusterSnapshot'),
+  awsSnsTopic('AWS::SNS::Topic'),
+  awsS3expressDirectorybucket('AWS::S3Express::DirectoryBucket'),
+  awsDynamodbTable('AWS::DynamoDB::Table'),
+  awsDynamodbStream('AWS::DynamoDB::Stream'),
+  awsIamUser('AWS::IAM::User');
+
+  const AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResourceTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.unused_access` block of
@@ -150,7 +198,7 @@ final class AwsAccessanalyzerAnalyzer extends Resource {
     required TfArg<String> analyzerName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    TfArg<AccessanalyzerAnalyzerType>? type,
     AccessanalyzerAnalyzerConfiguration? configuration,
     super.lifecycle,
     super.dependsOn,

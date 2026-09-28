@@ -121,14 +121,46 @@ final class AppfabricIngestionDestinationProcessingConfigurationAuditLog {
     required this.schema,
   });
 
-  final TfArg<String> format;
+  final TfArg<
+    AppfabricIngestionDestinationProcessingConfigurationAuditLogFormat
+  >
+  format;
 
-  final TfArg<String> schema;
+  final TfArg<
+    AppfabricIngestionDestinationProcessingConfigurationAuditLogSchema
+  >
+  schema;
 
   Map<String, Object?> encode() => {
     'format': format.toTfJson(),
     'schema': schema.toTfJson(),
   };
+}
+
+/// `format` — derived from the provider schema description.
+enum AppfabricIngestionDestinationProcessingConfigurationAuditLogFormat
+    implements TerraformEnum {
+  json('json'),
+  parquet('parquet');
+
+  const AppfabricIngestionDestinationProcessingConfigurationAuditLogFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `schema` — derived from the provider schema description.
+enum AppfabricIngestionDestinationProcessingConfigurationAuditLogSchema
+    implements TerraformEnum {
+  ocsf('ocsf'),
+  raw('raw');
+
+  const AppfabricIngestionDestinationProcessingConfigurationAuditLogSchema(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_appfabric_ingestion_destination`.

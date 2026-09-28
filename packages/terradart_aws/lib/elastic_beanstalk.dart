@@ -14,4 +14,7 @@ export 'src/elastic_beanstalk/aws_elastic_beanstalk_configuration_template.dart'
         AwsElasticBeanstalkConfigurationTemplate,
         ElasticBeanstalkConfigurationTemplateSetting;
 export 'src/elastic_beanstalk/aws_elastic_beanstalk_environment.dart'
-    show AwsElasticBeanstalkEnvironment, ElasticBeanstalkEnvironmentSetting;
+    show
+        AwsElasticBeanstalkEnvironment,
+        ElasticBeanstalkEnvironmentSetting,
+        ElasticBeanstalkEnvironmentTier;

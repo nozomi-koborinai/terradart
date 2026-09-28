@@ -19,7 +19,7 @@ final class LightsailInstanceAddOn {
 
   final TfArg<String> snapshotTime;
 
-  final TfArg<String> status;
+  final TfArg<LightsailInstanceAddOnStatus> status;
 
   final TfArg<String> type;
 
@@ -28,6 +28,16 @@ final class LightsailInstanceAddOn {
     'status': status.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum LightsailInstanceAddOnStatus implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const LightsailInstanceAddOnStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_lightsail_instance`.

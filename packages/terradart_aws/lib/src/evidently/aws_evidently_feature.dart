@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_evidently_feature`.
 const Set<String> _awsEvidentlyFeatureSensitive = <String>{};
 
+/// Evidently Feature Evaluation enum for `evaluation_strategy`.
+enum EvidentlyFeatureEvaluationStrategy implements TerraformEnum {
+  allRules('ALL_RULES'),
+  defaultVariation('DEFAULT_VARIATION');
+
+  const EvidentlyFeatureEvaluationStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `variations` block of
 /// `aws_evidently_feature` (derived from provider schema).
 @immutable
@@ -59,7 +69,7 @@ final class AwsEvidentlyFeature extends Resource {
     TfArg<String>? defaultVariation,
     TfArg<String>? description,
     TfArg<Map<String, String>>? entityOverrides,
-    TfArg<String>? evaluationStrategy,
+    TfArg<EvidentlyFeatureEvaluationStrategy>? evaluationStrategy,
     required TfArg<String> name,
     required TfArg<String> project,
     TfArg<String>? region,

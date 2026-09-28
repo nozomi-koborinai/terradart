@@ -17,7 +17,7 @@ final class RdsClusterParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<String>? applyMethod;
+  final TfArg<RdsClusterParameterGroupParameterApplyMethod>? applyMethod;
 
   final TfArg<String> name;
 
@@ -28,6 +28,16 @@ final class RdsClusterParameterGroupParameter {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `apply_method` — derived from the provider schema description.
+enum RdsClusterParameterGroupParameterApplyMethod implements TerraformEnum {
+  immediate('immediate'),
+  pendingReboot('pending-reboot');
+
+  const RdsClusterParameterGroupParameterApplyMethod(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_rds_cluster_parameter_group`.

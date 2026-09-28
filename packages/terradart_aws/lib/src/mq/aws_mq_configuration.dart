@@ -6,16 +6,37 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_mq_configuration`.
 const Set<String> _awsMqConfigurationSensitive = <String>{};
 
+/// Mq Configuration Authentication enum for `authentication_strategy`.
+enum MqConfigurationAuthenticationStrategy implements TerraformEnum {
+  simple('SIMPLE'),
+  ldap('LDAP'),
+  configManaged('CONFIG_MANAGED');
+
+  const MqConfigurationAuthenticationStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mq Configuration Engine enum for `engine_type`.
+enum MqConfigurationEngineType implements TerraformEnum {
+  activemq('ACTIVEMQ'),
+  rabbitmq('RABBITMQ');
+
+  const MqConfigurationEngineType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_mq_configuration`.
 final class AwsMqConfiguration extends Resource {
   static const String tfType = 'aws_mq_configuration';
 
   AwsMqConfiguration({
     required super.localName,
-    TfArg<String>? authenticationStrategy,
+    TfArg<MqConfigurationAuthenticationStrategy>? authenticationStrategy,
     required TfArg<String> data,
     TfArg<String>? description,
-    required TfArg<String> engineType,
+    required TfArg<MqConfigurationEngineType> engineType,
     required TfArg<String> engineVersion,
     required TfArg<String> name,
     TfArg<String>? region,

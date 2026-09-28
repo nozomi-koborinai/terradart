@@ -17,7 +17,7 @@ final class QuicksightRefreshScheduleSchedule {
     this.scheduleFrequency,
   });
 
-  final TfArg<String> refreshType;
+  final TfArg<QuicksightRefreshScheduleScheduleRefreshType> refreshType;
 
   final TfArg<String>? startAfterDateTime;
 
@@ -33,6 +33,16 @@ final class QuicksightRefreshScheduleSchedule {
   };
 }
 
+/// `refresh_type` — derived from the provider schema description.
+enum QuicksightRefreshScheduleScheduleRefreshType implements TerraformEnum {
+  incrementalRefresh('INCREMENTAL_REFRESH'),
+  fullRefresh('FULL_REFRESH');
+
+  const QuicksightRefreshScheduleScheduleRefreshType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `schedule.schedule_frequency` block of
 /// `aws_quicksight_refresh_schedule` (derived from provider schema).
 @immutable
@@ -44,7 +54,8 @@ final class QuicksightRefreshScheduleScheduleScheduleFrequency {
     this.refreshOnDay,
   });
 
-  final TfArg<String> interval;
+  final TfArg<QuicksightRefreshScheduleScheduleScheduleFrequencyInterval>
+  interval;
 
   final TfArg<String>? timeOfTheDay;
 
@@ -62,6 +73,23 @@ final class QuicksightRefreshScheduleScheduleScheduleFrequency {
   };
 }
 
+/// `interval` — derived from the provider schema description.
+enum QuicksightRefreshScheduleScheduleScheduleFrequencyInterval
+    implements TerraformEnum {
+  minute15('MINUTE15'),
+  minute30('MINUTE30'),
+  hourly('HOURLY'),
+  daily('DAILY'),
+  weekly('WEEKLY'),
+  monthly('MONTHLY');
+
+  const QuicksightRefreshScheduleScheduleScheduleFrequencyInterval(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `schedule.schedule_frequency.refresh_on_day` block of
 /// `aws_quicksight_refresh_schedule` (derived from provider schema).
 @immutable
@@ -73,12 +101,33 @@ final class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay {
 
   final TfArg<String>? dayOfMonth;
 
-  final TfArg<String>? dayOfWeek;
+  final TfArg<
+    QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfWeek
+  >?
+  dayOfWeek;
 
   Map<String, Object?> encode() => {
     if (dayOfMonth != null) 'day_of_month': dayOfMonth!.toTfJson(),
     if (dayOfWeek != null) 'day_of_week': dayOfWeek!.toTfJson(),
   };
+}
+
+/// `day_of_week` — derived from the provider schema description.
+enum QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfWeek
+    implements TerraformEnum {
+  sunday('SUNDAY'),
+  monday('MONDAY'),
+  tuesday('TUESDAY'),
+  wednesday('WEDNESDAY'),
+  thursday('THURSDAY'),
+  friday('FRIDAY'),
+  saturday('SATURDAY');
+
+  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfWeek(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_quicksight_refresh_schedule`.

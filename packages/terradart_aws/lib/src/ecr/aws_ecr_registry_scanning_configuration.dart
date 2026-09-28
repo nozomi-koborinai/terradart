@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ecr_registry_scanning_configuration`.
 const Set<String> _awsEcrRegistryScanningConfigurationSensitive = <String>{};
 
+/// Ecr Registry Scanning Configuration Scan enum for `scan_type`.
+enum EcrRegistryScanningConfigurationScanType implements TerraformEnum {
+  basic('BASIC'),
+  enhanced('ENHANCED');
+
+  const EcrRegistryScanningConfigurationScanType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule` block of
 /// `aws_ecr_registry_scanning_configuration` (derived from provider schema).
 @immutable
@@ -16,7 +26,7 @@ final class EcrRegistryScanningConfigurationRule {
     required this.repositoryFilter,
   });
 
-  final TfArg<String> scanFrequency;
+  final TfArg<EcrRegistryScanningConfigurationRuleScanFrequency> scanFrequency;
 
   final List<EcrRegistryScanningConfigurationRuleRepositoryFilter>
   repositoryFilter;
@@ -25,6 +35,18 @@ final class EcrRegistryScanningConfigurationRule {
     'scan_frequency': scanFrequency.toTfJson(),
     'repository_filter': [for (final e in repositoryFilter) e.encode()],
   };
+}
+
+/// `scan_frequency` — derived from the provider schema description.
+enum EcrRegistryScanningConfigurationRuleScanFrequency
+    implements TerraformEnum {
+  scanOnPush('SCAN_ON_PUSH'),
+  continuousScan('CONTINUOUS_SCAN'),
+  manual('MANUAL');
+
+  const EcrRegistryScanningConfigurationRuleScanFrequency(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.repository_filter` block of
@@ -38,12 +60,25 @@ final class EcrRegistryScanningConfigurationRuleRepositoryFilter {
 
   final TfArg<String> filter;
 
-  final TfArg<String> filterType;
+  final TfArg<EcrRegistryScanningConfigurationRuleRepositoryFilterFilterType>
+  filterType;
 
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
     'filter_type': filterType.toTfJson(),
   };
+}
+
+/// `filter_type` — derived from the provider schema description.
+enum EcrRegistryScanningConfigurationRuleRepositoryFilterFilterType
+    implements TerraformEnum {
+  wildcard('WILDCARD');
+
+  const EcrRegistryScanningConfigurationRuleRepositoryFilterFilterType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ecr_registry_scanning_configuration`.
@@ -53,7 +88,7 @@ final class AwsEcrRegistryScanningConfiguration extends Resource {
   AwsEcrRegistryScanningConfiguration({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> scanType,
+    required TfArg<EcrRegistryScanningConfigurationScanType> scanType,
     List<EcrRegistryScanningConfigurationRule>? rule,
     super.lifecycle,
     super.dependsOn,

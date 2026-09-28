@@ -6,6 +6,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ebs_volume_copy`.
 const Set<String> _awsEbsVolumeCopySensitive = <String>{};
 
+/// Ebs Volume Copy Volume enum for `volume_type`.
+enum EbsVolumeCopyVolumeType implements TerraformEnum {
+  standard('standard'),
+  io1('io1'),
+  io2('io2'),
+  gp2('gp2'),
+  sc1('sc1'),
+  st1('st1'),
+  gp3('gp3');
+
+  const EbsVolumeCopyVolumeType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ebs_volume_copy`.
 final class AwsEbsVolumeCopy extends Resource {
   static const String tfType = 'aws_ebs_volume_copy';
@@ -18,7 +33,7 @@ final class AwsEbsVolumeCopy extends Resource {
     required TfArg<String> sourceVolumeId,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? throughput,
-    TfArg<String>? volumeType,
+    TfArg<EbsVolumeCopyVolumeType>? volumeType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

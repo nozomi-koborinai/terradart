@@ -7,6 +7,37 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudformation_stack_set`.
 const Set<String> _awsCloudformationStackSetSensitive = <String>{};
 
+/// Cloudformation Stack Set Call enum for `call_as`.
+enum CloudformationStackSetCallAs implements TerraformEnum {
+  self('SELF'),
+  delegatedAdmin('DELEGATED_ADMIN');
+
+  const CloudformationStackSetCallAs(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cloudformation Stack Set enum for `capabilities`.
+enum CloudformationStackSetCapabilities implements TerraformEnum {
+  capabilityIam('CAPABILITY_IAM'),
+  capabilityNamedIam('CAPABILITY_NAMED_IAM'),
+  capabilityAutoExpand('CAPABILITY_AUTO_EXPAND');
+
+  const CloudformationStackSetCapabilities(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cloudformation Stack Set Permission enum for `permission_model`.
+enum CloudformationStackSetPermissionModel implements TerraformEnum {
+  serviceManaged('SERVICE_MANAGED'),
+  selfManaged('SELF_MANAGED');
+
+  const CloudformationStackSetPermissionModel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `auto_deployment` block of
 /// `aws_cloudformation_stack_set` (derived from provider schema).
 @immutable
@@ -67,7 +98,8 @@ final class CloudformationStackSetOperationPreferences {
 
   final TfArg<num>? maxConcurrentPercentage;
 
-  final TfArg<String>? regionConcurrencyType;
+  final TfArg<CloudformationStackSetOperationPreferencesRegionConcurrencyType>?
+  regionConcurrencyType;
 
   final TfArg<List<Object?>>? regionOrder;
 
@@ -86,6 +118,19 @@ final class CloudformationStackSetOperationPreferences {
   };
 }
 
+/// `region_concurrency_type` — derived from the provider schema description.
+enum CloudformationStackSetOperationPreferencesRegionConcurrencyType
+    implements TerraformEnum {
+  sequential('SEQUENTIAL'),
+  parallel('PARALLEL');
+
+  const CloudformationStackSetOperationPreferencesRegionConcurrencyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudformation_stack_set`.
 final class AwsCloudformationStackSet extends Resource {
   static const String tfType = 'aws_cloudformation_stack_set';
@@ -93,13 +138,13 @@ final class AwsCloudformationStackSet extends Resource {
   AwsCloudformationStackSet({
     required super.localName,
     TfArg<String>? administrationRoleArn,
-    TfArg<String>? callAs,
-    TfArg<List<String>>? capabilities,
+    TfArg<CloudformationStackSetCallAs>? callAs,
+    List<TfArg<CloudformationStackSetCapabilities>>? capabilities,
     TfArg<String>? description,
     TfArg<String>? executionRoleName,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
-    TfArg<String>? permissionModel,
+    TfArg<CloudformationStackSetPermissionModel>? permissionModel,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? templateBody,
@@ -117,7 +162,10 @@ final class AwsCloudformationStackSet extends Resource {
            if (administrationRoleArn != null)
              'administration_role_arn': administrationRoleArn,
            if (callAs != null) 'call_as': callAs,
-           if (capabilities != null) 'capabilities': capabilities,
+           if (capabilities != null)
+             'capabilities': TfArg.literal([
+               for (final e in capabilities) e.toTfJson(),
+             ]),
            if (description != null) 'description': description,
            if (executionRoleName != null)
              'execution_role_name': executionRoleName,

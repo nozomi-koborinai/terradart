@@ -6,6 +6,7 @@ library;
 export 'src/bedrock/aws_bedrock_custom_model.dart'
     show
         AwsBedrockCustomModel,
+        BedrockCustomModelCustomizationType,
         BedrockCustomModelOutputDataConfig,
         BedrockCustomModelTrainingDataConfig,
         BedrockCustomModelValidationDataConfig,
@@ -14,6 +15,7 @@ export 'src/bedrock/aws_bedrock_custom_model.dart'
 export 'src/bedrock/aws_bedrock_evaluation_job.dart'
     show
         AwsBedrockEvaluationJob,
+        BedrockEvaluationJobApplicationType,
         BedrockEvaluationJobEvaluationConfig,
         BedrockEvaluationJobEvaluationConfigAutomated,
         BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfig,
@@ -26,18 +28,22 @@ export 'src/bedrock/aws_bedrock_evaluation_job.dart'
         BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfig,
         BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfigDataset,
         BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfigDatasetDatasetLocation,
+        BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfigTaskType,
         BedrockEvaluationJobEvaluationConfigAutomatedEvaluatorModelConfig,
         BedrockEvaluationJobEvaluationConfigAutomatedEvaluatorModelConfigBedrockEvaluatorModel,
         BedrockEvaluationJobEvaluationConfigHuman,
         BedrockEvaluationJobEvaluationConfigHumanCustomMetric,
+        BedrockEvaluationJobEvaluationConfigHumanCustomMetricRatingMethod,
         BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfig,
         BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfigDataset,
         BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfigDatasetDatasetLocation,
+        BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfigTaskType,
         BedrockEvaluationJobEvaluationConfigHumanHumanWorkflowConfig,
         BedrockEvaluationJobInferenceConfig,
         BedrockEvaluationJobInferenceConfigModel,
         BedrockEvaluationJobInferenceConfigModelBedrockModel,
         BedrockEvaluationJobInferenceConfigModelBedrockModelPerformanceConfig,
+        BedrockEvaluationJobInferenceConfigModelBedrockModelPerformanceConfigLatency,
         BedrockEvaluationJobInferenceConfigModelPrecomputedInferenceSource,
         BedrockEvaluationJobInferenceConfigRagConfig,
         BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig,
@@ -58,17 +64,38 @@ export 'src/bedrock/aws_bedrock_guardrail.dart'
         AwsBedrockGuardrail,
         BedrockGuardrailContentPolicyConfig,
         BedrockGuardrailContentPolicyConfigFiltersConfig,
+        BedrockGuardrailContentPolicyConfigFiltersConfigInputAction,
+        BedrockGuardrailContentPolicyConfigFiltersConfigInputModalities,
+        BedrockGuardrailContentPolicyConfigFiltersConfigInputStrength,
+        BedrockGuardrailContentPolicyConfigFiltersConfigOutputAction,
+        BedrockGuardrailContentPolicyConfigFiltersConfigOutputModalities,
+        BedrockGuardrailContentPolicyConfigFiltersConfigOutputStrength,
+        BedrockGuardrailContentPolicyConfigFiltersConfigType,
         BedrockGuardrailContextualGroundingPolicyConfig,
         BedrockGuardrailContextualGroundingPolicyConfigFiltersConfig,
+        BedrockGuardrailContextualGroundingPolicyConfigFiltersConfigType,
         BedrockGuardrailCrossRegionConfig,
         BedrockGuardrailSensitiveInformationPolicyConfig,
         BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfig,
+        BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigAction,
+        BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigInputAction,
+        BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigOutputAction,
+        BedrockGuardrailSensitiveInformationPolicyConfigPiiEntitiesConfigType,
         BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfig,
+        BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigAction,
+        BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigInputAction,
+        BedrockGuardrailSensitiveInformationPolicyConfigRegexesConfigOutputAction,
         BedrockGuardrailTopicPolicyConfig,
         BedrockGuardrailTopicPolicyConfigTopicsConfig,
+        BedrockGuardrailTopicPolicyConfigTopicsConfigType,
         BedrockGuardrailWordPolicyConfig,
         BedrockGuardrailWordPolicyConfigManagedWordListsConfig,
-        BedrockGuardrailWordPolicyConfigWordsConfig;
+        BedrockGuardrailWordPolicyConfigManagedWordListsConfigInputAction,
+        BedrockGuardrailWordPolicyConfigManagedWordListsConfigOutputAction,
+        BedrockGuardrailWordPolicyConfigManagedWordListsConfigType,
+        BedrockGuardrailWordPolicyConfigWordsConfig,
+        BedrockGuardrailWordPolicyConfigWordsConfigInputAction,
+        BedrockGuardrailWordPolicyConfigWordsConfigOutputAction;
 export 'src/bedrock/aws_bedrock_guardrail_version.dart'
     show AwsBedrockGuardrailVersion;
 export 'src/bedrock/aws_bedrock_inference_profile.dart'
@@ -78,6 +105,7 @@ export 'src/bedrock/aws_bedrock_model_invocation_job.dart'
         AwsBedrockModelInvocationJob,
         BedrockModelInvocationJobInputDataConfig,
         BedrockModelInvocationJobInputDataConfigS3InputDataConfig,
+        BedrockModelInvocationJobInputDataConfigS3InputDataConfigS3InputFormat,
         BedrockModelInvocationJobOutputDataConfig,
         BedrockModelInvocationJobOutputDataConfigS3OutputDataConfig,
         BedrockModelInvocationJobVpcConfig;
@@ -89,6 +117,8 @@ export 'src/bedrock/aws_bedrock_model_invocation_logging_configuration.dart'
         BedrockModelInvocationLoggingConfigurationLoggingConfigCloudwatchConfigLargeDataDeliveryS3Config,
         BedrockModelInvocationLoggingConfigurationLoggingConfigS3Config;
 export 'src/bedrock/aws_bedrock_provisioned_model_throughput.dart'
-    show AwsBedrockProvisionedModelThroughput;
+    show
+        AwsBedrockProvisionedModelThroughput,
+        BedrockProvisionedModelThroughputCommitmentDuration;
 export 'src/bedrock/aws_bedrock_use_case_for_model_access.dart'
     show AwsBedrockUseCaseForModelAccess;

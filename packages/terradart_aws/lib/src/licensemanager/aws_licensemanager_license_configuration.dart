@@ -6,6 +6,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_licensemanager_license_configuration`.
 const Set<String> _awsLicensemanagerLicenseConfigurationSensitive = <String>{};
 
+/// Licensemanager License Configuration License Counting enum for `license_counting_type`.
+enum LicensemanagerLicenseConfigurationLicenseCountingType
+    implements TerraformEnum {
+  vcpu('vCPU'),
+  instance('Instance'),
+  core('Core'),
+  socket('Socket');
+
+  const LicensemanagerLicenseConfigurationLicenseCountingType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_licensemanager_license_configuration`.
 final class AwsLicensemanagerLicenseConfiguration extends Resource {
   static const String tfType = 'aws_licensemanager_license_configuration';
@@ -15,7 +30,8 @@ final class AwsLicensemanagerLicenseConfiguration extends Resource {
     TfArg<String>? description,
     TfArg<num>? licenseCount,
     TfArg<bool>? licenseCountHardLimit,
-    required TfArg<String> licenseCountingType,
+    required TfArg<LicensemanagerLicenseConfigurationLicenseCountingType>
+    licenseCountingType,
     TfArg<List<String>>? licenseRules,
     required TfArg<String> name,
     TfArg<String>? region,

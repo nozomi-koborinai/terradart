@@ -18,7 +18,8 @@ final class Sesv2ContactListTopic {
     required this.topicName,
   });
 
-  final TfArg<String> defaultSubscriptionStatus;
+  final TfArg<Sesv2ContactListTopicDefaultSubscriptionStatus>
+  defaultSubscriptionStatus;
 
   final TfArg<String>? description;
 
@@ -32,6 +33,16 @@ final class Sesv2ContactListTopic {
     'display_name': displayName.toTfJson(),
     'topic_name': topicName.toTfJson(),
   };
+}
+
+/// `default_subscription_status` — derived from the provider schema description.
+enum Sesv2ContactListTopicDefaultSubscriptionStatus implements TerraformEnum {
+  optIn('OPT_IN'),
+  optOut('OPT_OUT');
+
+  const Sesv2ContactListTopicDefaultSubscriptionStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_sesv2_contact_list`.

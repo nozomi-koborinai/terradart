@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_servicecatalog_provisioned_product`.
 const Set<String> _awsServicecatalogProvisionedProductSensitive = <String>{};
 
+/// Servicecatalog Provisioned Product Accept enum for `accept_language`.
+enum ServicecatalogProvisionedProductAcceptLanguage implements TerraformEnum {
+  en('en'),
+  jp('jp'),
+  zh('zh');
+
+  const ServicecatalogProvisionedProductAcceptLanguage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `provisioning_parameters` block of
 /// `aws_servicecatalog_provisioned_product` (derived from provider schema).
 @immutable
@@ -76,7 +87,7 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
 
   AwsServicecatalogProvisionedProduct({
     required super.localName,
-    TfArg<String>? acceptLanguage,
+    TfArg<ServicecatalogProvisionedProductAcceptLanguage>? acceptLanguage,
     TfArg<bool>? ignoreErrors,
     required TfArg<String> name,
     TfArg<List<String>>? notificationArns,

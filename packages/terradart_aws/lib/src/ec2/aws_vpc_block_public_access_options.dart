@@ -6,13 +6,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpc_block_public_access_options`.
 const Set<String> _awsVpcBlockPublicAccessOptionsSensitive = <String>{};
 
+/// Vpc Block Public Access Options Internet Gateway Block enum for `internet_gateway_block_mode`.
+enum VpcBlockPublicAccessOptionsInternetGatewayBlockMode
+    implements TerraformEnum {
+  off('off'),
+  blockBidirectional('block-bidirectional'),
+  blockIngress('block-ingress');
+
+  const VpcBlockPublicAccessOptionsInternetGatewayBlockMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_vpc_block_public_access_options`.
 final class AwsVpcBlockPublicAccessOptions extends Resource {
   static const String tfType = 'aws_vpc_block_public_access_options';
 
   AwsVpcBlockPublicAccessOptions({
     required super.localName,
-    required TfArg<String> internetGatewayBlockMode,
+    required TfArg<VpcBlockPublicAccessOptionsInternetGatewayBlockMode>
+    internetGatewayBlockMode,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

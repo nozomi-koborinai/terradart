@@ -7,6 +7,49 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_fsx_openzfs_file_system`.
 const Set<String> _awsFsxOpenzfsFileSystemSensitive = <String>{};
 
+/// Fsx Openzfs File System Delete enum for `delete_options`.
+enum FsxOpenzfsFileSystemDeleteOptions implements TerraformEnum {
+  deleteChildVolumesAndSnapshots('DELETE_CHILD_VOLUMES_AND_SNAPSHOTS');
+
+  const FsxOpenzfsFileSystemDeleteOptions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Fsx Openzfs File System Deployment enum for `deployment_type`.
+enum FsxOpenzfsFileSystemDeploymentType implements TerraformEnum {
+  singleAz1('SINGLE_AZ_1'),
+  singleAz2('SINGLE_AZ_2'),
+  singleAzHa1('SINGLE_AZ_HA_1'),
+  singleAzHa2('SINGLE_AZ_HA_2'),
+  multiAz1('MULTI_AZ_1');
+
+  const FsxOpenzfsFileSystemDeploymentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Fsx Openzfs File System Network enum for `network_type`.
+enum FsxOpenzfsFileSystemNetworkType implements TerraformEnum {
+  ipv4('IPV4'),
+  dual('DUAL');
+
+  const FsxOpenzfsFileSystemNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Fsx Openzfs File System Storage enum for `storage_type`.
+enum FsxOpenzfsFileSystemStorageType implements TerraformEnum {
+  ssd('SSD'),
+  hdd('HDD'),
+  intelligentTiering('INTELLIGENT_TIERING');
+
+  const FsxOpenzfsFileSystemStorageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `disk_iops_configuration` block of
 /// `aws_fsx_openzfs_file_system` (derived from provider schema).
 @immutable
@@ -15,12 +58,22 @@ final class FsxOpenzfsFileSystemDiskIopsConfiguration {
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? mode;
+  final TfArg<FsxOpenzfsFileSystemDiskIopsConfigurationMode>? mode;
 
   Map<String, Object?> encode() => {
     if (iops != null) 'iops': iops!.toTfJson(),
     if (mode != null) 'mode': mode!.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum FsxOpenzfsFileSystemDiskIopsConfigurationMode implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  userProvisioned('USER_PROVISIONED');
+
+  const FsxOpenzfsFileSystemDiskIopsConfigurationMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `read_cache_configuration` block of
@@ -34,12 +87,26 @@ final class FsxOpenzfsFileSystemReadCacheConfiguration {
 
   final TfArg<num>? size;
 
-  final TfArg<String>? sizingMode;
+  final TfArg<FsxOpenzfsFileSystemReadCacheConfigurationSizingMode>? sizingMode;
 
   Map<String, Object?> encode() => {
     if (size != null) 'size': size!.toTfJson(),
     if (sizingMode != null) 'sizing_mode': sizingMode!.toTfJson(),
   };
+}
+
+/// `sizing_mode` — derived from the provider schema description.
+enum FsxOpenzfsFileSystemReadCacheConfigurationSizingMode
+    implements TerraformEnum {
+  noCache('NO_CACHE'),
+  userProvisioned('USER_PROVISIONED'),
+  proportionalToThroughputCapacity('PROPORTIONAL_TO_THROUGHPUT_CAPACITY');
+
+  const FsxOpenzfsFileSystemReadCacheConfigurationSizingMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `root_volume_configuration` block of
@@ -57,7 +124,8 @@ final class FsxOpenzfsFileSystemRootVolumeConfiguration {
 
   final TfArg<bool>? copyTagsToSnapshots;
 
-  final TfArg<String>? dataCompressionType;
+  final TfArg<FsxOpenzfsFileSystemRootVolumeConfigurationDataCompressionType>?
+  dataCompressionType;
 
   final TfArg<bool>? readOnly;
 
@@ -81,6 +149,20 @@ final class FsxOpenzfsFileSystemRootVolumeConfiguration {
         for (final e in userAndGroupQuotas!) e.encode(),
       ],
   };
+}
+
+/// `data_compression_type` — derived from the provider schema description.
+enum FsxOpenzfsFileSystemRootVolumeConfigurationDataCompressionType
+    implements TerraformEnum {
+  none('NONE'),
+  zstd('ZSTD'),
+  lz4('LZ4');
+
+  const FsxOpenzfsFileSystemRootVolumeConfigurationDataCompressionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `root_volume_configuration.nfs_exports` block of
@@ -134,13 +216,27 @@ final class FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotas {
 
   final TfArg<num> storageCapacityQuotaGib;
 
-  final TfArg<String> type;
+  final TfArg<FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotasType>
+  type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'storage_capacity_quota_gib': storageCapacityQuotaGib.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotasType
+    implements TerraformEnum {
+  user('USER'),
+  group('GROUP');
+
+  const FsxOpenzfsFileSystemRootVolumeConfigurationUserAndGroupQuotasType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_fsx_openzfs_file_system`.
@@ -154,19 +250,19 @@ final class AwsFsxOpenzfsFileSystem extends Resource {
     TfArg<bool>? copyTagsToBackups,
     TfArg<bool>? copyTagsToVolumes,
     TfArg<String>? dailyAutomaticBackupStartTime,
-    TfArg<List<String>>? deleteOptions,
-    required TfArg<String> deploymentType,
+    List<TfArg<FsxOpenzfsFileSystemDeleteOptions>>? deleteOptions,
+    required TfArg<FsxOpenzfsFileSystemDeploymentType> deploymentType,
     TfArg<String>? endpointIpAddressRange,
     TfArg<Map<String, String>>? finalBackupTags,
     TfArg<String>? kmsKeyId,
-    TfArg<String>? networkType,
+    TfArg<FsxOpenzfsFileSystemNetworkType>? networkType,
     TfArg<String>? preferredSubnetId,
     TfArg<String>? region,
     TfArg<List<String>>? routeTableIds,
     TfArg<List<String>>? securityGroupIds,
     TfArg<bool>? skipFinalBackup,
     TfArg<num>? storageCapacity,
-    TfArg<String>? storageType,
+    TfArg<FsxOpenzfsFileSystemStorageType>? storageType,
     required TfArg<List<String>> subnetIds,
     TfArg<Map<String, String>>? tags,
     required TfArg<num> throughputCapacity,
@@ -190,7 +286,10 @@ final class AwsFsxOpenzfsFileSystem extends Resource {
              'copy_tags_to_volumes': copyTagsToVolumes,
            if (dailyAutomaticBackupStartTime != null)
              'daily_automatic_backup_start_time': dailyAutomaticBackupStartTime,
-           if (deleteOptions != null) 'delete_options': deleteOptions,
+           if (deleteOptions != null)
+             'delete_options': TfArg.literal([
+               for (final e in deleteOptions) e.toTfJson(),
+             ]),
            'deployment_type': deploymentType,
            if (endpointIpAddressRange != null)
              'endpoint_ip_address_range': endpointIpAddressRange,

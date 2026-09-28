@@ -7,6 +7,7 @@ export 'src/s3tables/aws_s3tables_namespace.dart' show AwsS3tablesNamespace;
 export 'src/s3tables/aws_s3tables_table.dart'
     show
         AwsS3tablesTable,
+        S3tablesTableFormat,
         S3tablesTableMetadata,
         S3tablesTableMetadataIceberg,
         S3tablesTableMetadataIcebergSchema,

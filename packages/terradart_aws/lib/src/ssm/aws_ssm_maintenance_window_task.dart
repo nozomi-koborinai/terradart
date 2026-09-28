@@ -10,6 +10,28 @@ const Set<String> _awsSsmMaintenanceWindowTaskSensitive = <String>{
   'task_invocation_parameters.step_functions_parameters.input',
 };
 
+/// Ssm Maintenance Window Task Cutoff enum for `cutoff_behavior`.
+enum SsmMaintenanceWindowTaskCutoffBehavior implements TerraformEnum {
+  continueTask('CONTINUE_TASK'),
+  cancelTask('CANCEL_TASK');
+
+  const SsmMaintenanceWindowTaskCutoffBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ssm Maintenance Window Task Task enum for `task_type`.
+enum SsmMaintenanceWindowTaskTaskType implements TerraformEnum {
+  runCommand('RUN_COMMAND'),
+  automation('AUTOMATION'),
+  stepFunctions('STEP_FUNCTIONS'),
+  lambda('LAMBDA');
+
+  const SsmMaintenanceWindowTaskTaskType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `targets` block of
 /// `aws_ssm_maintenance_window_task` (derived from provider schema).
 @immutable
@@ -152,7 +174,10 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
 
   final TfArg<String>? documentHash;
 
-  final TfArg<String>? documentHashType;
+  final TfArg<
+    SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersDocumentHashType
+  >?
+  documentHashType;
 
   final TfArg<String>? documentVersion;
 
@@ -196,6 +221,19 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
   };
 }
 
+/// `document_hash_type` — derived from the provider schema description.
+enum SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersDocumentHashType
+    implements TerraformEnum {
+  sha256('Sha256'),
+  sha1('Sha1');
+
+  const SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersDocumentHashType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `task_invocation_parameters.run_command_parameters.cloudwatch_config` block of
 /// `aws_ssm_maintenance_window_task` (derived from provider schema).
 @immutable
@@ -229,18 +267,58 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
 
   final TfArg<String>? notificationArn;
 
-  final TfArg<List<Object?>>? notificationEvents;
+  final List<
+    TfArg<
+      SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationEvents
+    >
+  >?
+  notificationEvents;
 
-  final TfArg<String>? notificationType;
+  final TfArg<
+    SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationType
+  >?
+  notificationType;
 
   Map<String, Object?> encode() => {
     if (notificationArn != null)
       'notification_arn': notificationArn!.toTfJson(),
     if (notificationEvents != null)
-      'notification_events': notificationEvents!.toTfJson(),
+      'notification_events': [
+        for (final e in notificationEvents!) e.toTfJson(),
+      ],
     if (notificationType != null)
       'notification_type': notificationType!.toTfJson(),
   };
+}
+
+/// `notification_events` — derived from the provider schema description.
+enum SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationEvents
+    implements TerraformEnum {
+  all('All'),
+  inprogress('InProgress'),
+  success('Success'),
+  timedout('TimedOut'),
+  cancelled('Cancelled'),
+  failed('Failed');
+
+  const SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationEvents(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `notification_type` — derived from the provider schema description.
+enum SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationType
+    implements TerraformEnum {
+  command('Command'),
+  invocation('Invocation');
+
+  const SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParametersNotificationConfigNotificationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `task_invocation_parameters.run_command_parameters.parameter` block of
@@ -287,7 +365,7 @@ final class AwsSsmMaintenanceWindowTask extends Resource {
 
   AwsSsmMaintenanceWindowTask({
     required super.localName,
-    TfArg<String>? cutoffBehavior,
+    TfArg<SsmMaintenanceWindowTaskCutoffBehavior>? cutoffBehavior,
     TfArg<String>? description,
     TfArg<String>? maxConcurrency,
     TfArg<String>? maxErrors,
@@ -296,7 +374,7 @@ final class AwsSsmMaintenanceWindowTask extends Resource {
     TfArg<String>? region,
     TfArg<String>? serviceRoleArn,
     required TfArg<String> taskArn,
-    required TfArg<String> taskType,
+    required TfArg<SsmMaintenanceWindowTaskTaskType> taskType,
     required TfArg<String> windowId,
     List<SsmMaintenanceWindowTaskTargets>? targets,
     SsmMaintenanceWindowTaskTaskInvocationParameters? taskInvocationParameters,

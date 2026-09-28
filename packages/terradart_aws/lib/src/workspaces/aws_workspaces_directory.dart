@@ -7,6 +7,37 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_workspaces_directory`.
 const Set<String> _awsWorkspacesDirectorySensitive = <String>{};
 
+/// Workspaces Directory enum for `tenancy`.
+enum WorkspacesDirectoryTenancy implements TerraformEnum {
+  dedicated('DEDICATED'),
+  shared('SHARED');
+
+  const WorkspacesDirectoryTenancy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Workspaces Directory User Identity enum for `user_identity_type`.
+enum WorkspacesDirectoryUserIdentityType implements TerraformEnum {
+  customerManaged('CUSTOMER_MANAGED'),
+  awsDirectoryService('AWS_DIRECTORY_SERVICE'),
+  awsIamIdentityCenter('AWS_IAM_IDENTITY_CENTER');
+
+  const WorkspacesDirectoryUserIdentityType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Workspaces Directory Workspace enum for `workspace_type`.
+enum WorkspacesDirectoryWorkspaceType implements TerraformEnum {
+  personal('PERSONAL'),
+  pools('POOLS');
+
+  const WorkspacesDirectoryWorkspaceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `active_directory_config` block of
 /// `aws_workspaces_directory` (derived from provider schema).
 @immutable
@@ -37,13 +68,26 @@ final class WorkspacesDirectoryCertificateBasedAuthProperties {
 
   final TfArg<String>? certificateAuthorityArn;
 
-  final TfArg<String>? status;
+  final TfArg<WorkspacesDirectoryCertificateBasedAuthPropertiesStatus>? status;
 
   Map<String, Object?> encode() => {
     if (certificateAuthorityArn != null)
       'certificate_authority_arn': certificateAuthorityArn!.toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum WorkspacesDirectoryCertificateBasedAuthPropertiesStatus
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED');
+
+  const WorkspacesDirectoryCertificateBasedAuthPropertiesStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `saml_properties` block of
@@ -58,7 +102,7 @@ final class WorkspacesDirectorySamlProperties {
 
   final TfArg<String>? relayStateParameterName;
 
-  final TfArg<String>? status;
+  final TfArg<WorkspacesDirectorySamlPropertiesStatus>? status;
 
   final TfArg<String>? userAccessUrl;
 
@@ -68,6 +112,17 @@ final class WorkspacesDirectorySamlProperties {
     if (status != null) 'status': status!.toTfJson(),
     if (userAccessUrl != null) 'user_access_url': userAccessUrl!.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum WorkspacesDirectorySamlPropertiesStatus implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED'),
+  enabledWithDirectoryLoginFallback('ENABLED_WITH_DIRECTORY_LOGIN_FALLBACK');
+
+  const WorkspacesDirectorySamlPropertiesStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `self_service_permissions` block of
@@ -122,21 +177,29 @@ final class WorkspacesDirectoryWorkspaceAccessProperties {
     this.accessEndpointConfig,
   });
 
-  final TfArg<String>? deviceTypeAndroid;
+  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeAndroid>?
+  deviceTypeAndroid;
 
-  final TfArg<String>? deviceTypeChromeos;
+  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeChromeos>?
+  deviceTypeChromeos;
 
-  final TfArg<String>? deviceTypeIos;
+  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeIos>?
+  deviceTypeIos;
 
-  final TfArg<String>? deviceTypeLinux;
+  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeLinux>?
+  deviceTypeLinux;
 
-  final TfArg<String>? deviceTypeOsx;
+  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeOsx>?
+  deviceTypeOsx;
 
-  final TfArg<String>? deviceTypeWeb;
+  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWeb>?
+  deviceTypeWeb;
 
-  final TfArg<String>? deviceTypeWindows;
+  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWindows>?
+  deviceTypeWindows;
 
-  final TfArg<String>? deviceTypeZeroclient;
+  final TfArg<WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeZeroclient>?
+  deviceTypeZeroclient;
 
   final WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfig?
   accessEndpointConfig;
@@ -160,6 +223,110 @@ final class WorkspacesDirectoryWorkspaceAccessProperties {
   };
 }
 
+/// `device_type_android` — derived from the provider schema description.
+enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeAndroid
+    implements TerraformEnum {
+  allow('ALLOW'),
+  deny('DENY');
+
+  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeAndroid(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `device_type_chromeos` — derived from the provider schema description.
+enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeChromeos
+    implements TerraformEnum {
+  allow('ALLOW'),
+  deny('DENY');
+
+  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeChromeos(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `device_type_ios` — derived from the provider schema description.
+enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeIos
+    implements TerraformEnum {
+  allow('ALLOW'),
+  deny('DENY');
+
+  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeIos(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `device_type_linux` — derived from the provider schema description.
+enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeLinux
+    implements TerraformEnum {
+  allow('ALLOW'),
+  deny('DENY');
+
+  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeLinux(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `device_type_osx` — derived from the provider schema description.
+enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeOsx
+    implements TerraformEnum {
+  allow('ALLOW'),
+  deny('DENY');
+
+  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeOsx(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `device_type_web` — derived from the provider schema description.
+enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWeb
+    implements TerraformEnum {
+  allow('ALLOW'),
+  deny('DENY');
+
+  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWeb(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `device_type_windows` — derived from the provider schema description.
+enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWindows
+    implements TerraformEnum {
+  allow('ALLOW'),
+  deny('DENY');
+
+  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWindows(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `device_type_zeroclient` — derived from the provider schema description.
+enum WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeZeroclient
+    implements TerraformEnum {
+  allow('ALLOW'),
+  deny('DENY');
+
+  const WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeZeroclient(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `workspace_access_properties.access_endpoint_config` block of
 /// `aws_workspaces_directory` (derived from provider schema).
 @immutable
@@ -169,7 +336,12 @@ final class WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfig {
     required this.accessEndpoints,
   });
 
-  final TfArg<List<Object?>>? internetFallbackProtocols;
+  final List<
+    TfArg<
+      WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigInternetFallbackProtocols
+    >
+  >?
+  internetFallbackProtocols;
 
   final List<
     WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpoints
@@ -178,9 +350,23 @@ final class WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfig {
 
   Map<String, Object?> encode() => {
     if (internetFallbackProtocols != null)
-      'internet_fallback_protocols': internetFallbackProtocols!.toTfJson(),
+      'internet_fallback_protocols': [
+        for (final e in internetFallbackProtocols!) e.toTfJson(),
+      ],
     'access_endpoints': [for (final e in accessEndpoints) e.encode()],
   };
+}
+
+/// `internet_fallback_protocols` — derived from the provider schema description.
+enum WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigInternetFallbackProtocols
+    implements TerraformEnum {
+  pcoip('PCOIP');
+
+  const WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigInternetFallbackProtocols(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workspace_access_properties.access_endpoint_config.access_endpoints` block of
@@ -192,7 +378,10 @@ final class WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAcce
     required this.vpcEndpointId,
   });
 
-  final TfArg<String> accessEndpointType;
+  final TfArg<
+    WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpointsAccessEndpointType
+  >
+  accessEndpointType;
 
   final TfArg<String> vpcEndpointId;
 
@@ -200,6 +389,18 @@ final class WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAcce
     'access_endpoint_type': accessEndpointType.toTfJson(),
     'vpc_endpoint_id': vpcEndpointId.toTfJson(),
   };
+}
+
+/// `access_endpoint_type` — derived from the provider schema description.
+enum WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpointsAccessEndpointType
+    implements TerraformEnum {
+  streamingWsp('STREAMING_WSP');
+
+  const WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpointsAccessEndpointType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workspace_creation_properties` block of
@@ -249,11 +450,11 @@ final class AwsWorkspacesDirectory extends Resource {
     TfArg<String>? region,
     TfArg<List<String>>? subnetIds,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? tenancy,
-    TfArg<String>? userIdentityType,
+    TfArg<WorkspacesDirectoryTenancy>? tenancy,
+    TfArg<WorkspacesDirectoryUserIdentityType>? userIdentityType,
     TfArg<String>? workspaceDirectoryDescription,
     TfArg<String>? workspaceDirectoryName,
-    TfArg<String>? workspaceType,
+    TfArg<WorkspacesDirectoryWorkspaceType>? workspaceType,
     WorkspacesDirectoryActiveDirectoryConfig? activeDirectoryConfig,
     WorkspacesDirectoryCertificateBasedAuthProperties?
     certificateBasedAuthProperties,

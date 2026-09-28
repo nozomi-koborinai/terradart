@@ -16,7 +16,8 @@ final class WafXssMatchSetXssMatchTuples {
     required this.fieldToMatch,
   });
 
-  final TfArg<String> textTransformation;
+  final TfArg<WafXssMatchSetXssMatchTuplesTextTransformation>
+  textTransformation;
 
   final WafXssMatchSetXssMatchTuplesFieldToMatch fieldToMatch;
 
@@ -24,6 +25,20 @@ final class WafXssMatchSetXssMatchTuples {
     'text_transformation': textTransformation.toTfJson(),
     'field_to_match': fieldToMatch.encode(),
   };
+}
+
+/// `text_transformation` — derived from the provider schema description.
+enum WafXssMatchSetXssMatchTuplesTextTransformation implements TerraformEnum {
+  none('NONE'),
+  compressWhiteSpace('COMPRESS_WHITE_SPACE'),
+  htmlEntityDecode('HTML_ENTITY_DECODE'),
+  lowercase('LOWERCASE'),
+  cmdLine('CMD_LINE'),
+  urlDecode('URL_DECODE');
+
+  const WafXssMatchSetXssMatchTuplesTextTransformation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `xss_match_tuples.field_to_match` block of
@@ -37,12 +52,27 @@ final class WafXssMatchSetXssMatchTuplesFieldToMatch {
 
   final TfArg<String>? data;
 
-  final TfArg<String> type;
+  final TfArg<WafXssMatchSetXssMatchTuplesFieldToMatchType> type;
 
   Map<String, Object?> encode() => {
     if (data != null) 'data': data!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum WafXssMatchSetXssMatchTuplesFieldToMatchType implements TerraformEnum {
+  uri('URI'),
+  queryString('QUERY_STRING'),
+  header('HEADER'),
+  method('METHOD'),
+  body('BODY'),
+  singleQueryArg('SINGLE_QUERY_ARG'),
+  allQueryArgs('ALL_QUERY_ARGS');
+
+  const WafXssMatchSetXssMatchTuplesFieldToMatchType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_waf_xss_match_set`.

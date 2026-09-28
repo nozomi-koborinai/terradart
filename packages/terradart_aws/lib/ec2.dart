@@ -4,7 +4,16 @@
 library;
 
 export 'src/ec2/aws_ami.dart'
-    show AmiEbsBlockDevice, AmiEphemeralBlockDevice, AwsAmi;
+    show
+        AmiArchitecture,
+        AmiBootMode,
+        AmiEbsBlockDevice,
+        AmiEbsBlockDeviceVolumeType,
+        AmiEphemeralBlockDevice,
+        AmiImdsSupport,
+        AmiTpmSupport,
+        AmiVirtualizationType,
+        AwsAmi;
 export 'src/ec2/aws_ami_copy.dart'
     show AmiCopyEbsBlockDevice, AmiCopyEphemeralBlockDevice, AwsAmiCopy;
 export 'src/ec2/aws_ami_from_instance.dart'
@@ -12,8 +21,10 @@ export 'src/ec2/aws_ami_from_instance.dart'
         AmiFromInstanceEbsBlockDevice,
         AmiFromInstanceEphemeralBlockDevice,
         AwsAmiFromInstance;
-export 'src/ec2/aws_ami_launch_permission.dart' show AwsAmiLaunchPermission;
-export 'src/ec2/aws_customer_gateway.dart' show AwsCustomerGateway;
+export 'src/ec2/aws_ami_launch_permission.dart'
+    show AmiLaunchPermissionGroup, AwsAmiLaunchPermission;
+export 'src/ec2/aws_customer_gateway.dart'
+    show AwsCustomerGateway, CustomerGatewayType;
 export 'src/ec2/aws_default_network_acl.dart'
     show
         AwsDefaultNetworkAcl,
@@ -21,7 +32,8 @@ export 'src/ec2/aws_default_network_acl.dart'
         DefaultNetworkAclIngress;
 export 'src/ec2/aws_default_route_table.dart' show AwsDefaultRouteTable;
 export 'src/ec2/aws_default_security_group.dart' show AwsDefaultSecurityGroup;
-export 'src/ec2/aws_default_subnet.dart' show AwsDefaultSubnet;
+export 'src/ec2/aws_default_subnet.dart'
+    show AwsDefaultSubnet, DefaultSubnetPrivateDnsHostnameTypeOnLaunch;
 export 'src/ec2/aws_default_vpc.dart' show AwsDefaultVpc;
 export 'src/ec2/aws_default_vpc_dhcp_options.dart'
     show AwsDefaultVpcDhcpOptions;
@@ -32,28 +44,38 @@ export 'src/ec2/aws_ebs_fast_snapshot_restore.dart'
     show AwsEbsFastSnapshotRestore;
 export 'src/ec2/aws_ebs_snapshot.dart' show AwsEbsSnapshot;
 export 'src/ec2/aws_ebs_snapshot_block_public_access.dart'
-    show AwsEbsSnapshotBlockPublicAccess;
+    show AwsEbsSnapshotBlockPublicAccess, EbsSnapshotBlockPublicAccessState;
 export 'src/ec2/aws_ebs_snapshot_copy.dart' show AwsEbsSnapshotCopy;
 export 'src/ec2/aws_ebs_snapshot_import.dart'
     show
         AwsEbsSnapshotImport,
         EbsSnapshotImportClientData,
         EbsSnapshotImportDiskContainer,
+        EbsSnapshotImportDiskContainerFormat,
         EbsSnapshotImportDiskContainerUserBucket;
 export 'src/ec2/aws_ebs_volume.dart' show AwsEbsVolume;
-export 'src/ec2/aws_ebs_volume_copy.dart' show AwsEbsVolumeCopy;
+export 'src/ec2/aws_ebs_volume_copy.dart'
+    show AwsEbsVolumeCopy, EbsVolumeCopyVolumeType;
 export 'src/ec2/aws_ec2_allowed_images_settings.dart'
     show
         AwsEc2AllowedImagesSettings,
         Ec2AllowedImagesSettingsImageCriterion,
         Ec2AllowedImagesSettingsImageCriterionCreationDateCondition,
-        Ec2AllowedImagesSettingsImageCriterionDeprecationTimeCondition;
+        Ec2AllowedImagesSettingsImageCriterionDeprecationTimeCondition,
+        Ec2AllowedImagesSettingsState;
 export 'src/ec2/aws_ec2_availability_zone_group.dart'
-    show AwsEc2AvailabilityZoneGroup;
+    show AwsEc2AvailabilityZoneGroup, Ec2AvailabilityZoneGroupOptInStatus;
 export 'src/ec2/aws_ec2_capacity_block_reservation.dart'
-    show AwsEc2CapacityBlockReservation;
+    show
+        AwsEc2CapacityBlockReservation,
+        Ec2CapacityBlockReservationInstancePlatform;
 export 'src/ec2/aws_ec2_capacity_reservation.dart'
-    show AwsEc2CapacityReservation;
+    show
+        AwsEc2CapacityReservation,
+        Ec2CapacityReservationEndDateType,
+        Ec2CapacityReservationInstanceMatchCriteria,
+        Ec2CapacityReservationInstancePlatform,
+        Ec2CapacityReservationTenancy;
 export 'src/ec2/aws_ec2_carrier_gateway.dart' show AwsEc2CarrierGateway;
 export 'src/ec2/aws_ec2_client_vpn_authorization_rule.dart'
     show AwsEc2ClientVpnAuthorizationRule;
@@ -61,27 +83,45 @@ export 'src/ec2/aws_ec2_client_vpn_endpoint.dart'
     show
         AwsEc2ClientVpnEndpoint,
         Ec2ClientVpnEndpointAuthenticationOptions,
+        Ec2ClientVpnEndpointAuthenticationOptionsType,
         Ec2ClientVpnEndpointClientConnectOptions,
         Ec2ClientVpnEndpointClientLoginBannerOptions,
         Ec2ClientVpnEndpointClientRouteEnforcementOptions,
         Ec2ClientVpnEndpointConnectionLogOptions,
-        Ec2ClientVpnEndpointTransitGatewayConfiguration;
+        Ec2ClientVpnEndpointEndpointIpAddressType,
+        Ec2ClientVpnEndpointSelfServicePortal,
+        Ec2ClientVpnEndpointTrafficIpAddressType,
+        Ec2ClientVpnEndpointTransitGatewayConfiguration,
+        Ec2ClientVpnEndpointTransportProtocol;
 export 'src/ec2/aws_ec2_client_vpn_network_association.dart'
     show AwsEc2ClientVpnNetworkAssociation;
 export 'src/ec2/aws_ec2_client_vpn_route.dart' show AwsEc2ClientVpnRoute;
 export 'src/ec2/aws_ec2_default_credit_specification.dart'
-    show AwsEc2DefaultCreditSpecification;
+    show
+        AwsEc2DefaultCreditSpecification,
+        Ec2DefaultCreditSpecificationCpuCredits,
+        Ec2DefaultCreditSpecificationInstanceFamily;
 export 'src/ec2/aws_ec2_fleet.dart'
     show
         AwsEc2Fleet,
+        Ec2FleetExcessCapacityTerminationPolicy,
         Ec2FleetFleetInstanceSet,
         Ec2FleetLaunchTemplateConfig,
         Ec2FleetLaunchTemplateConfigLaunchTemplateSpecification,
         Ec2FleetLaunchTemplateConfigOverride,
         Ec2FleetLaunchTemplateConfigOverrideInstanceRequirements,
         Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorCount,
+        Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorManufacturers,
+        Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorNames,
         Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorTotalMemoryMib,
+        Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsAcceleratorTypes,
+        Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsBareMetal,
         Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsBaselineEbsBandwidthMbps,
+        Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsBurstablePerformance,
+        Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsCpuManufacturers,
+        Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsInstanceGenerations,
+        Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsLocalStorage,
+        Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsLocalStorageTypes,
         Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsMemoryGibPerVcpu,
         Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsMemoryMib,
         Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsNetworkBandwidthGbps,
@@ -90,27 +130,38 @@ export 'src/ec2/aws_ec2_fleet.dart'
         Ec2FleetLaunchTemplateConfigOverrideInstanceRequirementsVcpuCount,
         Ec2FleetOnDemandOptions,
         Ec2FleetOnDemandOptionsCapacityReservationOptions,
+        Ec2FleetOnDemandOptionsCapacityReservationOptionsUsageStrategy,
         Ec2FleetSpotOptions,
+        Ec2FleetSpotOptionsInstanceInterruptionBehavior,
         Ec2FleetSpotOptionsMaintenanceStrategies,
         Ec2FleetSpotOptionsMaintenanceStrategiesCapacityRebalance,
-        Ec2FleetTargetCapacitySpecification;
-export 'src/ec2/aws_ec2_host.dart' show AwsEc2Host;
+        Ec2FleetSpotOptionsMaintenanceStrategiesCapacityRebalanceReplacementStrategy,
+        Ec2FleetTargetCapacitySpecification,
+        Ec2FleetTargetCapacitySpecificationDefaultTargetCapacityType,
+        Ec2FleetTargetCapacitySpecificationTargetCapacityUnitType,
+        Ec2FleetType;
+export 'src/ec2/aws_ec2_host.dart'
+    show AwsEc2Host, Ec2HostAutoPlacement, Ec2HostHostRecovery;
 export 'src/ec2/aws_ec2_image_block_public_access.dart'
-    show AwsEc2ImageBlockPublicAccess;
+    show AwsEc2ImageBlockPublicAccess, Ec2ImageBlockPublicAccessState;
 export 'src/ec2/aws_ec2_instance_connect_endpoint.dart'
-    show AwsEc2InstanceConnectEndpoint;
+    show AwsEc2InstanceConnectEndpoint, Ec2InstanceConnectEndpointIpAddressType;
 export 'src/ec2/aws_ec2_instance_metadata_defaults.dart'
     show AwsEc2InstanceMetadataDefaults;
-export 'src/ec2/aws_ec2_instance_state.dart' show AwsEc2InstanceState;
+export 'src/ec2/aws_ec2_instance_state.dart'
+    show AwsEc2InstanceState, Ec2InstanceStateState;
 export 'src/ec2/aws_ec2_local_gateway_route.dart' show AwsEc2LocalGatewayRoute;
 export 'src/ec2/aws_ec2_local_gateway_route_table.dart'
-    show AwsEc2LocalGatewayRouteTable;
+    show AwsEc2LocalGatewayRouteTable, Ec2LocalGatewayRouteTableMode;
 export 'src/ec2/aws_ec2_local_gateway_route_table_virtual_interface_group_association.dart'
     show AwsEc2LocalGatewayRouteTableVirtualInterfaceGroupAssociation;
 export 'src/ec2/aws_ec2_local_gateway_route_table_vpc_association.dart'
     show AwsEc2LocalGatewayRouteTableVpcAssociation;
 export 'src/ec2/aws_ec2_managed_prefix_list.dart'
-    show AwsEc2ManagedPrefixList, Ec2ManagedPrefixListEntry;
+    show
+        AwsEc2ManagedPrefixList,
+        Ec2ManagedPrefixListAddressFamily,
+        Ec2ManagedPrefixListEntry;
 export 'src/ec2/aws_ec2_managed_prefix_list_entry.dart'
     show AwsEc2ManagedPrefixListEntry;
 export 'src/ec2/aws_ec2_network_insights_access_scope.dart'
@@ -142,28 +193,42 @@ export 'src/ec2/aws_ec2_network_insights_path.dart'
         Ec2NetworkInsightsPathFilterAtDestinationSourcePortRange,
         Ec2NetworkInsightsPathFilterAtSource,
         Ec2NetworkInsightsPathFilterAtSourceDestinationPortRange,
-        Ec2NetworkInsightsPathFilterAtSourceSourcePortRange;
-export 'src/ec2/aws_ec2_secondary_network.dart' show AwsEc2SecondaryNetwork;
+        Ec2NetworkInsightsPathFilterAtSourceSourcePortRange,
+        Ec2NetworkInsightsPathProtocol;
+export 'src/ec2/aws_ec2_secondary_network.dart'
+    show AwsEc2SecondaryNetwork, Ec2SecondaryNetworkNetworkType;
 export 'src/ec2/aws_ec2_secondary_subnet.dart' show AwsEc2SecondarySubnet;
 export 'src/ec2/aws_ec2_serial_console_access.dart'
     show AwsEc2SerialConsoleAccess;
 export 'src/ec2/aws_ec2_subnet_cidr_reservation.dart'
-    show AwsEc2SubnetCidrReservation;
+    show AwsEc2SubnetCidrReservation, Ec2SubnetCidrReservationReservationType;
 export 'src/ec2/aws_ec2_tag.dart' show AwsEc2Tag;
 export 'src/ec2/aws_ec2_traffic_mirror_filter.dart'
-    show AwsEc2TrafficMirrorFilter;
+    show AwsEc2TrafficMirrorFilter, Ec2TrafficMirrorFilterNetworkServices;
 export 'src/ec2/aws_ec2_traffic_mirror_filter_rule.dart'
     show
         AwsEc2TrafficMirrorFilterRule,
         Ec2TrafficMirrorFilterRuleDestinationPortRange,
-        Ec2TrafficMirrorFilterRuleSourcePortRange;
+        Ec2TrafficMirrorFilterRuleRuleAction,
+        Ec2TrafficMirrorFilterRuleSourcePortRange,
+        Ec2TrafficMirrorFilterRuleTrafficDirection;
 export 'src/ec2/aws_ec2_traffic_mirror_session.dart'
     show AwsEc2TrafficMirrorSession;
 export 'src/ec2/aws_ec2_traffic_mirror_target.dart'
     show AwsEc2TrafficMirrorTarget;
-export 'src/ec2/aws_ec2_transit_gateway.dart' show AwsEc2TransitGateway;
+export 'src/ec2/aws_ec2_transit_gateway.dart'
+    show
+        AwsEc2TransitGateway,
+        Ec2TransitGatewayAutoAcceptSharedAttachments,
+        Ec2TransitGatewayDefaultRouteTableAssociation,
+        Ec2TransitGatewayDefaultRouteTablePropagation,
+        Ec2TransitGatewayDnsSupport,
+        Ec2TransitGatewayEncryptionSupport,
+        Ec2TransitGatewayMulticastSupport,
+        Ec2TransitGatewaySecurityGroupReferencingSupport,
+        Ec2TransitGatewayVpnEcmpSupport;
 export 'src/ec2/aws_ec2_transit_gateway_connect.dart'
-    show AwsEc2TransitGatewayConnect;
+    show AwsEc2TransitGatewayConnect, Ec2TransitGatewayConnectProtocol;
 export 'src/ec2/aws_ec2_transit_gateway_connect_peer.dart'
     show AwsEc2TransitGatewayConnectPeer;
 export 'src/ec2/aws_ec2_transit_gateway_default_route_table_association.dart'
@@ -173,9 +238,17 @@ export 'src/ec2/aws_ec2_transit_gateway_default_route_table_propagation.dart'
 export 'src/ec2/aws_ec2_transit_gateway_metering_policy.dart'
     show AwsEc2TransitGatewayMeteringPolicy;
 export 'src/ec2/aws_ec2_transit_gateway_metering_policy_entry.dart'
-    show AwsEc2TransitGatewayMeteringPolicyEntry;
+    show
+        AwsEc2TransitGatewayMeteringPolicyEntry,
+        Ec2TransitGatewayMeteringPolicyEntryDestinationTransitGatewayAttachmentType,
+        Ec2TransitGatewayMeteringPolicyEntryMeteredAccount,
+        Ec2TransitGatewayMeteringPolicyEntrySourceTransitGatewayAttachmentType;
 export 'src/ec2/aws_ec2_transit_gateway_multicast_domain.dart'
-    show AwsEc2TransitGatewayMulticastDomain;
+    show
+        AwsEc2TransitGatewayMulticastDomain,
+        Ec2TransitGatewayMulticastDomainAutoAcceptSharedAssociations,
+        Ec2TransitGatewayMulticastDomainIgmpv2Support,
+        Ec2TransitGatewayMulticastDomainStaticSourcesSupport;
 export 'src/ec2/aws_ec2_transit_gateway_multicast_domain_association.dart'
     show AwsEc2TransitGatewayMulticastDomainAssociation;
 export 'src/ec2/aws_ec2_transit_gateway_multicast_group_member.dart'
@@ -185,7 +258,8 @@ export 'src/ec2/aws_ec2_transit_gateway_multicast_group_source.dart'
 export 'src/ec2/aws_ec2_transit_gateway_peering_attachment.dart'
     show
         AwsEc2TransitGatewayPeeringAttachment,
-        Ec2TransitGatewayPeeringAttachmentOptions;
+        Ec2TransitGatewayPeeringAttachmentOptions,
+        Ec2TransitGatewayPeeringAttachmentOptionsDynamicRouting;
 export 'src/ec2/aws_ec2_transit_gateway_peering_attachment_accepter.dart'
     show AwsEc2TransitGatewayPeeringAttachmentAccepter;
 export 'src/ec2/aws_ec2_transit_gateway_policy_table.dart'
@@ -208,36 +282,63 @@ export 'src/ec2/aws_ec2_transit_gateway_route_table_association.dart'
 export 'src/ec2/aws_ec2_transit_gateway_route_table_propagation.dart'
     show AwsEc2TransitGatewayRouteTablePropagation;
 export 'src/ec2/aws_ec2_transit_gateway_vpc_attachment.dart'
-    show AwsEc2TransitGatewayVpcAttachment;
+    show
+        AwsEc2TransitGatewayVpcAttachment,
+        Ec2TransitGatewayVpcAttachmentApplianceModeSupport,
+        Ec2TransitGatewayVpcAttachmentDnsSupport,
+        Ec2TransitGatewayVpcAttachmentIpv6Support,
+        Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport;
 export 'src/ec2/aws_ec2_transit_gateway_vpc_attachment_accepter.dart'
     show AwsEc2TransitGatewayVpcAttachmentAccepter;
 export 'src/ec2/aws_egress_only_internet_gateway.dart'
     show AwsEgressOnlyInternetGateway;
-export 'src/ec2/aws_eip.dart' show AwsEip;
+export 'src/ec2/aws_eip.dart' show AwsEip, EipDomain;
 export 'src/ec2/aws_eip_association.dart' show AwsEipAssociation;
 export 'src/ec2/aws_eip_domain_name.dart' show AwsEipDomainName;
 export 'src/ec2/aws_flow_log.dart'
-    show AwsFlowLog, FlowLogDestinationOptions, FlowLogTagFieldSpecification;
+    show
+        AwsFlowLog,
+        FlowLogDestinationOptions,
+        FlowLogDestinationOptionsFileFormat,
+        FlowLogLogDestinationType,
+        FlowLogTagFieldSpecification,
+        FlowLogTagFieldSpecificationResourceType,
+        FlowLogTrafficType;
 export 'src/ec2/aws_instance.dart'
     show
         AwsInstance,
         InstanceCapacityReservationSpecification,
+        InstanceCapacityReservationSpecificationCapacityReservationPreference,
         InstanceCapacityReservationSpecificationCapacityReservationTarget,
         InstanceCpuOptions,
+        InstanceCpuOptionsAmdSevSnp,
         InstanceCreditSpecification,
+        InstanceCreditSpecificationCpuCredits,
         InstanceEbsBlockDevice,
+        InstanceEbsBlockDeviceVolumeType,
         InstanceEnclaveOptions,
         InstanceEphemeralBlockDevice,
         InstanceInstanceMarketOptions,
+        InstanceInstanceMarketOptionsMarketType,
         InstanceInstanceMarketOptionsSpotOptions,
+        InstanceInstanceMarketOptionsSpotOptionsInstanceInterruptionBehavior,
+        InstanceInstanceMarketOptionsSpotOptionsSpotInstanceType,
         InstanceLaunchTemplate,
         InstanceMaintenanceOptions,
+        InstanceMaintenanceOptionsAutoRecovery,
         InstanceMetadataOptions,
+        InstanceMetadataOptionsHttpEndpoint,
+        InstanceMetadataOptionsHttpProtocolIpv6,
+        InstanceMetadataOptionsHttpTokens,
+        InstanceMetadataOptionsInstanceMetadataTags,
         InstanceNetworkInterface,
         InstancePrimaryNetworkInterface,
         InstancePrivateDnsNameOptions,
+        InstancePrivateDnsNameOptionsHostnameType,
         InstanceRootBlockDevice,
-        InstanceSecondaryNetworkInterface;
+        InstanceRootBlockDeviceVolumeType,
+        InstanceSecondaryNetworkInterface,
+        InstanceTenancy;
 export 'src/ec2/aws_internet_gateway.dart' show AwsInternetGateway;
 export 'src/ec2/aws_internet_gateway_attachment.dart'
     show AwsInternetGatewayAttachment;
@@ -247,19 +348,37 @@ export 'src/ec2/aws_launch_template.dart'
         AwsLaunchTemplate,
         LaunchTemplateBlockDeviceMappings,
         LaunchTemplateBlockDeviceMappingsEbs,
+        LaunchTemplateBlockDeviceMappingsEbsVolumeType,
         LaunchTemplateCapacityReservationSpecification,
+        LaunchTemplateCapacityReservationSpecificationCapacityReservationPreference,
         LaunchTemplateCapacityReservationSpecificationCapacityReservationTarget,
         LaunchTemplateCpuOptions,
+        LaunchTemplateCpuOptionsAmdSevSnp,
+        LaunchTemplateCpuOptionsNestedVirtualization,
         LaunchTemplateCreditSpecification,
+        LaunchTemplateCreditSpecificationCpuCredits,
         LaunchTemplateEnclaveOptions,
         LaunchTemplateHibernationOptions,
         LaunchTemplateIamInstanceProfile,
+        LaunchTemplateInstanceInitiatedShutdownBehavior,
         LaunchTemplateInstanceMarketOptions,
+        LaunchTemplateInstanceMarketOptionsMarketType,
         LaunchTemplateInstanceMarketOptionsSpotOptions,
+        LaunchTemplateInstanceMarketOptionsSpotOptionsInstanceInterruptionBehavior,
+        LaunchTemplateInstanceMarketOptionsSpotOptionsSpotInstanceType,
         LaunchTemplateInstanceRequirements,
         LaunchTemplateInstanceRequirementsAcceleratorCount,
+        LaunchTemplateInstanceRequirementsAcceleratorManufacturers,
+        LaunchTemplateInstanceRequirementsAcceleratorNames,
         LaunchTemplateInstanceRequirementsAcceleratorTotalMemoryMib,
+        LaunchTemplateInstanceRequirementsAcceleratorTypes,
+        LaunchTemplateInstanceRequirementsBareMetal,
         LaunchTemplateInstanceRequirementsBaselineEbsBandwidthMbps,
+        LaunchTemplateInstanceRequirementsBurstablePerformance,
+        LaunchTemplateInstanceRequirementsCpuManufacturers,
+        LaunchTemplateInstanceRequirementsInstanceGenerations,
+        LaunchTemplateInstanceRequirementsLocalStorage,
+        LaunchTemplateInstanceRequirementsLocalStorageTypes,
         LaunchTemplateInstanceRequirementsMemoryGibPerVcpu,
         LaunchTemplateInstanceRequirementsMemoryMib,
         LaunchTemplateInstanceRequirementsNetworkBandwidthGbps,
@@ -268,44 +387,63 @@ export 'src/ec2/aws_launch_template.dart'
         LaunchTemplateInstanceRequirementsVcpuCount,
         LaunchTemplateLicenseSpecification,
         LaunchTemplateMaintenanceOptions,
+        LaunchTemplateMaintenanceOptionsAutoRecovery,
         LaunchTemplateMetadataOptions,
+        LaunchTemplateMetadataOptionsHttpEndpoint,
+        LaunchTemplateMetadataOptionsHttpProtocolIpv6,
+        LaunchTemplateMetadataOptionsHttpTokens,
+        LaunchTemplateMetadataOptionsInstanceMetadataTags,
         LaunchTemplateMonitoring,
         LaunchTemplateNetworkInterfaces,
         LaunchTemplateNetworkInterfacesConnectionTrackingSpecification,
         LaunchTemplateNetworkInterfacesEnaSrdSpecification,
         LaunchTemplateNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecification,
+        LaunchTemplateNetworkInterfacesInterfaceType,
         LaunchTemplateNetworkPerformanceOptions,
+        LaunchTemplateNetworkPerformanceOptionsBandwidthWeighting,
         LaunchTemplatePlacement,
+        LaunchTemplatePlacementTenancy,
         LaunchTemplatePrivateDnsNameOptions,
+        LaunchTemplatePrivateDnsNameOptionsHostnameType,
         LaunchTemplateSecondaryInterfaces,
-        LaunchTemplateTagSpecifications;
+        LaunchTemplateSecondaryInterfacesInterfaceType,
+        LaunchTemplateTagSpecifications,
+        LaunchTemplateTagSpecificationsResourceType;
 export 'src/ec2/aws_main_route_table_association.dart'
     show AwsMainRouteTableAssociation;
 export 'src/ec2/aws_nat_gateway.dart'
-    show AwsNatGateway, NatGatewayAvailabilityZoneAddress;
+    show
+        AwsNatGateway,
+        NatGatewayAvailabilityMode,
+        NatGatewayAvailabilityZoneAddress,
+        NatGatewayConnectivityType;
 export 'src/ec2/aws_nat_gateway_eip_association.dart'
     show AwsNatGatewayEipAssociation;
 export 'src/ec2/aws_network_acl.dart' show AwsNetworkAcl;
 export 'src/ec2/aws_network_acl_association.dart' show AwsNetworkAclAssociation;
-export 'src/ec2/aws_network_acl_rule.dart' show AwsNetworkAclRule;
+export 'src/ec2/aws_network_acl_rule.dart'
+    show AwsNetworkAclRule, NetworkAclRuleRuleAction;
 export 'src/ec2/aws_network_interface.dart'
     show
         AwsNetworkInterface,
         NetworkInterfaceAttachment,
         NetworkInterfaceEnaSrdSpecification,
-        NetworkInterfaceEnaSrdSpecificationEnaSrdUdpSpecification;
+        NetworkInterfaceEnaSrdSpecificationEnaSrdUdpSpecification,
+        NetworkInterfaceInterfaceType;
 export 'src/ec2/aws_network_interface_attachment.dart'
     show AwsNetworkInterfaceAttachment;
 export 'src/ec2/aws_network_interface_permission.dart'
-    show AwsNetworkInterfacePermission;
+    show AwsNetworkInterfacePermission, NetworkInterfacePermissionPermission;
 export 'src/ec2/aws_network_interface_sg_attachment.dart'
     show AwsNetworkInterfaceSgAttachment;
-export 'src/ec2/aws_placement_group.dart' show AwsPlacementGroup;
+export 'src/ec2/aws_placement_group.dart'
+    show AwsPlacementGroup, PlacementGroupSpreadLevel, PlacementGroupStrategy;
 export 'src/ec2/aws_route.dart' show AwsRoute;
 export 'src/ec2/aws_route_table.dart' show AwsRouteTable;
 export 'src/ec2/aws_route_table_association.dart' show AwsRouteTableAssociation;
 export 'src/ec2/aws_security_group.dart' show AwsSecurityGroup;
-export 'src/ec2/aws_security_group_rule.dart' show AwsSecurityGroupRule;
+export 'src/ec2/aws_security_group_rule.dart'
+    show AwsSecurityGroupRule, SecurityGroupRuleType;
 export 'src/ec2/aws_snapshot_create_volume_permission.dart'
     show AwsSnapshotCreateVolumePermission;
 export 'src/ec2/aws_spot_datafeed_subscription.dart'
@@ -313,55 +451,101 @@ export 'src/ec2/aws_spot_datafeed_subscription.dart'
 export 'src/ec2/aws_spot_fleet_request.dart'
     show
         AwsSpotFleetRequest,
+        SpotFleetRequestAllocationStrategy,
+        SpotFleetRequestExcessCapacityTerminationPolicy,
+        SpotFleetRequestFleetType,
+        SpotFleetRequestInstanceInterruptionBehaviour,
         SpotFleetRequestLaunchSpecification,
         SpotFleetRequestLaunchSpecificationEbsBlockDevice,
+        SpotFleetRequestLaunchSpecificationEbsBlockDeviceVolumeType,
         SpotFleetRequestLaunchSpecificationEphemeralBlockDevice,
+        SpotFleetRequestLaunchSpecificationPlacementTenancy,
         SpotFleetRequestLaunchSpecificationRootBlockDevice,
+        SpotFleetRequestLaunchSpecificationRootBlockDeviceVolumeType,
         SpotFleetRequestLaunchTemplateConfig,
         SpotFleetRequestLaunchTemplateConfigLaunchTemplateSpecification,
         SpotFleetRequestLaunchTemplateConfigOverrides,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorCount,
+        SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorManufacturers,
+        SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorNames,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTotalMemoryMib,
+        SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTypes,
+        SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBareMetal,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBaselineEbsBandwidthMbps,
+        SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBurstablePerformance,
+        SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsCpuManufacturers,
+        SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsInstanceGenerations,
+        SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorage,
+        SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorageTypes,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMemoryGibPerVcpu,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsMemoryMib,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNetworkBandwidthGbps,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsNetworkInterfaceCount,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsTotalLocalStorageGb,
         SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsVcpuCount,
+        SpotFleetRequestOnDemandAllocationStrategy,
         SpotFleetRequestSpotMaintenanceStrategies,
-        SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalance;
+        SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalance,
+        SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalanceReplacementStrategy,
+        SpotFleetRequestTargetCapacityUnitType;
 export 'src/ec2/aws_spot_instance_request.dart'
     show
         AwsSpotInstanceRequest,
         SpotInstanceRequestCapacityReservationSpecification,
+        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference,
         SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget,
         SpotInstanceRequestCpuOptions,
+        SpotInstanceRequestCpuOptionsAmdSevSnp,
+        SpotInstanceRequestCpuOptionsNestedVirtualization,
         SpotInstanceRequestCreditSpecification,
+        SpotInstanceRequestCreditSpecificationCpuCredits,
         SpotInstanceRequestEbsBlockDevice,
+        SpotInstanceRequestEbsBlockDeviceVolumeType,
         SpotInstanceRequestEnclaveOptions,
         SpotInstanceRequestEphemeralBlockDevice,
         SpotInstanceRequestLaunchTemplate,
         SpotInstanceRequestMaintenanceOptions,
+        SpotInstanceRequestMaintenanceOptionsAutoRecovery,
         SpotInstanceRequestMetadataOptions,
+        SpotInstanceRequestMetadataOptionsHttpEndpoint,
+        SpotInstanceRequestMetadataOptionsHttpProtocolIpv6,
+        SpotInstanceRequestMetadataOptionsHttpTokens,
+        SpotInstanceRequestMetadataOptionsInstanceMetadataTags,
         SpotInstanceRequestNetworkInterface,
         SpotInstanceRequestPrivateDnsNameOptions,
+        SpotInstanceRequestPrivateDnsNameOptionsHostnameType,
         SpotInstanceRequestRootBlockDevice,
-        SpotInstanceRequestSecondaryNetworkInterface;
-export 'src/ec2/aws_subnet.dart' show AwsSubnet;
+        SpotInstanceRequestRootBlockDeviceVolumeType,
+        SpotInstanceRequestSecondaryNetworkInterface,
+        SpotInstanceRequestSecondaryNetworkInterfaceInterfaceType,
+        SpotInstanceRequestTenancy;
+export 'src/ec2/aws_subnet.dart'
+    show AwsSubnet, SubnetPrivateDnsHostnameTypeOnLaunch;
 export 'src/ec2/aws_volume_attachment.dart' show AwsVolumeAttachment;
-export 'src/ec2/aws_vpc.dart' show AwsVpc;
+export 'src/ec2/aws_vpc.dart' show AwsVpc, VpcInstanceTenancy;
 export 'src/ec2/aws_vpc_block_public_access_exclusion.dart'
-    show AwsVpcBlockPublicAccessExclusion;
+    show
+        AwsVpcBlockPublicAccessExclusion,
+        VpcBlockPublicAccessExclusionInternetGatewayExclusionMode;
 export 'src/ec2/aws_vpc_block_public_access_options.dart'
-    show AwsVpcBlockPublicAccessOptions;
+    show
+        AwsVpcBlockPublicAccessOptions,
+        VpcBlockPublicAccessOptionsInternetGatewayBlockMode;
 export 'src/ec2/aws_vpc_dhcp_options.dart' show AwsVpcDhcpOptions;
 export 'src/ec2/aws_vpc_dhcp_options_association.dart'
     show AwsVpcDhcpOptionsAssociation;
-export 'src/ec2/aws_vpc_encryption_control.dart' show AwsVpcEncryptionControl;
+export 'src/ec2/aws_vpc_encryption_control.dart'
+    show AwsVpcEncryptionControl, VpcEncryptionControlMode;
 export 'src/ec2/aws_vpc_endpoint.dart'
-    show AwsVpcEndpoint, VpcEndpointDnsOptions, VpcEndpointSubnetConfiguration;
+    show
+        AwsVpcEndpoint,
+        VpcEndpointDnsOptions,
+        VpcEndpointDnsOptionsDnsRecordIpType,
+        VpcEndpointDnsOptionsPrivateDnsPreference,
+        VpcEndpointIpAddressType,
+        VpcEndpointSubnetConfiguration,
+        VpcEndpointVpcEndpointType;
 export 'src/ec2/aws_vpc_endpoint_connection_accepter.dart'
     show AwsVpcEndpointConnectionAccepter;
 export 'src/ec2/aws_vpc_endpoint_connection_notification.dart'
@@ -373,18 +557,30 @@ export 'src/ec2/aws_vpc_endpoint_route_table_association.dart'
     show AwsVpcEndpointRouteTableAssociation;
 export 'src/ec2/aws_vpc_endpoint_security_group_association.dart'
     show AwsVpcEndpointSecurityGroupAssociation;
-export 'src/ec2/aws_vpc_endpoint_service.dart' show AwsVpcEndpointService;
+export 'src/ec2/aws_vpc_endpoint_service.dart'
+    show AwsVpcEndpointService, VpcEndpointServiceSupportedIpAddressTypes;
 export 'src/ec2/aws_vpc_endpoint_service_allowed_principal.dart'
     show AwsVpcEndpointServiceAllowedPrincipal;
 export 'src/ec2/aws_vpc_endpoint_service_private_dns_verification.dart'
     show AwsVpcEndpointServicePrivateDnsVerification;
 export 'src/ec2/aws_vpc_endpoint_subnet_association.dart'
     show AwsVpcEndpointSubnetAssociation;
-export 'src/ec2/aws_vpc_ipam.dart' show AwsVpcIpam, VpcIpamOperatingRegions;
+export 'src/ec2/aws_vpc_ipam.dart'
+    show
+        AwsVpcIpam,
+        VpcIpamMeteredAccount,
+        VpcIpamOperatingRegions,
+        VpcIpamTier;
 export 'src/ec2/aws_vpc_ipam_organization_admin_account.dart'
     show AwsVpcIpamOrganizationAdminAccount;
 export 'src/ec2/aws_vpc_ipam_pool.dart'
-    show AwsVpcIpamPool, VpcIpamPoolSourceResource;
+    show
+        AwsVpcIpamPool,
+        VpcIpamPoolAddressFamily,
+        VpcIpamPoolAwsService,
+        VpcIpamPoolPublicIpSource,
+        VpcIpamPoolSourceResource,
+        VpcIpamPoolSourceResourceResourceType;
 export 'src/ec2/aws_vpc_ipam_pool_cidr.dart'
     show AwsVpcIpamPoolCidr, VpcIpamPoolCidrCidrAuthorizationContext;
 export 'src/ec2/aws_vpc_ipam_pool_cidr_allocation.dart'
@@ -404,7 +600,10 @@ export 'src/ec2/aws_vpc_ipv4_cidr_block_association.dart'
 export 'src/ec2/aws_vpc_ipv6_cidr_block_association.dart'
     show AwsVpcIpv6CidrBlockAssociation;
 export 'src/ec2/aws_vpc_network_performance_metric_subscription.dart'
-    show AwsVpcNetworkPerformanceMetricSubscription;
+    show
+        AwsVpcNetworkPerformanceMetricSubscription,
+        VpcNetworkPerformanceMetricSubscriptionMetric,
+        VpcNetworkPerformanceMetricSubscriptionStatistic;
 export 'src/ec2/aws_vpc_peering_connection.dart'
     show
         AwsVpcPeeringConnection,
@@ -420,11 +619,15 @@ export 'src/ec2/aws_vpc_peering_connection_options.dart'
         AwsVpcPeeringConnectionOptions,
         VpcPeeringConnectionOptionsAccepter,
         VpcPeeringConnectionOptionsRequester;
-export 'src/ec2/aws_vpc_route_server.dart' show AwsVpcRouteServer;
+export 'src/ec2/aws_vpc_route_server.dart'
+    show AwsVpcRouteServer, VpcRouteServerPersistRoutes;
 export 'src/ec2/aws_vpc_route_server_endpoint.dart'
     show AwsVpcRouteServerEndpoint;
 export 'src/ec2/aws_vpc_route_server_peer.dart'
-    show AwsVpcRouteServerPeer, VpcRouteServerPeerBgpOptions;
+    show
+        AwsVpcRouteServerPeer,
+        VpcRouteServerPeerBgpOptions,
+        VpcRouteServerPeerBgpOptionsPeerLivenessDetection;
 export 'src/ec2/aws_vpc_route_server_propagation.dart'
     show AwsVpcRouteServerPropagation;
 export 'src/ec2/aws_vpc_route_server_vpc_association.dart'
@@ -437,14 +640,34 @@ export 'src/ec2/aws_vpc_security_group_rules_exclusive.dart'
     show AwsVpcSecurityGroupRulesExclusive;
 export 'src/ec2/aws_vpc_security_group_vpc_association.dart'
     show AwsVpcSecurityGroupVpcAssociation;
-export 'src/ec2/aws_vpn_concentrator.dart' show AwsVpnConcentrator;
+export 'src/ec2/aws_vpn_concentrator.dart'
+    show AwsVpnConcentrator, VpnConcentratorType;
 export 'src/ec2/aws_vpn_connection.dart'
     show
         AwsVpnConnection,
+        VpnConnectionOutsideIpAddressType,
+        VpnConnectionPresharedKeyStorage,
+        VpnConnectionTunnel1DpdTimeoutAction,
+        VpnConnectionTunnel1IkeVersions,
         VpnConnectionTunnel1LogOptions,
         VpnConnectionTunnel1LogOptionsCloudwatchLogOptions,
+        VpnConnectionTunnel1Phase1EncryptionAlgorithms,
+        VpnConnectionTunnel1Phase1IntegrityAlgorithms,
+        VpnConnectionTunnel1Phase2EncryptionAlgorithms,
+        VpnConnectionTunnel1Phase2IntegrityAlgorithms,
+        VpnConnectionTunnel1StartupAction,
+        VpnConnectionTunnel2DpdTimeoutAction,
+        VpnConnectionTunnel2IkeVersions,
         VpnConnectionTunnel2LogOptions,
-        VpnConnectionTunnel2LogOptionsCloudwatchLogOptions;
+        VpnConnectionTunnel2LogOptionsCloudwatchLogOptions,
+        VpnConnectionTunnel2Phase1EncryptionAlgorithms,
+        VpnConnectionTunnel2Phase1IntegrityAlgorithms,
+        VpnConnectionTunnel2Phase2EncryptionAlgorithms,
+        VpnConnectionTunnel2Phase2IntegrityAlgorithms,
+        VpnConnectionTunnel2StartupAction,
+        VpnConnectionTunnelBandwidth,
+        VpnConnectionTunnelInsideIpVersion,
+        VpnConnectionType;
 export 'src/ec2/aws_vpn_connection_route.dart' show AwsVpnConnectionRoute;
 export 'src/ec2/aws_vpn_gateway.dart' show AwsVpnGateway;
 export 'src/ec2/aws_vpn_gateway_attachment.dart' show AwsVpnGatewayAttachment;

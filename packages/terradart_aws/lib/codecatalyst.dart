@@ -7,6 +7,7 @@ export 'src/codecatalyst/aws_codecatalyst_dev_environment.dart'
     show
         AwsCodecatalystDevEnvironment,
         CodecatalystDevEnvironmentIdes,
+        CodecatalystDevEnvironmentInstanceType,
         CodecatalystDevEnvironmentPersistentStorage,
         CodecatalystDevEnvironmentRepositories;
 export 'src/codecatalyst/aws_codecatalyst_project.dart'

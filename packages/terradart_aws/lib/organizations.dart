@@ -4,17 +4,20 @@
 library;
 
 export 'src/organizations/aws_organizations_account.dart'
-    show AwsOrganizationsAccount;
+    show AwsOrganizationsAccount, OrganizationsAccountIamUserAccessToBilling;
 export 'src/organizations/aws_organizations_aws_service_access.dart'
     show AwsOrganizationsAwsServiceAccess;
 export 'src/organizations/aws_organizations_delegated_administrator.dart'
     show AwsOrganizationsDelegatedAdministrator;
 export 'src/organizations/aws_organizations_organization.dart'
-    show AwsOrganizationsOrganization;
+    show
+        AwsOrganizationsOrganization,
+        OrganizationsOrganizationEnabledPolicyTypes,
+        OrganizationsOrganizationFeatureSet;
 export 'src/organizations/aws_organizations_organizational_unit.dart'
     show AwsOrganizationsOrganizationalUnit;
 export 'src/organizations/aws_organizations_policy.dart'
-    show AwsOrganizationsPolicy;
+    show AwsOrganizationsPolicy, OrganizationsPolicyType;
 export 'src/organizations/aws_organizations_policy_attachment.dart'
     show AwsOrganizationsPolicyAttachment;
 export 'src/organizations/aws_organizations_resource_policy.dart'

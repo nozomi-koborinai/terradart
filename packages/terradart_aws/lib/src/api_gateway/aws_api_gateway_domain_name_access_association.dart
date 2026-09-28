@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsApiGatewayDomainNameAccessAssociationSensitive =
     <String>{};
 
+/// Api Gateway Domain Name Access Association Access Association Source enum for `access_association_source_type`.
+enum ApiGatewayDomainNameAccessAssociationAccessAssociationSourceType
+    implements TerraformEnum {
+  vpce('VPCE');
+
+  const ApiGatewayDomainNameAccessAssociationAccessAssociationSourceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_api_gateway_domain_name_access_association`.
 final class AwsApiGatewayDomainNameAccessAssociation extends Resource {
   static const String tfType = 'aws_api_gateway_domain_name_access_association';
@@ -14,7 +26,10 @@ final class AwsApiGatewayDomainNameAccessAssociation extends Resource {
   AwsApiGatewayDomainNameAccessAssociation({
     required super.localName,
     required TfArg<String> accessAssociationSource,
-    required TfArg<String> accessAssociationSourceType,
+    required TfArg<
+      ApiGatewayDomainNameAccessAssociationAccessAssociationSourceType
+    >
+    accessAssociationSourceType,
     required TfArg<String> domainNameArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

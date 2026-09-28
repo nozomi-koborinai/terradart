@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ecr_repository_creation_template`.
 const Set<String> _awsEcrRepositoryCreationTemplateSensitive = <String>{};
 
+/// Ecr Repository Creation Template Applied enum for `applied_for`.
+enum EcrRepositoryCreationTemplateAppliedFor implements TerraformEnum {
+  replication('REPLICATION'),
+  pullThroughCache('PULL_THROUGH_CACHE'),
+  createOnPush('CREATE_ON_PUSH');
+
+  const EcrRepositoryCreationTemplateAppliedFor(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ecr Repository Creation Template Image Tag enum for `image_tag_mutability`.
+enum EcrRepositoryCreationTemplateImageTagMutability implements TerraformEnum {
+  mutable('MUTABLE'),
+  immutable('IMMUTABLE'),
+  immutableWithExclusion('IMMUTABLE_WITH_EXCLUSION'),
+  mutableWithExclusion('MUTABLE_WITH_EXCLUSION');
+
+  const EcrRepositoryCreationTemplateImageTagMutability(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `encryption_configuration` block of
 /// `aws_ecr_repository_creation_template` (derived from provider schema).
 @immutable
@@ -16,7 +39,10 @@ final class EcrRepositoryCreationTemplateEncryptionConfiguration {
     this.kmsKey,
   });
 
-  final TfArg<String>? encryptionType;
+  final TfArg<
+    EcrRepositoryCreationTemplateEncryptionConfigurationEncryptionType
+  >?
+  encryptionType;
 
   final TfArg<String>? kmsKey;
 
@@ -24,6 +50,20 @@ final class EcrRepositoryCreationTemplateEncryptionConfiguration {
     if (encryptionType != null) 'encryption_type': encryptionType!.toTfJson(),
     if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
   };
+}
+
+/// `encryption_type` — derived from the provider schema description.
+enum EcrRepositoryCreationTemplateEncryptionConfigurationEncryptionType
+    implements TerraformEnum {
+  aes256('AES256'),
+  kms('KMS'),
+  kmsDsse('KMS_DSSE');
+
+  const EcrRepositoryCreationTemplateEncryptionConfigurationEncryptionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `image_tag_mutability_exclusion_filter` block of
@@ -37,12 +77,27 @@ final class EcrRepositoryCreationTemplateImageTagMutabilityExclusionFilter {
 
   final TfArg<String> filter;
 
-  final TfArg<String> filterType;
+  final TfArg<
+    EcrRepositoryCreationTemplateImageTagMutabilityExclusionFilterFilterType
+  >
+  filterType;
 
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
     'filter_type': filterType.toTfJson(),
   };
+}
+
+/// `filter_type` — derived from the provider schema description.
+enum EcrRepositoryCreationTemplateImageTagMutabilityExclusionFilterFilterType
+    implements TerraformEnum {
+  wildcard('WILDCARD');
+
+  const EcrRepositoryCreationTemplateImageTagMutabilityExclusionFilterFilterType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ecr_repository_creation_template`.
@@ -51,10 +106,10 @@ final class AwsEcrRepositoryCreationTemplate extends Resource {
 
   AwsEcrRepositoryCreationTemplate({
     required super.localName,
-    required TfArg<List<String>> appliedFor,
+    required List<TfArg<EcrRepositoryCreationTemplateAppliedFor>> appliedFor,
     TfArg<String>? customRoleArn,
     TfArg<String>? description,
-    TfArg<String>? imageTagMutability,
+    TfArg<EcrRepositoryCreationTemplateImageTagMutability>? imageTagMutability,
     TfArg<String>? lifecyclePolicy,
     required TfArg<String> prefix,
     TfArg<String>? region,
@@ -71,7 +126,9 @@ final class AwsEcrRepositoryCreationTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'applied_for': appliedFor,
+           'applied_for': TfArg.literal([
+             for (final e in appliedFor) e.toTfJson(),
+           ]),
            if (customRoleArn != null) 'custom_role_arn': customRoleArn,
            if (description != null) 'description': description,
            if (imageTagMutability != null)

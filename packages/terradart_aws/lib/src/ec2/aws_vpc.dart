@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpc`.
 const Set<String> _awsVpcSensitive = <String>{};
 
+/// Vpc Instance enum for `instance_tenancy`.
+enum VpcInstanceTenancy implements TerraformEnum {
+  defaultCase('default'),
+  dedicated('dedicated');
+
+  const VpcInstanceTenancy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_vpc`.
 final class AwsVpc extends Resource {
   static const String tfType = 'aws_vpc';
@@ -17,7 +27,7 @@ final class AwsVpc extends Resource {
     TfArg<bool>? enableDnsHostnames,
     TfArg<bool>? enableDnsSupport,
     TfArg<bool>? enableNetworkAddressUsageMetrics,
-    TfArg<String>? instanceTenancy,
+    TfArg<VpcInstanceTenancy>? instanceTenancy,
     TfArg<String>? ipv4IpamPoolId,
     TfArg<num>? ipv4NetmaskLength,
     TfArg<String>? ipv6CidrBlock,

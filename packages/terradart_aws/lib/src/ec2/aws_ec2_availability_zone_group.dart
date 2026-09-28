@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_availability_zone_group`.
 const Set<String> _awsEc2AvailabilityZoneGroupSensitive = <String>{};
 
+/// Ec2 Availability Zone Group Opt In enum for `opt_in_status`.
+enum Ec2AvailabilityZoneGroupOptInStatus implements TerraformEnum {
+  optedIn('opted-in'),
+  notOptedIn('not-opted-in');
+
+  const Ec2AvailabilityZoneGroupOptInStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_availability_zone_group`.
 final class AwsEc2AvailabilityZoneGroup extends Resource {
   static const String tfType = 'aws_ec2_availability_zone_group';
@@ -13,7 +23,7 @@ final class AwsEc2AvailabilityZoneGroup extends Resource {
   AwsEc2AvailabilityZoneGroup({
     required super.localName,
     required TfArg<String> groupName,
-    required TfArg<String> optInStatus,
+    required TfArg<Ec2AvailabilityZoneGroupOptInStatus> optInStatus,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
