@@ -28,6 +28,10 @@ _Avoid_: Resource definition, MM YAML
 The generator's internal resource model after Terraform provider schema has been enriched with schema-gated Magic Modules metadata. It is the machine-readable source for wrapper emission.
 _Avoid_: Wrapper override, schema.json
 
+**Provider enum hints**:
+Enum value sets a provider enforces in its own source rather than in Magic Modules metadata, extracted at the fixture's pin into a Magic Modules YAML subset beside the schema fixture. With the provider's `Available values:` descriptions, they enrich the merged IR only on a lane that opts into `wrap --provider-enums`.
+_Avoid_: MM YAML, override enum
+
 **Agent guide**:
 Committed operational guidance that cloud and local agents can rely on without access to private notes. In this repository, `AGENTS.md` is the agent guide.
 _Avoid_: Local notes, chat transcript dump
