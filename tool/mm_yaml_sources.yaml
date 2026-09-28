@@ -32,12 +32,6 @@ files:
     upstream: mmv1/products/backupdr/RestoreWorkload.yaml
   google_backup_dr_service_config:
     upstream: mmv1/products/backupdr/ServiceConfig.yaml
-  google_beyondcorp_app_gateway:
-    upstream: mmv1/products/beyondcorp/AppGateway.yaml
-  google_beyondcorp_app_connector:
-    upstream: mmv1/products/beyondcorp/AppConnector.yaml
-  google_beyondcorp_app_connection:
-    upstream: mmv1/products/beyondcorp/AppConnection.yaml
   google_beyondcorp_security_gateway:
     upstream: mmv1/products/beyondcorp/SecurityGateway.yaml
   google_beyondcorp_security_gateway_iam_member:
@@ -2022,8 +2016,6 @@ files:
     upstream: mmv1/products/vertexai/IndexEndpointDeployedIndex.yaml
   google_vertex_ai_semantic_governance_policy_engine:
     upstream: mmv1/products/vertexai/SemanticGovernancePolicyEngine.yaml
-  google_vertex_ai_schedule:
-    upstream: mmv1/products/vertexai/Schedule.yaml
   google_vertex_ai_tensorboard_experiment:
     upstream: mmv1/products/vertexai/TensorboardExperiment.yaml
   google_vertex_ai_tensorboard_run:
@@ -2239,24 +2231,6 @@ files:
     upstream: mmv1/products/securesourcemanager/Hook.yaml
   google_secure_source_manager_branch_rule:
     upstream: mmv1/products/securesourcemanager/BranchRule.yaml
-  google_notebooks_environment:
-    upstream: mmv1/products/notebooks/Environment.yaml
-  google_notebooks_instance:
-    upstream: mmv1/products/notebooks/Instance.yaml
-  google_notebooks_instance_iam_member:
-    upstream: null  # IAM adjunct (generated outside mmv1 product YAML)
-  google_notebooks_instance_iam_binding:
-    upstream: null  # IAM adjunct
-  google_notebooks_instance_iam_policy:
-    upstream: null  # IAM adjunct
-  google_notebooks_runtime:
-    upstream: mmv1/products/notebooks/Runtime.yaml
-  google_notebooks_runtime_iam_member:
-    upstream: null  # IAM adjunct (generated outside mmv1 product YAML)
-  google_notebooks_runtime_iam_binding:
-    upstream: null  # IAM adjunct
-  google_notebooks_runtime_iam_policy:
-    upstream: null  # IAM adjunct
   google_os_config_os_policy_assignment:
     upstream: null  # third_party terraform/services/osconfig/resource_os_config_os_policy_assignment.go
   google_os_config_patch_deployment:
@@ -2703,10 +2677,6 @@ files:
     upstream: null  # no mmv1 YAML (probed 2026-08-15)
   google_iam_projects_policy_binding:
     upstream: mmv1/products/iam3/ProjectsPolicyBinding.yaml
-  google_iap_brand:
-    upstream: mmv1/products/iap/Brand.yaml
-  google_iap_client:
-    upstream: mmv1/products/iap/Client.yaml
   google_identity_platform_default_supported_idp_config:
     upstream: mmv1/products/identityplatform/DefaultSupportedIdpConfig.yaml
   google_identity_platform_inbound_saml_config:
@@ -2733,8 +2703,6 @@ files:
     upstream: null  # no mmv1 YAML (probed 2026-08-15)
   google_logging_organization_settings:
     upstream: mmv1/products/logging/OrganizationSettings.yaml
-  google_ml_engine_model:
-    upstream: mmv1/products/mlengine/Model.yaml
   google_model_armor_floorsetting:
     upstream: null  # no mmv1 YAML (probed 2026-08-15)
   google_network_management_organization_vpc_flow_logs_config:
@@ -2886,12 +2854,6 @@ files:
   data_google_backup_dr_data_sources:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_backup_dr_management_server:
-    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
-  data_google_beyondcorp_app_connection:
-    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
-  data_google_beyondcorp_app_connector:
-    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
-  data_google_beyondcorp_app_gateway:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_beyondcorp_security_gateway:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
@@ -3333,8 +3295,6 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_iap_app_engine_version_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
-  data_google_iap_client:
-    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_iap_location_web_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_iap_tunnel_dest_group_iam_policy:
@@ -3434,10 +3394,6 @@ files:
   data_google_network_security_address_group_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_network_security_address_groups:
-    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
-  data_google_notebooks_instance_iam_policy:
-    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
-  data_google_notebooks_runtime_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_oracle_database_autonomous_database:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)

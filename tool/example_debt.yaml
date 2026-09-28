@@ -335,19 +335,6 @@ GoogleApihubCuration: requires API Hub host scaffolding (GoogleApihubApiHubInsta
 GoogleApihubPlugin: requires API Hub host scaffolding (GoogleApihubApiHubInstance never_apply); deferred with API Hub debt Wave
 GoogleApihubPluginInstance: requires GoogleApihubPlugin + API Hub host scaffolding; deferred with API Hub debt Wave
 
-# Vertex AI Workbench notebook VMs bill management fee + GCE while running
-# (Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30
-# $0.0063222/h + usage). A quickstart would force apply_smoke_skip
-# (never_apply) and block wave auto-merge — factories ship without an example.
-GoogleNotebooksInstance: gcp-cost Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30 $0.0063222/h (+ usage CPU 9027-15FF-8BFE $0.0379332/h) — never_apply VM hours; no applyable quickstart on terradart-validate
-GoogleNotebooksRuntime: gcp-cost Notebooks D73B-5EEA-8215 same Workbench management fee + GCE as instances — never_apply; deferred with notebook instance Wave
-GoogleNotebooksInstanceIamMember: requires a parent GoogleNotebooksInstance (never_apply); deferred with the instance
-GoogleNotebooksRuntimeIamMember: requires a parent GoogleNotebooksRuntime (never_apply); deferred with the runtime
-GoogleNotebooksInstanceIamBinding: authoritative IAM binding; requires a parent GoogleNotebooksInstance (never_apply); deferred with the instance
-GoogleNotebooksInstanceIamPolicy: authoritative IAM policy; requires a parent GoogleNotebooksInstance (never_apply); deferred with the instance
-GoogleNotebooksRuntimeIamBinding: authoritative IAM binding; requires a parent GoogleNotebooksRuntime (never_apply); deferred with the runtime
-GoogleNotebooksRuntimeIamPolicy: authoritative IAM policy; requires a parent GoogleNotebooksRuntime (never_apply); deferred with the runtime
-
 # Colab Enterprise runtime assigns a VM from a template (Vertex Colab CPU/RAM
 # SKUs while running). A quickstart would force apply_smoke_skip (never_apply)
 # and block wave auto-merge — factory ships without an example.
@@ -457,9 +444,6 @@ GoogleApigeeEnvironment: gcp-cost Apigee 1C2D-8C78-EC58 Active Base Environment 
 GoogleApigeeEnvironmentIamMember: requires a parent GoogleApigeeEnvironment (never_apply); deferred with the organization Wave
 GoogleApigeeEnvironmentIamBinding: requires a parent GoogleApigeeEnvironment (never_apply); deferred with the organization Wave
 GoogleApigeeEnvironmentIamPolicy: requires a parent GoogleApigeeEnvironment (never_apply); deferred with the organization Wave
-GoogleBeyondcorpAppGateway: gcp-cost Chrome Enterprise Premium F91A-404B-8D2E Monthly Users SKU E2D2-474B-B4EF $6/user.mo — never_apply; CEP entitlement absent on terradart-validate
-GoogleBeyondcorpAppConnector: requires never_apply GoogleBeyondcorpAppGateway + CEP; deferred with the BeyondCorp Wave
-GoogleBeyondcorpAppConnection: requires never_apply GoogleBeyondcorpAppGateway / GoogleBeyondcorpAppConnector + CEP; deferred with the BeyondCorp Wave
 GoogleBeyondcorpSecurityGateway: gcp-cost Chrome Enterprise Premium F91A-404B-8D2E Monthly Users SKU E2D2-474B-B4EF $6/user.mo — never_apply; CEP entitlement absent on terradart-validate
 GoogleBeyondcorpSecurityGatewayIamMember: requires a parent GoogleBeyondcorpSecurityGateway (never_apply); deferred with the BeyondCorp Wave
 GoogleBeyondcorpSecurityGatewayIamBinding: requires a parent GoogleBeyondcorpSecurityGateway (never_apply); deferred with the BeyondCorp Wave

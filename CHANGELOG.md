@@ -36,6 +36,16 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Removed
 
+- **`terradart_google`: the 22 factories `hashicorp/google` 8.0 removes**
+  (breaking) — `google_beyondcorp_app_{connection,connector,gateway}`,
+  `google_iap_{brand,client}`, `google_ml_engine_model`,
+  `google_notebooks_{environment,instance,runtime}` with their six IAM
+  factories, `google_vertex_ai_schedule`, and the data sources
+  `google_beyondcorp_app_{connection,connector,gateway}`, `google_iap_client`
+  and `google_notebooks_{instance,runtime}_iam_policy`. The `notebooks`
+  barrel and `examples/notebooks_quickstart` go with them. The catalog is
+  1322 curated resource factories + 455 data sources (1777 entries). See
+  `MIGRATING.md` for the successors and the state steps before upgrading.
 - **`terradart-coverage` (`packages/terradart_coverage`)** — the coverage
   CLI, its release binaries and its Homebrew formula. With every provider
   catalog filled, "does this type have a factory" is nearly always yes;

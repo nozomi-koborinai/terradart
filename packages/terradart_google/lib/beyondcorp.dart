@@ -5,23 +5,6 @@
 /// entitlement (never_apply for apply-smoke).
 library;
 
-export 'src/beyondcorp/google_beyondcorp_app_connection.dart'
-    show
-        BeyondcorpAppConnectionApplicationEndpoint,
-        BeyondcorpAppConnectionGateway,
-        GoogleBeyondcorpAppConnection;
-export 'src/beyondcorp/google_beyondcorp_app_connector.dart'
-    show
-        BeyondcorpAppConnectorPrincipalInfo,
-        BeyondcorpAppConnectorPrincipalInfoServiceAccount,
-        BeyondcorpAppConnectorState,
-        GoogleBeyondcorpAppConnector;
-export 'src/beyondcorp/google_beyondcorp_app_gateway.dart'
-    show
-        BeyondcorpAppGatewayHostType,
-        BeyondcorpAppGatewayState,
-        BeyondcorpAppGatewayType,
-        GoogleBeyondcorpAppGateway;
 export 'src/beyondcorp/google_beyondcorp_security_gateway.dart'
     show
         BeyondcorpSecurityGatewayHubs,

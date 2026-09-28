@@ -30,7 +30,6 @@ import 'package:terradart_google/folder.dart';
 import 'package:terradart_google/gemini.dart';
 import 'package:terradart_google/healthcare.dart';
 import 'package:terradart_google/iam.dart';
-import 'package:terradart_google/iap.dart';
 import 'package:terradart_google/identity.dart';
 import 'package:terradart_google/logging.dart';
 import 'package:terradart_google/model_armor.dart';
@@ -672,23 +671,6 @@ final class DeferredLeftoverStack extends Stack {
     );
 
     add(
-      GoogleIapBrand(
-        localName: 'iapbrand',
-        applicationTitle: TfArg.literal('terradart-leftover'),
-        supportEmail: TfArg.literal('leftover@example.com'),
-      ),
-    );
-
-    add(
-      GoogleIapClient(
-        localName: 'iapclient',
-        brand: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        displayName: TfArg.literal('terradart-leftover'),
-      ),
-    );
-
-    add(
       GoogleIdentityPlatformDefaultSupportedIdpConfig(
         localName: 'supportedidpconfig',
         clientId: TfArg.literal('terradart-leftover'),
@@ -825,14 +807,6 @@ final class DeferredLeftoverStack extends Stack {
       GoogleLoggingOrganizationSettings(
         localName: 'loggingorganizationsettings',
         organization: TfArg.literal('organizations/123456789'),
-      ),
-    );
-
-    add(
-      GoogleMlEngineModel(
-        localName: 'mlenginemodel',
-        deletionPolicy: TfArg.literal('DELETE'),
-        name: TfArg.literal('terradart-leftover'),
       ),
     );
 

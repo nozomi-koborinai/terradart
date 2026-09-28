@@ -418,27 +418,6 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleBeyondcorpAppConnection(
-        localName: 'beyondcorp_app_connection',
-        name: TfArg.literal(leftover),
-      ),
-    );
-
-    addData(
-      DataGoogleBeyondcorpAppConnector(
-        localName: 'beyondcorp_app_connector',
-        name: TfArg.literal(leftover),
-      ),
-    );
-
-    addData(
-      DataGoogleBeyondcorpAppGateway(
-        localName: 'beyondcorp_app_gateway',
-        name: TfArg.literal(leftover),
-      ),
-    );
-
-    addData(
       DataGoogleBeyondcorpSecurityGateway(
         localName: 'beyondcorp_security_gateway',
         securityGatewayId: TfArg.literal(leftover),
@@ -1998,14 +1977,6 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleIapClient(
-        localName: 'iap_client',
-        brand: TfArg.literal(leftover),
-        clientId: TfArg.literal(leftover),
-      ),
-    );
-
-    addData(
       DataGoogleIapLocationWebIamPolicy(
         localName: 'iap_location_web_iam_policy',
         location: TfArg.literal(leftover),
@@ -2364,20 +2335,6 @@ final class DataSourceLeftoverStack extends Stack {
       DataGoogleNetworkSecurityAddressGroups(
         localName: 'network_security_address_groups',
         location: TfArg.literal(leftover),
-      ),
-    );
-
-    addData(
-      DataGoogleNotebooksInstanceIamPolicy(
-        localName: 'notebooks_instance_iam_policy',
-        instanceName: TfArg.literal(leftover),
-      ),
-    );
-
-    addData(
-      DataGoogleNotebooksRuntimeIamPolicy(
-        localName: 'notebooks_runtime_iam_policy',
-        runtimeName: TfArg.literal(leftover),
       ),
     );
 
