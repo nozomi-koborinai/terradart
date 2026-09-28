@@ -448,8 +448,7 @@ class YamlOverrideLoader {
       deriveNestedTypes: deriveNestedTypes,
       nestedTypeExcludes: nestedTypeExcludes,
       dedupeNestedTypes: dedupeNestedTypes,
-      deriveExactlyOne:
-          _readBool(yaml, 'deriveExactlyOne', filePath) ?? false,
+      deriveExactlyOne: _readBool(yaml, 'deriveExactlyOne', filePath) ?? false,
     );
   }
 

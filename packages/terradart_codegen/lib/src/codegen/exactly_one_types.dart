@@ -61,7 +61,8 @@ String renderExactlyOneTypes({
   if (topLevel) {
     buf
       ..writeln()
-      ..writeln('  /// The resource arguments behind [encode], as the caller\'s')
+      ..writeln(
+          '  /// The resource arguments behind [encode], as the caller\'s')
       ..writeln('  /// [TfArg]s.')
       ..writeln('  Map<String, TfArg<Object?>> get argMap;');
   }

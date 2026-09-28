@@ -85,8 +85,7 @@ final class ProviderEnums {
             );
           }
           groups[type] = [
-            for (final g in raw)
-              [for (final m in g as YamlList) m.toString()],
+            for (final g in raw) [for (final m in g as YamlList) m.toString()],
           ];
         }
       }
