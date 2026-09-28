@@ -112,7 +112,7 @@ void main() {
       golden: 'test/golden/google_service_account.factory.expected.dart.golden',
     ),
     'google_secret_manager_secret_version': (
-      schemaFile: 'google_secret_manager_secret_version_v7.schema.json',
+      schemaFile: 'google_secret_manager_secret_version_v8.schema.json',
       golden:
           'test/golden/google_secret_manager_secret_version.factory.expected.dart.golden',
     ),

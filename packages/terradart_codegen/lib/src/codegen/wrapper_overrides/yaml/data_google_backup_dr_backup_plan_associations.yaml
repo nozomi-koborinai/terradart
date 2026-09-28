@@ -11,4 +11,3 @@ curatedDoc: |-
 paramOrder:
   - location
   - project
-  - resource_type

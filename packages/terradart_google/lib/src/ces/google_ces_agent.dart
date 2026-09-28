@@ -179,6 +179,7 @@ final class CesAgentRemoteDialogflowAgent {
     this.environmentId,
     required this.flowId,
     this.inputVariableMapping,
+    this.languageCodeVariable,
     this.outputVariableMapping,
     this.respectResponseInterruptionSettings,
   });
@@ -191,6 +192,8 @@ final class CesAgentRemoteDialogflowAgent {
 
   final TfArg<Map<String, String>>? inputVariableMapping;
 
+  final TfArg<String>? languageCodeVariable;
+
   final TfArg<Map<String, String>>? outputVariableMapping;
 
   final TfArg<bool>? respectResponseInterruptionSettings;
@@ -201,6 +204,8 @@ final class CesAgentRemoteDialogflowAgent {
     'flow_id': flowId.toTfJson(),
     if (inputVariableMapping != null)
       'input_variable_mapping': inputVariableMapping!.toTfJson(),
+    if (languageCodeVariable != null)
+      'language_code_variable': languageCodeVariable!.toTfJson(),
     if (outputVariableMapping != null)
       'output_variable_mapping': outputVariableMapping!.toTfJson(),
     if (respectResponseInterruptionSettings != null)

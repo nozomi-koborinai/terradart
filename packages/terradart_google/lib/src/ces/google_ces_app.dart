@@ -144,6 +144,7 @@ final class CesAppDefaultChannelProfile {
     this.profileId,
     this.personaProperty,
     this.webWidgetConfig,
+    this.whatsappConfig,
   });
 
   final TfArg<String>? channelType;
@@ -158,6 +159,8 @@ final class CesAppDefaultChannelProfile {
 
   final CesAppDefaultChannelProfileWebWidgetConfig? webWidgetConfig;
 
+  final CesAppDefaultChannelProfileWhatsappConfig? whatsappConfig;
+
   Map<String, Object?> encode() => {
     if (channelType != null) 'channel_type': channelType!.toTfJson(),
     if (disableBargeInControl != null)
@@ -166,6 +169,7 @@ final class CesAppDefaultChannelProfile {
     if (profileId != null) 'profile_id': profileId!.toTfJson(),
     if (personaProperty != null) 'persona_property': personaProperty!.encode(),
     if (webWidgetConfig != null) 'web_widget_config': webWidgetConfig!.encode(),
+    if (whatsappConfig != null) 'whatsapp_config': whatsappConfig!.encode(),
   };
 }
 
@@ -202,6 +206,91 @@ final class CesAppDefaultChannelProfileWebWidgetConfig {
     if (modality != null) 'modality': modality!.toTfJson(),
     if (theme != null) 'theme': theme!.toTfJson(),
     if (webWidgetTitle != null) 'web_widget_title': webWidgetTitle!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_channel_profile.whatsapp_config` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppDefaultChannelProfileWhatsappConfig {
+  const CesAppDefaultChannelProfileWhatsappConfig({
+    this.phoneNumber,
+    required this.phoneNumberId,
+    required this.wabaId,
+  });
+
+  final TfArg<String>? phoneNumber;
+
+  final TfArg<String> phoneNumberId;
+
+  final TfArg<String> wabaId;
+
+  Map<String, Object?> encode() => {
+    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
+    'phone_number_id': phoneNumberId.toTfJson(),
+    'waba_id': wabaId.toTfJson(),
+  };
+}
+
+/// Typed helper for the `error_handling_settings` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppErrorHandlingSettings {
+  const CesAppErrorHandlingSettings({
+    this.errorHandlingStrategy,
+    this.endSessionConfig,
+    this.fallbackResponseConfig,
+  });
+
+  final TfArg<String>? errorHandlingStrategy;
+
+  final CesAppErrorHandlingSettingsEndSessionConfig? endSessionConfig;
+
+  final CesAppErrorHandlingSettingsFallbackResponseConfig?
+  fallbackResponseConfig;
+
+  Map<String, Object?> encode() => {
+    if (errorHandlingStrategy != null)
+      'error_handling_strategy': errorHandlingStrategy!.toTfJson(),
+    if (endSessionConfig != null)
+      'end_session_config': endSessionConfig!.encode(),
+    if (fallbackResponseConfig != null)
+      'fallback_response_config': fallbackResponseConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `error_handling_settings.end_session_config` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppErrorHandlingSettingsEndSessionConfig {
+  const CesAppErrorHandlingSettingsEndSessionConfig({this.escalateSession});
+
+  final TfArg<bool>? escalateSession;
+
+  Map<String, Object?> encode() => {
+    if (escalateSession != null)
+      'escalate_session': escalateSession!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `error_handling_settings.fallback_response_config` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppErrorHandlingSettingsFallbackResponseConfig {
+  const CesAppErrorHandlingSettingsFallbackResponseConfig({
+    this.customFallbackMessages,
+    this.maxFallbackAttempts,
+  });
+
+  final TfArg<Map<String, String>>? customFallbackMessages;
+
+  final TfArg<num>? maxFallbackAttempts;
+
+  Map<String, Object?> encode() => {
+    if (customFallbackMessages != null)
+      'custom_fallback_messages': customFallbackMessages!.toTfJson(),
+    if (maxFallbackAttempts != null)
+      'max_fallback_attempts': maxFallbackAttempts!.toTfJson(),
   };
 }
 
@@ -415,13 +504,18 @@ final class CesAppLoggingSettingsCloudLoggingSettings {
 final class CesAppLoggingSettingsConversationLoggingSettings {
   const CesAppLoggingSettingsConversationLoggingSettings({
     this.disableConversationLogging,
+    this.retentionWindow,
   });
 
   final TfArg<bool>? disableConversationLogging;
 
+  final TfArg<String>? retentionWindow;
+
   Map<String, Object?> encode() => {
     if (disableConversationLogging != null)
       'disable_conversation_logging': disableConversationLogging!.toTfJson(),
+    if (retentionWindow != null)
+      'retention_window': retentionWindow!.toTfJson(),
   };
 }
 
@@ -572,6 +666,19 @@ final class CesAppVariableDeclarationsSchema {
     if (title != null) 'title': title!.toTfJson(),
     'type': type.toTfJson(),
     if (uniqueItems != null) 'unique_items': uniqueItems!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `vpc_sc_settings` block of
+/// `google_ces_app` (derived from provider schema).
+@immutable
+final class CesAppVpcScSettings {
+  const CesAppVpcScSettings({this.allowedOrigins});
+
+  final TfArg<List<Object?>>? allowedOrigins;
+
+  Map<String, Object?> encode() => {
+    if (allowedOrigins != null) 'allowed_origins': allowedOrigins!.toTfJson(),
   };
 }
 

@@ -5,6 +5,6 @@ void main() {
   test('package exports compile and provider meta is exposed', () {
     expect(kProviderSource, equals('hashicorp/google'));
     expect(kBetaProviderSource, equals('hashicorp/google-beta'));
-    expect(kProviderVersionConstraint, equals('~> 7.0'));
+    expect(kProviderVersionConstraint, equals('~> 8.0'));
   });
 }

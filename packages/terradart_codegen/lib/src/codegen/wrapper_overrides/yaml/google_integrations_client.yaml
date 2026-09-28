@@ -31,6 +31,5 @@ paramOrder:
   - location
   - create_sample_integrations
   - cloud_kms_config
-  - run_as_service_account
   - project
   - deletion_policy

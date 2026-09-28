@@ -539,6 +539,10 @@ final class IamShowcaseStack extends Stack {
         workforcePoolId: TfArg.literal('terradart-wf'),
         providerId: TfArg.literal('terradart-oidc'),
         scimTenantId: TfArg.literal('terradart-scim'),
+        claimMapping: TfArg.literal(<String, String>{
+          'google.subject': 'user.externalId',
+          'google.group': 'group.externalId',
+        }),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: [ResourceDependency(wfProvider)],
       ),

@@ -1,11 +1,44 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_vertex_ai_semantic_governance_policy_engine`.
 const Set<String> _googleVertexAiSemanticGovernancePolicyEngineSensitive =
     <String>{};
+
+/// Typed helper for the `gateway_configs` block of
+/// `google_vertex_ai_semantic_governance_policy_engine` (derived from provider schema).
+@immutable
+final class VertexAiSemanticGovernancePolicyEngineGatewayConfigs {
+  const VertexAiSemanticGovernancePolicyEngineGatewayConfigs({
+    this.allowedProjects,
+    this.dnsZoneName,
+    required this.name,
+    this.network,
+    this.subnetwork,
+  });
+
+  final TfArg<List<Object?>>? allowedProjects;
+
+  final TfArg<String>? dnsZoneName;
+
+  final TfArg<String> name;
+
+  final TfArg<String>? network;
+
+  final TfArg<String>? subnetwork;
+
+  Map<String, Object?> encode() => {
+    if (allowedProjects != null)
+      'allowed_projects': allowedProjects!.toTfJson(),
+    if (dnsZoneName != null) 'dns_zone_name': dnsZoneName!.toTfJson(),
+    'name': name.toTfJson(),
+    if (network != null) 'network': network!.toTfJson(),
+    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_vertex_ai_semantic_governance_policy_engine`.
 ///

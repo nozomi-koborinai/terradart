@@ -57,7 +57,7 @@ terraform apply
   "terraform": {
     "required_version": ">= 1.11.0",
     "required_providers": {
-      "google": { "source": "hashicorp/google", "version": "~> 7.0" }
+      "google": { "source": "hashicorp/google", "version": "~> 8.0" }
     }
   },
   "provider": { "google": [{ "project": "YOUR-PROJECT-ID", "region": "us-central1" }] },

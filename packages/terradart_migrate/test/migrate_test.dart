@@ -30,7 +30,7 @@ MigrationResult _migrateHcl(String hcl, {String name = 'demo'}) =>
 const _google = {
   'required_version': '>= 1.11.0',
   'required_providers': {
-    'google': {'source': 'hashicorp/google', 'version': '~> 7.0'},
+    'google': {'source': 'hashicorp/google', 'version': '~> 8.0'},
   },
 };
 
@@ -100,7 +100,7 @@ void main() {
       final hcl = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 
@@ -570,7 +570,7 @@ resource "google_pubsub_topic_iam_member" "viewer" {
         TfModule.fromHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 
@@ -658,7 +658,7 @@ resource "google_pubsub_topic" "x" {
           'terraform': {
             'required_version': '>= 1.11.0',
             'required_providers': {
-              'google': {'source': 'hashicorp/google', 'version': '~> 7.0'},
+              'google': {'source': 'hashicorp/google', 'version': '~> 8.0'},
               'cloudflare': {
                 'source': 'cloudflare/cloudflare',
                 'version': kCloudflareProviderVersionConstraint,
@@ -976,7 +976,7 @@ resource "aws_cloudwatch_log_group" "fn" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 
@@ -1119,7 +1119,7 @@ output "first" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 
@@ -1200,7 +1200,7 @@ output "count" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 
@@ -1373,7 +1373,7 @@ resource "google_pubsub_topic" "kept" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 
@@ -1417,7 +1417,7 @@ resource "google_pubsub_subscription" "s" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 
@@ -1467,7 +1467,7 @@ resource "google_pubsub_subscription" "s" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 resource "google_pubsub_topic" "t" {
@@ -1483,7 +1483,7 @@ resource "google_pubsub_topic" "t" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 
@@ -1551,7 +1551,7 @@ resource "google_pubsub_topic" "t" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 
@@ -1609,7 +1609,7 @@ resource "google_pubsub_topic" "y" {
       final r = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 
@@ -1691,7 +1691,7 @@ resource "google_pubsub_topic" "x" {
           'required_providers': {
             'google-beta': {
               'source': 'hashicorp/google-beta',
-              'version': '~> 7.0',
+              'version': '~> 8.0',
             },
           },
         },
@@ -2332,7 +2332,7 @@ String _lines(List<String> lines) => '${lines.join('\n')}\n';
 String _hcl(List<String> lines) => _lines([
   'terraform {',
   '  required_providers {',
-  '    google = { source = "hashicorp/google", version = "~> 7.0" }',
+  '    google = { source = "hashicorp/google", version = "~> 8.0" }',
   '  }',
   '}',
   '',

@@ -4,7 +4,7 @@
     "required_providers": {
       "google": {
         "source": "hashicorp/google",
-        "version": "~> 7.0"
+        "version": "~> 8.0"
       }
     }
   },
@@ -69,7 +69,7 @@
       "api_key_v1": {
         "secret": "${google_secret_manager_secret.api_key.id}",
         "secret_data_wo": "REPLACE_ME",
-        "secret_data_wo_version": 1
+        "secret_data_wo_version": "1"
       }
     },
     "google_secret_manager_secret_iam_member": {

@@ -61,7 +61,7 @@ final class DbCredentialsStack extends Stack {
         localName: 'db_password_v$secretVersion',
         secret: TfArg.ref(secret.id),
         secretDataWo: TfArg.literal(dbPasswordCleartext),
-        secretDataWoVersion: TfArg.literal(secretVersion),
+        secretDataWoVersion: TfArg.literal('$secretVersion'),
       ),
     );
 
