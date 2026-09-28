@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "USER"
       - "GROUP"
+exactly_one_of_groups:
+  - ["identity_id", "identity_name"]

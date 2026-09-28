@@ -12,22 +12,77 @@ const Set<String> _awsRedshiftScheduledActionSensitive = <String>{};
 @immutable
 final class RedshiftScheduledActionTargetAction {
   const RedshiftScheduledActionTargetAction({
-    this.pauseCluster,
-    this.resizeCluster,
-    this.resumeCluster,
+    required this.pauseClusterOrResizeClusterOrResumeCluster,
   });
 
-  final RedshiftScheduledActionTargetActionPauseCluster? pauseCluster;
-
-  final RedshiftScheduledActionTargetActionResizeCluster? resizeCluster;
-
-  final RedshiftScheduledActionTargetActionResumeCluster? resumeCluster;
+  final RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster
+  pauseClusterOrResizeClusterOrResumeCluster;
 
   Map<String, Object?> encode() => {
-    if (pauseCluster != null) 'pause_cluster': pauseCluster!.encode(),
-    if (resizeCluster != null) 'resize_cluster': resizeCluster!.encode(),
-    if (resumeCluster != null) 'resume_cluster': resumeCluster!.encode(),
+    ...pauseClusterOrResizeClusterOrResumeCluster.encode(),
   };
+}
+
+/// Exactly one of `pause_cluster`, `resize_cluster`, `resume_cluster` on the `target_action` block of `aws_redshift_scheduled_action`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster {
+  const RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `pause_cluster` (one of the [RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster] choices).
+final class RedshiftScheduledActionTargetActionPauseClusterOption
+    extends
+        RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster {
+  const RedshiftScheduledActionTargetActionPauseClusterOption({
+    required this.pauseCluster,
+  });
+
+  final RedshiftScheduledActionTargetActionPauseCluster pauseCluster;
+
+  @override
+  String get blockKey => 'pause_cluster';
+
+  @override
+  Map<String, Object?> encode() => {'pause_cluster': pauseCluster.encode()};
+}
+
+/// Sets `resize_cluster` (one of the [RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster] choices).
+final class RedshiftScheduledActionTargetActionResizeClusterOption
+    extends
+        RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster {
+  const RedshiftScheduledActionTargetActionResizeClusterOption({
+    required this.resizeCluster,
+  });
+
+  final RedshiftScheduledActionTargetActionResizeCluster resizeCluster;
+
+  @override
+  String get blockKey => 'resize_cluster';
+
+  @override
+  Map<String, Object?> encode() => {'resize_cluster': resizeCluster.encode()};
+}
+
+/// Sets `resume_cluster` (one of the [RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster] choices).
+final class RedshiftScheduledActionTargetActionResumeClusterOption
+    extends
+        RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster {
+  const RedshiftScheduledActionTargetActionResumeClusterOption({
+    required this.resumeCluster,
+  });
+
+  final RedshiftScheduledActionTargetActionResumeCluster resumeCluster;
+
+  @override
+  String get blockKey => 'resume_cluster';
+
+  @override
+  Map<String, Object?> encode() => {'resume_cluster': resumeCluster.encode()};
 }
 
 /// Typed helper for the `target_action.pause_cluster` block of

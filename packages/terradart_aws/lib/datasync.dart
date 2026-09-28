@@ -25,9 +25,12 @@ export 'src/datasync/aws_datasync_location_fsx_ontap_file_system.dart'
         DatasyncLocationFsxOntapFileSystemProtocolNfs,
         DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptions,
         DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion,
+        DatasyncLocationFsxOntapFileSystemProtocolNfsOption,
+        DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb,
         DatasyncLocationFsxOntapFileSystemProtocolSmb,
         DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptions,
-        DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion;
+        DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion,
+        DatasyncLocationFsxOntapFileSystemProtocolSmbOption;
 export 'src/datasync/aws_datasync_location_fsx_openzfs_file_system.dart'
     show
         AwsDatasyncLocationFsxOpenzfsFileSystem,

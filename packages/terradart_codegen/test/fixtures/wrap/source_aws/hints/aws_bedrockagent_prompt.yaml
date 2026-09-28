@@ -49,3 +49,10 @@ properties:
         enum_values:
           - "TEXT"
           - "CHAT"
+exactly_one_of_groups:
+  - ["variant.gen_ai_resource", "variant.model_id"]
+  - ["variant.template_configuration.chat", "variant.template_configuration.text"]
+  - ["variant.template_configuration.chat.message.content.cache_point", "variant.template_configuration.chat.message.content.text"]
+  - ["variant.template_configuration.chat.system.cache_point", "variant.template_configuration.chat.system.text"]
+  - ["variant.template_configuration.chat.tool_configuration.tool.cache_point", "variant.template_configuration.chat.tool_configuration.tool.tool_spec"]
+  - ["variant.template_configuration.chat.tool_configuration.tool_choice.any", "variant.template_configuration.chat.tool_configuration.tool_choice.auto", "variant.template_configuration.chat.tool_configuration.tool_choice.tool"]

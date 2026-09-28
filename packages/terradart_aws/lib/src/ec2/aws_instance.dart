@@ -23,24 +23,67 @@ enum InstanceTenancy implements TerraformEnum {
 @immutable
 final class InstanceCapacityReservationSpecification {
   const InstanceCapacityReservationSpecification({
-    this.capacityReservationPreference,
-    this.capacityReservationTarget,
+    required this.capacityReservationPreferenceOrCapacityReservationTarget,
+  });
+
+  final InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget
+  capacityReservationPreferenceOrCapacityReservationTarget;
+
+  Map<String, Object?> encode() => {
+    ...capacityReservationPreferenceOrCapacityReservationTarget.encode(),
+  };
+}
+
+/// Exactly one of `capacity_reservation_preference`, `capacity_reservation_target` on the `capacity_reservation_specification` block of `aws_instance`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget {
+  const InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `capacity_reservation_preference` (one of the [InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget] choices).
+final class InstanceCapacityReservationSpecificationCapacityReservationPreferenceOption
+    extends
+        InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget {
+  const InstanceCapacityReservationSpecificationCapacityReservationPreferenceOption({
+    required this.capacityReservationPreference,
   });
 
   final TfArg<
     InstanceCapacityReservationSpecificationCapacityReservationPreference
-  >?
+  >
   capacityReservationPreference;
 
-  final InstanceCapacityReservationSpecificationCapacityReservationTarget?
+  @override
+  String get blockKey => 'capacity_reservation_preference';
+
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_reservation_preference': capacityReservationPreference.toTfJson(),
+  };
+}
+
+/// Sets `capacity_reservation_target` (one of the [InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget] choices).
+final class InstanceCapacityReservationSpecificationCapacityReservationTargetOption
+    extends
+        InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget {
+  const InstanceCapacityReservationSpecificationCapacityReservationTargetOption({
+    required this.capacityReservationTarget,
+  });
+
+  final InstanceCapacityReservationSpecificationCapacityReservationTarget
   capacityReservationTarget;
 
+  @override
+  String get blockKey => 'capacity_reservation_target';
+
+  @override
   Map<String, Object?> encode() => {
-    if (capacityReservationPreference != null)
-      'capacity_reservation_preference': capacityReservationPreference!
-          .toTfJson(),
-    if (capacityReservationTarget != null)
-      'capacity_reservation_target': capacityReservationTarget!.encode(),
+    'capacity_reservation_target': capacityReservationTarget.encode(),
   };
 }
 
@@ -341,19 +384,55 @@ enum InstanceInstanceMarketOptionsSpotOptionsSpotInstanceType
 /// `aws_instance` (derived from provider schema).
 @immutable
 final class InstanceLaunchTemplate {
-  const InstanceLaunchTemplate({this.id, this.name, this.version});
+  const InstanceLaunchTemplate({required this.idOrName, this.version});
 
-  final TfArg<String>? id;
-
-  final TfArg<String>? name;
+  final InstanceLaunchTemplateIdOrName idOrName;
 
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    ...idOrName.encode(),
     if (version != null) 'version': version!.toTfJson(),
   };
+}
+
+/// Exactly one of `id`, `name` on the `launch_template` block of `aws_instance`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class InstanceLaunchTemplateIdOrName {
+  const InstanceLaunchTemplateIdOrName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `id` (one of the [InstanceLaunchTemplateIdOrName] choices).
+final class InstanceLaunchTemplateIdOption
+    extends InstanceLaunchTemplateIdOrName {
+  const InstanceLaunchTemplateIdOption({required this.id});
+
+  final TfArg<String> id;
+
+  @override
+  String get blockKey => 'id';
+
+  @override
+  Map<String, Object?> encode() => {'id': id.toTfJson()};
+}
+
+/// Sets `name` (one of the [InstanceLaunchTemplateIdOrName] choices).
+final class InstanceLaunchTemplateNameOption
+    extends InstanceLaunchTemplateIdOrName {
+  const InstanceLaunchTemplateNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
 /// Typed helper for the `maintenance_options` block of

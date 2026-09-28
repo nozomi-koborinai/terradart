@@ -18,6 +18,122 @@ enum ServicecatalogProvisionedProductAcceptLanguage implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `product_id`, `product_name` on `aws_servicecatalog_provisioned_product`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ServicecatalogProvisionedProductProductIdOrProductName {
+  const ServicecatalogProvisionedProductProductIdOrProductName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `product_id` (one of the [ServicecatalogProvisionedProductProductIdOrProductName] choices).
+final class ServicecatalogProvisionedProductProductIdOption
+    extends ServicecatalogProvisionedProductProductIdOrProductName {
+  const ServicecatalogProvisionedProductProductIdOption({
+    required this.productId,
+  });
+
+  final TfArg<String> productId;
+
+  @override
+  String get blockKey => 'product_id';
+
+  @override
+  Map<String, Object?> encode() => {'product_id': productId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'product_id': productId};
+}
+
+/// Sets `product_name` (one of the [ServicecatalogProvisionedProductProductIdOrProductName] choices).
+final class ServicecatalogProvisionedProductProductNameOption
+    extends ServicecatalogProvisionedProductProductIdOrProductName {
+  const ServicecatalogProvisionedProductProductNameOption({
+    required this.productName,
+  });
+
+  final TfArg<String> productName;
+
+  @override
+  String get blockKey => 'product_name';
+
+  @override
+  Map<String, Object?> encode() => {'product_name': productName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'product_name': productName};
+}
+
+/// Exactly one of `provisioning_artifact_id`, `provisioning_artifact_name` on `aws_servicecatalog_provisioned_product`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactName {
+  const ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `provisioning_artifact_id` (one of the [ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactName] choices).
+final class ServicecatalogProvisionedProductProvisioningArtifactIdOption
+    extends
+        ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactName {
+  const ServicecatalogProvisionedProductProvisioningArtifactIdOption({
+    required this.provisioningArtifactId,
+  });
+
+  final TfArg<String> provisioningArtifactId;
+
+  @override
+  String get blockKey => 'provisioning_artifact_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'provisioning_artifact_id': provisioningArtifactId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'provisioning_artifact_id': provisioningArtifactId,
+  };
+}
+
+/// Sets `provisioning_artifact_name` (one of the [ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactName] choices).
+final class ServicecatalogProvisionedProductProvisioningArtifactNameOption
+    extends
+        ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactName {
+  const ServicecatalogProvisionedProductProvisioningArtifactNameOption({
+    required this.provisioningArtifactName,
+  });
+
+  final TfArg<String> provisioningArtifactName;
+
+  @override
+  String get blockKey => 'provisioning_artifact_name';
+
+  @override
+  Map<String, Object?> encode() => {
+    'provisioning_artifact_name': provisioningArtifactName.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'provisioning_artifact_name': provisioningArtifactName,
+  };
+}
+
 /// Typed helper for the `provisioning_parameters` block of
 /// `aws_servicecatalog_provisioned_product` (derived from provider schema).
 @immutable
@@ -48,36 +164,124 @@ final class ServicecatalogProvisionedProductProvisioningParameters {
 final class ServicecatalogProvisionedProductStackSetProvisioningPreferences {
   const ServicecatalogProvisionedProductStackSetProvisioningPreferences({
     this.accounts,
-    this.failureToleranceCount,
-    this.failureTolerancePercentage,
-    this.maxConcurrencyCount,
-    this.maxConcurrencyPercentage,
+    required this.failureToleranceCountOrFailureTolerancePercentage,
+    required this.maxConcurrencyCountOrMaxConcurrencyPercentage,
     this.regions,
   });
 
   final TfArg<List<Object?>>? accounts;
 
-  final TfArg<num>? failureToleranceCount;
+  final ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentage
+  failureToleranceCountOrFailureTolerancePercentage;
 
-  final TfArg<num>? failureTolerancePercentage;
-
-  final TfArg<num>? maxConcurrencyCount;
-
-  final TfArg<num>? maxConcurrencyPercentage;
+  final ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentage
+  maxConcurrencyCountOrMaxConcurrencyPercentage;
 
   final TfArg<List<Object?>>? regions;
 
   Map<String, Object?> encode() => {
     if (accounts != null) 'accounts': accounts!.toTfJson(),
-    if (failureToleranceCount != null)
-      'failure_tolerance_count': failureToleranceCount!.toTfJson(),
-    if (failureTolerancePercentage != null)
-      'failure_tolerance_percentage': failureTolerancePercentage!.toTfJson(),
-    if (maxConcurrencyCount != null)
-      'max_concurrency_count': maxConcurrencyCount!.toTfJson(),
-    if (maxConcurrencyPercentage != null)
-      'max_concurrency_percentage': maxConcurrencyPercentage!.toTfJson(),
+    ...failureToleranceCountOrFailureTolerancePercentage.encode(),
+    ...maxConcurrencyCountOrMaxConcurrencyPercentage.encode(),
     if (regions != null) 'regions': regions!.toTfJson(),
+  };
+}
+
+/// Exactly one of `failure_tolerance_count`, `failure_tolerance_percentage` on the `stack_set_provisioning_preferences` block of `aws_servicecatalog_provisioned_product`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentage {
+  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentage();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `failure_tolerance_count` (one of the [ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentage] choices).
+final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOption
+    extends
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentage {
+  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOption({
+    required this.failureToleranceCount,
+  });
+
+  final TfArg<num> failureToleranceCount;
+
+  @override
+  String get blockKey => 'failure_tolerance_count';
+
+  @override
+  Map<String, Object?> encode() => {
+    'failure_tolerance_count': failureToleranceCount.toTfJson(),
+  };
+}
+
+/// Sets `failure_tolerance_percentage` (one of the [ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentage] choices).
+final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentageOption
+    extends
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentage {
+  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentageOption({
+    required this.failureTolerancePercentage,
+  });
+
+  final TfArg<num> failureTolerancePercentage;
+
+  @override
+  String get blockKey => 'failure_tolerance_percentage';
+
+  @override
+  Map<String, Object?> encode() => {
+    'failure_tolerance_percentage': failureTolerancePercentage.toTfJson(),
+  };
+}
+
+/// Exactly one of `max_concurrency_count`, `max_concurrency_percentage` on the `stack_set_provisioning_preferences` block of `aws_servicecatalog_provisioned_product`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentage {
+  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentage();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `max_concurrency_count` (one of the [ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentage] choices).
+final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOption
+    extends
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentage {
+  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOption({
+    required this.maxConcurrencyCount,
+  });
+
+  final TfArg<num> maxConcurrencyCount;
+
+  @override
+  String get blockKey => 'max_concurrency_count';
+
+  @override
+  Map<String, Object?> encode() => {
+    'max_concurrency_count': maxConcurrencyCount.toTfJson(),
+  };
+}
+
+/// Sets `max_concurrency_percentage` (one of the [ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentage] choices).
+final class ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentageOption
+    extends
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentage {
+  const ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentageOption({
+    required this.maxConcurrencyPercentage,
+  });
+
+  final TfArg<num> maxConcurrencyPercentage;
+
+  @override
+  String get blockKey => 'max_concurrency_percentage';
+
+  @override
+  Map<String, Object?> encode() => {
+    'max_concurrency_percentage': maxConcurrencyPercentage.toTfJson(),
   };
 }
 
@@ -93,10 +297,10 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
     TfArg<List<String>>? notificationArns,
     TfArg<String>? pathId,
     TfArg<String>? pathName,
-    TfArg<String>? productId,
-    TfArg<String>? productName,
-    TfArg<String>? provisioningArtifactId,
-    TfArg<String>? provisioningArtifactName,
+    required ServicecatalogProvisionedProductProductIdOrProductName
+    productIdOrProductName,
+    required ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactName
+    provisioningArtifactIdOrProvisioningArtifactName,
     TfArg<String>? region,
     TfArg<bool>? retainPhysicalResources,
     TfArg<Map<String, String>>? tags,
@@ -117,12 +321,8 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
            if (notificationArns != null) 'notification_arns': notificationArns,
            if (pathId != null) 'path_id': pathId,
            if (pathName != null) 'path_name': pathName,
-           if (productId != null) 'product_id': productId,
-           if (productName != null) 'product_name': productName,
-           if (provisioningArtifactId != null)
-             'provisioning_artifact_id': provisioningArtifactId,
-           if (provisioningArtifactName != null)
-             'provisioning_artifact_name': provisioningArtifactName,
+           ...productIdOrProductName.argMap,
+           ...provisioningArtifactIdOrProvisioningArtifactName.argMap,
            if (region != null) 'region': region,
            if (retainPhysicalResources != null)
              'retain_physical_resources': retainPhysicalResources,

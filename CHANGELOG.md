@@ -124,6 +124,18 @@ Per-package changelogs live alongside each package and are the system of record 
   extraction time only; the fixture is checked in).
   `tool/generate_aws_leftover_example.dart` writes enum members. Synth
   output is unchanged. See `MIGRATING.md`.
+- **`terradart_aws` exactly-one groups are sealed types** (**breaking**) —
+  160 `ExactlyOneOf` groups on 116 resources (74 on resource arguments, 86
+  in nested blocks) take one required sealed argument whose variants each
+  set one member, e.g. `AwsLambdaFunction(filenameOrImageUriOrS3Bucket:
+  LambdaFunctionFilenameOption(...))`. The hints extractor writes the
+  groups into `source_aws/hints/` as `exactly_one_of_groups` (SDKv2
+  `ExactlyOneOf`, framework `*validator.ExactlyOneOf` and
+  `ConfigValidators`), and the new override flag `deriveExactlyOne: true`
+  (set on every aws resource override, and scaffolded for new types) seals
+  them in `wrap`. The migration manifest derives the sealed shapes, so the
+  round-trip gate stays green with nothing kept in Terraform. Synth output
+  is unchanged. See `MIGRATING.md`.
 - **Docs** — the agent skill and the *Migrating from HCL* guide describe one
   loop: `terradart-migrate --report`, then a migration, then porting the
   sidecar leftovers into the Stack, synth, and `terraform plan` with *No

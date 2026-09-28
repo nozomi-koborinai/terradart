@@ -36,3 +36,5 @@ properties:
             enum_values:
               - "JSONLines"
               - "Json"
+exactly_one_of_groups:
+  - ["event_filter.all", "event_filter.include"]

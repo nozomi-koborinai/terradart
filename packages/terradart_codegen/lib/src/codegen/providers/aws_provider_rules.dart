@@ -25,6 +25,9 @@ final class AwsProviderRules extends ProviderRules {
   bool get derivedEnumDefaults => true;
 
   @override
+  bool get exactlyOneDefaults => true;
+
+  @override
   Map<String, String> get outputDirAliases => _aliases;
 
   @override

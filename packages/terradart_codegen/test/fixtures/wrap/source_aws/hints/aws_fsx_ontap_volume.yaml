@@ -87,3 +87,5 @@ properties:
     enum_values:
       - "ONTAP"
       - "OPENZFS"
+exactly_one_of_groups:
+  - ["size_in_bytes", "size_in_megabytes"]

@@ -24,3 +24,5 @@ properties:
       - "SSD"
       - "HDD"
       - "INTELLIGENT_TIERING"
+exactly_one_of_groups:
+  - ["throughput_capacity", "throughput_capacity_per_ha_pair"]

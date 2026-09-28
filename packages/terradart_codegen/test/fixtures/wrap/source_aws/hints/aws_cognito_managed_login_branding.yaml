@@ -34,3 +34,5 @@ properties:
           - "PNG"
           - "SVG"
           - "WEBP"
+exactly_one_of_groups:
+  - ["settings", "use_cognito_provided_values"]

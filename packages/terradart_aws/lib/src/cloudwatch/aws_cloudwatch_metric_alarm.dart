@@ -97,6 +97,82 @@ enum CloudwatchMetricAlarmUnit implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `evaluation_criteria`, `metric_name`, `metric_query` on `aws_cloudwatch_metric_alarm`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
+  const CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `evaluation_criteria` (one of the [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery] choices).
+final class CloudwatchMetricAlarmEvaluationCriteriaOption
+    extends CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
+  const CloudwatchMetricAlarmEvaluationCriteriaOption({
+    required this.evaluationCriteria,
+  });
+
+  final CloudwatchMetricAlarmEvaluationCriteria evaluationCriteria;
+
+  @override
+  String get blockKey => 'evaluation_criteria';
+
+  @override
+  Map<String, Object?> encode() => {
+    'evaluation_criteria': evaluationCriteria.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'evaluation_criteria': TfArg.literal(evaluationCriteria.encode()),
+  };
+}
+
+/// Sets `metric_name` (one of the [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery] choices).
+final class CloudwatchMetricAlarmMetricNameOption
+    extends CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
+  const CloudwatchMetricAlarmMetricNameOption({required this.metricName});
+
+  final TfArg<String> metricName;
+
+  @override
+  String get blockKey => 'metric_name';
+
+  @override
+  Map<String, Object?> encode() => {'metric_name': metricName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'metric_name': metricName};
+}
+
+/// Sets `metric_query` (one of the [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery] choices).
+final class CloudwatchMetricAlarmMetricQueryOption
+    extends CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
+  const CloudwatchMetricAlarmMetricQueryOption({required this.metricQuery});
+
+  final List<CloudwatchMetricAlarmMetricQuery> metricQuery;
+
+  @override
+  String get blockKey => 'metric_query';
+
+  @override
+  Map<String, Object?> encode() => {
+    'metric_query': [for (final e in metricQuery) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'metric_query': TfArg.literal([for (final e in metricQuery) e.encode()]),
+  };
+}
+
 /// Typed helper for the `evaluation_criteria` block of
 /// `aws_cloudwatch_metric_alarm` (derived from provider schema).
 @immutable
@@ -294,7 +370,8 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     TfArg<num>? evaluationPeriods,
     TfArg<String>? extendedStatistic,
     TfArg<List<String>>? insufficientDataActions,
-    TfArg<String>? metricName,
+    required CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery
+    evaluationCriteriaOrMetricNameOrMetricQuery,
     TfArg<String>? namespace,
     TfArg<List<String>>? okActions,
     TfArg<num>? period,
@@ -305,8 +382,6 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     TfArg<String>? thresholdMetricId,
     TfArg<CloudwatchMetricAlarmTreatMissingData>? treatMissingData,
     TfArg<CloudwatchMetricAlarmUnit>? unit,
-    CloudwatchMetricAlarmEvaluationCriteria? evaluationCriteria,
-    List<CloudwatchMetricAlarmMetricQuery>? metricQuery,
     CloudwatchMetricAlarmWarmUpConfiguration? warmUpConfiguration,
     super.lifecycle,
     super.dependsOn,
@@ -335,7 +410,7 @@ final class AwsCloudwatchMetricAlarm extends Resource {
              'extended_statistic': extendedStatistic,
            if (insufficientDataActions != null)
              'insufficient_data_actions': insufficientDataActions,
-           if (metricName != null) 'metric_name': metricName,
+           ...evaluationCriteriaOrMetricNameOrMetricQuery.argMap,
            if (namespace != null) 'namespace': namespace,
            if (okActions != null) 'ok_actions': okActions,
            if (period != null) 'period': period,
@@ -347,12 +422,6 @@ final class AwsCloudwatchMetricAlarm extends Resource {
              'threshold_metric_id': thresholdMetricId,
            if (treatMissingData != null) 'treat_missing_data': treatMissingData,
            if (unit != null) 'unit': unit,
-           if (evaluationCriteria != null)
-             'evaluation_criteria': TfArg.literal(evaluationCriteria.encode()),
-           if (metricQuery != null)
-             'metric_query': TfArg.literal([
-               for (final e in metricQuery) e.encode(),
-             ]),
            if (warmUpConfiguration != null)
              'warm_up_configuration': TfArg.literal(
                warmUpConfiguration.encode(),

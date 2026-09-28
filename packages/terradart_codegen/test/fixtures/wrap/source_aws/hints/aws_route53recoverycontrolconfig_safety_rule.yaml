@@ -10,3 +10,5 @@ properties:
           - "ATLEAST"
           - "AND"
           - "OR"
+exactly_one_of_groups:
+  - ["asserted_controls", "gating_controls"]

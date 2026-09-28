@@ -98,3 +98,5 @@ properties:
       - "Terabits/Second"
       - "Count/Second"
       - "None"
+exactly_one_of_groups:
+  - ["evaluation_criteria", "metric_name", "metric_query"]

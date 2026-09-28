@@ -34,15 +34,53 @@ final class M2EnvironmentHighAvailabilityConfig {
 /// `aws_m2_environment` (derived from provider schema).
 @immutable
 final class M2EnvironmentStorageConfiguration {
-  const M2EnvironmentStorageConfiguration({this.efs, this.fsx});
+  const M2EnvironmentStorageConfiguration({required this.efsOrFsx});
 
-  final List<M2EnvironmentStorageConfigurationEfs>? efs;
+  final M2EnvironmentStorageConfigurationEfsOrFsx efsOrFsx;
 
-  final List<M2EnvironmentStorageConfigurationFsx>? fsx;
+  Map<String, Object?> encode() => {...efsOrFsx.encode()};
+}
 
+/// Exactly one of `efs`, `fsx` on the `storage_configuration` block of `aws_m2_environment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class M2EnvironmentStorageConfigurationEfsOrFsx {
+  const M2EnvironmentStorageConfigurationEfsOrFsx();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `efs` (one of the [M2EnvironmentStorageConfigurationEfsOrFsx] choices).
+final class M2EnvironmentStorageConfigurationEfsOption
+    extends M2EnvironmentStorageConfigurationEfsOrFsx {
+  const M2EnvironmentStorageConfigurationEfsOption({required this.efs});
+
+  final List<M2EnvironmentStorageConfigurationEfs> efs;
+
+  @override
+  String get blockKey => 'efs';
+
+  @override
   Map<String, Object?> encode() => {
-    if (efs != null) 'efs': [for (final e in efs!) e.encode()],
-    if (fsx != null) 'fsx': [for (final e in fsx!) e.encode()],
+    'efs': [for (final e in efs) e.encode()],
+  };
+}
+
+/// Sets `fsx` (one of the [M2EnvironmentStorageConfigurationEfsOrFsx] choices).
+final class M2EnvironmentStorageConfigurationFsxOption
+    extends M2EnvironmentStorageConfigurationEfsOrFsx {
+  const M2EnvironmentStorageConfigurationFsxOption({required this.fsx});
+
+  final List<M2EnvironmentStorageConfigurationFsx> fsx;
+
+  @override
+  String get blockKey => 'fsx';
+
+  @override
+  Map<String, Object?> encode() => {
+    'fsx': [for (final e in fsx) e.encode()],
   };
 }
 

@@ -7,6 +7,67 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_msk_channel`.
 const Set<String> _awsMskChannelSensitive = <String>{};
 
+/// Exactly one of `iceberg_destination`, `s3_destination` on `aws_msk_channel`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class MskChannelIcebergDestinationOrS3Destination {
+  const MskChannelIcebergDestinationOrS3Destination();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `iceberg_destination` (one of the [MskChannelIcebergDestinationOrS3Destination] choices).
+final class MskChannelIcebergDestinationOption
+    extends MskChannelIcebergDestinationOrS3Destination {
+  const MskChannelIcebergDestinationOption({required this.icebergDestination});
+
+  final List<MskChannelIcebergDestination> icebergDestination;
+
+  @override
+  String get blockKey => 'iceberg_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'iceberg_destination': [for (final e in icebergDestination) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'iceberg_destination': TfArg.literal([
+      for (final e in icebergDestination) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `s3_destination` (one of the [MskChannelIcebergDestinationOrS3Destination] choices).
+final class MskChannelS3DestinationOption
+    extends MskChannelIcebergDestinationOrS3Destination {
+  const MskChannelS3DestinationOption({required this.s3Destination});
+
+  final List<MskChannelS3Destination> s3Destination;
+
+  @override
+  String get blockKey => 's3_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    's3_destination': [for (final e in s3Destination) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    's3_destination': TfArg.literal([
+      for (final e in s3Destination) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `encryption_configuration` block of
 /// `aws_msk_channel` (derived from provider schema).
 @immutable
@@ -505,9 +566,9 @@ final class AwsMskChannel extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<MskChannelEncryptionConfiguration>? encryptionConfiguration,
-    List<MskChannelIcebergDestination>? icebergDestination,
+    required MskChannelIcebergDestinationOrS3Destination
+    icebergDestinationOrS3Destination,
     List<MskChannelLoggingInfo>? loggingInfo,
-    List<MskChannelS3Destination>? s3Destination,
     List<MskChannelTopicConfiguration>? topicConfiguration,
     super.lifecycle,
     super.dependsOn,
@@ -524,17 +585,10 @@ final class AwsMskChannel extends Resource {
              'encryption_configuration': TfArg.literal([
                for (final e in encryptionConfiguration) e.encode(),
              ]),
-           if (icebergDestination != null)
-             'iceberg_destination': TfArg.literal([
-               for (final e in icebergDestination) e.encode(),
-             ]),
+           ...icebergDestinationOrS3Destination.argMap,
            if (loggingInfo != null)
              'logging_info': TfArg.literal([
                for (final e in loggingInfo) e.encode(),
-             ]),
-           if (s3Destination != null)
-             's3_destination': TfArg.literal([
-               for (final e in s3Destination) e.encode(),
              ]),
            if (topicConfiguration != null)
              'topic_configuration': TfArg.literal([

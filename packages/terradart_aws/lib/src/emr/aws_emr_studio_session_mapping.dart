@@ -16,14 +16,63 @@ enum EmrStudioSessionMappingIdentityType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `identity_id`, `identity_name` on `aws_emr_studio_session_mapping`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class EmrStudioSessionMappingIdentityIdOrIdentityName {
+  const EmrStudioSessionMappingIdentityIdOrIdentityName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `identity_id` (one of the [EmrStudioSessionMappingIdentityIdOrIdentityName] choices).
+final class EmrStudioSessionMappingIdentityIdOption
+    extends EmrStudioSessionMappingIdentityIdOrIdentityName {
+  const EmrStudioSessionMappingIdentityIdOption({required this.identityId});
+
+  final TfArg<String> identityId;
+
+  @override
+  String get blockKey => 'identity_id';
+
+  @override
+  Map<String, Object?> encode() => {'identity_id': identityId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'identity_id': identityId};
+}
+
+/// Sets `identity_name` (one of the [EmrStudioSessionMappingIdentityIdOrIdentityName] choices).
+final class EmrStudioSessionMappingIdentityNameOption
+    extends EmrStudioSessionMappingIdentityIdOrIdentityName {
+  const EmrStudioSessionMappingIdentityNameOption({required this.identityName});
+
+  final TfArg<String> identityName;
+
+  @override
+  String get blockKey => 'identity_name';
+
+  @override
+  Map<String, Object?> encode() => {'identity_name': identityName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'identity_name': identityName};
+}
+
 /// Factory wrapper for `aws_emr_studio_session_mapping`.
 final class AwsEmrStudioSessionMapping extends Resource {
   static const String tfType = 'aws_emr_studio_session_mapping';
 
   AwsEmrStudioSessionMapping({
     required super.localName,
-    TfArg<String>? identityId,
-    TfArg<String>? identityName,
+    required EmrStudioSessionMappingIdentityIdOrIdentityName
+    identityIdOrIdentityName,
     required TfArg<EmrStudioSessionMappingIdentityType> identityType,
     TfArg<String>? region,
     required TfArg<String> sessionPolicyArn,
@@ -35,8 +84,7 @@ final class AwsEmrStudioSessionMapping extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (identityId != null) 'identity_id': identityId,
-           if (identityName != null) 'identity_name': identityName,
+           ...identityIdOrIdentityName.argMap,
            'identity_type': identityType,
            if (region != null) 'region': region,
            'session_policy_arn': sessionPolicyArn,

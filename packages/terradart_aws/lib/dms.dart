@@ -3,7 +3,12 @@
 /// AWS Database Migration Service.
 library;
 
-export 'src/dms/aws_dms_certificate.dart' show AwsDmsCertificate;
+export 'src/dms/aws_dms_certificate.dart'
+    show
+        AwsDmsCertificate,
+        DmsCertificateCertificatePemOption,
+        DmsCertificateCertificatePemOrCertificateWallet,
+        DmsCertificateCertificateWalletOption;
 export 'src/dms/aws_dms_data_provider.dart'
     show
         AwsDmsDataProvider,

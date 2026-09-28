@@ -86,6 +86,9 @@ export 'src/eks/aws_eks_node_group.dart'
         EksNodeGroupTaint,
         EksNodeGroupTaintEffect,
         EksNodeGroupUpdateConfig,
+        EksNodeGroupUpdateConfigMaxUnavailableOption,
+        EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage,
+        EksNodeGroupUpdateConfigMaxUnavailablePercentageOption,
         EksNodeGroupUpdateConfigUpdateStrategy,
         EksNodeGroupWarmPoolConfig,
         EksNodeGroupWarmPoolConfigPoolState;

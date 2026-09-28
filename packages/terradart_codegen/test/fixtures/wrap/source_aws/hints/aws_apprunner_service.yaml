@@ -59,3 +59,5 @@ properties:
             enum_values:
               - "ECR"
               - "ECR_PUBLIC"
+exactly_one_of_groups:
+  - ["source_configuration.code_repository", "source_configuration.image_repository"]

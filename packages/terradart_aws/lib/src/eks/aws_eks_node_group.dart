@@ -236,22 +236,65 @@ enum EksNodeGroupTaintEffect implements TerraformEnum {
 @immutable
 final class EksNodeGroupUpdateConfig {
   const EksNodeGroupUpdateConfig({
-    this.maxUnavailable,
-    this.maxUnavailablePercentage,
+    required this.maxUnavailableOrMaxUnavailablePercentage,
     this.updateStrategy,
   });
 
-  final TfArg<num>? maxUnavailable;
-
-  final TfArg<num>? maxUnavailablePercentage;
+  final EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage
+  maxUnavailableOrMaxUnavailablePercentage;
 
   final TfArg<EksNodeGroupUpdateConfigUpdateStrategy>? updateStrategy;
 
   Map<String, Object?> encode() => {
-    if (maxUnavailable != null) 'max_unavailable': maxUnavailable!.toTfJson(),
-    if (maxUnavailablePercentage != null)
-      'max_unavailable_percentage': maxUnavailablePercentage!.toTfJson(),
+    ...maxUnavailableOrMaxUnavailablePercentage.encode(),
     if (updateStrategy != null) 'update_strategy': updateStrategy!.toTfJson(),
+  };
+}
+
+/// Exactly one of `max_unavailable`, `max_unavailable_percentage` on the `update_config` block of `aws_eks_node_group`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage {
+  const EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `max_unavailable` (one of the [EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage] choices).
+final class EksNodeGroupUpdateConfigMaxUnavailableOption
+    extends EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage {
+  const EksNodeGroupUpdateConfigMaxUnavailableOption({
+    required this.maxUnavailable,
+  });
+
+  final TfArg<num> maxUnavailable;
+
+  @override
+  String get blockKey => 'max_unavailable';
+
+  @override
+  Map<String, Object?> encode() => {
+    'max_unavailable': maxUnavailable.toTfJson(),
+  };
+}
+
+/// Sets `max_unavailable_percentage` (one of the [EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage] choices).
+final class EksNodeGroupUpdateConfigMaxUnavailablePercentageOption
+    extends EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage {
+  const EksNodeGroupUpdateConfigMaxUnavailablePercentageOption({
+    required this.maxUnavailablePercentage,
+  });
+
+  final TfArg<num> maxUnavailablePercentage;
+
+  @override
+  String get blockKey => 'max_unavailable_percentage';
+
+  @override
+  Map<String, Object?> encode() => {
+    'max_unavailable_percentage': maxUnavailablePercentage.toTfJson(),
   };
 }
 

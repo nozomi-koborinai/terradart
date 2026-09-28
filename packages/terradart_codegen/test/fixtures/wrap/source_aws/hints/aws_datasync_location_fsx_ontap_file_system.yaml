@@ -22,3 +22,5 @@ properties:
                   - "SMB2"
                   - "SMB3"
                   - "SMB2_0"
+exactly_one_of_groups:
+  - ["protocol.nfs", "protocol.smb"]

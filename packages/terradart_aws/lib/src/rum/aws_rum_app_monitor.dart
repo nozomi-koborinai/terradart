@@ -7,6 +7,54 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rum_app_monitor`.
 const Set<String> _awsRumAppMonitorSensitive = <String>{};
 
+/// Exactly one of `domain`, `domain_list` on `aws_rum_app_monitor`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RumAppMonitorDomainOrDomainList {
+  const RumAppMonitorDomainOrDomainList();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `domain` (one of the [RumAppMonitorDomainOrDomainList] choices).
+final class RumAppMonitorDomainOption extends RumAppMonitorDomainOrDomainList {
+  const RumAppMonitorDomainOption({required this.domain});
+
+  final TfArg<String> domain;
+
+  @override
+  String get blockKey => 'domain';
+
+  @override
+  Map<String, Object?> encode() => {'domain': domain.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'domain': domain};
+}
+
+/// Sets `domain_list` (one of the [RumAppMonitorDomainOrDomainList] choices).
+final class RumAppMonitorDomainListOption
+    extends RumAppMonitorDomainOrDomainList {
+  const RumAppMonitorDomainListOption({required this.domainList});
+
+  final TfArg<List<String>> domainList;
+
+  @override
+  String get blockKey => 'domain_list';
+
+  @override
+  Map<String, Object?> encode() => {'domain_list': domainList.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'domain_list': domainList};
+}
+
 /// Typed helper for the `app_monitor_configuration` block of
 /// `aws_rum_app_monitor` (derived from provider schema).
 @immutable
@@ -98,8 +146,7 @@ final class AwsRumAppMonitor extends Resource {
   AwsRumAppMonitor({
     required super.localName,
     TfArg<bool>? cwLogEnabled,
-    TfArg<String>? domain,
-    TfArg<List<String>>? domainList,
+    required RumAppMonitorDomainOrDomainList domainOrDomainList,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -113,8 +160,7 @@ final class AwsRumAppMonitor extends Resource {
          terraformType: tfType,
          argMap: {
            if (cwLogEnabled != null) 'cw_log_enabled': cwLogEnabled,
-           if (domain != null) 'domain': domain,
-           if (domainList != null) 'domain_list': domainList,
+           ...domainOrDomainList.argMap,
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

@@ -6,6 +6,61 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_transcribe_vocabulary_filter`.
 const Set<String> _awsTranscribeVocabularyFilterSensitive = <String>{};
 
+/// Exactly one of `vocabulary_filter_file_uri`, `words` on `aws_transcribe_vocabulary_filter`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
+  const TranscribeVocabularyFilterVocabularyFilterFileUriOrWords();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `vocabulary_filter_file_uri` (one of the [TranscribeVocabularyFilterVocabularyFilterFileUriOrWords] choices).
+final class TranscribeVocabularyFilterVocabularyFilterFileUriOption
+    extends TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
+  const TranscribeVocabularyFilterVocabularyFilterFileUriOption({
+    required this.vocabularyFilterFileUri,
+  });
+
+  final TfArg<String> vocabularyFilterFileUri;
+
+  @override
+  String get blockKey => 'vocabulary_filter_file_uri';
+
+  @override
+  Map<String, Object?> encode() => {
+    'vocabulary_filter_file_uri': vocabularyFilterFileUri.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vocabulary_filter_file_uri': vocabularyFilterFileUri,
+  };
+}
+
+/// Sets `words` (one of the [TranscribeVocabularyFilterVocabularyFilterFileUriOrWords] choices).
+final class TranscribeVocabularyFilterWordsOption
+    extends TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
+  const TranscribeVocabularyFilterWordsOption({required this.words});
+
+  final TfArg<List<String>> words;
+
+  @override
+  String get blockKey => 'words';
+
+  @override
+  Map<String, Object?> encode() => {'words': words.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'words': words};
+}
+
 /// Factory wrapper for `aws_transcribe_vocabulary_filter`.
 final class AwsTranscribeVocabularyFilter extends Resource {
   static const String tfType = 'aws_transcribe_vocabulary_filter';
@@ -15,9 +70,9 @@ final class AwsTranscribeVocabularyFilter extends Resource {
     required TfArg<String> languageCode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vocabularyFilterFileUri,
+    required TranscribeVocabularyFilterVocabularyFilterFileUriOrWords
+    vocabularyFilterFileUriOrWords,
     required TfArg<String> vocabularyFilterName,
-    TfArg<List<String>>? words,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,10 +83,8 @@ final class AwsTranscribeVocabularyFilter extends Resource {
            'language_code': languageCode,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           if (vocabularyFilterFileUri != null)
-             'vocabulary_filter_file_uri': vocabularyFilterFileUri,
+           ...vocabularyFilterFileUriOrWords.argMap,
            'vocabulary_filter_name': vocabularyFilterName,
-           if (words != null) 'words': words,
          },
        );
 

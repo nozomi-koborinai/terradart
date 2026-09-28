@@ -44,7 +44,10 @@ export 'src/s3/aws_s3_bucket.dart'
         S3BucketReplicationConfigurationRulesStatus,
         S3BucketRequestPayer,
         S3BucketVersioning,
-        S3BucketWebsite;
+        S3BucketWebsite,
+        S3BucketWebsiteIndexDocumentOption,
+        S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo,
+        S3BucketWebsiteRedirectAllRequestsToOption;
 export 'src/s3/aws_s3_bucket_abac.dart'
     show AwsS3BucketAbac, S3BucketAbacAbacStatus;
 export 'src/s3/aws_s3_bucket_accelerate_configuration.dart'
@@ -59,7 +62,10 @@ export 'src/s3/aws_s3_bucket_acl.dart'
         S3BucketAclAccessControlPolicyGrantGrantee,
         S3BucketAclAccessControlPolicyGrantGranteeType,
         S3BucketAclAccessControlPolicyGrantPermission,
-        S3BucketAclAccessControlPolicyOwner;
+        S3BucketAclAccessControlPolicyOption,
+        S3BucketAclAccessControlPolicyOrAcl,
+        S3BucketAclAccessControlPolicyOwner,
+        S3BucketAclAclOption;
 export 'src/s3/aws_s3_bucket_analytics_configuration.dart'
     show
         AwsS3BucketAnalyticsConfiguration,
@@ -118,8 +124,11 @@ export 'src/s3/aws_s3_bucket_logging.dart'
         S3BucketLoggingTargetGrantPermission,
         S3BucketLoggingTargetObjectKeyFormat,
         S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix,
+        S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOption,
+        S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix,
         S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixPartitionDateSource,
-        S3BucketLoggingTargetObjectKeyFormatSimplePrefix;
+        S3BucketLoggingTargetObjectKeyFormatSimplePrefix,
+        S3BucketLoggingTargetObjectKeyFormatSimplePrefixOption;
 export 'src/s3/aws_s3_bucket_metadata_configuration.dart'
     show
         AwsS3BucketMetadataConfiguration,

@@ -95,6 +95,72 @@ enum LambdaFunctionRuntime implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `filename`, `image_uri`, `s3_bucket` on `aws_lambda_function`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class LambdaFunctionFilenameOrImageUriOrS3Bucket {
+  const LambdaFunctionFilenameOrImageUriOrS3Bucket();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `filename` (one of the [LambdaFunctionFilenameOrImageUriOrS3Bucket] choices).
+final class LambdaFunctionFilenameOption
+    extends LambdaFunctionFilenameOrImageUriOrS3Bucket {
+  const LambdaFunctionFilenameOption({required this.filename});
+
+  final TfArg<String> filename;
+
+  @override
+  String get blockKey => 'filename';
+
+  @override
+  Map<String, Object?> encode() => {'filename': filename.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'filename': filename};
+}
+
+/// Sets `image_uri` (one of the [LambdaFunctionFilenameOrImageUriOrS3Bucket] choices).
+final class LambdaFunctionImageUriOption
+    extends LambdaFunctionFilenameOrImageUriOrS3Bucket {
+  const LambdaFunctionImageUriOption({required this.imageUri});
+
+  final TfArg<String> imageUri;
+
+  @override
+  String get blockKey => 'image_uri';
+
+  @override
+  Map<String, Object?> encode() => {'image_uri': imageUri.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'image_uri': imageUri};
+}
+
+/// Sets `s3_bucket` (one of the [LambdaFunctionFilenameOrImageUriOrS3Bucket] choices).
+final class LambdaFunctionS3BucketOption
+    extends LambdaFunctionFilenameOrImageUriOrS3Bucket {
+  const LambdaFunctionS3BucketOption({required this.s3Bucket});
+
+  final TfArg<String> s3Bucket;
+
+  @override
+  String get blockKey => 's3_bucket';
+
+  @override
+  Map<String, Object?> encode() => {'s3_bucket': s3Bucket.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'s3_bucket': s3Bucket};
+}
+
 /// Typed helper for the `capacity_provider_config` block of
 /// `aws_lambda_function` (derived from provider schema).
 @immutable
@@ -411,10 +477,10 @@ final class AwsLambdaFunction extends Resource {
     TfArg<String>? codeSha256,
     TfArg<String>? codeSigningConfigArn,
     TfArg<String>? description,
-    TfArg<String>? filename,
+    required LambdaFunctionFilenameOrImageUriOrS3Bucket
+    filenameOrImageUriOrS3Bucket,
     required TfArg<String> functionName,
     TfArg<String>? handler,
-    TfArg<String>? imageUri,
     TfArg<String>? kmsKeyArn,
     TfArg<List<String>>? layers,
     TfArg<num>? memorySize,
@@ -427,7 +493,6 @@ final class AwsLambdaFunction extends Resource {
     TfArg<num>? reservedConcurrentExecutions,
     required TfArg<String> role,
     TfArg<LambdaFunctionRuntime>? runtime,
-    TfArg<String>? s3Bucket,
     TfArg<String>? s3Key,
     TfArg<String>? s3ObjectVersion,
     TfArg<bool>? skipDestroy,
@@ -463,10 +528,9 @@ final class AwsLambdaFunction extends Resource {
            if (codeSigningConfigArn != null)
              'code_signing_config_arn': codeSigningConfigArn,
            if (description != null) 'description': description,
-           if (filename != null) 'filename': filename,
+           ...filenameOrImageUriOrS3Bucket.argMap,
            'function_name': functionName,
            if (handler != null) 'handler': handler,
-           if (imageUri != null) 'image_uri': imageUri,
            if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
            if (layers != null) 'layers': layers,
            if (memorySize != null) 'memory_size': memorySize,
@@ -483,7 +547,6 @@ final class AwsLambdaFunction extends Resource {
              'reserved_concurrent_executions': reservedConcurrentExecutions,
            'role': role,
            if (runtime != null) 'runtime': runtime,
-           if (s3Bucket != null) 's3_bucket': s3Bucket,
            if (s3Key != null) 's3_key': s3Key,
            if (s3ObjectVersion != null) 's3_object_version': s3ObjectVersion,
            if (skipDestroy != null) 'skip_destroy': skipDestroy,

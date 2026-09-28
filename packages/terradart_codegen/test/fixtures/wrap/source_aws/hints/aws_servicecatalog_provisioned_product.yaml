@@ -8,3 +8,8 @@ properties:
       - "en"
       - "jp"
       - "zh"
+exactly_one_of_groups:
+  - ["product_id", "product_name"]
+  - ["provisioning_artifact_id", "provisioning_artifact_name"]
+  - ["stack_set_provisioning_preferences.failure_tolerance_count", "stack_set_provisioning_preferences.failure_tolerance_percentage"]
+  - ["stack_set_provisioning_preferences.max_concurrency_count", "stack_set_provisioning_preferences.max_concurrency_percentage"]

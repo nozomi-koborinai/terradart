@@ -33,3 +33,6 @@ properties:
       - "de"
       - "it"
       - "pt"
+exactly_one_of_groups:
+  - ["input_data_config.annotations", "input_data_config.entity_list"]
+  - ["input_data_config.augmented_manifests", "input_data_config.documents"]

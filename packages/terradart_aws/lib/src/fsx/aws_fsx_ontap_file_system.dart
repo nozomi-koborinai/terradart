@@ -42,6 +42,67 @@ enum FsxOntapFileSystemStorageType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `throughput_capacity`, `throughput_capacity_per_ha_pair` on `aws_fsx_ontap_file_system`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
+  const FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `throughput_capacity` (one of the [FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair] choices).
+final class FsxOntapFileSystemThroughputCapacityOption
+    extends FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
+  const FsxOntapFileSystemThroughputCapacityOption({
+    required this.throughputCapacity,
+  });
+
+  final TfArg<num> throughputCapacity;
+
+  @override
+  String get blockKey => 'throughput_capacity';
+
+  @override
+  Map<String, Object?> encode() => {
+    'throughput_capacity': throughputCapacity.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'throughput_capacity': throughputCapacity,
+  };
+}
+
+/// Sets `throughput_capacity_per_ha_pair` (one of the [FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair] choices).
+final class FsxOntapFileSystemThroughputCapacityPerHaPairOption
+    extends FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
+  const FsxOntapFileSystemThroughputCapacityPerHaPairOption({
+    required this.throughputCapacityPerHaPair,
+  });
+
+  final TfArg<num> throughputCapacityPerHaPair;
+
+  @override
+  String get blockKey => 'throughput_capacity_per_ha_pair';
+
+  @override
+  Map<String, Object?> encode() => {
+    'throughput_capacity_per_ha_pair': throughputCapacityPerHaPair.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'throughput_capacity_per_ha_pair': throughputCapacityPerHaPair,
+  };
+}
+
 /// Typed helper for the `disk_iops_configuration` block of
 /// `aws_fsx_ontap_file_system` (derived from provider schema).
 @immutable
@@ -90,8 +151,8 @@ final class AwsFsxOntapFileSystem extends Resource {
     TfArg<FsxOntapFileSystemStorageType>? storageType,
     required TfArg<List<String>> subnetIds,
     TfArg<Map<String, String>>? tags,
-    TfArg<num>? throughputCapacity,
-    TfArg<num>? throughputCapacityPerHaPair,
+    required FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair
+    throughputCapacityOrThroughputCapacityPerHaPair,
     TfArg<String>? weeklyMaintenanceStartTime,
     FsxOntapFileSystemDiskIopsConfiguration? diskIopsConfiguration,
     super.lifecycle,
@@ -120,10 +181,7 @@ final class AwsFsxOntapFileSystem extends Resource {
            if (storageType != null) 'storage_type': storageType,
            'subnet_ids': subnetIds,
            if (tags != null) 'tags': tags,
-           if (throughputCapacity != null)
-             'throughput_capacity': throughputCapacity,
-           if (throughputCapacityPerHaPair != null)
-             'throughput_capacity_per_ha_pair': throughputCapacityPerHaPair,
+           ...throughputCapacityOrThroughputCapacityPerHaPair.argMap,
            if (weeklyMaintenanceStartTime != null)
              'weekly_maintenance_start_time': weeklyMaintenanceStartTime,
            if (diskIopsConfiguration != null)

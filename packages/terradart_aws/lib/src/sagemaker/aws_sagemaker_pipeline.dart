@@ -7,6 +7,70 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_sagemaker_pipeline`.
 const Set<String> _awsSagemakerPipelineSensitive = <String>{};
 
+/// Exactly one of `pipeline_definition`, `pipeline_definition_s3_location` on `aws_sagemaker_pipeline`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
+  const SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `pipeline_definition` (one of the [SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location] choices).
+final class SagemakerPipelinePipelineDefinitionOption
+    extends SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
+  const SagemakerPipelinePipelineDefinitionOption({
+    required this.pipelineDefinition,
+  });
+
+  final TfArg<String> pipelineDefinition;
+
+  @override
+  String get blockKey => 'pipeline_definition';
+
+  @override
+  Map<String, Object?> encode() => {
+    'pipeline_definition': pipelineDefinition.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'pipeline_definition': pipelineDefinition,
+  };
+}
+
+/// Sets `pipeline_definition_s3_location` (one of the [SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location] choices).
+final class SagemakerPipelinePipelineDefinitionS3LocationOption
+    extends SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
+  const SagemakerPipelinePipelineDefinitionS3LocationOption({
+    required this.pipelineDefinitionS3Location,
+  });
+
+  final SagemakerPipelinePipelineDefinitionS3Location
+  pipelineDefinitionS3Location;
+
+  @override
+  String get blockKey => 'pipeline_definition_s3_location';
+
+  @override
+  Map<String, Object?> encode() => {
+    'pipeline_definition_s3_location': pipelineDefinitionS3Location.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'pipeline_definition_s3_location': TfArg.literal(
+      pipelineDefinitionS3Location.encode(),
+    ),
+  };
+}
+
 /// Typed helper for the `parallelism_configuration` block of
 /// `aws_sagemaker_pipeline` (derived from provider schema).
 @immutable
@@ -51,7 +115,8 @@ final class AwsSagemakerPipeline extends Resource {
 
   AwsSagemakerPipeline({
     required super.localName,
-    TfArg<String>? pipelineDefinition,
+    required SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location
+    pipelineDefinitionOrPipelineDefinitionS3Location,
     TfArg<String>? pipelineDescription,
     required TfArg<String> pipelineDisplayName,
     required TfArg<String> pipelineName,
@@ -59,7 +124,6 @@ final class AwsSagemakerPipeline extends Resource {
     TfArg<String>? roleArn,
     TfArg<Map<String, String>>? tags,
     SagemakerPipelineParallelismConfiguration? parallelismConfiguration,
-    SagemakerPipelinePipelineDefinitionS3Location? pipelineDefinitionS3Location,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -67,8 +131,7 @@ final class AwsSagemakerPipeline extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (pipelineDefinition != null)
-             'pipeline_definition': pipelineDefinition,
+           ...pipelineDefinitionOrPipelineDefinitionS3Location.argMap,
            if (pipelineDescription != null)
              'pipeline_description': pipelineDescription,
            'pipeline_display_name': pipelineDisplayName,
@@ -79,10 +142,6 @@ final class AwsSagemakerPipeline extends Resource {
            if (parallelismConfiguration != null)
              'parallelism_configuration': TfArg.literal(
                parallelismConfiguration.encode(),
-             ),
-           if (pipelineDefinitionS3Location != null)
-             'pipeline_definition_s3_location': TfArg.literal(
-               pipelineDefinitionS3Location.encode(),
              ),
          },
        );

@@ -123,3 +123,5 @@ properties:
                   - "aws:backup"
                   - "aws:kms"
                   - "aws:kms:dsse"
+exactly_one_of_groups:
+  - ["website.index_document", "website.redirect_all_requests_to"]

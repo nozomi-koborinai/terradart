@@ -115,3 +115,7 @@ properties:
       - "FLINK-1_20"
       - "FLINK-2_2"
       - "FLINK-2_3"
+exactly_one_of_groups:
+  - ["application_configuration.sql_application_configuration.input.input_schema.record_format.mapping_parameters.csv_mapping_parameters", "application_configuration.sql_application_configuration.input.input_schema.record_format.mapping_parameters.json_mapping_parameters"]
+  - ["application_configuration.sql_application_configuration.input.kinesis_firehose_input", "application_configuration.sql_application_configuration.input.kinesis_streams_input"]
+  - ["application_configuration.sql_application_configuration.reference_data_source.reference_schema.record_format.mapping_parameters.csv_mapping_parameters", "application_configuration.sql_application_configuration.reference_data_source.reference_schema.record_format.mapping_parameters.json_mapping_parameters"]

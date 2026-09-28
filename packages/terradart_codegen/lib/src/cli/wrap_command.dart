@@ -11,6 +11,7 @@ import '../codegen/barrels/barrel_manifest.dart';
 import '../codegen/catalog_entry_builder.dart';
 import '../codegen/catalog_metadata_emitter.dart';
 import '../codegen/data_source_wrapper_emitter.dart';
+import '../codegen/exactly_one_derivation.dart';
 import '../codegen/generated_file_header.dart';
 import '../codegen/migrate/migrate_entry_builder.dart';
 import '../codegen/migrate/migrate_manifest_emitter.dart';
@@ -283,7 +284,7 @@ class WrapCommand extends Command<int> {
       stderr.writeln('terradart wrap: $e');
       return CliExitCodes.dataError;
     }
-    final resourceOverrides =
+    final typedOverrides =
         providerEnums.typeDerivedEnums(loaded.resources, ir.resources);
 
     // 3. Emit every override into an in-memory map keyed by repo-relative
@@ -321,7 +322,7 @@ class WrapCommand extends Command<int> {
     // exactly as cheap as before this gate existed — every committed
     // override currently leaves `deriveNestedTypes` at its `false` default.
     final needsRawResourceSchemas =
-        resourceOverrides.values.any((o) => o.deriveNestedTypes);
+        typedOverrides.values.any((o) => o.deriveNestedTypes);
     final needsRawDataSourceSchemas =
         loaded.dataSources.values.any((o) => o.deriveNestedTypes);
     final rawResourceSchemas = needsRawResourceSchemas
@@ -330,6 +331,18 @@ class WrapCommand extends Command<int> {
     final rawDataSourceSchemas = needsRawDataSourceSchemas
         ? _rawSchemaBlocks(schemaSrc, schemasKey: 'data_source_schemas')
         : const <String, Map<String, dynamic>>{};
+    // `deriveExactlyOne`: the hints' top-level exactly-one groups become
+    // sealed custom slots before anything reads the overrides.
+    final exactlyOne = deriveExactlyOneSlots(
+      typedOverrides,
+      ir.resources,
+      providerEnums: providerEnums,
+      rawSchemas: rawResourceSchemas,
+    );
+    final resourceOverrides = exactlyOne.overrides;
+    for (final s in exactlyOne.skipped) {
+      stderr.writeln('terradart wrap: exactly-one group not sealed: $s');
+    }
     final resourceEmitter = WrapperEmitter(
       overrides: resourceOverrides,
       rawResourceSchemas: rawResourceSchemas,
@@ -386,6 +399,10 @@ class WrapCommand extends Command<int> {
             emittedSource: dartSrc,
             rawSchemaBlock: rawResourceSchemas[entry.key],
             enumValues: providerEnums.resolver(entry.key),
+            exactlyOneGroups: providerEnums.nestedExactlyOneGroups(
+              entry.key,
+              entry.value,
+            ),
           ),
         );
       }

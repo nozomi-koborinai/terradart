@@ -19,3 +19,5 @@ properties:
       - "saml"
       - "iamidentitycenter"
       - "iamfederation"
+exactly_one_of_groups:
+  - ["iam_federation_options", "iam_identity_center_options", "saml_options"]

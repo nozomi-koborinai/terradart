@@ -7,6 +7,60 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_s3_bucket_acl`.
 const Set<String> _awsS3BucketAclSensitive = <String>{};
 
+/// Exactly one of `access_control_policy`, `acl` on `aws_s3_bucket_acl`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class S3BucketAclAccessControlPolicyOrAcl {
+  const S3BucketAclAccessControlPolicyOrAcl();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `access_control_policy` (one of the [S3BucketAclAccessControlPolicyOrAcl] choices).
+final class S3BucketAclAccessControlPolicyOption
+    extends S3BucketAclAccessControlPolicyOrAcl {
+  const S3BucketAclAccessControlPolicyOption({
+    required this.accessControlPolicy,
+  });
+
+  final S3BucketAclAccessControlPolicy accessControlPolicy;
+
+  @override
+  String get blockKey => 'access_control_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'access_control_policy': accessControlPolicy.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'access_control_policy': TfArg.literal(accessControlPolicy.encode()),
+  };
+}
+
+/// Sets `acl` (one of the [S3BucketAclAccessControlPolicyOrAcl] choices).
+final class S3BucketAclAclOption extends S3BucketAclAccessControlPolicyOrAcl {
+  const S3BucketAclAclOption({required this.acl});
+
+  final TfArg<String> acl;
+
+  @override
+  String get blockKey => 'acl';
+
+  @override
+  Map<String, Object?> encode() => {'acl': acl.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'acl': acl};
+}
+
 /// Typed helper for the `access_control_policy` block of
 /// `aws_s3_bucket_acl` (derived from provider schema).
 @immutable
@@ -118,11 +172,10 @@ final class AwsS3BucketAcl extends Resource {
 
   AwsS3BucketAcl({
     required super.localName,
-    TfArg<String>? acl,
+    required S3BucketAclAccessControlPolicyOrAcl accessControlPolicyOrAcl,
     required TfArg<String> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
-    S3BucketAclAccessControlPolicy? accessControlPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -130,15 +183,11 @@ final class AwsS3BucketAcl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acl != null) 'acl': acl,
+           ...accessControlPolicyOrAcl.argMap,
            'bucket': bucket,
            if (expectedBucketOwner != null)
              'expected_bucket_owner': expectedBucketOwner,
            if (region != null) 'region': region,
-           if (accessControlPolicy != null)
-             'access_control_policy': TfArg.literal(
-               accessControlPolicy.encode(),
-             ),
          },
        );
 

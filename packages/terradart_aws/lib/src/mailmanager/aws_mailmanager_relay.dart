@@ -11,17 +11,59 @@ const Set<String> _awsMailmanagerRelaySensitive = <String>{};
 /// `aws_mailmanager_relay` (derived from provider schema).
 @immutable
 final class MailmanagerRelayAuthentication {
-  const MailmanagerRelayAuthentication({this.secretArn, this.noAuthentication});
+  const MailmanagerRelayAuthentication({
+    required this.noAuthenticationOrSecretArn,
+  });
 
-  final TfArg<String>? secretArn;
+  final MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn
+  noAuthenticationOrSecretArn;
 
-  final List<MailmanagerRelayAuthenticationNoAuthentication>? noAuthentication;
+  Map<String, Object?> encode() => {...noAuthenticationOrSecretArn.encode()};
+}
 
+/// Exactly one of `no_authentication`, `secret_arn` on the `authentication` block of `aws_mailmanager_relay`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
+  const MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `no_authentication` (one of the [MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn] choices).
+final class MailmanagerRelayAuthenticationNoAuthenticationOption
+    extends MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
+  const MailmanagerRelayAuthenticationNoAuthenticationOption({
+    required this.noAuthentication,
+  });
+
+  final List<MailmanagerRelayAuthenticationNoAuthentication> noAuthentication;
+
+  @override
+  String get blockKey => 'no_authentication';
+
+  @override
   Map<String, Object?> encode() => {
-    if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
-    if (noAuthentication != null)
-      'no_authentication': [for (final e in noAuthentication!) e.encode()],
+    'no_authentication': [for (final e in noAuthentication) e.encode()],
   };
+}
+
+/// Sets `secret_arn` (one of the [MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn] choices).
+final class MailmanagerRelayAuthenticationSecretArnOption
+    extends MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
+  const MailmanagerRelayAuthenticationSecretArnOption({
+    required this.secretArn,
+  });
+
+  final TfArg<String> secretArn;
+
+  @override
+  String get blockKey => 'secret_arn';
+
+  @override
+  Map<String, Object?> encode() => {'secret_arn': secretArn.toTfJson()};
 }
 
 /// Typed helper for the `authentication.no_authentication` block of

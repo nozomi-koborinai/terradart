@@ -561,6 +561,53 @@ enum GameliftFleetNewGameSessionProtectionPolicy implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `build_id`, `script_id` on `aws_gamelift_fleet`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class GameliftFleetBuildIdOrScriptId {
+  const GameliftFleetBuildIdOrScriptId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `build_id` (one of the [GameliftFleetBuildIdOrScriptId] choices).
+final class GameliftFleetBuildIdOption extends GameliftFleetBuildIdOrScriptId {
+  const GameliftFleetBuildIdOption({required this.buildId});
+
+  final TfArg<String> buildId;
+
+  @override
+  String get blockKey => 'build_id';
+
+  @override
+  Map<String, Object?> encode() => {'build_id': buildId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'build_id': buildId};
+}
+
+/// Sets `script_id` (one of the [GameliftFleetBuildIdOrScriptId] choices).
+final class GameliftFleetScriptIdOption extends GameliftFleetBuildIdOrScriptId {
+  const GameliftFleetScriptIdOption({required this.scriptId});
+
+  final TfArg<String> scriptId;
+
+  @override
+  String get blockKey => 'script_id';
+
+  @override
+  Map<String, Object?> encode() => {'script_id': scriptId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'script_id': scriptId};
+}
+
 /// Typed helper for the `certificate_configuration` block of
 /// `aws_gamelift_fleet` (derived from provider schema).
 @immutable
@@ -704,7 +751,7 @@ final class AwsGameliftFleet extends Resource {
 
   AwsGameliftFleet({
     required super.localName,
-    TfArg<String>? buildId,
+    required GameliftFleetBuildIdOrScriptId buildIdOrScriptId,
     TfArg<String>? description,
     required TfArg<GameliftFleetEc2InstanceType> ec2InstanceType,
     TfArg<GameliftFleetFleetType>? fleetType,
@@ -714,7 +761,6 @@ final class AwsGameliftFleet extends Resource {
     TfArg<GameliftFleetNewGameSessionProtectionPolicy>?
     newGameSessionProtectionPolicy,
     TfArg<String>? region,
-    TfArg<String>? scriptId,
     TfArg<Map<String, String>>? tags,
     GameliftFleetCertificateConfiguration? certificateConfiguration,
     List<GameliftFleetEc2InboundPermission>? ec2InboundPermission,
@@ -727,7 +773,7 @@ final class AwsGameliftFleet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (buildId != null) 'build_id': buildId,
+           ...buildIdOrScriptId.argMap,
            if (description != null) 'description': description,
            'ec2_instance_type': ec2InstanceType,
            if (fleetType != null) 'fleet_type': fleetType,
@@ -738,7 +784,6 @@ final class AwsGameliftFleet extends Resource {
              'new_game_session_protection_policy':
                  newGameSessionProtectionPolicy,
            if (region != null) 'region': region,
-           if (scriptId != null) 'script_id': scriptId,
            if (tags != null) 'tags': tags,
            if (certificateConfiguration != null)
              'certificate_configuration': TfArg.literal(

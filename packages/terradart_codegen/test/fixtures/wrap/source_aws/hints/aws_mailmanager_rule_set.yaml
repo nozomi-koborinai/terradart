@@ -299,3 +299,10 @@ properties:
                   - "FAIL"
                   - "GRAY"
                   - "PROCESSING_FAILED"
+exactly_one_of_groups:
+  - ["rule.condition.boolean_expression.evaluate.analysis", "rule.condition.boolean_expression.evaluate.attribute", "rule.condition.boolean_expression.evaluate.is_in_address_list"]
+  - ["rule.condition.string_expression.evaluate.analysis", "rule.condition.string_expression.evaluate.attribute", "rule.condition.string_expression.evaluate.client_certificate_attribute", "rule.condition.string_expression.evaluate.mime_header_attribute"]
+  - ["rule.condition.verdict_expression.evaluate.analysis", "rule.condition.verdict_expression.evaluate.attribute"]
+  - ["rule.unless.boolean_expression.evaluate.analysis", "rule.unless.boolean_expression.evaluate.attribute", "rule.unless.boolean_expression.evaluate.is_in_address_list"]
+  - ["rule.unless.string_expression.evaluate.analysis", "rule.unless.string_expression.evaluate.attribute", "rule.unless.string_expression.evaluate.client_certificate_attribute", "rule.unless.string_expression.evaluate.mime_header_attribute"]
+  - ["rule.unless.verdict_expression.evaluate.analysis", "rule.unless.verdict_expression.evaluate.attribute"]

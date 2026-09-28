@@ -7,6 +7,87 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRedshiftDataShareConsumerAssociationSensitive =
     <String>{};
 
+/// Exactly one of `associate_entire_account`, `consumer_arn`, `consumer_region` on `aws_redshift_data_share_consumer_association`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion {
+  const RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `associate_entire_account` (one of the [RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion] choices).
+final class RedshiftDataShareConsumerAssociationAssociateEntireAccountOption
+    extends
+        RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion {
+  const RedshiftDataShareConsumerAssociationAssociateEntireAccountOption({
+    required this.associateEntireAccount,
+  });
+
+  final TfArg<bool> associateEntireAccount;
+
+  @override
+  String get blockKey => 'associate_entire_account';
+
+  @override
+  Map<String, Object?> encode() => {
+    'associate_entire_account': associateEntireAccount.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'associate_entire_account': associateEntireAccount,
+  };
+}
+
+/// Sets `consumer_arn` (one of the [RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion] choices).
+final class RedshiftDataShareConsumerAssociationConsumerArnOption
+    extends
+        RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion {
+  const RedshiftDataShareConsumerAssociationConsumerArnOption({
+    required this.consumerArn,
+  });
+
+  final TfArg<String> consumerArn;
+
+  @override
+  String get blockKey => 'consumer_arn';
+
+  @override
+  Map<String, Object?> encode() => {'consumer_arn': consumerArn.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'consumer_arn': consumerArn};
+}
+
+/// Sets `consumer_region` (one of the [RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion] choices).
+final class RedshiftDataShareConsumerAssociationConsumerRegionOption
+    extends
+        RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion {
+  const RedshiftDataShareConsumerAssociationConsumerRegionOption({
+    required this.consumerRegion,
+  });
+
+  final TfArg<String> consumerRegion;
+
+  @override
+  String get blockKey => 'consumer_region';
+
+  @override
+  Map<String, Object?> encode() => {
+    'consumer_region': consumerRegion.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'consumer_region': consumerRegion};
+}
+
 /// Factory wrapper for `aws_redshift_data_share_consumer_association`.
 final class AwsRedshiftDataShareConsumerAssociation extends Resource {
   static const String tfType = 'aws_redshift_data_share_consumer_association';
@@ -14,9 +95,8 @@ final class AwsRedshiftDataShareConsumerAssociation extends Resource {
   AwsRedshiftDataShareConsumerAssociation({
     required super.localName,
     TfArg<bool>? allowWrites,
-    TfArg<bool>? associateEntireAccount,
-    TfArg<String>? consumerArn,
-    TfArg<String>? consumerRegion,
+    required RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion
+    associateEntireAccountOrConsumerArnOrConsumerRegion,
     required TfArg<String> dataShareArn,
     TfArg<String>? region,
     super.lifecycle,
@@ -27,10 +107,7 @@ final class AwsRedshiftDataShareConsumerAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            if (allowWrites != null) 'allow_writes': allowWrites,
-           if (associateEntireAccount != null)
-             'associate_entire_account': associateEntireAccount,
-           if (consumerArn != null) 'consumer_arn': consumerArn,
-           if (consumerRegion != null) 'consumer_region': consumerRegion,
+           ...associateEntireAccountOrConsumerArnOrConsumerRegion.argMap,
            'data_share_arn': dataShareArn,
            if (region != null) 'region': region,
          },

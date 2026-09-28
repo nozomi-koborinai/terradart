@@ -13,16 +13,54 @@ const Set<String> _awsDatasyncLocationFsxOntapFileSystemSensitive = <String>{
 /// `aws_datasync_location_fsx_ontap_file_system` (derived from provider schema).
 @immutable
 final class DatasyncLocationFsxOntapFileSystemProtocol {
-  const DatasyncLocationFsxOntapFileSystemProtocol({this.nfs, this.smb});
+  const DatasyncLocationFsxOntapFileSystemProtocol({required this.nfsOrSmb});
 
-  final DatasyncLocationFsxOntapFileSystemProtocolNfs? nfs;
+  final DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb nfsOrSmb;
 
-  final DatasyncLocationFsxOntapFileSystemProtocolSmb? smb;
+  Map<String, Object?> encode() => {...nfsOrSmb.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (nfs != null) 'nfs': nfs!.encode(),
-    if (smb != null) 'smb': smb!.encode(),
-  };
+/// Exactly one of `nfs`, `smb` on the `protocol` block of `aws_datasync_location_fsx_ontap_file_system`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb {
+  const DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `nfs` (one of the [DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb] choices).
+final class DatasyncLocationFsxOntapFileSystemProtocolNfsOption
+    extends DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb {
+  const DatasyncLocationFsxOntapFileSystemProtocolNfsOption({
+    required this.nfs,
+  });
+
+  final DatasyncLocationFsxOntapFileSystemProtocolNfs nfs;
+
+  @override
+  String get blockKey => 'nfs';
+
+  @override
+  Map<String, Object?> encode() => {'nfs': nfs.encode()};
+}
+
+/// Sets `smb` (one of the [DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb] choices).
+final class DatasyncLocationFsxOntapFileSystemProtocolSmbOption
+    extends DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb {
+  const DatasyncLocationFsxOntapFileSystemProtocolSmbOption({
+    required this.smb,
+  });
+
+  final DatasyncLocationFsxOntapFileSystemProtocolSmb smb;
+
+  @override
+  String get blockKey => 'smb';
+
+  @override
+  Map<String, Object?> encode() => {'smb': smb.encode()};
 }
 
 /// Typed helper for the `protocol.nfs` block of

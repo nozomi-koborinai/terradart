@@ -62,3 +62,5 @@ properties:
           - "STOPPED"
           - "RUNNING"
           - "HIBERNATED"
+exactly_one_of_groups:
+  - ["update_config.max_unavailable", "update_config.max_unavailable_percentage"]

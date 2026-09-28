@@ -39,8 +39,7 @@ final class ServicecatalogProductProvisioningArtifactParameters {
     this.description,
     this.disableTemplateValidation,
     this.name,
-    this.templatePhysicalId,
-    this.templateUrl,
+    required this.templatePhysicalIdOrTemplateUrl,
     this.type,
   });
 
@@ -50,9 +49,8 @@ final class ServicecatalogProductProvisioningArtifactParameters {
 
   final TfArg<String>? name;
 
-  final TfArg<String>? templatePhysicalId;
-
-  final TfArg<String>? templateUrl;
+  final ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrl
+  templatePhysicalIdOrTemplateUrl;
 
   final TfArg<ServicecatalogProductProvisioningArtifactParametersType>? type;
 
@@ -61,11 +59,56 @@ final class ServicecatalogProductProvisioningArtifactParameters {
     if (disableTemplateValidation != null)
       'disable_template_validation': disableTemplateValidation!.toTfJson(),
     if (name != null) 'name': name!.toTfJson(),
-    if (templatePhysicalId != null)
-      'template_physical_id': templatePhysicalId!.toTfJson(),
-    if (templateUrl != null) 'template_url': templateUrl!.toTfJson(),
+    ...templatePhysicalIdOrTemplateUrl.encode(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// Exactly one of `template_physical_id`, `template_url` on the `provisioning_artifact_parameters` block of `aws_servicecatalog_product`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrl {
+  const ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrl();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `template_physical_id` (one of the [ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrl] choices).
+final class ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOption
+    extends
+        ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrl {
+  const ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOption({
+    required this.templatePhysicalId,
+  });
+
+  final TfArg<String> templatePhysicalId;
+
+  @override
+  String get blockKey => 'template_physical_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'template_physical_id': templatePhysicalId.toTfJson(),
+  };
+}
+
+/// Sets `template_url` (one of the [ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrl] choices).
+final class ServicecatalogProductProvisioningArtifactParametersTemplateUrlOption
+    extends
+        ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrl {
+  const ServicecatalogProductProvisioningArtifactParametersTemplateUrlOption({
+    required this.templateUrl,
+  });
+
+  final TfArg<String> templateUrl;
+
+  @override
+  String get blockKey => 'template_url';
+
+  @override
+  Map<String, Object?> encode() => {'template_url': templateUrl.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.

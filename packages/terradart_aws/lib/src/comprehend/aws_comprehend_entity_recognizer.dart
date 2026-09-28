@@ -27,35 +27,118 @@ enum ComprehendEntityRecognizerLanguageCode implements TerraformEnum {
 final class ComprehendEntityRecognizerInputDataConfig {
   const ComprehendEntityRecognizerInputDataConfig({
     this.dataFormat,
-    this.annotations,
-    this.augmentedManifests,
-    this.documents,
-    this.entityList,
+    required this.annotationsOrEntityList,
+    required this.augmentedManifestsOrDocuments,
     required this.entityTypes,
   });
 
   final TfArg<ComprehendEntityRecognizerInputDataConfigDataFormat>? dataFormat;
 
-  final ComprehendEntityRecognizerInputDataConfigAnnotations? annotations;
+  final ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList
+  annotationsOrEntityList;
 
-  final List<ComprehendEntityRecognizerInputDataConfigAugmentedManifests>?
-  augmentedManifests;
-
-  final ComprehendEntityRecognizerInputDataConfigDocuments? documents;
-
-  final ComprehendEntityRecognizerInputDataConfigEntityList? entityList;
+  final ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments
+  augmentedManifestsOrDocuments;
 
   final List<ComprehendEntityRecognizerInputDataConfigEntityTypes> entityTypes;
 
   Map<String, Object?> encode() => {
     if (dataFormat != null) 'data_format': dataFormat!.toTfJson(),
-    if (annotations != null) 'annotations': annotations!.encode(),
-    if (augmentedManifests != null)
-      'augmented_manifests': [for (final e in augmentedManifests!) e.encode()],
-    if (documents != null) 'documents': documents!.encode(),
-    if (entityList != null) 'entity_list': entityList!.encode(),
+    ...annotationsOrEntityList.encode(),
+    ...augmentedManifestsOrDocuments.encode(),
     'entity_types': [for (final e in entityTypes) e.encode()],
   };
+}
+
+/// Exactly one of `annotations`, `entity_list` on the `input_data_config` block of `aws_comprehend_entity_recognizer`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList {
+  const ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `annotations` (one of the [ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList] choices).
+final class ComprehendEntityRecognizerInputDataConfigAnnotationsOption
+    extends ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList {
+  const ComprehendEntityRecognizerInputDataConfigAnnotationsOption({
+    required this.annotations,
+  });
+
+  final ComprehendEntityRecognizerInputDataConfigAnnotations annotations;
+
+  @override
+  String get blockKey => 'annotations';
+
+  @override
+  Map<String, Object?> encode() => {'annotations': annotations.encode()};
+}
+
+/// Sets `entity_list` (one of the [ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList] choices).
+final class ComprehendEntityRecognizerInputDataConfigEntityListOption
+    extends ComprehendEntityRecognizerInputDataConfigAnnotationsOrEntityList {
+  const ComprehendEntityRecognizerInputDataConfigEntityListOption({
+    required this.entityList,
+  });
+
+  final ComprehendEntityRecognizerInputDataConfigEntityList entityList;
+
+  @override
+  String get blockKey => 'entity_list';
+
+  @override
+  Map<String, Object?> encode() => {'entity_list': entityList.encode()};
+}
+
+/// Exactly one of `augmented_manifests`, `documents` on the `input_data_config` block of `aws_comprehend_entity_recognizer`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments {
+  const ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `augmented_manifests` (one of the [ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments] choices).
+final class ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOption
+    extends
+        ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments {
+  const ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOption({
+    required this.augmentedManifests,
+  });
+
+  final List<ComprehendEntityRecognizerInputDataConfigAugmentedManifests>
+  augmentedManifests;
+
+  @override
+  String get blockKey => 'augmented_manifests';
+
+  @override
+  Map<String, Object?> encode() => {
+    'augmented_manifests': [for (final e in augmentedManifests) e.encode()],
+  };
+}
+
+/// Sets `documents` (one of the [ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments] choices).
+final class ComprehendEntityRecognizerInputDataConfigDocumentsOption
+    extends
+        ComprehendEntityRecognizerInputDataConfigAugmentedManifestsOrDocuments {
+  const ComprehendEntityRecognizerInputDataConfigDocumentsOption({
+    required this.documents,
+  });
+
+  final ComprehendEntityRecognizerInputDataConfigDocuments documents;
+
+  @override
+  String get blockKey => 'documents';
+
+  @override
+  Map<String, Object?> encode() => {'documents': documents.encode()};
 }
 
 /// `data_format` — derived from the provider schema description.

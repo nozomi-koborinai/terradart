@@ -7,6 +7,55 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appstream_image_builder`.
 const Set<String> _awsAppstreamImageBuilderSensitive = <String>{};
 
+/// Exactly one of `image_arn`, `image_name` on `aws_appstream_image_builder`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class AppstreamImageBuilderImageArnOrImageName {
+  const AppstreamImageBuilderImageArnOrImageName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `image_arn` (one of the [AppstreamImageBuilderImageArnOrImageName] choices).
+final class AppstreamImageBuilderImageArnOption
+    extends AppstreamImageBuilderImageArnOrImageName {
+  const AppstreamImageBuilderImageArnOption({required this.imageArn});
+
+  final TfArg<String> imageArn;
+
+  @override
+  String get blockKey => 'image_arn';
+
+  @override
+  Map<String, Object?> encode() => {'image_arn': imageArn.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'image_arn': imageArn};
+}
+
+/// Sets `image_name` (one of the [AppstreamImageBuilderImageArnOrImageName] choices).
+final class AppstreamImageBuilderImageNameOption
+    extends AppstreamImageBuilderImageArnOrImageName {
+  const AppstreamImageBuilderImageNameOption({required this.imageName});
+
+  final TfArg<String> imageName;
+
+  @override
+  String get blockKey => 'image_name';
+
+  @override
+  Map<String, Object?> encode() => {'image_name': imageName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'image_name': imageName};
+}
+
 /// Typed helper for the `access_endpoint` block of
 /// `aws_appstream_image_builder` (derived from provider schema).
 @immutable
@@ -84,8 +133,7 @@ final class AwsAppstreamImageBuilder extends Resource {
     TfArg<String>? displayName,
     TfArg<bool>? enableDefaultInternetAccess,
     TfArg<String>? iamRoleArn,
-    TfArg<String>? imageArn,
-    TfArg<String>? imageName,
+    required AppstreamImageBuilderImageArnOrImageName imageArnOrImageName,
     required TfArg<String> instanceType,
     required TfArg<String> name,
     TfArg<String>? region,
@@ -107,8 +155,7 @@ final class AwsAppstreamImageBuilder extends Resource {
            if (enableDefaultInternetAccess != null)
              'enable_default_internet_access': enableDefaultInternetAccess,
            if (iamRoleArn != null) 'iam_role_arn': iamRoleArn,
-           if (imageArn != null) 'image_arn': imageArn,
-           if (imageName != null) 'image_name': imageName,
+           ...imageArnOrImageName.argMap,
            'instance_type': instanceType,
            'name': name,
            if (region != null) 'region': region,

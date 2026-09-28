@@ -79,3 +79,5 @@ properties:
                 enum_values:
                   - "TLS1_2"
                   - "TLS1_3"
+exactly_one_of_groups:
+  - ["policy_statement.condition.string_expression.evaluate.analysis", "policy_statement.condition.string_expression.evaluate.attribute"]

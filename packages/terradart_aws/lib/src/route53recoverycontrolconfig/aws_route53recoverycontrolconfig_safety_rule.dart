@@ -8,6 +8,67 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsRoute53recoverycontrolconfigSafetyRuleSensitive =
     <String>{};
 
+/// Exactly one of `asserted_controls`, `gating_controls` on `aws_route53recoverycontrolconfig_safety_rule`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls {
+  const Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `asserted_controls` (one of the [Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls] choices).
+final class Route53recoverycontrolconfigSafetyRuleAssertedControlsOption
+    extends
+        Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls {
+  const Route53recoverycontrolconfigSafetyRuleAssertedControlsOption({
+    required this.assertedControls,
+  });
+
+  final TfArg<List<String>> assertedControls;
+
+  @override
+  String get blockKey => 'asserted_controls';
+
+  @override
+  Map<String, Object?> encode() => {
+    'asserted_controls': assertedControls.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'asserted_controls': assertedControls,
+  };
+}
+
+/// Sets `gating_controls` (one of the [Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls] choices).
+final class Route53recoverycontrolconfigSafetyRuleGatingControlsOption
+    extends
+        Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls {
+  const Route53recoverycontrolconfigSafetyRuleGatingControlsOption({
+    required this.gatingControls,
+  });
+
+  final TfArg<List<String>> gatingControls;
+
+  @override
+  String get blockKey => 'gating_controls';
+
+  @override
+  Map<String, Object?> encode() => {
+    'gating_controls': gatingControls.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'gating_controls': gatingControls};
+}
+
 /// Typed helper for the `rule_config` block of
 /// `aws_route53recoverycontrolconfig_safety_rule` (derived from provider schema).
 @immutable
@@ -51,9 +112,9 @@ final class AwsRoute53recoverycontrolconfigSafetyRule extends Resource {
 
   AwsRoute53recoverycontrolconfigSafetyRule({
     required super.localName,
-    TfArg<List<String>>? assertedControls,
+    required Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls
+    assertedControlsOrGatingControls,
     required TfArg<String> controlPanelArn,
-    TfArg<List<String>>? gatingControls,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? targetControls,
@@ -66,9 +127,8 @@ final class AwsRoute53recoverycontrolconfigSafetyRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (assertedControls != null) 'asserted_controls': assertedControls,
+           ...assertedControlsOrGatingControls.argMap,
            'control_panel_arn': controlPanelArn,
-           if (gatingControls != null) 'gating_controls': gatingControls,
            'name': name,
            if (tags != null) 'tags': tags,
            if (targetControls != null) 'target_controls': targetControls,

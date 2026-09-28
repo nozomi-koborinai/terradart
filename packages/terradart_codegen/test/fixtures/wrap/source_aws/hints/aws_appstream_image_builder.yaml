@@ -8,3 +8,5 @@ properties:
       - api_name: endpoint_type
         enum_values:
           - "STREAMING"
+exactly_one_of_groups:
+  - ["image_arn", "image_name"]

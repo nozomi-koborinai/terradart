@@ -13,25 +13,71 @@ const Set<String> _awsAppmeshGatewayRouteSensitive = <String>{};
 final class AppmeshGatewayRouteSpec {
   const AppmeshGatewayRouteSpec({
     this.priority,
-    this.grpcRoute,
-    this.http2Route,
-    this.httpRoute,
+    required this.grpcRouteOrHttp2RouteOrHttpRoute,
   });
 
   final TfArg<num>? priority;
 
-  final AppmeshGatewayRouteSpecGrpcRoute? grpcRoute;
-
-  final AppmeshGatewayRouteSpecHttp2Route? http2Route;
-
-  final AppmeshGatewayRouteSpecHttpRoute? httpRoute;
+  final AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute
+  grpcRouteOrHttp2RouteOrHttpRoute;
 
   Map<String, Object?> encode() => {
     if (priority != null) 'priority': priority!.toTfJson(),
-    if (grpcRoute != null) 'grpc_route': grpcRoute!.encode(),
-    if (http2Route != null) 'http2_route': http2Route!.encode(),
-    if (httpRoute != null) 'http_route': httpRoute!.encode(),
+    ...grpcRouteOrHttp2RouteOrHttpRoute.encode(),
   };
+}
+
+/// Exactly one of `grpc_route`, `http2_route`, `http_route` on the `spec` block of `aws_appmesh_gateway_route`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute {
+  const AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `grpc_route` (one of the [AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute] choices).
+final class AppmeshGatewayRouteSpecGrpcRouteOption
+    extends AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute {
+  const AppmeshGatewayRouteSpecGrpcRouteOption({required this.grpcRoute});
+
+  final AppmeshGatewayRouteSpecGrpcRoute grpcRoute;
+
+  @override
+  String get blockKey => 'grpc_route';
+
+  @override
+  Map<String, Object?> encode() => {'grpc_route': grpcRoute.encode()};
+}
+
+/// Sets `http2_route` (one of the [AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute] choices).
+final class AppmeshGatewayRouteSpecHttp2RouteOption
+    extends AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute {
+  const AppmeshGatewayRouteSpecHttp2RouteOption({required this.http2Route});
+
+  final AppmeshGatewayRouteSpecHttp2Route http2Route;
+
+  @override
+  String get blockKey => 'http2_route';
+
+  @override
+  Map<String, Object?> encode() => {'http2_route': http2Route.encode()};
+}
+
+/// Sets `http_route` (one of the [AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute] choices).
+final class AppmeshGatewayRouteSpecHttpRouteOption
+    extends AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute {
+  const AppmeshGatewayRouteSpecHttpRouteOption({required this.httpRoute});
+
+  final AppmeshGatewayRouteSpecHttpRoute httpRoute;
+
+  @override
+  String get blockKey => 'http_route';
+
+  @override
+  Map<String, Object?> encode() => {'http_route': httpRoute.encode()};
 }
 
 /// Typed helper for the `spec.grpc_route` block of

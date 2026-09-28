@@ -45,8 +45,12 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_agent_runtime_endpoint.dart'
 export 'src/bedrockagentcore/aws_bedrockagentcore_api_key_credential_provider.dart'
     show
         AwsBedrockagentcoreApiKeyCredentialProvider,
+        BedrockagentcoreApiKeyCredentialProviderApiKeyOption,
+        BedrockagentcoreApiKeyCredentialProviderApiKeyOrApiKeySecretConfigOrApiKeyWo,
         BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfig,
-        BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource;
+        BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfigOption,
+        BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource,
+        BedrockagentcoreApiKeyCredentialProviderApiKeyWoOption;
 export 'src/bedrockagentcore/aws_bedrockagentcore_browser.dart'
     show
         AwsBedrockagentcoreBrowser,
@@ -80,13 +84,19 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_evaluator.dart'
         BedrockagentcoreEvaluatorEvaluatorConfig,
         BedrockagentcoreEvaluatorEvaluatorConfigCodeBased,
         BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedLambdaConfig,
+        BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOption,
+        BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedOrLlmAsAJudge,
         BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudge,
         BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfig,
         BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedrockEvaluatorModelConfig,
         BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedrockEvaluatorModelConfigInferenceConfig,
+        BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeOption,
         BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale,
         BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategorical,
+        BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOption,
+        BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategoricalOrNumerical,
         BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumerical,
+        BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumericalOption,
         BedrockagentcoreEvaluatorLevel;
 export 'src/bedrockagentcore/aws_bedrockagentcore_gateway.dart'
     show
@@ -129,20 +139,32 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_gateway_rule.dart'
         AwsBedrockagentcoreGatewayRule,
         BedrockagentcoreGatewayRuleAction,
         BedrockagentcoreGatewayRuleActionConfigurationBundle,
+        BedrockagentcoreGatewayRuleActionConfigurationBundleOption,
+        BedrockagentcoreGatewayRuleActionConfigurationBundleOrRouteToTarget,
         BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverride,
+        BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverrideOption,
+        BedrockagentcoreGatewayRuleActionConfigurationBundleStaticOverrideOrWeightedOverride,
         BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverride,
+        BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideOption,
         BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideTrafficSplit,
         BedrockagentcoreGatewayRuleActionConfigurationBundleWeightedOverrideTrafficSplitConfigurationBundle,
         BedrockagentcoreGatewayRuleActionRouteToTarget,
+        BedrockagentcoreGatewayRuleActionRouteToTargetOption,
         BedrockagentcoreGatewayRuleActionRouteToTargetStaticRoute,
+        BedrockagentcoreGatewayRuleActionRouteToTargetStaticRouteOption,
+        BedrockagentcoreGatewayRuleActionRouteToTargetStaticRouteOrWeightedRoute,
         BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRoute,
+        BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteOption,
         BedrockagentcoreGatewayRuleActionRouteToTargetWeightedRouteTrafficSplit,
         BedrockagentcoreGatewayRuleCondition,
         BedrockagentcoreGatewayRuleConditionMatchPaths,
+        BedrockagentcoreGatewayRuleConditionMatchPathsOption,
+        BedrockagentcoreGatewayRuleConditionMatchPathsOrMatchPrincipals,
         BedrockagentcoreGatewayRuleConditionMatchPrincipals,
         BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOf,
         BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipal,
-        BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipalOperator;
+        BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipalOperator,
+        BedrockagentcoreGatewayRuleConditionMatchPrincipalsOption;
 export 'src/bedrockagentcore/aws_bedrockagentcore_gateway_target.dart'
     show
         AwsBedrockagentcoreGatewayTarget,

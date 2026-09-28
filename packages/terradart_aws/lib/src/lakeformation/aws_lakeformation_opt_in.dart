@@ -36,50 +36,189 @@ final class LakeformationOptInPrincipal {
 @immutable
 final class LakeformationOptInResourceData {
   const LakeformationOptInResourceData({
-    this.catalog,
-    this.dataCellsFilter,
-    this.dataLocation,
-    this.database,
-    this.lfTag,
-    this.lfTagExpression,
-    this.lfTagPolicy,
-    this.table,
-    this.tableWithColumns,
+    required this.catalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns,
   });
 
-  final List<LakeformationOptInResourceDataCatalog>? catalog;
-
-  final List<LakeformationOptInResourceDataDataCellsFilter>? dataCellsFilter;
-
-  final List<LakeformationOptInResourceDataDataLocation>? dataLocation;
-
-  final List<LakeformationOptInResourceDataDatabase>? database;
-
-  final List<LakeformationOptInResourceDataLfTag>? lfTag;
-
-  final List<LakeformationOptInResourceDataLfTagExpression>? lfTagExpression;
-
-  final List<LakeformationOptInResourceDataLfTagPolicy>? lfTagPolicy;
-
-  final List<LakeformationOptInResourceDataTable>? table;
-
-  final List<LakeformationOptInResourceDataTableWithColumns>? tableWithColumns;
+  final LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns
+  catalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns;
 
   Map<String, Object?> encode() => {
-    if (catalog != null) 'catalog': [for (final e in catalog!) e.encode()],
-    if (dataCellsFilter != null)
-      'data_cells_filter': [for (final e in dataCellsFilter!) e.encode()],
-    if (dataLocation != null)
-      'data_location': [for (final e in dataLocation!) e.encode()],
-    if (database != null) 'database': [for (final e in database!) e.encode()],
-    if (lfTag != null) 'lf_tag': [for (final e in lfTag!) e.encode()],
-    if (lfTagExpression != null)
-      'lf_tag_expression': [for (final e in lfTagExpression!) e.encode()],
-    if (lfTagPolicy != null)
-      'lf_tag_policy': [for (final e in lfTagPolicy!) e.encode()],
-    if (table != null) 'table': [for (final e in table!) e.encode()],
-    if (tableWithColumns != null)
-      'table_with_columns': [for (final e in tableWithColumns!) e.encode()],
+    ...catalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns
+        .encode(),
+  };
+}
+
+/// Exactly one of `catalog`, `data_cells_filter`, `data_location`, `database`, `lf_tag`, `lf_tag_expression`, `lf_tag_policy`, `table`, `table_with_columns` on the `resource_data` block of `aws_lakeformation_opt_in`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `catalog` (one of the [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationOptInResourceDataCatalogOption
+    extends
+        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationOptInResourceDataCatalogOption({required this.catalog});
+
+  final List<LakeformationOptInResourceDataCatalog> catalog;
+
+  @override
+  String get blockKey => 'catalog';
+
+  @override
+  Map<String, Object?> encode() => {
+    'catalog': [for (final e in catalog) e.encode()],
+  };
+}
+
+/// Sets `data_cells_filter` (one of the [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationOptInResourceDataDataCellsFilterOption
+    extends
+        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationOptInResourceDataDataCellsFilterOption({
+    required this.dataCellsFilter,
+  });
+
+  final List<LakeformationOptInResourceDataDataCellsFilter> dataCellsFilter;
+
+  @override
+  String get blockKey => 'data_cells_filter';
+
+  @override
+  Map<String, Object?> encode() => {
+    'data_cells_filter': [for (final e in dataCellsFilter) e.encode()],
+  };
+}
+
+/// Sets `data_location` (one of the [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationOptInResourceDataDataLocationOption
+    extends
+        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationOptInResourceDataDataLocationOption({
+    required this.dataLocation,
+  });
+
+  final List<LakeformationOptInResourceDataDataLocation> dataLocation;
+
+  @override
+  String get blockKey => 'data_location';
+
+  @override
+  Map<String, Object?> encode() => {
+    'data_location': [for (final e in dataLocation) e.encode()],
+  };
+}
+
+/// Sets `database` (one of the [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationOptInResourceDataDatabaseOption
+    extends
+        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationOptInResourceDataDatabaseOption({required this.database});
+
+  final List<LakeformationOptInResourceDataDatabase> database;
+
+  @override
+  String get blockKey => 'database';
+
+  @override
+  Map<String, Object?> encode() => {
+    'database': [for (final e in database) e.encode()],
+  };
+}
+
+/// Sets `lf_tag` (one of the [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationOptInResourceDataLfTagOption
+    extends
+        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationOptInResourceDataLfTagOption({required this.lfTag});
+
+  final List<LakeformationOptInResourceDataLfTag> lfTag;
+
+  @override
+  String get blockKey => 'lf_tag';
+
+  @override
+  Map<String, Object?> encode() => {
+    'lf_tag': [for (final e in lfTag) e.encode()],
+  };
+}
+
+/// Sets `lf_tag_expression` (one of the [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationOptInResourceDataLfTagExpressionOption
+    extends
+        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationOptInResourceDataLfTagExpressionOption({
+    required this.lfTagExpression,
+  });
+
+  final List<LakeformationOptInResourceDataLfTagExpression> lfTagExpression;
+
+  @override
+  String get blockKey => 'lf_tag_expression';
+
+  @override
+  Map<String, Object?> encode() => {
+    'lf_tag_expression': [for (final e in lfTagExpression) e.encode()],
+  };
+}
+
+/// Sets `lf_tag_policy` (one of the [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationOptInResourceDataLfTagPolicyOption
+    extends
+        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationOptInResourceDataLfTagPolicyOption({
+    required this.lfTagPolicy,
+  });
+
+  final List<LakeformationOptInResourceDataLfTagPolicy> lfTagPolicy;
+
+  @override
+  String get blockKey => 'lf_tag_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'lf_tag_policy': [for (final e in lfTagPolicy) e.encode()],
+  };
+}
+
+/// Sets `table` (one of the [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationOptInResourceDataTableOption
+    extends
+        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationOptInResourceDataTableOption({required this.table});
+
+  final List<LakeformationOptInResourceDataTable> table;
+
+  @override
+  String get blockKey => 'table';
+
+  @override
+  Map<String, Object?> encode() => {
+    'table': [for (final e in table) e.encode()],
+  };
+}
+
+/// Sets `table_with_columns` (one of the [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns] choices).
+final class LakeformationOptInResourceDataTableWithColumnsOption
+    extends
+        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
+  const LakeformationOptInResourceDataTableWithColumnsOption({
+    required this.tableWithColumns,
+  });
+
+  final List<LakeformationOptInResourceDataTableWithColumns> tableWithColumns;
+
+  @override
+  String get blockKey => 'table_with_columns';
+
+  @override
+  Map<String, Object?> encode() => {
+    'table_with_columns': [for (final e in tableWithColumns) e.encode()],
   };
 }
 

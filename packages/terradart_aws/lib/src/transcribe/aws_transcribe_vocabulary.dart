@@ -6,6 +6,61 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_transcribe_vocabulary`.
 const Set<String> _awsTranscribeVocabularySensitive = <String>{};
 
+/// Exactly one of `phrases`, `vocabulary_file_uri` on `aws_transcribe_vocabulary`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class TranscribeVocabularyPhrasesOrVocabularyFileUri {
+  const TranscribeVocabularyPhrasesOrVocabularyFileUri();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `phrases` (one of the [TranscribeVocabularyPhrasesOrVocabularyFileUri] choices).
+final class TranscribeVocabularyPhrasesOption
+    extends TranscribeVocabularyPhrasesOrVocabularyFileUri {
+  const TranscribeVocabularyPhrasesOption({required this.phrases});
+
+  final TfArg<List<String>> phrases;
+
+  @override
+  String get blockKey => 'phrases';
+
+  @override
+  Map<String, Object?> encode() => {'phrases': phrases.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'phrases': phrases};
+}
+
+/// Sets `vocabulary_file_uri` (one of the [TranscribeVocabularyPhrasesOrVocabularyFileUri] choices).
+final class TranscribeVocabularyVocabularyFileUriOption
+    extends TranscribeVocabularyPhrasesOrVocabularyFileUri {
+  const TranscribeVocabularyVocabularyFileUriOption({
+    required this.vocabularyFileUri,
+  });
+
+  final TfArg<String> vocabularyFileUri;
+
+  @override
+  String get blockKey => 'vocabulary_file_uri';
+
+  @override
+  Map<String, Object?> encode() => {
+    'vocabulary_file_uri': vocabularyFileUri.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vocabulary_file_uri': vocabularyFileUri,
+  };
+}
+
 /// Factory wrapper for `aws_transcribe_vocabulary`.
 final class AwsTranscribeVocabulary extends Resource {
   static const String tfType = 'aws_transcribe_vocabulary';
@@ -13,10 +68,10 @@ final class AwsTranscribeVocabulary extends Resource {
   AwsTranscribeVocabulary({
     required super.localName,
     required TfArg<String> languageCode,
-    TfArg<List<String>>? phrases,
+    required TranscribeVocabularyPhrasesOrVocabularyFileUri
+    phrasesOrVocabularyFileUri,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vocabularyFileUri,
     required TfArg<String> vocabularyName,
     super.lifecycle,
     super.dependsOn,
@@ -26,11 +81,9 @@ final class AwsTranscribeVocabulary extends Resource {
          terraformType: tfType,
          argMap: {
            'language_code': languageCode,
-           if (phrases != null) 'phrases': phrases,
+           ...phrasesOrVocabularyFileUri.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           if (vocabularyFileUri != null)
-             'vocabulary_file_uri': vocabularyFileUri,
            'vocabulary_name': vocabularyName,
          },
        );

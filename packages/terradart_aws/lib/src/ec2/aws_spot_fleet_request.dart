@@ -73,6 +73,73 @@ enum SpotFleetRequestTargetCapacityUnitType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `launch_specification`, `launch_template_config` on `aws_spot_fleet_request`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
+  const SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `launch_specification` (one of the [SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig] choices).
+final class SpotFleetRequestLaunchSpecificationOption
+    extends SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
+  const SpotFleetRequestLaunchSpecificationOption({
+    required this.launchSpecification,
+  });
+
+  final List<SpotFleetRequestLaunchSpecification> launchSpecification;
+
+  @override
+  String get blockKey => 'launch_specification';
+
+  @override
+  Map<String, Object?> encode() => {
+    'launch_specification': [for (final e in launchSpecification) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'launch_specification': TfArg.literal([
+      for (final e in launchSpecification) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `launch_template_config` (one of the [SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig] choices).
+final class SpotFleetRequestLaunchTemplateConfigOption
+    extends SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
+  const SpotFleetRequestLaunchTemplateConfigOption({
+    required this.launchTemplateConfig,
+  });
+
+  final List<SpotFleetRequestLaunchTemplateConfig> launchTemplateConfig;
+
+  @override
+  String get blockKey => 'launch_template_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'launch_template_config': [
+      for (final e in launchTemplateConfig) e.encode(),
+    ],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'launch_template_config': TfArg.literal([
+      for (final e in launchTemplateConfig) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `launch_specification` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
@@ -995,8 +1062,8 @@ final class AwsSpotFleetRequest extends Resource {
     TfArg<String>? validFrom,
     TfArg<String>? validUntil,
     TfArg<bool>? waitForFulfillment,
-    List<SpotFleetRequestLaunchSpecification>? launchSpecification,
-    List<SpotFleetRequestLaunchTemplateConfig>? launchTemplateConfig,
+    required SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig
+    launchSpecificationOrLaunchTemplateConfig,
     SpotFleetRequestSpotMaintenanceStrategies? spotMaintenanceStrategies,
     super.lifecycle,
     super.dependsOn,
@@ -1042,14 +1109,7 @@ final class AwsSpotFleetRequest extends Resource {
            if (validUntil != null) 'valid_until': validUntil,
            if (waitForFulfillment != null)
              'wait_for_fulfillment': waitForFulfillment,
-           if (launchSpecification != null)
-             'launch_specification': TfArg.literal([
-               for (final e in launchSpecification) e.encode(),
-             ]),
-           if (launchTemplateConfig != null)
-             'launch_template_config': TfArg.literal([
-               for (final e in launchTemplateConfig) e.encode(),
-             ]),
+           ...launchSpecificationOrLaunchTemplateConfig.argMap,
            if (spotMaintenanceStrategies != null)
              'spot_maintenance_strategies': TfArg.literal(
                spotMaintenanceStrategies.encode(),

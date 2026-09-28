@@ -4,7 +4,11 @@
 library;
 
 export 'src/autoscaling/aws_autoscaling_attachment.dart'
-    show AwsAutoscalingAttachment;
+    show
+        AutoscalingAttachmentElbOption,
+        AutoscalingAttachmentElbOrLbTargetGroupArn,
+        AutoscalingAttachmentLbTargetGroupArnOption,
+        AwsAutoscalingAttachment;
 export 'src/autoscaling/aws_autoscaling_group.dart'
     show
         AutoscalingGroupAvailabilityZoneDistribution,
@@ -26,7 +30,10 @@ export 'src/autoscaling/aws_autoscaling_group.dart'
         AutoscalingGroupInstanceRefreshPreferencesScaleInProtectedInstances,
         AutoscalingGroupInstanceRefreshPreferencesStandbyInstances,
         AutoscalingGroupInstanceRefreshStrategy,
+        AutoscalingGroupLaunchConfigurationOption,
+        AutoscalingGroupLaunchConfigurationOrLaunchTemplateOrMixedInstancesPolicy,
         AutoscalingGroupLaunchTemplate,
+        AutoscalingGroupLaunchTemplateOption,
         AutoscalingGroupMixedInstancesPolicy,
         AutoscalingGroupMixedInstancesPolicyInstancesDistribution,
         AutoscalingGroupMixedInstancesPolicyLaunchTemplate,
@@ -52,6 +59,7 @@ export 'src/autoscaling/aws_autoscaling_group.dart'
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsTotalLocalStorageGb,
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideInstanceRequirementsVcpuCount,
         AutoscalingGroupMixedInstancesPolicyLaunchTemplateOverrideLaunchTemplateSpecification,
+        AutoscalingGroupMixedInstancesPolicyOption,
         AutoscalingGroupTag,
         AutoscalingGroupTrafficSource,
         AutoscalingGroupWarmPool,

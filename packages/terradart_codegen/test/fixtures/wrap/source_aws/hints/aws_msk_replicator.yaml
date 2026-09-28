@@ -35,3 +35,6 @@ properties:
                 enum_values:
                   - "PREFIXED_WITH_SOURCE_CLUSTER_ALIAS"
                   - "IDENTICAL"
+exactly_one_of_groups:
+  - ["replication_info_list.source_kafka_cluster_arn", "replication_info_list.source_kafka_cluster_id"]
+  - ["replication_info_list.target_kafka_cluster_arn", "replication_info_list.target_kafka_cluster_id"]

@@ -115,24 +115,64 @@ final class SagemakerWorkteamWorkerAccessConfigurationS3Presign {
 @immutable
 final class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints {
   const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints({
-    this.sourceIp,
-    this.vpcSourceIp,
+    required this.sourceIpOrVpcSourceIp,
+  });
+
+  final SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIp
+  sourceIpOrVpcSourceIp;
+
+  Map<String, Object?> encode() => {...sourceIpOrVpcSourceIp.encode()};
+}
+
+/// Exactly one of `source_ip`, `vpc_source_ip` on the `worker_access_configuration.s3_presign.iam_policy_constraints` block of `aws_sagemaker_workteam`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIp {
+  const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIp();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `source_ip` (one of the [SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIp] choices).
+final class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOption
+    extends
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIp {
+  const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOption({
+    required this.sourceIp,
   });
 
   final TfArg<
     SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp
-  >?
+  >
   sourceIp;
+
+  @override
+  String get blockKey => 'source_ip';
+
+  @override
+  Map<String, Object?> encode() => {'source_ip': sourceIp.toTfJson()};
+}
+
+/// Sets `vpc_source_ip` (one of the [SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIp] choices).
+final class SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIpOption
+    extends
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIp {
+  const SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIpOption({
+    required this.vpcSourceIp,
+  });
 
   final TfArg<
     SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp
-  >?
+  >
   vpcSourceIp;
 
-  Map<String, Object?> encode() => {
-    if (sourceIp != null) 'source_ip': sourceIp!.toTfJson(),
-    if (vpcSourceIp != null) 'vpc_source_ip': vpcSourceIp!.toTfJson(),
-  };
+  @override
+  String get blockKey => 'vpc_source_ip';
+
+  @override
+  Map<String, Object?> encode() => {'vpc_source_ip': vpcSourceIp.toTfJson()};
 }
 
 /// `source_ip` — derived from the provider schema description.

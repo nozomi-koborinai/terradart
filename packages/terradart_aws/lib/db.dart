@@ -50,7 +50,12 @@ export 'src/db/aws_db_proxy_default_target_group.dart'
         DbProxyDefaultTargetGroupConnectionPoolConfigSessionPinningFilters;
 export 'src/db/aws_db_proxy_endpoint.dart'
     show AwsDbProxyEndpoint, DbProxyEndpointTargetRole;
-export 'src/db/aws_db_proxy_target.dart' show AwsDbProxyTarget;
+export 'src/db/aws_db_proxy_target.dart'
+    show
+        AwsDbProxyTarget,
+        DbProxyTargetDbClusterIdentifierOption,
+        DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier,
+        DbProxyTargetDbInstanceIdentifierOption;
 export 'src/db/aws_db_snapshot.dart' show AwsDbSnapshot;
 export 'src/db/aws_db_snapshot_copy.dart' show AwsDbSnapshotCopy;
 export 'src/db/aws_db_subnet_group.dart' show AwsDbSubnetGroup;

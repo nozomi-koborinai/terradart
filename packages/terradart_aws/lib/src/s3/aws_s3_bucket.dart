@@ -624,25 +624,64 @@ final class S3BucketVersioning {
 final class S3BucketWebsite {
   const S3BucketWebsite({
     this.errorDocument,
-    this.indexDocument,
-    this.redirectAllRequestsTo,
+    required this.indexDocumentOrRedirectAllRequestsTo,
     this.routingRules,
   });
 
   final TfArg<String>? errorDocument;
 
-  final TfArg<String>? indexDocument;
-
-  final TfArg<String>? redirectAllRequestsTo;
+  final S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo
+  indexDocumentOrRedirectAllRequestsTo;
 
   final TfArg<String>? routingRules;
 
   Map<String, Object?> encode() => {
     if (errorDocument != null) 'error_document': errorDocument!.toTfJson(),
-    if (indexDocument != null) 'index_document': indexDocument!.toTfJson(),
-    if (redirectAllRequestsTo != null)
-      'redirect_all_requests_to': redirectAllRequestsTo!.toTfJson(),
+    ...indexDocumentOrRedirectAllRequestsTo.encode(),
     if (routingRules != null) 'routing_rules': routingRules!.toTfJson(),
+  };
+}
+
+/// Exactly one of `index_document`, `redirect_all_requests_to` on the `website` block of `aws_s3_bucket`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo {
+  const S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `index_document` (one of the [S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo] choices).
+final class S3BucketWebsiteIndexDocumentOption
+    extends S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo {
+  const S3BucketWebsiteIndexDocumentOption({required this.indexDocument});
+
+  final TfArg<String> indexDocument;
+
+  @override
+  String get blockKey => 'index_document';
+
+  @override
+  Map<String, Object?> encode() => {'index_document': indexDocument.toTfJson()};
+}
+
+/// Sets `redirect_all_requests_to` (one of the [S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo] choices).
+final class S3BucketWebsiteRedirectAllRequestsToOption
+    extends S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo {
+  const S3BucketWebsiteRedirectAllRequestsToOption({
+    required this.redirectAllRequestsTo,
+  });
+
+  final TfArg<String> redirectAllRequestsTo;
+
+  @override
+  String get blockKey => 'redirect_all_requests_to';
+
+  @override
+  Map<String, Object?> encode() => {
+    'redirect_all_requests_to': redirectAllRequestsTo.toTfJson(),
   };
 }
 

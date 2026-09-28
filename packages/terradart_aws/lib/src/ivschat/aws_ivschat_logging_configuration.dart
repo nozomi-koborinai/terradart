@@ -12,23 +12,76 @@ const Set<String> _awsIvschatLoggingConfigurationSensitive = <String>{};
 @immutable
 final class IvschatLoggingConfigurationDestinationConfiguration {
   const IvschatLoggingConfigurationDestinationConfiguration({
-    this.cloudwatchLogs,
-    this.firehose,
-    this.s3,
+    required this.cloudwatchLogsOrFirehoseOrS3,
   });
 
-  final IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs?
+  final IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOrFirehoseOrS3
+  cloudwatchLogsOrFirehoseOrS3;
+
+  Map<String, Object?> encode() => {...cloudwatchLogsOrFirehoseOrS3.encode()};
+}
+
+/// Exactly one of `cloudwatch_logs`, `firehose`, `s3` on the `destination_configuration` block of `aws_ivschat_logging_configuration`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOrFirehoseOrS3 {
+  const IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOrFirehoseOrS3();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `cloudwatch_logs` (one of the [IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOrFirehoseOrS3] choices).
+final class IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOption
+    extends
+        IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOrFirehoseOrS3 {
+  const IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOption({
+    required this.cloudwatchLogs,
+  });
+
+  final IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs
   cloudwatchLogs;
 
-  final IvschatLoggingConfigurationDestinationConfigurationFirehose? firehose;
+  @override
+  String get blockKey => 'cloudwatch_logs';
 
-  final IvschatLoggingConfigurationDestinationConfigurationS3? s3;
+  @override
+  Map<String, Object?> encode() => {'cloudwatch_logs': cloudwatchLogs.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (cloudwatchLogs != null) 'cloudwatch_logs': cloudwatchLogs!.encode(),
-    if (firehose != null) 'firehose': firehose!.encode(),
-    if (s3 != null) 's3': s3!.encode(),
-  };
+/// Sets `firehose` (one of the [IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOrFirehoseOrS3] choices).
+final class IvschatLoggingConfigurationDestinationConfigurationFirehoseOption
+    extends
+        IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOrFirehoseOrS3 {
+  const IvschatLoggingConfigurationDestinationConfigurationFirehoseOption({
+    required this.firehose,
+  });
+
+  final IvschatLoggingConfigurationDestinationConfigurationFirehose firehose;
+
+  @override
+  String get blockKey => 'firehose';
+
+  @override
+  Map<String, Object?> encode() => {'firehose': firehose.encode()};
+}
+
+/// Sets `s3` (one of the [IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOrFirehoseOrS3] choices).
+final class IvschatLoggingConfigurationDestinationConfigurationS3Option
+    extends
+        IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOrFirehoseOrS3 {
+  const IvschatLoggingConfigurationDestinationConfigurationS3Option({
+    required this.s3,
+  });
+
+  final IvschatLoggingConfigurationDestinationConfigurationS3 s3;
+
+  @override
+  String get blockKey => 's3';
+
+  @override
+  Map<String, Object?> encode() => {'s3': s3.encode()};
 }
 
 /// Typed helper for the `destination_configuration.cloudwatch_logs` block of

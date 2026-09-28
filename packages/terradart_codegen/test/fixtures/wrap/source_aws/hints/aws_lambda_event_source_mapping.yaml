@@ -78,3 +78,5 @@ properties:
       - "TRIM_HORIZON"
       - "LATEST"
       - "AT_TIMESTAMP"
+exactly_one_of_groups:
+  - ["event_source_arn", "self_managed_event_source"]

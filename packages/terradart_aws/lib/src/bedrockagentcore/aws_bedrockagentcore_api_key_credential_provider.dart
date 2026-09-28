@@ -21,6 +21,88 @@ enum BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource
   final String terraformValue;
 }
 
+/// Exactly one of `api_key`, `api_key_secret_config`, `api_key_wo` on `aws_bedrockagentcore_api_key_credential_provider`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class BedrockagentcoreApiKeyCredentialProviderApiKeyOrApiKeySecretConfigOrApiKeyWo {
+  const BedrockagentcoreApiKeyCredentialProviderApiKeyOrApiKeySecretConfigOrApiKeyWo();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `api_key` (one of the [BedrockagentcoreApiKeyCredentialProviderApiKeyOrApiKeySecretConfigOrApiKeyWo] choices).
+final class BedrockagentcoreApiKeyCredentialProviderApiKeyOption
+    extends
+        BedrockagentcoreApiKeyCredentialProviderApiKeyOrApiKeySecretConfigOrApiKeyWo {
+  const BedrockagentcoreApiKeyCredentialProviderApiKeyOption({
+    required this.apiKey,
+  });
+
+  final TfArg<String> apiKey;
+
+  @override
+  String get blockKey => 'api_key';
+
+  @override
+  Map<String, Object?> encode() => {'api_key': apiKey.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'api_key': apiKey};
+}
+
+/// Sets `api_key_secret_config` (one of the [BedrockagentcoreApiKeyCredentialProviderApiKeyOrApiKeySecretConfigOrApiKeyWo] choices).
+final class BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfigOption
+    extends
+        BedrockagentcoreApiKeyCredentialProviderApiKeyOrApiKeySecretConfigOrApiKeyWo {
+  const BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfigOption({
+    required this.apiKeySecretConfig,
+  });
+
+  final List<BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfig>
+  apiKeySecretConfig;
+
+  @override
+  String get blockKey => 'api_key_secret_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'api_key_secret_config': [for (final e in apiKeySecretConfig) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'api_key_secret_config': TfArg.literal([
+      for (final e in apiKeySecretConfig) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `api_key_wo` (one of the [BedrockagentcoreApiKeyCredentialProviderApiKeyOrApiKeySecretConfigOrApiKeyWo] choices).
+final class BedrockagentcoreApiKeyCredentialProviderApiKeyWoOption
+    extends
+        BedrockagentcoreApiKeyCredentialProviderApiKeyOrApiKeySecretConfigOrApiKeyWo {
+  const BedrockagentcoreApiKeyCredentialProviderApiKeyWoOption({
+    required this.apiKeyWo,
+  });
+
+  final TfArg<String> apiKeyWo;
+
+  @override
+  String get blockKey => 'api_key_wo';
+
+  @override
+  Map<String, Object?> encode() => {'api_key_wo': apiKeyWo.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'api_key_wo': apiKeyWo};
+}
+
 /// Typed helper for the `api_key_secret_config` block of
 /// `aws_bedrockagentcore_api_key_credential_provider` (derived from provider schema).
 @immutable
@@ -47,16 +129,14 @@ final class AwsBedrockagentcoreApiKeyCredentialProvider extends Resource {
 
   AwsBedrockagentcoreApiKeyCredentialProvider({
     required super.localName,
-    TfArg<String>? apiKey,
+    required BedrockagentcoreApiKeyCredentialProviderApiKeyOrApiKeySecretConfigOrApiKeyWo
+    apiKeyOrApiKeySecretConfigOrApiKeyWo,
     TfArg<BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource>?
     apiKeySecretSource,
-    TfArg<String>? apiKeyWo,
     TfArg<num>? apiKeyWoVersion,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    List<BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfig>?
-    apiKeySecretConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -64,18 +144,13 @@ final class AwsBedrockagentcoreApiKeyCredentialProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (apiKey != null) 'api_key': apiKey,
+           ...apiKeyOrApiKeySecretConfigOrApiKeyWo.argMap,
            if (apiKeySecretSource != null)
              'api_key_secret_source': apiKeySecretSource,
-           if (apiKeyWo != null) 'api_key_wo': apiKeyWo,
            if (apiKeyWoVersion != null) 'api_key_wo_version': apiKeyWoVersion,
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           if (apiKeySecretConfig != null)
-             'api_key_secret_config': TfArg.literal([
-               for (final e in apiKeySecretConfig) e.encode(),
-             ]),
          },
        );
 

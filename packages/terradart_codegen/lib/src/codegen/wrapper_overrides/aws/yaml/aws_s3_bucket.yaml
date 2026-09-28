@@ -3,6 +3,7 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+deriveExactlyOne: true
 
 # These inline blocks derive helpers with the same names as the ones from the
 # split resources aws_s3_bucket_object_lock_configuration and

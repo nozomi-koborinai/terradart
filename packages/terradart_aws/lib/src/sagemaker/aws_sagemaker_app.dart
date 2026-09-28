@@ -24,6 +24,59 @@ enum SagemakerAppAppType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `space_name`, `user_profile_name` on `aws_sagemaker_app`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class SagemakerAppSpaceNameOrUserProfileName {
+  const SagemakerAppSpaceNameOrUserProfileName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `space_name` (one of the [SagemakerAppSpaceNameOrUserProfileName] choices).
+final class SagemakerAppSpaceNameOption
+    extends SagemakerAppSpaceNameOrUserProfileName {
+  const SagemakerAppSpaceNameOption({required this.spaceName});
+
+  final TfArg<String> spaceName;
+
+  @override
+  String get blockKey => 'space_name';
+
+  @override
+  Map<String, Object?> encode() => {'space_name': spaceName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'space_name': spaceName};
+}
+
+/// Sets `user_profile_name` (one of the [SagemakerAppSpaceNameOrUserProfileName] choices).
+final class SagemakerAppUserProfileNameOption
+    extends SagemakerAppSpaceNameOrUserProfileName {
+  const SagemakerAppUserProfileNameOption({required this.userProfileName});
+
+  final TfArg<String> userProfileName;
+
+  @override
+  String get blockKey => 'user_profile_name';
+
+  @override
+  Map<String, Object?> encode() => {
+    'user_profile_name': userProfileName.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'user_profile_name': userProfileName,
+  };
+}
+
 /// Typed helper for the `resource_spec` block of
 /// `aws_sagemaker_app` (derived from provider schema).
 @immutable
@@ -253,9 +306,8 @@ final class AwsSagemakerApp extends Resource {
     required TfArg<SagemakerAppAppType> appType,
     required TfArg<String> domainId,
     TfArg<String>? region,
-    TfArg<String>? spaceName,
+    required SagemakerAppSpaceNameOrUserProfileName spaceNameOrUserProfileName,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? userProfileName,
     SagemakerAppResourceSpec? resourceSpec,
     super.lifecycle,
     super.dependsOn,
@@ -268,9 +320,8 @@ final class AwsSagemakerApp extends Resource {
            'app_type': appType,
            'domain_id': domainId,
            if (region != null) 'region': region,
-           if (spaceName != null) 'space_name': spaceName,
+           ...spaceNameOrUserProfileName.argMap,
            if (tags != null) 'tags': tags,
-           if (userProfileName != null) 'user_profile_name': userProfileName,
            if (resourceSpec != null)
              'resource_spec': TfArg.literal(resourceSpec.encode()),
          },

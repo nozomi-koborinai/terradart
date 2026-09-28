@@ -39,6 +39,72 @@ enum SsmParameterType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `insecure_value`, `value`, `value_wo` on `aws_ssm_parameter`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class SsmParameterInsecureValueOrValueOrValueWo {
+  const SsmParameterInsecureValueOrValueOrValueWo();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `insecure_value` (one of the [SsmParameterInsecureValueOrValueOrValueWo] choices).
+final class SsmParameterInsecureValueOption
+    extends SsmParameterInsecureValueOrValueOrValueWo {
+  const SsmParameterInsecureValueOption({required this.insecureValue});
+
+  final TfArg<String> insecureValue;
+
+  @override
+  String get blockKey => 'insecure_value';
+
+  @override
+  Map<String, Object?> encode() => {'insecure_value': insecureValue.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'insecure_value': insecureValue};
+}
+
+/// Sets `value` (one of the [SsmParameterInsecureValueOrValueOrValueWo] choices).
+final class SsmParameterValueOption
+    extends SsmParameterInsecureValueOrValueOrValueWo {
+  const SsmParameterValueOption({required this.value});
+
+  final TfArg<String> value;
+
+  @override
+  String get blockKey => 'value';
+
+  @override
+  Map<String, Object?> encode() => {'value': value.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'value': value};
+}
+
+/// Sets `value_wo` (one of the [SsmParameterInsecureValueOrValueOrValueWo] choices).
+final class SsmParameterValueWoOption
+    extends SsmParameterInsecureValueOrValueOrValueWo {
+  const SsmParameterValueWoOption({required this.valueWo});
+
+  final TfArg<String> valueWo;
+
+  @override
+  String get blockKey => 'value_wo';
+
+  @override
+  Map<String, Object?> encode() => {'value_wo': valueWo.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'value_wo': valueWo};
+}
+
 /// Factory wrapper for `aws_ssm_parameter`.
 final class AwsSsmParameter extends Resource {
   static const String tfType = 'aws_ssm_parameter';
@@ -49,7 +115,8 @@ final class AwsSsmParameter extends Resource {
     TfArg<String>? arn,
     TfArg<SsmParameterDataType>? dataType,
     TfArg<String>? description,
-    TfArg<String>? insecureValue,
+    required SsmParameterInsecureValueOrValueOrValueWo
+    insecureValueOrValueOrValueWo,
     TfArg<String>? keyId,
     required TfArg<String> name,
     TfArg<bool>? overwrite,
@@ -57,8 +124,6 @@ final class AwsSsmParameter extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<SsmParameterTier>? tier,
     required TfArg<SsmParameterType> type,
-    TfArg<String>? value,
-    TfArg<String>? valueWo,
     TfArg<num>? valueWoVersion,
     super.lifecycle,
     super.dependsOn,
@@ -71,7 +136,7 @@ final class AwsSsmParameter extends Resource {
            if (arn != null) 'arn': arn,
            if (dataType != null) 'data_type': dataType,
            if (description != null) 'description': description,
-           if (insecureValue != null) 'insecure_value': insecureValue,
+           ...insecureValueOrValueOrValueWo.argMap,
            if (keyId != null) 'key_id': keyId,
            'name': name,
            if (overwrite != null) 'overwrite': overwrite,
@@ -79,8 +144,6 @@ final class AwsSsmParameter extends Resource {
            if (tags != null) 'tags': tags,
            if (tier != null) 'tier': tier,
            'type': type,
-           if (value != null) 'value': value,
-           if (valueWo != null) 'value_wo': valueWo,
            if (valueWoVersion != null) 'value_wo_version': valueWoVersion,
          },
        );

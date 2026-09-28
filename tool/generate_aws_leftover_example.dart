@@ -273,13 +273,21 @@ Set<String> _parseSensitiveLeaves(String src) {
   return out;
 }
 
+/// Every sealed exactly-one type the package declares: name → its variant
+/// classes in declaration order.
+final _sealedVariants = <String, List<String>>{};
+
 _ParsedFile _parseFile(File file) {
   final src = file.readAsStringSync();
   final classes = <String, _ClassInfo>{};
-  final classRe = RegExp(r'final class (\w+)(?:\s+extends (\w+))?');
+  for (final m in RegExp(r'sealed class (\w+)').allMatches(src)) {
+    _sealedVariants[m.group(1)!] = [];
+  }
+  final classRe = RegExp(r'final class (\w+)(?:\s+extends\s+(\w+))?');
   for (final m in classRe.allMatches(src)) {
     final name = m.group(1)!;
     final ext = m.group(2);
+    _sealedVariants[ext]?.add(name);
     final brace = src.indexOf('{', m.end);
     if (brace < 0) continue;
     final end = _matchBrace(src, brace);
@@ -845,7 +853,53 @@ const _extraParams = <String, List<String>>{
   'TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfiguration': [
     'dimensionMapping',
   ],
+  'WorkspaceswebSessionLoggerEventFilter': ['include'],
 };
+
+/// The variant of sealed type [sealed] to construct: the one whose member
+/// [owner]'s `_extraParams` entry names, else the first.
+String _sealedChoice(
+  String sealed,
+  Map<String, _ClassInfo> helpers, {
+  required int depth,
+  required Set<String> sensitive,
+  required String owner,
+}) {
+  final extras = _extraParams[owner] ?? const <String>[];
+  final variants = [
+    for (final v in _sealedVariants[sealed]!)
+      (v, helpers[v]!.requiredParams.single),
+  ];
+  final (variant, member) = variants.firstWhere(
+    (v) => extras.contains(v.$2.name),
+    orElse: () => variants.isEmpty
+        ? throw StateError('$sealed declares no variants')
+        : variants.first,
+  );
+  final value = _dummy(
+    member,
+    helpers,
+    depth: depth,
+    sensitive: sensitive,
+    owner: owner,
+  );
+  return '$variant(${member.name}: $value,)';
+}
+
+/// Whether [name] is a variant member of one of the sealed [params], which
+/// an `_extraParams` entry names to pick that variant.
+bool _isSealedMember(
+  List<_Param> params,
+  String name,
+  Map<String, _ClassInfo> helpers,
+) =>
+    params.any(
+      (p) =>
+          _sealedVariants[p.type]?.any(
+            (v) => helpers[v]!.requiredParams.single.name == name,
+          ) ??
+          false,
+    );
 
 List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
   final requiredNames = {for (final p in f.requiredParams) p.name};
@@ -854,6 +908,7 @@ List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
   final extras = _extraParams[f.className];
   if (extras != null) _usedKeys.add(f.className);
   for (final name in extras ?? const <String>[]) {
+    if (_isSealedMember(f.requiredParams, name, helpers)) continue;
     if (requiredNames.contains(name) || !optional.containsKey(name)) {
       throw StateError('${f.className}.$name is not an optional parameter');
     }
@@ -1072,6 +1127,15 @@ String _dummyForType(
   }
   if (t.startsWith('Map<') || t == 'Map') {
     return _mapLiteral(t, helpers, depth: depth, sensitive: sensitive);
+  }
+  if (_sealedVariants.containsKey(t)) {
+    return _sealedChoice(
+      t,
+      helpers,
+      depth: depth,
+      sensitive: sensitive,
+      owner: owner,
+    );
   }
   if (helpers.containsKey(t)) {
     return _constructHelper(t, helpers, depth: depth + 1, sensitive: sensitive);
@@ -2246,10 +2310,12 @@ String _constructHelper(
   final extras = _extraParams[className];
   if (extras != null) _usedKeys.add(className);
   final optional = {for (final p in info.optionalParams) p.name: p};
+  final extraNames = extras
+      ?.where((name) => !_isSealedMember(info.requiredParams, name, helpers));
   final params = [
     ...info.requiredParams,
-    if (extras != null)
-      for (final name in extras)
+    if (extraNames != null)
+      for (final name in extraNames)
         optional[name] ??
             (throw StateError('$className.$name is not an optional field'))
     else if (info.requiredParams.isEmpty && info.optionalParams.isNotEmpty)

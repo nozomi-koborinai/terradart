@@ -33,6 +33,72 @@ enum AcmCertificateValidationMethod implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `domain_name`, `private_key`, `private_key_wo` on `aws_acm_certificate`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
+  const AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `domain_name` (one of the [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo] choices).
+final class AcmCertificateDomainNameOption
+    extends AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
+  const AcmCertificateDomainNameOption({required this.domainName});
+
+  final TfArg<String> domainName;
+
+  @override
+  String get blockKey => 'domain_name';
+
+  @override
+  Map<String, Object?> encode() => {'domain_name': domainName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'domain_name': domainName};
+}
+
+/// Sets `private_key` (one of the [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo] choices).
+final class AcmCertificatePrivateKeyOption
+    extends AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
+  const AcmCertificatePrivateKeyOption({required this.privateKey});
+
+  final TfArg<String> privateKey;
+
+  @override
+  String get blockKey => 'private_key';
+
+  @override
+  Map<String, Object?> encode() => {'private_key': privateKey.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'private_key': privateKey};
+}
+
+/// Sets `private_key_wo` (one of the [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo] choices).
+final class AcmCertificatePrivateKeyWoOption
+    extends AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
+  const AcmCertificatePrivateKeyWoOption({required this.privateKeyWo});
+
+  final TfArg<String> privateKeyWo;
+
+  @override
+  String get blockKey => 'private_key_wo';
+
+  @override
+  Map<String, Object?> encode() => {'private_key_wo': privateKeyWo.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'private_key_wo': privateKeyWo};
+}
+
 /// Typed helper for the `options` block of
 /// `aws_acm_certificate` (derived from provider schema).
 @immutable
@@ -106,11 +172,10 @@ final class AwsAcmCertificate extends Resource {
     TfArg<String>? certificateAuthorityArn,
     TfArg<String>? certificateBody,
     TfArg<String>? certificateChain,
-    TfArg<String>? domainName,
+    required AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo
+    domainNameOrPrivateKeyOrPrivateKeyWo,
     TfArg<String>? earlyRenewalDuration,
     TfArg<AcmCertificateKeyAlgorithm>? keyAlgorithm,
-    TfArg<String>? privateKey,
-    TfArg<String>? privateKeyWo,
     TfArg<num>? privateKeyWoVersion,
     TfArg<String>? region,
     TfArg<List<String>>? subjectAlternativeNames,
@@ -129,12 +194,10 @@ final class AwsAcmCertificate extends Resource {
              'certificate_authority_arn': certificateAuthorityArn,
            if (certificateBody != null) 'certificate_body': certificateBody,
            if (certificateChain != null) 'certificate_chain': certificateChain,
-           if (domainName != null) 'domain_name': domainName,
+           ...domainNameOrPrivateKeyOrPrivateKeyWo.argMap,
            if (earlyRenewalDuration != null)
              'early_renewal_duration': earlyRenewalDuration,
            if (keyAlgorithm != null) 'key_algorithm': keyAlgorithm,
-           if (privateKey != null) 'private_key': privateKey,
-           if (privateKeyWo != null) 'private_key_wo': privateKeyWo,
            if (privateKeyWoVersion != null)
              'private_key_wo_version': privateKeyWoVersion,
            if (region != null) 'region': region,

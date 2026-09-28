@@ -17,6 +17,55 @@ enum ImagebuilderWorkflowType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `data`, `uri` on `aws_imagebuilder_workflow`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ImagebuilderWorkflowDataOrUri {
+  const ImagebuilderWorkflowDataOrUri();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `data` (one of the [ImagebuilderWorkflowDataOrUri] choices).
+final class ImagebuilderWorkflowDataOption
+    extends ImagebuilderWorkflowDataOrUri {
+  const ImagebuilderWorkflowDataOption({required this.data});
+
+  final TfArg<String> data;
+
+  @override
+  String get blockKey => 'data';
+
+  @override
+  Map<String, Object?> encode() => {'data': data.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'data': data};
+}
+
+/// Sets `uri` (one of the [ImagebuilderWorkflowDataOrUri] choices).
+final class ImagebuilderWorkflowUriOption
+    extends ImagebuilderWorkflowDataOrUri {
+  const ImagebuilderWorkflowUriOption({required this.uri});
+
+  final TfArg<String> uri;
+
+  @override
+  String get blockKey => 'uri';
+
+  @override
+  Map<String, Object?> encode() => {'uri': uri.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'uri': uri};
+}
+
 /// Factory wrapper for `aws_imagebuilder_workflow`.
 final class AwsImagebuilderWorkflow extends Resource {
   static const String tfType = 'aws_imagebuilder_workflow';
@@ -24,14 +73,13 @@ final class AwsImagebuilderWorkflow extends Resource {
   AwsImagebuilderWorkflow({
     required super.localName,
     TfArg<String>? changeDescription,
-    TfArg<String>? data,
+    required ImagebuilderWorkflowDataOrUri dataOrUri,
     TfArg<String>? description,
     TfArg<String>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<ImagebuilderWorkflowType> type,
-    TfArg<String>? uri,
     required TfArg<String> version,
     super.lifecycle,
     super.dependsOn,
@@ -42,14 +90,13 @@ final class AwsImagebuilderWorkflow extends Resource {
          argMap: {
            if (changeDescription != null)
              'change_description': changeDescription,
-           if (data != null) 'data': data,
+           ...dataOrUri.argMap,
            if (description != null) 'description': description,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            'type': type,
-           if (uri != null) 'uri': uri,
            'version': version,
          },
        );

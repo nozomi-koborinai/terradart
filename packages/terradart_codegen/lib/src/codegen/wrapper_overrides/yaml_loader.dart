@@ -152,6 +152,7 @@ class YamlOverrideLoader {
     'deriveNestedTypes',
     'nestedTypeExcludes',
     'dedupeNestedTypes',
+    'deriveExactlyOne',
     // 4 Phase 4.1 axes (kind dispatch + emitter routing).
     'kind',
     'outputDir',
@@ -447,6 +448,7 @@ class YamlOverrideLoader {
       deriveNestedTypes: deriveNestedTypes,
       nestedTypeExcludes: nestedTypeExcludes,
       dedupeNestedTypes: dedupeNestedTypes,
+      deriveExactlyOne: _readBool(yaml, 'deriveExactlyOne', filePath) ?? false,
     );
   }
 

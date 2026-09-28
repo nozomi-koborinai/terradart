@@ -58,6 +58,61 @@ enum ElasticacheClusterOutpostMode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `engine`, `replication_group_id` on `aws_elasticache_cluster`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ElasticacheClusterEngineOrReplicationGroupId {
+  const ElasticacheClusterEngineOrReplicationGroupId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `engine` (one of the [ElasticacheClusterEngineOrReplicationGroupId] choices).
+final class ElasticacheClusterEngineOption
+    extends ElasticacheClusterEngineOrReplicationGroupId {
+  const ElasticacheClusterEngineOption({required this.engine});
+
+  final TfArg<ElasticacheClusterEngine> engine;
+
+  @override
+  String get blockKey => 'engine';
+
+  @override
+  Map<String, Object?> encode() => {'engine': engine.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'engine': engine};
+}
+
+/// Sets `replication_group_id` (one of the [ElasticacheClusterEngineOrReplicationGroupId] choices).
+final class ElasticacheClusterReplicationGroupIdOption
+    extends ElasticacheClusterEngineOrReplicationGroupId {
+  const ElasticacheClusterReplicationGroupIdOption({
+    required this.replicationGroupId,
+  });
+
+  final TfArg<String> replicationGroupId;
+
+  @override
+  String get blockKey => 'replication_group_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'replication_group_id': replicationGroupId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'replication_group_id': replicationGroupId,
+  };
+}
+
 /// Typed helper for the `log_delivery_configuration` block of
 /// `aws_elasticache_cluster` (derived from provider schema).
 @immutable
@@ -134,7 +189,8 @@ final class AwsElasticacheCluster extends Resource {
     TfArg<String>? availabilityZone,
     TfArg<ElasticacheClusterAzMode>? azMode,
     required TfArg<String> clusterId,
-    TfArg<ElasticacheClusterEngine>? engine,
+    required ElasticacheClusterEngineOrReplicationGroupId
+    engineOrReplicationGroupId,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<ElasticacheClusterIpDiscovery>? ipDiscovery,
@@ -149,7 +205,6 @@ final class AwsElasticacheCluster extends Resource {
     TfArg<List<String>>? preferredAvailabilityZones,
     TfArg<String>? preferredOutpostArn,
     TfArg<String>? region,
-    TfArg<String>? replicationGroupId,
     TfArg<List<String>>? securityGroupIds,
     TfArg<List<String>>? snapshotArns,
     TfArg<String>? snapshotName,
@@ -172,7 +227,7 @@ final class AwsElasticacheCluster extends Resource {
            if (availabilityZone != null) 'availability_zone': availabilityZone,
            if (azMode != null) 'az_mode': azMode,
            'cluster_id': clusterId,
-           if (engine != null) 'engine': engine,
+           ...engineOrReplicationGroupId.argMap,
            if (engineVersion != null) 'engine_version': engineVersion,
            if (finalSnapshotIdentifier != null)
              'final_snapshot_identifier': finalSnapshotIdentifier,
@@ -193,8 +248,6 @@ final class AwsElasticacheCluster extends Resource {
            if (preferredOutpostArn != null)
              'preferred_outpost_arn': preferredOutpostArn,
            if (region != null) 'region': region,
-           if (replicationGroupId != null)
-             'replication_group_id': replicationGroupId,
            if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
            if (snapshotArns != null) 'snapshot_arns': snapshotArns,
            if (snapshotName != null) 'snapshot_name': snapshotName,

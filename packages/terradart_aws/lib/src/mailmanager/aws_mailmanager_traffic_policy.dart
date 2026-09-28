@@ -395,24 +395,66 @@ enum MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionOperator
 @immutable
 final class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluate {
   const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluate({
-    this.attribute,
-    this.analysis,
+    required this.analysisOrAttribute,
+  });
+
+  final MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute
+  analysisOrAttribute;
+
+  Map<String, Object?> encode() => {...analysisOrAttribute.encode()};
+}
+
+/// Exactly one of `analysis`, `attribute` on the `policy_statement.condition.string_expression.evaluate` block of `aws_mailmanager_traffic_policy`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute {
+  const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `analysis` (one of the [MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute] choices).
+final class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOption
+    extends
+        MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute {
+  const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOption({
+    required this.analysis,
+  });
+
+  final List<
+    MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysis
+  >
+  analysis;
+
+  @override
+  String get blockKey => 'analysis';
+
+  @override
+  Map<String, Object?> encode() => {
+    'analysis': [for (final e in analysis) e.encode()],
+  };
+}
+
+/// Sets `attribute` (one of the [MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute] choices).
+final class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAttributeOption
+    extends
+        MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute {
+  const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAttributeOption({
+    required this.attribute,
   });
 
   final TfArg<
     MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAttribute
-  >?
+  >
   attribute;
 
-  final List<
-    MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysis
-  >?
-  analysis;
+  @override
+  String get blockKey => 'attribute';
 
-  Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-    if (analysis != null) 'analysis': [for (final e in analysis!) e.encode()],
-  };
+  @override
+  Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
 /// `attribute` — derived from the provider schema description.

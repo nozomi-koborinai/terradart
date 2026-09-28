@@ -8,3 +8,5 @@ properties:
       - "BUILD"
       - "TEST"
       - "DISTRIBUTION"
+exactly_one_of_groups:
+  - ["data", "uri"]

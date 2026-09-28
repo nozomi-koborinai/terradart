@@ -18,3 +18,5 @@ properties:
       - "String"
       - "StringList"
       - "SecureString"
+exactly_one_of_groups:
+  - ["insecure_value", "value", "value_wo"]

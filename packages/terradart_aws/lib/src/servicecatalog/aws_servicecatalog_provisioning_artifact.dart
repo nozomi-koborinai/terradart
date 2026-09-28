@@ -41,6 +41,63 @@ enum ServicecatalogProvisioningArtifactType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `template_physical_id`, `template_url` on `aws_servicecatalog_provisioning_artifact`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
+  const ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `template_physical_id` (one of the [ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl] choices).
+final class ServicecatalogProvisioningArtifactTemplatePhysicalIdOption
+    extends ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
+  const ServicecatalogProvisioningArtifactTemplatePhysicalIdOption({
+    required this.templatePhysicalId,
+  });
+
+  final TfArg<String> templatePhysicalId;
+
+  @override
+  String get blockKey => 'template_physical_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'template_physical_id': templatePhysicalId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'template_physical_id': templatePhysicalId,
+  };
+}
+
+/// Sets `template_url` (one of the [ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl] choices).
+final class ServicecatalogProvisioningArtifactTemplateUrlOption
+    extends ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
+  const ServicecatalogProvisioningArtifactTemplateUrlOption({
+    required this.templateUrl,
+  });
+
+  final TfArg<String> templateUrl;
+
+  @override
+  String get blockKey => 'template_url';
+
+  @override
+  Map<String, Object?> encode() => {'template_url': templateUrl.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'template_url': templateUrl};
+}
+
 /// Factory wrapper for `aws_servicecatalog_provisioning_artifact`.
 final class AwsServicecatalogProvisioningArtifact extends Resource {
   static const String tfType = 'aws_servicecatalog_provisioning_artifact';
@@ -55,8 +112,8 @@ final class AwsServicecatalogProvisioningArtifact extends Resource {
     TfArg<String>? name,
     required TfArg<String> productId,
     TfArg<String>? region,
-    TfArg<String>? templatePhysicalId,
-    TfArg<String>? templateUrl,
+    required ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl
+    templatePhysicalIdOrTemplateUrl,
     TfArg<ServicecatalogProvisioningArtifactType>? type,
     super.lifecycle,
     super.dependsOn,
@@ -74,9 +131,7 @@ final class AwsServicecatalogProvisioningArtifact extends Resource {
            if (name != null) 'name': name,
            'product_id': productId,
            if (region != null) 'region': region,
-           if (templatePhysicalId != null)
-             'template_physical_id': templatePhysicalId,
-           if (templateUrl != null) 'template_url': templateUrl,
+           ...templatePhysicalIdOrTemplateUrl.argMap,
            if (type != null) 'type': type,
          },
        );

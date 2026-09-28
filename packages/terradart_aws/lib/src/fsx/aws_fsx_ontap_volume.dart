@@ -48,6 +48,59 @@ enum FsxOntapVolumeVolumeType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `size_in_bytes`, `size_in_megabytes` on `aws_fsx_ontap_volume`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
+  const FsxOntapVolumeSizeInBytesOrSizeInMegabytes();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `size_in_bytes` (one of the [FsxOntapVolumeSizeInBytesOrSizeInMegabytes] choices).
+final class FsxOntapVolumeSizeInBytesOption
+    extends FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
+  const FsxOntapVolumeSizeInBytesOption({required this.sizeInBytes});
+
+  final TfArg<String> sizeInBytes;
+
+  @override
+  String get blockKey => 'size_in_bytes';
+
+  @override
+  Map<String, Object?> encode() => {'size_in_bytes': sizeInBytes.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'size_in_bytes': sizeInBytes};
+}
+
+/// Sets `size_in_megabytes` (one of the [FsxOntapVolumeSizeInBytesOrSizeInMegabytes] choices).
+final class FsxOntapVolumeSizeInMegabytesOption
+    extends FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
+  const FsxOntapVolumeSizeInMegabytesOption({required this.sizeInMegabytes});
+
+  final TfArg<num> sizeInMegabytes;
+
+  @override
+  String get blockKey => 'size_in_megabytes';
+
+  @override
+  Map<String, Object?> encode() => {
+    'size_in_megabytes': sizeInMegabytes.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'size_in_megabytes': sizeInMegabytes,
+  };
+}
+
 /// Typed helper for the `aggregate_configuration` block of
 /// `aws_fsx_ontap_volume` (derived from provider schema).
 @immutable
@@ -361,8 +414,8 @@ final class AwsFsxOntapVolume extends Resource {
     TfArg<FsxOntapVolumeOntapVolumeType>? ontapVolumeType,
     TfArg<String>? region,
     TfArg<FsxOntapVolumeSecurityStyle>? securityStyle,
-    TfArg<String>? sizeInBytes,
-    TfArg<num>? sizeInMegabytes,
+    required FsxOntapVolumeSizeInBytesOrSizeInMegabytes
+    sizeInBytesOrSizeInMegabytes,
     TfArg<bool>? skipFinalBackup,
     TfArg<String>? snapshotPolicy,
     TfArg<bool>? storageEfficiencyEnabled,
@@ -391,8 +444,7 @@ final class AwsFsxOntapVolume extends Resource {
            if (ontapVolumeType != null) 'ontap_volume_type': ontapVolumeType,
            if (region != null) 'region': region,
            if (securityStyle != null) 'security_style': securityStyle,
-           if (sizeInBytes != null) 'size_in_bytes': sizeInBytes,
-           if (sizeInMegabytes != null) 'size_in_megabytes': sizeInMegabytes,
+           ...sizeInBytesOrSizeInMegabytes.argMap,
            if (skipFinalBackup != null) 'skip_final_backup': skipFinalBackup,
            if (snapshotPolicy != null) 'snapshot_policy': snapshotPolicy,
            if (storageEfficiencyEnabled != null)
