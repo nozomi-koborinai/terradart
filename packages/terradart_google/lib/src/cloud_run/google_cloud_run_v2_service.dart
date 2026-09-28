@@ -79,6 +79,17 @@ enum ExecutionEnvironment implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Identity a revision runs as ([CloudRunV2ServiceWorkloadIdentityConfig.identityType]).
+enum CloudRunV2ServiceWorkloadIdentityType implements TerraformEnum {
+  serviceAccount('IDENTITY_TYPE_SERVICE_ACCOUNT'),
+  workloadIdentity('IDENTITY_TYPE_WORKLOAD_IDENTITY'),
+  agentIdentity('IDENTITY_TYPE_AGENT_IDENTITY');
+
+  const CloudRunV2ServiceWorkloadIdentityType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Allocation type for one [CloudRunV2ServiceTraffic] split. `latest` always points at the
 /// newest Ready revision (so `revision` MUST be omitted); `revision`
 /// pins to the [CloudRunV2ServiceTraffic.revision] name.
@@ -240,6 +251,7 @@ class CloudRunV2ServiceTemplate {
     this.gpuZonalRedundancyDisabled,
     this.volumes,
     this.nodeSelector,
+    this.workloadIdentityConfig,
   });
 
   /// One or more containers (the schema allows ≥1; multiple containers
@@ -297,6 +309,9 @@ class CloudRunV2ServiceTemplate {
   /// GPU accelerator pin. Required when the revision uses GPU CPU tiers.
   final CloudRunV2ServiceNodeSelector? nodeSelector;
 
+  /// Workload identity settings for this revision.
+  final CloudRunV2ServiceWorkloadIdentityConfig? workloadIdentityConfig;
+
   Map<String, Object?> toArgMap() => {
     'containers': containers.map((c) => c.toArgMap()).toList(),
     if (revision != null) 'revision': revision!.toTfJson(),
@@ -320,6 +335,8 @@ class CloudRunV2ServiceTemplate {
       'gpu_zonal_redundancy_disabled': gpuZonalRedundancyDisabled!.toTfJson(),
     if (volumes != null) 'volumes': volumes!.map((v) => v.toArgMap()).toList(),
     if (nodeSelector != null) 'node_selector': [nodeSelector!.toArgMap()],
+    if (workloadIdentityConfig != null)
+      'workload_identity_config': [workloadIdentityConfig!.toArgMap()],
   };
 }
 
@@ -421,6 +438,32 @@ class CloudRunV2ServiceNodeSelector {
   final TfArg<String> accelerator;
 
   Map<String, Object?> toArgMap() => {'accelerator': accelerator.toTfJson()};
+}
+
+/// `template.workload_identity_config` block.
+@immutable
+class CloudRunV2ServiceWorkloadIdentityConfig {
+  const CloudRunV2ServiceWorkloadIdentityConfig({
+    this.identity,
+    this.identityCertificateEnabled,
+    this.identityType,
+  });
+
+  /// The revision's SPIFFE workload identity; enables provisioning of
+  /// SPIFFE workload certificates.
+  final TfArg<String>? identity;
+
+  /// Whether an instance receives a managed workload identity certificate.
+  final TfArg<bool>? identityCertificateEnabled;
+
+  final TfArg<CloudRunV2ServiceWorkloadIdentityType>? identityType;
+
+  Map<String, Object?> toArgMap() => {
+    if (identity != null) 'identity': identity!.toTfJson(),
+    if (identityCertificateEnabled != null)
+      'identity_certificate_enabled': identityCertificateEnabled!.toTfJson(),
+    if (identityType != null) 'identity_type': identityType!.toTfJson(),
+  };
 }
 
 // ===========================================================================

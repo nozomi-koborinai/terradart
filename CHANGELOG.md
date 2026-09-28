@@ -49,6 +49,9 @@ Per-package changelogs live alongside each package and are the system of record 
   factories, recorded in the curation backlog and example debt; their
   documented enums are typed, and `GoogleStorageFtpServer` takes a sealed
   `StorageFtpServerConfig` (`internal_config` | `external_config`).
+  `GoogleBiglakeHiveTable` takes typed `storageDescriptor` /
+  `partitionKeys` blocks, and `CloudRunV2ServiceTemplate` gains the 8.x
+  `workloadIdentityConfig` block.
   `DataGoogleContainerCluster.skipNodePoolRefresh` is gone. See
   `MIGRATING.md`.
 - **MM YAML sync pinned to the provider release** — `tool/sync_mm_yaml.dart`

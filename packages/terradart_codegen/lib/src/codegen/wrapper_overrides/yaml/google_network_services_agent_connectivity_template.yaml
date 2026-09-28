@@ -5,6 +5,7 @@ outputDir: network
 
 deriveClassDoc: true
 deriveEnums: true
+deriveNestedTypes: true
 
 dartTypeOverrides:
   access_path: NetworkServicesAgentConnectivityTemplateAccessPath

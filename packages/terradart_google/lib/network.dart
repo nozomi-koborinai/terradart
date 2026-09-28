@@ -267,7 +267,10 @@ export 'src/network/google_network_security_url_lists.dart'
 export 'src/network/google_network_services_agent_connectivity_template.dart'
     show
         GoogleNetworkServicesAgentConnectivityTemplate,
-        NetworkServicesAgentConnectivityTemplateAccessPath;
+        NetworkServicesAgentConnectivityTemplateAccessPath,
+        NetworkServicesAgentConnectivityTemplateEgressNetworkConfig,
+        NetworkServicesAgentConnectivityTemplateEgressNetworkConfigDnsPeeringConfig,
+        NetworkServicesAgentConnectivityTemplateEgressNetworkConfigVpcEgress;
 export 'src/network/google_network_services_agent_gateway.dart'
     show
         GoogleNetworkServicesAgentGateway,

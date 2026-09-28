@@ -96,8 +96,8 @@ needs `tolist(...)` now.
 #### Beta-only types now in `terradart_google`
 
 Provider 8.2 and 8.3 promoted 16 beta-only types to GA, so their factories
-move from `terradart_google_beta` to `terradart_google` (same constructor,
-same fields):
+move from `terradart_google_beta` to `terradart_google` (same fields; one
+constructor change, noted after the list):
 
 - `GoogleBiglakeHiveCatalog`, `GoogleBiglakeHiveDatabase`,
   `GoogleBiglakeHiveTable`, and their `*IamMember` / `*IamBinding` /
@@ -111,7 +111,12 @@ same fields):
 
 `package:terradart_google_beta/biglake.dart` and
 `package:terradart_google_beta/observability.dart` are gone. Change the
-import; the compiler finds every use. The factories no longer pin
+import; the compiler finds every use. `GoogleBiglakeHiveTable` also takes
+typed blocks now: `storageDescriptor` is a
+`BiglakeHiveTableStorageDescriptor` (with
+`BiglakeHiveTableStorageDescriptorColumns` entries) and `partitionKeys` a
+`List<BiglakeHiveTablePartitionKeys>`, instead of `TfArg` maps. The synth
+output is the same. The factories no longer pin
 `provider = google-beta`, so the resources move to the `google` provider
 (`GoogleProvider` must be in the Stack). The type and schema are identical
 in both providers, so Terraform switches the provider in state without

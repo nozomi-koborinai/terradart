@@ -23,7 +23,18 @@ export 'src/biglake/google_biglake_hive_database_iam_member.dart'
     show GoogleBiglakeHiveDatabaseIamMember;
 export 'src/biglake/google_biglake_hive_database_iam_policy.dart'
     show GoogleBiglakeHiveDatabaseIamPolicy;
-export 'src/biglake/google_biglake_hive_table.dart' show GoogleBiglakeHiveTable;
+export 'src/biglake/google_biglake_hive_table.dart'
+    show
+        BiglakeHiveTablePartitionKeys,
+        BiglakeHiveTableStorageDescriptor,
+        BiglakeHiveTableStorageDescriptorColumns,
+        BiglakeHiveTableStorageDescriptorSerdeInfo,
+        BiglakeHiveTableStorageDescriptorSerdeInfoSerdeType,
+        BiglakeHiveTableStorageDescriptorSkewedInfo,
+        BiglakeHiveTableStorageDescriptorSkewedInfoSkewedColValues,
+        BiglakeHiveTableStorageDescriptorSkewedInfoSkewedKeyValuesLocations,
+        BiglakeHiveTableStorageDescriptorSortCols,
+        GoogleBiglakeHiveTable;
 export 'src/biglake/google_biglake_hive_table_iam_binding.dart'
     show GoogleBiglakeHiveTableIamBinding;
 export 'src/biglake/google_biglake_hive_table_iam_member.dart'
