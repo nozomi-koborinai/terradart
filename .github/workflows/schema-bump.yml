@@ -52,13 +52,11 @@ jobs:
       - name: Read current provider version
         id: current_version
         run: |
-          # Extract the version from the _provider_meta.dart comment.
-          # Regex must match: "Confirmed against registry latest X.Y.Z on YYYY-MM-DD"
-          v=$(grep -oE 'Confirmed against registry latest [0-9]+\.[0-9]+\.[0-9]+' \
-              packages/terradart_google/lib/src/_provider_meta.dart \
-              | awk '{print $NF}')
+          # The fixture records the release it was generated from; the
+          # refresh step below rewrites it on every bump.
+          v=$(tr -d '[:space:]' < packages/terradart_codegen/test/fixtures/wrap/source/provider_version.txt)
           if [ -z "$v" ]; then
-            echo "::error::Could not parse provider version from _provider_meta.dart"
+            echo "::error::Could not read the provider version from source/provider_version.txt"
             exit 1
           fi
           echo "version=$v" >> "$GITHUB_OUTPUT"
@@ -143,17 +141,6 @@ jobs:
             '{added_resources: $added, removed_resources: $removed}' \
             > /tmp/schema_diff.json
           cat /tmp/schema_diff.json
-
-      - name: Update `_provider_meta.dart` confirmation comment
-        if: steps.fetch_state.outputs.state_json && fromJSON(steps.fetch_state.outputs.state_json).bump_needed
-        run: |
-          v7_latest=$(jq -r '.v7_latest' /tmp/state.json)
-          today=$(date -u +%Y-%m-%d)
-          file=packages/terradart_google/lib/src/_provider_meta.dart
-          # Strict regex: only update the canonical comment line.
-          sed -i -E \
-            "s|(Confirmed against registry latest )[0-9]+\.[0-9]+\.[0-9]+( on )[0-9]{4}-[0-9]{2}-[0-9]{2}|\1$v7_latest\2$today|" \
-            "$file"
 
       - name: Regenerate wrappers (`terradart wrap`)
         id: wrap_regen
