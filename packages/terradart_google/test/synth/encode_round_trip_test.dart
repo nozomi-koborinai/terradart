@@ -50,7 +50,6 @@ import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/monitoring.dart';
 import 'package:terradart_google/network.dart';
-import 'package:terradart_google/notebooks.dart';
 import 'package:terradart_google/os_config.dart';
 import 'package:terradart_google/secret_manager.dart';
 import 'package:terradart_google/storage.dart';
@@ -582,29 +581,6 @@ final Map<String, Object Function()> _syntheticInstances = {
       DataLossPreventionStoredInfoTypeLargeCustomDictionary(
         outputPath: TfArg.literal('gs://bucket/dlp-dict/'),
         cloudStorageFileSet: TfArg.literal('gs://bucket/phrases.txt'),
-      ),
-
-  // --- NotebooksEnvironmentImage (2) — notebooks_environment ---------------
-  'NotebooksEnvironmentContainerImage': () =>
-      NotebooksEnvironmentContainerImage(
-        repository: TfArg.literal(
-          'gcr.io/deeplearning-platform-release/base-cpu',
-        ),
-      ),
-  'NotebooksEnvironmentVmImage': () => NotebooksEnvironmentVmImage(
-        project: TfArg.literal('deeplearning-platform-release'),
-        imageFamily: TfArg.literal('common-cpu'),
-      ),
-
-  // --- NotebooksInstanceImage (2) — notebooks_instance ---------------------
-  'NotebooksInstanceContainerImage': () => NotebooksInstanceContainerImage(
-        repository: TfArg.literal(
-          'gcr.io/deeplearning-platform-release/base-cpu',
-        ),
-      ),
-  'NotebooksInstanceVmImage': () => NotebooksInstanceVmImage(
-        project: TfArg.literal('deeplearning-platform-release'),
-        imageFamily: TfArg.literal('common-cpu-notebooks'),
       ),
 
   // --- OsConfigPatchDeploymentSchedule (2) — os_config_patch_deployment ------

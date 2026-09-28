@@ -101,12 +101,6 @@ export 'src/data/google_backup_dr_data_sources.dart'
     show DataGoogleBackupDrDataSources;
 export 'src/data/google_backup_dr_management_server.dart'
     show DataGoogleBackupDrManagementServer;
-export 'src/data/google_beyondcorp_app_connection.dart'
-    show DataGoogleBeyondcorpAppConnection;
-export 'src/data/google_beyondcorp_app_connector.dart'
-    show DataGoogleBeyondcorpAppConnector;
-export 'src/data/google_beyondcorp_app_gateway.dart'
-    show DataGoogleBeyondcorpAppGateway;
 export 'src/data/google_beyondcorp_security_gateway.dart'
     show DataGoogleBeyondcorpSecurityGateway;
 export 'src/data/google_beyondcorp_security_gateway_application_iam_policy.dart'
@@ -514,7 +508,6 @@ export 'src/data/google_iap_app_engine_service_iam_policy.dart'
     show DataGoogleIapAppEngineServiceIamPolicy;
 export 'src/data/google_iap_app_engine_version_iam_policy.dart'
     show DataGoogleIapAppEngineVersionIamPolicy;
-export 'src/data/google_iap_client.dart' show DataGoogleIapClient;
 export 'src/data/google_iap_location_web_iam_policy.dart'
     show DataGoogleIapLocationWebIamPolicy;
 export 'src/data/google_iap_tunnel_dest_group_iam_policy.dart'
@@ -603,10 +596,6 @@ export 'src/data/google_network_security_address_group_iam_policy.dart'
     show DataGoogleNetworkSecurityAddressGroupIamPolicy;
 export 'src/data/google_network_security_address_groups.dart'
     show DataGoogleNetworkSecurityAddressGroups;
-export 'src/data/google_notebooks_instance_iam_policy.dart'
-    show DataGoogleNotebooksInstanceIamPolicy;
-export 'src/data/google_notebooks_runtime_iam_policy.dart'
-    show DataGoogleNotebooksRuntimeIamPolicy;
 export 'src/data/google_oracle_database_autonomous_database.dart'
     show DataGoogleOracleDatabaseAutonomousDatabase;
 export 'src/data/google_oracle_database_autonomous_databases.dart'
