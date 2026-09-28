@@ -19,6 +19,13 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **`terradart wrap` removes orphaned generated files** — a full `wrap`
+  deletes every generated wrapper or barrel no override emits any more (a
+  deleted override used to leave its file behind, still compiling), and
+  `wrap --check` fails on one. The leftover-example generators
+  (`generate_data_source_leftover_example.dart`,
+  `generate_aws_leftover_example.dart`) cover only the factories the
+  catalog lists.
 - **Docs** — the agent skill and the *Migrating from HCL* guide describe one
   loop: `terradart-migrate --report`, then a migration, then porting the
   sidecar leftovers into the Stack, synth, and `terraform plan` with *No
