@@ -1,16 +1,16 @@
 // tool/fetch_schema.dart
 //
 // Detects the latest terraform-provider-google v7 release on GitHub and
-// reports whether it differs from the version recorded in
-// packages/terradart_google/lib/src/_provider_meta.dart.
+// reports whether it is newer than --current-version (the schema fixture's
+// provider_version.txt, which the bump rewrites whenever it refreshes the
+// fixture).
 //
 // Also reports the max major version available, used by the workflow for
 // v8+ availability banner (no auto-bump).
 //
 // Usage:
 //   dart tool/fetch_schema.dart \
-//     --current-version=7.31.0 \
-//     --provider-meta-path=packages/terradart_google/lib/src/_provider_meta.dart
+//     --current-version=$(cat packages/terradart_codegen/test/fixtures/wrap/source/provider_version.txt)
 //
 // Output (stdout, JSON):
 //   {"v7_latest": "7.32.1", "v7_current": "7.31.0", "max_major_version": "7",
@@ -35,7 +35,7 @@ Future<void> main(List<String> args) async {
   if (parsed == null) {
     stderr.writeln(
       'Usage: dart tool/fetch_schema.dart '
-      '--current-version=X.Y.Z [--provider-meta-path=<path>]',
+      '--current-version=X.Y.Z',
     );
     exit(_exitUsage);
   }
@@ -65,23 +65,19 @@ Future<void> main(List<String> args) async {
 }
 
 class _Args {
-  _Args(this.currentVersion, this.providerMetaPath);
+  _Args(this.currentVersion);
   final String currentVersion;
-  final String? providerMetaPath;
 }
 
 _Args? _parseArgs(List<String> args) {
   String? current;
-  String? metaPath;
   for (final a in args) {
     if (a.startsWith('--current-version=')) {
       current = a.substring('--current-version='.length);
-    } else if (a.startsWith('--provider-meta-path=')) {
-      metaPath = a.substring('--provider-meta-path='.length);
     }
   }
-  if (current == null) return null;
-  return _Args(current, metaPath);
+  if (current == null || current.isEmpty) return null;
+  return _Args(current);
 }
 
 Future<List<Map<String, dynamic>>?> _fetchReleases() async {
