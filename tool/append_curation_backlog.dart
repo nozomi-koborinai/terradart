@@ -1,5 +1,8 @@
 // append_curation_backlog.dart — idempotent append under `entries:` in
-// tool/curation_backlog.yaml (schema-bump workflow).
+// tool/curation_backlog.yaml (schema-bump workflow). Reads a
+// tool/schema_resource_diff.dart output: `added_resources` become
+// `resource:` entries, `added_data_sources` (lanes that diff them)
+// `data_source:` entries.
 //
 // Usage:
 //   dart tool/append_curation_backlog.dart \
@@ -37,9 +40,11 @@ Future<void> main(List<String> args) async {
   final diff = jsonDecode(diffFile.readAsStringSync()) as Map<String, dynamic>;
   final added = (diff['added_resources'] as List<dynamic>? ?? const [])
       .cast<String>();
+  final addedData = (diff['added_data_sources'] as List<dynamic>? ?? const [])
+      .cast<String>();
 
-  if (added.isEmpty) {
-    print('No added_resources; backlog unchanged.');
+  if (added.isEmpty && addedData.isEmpty) {
+    print('No added types; backlog unchanged.');
     exit(0);
   }
 
@@ -54,6 +59,7 @@ Future<void> main(List<String> args) async {
   final appended = appendCurationEntries(
     existing: entries,
     resources: added,
+    dataSources: addedData,
     detectedAt: parsed.detectedAt,
     providerVersion: parsed.providerVersion,
   );
@@ -61,7 +67,7 @@ Future<void> main(List<String> args) async {
   backlogFile.writeAsStringSync(formatBacklogYaml(header: header, entries: appended));
   print(
     'curation_backlog: ${appended.length} entries '
-    '(${added.length} candidate resource(s) from diff)',
+    '(${added.length + addedData.length} candidate type(s) from diff)',
   );
 }
 
@@ -125,25 +131,45 @@ List<Map<String, String>> readBacklogEntries(String yamlSource) {
   ];
 }
 
-/// Appends [resources] not already present (by `resource` key).
+/// The entry keys naming a type, by kind.
+const backlogKindKeys = ['resource', 'data_source'];
+
+String _entryKey(Map<String, String> e) => [
+      for (final kind in backlogKindKeys)
+        if (e[kind] case final name?) '$kind:$name',
+    ].firstOrNull ?? '';
+
+String _entryName(Map<String, String> e) =>
+    e['resource'] ?? e['data_source'] ?? '';
+
+/// Appends [resources] and [dataSources] not already present (by kind and
+/// type name), sorted by type name so lanes' entries stay apart.
 List<Map<String, String>> appendCurationEntries({
   required List<Map<String, String>> existing,
   required List<String> resources,
+  List<String> dataSources = const [],
   required String detectedAt,
   required String providerVersion,
 }) {
-  final seen = existing.map((e) => e['resource']).whereType<String>().toSet();
+  final seen = existing.map(_entryKey).toSet();
   final out = [...existing];
-  for (final resource in resources) {
-    if (seen.contains(resource)) continue;
-    out.add({
-      'resource': resource,
-      'detected_at': detectedAt,
-      'provider_version': providerVersion,
-    });
-    seen.add(resource);
+  for (final (kind, names) in [
+    ('resource', resources),
+    ('data_source', dataSources),
+  ]) {
+    for (final name in names) {
+      if (!seen.add('$kind:$name')) continue;
+      out.add({
+        kind: name,
+        'detected_at': detectedAt,
+        'provider_version': providerVersion,
+      });
+    }
   }
-  out.sort((a, b) => (a['resource'] ?? '').compareTo(b['resource'] ?? ''));
+  out.sort((a, b) {
+    final byName = _entryName(a).compareTo(_entryName(b));
+    return byName != 0 ? byName : _entryKey(a).compareTo(_entryKey(b));
+  });
   return out;
 }
 
@@ -167,7 +193,11 @@ String formatBacklogYaml({
     ..writeln()
     ..writeln('entries:');
   for (final entry in entries) {
-    buf.writeln('  - resource: ${entry['resource']}');
+    final kind = backlogKindKeys.firstWhere(
+      entry.containsKey,
+      orElse: () => 'resource',
+    );
+    buf.writeln('  - $kind: ${entry[kind]}');
     buf.writeln('    detected_at: ${entry['detected_at']}');
     buf.writeln('    provider_version: ${entry['provider_version']}');
     final note = entry['note'];
