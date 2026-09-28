@@ -30,9 +30,6 @@ barrels:
   artifact_registry:
     doc: |-
       /// Artifact Registry VPC-SC config (beta-only).
-  biglake:
-    doc: |-
-      /// BigLake Hive catalogs, databases, tables, and resource IAM (beta-only).
   bigquery:
     doc: |-
       /// BigQuery Analytics Hub data-exchange subscription (beta-only).
@@ -76,9 +73,6 @@ barrels:
     doc: |-
       /// Network Security / Network Services beta-only types (authorization
       /// policy, SAC, service LB policies).
-  observability:
-    doc: |-
-      /// Observability folder / organization / project settings (beta-only).
   organization:
     doc: |-
       /// Organization-level service identity (beta-only).

@@ -13,6 +13,17 @@ export 'src/chronicle/google_chronicle_big_query_export.dart'
         ChronicleBigQueryExportUdmEventsAggregatesSettings,
         ChronicleBigQueryExportUdmEventsSettings,
         GoogleChronicleBigQueryExport;
+export 'src/chronicle/google_chronicle_case_close_definition.dart'
+    show
+        ChronicleCaseCloseDefinitionCloseReason,
+        GoogleChronicleCaseCloseDefinition;
+export 'src/chronicle/google_chronicle_case_stage_definition.dart'
+    show GoogleChronicleCaseStageDefinition;
+export 'src/chronicle/google_chronicle_case_tag_definition.dart'
+    show
+        ChronicleCaseTagDefinitionComparisonType,
+        ChronicleCaseTagDefinitionMatchCriteria,
+        GoogleChronicleCaseTagDefinition;
 export 'src/chronicle/google_chronicle_custom_list.dart'
     show ChronicleCustomListDeletionPolicy, GoogleChronicleCustomList;
 export 'src/chronicle/google_chronicle_dashboard_chart.dart'
@@ -66,7 +77,7 @@ export 'src/chronicle/google_chronicle_data_table.dart'
 export 'src/chronicle/google_chronicle_data_table_row.dart'
     show GoogleChronicleDataTableRow;
 export 'src/chronicle/google_chronicle_environment.dart'
-    show GoogleChronicleEnvironment;
+    show ChronicleEnvironmentDynamicParameters, GoogleChronicleEnvironment;
 export 'src/chronicle/google_chronicle_environment_group.dart'
     show GoogleChronicleEnvironmentGroup;
 export 'src/chronicle/google_chronicle_feed.dart'

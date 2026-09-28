@@ -146,9 +146,17 @@ final class GoogleGkeHubFleet extends Resource {
   /// Reference to `delete_time` attribute.
   TfRef<String> get deleteTime => TfRef.attribute<String>(this, 'delete_time');
 
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
   /// Reference to `state` attribute.
   TfRef<List<Map<String, Object?>>> get state =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'state');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
