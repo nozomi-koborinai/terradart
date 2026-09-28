@@ -21,15 +21,15 @@ final class DataZoneFilter {
     this.account,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataZoneFilterDirection>? direction;
 
-  final TfArg<String>? match;
+  final TfArg<DataZoneFilterMatch>? match;
 
   final TfArg<String>? name;
 
-  final TfArg<String>? order;
+  final TfArg<DataZoneFilterOrder>? order;
 
-  final TfArg<String>? status;
+  final TfArg<DataZoneFilterStatus>? status;
 
   final TfArg<List<Object?>>? type;
 
@@ -44,6 +44,51 @@ final class DataZoneFilter {
     if (type != null) 'type': type!.toTfJson(),
     if (account != null) 'account': account!.encode(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataZoneFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataZoneFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `match` — derived from the provider schema description.
+enum DataZoneFilterMatch implements TerraformEnum {
+  any('any'),
+  all('all');
+
+  const DataZoneFilterMatch(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataZoneFilterOrder implements TerraformEnum {
+  name('name'),
+  status('status'),
+  accountId('account.id'),
+  accountName('account.name'),
+  planId('plan.id');
+
+  const DataZoneFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `status` — derived from the provider schema description.
+enum DataZoneFilterStatus implements TerraformEnum {
+  initializing('initializing'),
+  pending('pending'),
+  active('active'),
+  moved('moved');
+
+  const DataZoneFilterStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter.account` block of

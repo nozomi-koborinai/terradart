@@ -4,4 +4,9 @@
 library;
 
 export 'src/d1/cloudflare_d1_database.dart'
-    show CloudflareD1Database, D1DatabaseReadReplication;
+    show
+        CloudflareD1Database,
+        D1DatabaseJurisdiction,
+        D1DatabasePrimaryLocationHint,
+        D1DatabaseReadReplication,
+        D1DatabaseReadReplicationMode;

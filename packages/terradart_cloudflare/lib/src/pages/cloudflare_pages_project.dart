@@ -107,7 +107,7 @@ final class PagesProjectDeploymentConfigsPreview {
 
   final TfArg<bool>? failOpen;
 
-  final TfArg<String>? usageModel;
+  final TfArg<PagesProjectDeploymentConfigsPreviewUsageModel>? usageModel;
 
   final TfArg<String>? wranglerConfigHash;
 
@@ -182,6 +182,17 @@ final class PagesProjectDeploymentConfigsPreview {
   };
 }
 
+/// `usage_model` — derived from the provider schema description.
+enum PagesProjectDeploymentConfigsPreviewUsageModel implements TerraformEnum {
+  standard('standard'),
+  bundled('bundled'),
+  unbound('unbound');
+
+  const PagesProjectDeploymentConfigsPreviewUsageModel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `deployment_configs.preview.ai_bindings` block of
 /// `cloudflare_pages_project` (derived from provider schema).
 @immutable
@@ -250,7 +261,7 @@ final class PagesProjectDeploymentConfigsPreviewEnvVars {
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<PagesProjectDeploymentConfigsPreviewEnvVarsType> type;
 
   final TfArg<String> value;
 
@@ -258,6 +269,16 @@ final class PagesProjectDeploymentConfigsPreviewEnvVars {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PagesProjectDeploymentConfigsPreviewEnvVarsType implements TerraformEnum {
+  plainText('plain_text'),
+  secretText('secret_text');
+
+  const PagesProjectDeploymentConfigsPreviewEnvVarsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `deployment_configs.preview.hyperdrive_bindings` block of
@@ -428,7 +449,7 @@ final class PagesProjectDeploymentConfigsProduction {
 
   final TfArg<bool>? failOpen;
 
-  final TfArg<String>? usageModel;
+  final TfArg<PagesProjectDeploymentConfigsProductionUsageModel>? usageModel;
 
   final TfArg<String>? wranglerConfigHash;
 
@@ -504,6 +525,18 @@ final class PagesProjectDeploymentConfigsProduction {
   };
 }
 
+/// `usage_model` — derived from the provider schema description.
+enum PagesProjectDeploymentConfigsProductionUsageModel
+    implements TerraformEnum {
+  standard('standard'),
+  bundled('bundled'),
+  unbound('unbound');
+
+  const PagesProjectDeploymentConfigsProductionUsageModel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `deployment_configs.production.ai_bindings` block of
 /// `cloudflare_pages_project` (derived from provider schema).
 @immutable
@@ -572,7 +605,7 @@ final class PagesProjectDeploymentConfigsProductionEnvVars {
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<PagesProjectDeploymentConfigsProductionEnvVarsType> type;
 
   final TfArg<String> value;
 
@@ -580,6 +613,17 @@ final class PagesProjectDeploymentConfigsProductionEnvVars {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PagesProjectDeploymentConfigsProductionEnvVarsType
+    implements TerraformEnum {
+  plainText('plain_text'),
+  secretText('secret_text');
+
+  const PagesProjectDeploymentConfigsProductionEnvVarsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `deployment_configs.production.hyperdrive_bindings` block of
@@ -717,7 +761,7 @@ final class PagesProjectDeploymentConfigsProductionVectorizeBindings {
 final class PagesProjectSource {
   const PagesProjectSource({required this.type, required this.config});
 
-  final TfArg<String> type;
+  final TfArg<PagesProjectSourceType> type;
 
   final PagesProjectSourceConfig config;
 
@@ -725,6 +769,16 @@ final class PagesProjectSource {
     'type': type.toTfJson(),
     'config': config.encode(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PagesProjectSourceType implements TerraformEnum {
+  github('github'),
+  gitlab('gitlab');
+
+  const PagesProjectSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source.config` block of
@@ -763,7 +817,8 @@ final class PagesProjectSourceConfig {
 
   final TfArg<List<Object?>>? previewBranchIncludes;
 
-  final TfArg<String>? previewDeploymentSetting;
+  final TfArg<PagesProjectSourceConfigPreviewDeploymentSetting>?
+  previewDeploymentSetting;
 
   final TfArg<String>? productionBranch;
 
@@ -796,6 +851,17 @@ final class PagesProjectSourceConfig {
     if (repoId != null) 'repo_id': repoId!.toTfJson(),
     if (repoName != null) 'repo_name': repoName!.toTfJson(),
   };
+}
+
+/// `preview_deployment_setting` — derived from the provider schema description.
+enum PagesProjectSourceConfigPreviewDeploymentSetting implements TerraformEnum {
+  all('all'),
+  none('none'),
+  custom('custom');
+
+  const PagesProjectSourceConfigPreviewDeploymentSetting(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_pages_project`.

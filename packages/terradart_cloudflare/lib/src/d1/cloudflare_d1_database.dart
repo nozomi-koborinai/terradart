@@ -7,15 +7,50 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_d1_database`.
 const Set<String> _cloudflareD1DatabaseSensitive = <String>{};
 
+/// D1 Database enum for `jurisdiction`.
+enum D1DatabaseJurisdiction implements TerraformEnum {
+  eu('eu'),
+  fedramp('fedramp'),
+  us('us');
+
+  const D1DatabaseJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// D1 Database Primary Location enum for `primary_location_hint`.
+enum D1DatabasePrimaryLocationHint implements TerraformEnum {
+  wnam('wnam'),
+  enam('enam'),
+  weur('weur'),
+  eeur('eeur'),
+  apac('apac'),
+  oc('oc');
+
+  const D1DatabasePrimaryLocationHint(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `read_replication` block of
 /// `cloudflare_d1_database` (derived from provider schema).
 @immutable
 final class D1DatabaseReadReplication {
   const D1DatabaseReadReplication({required this.mode});
 
-  final TfArg<String> mode;
+  final TfArg<D1DatabaseReadReplicationMode> mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
+}
+
+/// `mode` — derived from the provider schema description.
+enum D1DatabaseReadReplicationMode implements TerraformEnum {
+  auto('auto'),
+  disabled('disabled');
+
+  const D1DatabaseReadReplicationMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_d1_database`.
@@ -30,9 +65,9 @@ final class CloudflareD1Database extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<List<String>>? fields,
-    TfArg<String>? jurisdiction,
+    TfArg<D1DatabaseJurisdiction>? jurisdiction,
     required TfArg<String> name,
-    TfArg<String>? primaryLocationHint,
+    TfArg<D1DatabasePrimaryLocationHint>? primaryLocationHint,
     D1DatabaseReadReplication? readReplication,
     super.lifecycle,
     super.dependsOn,

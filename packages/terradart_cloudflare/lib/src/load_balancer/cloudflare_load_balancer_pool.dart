@@ -20,11 +20,11 @@ final class LoadBalancerPoolLoadShedding {
 
   final TfArg<num>? defaultPercent;
 
-  final TfArg<String>? defaultPolicy;
+  final TfArg<LoadBalancerPoolLoadSheddingDefaultPolicy>? defaultPolicy;
 
   final TfArg<num>? sessionPercent;
 
-  final TfArg<String>? sessionPolicy;
+  final TfArg<LoadBalancerPoolLoadSheddingSessionPolicy>? sessionPolicy;
 
   Map<String, Object?> encode() => {
     if (defaultPercent != null) 'default_percent': defaultPercent!.toTfJson(),
@@ -32,6 +32,25 @@ final class LoadBalancerPoolLoadShedding {
     if (sessionPercent != null) 'session_percent': sessionPercent!.toTfJson(),
     if (sessionPolicy != null) 'session_policy': sessionPolicy!.toTfJson(),
   };
+}
+
+/// `default_policy` — derived from the provider schema description.
+enum LoadBalancerPoolLoadSheddingDefaultPolicy implements TerraformEnum {
+  random('random'),
+  hash('hash');
+
+  const LoadBalancerPoolLoadSheddingDefaultPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `session_policy` — derived from the provider schema description.
+enum LoadBalancerPoolLoadSheddingSessionPolicy implements TerraformEnum {
+  hash('hash');
+
+  const LoadBalancerPoolLoadSheddingSessionPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `notification_filter` block of
@@ -88,11 +107,23 @@ final class LoadBalancerPoolNotificationFilterPool {
 final class LoadBalancerPoolOriginSteering {
   const LoadBalancerPoolOriginSteering({this.policy});
 
-  final TfArg<String>? policy;
+  final TfArg<LoadBalancerPoolOriginSteeringPolicy>? policy;
 
   Map<String, Object?> encode() => {
     if (policy != null) 'policy': policy!.toTfJson(),
   };
+}
+
+/// `policy` — derived from the provider schema description.
+enum LoadBalancerPoolOriginSteeringPolicy implements TerraformEnum {
+  random('random'),
+  hash('hash'),
+  leastOutstandingRequests('least_outstanding_requests'),
+  leastConnections('least_connections');
+
+  const LoadBalancerPoolOriginSteeringPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `origins` block of

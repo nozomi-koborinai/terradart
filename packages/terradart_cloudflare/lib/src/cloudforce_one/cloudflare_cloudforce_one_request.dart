@@ -6,6 +6,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_cloudforce_one_request`.
 const Set<String> _cloudflareCloudforceOneRequestSensitive = <String>{};
 
+/// Cloudforce One Request enum for `tlp`.
+enum CloudforceOneRequestTlp implements TerraformEnum {
+  clear('clear'),
+  amber('amber'),
+  amberStrict('amber-strict'),
+  green('green'),
+  red('red');
+
+  const CloudforceOneRequestTlp(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_cloudforce_one_request`.
 ///
 /// Accepted Permissions
@@ -21,7 +34,7 @@ final class CloudflareCloudforceOneRequest extends Resource {
     TfArg<String>? priority,
     TfArg<String>? requestType,
     TfArg<String>? summary,
-    TfArg<String>? tlp,
+    TfArg<CloudforceOneRequestTlp>? tlp,
     super.lifecycle,
     super.dependsOn,
     super.provider,

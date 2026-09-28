@@ -6,6 +6,32 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_schema_validation_settings`.
 const Set<String> _cloudflareSchemaValidationSettingsSensitive = <String>{};
 
+/// Schema Validation Settings Validation Default Mitigation enum for `validation_default_mitigation_action`.
+enum SchemaValidationSettingsValidationDefaultMitigationAction
+    implements TerraformEnum {
+  none('none'),
+  log('log'),
+  block('block');
+
+  const SchemaValidationSettingsValidationDefaultMitigationAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Schema Validation Settings Validation Override Mitigation enum for `validation_override_mitigation_action`.
+enum SchemaValidationSettingsValidationOverrideMitigationAction
+    implements TerraformEnum {
+  none('none');
+
+  const SchemaValidationSettingsValidationOverrideMitigationAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_schema_validation_settings`.
 ///
 /// Accepted Permissions
@@ -17,8 +43,10 @@ final class CloudflareSchemaValidationSettings extends Resource {
 
   CloudflareSchemaValidationSettings({
     required super.localName,
-    required TfArg<String> validationDefaultMitigationAction,
-    TfArg<String>? validationOverrideMitigationAction,
+    required TfArg<SchemaValidationSettingsValidationDefaultMitigationAction>
+    validationDefaultMitigationAction,
+    TfArg<SchemaValidationSettingsValidationOverrideMitigationAction>?
+    validationOverrideMitigationAction,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_queue`.
 const Set<String> _cloudflareQueueSensitive = <String>{};
 
+/// Queue enum for `jurisdiction`.
+enum QueueJurisdiction implements TerraformEnum {
+  eu('eu'),
+  us('us'),
+  fedramp('fedramp');
+
+  const QueueJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `settings` block of
 /// `cloudflare_queue` (derived from provider schema).
 @immutable
@@ -43,7 +54,7 @@ final class CloudflareQueue extends Resource {
   CloudflareQueue({
     required super.localName,
     required TfArg<String> accountId,
-    TfArg<String>? jurisdiction,
+    TfArg<QueueJurisdiction>? jurisdiction,
     required TfArg<String> queueName,
     QueueSettings? settings,
     super.lifecycle,

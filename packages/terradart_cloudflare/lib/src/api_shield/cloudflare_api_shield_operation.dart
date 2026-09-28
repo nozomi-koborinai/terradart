@@ -6,6 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_api_shield_operation`.
 const Set<String> _cloudflareApiShieldOperationSensitive = <String>{};
 
+/// Api Shield Operation enum for `method`.
+enum ApiShieldOperationMethod implements TerraformEnum {
+  get('GET'),
+  post('POST'),
+  head('HEAD'),
+  options('OPTIONS'),
+  put('PUT'),
+  delete('DELETE'),
+  connect('CONNECT'),
+  patch('PATCH'),
+  trace('TRACE');
+
+  const ApiShieldOperationMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_api_shield_operation`.
 ///
 /// Accepted Permissions
@@ -20,7 +37,7 @@ final class CloudflareApiShieldOperation extends Resource {
     required TfArg<String> endpoint,
     TfArg<List<String>>? feature,
     required TfArg<String> host,
-    required TfArg<String> method,
+    required TfArg<ApiShieldOperationMethod> method,
     TfArg<bool>? withSchemas,
     required TfArg<String> zoneId,
     super.lifecycle,

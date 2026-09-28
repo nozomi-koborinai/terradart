@@ -7,6 +7,50 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_ruleset`.
 const Set<String> _cloudflareRulesetSensitive = <String>{};
 
+/// Ruleset enum for `kind`.
+enum RulesetKind implements TerraformEnum {
+  managed('managed'),
+  custom('custom'),
+  root('root'),
+  zone('zone');
+
+  const RulesetKind(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ruleset enum for `phase`.
+enum RulesetPhase implements TerraformEnum {
+  ddosL4('ddos_l4'),
+  ddosL7('ddos_l7'),
+  httpConfigSettings('http_config_settings'),
+  httpCustomErrors('http_custom_errors'),
+  httpLogCustomFields('http_log_custom_fields'),
+  httpRatelimit('http_ratelimit'),
+  httpRequestCacheSettings('http_request_cache_settings'),
+  httpRequestDynamicRedirect('http_request_dynamic_redirect'),
+  httpRequestFirewallCustom('http_request_firewall_custom'),
+  httpRequestFirewallManaged('http_request_firewall_managed'),
+  httpRequestLateTransform('http_request_late_transform'),
+  httpRequestOrigin('http_request_origin'),
+  httpRequestRedirect('http_request_redirect'),
+  httpRequestSanitize('http_request_sanitize'),
+  httpRequestSbfm('http_request_sbfm'),
+  httpRequestTransform('http_request_transform'),
+  httpResponseCacheSettings('http_response_cache_settings'),
+  httpResponseCompression('http_response_compression'),
+  httpResponseFirewallManaged('http_response_firewall_managed'),
+  httpResponseHeadersTransform('http_response_headers_transform'),
+  magicTransit('magic_transit'),
+  magicTransitIdsManaged('magic_transit_ids_managed'),
+  magicTransitManaged('magic_transit_managed'),
+  magicTransitRatelimit('magic_transit_ratelimit');
+
+  const RulesetPhase(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rules` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
@@ -23,7 +67,7 @@ final class RulesetRules {
     this.ratelimit,
   });
 
-  final TfArg<String> action;
+  final TfArg<RulesetRulesAction> action;
 
   final TfArg<String>? description;
 
@@ -54,6 +98,34 @@ final class RulesetRules {
     if (logging != null) 'logging': logging!.encode(),
     if (ratelimit != null) 'ratelimit': ratelimit!.encode(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum RulesetRulesAction implements TerraformEnum {
+  block('block'),
+  challenge('challenge'),
+  compressResponse('compress_response'),
+  ddosDynamic('ddos_dynamic'),
+  execute('execute'),
+  forceConnectionClose('force_connection_close'),
+  jsChallenge('js_challenge'),
+  log('log'),
+  logCustomField('log_custom_field'),
+  managedChallenge('managed_challenge'),
+  redirect('redirect'),
+  rewrite('rewrite'),
+  route('route'),
+  score('score'),
+  serveError('serve_error'),
+  setCacheControl('set_cache_control'),
+  setCacheSettings('set_cache_settings'),
+  setCacheTags('set_cache_tags'),
+  setConfig('set_config'),
+  skip('skip');
+
+  const RulesetRulesAction(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters` block of
@@ -157,7 +229,7 @@ final class RulesetRulesActionParameters {
 
   final TfArg<bool>? contentConverter;
 
-  final TfArg<String>? contentType;
+  final TfArg<RulesetRulesActionParametersContentType>? contentType;
 
   final TfArg<bool>? disableApps;
 
@@ -181,7 +253,7 @@ final class RulesetRulesActionParameters {
 
   final TfArg<bool>? mirage;
 
-  final TfArg<String>? operation;
+  final TfArg<RulesetRulesActionParametersOperation>? operation;
 
   final TfArg<bool>? opportunisticEncryption;
 
@@ -189,35 +261,37 @@ final class RulesetRulesActionParameters {
 
   final TfArg<bool>? originErrorPagePassthru;
 
-  final TfArg<List<Object?>>? phases;
+  final List<TfArg<RulesetRulesActionParametersPhases>>? phases;
 
-  final TfArg<String>? polish;
+  final TfArg<RulesetRulesActionParametersPolish>? polish;
 
-  final TfArg<List<Object?>>? products;
+  final List<TfArg<RulesetRulesActionParametersProducts>>? products;
 
   final TfArg<num>? readTimeout;
 
   final TfArg<bool>? redirectsForAiTraining;
 
-  final TfArg<String>? requestBodyBuffering;
+  final TfArg<RulesetRulesActionParametersRequestBodyBuffering>?
+  requestBodyBuffering;
 
   final TfArg<bool>? respectStrongEtags;
 
-  final TfArg<String>? responseBodyBuffering;
+  final TfArg<RulesetRulesActionParametersResponseBodyBuffering>?
+  responseBodyBuffering;
 
   final TfArg<bool>? rocketLoader;
 
   final TfArg<Map<String, dynamic>>? rules;
 
-  final TfArg<String>? ruleset;
+  final TfArg<RulesetRulesActionParametersRuleset>? ruleset;
 
   final TfArg<List<Object?>>? rulesets;
 
-  final TfArg<String>? securityLevel;
+  final TfArg<RulesetRulesActionParametersSecurityLevel>? securityLevel;
 
   final TfArg<bool>? serverSideExcludes;
 
-  final TfArg<String>? ssl;
+  final TfArg<RulesetRulesActionParametersSsl>? ssl;
 
   final TfArg<num>? statusCode;
 
@@ -336,9 +410,9 @@ final class RulesetRulesActionParameters {
       'origin_cache_control': originCacheControl!.toTfJson(),
     if (originErrorPagePassthru != null)
       'origin_error_page_passthru': originErrorPagePassthru!.toTfJson(),
-    if (phases != null) 'phases': phases!.toTfJson(),
+    if (phases != null) 'phases': [for (final e in phases!) e.toTfJson()],
     if (polish != null) 'polish': polish!.toTfJson(),
-    if (products != null) 'products': products!.toTfJson(),
+    if (products != null) 'products': [for (final e in products!) e.toTfJson()],
     if (readTimeout != null) 'read_timeout': readTimeout!.toTfJson(),
     if (redirectsForAiTraining != null)
       'redirects_for_ai_training': redirectsForAiTraining!.toTfJson(),
@@ -412,15 +486,169 @@ final class RulesetRulesActionParameters {
   };
 }
 
+/// `content_type` — derived from the provider schema description.
+enum RulesetRulesActionParametersContentType implements TerraformEnum {
+  applicationJson('application/json'),
+  textHtml('text/html'),
+  textPlain('text/plain'),
+  textXml('text/xml');
+
+  const RulesetRulesActionParametersContentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersOperation implements TerraformEnum {
+  set('set'),
+  add('add'),
+  remove('remove');
+
+  const RulesetRulesActionParametersOperation(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `phases` — derived from the provider schema description.
+enum RulesetRulesActionParametersPhases implements TerraformEnum {
+  ddosL4('ddos_l4'),
+  ddosL7('ddos_l7'),
+  httpConfigSettings('http_config_settings'),
+  httpCustomErrors('http_custom_errors'),
+  httpLogCustomFields('http_log_custom_fields'),
+  httpRatelimit('http_ratelimit'),
+  httpRequestCacheSettings('http_request_cache_settings'),
+  httpRequestDynamicRedirect('http_request_dynamic_redirect'),
+  httpRequestFirewallCustom('http_request_firewall_custom'),
+  httpRequestFirewallManaged('http_request_firewall_managed'),
+  httpRequestLateTransform('http_request_late_transform'),
+  httpRequestOrigin('http_request_origin'),
+  httpRequestRedirect('http_request_redirect'),
+  httpRequestSanitize('http_request_sanitize'),
+  httpRequestSbfm('http_request_sbfm'),
+  httpRequestTransform('http_request_transform'),
+  httpResponseCacheSettings('http_response_cache_settings'),
+  httpResponseCompression('http_response_compression'),
+  httpResponseFirewallManaged('http_response_firewall_managed'),
+  httpResponseHeadersTransform('http_response_headers_transform'),
+  magicTransit('magic_transit'),
+  magicTransitIdsManaged('magic_transit_ids_managed'),
+  magicTransitManaged('magic_transit_managed'),
+  magicTransitRatelimit('magic_transit_ratelimit');
+
+  const RulesetRulesActionParametersPhases(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `polish` — derived from the provider schema description.
+enum RulesetRulesActionParametersPolish implements TerraformEnum {
+  off('off'),
+  lossless('lossless'),
+  lossy('lossy'),
+  webp('webp');
+
+  const RulesetRulesActionParametersPolish(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `products` — derived from the provider schema description.
+enum RulesetRulesActionParametersProducts implements TerraformEnum {
+  bic('bic'),
+  hot('hot'),
+  ratelimit('rateLimit'),
+  securitylevel('securityLevel'),
+  uablock('uaBlock'),
+  waf('waf'),
+  zonelockdown('zoneLockdown');
+
+  const RulesetRulesActionParametersProducts(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `request_body_buffering` — derived from the provider schema description.
+enum RulesetRulesActionParametersRequestBodyBuffering implements TerraformEnum {
+  none('none'),
+  standard('standard'),
+  full('full');
+
+  const RulesetRulesActionParametersRequestBodyBuffering(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `response_body_buffering` — derived from the provider schema description.
+enum RulesetRulesActionParametersResponseBodyBuffering
+    implements TerraformEnum {
+  none('none'),
+  standard('standard');
+
+  const RulesetRulesActionParametersResponseBodyBuffering(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `ruleset` — derived from the provider schema description.
+enum RulesetRulesActionParametersRuleset implements TerraformEnum {
+  current('current');
+
+  const RulesetRulesActionParametersRuleset(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `security_level` — derived from the provider schema description.
+enum RulesetRulesActionParametersSecurityLevel implements TerraformEnum {
+  off('off'),
+  essentiallyOff('essentially_off'),
+  low('low'),
+  medium('medium'),
+  high('high'),
+  underAttack('under_attack');
+
+  const RulesetRulesActionParametersSecurityLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `ssl` — derived from the provider schema description.
+enum RulesetRulesActionParametersSsl implements TerraformEnum {
+  off('off'),
+  flexible('flexible'),
+  full('full'),
+  strict('strict'),
+  originPull('origin_pull');
+
+  const RulesetRulesActionParametersSsl(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rules.action_parameters.algorithms` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
 final class RulesetRulesActionParametersAlgorithms {
   const RulesetRulesActionParametersAlgorithms({this.name});
 
-  final TfArg<String>? name;
+  final TfArg<RulesetRulesActionParametersAlgorithmsName>? name;
 
   Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+}
+
+/// `name` — derived from the provider schema description.
+enum RulesetRulesActionParametersAlgorithmsName implements TerraformEnum {
+  none('none'),
+  auto('auto'),
+  defaultCase('default'),
+  gzip('gzip'),
+  brotli('brotli'),
+  zstd('zstd');
+
+  const RulesetRulesActionParametersAlgorithmsName(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.autominify` block of
@@ -453,12 +681,24 @@ final class RulesetRulesActionParametersBrowserTtl {
 
   final TfArg<num>? defaultCase;
 
-  final TfArg<String> mode;
+  final TfArg<RulesetRulesActionParametersBrowserTtlMode> mode;
 
   Map<String, Object?> encode() => {
     if (defaultCase != null) 'default': defaultCase!.toTfJson(),
     'mode': mode.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum RulesetRulesActionParametersBrowserTtlMode implements TerraformEnum {
+  respectOrigin('respect_origin'),
+  bypassByDefault('bypass_by_default'),
+  overrideOrigin('override_origin'),
+  bypass('bypass');
+
+  const RulesetRulesActionParametersBrowserTtlMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.cache_key` block of
@@ -706,7 +946,7 @@ final class RulesetRulesActionParametersEdgeTtl {
 
   final TfArg<num>? defaultCase;
 
-  final TfArg<String> mode;
+  final TfArg<RulesetRulesActionParametersEdgeTtlMode> mode;
 
   final List<RulesetRulesActionParametersEdgeTtlStatusCodeTtl>? statusCodeTtl;
 
@@ -716,6 +956,17 @@ final class RulesetRulesActionParametersEdgeTtl {
     if (statusCodeTtl != null)
       'status_code_ttl': [for (final e in statusCodeTtl!) e.encode()],
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum RulesetRulesActionParametersEdgeTtlMode implements TerraformEnum {
+  respectOrigin('respect_origin'),
+  bypassByDefault('bypass_by_default'),
+  overrideOrigin('override_origin');
+
+  const RulesetRulesActionParametersEdgeTtlMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.edge_ttl.status_code_ttl` block of
@@ -835,7 +1086,7 @@ final class RulesetRulesActionParametersHeaders {
 
   final TfArg<String>? expression;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersHeadersOperation> operation;
 
   final TfArg<String>? value;
 
@@ -844,6 +1095,17 @@ final class RulesetRulesActionParametersHeaders {
     'operation': operation.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersHeadersOperation implements TerraformEnum {
+  add('add'),
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersHeadersOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.immutable` block of
@@ -857,12 +1119,22 @@ final class RulesetRulesActionParametersImmutable {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersImmutableOperation> operation;
 
   Map<String, Object?> encode() => {
     if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
     'operation': operation.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersImmutableOperation implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersImmutableOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.matched_data` block of
@@ -888,7 +1160,7 @@ final class RulesetRulesActionParametersMaxAge {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersMaxAgeOperation> operation;
 
   final TfArg<num>? value;
 
@@ -897,6 +1169,16 @@ final class RulesetRulesActionParametersMaxAge {
     'operation': operation.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersMaxAgeOperation implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersMaxAgeOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.must_revalidate` block of
@@ -910,12 +1192,25 @@ final class RulesetRulesActionParametersMustRevalidate {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersMustRevalidateOperation> operation;
 
   Map<String, Object?> encode() => {
     if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
     'operation': operation.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersMustRevalidateOperation
+    implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersMustRevalidateOperation(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.must_understand` block of
@@ -929,12 +1224,25 @@ final class RulesetRulesActionParametersMustUnderstand {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersMustUnderstandOperation> operation;
 
   Map<String, Object?> encode() => {
     if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
     'operation': operation.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersMustUnderstandOperation
+    implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersMustUnderstandOperation(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.no_cache` block of
@@ -949,7 +1257,7 @@ final class RulesetRulesActionParametersNoCache {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersNoCacheOperation> operation;
 
   final TfArg<List<Object?>>? qualifiers;
 
@@ -958,6 +1266,16 @@ final class RulesetRulesActionParametersNoCache {
     'operation': operation.toTfJson(),
     if (qualifiers != null) 'qualifiers': qualifiers!.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersNoCacheOperation implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersNoCacheOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.no_store` block of
@@ -971,12 +1289,22 @@ final class RulesetRulesActionParametersNoStore {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersNoStoreOperation> operation;
 
   Map<String, Object?> encode() => {
     if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
     'operation': operation.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersNoStoreOperation implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersNoStoreOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.no_transform` block of
@@ -990,12 +1318,22 @@ final class RulesetRulesActionParametersNoTransform {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersNoTransformOperation> operation;
 
   Map<String, Object?> encode() => {
     if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
     'operation': operation.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersNoTransformOperation implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersNoTransformOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.origin` block of
@@ -1020,9 +1358,23 @@ final class RulesetRulesActionParametersOrigin {
 final class RulesetRulesActionParametersOriginRangeRequests {
   const RulesetRulesActionParametersOriginRangeRequests({required this.mode});
 
-  final TfArg<String> mode;
+  final TfArg<RulesetRulesActionParametersOriginRangeRequestsMode> mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
+}
+
+/// `mode` — derived from the provider schema description.
+enum RulesetRulesActionParametersOriginRangeRequestsMode
+    implements TerraformEnum {
+  on('on'),
+  off('off'),
+  defaultCase('default');
+
+  const RulesetRulesActionParametersOriginRangeRequestsMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.overrides` block of
@@ -1041,7 +1393,8 @@ final class RulesetRulesActionParametersOverrides {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? sensitivityLevel;
+  final TfArg<RulesetRulesActionParametersOverridesSensitivityLevel>?
+  sensitivityLevel;
 
   final List<RulesetRulesActionParametersOverridesCategories>? categories;
 
@@ -1056,6 +1409,21 @@ final class RulesetRulesActionParametersOverrides {
       'categories': [for (final e in categories!) e.encode()],
     if (rules != null) 'rules': [for (final e in rules!) e.encode()],
   };
+}
+
+/// `sensitivity_level` — derived from the provider schema description.
+enum RulesetRulesActionParametersOverridesSensitivityLevel
+    implements TerraformEnum {
+  defaultCase('default'),
+  medium('medium'),
+  low('low'),
+  eoff('eoff');
+
+  const RulesetRulesActionParametersOverridesSensitivityLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.overrides.categories` block of
@@ -1075,7 +1443,8 @@ final class RulesetRulesActionParametersOverridesCategories {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? sensitivityLevel;
+  final TfArg<RulesetRulesActionParametersOverridesCategoriesSensitivityLevel>?
+  sensitivityLevel;
 
   Map<String, Object?> encode() => {
     if (action != null) 'action': action!.toTfJson(),
@@ -1084,6 +1453,21 @@ final class RulesetRulesActionParametersOverridesCategories {
     if (sensitivityLevel != null)
       'sensitivity_level': sensitivityLevel!.toTfJson(),
   };
+}
+
+/// `sensitivity_level` — derived from the provider schema description.
+enum RulesetRulesActionParametersOverridesCategoriesSensitivityLevel
+    implements TerraformEnum {
+  defaultCase('default'),
+  medium('medium'),
+  low('low'),
+  eoff('eoff');
+
+  const RulesetRulesActionParametersOverridesCategoriesSensitivityLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.overrides.rules` block of
@@ -1106,7 +1490,8 @@ final class RulesetRulesActionParametersOverridesRules {
 
   final TfArg<num>? scoreThreshold;
 
-  final TfArg<String>? sensitivityLevel;
+  final TfArg<RulesetRulesActionParametersOverridesRulesSensitivityLevel>?
+  sensitivityLevel;
 
   Map<String, Object?> encode() => {
     if (action != null) 'action': action!.toTfJson(),
@@ -1116,6 +1501,21 @@ final class RulesetRulesActionParametersOverridesRules {
     if (sensitivityLevel != null)
       'sensitivity_level': sensitivityLevel!.toTfJson(),
   };
+}
+
+/// `sensitivity_level` — derived from the provider schema description.
+enum RulesetRulesActionParametersOverridesRulesSensitivityLevel
+    implements TerraformEnum {
+  defaultCase('default'),
+  medium('medium'),
+  low('low'),
+  eoff('eoff');
+
+  const RulesetRulesActionParametersOverridesRulesSensitivityLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.private` block of
@@ -1130,7 +1530,7 @@ final class RulesetRulesActionParametersPrivate {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersPrivateOperation> operation;
 
   final TfArg<List<Object?>>? qualifiers;
 
@@ -1139,6 +1539,16 @@ final class RulesetRulesActionParametersPrivate {
     'operation': operation.toTfJson(),
     if (qualifiers != null) 'qualifiers': qualifiers!.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersPrivateOperation implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersPrivateOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.proxy_revalidate` block of
@@ -1152,12 +1562,25 @@ final class RulesetRulesActionParametersProxyRevalidate {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersProxyRevalidateOperation> operation;
 
   Map<String, Object?> encode() => {
     if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
     'operation': operation.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersProxyRevalidateOperation
+    implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersProxyRevalidateOperation(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.public` block of
@@ -1171,12 +1594,22 @@ final class RulesetRulesActionParametersPublic {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersPublicOperation> operation;
 
   Map<String, Object?> encode() => {
     if (cloudflareOnly != null) 'cloudflare_only': cloudflareOnly!.toTfJson(),
     'operation': operation.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersPublicOperation implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersPublicOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.raw_response_fields` block of
@@ -1265,7 +1698,7 @@ final class RulesetRulesActionParametersSMaxage {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersSMaxageOperation> operation;
 
   final TfArg<num>? value;
 
@@ -1274,6 +1707,16 @@ final class RulesetRulesActionParametersSMaxage {
     'operation': operation.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersSMaxageOperation implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersSMaxageOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.serve_stale` block of
@@ -1315,7 +1758,7 @@ final class RulesetRulesActionParametersStaleIfError {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersStaleIfErrorOperation> operation;
 
   final TfArg<num>? value;
 
@@ -1324,6 +1767,17 @@ final class RulesetRulesActionParametersStaleIfError {
     'operation': operation.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersStaleIfErrorOperation
+    implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersStaleIfErrorOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.stale_while_revalidate` block of
@@ -1338,7 +1792,8 @@ final class RulesetRulesActionParametersStaleWhileRevalidate {
 
   final TfArg<bool>? cloudflareOnly;
 
-  final TfArg<String> operation;
+  final TfArg<RulesetRulesActionParametersStaleWhileRevalidateOperation>
+  operation;
 
   final TfArg<num>? value;
 
@@ -1347,6 +1802,19 @@ final class RulesetRulesActionParametersStaleWhileRevalidate {
     'operation': operation.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum RulesetRulesActionParametersStaleWhileRevalidateOperation
+    implements TerraformEnum {
+  set('set'),
+  remove('remove');
+
+  const RulesetRulesActionParametersStaleWhileRevalidateOperation(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.transformed_request_fields` block of
@@ -1435,9 +1903,20 @@ final class RulesetRulesActionParametersVary {
 final class RulesetRulesActionParametersVaryDefault {
   const RulesetRulesActionParametersVaryDefault({required this.action});
 
-  final TfArg<String> action;
+  final TfArg<RulesetRulesActionParametersVaryDefaultAction> action;
 
   Map<String, Object?> encode() => {'action': action.toTfJson()};
+}
+
+/// `action` — derived from the provider schema description.
+enum RulesetRulesActionParametersVaryDefaultAction implements TerraformEnum {
+  bypass('bypass'),
+  passthrough('passthrough'),
+  normalize('normalize');
+
+  const RulesetRulesActionParametersVaryDefaultAction(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.action_parameters.vary.headers` block of
@@ -1450,7 +1929,7 @@ final class RulesetRulesActionParametersVaryHeaders {
     this.mediaTypes,
   });
 
-  final TfArg<String> action;
+  final TfArg<RulesetRulesActionParametersVaryHeadersAction> action;
 
   final TfArg<List<Object?>>? languages;
 
@@ -1461,6 +1940,17 @@ final class RulesetRulesActionParametersVaryHeaders {
     if (languages != null) 'languages': languages!.toTfJson(),
     if (mediaTypes != null) 'media_types': mediaTypes!.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum RulesetRulesActionParametersVaryHeadersAction implements TerraformEnum {
+  bypass('bypass'),
+  passthrough('passthrough'),
+  normalize('normalize');
+
+  const RulesetRulesActionParametersVaryHeadersAction(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.exposed_credential_check` block of
@@ -1551,9 +2041,9 @@ final class CloudflareRuleset extends Resource {
     required super.localName,
     TfArg<String>? accountId,
     TfArg<String>? description,
-    required TfArg<String> kind,
+    required TfArg<RulesetKind> kind,
     required TfArg<String> name,
-    required TfArg<String> phase,
+    required TfArg<RulesetPhase> phase,
     TfArg<String>? zoneId,
     List<RulesetRules>? rules,
     super.lifecycle,

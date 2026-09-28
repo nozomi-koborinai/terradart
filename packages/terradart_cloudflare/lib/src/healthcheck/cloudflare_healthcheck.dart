@@ -32,7 +32,7 @@ final class HealthcheckHttpConfig {
 
   final TfArg<Map<String, dynamic>>? header;
 
-  final TfArg<String>? method;
+  final TfArg<HealthcheckHttpConfigMethod>? method;
 
   final TfArg<String>? path;
 
@@ -51,13 +51,23 @@ final class HealthcheckHttpConfig {
   };
 }
 
+/// `method` — derived from the provider schema description.
+enum HealthcheckHttpConfigMethod implements TerraformEnum {
+  get('GET'),
+  head('HEAD');
+
+  const HealthcheckHttpConfigMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `tcp_config` block of
 /// `cloudflare_healthcheck` (derived from provider schema).
 @immutable
 final class HealthcheckTcpConfig {
   const HealthcheckTcpConfig({this.method, this.port});
 
-  final TfArg<String>? method;
+  final TfArg<HealthcheckTcpConfigMethod>? method;
 
   final TfArg<num>? port;
 
@@ -65,6 +75,15 @@ final class HealthcheckTcpConfig {
     if (method != null) 'method': method!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
   };
+}
+
+/// `method` — derived from the provider schema description.
+enum HealthcheckTcpConfigMethod implements TerraformEnum {
+  connectionEstablished('connection_established');
+
+  const HealthcheckTcpConfigMethod(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_healthcheck`.

@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_page_shield_policy`.
 const Set<String> _cloudflarePageShieldPolicySensitive = <String>{};
 
+/// Page Shield Policy enum for `action`.
+enum PageShieldPolicyAction implements TerraformEnum {
+  allow('allow'),
+  log('log'),
+  addReportingDirectives('add_reporting_directives');
+
+  const PageShieldPolicyAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_page_shield_policy`.
 ///
 /// Accepted Permissions
@@ -17,7 +28,7 @@ final class CloudflarePageShieldPolicy extends Resource {
 
   CloudflarePageShieldPolicy({
     required super.localName,
-    required TfArg<String> action,
+    required TfArg<PageShieldPolicyAction> action,
     required TfArg<String> description,
     required TfArg<bool> enabled,
     required TfArg<String> expression,

@@ -13,14 +13,36 @@ const Set<String> _cloudflareWorkerSensitive = <String>{};
 final class DataWorkerFilter {
   const DataWorkerFilter({this.order, this.orderBy});
 
-  final TfArg<String>? order;
+  final TfArg<DataWorkerFilterOrder>? order;
 
-  final TfArg<String>? orderBy;
+  final TfArg<DataWorkerFilterOrderBy>? orderBy;
 
   Map<String, Object?> encode() => {
     if (order != null) 'order': order!.toTfJson(),
     if (orderBy != null) 'order_by': orderBy!.toTfJson(),
   };
+}
+
+/// `order` — derived from the provider schema description.
+enum DataWorkerFilterOrder implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataWorkerFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order_by` — derived from the provider schema description.
+enum DataWorkerFilterOrderBy implements TerraformEnum {
+  deployedOn('deployed_on'),
+  updatedOn('updated_on'),
+  createdOn('created_on'),
+  name('name');
+
+  const DataWorkerFilterOrderBy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_worker`.

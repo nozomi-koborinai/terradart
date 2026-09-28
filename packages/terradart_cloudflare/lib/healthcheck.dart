@@ -4,4 +4,9 @@
 library;
 
 export 'src/healthcheck/cloudflare_healthcheck.dart'
-    show CloudflareHealthcheck, HealthcheckHttpConfig, HealthcheckTcpConfig;
+    show
+        CloudflareHealthcheck,
+        HealthcheckHttpConfig,
+        HealthcheckHttpConfigMethod,
+        HealthcheckTcpConfig,
+        HealthcheckTcpConfigMethod;

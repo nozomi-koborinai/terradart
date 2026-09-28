@@ -10,6 +10,71 @@ const Set<String> _cloudflareLogpushJobSensitive = <String>{
   'ownership_challenge',
 };
 
+/// Logpush Job enum for `dataset`.
+enum LogpushJobDataset implements TerraformEnum {
+  accessRequests('access_requests'),
+  accountAbuseProtectionEvents('account_abuse_protection_events'),
+  auditLogs('audit_logs'),
+  auditLogsV2('audit_logs_v2'),
+  bisoUserActions('biso_user_actions'),
+  casbFindings('casb_findings'),
+  devicePostureResults('device_posture_results'),
+  dexApplicationTests('dex_application_tests'),
+  dexDeviceStateEvents('dex_device_state_events'),
+  dlpForensicCopies('dlp_forensic_copies'),
+  dnsFirewallLogs('dns_firewall_logs'),
+  dnsLogs('dns_logs'),
+  emailSecurityAlerts('email_security_alerts'),
+  emailSecurityPostDeliveryEvents('email_security_post_delivery_events'),
+  firewallEvents('firewall_events'),
+  gatewayDns('gateway_dns'),
+  gatewayHttp('gateway_http'),
+  gatewayNetwork('gateway_network'),
+  httpRequests('http_requests'),
+  ipsecLogs('ipsec_logs'),
+  magicBgpLogs('magic_bgp_logs'),
+  magicIdsDetections('magic_ids_detections'),
+  mcpPortalLogs('mcp_portal_logs'),
+  mnmFlowLogs('mnm_flow_logs'),
+  nelReports('nel_reports'),
+  networkAnalyticsLogs('network_analytics_logs'),
+  pageShieldEvents('page_shield_events'),
+  sinkholeHttpLogs('sinkhole_http_logs'),
+  spectrumEvents('spectrum_events'),
+  sshLogs('ssh_logs'),
+  turnstileEvents('turnstile_events'),
+  warpConfigChanges('warp_config_changes'),
+  warpToggleChanges('warp_toggle_changes'),
+  websocketAnalytics('websocket_analytics'),
+  workersTraceEvents('workers_trace_events'),
+  zarazEvents('zaraz_events'),
+  zeroTrustNetworkSessions('zero_trust_network_sessions');
+
+  const LogpushJobDataset(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Logpush Job enum for `frequency`.
+enum LogpushJobFrequency implements TerraformEnum {
+  high('high'),
+  low('low');
+
+  const LogpushJobFrequency(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Logpush Job enum for `kind`.
+enum LogpushJobKind implements TerraformEnum {
+  empty(''),
+  edge('edge');
+
+  const LogpushJobKind(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `output_options` block of
 /// `cloudflare_logpush_job` (derived from provider schema).
 @immutable
@@ -42,7 +107,7 @@ final class LogpushJobOutputOptions {
 
   final TfArg<bool>? mergeSubrequests;
 
-  final TfArg<String>? outputType;
+  final TfArg<LogpushJobOutputOptionsOutputType>? outputType;
 
   final TfArg<String>? recordDelimiter;
 
@@ -54,7 +119,7 @@ final class LogpushJobOutputOptions {
 
   final TfArg<num>? sampleRate;
 
-  final TfArg<String>? timestampFormat;
+  final TfArg<LogpushJobOutputOptionsTimestampFormat>? timestampFormat;
 
   Map<String, Object?> encode() => {
     if (batchPrefix != null) 'batch_prefix': batchPrefix!.toTfJson(),
@@ -76,6 +141,29 @@ final class LogpushJobOutputOptions {
   };
 }
 
+/// `output_type` — derived from the provider schema description.
+enum LogpushJobOutputOptionsOutputType implements TerraformEnum {
+  ndjson('ndjson'),
+  csv('csv');
+
+  const LogpushJobOutputOptionsOutputType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `timestamp_format` — derived from the provider schema description.
+enum LogpushJobOutputOptionsTimestampFormat implements TerraformEnum {
+  unixnano('unixnano'),
+  unix('unix'),
+  rfc3339('rfc3339'),
+  rfc3339ms('rfc3339ms'),
+  rfc3339ns('rfc3339ns');
+
+  const LogpushJobOutputOptionsTimestampFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_logpush_job`.
 ///
 /// Accepted Permissions
@@ -87,13 +175,13 @@ final class CloudflareLogpushJob extends Resource {
   CloudflareLogpushJob({
     required super.localName,
     TfArg<String>? accountId,
-    TfArg<String>? dataset,
+    TfArg<LogpushJobDataset>? dataset,
     required TfArg<String> destinationConf,
     TfArg<bool>? enabled,
     TfArg<String>? filter,
     TfArg<bool>? filterAttackTraffic,
-    TfArg<String>? frequency,
-    TfArg<String>? kind,
+    TfArg<LogpushJobFrequency>? frequency,
+    TfArg<LogpushJobKind>? kind,
     TfArg<String>? logpullOptions,
     TfArg<num>? maxUploadBytes,
     TfArg<num>? maxUploadIntervalSeconds,

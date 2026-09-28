@@ -13,7 +13,7 @@ const Set<String> _cloudflareFirewallRuleSensitive = <String>{};
 final class FirewallRuleAction {
   const FirewallRuleAction({this.mode, this.timeout, this.response});
 
-  final TfArg<String>? mode;
+  final TfArg<FirewallRuleActionMode>? mode;
 
   final TfArg<num>? timeout;
 
@@ -24,6 +24,19 @@ final class FirewallRuleAction {
     if (timeout != null) 'timeout': timeout!.toTfJson(),
     if (response != null) 'response': response!.encode(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum FirewallRuleActionMode implements TerraformEnum {
+  simulate('simulate'),
+  ban('ban'),
+  challenge('challenge'),
+  jsChallenge('js_challenge'),
+  managedChallenge('managed_challenge');
+
+  const FirewallRuleActionMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `action.response` block of

@@ -6,6 +6,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_oauth_client`.
 const Set<String> _cloudflareOauthClientSensitive = <String>{'client_secret'};
 
+/// Oauth Client Token Endpoint Auth enum for `token_endpoint_auth_method`.
+enum OauthClientTokenEndpointAuthMethod implements TerraformEnum {
+  none('none'),
+  clientSecretBasic('client_secret_basic'),
+  clientSecretPost('client_secret_post');
+
+  const OauthClientTokenEndpointAuthMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Oauth Client enum for `visibility`.
+enum OauthClientVisibility implements TerraformEnum {
+  public('public');
+
+  const OauthClientVisibility(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_oauth_client`.
 ///
 /// Accepted Permissions
@@ -29,9 +49,9 @@ final class CloudflareOauthClient extends Resource {
     required TfArg<List<String>> redirectUris,
     required TfArg<List<String>> responseTypes,
     required TfArg<List<String>> scopes,
-    required TfArg<String> tokenEndpointAuthMethod,
+    required TfArg<OauthClientTokenEndpointAuthMethod> tokenEndpointAuthMethod,
     TfArg<String>? tosUri,
-    TfArg<String>? visibility,
+    TfArg<OauthClientVisibility>? visibility,
     super.lifecycle,
     super.dependsOn,
     super.provider,

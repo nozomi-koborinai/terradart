@@ -8,26 +8,43 @@ export 'src/load_balancer/cloudflare_load_balancer.dart'
         CloudflareLoadBalancer,
         LoadBalancerAdaptiveRouting,
         LoadBalancerLocationStrategy,
+        LoadBalancerLocationStrategyMode,
+        LoadBalancerLocationStrategyPreferEcs,
         LoadBalancerRandomSteering,
         LoadBalancerRules,
         LoadBalancerRulesFixedResponse,
         LoadBalancerRulesOverrides,
         LoadBalancerRulesOverridesAdaptiveRouting,
         LoadBalancerRulesOverridesLocationStrategy,
+        LoadBalancerRulesOverridesLocationStrategyMode,
+        LoadBalancerRulesOverridesLocationStrategyPreferEcs,
         LoadBalancerRulesOverridesRandomSteering,
+        LoadBalancerRulesOverridesSessionAffinity,
         LoadBalancerRulesOverridesSessionAffinityAttributes,
-        LoadBalancerSessionAffinityAttributes;
+        LoadBalancerRulesOverridesSessionAffinityAttributesSamesite,
+        LoadBalancerRulesOverridesSessionAffinityAttributesSecure,
+        LoadBalancerRulesOverridesSessionAffinityAttributesZeroDowntimeFailover,
+        LoadBalancerRulesOverridesSteeringPolicy,
+        LoadBalancerSessionAffinity,
+        LoadBalancerSessionAffinityAttributes,
+        LoadBalancerSessionAffinityAttributesSamesite,
+        LoadBalancerSessionAffinityAttributesSecure,
+        LoadBalancerSessionAffinityAttributesZeroDowntimeFailover,
+        LoadBalancerSteeringPolicy;
 export 'src/load_balancer/cloudflare_load_balancer_monitor.dart'
-    show CloudflareLoadBalancerMonitor;
+    show CloudflareLoadBalancerMonitor, LoadBalancerMonitorType;
 export 'src/load_balancer/cloudflare_load_balancer_monitor_group.dart'
     show CloudflareLoadBalancerMonitorGroup, LoadBalancerMonitorGroupMembers;
 export 'src/load_balancer/cloudflare_load_balancer_pool.dart'
     show
         CloudflareLoadBalancerPool,
         LoadBalancerPoolLoadShedding,
+        LoadBalancerPoolLoadSheddingDefaultPolicy,
+        LoadBalancerPoolLoadSheddingSessionPolicy,
         LoadBalancerPoolNotificationFilter,
         LoadBalancerPoolNotificationFilterOrigin,
         LoadBalancerPoolNotificationFilterPool,
         LoadBalancerPoolOriginSteering,
+        LoadBalancerPoolOriginSteeringPolicy,
         LoadBalancerPoolOrigins,
         LoadBalancerPoolOriginsHeader;

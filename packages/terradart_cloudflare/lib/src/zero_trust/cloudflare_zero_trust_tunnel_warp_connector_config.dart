@@ -8,6 +8,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareZeroTrustTunnelWarpConnectorConfigSensitive =
     <String>{};
 
+/// Zero Trust Tunnel Warp Connector Config Ha enum for `ha_mode`.
+enum ZeroTrustTunnelWarpConnectorConfigHaMode implements TerraformEnum {
+  none('none'),
+  disabled('disabled'),
+  aws('aws'),
+  local('local');
+
+  const ZeroTrustTunnelWarpConnectorConfigHaMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `config` block of
 /// `cloudflare_zero_trust_tunnel_warp_connector_config` (derived from provider schema).
 @immutable
@@ -71,7 +83,7 @@ final class CloudflareZeroTrustTunnelWarpConnectorConfig extends Resource {
   CloudflareZeroTrustTunnelWarpConnectorConfig({
     required super.localName,
     required TfArg<String> accountId,
-    required TfArg<String> haMode,
+    required TfArg<ZeroTrustTunnelWarpConnectorConfigHaMode> haMode,
     required TfArg<String> tunnelId,
     ZeroTrustTunnelWarpConnectorConfigConfig? config,
     super.lifecycle,

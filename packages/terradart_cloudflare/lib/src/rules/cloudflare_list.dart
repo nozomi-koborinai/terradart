@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_list`.
 const Set<String> _cloudflareListSensitive = <String>{};
 
+/// List enum for `kind`.
+enum ListKind implements TerraformEnum {
+  ip('ip'),
+  redirect('redirect'),
+  hostname('hostname'),
+  asn('asn');
+
+  const ListKind(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `items` block of
 /// `cloudflare_list` (derived from provider schema).
 @immutable
@@ -113,7 +125,7 @@ final class CloudflareList extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<String>? description,
-    required TfArg<String> kind,
+    required TfArg<ListKind> kind,
     required TfArg<String> name,
     List<ListItems>? items,
     super.lifecycle,

@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zero_trust_gateway_policy`.
 const Set<String> _cloudflareZeroTrustGatewayPolicySensitive = <String>{};
 
+/// Zero Trust Gateway Policy enum for `action`.
+enum ZeroTrustGatewayPolicyAction implements TerraformEnum {
+  on('on'),
+  off('off'),
+  allow('allow'),
+  block('block'),
+  scan('scan'),
+  noscan('noscan'),
+  safesearch('safesearch'),
+  ytrestricted('ytrestricted'),
+  isolate('isolate'),
+  noisolate('noisolate'),
+  overrideCase('override'),
+  l4Override('l4_override'),
+  egress('egress'),
+  resolve('resolve'),
+  quarantine('quarantine'),
+  redirect('redirect');
+
+  const ZeroTrustGatewayPolicyAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `expiration` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
@@ -195,7 +219,7 @@ final class ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls {
     this.wmId,
   });
 
-  final TfArg<String>? copy;
+  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsCopy>? copy;
 
   final TfArg<bool>? dcp;
 
@@ -203,21 +227,26 @@ final class ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls {
 
   final TfArg<bool>? dk;
 
-  final TfArg<String>? download;
+  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsDownload>?
+  download;
 
   final TfArg<bool>? dp;
 
   final TfArg<bool>? du;
 
-  final TfArg<String>? keyboard;
+  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsKeyboard>?
+  keyboard;
 
-  final TfArg<String>? paste;
+  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPaste>? paste;
 
-  final TfArg<String>? printing;
+  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPrinting>?
+  printing;
 
-  final TfArg<String>? upload;
+  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsUpload>?
+  upload;
 
-  final TfArg<String>? version;
+  final TfArg<ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsVersion>?
+  version;
 
   final TfArg<String>? wmId;
 
@@ -236,6 +265,100 @@ final class ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls {
     if (version != null) 'version': version!.toTfJson(),
     if (wmId != null) 'wm_id': wmId!.toTfJson(),
   };
+}
+
+/// `copy` — derived from the provider schema description.
+enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsCopy
+    implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled'),
+  remoteOnly('remote_only');
+
+  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsCopy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `download` — derived from the provider schema description.
+enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsDownload
+    implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled'),
+  remoteOnly('remote_only');
+
+  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsDownload(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `keyboard` — derived from the provider schema description.
+enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsKeyboard
+    implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled');
+
+  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsKeyboard(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `paste` — derived from the provider schema description.
+enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPaste
+    implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled'),
+  remoteOnly('remote_only');
+
+  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPaste(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `printing` — derived from the provider schema description.
+enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPrinting
+    implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled');
+
+  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsPrinting(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `upload` — derived from the provider schema description.
+enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsUpload
+    implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled');
+
+  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsUpload(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `version` — derived from the provider schema description.
+enum ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsVersion
+    implements TerraformEnum {
+  v1('v1'),
+  v2('v2');
+
+  const ZeroTrustGatewayPolicyRuleSettingsBisoAdminControlsVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule_settings.block_page` block of
@@ -446,11 +569,37 @@ final class ZeroTrustGatewayPolicyRuleSettingsPayloadLog {
 final class ZeroTrustGatewayPolicyRuleSettingsQuarantine {
   const ZeroTrustGatewayPolicyRuleSettingsQuarantine({this.fileTypes});
 
-  final TfArg<List<Object?>>? fileTypes;
+  final List<TfArg<ZeroTrustGatewayPolicyRuleSettingsQuarantineFileTypes>>?
+  fileTypes;
 
   Map<String, Object?> encode() => {
-    if (fileTypes != null) 'file_types': fileTypes!.toTfJson(),
+    if (fileTypes != null)
+      'file_types': [for (final e in fileTypes!) e.toTfJson()],
   };
+}
+
+/// `file_types` — derived from the provider schema description.
+enum ZeroTrustGatewayPolicyRuleSettingsQuarantineFileTypes
+    implements TerraformEnum {
+  exe('exe'),
+  pdf('pdf'),
+  doc('doc'),
+  docm('docm'),
+  docx('docx'),
+  rtf('rtf'),
+  ppt('ppt'),
+  pptx('pptx'),
+  xls('xls'),
+  xlsm('xlsm'),
+  xlsx('xlsx'),
+  zip('zip'),
+  rar('rar');
+
+  const ZeroTrustGatewayPolicyRuleSettingsQuarantineFileTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule_settings.redirect` block of
@@ -486,7 +635,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternally {
     this.viewId,
   });
 
-  final TfArg<String>? fallback;
+  final TfArg<ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternallyFallback>?
+  fallback;
 
   final TfArg<String>? viewId;
 
@@ -496,17 +646,44 @@ final class ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternally {
   };
 }
 
+/// `fallback` — derived from the provider schema description.
+enum ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternallyFallback
+    implements TerraformEnum {
+  none('none'),
+  publicDns('public_dns');
+
+  const ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternallyFallback(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule_settings.untrusted_cert` block of
 /// `cloudflare_zero_trust_gateway_policy` (derived from provider schema).
 @immutable
 final class ZeroTrustGatewayPolicyRuleSettingsUntrustedCert {
   const ZeroTrustGatewayPolicyRuleSettingsUntrustedCert({this.action});
 
-  final TfArg<String>? action;
+  final TfArg<ZeroTrustGatewayPolicyRuleSettingsUntrustedCertAction>? action;
 
   Map<String, Object?> encode() => {
     if (action != null) 'action': action!.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum ZeroTrustGatewayPolicyRuleSettingsUntrustedCertAction
+    implements TerraformEnum {
+  passThrough('pass_through'),
+  block('block'),
+  error('error');
+
+  const ZeroTrustGatewayPolicyRuleSettingsUntrustedCertAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `schedule` block of
@@ -559,7 +736,7 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
   CloudflareZeroTrustGatewayPolicy({
     required super.localName,
     required TfArg<String> accountId,
-    required TfArg<String> action,
+    required TfArg<ZeroTrustGatewayPolicyAction> action,
     TfArg<String>? description,
     TfArg<String>? devicePosture,
     TfArg<bool>? enabled,

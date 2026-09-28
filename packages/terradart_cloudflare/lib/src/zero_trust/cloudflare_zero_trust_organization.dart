@@ -66,7 +66,8 @@ final class ZeroTrustOrganizationMfaConfig {
     this.sessionDuration,
   });
 
-  final TfArg<List<Object?>>? allowedAuthenticators;
+  final List<TfArg<ZeroTrustOrganizationMfaConfigAllowedAuthenticators>>?
+  allowedAuthenticators;
 
   final TfArg<String>? amrMatchingSessionDuration;
 
@@ -76,7 +77,9 @@ final class ZeroTrustOrganizationMfaConfig {
 
   Map<String, Object?> encode() => {
     if (allowedAuthenticators != null)
-      'allowed_authenticators': allowedAuthenticators!.toTfJson(),
+      'allowed_authenticators': [
+        for (final e in allowedAuthenticators!) e.toTfJson(),
+      ],
     if (amrMatchingSessionDuration != null)
       'amr_matching_session_duration': amrMatchingSessionDuration!.toTfJson(),
     if (requiredAaguids != null)
@@ -84,6 +87,22 @@ final class ZeroTrustOrganizationMfaConfig {
     if (sessionDuration != null)
       'session_duration': sessionDuration!.toTfJson(),
   };
+}
+
+/// `allowed_authenticators` — derived from the provider schema description.
+enum ZeroTrustOrganizationMfaConfigAllowedAuthenticators
+    implements TerraformEnum {
+  totp('totp'),
+  biometrics('biometrics'),
+  securityKey('security_key'),
+  pivKey('piv_key'),
+  sshFido2Key('ssh_fido2_key');
+
+  const ZeroTrustOrganizationMfaConfigAllowedAuthenticators(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `mfa_ssh_piv_key_requirements` block of
@@ -98,24 +117,70 @@ final class ZeroTrustOrganizationMfaSshPivKeyRequirements {
     this.touchPolicy,
   });
 
-  final TfArg<String>? pinPolicy;
+  final TfArg<ZeroTrustOrganizationMfaSshPivKeyRequirementsPinPolicy>?
+  pinPolicy;
 
   final TfArg<bool>? requireFipsDevice;
 
   final TfArg<List<Object?>>? sshKeySize;
 
-  final TfArg<List<Object?>>? sshKeyType;
+  final List<TfArg<ZeroTrustOrganizationMfaSshPivKeyRequirementsSshKeyType>>?
+  sshKeyType;
 
-  final TfArg<String>? touchPolicy;
+  final TfArg<ZeroTrustOrganizationMfaSshPivKeyRequirementsTouchPolicy>?
+  touchPolicy;
 
   Map<String, Object?> encode() => {
     if (pinPolicy != null) 'pin_policy': pinPolicy!.toTfJson(),
     if (requireFipsDevice != null)
       'require_fips_device': requireFipsDevice!.toTfJson(),
     if (sshKeySize != null) 'ssh_key_size': sshKeySize!.toTfJson(),
-    if (sshKeyType != null) 'ssh_key_type': sshKeyType!.toTfJson(),
+    if (sshKeyType != null)
+      'ssh_key_type': [for (final e in sshKeyType!) e.toTfJson()],
     if (touchPolicy != null) 'touch_policy': touchPolicy!.toTfJson(),
   };
+}
+
+/// `pin_policy` — derived from the provider schema description.
+enum ZeroTrustOrganizationMfaSshPivKeyRequirementsPinPolicy
+    implements TerraformEnum {
+  never('never'),
+  once('once'),
+  always('always');
+
+  const ZeroTrustOrganizationMfaSshPivKeyRequirementsPinPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `ssh_key_type` — derived from the provider schema description.
+enum ZeroTrustOrganizationMfaSshPivKeyRequirementsSshKeyType
+    implements TerraformEnum {
+  ecdsa('ecdsa'),
+  ed25519('ed25519'),
+  rsa('rsa');
+
+  const ZeroTrustOrganizationMfaSshPivKeyRequirementsSshKeyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `touch_policy` — derived from the provider schema description.
+enum ZeroTrustOrganizationMfaSshPivKeyRequirementsTouchPolicy
+    implements TerraformEnum {
+  never('never'),
+  always('always'),
+  cached('cached');
+
+  const ZeroTrustOrganizationMfaSshPivKeyRequirementsTouchPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `service_token_inactivity` block of
@@ -128,7 +193,7 @@ final class ZeroTrustOrganizationServiceTokenInactivity {
     required this.inactivityThresholdDays,
   });
 
-  final TfArg<String> action;
+  final TfArg<ZeroTrustOrganizationServiceTokenInactivityAction> action;
 
   final TfArg<bool> enabled;
 
@@ -139,6 +204,17 @@ final class ZeroTrustOrganizationServiceTokenInactivity {
     'enabled': enabled.toTfJson(),
     'inactivity_threshold_days': inactivityThresholdDays.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum ZeroTrustOrganizationServiceTokenInactivityAction
+    implements TerraformEnum {
+  disable('disable'),
+  delete('delete');
+
+  const ZeroTrustOrganizationServiceTokenInactivityAction(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_organization`.

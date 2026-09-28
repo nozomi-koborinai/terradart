@@ -20,7 +20,7 @@ final class DataApiShieldOperationFilter {
     this.order,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataApiShieldOperationFilterDirection>? direction;
 
   final TfArg<String>? endpoint;
 
@@ -30,7 +30,7 @@ final class DataApiShieldOperationFilter {
 
   final TfArg<List<Object?>>? method;
 
-  final TfArg<String>? order;
+  final TfArg<DataApiShieldOperationFilterOrder>? order;
 
   Map<String, Object?> encode() => {
     if (direction != null) 'direction': direction!.toTfJson(),
@@ -40,6 +40,28 @@ final class DataApiShieldOperationFilter {
     if (method != null) 'method': method!.toTfJson(),
     if (order != null) 'order': order!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataApiShieldOperationFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataApiShieldOperationFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataApiShieldOperationFilterOrder implements TerraformEnum {
+  method('method'),
+  host('host'),
+  endpoint('endpoint'),
+  thresholdsKey('thresholds.\$key');
+
+  const DataApiShieldOperationFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_api_shield_operation`.

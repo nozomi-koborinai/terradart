@@ -13,17 +13,50 @@ const Set<String> _cloudflareAccountMemberSensitive = <String>{};
 final class DataAccountMemberFilter {
   const DataAccountMemberFilter({this.direction, this.order, this.status});
 
-  final TfArg<String>? direction;
+  final TfArg<DataAccountMemberFilterDirection>? direction;
 
-  final TfArg<String>? order;
+  final TfArg<DataAccountMemberFilterOrder>? order;
 
-  final TfArg<String>? status;
+  final TfArg<DataAccountMemberFilterStatus>? status;
 
   Map<String, Object?> encode() => {
     if (direction != null) 'direction': direction!.toTfJson(),
     if (order != null) 'order': order!.toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataAccountMemberFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataAccountMemberFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataAccountMemberFilterOrder implements TerraformEnum {
+  userFirstName('user.first_name'),
+  userLastName('user.last_name'),
+  userEmail('user.email'),
+  status('status');
+
+  const DataAccountMemberFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `status` — derived from the provider schema description.
+enum DataAccountMemberFilterStatus implements TerraformEnum {
+  accepted('accepted'),
+  pending('pending'),
+  rejected('rejected');
+
+  const DataAccountMemberFilterStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_account_member`.
