@@ -940,7 +940,6 @@ AppwriteProjectKey: import-only — appwrite_project_key create endpoint is gone
 # Cloudflare factories no constructor value can take through terraform
 # validate, so cloudflare_leftover_quickstart skips them (the generator's
 # skip lists in tool/generate_cloudflare_leftover_example.dart).
-CloudflareZeroTrustRiskBehavior: wrapper shape mismatch — provider schema types behaviors as a map of objects (nesting_mode map) but the factory takes one ZeroTrustRiskBehaviorBehaviors object; validate fails 'Inappropriate value for attribute "behaviors": element "risk_level": object required, but have string.' Needs a codegen fix for map-nested attributes.
 DataCloudflareFirewallRule: provider bug — every configuration fails validate with 'Invalid Path Expression for Schema ... Path Expression: filter' (the deprecated data source's validator names a filter attribute its schema no longer has).
 
 # Awaiting an example: factories the weekly schema bump generated with a

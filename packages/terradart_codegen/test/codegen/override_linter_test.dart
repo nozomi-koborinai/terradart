@@ -388,6 +388,38 @@ class Policy {
       expect(v.single.detail, contains('field `schedules`'));
     });
 
+    test('flags a map of helpers only when it is not encoded keyed', () {
+      WrapperOverride policy(String encode) => WrapperOverride(
+            outputDir: 'x',
+            prelude: '''
+class Schedule {
+  const Schedule({required this.cron});
+  final TfArg<String> cron;
+  Map<String, Object?> encode() => {'cron': cron.toTfJson()};
+}
+class Policy {
+  const Policy({this.schedules});
+  final Map<String, Schedule>? schedules;
+  Map<String, Object?> encode() => {
+    if (schedules != null) 'schedules': $encode,
+  };
+}
+''',
+          );
+      final keyed = policy(
+        '{for (final e in schedules!.entries) e.key: e.value.encode()}',
+      );
+      expect(lintMigrateShapes('google_x', keyed, input({'google_x': keyed})),
+          isEmpty);
+      final listed = policy(
+        '[for (final e in schedules!.entries) '
+        "{...e.value.encode(), 'name': e.key}]",
+      );
+      final v =
+          lintMigrateShapes('google_x', listed, input({'google_x': listed}));
+      expect(v.single.detail, contains('not encoded as a keyed map'));
+    });
+
     test('flags an underivable custom slot without a hint', () {
       const o = WrapperOverride(
         outputDir: 'x',

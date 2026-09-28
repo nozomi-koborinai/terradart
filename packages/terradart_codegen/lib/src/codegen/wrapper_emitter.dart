@@ -474,18 +474,16 @@ class WrapperEmitter {
   }
 
   /// Renders `[required] TfArg<Map|List<Map>>[?] camelName` for a nested
-  /// block, collapsing single-valued nestings (`single` or
-  /// `list && maxItems == 1`) to `Map<String, dynamic>` and the rest to
-  /// `List<Map<String, dynamic>>`.
+  /// block, collapsing object-valued nestings ([nestedBlockIsObject]) to
+  /// `Map<String, dynamic>` and the rest to `List<Map<String, dynamic>>`.
   String _nestedBlockParam(
     NestedBlockDef nested, {
     required bool isRequired,
   }) {
     final dartName = snakeToDartIdent(nested.name);
-    final isSingle = nested.nesting == NestingMode.single ||
-        (nested.nesting == NestingMode.list && nested.maxItems == 1);
-    final innerType =
-        isSingle ? 'Map<String, dynamic>' : 'List<Map<String, dynamic>>';
+    final innerType = nestedBlockIsObject(nested)
+        ? 'Map<String, dynamic>'
+        : 'List<Map<String, dynamic>>';
     final modifier = isRequired ? 'required ' : '';
     final nullSuffix = isRequired ? '' : '?';
     return '${modifier}TfArg<$innerType>$nullSuffix $dartName';

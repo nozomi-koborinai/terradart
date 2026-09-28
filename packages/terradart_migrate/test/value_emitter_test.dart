@@ -61,5 +61,30 @@ void main() {
         isFalse,
       );
     });
+
+    test('a * segment matches every key of a map', () {
+      Map<String, Object?> envVars(Object secret) => {
+        'env_vars': {
+          'PUBLIC': {'value': r'${var.public}'},
+          'API_KEY': {'value': secret},
+        },
+      };
+      expect(
+        ValueEmitter.hasPlainSensitiveLeaf(envVars('hunter2'), [
+          'env_vars',
+          '*',
+          'value',
+        ]),
+        isTrue,
+      );
+      expect(
+        ValueEmitter.hasPlainSensitiveLeaf(envVars(r'${var.key}'), [
+          'env_vars',
+          '*',
+          'value',
+        ]),
+        isFalse,
+      );
+    });
   });
 }

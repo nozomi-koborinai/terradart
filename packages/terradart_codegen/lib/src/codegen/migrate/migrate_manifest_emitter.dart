@@ -164,6 +164,7 @@ class MigrateManifestEmitter {
       'kind: MigrateSlotKind.${s.kind.name}',
       'required: ${s.required}',
       if (s.repeated) 'repeated: true',
+      if (s.keyed) 'keyed: true',
       if (!s.wrapped) 'wrapped: false',
       if (s.positional) 'positional: true',
       if (s.merged) 'merged: true',

@@ -254,6 +254,8 @@ final class ValueEmitter {
       MigrateSlotKind.helper =>
         slot.repeated
             ? _helperList(slot.helper!, value, path: path)
+            : slot.keyed
+            ? _helperMap(slot.helper!, value, path: path)
             : _helper(
                 slot.helper!,
                 objectMap(value) ??
@@ -718,6 +720,30 @@ final class ValueEmitter {
     return '[${out.join(', ')}]';
   }
 
+  /// A `nesting_mode: map` block: an object whose every value is one block
+  /// of [name], keyed by an arbitrary name. The blocks read under `path.*.`,
+  /// the `*` sensitive paths use for the entry names.
+  String _helperMap(String name, Expr value, {required String path}) {
+    if (value is! ObjectExpr) {
+      throw MigrateBlocker(
+        'argument "$path" expects a map of blocks but is ${_describe(value)}',
+      );
+    }
+    final entries = objectMap(value);
+    if (entries == null) {
+      throw MigrateBlocker('argument "$path" has a computed key');
+    }
+    final out = <String>[];
+    for (final e in entries.entries) {
+      final m = objectMap(e.value);
+      if (m == null) {
+        throw MigrateBlocker('argument "$path.${e.key}" is not a block');
+      }
+      out.add('${dartString(e.key)}: ${_helper(name, m, path: '$path.*.')}');
+    }
+    return '{${out.join(', ')}}';
+  }
+
   /// A helper whose fields are spread into the enclosing block.
   String? _mergedHelper(MigrateSlot slot, BodyLevel level) {
     final helper = _helperNamed(slot.helper!, path: level.path);
@@ -875,12 +901,20 @@ final class ValueEmitter {
   /// True when the leaf at [path] inside the tf.json value [json] is a plain
   /// value rather than a Terraform template — the same test synth applies to
   /// a sensitive nested path (`hasTemplateSequence`). Lists are searched
-  /// element by element. Exposed for tests.
+  /// element by element, and a `*` segment matches every key of a map.
+  /// Exposed for tests.
   static bool hasPlainSensitiveLeaf(Object? json, List<String> path) {
     if (json is List) {
       return json.any((e) => hasPlainSensitiveLeaf(e, path));
     }
     if (json is! Map) return false;
+    if (path.first == '*') {
+      return json.values.any(
+        (v) => path.length == 1
+            ? !(v is String && hasTemplateSequence(v))
+            : hasPlainSensitiveLeaf(v, path.sublist(1)),
+      );
+    }
     if (!json.containsKey(path.first)) return false;
     final v = json[path.first];
     if (path.length == 1) {

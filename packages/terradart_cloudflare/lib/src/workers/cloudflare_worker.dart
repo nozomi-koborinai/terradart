@@ -145,7 +145,7 @@ final class WorkerPreviewsBaseConfig {
 
   final WorkerPreviewsBaseConfigCacheOptions? cacheOptions;
 
-  final WorkerPreviewsBaseConfigEnv? env;
+  final Map<String, WorkerPreviewsBaseConfigEnv>? env;
 
   final WorkerPreviewsBaseConfigLimits? limits;
 
@@ -158,7 +158,8 @@ final class WorkerPreviewsBaseConfig {
   Map<String, Object?> encode() => {
     if (logpush != null) 'logpush': logpush!.toTfJson(),
     if (cacheOptions != null) 'cache_options': cacheOptions!.encode(),
-    if (env != null) 'env': env!.encode(),
+    if (env != null)
+      'env': {for (final e in env!.entries) e.key: e.value.encode()},
     if (limits != null) 'limits': limits!.encode(),
     if (observability != null) 'observability': observability!.encode(),
     if (placement != null) 'placement': placement!.encode(),

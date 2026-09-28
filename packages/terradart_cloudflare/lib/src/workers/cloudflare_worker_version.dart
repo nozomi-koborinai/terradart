@@ -880,7 +880,7 @@ final class CloudflareWorkerVersion extends Resource {
     List<WorkerVersionBindings>? bindings,
     WorkerVersionCacheOptions? cacheOptions,
     List<WorkerVersionContainers>? containers,
-    WorkerVersionExports? exports,
+    Map<String, WorkerVersionExports>? exports,
     WorkerVersionLimits? limits,
     WorkerVersionMigrations? migrations,
     List<WorkerVersionModules>? modules,
@@ -914,7 +914,10 @@ final class CloudflareWorkerVersion extends Resource {
              'containers': TfArg.literal([
                for (final e in containers) e.encode(),
              ]),
-           if (exports != null) 'exports': TfArg.literal(exports.encode()),
+           if (exports != null)
+             'exports': TfArg.literal({
+               for (final e in exports.entries) e.key: e.value.encode(),
+             }),
            if (limits != null) 'limits': TfArg.literal(limits.encode()),
            if (migrations != null)
              'migrations': TfArg.literal(migrations.encode()),

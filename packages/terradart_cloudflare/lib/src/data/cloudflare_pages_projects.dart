@@ -7,11 +7,11 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflarePagesProjectsSensitive = <String>{
   'result.build_config.web_analytics_token',
   'result.canonical_deployment.build_config.web_analytics_token',
-  'result.canonical_deployment.env_vars.value',
-  'result.deployment_configs.preview.env_vars.value',
-  'result.deployment_configs.production.env_vars.value',
+  'result.canonical_deployment.env_vars.*.value',
+  'result.deployment_configs.preview.env_vars.*.value',
+  'result.deployment_configs.production.env_vars.*.value',
   'result.latest_deployment.build_config.web_analytics_token',
-  'result.latest_deployment.env_vars.value',
+  'result.latest_deployment.env_vars.*.value',
 };
 
 /// Factory wrapper for `cloudflare_pages_projects`.

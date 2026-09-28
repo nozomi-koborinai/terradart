@@ -403,6 +403,8 @@ class TfJsonEncoder {
   /// - `List`: applied to every element (handles `[{...}]` single-block
   ///   wrappings and unbounded `[...]` block lists alike).
   /// - `Map`: descends one segment per path; **throws** at literal leaves.
+  ///   A `*` segment stands for every key of the map (a `nesting_mode: map`
+  ///   block's entry names).
   /// - Other (primitive, or `${...}` ref string): returned unchanged.
   ///
   /// Leaves whose value is a Terraform template — it holds an unescaped
@@ -444,7 +446,11 @@ class TfJsonEncoder {
         }
       }
 
-      for (final leaf in leavesToCheck) {
+      final keys = [
+        for (final leaf in leavesToCheck)
+          if (leaf == '*') ...value.keys.cast<String>() else leaf,
+      ];
+      for (final leaf in keys) {
         if (!value.containsKey(leaf)) continue;
         final leafValue = value[leaf];
         if (leafValue is String && hasTemplateSequence(leafValue)) {
@@ -458,6 +464,17 @@ class TfJsonEncoder {
         );
       }
       final out = Map<String, dynamic>.from(value);
+      final any = byHead.remove('*');
+      if (any != null) {
+        for (final key in out.keys.toList()) {
+          out[key] = _checkNestedPaths(
+            out[key],
+            any,
+            resourceAddress: resourceAddress,
+            parentKey: '$parentKey.$key',
+          );
+        }
+      }
       byHead.forEach((head, remaining) {
         if (out.containsKey(head)) {
           out[head] = _checkNestedPaths(

@@ -574,6 +574,43 @@ void main() {
         }),
       );
     });
+
+    test('a * segment checks every entry of a map of blocks', () {
+      Map<String, TfArg<dynamic>?> envVars(Object? secret) => {
+            'env_vars': TfArgLiteral<Map<String, dynamic>>({
+              'PUBLIC': {'type': 'plain_text', 'value': r'${var.public}'},
+              'API_KEY': {'type': 'secret_text', 'value': secret},
+            }),
+          };
+      const paths = {'env_vars.*.value'};
+      expect(
+        () => TfJsonEncoder.encodeArgMapWithSensitive(
+          argMap: envVars('hunter2'),
+          sensitiveFields: paths,
+          resourceAddress: 'cloudflare_pages_project.site',
+        ),
+        throwsA(
+          isA<SensitiveLiteralError>().having(
+            (e) => e.fieldPath,
+            'fieldPath',
+            'env_vars.API_KEY.value',
+          ),
+        ),
+      );
+      expect(
+        TfJsonEncoder.encodeArgMapWithSensitive(
+          argMap: envVars(r'${var.api_key}'),
+          sensitiveFields: paths,
+          resourceAddress: 'cloudflare_pages_project.site',
+        ),
+        {
+          'env_vars': {
+            'PUBLIC': {'type': 'plain_text', 'value': r'${var.public}'},
+            'API_KEY': {'type': 'secret_text', 'value': r'${var.api_key}'},
+          },
+        },
+      );
+    });
   });
 
   group('TfJsonEncoder.lifecycleBlock', () {

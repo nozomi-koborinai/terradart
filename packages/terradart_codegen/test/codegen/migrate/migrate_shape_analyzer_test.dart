@@ -92,6 +92,20 @@ void main() {
       expect(c('List<List<Helper>>').isManual, isTrue);
     });
 
+    test('keyed helper maps', () {
+      final keyed = c('Map<String, Helper>?');
+      expect(keyed.kind, MigrateSlotKind.helper);
+      expect(keyed.helper, 'Helper');
+      expect(keyed.keyed, isTrue);
+      expect(keyed.repeated, isFalse);
+      expect(keyed.wrapped, isFalse);
+
+      expect(c('List<Map<String, Helper>>').isManual, isTrue);
+      final plain = c('Map<String, String>');
+      expect(plain.kind, MigrateSlotKind.scalar);
+      expect(plain.keyed, isFalse);
+    });
+
     test('helpers, sealed choices, bare enums and plain values', () {
       final h = c('Helper?');
       expect(h.kind, MigrateSlotKind.helper);
@@ -115,7 +129,6 @@ void main() {
       expect(map.wrapped, isFalse);
 
       expect(c('bool').kind, MigrateSlotKind.scalar);
-      expect(c('Map<String, Helper>').isManual, isTrue);
       expect(c('Unknown').isManual, isTrue);
       expect(c('Foo bar').isManual, isTrue);
     });
@@ -252,6 +265,27 @@ void main() {
       expect(
         customSlotShape(noKey, parseCustomSlot(noKey), _ctx).reason,
         contains('no static key'),
+      );
+    });
+
+    test('a helper map is keyed only when it encodes as a keyed map', () {
+      const keyed = CustomSlot(
+        paramDeclaration: 'required Map<String, Helper> hs',
+        argMapEntry: "'hs': TfArg.literal({for (final e in hs.entries) "
+            'e.key: e.value.encode()}),',
+      );
+      final shape = customSlotShape(keyed, parseCustomSlot(keyed), _ctx);
+      expect(shape.kind, MigrateSlotKind.helper);
+      expect(shape.keyed, isTrue);
+
+      const named = CustomSlot(
+        paramDeclaration: 'Map<String, Helper>? hs',
+        argMapEntry: "if (hs != null) 'hs': TfArg.literal(hs!.entries"
+            ".map((e) => {'name': e.key, ...e.value.encode()}).toList()),",
+      );
+      expect(
+        customSlotShape(named, parseCustomSlot(named), _ctx).reason,
+        contains('not encoded as a keyed map'),
       );
     });
   });
