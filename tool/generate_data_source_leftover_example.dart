@@ -5,6 +5,8 @@
 
 import 'dart:io';
 
+import 'catalog_class_names.dart';
+
 const _dataDir = 'packages/terradart_google/lib/src/data';
 const _outPath = 'examples/data_source_leftover_quickstart/lib/main.dart';
 
@@ -35,6 +37,7 @@ List<({String dartType, String name})> _requiredCtorParams(String ctor) {
 }
 
 void main() {
+  final catalogued = catalogClassNames('packages/terradart_google/lib/src');
   final files = Directory(_dataDir)
       .listSync()
       .whereType<File>()
@@ -57,6 +60,7 @@ void main() {
       throw StateError('unparseable wrapper: ${file.path}');
     }
     final className = classMatch.group(1)!;
+    if (!catalogued.contains(className)) continue;
     final tfType = typeMatch.group(1)!;
     final localName = _uniqueLocal(tfType, usedLocal);
 
