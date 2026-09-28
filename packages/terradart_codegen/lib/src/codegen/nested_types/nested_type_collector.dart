@@ -85,6 +85,18 @@ final class ExcludedNestedBlock {
   });
 }
 
+/// Resolves one leaf attribute's enum value set, or null for a free-form
+/// value. [path] runs from the resource root to the attribute itself.
+typedef EnumValuesResolver = List<String>? Function(
+  List<String> path,
+  String? description,
+);
+
+/// The default [EnumValuesResolver]: the description dialects every lane
+/// reads.
+List<String>? descriptionEnumValues(List<String> path, String? description) =>
+    parseEnumValuesFromDescription(description);
+
 /// Recursively collects [NestedBlockSpec]s from [resourceBlock]'s
 /// `block_types`, for the `deriveNestedTypes` codegen gate.
 ///
@@ -117,12 +129,18 @@ final class ExcludedNestedBlock {
 /// helper class and its enums. The shared class keeps the name and path of
 /// its shallowest occurrence, ties broken by comparing paths segment by
 /// segment, so that occurrence's name matches the unshared scheme.
+///
+/// [enumValues] decides each leaf attribute's enum value set from its
+/// dotted path and description; the default reads the description with
+/// [parseEnumValuesFromDescription] (`provider_enums.dart` supplies the
+/// `--provider-enums` resolver).
 List<NestedBlockSpec> collectNestedTypes({
   required Map<String, dynamic> resourceBlock,
   required String resourcePrefix,
   required Set<String> customSlotKeys,
   required Set<String> excludedPaths,
   bool shareIdenticalShapes = false,
+  EnumValuesResolver enumValues = descriptionEnumValues,
 }) {
   final scan = _scanChildren(
     resourceBlock,
@@ -130,6 +148,7 @@ List<NestedBlockSpec> collectNestedTypes({
     resourcePrefix: resourcePrefix,
     customSlotKeys: customSlotKeys,
     excludedPaths: excludedPaths,
+    enumValues: enumValues,
   );
   return shareIdenticalShapes
       ? _shareIdenticalShapes(scan.children)
@@ -222,6 +241,7 @@ _ChildScan _scanChildren(
   required String resourcePrefix,
   required Set<String> customSlotKeys,
   required Set<String> excludedPaths,
+  required EnumValuesResolver enumValues,
 }) {
   final children = <NestedBlockSpec>[];
   final excludedChildren = <ExcludedNestedBlock>[];
@@ -250,6 +270,7 @@ _ChildScan _scanChildren(
       resourcePrefix: resourcePrefix,
       customSlotKeys: customSlotKeys,
       excludedPaths: excludedPaths,
+      enumValues: enumValues,
     ));
   }
 
@@ -337,6 +358,7 @@ NestedBlockSpec _buildSpec(
   required String resourcePrefix,
   required Set<String> customSlotKeys,
   required Set<String> excludedPaths,
+  required EnumValuesResolver enumValues,
 }) {
   final cardinality = _blockCardinality(nestedBlockBody, tfName: tfName);
   final className = resourcePrefix + path.map(snakeToPascal).join();
@@ -351,6 +373,7 @@ NestedBlockSpec _buildSpec(
     resourcePrefix: resourcePrefix,
     customSlotKeys: customSlotKeys,
     excludedPaths: excludedPaths,
+    enumValues: enumValues,
   );
 
   return NestedBlockSpec(
@@ -359,7 +382,12 @@ NestedBlockSpec _buildSpec(
     className: className,
     repeated: cardinality.repeated,
     required: cardinality.required,
-    attrs: _collectAttrs(block, className: className),
+    attrs: _collectAttrs(
+      block,
+      path: path,
+      className: className,
+      enumValues: enumValues,
+    ),
     children: scan.children,
     excludedChildren: scan.excludedChildren,
   );
@@ -367,7 +395,9 @@ NestedBlockSpec _buildSpec(
 
 List<NestedAttrSpec> _collectAttrs(
   Map<String, dynamic> block, {
+  required List<String> path,
   required String className,
+  required EnumValuesResolver enumValues,
 }) {
   final attributes = _optionalMap(block['attributes'], context: 'attributes');
   final out = <NestedAttrSpec>[];
@@ -383,11 +413,12 @@ List<NestedAttrSpec> _collectAttrs(
     final computedOnly = isComputed && !isOptional && !isRequired;
     if (computedOnly) continue;
 
-    final enumValues =
-        parseEnumValuesFromDescription(body['description'] as String?);
     final typeInfo = _attrTypeInfo(
       rawType: body['type'],
-      enumValues: enumValues,
+      enumValues: enumValues(
+        [...path, tfName],
+        body['description'] as String?,
+      ),
       className: className,
       tfName: tfName,
     );

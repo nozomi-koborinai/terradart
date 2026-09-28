@@ -52,8 +52,15 @@ class EnumExtractor {
   /// trailing comma + whitespace before `)` handles Dart format's multi-line
   /// member style: `name(\n    'LONG_VALUE',\n  )`.
   static final RegExp _memberEntry = RegExp(
-    r"([a-z][a-zA-Z0-9_]*)\s*\(\s*'([^']*)'\s*,?\s*\)",
+    r"([a-z][a-zA-Z0-9_]*)\s*\(\s*'((?:[^'\\]|\\.)*)'\s*,?\s*\)",
   );
+
+  static final RegExp _escape = RegExp(r'\\(.)');
+
+  static String _unescape(String body) => body.replaceAllMapped(
+        _escape,
+        (m) => m.group(1) == 'n' ? '\n' : m.group(1)!,
+      );
 
   List<EmittedEnum> extract(String dartSource) {
     final result = <EmittedEnum>[];
@@ -64,7 +71,7 @@ class EnumExtractor {
       final members = <String, String>{};
       for (final entry in _memberEntry.allMatches(body)) {
         final memberName = entry.group(1)!;
-        final terraformValue = entry.group(2)!;
+        final terraformValue = _unescape(entry.group(2)!);
         members[memberName] = terraformValue;
       }
       if (members.isNotEmpty) {

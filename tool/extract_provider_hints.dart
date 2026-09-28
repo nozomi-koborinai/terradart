@@ -1,0 +1,473 @@
+// tool/extract_provider_hints.dart
+//
+// Extracts enum hints for a Stainless-generated provider (cloudflare) from
+// the provider's Go source at the pinned tag, into a Magic Modules YAML
+// subset the wrap pipeline already reads (MmYamlParser → IrMerger):
+//
+//   <schemaDir>/hints/<resource_type>.yaml
+//     provider_version: 5.26.0
+//     properties:
+//       - api_name: type
+//         enum_values: ["A", "AAAA", ...]
+//       - api_name: settings
+//         properties:
+//           - api_name: flatten_cname
+//             ...
+//
+// Source: every `internal/services/<svc>/schema.go` (the resource schema;
+// data sources are not read). A hint is a `stringvalidator.OneOf(...)` or
+// `stringvalidator.OneOfCaseInsensitive(...)` validator under an attribute
+// key — the value set the provider itself enforces, including list
+// elements (`listvalidator.ValueStringsAre(...)`) whose description does
+// not spell the values out. The Terraform type name comes from the
+// service's `resource.go` (`resp.TypeName = ... + "_<name>"`).
+//
+// schema.json at the same version is authoritative: a hint whose path is
+// absent there (a service's custom code reshapes the served schema) is
+// skipped and listed on stdout, and a path that names a non-string
+// attribute fails the tool — that means the scanner misread the Go
+// source. The committed output is never hand-edited — re-extract when the
+// pin moves (the command is in the emitted hints/README.md).
+//
+// Usage (repo root):
+//   dart tool/extract_provider_hints.dart \
+//     --repo=cloudflare/terraform-provider-cloudflare \
+//     --version="$(cat packages/terradart_codegen/test/fixtures/wrap/source_cloudflare/provider_version.txt)" \
+//     --schema-dir=packages/terradart_codegen/test/fixtures/wrap/source_cloudflare
+//
+//   --source-dir=<dir>  read an already-extracted source tree (its
+//                       internal/services) instead of downloading the tag
+//                       tarball from codeload.github.com.
+//
+// Exit codes: 0 success, 64 usage error, 65 a hint names a non-string
+// attribute or schema.go does not scan, 69 download / extraction failure.
+// ignore_for_file: avoid_print
+
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:path/path.dart' as p;
+
+const _exitUsage = 64;
+const _exitData = 65;
+const _exitFetch = 69;
+
+/// One enum validator found under an attribute key.
+final class GoEnumHint {
+  const GoEnumHint({
+    required this.path,
+    required this.values,
+    required this.caseInsensitive,
+  });
+
+  /// Attribute keys from the resource root, e.g. `['settings', 'mode']`.
+  final List<String> path;
+  final List<String> values;
+  final bool caseInsensitive;
+
+  String get dotted => path.join('.');
+}
+
+enum _Tok { string, ident, punct }
+
+typedef _Token = ({_Tok kind, String text});
+
+/// Tokenizes Go source into string literals (decoded), identifiers and
+/// single-character punctuation; comments, numbers and whitespace are
+/// dropped. Enough for Stainless's schema literals, not a Go parser.
+List<_Token> _tokenize(String src) {
+  final out = <_Token>[];
+  var i = 0;
+  bool isIdentStart(int c) =>
+      (c >= 0x41 && c <= 0x5a) || (c >= 0x61 && c <= 0x7a) || c == 0x5f;
+  bool isIdentPart(int c) => isIdentStart(c) || (c >= 0x30 && c <= 0x39);
+  while (i < src.length) {
+    final c = src.codeUnitAt(i);
+    if (c == 0x2f && i + 1 < src.length && src[i + 1] == '/') {
+      final end = src.indexOf('\n', i);
+      i = end < 0 ? src.length : end + 1;
+    } else if (c == 0x2f && i + 1 < src.length && src[i + 1] == '*') {
+      final end = src.indexOf('*/', i + 2);
+      i = end < 0 ? src.length : end + 2;
+    } else if (c == 0x22) {
+      final buf = StringBuffer();
+      i++;
+      while (i < src.length && src[i] != '"') {
+        if (src[i] == r'\' && i + 1 < src.length) {
+          final e = src[i + 1];
+          switch (e) {
+            case 'n':
+              buf.write('\n');
+            case 't':
+              buf.write('\t');
+            case 'u':
+              buf.writeCharCode(
+                int.parse(src.substring(i + 2, i + 6), radix: 16),
+              );
+              i += 4;
+            default:
+              buf.write(e);
+          }
+          i += 2;
+        } else {
+          buf.write(src[i]);
+          i++;
+        }
+      }
+      i++;
+      out.add((kind: _Tok.string, text: buf.toString()));
+    } else if (c == 0x60) {
+      final end = src.indexOf('`', i + 1);
+      out.add((kind: _Tok.string, text: src.substring(i + 1, end)));
+      i = end + 1;
+    } else if (isIdentStart(c)) {
+      final start = i;
+      while (i < src.length && isIdentPart(src.codeUnitAt(i))) {
+        i++;
+      }
+      out.add((kind: _Tok.ident, text: src.substring(start, i)));
+    } else if (c >= 0x30 && c <= 0x39) {
+      while (
+          i < src.length && (isIdentPart(src.codeUnitAt(i)) || src[i] == '.')) {
+        i++;
+      }
+    } else if (' \t\r\n'.contains(src[i])) {
+      i++;
+    } else {
+      out.add((kind: _Tok.punct, text: src[i]));
+      i++;
+    }
+  }
+  return out;
+}
+
+const _closers = {'{': '}', '(': ')', '[': ']'};
+final _schemaNode = RegExp(r'(Attribute|Block)$');
+
+/// Scans one `schema.go` for enum validators under attribute keys. A
+/// frame opens at `"key": pkg.SomethingAttribute{` (or `...Block{`); the
+/// keys of the open frames are the hint's path.
+List<GoEnumHint> scanSchemaGo(String src) {
+  final toks = _tokenize(src);
+  final frames = <({String? key, String closer})>[];
+  final byPath = <String, GoEnumHint>{};
+  bool punct(int i, String t) =>
+      i < toks.length && toks[i].kind == _Tok.punct && toks[i].text == t;
+  bool ident(int i, [String? t]) =>
+      i < toks.length &&
+      toks[i].kind == _Tok.ident &&
+      (t == null || toks[i].text == t);
+
+  var i = 0;
+  while (i < toks.length) {
+    final t = toks[i];
+    if (t.kind == _Tok.string &&
+        punct(i + 1, ':') &&
+        ident(i + 2) &&
+        punct(i + 3, '.') &&
+        ident(i + 4) &&
+        _schemaNode.hasMatch(toks[i + 4].text) &&
+        punct(i + 5, '{')) {
+      frames.add((key: t.text, closer: '}'));
+      i += 6;
+      continue;
+    }
+    if (ident(i, 'stringvalidator') &&
+        punct(i + 1, '.') &&
+        (ident(i + 2, 'OneOf') || ident(i + 2, 'OneOfCaseInsensitive')) &&
+        punct(i + 3, '(')) {
+      final caseInsensitive = toks[i + 2].text == 'OneOfCaseInsensitive';
+      final values = <String>[];
+      var depth = 1;
+      var j = i + 4;
+      for (; j < toks.length && depth > 0; j++) {
+        final u = toks[j];
+        if (u.kind == _Tok.punct && _closers.containsKey(u.text)) depth++;
+        if (u.kind == _Tok.punct && _closers.containsValue(u.text)) depth--;
+        if (u.kind == _Tok.string && depth == 1) values.add(u.text);
+      }
+      final path = [
+        for (final f in frames)
+          if (f.key != null) f.key!,
+      ];
+      if (path.isNotEmpty && values.isNotEmpty) {
+        byPath.putIfAbsent(
+          path.join('.'),
+          () => GoEnumHint(
+            path: path,
+            values: values,
+            caseInsensitive: caseInsensitive,
+          ),
+        );
+      }
+      i = j;
+      continue;
+    }
+    if (t.kind == _Tok.punct) {
+      final closer = _closers[t.text];
+      if (closer != null) {
+        frames.add((key: null, closer: closer));
+      } else if (_closers.containsValue(t.text)) {
+        if (frames.isEmpty || frames.last.closer != t.text) {
+          throw FormatException('unbalanced "${t.text}" in schema.go');
+        }
+        frames.removeLast();
+      }
+    }
+    i++;
+  }
+  if (frames.isNotEmpty) {
+    throw const FormatException('unclosed bracket in schema.go');
+  }
+  return byPath.values.toList();
+}
+
+final _typeNameRe = RegExp(
+  r'resp\.TypeName\s*=\s*req\.ProviderTypeName\s*\+\s*"(_[a-z0-9_]+)"',
+);
+
+/// The resource's Terraform type from `resource.go`, or null when the
+/// service registers no resource.
+String? resourceTypeName(String resourceGo, {required String provider}) {
+  final m = _typeNameRe.firstMatch(resourceGo);
+  return m == null ? null : '$provider${m.group(1)}';
+}
+
+enum HintResolution { string, missing, notString }
+
+/// Whether [path] names a string (or list / set of string) attribute of
+/// the schema.json resource [block].
+HintResolution resolveHint(Map<String, dynamic> block, List<String> path) {
+  var current = block;
+  for (var k = 0; k < path.length; k++) {
+    final key = path[k];
+    final last = k == path.length - 1;
+    final attrs = (current['attributes'] as Map?)?.cast<String, dynamic>();
+    final blocks = (current['block_types'] as Map?)?.cast<String, dynamic>();
+    final attr = (attrs?[key] as Map?)?.cast<String, dynamic>();
+    if (last) {
+      if (attr == null) return HintResolution.missing;
+      final type = attr['type'];
+      final stringish = type == 'string' ||
+          (type is List &&
+              type.length == 2 &&
+              (type[0] == 'list' || type[0] == 'set') &&
+              type[1] == 'string');
+      return stringish ? HintResolution.string : HintResolution.notString;
+    }
+    final nested = (attr?['nested_type'] as Map?)?.cast<String, dynamic>();
+    final blockBody =
+        ((blocks?[key] as Map?)?['block'] as Map?)?.cast<String, dynamic>();
+    final next = nested ?? blockBody;
+    if (next == null) return HintResolution.missing;
+    current = next;
+  }
+  return HintResolution.missing;
+}
+
+/// Renders one resource's hints file: the MM YAML subset
+/// (`properties[].api_name` / `enum_values` / nested `properties`).
+String renderHintsYaml({
+  required String repo,
+  required String version,
+  required String service,
+  required List<GoEnumHint> hints,
+}) {
+  final tree = <String, Object?>{};
+  for (final h in [...hints]..sort((a, b) => a.dotted.compareTo(b.dotted))) {
+    var node = tree;
+    for (final key in h.path.take(h.path.length - 1)) {
+      node = (node.putIfAbsent(key, () => <String, Object?>{})
+          as Map<String, Object?>);
+    }
+    (node.putIfAbsent(h.path.last, () => <String, Object?>{})
+        as Map<String, Object?>)['\u0000enum'] = h.values;
+  }
+  final buf = StringBuffer()
+    ..writeln('# Generated by tool/extract_provider_hints.dart from $repo')
+    ..writeln(
+      '# v$version internal/services/$service/schema.go. Never hand-edit;',
+    )
+    ..writeln('# re-extract with the command in README.md.')
+    ..writeln('provider_version: ${jsonEncode(version)}');
+  void writeProps(Map<String, Object?> node, String indent) {
+    buf.writeln('${indent}properties:');
+    final keys = node.keys.where((k) => !k.startsWith('\u0000')).toList()
+      ..sort();
+    for (final key in keys) {
+      final child = node[key]! as Map<String, Object?>;
+      buf.writeln('$indent  - api_name: $key');
+      final values = child['\u0000enum'] as List<String>?;
+      if (values != null) {
+        buf.writeln('$indent    enum_values:');
+        for (final v in values) {
+          buf.writeln('$indent      - ${jsonEncode(v)}');
+        }
+      }
+      if (child.keys.any((k) => !k.startsWith('\u0000'))) {
+        writeProps(child, '$indent    ');
+      }
+    }
+  }
+
+  writeProps(tree, '');
+  return buf.toString();
+}
+
+String _readme({required String repo, required String schemaDir}) => '''
+# Provider enum hints — $repo
+
+One file per resource type: the enum value sets the provider's Go source
+enforces (`stringvalidator.OneOf` / `OneOfCaseInsensitive` in
+`internal/services/<service>/schema.go`), as a Magic Modules YAML subset
+(`properties[].api_name` / `enum_values`). `terradart wrap
+--provider-enums` merges them into the schema IR (top-level attributes)
+and the nested helper types. `provider_version` must match
+`../provider_version.txt`; `wrap` fails otherwise.
+
+Never hand-edit. Re-extract at the fixture's pin with:
+
+```bash
+dart tool/extract_provider_hints.dart \\
+  --repo=$repo \\
+  --version="\$(cat $schemaDir/provider_version.txt)" \\
+  --schema-dir=$schemaDir
+```
+''';
+
+Never _fail(int code, String message) {
+  stderr.writeln('extract_provider_hints: $message');
+  exit(code);
+}
+
+Future<Directory> _download(String repo, String version) async {
+  final tmp = await Directory.systemTemp.createTemp('provider_hints_');
+  final tarball = File(p.join(tmp.path, 'src.tar.gz'));
+  final url =
+      Uri.parse('https://codeload.github.com/$repo/tar.gz/refs/tags/v$version');
+  final client = HttpClient();
+  try {
+    final response = await (await client.getUrl(url)).close();
+    if (response.statusCode != 200) {
+      _fail(_exitFetch, 'GET $url: HTTP ${response.statusCode}');
+    }
+    await response.pipe(tarball.openWrite());
+  } finally {
+    client.close();
+  }
+  final tar = await Process.run(
+    'tar',
+    ['xzf', tarball.path, '-C', tmp.path, '--strip-components=1'],
+  );
+  if (tar.exitCode != 0) _fail(_exitFetch, 'tar: ${tar.stderr}');
+  return tmp;
+}
+
+Future<void> main(List<String> args) async {
+  String? repo;
+  String? version;
+  String? schemaDir;
+  String? sourceDir;
+  for (final a in args) {
+    if (a.startsWith('--repo=')) {
+      repo = a.substring(7);
+    } else if (a.startsWith('--version=')) {
+      version = a.substring(10);
+    } else if (a.startsWith('--schema-dir=')) {
+      schemaDir = a.substring(13);
+    } else if (a.startsWith('--source-dir=')) {
+      sourceDir = a.substring(13);
+    } else {
+      _fail(_exitUsage, 'unknown argument $a');
+    }
+  }
+  if (repo == null || version == null || schemaDir == null) {
+    _fail(_exitUsage, '--repo, --version and --schema-dir are required');
+  }
+
+  final schema = jsonDecode(
+    File(p.join(schemaDir, 'schema.json')).readAsStringSync(),
+  ) as Map<String, dynamic>;
+  final providerSchemas =
+      (schema['provider_schemas'] as Map).cast<String, dynamic>();
+  final resources = <String, Map<String, dynamic>>{
+    for (final body in providerSchemas.values)
+      for (final MapEntry(:key, :value)
+          in ((body as Map)['resource_schemas'] as Map? ?? const {}).entries)
+        key as String: ((value as Map)['block'] as Map).cast<String, dynamic>(),
+  };
+  final provider = repo.split('/').last.replaceFirst('terraform-provider-', '');
+
+  final root =
+      sourceDir != null ? Directory(sourceDir) : await _download(repo, version);
+  final services = Directory(p.join(root.path, 'internal', 'services'));
+  if (!services.existsSync()) {
+    _fail(_exitFetch, 'no internal/services under ${root.path}');
+  }
+
+  final out = Directory(p.join(schemaDir, 'hints'));
+  if (out.existsSync()) out.deleteSync(recursive: true);
+  out.createSync(recursive: true);
+
+  final notString = <String>[];
+  final skipped = <String>[];
+  var files = 0;
+  var hintCount = 0;
+  final dirs = services.listSync().whereType<Directory>().toList()
+    ..sort((a, b) => a.path.compareTo(b.path));
+  for (final dir in dirs) {
+    final schemaGo = File(p.join(dir.path, 'schema.go'));
+    final resourceGo = File(p.join(dir.path, 'resource.go'));
+    if (!schemaGo.existsSync() || !resourceGo.existsSync()) continue;
+    final type = resourceTypeName(
+      resourceGo.readAsStringSync(),
+      provider: provider,
+    );
+    final block = type == null ? null : resources[type];
+    if (type == null || block == null) continue;
+    final service = p.basename(dir.path);
+    final List<GoEnumHint> hints;
+    try {
+      hints = scanSchemaGo(schemaGo.readAsStringSync());
+    } on FormatException catch (e) {
+      _fail(_exitData, '$service/schema.go: ${e.message}');
+    }
+    final kept = <GoEnumHint>[];
+    for (final h in hints) {
+      switch (resolveHint(block, h.path)) {
+        case HintResolution.string:
+          kept.add(h);
+        case HintResolution.missing:
+          skipped.add('$type.${h.dotted}');
+        case HintResolution.notString:
+          notString.add('$type.${h.dotted}');
+      }
+    }
+    if (kept.isEmpty) continue;
+    File(p.join(out.path, '$type.yaml')).writeAsStringSync(
+      renderHintsYaml(
+        repo: repo,
+        version: version,
+        service: service,
+        hints: kept,
+      ),
+    );
+    files++;
+    hintCount += kept.length;
+  }
+  if (notString.isNotEmpty) {
+    out.deleteSync(recursive: true);
+    _fail(
+      _exitData,
+      '${notString.length} hint(s) name a non-string attribute in '
+      'schema.json:\n${notString.map((u) => '  $u').join('\n')}',
+    );
+  }
+  for (final s in skipped) {
+    print('skipped (not in schema.json): $s');
+  }
+  File(p.join(out.path, 'README.md'))
+      .writeAsStringSync(_readme(repo: repo, schemaDir: schemaDir));
+  print('extract_provider_hints: wrote $hintCount enum hint(s) for $files '
+      'resource(s) to ${out.path}');
+}

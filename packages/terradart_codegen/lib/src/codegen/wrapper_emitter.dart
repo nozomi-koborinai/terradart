@@ -9,6 +9,7 @@ import 'getter_emitter.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
+import 'provider_enums.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
@@ -50,7 +51,11 @@ class WrapperEmitter {
     required this.overrides,
     this.rawResourceSchemas = const {},
     this.resourceProvider,
+    this.providerEnums = ProviderEnums.off,
   });
+
+  /// The `--provider-enums` gate; supplies the nested helpers' enum values.
+  final ProviderEnums providerEnums;
 
   final Map<String, WrapperOverride> overrides;
 
@@ -109,6 +114,7 @@ class WrapperEmitter {
             excludedPaths:
                 (override?.nestedTypeExcludes ?? const <String>[]).toSet(),
             shareIdenticalShapes: override?.dedupeNestedTypes ?? false,
+            enumValues: providerEnums.resolver(def.terraformType),
           )
         : const <NestedBlockSpec>[];
 
@@ -239,7 +245,8 @@ class WrapperEmitter {
       dartTypeOverrides,
       deprecations,
     );
-    final argMapByName = _argMapEntriesByName(def, requiredOverrides);
+    final argMapByName =
+        _argMapEntriesByName(def, requiredOverrides, dartTypeOverrides);
     for (final entry in customSlots.entries) {
       paramsByName[entry.key] = entry.value.paramDeclaration;
       argMapByName[entry.key] = entry.value.argMapEntry;
@@ -421,13 +428,16 @@ class WrapperEmitter {
   Map<String, String> _argMapEntriesByName(
     ResourceDef def,
     Set<String> requiredOverrides,
+    Map<String, String> dartTypeOverrides,
   ) {
     final out = <String, String>{};
     for (final attr in def.root.attributes) {
       if (skipAttribute(attr)) continue;
       final isRequired =
           attr.constraints.required || requiredOverrides.contains(attr.name);
-      out[attr.name] = _argMapEntry(attr.name, isRequired);
+      out[attr.name] = isEnumListType(dartTypeOverrides[attr.name] ?? '')
+          ? _elementwiseArgMapEntry(attr.name, isRequired)
+          : _argMapEntry(attr.name, isRequired);
     }
     for (final nested in def.root.nestedBlocks) {
       if (skipNestedBlock(nested)) continue;
@@ -455,7 +465,9 @@ class WrapperEmitter {
     final dartType = typeOverride ?? writeDartType(attr.type);
     final modifier = isRequired ? 'required ' : '';
     final nullSuffix = isRequired ? '' : '?';
-    final base = '${modifier}TfArg<$dartType>$nullSuffix $dartName';
+    final base = isEnumListType(dartType)
+        ? '$modifier$dartType$nullSuffix $dartName'
+        : '${modifier}TfArg<$dartType>$nullSuffix $dartName';
     if (deprecation == null) return base;
     final escaped = deprecation.replaceAll(r'\', r'\\').replaceAll("'", r"\'");
     return "@Deprecated('$escaped') $base";
@@ -488,6 +500,17 @@ class WrapperEmitter {
       return "'$snakeName': $camel,";
     }
     return "if ($camel != null) '$snakeName': $camel,";
+  }
+
+  /// [_argMapEntry] for a bare `List<TfArg<...>>` parameter: each element
+  /// encodes itself, and the list goes in as one literal.
+  String _elementwiseArgMapEntry(String snakeName, bool isRequired) {
+    final camel = snakeToDartIdent(snakeName);
+    final value = 'TfArg.literal([for (final e in $camel) e.toTfJson()])';
+    if (isRequired) {
+      return "'$snakeName': $value,";
+    }
+    return "if ($camel != null) '$snakeName': $value,";
   }
 
   /// Builds the constructor-param and argMap-entry snippets for one
