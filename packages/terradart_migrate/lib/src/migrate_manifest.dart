@@ -223,6 +223,7 @@ final class MigrateManifest {
     required this.entries,
     required this.helpers,
     required this.enums,
+    this.caseInsensitiveEnums = false,
   });
 
   /// The Dart package whose curated factories this manifest describes
@@ -238,6 +239,11 @@ final class MigrateManifest {
 
   /// Enum name → raw-value map. Enum names are unique per package.
   final Map<String, MigrateEnum> enums;
+
+  /// Whether the provider matches enum values without regard to case (its
+  /// validators are `OneOfCaseInsensitive`), so a raw value that differs
+  /// from exactly one member only in case still names that member.
+  final bool caseInsensitiveEnums;
 
   /// The entry for a Terraform type of the given kind, if curated.
   MigrateEntry? entryFor(String tfType, CatalogKind kind) {

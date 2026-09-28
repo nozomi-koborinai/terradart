@@ -338,6 +338,54 @@ resource "google_pubsub_topic_iam_member" "viewer" {
       );
     });
 
+    group('an enum value that differs from a member only in case', () {
+      const module = {
+        'terraform': _google,
+        'resource': {
+          'google_pubsub_schema': {
+            's': {'name': 's', 'type': 'avro'},
+          },
+        },
+      };
+      MigrationResult migrate({required bool caseInsensitive}) => migrateModule(
+        TfModule.fromTfJson(jsonEncode(module), fileName: 'main.tf.json'),
+        name: 'demo',
+        format: false,
+        manifests: [
+          MigrateManifest(
+            package: googleMigrateManifest.package,
+            entries: googleMigrateManifest.entries,
+            helpers: googleMigrateManifest.helpers,
+            enums: googleMigrateManifest.enums,
+            caseInsensitiveEnums: caseInsensitive,
+          ),
+        ],
+      );
+
+      test('stays in Terraform for a case-sensitive provider', () {
+        expect(
+          reasonOf(migrate(caseInsensitive: false), 'google_pubsub_schema.s'),
+          contains('"avro" is not a member of PubsubSchemaType'),
+        );
+      });
+
+      test('names the canonical member, with a warning, otherwise', () {
+        final r = migrate(caseInsensitive: true);
+        expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));
+        expect(
+          r.files['lib/demo_stack.dart'],
+          contains('PubsubSchemaType.avro'),
+        );
+        expect(
+          r.report.warnings.single,
+          contains(
+            '"avro" becomes PubsubSchemaType.avro, which synthesizes '
+            'as "AVRO"',
+          ),
+        );
+      });
+    });
+
     test('an expression on a non-string argument is TfArg.expression', () {
       final r = _migrateJson(
         module({

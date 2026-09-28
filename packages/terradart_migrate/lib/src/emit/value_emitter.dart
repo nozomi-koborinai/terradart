@@ -594,6 +594,21 @@ final class ValueEmitter {
   // Enums, helpers, sealed choices, passthrough
   // ---------------------------------------------------------------------
 
+  /// The member whose raw value equals [raw] ignoring case, when the
+  /// manifest's provider matches enum values that way and exactly one does.
+  MapEntry<String, String>? _caseInsensitiveMember(
+    Map<String, String> members,
+    String raw,
+  ) {
+    if (!manifest.caseInsensitiveEnums) return null;
+    final lower = raw.toLowerCase();
+    final hits = [
+      for (final e in members.entries)
+        if (e.key.toLowerCase() == lower) e,
+    ];
+    return hits.length == 1 ? hits.single : null;
+  }
+
   String _enum(MigrateSlot slot, Expr value, {required String path}) {
     final enumName = slot.dartType!;
     final members = manifest.enums[enumName]?.members;
@@ -613,13 +628,20 @@ final class ValueEmitter {
           '${isExpression(e) ? 'a Terraform expression' : 'a ${_describe(e)}'}',
         );
       }
-      final m = members[raw];
-      if (m == null) {
+      final exact = members[raw];
+      if (exact != null) return '$enumName.$exact';
+      final folded = _caseInsensitiveMember(members, raw);
+      if (folded == null) {
         throw MigrateBlocker(
           'argument "$path": "$raw" is not a member of $enumName',
         );
       }
-      return '$enumName.$m';
+      ctx.warnings.add(
+        'argument "$path": "$raw" becomes $enumName.${folded.value}, which '
+        'synthesizes as "${folded.key}" (the provider matches enum values '
+        'case-insensitively)',
+      );
+      return '$enumName.${folded.value}';
     }
 
     // `TfArg<E>` (wrapped) takes an expression verbatim; a bare `E` cannot.
