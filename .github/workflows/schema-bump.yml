@@ -466,7 +466,9 @@ jobs:
           # manifests, ledgers, docs, examples. The drift report is the PR
           # body, and tf-out/ synth output is gitignored.
           git add -A -- . ':(exclude).schema-bump'
-          git commit -m "chore(schema): weekly $LANE bump $today"
+          # --allow-empty: a new-major week with nothing to regenerate still
+          # opens a PR so the drift report's new-major banner reaches a human.
+          git commit --allow-empty -m "chore(schema): weekly $LANE bump $today"
           git push -u origin "$branch"
           # Ensure the PR labels exist (idempotent) so a missing label can't fail
           # the bump the way it did on 2026-06-14. Best-effort: ignore "already exists".
