@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_hostname_tls_setting`.
 const Set<String> _cloudflareHostnameTlsSettingSensitive = <String>{};
 
+/// Hostname Tls Setting Setting enum for `setting_id`.
+enum HostnameTlsSettingSettingId implements TerraformEnum {
+  ciphers('ciphers'),
+  minTlsVersion('min_tls_version'),
+  http2('http2');
+
+  const HostnameTlsSettingSettingId(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_hostname_tls_setting`.
 ///
 /// Accepted Permissions
@@ -17,7 +28,7 @@ final class CloudflareHostnameTlsSetting extends Resource {
   CloudflareHostnameTlsSetting({
     required super.localName,
     required TfArg<String> hostname,
-    required TfArg<String> settingId,
+    required TfArg<HostnameTlsSettingSettingId> settingId,
     required TfArg<Object?> value,
     required TfArg<String> zoneId,
     super.lifecycle,

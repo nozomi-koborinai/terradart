@@ -8,6 +8,29 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareZeroTrustAccessIdentityProviderSensitive =
     <String>{'config.client_secret', 'scim_config.secret'};
 
+/// Zero Trust Access Identity Provider enum for `type`.
+enum ZeroTrustAccessIdentityProviderType implements TerraformEnum {
+  onetimepin('onetimepin'),
+  azuread('azureAD'),
+  saml('saml'),
+  centrify('centrify'),
+  facebook('facebook'),
+  github('github'),
+  googleApps('google-apps'),
+  google('google'),
+  linkedin('linkedin'),
+  oidc('oidc'),
+  okta('okta'),
+  onelogin('onelogin'),
+  pingone('pingone'),
+  yandex('yandex'),
+  cloudflare('cloudflare');
+
+  const ZeroTrustAccessIdentityProviderType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `config` block of
 /// `cloudflare_zero_trust_access_identity_provider` (derived from provider schema).
 @immutable
@@ -93,7 +116,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<bool>? pkceEnabled;
 
-  final TfArg<String>? prompt;
+  final TfArg<ZeroTrustAccessIdentityProviderConfigPrompt>? prompt;
 
   final TfArg<bool>? restrictToAccountMembers;
 
@@ -157,6 +180,18 @@ final class ZeroTrustAccessIdentityProviderConfig {
   };
 }
 
+/// `prompt` — derived from the provider schema description.
+enum ZeroTrustAccessIdentityProviderConfigPrompt implements TerraformEnum {
+  login('login'),
+  selectAccount('select_account'),
+  none('none'),
+  consent('consent');
+
+  const ZeroTrustAccessIdentityProviderConfigPrompt(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `config.header_attributes` block of
 /// `cloudflare_zero_trust_access_identity_provider` (derived from provider schema).
 @immutable
@@ -189,7 +224,8 @@ final class ZeroTrustAccessIdentityProviderScimConfig {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? identityUpdateBehavior;
+  final TfArg<ZeroTrustAccessIdentityProviderScimConfigIdentityUpdateBehavior>?
+  identityUpdateBehavior;
 
   final TfArg<bool>? seatDeprovision;
 
@@ -204,6 +240,20 @@ final class ZeroTrustAccessIdentityProviderScimConfig {
     if (userDeprovision != null)
       'user_deprovision': userDeprovision!.toTfJson(),
   };
+}
+
+/// `identity_update_behavior` — derived from the provider schema description.
+enum ZeroTrustAccessIdentityProviderScimConfigIdentityUpdateBehavior
+    implements TerraformEnum {
+  automatic('automatic'),
+  reauth('reauth'),
+  noAction('no_action');
+
+  const ZeroTrustAccessIdentityProviderScimConfigIdentityUpdateBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_access_identity_provider`.
@@ -221,7 +271,7 @@ final class CloudflareZeroTrustAccessIdentityProvider extends Resource {
     required TfArg<String> name,
     TfArg<bool>? readOnly,
     TfArg<String>? samlCertificateSetId,
-    required TfArg<String> type,
+    required TfArg<ZeroTrustAccessIdentityProviderType> type,
     TfArg<String>? zoneId,
     required ZeroTrustAccessIdentityProviderConfig config,
     ZeroTrustAccessIdentityProviderScimConfig? scimConfig,

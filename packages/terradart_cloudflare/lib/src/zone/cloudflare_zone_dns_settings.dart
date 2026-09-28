@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zone_dns_settings`.
 const Set<String> _cloudflareZoneDnsSettingsSensitive = <String>{};
 
+/// Zone Dns Settings Zone enum for `zone_mode`.
+enum ZoneDnsSettingsZoneMode implements TerraformEnum {
+  standard('standard'),
+  cdnOnly('cdn_only'),
+  dnsOnly('dns_only');
+
+  const ZoneDnsSettingsZoneMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `internal_dns` block of
 /// `cloudflare_zone_dns_settings` (derived from provider schema).
 @immutable
@@ -29,12 +40,24 @@ final class ZoneDnsSettingsNameservers {
 
   final TfArg<num>? nsSet;
 
-  final TfArg<String>? type;
+  final TfArg<ZoneDnsSettingsNameserversType>? type;
 
   Map<String, Object?> encode() => {
     if (nsSet != null) 'ns_set': nsSet!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ZoneDnsSettingsNameserversType implements TerraformEnum {
+  cloudflareStandard('cloudflare.standard'),
+  customAccount('custom.account'),
+  customTenant('custom.tenant'),
+  customZone('custom.zone');
+
+  const ZoneDnsSettingsNameserversType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `soa` block of
@@ -93,7 +116,7 @@ final class CloudflareZoneDnsSettings extends Resource {
     TfArg<num>? nsTtl,
     TfArg<bool>? secondaryOverrides,
     required TfArg<String> zoneId,
-    TfArg<String>? zoneMode,
+    TfArg<ZoneDnsSettingsZoneMode>? zoneMode,
     ZoneDnsSettingsInternalDns? internalDns,
     ZoneDnsSettingsNameservers? nameservers,
     ZoneDnsSettingsSoa? soa,

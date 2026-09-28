@@ -4,29 +4,42 @@
 library;
 
 export 'src/email/cloudflare_email_routing_address.dart'
-    show CloudflareEmailRoutingAddress;
+    show CloudflareEmailRoutingAddress, EmailRoutingAddressStatus;
 export 'src/email/cloudflare_email_routing_catch_all.dart'
     show
         CloudflareEmailRoutingCatchAll,
         EmailRoutingCatchAllActions,
-        EmailRoutingCatchAllMatchers;
+        EmailRoutingCatchAllActionsType,
+        EmailRoutingCatchAllMatchers,
+        EmailRoutingCatchAllMatchersType,
+        EmailRoutingCatchAllSource;
 export 'src/email/cloudflare_email_routing_dns.dart'
     show CloudflareEmailRoutingDns;
 export 'src/email/cloudflare_email_routing_rule.dart'
     show
         CloudflareEmailRoutingRule,
         EmailRoutingRuleActions,
-        EmailRoutingRuleMatchers;
+        EmailRoutingRuleActionsType,
+        EmailRoutingRuleMatchers,
+        EmailRoutingRuleMatchersField,
+        EmailRoutingRuleMatchersType,
+        EmailRoutingRuleSource;
 export 'src/email/cloudflare_email_routing_settings.dart'
     show CloudflareEmailRoutingSettings;
 export 'src/email/cloudflare_email_security_allow_policy.dart'
-    show CloudflareEmailSecurityAllowPolicy;
+    show
+        CloudflareEmailSecurityAllowPolicy,
+        EmailSecurityAllowPolicyPatternType;
 export 'src/email/cloudflare_email_security_block_sender.dart'
-    show CloudflareEmailSecurityBlockSender;
+    show
+        CloudflareEmailSecurityBlockSender,
+        EmailSecurityBlockSenderPatternType;
 export 'src/email/cloudflare_email_security_domain.dart'
-    show CloudflareEmailSecurityDomain;
+    show CloudflareEmailSecurityDomain, EmailSecurityDomainFolder;
 export 'src/email/cloudflare_email_security_impersonation_registry.dart'
-    show CloudflareEmailSecurityImpersonationRegistry;
+    show
+        CloudflareEmailSecurityImpersonationRegistry,
+        EmailSecurityImpersonationRegistryProvenance;
 export 'src/email/cloudflare_email_security_trusted_domains.dart'
     show CloudflareEmailSecurityTrustedDomains;
 export 'src/email/cloudflare_email_sending_subdomain.dart'

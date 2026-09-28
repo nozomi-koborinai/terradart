@@ -5,7 +5,8 @@ library;
 
 export 'src/pages/cloudflare_custom_page_asset.dart'
     show CloudflareCustomPageAsset;
-export 'src/pages/cloudflare_custom_pages.dart' show CloudflareCustomPages;
+export 'src/pages/cloudflare_custom_pages.dart'
+    show CloudflareCustomPages, CustomPagesIdentifier, CustomPagesState;
 export 'src/pages/cloudflare_pages_domain.dart' show CloudflarePagesDomain;
 export 'src/pages/cloudflare_pages_project.dart'
     show
@@ -19,6 +20,7 @@ export 'src/pages/cloudflare_pages_project.dart'
         PagesProjectDeploymentConfigsPreviewD1Databases,
         PagesProjectDeploymentConfigsPreviewDurableObjectNamespaces,
         PagesProjectDeploymentConfigsPreviewEnvVars,
+        PagesProjectDeploymentConfigsPreviewEnvVarsType,
         PagesProjectDeploymentConfigsPreviewHyperdriveBindings,
         PagesProjectDeploymentConfigsPreviewKvNamespaces,
         PagesProjectDeploymentConfigsPreviewLimits,
@@ -27,6 +29,7 @@ export 'src/pages/cloudflare_pages_project.dart'
         PagesProjectDeploymentConfigsPreviewQueueProducers,
         PagesProjectDeploymentConfigsPreviewR2Buckets,
         PagesProjectDeploymentConfigsPreviewServices,
+        PagesProjectDeploymentConfigsPreviewUsageModel,
         PagesProjectDeploymentConfigsPreviewVectorizeBindings,
         PagesProjectDeploymentConfigsProduction,
         PagesProjectDeploymentConfigsProductionAiBindings,
@@ -35,6 +38,7 @@ export 'src/pages/cloudflare_pages_project.dart'
         PagesProjectDeploymentConfigsProductionD1Databases,
         PagesProjectDeploymentConfigsProductionDurableObjectNamespaces,
         PagesProjectDeploymentConfigsProductionEnvVars,
+        PagesProjectDeploymentConfigsProductionEnvVarsType,
         PagesProjectDeploymentConfigsProductionHyperdriveBindings,
         PagesProjectDeploymentConfigsProductionKvNamespaces,
         PagesProjectDeploymentConfigsProductionLimits,
@@ -43,6 +47,9 @@ export 'src/pages/cloudflare_pages_project.dart'
         PagesProjectDeploymentConfigsProductionQueueProducers,
         PagesProjectDeploymentConfigsProductionR2Buckets,
         PagesProjectDeploymentConfigsProductionServices,
+        PagesProjectDeploymentConfigsProductionUsageModel,
         PagesProjectDeploymentConfigsProductionVectorizeBindings,
         PagesProjectSource,
-        PagesProjectSourceConfig;
+        PagesProjectSourceConfig,
+        PagesProjectSourceConfigPreviewDeploymentSetting,
+        PagesProjectSourceType;

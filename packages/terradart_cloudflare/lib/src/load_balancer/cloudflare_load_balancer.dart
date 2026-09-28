@@ -7,6 +7,34 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_load_balancer`.
 const Set<String> _cloudflareLoadBalancerSensitive = <String>{};
 
+/// Load Balancer Session enum for `session_affinity`.
+enum LoadBalancerSessionAffinity implements TerraformEnum {
+  none('none'),
+  cookie('cookie'),
+  ipCookie('ip_cookie'),
+  header('header');
+
+  const LoadBalancerSessionAffinity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Load Balancer Steering enum for `steering_policy`.
+enum LoadBalancerSteeringPolicy implements TerraformEnum {
+  off('off'),
+  geo('geo'),
+  random('random'),
+  dynamicLatency('dynamic_latency'),
+  proximity('proximity'),
+  leastOutstandingRequests('least_outstanding_requests'),
+  leastConnections('least_connections'),
+  empty('');
+
+  const LoadBalancerSteeringPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `adaptive_routing` block of
 /// `cloudflare_load_balancer` (derived from provider schema).
 @immutable
@@ -27,14 +55,36 @@ final class LoadBalancerAdaptiveRouting {
 final class LoadBalancerLocationStrategy {
   const LoadBalancerLocationStrategy({this.mode, this.preferEcs});
 
-  final TfArg<String>? mode;
+  final TfArg<LoadBalancerLocationStrategyMode>? mode;
 
-  final TfArg<String>? preferEcs;
+  final TfArg<LoadBalancerLocationStrategyPreferEcs>? preferEcs;
 
   Map<String, Object?> encode() => {
     if (mode != null) 'mode': mode!.toTfJson(),
     if (preferEcs != null) 'prefer_ecs': preferEcs!.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum LoadBalancerLocationStrategyMode implements TerraformEnum {
+  pop('pop'),
+  resolverIp('resolver_ip');
+
+  const LoadBalancerLocationStrategyMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `prefer_ecs` — derived from the provider schema description.
+enum LoadBalancerLocationStrategyPreferEcs implements TerraformEnum {
+  always('always'),
+  never('never'),
+  proximity('proximity'),
+  geo('geo');
+
+  const LoadBalancerLocationStrategyPreferEcs(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `random_steering` block of
@@ -149,11 +199,11 @@ final class LoadBalancerRulesOverrides {
 
   final TfArg<Map<String, dynamic>>? regionPools;
 
-  final TfArg<String>? sessionAffinity;
+  final TfArg<LoadBalancerRulesOverridesSessionAffinity>? sessionAffinity;
 
   final TfArg<num>? sessionAffinityTtl;
 
-  final TfArg<String>? steeringPolicy;
+  final TfArg<LoadBalancerRulesOverridesSteeringPolicy>? steeringPolicy;
 
   final TfArg<num>? ttl;
 
@@ -187,6 +237,34 @@ final class LoadBalancerRulesOverrides {
   };
 }
 
+/// `session_affinity` — derived from the provider schema description.
+enum LoadBalancerRulesOverridesSessionAffinity implements TerraformEnum {
+  none('none'),
+  cookie('cookie'),
+  ipCookie('ip_cookie'),
+  header('header');
+
+  const LoadBalancerRulesOverridesSessionAffinity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `steering_policy` — derived from the provider schema description.
+enum LoadBalancerRulesOverridesSteeringPolicy implements TerraformEnum {
+  off('off'),
+  geo('geo'),
+  random('random'),
+  dynamicLatency('dynamic_latency'),
+  proximity('proximity'),
+  leastOutstandingRequests('least_outstanding_requests'),
+  leastConnections('least_connections'),
+  empty('');
+
+  const LoadBalancerRulesOverridesSteeringPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rules.overrides.adaptive_routing` block of
 /// `cloudflare_load_balancer` (derived from provider schema).
 @immutable
@@ -207,14 +285,39 @@ final class LoadBalancerRulesOverridesAdaptiveRouting {
 final class LoadBalancerRulesOverridesLocationStrategy {
   const LoadBalancerRulesOverridesLocationStrategy({this.mode, this.preferEcs});
 
-  final TfArg<String>? mode;
+  final TfArg<LoadBalancerRulesOverridesLocationStrategyMode>? mode;
 
-  final TfArg<String>? preferEcs;
+  final TfArg<LoadBalancerRulesOverridesLocationStrategyPreferEcs>? preferEcs;
 
   Map<String, Object?> encode() => {
     if (mode != null) 'mode': mode!.toTfJson(),
     if (preferEcs != null) 'prefer_ecs': preferEcs!.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum LoadBalancerRulesOverridesLocationStrategyMode implements TerraformEnum {
+  pop('pop'),
+  resolverIp('resolver_ip');
+
+  const LoadBalancerRulesOverridesLocationStrategyMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `prefer_ecs` — derived from the provider schema description.
+enum LoadBalancerRulesOverridesLocationStrategyPreferEcs
+    implements TerraformEnum {
+  always('always'),
+  never('never'),
+  proximity('proximity'),
+  geo('geo');
+
+  const LoadBalancerRulesOverridesLocationStrategyPreferEcs(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.overrides.random_steering` block of
@@ -255,11 +358,16 @@ final class LoadBalancerRulesOverridesSessionAffinityAttributes {
 
   final TfArg<bool>? requireAllHeaders;
 
-  final TfArg<String>? samesite;
+  final TfArg<LoadBalancerRulesOverridesSessionAffinityAttributesSamesite>?
+  samesite;
 
-  final TfArg<String>? secure;
+  final TfArg<LoadBalancerRulesOverridesSessionAffinityAttributesSecure>?
+  secure;
 
-  final TfArg<String>? zeroDowntimeFailover;
+  final TfArg<
+    LoadBalancerRulesOverridesSessionAffinityAttributesZeroDowntimeFailover
+  >?
+  zeroDowntimeFailover;
 
   Map<String, Object?> encode() => {
     if (drainDuration != null) 'drain_duration': drainDuration!.toTfJson(),
@@ -271,6 +379,49 @@ final class LoadBalancerRulesOverridesSessionAffinityAttributes {
     if (zeroDowntimeFailover != null)
       'zero_downtime_failover': zeroDowntimeFailover!.toTfJson(),
   };
+}
+
+/// `samesite` — derived from the provider schema description.
+enum LoadBalancerRulesOverridesSessionAffinityAttributesSamesite
+    implements TerraformEnum {
+  auto('Auto'),
+  lax('Lax'),
+  none('None'),
+  strict('Strict');
+
+  const LoadBalancerRulesOverridesSessionAffinityAttributesSamesite(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `secure` — derived from the provider schema description.
+enum LoadBalancerRulesOverridesSessionAffinityAttributesSecure
+    implements TerraformEnum {
+  auto('Auto'),
+  always('Always'),
+  never('Never');
+
+  const LoadBalancerRulesOverridesSessionAffinityAttributesSecure(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `zero_downtime_failover` — derived from the provider schema description.
+enum LoadBalancerRulesOverridesSessionAffinityAttributesZeroDowntimeFailover
+    implements TerraformEnum {
+  none('none'),
+  temporary('temporary'),
+  sticky('sticky');
+
+  const LoadBalancerRulesOverridesSessionAffinityAttributesZeroDowntimeFailover(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `session_affinity_attributes` block of
@@ -292,11 +443,12 @@ final class LoadBalancerSessionAffinityAttributes {
 
   final TfArg<bool>? requireAllHeaders;
 
-  final TfArg<String>? samesite;
+  final TfArg<LoadBalancerSessionAffinityAttributesSamesite>? samesite;
 
-  final TfArg<String>? secure;
+  final TfArg<LoadBalancerSessionAffinityAttributesSecure>? secure;
 
-  final TfArg<String>? zeroDowntimeFailover;
+  final TfArg<LoadBalancerSessionAffinityAttributesZeroDowntimeFailover>?
+  zeroDowntimeFailover;
 
   Map<String, Object?> encode() => {
     if (drainDuration != null) 'drain_duration': drainDuration!.toTfJson(),
@@ -308,6 +460,43 @@ final class LoadBalancerSessionAffinityAttributes {
     if (zeroDowntimeFailover != null)
       'zero_downtime_failover': zeroDowntimeFailover!.toTfJson(),
   };
+}
+
+/// `samesite` — derived from the provider schema description.
+enum LoadBalancerSessionAffinityAttributesSamesite implements TerraformEnum {
+  auto('Auto'),
+  lax('Lax'),
+  none('None'),
+  strict('Strict');
+
+  const LoadBalancerSessionAffinityAttributesSamesite(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `secure` — derived from the provider schema description.
+enum LoadBalancerSessionAffinityAttributesSecure implements TerraformEnum {
+  auto('Auto'),
+  always('Always'),
+  never('Never');
+
+  const LoadBalancerSessionAffinityAttributesSecure(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `zero_downtime_failover` — derived from the provider schema description.
+enum LoadBalancerSessionAffinityAttributesZeroDowntimeFailover
+    implements TerraformEnum {
+  none('none'),
+  temporary('temporary'),
+  sticky('sticky');
+
+  const LoadBalancerSessionAffinityAttributesZeroDowntimeFailover(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_load_balancer`.
@@ -330,9 +519,9 @@ final class CloudflareLoadBalancer extends Resource {
     TfArg<Map<String, List<String>>>? popPools,
     TfArg<bool>? proxied,
     TfArg<Map<String, List<String>>>? regionPools,
-    TfArg<String>? sessionAffinity,
+    TfArg<LoadBalancerSessionAffinity>? sessionAffinity,
     TfArg<num>? sessionAffinityTtl,
-    TfArg<String>? steeringPolicy,
+    TfArg<LoadBalancerSteeringPolicy>? steeringPolicy,
     TfArg<num>? ttl,
     required TfArg<String> zoneId,
     LoadBalancerAdaptiveRouting? adaptiveRouting,

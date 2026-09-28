@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_access_rule`.
 const Set<String> _cloudflareAccessRuleSensitive = <String>{};
 
+/// Access Rule enum for `mode`.
+enum AccessRuleMode implements TerraformEnum {
+  block('block'),
+  challenge('challenge'),
+  whitelist('whitelist'),
+  jsChallenge('js_challenge'),
+  managedChallenge('managed_challenge');
+
+  const AccessRuleMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `configuration` block of
 /// `cloudflare_access_rule` (derived from provider schema).
 @immutable
 final class AccessRuleConfiguration {
   const AccessRuleConfiguration({this.target, this.value});
 
-  final TfArg<String>? target;
+  final TfArg<AccessRuleConfigurationTarget>? target;
 
   final TfArg<String>? value;
 
@@ -21,6 +34,19 @@ final class AccessRuleConfiguration {
     if (target != null) 'target': target!.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `target` — derived from the provider schema description.
+enum AccessRuleConfigurationTarget implements TerraformEnum {
+  ip('ip'),
+  ip6('ip6'),
+  ipRange('ip_range'),
+  asn('asn'),
+  country('country');
+
+  const AccessRuleConfigurationTarget(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_access_rule`.
@@ -35,7 +61,7 @@ final class CloudflareAccessRule extends Resource {
   CloudflareAccessRule({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<String> mode,
+    required TfArg<AccessRuleMode> mode,
     TfArg<String>? notes,
     TfArg<String>? zoneId,
     required AccessRuleConfiguration configuration,

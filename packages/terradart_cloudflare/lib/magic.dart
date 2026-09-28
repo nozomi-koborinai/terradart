@@ -8,7 +8,13 @@ export 'src/magic/cloudflare_magic_network_monitoring_configuration.dart'
         CloudflareMagicNetworkMonitoringConfiguration,
         MagicNetworkMonitoringConfigurationWarpDevices;
 export 'src/magic/cloudflare_magic_network_monitoring_rule.dart'
-    show CloudflareMagicNetworkMonitoringRule;
+    show
+        CloudflareMagicNetworkMonitoringRule,
+        MagicNetworkMonitoringRuleDuration,
+        MagicNetworkMonitoringRulePrefixMatch,
+        MagicNetworkMonitoringRuleType,
+        MagicNetworkMonitoringRuleZscoreSensitivity,
+        MagicNetworkMonitoringRuleZscoreTarget;
 export 'src/magic/cloudflare_magic_transit_cf1_site.dart'
     show
         CloudflareMagicTransitCf1Site,
@@ -23,7 +29,8 @@ export 'src/magic/cloudflare_magic_transit_site_acl.dart'
     show
         CloudflareMagicTransitSiteAcl,
         MagicTransitSiteAclLan1,
-        MagicTransitSiteAclLan2;
+        MagicTransitSiteAclLan2,
+        MagicTransitSiteAclProtocols;
 export 'src/magic/cloudflare_magic_transit_site_lan.dart'
     show
         CloudflareMagicTransitSiteLan,
@@ -33,23 +40,32 @@ export 'src/magic/cloudflare_magic_transit_site_lan.dart'
         MagicTransitSiteLanStaticAddressing,
         MagicTransitSiteLanStaticAddressingDhcpRelay,
         MagicTransitSiteLanStaticAddressingDhcpServer,
-        MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions;
+        MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions,
+        MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptionsType;
 export 'src/magic/cloudflare_magic_transit_site_wan.dart'
     show CloudflareMagicTransitSiteWan, MagicTransitSiteWanStaticAddressing;
 export 'src/magic/cloudflare_magic_wan_bgp_filter_profile.dart'
-    show CloudflareMagicWanBgpFilterProfile;
+    show
+        CloudflareMagicWanBgpFilterProfile,
+        MagicWanBgpFilterProfileMatchAction;
 export 'src/magic/cloudflare_magic_wan_gre_tunnel.dart'
     show
         CloudflareMagicWanGreTunnel,
         MagicWanGreTunnelBgp,
         MagicWanGreTunnelHealthCheck,
-        MagicWanGreTunnelHealthCheckTarget;
+        MagicWanGreTunnelHealthCheckDirection,
+        MagicWanGreTunnelHealthCheckRate,
+        MagicWanGreTunnelHealthCheckTarget,
+        MagicWanGreTunnelHealthCheckType;
 export 'src/magic/cloudflare_magic_wan_ipsec_tunnel.dart'
     show
         CloudflareMagicWanIpsecTunnel,
         MagicWanIpsecTunnelBgp,
         MagicWanIpsecTunnelCustomRemoteIdentities,
         MagicWanIpsecTunnelHealthCheck,
-        MagicWanIpsecTunnelHealthCheckTarget;
+        MagicWanIpsecTunnelHealthCheckDirection,
+        MagicWanIpsecTunnelHealthCheckRate,
+        MagicWanIpsecTunnelHealthCheckTarget,
+        MagicWanIpsecTunnelHealthCheckType;
 export 'src/magic/cloudflare_magic_wan_static_route.dart'
     show CloudflareMagicWanStaticRoute, MagicWanStaticRouteScope;

@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_total_tls`.
 const Set<String> _cloudflareTotalTlsSensitive = <String>{};
 
+/// Total Tls Certificate enum for `certificate_authority`.
+enum TotalTlsCertificateAuthority implements TerraformEnum {
+  google('google'),
+  letsEncrypt('lets_encrypt'),
+  sslCom('ssl_com');
+
+  const TotalTlsCertificateAuthority(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_total_tls`.
 ///
 /// Accepted Permissions
@@ -16,7 +27,7 @@ final class CloudflareTotalTls extends Resource {
 
   CloudflareTotalTls({
     required super.localName,
-    TfArg<String>? certificateAuthority,
+    TfArg<TotalTlsCertificateAuthority>? certificateAuthority,
     required TfArg<bool> enabled,
     required TfArg<String> zoneId,
     super.lifecycle,

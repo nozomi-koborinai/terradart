@@ -13,14 +13,37 @@ const Set<String> _cloudflareSpectrumApplicationSensitive = <String>{};
 final class DataSpectrumApplicationFilter {
   const DataSpectrumApplicationFilter({this.direction, this.order});
 
-  final TfArg<String>? direction;
+  final TfArg<DataSpectrumApplicationFilterDirection>? direction;
 
-  final TfArg<String>? order;
+  final TfArg<DataSpectrumApplicationFilterOrder>? order;
 
   Map<String, Object?> encode() => {
     if (direction != null) 'direction': direction!.toTfJson(),
     if (order != null) 'order': order!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataSpectrumApplicationFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataSpectrumApplicationFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataSpectrumApplicationFilterOrder implements TerraformEnum {
+  protocol('protocol'),
+  appId('app_id'),
+  createdOn('created_on'),
+  modifiedOn('modified_on'),
+  dns('dns');
+
+  const DataSpectrumApplicationFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_spectrum_application`.

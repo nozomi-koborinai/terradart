@@ -19,13 +19,13 @@ final class DataEmailSecurityBlockSenderFilter {
     this.search,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataEmailSecurityBlockSenderFilterDirection>? direction;
 
-  final TfArg<String>? order;
+  final TfArg<DataEmailSecurityBlockSenderFilterOrder>? order;
 
   final TfArg<String>? pattern;
 
-  final TfArg<String>? patternType;
+  final TfArg<DataEmailSecurityBlockSenderFilterPatternType>? patternType;
 
   final TfArg<String>? search;
 
@@ -36,6 +36,38 @@ final class DataEmailSecurityBlockSenderFilter {
     if (patternType != null) 'pattern_type': patternType!.toTfJson(),
     if (search != null) 'search': search!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataEmailSecurityBlockSenderFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataEmailSecurityBlockSenderFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataEmailSecurityBlockSenderFilterOrder implements TerraformEnum {
+  pattern('pattern'),
+  createdAt('created_at');
+
+  const DataEmailSecurityBlockSenderFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `pattern_type` — derived from the provider schema description.
+enum DataEmailSecurityBlockSenderFilterPatternType implements TerraformEnum {
+  email('EMAIL'),
+  domain('DOMAIN'),
+  ip('IP'),
+  unknown('UNKNOWN');
+
+  const DataEmailSecurityBlockSenderFilterPatternType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_email_security_block_sender`.

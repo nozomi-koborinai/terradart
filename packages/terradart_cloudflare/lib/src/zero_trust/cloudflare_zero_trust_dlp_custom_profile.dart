@@ -78,12 +78,22 @@ final class ZeroTrustDlpCustomProfileEntriesPattern {
 
   final TfArg<String> regex;
 
-  final TfArg<String>? validation;
+  final TfArg<ZeroTrustDlpCustomProfileEntriesPatternValidation>? validation;
 
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
     if (validation != null) 'validation': validation!.toTfJson(),
   };
+}
+
+/// `validation` — derived from the provider schema description.
+enum ZeroTrustDlpCustomProfileEntriesPatternValidation
+    implements TerraformEnum {
+  luhn('luhn');
+
+  const ZeroTrustDlpCustomProfileEntriesPatternValidation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `sensitivity_levels` block of
@@ -119,13 +129,26 @@ final class ZeroTrustDlpCustomProfileSharedEntries {
 
   final TfArg<String> entryId;
 
-  final TfArg<String> entryType;
+  final TfArg<ZeroTrustDlpCustomProfileSharedEntriesEntryType> entryType;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'entry_id': entryId.toTfJson(),
     'entry_type': entryType.toTfJson(),
   };
+}
+
+/// `entry_type` — derived from the provider schema description.
+enum ZeroTrustDlpCustomProfileSharedEntriesEntryType implements TerraformEnum {
+  custom('custom'),
+  predefined('predefined'),
+  integration('integration'),
+  exactData('exact_data'),
+  documentFingerprint('document_fingerprint');
+
+  const ZeroTrustDlpCustomProfileSharedEntriesEntryType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dlp_custom_profile`.

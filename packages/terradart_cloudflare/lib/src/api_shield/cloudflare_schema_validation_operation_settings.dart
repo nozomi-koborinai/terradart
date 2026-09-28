@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareSchemaValidationOperationSettingsSensitive =
     <String>{};
 
+/// Schema Validation Operation Settings Mitigation enum for `mitigation_action`.
+enum SchemaValidationOperationSettingsMitigationAction
+    implements TerraformEnum {
+  log('log'),
+  block('block'),
+  none('none');
+
+  const SchemaValidationOperationSettingsMitigationAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_schema_validation_operation_settings`.
 ///
 /// Accepted Permissions
@@ -19,7 +31,8 @@ final class CloudflareSchemaValidationOperationSettings extends Resource {
 
   CloudflareSchemaValidationOperationSettings({
     required super.localName,
-    required TfArg<String> mitigationAction,
+    required TfArg<SchemaValidationOperationSettingsMitigationAction>
+    mitigationAction,
     required TfArg<String> operationId,
     required TfArg<String> zoneId,
     super.lifecycle,

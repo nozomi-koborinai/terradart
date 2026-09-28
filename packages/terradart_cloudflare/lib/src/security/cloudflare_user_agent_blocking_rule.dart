@@ -7,13 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_user_agent_blocking_rule`.
 const Set<String> _cloudflareUserAgentBlockingRuleSensitive = <String>{};
 
+/// User Agent Blocking Rule enum for `mode`.
+enum UserAgentBlockingRuleMode implements TerraformEnum {
+  block('block'),
+  challenge('challenge'),
+  whitelist('whitelist'),
+  jsChallenge('js_challenge'),
+  managedChallenge('managed_challenge');
+
+  const UserAgentBlockingRuleMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `configuration` block of
 /// `cloudflare_user_agent_blocking_rule` (derived from provider schema).
 @immutable
 final class UserAgentBlockingRuleConfiguration {
   const UserAgentBlockingRuleConfiguration({this.target, this.value});
 
-  final TfArg<String>? target;
+  final TfArg<UserAgentBlockingRuleConfigurationTarget>? target;
 
   final TfArg<String>? value;
 
@@ -21,6 +34,15 @@ final class UserAgentBlockingRuleConfiguration {
     if (target != null) 'target': target!.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `target` — derived from the provider schema description.
+enum UserAgentBlockingRuleConfigurationTarget implements TerraformEnum {
+  ua('ua');
+
+  const UserAgentBlockingRuleConfigurationTarget(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_user_agent_blocking_rule`.
@@ -34,7 +56,7 @@ final class CloudflareUserAgentBlockingRule extends Resource {
   CloudflareUserAgentBlockingRule({
     required super.localName,
     TfArg<String>? description,
-    required TfArg<String> mode,
+    required TfArg<UserAgentBlockingRuleMode> mode,
     TfArg<bool>? paused,
     required TfArg<String> zoneId,
     required UserAgentBlockingRuleConfiguration configuration,

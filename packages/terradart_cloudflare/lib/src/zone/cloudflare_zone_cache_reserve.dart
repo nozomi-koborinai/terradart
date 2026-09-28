@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zone_cache_reserve`.
 const Set<String> _cloudflareZoneCacheReserveSensitive = <String>{};
 
+/// Zone Cache Reserve enum for `value`.
+enum ZoneCacheReserveValue implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const ZoneCacheReserveValue(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_zone_cache_reserve`.
 ///
 /// Accepted Permissions
@@ -16,7 +26,7 @@ final class CloudflareZoneCacheReserve extends Resource {
 
   CloudflareZoneCacheReserve({
     required super.localName,
-    TfArg<String>? value,
+    TfArg<ZoneCacheReserveValue>? value,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

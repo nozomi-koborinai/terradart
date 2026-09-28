@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_workers_deployment`.
 const Set<String> _cloudflareWorkersDeploymentSensitive = <String>{};
 
+/// Workers Deployment enum for `strategy`.
+enum WorkersDeploymentStrategy implements TerraformEnum {
+  percentage('percentage');
+
+  const WorkersDeploymentStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `annotations` block of
 /// `cloudflare_workers_deployment` (derived from provider schema).
 @immutable
@@ -52,7 +61,7 @@ final class CloudflareWorkersDeployment extends Resource {
     required TfArg<String> accountId,
     TfArg<bool>? force,
     required TfArg<String> scriptName,
-    required TfArg<String> strategy,
+    required TfArg<WorkersDeploymentStrategy> strategy,
     WorkersDeploymentAnnotations? annotations,
     required List<WorkersDeploymentVersions> versions,
     super.lifecycle,

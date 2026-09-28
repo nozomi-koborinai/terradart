@@ -13,7 +13,7 @@ const Set<String> _cloudflareZeroTrustDlpSettingsSensitive = <String>{};
 final class ZeroTrustDlpSettingsPayloadLogging {
   const ZeroTrustDlpSettingsPayloadLogging({this.maskingLevel, this.publicKey});
 
-  final TfArg<String>? maskingLevel;
+  final TfArg<ZeroTrustDlpSettingsPayloadLoggingMaskingLevel>? maskingLevel;
 
   final TfArg<String>? publicKey;
 
@@ -21,6 +21,18 @@ final class ZeroTrustDlpSettingsPayloadLogging {
     if (maskingLevel != null) 'masking_level': maskingLevel!.toTfJson(),
     if (publicKey != null) 'public_key': publicKey!.toTfJson(),
   };
+}
+
+/// `masking_level` — derived from the provider schema description.
+enum ZeroTrustDlpSettingsPayloadLoggingMaskingLevel implements TerraformEnum {
+  full('full'),
+  partial('partial'),
+  clear('clear'),
+  defaultCase('default');
+
+  const ZeroTrustDlpSettingsPayloadLoggingMaskingLevel(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dlp_settings`.

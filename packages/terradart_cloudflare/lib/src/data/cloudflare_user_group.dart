@@ -18,7 +18,7 @@ final class DataUserGroupFilter {
     this.name,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataUserGroupFilterDirection>? direction;
 
   final TfArg<String>? fuzzyName;
 
@@ -32,6 +32,16 @@ final class DataUserGroupFilter {
     if (id != null) 'id': id!.toTfJson(),
     if (name != null) 'name': name!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataUserGroupFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataUserGroupFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_user_group`.

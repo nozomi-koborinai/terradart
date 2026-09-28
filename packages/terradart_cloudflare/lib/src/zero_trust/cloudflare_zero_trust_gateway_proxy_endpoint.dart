@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareZeroTrustGatewayProxyEndpointSensitive =
     <String>{};
 
+/// Zero Trust Gateway Proxy Endpoint enum for `kind`.
+enum ZeroTrustGatewayProxyEndpointKind implements TerraformEnum {
+  ip('ip'),
+  identity('identity');
+
+  const ZeroTrustGatewayProxyEndpointKind(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_gateway_proxy_endpoint`.
 final class CloudflareZeroTrustGatewayProxyEndpoint extends Resource {
   static const String tfType = 'cloudflare_zero_trust_gateway_proxy_endpoint';
@@ -15,7 +25,7 @@ final class CloudflareZeroTrustGatewayProxyEndpoint extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<List<String>>? ips,
-    TfArg<String>? kind,
+    TfArg<ZeroTrustGatewayProxyEndpointKind>? kind,
     required TfArg<String> name,
     super.lifecycle,
     super.dependsOn,

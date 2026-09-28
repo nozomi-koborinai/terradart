@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_api_shield_discovery_operation`.
 const Set<String> _cloudflareApiShieldDiscoveryOperationSensitive = <String>{};
 
+/// Api Shield Discovery Operation enum for `state`.
+enum ApiShieldDiscoveryOperationState implements TerraformEnum {
+  review('review'),
+  ignored('ignored');
+
+  const ApiShieldDiscoveryOperationState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_api_shield_discovery_operation`.
 ///
 /// Accepted Permissions
@@ -17,7 +27,7 @@ final class CloudflareApiShieldDiscoveryOperation extends Resource {
   CloudflareApiShieldDiscoveryOperation({
     required super.localName,
     required TfArg<String> operationId,
-    TfArg<String>? state,
+    TfArg<ApiShieldDiscoveryOperationState>? state,
     TfArg<String>? zoneId,
     super.lifecycle,
     super.dependsOn,

@@ -2,3 +2,4 @@ outputDir: account
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true

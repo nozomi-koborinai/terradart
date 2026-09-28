@@ -4,4 +4,8 @@
 library;
 
 export 'src/precursor/cloudflare_precursor.dart'
-    show CloudflarePrecursor, PrecursorEnforcementRules;
+    show
+        CloudflarePrecursor,
+        PrecursorDefaultMode,
+        PrecursorEnforcementRules,
+        PrecursorEnforcementRulesMode;

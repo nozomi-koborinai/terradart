@@ -13,17 +13,40 @@ const Set<String> _cloudflareTurnstileWidgetSensitive = <String>{'secret'};
 final class DataTurnstileWidgetFilter {
   const DataTurnstileWidgetFilter({this.direction, this.filter, this.order});
 
-  final TfArg<String>? direction;
+  final TfArg<DataTurnstileWidgetFilterDirection>? direction;
 
   final TfArg<String>? filter;
 
-  final TfArg<String>? order;
+  final TfArg<DataTurnstileWidgetFilterOrder>? order;
 
   Map<String, Object?> encode() => {
     if (direction != null) 'direction': direction!.toTfJson(),
     if (filter != null) 'filter': filter!.toTfJson(),
     if (order != null) 'order': order!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataTurnstileWidgetFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataTurnstileWidgetFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataTurnstileWidgetFilterOrder implements TerraformEnum {
+  id('id'),
+  sitekey('sitekey'),
+  name('name'),
+  createdOn('created_on'),
+  modifiedOn('modified_on');
+
+  const DataTurnstileWidgetFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_turnstile_widget`.

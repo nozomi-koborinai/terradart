@@ -6,6 +6,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_waiting_room_event`.
 const Set<String> _cloudflareWaitingRoomEventSensitive = <String>{};
 
+/// Waiting Room Event Turnstile enum for `turnstile_action`.
+enum WaitingRoomEventTurnstileAction implements TerraformEnum {
+  log('log'),
+  infiniteQueue('infinite_queue');
+
+  const WaitingRoomEventTurnstileAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Waiting Room Event Turnstile enum for `turnstile_mode`.
+enum WaitingRoomEventTurnstileMode implements TerraformEnum {
+  off('off'),
+  invisible('invisible'),
+  visibleNonInteractive('visible_non_interactive'),
+  visibleManaged('visible_managed');
+
+  const WaitingRoomEventTurnstileMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_waiting_room_event`.
 ///
 /// Accepted Permissions
@@ -29,8 +51,8 @@ final class CloudflareWaitingRoomEvent extends Resource {
     TfArg<bool>? shuffleAtEventStart,
     TfArg<bool>? suspended,
     TfArg<num>? totalActiveUsers,
-    TfArg<String>? turnstileAction,
-    TfArg<String>? turnstileMode,
+    TfArg<WaitingRoomEventTurnstileAction>? turnstileAction,
+    TfArg<WaitingRoomEventTurnstileMode>? turnstileMode,
     required TfArg<String> waitingRoomId,
     required TfArg<String> zoneId,
     super.lifecycle,

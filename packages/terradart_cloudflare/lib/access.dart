@@ -4,4 +4,8 @@
 library;
 
 export 'src/access/cloudflare_access_rule.dart'
-    show AccessRuleConfiguration, CloudflareAccessRule;
+    show
+        AccessRuleConfiguration,
+        AccessRuleConfigurationTarget,
+        AccessRuleMode,
+        CloudflareAccessRule;

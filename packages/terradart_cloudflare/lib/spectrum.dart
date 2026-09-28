@@ -7,5 +7,12 @@ export 'src/spectrum/cloudflare_spectrum_application.dart'
     show
         CloudflareSpectrumApplication,
         SpectrumApplicationDns,
+        SpectrumApplicationDnsType,
         SpectrumApplicationEdgeIps,
-        SpectrumApplicationOriginDns;
+        SpectrumApplicationEdgeIpsConnectivity,
+        SpectrumApplicationEdgeIpsType,
+        SpectrumApplicationOriginDns,
+        SpectrumApplicationOriginDnsType,
+        SpectrumApplicationProxyProtocol,
+        SpectrumApplicationTls,
+        SpectrumApplicationTrafficType;

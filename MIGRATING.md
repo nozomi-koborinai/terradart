@@ -55,6 +55,37 @@ too (`CloudflareCtAlerting`, `CloudflareFieldExtractor`,
 `CloudflareZeroTrustCasbPolicy`, `CloudflareZoneTracing`, ...), with new
 `ct`, `field`, `nel` and `precursor` barrels.
 
+### `terradart_cloudflare` inputs with a fixed value set are enums
+
+**Breaking (`terradart_cloudflare`)** — every constructor slot and helper
+field whose provider attribute takes one of a fixed set of values is now a
+generated `TerraformEnum` instead of a `String`: 538 string slots and 41
+list slots across resources, data sources and their nested helpers, with
+579 new enums. The value sets come from the provider's own validators
+(`stringvalidator.OneOf`) and its `Available values:` descriptions at the
+pinned version. Synth output is unchanged: each member synthesizes its
+Terraform value.
+
+| Before | After |
+|--------|-------|
+| `CloudflareDnsRecord(type: TfArg.literal('CNAME'), ...)` | `CloudflareDnsRecord(type: TfArg.literal(DnsRecordType.cname), ...)` |
+| `AccessRuleConfiguration(target: TfArg.literal('ip'), ...)` | `AccessRuleConfiguration(target: TfArg.literal(AccessRuleConfigurationTarget.ip), ...)` |
+| `CloudflareHealthcheck(checkRegions: TfArg.literal(['WNAM']), ...)` | `CloudflareHealthcheck(checkRegions: [TfArg.literal(HealthcheckCheckRegions.wnam)], ...)` |
+| `R2BucketCorsRulesAllowed(methods: TfArg.literal(['GET']), ...)` | `R2BucketCorsRulesAllowed(methods: [TfArg.literal(R2BucketCorsRulesAllowedMethods.get)], ...)` |
+
+Replace each string with the enum member named after it; the analyzer
+names the enum type at every call site. A list of values becomes a Dart
+list of `TfArg` elements, so one element can still be a reference. A value
+that is not a Dart identifier gets a spelled-out member name (`<` → `lt`,
+`<=` → `lte`, `1.2` → `v1p2`). A slot still takes `TfArg.expression(...)`
+or a reference to another resource's output.
+
+`terradart-migrate` maps the values in existing Terraform onto the enums,
+ignoring case: `type = "cname"` becomes `DnsRecordType.cname`, which
+synthesizes `"CNAME"`, and the report warns about each value it
+normalized, because `terraform plan` shows the new spelling as a change
+wherever the provider compares the value case-sensitively.
+
 ### `terradart-coverage` retired
 
 **`terradart-coverage` is retired** — the `terradart_coverage` package, its

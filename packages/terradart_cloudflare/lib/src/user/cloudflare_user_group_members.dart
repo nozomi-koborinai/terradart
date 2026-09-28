@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_user_group_members`.
 const Set<String> _cloudflareUserGroupMembersSensitive = <String>{};
 
+/// User Group Members enum for `direction`.
+enum UserGroupMembersDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const UserGroupMembersDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `members` block of
 /// `cloudflare_user_group_members` (derived from provider schema).
 @immutable
@@ -29,7 +39,7 @@ final class CloudflareUserGroupMembers extends Resource {
   CloudflareUserGroupMembers({
     required super.localName,
     required TfArg<String> accountId,
-    TfArg<String>? direction,
+    TfArg<UserGroupMembersDirection>? direction,
     TfArg<String>? fuzzyEmail,
     TfArg<num>? page,
     TfArg<num>? perPage,
