@@ -153,7 +153,6 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? client,
     TfArg<String>? clientVersion,
-    TfArg<List<String>>? customAudiences,
     TfArg<bool>? deletionProtection,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
@@ -175,7 +174,6 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
            if (annotations != null) 'annotations': annotations,
            if (client != null) 'client': client,
            if (clientVersion != null) 'client_version': clientVersion,
-           if (customAudiences != null) 'custom_audiences': customAudiences,
            if (deletionProtection != null)
              'deletion_protection': deletionProtection,
            if (description != null) 'description': description,

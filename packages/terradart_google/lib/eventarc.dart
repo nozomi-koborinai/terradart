@@ -18,6 +18,12 @@ export 'src/eventarc/google_eventarc_message_bus.dart'
         EventarcMessageBusLoggingConfig,
         GoogleEventarcMessageBus;
 export 'src/eventarc/google_eventarc_pipeline.dart' show GoogleEventarcPipeline;
+export 'src/eventarc/google_eventarc_pipeline_iam_binding.dart'
+    show GoogleEventarcPipelineIamBinding;
+export 'src/eventarc/google_eventarc_pipeline_iam_member.dart'
+    show GoogleEventarcPipelineIamMember;
+export 'src/eventarc/google_eventarc_pipeline_iam_policy.dart'
+    show GoogleEventarcPipelineIamPolicy;
 export 'src/eventarc/google_eventarc_trigger.dart'
     show
         EventarcTriggerCloudRunService,

@@ -38,7 +38,7 @@ String _hcl(String body) =>
     '''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 7.0" }
+    google = { source = "hashicorp/google", version = "~> 8.0" }
   }
 }
 

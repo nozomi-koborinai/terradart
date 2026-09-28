@@ -97,6 +97,8 @@ export 'src/network/google_network_management_connectivity_test.dart'
         NetworkManagementConnectivityTestSourceCloudFunction,
         NetworkManagementConnectivityTestSourceCloudRunRevision,
         NetworkManagementConnectivityTestSourceNetworkType;
+export 'src/network/google_network_management_network_monitoring_provider.dart'
+    show GoogleNetworkManagementNetworkMonitoringProvider;
 export 'src/network/google_network_management_organization_vpc_flow_logs_config.dart'
     show GoogleNetworkManagementOrganizationVpcFlowLogsConfig;
 export 'src/network/google_network_management_vpc_flow_logs_config.dart'

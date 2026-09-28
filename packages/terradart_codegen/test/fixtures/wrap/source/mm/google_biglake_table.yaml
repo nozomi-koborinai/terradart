@@ -13,8 +13,6 @@
 
 ---
 name: Table
-api_variant_patterns:
-  - projects/{project}/locations/{location}/catalogs/{catalog}/databases/{database}/tables/{table}
 description: |
   Represents a table.
 references:

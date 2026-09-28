@@ -96,9 +96,9 @@ ResourceDef _loadGoogleServiceAccountV7() {
   return ir.resources['google_service_account']!;
 }
 
-ResourceDef _loadGoogleSecretManagerSecretVersionV7() {
+ResourceDef _loadGoogleSecretManagerSecretVersionV8() {
   final json = File(
-    'test/fixtures/schema/google_secret_manager_secret_version_v7.schema.json',
+    'test/fixtures/schema/google_secret_manager_secret_version_v8.schema.json',
   ).readAsStringSync();
   final ir = const SchemaJsonParser().parseString(
     json,
@@ -636,7 +636,7 @@ void main() {
     test(
         'Level A: google_secret_manager_secret_version formatted emit matches hand-written golden',
         () {
-      final def = _loadGoogleSecretManagerSecretVersionV7();
+      final def = _loadGoogleSecretManagerSecretVersionV8();
       final emitter = WrapperEmitter(overrides: overrides);
       final raw = emitter.emit(def, providerSource: 'hashicorp/google');
       final formatter = DartFormatter(

@@ -4,5 +4,7 @@
 /// unified querying.
 library;
 
+export 'src/observability/google_observability_bucket.dart'
+    show GoogleObservabilityBucket;
 export 'src/observability/google_observability_trace_scope.dart'
     show GoogleObservabilityTraceScope;

@@ -3,7 +3,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 import '_provider_meta.dart';
 
-/// Concrete `StackProvider` for `hashicorp/google ~> 7.0`.
+/// Concrete `StackProvider` for `hashicorp/google ~> 8.0`.
 ///
 /// `StackSynth.synth(...)` reads [source] / [versionConstraint] to populate
 /// the `terraform.required_providers.google` block, and [configArgs] to
@@ -43,7 +43,7 @@ final class GoogleProvider implements StackProvider {
   @override
   String get source => kProviderSource;
 
-  /// Version constraint — `~> 7.0`.
+  /// Version constraint — `~> 8.0`.
   @override
   String get versionConstraint => kProviderVersionConstraint;
 

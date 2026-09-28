@@ -99,7 +99,7 @@ class BigqueryDataTransferConfigEmailPreferences {
 /// (round-trips through the wrapper's `sensitiveFields` set, synth
 /// masks it). Prefer the write-only siblings ([secretAccessKeyWo] +
 /// [secretAccessKeyWoVersion]) on Terraform 1.11+: the plaintext never
-/// enters Terraform state, and bumping the integer
+/// enters Terraform state, and changing the
 /// [secretAccessKeyWoVersion] slot forces a credential rotation on
 /// next apply.
 @immutable
@@ -118,15 +118,13 @@ class BigqueryDataTransferConfigSensitiveParams {
   final TfArg<String>? secretAccessKey;
 
   /// Write-only sibling of [secretAccessKey] (Terraform 1.11+). The
-  /// plaintext never enters Terraform state. Bump
+  /// plaintext never enters Terraform state. Change
   /// [secretAccessKeyWoVersion] to rotate.
   final TfArg<String>? secretAccessKeyWo;
 
-  /// Monotonic counter that triggers a rotation of
-  /// [secretAccessKeyWo]. Schema-typed as a `number`; pass any
-  /// `TfArg<num>` (integer values are recommended for parity with
-  /// rotation tracking elsewhere in the provider).
-  final TfArg<num>? secretAccessKeyWoVersion;
+  /// Version tag of [secretAccessKeyWo]; changing it (`'1'` → `'2'`)
+  /// triggers a rotation. A string since provider 8.0.
+  final TfArg<String>? secretAccessKeyWoVersion;
 
   Map<String, Object?> toArgMap() => {
     if (secretAccessKey != null)

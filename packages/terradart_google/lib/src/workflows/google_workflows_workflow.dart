@@ -53,7 +53,7 @@ final class GoogleWorkflowsWorkflow extends Resource {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<String>? description,
-    TfArg<String>? sourceContents,
+    required TfArg<String> sourceContents,
     TfArg<String>? serviceAccount,
     TfArg<WorkflowsWorkflowCallLogLevel>? callLogLevel,
     TfArg<WorkflowsWorkflowExecutionHistoryLevel>? executionHistoryLevel,
@@ -72,7 +72,7 @@ final class GoogleWorkflowsWorkflow extends Resource {
            if (name != null) 'name': name,
            if (region != null) 'region': region,
            if (description != null) 'description': description,
-           if (sourceContents != null) 'source_contents': sourceContents,
+           'source_contents': sourceContents,
            if (serviceAccount != null) 'service_account': serviceAccount,
            if (callLogLevel != null) 'call_log_level': callLogLevel,
            if (executionHistoryLevel != null)

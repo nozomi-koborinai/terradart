@@ -31,6 +31,10 @@ export 'src/ces/google_ces_app.dart'
         CesAppDefaultChannelProfile,
         CesAppDefaultChannelProfilePersonaProperty,
         CesAppDefaultChannelProfileWebWidgetConfig,
+        CesAppDefaultChannelProfileWhatsappConfig,
+        CesAppErrorHandlingSettings,
+        CesAppErrorHandlingSettingsEndSessionConfig,
+        CesAppErrorHandlingSettingsFallbackResponseConfig,
         CesAppEvaluationMetricsThresholds,
         CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds,
         CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds,
@@ -46,6 +50,7 @@ export 'src/ces/google_ces_app.dart'
         CesAppTimeZoneSettings,
         CesAppVariableDeclarations,
         CesAppVariableDeclarationsSchema,
+        CesAppVpcScSettings,
         GoogleCesApp;
 export 'src/ces/google_ces_app_root_agent_association.dart'
     show GoogleCesAppRootAgentAssociation;
@@ -56,6 +61,8 @@ export 'src/ces/google_ces_deployment.dart'
         CesDeploymentChannelProfilePersonaProperty,
         CesDeploymentChannelProfileWebWidgetConfig,
         CesDeploymentChannelProfileWebWidgetConfigSecuritySettings,
+        CesDeploymentInstagramCredentials,
+        CesDeploymentWhatsappCredentials,
         GoogleCesDeployment;
 export 'src/ces/google_ces_example.dart'
     show

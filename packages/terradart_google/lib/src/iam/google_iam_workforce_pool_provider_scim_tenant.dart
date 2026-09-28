@@ -24,7 +24,7 @@ final class GoogleIamWorkforcePoolProviderScimTenant extends Resource {
 
   GoogleIamWorkforcePoolProviderScimTenant({
     required super.localName,
-    TfArg<Map<String, String>>? claimMapping,
+    required TfArg<Map<String, String>> claimMapping,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     TfArg<String>? displayName,
@@ -40,7 +40,7 @@ final class GoogleIamWorkforcePoolProviderScimTenant extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (claimMapping != null) 'claim_mapping': claimMapping,
+           'claim_mapping': claimMapping,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (description != null) 'description': description,
            if (displayName != null) 'display_name': displayName,

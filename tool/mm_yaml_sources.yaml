@@ -2762,6 +2762,20 @@ files:
     upstream: mmv1/products/transcoder/Job.yaml
   google_agentic_applications_analyst_agent_persona:
     upstream: mmv1/products/agenticapplications/AnalystAgentPersona.yaml
+  google_eventarc_pipeline_iam_binding:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+  google_eventarc_pipeline_iam_member:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+  google_eventarc_pipeline_iam_policy:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+  google_monitoring_snooze:
+    upstream: mmv1/products/monitoring/Snooze.yaml
+  google_network_management_network_monitoring_provider:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+  google_observability_bucket:
+    upstream: mmv1/products/observability/Bucket.yaml
+  google_scc_notification_service_account:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
   data_google_access_approval_folder_service_account:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_access_approval_organization_service_account:

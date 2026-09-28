@@ -69,7 +69,6 @@ final class GoogleIntegrationsClient extends Resource {
     required TfArg<String> location,
     TfArg<bool>? createSampleIntegrations,
     IntegrationsClientCloudKmsConfig? cloudKmsConfig,
-    TfArg<String>? runAsServiceAccount,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -84,8 +83,6 @@ final class GoogleIntegrationsClient extends Resource {
              'create_sample_integrations': createSampleIntegrations,
            if (cloudKmsConfig != null)
              'cloud_kms_config': TfArg.literal(cloudKmsConfig.encode()),
-           if (runAsServiceAccount != null)
-             'run_as_service_account': runAsServiceAccount,
            if (project != null) 'project': project,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
          },
