@@ -8,6 +8,16 @@ const Set<String> _cloudflareZeroTrustTunnelCloudflaredSensitive = <String>{
   'tunnel_secret',
 };
 
+/// Zero Trust Tunnel Cloudflared Config enum for `config_src`.
+enum ZeroTrustTunnelCloudflaredConfigSrc implements TerraformEnum {
+  local('local'),
+  cloudflare('cloudflare');
+
+  const ZeroTrustTunnelCloudflaredConfigSrc(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_tunnel_cloudflared`.
 ///
 /// Accepted Permissions
@@ -21,7 +31,7 @@ final class CloudflareZeroTrustTunnelCloudflared extends Resource {
   CloudflareZeroTrustTunnelCloudflared({
     required super.localName,
     required TfArg<String> accountId,
-    TfArg<String>? configSrc,
+    TfArg<ZeroTrustTunnelCloudflaredConfigSrc>? configSrc,
     required TfArg<String> name,
     TfArg<String>? tunnelSecret,
     super.lifecycle,

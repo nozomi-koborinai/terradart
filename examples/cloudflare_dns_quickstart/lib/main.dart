@@ -33,7 +33,7 @@ final class CloudflareDnsStack extends Stack {
         localName: 'api',
         zoneId: TfArg.ref(zone.id),
         name: TfArg.literal('api.terradart-demo.example'),
-        type: TfArg.literal('CNAME'),
+        type: TfArg.literal(DnsRecordType.cname),
         ttl: TfArg.literal(1),
         content: TfArg.literal('ghs.googlehosted.com'),
         proxied: TfArg.literal(true),

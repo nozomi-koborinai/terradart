@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_r2_bucket_lifecycle`.
 const Set<String> _cloudflareR2BucketLifecycleSensitive = <String>{};
 
+/// R2 Bucket Lifecycle enum for `jurisdiction`.
+enum R2BucketLifecycleJurisdiction implements TerraformEnum {
+  defaultCase('default'),
+  eu('eu'),
+  fedramp('fedramp');
+
+  const R2BucketLifecycleJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rules` block of
 /// `cloudflare_r2_bucket_lifecycle` (derived from provider schema).
 @immutable
@@ -75,12 +86,27 @@ final class R2BucketLifecycleRulesAbortMultipartUploadsTransitionCondition {
 
   final TfArg<num> maxAge;
 
-  final TfArg<String> type;
+  final TfArg<
+    R2BucketLifecycleRulesAbortMultipartUploadsTransitionConditionType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     'max_age': maxAge.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum R2BucketLifecycleRulesAbortMultipartUploadsTransitionConditionType
+    implements TerraformEnum {
+  age('Age');
+
+  const R2BucketLifecycleRulesAbortMultipartUploadsTransitionConditionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.conditions` block of
@@ -121,13 +147,26 @@ final class R2BucketLifecycleRulesDeleteObjectsTransitionCondition {
 
   final TfArg<num>? maxAge;
 
-  final TfArg<String> type;
+  final TfArg<R2BucketLifecycleRulesDeleteObjectsTransitionConditionType> type;
 
   Map<String, Object?> encode() => {
     if (date != null) 'date': date!.toTfJson(),
     if (maxAge != null) 'max_age': maxAge!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum R2BucketLifecycleRulesDeleteObjectsTransitionConditionType
+    implements TerraformEnum {
+  age('Age'),
+  date('Date');
+
+  const R2BucketLifecycleRulesDeleteObjectsTransitionConditionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.storage_class_transitions` block of
@@ -139,7 +178,8 @@ final class R2BucketLifecycleRulesStorageClassTransitions {
     required this.condition,
   });
 
-  final TfArg<String> storageClass;
+  final TfArg<R2BucketLifecycleRulesStorageClassTransitionsStorageClass>
+  storageClass;
 
   final R2BucketLifecycleRulesStorageClassTransitionsCondition condition;
 
@@ -147,6 +187,18 @@ final class R2BucketLifecycleRulesStorageClassTransitions {
     'storage_class': storageClass.toTfJson(),
     'condition': condition.encode(),
   };
+}
+
+/// `storage_class` — derived from the provider schema description.
+enum R2BucketLifecycleRulesStorageClassTransitionsStorageClass
+    implements TerraformEnum {
+  infrequentaccess('InfrequentAccess');
+
+  const R2BucketLifecycleRulesStorageClassTransitionsStorageClass(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.storage_class_transitions.condition` block of
@@ -163,13 +215,26 @@ final class R2BucketLifecycleRulesStorageClassTransitionsCondition {
 
   final TfArg<num>? maxAge;
 
-  final TfArg<String> type;
+  final TfArg<R2BucketLifecycleRulesStorageClassTransitionsConditionType> type;
 
   Map<String, Object?> encode() => {
     if (date != null) 'date': date!.toTfJson(),
     if (maxAge != null) 'max_age': maxAge!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum R2BucketLifecycleRulesStorageClassTransitionsConditionType
+    implements TerraformEnum {
+  age('Age'),
+  date('Date');
+
+  const R2BucketLifecycleRulesStorageClassTransitionsConditionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_r2_bucket_lifecycle`.
@@ -180,7 +245,7 @@ final class CloudflareR2BucketLifecycle extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> bucketName,
-    TfArg<String>? jurisdiction,
+    TfArg<R2BucketLifecycleJurisdiction>? jurisdiction,
     List<R2BucketLifecycleRules>? rules,
     super.lifecycle,
     super.dependsOn,

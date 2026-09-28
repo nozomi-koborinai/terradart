@@ -8,6 +8,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareZeroTrustAccessAiControlsMcpPortalSensitive =
     <String>{};
 
+/// Zero Trust Access Ai Controls Mcp Portal Code enum for `code_mode`.
+enum ZeroTrustAccessAiControlsMcpPortalCodeMode implements TerraformEnum {
+  off('off'),
+  optIn('opt_in'),
+  defaultOn('default_on'),
+  enforced('enforced');
+
+  const ZeroTrustAccessAiControlsMcpPortalCodeMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `servers` block of
 /// `cloudflare_zero_trust_access_ai_controls_mcp_portal` (derived from provider schema).
 @immutable
@@ -111,7 +123,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<bool>? allowCodeMode,
-    TfArg<String>? codeMode,
+    TfArg<ZeroTrustAccessAiControlsMcpPortalCodeMode>? codeMode,
     TfArg<String>? description,
     required TfArg<String> hostname,
     required TfArg<String> id,

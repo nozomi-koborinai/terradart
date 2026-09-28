@@ -19,11 +19,12 @@ final class DataEmailSecurityImpersonationRegistryFilter {
     this.search,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataEmailSecurityImpersonationRegistryFilterDirection>? direction;
 
-  final TfArg<String>? order;
+  final TfArg<DataEmailSecurityImpersonationRegistryFilterOrder>? order;
 
-  final TfArg<String>? provenance;
+  final TfArg<DataEmailSecurityImpersonationRegistryFilterProvenance>?
+  provenance;
 
   final TfArg<String>? search;
 
@@ -33,6 +34,46 @@ final class DataEmailSecurityImpersonationRegistryFilter {
     if (provenance != null) 'provenance': provenance!.toTfJson(),
     if (search != null) 'search': search!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataEmailSecurityImpersonationRegistryFilterDirection
+    implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataEmailSecurityImpersonationRegistryFilterDirection(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataEmailSecurityImpersonationRegistryFilterOrder
+    implements TerraformEnum {
+  name('name'),
+  email('email'),
+  createdAt('created_at');
+
+  const DataEmailSecurityImpersonationRegistryFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `provenance` — derived from the provider schema description.
+enum DataEmailSecurityImpersonationRegistryFilterProvenance
+    implements TerraformEnum {
+  a1sInternal('A1S_INTERNAL'),
+  snoopyCasbOffice365('SNOOPY-CASB_OFFICE_365'),
+  snoopyOffice365('SNOOPY-OFFICE_365'),
+  snoopyGoogleDirectory('SNOOPY-GOOGLE_DIRECTORY');
+
+  const DataEmailSecurityImpersonationRegistryFilterProvenance(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_email_security_impersonation_registry`.

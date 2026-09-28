@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_email_routing_address`.
 const Set<String> _cloudflareEmailRoutingAddressSensitive = <String>{};
 
+/// Email Routing Address enum for `status`.
+enum EmailRoutingAddressStatus implements TerraformEnum {
+  unverified('unverified'),
+  verified('verified');
+
+  const EmailRoutingAddressStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_email_routing_address`.
 ///
 /// Accepted Permissions
@@ -18,7 +28,7 @@ final class CloudflareEmailRoutingAddress extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> email,
-    TfArg<String>? status,
+    TfArg<EmailRoutingAddressStatus>? status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

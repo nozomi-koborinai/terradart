@@ -7,6 +7,96 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_waiting_room`.
 const Set<String> _cloudflareWaitingRoomSensitive = <String>{};
 
+/// Waiting Room Default Template enum for `default_template_language`.
+enum WaitingRoomDefaultTemplateLanguage implements TerraformEnum {
+  enUs('en-US'),
+  esEs('es-ES'),
+  deDe('de-DE'),
+  frFr('fr-FR'),
+  itIt('it-IT'),
+  jaJp('ja-JP'),
+  koKr('ko-KR'),
+  ptBr('pt-BR'),
+  zhCn('zh-CN'),
+  zhTw('zh-TW'),
+  nlNl('nl-NL'),
+  plPl('pl-PL'),
+  idId('id-ID'),
+  trTr('tr-TR'),
+  arEg('ar-EG'),
+  ruRu('ru-RU'),
+  faIr('fa-IR'),
+  bgBg('bg-BG'),
+  hrHr('hr-HR'),
+  csCz('cs-CZ'),
+  daDk('da-DK'),
+  fiFi('fi-FI'),
+  ltLt('lt-LT'),
+  lvLv('lv-LV'),
+  msMy('ms-MY'),
+  nbNo('nb-NO'),
+  roRo('ro-RO'),
+  elGr('el-GR'),
+  heIl('he-IL'),
+  hiIn('hi-IN'),
+  huHu('hu-HU'),
+  srBa('sr-BA'),
+  skSk('sk-SK'),
+  slSi('sl-SI'),
+  svSe('sv-SE'),
+  tlPh('tl-PH'),
+  thTh('th-TH'),
+  ukUa('uk-UA'),
+  viVn('vi-VN');
+
+  const WaitingRoomDefaultTemplateLanguage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Waiting Room Enabled Origin enum for `enabled_origin_commands`.
+enum WaitingRoomEnabledOriginCommands implements TerraformEnum {
+  revoke('revoke');
+
+  const WaitingRoomEnabledOriginCommands(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Waiting Room Queueing enum for `queueing_method`.
+enum WaitingRoomQueueingMethod implements TerraformEnum {
+  fifo('fifo'),
+  random('random'),
+  passthrough('passthrough'),
+  reject('reject');
+
+  const WaitingRoomQueueingMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Waiting Room Turnstile enum for `turnstile_action`.
+enum WaitingRoomTurnstileAction implements TerraformEnum {
+  log('log'),
+  infiniteQueue('infinite_queue');
+
+  const WaitingRoomTurnstileAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Waiting Room Turnstile enum for `turnstile_mode`.
+enum WaitingRoomTurnstileMode implements TerraformEnum {
+  off('off'),
+  invisible('invisible'),
+  visibleNonInteractive('visible_non_interactive'),
+  visibleManaged('visible_managed');
+
+  const WaitingRoomTurnstileMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `additional_routes` block of
 /// `cloudflare_waiting_room` (derived from provider schema).
 @immutable
@@ -29,14 +119,37 @@ final class WaitingRoomAdditionalRoutes {
 final class WaitingRoomCookieAttributes {
   const WaitingRoomCookieAttributes({this.samesite, this.secure});
 
-  final TfArg<String>? samesite;
+  final TfArg<WaitingRoomCookieAttributesSamesite>? samesite;
 
-  final TfArg<String>? secure;
+  final TfArg<WaitingRoomCookieAttributesSecure>? secure;
 
   Map<String, Object?> encode() => {
     if (samesite != null) 'samesite': samesite!.toTfJson(),
     if (secure != null) 'secure': secure!.toTfJson(),
   };
+}
+
+/// `samesite` — derived from the provider schema description.
+enum WaitingRoomCookieAttributesSamesite implements TerraformEnum {
+  auto('auto'),
+  lax('lax'),
+  none('none'),
+  strict('strict');
+
+  const WaitingRoomCookieAttributesSamesite(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `secure` — derived from the provider schema description.
+enum WaitingRoomCookieAttributesSecure implements TerraformEnum {
+  auto('auto'),
+  always('always'),
+  never('never');
+
+  const WaitingRoomCookieAttributesSecure(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_waiting_room`.
@@ -51,23 +164,23 @@ final class CloudflareWaitingRoom extends Resource {
     required super.localName,
     TfArg<String>? cookieSuffix,
     TfArg<String>? customPageHtml,
-    TfArg<String>? defaultTemplateLanguage,
+    TfArg<WaitingRoomDefaultTemplateLanguage>? defaultTemplateLanguage,
     TfArg<String>? description,
     TfArg<bool>? disableSessionRenewal,
-    TfArg<List<String>>? enabledOriginCommands,
+    List<TfArg<WaitingRoomEnabledOriginCommands>>? enabledOriginCommands,
     required TfArg<String> host,
     TfArg<bool>? jsonResponseEnabled,
     required TfArg<String> name,
     required TfArg<num> newUsersPerMinute,
     TfArg<String>? path,
     TfArg<bool>? queueAll,
-    TfArg<String>? queueingMethod,
+    TfArg<WaitingRoomQueueingMethod>? queueingMethod,
     TfArg<num>? queueingStatusCode,
     TfArg<num>? sessionDuration,
     TfArg<bool>? suspended,
     required TfArg<num> totalActiveUsers,
-    TfArg<String>? turnstileAction,
-    TfArg<String>? turnstileMode,
+    TfArg<WaitingRoomTurnstileAction>? turnstileAction,
+    TfArg<WaitingRoomTurnstileMode>? turnstileMode,
     required TfArg<String> zoneId,
     List<WaitingRoomAdditionalRoutes>? additionalRoutes,
     WaitingRoomCookieAttributes? cookieAttributes,
@@ -86,7 +199,9 @@ final class CloudflareWaitingRoom extends Resource {
            if (disableSessionRenewal != null)
              'disable_session_renewal': disableSessionRenewal,
            if (enabledOriginCommands != null)
-             'enabled_origin_commands': enabledOriginCommands,
+             'enabled_origin_commands': TfArg.literal([
+               for (final e in enabledOriginCommands) e.toTfJson(),
+             ]),
            'host': host,
            if (jsonResponseEnabled != null)
              'json_response_enabled': jsonResponseEnabled,

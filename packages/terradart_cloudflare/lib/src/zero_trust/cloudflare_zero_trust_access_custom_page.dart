@@ -6,6 +6,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zero_trust_access_custom_page`.
 const Set<String> _cloudflareZeroTrustAccessCustomPageSensitive = <String>{};
 
+/// Zero Trust Access Custom Page enum for `type`.
+enum ZeroTrustAccessCustomPageType implements TerraformEnum {
+  identityDenied('identity_denied'),
+  forbidden('forbidden'),
+  login('login'),
+  interstitial('interstitial');
+
+  const ZeroTrustAccessCustomPageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_access_custom_page`.
 ///
 /// Accepted Permissions
@@ -20,7 +32,7 @@ final class CloudflareZeroTrustAccessCustomPage extends Resource {
     TfArg<num>? contractVersion,
     required TfArg<String> customHtml,
     required TfArg<String> name,
-    required TfArg<String> type,
+    required TfArg<ZeroTrustAccessCustomPageType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

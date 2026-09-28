@@ -26,21 +26,22 @@ final class DataCustomHostnameFilter {
     this.hostname,
   });
 
-  final TfArg<String>? certificateAuthority;
+  final TfArg<DataCustomHostnameFilterCertificateAuthority>?
+  certificateAuthority;
 
   final TfArg<String>? customOriginServer;
 
-  final TfArg<String>? direction;
+  final TfArg<DataCustomHostnameFilterDirection>? direction;
 
-  final TfArg<String>? hostnameStatus;
+  final TfArg<DataCustomHostnameFilterHostnameStatus>? hostnameStatus;
 
   final TfArg<String>? id;
 
-  final TfArg<String>? order;
+  final TfArg<DataCustomHostnameFilterOrder>? order;
 
   final TfArg<num>? ssl;
 
-  final TfArg<String>? sslStatus;
+  final TfArg<DataCustomHostnameFilterSslStatus>? sslStatus;
 
   final TfArg<bool>? wildcard;
 
@@ -60,6 +61,90 @@ final class DataCustomHostnameFilter {
     if (wildcard != null) 'wildcard': wildcard!.toTfJson(),
     if (hostname != null) 'hostname': hostname!.encode(),
   };
+}
+
+/// `certificate_authority` — derived from the provider schema description.
+enum DataCustomHostnameFilterCertificateAuthority implements TerraformEnum {
+  google('google'),
+  letsEncrypt('lets_encrypt'),
+  sslCom('ssl_com');
+
+  const DataCustomHostnameFilterCertificateAuthority(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataCustomHostnameFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataCustomHostnameFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `hostname_status` — derived from the provider schema description.
+enum DataCustomHostnameFilterHostnameStatus implements TerraformEnum {
+  active('active'),
+  pending('pending'),
+  activeRedeploying('active_redeploying'),
+  moved('moved'),
+  pendingDeletion('pending_deletion'),
+  deleted('deleted'),
+  pendingBlocked('pending_blocked'),
+  pendingMigration('pending_migration'),
+  pendingProvisioned('pending_provisioned'),
+  testPending('test_pending'),
+  testActive('test_active'),
+  testActiveApex('test_active_apex'),
+  testBlocked('test_blocked'),
+  testFailed('test_failed'),
+  provisioned('provisioned'),
+  blocked('blocked');
+
+  const DataCustomHostnameFilterHostnameStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataCustomHostnameFilterOrder implements TerraformEnum {
+  ssl('ssl'),
+  sslStatus('ssl_status');
+
+  const DataCustomHostnameFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `ssl_status` — derived from the provider schema description.
+enum DataCustomHostnameFilterSslStatus implements TerraformEnum {
+  initializing('initializing'),
+  pendingValidation('pending_validation'),
+  deleted('deleted'),
+  pendingIssuance('pending_issuance'),
+  pendingDeployment('pending_deployment'),
+  pendingDeletion('pending_deletion'),
+  pendingExpiration('pending_expiration'),
+  expired('expired'),
+  active('active'),
+  initializingTimedOut('initializing_timed_out'),
+  validationTimedOut('validation_timed_out'),
+  issuanceTimedOut('issuance_timed_out'),
+  deploymentTimedOut('deployment_timed_out'),
+  deletionTimedOut('deletion_timed_out'),
+  pendingCleanup('pending_cleanup'),
+  stagingDeployment('staging_deployment'),
+  stagingActive('staging_active'),
+  deactivating('deactivating'),
+  inactive('inactive'),
+  backupIssued('backup_issued'),
+  holdingDeployment('holding_deployment');
+
+  const DataCustomHostnameFilterSslStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter.hostname` block of

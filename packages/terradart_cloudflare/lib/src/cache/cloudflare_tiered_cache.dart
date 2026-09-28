@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_tiered_cache`.
 const Set<String> _cloudflareTieredCacheSensitive = <String>{};
 
+/// Tiered Cache enum for `value`.
+enum TieredCacheValue implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const TieredCacheValue(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_tiered_cache`.
 ///
 /// Accepted Permissions
@@ -16,7 +26,7 @@ final class CloudflareTieredCache extends Resource {
 
   CloudflareTieredCache({
     required super.localName,
-    required TfArg<String> value,
+    required TfArg<TieredCacheValue> value,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

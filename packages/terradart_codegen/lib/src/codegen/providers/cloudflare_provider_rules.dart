@@ -20,6 +20,9 @@ final class CloudflareProviderRules extends ProviderRules {
   bool get typedNestedDefaults => true;
 
   @override
+  bool get derivedEnumDefaults => true;
+
+  @override
   Map<String, String> get outputDirAliases => _aliases;
 
   @override

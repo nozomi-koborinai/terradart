@@ -21,19 +21,19 @@ final class DataShareFilter {
     this.targetType,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataShareFilterDirection>? direction;
 
-  final TfArg<String>? kind;
+  final TfArg<DataShareFilterKind>? kind;
 
-  final TfArg<String>? order;
+  final TfArg<DataShareFilterOrder>? order;
 
   final TfArg<List<Object?>>? resourceTypes;
 
-  final TfArg<String>? status;
+  final TfArg<DataShareFilterStatus>? status;
 
   final TfArg<List<Object?>>? tag;
 
-  final TfArg<String>? targetType;
+  final TfArg<DataShareFilterTargetType>? targetType;
 
   Map<String, Object?> encode() => {
     if (direction != null) 'direction': direction!.toTfJson(),
@@ -44,6 +44,57 @@ final class DataShareFilter {
     if (tag != null) 'tag': tag!.toTfJson(),
     if (targetType != null) 'target_type': targetType!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataShareFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataShareFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `kind` — derived from the provider schema description.
+enum DataShareFilterKind implements TerraformEnum {
+  sent('sent'),
+  received('received');
+
+  const DataShareFilterKind(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataShareFilterOrder implements TerraformEnum {
+  name('name'),
+  created('created');
+
+  const DataShareFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `status` — derived from the provider schema description.
+enum DataShareFilterStatus implements TerraformEnum {
+  active('active'),
+  deleting('deleting'),
+  deleted('deleted');
+
+  const DataShareFilterStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `target_type` — derived from the provider schema description.
+enum DataShareFilterTargetType implements TerraformEnum {
+  account('account'),
+  organization('organization');
+
+  const DataShareFilterTargetType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_share`.

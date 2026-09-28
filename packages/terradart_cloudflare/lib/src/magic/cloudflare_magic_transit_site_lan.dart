@@ -151,7 +151,8 @@ final class MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions {
 
   final TfArg<num> code;
 
-  final TfArg<String> type;
+  final TfArg<MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptionsType>
+  type;
 
   final TfArg<String> value;
 
@@ -160,6 +161,23 @@ final class MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptions {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptionsType
+    implements TerraformEnum {
+  text('text'),
+  hex('hex'),
+  ip('ip'),
+  byte('byte'),
+  short('short'),
+  integer('integer');
+
+  const MagicTransitSiteLanStaticAddressingDhcpServerDhcpOptionsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_magic_transit_site_lan`.

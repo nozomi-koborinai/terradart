@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_queue_consumer`.
 const Set<String> _cloudflareQueueConsumerSensitive = <String>{};
 
+/// Queue Consumer enum for `type`.
+enum QueueConsumerType implements TerraformEnum {
+  worker('worker'),
+  httpPull('http_pull'),
+  notification('notification');
+
+  const QueueConsumerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `settings` block of
 /// `cloudflare_queue_consumer` (derived from provider schema).
 @immutable
@@ -104,7 +115,7 @@ final class CloudflareQueueConsumer extends Resource {
     TfArg<String>? deadLetterQueue,
     required TfArg<String> queueId,
     TfArg<String>? scriptName,
-    required TfArg<String> type,
+    required TfArg<QueueConsumerType> type,
     QueueConsumerSettings? settings,
     super.lifecycle,
     super.dependsOn,

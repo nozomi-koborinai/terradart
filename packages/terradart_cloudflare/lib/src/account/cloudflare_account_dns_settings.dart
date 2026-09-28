@@ -33,7 +33,7 @@ final class AccountDnsSettingsZoneDefaults {
 
   final TfArg<bool>? secondaryOverrides;
 
-  final TfArg<String>? zoneMode;
+  final TfArg<AccountDnsSettingsZoneDefaultsZoneMode>? zoneMode;
 
   final AccountDnsSettingsZoneDefaultsInternalDns? internalDns;
 
@@ -56,6 +56,17 @@ final class AccountDnsSettingsZoneDefaults {
   };
 }
 
+/// `zone_mode` — derived from the provider schema description.
+enum AccountDnsSettingsZoneDefaultsZoneMode implements TerraformEnum {
+  standard('standard'),
+  cdnOnly('cdn_only'),
+  dnsOnly('dns_only');
+
+  const AccountDnsSettingsZoneDefaultsZoneMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `zone_defaults.internal_dns` block of
 /// `cloudflare_account_dns_settings` (derived from provider schema).
 @immutable
@@ -76,9 +87,21 @@ final class AccountDnsSettingsZoneDefaultsInternalDns {
 final class AccountDnsSettingsZoneDefaultsNameservers {
   const AccountDnsSettingsZoneDefaultsNameservers({this.type});
 
-  final TfArg<String>? type;
+  final TfArg<AccountDnsSettingsZoneDefaultsNameserversType>? type;
 
   Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum AccountDnsSettingsZoneDefaultsNameserversType implements TerraformEnum {
+  cloudflareStandard('cloudflare.standard'),
+  cloudflareStandardRandom('cloudflare.standard.random'),
+  customAccount('custom.account'),
+  customTenant('custom.tenant');
+
+  const AccountDnsSettingsZoneDefaultsNameserversType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `zone_defaults.soa` block of

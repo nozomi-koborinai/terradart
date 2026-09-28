@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareZeroTrustRiskScoringIntegrationSensitive =
     <String>{};
 
+/// Zero Trust Risk Scoring Integration Integration enum for `integration_type`.
+enum ZeroTrustRiskScoringIntegrationIntegrationType implements TerraformEnum {
+  okta('Okta');
+
+  const ZeroTrustRiskScoringIntegrationIntegrationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_zero_trust_risk_scoring_integration`.
 ///
 /// Accepted Permissions
@@ -19,7 +28,8 @@ final class CloudflareZeroTrustRiskScoringIntegration extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<bool>? active,
-    required TfArg<String> integrationType,
+    required TfArg<ZeroTrustRiskScoringIntegrationIntegrationType>
+    integrationType,
     TfArg<String>? referenceId,
     required TfArg<String> tenantUrl,
     super.lifecycle,

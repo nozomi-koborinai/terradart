@@ -4,5 +4,6 @@
 library;
 
 export 'src/cache/cloudflare_regional_tiered_cache.dart'
-    show CloudflareRegionalTieredCache;
-export 'src/cache/cloudflare_tiered_cache.dart' show CloudflareTieredCache;
+    show CloudflareRegionalTieredCache, RegionalTieredCacheValue;
+export 'src/cache/cloudflare_tiered_cache.dart'
+    show CloudflareTieredCache, TieredCacheValue;

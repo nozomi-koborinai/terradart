@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareEmailSecurityImpersonationRegistrySensitive =
     <String>{};
 
+/// Email Security Impersonation Registry enum for `provenance`.
+enum EmailSecurityImpersonationRegistryProvenance implements TerraformEnum {
+  a1sInternal('A1S_INTERNAL'),
+  snoopyCasbOffice365('SNOOPY-CASB_OFFICE_365'),
+  snoopyOffice365('SNOOPY-OFFICE_365'),
+  snoopyGoogleDirectory('SNOOPY-GOOGLE_DIRECTORY');
+
+  const EmailSecurityImpersonationRegistryProvenance(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_email_security_impersonation_registry`.
 ///
 /// Accepted Permissions
@@ -26,7 +38,7 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
     TfArg<String>? externalDirectoryNodeId,
     required TfArg<bool> isEmailRegex,
     required TfArg<String> name,
-    TfArg<String>? provenance,
+    TfArg<EmailSecurityImpersonationRegistryProvenance>? provenance,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_argo_smart_routing`.
 const Set<String> _cloudflareArgoSmartRoutingSensitive = <String>{};
 
+/// Argo Smart Routing enum for `value`.
+enum ArgoSmartRoutingValue implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const ArgoSmartRoutingValue(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_argo_smart_routing`.
 ///
 /// Accepted Permissions
@@ -16,7 +26,7 @@ final class CloudflareArgoSmartRouting extends Resource {
 
   CloudflareArgoSmartRouting({
     required super.localName,
-    required TfArg<String> value,
+    required TfArg<ArgoSmartRoutingValue> value,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

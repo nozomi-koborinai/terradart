@@ -119,6 +119,7 @@ providers:
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_cloudflare.yaml
     resourceProvider: null # cloudflare_ prefix collides with nothing
     migrateManifest: packages/terradart_migrate/lib/src/manifest/cloudflare.g.dart
+    providerEnums: true
     bump:
       mode: pr-only # minor releases ship breaking changes
       repo: cloudflare/terraform-provider-cloudflare

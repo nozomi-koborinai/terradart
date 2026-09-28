@@ -20,13 +20,13 @@ final class DataEmailSecurityTrustedDomainsFilter {
     this.search,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataEmailSecurityTrustedDomainsFilterDirection>? direction;
 
   final TfArg<bool>? isRecent;
 
   final TfArg<bool>? isSimilarity;
 
-  final TfArg<String>? order;
+  final TfArg<DataEmailSecurityTrustedDomainsFilterOrder>? order;
 
   final TfArg<String>? pattern;
 
@@ -40,6 +40,26 @@ final class DataEmailSecurityTrustedDomainsFilter {
     if (pattern != null) 'pattern': pattern!.toTfJson(),
     if (search != null) 'search': search!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataEmailSecurityTrustedDomainsFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataEmailSecurityTrustedDomainsFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataEmailSecurityTrustedDomainsFilterOrder implements TerraformEnum {
+  pattern('pattern'),
+  createdAt('created_at');
+
+  const DataEmailSecurityTrustedDomainsFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_email_security_trusted_domains`.

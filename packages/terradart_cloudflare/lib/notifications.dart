@@ -6,7 +6,10 @@ library;
 export 'src/notifications/cloudflare_notification_policy.dart'
     show
         CloudflareNotificationPolicy,
+        NotificationPolicyAlertType,
         NotificationPolicyFilters,
+        NotificationPolicyFiltersIncidentImpact,
+        NotificationPolicyFiltersTrafficExclusions,
         NotificationPolicyMechanisms,
         NotificationPolicyMechanismsEmail,
         NotificationPolicyMechanismsPagerduty,

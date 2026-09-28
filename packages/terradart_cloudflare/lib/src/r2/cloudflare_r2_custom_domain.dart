@@ -6,6 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_r2_custom_domain`.
 const Set<String> _cloudflareR2CustomDomainSensitive = <String>{};
 
+/// R2 Custom Domain enum for `jurisdiction`.
+enum R2CustomDomainJurisdiction implements TerraformEnum {
+  defaultCase('default'),
+  eu('eu'),
+  fedramp('fedramp');
+
+  const R2CustomDomainJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// R2 Custom Domain Min enum for `min_tls`.
+enum R2CustomDomainMinTls implements TerraformEnum {
+  v1p0('1.0'),
+  v1p1('1.1'),
+  v1p2('1.2'),
+  v1p3('1.3');
+
+  const R2CustomDomainMinTls(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_r2_custom_domain`.
 ///
 /// Accepted Permissions
@@ -21,8 +44,8 @@ final class CloudflareR2CustomDomain extends Resource {
     TfArg<List<String>>? ciphers,
     required TfArg<String> domain,
     required TfArg<bool> enabled,
-    TfArg<String>? jurisdiction,
-    TfArg<String>? minTls,
+    TfArg<R2CustomDomainJurisdiction>? jurisdiction,
+    TfArg<R2CustomDomainMinTls>? minTls,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

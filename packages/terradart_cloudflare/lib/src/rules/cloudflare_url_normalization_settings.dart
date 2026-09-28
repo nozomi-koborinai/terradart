@@ -6,6 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_url_normalization_settings`.
 const Set<String> _cloudflareUrlNormalizationSettingsSensitive = <String>{};
 
+/// Url Normalization Settings enum for `scope`.
+enum UrlNormalizationSettingsScope implements TerraformEnum {
+  incoming('incoming'),
+  both('both'),
+  none('none');
+
+  const UrlNormalizationSettingsScope(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Url Normalization Settings enum for `type`.
+enum UrlNormalizationSettingsType implements TerraformEnum {
+  cloudflare('cloudflare'),
+  rfc3986('rfc3986');
+
+  const UrlNormalizationSettingsType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_url_normalization_settings`.
 ///
 /// Accepted Permissions
@@ -29,8 +50,8 @@ final class CloudflareUrlNormalizationSettings extends Resource {
 
   CloudflareUrlNormalizationSettings({
     required super.localName,
-    required TfArg<String> scope,
-    required TfArg<String> type,
+    required TfArg<UrlNormalizationSettingsScope> scope,
+    required TfArg<UrlNormalizationSettingsType> type,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

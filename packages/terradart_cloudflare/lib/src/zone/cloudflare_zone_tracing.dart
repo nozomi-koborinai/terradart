@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zone_tracing`.
 const Set<String> _cloudflareZoneTracingSensitive = <String>{};
 
+/// Zone Tracing Propagation enum for `propagation_policy`.
+enum ZoneTracingPropagationPolicy implements TerraformEnum {
+  accept('accept'),
+  authenticated('authenticated'),
+  reject('reject');
+
+  const ZoneTracingPropagationPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_zone_tracing`.
 final class CloudflareZoneTracing extends Resource {
   static const String tfType = 'cloudflare_zone_tracing';
@@ -16,7 +27,7 @@ final class CloudflareZoneTracing extends Resource {
     TfArg<bool>? enabled,
     TfArg<bool>? forwardContext,
     TfArg<bool>? persist,
-    TfArg<String>? propagationPolicy,
+    TfArg<ZoneTracingPropagationPolicy>? propagationPolicy,
     TfArg<num>? samplingRatio,
     required TfArg<String> zoneId,
     super.lifecycle,

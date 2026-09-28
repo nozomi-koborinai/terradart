@@ -4,6 +4,6 @@
 library;
 
 export 'src/argo/cloudflare_argo_smart_routing.dart'
-    show CloudflareArgoSmartRouting;
+    show ArgoSmartRoutingValue, CloudflareArgoSmartRouting;
 export 'src/argo/cloudflare_argo_tiered_caching.dart'
-    show CloudflareArgoTieredCaching;
+    show ArgoTieredCachingValue, CloudflareArgoTieredCaching;

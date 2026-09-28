@@ -13,14 +13,37 @@ const Set<String> _cloudflareCustomSslSensitive = <String>{};
 final class DataCustomSslFilter {
   const DataCustomSslFilter({this.match, this.status});
 
-  final TfArg<String>? match;
+  final TfArg<DataCustomSslFilterMatch>? match;
 
-  final TfArg<String>? status;
+  final TfArg<DataCustomSslFilterStatus>? status;
 
   Map<String, Object?> encode() => {
     if (match != null) 'match': match!.toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `match` — derived from the provider schema description.
+enum DataCustomSslFilterMatch implements TerraformEnum {
+  any('any'),
+  all('all');
+
+  const DataCustomSslFilterMatch(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `status` — derived from the provider schema description.
+enum DataCustomSslFilterStatus implements TerraformEnum {
+  active('active'),
+  expired('expired'),
+  deleted('deleted'),
+  pending('pending'),
+  initializing('initializing');
+
+  const DataCustomSslFilterStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_custom_ssl`.

@@ -92,7 +92,11 @@ void main(List<String> args) {
       kind: WrapperOverrideKind.resource,
     );
     barrels.add(outputDir);
-    write('$type.yaml', 'outputDir: $outputDir\n$derive');
+    write(
+      '$type.yaml',
+      'outputDir: $outputDir\n$derive'
+          '${rules.derivedEnumDefaults ? 'deriveEnums: true\n' : ''}',
+    );
   }
   for (final type in dataSources) {
     write(

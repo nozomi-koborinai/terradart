@@ -24,6 +24,13 @@ Per-package changelogs live alongside each package and are the system of record 
   is removed with the upstream data source, the factories follow the
   provider's 5.24.0 schema changes, and the 14 resources and 22 data sources
   added since get factories. See `MIGRATING.md`.
+- **`terradart_cloudflare` enums** (**breaking**) — every input with a fixed
+  value set is a generated enum instead of a `String` (538 string slots and
+  41 list slots, 579 enums), typed from the provider's Go validators and
+  `Available values:` descriptions (`wrap --provider-enums`, the cloudflare
+  lane's `providerEnums: true`). `terradart-migrate` matches cloudflare enum
+  values case-insensitively and warns when it normalizes one. Synth output
+  is unchanged. See `MIGRATING.md`.
 - **Docs** — the agent skill and the *Migrating from HCL* guide describe one
   loop: `terradart-migrate --report`, then a migration, then porting the
   sidecar leftovers into the Stack, synth, and `terraform plan` with *No

@@ -4,4 +4,4 @@
 library;
 
 export 'src/address_map/cloudflare_address_map.dart'
-    show AddressMapMemberships, CloudflareAddressMap;
+    show AddressMapMemberships, AddressMapMembershipsKind, CloudflareAddressMap;

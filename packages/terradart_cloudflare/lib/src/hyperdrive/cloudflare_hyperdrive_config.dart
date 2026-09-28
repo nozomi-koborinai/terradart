@@ -87,7 +87,7 @@ final class HyperdriveConfigOrigin {
 
   final TfArg<num>? port;
 
-  final TfArg<String> scheme;
+  final TfArg<HyperdriveConfigOriginScheme> scheme;
 
   final TfArg<String>? serviceId;
 
@@ -105,6 +105,17 @@ final class HyperdriveConfigOrigin {
     if (serviceId != null) 'service_id': serviceId!.toTfJson(),
     'user': user.toTfJson(),
   };
+}
+
+/// `scheme` — derived from the provider schema description.
+enum HyperdriveConfigOriginScheme implements TerraformEnum {
+  postgres('postgres'),
+  postgresql('postgresql'),
+  mysql('mysql');
+
+  const HyperdriveConfigOriginScheme(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_hyperdrive_config`.

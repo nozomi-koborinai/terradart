@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_custom_csr`.
 const Set<String> _cloudflareCustomCsrSensitive = <String>{};
 
+/// Custom Csr Key enum for `key_type`.
+enum CustomCsrKeyType implements TerraformEnum {
+  rsa2048('rsa2048'),
+  p256v1('p256v1');
+
+  const CustomCsrKeyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_custom_csr`.
 ///
 /// Accepted Permissions
@@ -21,7 +31,7 @@ final class CloudflareCustomCsr extends Resource {
     required TfArg<String> commonName,
     required TfArg<String> country,
     TfArg<String>? description,
-    TfArg<String>? keyType,
+    TfArg<CustomCsrKeyType>? keyType,
     required TfArg<String> locality,
     TfArg<String>? name,
     required TfArg<String> organization,

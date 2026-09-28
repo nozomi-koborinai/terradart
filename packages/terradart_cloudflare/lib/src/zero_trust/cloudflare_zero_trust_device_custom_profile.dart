@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zero_trust_device_custom_profile`.
 const Set<String> _cloudflareZeroTrustDeviceCustomProfileSensitive = <String>{};
 
+/// Zero Trust Device Custom Profile Profile enum for `profile_type`.
+enum ZeroTrustDeviceCustomProfileProfileType implements TerraformEnum {
+  warp('warp'),
+  browserExtension('browser_extension');
+
+  const ZeroTrustDeviceCustomProfileProfileType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `browser_extension_config` block of
 /// `cloudflare_zero_trust_device_custom_profile` (derived from provider schema).
 @immutable
@@ -16,7 +26,8 @@ final class ZeroTrustDeviceCustomProfileBrowserExtensionConfig {
     required this.proxyEnabled,
   });
 
-  final TfArg<String> proxyControl;
+  final TfArg<ZeroTrustDeviceCustomProfileBrowserExtensionConfigProxyControl>
+  proxyControl;
 
   final TfArg<bool> proxyEnabled;
 
@@ -24,6 +35,19 @@ final class ZeroTrustDeviceCustomProfileBrowserExtensionConfig {
     'proxy_control': proxyControl.toTfJson(),
     'proxy_enabled': proxyEnabled.toTfJson(),
   };
+}
+
+/// `proxy_control` — derived from the provider schema description.
+enum ZeroTrustDeviceCustomProfileBrowserExtensionConfigProxyControl
+    implements TerraformEnum {
+  unlocked('unlocked'),
+  locked('locked');
+
+  const ZeroTrustDeviceCustomProfileBrowserExtensionConfigProxyControl(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `dns_search_suffixes` block of
@@ -178,7 +202,7 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
     TfArg<String>? match,
     required TfArg<String> name,
     TfArg<num>? precedence,
-    TfArg<String>? profileType,
+    TfArg<ZeroTrustDeviceCustomProfileProfileType>? profileType,
     TfArg<bool>? registerInterfaceIpWithDns,
     TfArg<bool>? sccmVpnBoundarySupport,
     TfArg<String>? supportUrl,

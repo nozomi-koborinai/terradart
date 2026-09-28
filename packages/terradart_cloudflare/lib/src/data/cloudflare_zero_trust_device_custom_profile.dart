@@ -13,11 +13,22 @@ const Set<String> _cloudflareZeroTrustDeviceCustomProfileSensitive = <String>{};
 final class DataZeroTrustDeviceCustomProfileFilter {
   const DataZeroTrustDeviceCustomProfileFilter({this.profileType});
 
-  final TfArg<String>? profileType;
+  final TfArg<DataZeroTrustDeviceCustomProfileFilterProfileType>? profileType;
 
   Map<String, Object?> encode() => {
     if (profileType != null) 'profile_type': profileType!.toTfJson(),
   };
+}
+
+/// `profile_type` — derived from the provider schema description.
+enum DataZeroTrustDeviceCustomProfileFilterProfileType
+    implements TerraformEnum {
+  warp('warp'),
+  browserExtension('browser_extension');
+
+  const DataZeroTrustDeviceCustomProfileFilterProfileType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_device_custom_profile`.

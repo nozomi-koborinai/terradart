@@ -7,6 +7,47 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_ai_gateway`.
 const Set<String> _cloudflareAiGatewaySensitive = <String>{};
 
+/// Ai Gateway Log Management enum for `log_management_strategy`.
+enum AiGatewayLogManagementStrategy implements TerraformEnum {
+  stopInserting('STOP_INSERTING'),
+  deleteOldest('DELETE_OLDEST');
+
+  const AiGatewayLogManagementStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ai Gateway Rate Limiting enum for `rate_limiting_technique`.
+enum AiGatewayRateLimitingTechnique implements TerraformEnum {
+  fixed('fixed'),
+  sliding('sliding');
+
+  const AiGatewayRateLimitingTechnique(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ai Gateway Retry enum for `retry_backoff`.
+enum AiGatewayRetryBackoff implements TerraformEnum {
+  constant('constant'),
+  linear('linear'),
+  exponential('exponential');
+
+  const AiGatewayRetryBackoff(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ai Gateway Workers Ai Billing enum for `workers_ai_billing_mode`.
+enum AiGatewayWorkersAiBillingMode implements TerraformEnum {
+  postpaid('postpaid'),
+  unified('unified');
+
+  const AiGatewayWorkersAiBillingMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `dlp` block of
 /// `cloudflare_ai_gateway` (derived from provider schema).
 @immutable
@@ -18,7 +59,7 @@ final class AiGatewayDlp {
     this.policies,
   });
 
-  final TfArg<String>? action;
+  final TfArg<AiGatewayDlpAction>? action;
 
   final TfArg<bool> enabled;
 
@@ -34,6 +75,16 @@ final class AiGatewayDlp {
   };
 }
 
+/// `action` — derived from the provider schema description.
+enum AiGatewayDlpAction implements TerraformEnum {
+  block('BLOCK'),
+  flag('FLAG');
+
+  const AiGatewayDlpAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `dlp.policies` block of
 /// `cloudflare_ai_gateway` (derived from provider schema).
 @immutable
@@ -46,9 +97,9 @@ final class AiGatewayDlpPolicies {
     required this.profiles,
   });
 
-  final TfArg<String> action;
+  final TfArg<AiGatewayDlpPoliciesAction> action;
 
-  final TfArg<List<Object?>> check;
+  final List<TfArg<AiGatewayDlpPoliciesCheck>> check;
 
   final TfArg<bool> enabled;
 
@@ -58,11 +109,31 @@ final class AiGatewayDlpPolicies {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    'check': check.toTfJson(),
+    'check': [for (final e in check) e.toTfJson()],
     'enabled': enabled.toTfJson(),
     'id': id.toTfJson(),
     'profiles': profiles.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum AiGatewayDlpPoliciesAction implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayDlpPoliciesAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `check` — derived from the provider schema description.
+enum AiGatewayDlpPoliciesCheck implements TerraformEnum {
+  request('REQUEST'),
+  response('RESPONSE');
+
+  const AiGatewayDlpPoliciesCheck(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `guardrails` block of
@@ -102,33 +173,33 @@ final class AiGatewayGuardrailsPrompt {
     this.s9,
   });
 
-  final TfArg<String>? p1;
+  final TfArg<AiGatewayGuardrailsPromptP1>? p1;
 
-  final TfArg<String>? s1;
+  final TfArg<AiGatewayGuardrailsPromptS1>? s1;
 
-  final TfArg<String>? s10;
+  final TfArg<AiGatewayGuardrailsPromptS10>? s10;
 
-  final TfArg<String>? s11;
+  final TfArg<AiGatewayGuardrailsPromptS11>? s11;
 
-  final TfArg<String>? s12;
+  final TfArg<AiGatewayGuardrailsPromptS12>? s12;
 
-  final TfArg<String>? s13;
+  final TfArg<AiGatewayGuardrailsPromptS13>? s13;
 
-  final TfArg<String>? s2;
+  final TfArg<AiGatewayGuardrailsPromptS2>? s2;
 
-  final TfArg<String>? s3;
+  final TfArg<AiGatewayGuardrailsPromptS3>? s3;
 
-  final TfArg<String>? s4;
+  final TfArg<AiGatewayGuardrailsPromptS4>? s4;
 
-  final TfArg<String>? s5;
+  final TfArg<AiGatewayGuardrailsPromptS5>? s5;
 
-  final TfArg<String>? s6;
+  final TfArg<AiGatewayGuardrailsPromptS6>? s6;
 
-  final TfArg<String>? s7;
+  final TfArg<AiGatewayGuardrailsPromptS7>? s7;
 
-  final TfArg<String>? s8;
+  final TfArg<AiGatewayGuardrailsPromptS8>? s8;
 
-  final TfArg<String>? s9;
+  final TfArg<AiGatewayGuardrailsPromptS9>? s9;
 
   Map<String, Object?> encode() => {
     if (p1 != null) 'p1': p1!.toTfJson(),
@@ -146,6 +217,146 @@ final class AiGatewayGuardrailsPrompt {
     if (s8 != null) 's8': s8!.toTfJson(),
     if (s9 != null) 's9': s9!.toTfJson(),
   };
+}
+
+/// `p1` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptP1 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptP1(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s1` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS1 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS1(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s10` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS10 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS10(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s11` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS11 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS11(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s12` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS12 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS12(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s13` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS13 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS13(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s2` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS2 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS2(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s3` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS3 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS3(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s4` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS4 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS4(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s5` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS5 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS5(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s6` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS6 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS6(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s7` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS7 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS7(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s8` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS8 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS8(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s9` — derived from the provider schema description.
+enum AiGatewayGuardrailsPromptS9 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsPromptS9(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `guardrails.response` block of
@@ -169,33 +380,33 @@ final class AiGatewayGuardrailsResponse {
     this.s9,
   });
 
-  final TfArg<String>? p1;
+  final TfArg<AiGatewayGuardrailsResponseP1>? p1;
 
-  final TfArg<String>? s1;
+  final TfArg<AiGatewayGuardrailsResponseS1>? s1;
 
-  final TfArg<String>? s10;
+  final TfArg<AiGatewayGuardrailsResponseS10>? s10;
 
-  final TfArg<String>? s11;
+  final TfArg<AiGatewayGuardrailsResponseS11>? s11;
 
-  final TfArg<String>? s12;
+  final TfArg<AiGatewayGuardrailsResponseS12>? s12;
 
-  final TfArg<String>? s13;
+  final TfArg<AiGatewayGuardrailsResponseS13>? s13;
 
-  final TfArg<String>? s2;
+  final TfArg<AiGatewayGuardrailsResponseS2>? s2;
 
-  final TfArg<String>? s3;
+  final TfArg<AiGatewayGuardrailsResponseS3>? s3;
 
-  final TfArg<String>? s4;
+  final TfArg<AiGatewayGuardrailsResponseS4>? s4;
 
-  final TfArg<String>? s5;
+  final TfArg<AiGatewayGuardrailsResponseS5>? s5;
 
-  final TfArg<String>? s6;
+  final TfArg<AiGatewayGuardrailsResponseS6>? s6;
 
-  final TfArg<String>? s7;
+  final TfArg<AiGatewayGuardrailsResponseS7>? s7;
 
-  final TfArg<String>? s8;
+  final TfArg<AiGatewayGuardrailsResponseS8>? s8;
 
-  final TfArg<String>? s9;
+  final TfArg<AiGatewayGuardrailsResponseS9>? s9;
 
   Map<String, Object?> encode() => {
     if (p1 != null) 'p1': p1!.toTfJson(),
@@ -215,6 +426,146 @@ final class AiGatewayGuardrailsResponse {
   };
 }
 
+/// `p1` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseP1 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseP1(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s1` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS1 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS1(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s10` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS10 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS10(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s11` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS11 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS11(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s12` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS12 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS12(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s13` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS13 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS13(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s2` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS2 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS2(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s3` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS3 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS3(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s4` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS4 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS4(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s5` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS5 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS5(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s6` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS6 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS6(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s7` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS7 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS7(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s8` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS8 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS8(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s9` — derived from the provider schema description.
+enum AiGatewayGuardrailsResponseS9 implements TerraformEnum {
+  flag('FLAG'),
+  block('BLOCK');
+
+  const AiGatewayGuardrailsResponseS9(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `otel` block of
 /// `cloudflare_ai_gateway` (derived from provider schema).
 @immutable
@@ -228,7 +579,7 @@ final class AiGatewayOtel {
 
   final TfArg<String>? authorization;
 
-  final TfArg<String>? contentType;
+  final TfArg<AiGatewayOtelContentType>? contentType;
 
   final TfArg<Map<String, String>> headers;
 
@@ -240,6 +591,16 @@ final class AiGatewayOtel {
     'headers': headers.toTfJson(),
     'url': url.toTfJson(),
   };
+}
+
+/// `content_type` — derived from the provider schema description.
+enum AiGatewayOtelContentType implements TerraformEnum {
+  json('json'),
+  protobuf('protobuf');
+
+  const AiGatewayOtelContentType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spend_limits` block of
@@ -280,9 +641,9 @@ final class AiGatewaySpendLimitsRules {
 
   final TfArg<num> limit;
 
-  final TfArg<String> limitType;
+  final TfArg<AiGatewaySpendLimitsRulesLimitType> limitType;
 
-  final TfArg<String>? technique;
+  final TfArg<AiGatewaySpendLimitsRulesTechnique>? technique;
 
   final TfArg<num> window;
 
@@ -306,6 +667,25 @@ final class AiGatewaySpendLimitsRules {
   };
 }
 
+/// `limit_type` — derived from the provider schema description.
+enum AiGatewaySpendLimitsRulesLimitType implements TerraformEnum {
+  cost('cost');
+
+  const AiGatewaySpendLimitsRulesLimitType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `technique` — derived from the provider schema description.
+enum AiGatewaySpendLimitsRulesTechnique implements TerraformEnum {
+  fixed('fixed'),
+  sliding('sliding');
+
+  const AiGatewaySpendLimitsRulesTechnique(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `spend_limits.rules.ai_gateway_provider` block of
 /// `cloudflare_ai_gateway` (derived from provider schema).
 @immutable
@@ -315,7 +695,7 @@ final class AiGatewaySpendLimitsRulesAiGatewayProvider {
     required this.values,
   });
 
-  final TfArg<String> mode;
+  final TfArg<AiGatewaySpendLimitsRulesAiGatewayProviderMode> mode;
 
   final TfArg<List<Object?>> values;
 
@@ -325,13 +705,22 @@ final class AiGatewaySpendLimitsRulesAiGatewayProvider {
   };
 }
 
+/// `mode` — derived from the provider schema description.
+enum AiGatewaySpendLimitsRulesAiGatewayProviderMode implements TerraformEnum {
+  filter('filter');
+
+  const AiGatewaySpendLimitsRulesAiGatewayProviderMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `spend_limits.rules.metadata` block of
 /// `cloudflare_ai_gateway` (derived from provider schema).
 @immutable
 final class AiGatewaySpendLimitsRulesMetadata {
   const AiGatewaySpendLimitsRulesMetadata({required this.mode, this.values});
 
-  final TfArg<String> mode;
+  final TfArg<AiGatewaySpendLimitsRulesMetadataMode> mode;
 
   final TfArg<List<Object?>>? values;
 
@@ -339,6 +728,16 @@ final class AiGatewaySpendLimitsRulesMetadata {
     'mode': mode.toTfJson(),
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum AiGatewaySpendLimitsRulesMetadataMode implements TerraformEnum {
+  partition('partition'),
+  filter('filter');
+
+  const AiGatewaySpendLimitsRulesMetadataMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spend_limits.rules.model` block of
@@ -350,7 +749,7 @@ final class AiGatewaySpendLimitsRulesModel {
     required this.values,
   });
 
-  final TfArg<String> mode;
+  final TfArg<AiGatewaySpendLimitsRulesModelMode> mode;
 
   final TfArg<List<Object?>> values;
 
@@ -358,6 +757,15 @@ final class AiGatewaySpendLimitsRulesModel {
     'mode': mode.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum AiGatewaySpendLimitsRulesModelMode implements TerraformEnum {
+  filter('filter');
+
+  const AiGatewaySpendLimitsRulesModelMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `stripe` block of
@@ -409,17 +817,17 @@ final class CloudflareAiGateway extends Resource {
     required TfArg<String> id,
     TfArg<bool>? logClassification,
     TfArg<num>? logManagement,
-    TfArg<String>? logManagementStrategy,
+    TfArg<AiGatewayLogManagementStrategy>? logManagementStrategy,
     TfArg<bool>? logpush,
     TfArg<String>? logpushPublicKey,
     required TfArg<num> rateLimitingInterval,
     required TfArg<num> rateLimitingLimit,
-    TfArg<String>? rateLimitingTechnique,
-    TfArg<String>? retryBackoff,
+    TfArg<AiGatewayRateLimitingTechnique>? rateLimitingTechnique,
+    TfArg<AiGatewayRetryBackoff>? retryBackoff,
     TfArg<num>? retryDelay,
     TfArg<num>? retryMaxAttempts,
     TfArg<String>? storeId,
-    TfArg<String>? workersAiBillingMode,
+    TfArg<AiGatewayWorkersAiBillingMode>? workersAiBillingMode,
     TfArg<bool>? zdr,
     AiGatewayDlp? dlp,
     AiGatewayGuardrails? guardrails,
