@@ -177,9 +177,31 @@ void main() {
       expect(parsed.dynamicKey, isTrue);
       expect(parsed.tfKey, isNull);
     });
+
+    test('detects a spread of the slot\'s argMap', () {
+      const slot = CustomSlot(
+        paramDeclaration: 'required Target target',
+        argMapEntry: '...target.argMap,',
+      );
+      final parsed = parseCustomSlot(slot);
+      expect(parsed.spread, isTrue);
+      expect(parsed.dynamicKey, isFalse);
+      expect(parsed.merged, isTrue);
+      expect(parsed.tfKey, isNull);
+    });
   });
 
   group('customSlotShape', () {
+    test('a spread sealed slot derives to sealed', () {
+      const slot = CustomSlot(
+        paramDeclaration: 'required Target target',
+        argMapEntry: '...target.argMap,',
+      );
+      final shape = customSlotShape(slot, parseCustomSlot(slot), _ctx);
+      expect(shape.kind, MigrateSlotKind.sealed);
+      expect(shape.variants, {'pubsub_target': 'PubsubTarget'});
+    });
+
     test('sealed dispatch slot derives to sealed', () {
       const slot = CustomSlot(
         paramDeclaration: 'required Target target',
@@ -213,6 +235,15 @@ void main() {
                 dynamicNonSealed, parseCustomSlot(dynamicNonSealed), _ctx)
             .reason,
         contains('not a sealed class'),
+      );
+      const spreadNonSealed = CustomSlot(
+        paramDeclaration: 'required Helper h',
+        argMapEntry: '...h.argMap,',
+      );
+      expect(
+        customSlotShape(spreadNonSealed, parseCustomSlot(spreadNonSealed), _ctx)
+            .reason,
+        contains('spreads the slot but the type is not a sealed class'),
       );
       const noKey = CustomSlot(
         paramDeclaration: 'Helper? h',

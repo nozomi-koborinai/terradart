@@ -261,32 +261,74 @@ final class MonitoringUptimeCheckConfigResourceGroup
 class MonitoringUptimeCheckConfigHttpAuthInfo {
   const MonitoringUptimeCheckConfigHttpAuthInfo({
     required this.username,
-    this.password,
-    this.passwordWo,
-    this.passwordWoVersion,
+    required this.password,
   });
 
   final TfArg<String> username;
 
-  /// **Sensitive.** Plaintext password — masked in rendered Terraform JSON.
-  final TfArg<String>? password;
-
-  /// Write-only variant of [password] (Terraform 1.11+ write-only
-  /// attribute). Use this when the password is sourced from a secret
-  /// store and should never be tracked in state.
-  final TfArg<String>? passwordWo;
-
-  /// Bump this version string whenever [passwordWo] changes so Terraform
-  /// recognizes the rotation.
-  final TfArg<String>? passwordWoVersion;
+  /// Exactly one of [MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword]
+  /// and [MonitoringUptimeCheckConfigHttpAuthPlaintextPassword].
+  final MonitoringUptimeCheckConfigHttpAuthPassword password;
 
   Map<String, Object?> toArgMap() => {
     'username': username.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (passwordWo != null) 'password_wo': passwordWo!.toTfJson(),
+    ...password.encode(),
+  };
+}
+
+/// `http_check.auth_info.password` / `password_wo`. Sealed so the
+/// provider's ExactlyOneOf (8.0) holds at compile time.
+sealed class MonitoringUptimeCheckConfigHttpAuthPassword {
+  const MonitoringUptimeCheckConfigHttpAuthPassword();
+
+  /// The key that tells the variants apart.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Write-only password (Terraform 1.11+): the provider sends
+/// [passwordWo] but never stores it in Terraform state. Bump
+/// [passwordWoVersion] whenever [passwordWo] changes so Terraform
+/// recognizes the rotation.
+final class MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword
+    extends MonitoringUptimeCheckConfigHttpAuthPassword {
+  const MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword({
+    required this.passwordWo,
+    this.passwordWoVersion,
+  });
+
+  final TfArg<String> passwordWo;
+
+  final TfArg<String>? passwordWoVersion;
+
+  @override
+  String get blockKey => 'password_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'password_wo': passwordWo.toTfJson(),
     if (passwordWoVersion != null)
       'password_wo_version': passwordWoVersion!.toTfJson(),
   };
+}
+
+/// **Sensitive.** Plaintext password — masked in rendered Terraform JSON
+/// but stored in Terraform state; prefer
+/// [MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword].
+final class MonitoringUptimeCheckConfigHttpAuthPlaintextPassword
+    extends MonitoringUptimeCheckConfigHttpAuthPassword {
+  const MonitoringUptimeCheckConfigHttpAuthPlaintextPassword({
+    required this.password,
+  });
+
+  final TfArg<String> password;
+
+  @override
+  String get blockKey => 'password';
+
+  @override
+  Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
 /// `http_check.ping_config` / `tcp_check.ping_config` block (max=1) —

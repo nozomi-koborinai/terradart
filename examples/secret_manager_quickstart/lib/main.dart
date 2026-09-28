@@ -2,7 +2,7 @@
 ///
 /// Defines `DbCredentialsStack`: provisions a `google_secret_manager_secret`
 /// with auto replication, supplies the value via the **write-only**
-/// `secretDataWo` + `secretDataWoVersion` fields (so the plaintext never
+/// `SecretManagerSecretVersionWriteOnlyPayload` (so the plaintext never
 /// lands in Terraform state), grants
 /// `roles/secretmanager.secretAccessor` to a reader service account, and
 /// exercises authoritative secret IAM binding + policy adjuncts.
@@ -60,8 +60,10 @@ final class DbCredentialsStack extends Stack {
       GoogleSecretManagerSecretVersion(
         localName: 'db_password_v$secretVersion',
         secret: TfArg.ref(secret.id),
-        secretDataWo: TfArg.literal(dbPasswordCleartext),
-        secretDataWoVersion: TfArg.literal('$secretVersion'),
+        payload: SecretManagerSecretVersionWriteOnlyPayload(
+          secretDataWo: TfArg.literal(dbPasswordCleartext),
+          secretDataWoVersion: TfArg.literal('$secretVersion'),
+        ),
       ),
     );
 
