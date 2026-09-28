@@ -102,7 +102,8 @@ void main() {
       }
 
       expect(paramOrder(fill: false), isNull);
-      expect(paramOrder(fill: true), orderedConstructorParams(googlePubsubTopic, null));
+      expect(paramOrder(fill: true),
+          orderedConstructorParams(googlePubsubTopic, null));
       expect(paramOrder(fill: true), contains('name'));
       expect(paramOrder(fill: true), isNot(contains('id')));
     });

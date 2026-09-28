@@ -138,9 +138,10 @@ barrels:
             '  gamma:'),
       );
       expect(
-          next,
-          endsWith('  zeta:\n    doc: |-\n'
-              '      /// `zeta` factories, added by the weekly schema bump.\n'));
+        next,
+        endsWith('  zeta:\n    doc: |-\n'
+            '      /// `zeta` factories, added by the weekly schema bump.\n'),
+      );
       expect(addMissingBarrels(next, {'alpha', 'beta', 'zeta'}), next);
     });
 
