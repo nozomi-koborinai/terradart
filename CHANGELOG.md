@@ -4,7 +4,9 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
-## Unreleased
+## [0.30.0] - 2026-09-28
+
+Lockstep release across the workspace. `terradart_hcl` and `terradart_migrate` ship on pub.dev for the first time; `terradart-migrate` installs with `dart pub global activate terradart_migrate`. **Breaking** — `terradart_google` / `terradart_google_beta` move to `hashicorp/google` 8.x (22 removed factories, 16 beta → GA promotions, sealed write-only secrets; existing root modules need `terraform init -upgrade`, and removed types must leave state first), Cloudflare follows 5.26.0, and Cloudflare, Appwrite and AWS inputs with a fixed value set become enums; AWS exactly-one groups are sealed. `terradart-coverage` is retired and four `terradart-migrate` flags are gone. Read the upgrade steps in [MIGRATING.md](MIGRATING.md) before bumping. The `terradart_google` catalog is **1359 curated resource factories + 468 data sources** (1827 entries).
 
 ### Added
 
@@ -136,6 +138,29 @@ Per-package changelogs live alongside each package and are the system of record 
   them in `wrap`. The migration manifest derives the sealed shapes, so the
   round-trip gate stays green with nothing kept in Terraform. Synth output
   is unchanged. See `MIGRATING.md`.
+- **Weekly schema bump per provider** — `schema-bump.yml` runs one job and
+  opens one PR per `tool/providers.yaml` lane with a `bump:` entry: google
+  (+ the google-beta ride-along) on Sundays, aws on Mondays, cloudflare on
+  Tuesdays (`pr-only`, never auto-merged). Each lane tracks its provider's
+  current major and ignores other majors and prereleases
+  (`tool/fetch_schema.dart --lane`). The bump tools are provider-generic
+  (`tool/schema_resource_diff.dart`, `tool/bump_lane_gates.dart`,
+  `tool/bump_plan.dart`), and the current google version is read from the
+  fixture's `provider_version.txt`.
+- **New upstream types no longer block the bump** — a new resource or data
+  source gets a scaffolded default override and a factory in the bump PR
+  (`tool/bump_new_factories.dart`: `wrap-init` on google, the lane scaffold
+  on aws / cloudflare), a `tool/curation_backlog.yaml` entry asking for API
+  polish, and an `awaiting-example:` line in `tool/example_debt.yaml` unless
+  the lane's leftover example covers it. A removed type or a breaking API
+  diff still blocks auto-merge. Every bump lane now diffs data sources, and
+  the google catalog test fails on a GA data source without a factory; the
+  13 it caught (8 new in 8.1–8.4, 5 older) are wrapped.
+- **One source of truth for the aws / cloudflare pins** — `wrap` emits
+  `lib/src/_provider_version.g.dart` from each fixture's
+  `provider_version.txt`; the package tests check the pin and the filled
+  catalog against the fixture, and `check_docs_consistency.dart` fails on a
+  doc that restates either pin or catalog count.
 - **Docs** — the agent skill and the *Migrating from HCL* guide describe one
   loop: `terradart-migrate --report`, then a migration, then porting the
   sidecar leftovers into the Stack, synth, and `terraform plan` with *No
@@ -174,6 +199,9 @@ Per-package changelogs live alongside each package and are the system of record 
   (`dart pub global activate terradart_migrate`), with `terradart_hcl` as a
   package of its own. `release-binary.yml`, `tool/render_formula.dart` and
   `tool/render_to_file.dart` are removed. See `MIGRATING.md`.
+- **Claude Code configuration** — `CLAUDE.md` and `.claude/settings.json`
+  are gone; `AGENTS.md` and the Cursor hooks (`.cursor/hooks.json`) are the
+  agent guardrails. No Dart API change.
 
 ## [0.29.0] - 2026-09-27
 

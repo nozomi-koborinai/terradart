@@ -1,6 +1,86 @@
 # Migrating terradart
 
-## 0.29.x → next release
+## 0.29.x → 0.30.0
+
+0.30.0 is a breaking release for every provider package, and for Google it
+also changes the Terraform provider major (`hashicorp/google` 7.x → 8.x), so
+some steps must happen **before** you raise the Dart constraint. Follow the
+upgrade guide in order; the sections after it are the per-package
+references.
+
+### Upgrade guide
+
+1. **On 0.29.x, before anything else — remove the resource types provider
+   8.0 deletes from state.** Terraform on provider 8.x cannot read a
+   `google_beyondcorp_app_*`, `google_iap_brand` / `google_iap_client`,
+   `google_ml_engine_model`, `google_notebooks_*` or
+   `google_vertex_ai_schedule` resource. For each such address, either keep
+   the cloud resource and stop managing it:
+
+   ```sh
+   terraform state list | grep -E 'google_(beyondcorp_app_|iap_(brand|client)|ml_engine_model|notebooks_|vertex_ai_schedule)'
+   terraform state rm '<address>'
+   ```
+
+   or move to the successor and apply while still on 0.29.x
+   ([removed factories and successors](#terradart_google-factories-hashicorpgoogle-80-removes)).
+   Skip this step if the list is empty or you do not use `terradart_google`.
+2. **Raise every TerraDart constraint to `^0.30.0` by hand.** Below 1.0 a
+   caret never crosses a minor, so `dart pub upgrade` alone keeps you on
+   0.29.x. The packages release in lockstep; move them together:
+
+   ```yaml
+   dependencies:
+     terradart_core: ^0.30.0
+     terradart_google: ^0.30.0      # and any of: terradart_google_beta,
+     terradart_time: ^0.30.0        # terradart_aws, terradart_cloudflare,
+                                    # terradart_appwrite — all ^0.30.0
+   ```
+
+   then run `dart pub upgrade`.
+3. **Fix the compile errors.** Every Dart API break has a before / after in
+   the sections below: [Google 8.x API changes](#dart-api-changes),
+   [removed Google factories](#terradart_google-factories-hashicorpgoogle-80-removes),
+   [beta → GA imports](#beta-only-types-now-in-terradart_google),
+   [Cloudflare 5.26.0](#terradart_cloudflare-follows-cloudflarecloudflare-5260),
+   [Cloudflare enums](#terradart_cloudflare-inputs-with-a-fixed-value-set-are-enums),
+   [Cloudflare map-of-object inputs](#terradart_cloudflare-map-of-object-attributes-take-a-map-of-helpers),
+   [Appwrite enums](#terradart_appwrite-inputs-with-a-fixed-value-set-are-enums),
+   [AWS enums](#terradart_aws-inputs-with-a-fixed-value-set-are-enums) and
+   [AWS exactly-one groups](#terradart_aws-exactly-one-inputs-are-sealed-types).
+   Enum and sealed-type changes do not change the synthesized JSON.
+4. **Synthesize, then upgrade the provider lock file.** The Google stacks now
+   pin `~> 8.0` and Cloudflare stacks `5.26.0`, which no longer match
+   `.terraform.lock.hcl`; a plain `terraform init` fails with *locked
+   provider … does not match configured version constraint*. Run once, in
+   each root module's `tf-out/` directory:
+
+   ```sh
+   dart run bin/infra.dart
+   cd tf-out
+   terraform init -upgrade
+   ```
+
+   and commit the updated `.terraform.lock.hcl`.
+5. **Run `terraform plan` and read it before you apply.** Provider 8.0
+   changes some defaults with no Dart signal
+   ([behaviour changes](#behaviour-changes-the-compiler-cannot-show) — for
+   example `load_balancing_scheme` now defaults to `EXTERNAL_MANAGED`), and
+   the 16 promoted types move from the `google-beta` to the `google`
+   provider in state. Expect no replacements; set the old value explicitly
+   in the Stack wherever the plan shows one you did not intend, and apply
+   only when the plan is what you expect.
+6. **Tooling, if you used it.** `terradart-coverage` is retired in favour of
+   `terradart-migrate --report`, and `terradart-migrate` moves from
+   Homebrew to pub.dev:
+
+   ```sh
+   brew uninstall terradart-coverage terradart-migrate   # whichever you had
+   dart pub global activate terradart_migrate
+   ```
+
+   `--update`, `--in-place`, `--allow-todo` and `--inline-locals` are gone
+   ([details](#terradart-migrate-flags-removed)).
 
 ### `terradart_google` / `terradart_google_beta`: `hashicorp/google` 8.x
 

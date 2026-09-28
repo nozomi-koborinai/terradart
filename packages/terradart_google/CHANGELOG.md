@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.30.0 - 2026-09-28
+
+- **Breaking** — targets `hashicorp/google` 8.x: the wrap fixture moves from `7.46.1` to `8.4.0` and `GoogleProvider` pins `~> 8.0`, so an existing root module needs `terraform init -upgrade`. The Dart API follows the provider (`secretDataWoVersion` / `secretAccessKeyWoVersion` are strings, `GoogleWorkflowsWorkflow.sourceContents` and `GoogleIamWorkforcePoolProviderScimTenant.claimMapping` are required, a handful of removed fields are gone). See [MIGRATING.md](../../MIGRATING.md) for the upgrade steps and the defaults 8.0 changes without a Dart signal.
+- **Breaking** — the 22 factories for the types 8.0 removes are gone: 16 resources (`google_beyondcorp_app_*`, `google_iap_{brand,client}`, `google_ml_engine_model`, `google_notebooks_*` with their IAM factories, `google_vertex_ai_schedule`) and 6 data sources, with the `notebooks` barrel. Take those resources out of state before upgrading.
+- **Breaking** — write-only secret choices are sealed: `GoogleSecretManagerSecretVersion(payload:)`, `BigqueryDataTransferConfigSensitiveParams(secretAccessKey:)` and `MonitoringUptimeCheckConfigHttpAuthInfo(password:)` take a required sealed value with a write-only and a plaintext variant.
+- 16 types promoted from beta in 8.2 / 8.3 move here from `terradart_google_beta` (`google_biglake_hive_*` + IAM, `google_observability_*_settings`, `google_compute_network_edge_security_service`), without the `google-beta` provider pin.
+- New factories for the 21 GA types 8.1–8.4 add, and for 13 data sources that had none (8 new in 8.1–8.4, 5 older), scaffolded by the weekly bump and queued in `tool/curation_backlog.yaml`. The catalog is now 1359 curated resource factories + 468 data sources (1827 entries).
+
 ## 0.29.0 - 2026-09-27
 
 - `GoogleChronicleSoarNetwork` (`google_chronicle_soar_network`), exercised by the gated `chronicle_quickstart`. The catalog is now 1338 curated resource factories + 461 data sources (1799 entries).
