@@ -143,7 +143,10 @@ void _collect(
     }
   }
   for (final n in nested) {
-    final nextPrefix = prefix.isEmpty ? n.name : '$prefix.${n.name}';
+    // A map of blocks puts an arbitrary key between the block and its
+    // fields; `*` stands for it (see `_checkNestedPaths` in terradart_core).
+    final name = n.nesting == NestingMode.map ? '${n.name}.*' : n.name;
+    final nextPrefix = prefix.isEmpty ? name : '$prefix.$name';
     _collect(n.block.attributes, n.block.nestedBlocks, nextPrefix, sink);
   }
 }

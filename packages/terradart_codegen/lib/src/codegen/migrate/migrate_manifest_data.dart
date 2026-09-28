@@ -18,6 +18,7 @@ final class MigrateSlotData {
     required this.kind,
     required this.required,
     this.repeated = false,
+    this.keyed = false,
     this.wrapped = true,
     this.positional = false,
     this.merged = false,
@@ -32,6 +33,7 @@ final class MigrateSlotData {
   final MigrateSlotKind kind;
   final bool required;
   final bool repeated;
+  final bool keyed;
   final bool wrapped;
   final bool positional;
   final bool merged;
