@@ -7,6 +7,48 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_client_vpn_endpoint`.
 const Set<String> _awsEc2ClientVpnEndpointSensitive = <String>{};
 
+/// Ec2 Client Vpn Endpoint Endpoint Ip Address enum for `endpoint_ip_address_type`.
+enum Ec2ClientVpnEndpointEndpointIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6'),
+  dualStack('dual-stack');
+
+  const Ec2ClientVpnEndpointEndpointIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ec2 Client Vpn Endpoint Self Service enum for `self_service_portal`.
+enum Ec2ClientVpnEndpointSelfServicePortal implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled');
+
+  const Ec2ClientVpnEndpointSelfServicePortal(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ec2 Client Vpn Endpoint Traffic Ip Address enum for `traffic_ip_address_type`.
+enum Ec2ClientVpnEndpointTrafficIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6'),
+  dualStack('dual-stack');
+
+  const Ec2ClientVpnEndpointTrafficIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ec2 Client Vpn Endpoint Transport enum for `transport_protocol`.
+enum Ec2ClientVpnEndpointTransportProtocol implements TerraformEnum {
+  tcp('tcp'),
+  udp('udp');
+
+  const Ec2ClientVpnEndpointTransportProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `authentication_options` block of
 /// `aws_ec2_client_vpn_endpoint` (derived from provider schema).
 @immutable
@@ -27,7 +69,7 @@ final class Ec2ClientVpnEndpointAuthenticationOptions {
 
   final TfArg<String>? selfServiceSamlProviderArn;
 
-  final TfArg<String> type;
+  final TfArg<Ec2ClientVpnEndpointAuthenticationOptionsType> type;
 
   Map<String, Object?> encode() => {
     if (activeDirectoryId != null)
@@ -40,6 +82,17 @@ final class Ec2ClientVpnEndpointAuthenticationOptions {
       'self_service_saml_provider_arn': selfServiceSamlProviderArn!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum Ec2ClientVpnEndpointAuthenticationOptionsType implements TerraformEnum {
+  certificateAuthentication('certificate-authentication'),
+  directoryServiceAuthentication('directory-service-authentication'),
+  federatedAuthentication('federated-authentication');
+
+  const Ec2ClientVpnEndpointAuthenticationOptionsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `client_connect_options` block of
@@ -155,16 +208,16 @@ final class AwsEc2ClientVpnEndpoint extends Resource {
     TfArg<String>? description,
     TfArg<bool>? disconnectOnSessionTimeout,
     TfArg<List<String>>? dnsServers,
-    TfArg<String>? endpointIpAddressType,
+    TfArg<Ec2ClientVpnEndpointEndpointIpAddressType>? endpointIpAddressType,
     TfArg<String>? region,
     TfArg<List<String>>? securityGroupIds,
-    TfArg<String>? selfServicePortal,
+    TfArg<Ec2ClientVpnEndpointSelfServicePortal>? selfServicePortal,
     required TfArg<String> serverCertificateArn,
     TfArg<num>? sessionTimeoutHours,
     TfArg<bool>? splitTunnel,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? trafficIpAddressType,
-    TfArg<String>? transportProtocol,
+    TfArg<Ec2ClientVpnEndpointTrafficIpAddressType>? trafficIpAddressType,
+    TfArg<Ec2ClientVpnEndpointTransportProtocol>? transportProtocol,
     TfArg<String>? vpcId,
     TfArg<num>? vpnPort,
     required List<Ec2ClientVpnEndpointAuthenticationOptions>

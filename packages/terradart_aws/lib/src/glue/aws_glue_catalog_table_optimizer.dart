@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_glue_catalog_table_optimizer`.
 const Set<String> _awsGlueCatalogTableOptimizerSensitive = <String>{};
 
+/// Glue Catalog Table Optimizer enum for `type`.
+enum GlueCatalogTableOptimizerType implements TerraformEnum {
+  compaction('compaction'),
+  retention('retention'),
+  orphanFileDeletion('orphan_file_deletion');
+
+  const GlueCatalogTableOptimizerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `configuration` block of
 /// `aws_glue_catalog_table_optimizer` (derived from provider schema).
 @immutable
@@ -87,7 +98,10 @@ final class GlueCatalogTableOptimizerConfigurationCompactionConfigurationIceberg
 
   final TfArg<num>? minInputFiles;
 
-  final TfArg<String>? strategy;
+  final TfArg<
+    GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfigurationStrategy
+  >?
+  strategy;
 
   Map<String, Object?> encode() => {
     if (deleteFileThreshold != null)
@@ -95,6 +109,20 @@ final class GlueCatalogTableOptimizerConfigurationCompactionConfigurationIceberg
     if (minInputFiles != null) 'min_input_files': minInputFiles!.toTfJson(),
     if (strategy != null) 'strategy': strategy!.toTfJson(),
   };
+}
+
+/// `strategy` — derived from the provider schema description.
+enum GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfigurationStrategy
+    implements TerraformEnum {
+  binpack('binpack'),
+  sort('sort'),
+  zOrder('z-order');
+
+  const GlueCatalogTableOptimizerConfigurationCompactionConfigurationIcebergConfigurationStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.orphan_file_deletion_configuration` block of
@@ -205,7 +233,7 @@ final class AwsGlueCatalogTableOptimizer extends Resource {
     required TfArg<String> databaseName,
     TfArg<String>? region,
     required TfArg<String> tableName,
-    required TfArg<String> type,
+    required TfArg<GlueCatalogTableOptimizerType> type,
     List<GlueCatalogTableOptimizerConfiguration>? configuration,
     super.lifecycle,
     super.dependsOn,

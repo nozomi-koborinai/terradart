@@ -7,6 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_codeconnections_host`.
 const Set<String> _awsCodeconnectionsHostSensitive = <String>{};
 
+/// Codeconnections Host Provider enum for `provider_type`.
+enum CodeconnectionsHostProviderType implements TerraformEnum {
+  bitbucket('Bitbucket'),
+  github('GitHub'),
+  githubenterpriseserver('GitHubEnterpriseServer'),
+  gitlab('GitLab'),
+  gitlabselfmanaged('GitLabSelfManaged'),
+  azuredevops('AzureDevOps');
+
+  const CodeconnectionsHostProviderType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `vpc_configuration` block of
 /// `aws_codeconnections_host` (derived from provider schema).
 @immutable
@@ -42,7 +56,7 @@ final class AwsCodeconnectionsHost extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> providerEndpoint,
-    required TfArg<String> providerType,
+    required TfArg<CodeconnectionsHostProviderType> providerType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<CodeconnectionsHostVpcConfiguration>? vpcConfiguration,

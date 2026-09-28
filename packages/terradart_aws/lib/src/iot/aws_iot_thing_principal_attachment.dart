@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iot_thing_principal_attachment`.
 const Set<String> _awsIotThingPrincipalAttachmentSensitive = <String>{};
 
+/// Iot Thing Principal Attachment Thing Principal enum for `thing_principal_type`.
+enum IotThingPrincipalAttachmentThingPrincipalType implements TerraformEnum {
+  exclusiveThing('EXCLUSIVE_THING'),
+  nonExclusiveThing('NON_EXCLUSIVE_THING');
+
+  const IotThingPrincipalAttachmentThingPrincipalType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_iot_thing_principal_attachment`.
 final class AwsIotThingPrincipalAttachment extends Resource {
   static const String tfType = 'aws_iot_thing_principal_attachment';
@@ -15,7 +25,7 @@ final class AwsIotThingPrincipalAttachment extends Resource {
     required TfArg<String> principal,
     TfArg<String>? region,
     required TfArg<String> thing,
-    TfArg<String>? thingPrincipalType,
+    TfArg<IotThingPrincipalAttachmentThingPrincipalType>? thingPrincipalType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

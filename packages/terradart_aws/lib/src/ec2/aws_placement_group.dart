@@ -6,6 +6,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_placement_group`.
 const Set<String> _awsPlacementGroupSensitive = <String>{};
 
+/// Placement Group Spread enum for `spread_level`.
+enum PlacementGroupSpreadLevel implements TerraformEnum {
+  host('host'),
+  rack('rack');
+
+  const PlacementGroupSpreadLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Placement Group enum for `strategy`.
+enum PlacementGroupStrategy implements TerraformEnum {
+  cluster('cluster'),
+  spread('spread'),
+  partition('partition'),
+  precisionTime('precision-time');
+
+  const PlacementGroupStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_placement_group`.
 final class AwsPlacementGroup extends Resource {
   static const String tfType = 'aws_placement_group';
@@ -15,8 +37,8 @@ final class AwsPlacementGroup extends Resource {
     required TfArg<String> name,
     TfArg<num>? partitionCount,
     TfArg<String>? region,
-    TfArg<String>? spreadLevel,
-    required TfArg<String> strategy,
+    TfArg<PlacementGroupSpreadLevel>? spreadLevel,
+    required TfArg<PlacementGroupStrategy> strategy,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

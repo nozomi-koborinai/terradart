@@ -38,7 +38,10 @@ final class TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration
 
   final TfArg<String> bucketName;
 
-  final TfArg<String>? encryptionOption;
+  final TfArg<
+    TimestreamqueryScheduledQueryErrorReportConfigurationS3ConfigurationEncryptionOption
+  >?
+  encryptionOption;
 
   final TfArg<String>? objectKeyPrefix;
 
@@ -49,6 +52,19 @@ final class TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration
     if (objectKeyPrefix != null)
       'object_key_prefix': objectKeyPrefix!.toTfJson(),
   };
+}
+
+/// `encryption_option` — derived from the provider schema description.
+enum TimestreamqueryScheduledQueryErrorReportConfigurationS3ConfigurationEncryptionOption
+    implements TerraformEnum {
+  sseS3('SSE_S3'),
+  sseKms('SSE_KMS');
+
+  const TimestreamqueryScheduledQueryErrorReportConfigurationS3ConfigurationEncryptionOption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `last_run_summary` block of
@@ -494,7 +510,10 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
     required this.name,
   });
 
-  final TfArg<String> dimensionValueType;
+  final TfArg<
+    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMappingDimensionValueType
+  >
+  dimensionValueType;
 
   final TfArg<String> name;
 
@@ -502,6 +521,18 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
     'dimension_value_type': dimensionValueType.toTfJson(),
     'name': name.toTfJson(),
   };
+}
+
+/// `dimension_value_type` — derived from the provider schema description.
+enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMappingDimensionValueType
+    implements TerraformEnum {
+  varchar('VARCHAR');
+
+  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMappingDimensionValueType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.timestream_configuration.mixed_measure_mapping` block of
@@ -518,7 +549,10 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
 
   final TfArg<String>? measureName;
 
-  final TfArg<String> measureValueType;
+  final TfArg<
+    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMeasureValueType
+  >
+  measureValueType;
 
   final TfArg<String>? sourceColumn;
 
@@ -542,6 +576,22 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
   };
 }
 
+/// `measure_value_type` — derived from the provider schema description.
+enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMeasureValueType
+    implements TerraformEnum {
+  bigint('BIGINT'),
+  boolean('BOOLEAN'),
+  double('DOUBLE'),
+  varchar('VARCHAR'),
+  multi('MULTI');
+
+  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMeasureValueType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_configuration.timestream_configuration.mixed_measure_mapping.multi_measure_attribute_mapping` block of
 /// `aws_timestreamquery_scheduled_query` (derived from provider schema).
 @immutable
@@ -552,7 +602,10 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
     this.targetMultiMeasureAttributeName,
   });
 
-  final TfArg<String> measureValueType;
+  final TfArg<
+    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMappingMeasureValueType
+  >
+  measureValueType;
 
   final TfArg<String> sourceColumn;
 
@@ -565,6 +618,22 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
       'target_multi_measure_attribute_name': targetMultiMeasureAttributeName!
           .toTfJson(),
   };
+}
+
+/// `measure_value_type` — derived from the provider schema description.
+enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMappingMeasureValueType
+    implements TerraformEnum {
+  bigint('BIGINT'),
+  boolean('BOOLEAN'),
+  double('DOUBLE'),
+  varchar('VARCHAR'),
+  timestamp('TIMESTAMP');
+
+  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMappingMeasureValueType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.timestream_configuration.multi_measure_mappings` block of
@@ -603,7 +672,10 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
     this.targetMultiMeasureAttributeName,
   });
 
-  final TfArg<String> measureValueType;
+  final TfArg<
+    TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMappingMeasureValueType
+  >
+  measureValueType;
 
   final TfArg<String> sourceColumn;
 
@@ -616,6 +688,22 @@ final class TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurat
       'target_multi_measure_attribute_name': targetMultiMeasureAttributeName!
           .toTfJson(),
   };
+}
+
+/// `measure_value_type` — derived from the provider schema description.
+enum TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMappingMeasureValueType
+    implements TerraformEnum {
+  bigint('BIGINT'),
+  boolean('BOOLEAN'),
+  double('DOUBLE'),
+  varchar('VARCHAR'),
+  timestamp('TIMESTAMP');
+
+  const TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMappingMeasureValueType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_timestreamquery_scheduled_query`.

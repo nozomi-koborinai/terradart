@@ -3,18 +3,27 @@
 /// AWS Cost Explorer (anomaly detection and cost categories).
 library;
 
-export 'src/ce/aws_ce_anomaly_monitor.dart' show AwsCeAnomalyMonitor;
+export 'src/ce/aws_ce_anomaly_monitor.dart'
+    show
+        AwsCeAnomalyMonitor,
+        CeAnomalyMonitorMonitorDimension,
+        CeAnomalyMonitorMonitorType;
 export 'src/ce/aws_ce_anomaly_subscription.dart'
     show
         AwsCeAnomalySubscription,
+        CeAnomalySubscriptionFrequency,
         CeAnomalySubscriptionSubscriber,
+        CeAnomalySubscriptionSubscriberType,
         CeAnomalySubscriptionThresholdExpression,
         CeAnomalySubscriptionThresholdExpressionAnd,
         CeAnomalySubscriptionThresholdExpressionAndCostCategory,
         CeAnomalySubscriptionThresholdExpressionAndDimension,
         CeAnomalySubscriptionThresholdExpressionAndTags,
         CeAnomalySubscriptionThresholdExpressionCostCategory,
+        CeAnomalySubscriptionThresholdExpressionCostCategoryMatchOptions,
         CeAnomalySubscriptionThresholdExpressionDimension,
+        CeAnomalySubscriptionThresholdExpressionDimensionKey,
+        CeAnomalySubscriptionThresholdExpressionDimensionMatchOptions,
         CeAnomalySubscriptionThresholdExpressionNot,
         CeAnomalySubscriptionThresholdExpressionNotCostCategory,
         CeAnomalySubscriptionThresholdExpressionNotDimension,
@@ -23,13 +32,16 @@ export 'src/ce/aws_ce_anomaly_subscription.dart'
         CeAnomalySubscriptionThresholdExpressionOrCostCategory,
         CeAnomalySubscriptionThresholdExpressionOrDimension,
         CeAnomalySubscriptionThresholdExpressionOrTags,
-        CeAnomalySubscriptionThresholdExpressionTags;
-export 'src/ce/aws_ce_cost_allocation_tag.dart' show AwsCeCostAllocationTag;
+        CeAnomalySubscriptionThresholdExpressionTags,
+        CeAnomalySubscriptionThresholdExpressionTagsMatchOptions;
+export 'src/ce/aws_ce_cost_allocation_tag.dart'
+    show AwsCeCostAllocationTag, CeCostAllocationTagStatus;
 export 'src/ce/aws_ce_cost_category.dart'
     show
         AwsCeCostCategory,
         CeCostCategoryRule,
         CeCostCategoryRuleInheritedValue,
+        CeCostCategoryRuleInheritedValueDimensionName,
         CeCostCategoryRuleRule,
         CeCostCategoryRuleRuleAnd,
         CeCostCategoryRuleRuleAndAnd,
@@ -48,7 +60,10 @@ export 'src/ce/aws_ce_cost_category.dart'
         CeCostCategoryRuleRuleAndOrTags,
         CeCostCategoryRuleRuleAndTags,
         CeCostCategoryRuleRuleCostCategory,
+        CeCostCategoryRuleRuleCostCategoryMatchOptions,
         CeCostCategoryRuleRuleDimension,
+        CeCostCategoryRuleRuleDimensionKey,
+        CeCostCategoryRuleRuleDimensionMatchOptions,
         CeCostCategoryRuleRuleNot,
         CeCostCategoryRuleRuleNotAnd,
         CeCostCategoryRuleRuleNotAndCostCategory,
@@ -82,5 +97,9 @@ export 'src/ce/aws_ce_cost_category.dart'
         CeCostCategoryRuleRuleOrOrTags,
         CeCostCategoryRuleRuleOrTags,
         CeCostCategoryRuleRuleTags,
+        CeCostCategoryRuleRuleTagsMatchOptions,
+        CeCostCategoryRuleType,
         CeCostCategorySplitChargeRule,
-        CeCostCategorySplitChargeRuleParameter;
+        CeCostCategorySplitChargeRuleMethod,
+        CeCostCategorySplitChargeRuleParameter,
+        CeCostCategorySplitChargeRuleParameterType;

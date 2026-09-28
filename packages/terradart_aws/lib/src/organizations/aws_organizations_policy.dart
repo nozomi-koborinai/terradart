@@ -6,6 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_organizations_policy`.
 const Set<String> _awsOrganizationsPolicySensitive = <String>{};
 
+/// Organizations Policy enum for `type`.
+enum OrganizationsPolicyType implements TerraformEnum {
+  serviceControlPolicy('SERVICE_CONTROL_POLICY'),
+  resourceControlPolicy('RESOURCE_CONTROL_POLICY'),
+  tagPolicy('TAG_POLICY'),
+  backupPolicy('BACKUP_POLICY'),
+  aiservicesOptOutPolicy('AISERVICES_OPT_OUT_POLICY'),
+  chatbotPolicy('CHATBOT_POLICY'),
+  declarativePolicyEc2('DECLARATIVE_POLICY_EC2'),
+  securityhubPolicy('SECURITYHUB_POLICY'),
+  inspectorPolicy('INSPECTOR_POLICY'),
+  upgradeRolloutPolicy('UPGRADE_ROLLOUT_POLICY'),
+  bedrockPolicy('BEDROCK_POLICY'),
+  s3Policy('S3_POLICY'),
+  networkSecurityDirectorPolicy('NETWORK_SECURITY_DIRECTOR_POLICY');
+
+  const OrganizationsPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_organizations_policy`.
 final class AwsOrganizationsPolicy extends Resource {
   static const String tfType = 'aws_organizations_policy';
@@ -17,7 +38,7 @@ final class AwsOrganizationsPolicy extends Resource {
     required TfArg<String> name,
     TfArg<bool>? skipDestroy,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    TfArg<OrganizationsPolicyType>? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

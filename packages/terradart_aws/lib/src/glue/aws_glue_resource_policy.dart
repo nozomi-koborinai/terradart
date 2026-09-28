@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_glue_resource_policy`.
 const Set<String> _awsGlueResourcePolicySensitive = <String>{};
 
+/// Glue Resource Policy Enable enum for `enable_hybrid`.
+enum GlueResourcePolicyEnableHybrid implements TerraformEnum {
+  trueCase('TRUE'),
+  falseCase('FALSE');
+
+  const GlueResourcePolicyEnableHybrid(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_glue_resource_policy`.
 final class AwsGlueResourcePolicy extends Resource {
   static const String tfType = 'aws_glue_resource_policy';
 
   AwsGlueResourcePolicy({
     required super.localName,
-    TfArg<String>? enableHybrid,
+    TfArg<GlueResourcePolicyEnableHybrid>? enableHybrid,
     required TfArg<String> policy,
     TfArg<String>? region,
     super.lifecycle,

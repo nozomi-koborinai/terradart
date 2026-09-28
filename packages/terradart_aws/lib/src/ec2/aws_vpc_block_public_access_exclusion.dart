@@ -6,13 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpc_block_public_access_exclusion`.
 const Set<String> _awsVpcBlockPublicAccessExclusionSensitive = <String>{};
 
+/// Vpc Block Public Access Exclusion Internet Gateway Exclusion enum for `internet_gateway_exclusion_mode`.
+enum VpcBlockPublicAccessExclusionInternetGatewayExclusionMode
+    implements TerraformEnum {
+  allowBidirectional('allow-bidirectional'),
+  allowEgress('allow-egress');
+
+  const VpcBlockPublicAccessExclusionInternetGatewayExclusionMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_vpc_block_public_access_exclusion`.
 final class AwsVpcBlockPublicAccessExclusion extends Resource {
   static const String tfType = 'aws_vpc_block_public_access_exclusion';
 
   AwsVpcBlockPublicAccessExclusion({
     required super.localName,
-    required TfArg<String> internetGatewayExclusionMode,
+    required TfArg<VpcBlockPublicAccessExclusionInternetGatewayExclusionMode>
+    internetGatewayExclusionMode,
     TfArg<String>? region,
     TfArg<String>? subnetId,
     TfArg<Map<String, String>>? tags,

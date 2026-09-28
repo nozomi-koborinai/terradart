@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_glue_catalog`.
 const Set<String> _awsGlueCatalogSensitive = <String>{};
 
+/// Glue Catalog Allow Full Table External Data enum for `allow_full_table_external_data_access`.
+enum GlueCatalogAllowFullTableExternalDataAccess implements TerraformEnum {
+  trueCase('True'),
+  falseCase('False');
+
+  const GlueCatalogAllowFullTableExternalDataAccess(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Glue Catalog Overwrite Child Resource Permissions With enum for `overwrite_child_resource_permissions_with_default`.
+enum GlueCatalogOverwriteChildResourcePermissionsWithDefault
+    implements TerraformEnum {
+  accept('Accept'),
+  deny('Deny');
+
+  const GlueCatalogOverwriteChildResourcePermissionsWithDefault(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `catalog_properties` block of
 /// `aws_glue_catalog` (derived from provider schema).
 @immutable
@@ -207,10 +230,12 @@ final class AwsGlueCatalog extends Resource {
 
   AwsGlueCatalog({
     required super.localName,
-    TfArg<String>? allowFullTableExternalDataAccess,
+    TfArg<GlueCatalogAllowFullTableExternalDataAccess>?
+    allowFullTableExternalDataAccess,
     TfArg<String>? description,
     required TfArg<String> name,
-    TfArg<String>? overwriteChildResourcePermissionsWithDefault,
+    TfArg<GlueCatalogOverwriteChildResourcePermissionsWithDefault>?
+    overwriteChildResourcePermissionsWithDefault,
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -6,13 +6,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_instance_connect_endpoint`.
 const Set<String> _awsEc2InstanceConnectEndpointSensitive = <String>{};
 
+/// Ec2 Instance Connect Endpoint Ip Address enum for `ip_address_type`.
+enum Ec2InstanceConnectEndpointIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  dualstack('dualstack'),
+  ipv6('ipv6');
+
+  const Ec2InstanceConnectEndpointIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_instance_connect_endpoint`.
 final class AwsEc2InstanceConnectEndpoint extends Resource {
   static const String tfType = 'aws_ec2_instance_connect_endpoint';
 
   AwsEc2InstanceConnectEndpoint({
     required super.localName,
-    TfArg<String>? ipAddressType,
+    TfArg<Ec2InstanceConnectEndpointIpAddressType>? ipAddressType,
     TfArg<bool>? preserveClientIp,
     TfArg<String>? region,
     TfArg<List<String>>? securityGroupIds,

@@ -7,6 +7,57 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_elasticache_cluster`.
 const Set<String> _awsElasticacheClusterSensitive = <String>{};
 
+/// Elasticache Cluster Az enum for `az_mode`.
+enum ElasticacheClusterAzMode implements TerraformEnum {
+  singleAz('single-az'),
+  crossAz('cross-az');
+
+  const ElasticacheClusterAzMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Elasticache Cluster enum for `engine`.
+enum ElasticacheClusterEngine implements TerraformEnum {
+  memcached('memcached'),
+  redis('redis');
+
+  const ElasticacheClusterEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Elasticache Cluster Ip enum for `ip_discovery`.
+enum ElasticacheClusterIpDiscovery implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const ElasticacheClusterIpDiscovery(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Elasticache Cluster Network enum for `network_type`.
+enum ElasticacheClusterNetworkType implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6'),
+  dualStack('dual_stack');
+
+  const ElasticacheClusterNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Elasticache Cluster Outpost enum for `outpost_mode`.
+enum ElasticacheClusterOutpostMode implements TerraformEnum {
+  singleOutpost('single-outpost'),
+  crossOutpost('cross-outpost');
+
+  const ElasticacheClusterOutpostMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `log_delivery_configuration` block of
 /// `aws_elasticache_cluster` (derived from provider schema).
 @immutable
@@ -20,11 +71,12 @@ final class ElasticacheClusterLogDeliveryConfiguration {
 
   final TfArg<String> destination;
 
-  final TfArg<String> destinationType;
+  final TfArg<ElasticacheClusterLogDeliveryConfigurationDestinationType>
+  destinationType;
 
-  final TfArg<String> logFormat;
+  final TfArg<ElasticacheClusterLogDeliveryConfigurationLogFormat> logFormat;
 
-  final TfArg<String> logType;
+  final TfArg<ElasticacheClusterLogDeliveryConfigurationLogType> logType;
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
@@ -32,6 +84,43 @@ final class ElasticacheClusterLogDeliveryConfiguration {
     'log_format': logFormat.toTfJson(),
     'log_type': logType.toTfJson(),
   };
+}
+
+/// `destination_type` — derived from the provider schema description.
+enum ElasticacheClusterLogDeliveryConfigurationDestinationType
+    implements TerraformEnum {
+  cloudwatchLogs('cloudwatch-logs'),
+  kinesisFirehose('kinesis-firehose');
+
+  const ElasticacheClusterLogDeliveryConfigurationDestinationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `log_format` — derived from the provider schema description.
+enum ElasticacheClusterLogDeliveryConfigurationLogFormat
+    implements TerraformEnum {
+  text('text'),
+  json('json');
+
+  const ElasticacheClusterLogDeliveryConfigurationLogFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `log_type` — derived from the provider schema description.
+enum ElasticacheClusterLogDeliveryConfigurationLogType
+    implements TerraformEnum {
+  slowLog('slow-log'),
+  engineLog('engine-log');
+
+  const ElasticacheClusterLogDeliveryConfigurationLogType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_elasticache_cluster`.
@@ -43,18 +132,18 @@ final class AwsElasticacheCluster extends Resource {
     TfArg<bool>? applyImmediately,
     TfArg<String>? autoMinorVersionUpgrade,
     TfArg<String>? availabilityZone,
-    TfArg<String>? azMode,
+    TfArg<ElasticacheClusterAzMode>? azMode,
     required TfArg<String> clusterId,
-    TfArg<String>? engine,
+    TfArg<ElasticacheClusterEngine>? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
-    TfArg<String>? ipDiscovery,
+    TfArg<ElasticacheClusterIpDiscovery>? ipDiscovery,
     TfArg<String>? maintenanceWindow,
-    TfArg<String>? networkType,
+    TfArg<ElasticacheClusterNetworkType>? networkType,
     TfArg<String>? nodeType,
     TfArg<String>? notificationTopicArn,
     TfArg<num>? numCacheNodes,
-    TfArg<String>? outpostMode,
+    TfArg<ElasticacheClusterOutpostMode>? outpostMode,
     TfArg<String>? parameterGroupName,
     TfArg<num>? port,
     TfArg<List<String>>? preferredAvailabilityZones,

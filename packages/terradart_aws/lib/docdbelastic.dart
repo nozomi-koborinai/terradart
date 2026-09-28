@@ -4,4 +4,4 @@
 library;
 
 export 'src/docdbelastic/aws_docdbelastic_cluster.dart'
-    show AwsDocdbelasticCluster;
+    show AwsDocdbelasticCluster, DocdbelasticClusterAuthType;

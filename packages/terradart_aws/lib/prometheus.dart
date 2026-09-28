@@ -39,7 +39,8 @@ export 'src/prometheus/aws_prometheus_scraper_logging_configuration.dart'
     show
         AwsPrometheusScraperLoggingConfiguration,
         PrometheusScraperLoggingConfigurationLoggingDestination,
-        PrometheusScraperLoggingConfigurationLoggingDestinationCloudwatchLogs;
+        PrometheusScraperLoggingConfigurationLoggingDestinationCloudwatchLogs,
+        PrometheusScraperLoggingConfigurationScraperComponents;
 export 'src/prometheus/aws_prometheus_workspace.dart'
     show AwsPrometheusWorkspace, PrometheusWorkspaceLoggingConfiguration;
 export 'src/prometheus/aws_prometheus_workspace_configuration.dart'

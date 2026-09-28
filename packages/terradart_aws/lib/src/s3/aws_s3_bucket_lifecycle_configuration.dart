@@ -7,6 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_s3_bucket_lifecycle_configuration`.
 const Set<String> _awsS3BucketLifecycleConfigurationSensitive = <String>{};
 
+/// S3 Bucket Lifecycle Configuration Transition Default Minimum Object enum for `transition_default_minimum_object_size`.
+enum S3BucketLifecycleConfigurationTransitionDefaultMinimumObjectSize
+    implements TerraformEnum {
+  variesByStorageClass('varies_by_storage_class'),
+  allStorageClasses128k('all_storage_classes_128K');
+
+  const S3BucketLifecycleConfigurationTransitionDefaultMinimumObjectSize(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule` block of
 /// `aws_s3_bucket_lifecycle_configuration` (derived from provider schema).
 @immutable
@@ -27,7 +40,7 @@ final class S3BucketLifecycleConfigurationRule {
 
   final TfArg<String>? prefix;
 
-  final TfArg<String> status;
+  final TfArg<S3BucketLifecycleConfigurationRuleStatus> status;
 
   final List<S3BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload>?
   abortIncompleteMultipartUpload;
@@ -66,6 +79,16 @@ final class S3BucketLifecycleConfigurationRule {
     if (transition != null)
       'transition': [for (final e in transition!) e.encode()],
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum S3BucketLifecycleConfigurationRuleStatus implements TerraformEnum {
+  disabled('Disabled'),
+  enabled('Enabled');
+
+  const S3BucketLifecycleConfigurationRuleStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.abort_incomplete_multipart_upload` block of
@@ -223,7 +246,10 @@ final class S3BucketLifecycleConfigurationRuleNoncurrentVersionTransition {
 
   final TfArg<num> noncurrentDays;
 
-  final TfArg<String> storageClass;
+  final TfArg<
+    S3BucketLifecycleConfigurationRuleNoncurrentVersionTransitionStorageClass
+  >
+  storageClass;
 
   Map<String, Object?> encode() => {
     if (newerNoncurrentVersions != null)
@@ -231,6 +257,23 @@ final class S3BucketLifecycleConfigurationRuleNoncurrentVersionTransition {
     'noncurrent_days': noncurrentDays.toTfJson(),
     'storage_class': storageClass.toTfJson(),
   };
+}
+
+/// `storage_class` — derived from the provider schema description.
+enum S3BucketLifecycleConfigurationRuleNoncurrentVersionTransitionStorageClass
+    implements TerraformEnum {
+  glacier('GLACIER'),
+  standardIa('STANDARD_IA'),
+  onezoneIa('ONEZONE_IA'),
+  intelligentTiering('INTELLIGENT_TIERING'),
+  deepArchive('DEEP_ARCHIVE'),
+  glacierIr('GLACIER_IR');
+
+  const S3BucketLifecycleConfigurationRuleNoncurrentVersionTransitionStorageClass(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.transition` block of
@@ -247,13 +290,31 @@ final class S3BucketLifecycleConfigurationRuleTransition {
 
   final TfArg<num>? days;
 
-  final TfArg<String> storageClass;
+  final TfArg<S3BucketLifecycleConfigurationRuleTransitionStorageClass>
+  storageClass;
 
   Map<String, Object?> encode() => {
     if (date != null) 'date': date!.toTfJson(),
     if (days != null) 'days': days!.toTfJson(),
     'storage_class': storageClass.toTfJson(),
   };
+}
+
+/// `storage_class` — derived from the provider schema description.
+enum S3BucketLifecycleConfigurationRuleTransitionStorageClass
+    implements TerraformEnum {
+  glacier('GLACIER'),
+  standardIa('STANDARD_IA'),
+  onezoneIa('ONEZONE_IA'),
+  intelligentTiering('INTELLIGENT_TIERING'),
+  deepArchive('DEEP_ARCHIVE'),
+  glacierIr('GLACIER_IR');
+
+  const S3BucketLifecycleConfigurationRuleTransitionStorageClass(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_s3_bucket_lifecycle_configuration`.
@@ -265,7 +326,8 @@ final class AwsS3BucketLifecycleConfiguration extends Resource {
     required TfArg<String> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
-    TfArg<String>? transitionDefaultMinimumObjectSize,
+    TfArg<S3BucketLifecycleConfigurationTransitionDefaultMinimumObjectSize>?
+    transitionDefaultMinimumObjectSize,
     List<S3BucketLifecycleConfigurationRule>? rule,
     super.lifecycle,
     super.dependsOn,

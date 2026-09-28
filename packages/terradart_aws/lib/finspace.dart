@@ -7,18 +7,26 @@ export 'src/finspace/aws_finspace_kx_cluster.dart'
     show
         AwsFinspaceKxCluster,
         FinspaceKxClusterAutoScalingConfiguration,
+        FinspaceKxClusterAutoScalingConfigurationAutoScalingMetric,
+        FinspaceKxClusterAzMode,
         FinspaceKxClusterCacheStorageConfigurations,
         FinspaceKxClusterCapacityConfiguration,
         FinspaceKxClusterCode,
         FinspaceKxClusterDatabase,
         FinspaceKxClusterDatabaseCacheConfigurations,
         FinspaceKxClusterSavedownStorageConfiguration,
+        FinspaceKxClusterSavedownStorageConfigurationType,
         FinspaceKxClusterScalingGroupConfiguration,
         FinspaceKxClusterTickerplantLogConfiguration,
-        FinspaceKxClusterVpcConfiguration;
+        FinspaceKxClusterType,
+        FinspaceKxClusterVpcConfiguration,
+        FinspaceKxClusterVpcConfigurationIpAddressType;
 export 'src/finspace/aws_finspace_kx_database.dart' show AwsFinspaceKxDatabase;
 export 'src/finspace/aws_finspace_kx_dataview.dart'
-    show AwsFinspaceKxDataview, FinspaceKxDataviewSegmentConfigurations;
+    show
+        AwsFinspaceKxDataview,
+        FinspaceKxDataviewAzMode,
+        FinspaceKxDataviewSegmentConfigurations;
 export 'src/finspace/aws_finspace_kx_environment.dart'
     show
         AwsFinspaceKxEnvironment,
@@ -26,9 +34,15 @@ export 'src/finspace/aws_finspace_kx_environment.dart'
         FinspaceKxEnvironmentTransitGatewayConfiguration,
         FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfiguration,
         FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationIcmpTypeCode,
-        FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationPortRange;
+        FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationPortRange,
+        FinspaceKxEnvironmentTransitGatewayConfigurationAttachmentNetworkAclConfigurationRuleAction;
 export 'src/finspace/aws_finspace_kx_scaling_group.dart'
     show AwsFinspaceKxScalingGroup;
 export 'src/finspace/aws_finspace_kx_user.dart' show AwsFinspaceKxUser;
 export 'src/finspace/aws_finspace_kx_volume.dart'
-    show AwsFinspaceKxVolume, FinspaceKxVolumeNas1Configuration;
+    show
+        AwsFinspaceKxVolume,
+        FinspaceKxVolumeAzMode,
+        FinspaceKxVolumeNas1Configuration,
+        FinspaceKxVolumeNas1ConfigurationType,
+        FinspaceKxVolumeType;

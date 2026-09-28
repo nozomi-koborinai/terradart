@@ -13,7 +13,10 @@ export 'src/wafregional/aws_wafregional_geo_match_set.dart'
 export 'src/wafregional/aws_wafregional_ipset.dart'
     show AwsWafregionalIpset, WafregionalIpsetIpSetDescriptor;
 export 'src/wafregional/aws_wafregional_rate_based_rule.dart'
-    show AwsWafregionalRateBasedRule, WafregionalRateBasedRulePredicate;
+    show
+        AwsWafregionalRateBasedRule,
+        WafregionalRateBasedRulePredicate,
+        WafregionalRateBasedRulePredicateType;
 export 'src/wafregional/aws_wafregional_regex_match_set.dart'
     show
         AwsWafregionalRegexMatchSet,
@@ -22,7 +25,10 @@ export 'src/wafregional/aws_wafregional_regex_match_set.dart'
 export 'src/wafregional/aws_wafregional_regex_pattern_set.dart'
     show AwsWafregionalRegexPatternSet;
 export 'src/wafregional/aws_wafregional_rule.dart'
-    show AwsWafregionalRule, WafregionalRulePredicate;
+    show
+        AwsWafregionalRule,
+        WafregionalRulePredicate,
+        WafregionalRulePredicateType;
 export 'src/wafregional/aws_wafregional_rule_group.dart'
     show
         AwsWafregionalRuleGroup,
@@ -42,16 +48,23 @@ export 'src/wafregional/aws_wafregional_web_acl.dart'
     show
         AwsWafregionalWebAcl,
         WafregionalWebAclDefaultAction,
+        WafregionalWebAclDefaultActionType,
         WafregionalWebAclLoggingConfiguration,
         WafregionalWebAclLoggingConfigurationRedactedFields,
         WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatch,
+        WafregionalWebAclLoggingConfigurationRedactedFieldsFieldToMatchType,
         WafregionalWebAclRule,
         WafregionalWebAclRuleAction,
-        WafregionalWebAclRuleOverrideAction;
+        WafregionalWebAclRuleActionType,
+        WafregionalWebAclRuleOverrideAction,
+        WafregionalWebAclRuleOverrideActionType,
+        WafregionalWebAclRuleType;
 export 'src/wafregional/aws_wafregional_web_acl_association.dart'
     show AwsWafregionalWebAclAssociation;
 export 'src/wafregional/aws_wafregional_xss_match_set.dart'
     show
         AwsWafregionalXssMatchSet,
         WafregionalXssMatchSetXssMatchTuple,
-        WafregionalXssMatchSetXssMatchTupleFieldToMatch;
+        WafregionalXssMatchSetXssMatchTupleFieldToMatch,
+        WafregionalXssMatchSetXssMatchTupleFieldToMatchType,
+        WafregionalXssMatchSetXssMatchTupleTextTransformation;

@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_guardduty_filter`.
 const Set<String> _awsGuarddutyFilterSensitive = <String>{};
 
+/// Guardduty Filter enum for `action`.
+enum GuarddutyFilterAction implements TerraformEnum {
+  noop('NOOP'),
+  archive('ARCHIVE');
+
+  const GuarddutyFilterAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `finding_criteria` block of
 /// `aws_guardduty_filter` (derived from provider schema).
 @immutable
@@ -75,7 +85,7 @@ final class AwsGuarddutyFilter extends Resource {
 
   AwsGuarddutyFilter({
     required super.localName,
-    required TfArg<String> action,
+    required TfArg<GuarddutyFilterAction> action,
     TfArg<String>? description,
     required TfArg<String> detectorId,
     required TfArg<String> name,

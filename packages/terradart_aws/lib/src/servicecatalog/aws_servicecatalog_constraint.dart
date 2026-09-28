@@ -6,19 +6,43 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_servicecatalog_constraint`.
 const Set<String> _awsServicecatalogConstraintSensitive = <String>{};
 
+/// Servicecatalog Constraint Accept enum for `accept_language`.
+enum ServicecatalogConstraintAcceptLanguage implements TerraformEnum {
+  en('en'),
+  jp('jp'),
+  zh('zh');
+
+  const ServicecatalogConstraintAcceptLanguage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Servicecatalog Constraint enum for `type`.
+enum ServicecatalogConstraintType implements TerraformEnum {
+  launch('LAUNCH'),
+  notification('NOTIFICATION'),
+  resourceUpdate('RESOURCE_UPDATE'),
+  stackset('STACKSET'),
+  template('TEMPLATE');
+
+  const ServicecatalogConstraintType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_servicecatalog_constraint`.
 final class AwsServicecatalogConstraint extends Resource {
   static const String tfType = 'aws_servicecatalog_constraint';
 
   AwsServicecatalogConstraint({
     required super.localName,
-    TfArg<String>? acceptLanguage,
+    TfArg<ServicecatalogConstraintAcceptLanguage>? acceptLanguage,
     TfArg<String>? description,
     required TfArg<String> parameters,
     required TfArg<String> portfolioId,
     required TfArg<String> productId,
     TfArg<String>? region,
-    required TfArg<String> type,
+    required TfArg<ServicecatalogConstraintType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

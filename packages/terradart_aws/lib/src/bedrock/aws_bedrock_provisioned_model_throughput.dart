@@ -6,13 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrock_provisioned_model_throughput`.
 const Set<String> _awsBedrockProvisionedModelThroughputSensitive = <String>{};
 
+/// Bedrock Provisioned Model Throughput Commitment enum for `commitment_duration`.
+enum BedrockProvisionedModelThroughputCommitmentDuration
+    implements TerraformEnum {
+  onemonth('OneMonth'),
+  sixmonths('SixMonths');
+
+  const BedrockProvisionedModelThroughputCommitmentDuration(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_bedrock_provisioned_model_throughput`.
 final class AwsBedrockProvisionedModelThroughput extends Resource {
   static const String tfType = 'aws_bedrock_provisioned_model_throughput';
 
   AwsBedrockProvisionedModelThroughput({
     required super.localName,
-    TfArg<String>? commitmentDuration,
+    TfArg<BedrockProvisionedModelThroughputCommitmentDuration>?
+    commitmentDuration,
     required TfArg<String> modelArn,
     required TfArg<num> modelUnits,
     required TfArg<String> provisionedModelName,

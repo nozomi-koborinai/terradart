@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_log_storage_tier_policy`.
 const Set<String> _awsCloudwatchLogStorageTierPolicySensitive = <String>{};
 
+/// Cloudwatch Log Storage Tier Policy Storage enum for `storage_tier`.
+enum CloudwatchLogStorageTierPolicyStorageTier implements TerraformEnum {
+  standard('STANDARD'),
+  intelligentTiering('INTELLIGENT_TIERING');
+
+  const CloudwatchLogStorageTierPolicyStorageTier(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudwatch_log_storage_tier_policy`.
 ///
 /// Manages a CloudWatch Logs account-level storage tier policy. When set to
@@ -17,7 +27,7 @@ final class AwsCloudwatchLogStorageTierPolicy extends Resource {
   AwsCloudwatchLogStorageTierPolicy({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> storageTier,
+    required TfArg<CloudwatchLogStorageTierPolicyStorageTier> storageTier,
     super.lifecycle,
     super.dependsOn,
     super.provider,

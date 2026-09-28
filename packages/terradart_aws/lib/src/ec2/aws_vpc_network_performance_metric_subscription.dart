@@ -7,6 +7,24 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsVpcNetworkPerformanceMetricSubscriptionSensitive =
     <String>{};
 
+/// Vpc Network Performance Metric Subscription enum for `metric`.
+enum VpcNetworkPerformanceMetricSubscriptionMetric implements TerraformEnum {
+  aggregateLatency('aggregate-latency');
+
+  const VpcNetworkPerformanceMetricSubscriptionMetric(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpc Network Performance Metric Subscription enum for `statistic`.
+enum VpcNetworkPerformanceMetricSubscriptionStatistic implements TerraformEnum {
+  p50('p50');
+
+  const VpcNetworkPerformanceMetricSubscriptionStatistic(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_vpc_network_performance_metric_subscription`.
 final class AwsVpcNetworkPerformanceMetricSubscription extends Resource {
   static const String tfType =
@@ -15,10 +33,10 @@ final class AwsVpcNetworkPerformanceMetricSubscription extends Resource {
   AwsVpcNetworkPerformanceMetricSubscription({
     required super.localName,
     required TfArg<String> destination,
-    TfArg<String>? metric,
+    TfArg<VpcNetworkPerformanceMetricSubscriptionMetric>? metric,
     TfArg<String>? region,
     required TfArg<String> source,
-    TfArg<String>? statistic,
+    TfArg<VpcNetworkPerformanceMetricSubscriptionStatistic>? statistic,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -23,15 +23,17 @@ final class AuditmanagerControlControlMappingSources {
 
   final TfArg<String>? sourceDescription;
 
-  final TfArg<String>? sourceFrequency;
+  final TfArg<AuditmanagerControlControlMappingSourcesSourceFrequency>?
+  sourceFrequency;
 
   final TfArg<List<Object?>>? sourceKeyword;
 
   final TfArg<String> sourceName;
 
-  final TfArg<String> sourceSetUpOption;
+  final TfArg<AuditmanagerControlControlMappingSourcesSourceSetUpOption>
+  sourceSetUpOption;
 
-  final TfArg<String> sourceType;
+  final TfArg<AuditmanagerControlControlMappingSourcesSourceType> sourceType;
 
   final TfArg<String>? troubleshootingText;
 
@@ -47,6 +49,49 @@ final class AuditmanagerControlControlMappingSources {
     if (troubleshootingText != null)
       'troubleshooting_text': troubleshootingText!.toTfJson(),
   };
+}
+
+/// `source_frequency` — derived from the provider schema description.
+enum AuditmanagerControlControlMappingSourcesSourceFrequency
+    implements TerraformEnum {
+  daily('DAILY'),
+  weekly('WEEKLY'),
+  monthly('MONTHLY');
+
+  const AuditmanagerControlControlMappingSourcesSourceFrequency(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `source_set_up_option` — derived from the provider schema description.
+enum AuditmanagerControlControlMappingSourcesSourceSetUpOption
+    implements TerraformEnum {
+  systemControlsMapping('System_Controls_Mapping'),
+  proceduralControlsMapping('Procedural_Controls_Mapping');
+
+  const AuditmanagerControlControlMappingSourcesSourceSetUpOption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `source_type` — derived from the provider schema description.
+enum AuditmanagerControlControlMappingSourcesSourceType
+    implements TerraformEnum {
+  awsCloudtrail('AWS_Cloudtrail'),
+  awsConfig('AWS_Config'),
+  awsSecurityHub('AWS_Security_Hub'),
+  awsApiCall('AWS_API_Call'),
+  manual('MANUAL'),
+  commonControl('Common_Control'),
+  coreControl('Core_Control');
+
+  const AuditmanagerControlControlMappingSourcesSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_auditmanager_control`.

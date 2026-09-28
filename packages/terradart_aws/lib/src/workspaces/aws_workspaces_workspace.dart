@@ -19,11 +19,12 @@ final class WorkspacesWorkspaceWorkspaceProperties {
     this.userVolumeSizeGib,
   });
 
-  final TfArg<String>? computeTypeName;
+  final TfArg<WorkspacesWorkspaceWorkspacePropertiesComputeTypeName>?
+  computeTypeName;
 
   final TfArg<num>? rootVolumeSizeGib;
 
-  final TfArg<String>? runningMode;
+  final TfArg<WorkspacesWorkspaceWorkspacePropertiesRunningMode>? runningMode;
 
   final TfArg<num>? runningModeAutoStopTimeoutInMinutes;
 
@@ -41,6 +42,51 @@ final class WorkspacesWorkspaceWorkspaceProperties {
     if (userVolumeSizeGib != null)
       'user_volume_size_gib': userVolumeSizeGib!.toTfJson(),
   };
+}
+
+/// `compute_type_name` — derived from the provider schema description.
+enum WorkspacesWorkspaceWorkspacePropertiesComputeTypeName
+    implements TerraformEnum {
+  value('VALUE'),
+  standard('STANDARD'),
+  performance('PERFORMANCE'),
+  power('POWER'),
+  graphics('GRAPHICS'),
+  powerpro('POWERPRO'),
+  generalpurpose4xlarge('GENERALPURPOSE_4XLARGE'),
+  generalpurpose8xlarge('GENERALPURPOSE_8XLARGE'),
+  graphicspro('GRAPHICSPRO'),
+  graphicsG4dn('GRAPHICS_G4DN'),
+  graphicsproG4dn('GRAPHICSPRO_G4DN'),
+  graphicsG6Xlarge('GRAPHICS_G6_XLARGE'),
+  graphicsG62xlarge('GRAPHICS_G6_2XLARGE'),
+  graphicsG64xlarge('GRAPHICS_G6_4XLARGE'),
+  graphicsG68xlarge('GRAPHICS_G6_8XLARGE'),
+  graphicsG616xlarge('GRAPHICS_G6_16XLARGE'),
+  graphicsGr64xlarge('GRAPHICS_GR6_4XLARGE'),
+  graphicsGr68xlarge('GRAPHICS_GR6_8XLARGE'),
+  graphicsG6fLarge('GRAPHICS_G6F_LARGE'),
+  graphicsG6fXlarge('GRAPHICS_G6F_XLARGE'),
+  graphicsG6f2xlarge('GRAPHICS_G6F_2XLARGE'),
+  graphicsG6f4xlarge('GRAPHICS_G6F_4XLARGE'),
+  graphicsGr6f4xlarge('GRAPHICS_GR6F_4XLARGE');
+
+  const WorkspacesWorkspaceWorkspacePropertiesComputeTypeName(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `running_mode` — derived from the provider schema description.
+enum WorkspacesWorkspaceWorkspacePropertiesRunningMode
+    implements TerraformEnum {
+  alwaysOn('ALWAYS_ON'),
+  autoStop('AUTO_STOP');
+
+  const WorkspacesWorkspaceWorkspacePropertiesRunningMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_workspaces_workspace`.

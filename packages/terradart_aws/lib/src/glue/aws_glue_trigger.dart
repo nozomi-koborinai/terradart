@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_glue_trigger`.
 const Set<String> _awsGlueTriggerSensitive = <String>{};
 
+/// Glue Trigger enum for `type`.
+enum GlueTriggerType implements TerraformEnum {
+  scheduled('SCHEDULED'),
+  conditional('CONDITIONAL'),
+  onDemand('ON_DEMAND'),
+  event('EVENT');
+
+  const GlueTriggerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `actions` block of
 /// `aws_glue_trigger` (derived from provider schema).
 @immutable
@@ -83,7 +95,7 @@ final class GlueTriggerEventBatchingCondition {
 final class GlueTriggerPredicate {
   const GlueTriggerPredicate({this.logical, required this.conditions});
 
-  final TfArg<String>? logical;
+  final TfArg<GlueTriggerPredicateLogical>? logical;
 
   final List<GlueTriggerPredicateConditions> conditions;
 
@@ -91,6 +103,16 @@ final class GlueTriggerPredicate {
     if (logical != null) 'logical': logical!.toTfJson(),
     'conditions': [for (final e in conditions) e.encode()],
   };
+}
+
+/// `logical` — derived from the provider schema description.
+enum GlueTriggerPredicateLogical implements TerraformEnum {
+  and('AND'),
+  any('ANY');
+
+  const GlueTriggerPredicateLogical(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `predicate.conditions` block of
@@ -105,15 +127,15 @@ final class GlueTriggerPredicateConditions {
     this.state,
   });
 
-  final TfArg<String>? crawlState;
+  final TfArg<GlueTriggerPredicateConditionsCrawlState>? crawlState;
 
   final TfArg<String>? crawlerName;
 
   final TfArg<String>? jobName;
 
-  final TfArg<String>? logicalOperator;
+  final TfArg<GlueTriggerPredicateConditionsLogicalOperator>? logicalOperator;
 
-  final TfArg<String>? state;
+  final TfArg<GlueTriggerPredicateConditionsState>? state;
 
   Map<String, Object?> encode() => {
     if (crawlState != null) 'crawl_state': crawlState!.toTfJson(),
@@ -123,6 +145,47 @@ final class GlueTriggerPredicateConditions {
       'logical_operator': logicalOperator!.toTfJson(),
     if (state != null) 'state': state!.toTfJson(),
   };
+}
+
+/// `crawl_state` — derived from the provider schema description.
+enum GlueTriggerPredicateConditionsCrawlState implements TerraformEnum {
+  running('RUNNING'),
+  cancelling('CANCELLING'),
+  cancelled('CANCELLED'),
+  succeeded('SUCCEEDED'),
+  failed('FAILED'),
+  error('ERROR');
+
+  const GlueTriggerPredicateConditionsCrawlState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `logical_operator` — derived from the provider schema description.
+enum GlueTriggerPredicateConditionsLogicalOperator implements TerraformEnum {
+  equals('EQUALS');
+
+  const GlueTriggerPredicateConditionsLogicalOperator(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `state` — derived from the provider schema description.
+enum GlueTriggerPredicateConditionsState implements TerraformEnum {
+  starting('STARTING'),
+  running('RUNNING'),
+  stopping('STOPPING'),
+  stopped('STOPPED'),
+  succeeded('SUCCEEDED'),
+  failed('FAILED'),
+  timeout('TIMEOUT'),
+  error('ERROR'),
+  waiting('WAITING'),
+  expired('EXPIRED');
+
+  const GlueTriggerPredicateConditionsState(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_glue_trigger`.
@@ -138,7 +201,7 @@ final class AwsGlueTrigger extends Resource {
     TfArg<String>? schedule,
     TfArg<bool>? startOnCreation,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<GlueTriggerType> type,
     TfArg<String>? workflowName,
     required List<GlueTriggerActions> actions,
     List<GlueTriggerEventBatchingCondition>? eventBatchingCondition,

@@ -7,6 +7,39 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_directory_service_directory`.
 const Set<String> _awsDirectoryServiceDirectorySensitive = <String>{'password'};
 
+/// Directory Service Directory enum for `edition`.
+enum DirectoryServiceDirectoryEdition implements TerraformEnum {
+  enterprise('Enterprise'),
+  standard('Standard'),
+  hybrid('Hybrid');
+
+  const DirectoryServiceDirectoryEdition(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Directory Service Directory enum for `size`.
+enum DirectoryServiceDirectorySize implements TerraformEnum {
+  small('Small'),
+  large('Large');
+
+  const DirectoryServiceDirectorySize(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Directory Service Directory enum for `type`.
+enum DirectoryServiceDirectoryType implements TerraformEnum {
+  simplead('SimpleAD'),
+  adconnector('ADConnector'),
+  microsoftad('MicrosoftAD'),
+  sharedmicrosoftad('SharedMicrosoftAD');
+
+  const DirectoryServiceDirectoryType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `connect_settings` block of
 /// `aws_directory_service_directory` (derived from provider schema).
 @immutable
@@ -62,16 +95,16 @@ final class AwsDirectoryServiceDirectory extends Resource {
     TfArg<String>? alias,
     TfArg<String>? description,
     TfArg<num>? desiredNumberOfDomainControllers,
-    TfArg<String>? edition,
+    TfArg<DirectoryServiceDirectoryEdition>? edition,
     TfArg<bool>? enableDirectoryDataAccess,
     TfArg<bool>? enableSso,
     required TfArg<String> name,
     required TfArg<String> password,
     TfArg<String>? region,
     TfArg<String>? shortName,
-    TfArg<String>? size,
+    TfArg<DirectoryServiceDirectorySize>? size,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    TfArg<DirectoryServiceDirectoryType>? type,
     DirectoryServiceDirectoryConnectSettings? connectSettings,
     DirectoryServiceDirectoryVpcSettings? vpcSettings,
     super.lifecycle,

@@ -6,6 +6,42 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_redshift_event_subscription`.
 const Set<String> _awsRedshiftEventSubscriptionSensitive = <String>{};
 
+/// Redshift Event Subscription Event enum for `event_categories`.
+enum RedshiftEventSubscriptionEventCategories implements TerraformEnum {
+  configuration('configuration'),
+  management('management'),
+  monitoring('monitoring'),
+  security('security'),
+  pending('pending');
+
+  const RedshiftEventSubscriptionEventCategories(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Redshift Event Subscription enum for `severity`.
+enum RedshiftEventSubscriptionSeverity implements TerraformEnum {
+  error('ERROR'),
+  info('INFO');
+
+  const RedshiftEventSubscriptionSeverity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Redshift Event Subscription Source enum for `source_type`.
+enum RedshiftEventSubscriptionSourceType implements TerraformEnum {
+  cluster('cluster'),
+  clusterParameterGroup('cluster-parameter-group'),
+  clusterSecurityGroup('cluster-security-group'),
+  clusterSnapshot('cluster-snapshot'),
+  scheduledAction('scheduled-action');
+
+  const RedshiftEventSubscriptionSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_redshift_event_subscription`.
 final class AwsRedshiftEventSubscription extends Resource {
   static const String tfType = 'aws_redshift_event_subscription';
@@ -13,13 +49,13 @@ final class AwsRedshiftEventSubscription extends Resource {
   AwsRedshiftEventSubscription({
     required super.localName,
     TfArg<bool>? enabled,
-    TfArg<List<String>>? eventCategories,
+    List<TfArg<RedshiftEventSubscriptionEventCategories>>? eventCategories,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? severity,
+    TfArg<RedshiftEventSubscriptionSeverity>? severity,
     required TfArg<String> snsTopicArn,
     TfArg<List<String>>? sourceIds,
-    TfArg<String>? sourceType,
+    TfArg<RedshiftEventSubscriptionSourceType>? sourceType,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -29,7 +65,10 @@ final class AwsRedshiftEventSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            if (enabled != null) 'enabled': enabled,
-           if (eventCategories != null) 'event_categories': eventCategories,
+           if (eventCategories != null)
+             'event_categories': TfArg.literal([
+               for (final e in eventCategories) e.toTfJson(),
+             ]),
            'name': name,
            if (region != null) 'region': region,
            if (severity != null) 'severity': severity,

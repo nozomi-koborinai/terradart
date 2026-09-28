@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_qldb_ledger`.
 const Set<String> _awsQldbLedgerSensitive = <String>{};
 
+/// Qldb Ledger Permissions enum for `permissions_mode`.
+enum QldbLedgerPermissionsMode implements TerraformEnum {
+  allowAll('ALLOW_ALL'),
+  standard('STANDARD');
+
+  const QldbLedgerPermissionsMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_qldb_ledger`.
 final class AwsQldbLedger extends Resource {
   static const String tfType = 'aws_qldb_ledger';
@@ -15,7 +25,7 @@ final class AwsQldbLedger extends Resource {
     TfArg<bool>? deletionProtection,
     TfArg<String>? kmsKey,
     TfArg<String>? name,
-    required TfArg<String> permissionsMode,
+    required TfArg<QldbLedgerPermissionsMode> permissionsMode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

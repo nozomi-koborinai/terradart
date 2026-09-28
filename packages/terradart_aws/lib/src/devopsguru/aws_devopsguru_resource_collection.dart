@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_devopsguru_resource_collection`.
 const Set<String> _awsDevopsguruResourceCollectionSensitive = <String>{};
 
+/// Devopsguru Resource Collection enum for `type`.
+enum DevopsguruResourceCollectionType implements TerraformEnum {
+  awsCloudFormation('AWS_CLOUD_FORMATION'),
+  awsService('AWS_SERVICE'),
+  awsTags('AWS_TAGS');
+
+  const DevopsguruResourceCollectionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cloudformation` block of
 /// `aws_devopsguru_resource_collection` (derived from provider schema).
 @immutable
@@ -44,7 +55,7 @@ final class AwsDevopsguruResourceCollection extends Resource {
   AwsDevopsguruResourceCollection({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> type,
+    required TfArg<DevopsguruResourceCollectionType> type,
     List<DevopsguruResourceCollectionCloudformation>? cloudformation,
     List<DevopsguruResourceCollectionTags>? tags,
     super.lifecycle,

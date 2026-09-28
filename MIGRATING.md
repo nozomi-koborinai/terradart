@@ -266,6 +266,34 @@ resources, `mode` on `Appwrite*Pooler`, `sourceType` on
 `terradart-migrate` maps existing values onto the members, as for
 Cloudflare.
 
+### `terradart_aws` inputs with a fixed value set are enums
+
+**Breaking (`terradart_aws`)** — 2903 string inputs across 811 resources
+take a generated `TerraformEnum` instead of a `String`. These are the value
+sets the provider's validators enforce at the pinned `6.66.0`:
+`enum.Validate[T]` / `fwtypes.StringEnumType[T]` over an aws-sdk-go-v2
+`types` enum, `validation.StringInSlice` and `stringvalidator.OneOf`. A set
+the provider only offers as one alternative (`validation.Any` beside an ARN
+or `""`, as on `cloudwatch_role_arn`) stays a `String`. Synth output is
+unchanged.
+
+| Before | After |
+|--------|-------|
+| `AwsLambdaFunction(runtime: TfArg.literal('provided.al2023'), ...)` | `AwsLambdaFunction(runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023), ...)` |
+| `AwsLambdaFunction(architectures: TfArg.literal(['x86_64']), ...)` | `AwsLambdaFunction(architectures: [TfArg.literal(LambdaFunctionArchitectures.x8664)], ...)` |
+| `AwsLambdaFunctionUrl(authorizationType: TfArg.literal('NONE'), ...)` | `AwsLambdaFunctionUrl(authorizationType: TfArg.literal(LambdaFunctionUrlAuthorizationType.none), ...)` |
+| `AwsAcmCertificate(validationMethod: TfArg.literal('DNS'), ...)` | `AwsAcmCertificate(validationMethod: TfArg.literal(AcmCertificateValidationMethod.dns), ...)` |
+| `AwsRoute53Record(type: TfArg.literal('A'), ...)` | `AwsRoute53Record(type: TfArg.literal(Route53RecordType.a), ...)` |
+| `AwsCloudfrontDistribution(priceClass: TfArg.literal('PriceClass_100'), ...)` | `AwsCloudfrontDistribution(priceClass: TfArg.literal(CloudfrontDistributionPriceClass.priceclass100), ...)` |
+
+A list of strings with a value set becomes a list of enum literals
+(`List<TfArg<E>>`), as `architectures` shows. Nested blocks follow the same
+pattern: `CloudfrontDistributionDefaultCacheBehavior(viewerProtocolPolicy:
+TfArg.literal(CloudfrontDistributionDefaultCacheBehaviorViewerProtocolPolicy.redirectToHttps))`.
+The analyzer names the enum at every call site. Data sources and map-typed
+inputs are unchanged. `terradart-migrate` maps existing values onto the
+members, as for Cloudflare.
+
 ### `terradart-coverage` retired
 
 **`terradart-coverage` is retired** — the `terradart_coverage` package, its

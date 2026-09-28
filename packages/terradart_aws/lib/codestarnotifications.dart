@@ -6,4 +6,6 @@ library;
 export 'src/codestarnotifications/aws_codestarnotifications_notification_rule.dart'
     show
         AwsCodestarnotificationsNotificationRule,
+        CodestarnotificationsNotificationRuleDetailType,
+        CodestarnotificationsNotificationRuleStatus,
         CodestarnotificationsNotificationRuleTarget;

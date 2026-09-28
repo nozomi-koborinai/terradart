@@ -13,14 +13,45 @@ const Set<String> _awsWorkspaceswebSessionLoggerSensitive = <String>{};
 final class WorkspaceswebSessionLoggerEventFilter {
   const WorkspaceswebSessionLoggerEventFilter({this.include, this.all});
 
-  final TfArg<List<Object?>>? include;
+  final List<TfArg<WorkspaceswebSessionLoggerEventFilterInclude>>? include;
 
   final List<WorkspaceswebSessionLoggerEventFilterAll>? all;
 
   Map<String, Object?> encode() => {
-    if (include != null) 'include': include!.toTfJson(),
+    if (include != null) 'include': [for (final e in include!) e.toTfJson()],
     if (all != null) 'all': [for (final e in all!) e.encode()],
   };
+}
+
+/// `include` — derived from the provider schema description.
+enum WorkspaceswebSessionLoggerEventFilterInclude implements TerraformEnum {
+  websiteinteract('WebsiteInteract'),
+  filedownloadfromsecurebrowsertoremotedisk(
+    'FileDownloadFromSecureBrowserToRemoteDisk',
+  ),
+  filetransferfromremotetolocaldisk('FileTransferFromRemoteToLocalDisk'),
+  filetransferfromlocaltoremotedisk('FileTransferFromLocalToRemoteDisk'),
+  fileuploadfromremotedisktosecurebrowser(
+    'FileUploadFromRemoteDiskToSecureBrowser',
+  ),
+  contentpastetowebsite('ContentPasteToWebsite'),
+  contenttransferfromlocaltoremoteclipboard(
+    'ContentTransferFromLocalToRemoteClipboard',
+  ),
+  contentcopyfromwebsite('ContentCopyFromWebsite'),
+  urlload('UrlLoad'),
+  tabopen('TabOpen'),
+  tabclose('TabClose'),
+  printjobsubmit('PrintJobSubmit'),
+  sessionconnect('SessionConnect'),
+  sessionstart('SessionStart'),
+  sessiondisconnect('SessionDisconnect'),
+  sessionend('SessionEnd'),
+  urlblockbycontentfilter('UrlBlockByContentFilter');
+
+  const WorkspaceswebSessionLoggerEventFilterInclude(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `event_filter.all` block of
@@ -61,11 +92,13 @@ final class WorkspaceswebSessionLoggerLogConfigurationS3 {
 
   final TfArg<String>? bucketOwner;
 
-  final TfArg<String> folderStructure;
+  final TfArg<WorkspaceswebSessionLoggerLogConfigurationS3FolderStructure>
+  folderStructure;
 
   final TfArg<String>? keyPrefix;
 
-  final TfArg<String> logFileFormat;
+  final TfArg<WorkspaceswebSessionLoggerLogConfigurationS3LogFileFormat>
+  logFileFormat;
 
   Map<String, Object?> encode() => {
     'bucket': bucket.toTfJson(),
@@ -74,6 +107,32 @@ final class WorkspaceswebSessionLoggerLogConfigurationS3 {
     if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
     'log_file_format': logFileFormat.toTfJson(),
   };
+}
+
+/// `folder_structure` — derived from the provider schema description.
+enum WorkspaceswebSessionLoggerLogConfigurationS3FolderStructure
+    implements TerraformEnum {
+  flat('Flat'),
+  nestedbydate('NestedByDate');
+
+  const WorkspaceswebSessionLoggerLogConfigurationS3FolderStructure(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `log_file_format` — derived from the provider schema description.
+enum WorkspaceswebSessionLoggerLogConfigurationS3LogFileFormat
+    implements TerraformEnum {
+  jsonlines('JSONLines'),
+  json('Json');
+
+  const WorkspaceswebSessionLoggerLogConfigurationS3LogFileFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_workspacesweb_session_logger`.

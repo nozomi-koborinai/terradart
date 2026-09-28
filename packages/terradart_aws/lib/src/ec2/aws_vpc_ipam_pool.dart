@@ -7,6 +7,36 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpc_ipam_pool`.
 const Set<String> _awsVpcIpamPoolSensitive = <String>{};
 
+/// Vpc Ipam Pool Address enum for `address_family`.
+enum VpcIpamPoolAddressFamily implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const VpcIpamPoolAddressFamily(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpc Ipam Pool Aws enum for `aws_service`.
+enum VpcIpamPoolAwsService implements TerraformEnum {
+  ec2('ec2'),
+  globalServices('global-services');
+
+  const VpcIpamPoolAwsService(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpc Ipam Pool Public Ip enum for `public_ip_source`.
+enum VpcIpamPoolPublicIpSource implements TerraformEnum {
+  amazon('amazon'),
+  byoip('byoip');
+
+  const VpcIpamPoolPublicIpSource(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `source_resource` block of
 /// `aws_vpc_ipam_pool` (derived from provider schema).
 @immutable
@@ -24,7 +54,7 @@ final class VpcIpamPoolSourceResource {
 
   final TfArg<String> resourceRegion;
 
-  final TfArg<String> resourceType;
+  final TfArg<VpcIpamPoolSourceResourceResourceType> resourceType;
 
   Map<String, Object?> encode() => {
     'resource_id': resourceId.toTfJson(),
@@ -34,24 +64,33 @@ final class VpcIpamPoolSourceResource {
   };
 }
 
+/// `resource_type` — derived from the provider schema description.
+enum VpcIpamPoolSourceResourceResourceType implements TerraformEnum {
+  vpc('vpc');
+
+  const VpcIpamPoolSourceResourceResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_vpc_ipam_pool`.
 final class AwsVpcIpamPool extends Resource {
   static const String tfType = 'aws_vpc_ipam_pool';
 
   AwsVpcIpamPool({
     required super.localName,
-    required TfArg<String> addressFamily,
+    required TfArg<VpcIpamPoolAddressFamily> addressFamily,
     TfArg<num>? allocationDefaultNetmaskLength,
     TfArg<num>? allocationMaxNetmaskLength,
     TfArg<num>? allocationMinNetmaskLength,
     TfArg<Map<String, String>>? allocationResourceTags,
     TfArg<bool>? autoImport,
-    TfArg<String>? awsService,
+    TfArg<VpcIpamPoolAwsService>? awsService,
     TfArg<bool>? cascade,
     TfArg<String>? description,
     required TfArg<String> ipamScopeId,
     TfArg<String>? locale,
-    TfArg<String>? publicIpSource,
+    TfArg<VpcIpamPoolPublicIpSource>? publicIpSource,
     TfArg<bool>? publiclyAdvertisable,
     TfArg<String>? region,
     TfArg<String>? sourceIpamPoolId,

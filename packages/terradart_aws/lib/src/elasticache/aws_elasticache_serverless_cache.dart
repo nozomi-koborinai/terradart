@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_elasticache_serverless_cache`.
 const Set<String> _awsElasticacheServerlessCacheSensitive = <String>{};
 
+/// Elasticache Serverless Cache Network enum for `network_type`.
+enum ElasticacheServerlessCacheNetworkType implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6'),
+  dualStack('dual_stack');
+
+  const ElasticacheServerlessCacheNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cache_usage_limits` block of
 /// `aws_elasticache_serverless_cache` (derived from provider schema).
 @immutable
@@ -44,13 +55,25 @@ final class ElasticacheServerlessCacheCacheUsageLimitsDataStorage {
 
   final TfArg<num>? minimum;
 
-  final TfArg<String> unit;
+  final TfArg<ElasticacheServerlessCacheCacheUsageLimitsDataStorageUnit> unit;
 
   Map<String, Object?> encode() => {
     if (maximum != null) 'maximum': maximum!.toTfJson(),
     if (minimum != null) 'minimum': minimum!.toTfJson(),
     'unit': unit.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum ElasticacheServerlessCacheCacheUsageLimitsDataStorageUnit
+    implements TerraformEnum {
+  gb('GB');
+
+  const ElasticacheServerlessCacheCacheUsageLimitsDataStorageUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `cache_usage_limits.ecpu_per_second` block of
@@ -84,7 +107,7 @@ final class AwsElasticacheServerlessCache extends Resource {
     TfArg<String>? kmsKeyId,
     TfArg<String>? majorEngineVersion,
     required TfArg<String> name,
-    TfArg<String>? networkType,
+    TfArg<ElasticacheServerlessCacheNetworkType>? networkType,
     TfArg<String>? region,
     TfArg<List<String>>? securityGroupIds,
     TfArg<List<String>>? snapshotArnsToRestore,

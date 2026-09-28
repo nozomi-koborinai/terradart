@@ -18,12 +18,25 @@ final class NetworkfirewallFirewallPolicyEncryptionConfiguration {
 
   final TfArg<String>? keyId;
 
-  final TfArg<String> type;
+  final TfArg<NetworkfirewallFirewallPolicyEncryptionConfigurationType> type;
 
   Map<String, Object?> encode() => {
     if (keyId != null) 'key_id': keyId!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum NetworkfirewallFirewallPolicyEncryptionConfigurationType
+    implements TerraformEnum {
+  customerKms('CUSTOMER_KMS'),
+  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
+
+  const NetworkfirewallFirewallPolicyEncryptionConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `firewall_policy` block of
@@ -163,9 +176,15 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptions {
     this.flowTimeouts,
   });
 
-  final TfArg<String>? ruleOrder;
+  final TfArg<
+    NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsRuleOrder
+  >?
+  ruleOrder;
 
-  final TfArg<String>? streamExceptionPolicy;
+  final TfArg<
+    NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsStreamExceptionPolicy
+  >?
+  streamExceptionPolicy;
 
   final NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsFlowTimeouts?
   flowTimeouts;
@@ -176,6 +195,33 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptions {
       'stream_exception_policy': streamExceptionPolicy!.toTfJson(),
     if (flowTimeouts != null) 'flow_timeouts': flowTimeouts!.encode(),
   };
+}
+
+/// `rule_order` — derived from the provider schema description.
+enum NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsRuleOrder
+    implements TerraformEnum {
+  defaultActionOrder('DEFAULT_ACTION_ORDER'),
+  strictOrder('STRICT_ORDER');
+
+  const NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsRuleOrder(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `stream_exception_policy` — derived from the provider schema description.
+enum NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsStreamExceptionPolicy
+    implements TerraformEnum {
+  drop('DROP'),
+  continueCase('CONTINUE'),
+  reject('REJECT');
+
+  const NetworkfirewallFirewallPolicyFirewallPolicyStatefulEngineOptionsStreamExceptionPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `firewall_policy.stateful_engine_options.flow_timeouts` block of
@@ -231,11 +277,26 @@ final class NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenc
     this.action,
   });
 
-  final TfArg<String>? action;
+  final TfArg<
+    NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverrideAction
+  >?
+  action;
 
   Map<String, Object?> encode() => {
     if (action != null) 'action': action!.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverrideAction
+    implements TerraformEnum {
+  dropToAlert('DROP_TO_ALERT');
+
+  const NetworkfirewallFirewallPolicyFirewallPolicyStatefulRuleGroupReferenceOverrideAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `firewall_policy.stateless_custom_action` block of

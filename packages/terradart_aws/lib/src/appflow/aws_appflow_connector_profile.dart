@@ -31,6 +31,48 @@ const Set<String> _awsAppflowConnectorProfileSensitive = <String>{
   'connector_profile_config.connector_profile_credentials.zendesk.client_secret',
 };
 
+/// Appflow Connector Profile Connection enum for `connection_mode`.
+enum AppflowConnectorProfileConnectionMode implements TerraformEnum {
+  public('Public'),
+  private('Private');
+
+  const AppflowConnectorProfileConnectionMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Appflow Connector Profile Connector enum for `connector_type`.
+enum AppflowConnectorProfileConnectorType implements TerraformEnum {
+  salesforce('Salesforce'),
+  singular('Singular'),
+  slack('Slack'),
+  redshift('Redshift'),
+  s3('S3'),
+  marketo('Marketo'),
+  googleanalytics('Googleanalytics'),
+  zendesk('Zendesk'),
+  servicenow('Servicenow'),
+  datadog('Datadog'),
+  trendmicro('Trendmicro'),
+  snowflake('Snowflake'),
+  dynatrace('Dynatrace'),
+  infornexus('Infornexus'),
+  amplitude('Amplitude'),
+  veeva('Veeva'),
+  eventbridge('EventBridge'),
+  lookoutmetrics('LookoutMetrics'),
+  upsolver('Upsolver'),
+  honeycode('Honeycode'),
+  customerprofiles('CustomerProfiles'),
+  sapodata('SAPOData'),
+  customconnector('CustomConnector'),
+  pardot('Pardot');
+
+  const AppflowConnectorProfileConnectorType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `connector_profile_config` block of
 /// `aws_appflow_connector_profile` (derived from provider schema).
 @immutable
@@ -184,7 +226,10 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
     this.oauth2,
   });
 
-  final TfArg<String> authenticationType;
+  final TfArg<
+    AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorAuthenticationType
+  >
+  authenticationType;
 
   final AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorApiKey?
   apiKey;
@@ -205,6 +250,21 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
     if (custom != null) 'custom': custom!.encode(),
     if (oauth2 != null) 'oauth2': oauth2!.encode(),
   };
+}
+
+/// `authentication_type` — derived from the provider schema description.
+enum AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorAuthenticationType
+    implements TerraformEnum {
+  oauth2('OAUTH2'),
+  apikey('APIKEY'),
+  basic('BASIC'),
+  custom('CUSTOM');
+
+  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsCustomConnectorAuthenticationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.custom_connector.api_key` block of
@@ -553,7 +613,10 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   final TfArg<String>? jwtToken;
 
-  final TfArg<String>? oauth2GrantType;
+  final TfArg<
+    AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforceOauth2GrantType
+  >?
+  oauth2GrantType;
 
   final TfArg<String>? refreshToken;
 
@@ -570,6 +633,20 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
     if (refreshToken != null) 'refresh_token': refreshToken!.toTfJson(),
     if (oauthRequest != null) 'oauth_request': oauthRequest!.encode(),
   };
+}
+
+/// `oauth2_grant_type` — derived from the provider schema description.
+enum AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforceOauth2GrantType
+    implements TerraformEnum {
+  clientCredentials('CLIENT_CREDENTIALS'),
+  authorizationCode('AUTHORIZATION_CODE'),
+  jwtBearer('JWT_BEARER');
+
+  const AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredentialsSalesforceOauth2GrantType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `connector_profile_config.connector_profile_credentials.salesforce.oauth_request` block of
@@ -1003,7 +1080,10 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
     this.tokenUrlCustomProperties,
   });
 
-  final TfArg<String> oauth2GrantType;
+  final TfArg<
+    AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnectorOauth2PropertiesOauth2GrantType
+  >
+  oauth2GrantType;
 
   final TfArg<String> tokenUrl;
 
@@ -1015,6 +1095,20 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
     if (tokenUrlCustomProperties != null)
       'token_url_custom_properties': tokenUrlCustomProperties!.toTfJson(),
   };
+}
+
+/// `oauth2_grant_type` — derived from the provider schema description.
+enum AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnectorOauth2PropertiesOauth2GrantType
+    implements TerraformEnum {
+  clientCredentials('CLIENT_CREDENTIALS'),
+  authorizationCode('AUTHORIZATION_CODE'),
+  jwtBearer('JWT_BEARER');
+
+  const AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropertiesCustomConnectorOauth2PropertiesOauth2GrantType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `connector_profile_config.connector_profile_properties.datadog` block of
@@ -1333,9 +1427,9 @@ final class AwsAppflowConnectorProfile extends Resource {
 
   AwsAppflowConnectorProfile({
     required super.localName,
-    required TfArg<String> connectionMode,
+    required TfArg<AppflowConnectorProfileConnectionMode> connectionMode,
     TfArg<String>? connectorLabel,
-    required TfArg<String> connectorType,
+    required TfArg<AppflowConnectorProfileConnectorType> connectorType,
     TfArg<String>? kmsArn,
     required TfArg<String> name,
     TfArg<String>? region,

@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lexv2models_bot`.
 const Set<String> _awsLexv2modelsBotSensitive = <String>{};
 
+/// Lexv2models Bot enum for `type`.
+enum Lexv2modelsBotType implements TerraformEnum {
+  bot('Bot'),
+  botnetwork('BotNetwork');
+
+  const Lexv2modelsBotType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `data_privacy` block of
 /// `aws_lexv2models_bot` (derived from provider schema).
 @immutable
@@ -62,7 +72,7 @@ final class AwsLexv2modelsBot extends Resource {
     required TfArg<String> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<Map<String, String>>? testBotAliasTags,
-    TfArg<String>? type,
+    TfArg<Lexv2modelsBotType>? type,
     List<Lexv2modelsBotDataPrivacy>? dataPrivacy,
     List<Lexv2modelsBotMembers>? members,
     super.lifecycle,

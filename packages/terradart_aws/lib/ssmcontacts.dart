@@ -25,5 +25,7 @@ export 'src/ssmcontacts/aws_ssmcontacts_rotation.dart'
         SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimes,
         SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesEnd,
         SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimesStart,
+        SsmcontactsRotationRecurrenceShiftCoveragesMapBlockKey,
         SsmcontactsRotationRecurrenceWeeklySettings,
+        SsmcontactsRotationRecurrenceWeeklySettingsDayOfWeek,
         SsmcontactsRotationRecurrenceWeeklySettingsHandOffTime;

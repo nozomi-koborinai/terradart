@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dx_bgp_peer`.
 const Set<String> _awsDxBgpPeerSensitive = <String>{};
 
+/// Dx Bgp Peer Address enum for `address_family`.
+enum DxBgpPeerAddressFamily implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const DxBgpPeerAddressFamily(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dx_bgp_peer`.
 final class AwsDxBgpPeer extends Resource {
   static const String tfType = 'aws_dx_bgp_peer';
 
   AwsDxBgpPeer({
     required super.localName,
-    required TfArg<String> addressFamily,
+    required TfArg<DxBgpPeerAddressFamily> addressFamily,
     TfArg<String>? amazonAddress,
     TfArg<num>? bgpAsn,
     TfArg<String>? bgpAsnLong,

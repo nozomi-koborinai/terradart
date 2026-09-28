@@ -4,19 +4,26 @@
 library;
 
 export 'src/grafana/aws_grafana_license_association.dart'
-    show AwsGrafanaLicenseAssociation;
+    show AwsGrafanaLicenseAssociation, GrafanaLicenseAssociationLicenseType;
 export 'src/grafana/aws_grafana_role_association.dart'
     show AwsGrafanaRoleAssociation;
 export 'src/grafana/aws_grafana_workspace.dart'
     show
         AwsGrafanaWorkspace,
+        GrafanaWorkspaceAccountAccessType,
+        GrafanaWorkspaceAuthenticationProviders,
+        GrafanaWorkspaceDataSources,
         GrafanaWorkspaceNetworkAccessControl,
+        GrafanaWorkspaceNotificationDestinations,
+        GrafanaWorkspacePermissionType,
         GrafanaWorkspaceVpcConfiguration;
 export 'src/grafana/aws_grafana_workspace_api_key.dart'
-    show AwsGrafanaWorkspaceApiKey;
+    show AwsGrafanaWorkspaceApiKey, GrafanaWorkspaceApiKeyKeyRole;
 export 'src/grafana/aws_grafana_workspace_saml_configuration.dart'
     show AwsGrafanaWorkspaceSamlConfiguration;
 export 'src/grafana/aws_grafana_workspace_service_account.dart'
-    show AwsGrafanaWorkspaceServiceAccount;
+    show
+        AwsGrafanaWorkspaceServiceAccount,
+        GrafanaWorkspaceServiceAccountGrafanaRole;
 export 'src/grafana/aws_grafana_workspace_service_account_token.dart'
     show AwsGrafanaWorkspaceServiceAccountToken;

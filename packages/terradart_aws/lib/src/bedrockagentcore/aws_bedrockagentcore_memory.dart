@@ -18,12 +18,23 @@ final class BedrockagentcoreMemoryIndexedKey {
 
   final TfArg<String> key;
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentcoreMemoryIndexedKeyType> type;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreMemoryIndexedKeyType implements TerraformEnum {
+  string('STRING'),
+  stringlist('STRINGLIST'),
+  number('NUMBER');
+
+  const BedrockagentcoreMemoryIndexedKeyType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `stream_delivery_resources` block of
@@ -87,14 +98,45 @@ final class BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentC
     required this.type,
   });
 
-  final TfArg<String>? level;
+  final TfArg<
+    BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationLevel
+  >?
+  level;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (level != null) 'level': level!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `level` — derived from the provider schema description.
+enum BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationLevel
+    implements TerraformEnum {
+  metadataOnly('METADATA_ONLY'),
+  fullContent('FULL_CONTENT');
+
+  const BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationType
+    implements TerraformEnum {
+  memoryRecords('MEMORY_RECORDS');
+
+  const BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_bedrockagentcore_memory`.

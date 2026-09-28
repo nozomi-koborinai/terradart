@@ -6,6 +6,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_db_event_subscription`.
 const Set<String> _awsDbEventSubscriptionSensitive = <String>{};
 
+/// Db Event Subscription Source enum for `source_type`.
+enum DbEventSubscriptionSourceType implements TerraformEnum {
+  dbInstance('db-instance'),
+  dbParameterGroup('db-parameter-group'),
+  dbSecurityGroup('db-security-group'),
+  dbSnapshot('db-snapshot'),
+  dbCluster('db-cluster'),
+  dbClusterSnapshot('db-cluster-snapshot'),
+  customEngineVersion('custom-engine-version'),
+  dbProxy('db-proxy'),
+  blueGreenDeployment('blue-green-deployment'),
+  dbShardGroup('db-shard-group'),
+  zeroEtl('zero-etl');
+
+  const DbEventSubscriptionSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_db_event_subscription`.
 final class AwsDbEventSubscription extends Resource {
   static const String tfType = 'aws_db_event_subscription';
@@ -19,7 +38,7 @@ final class AwsDbEventSubscription extends Resource {
     TfArg<String>? region,
     required TfArg<String> snsTopic,
     TfArg<List<String>>? sourceIds,
-    TfArg<String>? sourceType,
+    TfArg<DbEventSubscriptionSourceType>? sourceType,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

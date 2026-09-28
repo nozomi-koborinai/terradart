@@ -17,7 +17,7 @@ final class ConnectRoutingProfileMediaConcurrencies {
     this.crossChannelBehavior,
   });
 
-  final TfArg<String> channel;
+  final TfArg<ConnectRoutingProfileMediaConcurrenciesChannel> channel;
 
   final TfArg<num> concurrency;
 
@@ -32,6 +32,18 @@ final class ConnectRoutingProfileMediaConcurrencies {
   };
 }
 
+/// `channel` — derived from the provider schema description.
+enum ConnectRoutingProfileMediaConcurrenciesChannel implements TerraformEnum {
+  voice('VOICE'),
+  chat('CHAT'),
+  task('TASK'),
+  email('EMAIL');
+
+  const ConnectRoutingProfileMediaConcurrenciesChannel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `media_concurrencies.cross_channel_behavior` block of
 /// `aws_connect_routing_profile` (derived from provider schema).
 @immutable
@@ -40,9 +52,25 @@ final class ConnectRoutingProfileMediaConcurrenciesCrossChannelBehavior {
     required this.behaviorType,
   });
 
-  final TfArg<String> behaviorType;
+  final TfArg<
+    ConnectRoutingProfileMediaConcurrenciesCrossChannelBehaviorBehaviorType
+  >
+  behaviorType;
 
   Map<String, Object?> encode() => {'behavior_type': behaviorType.toTfJson()};
+}
+
+/// `behavior_type` — derived from the provider schema description.
+enum ConnectRoutingProfileMediaConcurrenciesCrossChannelBehaviorBehaviorType
+    implements TerraformEnum {
+  routeCurrentChannelOnly('ROUTE_CURRENT_CHANNEL_ONLY'),
+  routeAnyChannel('ROUTE_ANY_CHANNEL');
+
+  const ConnectRoutingProfileMediaConcurrenciesCrossChannelBehaviorBehaviorType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `queue_configs` block of
@@ -56,7 +84,7 @@ final class ConnectRoutingProfileQueueConfigs {
     required this.queueId,
   });
 
-  final TfArg<String> channel;
+  final TfArg<ConnectRoutingProfileQueueConfigsChannel> channel;
 
   final TfArg<num> delay;
 
@@ -70,6 +98,18 @@ final class ConnectRoutingProfileQueueConfigs {
     'priority': priority.toTfJson(),
     'queue_id': queueId.toTfJson(),
   };
+}
+
+/// `channel` — derived from the provider schema description.
+enum ConnectRoutingProfileQueueConfigsChannel implements TerraformEnum {
+  voice('VOICE'),
+  chat('CHAT'),
+  task('TASK'),
+  email('EMAIL');
+
+  const ConnectRoutingProfileQueueConfigsChannel(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_connect_routing_profile`.

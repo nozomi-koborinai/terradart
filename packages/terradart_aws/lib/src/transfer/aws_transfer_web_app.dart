@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_transfer_web_app`.
 const Set<String> _awsTransferWebAppSensitive = <String>{};
 
+/// Transfer Web App Web App Endpoint enum for `web_app_endpoint_policy`.
+enum TransferWebAppWebAppEndpointPolicy implements TerraformEnum {
+  fips('FIPS'),
+  standard('STANDARD');
+
+  const TransferWebAppWebAppEndpointPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `endpoint_details` block of
 /// `aws_transfer_web_app` (derived from provider schema).
 @immutable
@@ -89,7 +99,7 @@ final class AwsTransferWebApp extends Resource {
     TfArg<String>? accessEndpoint,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? webAppEndpointPolicy,
+    TfArg<TransferWebAppWebAppEndpointPolicy>? webAppEndpointPolicy,
     TfArg<List<Map<String, Object?>>>? webAppUnits,
     List<TransferWebAppEndpointDetails>? endpointDetails,
     List<TransferWebAppIdentityProviderDetails>? identityProviderDetails,

@@ -125,13 +125,25 @@ final class BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3Ou
     required this.overwrite,
   });
 
-  final TfArg<String> compression;
+  final TfArg<
+    BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsCompression
+  >
+  compression;
 
-  final TfArg<String> format;
+  final TfArg<
+    BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsFormat
+  >
+  format;
 
-  final TfArg<String> outputType;
+  final TfArg<
+    BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOutputType
+  >
+  outputType;
 
-  final TfArg<String> overwrite;
+  final TfArg<
+    BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOverwrite
+  >
+  overwrite;
 
   Map<String, Object?> encode() => {
     'compression': compression.toTfJson(),
@@ -141,15 +153,79 @@ final class BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3Ou
   };
 }
 
+/// `compression` — derived from the provider schema description.
+enum BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsCompression
+    implements TerraformEnum {
+  gzip('GZIP'),
+  parquet('PARQUET'),
+  zip('ZIP');
+
+  const BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsCompression(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `format` — derived from the provider schema description.
+enum BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsFormat
+    implements TerraformEnum {
+  textOrCsv('TEXT_OR_CSV'),
+  parquet('PARQUET');
+
+  const BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `output_type` — derived from the provider schema description.
+enum BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOutputType
+    implements TerraformEnum {
+  custom('CUSTOM'),
+  athena('ATHENA'),
+  redshift('REDSHIFT');
+
+  const BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOutputType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `overwrite` — derived from the provider schema description.
+enum BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOverwrite
+    implements TerraformEnum {
+  createNewReport('CREATE_NEW_REPORT'),
+  overwriteReport('OVERWRITE_REPORT');
+
+  const BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOverwrite(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `export.refresh_cadence` block of
 /// `aws_bcmdataexports_export` (derived from provider schema).
 @immutable
 final class BcmdataexportsExportExportRefreshCadence {
   const BcmdataexportsExportExportRefreshCadence({required this.frequency});
 
-  final TfArg<String> frequency;
+  final TfArg<BcmdataexportsExportExportRefreshCadenceFrequency> frequency;
 
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
+}
+
+/// `frequency` — derived from the provider schema description.
+enum BcmdataexportsExportExportRefreshCadenceFrequency
+    implements TerraformEnum {
+  synchronous('SYNCHRONOUS');
+
+  const BcmdataexportsExportExportRefreshCadenceFrequency(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_bcmdataexports_export`.

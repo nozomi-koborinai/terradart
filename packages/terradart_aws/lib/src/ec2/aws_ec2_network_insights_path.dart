@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_network_insights_path`.
 const Set<String> _awsEc2NetworkInsightsPathSensitive = <String>{};
 
+/// Ec2 Network Insights Path enum for `protocol`.
+enum Ec2NetworkInsightsPathProtocol implements TerraformEnum {
+  tcp('tcp'),
+  udp('udp');
+
+  const Ec2NetworkInsightsPathProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `filter_at_destination` block of
 /// `aws_ec2_network_insights_path` (derived from provider schema).
 @immutable
@@ -153,7 +163,7 @@ final class AwsEc2NetworkInsightsPath extends Resource {
     TfArg<String>? destination,
     TfArg<String>? destinationIp,
     TfArg<num>? destinationPort,
-    required TfArg<String> protocol,
+    required TfArg<Ec2NetworkInsightsPathProtocol> protocol,
     TfArg<String>? region,
     required TfArg<String> source,
     TfArg<String>? sourceIp,

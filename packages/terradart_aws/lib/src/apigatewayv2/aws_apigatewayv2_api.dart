@@ -7,6 +7,38 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_apigatewayv2_api`.
 const Set<String> _awsApigatewayv2ApiSensitive = <String>{};
 
+/// Apigatewayv2 Api Api Key Selection enum for `api_key_selection_expression`.
+enum Apigatewayv2ApiApiKeySelectionExpression implements TerraformEnum {
+  contextAuthorizerUsageidentifierkey(
+    '\$context.authorizer.usageIdentifierKey',
+  ),
+  requestHeaderXApiKey('\$request.header.x-api-key');
+
+  const Apigatewayv2ApiApiKeySelectionExpression(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Apigatewayv2 Api Ip Address enum for `ip_address_type`.
+enum Apigatewayv2ApiIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  dualstack('dualstack');
+
+  const Apigatewayv2ApiIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Apigatewayv2 Api Protocol enum for `protocol_type`.
+enum Apigatewayv2ApiProtocolType implements TerraformEnum {
+  websocket('WEBSOCKET'),
+  http('HTTP');
+
+  const Apigatewayv2ApiProtocolType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cors_configuration` block of
 /// `aws_apigatewayv2_api` (derived from provider schema).
 @immutable
@@ -49,15 +81,15 @@ final class AwsApigatewayv2Api extends Resource {
 
   AwsApigatewayv2Api({
     required super.localName,
-    TfArg<String>? apiKeySelectionExpression,
+    TfArg<Apigatewayv2ApiApiKeySelectionExpression>? apiKeySelectionExpression,
     TfArg<String>? body,
     TfArg<String>? credentialsArn,
     TfArg<String>? description,
     TfArg<bool>? disableExecuteApiEndpoint,
     TfArg<bool>? failOnWarnings,
-    TfArg<String>? ipAddressType,
+    TfArg<Apigatewayv2ApiIpAddressType>? ipAddressType,
     required TfArg<String> name,
-    required TfArg<String> protocolType,
+    required TfArg<Apigatewayv2ApiProtocolType> protocolType,
     TfArg<String>? region,
     TfArg<String>? routeKey,
     TfArg<String>? routeSelectionExpression,

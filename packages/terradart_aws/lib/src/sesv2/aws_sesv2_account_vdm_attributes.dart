@@ -7,18 +7,42 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_sesv2_account_vdm_attributes`.
 const Set<String> _awsSesv2AccountVdmAttributesSensitive = <String>{};
 
+/// Sesv2 Account Vdm Attributes Vdm enum for `vdm_enabled`.
+enum Sesv2AccountVdmAttributesVdmEnabled implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const Sesv2AccountVdmAttributesVdmEnabled(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `dashboard_attributes` block of
 /// `aws_sesv2_account_vdm_attributes` (derived from provider schema).
 @immutable
 final class Sesv2AccountVdmAttributesDashboardAttributes {
   const Sesv2AccountVdmAttributesDashboardAttributes({this.engagementMetrics});
 
-  final TfArg<String>? engagementMetrics;
+  final TfArg<Sesv2AccountVdmAttributesDashboardAttributesEngagementMetrics>?
+  engagementMetrics;
 
   Map<String, Object?> encode() => {
     if (engagementMetrics != null)
       'engagement_metrics': engagementMetrics!.toTfJson(),
   };
+}
+
+/// `engagement_metrics` — derived from the provider schema description.
+enum Sesv2AccountVdmAttributesDashboardAttributesEngagementMetrics
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const Sesv2AccountVdmAttributesDashboardAttributesEngagementMetrics(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `guardian_attributes` block of
@@ -29,12 +53,28 @@ final class Sesv2AccountVdmAttributesGuardianAttributes {
     this.optimizedSharedDelivery,
   });
 
-  final TfArg<String>? optimizedSharedDelivery;
+  final TfArg<
+    Sesv2AccountVdmAttributesGuardianAttributesOptimizedSharedDelivery
+  >?
+  optimizedSharedDelivery;
 
   Map<String, Object?> encode() => {
     if (optimizedSharedDelivery != null)
       'optimized_shared_delivery': optimizedSharedDelivery!.toTfJson(),
   };
+}
+
+/// `optimized_shared_delivery` — derived from the provider schema description.
+enum Sesv2AccountVdmAttributesGuardianAttributesOptimizedSharedDelivery
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const Sesv2AccountVdmAttributesGuardianAttributesOptimizedSharedDelivery(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_sesv2_account_vdm_attributes`.
@@ -44,7 +84,7 @@ final class AwsSesv2AccountVdmAttributes extends Resource {
   AwsSesv2AccountVdmAttributes({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> vdmEnabled,
+    required TfArg<Sesv2AccountVdmAttributesVdmEnabled> vdmEnabled,
     Sesv2AccountVdmAttributesDashboardAttributes? dashboardAttributes,
     Sesv2AccountVdmAttributesGuardianAttributes? guardianAttributes,
     super.lifecycle,

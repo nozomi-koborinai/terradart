@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_schemas_schema`.
 const Set<String> _awsSchemasSchemaSensitive = <String>{};
 
+/// Schemas Schema enum for `type`.
+enum SchemasSchemaType implements TerraformEnum {
+  openapi3('OpenApi3'),
+  jsonschemadraft4('JSONSchemaDraft4');
+
+  const SchemasSchemaType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_schemas_schema`.
 final class AwsSchemasSchema extends Resource {
   static const String tfType = 'aws_schemas_schema';
@@ -18,7 +28,7 @@ final class AwsSchemasSchema extends Resource {
     TfArg<String>? region,
     required TfArg<String> registryName,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<SchemasSchemaType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_emrserverless_application`.
 const Set<String> _awsEmrserverlessApplicationSensitive = <String>{};
 
+/// Emrserverless Application enum for `architecture`.
+enum EmrserverlessApplicationArchitecture implements TerraformEnum {
+  arm64('ARM64'),
+  x8664('X86_64');
+
+  const EmrserverlessApplicationArchitecture(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `auto_start_configuration` block of
 /// `aws_emrserverless_application` (derived from provider schema).
 @immutable
@@ -388,7 +398,7 @@ final class AwsEmrserverlessApplication extends Resource {
 
   AwsEmrserverlessApplication({
     required super.localName,
-    TfArg<String>? architecture,
+    TfArg<EmrserverlessApplicationArchitecture>? architecture,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> releaseLabel,

@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_pinpointsmsvoicev2_sender_id`.
 const Set<String> _awsPinpointsmsvoicev2SenderIdSensitive = <String>{};
 
+/// Pinpointsmsvoicev2 Sender Id Message enum for `message_types`.
+enum Pinpointsmsvoicev2SenderIdMessageTypes implements TerraformEnum {
+  transactional('TRANSACTIONAL'),
+  promotional('PROMOTIONAL');
+
+  const Pinpointsmsvoicev2SenderIdMessageTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_pinpointsmsvoicev2_sender_id`.
 final class AwsPinpointsmsvoicev2SenderId extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_sender_id';
@@ -14,7 +24,7 @@ final class AwsPinpointsmsvoicev2SenderId extends Resource {
     required super.localName,
     TfArg<bool>? deletionProtectionEnabled,
     required TfArg<String> isoCountryCode,
-    TfArg<List<String>>? messageTypes,
+    List<TfArg<Pinpointsmsvoicev2SenderIdMessageTypes>>? messageTypes,
     TfArg<String>? region,
     required TfArg<String> senderId,
     TfArg<Map<String, String>>? tags,
@@ -28,7 +38,10 @@ final class AwsPinpointsmsvoicev2SenderId extends Resource {
            if (deletionProtectionEnabled != null)
              'deletion_protection_enabled': deletionProtectionEnabled,
            'iso_country_code': isoCountryCode,
-           if (messageTypes != null) 'message_types': messageTypes,
+           if (messageTypes != null)
+             'message_types': TfArg.literal([
+               for (final e in messageTypes) e.toTfJson(),
+             ]),
            if (region != null) 'region': region,
            'sender_id': senderId,
            if (tags != null) 'tags': tags,

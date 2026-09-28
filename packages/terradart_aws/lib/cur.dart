@@ -3,4 +3,12 @@
 /// AWS Cost and Usage Reports.
 library;
 
-export 'src/cur/aws_cur_report_definition.dart' show AwsCurReportDefinition;
+export 'src/cur/aws_cur_report_definition.dart'
+    show
+        AwsCurReportDefinition,
+        CurReportDefinitionAdditionalArtifacts,
+        CurReportDefinitionAdditionalSchemaElements,
+        CurReportDefinitionCompression,
+        CurReportDefinitionFormat,
+        CurReportDefinitionReportVersioning,
+        CurReportDefinitionTimeUnit;

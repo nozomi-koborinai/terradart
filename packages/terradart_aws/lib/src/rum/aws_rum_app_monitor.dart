@@ -39,7 +39,8 @@ final class RumAppMonitorAppMonitorConfiguration {
 
   final TfArg<num>? sessionSampleRate;
 
-  final TfArg<List<Object?>>? telemetries;
+  final List<TfArg<RumAppMonitorAppMonitorConfigurationTelemetries>>?
+  telemetries;
 
   Map<String, Object?> encode() => {
     if (allowCookies != null) 'allow_cookies': allowCookies!.toTfJson(),
@@ -51,8 +52,20 @@ final class RumAppMonitorAppMonitorConfiguration {
     if (includedPages != null) 'included_pages': includedPages!.toTfJson(),
     if (sessionSampleRate != null)
       'session_sample_rate': sessionSampleRate!.toTfJson(),
-    if (telemetries != null) 'telemetries': telemetries!.toTfJson(),
+    if (telemetries != null)
+      'telemetries': [for (final e in telemetries!) e.toTfJson()],
   };
+}
+
+/// `telemetries` — derived from the provider schema description.
+enum RumAppMonitorAppMonitorConfigurationTelemetries implements TerraformEnum {
+  errors('errors'),
+  performance('performance'),
+  http('http');
+
+  const RumAppMonitorAppMonitorConfigurationTelemetries(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `custom_events` block of
@@ -61,11 +74,21 @@ final class RumAppMonitorAppMonitorConfiguration {
 final class RumAppMonitorCustomEvents {
   const RumAppMonitorCustomEvents({this.status});
 
-  final TfArg<String>? status;
+  final TfArg<RumAppMonitorCustomEventsStatus>? status;
 
   Map<String, Object?> encode() => {
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum RumAppMonitorCustomEventsStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const RumAppMonitorCustomEventsStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_rum_app_monitor`.

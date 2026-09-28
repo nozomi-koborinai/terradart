@@ -146,7 +146,8 @@ final class Lexv2modelsSlotTypeValueSelectionSetting {
     this.regexFilter,
   });
 
-  final TfArg<String> resolutionStrategy;
+  final TfArg<Lexv2modelsSlotTypeValueSelectionSettingResolutionStrategy>
+  resolutionStrategy;
 
   final List<
     Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSetting
@@ -166,6 +167,20 @@ final class Lexv2modelsSlotTypeValueSelectionSetting {
   };
 }
 
+/// `resolution_strategy` — derived from the provider schema description.
+enum Lexv2modelsSlotTypeValueSelectionSettingResolutionStrategy
+    implements TerraformEnum {
+  originalvalue('OriginalValue'),
+  topresolution('TopResolution'),
+  concatenation('Concatenation');
+
+  const Lexv2modelsSlotTypeValueSelectionSettingResolutionStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `value_selection_setting.advanced_recognition_setting` block of
 /// `aws_lexv2models_slot_type` (derived from provider schema).
 @immutable
@@ -174,12 +189,27 @@ final class Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSetting {
     this.audioRecognitionStrategy,
   });
 
-  final TfArg<String>? audioRecognitionStrategy;
+  final TfArg<
+    Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSettingAudioRecognitionStrategy
+  >?
+  audioRecognitionStrategy;
 
   Map<String, Object?> encode() => {
     if (audioRecognitionStrategy != null)
       'audio_recognition_strategy': audioRecognitionStrategy!.toTfJson(),
   };
+}
+
+/// `audio_recognition_strategy` — derived from the provider schema description.
+enum Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSettingAudioRecognitionStrategy
+    implements TerraformEnum {
+  useslotvaluesascustomvocabulary('UseSlotValuesAsCustomVocabulary');
+
+  const Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSettingAudioRecognitionStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `value_selection_setting.regex_filter` block of

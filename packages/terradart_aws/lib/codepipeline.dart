@@ -8,9 +8,15 @@ export 'src/codepipeline/aws_codepipeline.dart'
         AwsCodepipeline,
         CodepipelineArtifactStore,
         CodepipelineArtifactStoreEncryptionKey,
+        CodepipelineArtifactStoreEncryptionKeyType,
+        CodepipelineArtifactStoreType,
+        CodepipelineExecutionMode,
+        CodepipelinePipelineType,
         CodepipelineStage,
         CodepipelineStageAction,
+        CodepipelineStageActionCategory,
         CodepipelineStageActionOutputArtifactsForComputeAction,
+        CodepipelineStageActionOwner,
         CodepipelineStageBeforeEntry,
         CodepipelineStageBeforeEntryCondition,
         CodepipelineStageBeforeEntryConditionRule,
@@ -19,7 +25,9 @@ export 'src/codepipeline/aws_codepipeline.dart'
         CodepipelineStageOnFailureCondition,
         CodepipelineStageOnFailureConditionRule,
         CodepipelineStageOnFailureConditionRuleRuleTypeId,
+        CodepipelineStageOnFailureResult,
         CodepipelineStageOnFailureRetryConfiguration,
+        CodepipelineStageOnFailureRetryConfigurationRetryMode,
         CodepipelineStageOnSuccess,
         CodepipelineStageOnSuccessCondition,
         CodepipelineStageOnSuccessConditionRule,
@@ -37,12 +45,15 @@ export 'src/codepipeline/aws_codepipeline.dart'
 export 'src/codepipeline/aws_codepipeline_custom_action_type.dart'
     show
         AwsCodepipelineCustomActionType,
+        CodepipelineCustomActionTypeCategory,
         CodepipelineCustomActionTypeConfigurationProperty,
+        CodepipelineCustomActionTypeConfigurationPropertyType,
         CodepipelineCustomActionTypeInputArtifactDetails,
         CodepipelineCustomActionTypeOutputArtifactDetails,
         CodepipelineCustomActionTypeSettings;
 export 'src/codepipeline/aws_codepipeline_webhook.dart'
     show
         AwsCodepipelineWebhook,
+        CodepipelineWebhookAuthentication,
         CodepipelineWebhookAuthenticationConfiguration,
         CodepipelineWebhookFilter;

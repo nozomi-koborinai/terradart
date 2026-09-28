@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_securitylake_subscriber`.
 const Set<String> _awsSecuritylakeSubscriberSensitive = <String>{};
 
+/// Securitylake Subscriber Access enum for `access_type`.
+enum SecuritylakeSubscriberAccessType implements TerraformEnum {
+  lakeformation('LAKEFORMATION'),
+  s3('S3');
+
+  const SecuritylakeSubscriberAccessType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `source` block of
 /// `aws_securitylake_subscriber` (derived from provider schema).
 @immutable
@@ -43,7 +53,8 @@ final class SecuritylakeSubscriberSourceAwsLogSourceResource {
     this.sourceVersion,
   });
 
-  final TfArg<String> sourceName;
+  final TfArg<SecuritylakeSubscriberSourceAwsLogSourceResourceSourceName>
+  sourceName;
 
   final TfArg<String>? sourceVersion;
 
@@ -51,6 +62,25 @@ final class SecuritylakeSubscriberSourceAwsLogSourceResource {
     'source_name': sourceName.toTfJson(),
     if (sourceVersion != null) 'source_version': sourceVersion!.toTfJson(),
   };
+}
+
+/// `source_name` — derived from the provider schema description.
+enum SecuritylakeSubscriberSourceAwsLogSourceResourceSourceName
+    implements TerraformEnum {
+  route53('ROUTE53'),
+  vpcFlow('VPC_FLOW'),
+  shFindings('SH_FINDINGS'),
+  cloudTrailMgmt('CLOUD_TRAIL_MGMT'),
+  lambdaExecution('LAMBDA_EXECUTION'),
+  s3Data('S3_DATA'),
+  eksAudit('EKS_AUDIT'),
+  waf('WAF');
+
+  const SecuritylakeSubscriberSourceAwsLogSourceResourceSourceName(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source.custom_log_source_resource` block of
@@ -97,7 +127,7 @@ final class AwsSecuritylakeSubscriber extends Resource {
 
   AwsSecuritylakeSubscriber({
     required super.localName,
-    TfArg<String>? accessType,
+    TfArg<SecuritylakeSubscriberAccessType>? accessType,
     TfArg<String>? region,
     TfArg<String>? subscriberDescription,
     TfArg<String>? subscriberName,

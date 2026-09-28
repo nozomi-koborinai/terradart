@@ -4,22 +4,38 @@
 library;
 
 export 'src/cloudformation/aws_cloudformation_stack.dart'
-    show AwsCloudformationStack;
+    show
+        AwsCloudformationStack,
+        CloudformationStackCapabilities,
+        CloudformationStackOnFailure;
 export 'src/cloudformation/aws_cloudformation_stack_instances.dart'
     show
         AwsCloudformationStackInstances,
+        CloudformationStackInstancesCallAs,
         CloudformationStackInstancesDeploymentTargets,
-        CloudformationStackInstancesOperationPreferences;
+        CloudformationStackInstancesOperationPreferences,
+        CloudformationStackInstancesOperationPreferencesConcurrencyMode,
+        CloudformationStackInstancesOperationPreferencesRegionConcurrencyType;
 export 'src/cloudformation/aws_cloudformation_stack_set.dart'
     show
         AwsCloudformationStackSet,
         CloudformationStackSetAutoDeployment,
+        CloudformationStackSetCallAs,
+        CloudformationStackSetCapabilities,
         CloudformationStackSetManagedExecution,
-        CloudformationStackSetOperationPreferences;
+        CloudformationStackSetOperationPreferences,
+        CloudformationStackSetOperationPreferencesRegionConcurrencyType,
+        CloudformationStackSetPermissionModel;
 export 'src/cloudformation/aws_cloudformation_stack_set_instance.dart'
     show
         AwsCloudformationStackSetInstance,
+        CloudformationStackSetInstanceCallAs,
         CloudformationStackSetInstanceDeploymentTargets,
-        CloudformationStackSetInstanceOperationPreferences;
+        CloudformationStackSetInstanceOperationPreferences,
+        CloudformationStackSetInstanceOperationPreferencesConcurrencyMode,
+        CloudformationStackSetInstanceOperationPreferencesRegionConcurrencyType;
 export 'src/cloudformation/aws_cloudformation_type.dart'
-    show AwsCloudformationType, CloudformationTypeLoggingConfig;
+    show
+        AwsCloudformationType,
+        CloudformationTypeLoggingConfig,
+        CloudformationTypeType;

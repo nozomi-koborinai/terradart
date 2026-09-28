@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ses_identity_notification_topic`.
 const Set<String> _awsSesIdentityNotificationTopicSensitive = <String>{};
 
+/// Ses Identity Notification Topic Notification enum for `notification_type`.
+enum SesIdentityNotificationTopicNotificationType implements TerraformEnum {
+  bounce('Bounce'),
+  complaint('Complaint'),
+  delivery('Delivery');
+
+  const SesIdentityNotificationTopicNotificationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ses_identity_notification_topic`.
 final class AwsSesIdentityNotificationTopic extends Resource {
   static const String tfType = 'aws_ses_identity_notification_topic';
@@ -14,7 +25,8 @@ final class AwsSesIdentityNotificationTopic extends Resource {
     required super.localName,
     required TfArg<String> identity,
     TfArg<bool>? includeOriginalHeaders,
-    required TfArg<String> notificationType,
+    required TfArg<SesIdentityNotificationTopicNotificationType>
+    notificationType,
     TfArg<String>? region,
     TfArg<String>? topicArn,
     super.lifecycle,

@@ -16,14 +16,41 @@ final class DevopsguruNotificationChannelFilters {
     this.severities,
   });
 
-  final TfArg<List<Object?>>? messageTypes;
+  final List<TfArg<DevopsguruNotificationChannelFiltersMessageTypes>>?
+  messageTypes;
 
-  final TfArg<List<Object?>>? severities;
+  final List<TfArg<DevopsguruNotificationChannelFiltersSeverities>>? severities;
 
   Map<String, Object?> encode() => {
-    if (messageTypes != null) 'message_types': messageTypes!.toTfJson(),
-    if (severities != null) 'severities': severities!.toTfJson(),
+    if (messageTypes != null)
+      'message_types': [for (final e in messageTypes!) e.toTfJson()],
+    if (severities != null)
+      'severities': [for (final e in severities!) e.toTfJson()],
   };
+}
+
+/// `message_types` — derived from the provider schema description.
+enum DevopsguruNotificationChannelFiltersMessageTypes implements TerraformEnum {
+  newInsight('NEW_INSIGHT'),
+  closedInsight('CLOSED_INSIGHT'),
+  newAssociation('NEW_ASSOCIATION'),
+  severityUpgraded('SEVERITY_UPGRADED'),
+  newRecommendation('NEW_RECOMMENDATION');
+
+  const DevopsguruNotificationChannelFiltersMessageTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `severities` — derived from the provider schema description.
+enum DevopsguruNotificationChannelFiltersSeverities implements TerraformEnum {
+  low('LOW'),
+  medium('MEDIUM'),
+  high('HIGH');
+
+  const DevopsguruNotificationChannelFiltersSeverities(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `sns` block of

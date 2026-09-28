@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_managed_prefix_list`.
 const Set<String> _awsEc2ManagedPrefixListSensitive = <String>{};
 
+/// Ec2 Managed Prefix List Address enum for `address_family`.
+enum Ec2ManagedPrefixListAddressFamily implements TerraformEnum {
+  ipv4('IPv4'),
+  ipv6('IPv6');
+
+  const Ec2ManagedPrefixListAddressFamily(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `entry` block of
 /// `aws_ec2_managed_prefix_list` (derived from provider schema).
 @immutable
@@ -29,7 +39,7 @@ final class AwsEc2ManagedPrefixList extends Resource {
 
   AwsEc2ManagedPrefixList({
     required super.localName,
-    required TfArg<String> addressFamily,
+    required TfArg<Ec2ManagedPrefixListAddressFamily> addressFamily,
     required TfArg<num> maxEntries,
     required TfArg<String> name,
     TfArg<String>? region,

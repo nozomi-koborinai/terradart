@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lambda_function_url`.
 const Set<String> _awsLambdaFunctionUrlSensitive = <String>{};
 
+/// Lambda Function Url Authorization enum for `authorization_type`.
+enum LambdaFunctionUrlAuthorizationType implements TerraformEnum {
+  none('NONE'),
+  awsIam('AWS_IAM');
+
+  const LambdaFunctionUrlAuthorizationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lambda Function Url Invoke enum for `invoke_mode`.
+enum LambdaFunctionUrlInvokeMode implements TerraformEnum {
+  buffered('BUFFERED'),
+  responseStream('RESPONSE_STREAM');
+
+  const LambdaFunctionUrlInvokeMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cors` block of
 /// `aws_lambda_function_url` (derived from provider schema).
 @immutable
@@ -56,9 +76,9 @@ final class AwsLambdaFunctionUrl extends Resource {
 
   AwsLambdaFunctionUrl({
     required super.localName,
-    required TfArg<String> authorizationType,
+    required TfArg<LambdaFunctionUrlAuthorizationType> authorizationType,
     required TfArg<String> functionName,
-    TfArg<String>? invokeMode,
+    TfArg<LambdaFunctionUrlInvokeMode>? invokeMode,
     TfArg<String>? qualifier,
     TfArg<String>? region,
     LambdaFunctionUrlCors? cors,

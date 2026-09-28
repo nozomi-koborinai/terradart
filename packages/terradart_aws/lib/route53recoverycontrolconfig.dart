@@ -4,7 +4,9 @@
 library;
 
 export 'src/route53recoverycontrolconfig/aws_route53recoverycontrolconfig_cluster.dart'
-    show AwsRoute53recoverycontrolconfigCluster;
+    show
+        AwsRoute53recoverycontrolconfigCluster,
+        Route53recoverycontrolconfigClusterNetworkType;
 export 'src/route53recoverycontrolconfig/aws_route53recoverycontrolconfig_control_panel.dart'
     show AwsRoute53recoverycontrolconfigControlPanel;
 export 'src/route53recoverycontrolconfig/aws_route53recoverycontrolconfig_routing_control.dart'
@@ -12,4 +14,5 @@ export 'src/route53recoverycontrolconfig/aws_route53recoverycontrolconfig_routin
 export 'src/route53recoverycontrolconfig/aws_route53recoverycontrolconfig_safety_rule.dart'
     show
         AwsRoute53recoverycontrolconfigSafetyRule,
-        Route53recoverycontrolconfigSafetyRuleRuleConfig;
+        Route53recoverycontrolconfigSafetyRuleRuleConfig,
+        Route53recoverycontrolconfigSafetyRuleRuleConfigType;

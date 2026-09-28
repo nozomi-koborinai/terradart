@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appfabric_ingestion`.
 const Set<String> _awsAppfabricIngestionSensitive = <String>{};
 
+/// Appfabric Ingestion Ingestion enum for `ingestion_type`.
+enum AppfabricIngestionIngestionType implements TerraformEnum {
+  auditlog('auditLog');
+
+  const AppfabricIngestionIngestionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_appfabric_ingestion`.
 final class AwsAppfabricIngestion extends Resource {
   static const String tfType = 'aws_appfabric_ingestion';
@@ -14,7 +23,7 @@ final class AwsAppfabricIngestion extends Resource {
     required super.localName,
     required TfArg<String> app,
     required TfArg<String> appBundleArn,
-    required TfArg<String> ingestionType,
+    required TfArg<AppfabricIngestionIngestionType> ingestionType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> tenantId,

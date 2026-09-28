@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_resiliencehubv2_service_function`.
 const Set<String> _awsResiliencehubv2ServiceFunctionSensitive = <String>{};
 
+/// Resiliencehubv2 Service Function enum for `criticality`.
+enum Resiliencehubv2ServiceFunctionCriticality implements TerraformEnum {
+  primary('PRIMARY'),
+  supplemental('SUPPLEMENTAL');
+
+  const Resiliencehubv2ServiceFunctionCriticality(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_resiliencehubv2_service_function`.
 final class AwsResiliencehubv2ServiceFunction extends Resource {
   static const String tfType = 'aws_resiliencehubv2_service_function';
 
   AwsResiliencehubv2ServiceFunction({
     required super.localName,
-    required TfArg<String> criticality,
+    required TfArg<Resiliencehubv2ServiceFunctionCriticality> criticality,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

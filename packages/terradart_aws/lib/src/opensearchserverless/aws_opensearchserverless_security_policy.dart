@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_opensearchserverless_security_policy`.
 const Set<String> _awsOpensearchserverlessSecurityPolicySensitive = <String>{};
 
+/// Opensearchserverless Security Policy enum for `type`.
+enum OpensearchserverlessSecurityPolicyType implements TerraformEnum {
+  encryption('encryption'),
+  network('network');
+
+  const OpensearchserverlessSecurityPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_opensearchserverless_security_policy`.
 final class AwsOpensearchserverlessSecurityPolicy extends Resource {
   static const String tfType = 'aws_opensearchserverless_security_policy';
@@ -16,7 +26,7 @@ final class AwsOpensearchserverlessSecurityPolicy extends Resource {
     required TfArg<String> name,
     required TfArg<String> policy,
     TfArg<String>? region,
-    required TfArg<String> type,
+    required TfArg<OpensearchserverlessSecurityPolicyType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

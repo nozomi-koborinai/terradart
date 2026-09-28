@@ -11,6 +11,113 @@ const Set<String> _awsTransferServerSensitive = <String>{
   'pre_authentication_login_banner',
 };
 
+/// Transfer Server enum for `domain`.
+enum TransferServerDomain implements TerraformEnum {
+  s3('S3'),
+  efs('EFS');
+
+  const TransferServerDomain(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Transfer Server Endpoint enum for `endpoint_type`.
+enum TransferServerEndpointType implements TerraformEnum {
+  public('PUBLIC'),
+  vpc('VPC'),
+  vpcEndpoint('VPC_ENDPOINT');
+
+  const TransferServerEndpointType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Transfer Server Identity Provider enum for `identity_provider_type`.
+enum TransferServerIdentityProviderType implements TerraformEnum {
+  serviceManaged('SERVICE_MANAGED'),
+  apiGateway('API_GATEWAY'),
+  awsDirectoryService('AWS_DIRECTORY_SERVICE'),
+  awsLambda('AWS_LAMBDA');
+
+  const TransferServerIdentityProviderType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Transfer Server Ip Address enum for `ip_address_type`.
+enum TransferServerIpAddressType implements TerraformEnum {
+  ipv4('IPV4'),
+  dualstack('DUALSTACK');
+
+  const TransferServerIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Transfer Server enum for `protocols`.
+enum TransferServerProtocols implements TerraformEnum {
+  sftp('SFTP'),
+  ftp('FTP'),
+  ftps('FTPS'),
+  as2('AS2');
+
+  const TransferServerProtocols(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Transfer Server Security Policy enum for `security_policy_name`.
+enum TransferServerSecurityPolicyName implements TerraformEnum {
+  transfersecuritypolicy201811('TransferSecurityPolicy-2018-11'),
+  transfersecuritypolicy202006('TransferSecurityPolicy-2020-06'),
+  transfersecuritypolicy202203('TransferSecurityPolicy-2022-03'),
+  transfersecuritypolicy202305('TransferSecurityPolicy-2023-05'),
+  transfersecuritypolicy202401('TransferSecurityPolicy-2024-01'),
+  transfersecuritypolicy202503('TransferSecurityPolicy-2025-03'),
+  transfersecuritypolicyFips202006('TransferSecurityPolicy-FIPS-2020-06'),
+  transfersecuritypolicyFips202305('TransferSecurityPolicy-FIPS-2023-05'),
+  transfersecuritypolicyFips202401('TransferSecurityPolicy-FIPS-2024-01'),
+  transfersecuritypolicyFips202405('TransferSecurityPolicy-FIPS-2024-05'),
+  transfersecuritypolicyFips202503('TransferSecurityPolicy-FIPS-2025-03'),
+  transfersecuritypolicyPqSshExperimental202304(
+    'TransferSecurityPolicy-PQ-SSH-Experimental-2023-04',
+  ),
+  transfersecuritypolicyPqSshFipsExperimental202304(
+    'TransferSecurityPolicy-PQ-SSH-FIPS-Experimental-2023-04',
+  ),
+  transfersecuritypolicyRestricted201811(
+    'TransferSecurityPolicy-Restricted-2018-11',
+  ),
+  transfersecuritypolicyRestricted202006(
+    'TransferSecurityPolicy-Restricted-2020-06',
+  ),
+  transfersecuritypolicyRestricted202406(
+    'TransferSecurityPolicy-Restricted-2024-06',
+  ),
+  transfersecuritypolicySshauditcompliant202502(
+    'TransferSecurityPolicy-SshAuditCompliant-2025-02',
+  ),
+  transfersecuritypolicyAs2restricted202507(
+    'TransferSecurityPolicy-AS2Restricted-2025-07',
+  );
+
+  const TransferServerSecurityPolicyName(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Transfer Server Sftp Authentication enum for `sftp_authentication_methods`.
+enum TransferServerSftpAuthenticationMethods implements TerraformEnum {
+  password('PASSWORD'),
+  publicKey('PUBLIC_KEY'),
+  publicKeyOrPassword('PUBLIC_KEY_OR_PASSWORD'),
+  publicKeyAndPassword('PUBLIC_KEY_AND_PASSWORD');
+
+  const TransferServerSftpAuthenticationMethods(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `endpoint_details` block of
 /// `aws_transfer_server` (derived from provider schema).
 @immutable
@@ -55,21 +162,56 @@ final class TransferServerProtocolDetails {
     this.tlsSessionResumptionMode,
   });
 
-  final TfArg<List<Object?>>? as2Transports;
+  final List<TfArg<TransferServerProtocolDetailsAs2Transports>>? as2Transports;
 
   final TfArg<String>? passiveIp;
 
-  final TfArg<String>? setStatOption;
+  final TfArg<TransferServerProtocolDetailsSetStatOption>? setStatOption;
 
-  final TfArg<String>? tlsSessionResumptionMode;
+  final TfArg<TransferServerProtocolDetailsTlsSessionResumptionMode>?
+  tlsSessionResumptionMode;
 
   Map<String, Object?> encode() => {
-    if (as2Transports != null) 'as2_transports': as2Transports!.toTfJson(),
+    if (as2Transports != null)
+      'as2_transports': [for (final e in as2Transports!) e.toTfJson()],
     if (passiveIp != null) 'passive_ip': passiveIp!.toTfJson(),
     if (setStatOption != null) 'set_stat_option': setStatOption!.toTfJson(),
     if (tlsSessionResumptionMode != null)
       'tls_session_resumption_mode': tlsSessionResumptionMode!.toTfJson(),
   };
+}
+
+/// `as2_transports` — derived from the provider schema description.
+enum TransferServerProtocolDetailsAs2Transports implements TerraformEnum {
+  http('HTTP');
+
+  const TransferServerProtocolDetailsAs2Transports(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `set_stat_option` — derived from the provider schema description.
+enum TransferServerProtocolDetailsSetStatOption implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  enableNoOp('ENABLE_NO_OP');
+
+  const TransferServerProtocolDetailsSetStatOption(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `tls_session_resumption_mode` — derived from the provider schema description.
+enum TransferServerProtocolDetailsTlsSessionResumptionMode
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED'),
+  enforced('ENFORCED');
+
+  const TransferServerProtocolDetailsTlsSessionResumptionMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `s3_storage_options` block of
@@ -78,13 +220,27 @@ final class TransferServerProtocolDetails {
 final class TransferServerS3StorageOptions {
   const TransferServerS3StorageOptions({this.directoryListingOptimization});
 
-  final TfArg<String>? directoryListingOptimization;
+  final TfArg<TransferServerS3StorageOptionsDirectoryListingOptimization>?
+  directoryListingOptimization;
 
   Map<String, Object?> encode() => {
     if (directoryListingOptimization != null)
       'directory_listing_optimization': directoryListingOptimization!
           .toTfJson(),
   };
+}
+
+/// `directory_listing_optimization` — derived from the provider schema description.
+enum TransferServerS3StorageOptionsDirectoryListingOptimization
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const TransferServerS3StorageOptionsDirectoryListingOptimization(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow_details` block of
@@ -149,21 +305,21 @@ final class AwsTransferServer extends Resource {
     required super.localName,
     TfArg<String>? certificate,
     TfArg<String>? directoryId,
-    TfArg<String>? domain,
-    TfArg<String>? endpointType,
+    TfArg<TransferServerDomain>? domain,
+    TfArg<TransferServerEndpointType>? endpointType,
     TfArg<bool>? forceDestroy,
     TfArg<String>? function,
     TfArg<String>? hostKey,
-    TfArg<String>? identityProviderType,
+    TfArg<TransferServerIdentityProviderType>? identityProviderType,
     TfArg<String>? invocationRole,
-    TfArg<String>? ipAddressType,
+    TfArg<TransferServerIpAddressType>? ipAddressType,
     TfArg<String>? loggingRole,
     TfArg<String>? postAuthenticationLoginBanner,
     TfArg<String>? preAuthenticationLoginBanner,
-    TfArg<List<String>>? protocols,
+    List<TfArg<TransferServerProtocols>>? protocols,
     TfArg<String>? region,
-    TfArg<String>? securityPolicyName,
-    TfArg<String>? sftpAuthenticationMethods,
+    TfArg<TransferServerSecurityPolicyName>? securityPolicyName,
+    TfArg<TransferServerSftpAuthenticationMethods>? sftpAuthenticationMethods,
     TfArg<List<String>>? structuredLogDestinations,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? url,
@@ -194,7 +350,10 @@ final class AwsTransferServer extends Resource {
              'post_authentication_login_banner': postAuthenticationLoginBanner,
            if (preAuthenticationLoginBanner != null)
              'pre_authentication_login_banner': preAuthenticationLoginBanner,
-           if (protocols != null) 'protocols': protocols,
+           if (protocols != null)
+             'protocols': TfArg.literal([
+               for (final e in protocols) e.toTfJson(),
+             ]),
            if (region != null) 'region': region,
            if (securityPolicyName != null)
              'security_policy_name': securityPolicyName,

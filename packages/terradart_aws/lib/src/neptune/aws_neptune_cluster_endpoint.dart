@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_neptune_cluster_endpoint`.
 const Set<String> _awsNeptuneClusterEndpointSensitive = <String>{};
 
+/// Neptune Cluster Endpoint Endpoint enum for `endpoint_type`.
+enum NeptuneClusterEndpointEndpointType implements TerraformEnum {
+  any('ANY'),
+  reader('READER'),
+  writer('WRITER');
+
+  const NeptuneClusterEndpointEndpointType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_neptune_cluster_endpoint`.
 final class AwsNeptuneClusterEndpoint extends Resource {
   static const String tfType = 'aws_neptune_cluster_endpoint';
@@ -14,7 +25,7 @@ final class AwsNeptuneClusterEndpoint extends Resource {
     required super.localName,
     required TfArg<String> clusterEndpointIdentifier,
     required TfArg<String> clusterIdentifier,
-    required TfArg<String> endpointType,
+    required TfArg<NeptuneClusterEndpointEndpointType> endpointType,
     TfArg<List<String>>? excludedMembers,
     TfArg<String>? region,
     TfArg<List<String>>? staticMembers,

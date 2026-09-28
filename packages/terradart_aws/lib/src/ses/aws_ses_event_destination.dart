@@ -7,6 +7,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ses_event_destination`.
 const Set<String> _awsSesEventDestinationSensitive = <String>{};
 
+/// Ses Event Destination Matching enum for `matching_types`.
+enum SesEventDestinationMatchingTypes implements TerraformEnum {
+  send('send'),
+  reject('reject'),
+  bounce('bounce'),
+  complaint('complaint'),
+  delivery('delivery'),
+  open('open'),
+  click('click'),
+  renderingfailure('renderingFailure');
+
+  const SesEventDestinationMatchingTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cloudwatch_destination` block of
 /// `aws_ses_event_destination` (derived from provider schema).
 @immutable
@@ -21,13 +37,27 @@ final class SesEventDestinationCloudwatchDestination {
 
   final TfArg<String> dimensionName;
 
-  final TfArg<String> valueSource;
+  final TfArg<SesEventDestinationCloudwatchDestinationValueSource> valueSource;
 
   Map<String, Object?> encode() => {
     'default_value': defaultValue.toTfJson(),
     'dimension_name': dimensionName.toTfJson(),
     'value_source': valueSource.toTfJson(),
   };
+}
+
+/// `value_source` — derived from the provider schema description.
+enum SesEventDestinationCloudwatchDestinationValueSource
+    implements TerraformEnum {
+  messagetag('messageTag'),
+  emailheader('emailHeader'),
+  linktag('linkTag');
+
+  const SesEventDestinationCloudwatchDestinationValueSource(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `kinesis_destination` block of
@@ -68,7 +98,7 @@ final class AwsSesEventDestination extends Resource {
     required super.localName,
     required TfArg<String> configurationSetName,
     TfArg<bool>? enabled,
-    required TfArg<List<String>> matchingTypes,
+    required List<TfArg<SesEventDestinationMatchingTypes>> matchingTypes,
     required TfArg<String> name,
     TfArg<String>? region,
     List<SesEventDestinationCloudwatchDestination>? cloudwatchDestination,
@@ -83,7 +113,9 @@ final class AwsSesEventDestination extends Resource {
          argMap: {
            'configuration_set_name': configurationSetName,
            if (enabled != null) 'enabled': enabled,
-           'matching_types': matchingTypes,
+           'matching_types': TfArg.literal([
+             for (final e in matchingTypes) e.toTfJson(),
+           ]),
            'name': name,
            if (region != null) 'region': region,
            if (cloudwatchDestination != null)

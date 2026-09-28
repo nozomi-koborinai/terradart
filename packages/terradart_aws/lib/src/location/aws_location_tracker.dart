@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_location_tracker`.
 const Set<String> _awsLocationTrackerSensitive = <String>{};
 
+/// Location Tracker Position enum for `position_filtering`.
+enum LocationTrackerPositionFiltering implements TerraformEnum {
+  timebased('TimeBased'),
+  distancebased('DistanceBased'),
+  accuracybased('AccuracyBased');
+
+  const LocationTrackerPositionFiltering(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_location_tracker`.
 final class AwsLocationTracker extends Resource {
   static const String tfType = 'aws_location_tracker';
@@ -14,7 +25,7 @@ final class AwsLocationTracker extends Resource {
     required super.localName,
     TfArg<String>? description,
     TfArg<String>? kmsKeyId,
-    TfArg<String>? positionFiltering,
+    TfArg<LocationTrackerPositionFiltering>? positionFiltering,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> trackerName,

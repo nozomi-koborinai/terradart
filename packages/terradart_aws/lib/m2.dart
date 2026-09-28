@@ -4,11 +4,12 @@
 library;
 
 export 'src/m2/aws_m2_application.dart'
-    show AwsM2Application, M2ApplicationDefinition;
+    show AwsM2Application, M2ApplicationDefinition, M2ApplicationEngineType;
 export 'src/m2/aws_m2_deployment.dart' show AwsM2Deployment;
 export 'src/m2/aws_m2_environment.dart'
     show
         AwsM2Environment,
+        M2EnvironmentEngineType,
         M2EnvironmentHighAvailabilityConfig,
         M2EnvironmentStorageConfiguration,
         M2EnvironmentStorageConfigurationEfs,

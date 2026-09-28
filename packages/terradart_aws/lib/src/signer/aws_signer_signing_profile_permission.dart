@@ -6,13 +6,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_signer_signing_profile_permission`.
 const Set<String> _awsSignerSigningProfilePermissionSensitive = <String>{};
 
+/// Signer Signing Profile Permission enum for `action`.
+enum SignerSigningProfilePermissionAction implements TerraformEnum {
+  signerStartsigningjob('signer:StartSigningJob'),
+  signerGetsigningprofile('signer:GetSigningProfile'),
+  signerRevokesignature('signer:RevokeSignature'),
+  signerSignpayload('signer:SignPayload');
+
+  const SignerSigningProfilePermissionAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_signer_signing_profile_permission`.
 final class AwsSignerSigningProfilePermission extends Resource {
   static const String tfType = 'aws_signer_signing_profile_permission';
 
   AwsSignerSigningProfilePermission({
     required super.localName,
-    required TfArg<String> action,
+    required TfArg<SignerSigningProfilePermissionAction> action,
     required TfArg<String> principal,
     required TfArg<String> profileName,
     TfArg<String>? profileVersion,

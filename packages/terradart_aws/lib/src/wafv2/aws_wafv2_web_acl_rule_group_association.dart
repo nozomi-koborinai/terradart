@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_wafv2_web_acl_rule_group_association`.
 const Set<String> _awsWafv2WebAclRuleGroupAssociationSensitive = <String>{};
 
+/// Wafv2 Web Acl Rule Group Association Override enum for `override_action`.
+enum Wafv2WebAclRuleGroupAssociationOverrideAction implements TerraformEnum {
+  none('none'),
+  count('count');
+
+  const Wafv2WebAclRuleGroupAssociationOverrideAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `managed_rule_group` block of
 /// `aws_wafv2_web_acl_rule_group_association` (derived from provider schema).
 @immutable
@@ -1508,7 +1518,7 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
 
   AwsWafv2WebAclRuleGroupAssociation({
     required super.localName,
-    TfArg<String>? overrideAction,
+    TfArg<Wafv2WebAclRuleGroupAssociationOverrideAction>? overrideAction,
     required TfArg<num> priority,
     TfArg<String>? region,
     required TfArg<String> ruleName,

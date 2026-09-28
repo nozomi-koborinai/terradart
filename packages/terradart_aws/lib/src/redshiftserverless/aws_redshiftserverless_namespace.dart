@@ -9,6 +9,17 @@ const Set<String> _awsRedshiftserverlessNamespaceSensitive = <String>{
   'admin_username',
 };
 
+/// Redshiftserverless Namespace Log enum for `log_exports`.
+enum RedshiftserverlessNamespaceLogExports implements TerraformEnum {
+  useractivitylog('useractivitylog'),
+  userlog('userlog'),
+  connectionlog('connectionlog');
+
+  const RedshiftserverlessNamespaceLogExports(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_redshiftserverless_namespace`.
 final class AwsRedshiftserverlessNamespace extends Resource {
   static const String tfType = 'aws_redshiftserverless_namespace';
@@ -24,7 +35,7 @@ final class AwsRedshiftserverlessNamespace extends Resource {
     TfArg<String>? defaultIamRoleArn,
     TfArg<List<String>>? iamRoles,
     TfArg<String>? kmsKeyId,
-    TfArg<List<String>>? logExports,
+    List<TfArg<RedshiftserverlessNamespaceLogExports>>? logExports,
     TfArg<bool>? manageAdminPassword,
     required TfArg<String> namespaceName,
     TfArg<String>? region,
@@ -50,7 +61,10 @@ final class AwsRedshiftserverlessNamespace extends Resource {
              'default_iam_role_arn': defaultIamRoleArn,
            if (iamRoles != null) 'iam_roles': iamRoles,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
-           if (logExports != null) 'log_exports': logExports,
+           if (logExports != null)
+             'log_exports': TfArg.literal([
+               for (final e in logExports) e.toTfJson(),
+             ]),
            if (manageAdminPassword != null)
              'manage_admin_password': manageAdminPassword,
            'namespace_name': namespaceName,

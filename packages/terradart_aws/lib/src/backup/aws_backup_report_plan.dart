@@ -17,17 +17,27 @@ final class BackupReportPlanReportDeliveryChannel {
     this.s3KeyPrefix,
   });
 
-  final TfArg<List<Object?>>? formats;
+  final List<TfArg<BackupReportPlanReportDeliveryChannelFormats>>? formats;
 
   final TfArg<String> s3BucketName;
 
   final TfArg<String>? s3KeyPrefix;
 
   Map<String, Object?> encode() => {
-    if (formats != null) 'formats': formats!.toTfJson(),
+    if (formats != null) 'formats': [for (final e in formats!) e.toTfJson()],
     's3_bucket_name': s3BucketName.toTfJson(),
     if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix!.toTfJson(),
   };
+}
+
+/// `formats` — derived from the provider schema description.
+enum BackupReportPlanReportDeliveryChannelFormats implements TerraformEnum {
+  csv('CSV'),
+  json('JSON');
+
+  const BackupReportPlanReportDeliveryChannelFormats(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `report_setting` block of
@@ -53,7 +63,7 @@ final class BackupReportPlanReportSetting {
 
   final TfArg<List<Object?>>? regions;
 
-  final TfArg<String> reportTemplate;
+  final TfArg<BackupReportPlanReportSettingReportTemplate> reportTemplate;
 
   Map<String, Object?> encode() => {
     if (accounts != null) 'accounts': accounts!.toTfJson(),
@@ -65,6 +75,19 @@ final class BackupReportPlanReportSetting {
     if (regions != null) 'regions': regions!.toTfJson(),
     'report_template': reportTemplate.toTfJson(),
   };
+}
+
+/// `report_template` — derived from the provider schema description.
+enum BackupReportPlanReportSettingReportTemplate implements TerraformEnum {
+  backupJobReport('BACKUP_JOB_REPORT'),
+  controlComplianceReport('CONTROL_COMPLIANCE_REPORT'),
+  copyJobReport('COPY_JOB_REPORT'),
+  resourceComplianceReport('RESOURCE_COMPLIANCE_REPORT'),
+  restoreJobReport('RESTORE_JOB_REPORT');
+
+  const BackupReportPlanReportSettingReportTemplate(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_backup_report_plan`.

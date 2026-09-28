@@ -7,6 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_efs_file_system`.
 const Set<String> _awsEfsFileSystemSensitive = <String>{};
 
+/// Efs File System Performance enum for `performance_mode`.
+enum EfsFileSystemPerformanceMode implements TerraformEnum {
+  generalpurpose('generalPurpose'),
+  maxio('maxIO');
+
+  const EfsFileSystemPerformanceMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Efs File System Throughput enum for `throughput_mode`.
+enum EfsFileSystemThroughputMode implements TerraformEnum {
+  bursting('bursting'),
+  provisioned('provisioned'),
+  elastic('elastic');
+
+  const EfsFileSystemThroughputMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `lifecycle_policy` block of
 /// `aws_efs_file_system` (derived from provider schema).
 @immutable
@@ -17,11 +38,13 @@ final class EfsFileSystemLifecyclePolicy {
     this.transitionToPrimaryStorageClass,
   });
 
-  final TfArg<String>? transitionToArchive;
+  final TfArg<EfsFileSystemLifecyclePolicyTransitionToArchive>?
+  transitionToArchive;
 
-  final TfArg<String>? transitionToIa;
+  final TfArg<EfsFileSystemLifecyclePolicyTransitionToIa>? transitionToIa;
 
-  final TfArg<String>? transitionToPrimaryStorageClass;
+  final TfArg<EfsFileSystemLifecyclePolicyTransitionToPrimaryStorageClass>?
+  transitionToPrimaryStorageClass;
 
   Map<String, Object?> encode() => {
     if (transitionToArchive != null)
@@ -33,18 +56,75 @@ final class EfsFileSystemLifecyclePolicy {
   };
 }
 
+/// `transition_to_archive` — derived from the provider schema description.
+enum EfsFileSystemLifecyclePolicyTransitionToArchive implements TerraformEnum {
+  after1Day('AFTER_1_DAY'),
+  after7Days('AFTER_7_DAYS'),
+  after14Days('AFTER_14_DAYS'),
+  after30Days('AFTER_30_DAYS'),
+  after60Days('AFTER_60_DAYS'),
+  after90Days('AFTER_90_DAYS'),
+  after180Days('AFTER_180_DAYS'),
+  after270Days('AFTER_270_DAYS'),
+  after365Days('AFTER_365_DAYS');
+
+  const EfsFileSystemLifecyclePolicyTransitionToArchive(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `transition_to_ia` — derived from the provider schema description.
+enum EfsFileSystemLifecyclePolicyTransitionToIa implements TerraformEnum {
+  after7Days('AFTER_7_DAYS'),
+  after14Days('AFTER_14_DAYS'),
+  after30Days('AFTER_30_DAYS'),
+  after60Days('AFTER_60_DAYS'),
+  after90Days('AFTER_90_DAYS'),
+  after1Day('AFTER_1_DAY'),
+  after180Days('AFTER_180_DAYS'),
+  after270Days('AFTER_270_DAYS'),
+  after365Days('AFTER_365_DAYS');
+
+  const EfsFileSystemLifecyclePolicyTransitionToIa(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `transition_to_primary_storage_class` — derived from the provider schema description.
+enum EfsFileSystemLifecyclePolicyTransitionToPrimaryStorageClass
+    implements TerraformEnum {
+  after1Access('AFTER_1_ACCESS');
+
+  const EfsFileSystemLifecyclePolicyTransitionToPrimaryStorageClass(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `protection` block of
 /// `aws_efs_file_system` (derived from provider schema).
 @immutable
 final class EfsFileSystemProtection {
   const EfsFileSystemProtection({this.replicationOverwrite});
 
-  final TfArg<String>? replicationOverwrite;
+  final TfArg<EfsFileSystemProtectionReplicationOverwrite>?
+  replicationOverwrite;
 
   Map<String, Object?> encode() => {
     if (replicationOverwrite != null)
       'replication_overwrite': replicationOverwrite!.toTfJson(),
   };
+}
+
+/// `replication_overwrite` — derived from the provider schema description.
+enum EfsFileSystemProtectionReplicationOverwrite implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const EfsFileSystemProtectionReplicationOverwrite(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_efs_file_system`.
@@ -57,11 +137,11 @@ final class AwsEfsFileSystem extends Resource {
     TfArg<String>? creationToken,
     TfArg<bool>? encrypted,
     TfArg<String>? kmsKeyId,
-    TfArg<String>? performanceMode,
+    TfArg<EfsFileSystemPerformanceMode>? performanceMode,
     TfArg<num>? provisionedThroughputInMibps,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? throughputMode,
+    TfArg<EfsFileSystemThroughputMode>? throughputMode,
     List<EfsFileSystemLifecyclePolicy>? lifecyclePolicy,
     EfsFileSystemProtection? protection,
     super.lifecycle,

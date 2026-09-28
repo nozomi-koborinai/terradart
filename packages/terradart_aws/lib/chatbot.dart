@@ -4,6 +4,10 @@
 library;
 
 export 'src/chatbot/aws_chatbot_slack_channel_configuration.dart'
-    show AwsChatbotSlackChannelConfiguration;
+    show
+        AwsChatbotSlackChannelConfiguration,
+        ChatbotSlackChannelConfigurationLoggingLevel;
 export 'src/chatbot/aws_chatbot_teams_channel_configuration.dart'
-    show AwsChatbotTeamsChannelConfiguration;
+    show
+        AwsChatbotTeamsChannelConfiguration,
+        ChatbotTeamsChannelConfigurationLoggingLevel;

@@ -8,13 +8,17 @@ export 'src/redshiftserverless/aws_redshiftserverless_custom_domain_association.
 export 'src/redshiftserverless/aws_redshiftserverless_endpoint_access.dart'
     show AwsRedshiftserverlessEndpointAccess;
 export 'src/redshiftserverless/aws_redshiftserverless_namespace.dart'
-    show AwsRedshiftserverlessNamespace;
+    show AwsRedshiftserverlessNamespace, RedshiftserverlessNamespaceLogExports;
 export 'src/redshiftserverless/aws_redshiftserverless_resource_policy.dart'
     show AwsRedshiftserverlessResourcePolicy;
 export 'src/redshiftserverless/aws_redshiftserverless_snapshot.dart'
     show AwsRedshiftserverlessSnapshot;
 export 'src/redshiftserverless/aws_redshiftserverless_usage_limit.dart'
-    show AwsRedshiftserverlessUsageLimit;
+    show
+        AwsRedshiftserverlessUsageLimit,
+        RedshiftserverlessUsageLimitBreachAction,
+        RedshiftserverlessUsageLimitPeriod,
+        RedshiftserverlessUsageLimitUsageType;
 export 'src/redshiftserverless/aws_redshiftserverless_workgroup.dart'
     show
         AwsRedshiftserverlessWorkgroup,

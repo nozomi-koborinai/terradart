@@ -167,11 +167,20 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
     this.kmsKeyArn,
   });
 
-  final TfArg<String>? encryptionConflictResolutionStrategy;
+  final TfArg<
+    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionConflictResolutionStrategy
+  >?
+  encryptionConflictResolutionStrategy;
 
-  final TfArg<String>? encryptionScope;
+  final TfArg<
+    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionScope
+  >?
+  encryptionScope;
 
-  final TfArg<String> encryptionStrategy;
+  final TfArg<
+    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionStrategy
+  >
+  encryptionStrategy;
 
   final TfArg<String>? kmsKeyArn;
 
@@ -186,6 +195,45 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
   };
 }
 
+/// `encryption_conflict_resolution_strategy` — derived from the provider schema description.
+enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionConflictResolutionStrategy
+    implements TerraformEnum {
+  allow('ALLOW'),
+  skip('SKIP');
+
+  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionConflictResolutionStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `encryption_scope` — derived from the provider schema description.
+enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionScope
+    implements TerraformEnum {
+  encryptedSourceOnly('ENCRYPTED_SOURCE_ONLY'),
+  newDestinationLogGroups('NEW_DESTINATION_LOG_GROUPS');
+
+  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionScope(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `encryption_strategy` — derived from the provider schema description.
+enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionStrategy
+    implements TerraformEnum {
+  customerManaged('CUSTOMER_MANAGED'),
+  awsOwned('AWS_OWNED');
+
+  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationLogsEncryptionConfigurationEncryptionStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule.destination.destination_logs_configuration.tag_propagation_configuration` block of
 /// `aws_observabilityadmin_centralization_rule_for_organization` (derived from provider schema).
 @immutable
@@ -197,7 +245,10 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
 
   final TfArg<String> destinationRoleArn;
 
-  final TfArg<String>? tagConflictResolutionStrategy;
+  final TfArg<
+    ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfigurationTagConflictResolutionStrategy
+  >?
+  tagConflictResolutionStrategy;
 
   Map<String, Object?> encode() => {
     'destination_role_arn': destinationRoleArn.toTfJson(),
@@ -205,6 +256,20 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDe
       'tag_conflict_resolution_strategy': tagConflictResolutionStrategy!
           .toTfJson(),
   };
+}
+
+/// `tag_conflict_resolution_strategy` — derived from the provider schema description.
+enum ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfigurationTagConflictResolutionStrategy
+    implements TerraformEnum {
+  inSync('IN_SYNC'),
+  addOnly('ADD_ONLY'),
+  updateSync('UPDATE_SYNC');
+
+  const ObservabilityadminCentralizationRuleForOrganizationRuleDestinationDestinationLogsConfigurationTagPropagationConfigurationTagConflictResolutionStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination.destination_metrics_configuration` block of
@@ -292,7 +357,10 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceL
 
   final TfArg<String>? dataSourceSelectionCriteria;
 
-  final TfArg<String> encryptedLogGroupStrategy;
+  final TfArg<
+    ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfigurationEncryptedLogGroupStrategy
+  >
+  encryptedLogGroupStrategy;
 
   final TfArg<String>? logGroupSelectionCriteria;
 
@@ -303,6 +371,19 @@ final class ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceL
     if (logGroupSelectionCriteria != null)
       'log_group_selection_criteria': logGroupSelectionCriteria!.toTfJson(),
   };
+}
+
+/// `encrypted_log_group_strategy` — derived from the provider schema description.
+enum ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfigurationEncryptedLogGroupStrategy
+    implements TerraformEnum {
+  allow('ALLOW'),
+  skip('SKIP');
+
+  const ObservabilityadminCentralizationRuleForOrganizationRuleSourceSourceLogsConfigurationEncryptedLogGroupStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.source.source_metrics_configuration` block of

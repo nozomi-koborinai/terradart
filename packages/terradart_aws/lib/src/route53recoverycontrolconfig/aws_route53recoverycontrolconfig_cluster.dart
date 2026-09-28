@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_route53recoverycontrolconfig_cluster`.
 const Set<String> _awsRoute53recoverycontrolconfigClusterSensitive = <String>{};
 
+/// Route53recoverycontrolconfig Cluster Network enum for `network_type`.
+enum Route53recoverycontrolconfigClusterNetworkType implements TerraformEnum {
+  ipv4('IPV4'),
+  dualstack('DUALSTACK');
+
+  const Route53recoverycontrolconfigClusterNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_route53recoverycontrolconfig_cluster`.
 final class AwsRoute53recoverycontrolconfigCluster extends Resource {
   static const String tfType = 'aws_route53recoverycontrolconfig_cluster';
@@ -13,7 +23,7 @@ final class AwsRoute53recoverycontrolconfigCluster extends Resource {
   AwsRoute53recoverycontrolconfigCluster({
     required super.localName,
     required TfArg<String> name,
-    TfArg<String>? networkType,
+    TfArg<Route53recoverycontrolconfigClusterNetworkType>? networkType,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

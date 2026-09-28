@@ -9,9 +9,11 @@ export 'src/msk/aws_msk_channel.dart'
         MskChannelEncryptionConfiguration,
         MskChannelIcebergDestination,
         MskChannelIcebergDestinationCatalog,
+        MskChannelIcebergDestinationCompressionType,
         MskChannelIcebergDestinationDeadLetterQueueS3,
         MskChannelIcebergDestinationDestinationTable,
         MskChannelIcebergDestinationDestinationTablePartitionSpec,
+        MskChannelIcebergDestinationDestinationTablePartitionSpecPartitionStrategy,
         MskChannelIcebergDestinationDestinationTablePartitionSpecSource,
         MskChannelIcebergDestinationSchemaEvolution,
         MskChannelIcebergDestinationTableCreation,
@@ -22,15 +24,21 @@ export 'src/msk/aws_msk_channel.dart'
         MskChannelS3Destination,
         MskChannelS3DestinationDeadLetterQueueS3,
         MskChannelS3DestinationStorage,
+        MskChannelS3DestinationStorageCompressionType,
+        MskChannelS3DestinationStorageStorageClass,
         MskChannelTopicConfiguration,
         MskChannelTopicConfigurationRecordConverter,
+        MskChannelTopicConfigurationRecordConverterValueConverter,
         MskChannelTopicConfigurationRecordSchema;
 export 'src/msk/aws_msk_cluster.dart'
     show
         AwsMskCluster,
         MskClusterBrokerNodeGroupInfo,
+        MskClusterBrokerNodeGroupInfoAzDistribution,
         MskClusterBrokerNodeGroupInfoConnectivityInfo,
+        MskClusterBrokerNodeGroupInfoConnectivityInfoNetworkType,
         MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccess,
+        MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccessType,
         MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivity,
         MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthentication,
         MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAuthenticationSasl,
@@ -43,6 +51,8 @@ export 'src/msk/aws_msk_cluster.dart'
         MskClusterConfigurationInfo,
         MskClusterEncryptionInfo,
         MskClusterEncryptionInfoEncryptionInTransit,
+        MskClusterEncryptionInfoEncryptionInTransitClientBroker,
+        MskClusterEnhancedMonitoring,
         MskClusterLoggingInfo,
         MskClusterLoggingInfoBrokerLogs,
         MskClusterLoggingInfoBrokerLogsCloudwatchLogs,
@@ -52,7 +62,9 @@ export 'src/msk/aws_msk_cluster.dart'
         MskClusterOpenMonitoringPrometheus,
         MskClusterOpenMonitoringPrometheusJmxExporter,
         MskClusterOpenMonitoringPrometheusNodeExporter,
-        MskClusterRebalancing;
+        MskClusterRebalancing,
+        MskClusterRebalancingStatus,
+        MskClusterStorageMode;
 export 'src/msk/aws_msk_cluster_policy.dart' show AwsMskClusterPolicy;
 export 'src/msk/aws_msk_configuration.dart' show AwsMskConfiguration;
 export 'src/msk/aws_msk_replicator.dart'
@@ -64,6 +76,7 @@ export 'src/msk/aws_msk_replicator.dart'
         MskReplicatorKafkaClusterClientAuthentication,
         MskReplicatorKafkaClusterClientAuthenticationMtls,
         MskReplicatorKafkaClusterClientAuthenticationSaslScram,
+        MskReplicatorKafkaClusterClientAuthenticationSaslScramMechanism,
         MskReplicatorKafkaClusterEncryptionInTransit,
         MskReplicatorKafkaClusterVpcConfig,
         MskReplicatorLogDelivery,
@@ -73,9 +86,12 @@ export 'src/msk/aws_msk_replicator.dart'
         MskReplicatorLogDeliveryReplicatorLogDeliveryS3,
         MskReplicatorReplicationInfoList,
         MskReplicatorReplicationInfoListConsumerGroupReplication,
+        MskReplicatorReplicationInfoListConsumerGroupReplicationConsumerGroupOffsetSyncMode,
         MskReplicatorReplicationInfoListTopicReplication,
         MskReplicatorReplicationInfoListTopicReplicationStartingPosition,
-        MskReplicatorReplicationInfoListTopicReplicationTopicNameConfiguration;
+        MskReplicatorReplicationInfoListTopicReplicationStartingPositionType,
+        MskReplicatorReplicationInfoListTopicReplicationTopicNameConfiguration,
+        MskReplicatorReplicationInfoListTopicReplicationTopicNameConfigurationType;
 export 'src/msk/aws_msk_scram_secret_association.dart'
     show AwsMskScramSecretAssociation;
 export 'src/msk/aws_msk_serverless_cluster.dart'

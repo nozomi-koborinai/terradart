@@ -79,9 +79,15 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
     this.unknownStatusAction,
   });
 
-  final TfArg<String>? revokedStatusAction;
+  final TfArg<
+    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusRevokedStatusAction
+  >?
+  revokedStatusAction;
 
-  final TfArg<String>? unknownStatusAction;
+  final TfArg<
+    NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusUnknownStatusAction
+  >?
+  unknownStatusAction;
 
   Map<String, Object?> encode() => {
     if (revokedStatusAction != null)
@@ -89,6 +95,34 @@ final class NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationS
     if (unknownStatusAction != null)
       'unknown_status_action': unknownStatusAction!.toTfJson(),
   };
+}
+
+/// `revoked_status_action` — derived from the provider schema description.
+enum NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusRevokedStatusAction
+    implements TerraformEnum {
+  pass('PASS'),
+  drop('DROP'),
+  reject('REJECT');
+
+  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusRevokedStatusAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `unknown_status_action` — derived from the provider schema description.
+enum NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusUnknownStatusAction
+    implements TerraformEnum {
+  pass('PASS'),
+  drop('DROP'),
+  reject('REJECT');
+
+  const NetworkfirewallTlsInspectionConfigurationTlsInspectionConfigurationServerCertificateConfigurationCheckCertificateRevocationStatusUnknownStatusAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `tls_inspection_configuration.server_certificate_configuration.scope` block of

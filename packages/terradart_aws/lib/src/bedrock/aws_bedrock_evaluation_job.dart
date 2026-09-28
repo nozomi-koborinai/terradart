@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrock_evaluation_job`.
 const Set<String> _awsBedrockEvaluationJobSensitive = <String>{};
 
+/// Bedrock Evaluation Job Application enum for `application_type`.
+enum BedrockEvaluationJobApplicationType implements TerraformEnum {
+  modelevaluation('ModelEvaluation'),
+  ragevaluation('RagEvaluation');
+
+  const BedrockEvaluationJobApplicationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `evaluation_config` block of
 /// `aws_bedrock_evaluation_job` (derived from provider schema).
 @immutable
@@ -223,7 +233,10 @@ final class BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfig {
 
   final TfArg<List<Object?>> metricNames;
 
-  final TfArg<String> taskType;
+  final TfArg<
+    BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfigTaskType
+  >
+  taskType;
 
   final List<
     BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfigDataset
@@ -235,6 +248,22 @@ final class BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfig {
     'task_type': taskType.toTfJson(),
     if (dataset != null) 'dataset': [for (final e in dataset!) e.encode()],
   };
+}
+
+/// `task_type` — derived from the provider schema description.
+enum BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfigTaskType
+    implements TerraformEnum {
+  summarization('Summarization'),
+  classification('Classification'),
+  questionandanswer('QuestionAndAnswer'),
+  generation('Generation'),
+  custom('Custom');
+
+  const BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfigTaskType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `evaluation_config.automated.dataset_metric_config.dataset` block of
@@ -356,13 +385,30 @@ final class BedrockEvaluationJobEvaluationConfigHumanCustomMetric {
 
   final TfArg<String> name;
 
-  final TfArg<String> ratingMethod;
+  final TfArg<BedrockEvaluationJobEvaluationConfigHumanCustomMetricRatingMethod>
+  ratingMethod;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
     'name': name.toTfJson(),
     'rating_method': ratingMethod.toTfJson(),
   };
+}
+
+/// `rating_method` — derived from the provider schema description.
+enum BedrockEvaluationJobEvaluationConfigHumanCustomMetricRatingMethod
+    implements TerraformEnum {
+  thumbsupdown('ThumbsUpDown'),
+  individuallikertscale('IndividualLikertScale'),
+  comparisonlikertscale('ComparisonLikertScale'),
+  comparisonchoice('ComparisonChoice'),
+  comparisonrank('ComparisonRank');
+
+  const BedrockEvaluationJobEvaluationConfigHumanCustomMetricRatingMethod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `evaluation_config.human.dataset_metric_config` block of
@@ -377,7 +423,10 @@ final class BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfig {
 
   final TfArg<List<Object?>> metricNames;
 
-  final TfArg<String> taskType;
+  final TfArg<
+    BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfigTaskType
+  >
+  taskType;
 
   final List<
     BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfigDataset
@@ -389,6 +438,22 @@ final class BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfig {
     'task_type': taskType.toTfJson(),
     if (dataset != null) 'dataset': [for (final e in dataset!) e.encode()],
   };
+}
+
+/// `task_type` — derived from the provider schema description.
+enum BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfigTaskType
+    implements TerraformEnum {
+  summarization('Summarization'),
+  classification('Classification'),
+  questionandanswer('QuestionAndAnswer'),
+  generation('Generation'),
+  custom('Custom');
+
+  const BedrockEvaluationJobEvaluationConfigHumanDatasetMetricConfigTaskType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `evaluation_config.human.dataset_metric_config.dataset` block of
@@ -526,11 +591,27 @@ final class BedrockEvaluationJobInferenceConfigModelBedrockModelPerformanceConfi
     this.latency,
   });
 
-  final TfArg<String>? latency;
+  final TfArg<
+    BedrockEvaluationJobInferenceConfigModelBedrockModelPerformanceConfigLatency
+  >?
+  latency;
 
   Map<String, Object?> encode() => {
     if (latency != null) 'latency': latency!.toTfJson(),
   };
+}
+
+/// `latency` — derived from the provider schema description.
+enum BedrockEvaluationJobInferenceConfigModelBedrockModelPerformanceConfigLatency
+    implements TerraformEnum {
+  standard('standard'),
+  optimized('optimized');
+
+  const BedrockEvaluationJobInferenceConfigModelBedrockModelPerformanceConfigLatency(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `inference_config.model.precomputed_inference_source` block of
@@ -812,7 +893,7 @@ final class AwsBedrockEvaluationJob extends Resource {
 
   AwsBedrockEvaluationJob({
     required super.localName,
-    TfArg<String>? applicationType,
+    TfArg<BedrockEvaluationJobApplicationType>? applicationType,
     TfArg<String>? customerEncryptionKeyId,
     TfArg<String>? jobDescription,
     required TfArg<String> jobName,

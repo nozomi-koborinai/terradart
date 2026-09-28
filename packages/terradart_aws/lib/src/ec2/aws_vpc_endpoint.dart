@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpc_endpoint`.
 const Set<String> _awsVpcEndpointSensitive = <String>{};
 
+/// Vpc Endpoint Ip Address enum for `ip_address_type`.
+enum VpcEndpointIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  dualstack('dualstack'),
+  ipv6('ipv6');
+
+  const VpcEndpointIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpc Endpoint Vpc Endpoint enum for `vpc_endpoint_type`.
+enum VpcEndpointVpcEndpointType implements TerraformEnum {
+  interface('Interface'),
+  gateway('Gateway'),
+  gatewayloadbalancer('GatewayLoadBalancer'),
+  resource('Resource'),
+  servicenetwork('ServiceNetwork');
+
+  const VpcEndpointVpcEndpointType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `dns_options` block of
 /// `aws_vpc_endpoint` (derived from provider schema).
 @immutable
@@ -18,11 +42,11 @@ final class VpcEndpointDnsOptions {
     this.privateDnsSpecifiedDomains,
   });
 
-  final TfArg<String>? dnsRecordIpType;
+  final TfArg<VpcEndpointDnsOptionsDnsRecordIpType>? dnsRecordIpType;
 
   final TfArg<bool>? privateDnsOnlyForInboundResolverEndpoint;
 
-  final TfArg<String>? privateDnsPreference;
+  final TfArg<VpcEndpointDnsOptionsPrivateDnsPreference>? privateDnsPreference;
 
   final TfArg<List<Object?>>? privateDnsSpecifiedDomains;
 
@@ -37,6 +61,30 @@ final class VpcEndpointDnsOptions {
     if (privateDnsSpecifiedDomains != null)
       'private_dns_specified_domains': privateDnsSpecifiedDomains!.toTfJson(),
   };
+}
+
+/// `dns_record_ip_type` — derived from the provider schema description.
+enum VpcEndpointDnsOptionsDnsRecordIpType implements TerraformEnum {
+  ipv4('ipv4'),
+  dualstack('dualstack'),
+  ipv6('ipv6'),
+  serviceDefined('service-defined');
+
+  const VpcEndpointDnsOptionsDnsRecordIpType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `private_dns_preference` — derived from the provider schema description.
+enum VpcEndpointDnsOptionsPrivateDnsPreference implements TerraformEnum {
+  allDomains('ALL_DOMAINS'),
+  verifiedDomainsOnly('VERIFIED_DOMAINS_ONLY'),
+  verifiedDomainsAndSpecifiedDomains('VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS'),
+  specifiedDomainsOnly('SPECIFIED_DOMAINS_ONLY');
+
+  const VpcEndpointDnsOptionsPrivateDnsPreference(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `subnet_configuration` block of
@@ -65,7 +113,7 @@ final class AwsVpcEndpoint extends Resource {
   AwsVpcEndpoint({
     required super.localName,
     TfArg<bool>? autoAccept,
-    TfArg<String>? ipAddressType,
+    TfArg<VpcEndpointIpAddressType>? ipAddressType,
     TfArg<String>? policy,
     TfArg<bool>? privateDnsEnabled,
     TfArg<String>? region,
@@ -77,7 +125,7 @@ final class AwsVpcEndpoint extends Resource {
     TfArg<String>? serviceRegion,
     TfArg<List<String>>? subnetIds,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcEndpointType,
+    TfArg<VpcEndpointVpcEndpointType>? vpcEndpointType,
     required TfArg<String> vpcId,
     VpcEndpointDnsOptions? dnsOptions,
     List<VpcEndpointSubnetConfiguration>? subnetConfiguration,

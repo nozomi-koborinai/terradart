@@ -40,7 +40,8 @@ final class IvsRecordingConfigurationThumbnailConfiguration {
     this.targetIntervalSeconds,
   });
 
-  final TfArg<String>? recordingMode;
+  final TfArg<IvsRecordingConfigurationThumbnailConfigurationRecordingMode>?
+  recordingMode;
 
   final TfArg<num>? targetIntervalSeconds;
 
@@ -49,6 +50,19 @@ final class IvsRecordingConfigurationThumbnailConfiguration {
     if (targetIntervalSeconds != null)
       'target_interval_seconds': targetIntervalSeconds!.toTfJson(),
   };
+}
+
+/// `recording_mode` — derived from the provider schema description.
+enum IvsRecordingConfigurationThumbnailConfigurationRecordingMode
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  interval('INTERVAL');
+
+  const IvsRecordingConfigurationThumbnailConfigurationRecordingMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ivs_recording_configuration`.

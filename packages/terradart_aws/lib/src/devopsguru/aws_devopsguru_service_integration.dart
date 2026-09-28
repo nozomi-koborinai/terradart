@@ -19,9 +19,10 @@ final class DevopsguruServiceIntegrationKmsServerSideEncryption {
 
   final TfArg<String>? kmsKeyId;
 
-  final TfArg<String>? optInStatus;
+  final TfArg<DevopsguruServiceIntegrationKmsServerSideEncryptionOptInStatus>?
+  optInStatus;
 
-  final TfArg<String>? type;
+  final TfArg<DevopsguruServiceIntegrationKmsServerSideEncryptionType>? type;
 
   Map<String, Object?> encode() => {
     if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
@@ -30,17 +31,57 @@ final class DevopsguruServiceIntegrationKmsServerSideEncryption {
   };
 }
 
+/// `opt_in_status` — derived from the provider schema description.
+enum DevopsguruServiceIntegrationKmsServerSideEncryptionOptInStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const DevopsguruServiceIntegrationKmsServerSideEncryptionOptInStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum DevopsguruServiceIntegrationKmsServerSideEncryptionType
+    implements TerraformEnum {
+  customerManagedKey('CUSTOMER_MANAGED_KEY'),
+  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
+
+  const DevopsguruServiceIntegrationKmsServerSideEncryptionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `logs_anomaly_detection` block of
 /// `aws_devopsguru_service_integration` (derived from provider schema).
 @immutable
 final class DevopsguruServiceIntegrationLogsAnomalyDetection {
   const DevopsguruServiceIntegrationLogsAnomalyDetection({this.optInStatus});
 
-  final TfArg<String>? optInStatus;
+  final TfArg<DevopsguruServiceIntegrationLogsAnomalyDetectionOptInStatus>?
+  optInStatus;
 
   Map<String, Object?> encode() => {
     if (optInStatus != null) 'opt_in_status': optInStatus!.toTfJson(),
   };
+}
+
+/// `opt_in_status` — derived from the provider schema description.
+enum DevopsguruServiceIntegrationLogsAnomalyDetectionOptInStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const DevopsguruServiceIntegrationLogsAnomalyDetectionOptInStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `ops_center` block of
@@ -49,11 +90,21 @@ final class DevopsguruServiceIntegrationLogsAnomalyDetection {
 final class DevopsguruServiceIntegrationOpsCenter {
   const DevopsguruServiceIntegrationOpsCenter({this.optInStatus});
 
-  final TfArg<String>? optInStatus;
+  final TfArg<DevopsguruServiceIntegrationOpsCenterOptInStatus>? optInStatus;
 
   Map<String, Object?> encode() => {
     if (optInStatus != null) 'opt_in_status': optInStatus!.toTfJson(),
   };
+}
+
+/// `opt_in_status` — derived from the provider schema description.
+enum DevopsguruServiceIntegrationOpsCenterOptInStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const DevopsguruServiceIntegrationOpsCenterOptInStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_devopsguru_service_integration`.

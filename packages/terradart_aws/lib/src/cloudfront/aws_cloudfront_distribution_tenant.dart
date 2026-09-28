@@ -56,13 +56,30 @@ final class CloudfrontDistributionTenantCustomizationsGeoRestriction {
 
   final TfArg<List<Object?>>? locations;
 
-  final TfArg<String>? restrictionType;
+  final TfArg<
+    CloudfrontDistributionTenantCustomizationsGeoRestrictionRestrictionType
+  >?
+  restrictionType;
 
   Map<String, Object?> encode() => {
     if (locations != null) 'locations': locations!.toTfJson(),
     if (restrictionType != null)
       'restriction_type': restrictionType!.toTfJson(),
   };
+}
+
+/// `restriction_type` — derived from the provider schema description.
+enum CloudfrontDistributionTenantCustomizationsGeoRestrictionRestrictionType
+    implements TerraformEnum {
+  blacklist('blacklist'),
+  whitelist('whitelist'),
+  none('none');
+
+  const CloudfrontDistributionTenantCustomizationsGeoRestrictionRestrictionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `customizations.web_acl` block of
@@ -74,7 +91,7 @@ final class CloudfrontDistributionTenantCustomizationsWebAcl {
     this.arn,
   });
 
-  final TfArg<String>? action;
+  final TfArg<CloudfrontDistributionTenantCustomizationsWebAclAction>? action;
 
   final TfArg<String>? arn;
 
@@ -82,6 +99,19 @@ final class CloudfrontDistributionTenantCustomizationsWebAcl {
     if (action != null) 'action': action!.toTfJson(),
     if (arn != null) 'arn': arn!.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum CloudfrontDistributionTenantCustomizationsWebAclAction
+    implements TerraformEnum {
+  overrideCase('override'),
+  disable('disable');
+
+  const CloudfrontDistributionTenantCustomizationsWebAclAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `domain` block of
@@ -105,11 +135,17 @@ final class CloudfrontDistributionTenantManagedCertificateRequest {
     this.validationTokenHost,
   });
 
-  final TfArg<String>? certificateTransparencyLoggingPreference;
+  final TfArg<
+    CloudfrontDistributionTenantManagedCertificateRequestCertificateTransparencyLoggingPreference
+  >?
+  certificateTransparencyLoggingPreference;
 
   final TfArg<String>? primaryDomainName;
 
-  final TfArg<String>? validationTokenHost;
+  final TfArg<
+    CloudfrontDistributionTenantManagedCertificateRequestValidationTokenHost
+  >?
+  validationTokenHost;
 
   Map<String, Object?> encode() => {
     if (certificateTransparencyLoggingPreference != null)
@@ -120,6 +156,32 @@ final class CloudfrontDistributionTenantManagedCertificateRequest {
     if (validationTokenHost != null)
       'validation_token_host': validationTokenHost!.toTfJson(),
   };
+}
+
+/// `certificate_transparency_logging_preference` — derived from the provider schema description.
+enum CloudfrontDistributionTenantManagedCertificateRequestCertificateTransparencyLoggingPreference
+    implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled');
+
+  const CloudfrontDistributionTenantManagedCertificateRequestCertificateTransparencyLoggingPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `validation_token_host` — derived from the provider schema description.
+enum CloudfrontDistributionTenantManagedCertificateRequestValidationTokenHost
+    implements TerraformEnum {
+  cloudfront('cloudfront'),
+  selfHosted('self-hosted');
+
+  const CloudfrontDistributionTenantManagedCertificateRequestValidationTokenHost(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `parameter` block of

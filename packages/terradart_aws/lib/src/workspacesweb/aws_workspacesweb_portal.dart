@@ -6,6 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_workspacesweb_portal`.
 const Set<String> _awsWorkspaceswebPortalSensitive = <String>{};
 
+/// Workspacesweb Portal Authentication enum for `authentication_type`.
+enum WorkspaceswebPortalAuthenticationType implements TerraformEnum {
+  standard('Standard'),
+  iamIdentityCenter('IAM_Identity_Center');
+
+  const WorkspaceswebPortalAuthenticationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Workspacesweb Portal Instance enum for `instance_type`.
+enum WorkspaceswebPortalInstanceType implements TerraformEnum {
+  standardRegular('standard.regular'),
+  standardLarge('standard.large'),
+  standardXlarge('standard.xlarge');
+
+  const WorkspaceswebPortalInstanceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_workspacesweb_portal`.
 final class AwsWorkspaceswebPortal extends Resource {
   static const String tfType = 'aws_workspacesweb_portal';
@@ -13,11 +34,11 @@ final class AwsWorkspaceswebPortal extends Resource {
   AwsWorkspaceswebPortal({
     required super.localName,
     TfArg<Map<String, String>>? additionalEncryptionContext,
-    TfArg<String>? authenticationType,
+    TfArg<WorkspaceswebPortalAuthenticationType>? authenticationType,
     TfArg<String>? browserSettingsArn,
     TfArg<String>? customerManagedKey,
     TfArg<String>? displayName,
-    TfArg<String>? instanceType,
+    TfArg<WorkspaceswebPortalInstanceType>? instanceType,
     TfArg<num>? maxConcurrentSessions,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

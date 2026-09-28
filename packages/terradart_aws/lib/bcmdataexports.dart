@@ -11,4 +11,9 @@ export 'src/bcmdataexports/aws_bcmdataexports_export.dart'
         BcmdataexportsExportExportDestinationConfigurations,
         BcmdataexportsExportExportDestinationConfigurationsS3Destination,
         BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurations,
-        BcmdataexportsExportExportRefreshCadence;
+        BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsCompression,
+        BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsFormat,
+        BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOutputType,
+        BcmdataexportsExportExportDestinationConfigurationsS3DestinationS3OutputConfigurationsOverwrite,
+        BcmdataexportsExportExportRefreshCadence,
+        BcmdataexportsExportExportRefreshCadenceFrequency;

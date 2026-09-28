@@ -168,12 +168,28 @@ final class MskconnectConnectorKafkaClusterClientAuthentication {
     this.authenticationType,
   });
 
-  final TfArg<String>? authenticationType;
+  final TfArg<
+    MskconnectConnectorKafkaClusterClientAuthenticationAuthenticationType
+  >?
+  authenticationType;
 
   Map<String, Object?> encode() => {
     if (authenticationType != null)
       'authentication_type': authenticationType!.toTfJson(),
   };
+}
+
+/// `authentication_type` — derived from the provider schema description.
+enum MskconnectConnectorKafkaClusterClientAuthenticationAuthenticationType
+    implements TerraformEnum {
+  none('NONE'),
+  iam('IAM');
+
+  const MskconnectConnectorKafkaClusterClientAuthenticationAuthenticationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `kafka_cluster_encryption_in_transit` block of
@@ -184,11 +200,25 @@ final class MskconnectConnectorKafkaClusterEncryptionInTransit {
     this.encryptionType,
   });
 
-  final TfArg<String>? encryptionType;
+  final TfArg<MskconnectConnectorKafkaClusterEncryptionInTransitEncryptionType>?
+  encryptionType;
 
   Map<String, Object?> encode() => {
     if (encryptionType != null) 'encryption_type': encryptionType!.toTfJson(),
   };
+}
+
+/// `encryption_type` — derived from the provider schema description.
+enum MskconnectConnectorKafkaClusterEncryptionInTransitEncryptionType
+    implements TerraformEnum {
+  plaintext('PLAINTEXT'),
+  tls('TLS');
+
+  const MskconnectConnectorKafkaClusterEncryptionInTransitEncryptionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `log_delivery` block of

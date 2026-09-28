@@ -8,6 +8,19 @@ const Set<String> _awsAmplifyBranchSensitive = <String>{
   'basic_auth_credentials',
 };
 
+/// Amplify Branch enum for `stage`.
+enum AmplifyBranchStage implements TerraformEnum {
+  production('PRODUCTION'),
+  beta('BETA'),
+  development('DEVELOPMENT'),
+  experimental('EXPERIMENTAL'),
+  pullRequest('PULL_REQUEST');
+
+  const AmplifyBranchStage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_amplify_branch`.
 final class AwsAmplifyBranch extends Resource {
   static const String tfType = 'aws_amplify_branch';
@@ -30,7 +43,7 @@ final class AwsAmplifyBranch extends Resource {
     TfArg<String>? framework,
     TfArg<String>? pullRequestEnvironmentName,
     TfArg<String>? region,
-    TfArg<String>? stage,
+    TfArg<AmplifyBranchStage>? stage,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? ttl,
     super.lifecycle,

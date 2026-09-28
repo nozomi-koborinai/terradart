@@ -9,6 +9,16 @@ const Set<String> _awsOpensearchDomainSensitive = <String>{
   'advanced_security_options.master_user_options.master_user_password',
 };
 
+/// Opensearch Domain Ip Address enum for `ip_address_type`.
+enum OpensearchDomainIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  dualstack('dualstack');
+
+  const OpensearchDomainIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `advanced_security_options` block of
 /// `aws_opensearch_domain` (derived from provider schema).
 @immutable
@@ -135,11 +145,27 @@ final class OpensearchDomainAimlOptionsNaturalLanguageQueryGenerationOptions {
     this.desiredState,
   });
 
-  final TfArg<String>? desiredState;
+  final TfArg<
+    OpensearchDomainAimlOptionsNaturalLanguageQueryGenerationOptionsDesiredState
+  >?
+  desiredState;
 
   Map<String, Object?> encode() => {
     if (desiredState != null) 'desired_state': desiredState!.toTfJson(),
   };
+}
+
+/// `desired_state` — derived from the provider schema description.
+enum OpensearchDomainAimlOptionsNaturalLanguageQueryGenerationOptionsDesiredState
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const OpensearchDomainAimlOptionsNaturalLanguageQueryGenerationOptionsDesiredState(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `aiml_options.s3_vectors_engine` block of
@@ -179,9 +205,10 @@ final class OpensearchDomainAutoTuneOptions {
     this.maintenanceSchedule,
   });
 
-  final TfArg<String> desiredState;
+  final TfArg<OpensearchDomainAutoTuneOptionsDesiredState> desiredState;
 
-  final TfArg<String>? rollbackOnDisable;
+  final TfArg<OpensearchDomainAutoTuneOptionsRollbackOnDisable>?
+  rollbackOnDisable;
 
   final TfArg<bool>? useOffPeakWindow;
 
@@ -199,6 +226,26 @@ final class OpensearchDomainAutoTuneOptions {
         for (final e in maintenanceSchedule!) e.encode(),
       ],
   };
+}
+
+/// `desired_state` — derived from the provider schema description.
+enum OpensearchDomainAutoTuneOptionsDesiredState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const OpensearchDomainAutoTuneOptionsDesiredState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `rollback_on_disable` — derived from the provider schema description.
+enum OpensearchDomainAutoTuneOptionsRollbackOnDisable implements TerraformEnum {
+  noRollback('NO_ROLLBACK'),
+  defaultRollback('DEFAULT_ROLLBACK');
+
+  const OpensearchDomainAutoTuneOptionsRollbackOnDisable(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `auto_tune_options.maintenance_schedule` block of
@@ -233,7 +280,8 @@ final class OpensearchDomainAutoTuneOptionsMaintenanceScheduleDuration {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<OpensearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit>
+  unit;
 
   final TfArg<num> value;
 
@@ -241,6 +289,18 @@ final class OpensearchDomainAutoTuneOptionsMaintenanceScheduleDuration {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum OpensearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit
+    implements TerraformEnum {
+  hours('HOURS');
+
+  const OpensearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `cluster_config` block of
@@ -279,7 +339,7 @@ final class OpensearchDomainClusterConfig {
 
   final TfArg<bool>? warmEnabled;
 
-  final TfArg<String>? warmType;
+  final TfArg<OpensearchDomainClusterConfigWarmType>? warmType;
 
   final TfArg<bool>? zoneAwarenessEnabled;
 
@@ -314,6 +374,17 @@ final class OpensearchDomainClusterConfig {
   };
 }
 
+/// `warm_type` — derived from the provider schema description.
+enum OpensearchDomainClusterConfigWarmType implements TerraformEnum {
+  ultrawarm1MediumSearch('ultrawarm1.medium.search'),
+  ultrawarm1LargeSearch('ultrawarm1.large.search'),
+  ultrawarm1XlargeSearch('ultrawarm1.xlarge.search');
+
+  const OpensearchDomainClusterConfigWarmType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cluster_config.cold_storage_options` block of
 /// `aws_opensearch_domain` (derived from provider schema).
 @immutable
@@ -336,7 +407,7 @@ final class OpensearchDomainClusterConfigNodeOptions {
     this.nodeConfig,
   });
 
-  final TfArg<String>? nodeType;
+  final TfArg<OpensearchDomainClusterConfigNodeOptionsNodeType>? nodeType;
 
   final OpensearchDomainClusterConfigNodeOptionsNodeConfig? nodeConfig;
 
@@ -344,6 +415,15 @@ final class OpensearchDomainClusterConfigNodeOptions {
     if (nodeType != null) 'node_type': nodeType!.toTfJson(),
     if (nodeConfig != null) 'node_config': nodeConfig!.encode(),
   };
+}
+
+/// `node_type` — derived from the provider schema description.
+enum OpensearchDomainClusterConfigNodeOptionsNodeType implements TerraformEnum {
+  coordinator('coordinator');
+
+  const OpensearchDomainClusterConfigNodeOptionsNodeType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `cluster_config.node_options.node_config` block of
@@ -420,11 +500,25 @@ final class OpensearchDomainDeploymentStrategyOptions {
     required this.deploymentStrategy,
   });
 
-  final TfArg<String> deploymentStrategy;
+  final TfArg<OpensearchDomainDeploymentStrategyOptionsDeploymentStrategy>
+  deploymentStrategy;
 
   Map<String, Object?> encode() => {
     'deployment_strategy': deploymentStrategy.toTfJson(),
   };
+}
+
+/// `deployment_strategy` — derived from the provider schema description.
+enum OpensearchDomainDeploymentStrategyOptionsDeploymentStrategy
+    implements TerraformEnum {
+  defaultCase('Default'),
+  capacityoptimized('CapacityOptimized');
+
+  const OpensearchDomainDeploymentStrategyOptionsDeploymentStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `domain_endpoint_options` block of
@@ -447,7 +541,8 @@ final class OpensearchDomainDomainEndpointOptions {
 
   final TfArg<bool>? enforceHttps;
 
-  final TfArg<String>? tlsSecurityPolicy;
+  final TfArg<OpensearchDomainDomainEndpointOptionsTlsSecurityPolicy>?
+  tlsSecurityPolicy;
 
   Map<String, Object?> encode() => {
     if (customEndpoint != null) 'custom_endpoint': customEndpoint!.toTfJson(),
@@ -460,6 +555,21 @@ final class OpensearchDomainDomainEndpointOptions {
     if (tlsSecurityPolicy != null)
       'tls_security_policy': tlsSecurityPolicy!.toTfJson(),
   };
+}
+
+/// `tls_security_policy` — derived from the provider schema description.
+enum OpensearchDomainDomainEndpointOptionsTlsSecurityPolicy
+    implements TerraformEnum {
+  policyMinTls10201907('Policy-Min-TLS-1-0-2019-07'),
+  policyMinTls12201907('Policy-Min-TLS-1-2-2019-07'),
+  policyMinTls12Pfs202310('Policy-Min-TLS-1-2-PFS-2023-10'),
+  policyMinTls12Rfc9151Fips202408('Policy-Min-TLS-1-2-RFC9151-FIPS-2024-08');
+
+  const OpensearchDomainDomainEndpointOptionsTlsSecurityPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `ebs_options` block of
@@ -482,7 +592,7 @@ final class OpensearchDomainEbsOptions {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<String>? volumeType;
+  final TfArg<OpensearchDomainEbsOptionsVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'ebs_enabled': ebsEnabled.toTfJson(),
@@ -491,6 +601,18 @@ final class OpensearchDomainEbsOptions {
     if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
     if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
   };
+}
+
+/// `volume_type` — derived from the provider schema description.
+enum OpensearchDomainEbsOptionsVolumeType implements TerraformEnum {
+  standard('standard'),
+  gp2('gp2'),
+  io1('io1'),
+  gp3('gp3');
+
+  const OpensearchDomainEbsOptionsVolumeType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `encrypt_at_rest` block of
@@ -524,9 +646,9 @@ final class OpensearchDomainIdentityCenterOptions {
 
   final TfArg<String>? identityCenterInstanceArn;
 
-  final TfArg<String>? rolesKey;
+  final TfArg<OpensearchDomainIdentityCenterOptionsRolesKey>? rolesKey;
 
-  final TfArg<String>? subjectKey;
+  final TfArg<OpensearchDomainIdentityCenterOptionsSubjectKey>? subjectKey;
 
   Map<String, Object?> encode() => {
     if (enabledApiAccess != null)
@@ -536,6 +658,27 @@ final class OpensearchDomainIdentityCenterOptions {
     if (rolesKey != null) 'roles_key': rolesKey!.toTfJson(),
     if (subjectKey != null) 'subject_key': subjectKey!.toTfJson(),
   };
+}
+
+/// `roles_key` — derived from the provider schema description.
+enum OpensearchDomainIdentityCenterOptionsRolesKey implements TerraformEnum {
+  groupname('GroupName'),
+  groupid('GroupId');
+
+  const OpensearchDomainIdentityCenterOptionsRolesKey(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `subject_key` — derived from the provider schema description.
+enum OpensearchDomainIdentityCenterOptionsSubjectKey implements TerraformEnum {
+  username('UserName'),
+  userid('UserId'),
+  email('Email');
+
+  const OpensearchDomainIdentityCenterOptionsSubjectKey(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `log_publishing_options` block of
@@ -552,13 +695,25 @@ final class OpensearchDomainLogPublishingOptions {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String> logType;
+  final TfArg<OpensearchDomainLogPublishingOptionsLogType> logType;
 
   Map<String, Object?> encode() => {
     'cloudwatch_log_group_arn': cloudwatchLogGroupArn.toTfJson(),
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     'log_type': logType.toTfJson(),
   };
+}
+
+/// `log_type` — derived from the provider schema description.
+enum OpensearchDomainLogPublishingOptionsLogType implements TerraformEnum {
+  indexSlowLogs('INDEX_SLOW_LOGS'),
+  searchSlowLogs('SEARCH_SLOW_LOGS'),
+  esApplicationLogs('ES_APPLICATION_LOGS'),
+  auditLogs('AUDIT_LOGS');
+
+  const OpensearchDomainLogPublishingOptionsLogType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `node_to_node_encryption` block of
@@ -682,7 +837,7 @@ final class AwsOpensearchDomain extends Resource {
     TfArg<Map<String, String>>? advancedOptions,
     required TfArg<String> domainName,
     TfArg<String>? engineVersion,
-    TfArg<String>? ipAddressType,
+    TfArg<OpensearchDomainIpAddressType>? ipAddressType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     OpensearchDomainAdvancedSecurityOptions? advancedSecurityOptions,

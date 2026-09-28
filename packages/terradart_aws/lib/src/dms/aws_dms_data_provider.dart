@@ -7,6 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dms_data_provider`.
 const Set<String> _awsDmsDataProviderSensitive = <String>{};
 
+/// Dms Data Provider enum for `engine`.
+enum DmsDataProviderEngine implements TerraformEnum {
+  aurora('aurora'),
+  auroraPostgresql('aurora-postgresql'),
+  db2('db2'),
+  db2Zos('db2-zos'),
+  docdb('docdb'),
+  mariadb('mariadb'),
+  mongodb('mongodb'),
+  mysql('mysql'),
+  oracle('oracle'),
+  postgres('postgres'),
+  redshift('redshift'),
+  sqlserver('sqlserver'),
+  sybase('sybase');
+
+  const DmsDataProviderEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `settings` block of
 /// `aws_dms_data_provider` (derived from provider schema).
 @immutable
@@ -288,11 +309,12 @@ final class DmsDataProviderSettingsMongoDbSettings {
     this.sslMode,
   });
 
-  final TfArg<String>? authMechanism;
+  final TfArg<DmsDataProviderSettingsMongoDbSettingsAuthMechanism>?
+  authMechanism;
 
   final TfArg<String>? authSource;
 
-  final TfArg<String>? authType;
+  final TfArg<DmsDataProviderSettingsMongoDbSettingsAuthType>? authType;
 
   final TfArg<String>? certificateArn;
 
@@ -314,6 +336,30 @@ final class DmsDataProviderSettingsMongoDbSettings {
     if (serverName != null) 'server_name': serverName!.toTfJson(),
     if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
   };
+}
+
+/// `auth_mechanism` — derived from the provider schema description.
+enum DmsDataProviderSettingsMongoDbSettingsAuthMechanism
+    implements TerraformEnum {
+  defaultCase('default'),
+  mongodbCr('mongodb_cr'),
+  scramSha1('scram_sha_1');
+
+  const DmsDataProviderSettingsMongoDbSettingsAuthMechanism(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `auth_type` — derived from the provider schema description.
+enum DmsDataProviderSettingsMongoDbSettingsAuthType implements TerraformEnum {
+  no('no'),
+  password('password');
+
+  const DmsDataProviderSettingsMongoDbSettingsAuthType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `settings.mysql_settings` block of
@@ -535,7 +581,7 @@ final class AwsDmsDataProvider extends Resource {
   AwsDmsDataProvider({
     required super.localName,
     TfArg<String>? description,
-    required TfArg<String> engine,
+    required TfArg<DmsDataProviderEngine> engine,
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -7,6 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_eks_addon`.
 const Set<String> _awsEksAddonSensitive = <String>{};
 
+/// Eks Addon Resolve Conflicts On enum for `resolve_conflicts_on_create`.
+enum EksAddonResolveConflictsOnCreate implements TerraformEnum {
+  none('NONE'),
+  overwrite('OVERWRITE');
+
+  const EksAddonResolveConflictsOnCreate(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Eks Addon Resolve Conflicts On enum for `resolve_conflicts_on_update`.
+enum EksAddonResolveConflictsOnUpdate implements TerraformEnum {
+  overwrite('OVERWRITE'),
+  none('NONE'),
+  preserve('PRESERVE');
+
+  const EksAddonResolveConflictsOnUpdate(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `namespace_config` block of
 /// `aws_eks_addon` (derived from provider schema).
 @immutable
@@ -51,8 +72,8 @@ final class AwsEksAddon extends Resource {
     TfArg<String>? configurationValues,
     TfArg<bool>? preserve,
     TfArg<String>? region,
-    TfArg<String>? resolveConflictsOnCreate,
-    TfArg<String>? resolveConflictsOnUpdate,
+    TfArg<EksAddonResolveConflictsOnCreate>? resolveConflictsOnCreate,
+    TfArg<EksAddonResolveConflictsOnUpdate>? resolveConflictsOnUpdate,
     TfArg<String>? serviceAccountRoleArn,
     TfArg<Map<String, String>>? tags,
     EksAddonNamespaceConfig? namespaceConfig,

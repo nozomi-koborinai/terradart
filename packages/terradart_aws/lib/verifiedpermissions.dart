@@ -25,7 +25,9 @@ export 'src/verifiedpermissions/aws_verifiedpermissions_policy.dart'
 export 'src/verifiedpermissions/aws_verifiedpermissions_policy_store.dart'
     show
         AwsVerifiedpermissionsPolicyStore,
-        VerifiedpermissionsPolicyStoreValidationSettings;
+        VerifiedpermissionsPolicyStoreDeletionProtection,
+        VerifiedpermissionsPolicyStoreValidationSettings,
+        VerifiedpermissionsPolicyStoreValidationSettingsMode;
 export 'src/verifiedpermissions/aws_verifiedpermissions_policy_template.dart'
     show AwsVerifiedpermissionsPolicyTemplate;
 export 'src/verifiedpermissions/aws_verifiedpermissions_schema.dart'

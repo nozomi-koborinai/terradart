@@ -7,15 +7,50 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_medialive_channel`.
 const Set<String> _awsMedialiveChannelSensitive = <String>{};
 
+/// Medialive Channel Channel enum for `channel_class`.
+enum MedialiveChannelChannelClass implements TerraformEnum {
+  standard('STANDARD'),
+  singlePipeline('SINGLE_PIPELINE');
+
+  const MedialiveChannelChannelClass(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Medialive Channel Log enum for `log_level`.
+enum MedialiveChannelLogLevel implements TerraformEnum {
+  error('ERROR'),
+  warning('WARNING'),
+  info('INFO'),
+  debug('DEBUG'),
+  disabled('DISABLED');
+
+  const MedialiveChannelLogLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cdi_input_specification` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
 final class MedialiveChannelCdiInputSpecification {
   const MedialiveChannelCdiInputSpecification({required this.resolution});
 
-  final TfArg<String> resolution;
+  final TfArg<MedialiveChannelCdiInputSpecificationResolution> resolution;
 
   Map<String, Object?> encode() => {'resolution': resolution.toTfJson()};
+}
+
+/// `resolution` — derived from the provider schema description.
+enum MedialiveChannelCdiInputSpecificationResolution implements TerraformEnum {
+  sd('SD'),
+  hd('HD'),
+  fhd('FHD'),
+  uhd('UHD');
+
+  const MedialiveChannelCdiInputSpecificationResolution(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destinations` block of
@@ -4258,7 +4293,10 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettings {
 
   final TfArg<num>? errorClearTimeMsec;
 
-  final TfArg<String>? inputPreference;
+  final TfArg<
+    MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsInputPreference
+  >?
+  inputPreference;
 
   final TfArg<String> secondaryInputId;
 
@@ -4276,6 +4314,19 @@ final class MedialiveChannelInputAttachmentsAutomaticInputFailoverSettings {
     if (failoverCondition != null)
       'failover_condition': [for (final e in failoverCondition!) e.encode()],
   };
+}
+
+/// `input_preference` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsInputPreference
+    implements TerraformEnum {
+  equalInputPreference('EQUAL_INPUT_PREFERENCE'),
+  primaryInputPreferred('PRIMARY_INPUT_PREFERRED');
+
+  const MedialiveChannelInputAttachmentsAutomaticInputFailoverSettingsInputPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_attachments.automatic_input_failover_settings.failover_condition` block of
@@ -4399,19 +4450,26 @@ final class MedialiveChannelInputAttachmentsInputSettings {
     this.videoSelector,
   });
 
-  final TfArg<String>? deblockFilter;
+  final TfArg<MedialiveChannelInputAttachmentsInputSettingsDeblockFilter>?
+  deblockFilter;
 
-  final TfArg<String>? denoiseFilter;
+  final TfArg<MedialiveChannelInputAttachmentsInputSettingsDenoiseFilter>?
+  denoiseFilter;
 
   final TfArg<num>? filterStrength;
 
-  final TfArg<String>? inputFilter;
+  final TfArg<MedialiveChannelInputAttachmentsInputSettingsInputFilter>?
+  inputFilter;
 
   final TfArg<num>? scte35Pid;
 
-  final TfArg<String>? smpte2038DataPreference;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsSmpte2038DataPreference
+  >?
+  smpte2038DataPreference;
 
-  final TfArg<String>? sourceEndBehavior;
+  final TfArg<MedialiveChannelInputAttachmentsInputSettingsSourceEndBehavior>?
+  sourceEndBehavior;
 
   final List<MedialiveChannelInputAttachmentsInputSettingsAudioSelector>?
   audioSelector;
@@ -4443,6 +4501,72 @@ final class MedialiveChannelInputAttachmentsInputSettings {
       'network_input_settings': networkInputSettings!.encode(),
     if (videoSelector != null) 'video_selector': videoSelector!.encode(),
   };
+}
+
+/// `deblock_filter` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsDeblockFilter
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED');
+
+  const MedialiveChannelInputAttachmentsInputSettingsDeblockFilter(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `denoise_filter` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsDenoiseFilter
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED');
+
+  const MedialiveChannelInputAttachmentsInputSettingsDenoiseFilter(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `input_filter` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsInputFilter
+    implements TerraformEnum {
+  auto('AUTO'),
+  disabled('DISABLED'),
+  forced('FORCED');
+
+  const MedialiveChannelInputAttachmentsInputSettingsInputFilter(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `smpte2038_data_preference` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsSmpte2038DataPreference
+    implements TerraformEnum {
+  ignore('IGNORE'),
+  prefer('PREFER');
+
+  const MedialiveChannelInputAttachmentsInputSettingsSmpte2038DataPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `source_end_behavior` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsSourceEndBehavior
+    implements TerraformEnum {
+  continueCase('CONTINUE'),
+  loop('LOOP');
+
+  const MedialiveChannelInputAttachmentsInputSettingsSourceEndBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_attachments.input_settings.audio_selector` block of
@@ -4531,13 +4655,29 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
 
   final TfArg<String> languageCode;
 
-  final TfArg<String>? languageSelectionPolicy;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioLanguageSelectionLanguageSelectionPolicy
+  >?
+  languageSelectionPolicy;
 
   Map<String, Object?> encode() => {
     'language_code': languageCode.toTfJson(),
     if (languageSelectionPolicy != null)
       'language_selection_policy': languageSelectionPolicy!.toTfJson(),
   };
+}
+
+/// `language_selection_policy` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioLanguageSelectionLanguageSelectionPolicy
+    implements TerraformEnum {
+  loose('LOOSE'),
+  strict('STRICT');
+
+  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioLanguageSelectionLanguageSelectionPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings.audio_pid_selection` block of
@@ -4584,11 +4724,34 @@ final class MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSe
     required this.programSelection,
   });
 
-  final TfArg<String> programSelection;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionDolbyEDecodeProgramSelection
+  >
+  programSelection;
 
   Map<String, Object?> encode() => {
     'program_selection': programSelection.toTfJson(),
   };
+}
+
+/// `program_selection` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionDolbyEDecodeProgramSelection
+    implements TerraformEnum {
+  allChannels('ALL_CHANNELS'),
+  program1('PROGRAM_1'),
+  program2('PROGRAM_2'),
+  program3('PROGRAM_3'),
+  program4('PROGRAM_4'),
+  program5('PROGRAM_5'),
+  program6('PROGRAM_6'),
+  program7('PROGRAM_7'),
+  program8('PROGRAM_8');
+
+  const MedialiveChannelInputAttachmentsInputSettingsAudioSelectorSelectorSettingsAudioTrackSelectionDolbyEDecodeProgramSelection(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_attachments.input_settings.audio_selector.selector_settings.audio_track_selection.tracks` block of
@@ -4717,7 +4880,10 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
     this.pid,
   });
 
-  final TfArg<String>? ocrLanguage;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsDvbSubSourceSettingsOcrLanguage
+  >?
+  ocrLanguage;
 
   final TfArg<num>? pid;
 
@@ -4725,6 +4891,23 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
     if (ocrLanguage != null) 'ocr_language': ocrLanguage!.toTfJson(),
     if (pid != null) 'pid': pid!.toTfJson(),
   };
+}
+
+/// `ocr_language` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsDvbSubSourceSettingsOcrLanguage
+    implements TerraformEnum {
+  deu('DEU'),
+  eng('ENG'),
+  fra('FRA'),
+  nld('NLD'),
+  por('POR'),
+  spa('SPA');
+
+  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsDvbSubSourceSettingsOcrLanguage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.embedded_source_settings` block of
@@ -4737,9 +4920,15 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
     this.source608ChannelNumber,
   });
 
-  final TfArg<String>? convert608To708;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsConvert608To708
+  >?
+  convert608To708;
 
-  final TfArg<String>? scte20Detection;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsScte20Detection
+  >?
+  scte20Detection;
 
   final TfArg<num>? source608ChannelNumber;
 
@@ -4753,6 +4942,32 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   };
 }
 
+/// `convert_608_to_708` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsConvert608To708
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  upconvert('UPCONVERT');
+
+  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsConvert608To708(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `scte20_detection` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsScte20Detection
+    implements TerraformEnum {
+  auto('AUTO'),
+  off('OFF');
+
+  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsEmbeddedSourceSettingsScte20Detection(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.scte20_source_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
@@ -4762,7 +4977,10 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
     this.source608ChannelNumber,
   });
 
-  final TfArg<String>? convert608To708;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte20SourceSettingsConvert608To708
+  >?
+  convert608To708;
 
   final TfArg<num>? source608ChannelNumber;
 
@@ -4774,6 +4992,19 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
   };
 }
 
+/// `convert_608_to_708` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte20SourceSettingsConvert608To708
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  upconvert('UPCONVERT');
+
+  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte20SourceSettingsConvert608To708(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.scte27_source_settings` block of
 /// `aws_medialive_channel` (derived from provider schema).
 @immutable
@@ -4783,7 +5014,10 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
     this.pid,
   });
 
-  final TfArg<String>? ocrLanguage;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte27SourceSettingsOcrLanguage
+  >?
+  ocrLanguage;
 
   final TfArg<num>? pid;
 
@@ -4791,6 +5025,23 @@ final class MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelector
     if (ocrLanguage != null) 'ocr_language': ocrLanguage!.toTfJson(),
     if (pid != null) 'pid': pid!.toTfJson(),
   };
+}
+
+/// `ocr_language` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte27SourceSettingsOcrLanguage
+    implements TerraformEnum {
+  deu('DEU'),
+  eng('ENG'),
+  fra('FRA'),
+  nld('NLD'),
+  por('POR'),
+  spa('SPA');
+
+  const MedialiveChannelInputAttachmentsInputSettingsCaptionSelectorSelectorSettingsScte27SourceSettingsOcrLanguage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_attachments.input_settings.caption_selector.selector_settings.teletext_source_settings` block of
@@ -4849,7 +5100,10 @@ final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettings {
     this.hlsInputSettings,
   });
 
-  final TfArg<String>? serverValidation;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsServerValidation
+  >?
+  serverValidation;
 
   final MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSettings?
   hlsInputSettings;
@@ -4860,6 +5114,19 @@ final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettings {
     if (hlsInputSettings != null)
       'hls_input_settings': hlsInputSettings!.encode(),
   };
+}
+
+/// `server_validation` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsServerValidation
+    implements TerraformEnum {
+  checkCryptographyAndValidateName('CHECK_CRYPTOGRAPHY_AND_VALIDATE_NAME'),
+  checkCryptographyOnly('CHECK_CRYPTOGRAPHY_ONLY');
+
+  const MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsServerValidation(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_attachments.input_settings.network_input_settings.hls_input_settings` block of
@@ -4882,7 +5149,10 @@ final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHls
 
   final TfArg<num>? retryInterval;
 
-  final TfArg<String>? scte35Source;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSettingsScte35Source
+  >?
+  scte35Source;
 
   Map<String, Object?> encode() => {
     if (bandwidth != null) 'bandwidth': bandwidth!.toTfJson(),
@@ -4891,6 +5161,19 @@ final class MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHls
     if (retryInterval != null) 'retry_interval': retryInterval!.toTfJson(),
     if (scte35Source != null) 'scte35_source': scte35Source!.toTfJson(),
   };
+}
+
+/// `scte35_source` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSettingsScte35Source
+    implements TerraformEnum {
+  manifest('MANIFEST'),
+  segments('SEGMENTS');
+
+  const MedialiveChannelInputAttachmentsInputSettingsNetworkInputSettingsHlsInputSettingsScte35Source(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_attachments.input_settings.video_selector` block of
@@ -4902,15 +5185,50 @@ final class MedialiveChannelInputAttachmentsInputSettingsVideoSelector {
     this.colorSpaceUsage,
   });
 
-  final TfArg<String>? colorSpace;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpace
+  >?
+  colorSpace;
 
-  final TfArg<String>? colorSpaceUsage;
+  final TfArg<
+    MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpaceUsage
+  >?
+  colorSpaceUsage;
 
   Map<String, Object?> encode() => {
     if (colorSpace != null) 'color_space': colorSpace!.toTfJson(),
     if (colorSpaceUsage != null)
       'color_space_usage': colorSpaceUsage!.toTfJson(),
   };
+}
+
+/// `color_space` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpace
+    implements TerraformEnum {
+  follow('FOLLOW'),
+  hdr10('HDR10'),
+  hlg2020('HLG_2020'),
+  rec601('REC_601'),
+  rec709('REC_709');
+
+  const MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpace(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `color_space_usage` — derived from the provider schema description.
+enum MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpaceUsage
+    implements TerraformEnum {
+  fallback('FALLBACK'),
+  force('FORCE');
+
+  const MedialiveChannelInputAttachmentsInputSettingsVideoSelectorColorSpaceUsage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_specification` block of
@@ -4923,17 +5241,52 @@ final class MedialiveChannelInputSpecification {
     required this.maximumBitrate,
   });
 
-  final TfArg<String> codec;
+  final TfArg<MedialiveChannelInputSpecificationCodec> codec;
 
-  final TfArg<String> inputResolution;
+  final TfArg<MedialiveChannelInputSpecificationInputResolution>
+  inputResolution;
 
-  final TfArg<String> maximumBitrate;
+  final TfArg<MedialiveChannelInputSpecificationMaximumBitrate> maximumBitrate;
 
   Map<String, Object?> encode() => {
     'codec': codec.toTfJson(),
     'input_resolution': inputResolution.toTfJson(),
     'maximum_bitrate': maximumBitrate.toTfJson(),
   };
+}
+
+/// `codec` — derived from the provider schema description.
+enum MedialiveChannelInputSpecificationCodec implements TerraformEnum {
+  mpeg2('MPEG2'),
+  avc('AVC'),
+  hevc('HEVC');
+
+  const MedialiveChannelInputSpecificationCodec(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `input_resolution` — derived from the provider schema description.
+enum MedialiveChannelInputSpecificationInputResolution
+    implements TerraformEnum {
+  sd('SD'),
+  hd('HD'),
+  uhd('UHD');
+
+  const MedialiveChannelInputSpecificationInputResolution(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `maximum_bitrate` — derived from the provider schema description.
+enum MedialiveChannelInputSpecificationMaximumBitrate implements TerraformEnum {
+  max10Mbps('MAX_10_MBPS'),
+  max20Mbps('MAX_20_MBPS'),
+  max50Mbps('MAX_50_MBPS');
+
+  const MedialiveChannelInputSpecificationMaximumBitrate(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `maintenance` block of
@@ -4945,7 +5298,7 @@ final class MedialiveChannelMaintenance {
     required this.maintenanceStartTime,
   });
 
-  final TfArg<String> maintenanceDay;
+  final TfArg<MedialiveChannelMaintenanceMaintenanceDay> maintenanceDay;
 
   final TfArg<String> maintenanceStartTime;
 
@@ -4953,6 +5306,21 @@ final class MedialiveChannelMaintenance {
     'maintenance_day': maintenanceDay.toTfJson(),
     'maintenance_start_time': maintenanceStartTime.toTfJson(),
   };
+}
+
+/// `maintenance_day` — derived from the provider schema description.
+enum MedialiveChannelMaintenanceMaintenanceDay implements TerraformEnum {
+  monday('MONDAY'),
+  tuesday('TUESDAY'),
+  wednesday('WEDNESDAY'),
+  thursday('THURSDAY'),
+  friday('FRIDAY'),
+  saturday('SATURDAY'),
+  sunday('SUNDAY');
+
+  const MedialiveChannelMaintenanceMaintenanceDay(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `vpc` block of
@@ -4985,8 +5353,8 @@ final class AwsMedialiveChannel extends Resource {
 
   AwsMedialiveChannel({
     required super.localName,
-    required TfArg<String> channelClass,
-    TfArg<String>? logLevel,
+    required TfArg<MedialiveChannelChannelClass> channelClass,
+    TfArg<MedialiveChannelLogLevel>? logLevel,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? roleArn,

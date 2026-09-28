@@ -35,9 +35,11 @@ final class OdbCloudExadataInfrastructureMaintenanceWindow {
 
   final TfArg<List<Object?>>? months;
 
-  final TfArg<String> patchingMode;
+  final TfArg<OdbCloudExadataInfrastructureMaintenanceWindowPatchingMode>
+  patchingMode;
 
-  final TfArg<String> preference;
+  final TfArg<OdbCloudExadataInfrastructureMaintenanceWindowPreference>
+  preference;
 
   final TfArg<List<Object?>>? weeksOfMonth;
 
@@ -53,6 +55,32 @@ final class OdbCloudExadataInfrastructureMaintenanceWindow {
     'preference': preference.toTfJson(),
     if (weeksOfMonth != null) 'weeks_of_month': weeksOfMonth!.toTfJson(),
   };
+}
+
+/// `patching_mode` — derived from the provider schema description.
+enum OdbCloudExadataInfrastructureMaintenanceWindowPatchingMode
+    implements TerraformEnum {
+  rolling('ROLLING'),
+  nonrolling('NONROLLING');
+
+  const OdbCloudExadataInfrastructureMaintenanceWindowPatchingMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `preference` — derived from the provider schema description.
+enum OdbCloudExadataInfrastructureMaintenanceWindowPreference
+    implements TerraformEnum {
+  noPreference('NO_PREFERENCE'),
+  customPreference('CUSTOM_PREFERENCE');
+
+  const OdbCloudExadataInfrastructureMaintenanceWindowPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_odb_cloud_exadata_infrastructure`.

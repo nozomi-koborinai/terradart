@@ -34,11 +34,26 @@ final class FsxDataRepositoryAssociationS3 {
 final class FsxDataRepositoryAssociationS3AutoExportPolicy {
   const FsxDataRepositoryAssociationS3AutoExportPolicy({this.events});
 
-  final TfArg<List<Object?>>? events;
+  final List<TfArg<FsxDataRepositoryAssociationS3AutoExportPolicyEvents>>?
+  events;
 
   Map<String, Object?> encode() => {
-    if (events != null) 'events': events!.toTfJson(),
+    if (events != null) 'events': [for (final e in events!) e.toTfJson()],
   };
+}
+
+/// `events` — derived from the provider schema description.
+enum FsxDataRepositoryAssociationS3AutoExportPolicyEvents
+    implements TerraformEnum {
+  newCase('NEW'),
+  changed('CHANGED'),
+  deleted('DELETED');
+
+  const FsxDataRepositoryAssociationS3AutoExportPolicyEvents(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `s3.auto_import_policy` block of
@@ -47,11 +62,26 @@ final class FsxDataRepositoryAssociationS3AutoExportPolicy {
 final class FsxDataRepositoryAssociationS3AutoImportPolicy {
   const FsxDataRepositoryAssociationS3AutoImportPolicy({this.events});
 
-  final TfArg<List<Object?>>? events;
+  final List<TfArg<FsxDataRepositoryAssociationS3AutoImportPolicyEvents>>?
+  events;
 
   Map<String, Object?> encode() => {
-    if (events != null) 'events': events!.toTfJson(),
+    if (events != null) 'events': [for (final e in events!) e.toTfJson()],
   };
+}
+
+/// `events` — derived from the provider schema description.
+enum FsxDataRepositoryAssociationS3AutoImportPolicyEvents
+    implements TerraformEnum {
+  newCase('NEW'),
+  changed('CHANGED'),
+  deleted('DELETED');
+
+  const FsxDataRepositoryAssociationS3AutoImportPolicyEvents(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_fsx_data_repository_association`.

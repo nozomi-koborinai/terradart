@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_customer_gateway`.
 const Set<String> _awsCustomerGatewaySensitive = <String>{};
 
+/// Customer Gateway enum for `type`.
+enum CustomerGatewayType implements TerraformEnum {
+  ipsec1('ipsec.1');
+
+  const CustomerGatewayType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_customer_gateway`.
 final class AwsCustomerGateway extends Resource {
   static const String tfType = 'aws_customer_gateway';
@@ -19,7 +28,7 @@ final class AwsCustomerGateway extends Resource {
     TfArg<String>? ipAddress,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<CustomerGatewayType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

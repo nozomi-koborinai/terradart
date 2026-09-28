@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dms_event_subscription`.
 const Set<String> _awsDmsEventSubscriptionSensitive = <String>{};
 
+/// Dms Event Subscription Source enum for `source_type`.
+enum DmsEventSubscriptionSourceType implements TerraformEnum {
+  replicationInstance('replication-instance'),
+  replicationTask('replication-task');
+
+  const DmsEventSubscriptionSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dms_event_subscription`.
 final class AwsDmsEventSubscription extends Resource {
   static const String tfType = 'aws_dms_event_subscription';
@@ -18,7 +28,7 @@ final class AwsDmsEventSubscription extends Resource {
     TfArg<String>? region,
     required TfArg<String> snsTopicArn,
     TfArg<List<String>>? sourceIds,
-    required TfArg<String> sourceType,
+    required TfArg<DmsEventSubscriptionSourceType> sourceType,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

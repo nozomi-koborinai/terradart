@@ -6,6 +6,42 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudfront_origin_access_control`.
 const Set<String> _awsCloudfrontOriginAccessControlSensitive = <String>{};
 
+/// Cloudfront Origin Access Control Origin Access Control Origin enum for `origin_access_control_origin_type`.
+enum CloudfrontOriginAccessControlOriginAccessControlOriginType
+    implements TerraformEnum {
+  s3('s3'),
+  mediastore('mediastore'),
+  mediapackagev2('mediapackagev2'),
+  lambda('lambda');
+
+  const CloudfrontOriginAccessControlOriginAccessControlOriginType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Cloudfront Origin Access Control Signing enum for `signing_behavior`.
+enum CloudfrontOriginAccessControlSigningBehavior implements TerraformEnum {
+  never('never'),
+  always('always'),
+  noOverride('no-override');
+
+  const CloudfrontOriginAccessControlSigningBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cloudfront Origin Access Control Signing enum for `signing_protocol`.
+enum CloudfrontOriginAccessControlSigningProtocol implements TerraformEnum {
+  sigv4('sigv4'),
+  sigv4a('sigv4a');
+
+  const CloudfrontOriginAccessControlSigningProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudfront_origin_access_control`.
 final class AwsCloudfrontOriginAccessControl extends Resource {
   static const String tfType = 'aws_cloudfront_origin_access_control';
@@ -14,9 +50,12 @@ final class AwsCloudfrontOriginAccessControl extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> name,
-    required TfArg<String> originAccessControlOriginType,
-    required TfArg<String> signingBehavior,
-    required TfArg<String> signingProtocol,
+    required TfArg<CloudfrontOriginAccessControlOriginAccessControlOriginType>
+    originAccessControlOriginType,
+    required TfArg<CloudfrontOriginAccessControlSigningBehavior>
+    signingBehavior,
+    required TfArg<CloudfrontOriginAccessControlSigningProtocol>
+    signingProtocol,
     super.lifecycle,
     super.dependsOn,
     super.provider,

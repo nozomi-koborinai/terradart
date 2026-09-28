@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iam_signing_certificate`.
 const Set<String> _awsIamSigningCertificateSensitive = <String>{};
 
+/// Iam Signing Certificate enum for `status`.
+enum IamSigningCertificateStatus implements TerraformEnum {
+  active('Active'),
+  inactive('Inactive'),
+  expired('Expired');
+
+  const IamSigningCertificateStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_iam_signing_certificate`.
 final class AwsIamSigningCertificate extends Resource {
   static const String tfType = 'aws_iam_signing_certificate';
@@ -13,7 +24,7 @@ final class AwsIamSigningCertificate extends Resource {
   AwsIamSigningCertificate({
     required super.localName,
     required TfArg<String> certificateBody,
-    TfArg<String>? status,
+    TfArg<IamSigningCertificateStatus>? status,
     required TfArg<String> userName,
     super.lifecycle,
     super.dependsOn,

@@ -7,6 +7,50 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_api_gateway_integration`.
 const Set<String> _awsApiGatewayIntegrationSensitive = <String>{};
 
+/// Api Gateway Integration Connection enum for `connection_type`.
+enum ApiGatewayIntegrationConnectionType implements TerraformEnum {
+  internet('INTERNET'),
+  vpcLink('VPC_LINK');
+
+  const ApiGatewayIntegrationConnectionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Api Gateway Integration Passthrough enum for `passthrough_behavior`.
+enum ApiGatewayIntegrationPassthroughBehavior implements TerraformEnum {
+  whenNoMatch('WHEN_NO_MATCH'),
+  whenNoTemplates('WHEN_NO_TEMPLATES'),
+  never('NEVER');
+
+  const ApiGatewayIntegrationPassthroughBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Api Gateway Integration Response Transfer enum for `response_transfer_mode`.
+enum ApiGatewayIntegrationResponseTransferMode implements TerraformEnum {
+  buffered('BUFFERED'),
+  stream('STREAM');
+
+  const ApiGatewayIntegrationResponseTransferMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Api Gateway Integration enum for `type`.
+enum ApiGatewayIntegrationType implements TerraformEnum {
+  http('HTTP'),
+  aws('AWS'),
+  mock('MOCK'),
+  httpProxy('HTTP_PROXY'),
+  awsProxy('AWS_PROXY');
+
+  const ApiGatewayIntegrationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `tls_config` block of
 /// `aws_api_gateway_integration` (derived from provider schema).
 @immutable
@@ -30,21 +74,21 @@ final class AwsApiGatewayIntegration extends Resource {
     TfArg<List<String>>? cacheKeyParameters,
     TfArg<String>? cacheNamespace,
     TfArg<String>? connectionId,
-    TfArg<String>? connectionType,
+    TfArg<ApiGatewayIntegrationConnectionType>? connectionType,
     TfArg<String>? contentHandling,
     TfArg<String>? credentials,
     required TfArg<String> httpMethod,
     TfArg<String>? integrationHttpMethod,
     TfArg<String>? integrationTarget,
-    TfArg<String>? passthroughBehavior,
+    TfArg<ApiGatewayIntegrationPassthroughBehavior>? passthroughBehavior,
     TfArg<String>? region,
     TfArg<Map<String, String>>? requestParameters,
     TfArg<Map<String, String>>? requestTemplates,
     required TfArg<String> resourceId,
-    TfArg<String>? responseTransferMode,
+    TfArg<ApiGatewayIntegrationResponseTransferMode>? responseTransferMode,
     required TfArg<String> restApiId,
     TfArg<num>? timeoutMilliseconds,
-    required TfArg<String> type,
+    required TfArg<ApiGatewayIntegrationType> type,
     TfArg<String>? uri,
     ApiGatewayIntegrationTlsConfig? tlsConfig,
     super.lifecycle,

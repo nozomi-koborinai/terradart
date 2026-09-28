@@ -7,6 +7,96 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_metric_alarm`.
 const Set<String> _awsCloudwatchMetricAlarmSensitive = <String>{};
 
+/// Cloudwatch Metric Alarm Comparison enum for `comparison_operator`.
+enum CloudwatchMetricAlarmComparisonOperator implements TerraformEnum {
+  greaterthanorequaltothreshold('GreaterThanOrEqualToThreshold'),
+  greaterthanthreshold('GreaterThanThreshold'),
+  lessthanthreshold('LessThanThreshold'),
+  lessthanorequaltothreshold('LessThanOrEqualToThreshold'),
+  lessthanlowerorgreaterthanupperthreshold(
+    'LessThanLowerOrGreaterThanUpperThreshold',
+  ),
+  lessthanlowerthreshold('LessThanLowerThreshold'),
+  greaterthanupperthreshold('GreaterThanUpperThreshold');
+
+  const CloudwatchMetricAlarmComparisonOperator(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cloudwatch Metric Alarm Evaluate Low Sample Count enum for `evaluate_low_sample_count_percentiles`.
+enum CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles
+    implements TerraformEnum {
+  evaluate('evaluate'),
+  ignore('ignore');
+
+  const CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Cloudwatch Metric Alarm enum for `statistic`.
+enum CloudwatchMetricAlarmStatistic implements TerraformEnum {
+  samplecount('SampleCount'),
+  average('Average'),
+  sum('Sum'),
+  minimum('Minimum'),
+  maximum('Maximum');
+
+  const CloudwatchMetricAlarmStatistic(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cloudwatch Metric Alarm Treat Missing enum for `treat_missing_data`.
+enum CloudwatchMetricAlarmTreatMissingData implements TerraformEnum {
+  breaching('breaching'),
+  ignore('ignore'),
+  missing('missing'),
+  notbreaching('notBreaching');
+
+  const CloudwatchMetricAlarmTreatMissingData(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cloudwatch Metric Alarm enum for `unit`.
+enum CloudwatchMetricAlarmUnit implements TerraformEnum {
+  seconds('Seconds'),
+  microseconds('Microseconds'),
+  milliseconds('Milliseconds'),
+  bytes('Bytes'),
+  kilobytes('Kilobytes'),
+  megabytes('Megabytes'),
+  gigabytes('Gigabytes'),
+  terabytes('Terabytes'),
+  bits('Bits'),
+  kilobits('Kilobits'),
+  megabits('Megabits'),
+  gigabits('Gigabits'),
+  terabits('Terabits'),
+  percent('Percent'),
+  count('Count'),
+  bytesSecond('Bytes/Second'),
+  kilobytesSecond('Kilobytes/Second'),
+  megabytesSecond('Megabytes/Second'),
+  gigabytesSecond('Gigabytes/Second'),
+  terabytesSecond('Terabytes/Second'),
+  bitsSecond('Bits/Second'),
+  kilobitsSecond('Kilobits/Second'),
+  megabitsSecond('Megabits/Second'),
+  gigabitsSecond('Gigabits/Second'),
+  terabitsSecond('Terabits/Second'),
+  countSecond('Count/Second'),
+  none('None');
+
+  const CloudwatchMetricAlarmUnit(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `evaluation_criteria` block of
 /// `aws_cloudwatch_metric_alarm` (derived from provider schema).
 @immutable
@@ -101,9 +191,9 @@ final class CloudwatchMetricAlarmMetricQueryMetric {
 
   final TfArg<num> period;
 
-  final TfArg<String> stat;
+  final TfArg<CloudwatchMetricAlarmMetricQueryMetricStat> stat;
 
-  final TfArg<String>? unit;
+  final TfArg<CloudwatchMetricAlarmMetricQueryMetricUnit>? unit;
 
   Map<String, Object?> encode() => {
     if (dimensions != null) 'dimensions': dimensions!.toTfJson(),
@@ -113,6 +203,54 @@ final class CloudwatchMetricAlarmMetricQueryMetric {
     'stat': stat.toTfJson(),
     if (unit != null) 'unit': unit!.toTfJson(),
   };
+}
+
+/// `stat` — derived from the provider schema description.
+enum CloudwatchMetricAlarmMetricQueryMetricStat implements TerraformEnum {
+  samplecount('SampleCount'),
+  average('Average'),
+  sum('Sum'),
+  minimum('Minimum'),
+  maximum('Maximum');
+
+  const CloudwatchMetricAlarmMetricQueryMetricStat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `unit` — derived from the provider schema description.
+enum CloudwatchMetricAlarmMetricQueryMetricUnit implements TerraformEnum {
+  seconds('Seconds'),
+  microseconds('Microseconds'),
+  milliseconds('Milliseconds'),
+  bytes('Bytes'),
+  kilobytes('Kilobytes'),
+  megabytes('Megabytes'),
+  gigabytes('Gigabytes'),
+  terabytes('Terabytes'),
+  bits('Bits'),
+  kilobits('Kilobits'),
+  megabits('Megabits'),
+  gigabits('Gigabits'),
+  terabits('Terabits'),
+  percent('Percent'),
+  count('Count'),
+  bytesSecond('Bytes/Second'),
+  kilobytesSecond('Kilobytes/Second'),
+  megabytesSecond('Megabytes/Second'),
+  gigabytesSecond('Gigabytes/Second'),
+  terabytesSecond('Terabytes/Second'),
+  bitsSecond('Bits/Second'),
+  kilobitsSecond('Kilobits/Second'),
+  megabitsSecond('Megabits/Second'),
+  gigabitsSecond('Gigabits/Second'),
+  terabitsSecond('Terabits/Second'),
+  countSecond('Count/Second'),
+  none('None');
+
+  const CloudwatchMetricAlarmMetricQueryMetricUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `warm_up_configuration` block of
@@ -147,10 +285,11 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     TfArg<List<String>>? alarmActions,
     TfArg<String>? alarmDescription,
     required TfArg<String> alarmName,
-    TfArg<String>? comparisonOperator,
+    TfArg<CloudwatchMetricAlarmComparisonOperator>? comparisonOperator,
     TfArg<num>? datapointsToAlarm,
     TfArg<Map<String, String>>? dimensions,
-    TfArg<String>? evaluateLowSampleCountPercentiles,
+    TfArg<CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles>?
+    evaluateLowSampleCountPercentiles,
     TfArg<num>? evaluationInterval,
     TfArg<num>? evaluationPeriods,
     TfArg<String>? extendedStatistic,
@@ -160,12 +299,12 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     TfArg<List<String>>? okActions,
     TfArg<num>? period,
     TfArg<String>? region,
-    TfArg<String>? statistic,
+    TfArg<CloudwatchMetricAlarmStatistic>? statistic,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? threshold,
     TfArg<String>? thresholdMetricId,
-    TfArg<String>? treatMissingData,
-    TfArg<String>? unit,
+    TfArg<CloudwatchMetricAlarmTreatMissingData>? treatMissingData,
+    TfArg<CloudwatchMetricAlarmUnit>? unit,
     CloudwatchMetricAlarmEvaluationCriteria? evaluationCriteria,
     List<CloudwatchMetricAlarmMetricQuery>? metricQuery,
     CloudwatchMetricAlarmWarmUpConfiguration? warmUpConfiguration,

@@ -7,6 +7,84 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_alb`.
 const Set<String> _awsAlbSensitive = <String>{};
 
+/// Alb Desync Mitigation enum for `desync_mitigation_mode`.
+enum AlbDesyncMitigationMode implements TerraformEnum {
+  monitor('monitor'),
+  defensive('defensive'),
+  strictest('strictest');
+
+  const AlbDesyncMitigationMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Dns Record Client Routing enum for `dns_record_client_routing_policy`.
+enum AlbDnsRecordClientRoutingPolicy implements TerraformEnum {
+  availabilityZoneAffinity('availability_zone_affinity'),
+  partialAvailabilityZoneAffinity('partial_availability_zone_affinity'),
+  anyAvailabilityZone('any_availability_zone');
+
+  const AlbDnsRecordClientRoutingPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Enable Prefix For Ipv6 Source enum for `enable_prefix_for_ipv6_source_nat`.
+enum AlbEnablePrefixForIpv6SourceNat implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const AlbEnablePrefixForIpv6SourceNat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Enforce Security Group Inbound Rules On Private Link enum for `enforce_security_group_inbound_rules_on_private_link_traffic`.
+enum AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic
+    implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Alb Ip Address enum for `ip_address_type`.
+enum AlbIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  dualstack('dualstack'),
+  dualstackWithoutPublicIpv4('dualstack-without-public-ipv4');
+
+  const AlbIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Load Balancer enum for `load_balancer_type`.
+enum AlbLoadBalancerType implements TerraformEnum {
+  application('application'),
+  network('network'),
+  gateway('gateway');
+
+  const AlbLoadBalancerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Xff Header Processing enum for `xff_header_processing_mode`.
+enum AlbXffHeaderProcessingMode implements TerraformEnum {
+  append('append'),
+  preserve('preserve'),
+  remove('remove');
+
+  const AlbXffHeaderProcessingMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `access_logs` block of
 /// `aws_alb` (derived from provider schema).
 @immutable
@@ -124,22 +202,23 @@ final class AwsAlb extends Resource {
     required super.localName,
     TfArg<num>? clientKeepAlive,
     TfArg<String>? customerOwnedIpv4Pool,
-    TfArg<String>? desyncMitigationMode,
-    TfArg<String>? dnsRecordClientRoutingPolicy,
+    TfArg<AlbDesyncMitigationMode>? desyncMitigationMode,
+    TfArg<AlbDnsRecordClientRoutingPolicy>? dnsRecordClientRoutingPolicy,
     TfArg<bool>? dropInvalidHeaderFields,
     TfArg<bool>? enableCrossZoneLoadBalancing,
     TfArg<bool>? enableDeletionProtection,
     TfArg<bool>? enableHttp2,
-    TfArg<String>? enablePrefixForIpv6SourceNat,
+    TfArg<AlbEnablePrefixForIpv6SourceNat>? enablePrefixForIpv6SourceNat,
     TfArg<bool>? enableTlsVersionAndCipherSuiteHeaders,
     TfArg<bool>? enableWafFailOpen,
     TfArg<bool>? enableXffClientPort,
     TfArg<bool>? enableZonalShift,
-    TfArg<String>? enforceSecurityGroupInboundRulesOnPrivateLinkTraffic,
+    TfArg<AlbEnforceSecurityGroupInboundRulesOnPrivateLinkTraffic>?
+    enforceSecurityGroupInboundRulesOnPrivateLinkTraffic,
     TfArg<num>? idleTimeout,
     TfArg<bool>? internal,
-    TfArg<String>? ipAddressType,
-    TfArg<String>? loadBalancerType,
+    TfArg<AlbIpAddressType>? ipAddressType,
+    TfArg<AlbLoadBalancerType>? loadBalancerType,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<bool>? preserveHostHeader,
@@ -148,7 +227,7 @@ final class AwsAlb extends Resource {
     TfArg<List<String>>? securityGroups,
     TfArg<List<String>>? subnets,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? xffHeaderProcessingMode,
+    TfArg<AlbXffHeaderProcessingMode>? xffHeaderProcessingMode,
     AlbAccessLogs? accessLogs,
     AlbConnectionLogs? connectionLogs,
     AlbHealthCheckLogs? healthCheckLogs,

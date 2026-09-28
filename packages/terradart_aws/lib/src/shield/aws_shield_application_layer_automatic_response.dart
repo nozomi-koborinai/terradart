@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsShieldApplicationLayerAutomaticResponseSensitive =
     <String>{};
 
+/// Shield Application Layer Automatic Response enum for `action`.
+enum ShieldApplicationLayerAutomaticResponseAction implements TerraformEnum {
+  block('BLOCK'),
+  count('COUNT');
+
+  const ShieldApplicationLayerAutomaticResponseAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_shield_application_layer_automatic_response`.
 final class AwsShieldApplicationLayerAutomaticResponse extends Resource {
   static const String tfType =
@@ -14,7 +24,7 @@ final class AwsShieldApplicationLayerAutomaticResponse extends Resource {
 
   AwsShieldApplicationLayerAutomaticResponse({
     required super.localName,
-    required TfArg<String> action,
+    required TfArg<ShieldApplicationLayerAutomaticResponseAction> action,
     required TfArg<String> resourceArn,
     super.lifecycle,
     super.dependsOn,

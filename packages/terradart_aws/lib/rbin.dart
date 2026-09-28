@@ -9,5 +9,8 @@ export 'src/rbin/aws_rbin_rule.dart'
         RbinRuleExcludeResourceTags,
         RbinRuleLockConfiguration,
         RbinRuleLockConfigurationUnlockDelay,
+        RbinRuleLockConfigurationUnlockDelayUnlockDelayUnit,
         RbinRuleResourceTags,
-        RbinRuleRetentionPeriod;
+        RbinRuleResourceType,
+        RbinRuleRetentionPeriod,
+        RbinRuleRetentionPeriodRetentionPeriodUnit;

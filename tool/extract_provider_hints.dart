@@ -25,6 +25,15 @@
 // `resp.TypeName = ... + "_<name>"`, or a `fmt.Sprintf` pattern matched
 // against schema.json when one Go type serves several variants.
 //
+// hashicorp/aws (SDKv2 and framework, hand-written) is scanned by
+// tool/provider_hints_aws.dart instead: resources are the functions its
+// `@SDKResource` / `@FrameworkResource` annotations sit on, and a value set
+// may name an aws-sdk-go-v2 `types` enum, whose `enums.go` is read at the
+// module version the provider's go.mod requires. A map-typed attribute's
+// value set is skipped (enums cover string and string-list inputs only),
+// and so is one inside `validation.Any(...)` / `stringvalidator.Any(...)`,
+// where it is one alternative beside `""`, an ARN or a name pattern.
+//
 // schema.json at the same version is authoritative: a hint whose path is
 // absent there (a service's custom code reshapes the served schema) is
 // skipped and listed on stdout, and a path that names a non-string
@@ -41,6 +50,10 @@
 //   --source-dir=<dir>  read an already-extracted source tree (its
 //                       internal/services) instead of downloading the tag
 //                       tarball from codeload.github.com.
+//   --sdk-dir=<dir>     hashicorp/aws only: read aws-sdk-go-v2
+//                       `service/<svc>/types/enums.go` from <dir> instead of
+//                       downloading them from raw.githubusercontent.com at
+//                       the provider's go.mod versions.
 //
 // Exit codes: 0 success, 64 usage error, 65 a hint names a non-string
 // attribute or schema.go does not scan, 69 download / extraction failure.
@@ -50,6 +63,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+
+import 'provider_hints_aws.dart';
 
 const _exitUsage = 64;
 const _exitData = 65;
@@ -71,15 +86,15 @@ final class GoEnumHint {
   String get dotted => path.join('.');
 }
 
-enum _Tok { string, ident, punct }
+enum GoTok { string, ident, punct }
 
-typedef _Token = ({_Tok kind, String text});
+typedef GoToken = ({GoTok kind, String text});
 
 /// Tokenizes Go source into string literals (decoded), identifiers and
 /// single-character punctuation; comments, numbers and whitespace are
 /// dropped. Enough for Stainless's schema literals, not a Go parser.
-List<_Token> _tokenize(String src) {
-  final out = <_Token>[];
+List<GoToken> tokenizeGo(String src) {
+  final out = <GoToken>[];
   var i = 0;
   bool isIdentStart(int c) =>
       (c >= 0x41 && c <= 0x5a) || (c >= 0x61 && c <= 0x7a) || c == 0x5f;
@@ -118,7 +133,7 @@ List<_Token> _tokenize(String src) {
         }
       }
       i++;
-      out.add((kind: _Tok.string, text: buf.toString()));
+      out.add((kind: GoTok.string, text: buf.toString()));
     } else if (c == 0x27) {
       i++;
       while (i < src.length && src[i] != "'") {
@@ -127,14 +142,14 @@ List<_Token> _tokenize(String src) {
       i++;
     } else if (c == 0x60) {
       final end = src.indexOf('`', i + 1);
-      out.add((kind: _Tok.string, text: src.substring(i + 1, end)));
+      out.add((kind: GoTok.string, text: src.substring(i + 1, end)));
       i = end + 1;
     } else if (isIdentStart(c)) {
       final start = i;
       while (i < src.length && isIdentPart(src.codeUnitAt(i))) {
         i++;
       }
-      out.add((kind: _Tok.ident, text: src.substring(start, i)));
+      out.add((kind: GoTok.ident, text: src.substring(start, i)));
     } else if (c >= 0x30 && c <= 0x39) {
       while (
           i < src.length && (isIdentPart(src.codeUnitAt(i)) || src[i] == '.')) {
@@ -143,39 +158,39 @@ List<_Token> _tokenize(String src) {
     } else if (' \t\r\n'.contains(src[i])) {
       i++;
     } else {
-      out.add((kind: _Tok.punct, text: src[i]));
+      out.add((kind: GoTok.punct, text: src[i]));
       i++;
     }
   }
   return out;
 }
 
-const _closers = {'{': '}', '(': ')', '[': ']'};
-final _schemaNode = RegExp(r'(Attribute|Block)$');
+const goClosers = {'{': '}', '(': ')', '[': ']'};
+final goSchemaNode = RegExp(r'(Attribute|Block)$');
 
 /// Scans one `schema.go` for enum validators under attribute keys. A
 /// frame opens at `"key": pkg.SomethingAttribute{` (or `...Block{`); the
 /// keys of the open frames are the hint's path.
 List<GoEnumHint> scanSchemaGo(String src) {
-  final toks = _tokenize(src);
+  final toks = tokenizeGo(src);
   final frames = <({String? key, String closer})>[];
   final byPath = <String, GoEnumHint>{};
   bool punct(int i, String t) =>
-      i < toks.length && toks[i].kind == _Tok.punct && toks[i].text == t;
+      i < toks.length && toks[i].kind == GoTok.punct && toks[i].text == t;
   bool ident(int i, [String? t]) =>
       i < toks.length &&
-      toks[i].kind == _Tok.ident &&
+      toks[i].kind == GoTok.ident &&
       (t == null || toks[i].text == t);
 
   var i = 0;
   while (i < toks.length) {
     final t = toks[i];
-    if (t.kind == _Tok.string &&
+    if (t.kind == GoTok.string &&
         punct(i + 1, ':') &&
         ident(i + 2) &&
         punct(i + 3, '.') &&
         ident(i + 4) &&
-        _schemaNode.hasMatch(toks[i + 4].text) &&
+        goSchemaNode.hasMatch(toks[i + 4].text) &&
         punct(i + 5, '{')) {
       frames.add((key: t.text, closer: '}'));
       i += 6;
@@ -191,9 +206,9 @@ List<GoEnumHint> scanSchemaGo(String src) {
       var j = i + 4;
       for (; j < toks.length && depth > 0; j++) {
         final u = toks[j];
-        if (u.kind == _Tok.punct && _closers.containsKey(u.text)) depth++;
-        if (u.kind == _Tok.punct && _closers.containsValue(u.text)) depth--;
-        if (u.kind == _Tok.string && depth == 1) values.add(u.text);
+        if (u.kind == GoTok.punct && goClosers.containsKey(u.text)) depth++;
+        if (u.kind == GoTok.punct && goClosers.containsValue(u.text)) depth--;
+        if (u.kind == GoTok.string && depth == 1) values.add(u.text);
       }
       final path = [
         for (final f in frames)
@@ -212,11 +227,11 @@ List<GoEnumHint> scanSchemaGo(String src) {
       i = j;
       continue;
     }
-    if (t.kind == _Tok.punct) {
-      final closer = _closers[t.text];
+    if (t.kind == GoTok.punct) {
+      final closer = goClosers[t.text];
       if (closer != null) {
         frames.add((key: null, closer: closer));
-      } else if (_closers.containsValue(t.text)) {
+      } else if (goClosers.containsValue(t.text)) {
         if (frames.isEmpty || frames.last.closer != t.text) {
           throw FormatException('unbalanced "${t.text}" in schema.go');
         }
@@ -291,7 +306,7 @@ List<({File schema, File typeName})> resourceSources(Directory dir) {
   return [for (final f in files) (schema: f, typeName: f)];
 }
 
-enum HintResolution { string, missing, notString }
+enum HintResolution { string, missing, map, notString }
 
 /// Whether [path] names a string (or list / set of string) attribute of
 /// the schema.json resource [block].
@@ -311,7 +326,10 @@ HintResolution resolveHint(Map<String, dynamic> block, List<String> path) {
               type.length == 2 &&
               (type[0] == 'list' || type[0] == 'set') &&
               type[1] == 'string');
-      return stringish ? HintResolution.string : HintResolution.notString;
+      if (stringish) return HintResolution.string;
+      return type is List && type.first == 'map'
+          ? HintResolution.map
+          : HintResolution.notString;
     }
     final nested = (attr?['nested_type'] as Map?)?.cast<String, dynamic>();
     final blockBody =
@@ -372,12 +390,16 @@ String renderHintsYaml({
   return buf.toString();
 }
 
-String _readme({required String repo, required String schemaDir}) => '''
+String _readme({
+  required String repo,
+  required String schemaDir,
+  required bool aws,
+}) =>
+    '''
 # Provider enum hints — $repo
 
 One file per resource type: the enum value sets the provider's Go source
-enforces (`stringvalidator.OneOf` / `OneOfCaseInsensitive` in the resource
-schemas under `internal/services/`), as a Magic Modules YAML subset
+enforces (${aws ? _awsSources : _frameworkSources}), as a Magic Modules YAML subset
 (`properties[].api_name` / `enum_values`). `terradart wrap
 --provider-enums` merges them into the schema IR (top-level attributes)
 and the nested helper types. `provider_version` must match
@@ -392,6 +414,15 @@ dart tool/extract_provider_hints.dart \\
   --schema-dir=$schemaDir
 ```
 ''';
+
+const _frameworkSources =
+    '`stringvalidator.OneOf` / `OneOfCaseInsensitive` in the resource\n'
+    'schemas under `internal/services/`';
+const _awsSources = '`enum.Validate[T]`, `fwtypes.StringEnumType[T]`,\n'
+    '`validation.StringInSlice` and `stringvalidator.OneOf` in the resource\n'
+    'schemas under `internal/service/`, with `T`\'s members read from the\n'
+    'aws-sdk-go-v2 `types/enums.go` at the version the provider\'s `go.mod`\n'
+    'requires';
 
 Never _fail(int code, String message) {
   stderr.writeln('extract_provider_hints: $message');
@@ -426,6 +457,7 @@ Future<void> main(List<String> args) async {
   String? version;
   String? schemaDir;
   String? sourceDir;
+  String? sdkDir;
   for (final a in args) {
     if (a.startsWith('--repo=')) {
       repo = a.substring(7);
@@ -435,6 +467,8 @@ Future<void> main(List<String> args) async {
       schemaDir = a.substring(13);
     } else if (a.startsWith('--source-dir=')) {
       sourceDir = a.substring(13);
+    } else if (a.startsWith('--sdk-dir=')) {
+      sdkDir = a.substring(10);
     } else {
       _fail(_exitUsage, 'unknown argument $a');
     }
@@ -458,9 +492,50 @@ Future<void> main(List<String> args) async {
 
   final root =
       sourceDir != null ? Directory(sourceDir) : await _download(repo, version);
-  final services = Directory(p.join(root.path, 'internal', 'services'));
-  if (!services.existsSync()) {
-    _fail(_exitFetch, 'no internal/services under ${root.path}');
+  final aws = isAwsProviderSource(root);
+  final found = <String, ({String sourcePath, List<GoEnumHint> hints})>{};
+  if (aws) {
+    var sdk = sdkDir;
+    if (sdk == null) {
+      sdk = (await Directory.systemTemp.createTemp('aws_sdk_enums_')).path;
+      try {
+        await downloadAwsSdkEnums(awsSdkTypesModules(root), sdk);
+      } on IOException catch (e) {
+        _fail(_exitFetch, 'aws-sdk-go-v2 enums: $e');
+      }
+    }
+    final scan = scanAwsProvider(root, sdkDir: sdk);
+    found.addAll(scan.byType);
+    print('extract_provider_hints: ${scan.validators} value-set validator(s) '
+        'in resource schemas, ${scan.unresolved} not evaluable (dropped); '
+        '${scan.openSets} Any(...) alternative(s) skipped');
+  } else {
+    final services = Directory(p.join(root.path, 'internal', 'services'));
+    if (!services.existsSync()) {
+      _fail(_exitFetch, 'no internal/services under ${root.path}');
+    }
+    final dirs = services.listSync().whereType<Directory>().toList()
+      ..sort((a, b) => a.path.compareTo(b.path));
+    for (final dir in dirs) {
+      for (final source in resourceSources(dir)) {
+        final types = resourceTypeNames(
+          source.typeName.readAsStringSync(),
+          provider: provider,
+          knownTypes: resources.keys,
+        );
+        if (types.isEmpty) continue;
+        final sourcePath = p.relative(source.schema.path, from: root.path);
+        final List<GoEnumHint> hints;
+        try {
+          hints = scanSchemaGo(source.schema.readAsStringSync());
+        } on FormatException catch (e) {
+          _fail(_exitData, '$sourcePath: ${e.message}');
+        }
+        for (final type in types) {
+          found[type] = (sourcePath: sourcePath, hints: hints);
+        }
+      }
+    }
   }
 
   final out = Directory(p.join(schemaDir, 'hints'));
@@ -471,49 +546,34 @@ Future<void> main(List<String> args) async {
   final skipped = <String>[];
   var files = 0;
   var hintCount = 0;
-  final dirs = services.listSync().whereType<Directory>().toList()
-    ..sort((a, b) => a.path.compareTo(b.path));
-  for (final dir in dirs) {
-    for (final source in resourceSources(dir)) {
-      final types = resourceTypeNames(
-        source.typeName.readAsStringSync(),
-        provider: provider,
-        knownTypes: resources.keys,
-      ).where(resources.containsKey);
-      if (types.isEmpty) continue;
-      final sourcePath = p.relative(source.schema.path, from: root.path);
-      final List<GoEnumHint> hints;
-      try {
-        hints = scanSchemaGo(source.schema.readAsStringSync());
-      } on FormatException catch (e) {
-        _fail(_exitData, '$sourcePath: ${e.message}');
-      }
-      for (final type in types) {
-        final block = resources[type]!;
-        final kept = <GoEnumHint>[];
-        for (final h in hints) {
-          switch (resolveHint(block, h.path)) {
-            case HintResolution.string:
-              kept.add(h);
-            case HintResolution.missing:
-              skipped.add('$type.${h.dotted}');
-            case HintResolution.notString:
-              notString.add('$type.${h.dotted}');
-          }
-        }
-        if (kept.isEmpty) continue;
-        File(p.join(out.path, '$type.yaml')).writeAsStringSync(
-          renderHintsYaml(
-            repo: repo,
-            version: version,
-            sourcePath: sourcePath,
-            hints: kept,
-          ),
-        );
-        files++;
-        hintCount += kept.length;
+  for (final type in found.keys.toList()..sort()) {
+    final block = resources[type];
+    if (block == null) continue;
+    final (:sourcePath, :hints) = found[type]!;
+    final kept = <GoEnumHint>[];
+    for (final h in hints) {
+      switch (resolveHint(block, h.path)) {
+        case HintResolution.string:
+          kept.add(h);
+        case HintResolution.missing:
+          skipped.add('$type.${h.dotted}');
+        case HintResolution.map:
+          skipped.add('$type.${h.dotted} (a map: the set constrains keys)');
+        case HintResolution.notString:
+          notString.add('$type.${h.dotted}');
       }
     }
+    if (kept.isEmpty) continue;
+    File(p.join(out.path, '$type.yaml')).writeAsStringSync(
+      renderHintsYaml(
+        repo: repo,
+        version: version,
+        sourcePath: sourcePath,
+        hints: kept,
+      ),
+    );
+    files++;
+    hintCount += kept.length;
   }
   if (notString.isNotEmpty) {
     out.deleteSync(recursive: true);
@@ -526,8 +586,9 @@ Future<void> main(List<String> args) async {
   for (final s in skipped) {
     print('skipped (not in schema.json): $s');
   }
-  File(p.join(out.path, 'README.md'))
-      .writeAsStringSync(_readme(repo: repo, schemaDir: schemaDir));
+  File(p.join(out.path, 'README.md')).writeAsStringSync(
+    _readme(repo: repo, schemaDir: schemaDir, aws: aws),
+  );
   print('extract_provider_hints: wrote $hintCount enum hint(s) for $files '
       'resource(s) to ${out.path}');
 }

@@ -68,11 +68,28 @@ final class ConfigConfigurationRecorderRecordingGroupRecordingStrategy {
     this.useOnly,
   });
 
-  final TfArg<String>? useOnly;
+  final TfArg<
+    ConfigConfigurationRecorderRecordingGroupRecordingStrategyUseOnly
+  >?
+  useOnly;
 
   Map<String, Object?> encode() => {
     if (useOnly != null) 'use_only': useOnly!.toTfJson(),
   };
+}
+
+/// `use_only` — derived from the provider schema description.
+enum ConfigConfigurationRecorderRecordingGroupRecordingStrategyUseOnly
+    implements TerraformEnum {
+  allSupportedResourceTypes('ALL_SUPPORTED_RESOURCE_TYPES'),
+  inclusionByResourceTypes('INCLUSION_BY_RESOURCE_TYPES'),
+  exclusionByResourceTypes('EXCLUSION_BY_RESOURCE_TYPES');
+
+  const ConfigConfigurationRecorderRecordingGroupRecordingStrategyUseOnly(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `recording_mode` block of
@@ -84,7 +101,8 @@ final class ConfigConfigurationRecorderRecordingMode {
     this.recordingModeOverride,
   });
 
-  final TfArg<String>? recordingFrequency;
+  final TfArg<ConfigConfigurationRecorderRecordingModeRecordingFrequency>?
+  recordingFrequency;
 
   final ConfigConfigurationRecorderRecordingModeRecordingModeOverride?
   recordingModeOverride;
@@ -95,6 +113,19 @@ final class ConfigConfigurationRecorderRecordingMode {
     if (recordingModeOverride != null)
       'recording_mode_override': recordingModeOverride!.encode(),
   };
+}
+
+/// `recording_frequency` — derived from the provider schema description.
+enum ConfigConfigurationRecorderRecordingModeRecordingFrequency
+    implements TerraformEnum {
+  continuous('CONTINUOUS'),
+  daily('DAILY');
+
+  const ConfigConfigurationRecorderRecordingModeRecordingFrequency(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `recording_mode.recording_mode_override` block of
@@ -109,7 +140,10 @@ final class ConfigConfigurationRecorderRecordingModeRecordingModeOverride {
 
   final TfArg<String>? description;
 
-  final TfArg<String> recordingFrequency;
+  final TfArg<
+    ConfigConfigurationRecorderRecordingModeRecordingModeOverrideRecordingFrequency
+  >
+  recordingFrequency;
 
   final TfArg<List<Object?>> resourceTypes;
 
@@ -118,6 +152,19 @@ final class ConfigConfigurationRecorderRecordingModeRecordingModeOverride {
     'recording_frequency': recordingFrequency.toTfJson(),
     'resource_types': resourceTypes.toTfJson(),
   };
+}
+
+/// `recording_frequency` — derived from the provider schema description.
+enum ConfigConfigurationRecorderRecordingModeRecordingModeOverrideRecordingFrequency
+    implements TerraformEnum {
+  continuous('CONTINUOUS'),
+  daily('DAILY');
+
+  const ConfigConfigurationRecorderRecordingModeRecordingModeOverrideRecordingFrequency(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_config_configuration_recorder`.

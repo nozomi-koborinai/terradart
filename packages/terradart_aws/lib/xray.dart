@@ -3,7 +3,8 @@
 /// AWS X-Ray.
 library;
 
-export 'src/xray/aws_xray_encryption_config.dart' show AwsXrayEncryptionConfig;
+export 'src/xray/aws_xray_encryption_config.dart'
+    show AwsXrayEncryptionConfig, XrayEncryptionConfigType;
 export 'src/xray/aws_xray_group.dart'
     show AwsXrayGroup, XrayGroupInsightsConfiguration;
 export 'src/xray/aws_xray_indexing_rule.dart'
@@ -14,4 +15,4 @@ export 'src/xray/aws_xray_indexing_rule.dart'
 export 'src/xray/aws_xray_resource_policy.dart' show AwsXrayResourcePolicy;
 export 'src/xray/aws_xray_sampling_rule.dart' show AwsXraySamplingRule;
 export 'src/xray/aws_xray_trace_segment_destination.dart'
-    show AwsXrayTraceSegmentDestination;
+    show AwsXrayTraceSegmentDestination, XrayTraceSegmentDestinationDestination;

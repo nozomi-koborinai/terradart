@@ -7,6 +7,36 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dynamodb_table_export`.
 const Set<String> _awsDynamodbTableExportSensitive = <String>{};
 
+/// Dynamodb Table Export Export enum for `export_format`.
+enum DynamodbTableExportExportFormat implements TerraformEnum {
+  dynamodbJson('DYNAMODB_JSON'),
+  ion('ION');
+
+  const DynamodbTableExportExportFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dynamodb Table Export Export enum for `export_type`.
+enum DynamodbTableExportExportType implements TerraformEnum {
+  fullExport('FULL_EXPORT'),
+  incrementalExport('INCREMENTAL_EXPORT');
+
+  const DynamodbTableExportExportType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dynamodb Table Export S3 Sse enum for `s3_sse_algorithm`.
+enum DynamodbTableExportS3SseAlgorithm implements TerraformEnum {
+  aes256('AES256'),
+  kms('KMS');
+
+  const DynamodbTableExportS3SseAlgorithm(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `incremental_export_specification` block of
 /// `aws_dynamodb_table_export` (derived from provider schema).
 @immutable
@@ -21,7 +51,8 @@ final class DynamodbTableExportIncrementalExportSpecification {
 
   final TfArg<String>? exportToTime;
 
-  final TfArg<String>? exportViewType;
+  final TfArg<DynamodbTableExportIncrementalExportSpecificationExportViewType>?
+  exportViewType;
 
   Map<String, Object?> encode() => {
     if (exportFromTime != null) 'export_from_time': exportFromTime!.toTfJson(),
@@ -30,20 +61,33 @@ final class DynamodbTableExportIncrementalExportSpecification {
   };
 }
 
+/// `export_view_type` — derived from the provider schema description.
+enum DynamodbTableExportIncrementalExportSpecificationExportViewType
+    implements TerraformEnum {
+  newImage('NEW_IMAGE'),
+  newAndOldImages('NEW_AND_OLD_IMAGES');
+
+  const DynamodbTableExportIncrementalExportSpecificationExportViewType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dynamodb_table_export`.
 final class AwsDynamodbTableExport extends Resource {
   static const String tfType = 'aws_dynamodb_table_export';
 
   AwsDynamodbTableExport({
     required super.localName,
-    TfArg<String>? exportFormat,
+    TfArg<DynamodbTableExportExportFormat>? exportFormat,
     TfArg<String>? exportTime,
-    TfArg<String>? exportType,
+    TfArg<DynamodbTableExportExportType>? exportType,
     TfArg<String>? region,
     required TfArg<String> s3Bucket,
     TfArg<String>? s3BucketOwner,
     TfArg<String>? s3Prefix,
-    TfArg<String>? s3SseAlgorithm,
+    TfArg<DynamodbTableExportS3SseAlgorithm>? s3SseAlgorithm,
     TfArg<String>? s3SseKmsKeyId,
     required TfArg<String> tableArn,
     DynamodbTableExportIncrementalExportSpecification?

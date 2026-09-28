@@ -3,28 +3,38 @@
 /// AWS Bedrock Agents and knowledge bases.
 library;
 
-export 'src/bedrockagent/aws_bedrockagent_agent.dart' show AwsBedrockagentAgent;
+export 'src/bedrockagent/aws_bedrockagent_agent.dart'
+    show AwsBedrockagentAgent, BedrockagentAgentAgentCollaboration;
 export 'src/bedrockagent/aws_bedrockagent_agent_action_group.dart'
     show
         AwsBedrockagentAgentActionGroup,
         BedrockagentAgentActionGroupActionGroupExecutor,
+        BedrockagentAgentActionGroupActionGroupExecutorCustomControl,
+        BedrockagentAgentActionGroupActionGroupState,
         BedrockagentAgentActionGroupApiSchema,
         BedrockagentAgentActionGroupApiSchemaS3,
         BedrockagentAgentActionGroupFunctionSchema,
         BedrockagentAgentActionGroupFunctionSchemaMemberFunctions,
         BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctions,
-        BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParameters;
+        BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParameters,
+        BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParametersType,
+        BedrockagentAgentActionGroupParentActionGroupSignature;
 export 'src/bedrockagent/aws_bedrockagent_agent_alias.dart'
     show AwsBedrockagentAgentAlias;
 export 'src/bedrockagent/aws_bedrockagent_agent_collaborator.dart'
     show
         AwsBedrockagentAgentCollaborator,
-        BedrockagentAgentCollaboratorAgentDescriptor;
+        BedrockagentAgentCollaboratorAgentDescriptor,
+        BedrockagentAgentCollaboratorRelayConversationHistory;
 export 'src/bedrockagent/aws_bedrockagent_agent_knowledge_base_association.dart'
-    show AwsBedrockagentAgentKnowledgeBaseAssociation;
+    show
+        AwsBedrockagentAgentKnowledgeBaseAssociation,
+        BedrockagentAgentKnowledgeBaseAssociationAgentVersion,
+        BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState;
 export 'src/bedrockagent/aws_bedrockagent_data_source.dart'
     show
         AwsBedrockagentDataSource,
+        BedrockagentDataSourceDataDeletionPolicy,
         BedrockagentDataSourceDataSourceConfiguration,
         BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration,
         BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfiguration,
@@ -32,12 +42,18 @@ export 'src/bedrockagent/aws_bedrockagent_data_source.dart'
         BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter,
         BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters,
         BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfiguration,
+        BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationAuthType,
+        BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationHostType,
         BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfiguration,
         BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfiguration,
+        BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfigurationDeletionProtectionStatus,
         BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfiguration,
         BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfiguration,
+        BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfigurationAudioExtractionStatus,
         BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfiguration,
+        BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfigurationImageExtractionStatus,
         BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfiguration,
+        BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfigurationVideoExtractionStatus,
         BedrockagentDataSourceDataSourceConfigurationS3Configuration,
         BedrockagentDataSourceDataSourceConfigurationSalesforceConfiguration,
         BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfiguration,
@@ -45,21 +61,27 @@ export 'src/bedrockagent/aws_bedrockagent_data_source.dart'
         BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter,
         BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters,
         BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfiguration,
+        BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfigurationAuthType,
         BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration,
         BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfiguration,
         BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfiguration,
         BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilter,
         BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationCrawlerConfigurationFilterConfigurationPatternObjectFilterFilters,
         BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfiguration,
+        BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationAuthType,
+        BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationHostType,
+        BedrockagentDataSourceDataSourceConfigurationType,
         BedrockagentDataSourceDataSourceConfigurationWebConfiguration,
         BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfiguration,
         BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationCrawlerLimits,
+        BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationScope,
         BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfiguration,
         BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfigurationUrlConfiguration,
         BedrockagentDataSourceDataSourceConfigurationWebConfigurationSourceConfigurationUrlConfigurationSeedUrls,
         BedrockagentDataSourceServerSideEncryptionConfiguration,
         BedrockagentDataSourceVectorIngestionConfiguration,
         BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration,
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingStrategy,
         BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfiguration,
         BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfiguration,
         BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfigurationLevelConfiguration,
@@ -68,12 +90,16 @@ export 'src/bedrockagent/aws_bedrockagent_data_source.dart'
         BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationIntermediateStorage,
         BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationIntermediateStorageS3Location,
         BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformation,
+        BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationStepToApply,
         BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationTransformationFunction,
         BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationTransformationFunctionTransformationLambdaConfiguration,
         BedrockagentDataSourceVectorIngestionConfigurationParsingConfiguration,
         BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfiguration,
+        BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfigurationParsingModality,
         BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfiguration,
-        BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingPrompt;
+        BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingModality,
+        BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingPrompt,
+        BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationParsingStrategy;
 export 'src/bedrockagent/aws_bedrockagent_flow.dart'
     show
         AwsBedrockagentFlow,
@@ -82,6 +108,7 @@ export 'src/bedrockagent/aws_bedrockagent_flow.dart'
         BedrockagentFlowDefinitionConnectionConfiguration,
         BedrockagentFlowDefinitionConnectionConfigurationConditional,
         BedrockagentFlowDefinitionConnectionConfigurationData,
+        BedrockagentFlowDefinitionConnectionType,
         BedrockagentFlowDefinitionNode,
         BedrockagentFlowDefinitionNodeConfiguration,
         BedrockagentFlowDefinitionNodeConfigurationAgent,
@@ -89,6 +116,7 @@ export 'src/bedrockagent/aws_bedrockagent_flow.dart'
         BedrockagentFlowDefinitionNodeConfigurationCondition,
         BedrockagentFlowDefinitionNodeConfigurationConditionCondition,
         BedrockagentFlowDefinitionNodeConfigurationInlineCode,
+        BedrockagentFlowDefinitionNodeConfigurationInlineCodeLanguage,
         BedrockagentFlowDefinitionNodeConfigurationInput,
         BedrockagentFlowDefinitionNodeConfigurationIterator,
         BedrockagentFlowDefinitionNodeConfigurationKnowledgeBase,
@@ -110,11 +138,15 @@ export 'src/bedrockagent/aws_bedrockagent_flow.dart'
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessage,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContent,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePoint,
+        BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointType,
+        BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageRole,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystem,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePoint,
+        BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointType,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfiguration,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationTool,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePoint,
+        BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointType,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoice,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAny,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAuto,
@@ -123,7 +155,9 @@ export 'src/bedrockagent/aws_bedrockagent_flow.dart'
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolToolSpecInputSchema,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationText,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationTextCachePoint,
+        BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationTextCachePointType,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationTextInputVariable,
+        BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateType,
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationResource,
         BedrockagentFlowDefinitionNodeConfigurationRetrieval,
         BedrockagentFlowDefinitionNodeConfigurationRetrievalServiceConfiguration,
@@ -132,7 +166,11 @@ export 'src/bedrockagent/aws_bedrockagent_flow.dart'
         BedrockagentFlowDefinitionNodeConfigurationStorageServiceConfiguration,
         BedrockagentFlowDefinitionNodeConfigurationStorageServiceConfigurationS3,
         BedrockagentFlowDefinitionNodeInput,
-        BedrockagentFlowDefinitionNodeOutput;
+        BedrockagentFlowDefinitionNodeInputCategory,
+        BedrockagentFlowDefinitionNodeInputType,
+        BedrockagentFlowDefinitionNodeOutput,
+        BedrockagentFlowDefinitionNodeOutputType,
+        BedrockagentFlowDefinitionNodeType;
 export 'src/bedrockagent/aws_bedrockagent_knowledge_base.dart'
     show
         AwsBedrockagentKnowledgeBase,
@@ -143,34 +181,46 @@ export 'src/bedrockagent/aws_bedrockagent_knowledge_base.dart'
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationAudio,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationAudioSegmentationConfiguration,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationEmbeddingDataType,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationVideo,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationVideoSegmentationConfiguration,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationEmbeddingModelType,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeBaseConfigurationServerSideEncryptionConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationProvisionedConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationProvisionedConfigurationAuthConfiguration,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationProvisionedConfigurationAuthConfigurationType,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationServerlessConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationServerlessConfigurationAuthConfiguration,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationServerlessConfigurationAuthConfigurationType,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryEngineConfigurationType,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContext,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextCuratedQuery,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextTable,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextTableColumn,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextTableColumnInclusion,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationQueryGenerationConfigurationGenerationContextTableInclusion,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationStorageConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationStorageConfigurationAwsDataCatalogConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationStorageConfigurationRedshiftConfiguration,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationRedshiftConfigurationStorageConfigurationType,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationSqlKnowledgeBaseConfigurationType,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationType,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationAudio,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationAudioSegmentationConfiguration,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationEmbeddingDataType,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationVideo,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationEmbeddingModelConfigurationBedrockEmbeddingModelConfigurationVideoSegmentationConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationSupplementalDataStorageConfiguration,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationSupplementalDataStorageConfigurationStorageLocation,
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationSupplementalDataStorageConfigurationStorageLocationS3Location,
+        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationVectorKnowledgeBaseConfigurationSupplementalDataStorageConfigurationStorageLocationType,
         BedrockagentKnowledgeBaseStorageConfiguration,
         BedrockagentKnowledgeBaseStorageConfigurationMongoDbAtlasConfiguration,
         BedrockagentKnowledgeBaseStorageConfigurationMongoDbAtlasConfigurationFieldMapping,
@@ -186,7 +236,8 @@ export 'src/bedrockagent/aws_bedrockagent_knowledge_base.dart'
         BedrockagentKnowledgeBaseStorageConfigurationRdsConfigurationFieldMapping,
         BedrockagentKnowledgeBaseStorageConfigurationRedisEnterpriseCloudConfiguration,
         BedrockagentKnowledgeBaseStorageConfigurationRedisEnterpriseCloudConfigurationFieldMapping,
-        BedrockagentKnowledgeBaseStorageConfigurationS3VectorsConfiguration;
+        BedrockagentKnowledgeBaseStorageConfigurationS3VectorsConfiguration,
+        BedrockagentKnowledgeBaseStorageConfigurationType;
 export 'src/bedrockagent/aws_bedrockagent_prompt.dart'
     show
         AwsBedrockagentPrompt,
@@ -202,11 +253,15 @@ export 'src/bedrockagent/aws_bedrockagent_prompt.dart'
         BedrockagentPromptVariantTemplateConfigurationChatMessage,
         BedrockagentPromptVariantTemplateConfigurationChatMessageContent,
         BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePoint,
+        BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointType,
+        BedrockagentPromptVariantTemplateConfigurationChatMessageRole,
         BedrockagentPromptVariantTemplateConfigurationChatSystem,
         BedrockagentPromptVariantTemplateConfigurationChatSystemCachePoint,
+        BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointType,
         BedrockagentPromptVariantTemplateConfigurationChatToolConfiguration,
         BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool,
         BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePoint,
+        BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePointType,
         BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice,
         BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAny,
         BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceAuto,
@@ -215,4 +270,6 @@ export 'src/bedrockagent/aws_bedrockagent_prompt.dart'
         BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolToolSpecInputSchema,
         BedrockagentPromptVariantTemplateConfigurationText,
         BedrockagentPromptVariantTemplateConfigurationTextCachePoint,
-        BedrockagentPromptVariantTemplateConfigurationTextInputVariable;
+        BedrockagentPromptVariantTemplateConfigurationTextCachePointType,
+        BedrockagentPromptVariantTemplateConfigurationTextInputVariable,
+        BedrockagentPromptVariantTemplateType;

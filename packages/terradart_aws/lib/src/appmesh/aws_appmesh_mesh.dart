@@ -30,9 +30,19 @@ final class AppmeshMeshSpec {
 final class AppmeshMeshSpecEgressFilter {
   const AppmeshMeshSpecEgressFilter({this.type});
 
-  final TfArg<String>? type;
+  final TfArg<AppmeshMeshSpecEgressFilterType>? type;
 
   Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum AppmeshMeshSpecEgressFilterType implements TerraformEnum {
+  allowAll('ALLOW_ALL'),
+  dropAll('DROP_ALL');
+
+  const AppmeshMeshSpecEgressFilterType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.service_discovery` block of
@@ -41,11 +51,23 @@ final class AppmeshMeshSpecEgressFilter {
 final class AppmeshMeshSpecServiceDiscovery {
   const AppmeshMeshSpecServiceDiscovery({this.ipPreference});
 
-  final TfArg<String>? ipPreference;
+  final TfArg<AppmeshMeshSpecServiceDiscoveryIpPreference>? ipPreference;
 
   Map<String, Object?> encode() => {
     if (ipPreference != null) 'ip_preference': ipPreference!.toTfJson(),
   };
+}
+
+/// `ip_preference` — derived from the provider schema description.
+enum AppmeshMeshSpecServiceDiscoveryIpPreference implements TerraformEnum {
+  ipv6Preferred('IPv6_PREFERRED'),
+  ipv4Preferred('IPv4_PREFERRED'),
+  ipv4Only('IPv4_ONLY'),
+  ipv6Only('IPv6_ONLY');
+
+  const AppmeshMeshSpecServiceDiscoveryIpPreference(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_appmesh_mesh`.

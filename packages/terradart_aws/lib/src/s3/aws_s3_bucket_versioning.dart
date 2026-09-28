@@ -16,7 +16,7 @@ final class S3BucketVersioningVersioningConfiguration {
     required this.status,
   });
 
-  final TfArg<String>? mfaDelete;
+  final TfArg<S3BucketVersioningVersioningConfigurationMfaDelete>? mfaDelete;
 
   final TfArg<String> status;
 
@@ -24,6 +24,17 @@ final class S3BucketVersioningVersioningConfiguration {
     if (mfaDelete != null) 'mfa_delete': mfaDelete!.toTfJson(),
     'status': status.toTfJson(),
   };
+}
+
+/// `mfa_delete` — derived from the provider schema description.
+enum S3BucketVersioningVersioningConfigurationMfaDelete
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const S3BucketVersioningVersioningConfigurationMfaDelete(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_s3_bucket_versioning`.

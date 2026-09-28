@@ -13,11 +13,24 @@ const Set<String> _awsDatasyncLocationSmbSensitive = <String>{'password'};
 final class DatasyncLocationSmbMountOptions {
   const DatasyncLocationSmbMountOptions({this.version});
 
-  final TfArg<String>? version;
+  final TfArg<DatasyncLocationSmbMountOptionsVersion>? version;
 
   Map<String, Object?> encode() => {
     if (version != null) 'version': version!.toTfJson(),
   };
+}
+
+/// `version` — derived from the provider schema description.
+enum DatasyncLocationSmbMountOptionsVersion implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  smb2('SMB2'),
+  smb3('SMB3'),
+  smb1('SMB1'),
+  smb20('SMB2_0');
+
+  const DatasyncLocationSmbMountOptionsVersion(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_datasync_location_smb`.

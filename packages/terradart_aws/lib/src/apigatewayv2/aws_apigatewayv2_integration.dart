@@ -7,6 +7,60 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_apigatewayv2_integration`.
 const Set<String> _awsApigatewayv2IntegrationSensitive = <String>{};
 
+/// Apigatewayv2 Integration Connection enum for `connection_type`.
+enum Apigatewayv2IntegrationConnectionType implements TerraformEnum {
+  internet('INTERNET'),
+  vpcLink('VPC_LINK');
+
+  const Apigatewayv2IntegrationConnectionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Apigatewayv2 Integration Content Handling enum for `content_handling_strategy`.
+enum Apigatewayv2IntegrationContentHandlingStrategy implements TerraformEnum {
+  convertToBinary('CONVERT_TO_BINARY'),
+  convertToText('CONVERT_TO_TEXT');
+
+  const Apigatewayv2IntegrationContentHandlingStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Apigatewayv2 Integration Integration enum for `integration_type`.
+enum Apigatewayv2IntegrationIntegrationType implements TerraformEnum {
+  aws('AWS'),
+  http('HTTP'),
+  mock('MOCK'),
+  httpProxy('HTTP_PROXY'),
+  awsProxy('AWS_PROXY');
+
+  const Apigatewayv2IntegrationIntegrationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Apigatewayv2 Integration Passthrough enum for `passthrough_behavior`.
+enum Apigatewayv2IntegrationPassthroughBehavior implements TerraformEnum {
+  whenNoMatch('WHEN_NO_MATCH'),
+  never('NEVER'),
+  whenNoTemplates('WHEN_NO_TEMPLATES');
+
+  const Apigatewayv2IntegrationPassthroughBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Apigatewayv2 Integration Payload Format enum for `payload_format_version`.
+enum Apigatewayv2IntegrationPayloadFormatVersion implements TerraformEnum {
+  v1p0('1.0'),
+  v2p0('2.0');
+
+  const Apigatewayv2IntegrationPayloadFormatVersion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `response_parameters` block of
 /// `aws_apigatewayv2_integration` (derived from provider schema).
 @immutable
@@ -48,16 +102,17 @@ final class AwsApigatewayv2Integration extends Resource {
     required super.localName,
     required TfArg<String> apiId,
     TfArg<String>? connectionId,
-    TfArg<String>? connectionType,
-    TfArg<String>? contentHandlingStrategy,
+    TfArg<Apigatewayv2IntegrationConnectionType>? connectionType,
+    TfArg<Apigatewayv2IntegrationContentHandlingStrategy>?
+    contentHandlingStrategy,
     TfArg<String>? credentialsArn,
     TfArg<String>? description,
     TfArg<String>? integrationMethod,
     TfArg<String>? integrationSubtype,
-    required TfArg<String> integrationType,
+    required TfArg<Apigatewayv2IntegrationIntegrationType> integrationType,
     TfArg<String>? integrationUri,
-    TfArg<String>? passthroughBehavior,
-    TfArg<String>? payloadFormatVersion,
+    TfArg<Apigatewayv2IntegrationPassthroughBehavior>? passthroughBehavior,
+    TfArg<Apigatewayv2IntegrationPayloadFormatVersion>? payloadFormatVersion,
     TfArg<String>? region,
     TfArg<Map<String, String>>? requestParameters,
     TfArg<Map<String, String>>? requestTemplates,

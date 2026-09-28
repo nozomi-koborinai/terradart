@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ce_cost_allocation_tag`.
 const Set<String> _awsCeCostAllocationTagSensitive = <String>{};
 
+/// Ce Cost Allocation Tag enum for `status`.
+enum CeCostAllocationTagStatus implements TerraformEnum {
+  active('Active'),
+  inactive('Inactive');
+
+  const CeCostAllocationTagStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ce_cost_allocation_tag`.
 final class AwsCeCostAllocationTag extends Resource {
   static const String tfType = 'aws_ce_cost_allocation_tag';
 
   AwsCeCostAllocationTag({
     required super.localName,
-    required TfArg<String> status,
+    required TfArg<CeCostAllocationTagStatus> status,
     required TfArg<String> tagKey,
     super.lifecycle,
     super.dependsOn,

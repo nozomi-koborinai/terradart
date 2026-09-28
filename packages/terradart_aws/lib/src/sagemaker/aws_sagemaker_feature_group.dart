@@ -18,11 +18,12 @@ final class SagemakerFeatureGroupFeatureDefinition {
     this.collectionConfig,
   });
 
-  final TfArg<String>? collectionType;
+  final TfArg<SagemakerFeatureGroupFeatureDefinitionCollectionType>?
+  collectionType;
 
   final TfArg<String>? featureName;
 
-  final TfArg<String>? featureType;
+  final TfArg<SagemakerFeatureGroupFeatureDefinitionFeatureType>? featureType;
 
   final SagemakerFeatureGroupFeatureDefinitionCollectionConfig?
   collectionConfig;
@@ -34,6 +35,32 @@ final class SagemakerFeatureGroupFeatureDefinition {
     if (collectionConfig != null)
       'collection_config': collectionConfig!.encode(),
   };
+}
+
+/// `collection_type` — derived from the provider schema description.
+enum SagemakerFeatureGroupFeatureDefinitionCollectionType
+    implements TerraformEnum {
+  list('List'),
+  set('Set'),
+  vector('Vector');
+
+  const SagemakerFeatureGroupFeatureDefinitionCollectionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `feature_type` — derived from the provider schema description.
+enum SagemakerFeatureGroupFeatureDefinitionFeatureType
+    implements TerraformEnum {
+  integral('Integral'),
+  fractional('Fractional'),
+  string('String');
+
+  const SagemakerFeatureGroupFeatureDefinitionFeatureType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `feature_definition.collection_config` block of
@@ -80,7 +107,7 @@ final class SagemakerFeatureGroupOfflineStoreConfig {
 
   final TfArg<bool>? disableGlueTableCreation;
 
-  final TfArg<String>? tableFormat;
+  final TfArg<SagemakerFeatureGroupOfflineStoreConfigTableFormat>? tableFormat;
 
   final SagemakerFeatureGroupOfflineStoreConfigDataCatalogConfig?
   dataCatalogConfig;
@@ -95,6 +122,18 @@ final class SagemakerFeatureGroupOfflineStoreConfig {
       'data_catalog_config': dataCatalogConfig!.encode(),
     's3_storage_config': s3StorageConfig.encode(),
   };
+}
+
+/// `table_format` — derived from the provider schema description.
+enum SagemakerFeatureGroupOfflineStoreConfigTableFormat
+    implements TerraformEnum {
+  defaultCase('Default'),
+  glue('Glue'),
+  iceberg('Iceberg');
+
+  const SagemakerFeatureGroupOfflineStoreConfigTableFormat(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `offline_store_config.data_catalog_config` block of
@@ -157,7 +196,7 @@ final class SagemakerFeatureGroupOnlineStoreConfig {
 
   final TfArg<bool>? enableOnlineStore;
 
-  final TfArg<String>? storageType;
+  final TfArg<SagemakerFeatureGroupOnlineStoreConfigStorageType>? storageType;
 
   final SagemakerFeatureGroupOnlineStoreConfigSecurityConfig? securityConfig;
 
@@ -170,6 +209,18 @@ final class SagemakerFeatureGroupOnlineStoreConfig {
     if (securityConfig != null) 'security_config': securityConfig!.encode(),
     if (ttlDuration != null) 'ttl_duration': ttlDuration!.encode(),
   };
+}
+
+/// `storage_type` — derived from the provider schema description.
+enum SagemakerFeatureGroupOnlineStoreConfigStorageType
+    implements TerraformEnum {
+  standard('Standard'),
+  standardV2('Standard_V2'),
+  inmemory('InMemory');
+
+  const SagemakerFeatureGroupOnlineStoreConfigStorageType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `online_store_config.security_config` block of
@@ -194,7 +245,7 @@ final class SagemakerFeatureGroupOnlineStoreConfigTtlDuration {
     this.value,
   });
 
-  final TfArg<String>? unit;
+  final TfArg<SagemakerFeatureGroupOnlineStoreConfigTtlDurationUnit>? unit;
 
   final TfArg<num>? value;
 
@@ -202,6 +253,22 @@ final class SagemakerFeatureGroupOnlineStoreConfigTtlDuration {
     if (unit != null) 'unit': unit!.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum SagemakerFeatureGroupOnlineStoreConfigTtlDurationUnit
+    implements TerraformEnum {
+  seconds('Seconds'),
+  minutes('Minutes'),
+  hours('Hours'),
+  days('Days'),
+  weeks('Weeks');
+
+  const SagemakerFeatureGroupOnlineStoreConfigTtlDurationUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `throughput_config` block of
@@ -218,7 +285,8 @@ final class SagemakerFeatureGroupThroughputConfig {
 
   final TfArg<num>? provisionedWriteCapacityUnits;
 
-  final TfArg<String>? throughputMode;
+  final TfArg<SagemakerFeatureGroupThroughputConfigThroughputMode>?
+  throughputMode;
 
   Map<String, Object?> encode() => {
     if (provisionedReadCapacityUnits != null)
@@ -229,6 +297,19 @@ final class SagemakerFeatureGroupThroughputConfig {
           .toTfJson(),
     if (throughputMode != null) 'throughput_mode': throughputMode!.toTfJson(),
   };
+}
+
+/// `throughput_mode` — derived from the provider schema description.
+enum SagemakerFeatureGroupThroughputConfigThroughputMode
+    implements TerraformEnum {
+  ondemand('OnDemand'),
+  provisioned('Provisioned');
+
+  const SagemakerFeatureGroupThroughputConfigThroughputMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_sagemaker_feature_group`.

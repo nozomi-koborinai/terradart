@@ -6,20 +6,35 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iam_organizations_features`.
 const Set<String> _awsIamOrganizationsFeaturesSensitive = <String>{};
 
+/// Iam Organizations Features Enabled enum for `enabled_features`.
+enum IamOrganizationsFeaturesEnabledFeatures implements TerraformEnum {
+  rootcredentialsmanagement('RootCredentialsManagement'),
+  rootsessions('RootSessions');
+
+  const IamOrganizationsFeaturesEnabledFeatures(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_iam_organizations_features`.
 final class AwsIamOrganizationsFeatures extends Resource {
   static const String tfType = 'aws_iam_organizations_features';
 
   AwsIamOrganizationsFeatures({
     required super.localName,
-    required TfArg<List<String>> enabledFeatures,
+    required List<TfArg<IamOrganizationsFeaturesEnabledFeatures>>
+    enabledFeatures,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'enabled_features': enabledFeatures},
+         argMap: {
+           'enabled_features': TfArg.literal([
+             for (final e in enabledFeatures) e.toTfJson(),
+           ]),
+         },
        );
 
   @override

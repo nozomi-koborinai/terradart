@@ -20,7 +20,8 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfig {
 
   final TfArg<String>? monitoringJobDefinitionName;
 
-  final TfArg<String> monitoringType;
+  final TfArg<SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringType>
+  monitoringType;
 
   final SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinition?
   monitoringJobDefinition;
@@ -36,6 +37,21 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfig {
       'monitoring_job_definition': monitoringJobDefinition!.encode(),
     if (scheduleConfig != null) 'schedule_config': scheduleConfig!.encode(),
   };
+}
+
+/// `monitoring_type` — derived from the provider schema description.
+enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringType
+    implements TerraformEnum {
+  dataquality('DataQuality'),
+  modelquality('ModelQuality'),
+  modelbias('ModelBias'),
+  modelexplainability('ModelExplainability');
+
+  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition` block of
@@ -246,9 +262,15 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   final TfArg<num>? probabilityThresholdAttribute;
 
-  final TfArg<String>? s3DataDistributionType;
+  final TfArg<
+    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3DataDistributionType
+  >?
+  s3DataDistributionType;
 
-  final TfArg<String>? s3InputMode;
+  final TfArg<
+    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3InputMode
+  >?
+  s3InputMode;
 
   final TfArg<String>? startTimeOffset;
 
@@ -277,6 +299,32 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
       'start_time_offset': startTimeOffset!.toTfJson(),
     'dataset_format': datasetFormat.encode(),
   };
+}
+
+/// `s3_data_distribution_type` — derived from the provider schema description.
+enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3DataDistributionType
+    implements TerraformEnum {
+  fullyreplicated('FullyReplicated'),
+  shardedbys3key('ShardedByS3Key');
+
+  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3DataDistributionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `s3_input_mode` — derived from the provider schema description.
+enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3InputMode
+    implements TerraformEnum {
+  pipe('Pipe'),
+  file('File');
+
+  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsBatchTransformInputS3InputMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_inputs.batch_transform_input.dataset_format` block of
@@ -362,9 +410,15 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   final TfArg<num>? probabilityThresholdAttribute;
 
-  final TfArg<String>? s3DataDistributionType;
+  final TfArg<
+    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3DataDistributionType
+  >?
+  s3DataDistributionType;
 
-  final TfArg<String>? s3InputMode;
+  final TfArg<
+    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3InputMode
+  >?
+  s3InputMode;
 
   final TfArg<String>? startTimeOffset;
 
@@ -389,6 +443,32 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
     if (startTimeOffset != null)
       'start_time_offset': startTimeOffset!.toTfJson(),
   };
+}
+
+/// `s3_data_distribution_type` — derived from the provider schema description.
+enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3DataDistributionType
+    implements TerraformEnum {
+  fullyreplicated('FullyReplicated'),
+  shardedbys3key('ShardedByS3Key');
+
+  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3DataDistributionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `s3_input_mode` — derived from the provider schema description.
+enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3InputMode
+    implements TerraformEnum {
+  pipe('Pipe'),
+  file('File');
+
+  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringInputsEndpointInputS3InputMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_output_config` block of
@@ -437,7 +517,10 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
 
   final TfArg<String> localPath;
 
-  final TfArg<String>? s3UploadMode;
+  final TfArg<
+    SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputsS3OutputS3UploadMode
+  >?
+  s3UploadMode;
 
   final TfArg<String> s3Uri;
 
@@ -446,6 +529,19 @@ final class SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefi
     if (s3UploadMode != null) 's3_upload_mode': s3UploadMode!.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
   };
+}
+
+/// `s3_upload_mode` — derived from the provider schema description.
+enum SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputsS3OutputS3UploadMode
+    implements TerraformEnum {
+  continuous('Continuous'),
+  endofjob('EndOfJob');
+
+  const SagemakerMonitoringScheduleMonitoringScheduleConfigMonitoringJobDefinitionMonitoringOutputConfigMonitoringOutputsS3OutputS3UploadMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `monitoring_schedule_config.monitoring_job_definition.monitoring_resources` block of

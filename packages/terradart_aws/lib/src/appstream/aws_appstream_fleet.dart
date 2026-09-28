@@ -7,6 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appstream_fleet`.
 const Set<String> _awsAppstreamFleetSensitive = <String>{};
 
+/// Appstream Fleet Fleet enum for `fleet_type`.
+enum AppstreamFleetFleetType implements TerraformEnum {
+  alwaysOn('ALWAYS_ON'),
+  onDemand('ON_DEMAND'),
+  elastic('ELASTIC');
+
+  const AppstreamFleetFleetType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Appstream Fleet Stream enum for `stream_view`.
+enum AppstreamFleetStreamView implements TerraformEnum {
+  app('APP'),
+  desktop('DESKTOP');
+
+  const AppstreamFleetStreamView(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `compute_capacity` block of
 /// `aws_appstream_fleet` (derived from provider schema).
 @immutable
@@ -76,7 +97,7 @@ final class AwsAppstreamFleet extends Resource {
     TfArg<num>? disconnectTimeoutInSeconds,
     TfArg<String>? displayName,
     TfArg<bool>? enableDefaultInternetAccess,
-    TfArg<String>? fleetType,
+    TfArg<AppstreamFleetFleetType>? fleetType,
     TfArg<String>? iamRoleArn,
     TfArg<num>? idleDisconnectTimeoutInSeconds,
     TfArg<String>? imageArn,
@@ -86,7 +107,7 @@ final class AwsAppstreamFleet extends Resource {
     TfArg<num>? maxUserDurationInSeconds,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? streamView,
+    TfArg<AppstreamFleetStreamView>? streamView,
     TfArg<Map<String, String>>? tags,
     required AppstreamFleetComputeCapacity computeCapacity,
     AppstreamFleetDomainJoinInfo? domainJoinInfo,

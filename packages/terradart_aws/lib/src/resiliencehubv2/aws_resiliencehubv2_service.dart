@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_resiliencehubv2_service`.
 const Set<String> _awsResiliencehubv2ServiceSensitive = <String>{};
 
+/// Resiliencehubv2 Service Dependency enum for `dependency_discovery`.
+enum Resiliencehubv2ServiceDependencyDiscovery implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const Resiliencehubv2ServiceDependencyDiscovery(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `associated_system` block of
 /// `aws_resiliencehubv2_service` (derived from provider schema).
 @immutable
@@ -72,7 +82,7 @@ final class AwsResiliencehubv2Service extends Resource {
 
   AwsResiliencehubv2Service({
     required super.localName,
-    TfArg<String>? dependencyDiscovery,
+    TfArg<Resiliencehubv2ServiceDependencyDiscovery>? dependencyDiscovery,
     TfArg<String>? description,
     TfArg<String>? kmsKeyId,
     required TfArg<String> name,

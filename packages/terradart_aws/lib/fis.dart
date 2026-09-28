@@ -10,6 +10,8 @@ export 'src/fis/aws_fis_experiment_template.dart'
         FisExperimentTemplateActionParameter,
         FisExperimentTemplateActionTarget,
         FisExperimentTemplateExperimentOptions,
+        FisExperimentTemplateExperimentOptionsAccountTargeting,
+        FisExperimentTemplateExperimentOptionsEmptyTargetResolutionMode,
         FisExperimentTemplateExperimentReportConfiguration,
         FisExperimentTemplateExperimentReportConfigurationDataSources,
         FisExperimentTemplateExperimentReportConfigurationDataSourcesCloudwatchDashboard,
@@ -23,6 +25,9 @@ export 'src/fis/aws_fis_experiment_template.dart'
         FisExperimentTemplateTargetFilter,
         FisExperimentTemplateTargetResourceTag;
 export 'src/fis/aws_fis_safety_lever_state.dart'
-    show AwsFisSafetyLeverState, FisSafetyLeverStateState;
+    show
+        AwsFisSafetyLeverState,
+        FisSafetyLeverStateState,
+        FisSafetyLeverStateStateStatus;
 export 'src/fis/aws_fis_target_account_configuration.dart'
     show AwsFisTargetAccountConfiguration;

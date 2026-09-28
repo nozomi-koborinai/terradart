@@ -9,6 +9,44 @@ const Set<String> _awsCognitoUserPoolClientSensitive = <String>{
   'client_secret',
 };
 
+/// Cognito User Pool Client Allowed Oauth enum for `allowed_oauth_flows`.
+enum CognitoUserPoolClientAllowedOauthFlows implements TerraformEnum {
+  code('code'),
+  implicit('implicit'),
+  clientCredentials('client_credentials');
+
+  const CognitoUserPoolClientAllowedOauthFlows(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cognito User Pool Client Explicit Auth enum for `explicit_auth_flows`.
+enum CognitoUserPoolClientExplicitAuthFlows implements TerraformEnum {
+  adminNoSrpAuth('ADMIN_NO_SRP_AUTH'),
+  customAuthFlowOnly('CUSTOM_AUTH_FLOW_ONLY'),
+  userPasswordAuth('USER_PASSWORD_AUTH'),
+  allowAdminUserPasswordAuth('ALLOW_ADMIN_USER_PASSWORD_AUTH'),
+  allowCustomAuth('ALLOW_CUSTOM_AUTH'),
+  allowUserPasswordAuth('ALLOW_USER_PASSWORD_AUTH'),
+  allowUserSrpAuth('ALLOW_USER_SRP_AUTH'),
+  allowRefreshTokenAuth('ALLOW_REFRESH_TOKEN_AUTH'),
+  allowUserAuth('ALLOW_USER_AUTH');
+
+  const CognitoUserPoolClientExplicitAuthFlows(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cognito User Pool Client Prevent User Existence enum for `prevent_user_existence_errors`.
+enum CognitoUserPoolClientPreventUserExistenceErrors implements TerraformEnum {
+  legacy('LEGACY'),
+  enabled('ENABLED');
+
+  const CognitoUserPoolClientPreventUserExistenceErrors(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `analytics_configuration` block of
 /// `aws_cognito_user_pool_client` (derived from provider schema).
 @immutable
@@ -49,7 +87,7 @@ final class CognitoUserPoolClientRefreshTokenRotation {
     this.retryGracePeriodSeconds,
   });
 
-  final TfArg<String> feature;
+  final TfArg<CognitoUserPoolClientRefreshTokenRotationFeature> feature;
 
   final TfArg<num>? retryGracePeriodSeconds;
 
@@ -58,6 +96,16 @@ final class CognitoUserPoolClientRefreshTokenRotation {
     if (retryGracePeriodSeconds != null)
       'retry_grace_period_seconds': retryGracePeriodSeconds!.toTfJson(),
   };
+}
+
+/// `feature` — derived from the provider schema description.
+enum CognitoUserPoolClientRefreshTokenRotationFeature implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const CognitoUserPoolClientRefreshTokenRotationFeature(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `token_validity_units` block of
@@ -90,7 +138,7 @@ final class AwsCognitoUserPoolClient extends Resource {
   AwsCognitoUserPoolClient({
     required super.localName,
     TfArg<num>? accessTokenValidity,
-    TfArg<List<String>>? allowedOauthFlows,
+    List<TfArg<CognitoUserPoolClientAllowedOauthFlows>>? allowedOauthFlows,
     TfArg<bool>? allowedOauthFlowsUserPoolClient,
     TfArg<List<String>>? allowedOauthScopes,
     TfArg<num>? authSessionValidity,
@@ -98,12 +146,13 @@ final class AwsCognitoUserPoolClient extends Resource {
     TfArg<String>? defaultRedirectUri,
     TfArg<bool>? enablePropagateAdditionalUserContextData,
     TfArg<bool>? enableTokenRevocation,
-    TfArg<List<String>>? explicitAuthFlows,
+    List<TfArg<CognitoUserPoolClientExplicitAuthFlows>>? explicitAuthFlows,
     TfArg<bool>? generateSecret,
     TfArg<num>? idTokenValidity,
     TfArg<List<String>>? logoutUrls,
     required TfArg<String> name,
-    TfArg<String>? preventUserExistenceErrors,
+    TfArg<CognitoUserPoolClientPreventUserExistenceErrors>?
+    preventUserExistenceErrors,
     TfArg<List<String>>? readAttributes,
     TfArg<num>? refreshTokenValidity,
     TfArg<String>? region,
@@ -123,7 +172,9 @@ final class AwsCognitoUserPoolClient extends Resource {
            if (accessTokenValidity != null)
              'access_token_validity': accessTokenValidity,
            if (allowedOauthFlows != null)
-             'allowed_oauth_flows': allowedOauthFlows,
+             'allowed_oauth_flows': TfArg.literal([
+               for (final e in allowedOauthFlows) e.toTfJson(),
+             ]),
            if (allowedOauthFlowsUserPoolClient != null)
              'allowed_oauth_flows_user_pool_client':
                  allowedOauthFlowsUserPoolClient,
@@ -140,7 +191,9 @@ final class AwsCognitoUserPoolClient extends Resource {
            if (enableTokenRevocation != null)
              'enable_token_revocation': enableTokenRevocation,
            if (explicitAuthFlows != null)
-             'explicit_auth_flows': explicitAuthFlows,
+             'explicit_auth_flows': TfArg.literal([
+               for (final e in explicitAuthFlows) e.toTfJson(),
+             ]),
            if (generateSecret != null) 'generate_secret': generateSecret,
            if (idTokenValidity != null) 'id_token_validity': idTokenValidity,
            if (logoutUrls != null) 'logout_urls': logoutUrls,

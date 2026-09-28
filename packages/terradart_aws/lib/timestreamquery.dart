@@ -8,6 +8,7 @@ export 'src/timestreamquery/aws_timestreamquery_scheduled_query.dart'
         AwsTimestreamqueryScheduledQuery,
         TimestreamqueryScheduledQueryErrorReportConfiguration,
         TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration,
+        TimestreamqueryScheduledQueryErrorReportConfigurationS3ConfigurationEncryptionOption,
         TimestreamqueryScheduledQueryLastRunSummary,
         TimestreamqueryScheduledQueryLastRunSummaryErrorReportLocation,
         TimestreamqueryScheduledQueryLastRunSummaryErrorReportLocationS3ReportLocation,
@@ -32,7 +33,11 @@ export 'src/timestreamquery/aws_timestreamquery_scheduled_query.dart'
         TimestreamqueryScheduledQueryTargetConfiguration,
         TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfiguration,
         TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMapping,
+        TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationDimensionMappingDimensionValueType,
         TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMapping,
+        TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMeasureValueType,
         TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMapping,
+        TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMixedMeasureMappingMultiMeasureAttributeMappingMeasureValueType,
         TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappings,
-        TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMapping;
+        TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMapping,
+        TimestreamqueryScheduledQueryTargetConfigurationTimestreamConfigurationMultiMeasureMappingsMultiMeasureAttributeMappingMeasureValueType;

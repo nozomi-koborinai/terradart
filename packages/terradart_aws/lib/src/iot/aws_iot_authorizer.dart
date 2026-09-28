@@ -8,6 +8,16 @@ const Set<String> _awsIotAuthorizerSensitive = <String>{
   'token_signing_public_keys',
 };
 
+/// Iot Authorizer enum for `status`.
+enum IotAuthorizerStatus implements TerraformEnum {
+  active('ACTIVE'),
+  inactive('INACTIVE');
+
+  const IotAuthorizerStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_iot_authorizer`.
 final class AwsIotAuthorizer extends Resource {
   static const String tfType = 'aws_iot_authorizer';
@@ -19,7 +29,7 @@ final class AwsIotAuthorizer extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<bool>? signingDisabled,
-    TfArg<String>? status,
+    TfArg<IotAuthorizerStatus>? status,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? tokenKeyName,
     TfArg<Map<String, String>>? tokenSigningPublicKeys,

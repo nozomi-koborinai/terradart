@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_log_anomaly_detector`.
 const Set<String> _awsCloudwatchLogAnomalyDetectorSensitive = <String>{};
 
+/// Cloudwatch Log Anomaly Detector Evaluation enum for `evaluation_frequency`.
+enum CloudwatchLogAnomalyDetectorEvaluationFrequency implements TerraformEnum {
+  oneMin('ONE_MIN'),
+  fiveMin('FIVE_MIN'),
+  tenMin('TEN_MIN'),
+  fifteenMin('FIFTEEN_MIN'),
+  thirtyMin('THIRTY_MIN'),
+  oneHour('ONE_HOUR');
+
+  const CloudwatchLogAnomalyDetectorEvaluationFrequency(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudwatch_log_anomaly_detector`.
 final class AwsCloudwatchLogAnomalyDetector extends Resource {
   static const String tfType = 'aws_cloudwatch_log_anomaly_detector';
@@ -15,7 +29,7 @@ final class AwsCloudwatchLogAnomalyDetector extends Resource {
     TfArg<num>? anomalyVisibilityTime,
     TfArg<String>? detectorName,
     required TfArg<bool> enabled,
-    TfArg<String>? evaluationFrequency,
+    TfArg<CloudwatchLogAnomalyDetectorEvaluationFrequency>? evaluationFrequency,
     TfArg<String>? filterPattern,
     TfArg<String>? kmsKeyId,
     required TfArg<List<String>> logGroupArnList,

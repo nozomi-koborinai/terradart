@@ -17,7 +17,8 @@ final class NetworkfirewallVpcEndpointAssociationSubnetMapping {
     required this.subnetId,
   });
 
-  final TfArg<String>? ipAddressType;
+  final TfArg<NetworkfirewallVpcEndpointAssociationSubnetMappingIpAddressType>?
+  ipAddressType;
 
   final TfArg<String> subnetId;
 
@@ -25,6 +26,20 @@ final class NetworkfirewallVpcEndpointAssociationSubnetMapping {
     if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
     'subnet_id': subnetId.toTfJson(),
   };
+}
+
+/// `ip_address_type` — derived from the provider schema description.
+enum NetworkfirewallVpcEndpointAssociationSubnetMappingIpAddressType
+    implements TerraformEnum {
+  dualstack('DUALSTACK'),
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const NetworkfirewallVpcEndpointAssociationSubnetMappingIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_networkfirewall_vpc_endpoint_association`.

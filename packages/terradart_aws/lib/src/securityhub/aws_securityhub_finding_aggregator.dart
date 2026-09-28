@@ -6,13 +6,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_securityhub_finding_aggregator`.
 const Set<String> _awsSecurityhubFindingAggregatorSensitive = <String>{};
 
+/// Securityhub Finding Aggregator Linking enum for `linking_mode`.
+enum SecurityhubFindingAggregatorLinkingMode implements TerraformEnum {
+  allRegions('ALL_REGIONS'),
+  allRegionsExceptSpecified('ALL_REGIONS_EXCEPT_SPECIFIED'),
+  specifiedRegions('SPECIFIED_REGIONS'),
+  noRegions('NO_REGIONS');
+
+  const SecurityhubFindingAggregatorLinkingMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_securityhub_finding_aggregator`.
 final class AwsSecurityhubFindingAggregator extends Resource {
   static const String tfType = 'aws_securityhub_finding_aggregator';
 
   AwsSecurityhubFindingAggregator({
     required super.localName,
-    required TfArg<String> linkingMode,
+    required TfArg<SecurityhubFindingAggregatorLinkingMode> linkingMode,
     TfArg<String>? region,
     TfArg<List<String>>? specifiedRegions,
     super.lifecycle,

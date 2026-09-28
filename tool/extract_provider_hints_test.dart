@@ -7,10 +7,12 @@ import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
 
 import 'extract_provider_hints.dart';
+import 'provider_hints_aws.dart';
 
 const _fixtures = [
   'packages/terradart_codegen/test/fixtures/wrap/source_cloudflare',
   'packages/terradart_codegen/test/fixtures/wrap/source_appwrite',
+  'packages/terradart_codegen/test/fixtures/wrap/source_aws',
 ];
 
 void main() {
@@ -131,6 +133,188 @@ func split(s string) []string { return strings.FieldsFunc(s, func(r rune) bool {
         [for (final s in resourceSources(dir)) p.basename(s.schema.path)],
         ['pooler_resource.go', 'resource.go'],
       );
+    });
+  });
+
+  group('scanAwsProvider', () {
+    late Directory root;
+    late String sdkDir;
+    setUp(() {
+      root = Directory.systemTemp.createTempSync('hints_aws_');
+      sdkDir = p.join(root.path, 'sdk');
+    });
+    tearDown(() => root.deleteSync(recursive: true));
+
+    void write(String path, String src) => File(p.join(root.path, path))
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync(src);
+
+    void writeProvider() {
+      write('go.mod', '''
+module github.com/hashicorp/terraform-provider-aws
+
+require (
+	github.com/aws/aws-sdk-go-v2/service/widget v1.2.3
+)
+''');
+      write('names/attr.go', '''
+package names
+
+const (
+	AttrName = "name"
+	AttrType = "type"
+)
+''');
+      write('sdk/service/widget/types/enums.go', '''
+package types
+
+type Mode string
+
+const (
+	ModeFast Mode = "FAST"
+	ModeSlow Mode = "SLOW"
+)
+
+func (Mode) Values() []Mode {
+	return []Mode{
+		"FAST",
+		"SLOW",
+	}
+}
+''');
+      write('internal/service/widget/widget.go', '''
+package widget
+
+import (
+	awstypes "github.com/aws/aws-sdk-go-v2/service/widget/types"
+	"github.com/hashicorp/terraform-provider-aws/internal/enum"
+	"github.com/hashicorp/terraform-provider-aws/names"
+)
+
+const (
+	colorRed  = "red"
+	colorBlue = "blue"
+)
+
+func color_Values() []string {
+	return []string{colorRed, colorBlue}
+}
+
+// @SDKResource("aws_widget", name="Widget")
+func resourceWidget() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			names.AttrType: {
+				Type:             schema.TypeString,
+				ValidateDiagFunc: enum.Validate[awstypes.Mode](),
+			},
+			"color": {
+				Type:         schema.TypeString,
+				ValidateFunc: validation.StringInSlice(color_Values(), true),
+			},
+			"settings": {
+				Type: schema.TypeList,
+				Elem: settingsSchema(),
+			},
+			"opaque": {
+				Type:         schema.TypeString,
+				ValidateFunc: validation.StringInSlice(unknownValues(), false),
+			},
+			"role_arn": {
+				Type: schema.TypeString,
+				ValidateFunc: validation.Any(
+					validation.StringInSlice([]string{""}, false),
+					verify.ValidARN,
+				),
+			},
+		},
+	}
+}
+
+func settingsSchema() *schema.Resource {
+	return &schema.Resource{
+		Schema: map[string]*schema.Schema{
+			"level": {
+				Type:         schema.TypeString,
+				ValidateFunc: validation.StringInSlice([]string{"low", "high"}, false),
+			},
+		},
+	}
+}
+''');
+      write('internal/service/widget/gadget.go', '''
+package widget
+
+import (
+	awstypes "github.com/aws/aws-sdk-go-v2/service/widget/types"
+	fwtypes "github.com/hashicorp/terraform-provider-aws/internal/framework/types"
+	"github.com/hashicorp/terraform-provider-aws/names"
+)
+
+// @FrameworkResource("aws_widget_gadget", name="Gadget")
+func newGadgetResource(context.Context) (resource.ResourceWithConfigure, error) {
+	return &gadgetResource{}, nil
+}
+
+func (r *gadgetResource) Schema(ctx context.Context, req resource.SchemaRequest, resp *resource.SchemaResponse) {
+	resp.Schema = schema.Schema{
+		Attributes: map[string]schema.Attribute{
+			"mode": schema.StringAttribute{
+				CustomType: fwtypes.StringEnumType[awstypes.Mode](),
+			},
+			names.AttrName: schema.StringAttribute{
+				Validators: []validator.String{
+					stringvalidator.OneOf("a", "b"),
+				},
+			},
+		},
+	}
+}
+''');
+    }
+
+    test('reads the SDK types modules the provider imports', () {
+      writeProvider();
+      expect(awsSdkTypesModules(root), {
+        'github.com/aws/aws-sdk-go-v2/service/widget/types': (
+          module: 'github.com/aws/aws-sdk-go-v2/service/widget',
+          version: 'v1.2.3',
+        ),
+      });
+      expect(
+        sdkEnumsFile(
+          sdkDir,
+          'github.com/aws/aws-sdk-go-v2/service/widget/types',
+        ),
+        p.join(sdkDir, 'service', 'widget', 'types', 'enums.go'),
+      );
+    });
+
+    test('resolves SDK enums, constants, helpers and nested schemas', () {
+      writeProvider();
+      final scan = scanAwsProvider(root, sdkDir: sdkDir);
+      expect(scan.byType.keys, {'aws_widget', 'aws_widget_gadget'});
+      Map<String, String> hints(String type) => {
+            for (final h in scan.byType[type]!.hints)
+              h.path.join('.'):
+                  '${h.values.join('|')}${h.caseInsensitive ? ' (ci)' : ''}',
+          };
+      expect(
+        scan.byType['aws_widget']!.sourcePath,
+        p.join('internal', 'service', 'widget', 'widget.go'),
+      );
+      expect(hints('aws_widget'), {
+        'type': 'FAST|SLOW',
+        'color': 'red|blue (ci)',
+        'settings.level': 'low|high',
+      });
+      expect(hints('aws_widget_gadget'), {
+        'mode': 'FAST|SLOW',
+        'name': 'a|b',
+      });
+      expect(scan.validators, 6);
+      expect(scan.unresolved, 1, reason: 'unknownValues() is not evaluable');
+      expect(scan.openSets, 1, reason: '"" is one alternative beside an ARN');
     });
   });
 

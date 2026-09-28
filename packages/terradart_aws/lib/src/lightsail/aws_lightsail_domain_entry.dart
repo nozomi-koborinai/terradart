@@ -6,6 +6,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lightsail_domain_entry`.
 const Set<String> _awsLightsailDomainEntrySensitive = <String>{};
 
+/// Lightsail Domain Entry enum for `type`.
+enum LightsailDomainEntryType implements TerraformEnum {
+  a('A'),
+  aaaa('AAAA'),
+  cname('CNAME'),
+  mx('MX'),
+  ns('NS'),
+  soa('SOA'),
+  srv('SRV'),
+  txt('TXT');
+
+  const LightsailDomainEntryType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_lightsail_domain_entry`.
 final class AwsLightsailDomainEntry extends Resource {
   static const String tfType = 'aws_lightsail_domain_entry';
@@ -17,7 +33,7 @@ final class AwsLightsailDomainEntry extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> target,
-    required TfArg<String> type,
+    required TfArg<LightsailDomainEntryType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

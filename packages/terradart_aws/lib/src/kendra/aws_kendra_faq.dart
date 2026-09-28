@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_kendra_faq`.
 const Set<String> _awsKendraFaqSensitive = <String>{};
 
+/// Kendra Faq File enum for `file_format`.
+enum KendraFaqFileFormat implements TerraformEnum {
+  csv('CSV'),
+  csvWithHeader('CSV_WITH_HEADER'),
+  json('JSON');
+
+  const KendraFaqFileFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `s3_path` block of
 /// `aws_kendra_faq` (derived from provider schema).
 @immutable
@@ -30,7 +41,7 @@ final class AwsKendraFaq extends Resource {
   AwsKendraFaq({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? fileFormat,
+    TfArg<KendraFaqFileFormat>? fileFormat,
     required TfArg<String> indexId,
     TfArg<String>? languageCode,
     required TfArg<String> name,

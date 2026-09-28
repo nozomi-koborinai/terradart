@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dx_transit_virtual_interface`.
 const Set<String> _awsDxTransitVirtualInterfaceSensitive = <String>{};
 
+/// Dx Transit Virtual Interface Address enum for `address_family`.
+enum DxTransitVirtualInterfaceAddressFamily implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const DxTransitVirtualInterfaceAddressFamily(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dx_transit_virtual_interface`.
 final class AwsDxTransitVirtualInterface extends Resource {
   static const String tfType = 'aws_dx_transit_virtual_interface';
 
   AwsDxTransitVirtualInterface({
     required super.localName,
-    required TfArg<String> addressFamily,
+    required TfArg<DxTransitVirtualInterfaceAddressFamily> addressFamily,
     TfArg<String>? amazonAddress,
     TfArg<num>? bgpAsn,
     TfArg<String>? bgpAsnLong,

@@ -7,13 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSesv2EmailIdentityMailFromAttributesSensitive =
     <String>{};
 
+/// Sesv2 Email Identity Mail From Attributes Behavior On Mx enum for `behavior_on_mx_failure`.
+enum Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure
+    implements TerraformEnum {
+  useDefaultValue('USE_DEFAULT_VALUE'),
+  rejectMessage('REJECT_MESSAGE');
+
+  const Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_sesv2_email_identity_mail_from_attributes`.
 final class AwsSesv2EmailIdentityMailFromAttributes extends Resource {
   static const String tfType = 'aws_sesv2_email_identity_mail_from_attributes';
 
   AwsSesv2EmailIdentityMailFromAttributes({
     required super.localName,
-    TfArg<String>? behaviorOnMxFailure,
+    TfArg<Sesv2EmailIdentityMailFromAttributesBehaviorOnMxFailure>?
+    behaviorOnMxFailure,
     required TfArg<String> emailIdentity,
     TfArg<String>? mailFromDomain,
     TfArg<String>? region,

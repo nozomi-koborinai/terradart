@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_route53_resolver_rule`.
 const Set<String> _awsRoute53ResolverRuleSensitive = <String>{};
 
+/// Route53 Resolver Rule Rule enum for `rule_type`.
+enum Route53ResolverRuleRuleType implements TerraformEnum {
+  forward('FORWARD'),
+  system('SYSTEM'),
+  recursive('RECURSIVE'),
+  delegate('DELEGATE');
+
+  const Route53ResolverRuleRuleType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_ip` block of
 /// `aws_route53_resolver_rule` (derived from provider schema).
 @immutable
@@ -24,7 +36,7 @@ final class Route53ResolverRuleTargetIp {
 
   final TfArg<num>? port;
 
-  final TfArg<String>? protocol;
+  final TfArg<Route53ResolverRuleTargetIpProtocol>? protocol;
 
   Map<String, Object?> encode() => {
     if (ip != null) 'ip': ip!.toTfJson(),
@@ -32,6 +44,17 @@ final class Route53ResolverRuleTargetIp {
     if (port != null) 'port': port!.toTfJson(),
     if (protocol != null) 'protocol': protocol!.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+enum Route53ResolverRuleTargetIpProtocol implements TerraformEnum {
+  doh('DoH'),
+  do53('Do53'),
+  dohFips('DoH-FIPS');
+
+  const Route53ResolverRuleTargetIpProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_route53_resolver_rule`.
@@ -44,7 +67,7 @@ final class AwsRoute53ResolverRule extends Resource {
     TfArg<String>? name,
     TfArg<String>? region,
     TfArg<String>? resolverEndpointId,
-    required TfArg<String> ruleType,
+    required TfArg<Route53ResolverRuleRuleType> ruleType,
     TfArg<Map<String, String>>? tags,
     List<Route53ResolverRuleTargetIp>? targetIp,
     super.lifecycle,

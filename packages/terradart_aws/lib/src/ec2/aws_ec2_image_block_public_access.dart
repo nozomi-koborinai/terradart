@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_image_block_public_access`.
 const Set<String> _awsEc2ImageBlockPublicAccessSensitive = <String>{};
 
+/// Ec2 Image Block Public Access enum for `state`.
+enum Ec2ImageBlockPublicAccessState implements TerraformEnum {
+  blockNewSharing('block-new-sharing'),
+  unblocked('unblocked');
+
+  const Ec2ImageBlockPublicAccessState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_image_block_public_access`.
 final class AwsEc2ImageBlockPublicAccess extends Resource {
   static const String tfType = 'aws_ec2_image_block_public_access';
@@ -13,7 +23,7 @@ final class AwsEc2ImageBlockPublicAccess extends Resource {
   AwsEc2ImageBlockPublicAccess({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> state,
+    required TfArg<Ec2ImageBlockPublicAccessState> state,
     super.lifecycle,
     super.dependsOn,
     super.provider,

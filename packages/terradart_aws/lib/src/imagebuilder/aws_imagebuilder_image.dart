@@ -90,7 +90,7 @@ final class ImagebuilderImageWorkflow {
     this.parameter,
   });
 
-  final TfArg<String>? onFailure;
+  final TfArg<ImagebuilderImageWorkflowOnFailure>? onFailure;
 
   final TfArg<String>? parallelGroup;
 
@@ -105,6 +105,16 @@ final class ImagebuilderImageWorkflow {
     if (parameter != null)
       'parameter': [for (final e in parameter!) e.encode()],
   };
+}
+
+/// `on_failure` — derived from the provider schema description.
+enum ImagebuilderImageWorkflowOnFailure implements TerraformEnum {
+  continueCase('CONTINUE'),
+  abort('ABORT');
+
+  const ImagebuilderImageWorkflowOnFailure(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.parameter` block of

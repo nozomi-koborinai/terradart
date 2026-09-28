@@ -7,13 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_securityhub_automation_rule`.
 const Set<String> _awsSecurityhubAutomationRuleSensitive = <String>{};
 
+/// Securityhub Automation Rule Rule enum for `rule_status`.
+enum SecurityhubAutomationRuleRuleStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SecurityhubAutomationRuleRuleStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `actions` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
 final class SecurityhubAutomationRuleActions {
   const SecurityhubAutomationRuleActions({this.type, this.findingFieldsUpdate});
 
-  final TfArg<String>? type;
+  final TfArg<SecurityhubAutomationRuleActionsType>? type;
 
   final List<SecurityhubAutomationRuleActionsFindingFieldsUpdate>?
   findingFieldsUpdate;
@@ -25,6 +35,15 @@ final class SecurityhubAutomationRuleActions {
         for (final e in findingFieldsUpdate!) e.encode(),
       ],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SecurityhubAutomationRuleActionsType implements TerraformEnum {
+  findingFieldsUpdate('FINDING_FIELDS_UPDATE');
+
+  const SecurityhubAutomationRuleActionsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `actions.finding_fields_update` block of
@@ -51,7 +70,10 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdate {
 
   final TfArg<Map<String, String>>? userDefinedFields;
 
-  final TfArg<String>? verificationState;
+  final TfArg<
+    SecurityhubAutomationRuleActionsFindingFieldsUpdateVerificationState
+  >?
+  verificationState;
 
   final List<SecurityhubAutomationRuleActionsFindingFieldsUpdateNote>? note;
 
@@ -80,6 +102,21 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdate {
     if (severity != null) 'severity': [for (final e in severity!) e.encode()],
     if (workflow != null) 'workflow': [for (final e in workflow!) e.encode()],
   };
+}
+
+/// `verification_state` — derived from the provider schema description.
+enum SecurityhubAutomationRuleActionsFindingFieldsUpdateVerificationState
+    implements TerraformEnum {
+  unknown('UNKNOWN'),
+  truePositive('TRUE_POSITIVE'),
+  falsePositive('FALSE_POSITIVE'),
+  benignPositive('BENIGN_POSITIVE');
+
+  const SecurityhubAutomationRuleActionsFindingFieldsUpdateVerificationState(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `actions.finding_fields_update.note` block of
@@ -129,7 +166,8 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverity {
     this.product,
   });
 
-  final TfArg<String>? label;
+  final TfArg<SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverityLabel>?
+  label;
 
   final TfArg<num>? product;
 
@@ -137,6 +175,22 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverity {
     if (label != null) 'label': label!.toTfJson(),
     if (product != null) 'product': product!.toTfJson(),
   };
+}
+
+/// `label` — derived from the provider schema description.
+enum SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverityLabel
+    implements TerraformEnum {
+  informational('INFORMATIONAL'),
+  low('LOW'),
+  medium('MEDIUM'),
+  high('HIGH'),
+  critical('CRITICAL');
+
+  const SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverityLabel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `actions.finding_fields_update.workflow` block of
@@ -147,11 +201,29 @@ final class SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflow {
     this.status,
   });
 
-  final TfArg<String>? status;
+  final TfArg<
+    SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflowStatus
+  >?
+  status;
 
   Map<String, Object?> encode() => {
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflowStatus
+    implements TerraformEnum {
+  newCase('NEW'),
+  notified('NOTIFIED'),
+  resolved('RESOLVED'),
+  suppressed('SUPPRESSED');
+
+  const SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflowStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria` block of
@@ -383,7 +455,8 @@ final class SecurityhubAutomationRuleCriteriaAwsAccountId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaAwsAccountIdComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -391,6 +464,24 @@ final class SecurityhubAutomationRuleCriteriaAwsAccountId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaAwsAccountIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaAwsAccountIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.aws_account_name` block of
@@ -402,7 +493,8 @@ final class SecurityhubAutomationRuleCriteriaAwsAccountName {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaAwsAccountNameComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -410,6 +502,24 @@ final class SecurityhubAutomationRuleCriteriaAwsAccountName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaAwsAccountNameComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaAwsAccountNameComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.company_name` block of
@@ -421,7 +531,8 @@ final class SecurityhubAutomationRuleCriteriaCompanyName {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaCompanyNameComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -429,6 +540,24 @@ final class SecurityhubAutomationRuleCriteriaCompanyName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaCompanyNameComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaCompanyNameComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.compliance_associated_standards_id` block of
@@ -440,7 +569,10 @@ final class SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsIdComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -448,6 +580,24 @@ final class SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.compliance_security_control_id` block of
@@ -459,7 +609,10 @@ final class SecurityhubAutomationRuleCriteriaComplianceSecurityControlId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    SecurityhubAutomationRuleCriteriaComplianceSecurityControlIdComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -467,6 +620,24 @@ final class SecurityhubAutomationRuleCriteriaComplianceSecurityControlId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaComplianceSecurityControlIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaComplianceSecurityControlIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.compliance_status` block of
@@ -478,7 +649,8 @@ final class SecurityhubAutomationRuleCriteriaComplianceStatus {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaComplianceStatusComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -486,6 +658,24 @@ final class SecurityhubAutomationRuleCriteriaComplianceStatus {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaComplianceStatusComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaComplianceStatusComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.confidence` block of
@@ -552,7 +742,7 @@ final class SecurityhubAutomationRuleCriteriaCreatedAtDateRange {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<SecurityhubAutomationRuleCriteriaCreatedAtDateRangeUnit> unit;
 
   final TfArg<num> value;
 
@@ -560,6 +750,18 @@ final class SecurityhubAutomationRuleCriteriaCreatedAtDateRange {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaCreatedAtDateRangeUnit
+    implements TerraformEnum {
+  days('DAYS');
+
+  const SecurityhubAutomationRuleCriteriaCreatedAtDateRangeUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.criticality` block of
@@ -602,7 +804,8 @@ final class SecurityhubAutomationRuleCriteriaDescription {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaDescriptionComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -610,6 +813,24 @@ final class SecurityhubAutomationRuleCriteriaDescription {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaDescriptionComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaDescriptionComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.first_observed_at` block of
@@ -646,7 +867,8 @@ final class SecurityhubAutomationRuleCriteriaFirstObservedAtDateRange {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<SecurityhubAutomationRuleCriteriaFirstObservedAtDateRangeUnit>
+  unit;
 
   final TfArg<num> value;
 
@@ -654,6 +876,18 @@ final class SecurityhubAutomationRuleCriteriaFirstObservedAtDateRange {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaFirstObservedAtDateRangeUnit
+    implements TerraformEnum {
+  days('DAYS');
+
+  const SecurityhubAutomationRuleCriteriaFirstObservedAtDateRangeUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.generator_id` block of
@@ -665,7 +899,8 @@ final class SecurityhubAutomationRuleCriteriaGeneratorId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaGeneratorIdComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -673,6 +908,24 @@ final class SecurityhubAutomationRuleCriteriaGeneratorId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaGeneratorIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaGeneratorIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.id` block of
@@ -684,7 +937,7 @@ final class SecurityhubAutomationRuleCriteriaId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -692,6 +945,21 @@ final class SecurityhubAutomationRuleCriteriaId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaIdComparison implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaIdComparison(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.last_observed_at` block of
@@ -728,7 +996,8 @@ final class SecurityhubAutomationRuleCriteriaLastObservedAtDateRange {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<SecurityhubAutomationRuleCriteriaLastObservedAtDateRangeUnit>
+  unit;
 
   final TfArg<num> value;
 
@@ -736,6 +1005,18 @@ final class SecurityhubAutomationRuleCriteriaLastObservedAtDateRange {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaLastObservedAtDateRangeUnit
+    implements TerraformEnum {
+  days('DAYS');
+
+  const SecurityhubAutomationRuleCriteriaLastObservedAtDateRangeUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.note_text` block of
@@ -747,7 +1028,7 @@ final class SecurityhubAutomationRuleCriteriaNoteText {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaNoteTextComparison> comparison;
 
   final TfArg<String> value;
 
@@ -755,6 +1036,24 @@ final class SecurityhubAutomationRuleCriteriaNoteText {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaNoteTextComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaNoteTextComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.note_updated_at` block of
@@ -791,7 +1090,7 @@ final class SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRange {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRangeUnit> unit;
 
   final TfArg<num> value;
 
@@ -799,6 +1098,18 @@ final class SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRange {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRangeUnit
+    implements TerraformEnum {
+  days('DAYS');
+
+  const SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRangeUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.note_updated_by` block of
@@ -810,7 +1121,8 @@ final class SecurityhubAutomationRuleCriteriaNoteUpdatedBy {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaNoteUpdatedByComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -818,6 +1130,24 @@ final class SecurityhubAutomationRuleCriteriaNoteUpdatedBy {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaNoteUpdatedByComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaNoteUpdatedByComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.product_arn` block of
@@ -829,7 +1159,7 @@ final class SecurityhubAutomationRuleCriteriaProductArn {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaProductArnComparison> comparison;
 
   final TfArg<String> value;
 
@@ -837,6 +1167,24 @@ final class SecurityhubAutomationRuleCriteriaProductArn {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaProductArnComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaProductArnComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.product_name` block of
@@ -848,7 +1196,8 @@ final class SecurityhubAutomationRuleCriteriaProductName {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaProductNameComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -856,6 +1205,24 @@ final class SecurityhubAutomationRuleCriteriaProductName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaProductNameComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaProductNameComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.record_state` block of
@@ -867,7 +1234,8 @@ final class SecurityhubAutomationRuleCriteriaRecordState {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaRecordStateComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -875,6 +1243,24 @@ final class SecurityhubAutomationRuleCriteriaRecordState {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaRecordStateComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaRecordStateComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.related_findings_id` block of
@@ -886,7 +1272,8 @@ final class SecurityhubAutomationRuleCriteriaRelatedFindingsId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaRelatedFindingsIdComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -894,6 +1281,24 @@ final class SecurityhubAutomationRuleCriteriaRelatedFindingsId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaRelatedFindingsIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaRelatedFindingsIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.related_findings_product_arn` block of
@@ -905,7 +1310,10 @@ final class SecurityhubAutomationRuleCriteriaRelatedFindingsProductArn {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    SecurityhubAutomationRuleCriteriaRelatedFindingsProductArnComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -913,6 +1321,24 @@ final class SecurityhubAutomationRuleCriteriaRelatedFindingsProductArn {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaRelatedFindingsProductArnComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaRelatedFindingsProductArnComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.resource_application_arn` block of
@@ -924,7 +1350,8 @@ final class SecurityhubAutomationRuleCriteriaResourceApplicationArn {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaResourceApplicationArnComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -932,6 +1359,24 @@ final class SecurityhubAutomationRuleCriteriaResourceApplicationArn {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaResourceApplicationArnComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaResourceApplicationArnComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.resource_application_name` block of
@@ -943,7 +1388,10 @@ final class SecurityhubAutomationRuleCriteriaResourceApplicationName {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<
+    SecurityhubAutomationRuleCriteriaResourceApplicationNameComparison
+  >
+  comparison;
 
   final TfArg<String> value;
 
@@ -951,6 +1399,24 @@ final class SecurityhubAutomationRuleCriteriaResourceApplicationName {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaResourceApplicationNameComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaResourceApplicationNameComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.resource_details_other` block of
@@ -963,7 +1429,8 @@ final class SecurityhubAutomationRuleCriteriaResourceDetailsOther {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaResourceDetailsOtherComparison>
+  comparison;
 
   final TfArg<String> key;
 
@@ -976,6 +1443,21 @@ final class SecurityhubAutomationRuleCriteriaResourceDetailsOther {
   };
 }
 
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaResourceDetailsOtherComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  notEquals('NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS');
+
+  const SecurityhubAutomationRuleCriteriaResourceDetailsOtherComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `criteria.resource_id` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
@@ -985,7 +1467,7 @@ final class SecurityhubAutomationRuleCriteriaResourceId {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaResourceIdComparison> comparison;
 
   final TfArg<String> value;
 
@@ -993,6 +1475,24 @@ final class SecurityhubAutomationRuleCriteriaResourceId {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaResourceIdComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaResourceIdComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.resource_partition` block of
@@ -1004,7 +1504,8 @@ final class SecurityhubAutomationRuleCriteriaResourcePartition {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaResourcePartitionComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1012,6 +1513,24 @@ final class SecurityhubAutomationRuleCriteriaResourcePartition {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaResourcePartitionComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaResourcePartitionComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.resource_region` block of
@@ -1023,7 +1542,8 @@ final class SecurityhubAutomationRuleCriteriaResourceRegion {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaResourceRegionComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1031,6 +1551,24 @@ final class SecurityhubAutomationRuleCriteriaResourceRegion {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaResourceRegionComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaResourceRegionComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.resource_tags` block of
@@ -1043,7 +1581,8 @@ final class SecurityhubAutomationRuleCriteriaResourceTags {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaResourceTagsComparison>
+  comparison;
 
   final TfArg<String> key;
 
@@ -1056,6 +1595,21 @@ final class SecurityhubAutomationRuleCriteriaResourceTags {
   };
 }
 
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaResourceTagsComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  notEquals('NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS');
+
+  const SecurityhubAutomationRuleCriteriaResourceTagsComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `criteria.resource_type` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
@@ -1065,7 +1619,8 @@ final class SecurityhubAutomationRuleCriteriaResourceType {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaResourceTypeComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1073,6 +1628,24 @@ final class SecurityhubAutomationRuleCriteriaResourceType {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaResourceTypeComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaResourceTypeComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.severity_label` block of
@@ -1084,7 +1657,8 @@ final class SecurityhubAutomationRuleCriteriaSeverityLabel {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaSeverityLabelComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1092,6 +1666,24 @@ final class SecurityhubAutomationRuleCriteriaSeverityLabel {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaSeverityLabelComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaSeverityLabelComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.source_url` block of
@@ -1103,7 +1695,7 @@ final class SecurityhubAutomationRuleCriteriaSourceUrl {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaSourceUrlComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1111,6 +1703,24 @@ final class SecurityhubAutomationRuleCriteriaSourceUrl {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaSourceUrlComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaSourceUrlComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.title` block of
@@ -1122,7 +1732,7 @@ final class SecurityhubAutomationRuleCriteriaTitle {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaTitleComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1130,6 +1740,21 @@ final class SecurityhubAutomationRuleCriteriaTitle {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaTitleComparison implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaTitleComparison(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.type` block of
@@ -1141,7 +1766,7 @@ final class SecurityhubAutomationRuleCriteriaType {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaTypeComparison> comparison;
 
   final TfArg<String> value;
 
@@ -1149,6 +1774,21 @@ final class SecurityhubAutomationRuleCriteriaType {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaTypeComparison implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaTypeComparison(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.updated_at` block of
@@ -1184,7 +1824,7 @@ final class SecurityhubAutomationRuleCriteriaUpdatedAtDateRange {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<SecurityhubAutomationRuleCriteriaUpdatedAtDateRangeUnit> unit;
 
   final TfArg<num> value;
 
@@ -1192,6 +1832,18 @@ final class SecurityhubAutomationRuleCriteriaUpdatedAtDateRange {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaUpdatedAtDateRangeUnit
+    implements TerraformEnum {
+  days('DAYS');
+
+  const SecurityhubAutomationRuleCriteriaUpdatedAtDateRangeUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.user_defined_fields` block of
@@ -1204,7 +1856,8 @@ final class SecurityhubAutomationRuleCriteriaUserDefinedFields {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaUserDefinedFieldsComparison>
+  comparison;
 
   final TfArg<String> key;
 
@@ -1217,6 +1870,21 @@ final class SecurityhubAutomationRuleCriteriaUserDefinedFields {
   };
 }
 
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaUserDefinedFieldsComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  notEquals('NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS');
+
+  const SecurityhubAutomationRuleCriteriaUserDefinedFieldsComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `criteria.verification_state` block of
 /// `aws_securityhub_automation_rule` (derived from provider schema).
 @immutable
@@ -1226,7 +1894,8 @@ final class SecurityhubAutomationRuleCriteriaVerificationState {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaVerificationStateComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1234,6 +1903,24 @@ final class SecurityhubAutomationRuleCriteriaVerificationState {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaVerificationStateComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaVerificationStateComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `criteria.workflow_status` block of
@@ -1245,7 +1932,8 @@ final class SecurityhubAutomationRuleCriteriaWorkflowStatus {
     required this.value,
   });
 
-  final TfArg<String> comparison;
+  final TfArg<SecurityhubAutomationRuleCriteriaWorkflowStatusComparison>
+  comparison;
 
   final TfArg<String> value;
 
@@ -1253,6 +1941,24 @@ final class SecurityhubAutomationRuleCriteriaWorkflowStatus {
     'comparison': comparison.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `comparison` — derived from the provider schema description.
+enum SecurityhubAutomationRuleCriteriaWorkflowStatusComparison
+    implements TerraformEnum {
+  equals('EQUALS'),
+  prefix('PREFIX'),
+  notEquals('NOT_EQUALS'),
+  prefixNotEquals('PREFIX_NOT_EQUALS'),
+  contains('CONTAINS'),
+  notContains('NOT_CONTAINS'),
+  containsWord('CONTAINS_WORD');
+
+  const SecurityhubAutomationRuleCriteriaWorkflowStatusComparison(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_securityhub_automation_rule`.
@@ -1266,7 +1972,7 @@ final class AwsSecurityhubAutomationRule extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     required TfArg<num> ruleOrder,
-    TfArg<String>? ruleStatus,
+    TfArg<SecurityhubAutomationRuleRuleStatus>? ruleStatus,
     TfArg<Map<String, String>>? tags,
     List<SecurityhubAutomationRuleActions>? actions,
     List<SecurityhubAutomationRuleCriteria>? criteria,

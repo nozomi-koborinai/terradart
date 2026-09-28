@@ -7,4 +7,6 @@ export 'src/lambdacore/aws_lambdacore_network_connector.dart'
     show
         AwsLambdacoreNetworkConnector,
         LambdacoreNetworkConnectorConfiguration,
-        LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration;
+        LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration,
+        LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationAssociatedComputeResourceTypes,
+        LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationNetworkProtocol;

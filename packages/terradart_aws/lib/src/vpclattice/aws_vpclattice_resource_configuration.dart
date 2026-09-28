@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpclattice_resource_configuration`.
 const Set<String> _awsVpclatticeResourceConfigurationSensitive = <String>{};
 
+/// Vpclattice Resource Configuration enum for `protocol`.
+enum VpclatticeResourceConfigurationProtocol implements TerraformEnum {
+  tcp('TCP');
+
+  const VpclatticeResourceConfigurationProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `resource_configuration_definition` block of
 /// `aws_vpclattice_resource_configuration` (derived from provider schema).
 @immutable
@@ -66,12 +75,28 @@ final class VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsRes
 
   final TfArg<String> domainName;
 
-  final TfArg<String> ipAddressType;
+  final TfArg<
+    VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceIpAddressType
+  >
+  ipAddressType;
 
   Map<String, Object?> encode() => {
     'domain_name': domainName.toTfJson(),
     'ip_address_type': ipAddressType.toTfJson(),
   };
+}
+
+/// `ip_address_type` — derived from the provider schema description.
+enum VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `resource_configuration_definition.ip_resource` block of
@@ -98,7 +123,7 @@ final class AwsVpclatticeResourceConfiguration extends Resource {
     TfArg<String>? domainVerificationId,
     required TfArg<String> name,
     TfArg<List<String>>? portRanges,
-    TfArg<String>? protocol,
+    TfArg<VpclatticeResourceConfigurationProtocol>? protocol,
     TfArg<String>? region,
     TfArg<String>? resourceConfigurationGroupId,
     TfArg<String>? resourceGatewayIdentifier,

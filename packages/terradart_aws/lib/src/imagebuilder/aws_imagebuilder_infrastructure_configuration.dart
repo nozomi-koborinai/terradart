@@ -19,13 +19,29 @@ final class ImagebuilderInfrastructureConfigurationInstanceMetadataOptions {
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<String>? httpTokens;
+  final TfArg<
+    ImagebuilderInfrastructureConfigurationInstanceMetadataOptionsHttpTokens
+  >?
+  httpTokens;
 
   Map<String, Object?> encode() => {
     if (httpPutResponseHopLimit != null)
       'http_put_response_hop_limit': httpPutResponseHopLimit!.toTfJson(),
     if (httpTokens != null) 'http_tokens': httpTokens!.toTfJson(),
   };
+}
+
+/// `http_tokens` — derived from the provider schema description.
+enum ImagebuilderInfrastructureConfigurationInstanceMetadataOptionsHttpTokens
+    implements TerraformEnum {
+  required('required'),
+  optional('optional');
+
+  const ImagebuilderInfrastructureConfigurationInstanceMetadataOptionsHttpTokens(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `logging` block of
@@ -75,7 +91,7 @@ final class ImagebuilderInfrastructureConfigurationPlacement {
 
   final TfArg<String>? hostResourceGroupArn;
 
-  final TfArg<String>? tenancy;
+  final TfArg<ImagebuilderInfrastructureConfigurationPlacementTenancy>? tenancy;
 
   Map<String, Object?> encode() => {
     if (availabilityZone != null)
@@ -85,6 +101,20 @@ final class ImagebuilderInfrastructureConfigurationPlacement {
       'host_resource_group_arn': hostResourceGroupArn!.toTfJson(),
     if (tenancy != null) 'tenancy': tenancy!.toTfJson(),
   };
+}
+
+/// `tenancy` — derived from the provider schema description.
+enum ImagebuilderInfrastructureConfigurationPlacementTenancy
+    implements TerraformEnum {
+  defaultCase('default'),
+  dedicated('dedicated'),
+  host('host');
+
+  const ImagebuilderInfrastructureConfigurationPlacementTenancy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_imagebuilder_infrastructure_configuration`.

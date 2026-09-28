@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ssoadmin_application_assignment`.
 const Set<String> _awsSsoadminApplicationAssignmentSensitive = <String>{};
 
+/// Ssoadmin Application Assignment Principal enum for `principal_type`.
+enum SsoadminApplicationAssignmentPrincipalType implements TerraformEnum {
+  user('USER'),
+  group('GROUP');
+
+  const SsoadminApplicationAssignmentPrincipalType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ssoadmin_application_assignment`.
 final class AwsSsoadminApplicationAssignment extends Resource {
   static const String tfType = 'aws_ssoadmin_application_assignment';
@@ -14,7 +24,7 @@ final class AwsSsoadminApplicationAssignment extends Resource {
     required super.localName,
     required TfArg<String> applicationArn,
     required TfArg<String> principalId,
-    required TfArg<String> principalType,
+    required TfArg<SsoadminApplicationAssignmentPrincipalType> principalType,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

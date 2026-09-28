@@ -7,6 +7,53 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_storagegateway_smb_file_share`.
 const Set<String> _awsStoragegatewaySmbFileShareSensitive = <String>{};
 
+/// Storagegateway Smb File Share enum for `authentication`.
+enum StoragegatewaySmbFileShareAuthentication implements TerraformEnum {
+  activedirectory('ActiveDirectory'),
+  guestaccess('GuestAccess');
+
+  const StoragegatewaySmbFileShareAuthentication(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Storagegateway Smb File Share Case enum for `case_sensitivity`.
+enum StoragegatewaySmbFileShareCaseSensitivity implements TerraformEnum {
+  clientspecified('ClientSpecified'),
+  casesensitive('CaseSensitive');
+
+  const StoragegatewaySmbFileShareCaseSensitivity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Storagegateway Smb File Share Default Storage enum for `default_storage_class`.
+enum StoragegatewaySmbFileShareDefaultStorageClass implements TerraformEnum {
+  s3IntelligentTiering('S3_INTELLIGENT_TIERING'),
+  s3OnezoneIa('S3_ONEZONE_IA'),
+  s3Standard('S3_STANDARD'),
+  s3StandardIa('S3_STANDARD_IA');
+
+  const StoragegatewaySmbFileShareDefaultStorageClass(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Storagegateway Smb File Share Object enum for `object_acl`.
+enum StoragegatewaySmbFileShareObjectAcl implements TerraformEnum {
+  private('private'),
+  publicRead('public-read'),
+  publicReadWrite('public-read-write'),
+  authenticatedRead('authenticated-read'),
+  bucketOwnerRead('bucket-owner-read'),
+  bucketOwnerFullControl('bucket-owner-full-control'),
+  awsExecRead('aws-exec-read');
+
+  const StoragegatewaySmbFileShareObjectAcl(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cache_attributes` block of
 /// `aws_storagegateway_smb_file_share` (derived from provider schema).
 @immutable
@@ -32,10 +79,10 @@ final class AwsStoragegatewaySmbFileShare extends Resource {
     TfArg<bool>? accessBasedEnumeration,
     TfArg<List<String>>? adminUserList,
     TfArg<String>? auditDestinationArn,
-    TfArg<String>? authentication,
+    TfArg<StoragegatewaySmbFileShareAuthentication>? authentication,
     TfArg<String>? bucketRegion,
-    TfArg<String>? caseSensitivity,
-    TfArg<String>? defaultStorageClass,
+    TfArg<StoragegatewaySmbFileShareCaseSensitivity>? caseSensitivity,
+    TfArg<StoragegatewaySmbFileShareDefaultStorageClass>? defaultStorageClass,
     TfArg<String>? fileShareName,
     required TfArg<String> gatewayArn,
     TfArg<bool>? guessMimeTypeEnabled,
@@ -44,7 +91,7 @@ final class AwsStoragegatewaySmbFileShare extends Resource {
     TfArg<String>? kmsKeyArn,
     required TfArg<String> locationArn,
     TfArg<String>? notificationPolicy,
-    TfArg<String>? objectAcl,
+    TfArg<StoragegatewaySmbFileShareObjectAcl>? objectAcl,
     TfArg<bool>? oplocksEnabled,
     TfArg<bool>? readOnly,
     TfArg<String>? region,

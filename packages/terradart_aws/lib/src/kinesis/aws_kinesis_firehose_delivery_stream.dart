@@ -12,6 +12,23 @@ const Set<String> _awsKinesisFirehoseDeliveryStreamSensitive = <String>{
   'snowflake_configuration.private_key',
 };
 
+/// Kinesis Firehose Delivery Stream enum for `destination`.
+enum KinesisFirehoseDeliveryStreamDestination implements TerraformEnum {
+  elasticsearch('elasticsearch'),
+  extendedS3('extended_s3'),
+  httpEndpoint('http_endpoint'),
+  iceberg('iceberg'),
+  opensearch('opensearch'),
+  opensearchserverless('opensearchserverless'),
+  redshift('redshift'),
+  snowflake('snowflake'),
+  splunk('splunk');
+
+  const KinesisFirehoseDeliveryStreamDestination(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `elasticsearch_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
@@ -43,13 +60,19 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
 
   final TfArg<String> indexName;
 
-  final TfArg<String>? indexRotationPeriod;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamElasticsearchConfigurationIndexRotationPeriod
+  >?
+  indexRotationPeriod;
 
   final TfArg<num>? retryDuration;
 
   final TfArg<String> roleArn;
 
-  final TfArg<String>? s3BackupMode;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
+  >?
+  s3BackupMode;
 
   final TfArg<String>? typeName;
 
@@ -86,6 +109,35 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
     's3_configuration': s3Configuration.encode(),
     if (vpcConfig != null) 'vpc_config': vpcConfig!.encode(),
   };
+}
+
+/// `index_rotation_period` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamElasticsearchConfigurationIndexRotationPeriod
+    implements TerraformEnum {
+  norotation('NoRotation'),
+  onehour('OneHour'),
+  oneday('OneDay'),
+  oneweek('OneWeek'),
+  onemonth('OneMonth');
+
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationIndexRotationPeriod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `s3_backup_mode` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode
+    implements TerraformEnum {
+  faileddocumentsonly('FailedDocumentsOnly'),
+  alldocuments('AllDocuments');
+
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationS3BackupMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `elasticsearch_configuration.cloudwatch_logging_options` block of
@@ -303,7 +355,10 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
 
   final TfArg<num>? bufferingSize;
 
-  final TfArg<String>? compressionFormat;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCompressionFormat
+  >?
+  compressionFormat;
 
   final TfArg<String>? customTimeZone;
 
@@ -317,7 +372,8 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
 
   final TfArg<String> roleArn;
 
-  final TfArg<String>? s3BackupMode;
+  final TfArg<KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode>?
+  s3BackupMode;
 
   final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
@@ -362,6 +418,35 @@ final class KinesisFirehoseDeliveryStreamExtendedS3Configuration {
     if (s3BackupConfiguration != null)
       's3_backup_configuration': s3BackupConfiguration!.encode(),
   };
+}
+
+/// `compression_format` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCompressionFormat
+    implements TerraformEnum {
+  uncompressed('UNCOMPRESSED'),
+  gzip('GZIP'),
+  zip('ZIP'),
+  snappy('Snappy'),
+  hadoopSnappy('HADOOP_SNAPPY');
+
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationCompressionFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `s3_backup_mode` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode
+    implements TerraformEnum {
+  disabled('Disabled'),
+  enabled('Enabled');
+
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationS3BackupMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `extended_s3_configuration.cloudwatch_logging_options` block of
@@ -553,13 +638,19 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 
   final TfArg<num>? bloomFilterFalsePositiveProbability;
 
-  final TfArg<String>? compression;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeCompression
+  >?
+  compression;
 
   final TfArg<num>? dictionaryKeyThreshold;
 
   final TfArg<bool>? enablePadding;
 
-  final TfArg<String>? formatVersion;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeFormatVersion
+  >?
+  formatVersion;
 
   final TfArg<num>? paddingTolerance;
 
@@ -587,6 +678,33 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   };
 }
 
+/// `compression` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeCompression
+    implements TerraformEnum {
+  none('NONE'),
+  zlib('ZLIB'),
+  snappy('SNAPPY');
+
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeCompression(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `format_version` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeFormatVersion
+    implements TerraformEnum {
+  v011('V0_11'),
+  v012('V0_12');
+
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeFormatVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.output_format_configuration.serializer.parquet_ser_de` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
@@ -602,7 +720,10 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 
   final TfArg<num>? blockSizeBytes;
 
-  final TfArg<String>? compression;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeCompression
+  >?
+  compression;
 
   final TfArg<bool>? enableDictionaryCompression;
 
@@ -610,7 +731,10 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 
   final TfArg<num>? pageSizeBytes;
 
-  final TfArg<String>? writerVersion;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeWriterVersion
+  >?
+  writerVersion;
 
   Map<String, Object?> encode() => {
     if (blockSizeBytes != null) 'block_size_bytes': blockSizeBytes!.toTfJson(),
@@ -622,6 +746,33 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
     if (pageSizeBytes != null) 'page_size_bytes': pageSizeBytes!.toTfJson(),
     if (writerVersion != null) 'writer_version': writerVersion!.toTfJson(),
   };
+}
+
+/// `compression` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeCompression
+    implements TerraformEnum {
+  uncompressed('UNCOMPRESSED'),
+  gzip('GZIP'),
+  snappy('SNAPPY');
+
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeCompression(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `writer_version` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeWriterVersion
+    implements TerraformEnum {
+  v1('V1'),
+  v2('V2');
+
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeWriterVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.schema_configuration` block of
@@ -850,7 +1001,10 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
 
   final TfArg<String>? roleArn;
 
-  final TfArg<String>? s3BackupMode;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
+  >?
+  s3BackupMode;
 
   final TfArg<String> url;
 
@@ -889,6 +1043,19 @@ final class KinesisFirehoseDeliveryStreamHttpEndpointConfiguration {
     if (secretsManagerConfiguration != null)
       'secrets_manager_configuration': secretsManagerConfiguration!.encode(),
   };
+}
+
+/// `s3_backup_mode` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode
+    implements TerraformEnum {
+  faileddataonly('FailedDataOnly'),
+  alldata('AllData');
+
+  const KinesisFirehoseDeliveryStreamHttpEndpointConfigurationS3BackupMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `http_endpoint_configuration.cloudwatch_logging_options` block of
@@ -1150,7 +1317,8 @@ final class KinesisFirehoseDeliveryStreamIcebergConfiguration {
 
   final TfArg<String> roleArn;
 
-  final TfArg<String>? s3BackupMode;
+  final TfArg<KinesisFirehoseDeliveryStreamIcebergConfigurationS3BackupMode>?
+  s3BackupMode;
 
   final KinesisFirehoseDeliveryStreamIcebergConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
@@ -1185,6 +1353,19 @@ final class KinesisFirehoseDeliveryStreamIcebergConfiguration {
       'processing_configuration': processingConfiguration!.encode(),
     's3_configuration': s3Configuration.encode(),
   };
+}
+
+/// `s3_backup_mode` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamIcebergConfigurationS3BackupMode
+    implements TerraformEnum {
+  faileddataonly('FailedDataOnly'),
+  alldata('AllData');
+
+  const KinesisFirehoseDeliveryStreamIcebergConfigurationS3BackupMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `iceberg_configuration.cloudwatch_logging_options` block of
@@ -1435,7 +1616,10 @@ final class KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationCon
     required this.roleArn,
   });
 
-  final TfArg<String> connectivity;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationConfigurationConnectivity
+  >
+  connectivity;
 
   final TfArg<String> roleArn;
 
@@ -1443,6 +1627,19 @@ final class KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationCon
     'connectivity': connectivity.toTfJson(),
     'role_arn': roleArn.toTfJson(),
   };
+}
+
+/// `connectivity` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationConfigurationConnectivity
+    implements TerraformEnum {
+  public('PUBLIC'),
+  private('PRIVATE');
+
+  const KinesisFirehoseDeliveryStreamMskSourceConfigurationAuthenticationConfigurationConnectivity(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `opensearch_configuration` block of
@@ -1477,13 +1674,17 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
 
   final TfArg<String> indexName;
 
-  final TfArg<String>? indexRotationPeriod;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamOpensearchConfigurationIndexRotationPeriod
+  >?
+  indexRotationPeriod;
 
   final TfArg<num>? retryDuration;
 
   final TfArg<String> roleArn;
 
-  final TfArg<String>? s3BackupMode;
+  final TfArg<KinesisFirehoseDeliveryStreamOpensearchConfigurationS3BackupMode>?
+  s3BackupMode;
 
   final TfArg<String>? typeName;
 
@@ -1527,6 +1728,35 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
   };
 }
 
+/// `index_rotation_period` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamOpensearchConfigurationIndexRotationPeriod
+    implements TerraformEnum {
+  norotation('NoRotation'),
+  onehour('OneHour'),
+  oneday('OneDay'),
+  oneweek('OneWeek'),
+  onemonth('OneMonth');
+
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationIndexRotationPeriod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `s3_backup_mode` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamOpensearchConfigurationS3BackupMode
+    implements TerraformEnum {
+  faileddocumentsonly('FailedDocumentsOnly'),
+  alldocuments('AllDocuments');
+
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationS3BackupMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `opensearch_configuration.cloudwatch_logging_options` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
@@ -1558,11 +1788,27 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOption
     required this.defaultDocumentIdFormat,
   });
 
-  final TfArg<String> defaultDocumentIdFormat;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptionsDefaultDocumentIdFormat
+  >
+  defaultDocumentIdFormat;
 
   Map<String, Object?> encode() => {
     'default_document_id_format': defaultDocumentIdFormat.toTfJson(),
   };
+}
+
+/// `default_document_id_format` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptionsDefaultDocumentIdFormat
+    implements TerraformEnum {
+  firehoseDefault('FIREHOSE_DEFAULT'),
+  noDocumentId('NO_DOCUMENT_ID');
+
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationDocumentIdOptionsDefaultDocumentIdFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `opensearch_configuration.processing_configuration` block of
@@ -1758,7 +2004,10 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration {
 
   final TfArg<String> roleArn;
 
-  final TfArg<String>? s3BackupMode;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3BackupMode
+  >?
+  s3BackupMode;
 
   final KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
@@ -1788,6 +2037,19 @@ final class KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration {
     's3_configuration': s3Configuration.encode(),
     if (vpcConfig != null) 'vpc_config': vpcConfig!.encode(),
   };
+}
+
+/// `s3_backup_mode` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3BackupMode
+    implements TerraformEnum {
+  faileddocumentsonly('FailedDocumentsOnly'),
+  alldocuments('AllDocuments');
+
+  const KinesisFirehoseDeliveryStreamOpensearchserverlessConfigurationS3BackupMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `opensearchserverless_configuration.cloudwatch_logging_options` block of
@@ -2011,7 +2273,8 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfiguration {
 
   final TfArg<String> roleArn;
 
-  final TfArg<String>? s3BackupMode;
+  final TfArg<KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupMode>?
+  s3BackupMode;
 
   final TfArg<String>? username;
 
@@ -2051,6 +2314,19 @@ final class KinesisFirehoseDeliveryStreamRedshiftConfiguration {
     if (secretsManagerConfiguration != null)
       'secrets_manager_configuration': secretsManagerConfiguration!.encode(),
   };
+}
+
+/// `s3_backup_mode` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupMode
+    implements TerraformEnum {
+  disabled('Disabled'),
+  enabled('Enabled');
+
+  const KinesisFirehoseDeliveryStreamRedshiftConfigurationS3BackupMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `redshift_configuration.cloudwatch_logging_options` block of
@@ -2328,13 +2604,27 @@ final class KinesisFirehoseDeliveryStreamServerSideEncryption {
 
   final TfArg<String>? keyArn;
 
-  final TfArg<String>? keyType;
+  final TfArg<KinesisFirehoseDeliveryStreamServerSideEncryptionKeyType>?
+  keyType;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (keyArn != null) 'key_arn': keyArn!.toTfJson(),
     if (keyType != null) 'key_type': keyType!.toTfJson(),
   };
+}
+
+/// `key_type` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamServerSideEncryptionKeyType
+    implements TerraformEnum {
+  awsOwnedCmk('AWS_OWNED_CMK'),
+  customerManagedCmk('CUSTOMER_MANAGED_CMK');
+
+  const KinesisFirehoseDeliveryStreamServerSideEncryptionKeyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `snowflake_configuration` block of
@@ -2373,7 +2663,10 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 
   final TfArg<String>? contentColumnName;
 
-  final TfArg<String>? dataLoadingOption;
+  final TfArg<
+    KinesisFirehoseDeliveryStreamSnowflakeConfigurationDataLoadingOption
+  >?
+  dataLoadingOption;
 
   final TfArg<String> database;
 
@@ -2387,7 +2680,8 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
 
   final TfArg<String> roleArn;
 
-  final TfArg<String>? s3BackupMode;
+  final TfArg<KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3BackupMode>?
+  s3BackupMode;
 
   final TfArg<String> schema;
 
@@ -2445,6 +2739,33 @@ final class KinesisFirehoseDeliveryStreamSnowflakeConfiguration {
     if (snowflakeVpcConfiguration != null)
       'snowflake_vpc_configuration': snowflakeVpcConfiguration!.encode(),
   };
+}
+
+/// `data_loading_option` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamSnowflakeConfigurationDataLoadingOption
+    implements TerraformEnum {
+  jsonMapping('JSON_MAPPING'),
+  variantContentMapping('VARIANT_CONTENT_MAPPING'),
+  variantContentAndMetadataMapping('VARIANT_CONTENT_AND_METADATA_MAPPING');
+
+  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationDataLoadingOption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `s3_backup_mode` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3BackupMode
+    implements TerraformEnum {
+  faileddataonly('FailedDataOnly'),
+  alldata('AllData');
+
+  const KinesisFirehoseDeliveryStreamSnowflakeConfigurationS3BackupMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `snowflake_configuration.cloudwatch_logging_options` block of
@@ -2694,13 +3015,15 @@ final class KinesisFirehoseDeliveryStreamSplunkConfiguration {
 
   final TfArg<String> hecEndpoint;
 
-  final TfArg<String>? hecEndpointType;
+  final TfArg<KinesisFirehoseDeliveryStreamSplunkConfigurationHecEndpointType>?
+  hecEndpointType;
 
   final TfArg<String>? hecToken;
 
   final TfArg<num>? retryDuration;
 
-  final TfArg<String>? s3BackupMode;
+  final TfArg<KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode>?
+  s3BackupMode;
 
   final KinesisFirehoseDeliveryStreamSplunkConfigurationCloudwatchLoggingOptions?
   cloudwatchLoggingOptions;
@@ -2734,6 +3057,32 @@ final class KinesisFirehoseDeliveryStreamSplunkConfiguration {
     if (secretsManagerConfiguration != null)
       'secrets_manager_configuration': secretsManagerConfiguration!.encode(),
   };
+}
+
+/// `hec_endpoint_type` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamSplunkConfigurationHecEndpointType
+    implements TerraformEnum {
+  raw('Raw'),
+  event('Event');
+
+  const KinesisFirehoseDeliveryStreamSplunkConfigurationHecEndpointType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `s3_backup_mode` — derived from the provider schema description.
+enum KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode
+    implements TerraformEnum {
+  failedeventsonly('FailedEventsOnly'),
+  allevents('AllEvents');
+
+  const KinesisFirehoseDeliveryStreamSplunkConfigurationS3BackupMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `splunk_configuration.cloudwatch_logging_options` block of
@@ -2929,7 +3278,7 @@ final class AwsKinesisFirehoseDeliveryStream extends Resource {
   AwsKinesisFirehoseDeliveryStream({
     required super.localName,
     TfArg<String>? arn,
-    required TfArg<String> destination,
+    required TfArg<KinesisFirehoseDeliveryStreamDestination> destination,
     TfArg<String>? destinationId,
     required TfArg<String> name,
     TfArg<String>? region,

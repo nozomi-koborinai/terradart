@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_metric_stream`.
 const Set<String> _awsCloudwatchMetricStreamSensitive = <String>{};
 
+/// Cloudwatch Metric Stream Output enum for `output_format`.
+enum CloudwatchMetricStreamOutputFormat implements TerraformEnum {
+  json('json'),
+  opentelemetry0p7('opentelemetry0.7'),
+  opentelemetry1p0('opentelemetry1.0');
+
+  const CloudwatchMetricStreamOutputFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `exclude_filter` block of
 /// `aws_cloudwatch_metric_stream` (derived from provider schema).
 @immutable
@@ -94,7 +105,7 @@ final class AwsCloudwatchMetricStream extends Resource {
     TfArg<bool>? includeLinkedAccountsMetrics,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
-    required TfArg<String> outputFormat,
+    required TfArg<CloudwatchMetricStreamOutputFormat> outputFormat,
     TfArg<String>? region,
     required TfArg<String> roleArn,
     TfArg<Map<String, String>>? tags,

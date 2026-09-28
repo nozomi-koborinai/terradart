@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lambda_function_recursion_config`.
 const Set<String> _awsLambdaFunctionRecursionConfigSensitive = <String>{};
 
+/// Lambda Function Recursion Config Recursive enum for `recursive_loop`.
+enum LambdaFunctionRecursionConfigRecursiveLoop implements TerraformEnum {
+  allow('Allow'),
+  terminate('Terminate');
+
+  const LambdaFunctionRecursionConfigRecursiveLoop(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_lambda_function_recursion_config`.
 final class AwsLambdaFunctionRecursionConfig extends Resource {
   static const String tfType = 'aws_lambda_function_recursion_config';
@@ -13,7 +23,7 @@ final class AwsLambdaFunctionRecursionConfig extends Resource {
   AwsLambdaFunctionRecursionConfig({
     required super.localName,
     required TfArg<String> functionName,
-    required TfArg<String> recursiveLoop,
+    required TfArg<LambdaFunctionRecursionConfigRecursiveLoop> recursiveLoop,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

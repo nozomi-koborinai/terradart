@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_s3files_mount_target`.
 const Set<String> _awsS3filesMountTargetSensitive = <String>{};
 
+/// S3files Mount Target Ip Address enum for `ip_address_type`.
+enum S3filesMountTargetIpAddressType implements TerraformEnum {
+  ipv4Only('IPV4_ONLY'),
+  ipv6Only('IPV6_ONLY'),
+  dualStack('DUAL_STACK');
+
+  const S3filesMountTargetIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_s3files_mount_target`.
 final class AwsS3filesMountTarget extends Resource {
   static const String tfType = 'aws_s3files_mount_target';
@@ -13,7 +24,7 @@ final class AwsS3filesMountTarget extends Resource {
   AwsS3filesMountTarget({
     required super.localName,
     required TfArg<String> fileSystemId,
-    TfArg<String>? ipAddressType,
+    TfArg<S3filesMountTargetIpAddressType>? ipAddressType,
     TfArg<String>? ipv4Address,
     TfArg<String>? ipv6Address,
     TfArg<String>? region,

@@ -6,13 +6,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dataexchange_data_set`.
 const Set<String> _awsDataexchangeDataSetSensitive = <String>{};
 
+/// Dataexchange Data Set Asset enum for `asset_type`.
+enum DataexchangeDataSetAssetType implements TerraformEnum {
+  s3Snapshot('S3_SNAPSHOT'),
+  redshiftDataShare('REDSHIFT_DATA_SHARE'),
+  apiGatewayApi('API_GATEWAY_API'),
+  s3DataAccess('S3_DATA_ACCESS'),
+  lakeFormationDataPermission('LAKE_FORMATION_DATA_PERMISSION');
+
+  const DataexchangeDataSetAssetType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dataexchange_data_set`.
 final class AwsDataexchangeDataSet extends Resource {
   static const String tfType = 'aws_dataexchange_data_set';
 
   AwsDataexchangeDataSet({
     required super.localName,
-    required TfArg<String> assetType,
+    required TfArg<DataexchangeDataSetAssetType> assetType,
     required TfArg<String> description,
     required TfArg<String> name,
     TfArg<String>? region,

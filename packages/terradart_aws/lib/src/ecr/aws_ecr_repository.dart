@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ecr_repository`.
 const Set<String> _awsEcrRepositorySensitive = <String>{};
 
+/// Ecr Repository Image Tag enum for `image_tag_mutability`.
+enum EcrRepositoryImageTagMutability implements TerraformEnum {
+  mutable('MUTABLE'),
+  immutable('IMMUTABLE'),
+  immutableWithExclusion('IMMUTABLE_WITH_EXCLUSION'),
+  mutableWithExclusion('MUTABLE_WITH_EXCLUSION');
+
+  const EcrRepositoryImageTagMutability(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `encryption_configuration` block of
 /// `aws_ecr_repository` (derived from provider schema).
 @immutable
@@ -16,7 +28,8 @@ final class EcrRepositoryEncryptionConfiguration {
     this.kmsKey,
   });
 
-  final TfArg<String>? encryptionType;
+  final TfArg<EcrRepositoryEncryptionConfigurationEncryptionType>?
+  encryptionType;
 
   final TfArg<String>? kmsKey;
 
@@ -24,6 +37,18 @@ final class EcrRepositoryEncryptionConfiguration {
     if (encryptionType != null) 'encryption_type': encryptionType!.toTfJson(),
     if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
   };
+}
+
+/// `encryption_type` — derived from the provider schema description.
+enum EcrRepositoryEncryptionConfigurationEncryptionType
+    implements TerraformEnum {
+  aes256('AES256'),
+  kms('KMS'),
+  kmsDsse('KMS_DSSE');
+
+  const EcrRepositoryEncryptionConfigurationEncryptionType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `image_scanning_configuration` block of
@@ -48,12 +73,25 @@ final class EcrRepositoryImageTagMutabilityExclusionFilter {
 
   final TfArg<String> filter;
 
-  final TfArg<String> filterType;
+  final TfArg<EcrRepositoryImageTagMutabilityExclusionFilterFilterType>
+  filterType;
 
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
     'filter_type': filterType.toTfJson(),
   };
+}
+
+/// `filter_type` — derived from the provider schema description.
+enum EcrRepositoryImageTagMutabilityExclusionFilterFilterType
+    implements TerraformEnum {
+  wildcard('WILDCARD');
+
+  const EcrRepositoryImageTagMutabilityExclusionFilterFilterType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ecr_repository`.
@@ -63,7 +101,7 @@ final class AwsEcrRepository extends Resource {
   AwsEcrRepository({
     required super.localName,
     TfArg<bool>? forceDelete,
-    TfArg<String>? imageTagMutability,
+    TfArg<EcrRepositoryImageTagMutability>? imageTagMutability,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

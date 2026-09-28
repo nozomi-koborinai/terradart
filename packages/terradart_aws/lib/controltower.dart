@@ -8,4 +8,4 @@ export 'src/controltower/aws_controltower_baseline.dart'
 export 'src/controltower/aws_controltower_control.dart'
     show AwsControltowerControl, ControltowerControlParameters;
 export 'src/controltower/aws_controltower_landing_zone.dart'
-    show AwsControltowerLandingZone;
+    show AwsControltowerLandingZone, ControltowerLandingZoneRemediationTypes;

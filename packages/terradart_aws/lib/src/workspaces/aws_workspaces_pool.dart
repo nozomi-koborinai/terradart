@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_workspaces_pool`.
 const Set<String> _awsWorkspacesPoolSensitive = <String>{};
 
+/// Workspaces Pool Running enum for `running_mode`.
+enum WorkspacesPoolRunningMode implements TerraformEnum {
+  autoStop('AUTO_STOP'),
+  alwaysOn('ALWAYS_ON');
+
+  const WorkspacesPoolRunningMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `capacity` block of
 /// `aws_workspaces_pool` (derived from provider schema).
 @immutable
@@ -32,7 +42,7 @@ final class AwsWorkspacesPool extends Resource {
     required TfArg<String> directoryId,
     required TfArg<String> poolName,
     TfArg<String>? region,
-    required TfArg<String> runningMode,
+    required TfArg<WorkspacesPoolRunningMode> runningMode,
     TfArg<Map<String, String>>? tags,
     TfArg<List<Map<String, Object?>>>? timeoutSettings,
     List<WorkspacesPoolCapacity>? capacity,

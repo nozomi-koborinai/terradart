@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_globalaccelerator_accelerator`.
 const Set<String> _awsGlobalacceleratorAcceleratorSensitive = <String>{};
 
+/// Globalaccelerator Accelerator Ip Address enum for `ip_address_type`.
+enum GlobalacceleratorAcceleratorIpAddressType implements TerraformEnum {
+  ipv4('IPV4'),
+  dualStack('DUAL_STACK');
+
+  const GlobalacceleratorAcceleratorIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `attributes` block of
 /// `aws_globalaccelerator_accelerator` (derived from provider schema).
 @immutable
@@ -40,7 +50,7 @@ final class AwsGlobalacceleratorAccelerator extends Resource {
   AwsGlobalacceleratorAccelerator({
     required super.localName,
     TfArg<bool>? enabled,
-    TfArg<String>? ipAddressType,
+    TfArg<GlobalacceleratorAcceleratorIpAddressType>? ipAddressType,
     TfArg<List<String>>? ipAddresses,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

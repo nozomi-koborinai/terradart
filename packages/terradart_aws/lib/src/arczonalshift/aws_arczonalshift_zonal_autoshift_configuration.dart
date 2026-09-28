@@ -8,6 +8,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsArczonalshiftZonalAutoshiftConfigurationSensitive =
     <String>{};
 
+/// Arczonalshift Zonal Autoshift Configuration Zonal Autoshift enum for `zonal_autoshift_status`.
+enum ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `blocking_alarms` block of
 /// `aws_arczonalshift_zonal_autoshift_configuration` (derived from provider schema).
 @immutable
@@ -19,12 +32,24 @@ final class ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms {
 
   final TfArg<String> alarmIdentifier;
 
-  final TfArg<String> type;
+  final TfArg<ArczonalshiftZonalAutoshiftConfigurationBlockingAlarmsType> type;
 
   Map<String, Object?> encode() => {
     'alarm_identifier': alarmIdentifier.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ArczonalshiftZonalAutoshiftConfigurationBlockingAlarmsType
+    implements TerraformEnum {
+  cloudwatch('CLOUDWATCH');
+
+  const ArczonalshiftZonalAutoshiftConfigurationBlockingAlarmsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `outcome_alarms` block of
@@ -38,12 +63,24 @@ final class ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarms {
 
   final TfArg<String> alarmIdentifier;
 
-  final TfArg<String> type;
+  final TfArg<ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarmsType> type;
 
   Map<String, Object?> encode() => {
     'alarm_identifier': alarmIdentifier.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarmsType
+    implements TerraformEnum {
+  cloudwatch('CLOUDWATCH');
+
+  const ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarmsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_arczonalshift_zonal_autoshift_configuration`.
@@ -58,7 +95,8 @@ final class AwsArczonalshiftZonalAutoshiftConfiguration extends Resource {
     TfArg<List<String>>? blockedWindows,
     TfArg<String>? region,
     required TfArg<String> resourceArn,
-    required TfArg<String> zonalAutoshiftStatus,
+    required TfArg<ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus>
+    zonalAutoshiftStatus,
     List<ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms>?
     blockingAlarms,
     List<ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarms>? outcomeAlarms,

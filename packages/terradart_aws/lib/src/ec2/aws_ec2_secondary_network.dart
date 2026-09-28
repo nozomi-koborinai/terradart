@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_secondary_network`.
 const Set<String> _awsEc2SecondaryNetworkSensitive = <String>{};
 
+/// Ec2 Secondary Network Network enum for `network_type`.
+enum Ec2SecondaryNetworkNetworkType implements TerraformEnum {
+  rdma('rdma');
+
+  const Ec2SecondaryNetworkNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_secondary_network`.
 final class AwsEc2SecondaryNetwork extends Resource {
   static const String tfType = 'aws_ec2_secondary_network';
@@ -13,7 +22,7 @@ final class AwsEc2SecondaryNetwork extends Resource {
   AwsEc2SecondaryNetwork({
     required super.localName,
     required TfArg<String> ipv4CidrBlock,
-    required TfArg<String> networkType,
+    required TfArg<Ec2SecondaryNetworkNetworkType> networkType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

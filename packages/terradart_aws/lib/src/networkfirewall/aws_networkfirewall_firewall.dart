@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_networkfirewall_firewall`.
 const Set<String> _awsNetworkfirewallFirewallSensitive = <String>{};
 
+/// Networkfirewall Firewall Enabled Analysis enum for `enabled_analysis_types`.
+enum NetworkfirewallFirewallEnabledAnalysisTypes implements TerraformEnum {
+  tlsSni('TLS_SNI'),
+  httpHost('HTTP_HOST');
+
+  const NetworkfirewallFirewallEnabledAnalysisTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `availability_zone_mapping` block of
 /// `aws_networkfirewall_firewall` (derived from provider schema).
 @immutable
@@ -33,12 +43,23 @@ final class NetworkfirewallFirewallEncryptionConfiguration {
 
   final TfArg<String>? keyId;
 
-  final TfArg<String> type;
+  final TfArg<NetworkfirewallFirewallEncryptionConfigurationType> type;
 
   Map<String, Object?> encode() => {
     if (keyId != null) 'key_id': keyId!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum NetworkfirewallFirewallEncryptionConfigurationType
+    implements TerraformEnum {
+  customerKms('CUSTOMER_KMS'),
+  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
+
+  const NetworkfirewallFirewallEncryptionConfigurationType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `subnet_mapping` block of
@@ -50,7 +71,7 @@ final class NetworkfirewallFirewallSubnetMapping {
     required this.subnetId,
   });
 
-  final TfArg<String>? ipAddressType;
+  final TfArg<NetworkfirewallFirewallSubnetMappingIpAddressType>? ipAddressType;
 
   final TfArg<String> subnetId;
 
@@ -58,6 +79,18 @@ final class NetworkfirewallFirewallSubnetMapping {
     if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
     'subnet_id': subnetId.toTfJson(),
   };
+}
+
+/// `ip_address_type` — derived from the provider schema description.
+enum NetworkfirewallFirewallSubnetMappingIpAddressType
+    implements TerraformEnum {
+  dualstack('DUALSTACK'),
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const NetworkfirewallFirewallSubnetMappingIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_networkfirewall_firewall`.
@@ -69,7 +102,8 @@ final class AwsNetworkfirewallFirewall extends Resource {
     TfArg<bool>? availabilityZoneChangeProtection,
     TfArg<bool>? deleteProtection,
     TfArg<String>? description,
-    TfArg<List<String>>? enabledAnalysisTypes,
+    List<TfArg<NetworkfirewallFirewallEnabledAnalysisTypes>>?
+    enabledAnalysisTypes,
     required TfArg<String> firewallPolicyArn,
     TfArg<bool>? firewallPolicyChangeProtection,
     required TfArg<String> name,
@@ -95,7 +129,9 @@ final class AwsNetworkfirewallFirewall extends Resource {
            if (deleteProtection != null) 'delete_protection': deleteProtection,
            if (description != null) 'description': description,
            if (enabledAnalysisTypes != null)
-             'enabled_analysis_types': enabledAnalysisTypes,
+             'enabled_analysis_types': TfArg.literal([
+               for (final e in enabledAnalysisTypes) e.toTfJson(),
+             ]),
            'firewall_policy_arn': firewallPolicyArn,
            if (firewallPolicyChangeProtection != null)
              'firewall_policy_change_protection':

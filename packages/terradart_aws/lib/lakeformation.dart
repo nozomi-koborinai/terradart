@@ -14,7 +14,9 @@ export 'src/lakeformation/aws_lakeformation_data_lake_settings.dart'
     show
         AwsLakeformationDataLakeSettings,
         LakeformationDataLakeSettingsCreateDatabaseDefaultPermissions,
-        LakeformationDataLakeSettingsCreateTableDefaultPermissions;
+        LakeformationDataLakeSettingsCreateDatabaseDefaultPermissionsPermissions,
+        LakeformationDataLakeSettingsCreateTableDefaultPermissions,
+        LakeformationDataLakeSettingsCreateTableDefaultPermissionsPermissions;
 export 'src/lakeformation/aws_lakeformation_identity_center_configuration.dart'
     show AwsLakeformationIdentityCenterConfiguration;
 export 'src/lakeformation/aws_lakeformation_lf_tag.dart'
@@ -48,6 +50,9 @@ export 'src/lakeformation/aws_lakeformation_permissions.dart'
         LakeformationPermissionsLfTag,
         LakeformationPermissionsLfTagPolicy,
         LakeformationPermissionsLfTagPolicyExpression,
+        LakeformationPermissionsLfTagPolicyResourceType,
+        LakeformationPermissionsPermissions,
+        LakeformationPermissionsPermissionsWithGrantOption,
         LakeformationPermissionsTable,
         LakeformationPermissionsTableWithColumns;
 export 'src/lakeformation/aws_lakeformation_resource.dart'

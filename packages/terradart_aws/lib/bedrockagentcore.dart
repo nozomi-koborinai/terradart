@@ -10,6 +10,7 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_agent_runtime.dart'
         BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfiguration,
         BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCode,
         BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCodeS3,
+        BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationRuntime,
         BedrockagentcoreAgentRuntimeAgentRuntimeArtifactContainerConfiguration,
         BedrockagentcoreAgentRuntimeAuthorizerConfiguration,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizer,
@@ -17,12 +18,16 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_agent_runtime.dart'
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaim,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue,
+        BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue,
+        BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource,
+        BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource,
+        BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource,
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource,
         BedrockagentcoreAgentRuntimeFilesystemConfiguration,
@@ -30,15 +35,18 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_agent_runtime.dart'
         BedrockagentcoreAgentRuntimeFilesystemConfigurationS3FilesAccessPoint,
         BedrockagentcoreAgentRuntimeFilesystemConfigurationSessionStorage,
         BedrockagentcoreAgentRuntimeNetworkConfiguration,
+        BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkMode,
         BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkModeConfig,
         BedrockagentcoreAgentRuntimeProtocolConfiguration,
+        BedrockagentcoreAgentRuntimeProtocolConfigurationServerProtocol,
         BedrockagentcoreAgentRuntimeRequestHeaderConfiguration;
 export 'src/bedrockagentcore/aws_bedrockagentcore_agent_runtime_endpoint.dart'
     show AwsBedrockagentcoreAgentRuntimeEndpoint;
 export 'src/bedrockagentcore/aws_bedrockagentcore_api_key_credential_provider.dart'
     show
         AwsBedrockagentcoreApiKeyCredentialProvider,
-        BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfig;
+        BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfig,
+        BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource;
 export 'src/bedrockagentcore/aws_bedrockagentcore_browser.dart'
     show
         AwsBedrockagentcoreBrowser,
@@ -49,7 +57,9 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_browser.dart'
         BedrockagentcoreBrowserEnterprisePolicy,
         BedrockagentcoreBrowserEnterprisePolicyLocation,
         BedrockagentcoreBrowserEnterprisePolicyLocationS3,
+        BedrockagentcoreBrowserEnterprisePolicyType,
         BedrockagentcoreBrowserNetworkConfiguration,
+        BedrockagentcoreBrowserNetworkConfigurationNetworkMode,
         BedrockagentcoreBrowserNetworkConfigurationVpcConfig,
         BedrockagentcoreBrowserRecording,
         BedrockagentcoreBrowserRecordingS3Location;
@@ -62,6 +72,7 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_code_interpreter.dart'
         BedrockagentcoreCodeInterpreterCertificateLocation,
         BedrockagentcoreCodeInterpreterCertificateLocationSecretsManager,
         BedrockagentcoreCodeInterpreterNetworkConfiguration,
+        BedrockagentcoreCodeInterpreterNetworkConfigurationNetworkMode,
         BedrockagentcoreCodeInterpreterNetworkConfigurationVpcConfig;
 export 'src/bedrockagentcore/aws_bedrockagentcore_evaluator.dart'
     show
@@ -75,7 +86,8 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_evaluator.dart'
         BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeModelConfigBedrockEvaluatorModelConfigInferenceConfig,
         BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale,
         BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleCategorical,
-        BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumerical;
+        BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleNumerical,
+        BedrockagentcoreEvaluatorLevel;
 export 'src/bedrockagentcore/aws_bedrockagentcore_gateway.dart'
     show
         AwsBedrockagentcoreGateway,
@@ -85,23 +97,33 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_gateway.dart'
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment,
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaim,
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue,
+        BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator,
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue,
+        BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType,
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint,
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource,
+        BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides,
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint,
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource,
+        BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource,
         BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource,
+        BedrockagentcoreGatewayAuthorizerType,
+        BedrockagentcoreGatewayExceptionLevel,
         BedrockagentcoreGatewayInterceptorConfiguration,
         BedrockagentcoreGatewayInterceptorConfigurationInputConfiguration,
+        BedrockagentcoreGatewayInterceptorConfigurationInterceptionPoints,
         BedrockagentcoreGatewayInterceptorConfigurationInterceptor,
         BedrockagentcoreGatewayInterceptorConfigurationInterceptorLambda,
         BedrockagentcoreGatewayPolicyEngineConfiguration,
+        BedrockagentcoreGatewayPolicyEngineConfigurationMode,
         BedrockagentcoreGatewayProtocolConfiguration,
         BedrockagentcoreGatewayProtocolConfigurationMcp,
+        BedrockagentcoreGatewayProtocolConfigurationMcpSearchType,
         BedrockagentcoreGatewayProtocolConfigurationMcpSessionConfiguration,
-        BedrockagentcoreGatewayProtocolConfigurationMcpStreamingConfiguration;
+        BedrockagentcoreGatewayProtocolConfigurationMcpStreamingConfiguration,
+        BedrockagentcoreGatewayProtocolType;
 export 'src/bedrockagentcore/aws_bedrockagentcore_gateway_rule.dart'
     show
         AwsBedrockagentcoreGatewayRule,
@@ -119,19 +141,23 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_gateway_rule.dart'
         BedrockagentcoreGatewayRuleConditionMatchPaths,
         BedrockagentcoreGatewayRuleConditionMatchPrincipals,
         BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOf,
-        BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipal;
+        BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipal,
+        BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipalOperator;
 export 'src/bedrockagentcore/aws_bedrockagentcore_gateway_target.dart'
     show
         AwsBedrockagentcoreGatewayTarget,
         BedrockagentcoreGatewayTargetCredentialProviderConfiguration,
         BedrockagentcoreGatewayTargetCredentialProviderConfigurationApiKey,
+        BedrockagentcoreGatewayTargetCredentialProviderConfigurationApiKeyCredentialLocation,
         BedrockagentcoreGatewayTargetCredentialProviderConfigurationCallerIamCredentials,
         BedrockagentcoreGatewayTargetCredentialProviderConfigurationGatewayIamRole,
         BedrockagentcoreGatewayTargetCredentialProviderConfigurationJwtPassthrough,
         BedrockagentcoreGatewayTargetCredentialProviderConfigurationOauth,
+        BedrockagentcoreGatewayTargetCredentialProviderConfigurationOauthGrantType,
         BedrockagentcoreGatewayTargetMetadataConfiguration,
         BedrockagentcoreGatewayTargetPrivateEndpoint,
         BedrockagentcoreGatewayTargetPrivateEndpointManagedVpcResource,
+        BedrockagentcoreGatewayTargetPrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreGatewayTargetPrivateEndpointSelfManagedLatticeResource,
         BedrockagentcoreGatewayTargetTargetConfiguration,
         BedrockagentcoreGatewayTargetTargetConfigurationHttp,
@@ -141,10 +167,12 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_gateway_target.dart'
         BedrockagentcoreGatewayTargetTargetConfigurationHttpAgentcoreRuntimeSchemaSourceInlinePayload,
         BedrockagentcoreGatewayTargetTargetConfigurationHttpAgentcoreRuntimeSchemaSourceS3,
         BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthrough,
+        BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughProtocolType,
         BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughSchema,
         BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughSchemaSource,
         BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughSchemaSourceInlinePayload,
         BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughSchemaSourceS3,
+        BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughStaticQueryParameterConflictResolution,
         BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughStickinessConfiguration,
         BedrockagentcoreGatewayTargetTargetConfigurationInference,
         BedrockagentcoreGatewayTargetTargetConfigurationInferenceConnector,
@@ -158,7 +186,9 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_gateway_target.dart'
         BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGateway,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfiguration,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfigurationToolFilter,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfigurationToolFilterMethods,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfigurationToolOverride,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfigurationToolOverrideMethod,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpConnector,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpConnectorConfiguration,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpConnectorConfigurationParameterOverride,
@@ -169,23 +199,42 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_gateway_target.dart'
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchema,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItems,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsItems,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsItemsType,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsProperty,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsPropertyType,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsType,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaProperty,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItems,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsItems,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsItemsType,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsProperty,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsPropertyType,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsType,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyProperty,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyPropertyType,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyType,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaType,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchema,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItems,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsItems,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsItemsType,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsProperty,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsPropertyType,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsType,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaProperty,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItems,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsItems,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsItemsType,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsProperty,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsPropertyType,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsType,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyProperty,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyPropertyType,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyType,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaType,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaS3,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServer,
+        BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServerListingMode,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServerMcpToolSchema,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServerMcpToolSchemaInlinePayload,
         BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServerMcpToolSchemaS3,
@@ -204,12 +253,16 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_harness.dart'
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment,
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaim,
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue,
+        BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator,
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue,
+        BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType,
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint,
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource,
+        BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides,
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint,
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource,
+        BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource,
         BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource,
         BedrockagentcoreHarnessEnvironment,
@@ -219,6 +272,7 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_harness.dart'
         BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationS3FilesAccessPoint,
         BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentFilesystemConfigurationSessionStorage,
         BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfiguration,
+        BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkMode,
         BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkModeConfig,
         BedrockagentcoreHarnessEnvironmentArtifact,
         BedrockagentcoreHarnessEnvironmentArtifactContainerConfiguration,
@@ -227,11 +281,14 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_harness.dart'
         BedrockagentcoreHarnessMemoryAgentcoreMemoryConfigurationRetrievalConfig,
         BedrockagentcoreHarnessMemoryDisabled,
         BedrockagentcoreHarnessMemoryManagedMemoryConfiguration,
+        BedrockagentcoreHarnessMemoryManagedMemoryConfigurationStrategies,
         BedrockagentcoreHarnessModel,
         BedrockagentcoreHarnessModelBedrockModelConfig,
+        BedrockagentcoreHarnessModelBedrockModelConfigApiFormat,
         BedrockagentcoreHarnessModelGeminiModelConfig,
         BedrockagentcoreHarnessModelLitellmModelConfig,
         BedrockagentcoreHarnessModelOpenaiModelConfig,
+        BedrockagentcoreHarnessModelOpenaiModelConfigApiFormat,
         BedrockagentcoreHarnessSkill,
         BedrockagentcoreHarnessSkillAwsSkills,
         BedrockagentcoreHarnessSkillGit,
@@ -245,16 +302,21 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_harness.dart'
         BedrockagentcoreHarnessToolConfigAgentcoreGateway,
         BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuth,
         BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauth,
+        BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauthGrantType,
         BedrockagentcoreHarnessToolConfigInlineFunction,
-        BedrockagentcoreHarnessToolConfigRemoteMcp;
+        BedrockagentcoreHarnessToolConfigRemoteMcp,
+        BedrockagentcoreHarnessToolType;
 export 'src/bedrockagentcore/aws_bedrockagentcore_memory.dart'
     show
         AwsBedrockagentcoreMemory,
         BedrockagentcoreMemoryIndexedKey,
+        BedrockagentcoreMemoryIndexedKeyType,
         BedrockagentcoreMemoryStreamDeliveryResources,
         BedrockagentcoreMemoryStreamDeliveryResourcesResource,
         BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesis,
-        BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfiguration;
+        BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfiguration,
+        BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationLevel,
+        BedrockagentcoreMemoryStreamDeliveryResourcesResourceKinesisContentConfigurationType;
 export 'src/bedrockagentcore/aws_bedrockagentcore_memory_strategy.dart'
     show
         AwsBedrockagentcoreMemoryStrategy,
@@ -268,6 +330,7 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_memory_strategy.dart'
         BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsMessageBasedTrigger,
         BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsTimeBasedTrigger,
         BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationTriggerConditionsTokenBasedTrigger,
+        BedrockagentcoreMemoryStrategyConfigurationType,
         BedrockagentcoreMemoryStrategyMemoryRecordSchema,
         BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchema,
         BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfig,
@@ -276,29 +339,39 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_memory_strategy.dart'
         BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationNumberValidation,
         BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationStringListValidation,
         BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionConfigLlmExtractionConfigValidationStringValidation,
-        BedrockagentcoreMemoryStrategyReflectionConfiguration;
+        BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtractionType,
+        BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaType,
+        BedrockagentcoreMemoryStrategyReflectionConfiguration,
+        BedrockagentcoreMemoryStrategyType;
 export 'src/bedrockagentcore/aws_bedrockagentcore_oauth2_credential_provider.dart'
     show
         AwsBedrockagentcoreOauth2CredentialProvider,
+        BedrockagentcoreOauth2CredentialProviderCredentialProviderVendor,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfig,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassianOauth2ProviderConfig,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigAtlassianOauth2ProviderConfigClientSecretConfig,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfig,
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientAuthenticationMethod,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigClientSecretConfig,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOauthDiscovery,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOauthDiscoveryAuthorizationServerMetadata,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfig,
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigGrantType,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfig,
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigOnBehalfOfTokenExchangeConfigTokenExchangeGrantTypeConfigActorTokenContent,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpoint,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResource,
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverride,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpoint,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResource,
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointOverridePrivateEndpointSelfManagedLatticeResource,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateEndpointSelfManagedLatticeResource,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfig,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigPrivateKeySource,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigPrivateKeySourceKmsKeySource,
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigCustomOauth2ProviderConfigPrivateKeyJwtConfigSigningAlgorithm,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOauth2ProviderConfig,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGithubOauth2ProviderConfigClientSecretConfig,
         BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigGoogleOauth2ProviderConfig,
@@ -319,8 +392,10 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_online_evaluation_config.dart'
         BedrockagentcoreOnlineEvaluationConfigDataSourceConfig,
         BedrockagentcoreOnlineEvaluationConfigDataSourceConfigCloudwatchLogs,
         BedrockagentcoreOnlineEvaluationConfigEvaluator,
+        BedrockagentcoreOnlineEvaluationConfigExecutionStatus,
         BedrockagentcoreOnlineEvaluationConfigRule,
         BedrockagentcoreOnlineEvaluationConfigRuleFilter,
+        BedrockagentcoreOnlineEvaluationConfigRuleFilterOperator,
         BedrockagentcoreOnlineEvaluationConfigRuleFilterValue,
         BedrockagentcoreOnlineEvaluationConfigRuleSamplingConfig,
         BedrockagentcoreOnlineEvaluationConfigRuleSessionConfig;
@@ -328,7 +403,8 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_policy.dart'
     show
         AwsBedrockagentcorePolicy,
         BedrockagentcorePolicyDefinition,
-        BedrockagentcorePolicyDefinitionCedar;
+        BedrockagentcorePolicyDefinitionCedar,
+        BedrockagentcorePolicyValidationMode;
 export 'src/bedrockagentcore/aws_bedrockagentcore_policy_engine.dart'
     show AwsBedrockagentcorePolicyEngine;
 export 'src/bedrockagentcore/aws_bedrockagentcore_registry.dart'
@@ -340,19 +416,25 @@ export 'src/bedrockagentcore/aws_bedrockagentcore_registry.dart'
         BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerAllowedWorkloadConfigurationHostingEnvironment,
         BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaim,
         BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue,
+        BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator,
         BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue,
+        BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType,
         BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpoint,
         BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResource,
+        BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverrides,
         BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpoint,
         BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResource,
+        BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType,
         BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointSelfManagedLatticeResource,
-        BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource;
+        BedrockagentcoreRegistryAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointSelfManagedLatticeResource,
+        BedrockagentcoreRegistryAuthorizerType;
 export 'src/bedrockagentcore/aws_bedrockagentcore_resource_policy.dart'
     show AwsBedrockagentcoreResourcePolicy;
 export 'src/bedrockagentcore/aws_bedrockagentcore_token_vault_cmk.dart'
     show
         AwsBedrockagentcoreTokenVaultCmk,
-        BedrockagentcoreTokenVaultCmkKmsConfiguration;
+        BedrockagentcoreTokenVaultCmkKmsConfiguration,
+        BedrockagentcoreTokenVaultCmkKmsConfigurationKeyType;
 export 'src/bedrockagentcore/aws_bedrockagentcore_workload_identity.dart'
     show AwsBedrockagentcoreWorkloadIdentity;

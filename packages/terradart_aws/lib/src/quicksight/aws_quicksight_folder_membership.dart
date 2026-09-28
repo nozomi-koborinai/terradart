@@ -6,6 +6,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_quicksight_folder_membership`.
 const Set<String> _awsQuicksightFolderMembershipSensitive = <String>{};
 
+/// Quicksight Folder Membership Member enum for `member_type`.
+enum QuicksightFolderMembershipMemberType implements TerraformEnum {
+  dashboard('DASHBOARD'),
+  analysis('ANALYSIS'),
+  dataset('DATASET'),
+  datasource('DATASOURCE'),
+  topic('TOPIC');
+
+  const QuicksightFolderMembershipMemberType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_quicksight_folder_membership`.
 final class AwsQuicksightFolderMembership extends Resource {
   static const String tfType = 'aws_quicksight_folder_membership';
@@ -15,7 +28,7 @@ final class AwsQuicksightFolderMembership extends Resource {
     TfArg<String>? awsAccountId,
     required TfArg<String> folderId,
     required TfArg<String> memberId,
-    required TfArg<String> memberType,
+    required TfArg<QuicksightFolderMembershipMemberType> memberType,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

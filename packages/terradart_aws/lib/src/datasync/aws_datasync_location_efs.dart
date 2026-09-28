@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_datasync_location_efs`.
 const Set<String> _awsDatasyncLocationEfsSensitive = <String>{};
 
+/// Datasync Location Efs In Transit enum for `in_transit_encryption`.
+enum DatasyncLocationEfsInTransitEncryption implements TerraformEnum {
+  none('NONE'),
+  tls12('TLS1_2');
+
+  const DatasyncLocationEfsInTransitEncryption(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `ec2_config` block of
 /// `aws_datasync_location_efs` (derived from provider schema).
 @immutable
@@ -35,7 +45,7 @@ final class AwsDatasyncLocationEfs extends Resource {
     TfArg<String>? accessPointArn,
     required TfArg<String> efsFileSystemArn,
     TfArg<String>? fileSystemAccessRoleArn,
-    TfArg<String>? inTransitEncryption,
+    TfArg<DatasyncLocationEfsInTransitEncryption>? inTransitEncryption,
     TfArg<String>? region,
     TfArg<String>? subdirectory,
     TfArg<Map<String, String>>? tags,

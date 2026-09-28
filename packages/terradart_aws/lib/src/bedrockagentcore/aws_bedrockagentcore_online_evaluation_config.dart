@@ -8,6 +8,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsBedrockagentcoreOnlineEvaluationConfigSensitive =
     <String>{};
 
+/// Bedrockagentcore Online Evaluation Config Execution enum for `execution_status`.
+enum BedrockagentcoreOnlineEvaluationConfigExecutionStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const BedrockagentcoreOnlineEvaluationConfigExecutionStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `data_source_config` block of
 /// `aws_bedrockagentcore_online_evaluation_config` (derived from provider schema).
 @immutable
@@ -98,7 +111,8 @@ final class BedrockagentcoreOnlineEvaluationConfigRuleFilter {
 
   final TfArg<String> key;
 
-  final TfArg<String> operator;
+  final TfArg<BedrockagentcoreOnlineEvaluationConfigRuleFilterOperator>
+  operator;
 
   final List<BedrockagentcoreOnlineEvaluationConfigRuleFilterValue>? value;
 
@@ -107,6 +121,25 @@ final class BedrockagentcoreOnlineEvaluationConfigRuleFilter {
     'operator': operator.toTfJson(),
     if (value != null) 'value': [for (final e in value!) e.encode()],
   };
+}
+
+/// `operator` — derived from the provider schema description.
+enum BedrockagentcoreOnlineEvaluationConfigRuleFilterOperator
+    implements TerraformEnum {
+  equals('Equals'),
+  notequals('NotEquals'),
+  greaterthan('GreaterThan'),
+  lessthan('LessThan'),
+  greaterthanorequal('GreaterThanOrEqual'),
+  lessthanorequal('LessThanOrEqual'),
+  contains('Contains'),
+  notcontains('NotContains');
+
+  const BedrockagentcoreOnlineEvaluationConfigRuleFilterOperator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.filter.value` block of
@@ -171,7 +204,8 @@ final class AwsBedrockagentcoreOnlineEvaluationConfig extends Resource {
     TfArg<String>? description,
     required TfArg<bool> enableOnCreate,
     required TfArg<String> evaluationExecutionRoleArn,
-    TfArg<String>? executionStatus,
+    TfArg<BedrockagentcoreOnlineEvaluationConfigExecutionStatus>?
+    executionStatus,
     required TfArg<String> onlineEvaluationConfigName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

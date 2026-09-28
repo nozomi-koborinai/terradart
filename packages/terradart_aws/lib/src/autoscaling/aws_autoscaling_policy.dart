@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_autoscaling_policy`.
 const Set<String> _awsAutoscalingPolicySensitive = <String>{};
 
+/// Autoscaling Policy Policy enum for `policy_type`.
+enum AutoscalingPolicyPolicyType implements TerraformEnum {
+  predictivescaling('PredictiveScaling'),
+  simplescaling('SimpleScaling'),
+  stepscaling('StepScaling'),
+  targettrackingscaling('TargetTrackingScaling');
+
+  const AutoscalingPolicyPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `predictive_scaling_configuration` block of
 /// `aws_autoscaling_policy` (derived from provider schema).
 @immutable
@@ -19,11 +31,14 @@ final class AutoscalingPolicyPredictiveScalingConfiguration {
     required this.metricSpecification,
   });
 
-  final TfArg<String>? maxCapacityBreachBehavior;
+  final TfArg<
+    AutoscalingPolicyPredictiveScalingConfigurationMaxCapacityBreachBehavior
+  >?
+  maxCapacityBreachBehavior;
 
   final TfArg<String>? maxCapacityBuffer;
 
-  final TfArg<String>? mode;
+  final TfArg<AutoscalingPolicyPredictiveScalingConfigurationMode>? mode;
 
   final TfArg<String>? schedulingBufferTime;
 
@@ -40,6 +55,32 @@ final class AutoscalingPolicyPredictiveScalingConfiguration {
       'scheduling_buffer_time': schedulingBufferTime!.toTfJson(),
     'metric_specification': metricSpecification.encode(),
   };
+}
+
+/// `max_capacity_breach_behavior` — derived from the provider schema description.
+enum AutoscalingPolicyPredictiveScalingConfigurationMaxCapacityBreachBehavior
+    implements TerraformEnum {
+  honormaxcapacity('HonorMaxCapacity'),
+  increasemaxcapacity('IncreaseMaxCapacity');
+
+  const AutoscalingPolicyPredictiveScalingConfigurationMaxCapacityBreachBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `mode` — derived from the provider schema description.
+enum AutoscalingPolicyPredictiveScalingConfigurationMode
+    implements TerraformEnum {
+  forecastandscale('ForecastAndScale'),
+  forecastonly('ForecastOnly');
+
+  const AutoscalingPolicyPredictiveScalingConfigurationMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `predictive_scaling_configuration.metric_specification` block of
@@ -468,7 +509,10 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPr
     this.resourceLabel,
   });
 
-  final TfArg<String> predefinedMetricType;
+  final TfArg<
+    AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedLoadMetricSpecificationPredefinedMetricType
+  >
+  predefinedMetricType;
 
   final TfArg<String>? resourceLabel;
 
@@ -476,6 +520,21 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPr
     'predefined_metric_type': predefinedMetricType.toTfJson(),
     if (resourceLabel != null) 'resource_label': resourceLabel!.toTfJson(),
   };
+}
+
+/// `predefined_metric_type` — derived from the provider schema description.
+enum AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedLoadMetricSpecificationPredefinedMetricType
+    implements TerraformEnum {
+  asgtotalcpuutilization('ASGTotalCPUUtilization'),
+  asgtotalnetworkin('ASGTotalNetworkIn'),
+  asgtotalnetworkout('ASGTotalNetworkOut'),
+  albtargetgrouprequestcount('ALBTargetGroupRequestCount');
+
+  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedLoadMetricSpecificationPredefinedMetricType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `predictive_scaling_configuration.metric_specification.predefined_metric_pair_specification` block of
@@ -487,7 +546,10 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPr
     this.resourceLabel,
   });
 
-  final TfArg<String> predefinedMetricType;
+  final TfArg<
+    AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedMetricPairSpecificationPredefinedMetricType
+  >
+  predefinedMetricType;
 
   final TfArg<String>? resourceLabel;
 
@@ -495,6 +557,21 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPr
     'predefined_metric_type': predefinedMetricType.toTfJson(),
     if (resourceLabel != null) 'resource_label': resourceLabel!.toTfJson(),
   };
+}
+
+/// `predefined_metric_type` — derived from the provider schema description.
+enum AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedMetricPairSpecificationPredefinedMetricType
+    implements TerraformEnum {
+  asgcpuutilization('ASGCPUUtilization'),
+  asgnetworkin('ASGNetworkIn'),
+  asgnetworkout('ASGNetworkOut'),
+  albrequestcount('ALBRequestCount');
+
+  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedMetricPairSpecificationPredefinedMetricType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `predictive_scaling_configuration.metric_specification.predefined_scaling_metric_specification` block of
@@ -506,7 +583,10 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPr
     this.resourceLabel,
   });
 
-  final TfArg<String> predefinedMetricType;
+  final TfArg<
+    AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedScalingMetricSpecificationPredefinedMetricType
+  >
+  predefinedMetricType;
 
   final TfArg<String>? resourceLabel;
 
@@ -514,6 +594,21 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPr
     'predefined_metric_type': predefinedMetricType.toTfJson(),
     if (resourceLabel != null) 'resource_label': resourceLabel!.toTfJson(),
   };
+}
+
+/// `predefined_metric_type` — derived from the provider schema description.
+enum AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedScalingMetricSpecificationPredefinedMetricType
+    implements TerraformEnum {
+  asgaveragecpuutilization('ASGAverageCPUUtilization'),
+  asgaveragenetworkin('ASGAverageNetworkIn'),
+  asgaveragenetworkout('ASGAverageNetworkOut'),
+  albrequestcountpertarget('ALBRequestCountPerTarget');
+
+  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedScalingMetricSpecificationPredefinedMetricType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `step_adjustment` block of
@@ -778,7 +873,7 @@ final class AwsAutoscalingPolicy extends Resource {
     TfArg<String>? metricAggregationType,
     TfArg<num>? minAdjustmentMagnitude,
     required TfArg<String> name,
-    TfArg<String>? policyType,
+    TfArg<AutoscalingPolicyPolicyType>? policyType,
     TfArg<String>? region,
     TfArg<num>? scalingAdjustment,
     AutoscalingPolicyPredictiveScalingConfiguration?

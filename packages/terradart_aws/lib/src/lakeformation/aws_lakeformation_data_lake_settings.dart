@@ -16,14 +16,47 @@ final class LakeformationDataLakeSettingsCreateDatabaseDefaultPermissions {
     this.principal,
   });
 
-  final TfArg<List<Object?>>? permissions;
+  final List<
+    TfArg<
+      LakeformationDataLakeSettingsCreateDatabaseDefaultPermissionsPermissions
+    >
+  >?
+  permissions;
 
   final TfArg<String>? principal;
 
   Map<String, Object?> encode() => {
-    if (permissions != null) 'permissions': permissions!.toTfJson(),
+    if (permissions != null)
+      'permissions': [for (final e in permissions!) e.toTfJson()],
     if (principal != null) 'principal': principal!.toTfJson(),
   };
+}
+
+/// `permissions` — derived from the provider schema description.
+enum LakeformationDataLakeSettingsCreateDatabaseDefaultPermissionsPermissions
+    implements TerraformEnum {
+  all('ALL'),
+  select('SELECT'),
+  alter('ALTER'),
+  drop('DROP'),
+  delete('DELETE'),
+  insert('INSERT'),
+  describe('DESCRIBE'),
+  createDatabase('CREATE_DATABASE'),
+  createTable('CREATE_TABLE'),
+  dataLocationAccess('DATA_LOCATION_ACCESS'),
+  createLfTag('CREATE_LF_TAG'),
+  associate('ASSOCIATE'),
+  grantWithLfTagExpression('GRANT_WITH_LF_TAG_EXPRESSION'),
+  createLfTagExpression('CREATE_LF_TAG_EXPRESSION'),
+  createCatalog('CREATE_CATALOG'),
+  superUser('SUPER_USER');
+
+  const LakeformationDataLakeSettingsCreateDatabaseDefaultPermissionsPermissions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `create_table_default_permissions` block of
@@ -35,14 +68,45 @@ final class LakeformationDataLakeSettingsCreateTableDefaultPermissions {
     this.principal,
   });
 
-  final TfArg<List<Object?>>? permissions;
+  final List<
+    TfArg<LakeformationDataLakeSettingsCreateTableDefaultPermissionsPermissions>
+  >?
+  permissions;
 
   final TfArg<String>? principal;
 
   Map<String, Object?> encode() => {
-    if (permissions != null) 'permissions': permissions!.toTfJson(),
+    if (permissions != null)
+      'permissions': [for (final e in permissions!) e.toTfJson()],
     if (principal != null) 'principal': principal!.toTfJson(),
   };
+}
+
+/// `permissions` — derived from the provider schema description.
+enum LakeformationDataLakeSettingsCreateTableDefaultPermissionsPermissions
+    implements TerraformEnum {
+  all('ALL'),
+  select('SELECT'),
+  alter('ALTER'),
+  drop('DROP'),
+  delete('DELETE'),
+  insert('INSERT'),
+  describe('DESCRIBE'),
+  createDatabase('CREATE_DATABASE'),
+  createTable('CREATE_TABLE'),
+  dataLocationAccess('DATA_LOCATION_ACCESS'),
+  createLfTag('CREATE_LF_TAG'),
+  associate('ASSOCIATE'),
+  grantWithLfTagExpression('GRANT_WITH_LF_TAG_EXPRESSION'),
+  createLfTagExpression('CREATE_LF_TAG_EXPRESSION'),
+  createCatalog('CREATE_CATALOG'),
+  superUser('SUPER_USER');
+
+  const LakeformationDataLakeSettingsCreateTableDefaultPermissionsPermissions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_lakeformation_data_lake_settings`.

@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dx_connection`.
 const Set<String> _awsDxConnectionSensitive = <String>{};
 
+/// Dx Connection Encryption enum for `encryption_mode`.
+enum DxConnectionEncryptionMode implements TerraformEnum {
+  noEncrypt('no_encrypt'),
+  shouldEncrypt('should_encrypt'),
+  mustEncrypt('must_encrypt');
+
+  const DxConnectionEncryptionMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dx_connection`.
 final class AwsDxConnection extends Resource {
   static const String tfType = 'aws_dx_connection';
@@ -13,7 +24,7 @@ final class AwsDxConnection extends Resource {
   AwsDxConnection({
     required super.localName,
     required TfArg<String> bandwidth,
-    TfArg<String>? encryptionMode,
+    TfArg<DxConnectionEncryptionMode>? encryptionMode,
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? providerName,

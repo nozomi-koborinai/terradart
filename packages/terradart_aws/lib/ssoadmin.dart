@@ -4,16 +4,24 @@
 library;
 
 export 'src/ssoadmin/aws_ssoadmin_account_assignment.dart'
-    show AwsSsoadminAccountAssignment;
+    show
+        AwsSsoadminAccountAssignment,
+        SsoadminAccountAssignmentPrincipalType,
+        SsoadminAccountAssignmentTargetType;
 export 'src/ssoadmin/aws_ssoadmin_application.dart'
     show
         AwsSsoadminApplication,
         SsoadminApplicationPortalOptions,
-        SsoadminApplicationPortalOptionsSignInOptions;
+        SsoadminApplicationPortalOptionsSignInOptions,
+        SsoadminApplicationPortalOptionsSignInOptionsOrigin,
+        SsoadminApplicationPortalOptionsVisibility,
+        SsoadminApplicationStatus;
 export 'src/ssoadmin/aws_ssoadmin_application_access_scope.dart'
     show AwsSsoadminApplicationAccessScope;
 export 'src/ssoadmin/aws_ssoadmin_application_assignment.dart'
-    show AwsSsoadminApplicationAssignment;
+    show
+        AwsSsoadminApplicationAssignment,
+        SsoadminApplicationAssignmentPrincipalType;
 export 'src/ssoadmin/aws_ssoadmin_application_assignment_configuration.dart'
     show AwsSsoadminApplicationAssignmentConfiguration;
 export 'src/ssoadmin/aws_ssoadmin_customer_managed_policy_attachment.dart'
@@ -47,4 +55,6 @@ export 'src/ssoadmin/aws_ssoadmin_trusted_token_issuer.dart'
     show
         AwsSsoadminTrustedTokenIssuer,
         SsoadminTrustedTokenIssuerTrustedTokenIssuerConfiguration,
-        SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfiguration;
+        SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfiguration,
+        SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfigurationJwksRetrievalOption,
+        SsoadminTrustedTokenIssuerTrustedTokenIssuerType;

@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_eip`.
 const Set<String> _awsEipSensitive = <String>{};
 
+/// Eip enum for `domain`.
+enum EipDomain implements TerraformEnum {
+  vpc('vpc'),
+  standard('standard');
+
+  const EipDomain(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_eip`.
 final class AwsEip extends Resource {
   static const String tfType = 'aws_eip';
@@ -15,7 +25,7 @@ final class AwsEip extends Resource {
     TfArg<String>? address,
     TfArg<String>? associateWithPrivateIp,
     TfArg<String>? customerOwnedIpv4Pool,
-    TfArg<String>? domain,
+    TfArg<EipDomain>? domain,
     TfArg<String>? instance,
     TfArg<String>? ipamPoolId,
     TfArg<String>? networkBorderGroup,

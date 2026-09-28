@@ -9,6 +9,7 @@ export 'src/fms/aws_fms_policy.dart'
         AwsFmsPolicy,
         FmsPolicyExcludeMap,
         FmsPolicyIncludeMap,
+        FmsPolicyResourceTagLogicalOperator,
         FmsPolicySecurityServicePolicyData,
         FmsPolicySecurityServicePolicyDataPolicyOption,
         FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicy,
@@ -20,6 +21,8 @@ export 'src/fms/aws_fms_policy.dart'
         FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntryIcmpTypeCode,
         FmsPolicySecurityServicePolicyDataPolicyOptionNetworkAclCommonPolicyNetworkAclEntrySetLastEntryPortRange,
         FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicy,
-        FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicy;
+        FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicyFirewallDeploymentModel,
+        FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicy,
+        FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicyFirewallDeploymentModel;
 export 'src/fms/aws_fms_resource_set.dart'
     show AwsFmsResourceSet, FmsResourceSetResourceSet;

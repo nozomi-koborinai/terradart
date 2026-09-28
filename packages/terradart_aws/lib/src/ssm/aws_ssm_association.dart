@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ssm_association`.
 const Set<String> _awsSsmAssociationSensitive = <String>{};
 
+/// Ssm Association Compliance enum for `compliance_severity`.
+enum SsmAssociationComplianceSeverity implements TerraformEnum {
+  critical('CRITICAL'),
+  high('HIGH'),
+  medium('MEDIUM'),
+  low('LOW'),
+  informational('INFORMATIONAL'),
+  unspecified('UNSPECIFIED');
+
+  const SsmAssociationComplianceSeverity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ssm Association Sync enum for `sync_compliance`.
+enum SsmAssociationSyncCompliance implements TerraformEnum {
+  auto('AUTO'),
+  manual('MANUAL');
+
+  const SsmAssociationSyncCompliance(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `output_location` block of
 /// `aws_ssm_association` (derived from provider schema).
 @immutable
@@ -56,7 +80,7 @@ final class AwsSsmAssociation extends Resource {
     TfArg<String>? associationName,
     TfArg<String>? automationTargetParameterName,
     TfArg<List<String>>? calendarNames,
-    TfArg<String>? complianceSeverity,
+    TfArg<SsmAssociationComplianceSeverity>? complianceSeverity,
     TfArg<String>? documentVersion,
     TfArg<String>? maxConcurrency,
     TfArg<String>? maxErrors,
@@ -64,7 +88,7 @@ final class AwsSsmAssociation extends Resource {
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? region,
     TfArg<String>? scheduleExpression,
-    TfArg<String>? syncCompliance,
+    TfArg<SsmAssociationSyncCompliance>? syncCompliance,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? waitForSuccessTimeoutSeconds,
     SsmAssociationOutputLocation? outputLocation,

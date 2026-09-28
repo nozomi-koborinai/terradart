@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cognito_identity_provider`.
 const Set<String> _awsCognitoIdentityProviderSensitive = <String>{};
 
+/// Cognito Identity Provider Provider enum for `provider_type`.
+enum CognitoIdentityProviderProviderType implements TerraformEnum {
+  saml('SAML'),
+  facebook('Facebook'),
+  google('Google'),
+  loginwithamazon('LoginWithAmazon'),
+  signinwithapple('SignInWithApple'),
+  oidc('OIDC');
+
+  const CognitoIdentityProviderProviderType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cognito_identity_provider`.
 final class AwsCognitoIdentityProvider extends Resource {
   static const String tfType = 'aws_cognito_identity_provider';
@@ -16,7 +30,7 @@ final class AwsCognitoIdentityProvider extends Resource {
     TfArg<List<String>>? idpIdentifiers,
     required TfArg<Map<String, String>> providerDetails,
     required TfArg<String> providerName,
-    required TfArg<String> providerType,
+    required TfArg<CognitoIdentityProviderProviderType> providerType,
     TfArg<String>? region,
     required TfArg<String> userPoolId,
     super.lifecycle,

@@ -170,7 +170,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionDependsOn {
     required this.containerName,
   });
 
-  final TfArg<String> condition;
+  final TfArg<EcsDaemonTaskDefinitionContainerDefinitionDependsOnCondition>
+  condition;
 
   final TfArg<String> containerName;
 
@@ -178,6 +179,21 @@ final class EcsDaemonTaskDefinitionContainerDefinitionDependsOn {
     'condition': condition.toTfJson(),
     'container_name': containerName.toTfJson(),
   };
+}
+
+/// `condition` — derived from the provider schema description.
+enum EcsDaemonTaskDefinitionContainerDefinitionDependsOnCondition
+    implements TerraformEnum {
+  start('START'),
+  complete('COMPLETE'),
+  success('SUCCESS'),
+  healthy('HEALTHY');
+
+  const EcsDaemonTaskDefinitionContainerDefinitionDependsOnCondition(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `container_definition.environment` block of
@@ -208,7 +224,8 @@ final class EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFile {
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFileType>
+  type;
 
   final TfArg<String> value;
 
@@ -216,6 +233,18 @@ final class EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFile {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFileType
+    implements TerraformEnum {
+  s3('s3');
+
+  const EcsDaemonTaskDefinitionContainerDefinitionEnvironmentFileType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `container_definition.firelens_configuration` block of
@@ -229,12 +258,28 @@ final class EcsDaemonTaskDefinitionContainerDefinitionFirelensConfiguration {
 
   final TfArg<Map<String, String>>? options;
 
-  final TfArg<String> type;
+  final TfArg<
+    EcsDaemonTaskDefinitionContainerDefinitionFirelensConfigurationType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (options != null) 'options': options!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum EcsDaemonTaskDefinitionContainerDefinitionFirelensConfigurationType
+    implements TerraformEnum {
+  fluentd('fluentd'),
+  fluentbit('fluentbit');
+
+  const EcsDaemonTaskDefinitionContainerDefinitionFirelensConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `container_definition.health_check` block of
@@ -335,13 +380,33 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevice {
 
   final TfArg<String> hostPath;
 
-  final TfArg<List<Object?>>? permissions;
+  final List<
+    TfArg<
+      EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevicePermissions
+    >
+  >?
+  permissions;
 
   Map<String, Object?> encode() => {
     if (containerPath != null) 'container_path': containerPath!.toTfJson(),
     'host_path': hostPath.toTfJson(),
-    if (permissions != null) 'permissions': permissions!.toTfJson(),
+    if (permissions != null)
+      'permissions': [for (final e in permissions!) e.toTfJson()],
   };
+}
+
+/// `permissions` — derived from the provider schema description.
+enum EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevicePermissions
+    implements TerraformEnum {
+  read('read'),
+  write('write'),
+  mknod('mknod');
+
+  const EcsDaemonTaskDefinitionContainerDefinitionLinuxParametersDevicePermissions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `container_definition.linux_parameters.tmpfs` block of
@@ -377,7 +442,10 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLogConfiguration {
     this.secretOption,
   });
 
-  final TfArg<String> logDriver;
+  final TfArg<
+    EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationLogDriver
+  >
+  logDriver;
 
   final TfArg<Map<String, String>>? options;
 
@@ -392,6 +460,25 @@ final class EcsDaemonTaskDefinitionContainerDefinitionLogConfiguration {
     if (secretOption != null)
       'secret_option': [for (final e in secretOption!) e.encode()],
   };
+}
+
+/// `log_driver` — derived from the provider schema description.
+enum EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationLogDriver
+    implements TerraformEnum {
+  jsonFile('json-file'),
+  syslog('syslog'),
+  journald('journald'),
+  gelf('gelf'),
+  fluentd('fluentd'),
+  awslogs('awslogs'),
+  splunk('splunk'),
+  awsfirelens('awsfirelens');
+
+  const EcsDaemonTaskDefinitionContainerDefinitionLogConfigurationLogDriver(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `container_definition.log_configuration.secret_option` block of
@@ -526,7 +613,7 @@ final class EcsDaemonTaskDefinitionContainerDefinitionUlimit {
 
   final TfArg<num> hardLimit;
 
-  final TfArg<String> name;
+  final TfArg<EcsDaemonTaskDefinitionContainerDefinitionUlimitName> name;
 
   final TfArg<num> softLimit;
 
@@ -535,6 +622,32 @@ final class EcsDaemonTaskDefinitionContainerDefinitionUlimit {
     'name': name.toTfJson(),
     'soft_limit': softLimit.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+enum EcsDaemonTaskDefinitionContainerDefinitionUlimitName
+    implements TerraformEnum {
+  core('core'),
+  cpu('cpu'),
+  data('data'),
+  fsize('fsize'),
+  locks('locks'),
+  memlock('memlock'),
+  msgqueue('msgqueue'),
+  nice('nice'),
+  nofile('nofile'),
+  nproc('nproc'),
+  rss('rss'),
+  rtprio('rtprio'),
+  rttime('rttime'),
+  sigpending('sigpending'),
+  stack('stack');
+
+  const EcsDaemonTaskDefinitionContainerDefinitionUlimitName(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `volume` block of

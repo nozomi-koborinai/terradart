@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudtrail_event_data_store`.
 const Set<String> _awsCloudtrailEventDataStoreSensitive = <String>{};
 
+/// Cloudtrail Event Data Store Billing enum for `billing_mode`.
+enum CloudtrailEventDataStoreBillingMode implements TerraformEnum {
+  extendableRetentionPricing('EXTENDABLE_RETENTION_PRICING'),
+  fixedRetentionPricing('FIXED_RETENTION_PRICING');
+
+  const CloudtrailEventDataStoreBillingMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `advanced_event_selector` block of
 /// `aws_cloudtrail_event_data_store` (derived from provider schema).
 @immutable
@@ -46,7 +56,8 @@ final class CloudtrailEventDataStoreAdvancedEventSelectorFieldSelector {
 
   final TfArg<List<Object?>>? equals;
 
-  final TfArg<String>? field;
+  final TfArg<CloudtrailEventDataStoreAdvancedEventSelectorFieldSelectorField>?
+  field;
 
   final TfArg<List<Object?>>? notEndsWith;
 
@@ -67,13 +78,35 @@ final class CloudtrailEventDataStoreAdvancedEventSelectorFieldSelector {
   };
 }
 
+/// `field` — derived from the provider schema description.
+enum CloudtrailEventDataStoreAdvancedEventSelectorFieldSelectorField
+    implements TerraformEnum {
+  errorcode('errorCode'),
+  eventcategory('eventCategory'),
+  eventname('eventName'),
+  eventsource('eventSource'),
+  eventtype('eventType'),
+  readonly('readOnly'),
+  resourcesArn('resources.ARN'),
+  resourcesType('resources.type'),
+  sessioncredentialfromconsole('sessionCredentialFromConsole'),
+  useridentityArn('userIdentity.arn'),
+  vpcendpointid('vpcEndpointId');
+
+  const CloudtrailEventDataStoreAdvancedEventSelectorFieldSelectorField(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudtrail_event_data_store`.
 final class AwsCloudtrailEventDataStore extends Resource {
   static const String tfType = 'aws_cloudtrail_event_data_store';
 
   AwsCloudtrailEventDataStore({
     required super.localName,
-    TfArg<String>? billingMode,
+    TfArg<CloudtrailEventDataStoreBillingMode>? billingMode,
     TfArg<String>? kmsKeyId,
     TfArg<bool>? multiRegionEnabled,
     required TfArg<String> name,

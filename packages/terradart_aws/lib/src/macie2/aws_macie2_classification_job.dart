@@ -7,6 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_macie2_classification_job`.
 const Set<String> _awsMacie2ClassificationJobSensitive = <String>{};
 
+/// Macie2 Classification Job Job enum for `job_status`.
+enum Macie2ClassificationJobJobStatus implements TerraformEnum {
+  cancelled('CANCELLED'),
+  running('RUNNING'),
+  userPaused('USER_PAUSED');
+
+  const Macie2ClassificationJobJobStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Macie2 Classification Job Job enum for `job_type`.
+enum Macie2ClassificationJobJobType implements TerraformEnum {
+  oneTime('ONE_TIME'),
+  scheduled('SCHEDULED');
+
+  const Macie2ClassificationJobJobType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `s3_job_definition` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
@@ -98,7 +119,10 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpl
     this.values,
   });
 
-  final TfArg<String>? comparator;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterionComparator
+  >?
+  comparator;
 
   final TfArg<String>? key;
 
@@ -111,6 +135,25 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpl
   };
 }
 
+/// `comparator` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterionComparator
+    implements TerraformEnum {
+  eq('EQ'),
+  gt('GT'),
+  gte('GTE'),
+  lt('LT'),
+  lte('LTE'),
+  ne('NE'),
+  contains('CONTAINS'),
+  startsWith('STARTS_WITH');
+
+  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterionComparator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `s3_job_definition.bucket_criteria.excludes.and.tag_criterion` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
@@ -120,7 +163,10 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCr
     this.tagValues,
   });
 
-  final TfArg<String>? comparator;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterionComparator
+  >?
+  comparator;
 
   final List<
     Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterionTagValues
@@ -132,6 +178,25 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCr
     if (tagValues != null)
       'tag_values': [for (final e in tagValues!) e.encode()],
   };
+}
+
+/// `comparator` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterionComparator
+    implements TerraformEnum {
+  eq('EQ'),
+  gt('GT'),
+  gte('GTE'),
+  lt('LT'),
+  lte('LTE'),
+  ne('NE'),
+  contains('CONTAINS'),
+  startsWith('STARTS_WITH');
+
+  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCriterionComparator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `s3_job_definition.bucket_criteria.excludes.and.tag_criterion.tag_values` block of
@@ -200,7 +265,10 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpl
     this.values,
   });
 
-  final TfArg<String>? comparator;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpleCriterionComparator
+  >?
+  comparator;
 
   final TfArg<String>? key;
 
@@ -213,6 +281,25 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpl
   };
 }
 
+/// `comparator` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpleCriterionComparator
+    implements TerraformEnum {
+  eq('EQ'),
+  gt('GT'),
+  gte('GTE'),
+  lt('LT'),
+  lte('LTE'),
+  ne('NE'),
+  contains('CONTAINS'),
+  startsWith('STARTS_WITH');
+
+  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpleCriterionComparator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `s3_job_definition.bucket_criteria.includes.and.tag_criterion` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
@@ -222,7 +309,10 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCr
     this.tagValues,
   });
 
-  final TfArg<String>? comparator;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionComparator
+  >?
+  comparator;
 
   final List<
     Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionTagValues
@@ -234,6 +324,25 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCr
     if (tagValues != null)
       'tag_values': [for (final e in tagValues!) e.encode()],
   };
+}
+
+/// `comparator` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionComparator
+    implements TerraformEnum {
+  eq('EQ'),
+  gt('GT'),
+  gte('GTE'),
+  lt('LT'),
+  lte('LTE'),
+  ne('NE'),
+  contains('CONTAINS'),
+  startsWith('STARTS_WITH');
+
+  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionComparator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `s3_job_definition.bucket_criteria.includes.and.tag_criterion.tag_values` block of
@@ -337,9 +446,15 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeT
     this.values,
   });
 
-  final TfArg<String>? comparator;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermComparator
+  >?
+  comparator;
 
-  final TfArg<String>? key;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermKey
+  >?
+  key;
 
   final TfArg<List<Object?>>? values;
 
@@ -348,6 +463,40 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeT
     if (key != null) 'key': key!.toTfJson(),
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `comparator` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermComparator
+    implements TerraformEnum {
+  eq('EQ'),
+  gt('GT'),
+  gte('GTE'),
+  lt('LT'),
+  lte('LTE'),
+  ne('NE'),
+  contains('CONTAINS'),
+  startsWith('STARTS_WITH');
+
+  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermComparator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `key` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermKey
+    implements TerraformEnum {
+  objectExtension('OBJECT_EXTENSION'),
+  objectLastModifiedDate('OBJECT_LAST_MODIFIED_DATE'),
+  objectSize('OBJECT_SIZE'),
+  objectKey('OBJECT_KEY');
+
+  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeTermKey(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `s3_job_definition.scoping.excludes.and.tag_scope_term` block of
@@ -361,11 +510,20 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTerm
     this.tagValues,
   });
 
-  final TfArg<String>? comparator;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermComparator
+  >?
+  comparator;
 
-  final TfArg<String>? key;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermKey
+  >?
+  key;
 
-  final TfArg<String>? target;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermTarget
+  >?
+  target;
 
   final List<
     Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermTagValues
@@ -379,6 +537,49 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTerm
     if (tagValues != null)
       'tag_values': [for (final e in tagValues!) e.encode()],
   };
+}
+
+/// `comparator` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermComparator
+    implements TerraformEnum {
+  eq('EQ'),
+  gt('GT'),
+  gte('GTE'),
+  lt('LT'),
+  lte('LTE'),
+  ne('NE'),
+  contains('CONTAINS'),
+  startsWith('STARTS_WITH');
+
+  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermComparator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `key` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermKey
+    implements TerraformEnum {
+  tag('TAG');
+
+  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermKey(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `target` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermTarget
+    implements TerraformEnum {
+  s3Object('S3_OBJECT');
+
+  const Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTermTarget(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `s3_job_definition.scoping.excludes.and.tag_scope_term.tag_values` block of
@@ -470,9 +671,15 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTerm
 
   final TfArg<String>? comparator;
 
-  final TfArg<String>? key;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermKey
+  >?
+  key;
 
-  final TfArg<String>? target;
+  final TfArg<
+    Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTarget
+  >?
+  target;
 
   final List<
     Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTagValues
@@ -486,6 +693,30 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTerm
     if (tagValues != null)
       'tag_values': [for (final e in tagValues!) e.encode()],
   };
+}
+
+/// `key` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermKey
+    implements TerraformEnum {
+  tag('TAG');
+
+  const Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermKey(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `target` — derived from the provider schema description.
+enum Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTarget
+    implements TerraformEnum {
+  s3Object('S3_OBJECT');
+
+  const Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTarget(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `s3_job_definition.scoping.includes.and.tag_scope_term.tag_values` block of
@@ -540,8 +771,8 @@ final class AwsMacie2ClassificationJob extends Resource {
     TfArg<List<String>>? customDataIdentifierIds,
     TfArg<String>? description,
     TfArg<bool>? initialRun,
-    TfArg<String>? jobStatus,
-    required TfArg<String> jobType,
+    TfArg<Macie2ClassificationJobJobStatus>? jobStatus,
+    required TfArg<Macie2ClassificationJobJobType> jobType,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<String>? region,

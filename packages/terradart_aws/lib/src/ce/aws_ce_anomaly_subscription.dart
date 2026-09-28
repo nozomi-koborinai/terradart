@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ce_anomaly_subscription`.
 const Set<String> _awsCeAnomalySubscriptionSensitive = <String>{};
 
+/// Ce Anomaly Subscription enum for `frequency`.
+enum CeAnomalySubscriptionFrequency implements TerraformEnum {
+  daily('DAILY'),
+  immediate('IMMEDIATE'),
+  weekly('WEEKLY');
+
+  const CeAnomalySubscriptionFrequency(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `subscriber` block of
 /// `aws_ce_anomaly_subscription` (derived from provider schema).
 @immutable
@@ -18,12 +29,22 @@ final class CeAnomalySubscriptionSubscriber {
 
   final TfArg<String> address;
 
-  final TfArg<String> type;
+  final TfArg<CeAnomalySubscriptionSubscriberType> type;
 
   Map<String, Object?> encode() => {
     'address': address.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CeAnomalySubscriptionSubscriberType implements TerraformEnum {
+  email('EMAIL'),
+  sns('SNS');
+
+  const CeAnomalySubscriptionSubscriberType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `threshold_expression` block of
@@ -165,15 +186,38 @@ final class CeAnomalySubscriptionThresholdExpressionCostCategory {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final List<
+    TfArg<CeAnomalySubscriptionThresholdExpressionCostCategoryMatchOptions>
+  >?
+  matchOptions;
 
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
     if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    if (matchOptions != null)
+      'match_options': [for (final e in matchOptions!) e.toTfJson()],
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `match_options` — derived from the provider schema description.
+enum CeAnomalySubscriptionThresholdExpressionCostCategoryMatchOptions
+    implements TerraformEnum {
+  equals('EQUALS'),
+  absent('ABSENT'),
+  startsWith('STARTS_WITH'),
+  endsWith('ENDS_WITH'),
+  contains('CONTAINS'),
+  caseSensitive('CASE_SENSITIVE'),
+  caseInsensitive('CASE_INSENSITIVE'),
+  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
+
+  const CeAnomalySubscriptionThresholdExpressionCostCategoryMatchOptions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `threshold_expression.dimension` block of
@@ -186,17 +230,86 @@ final class CeAnomalySubscriptionThresholdExpressionDimension {
     this.values,
   });
 
-  final TfArg<String>? key;
+  final TfArg<CeAnomalySubscriptionThresholdExpressionDimensionKey>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final List<
+    TfArg<CeAnomalySubscriptionThresholdExpressionDimensionMatchOptions>
+  >?
+  matchOptions;
 
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
     if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    if (matchOptions != null)
+      'match_options': [for (final e in matchOptions!) e.toTfJson()],
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `key` — derived from the provider schema description.
+enum CeAnomalySubscriptionThresholdExpressionDimensionKey
+    implements TerraformEnum {
+  az('AZ'),
+  instanceType('INSTANCE_TYPE'),
+  linkedAccount('LINKED_ACCOUNT'),
+  payerAccount('PAYER_ACCOUNT'),
+  linkedAccountName('LINKED_ACCOUNT_NAME'),
+  operation('OPERATION'),
+  purchaseType('PURCHASE_TYPE'),
+  region('REGION'),
+  service('SERVICE'),
+  serviceCode('SERVICE_CODE'),
+  usageType('USAGE_TYPE'),
+  usageTypeGroup('USAGE_TYPE_GROUP'),
+  recordType('RECORD_TYPE'),
+  operatingSystem('OPERATING_SYSTEM'),
+  tenancy('TENANCY'),
+  scope('SCOPE'),
+  platform('PLATFORM'),
+  subscriptionId('SUBSCRIPTION_ID'),
+  legalEntityName('LEGAL_ENTITY_NAME'),
+  deploymentOption('DEPLOYMENT_OPTION'),
+  databaseEngine('DATABASE_ENGINE'),
+  cacheEngine('CACHE_ENGINE'),
+  instanceTypeFamily('INSTANCE_TYPE_FAMILY'),
+  billingEntity('BILLING_ENTITY'),
+  reservationId('RESERVATION_ID'),
+  resourceId('RESOURCE_ID'),
+  rightsizingType('RIGHTSIZING_TYPE'),
+  savingsPlansType('SAVINGS_PLANS_TYPE'),
+  savingsPlanArn('SAVINGS_PLAN_ARN'),
+  paymentOption('PAYMENT_OPTION'),
+  agreementEndDateTimeAfter('AGREEMENT_END_DATE_TIME_AFTER'),
+  agreementEndDateTimeBefore('AGREEMENT_END_DATE_TIME_BEFORE'),
+  invoicingEntity('INVOICING_ENTITY'),
+  anomalyTotalImpactAbsolute('ANOMALY_TOTAL_IMPACT_ABSOLUTE'),
+  anomalyTotalImpactPercentage('ANOMALY_TOTAL_IMPACT_PERCENTAGE');
+
+  const CeAnomalySubscriptionThresholdExpressionDimensionKey(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `match_options` — derived from the provider schema description.
+enum CeAnomalySubscriptionThresholdExpressionDimensionMatchOptions
+    implements TerraformEnum {
+  equals('EQUALS'),
+  absent('ABSENT'),
+  startsWith('STARTS_WITH'),
+  endsWith('ENDS_WITH'),
+  contains('CONTAINS'),
+  caseSensitive('CASE_SENSITIVE'),
+  caseInsensitive('CASE_INSENSITIVE'),
+  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
+
+  const CeAnomalySubscriptionThresholdExpressionDimensionMatchOptions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `threshold_expression.not` block of
@@ -395,15 +508,36 @@ final class CeAnomalySubscriptionThresholdExpressionTags {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final List<TfArg<CeAnomalySubscriptionThresholdExpressionTagsMatchOptions>>?
+  matchOptions;
 
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
     if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    if (matchOptions != null)
+      'match_options': [for (final e in matchOptions!) e.toTfJson()],
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `match_options` — derived from the provider schema description.
+enum CeAnomalySubscriptionThresholdExpressionTagsMatchOptions
+    implements TerraformEnum {
+  equals('EQUALS'),
+  absent('ABSENT'),
+  startsWith('STARTS_WITH'),
+  endsWith('ENDS_WITH'),
+  contains('CONTAINS'),
+  caseSensitive('CASE_SENSITIVE'),
+  caseInsensitive('CASE_INSENSITIVE'),
+  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
+
+  const CeAnomalySubscriptionThresholdExpressionTagsMatchOptions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ce_anomaly_subscription`.
@@ -413,7 +547,7 @@ final class AwsCeAnomalySubscription extends Resource {
   AwsCeAnomalySubscription({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<String> frequency,
+    required TfArg<CeAnomalySubscriptionFrequency> frequency,
     required TfArg<List<String>> monitorArnList,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

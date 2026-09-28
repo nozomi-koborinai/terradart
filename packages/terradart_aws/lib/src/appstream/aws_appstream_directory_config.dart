@@ -20,13 +20,28 @@ final class AppstreamDirectoryConfigCertificateBasedAuthProperties {
 
   final TfArg<String>? certificateAuthorityArn;
 
-  final TfArg<String>? status;
+  final TfArg<AppstreamDirectoryConfigCertificateBasedAuthPropertiesStatus>?
+  status;
 
   Map<String, Object?> encode() => {
     if (certificateAuthorityArn != null)
       'certificate_authority_arn': certificateAuthorityArn!.toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum AppstreamDirectoryConfigCertificateBasedAuthPropertiesStatus
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED'),
+  enabledNoDirectoryLoginFallback('ENABLED_NO_DIRECTORY_LOGIN_FALLBACK');
+
+  const AppstreamDirectoryConfigCertificateBasedAuthPropertiesStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `service_account_credentials` block of

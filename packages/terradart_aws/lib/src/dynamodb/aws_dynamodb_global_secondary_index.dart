@@ -19,15 +19,37 @@ final class DynamodbGlobalSecondaryIndexKeySchema {
 
   final TfArg<String> attributeName;
 
-  final TfArg<String> attributeType;
+  final TfArg<DynamodbGlobalSecondaryIndexKeySchemaAttributeType> attributeType;
 
-  final TfArg<String> keyType;
+  final TfArg<DynamodbGlobalSecondaryIndexKeySchemaKeyType> keyType;
 
   Map<String, Object?> encode() => {
     'attribute_name': attributeName.toTfJson(),
     'attribute_type': attributeType.toTfJson(),
     'key_type': keyType.toTfJson(),
   };
+}
+
+/// `attribute_type` — derived from the provider schema description.
+enum DynamodbGlobalSecondaryIndexKeySchemaAttributeType
+    implements TerraformEnum {
+  s('S'),
+  n('N'),
+  b('B');
+
+  const DynamodbGlobalSecondaryIndexKeySchemaAttributeType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `key_type` — derived from the provider schema description.
+enum DynamodbGlobalSecondaryIndexKeySchemaKeyType implements TerraformEnum {
+  hash('HASH'),
+  range('RANGE');
+
+  const DynamodbGlobalSecondaryIndexKeySchemaKeyType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `on_demand_throughput` block of
@@ -62,13 +84,28 @@ final class DynamodbGlobalSecondaryIndexProjection {
 
   final TfArg<List<Object?>>? nonKeyAttributes;
 
-  final TfArg<String> projectionType;
+  final TfArg<DynamodbGlobalSecondaryIndexProjectionProjectionType>
+  projectionType;
 
   Map<String, Object?> encode() => {
     if (nonKeyAttributes != null)
       'non_key_attributes': nonKeyAttributes!.toTfJson(),
     'projection_type': projectionType.toTfJson(),
   };
+}
+
+/// `projection_type` — derived from the provider schema description.
+enum DynamodbGlobalSecondaryIndexProjectionProjectionType
+    implements TerraformEnum {
+  all('ALL'),
+  keysOnly('KEYS_ONLY'),
+  include('INCLUDE');
+
+  const DynamodbGlobalSecondaryIndexProjectionProjectionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `provisioned_throughput` block of

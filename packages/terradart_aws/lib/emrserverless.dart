@@ -6,6 +6,7 @@ library;
 export 'src/emrserverless/aws_emrserverless_application.dart'
     show
         AwsEmrserverlessApplication,
+        EmrserverlessApplicationArchitecture,
         EmrserverlessApplicationAutoStartConfiguration,
         EmrserverlessApplicationAutoStopConfiguration,
         EmrserverlessApplicationImageConfiguration,

@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_finspace_kx_dataview`.
 const Set<String> _awsFinspaceKxDataviewSensitive = <String>{};
 
+/// Finspace Kx Dataview Az enum for `az_mode`.
+enum FinspaceKxDataviewAzMode implements TerraformEnum {
+  single('SINGLE'),
+  multi('MULTI');
+
+  const FinspaceKxDataviewAzMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `segment_configurations` block of
 /// `aws_finspace_kx_dataview` (derived from provider schema).
 @immutable
@@ -38,7 +48,7 @@ final class AwsFinspaceKxDataview extends Resource {
     required super.localName,
     required TfArg<bool> autoUpdate,
     TfArg<String>? availabilityZoneId,
-    required TfArg<String> azMode,
+    required TfArg<FinspaceKxDataviewAzMode> azMode,
     TfArg<String>? changesetId,
     required TfArg<String> databaseName,
     TfArg<String>? description,

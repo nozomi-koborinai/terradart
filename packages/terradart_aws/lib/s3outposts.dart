@@ -3,4 +3,5 @@
 /// AWS S3 on Outposts.
 library;
 
-export 'src/s3outposts/aws_s3outposts_endpoint.dart' show AwsS3outpostsEndpoint;
+export 'src/s3outposts/aws_s3outposts_endpoint.dart'
+    show AwsS3outpostsEndpoint, S3outpostsEndpointAccessType;

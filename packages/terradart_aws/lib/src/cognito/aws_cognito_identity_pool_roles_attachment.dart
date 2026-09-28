@@ -18,11 +18,14 @@ final class CognitoIdentityPoolRolesAttachmentRoleMapping {
     this.mappingRule,
   });
 
-  final TfArg<String>? ambiguousRoleResolution;
+  final TfArg<
+    CognitoIdentityPoolRolesAttachmentRoleMappingAmbiguousRoleResolution
+  >?
+  ambiguousRoleResolution;
 
   final TfArg<String> identityProvider;
 
-  final TfArg<String> type;
+  final TfArg<CognitoIdentityPoolRolesAttachmentRoleMappingType> type;
 
   final List<CognitoIdentityPoolRolesAttachmentRoleMappingMappingRule>?
   mappingRule;
@@ -35,6 +38,30 @@ final class CognitoIdentityPoolRolesAttachmentRoleMapping {
     if (mappingRule != null)
       'mapping_rule': [for (final e in mappingRule!) e.encode()],
   };
+}
+
+/// `ambiguous_role_resolution` — derived from the provider schema description.
+enum CognitoIdentityPoolRolesAttachmentRoleMappingAmbiguousRoleResolution
+    implements TerraformEnum {
+  authenticatedrole('AuthenticatedRole'),
+  deny('Deny');
+
+  const CognitoIdentityPoolRolesAttachmentRoleMappingAmbiguousRoleResolution(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum CognitoIdentityPoolRolesAttachmentRoleMappingType
+    implements TerraformEnum {
+  token('Token'),
+  rules('Rules');
+
+  const CognitoIdentityPoolRolesAttachmentRoleMappingType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `role_mapping.mapping_rule` block of
@@ -50,7 +77,8 @@ final class CognitoIdentityPoolRolesAttachmentRoleMappingMappingRule {
 
   final TfArg<String> claim;
 
-  final TfArg<String> matchType;
+  final TfArg<CognitoIdentityPoolRolesAttachmentRoleMappingMappingRuleMatchType>
+  matchType;
 
   final TfArg<String> roleArn;
 
@@ -62,6 +90,21 @@ final class CognitoIdentityPoolRolesAttachmentRoleMappingMappingRule {
     'role_arn': roleArn.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `match_type` — derived from the provider schema description.
+enum CognitoIdentityPoolRolesAttachmentRoleMappingMappingRuleMatchType
+    implements TerraformEnum {
+  equals('Equals'),
+  contains('Contains'),
+  startswith('StartsWith'),
+  notequal('NotEqual');
+
+  const CognitoIdentityPoolRolesAttachmentRoleMappingMappingRuleMatchType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_cognito_identity_pool_roles_attachment`.

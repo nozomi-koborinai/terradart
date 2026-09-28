@@ -6,6 +6,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_event_rule`.
 const Set<String> _awsCloudwatchEventRuleSensitive = <String>{};
 
+/// Cloudwatch Event Rule enum for `state`.
+enum CloudwatchEventRuleState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  enabledWithAllCloudtrailManagementEvents(
+    'ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS',
+  );
+
+  const CloudwatchEventRuleState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudwatch_event_rule`.
 final class AwsCloudwatchEventRule extends Resource {
   static const String tfType = 'aws_cloudwatch_event_rule';
@@ -22,7 +35,7 @@ final class AwsCloudwatchEventRule extends Resource {
     TfArg<String>? region,
     TfArg<String>? roleArn,
     TfArg<String>? scheduleExpression,
-    TfArg<String>? state,
+    TfArg<CloudwatchEventRuleState>? state,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

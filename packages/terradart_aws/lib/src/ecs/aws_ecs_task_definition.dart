@@ -7,6 +7,51 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ecs_task_definition`.
 const Set<String> _awsEcsTaskDefinitionSensitive = <String>{};
 
+/// Ecs Task Definition Ipc enum for `ipc_mode`.
+enum EcsTaskDefinitionIpcMode implements TerraformEnum {
+  host('host'),
+  task('task'),
+  none('none');
+
+  const EcsTaskDefinitionIpcMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ecs Task Definition Network enum for `network_mode`.
+enum EcsTaskDefinitionNetworkMode implements TerraformEnum {
+  bridge('bridge'),
+  host('host'),
+  awsvpc('awsvpc'),
+  none('none');
+
+  const EcsTaskDefinitionNetworkMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ecs Task Definition Pid enum for `pid_mode`.
+enum EcsTaskDefinitionPidMode implements TerraformEnum {
+  host('host'),
+  task('task');
+
+  const EcsTaskDefinitionPidMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ecs Task Definition Requires enum for `requires_compatibilities`.
+enum EcsTaskDefinitionRequiresCompatibilities implements TerraformEnum {
+  ec2('EC2'),
+  fargate('FARGATE'),
+  external('EXTERNAL'),
+  managedInstances('MANAGED_INSTANCES');
+
+  const EcsTaskDefinitionRequiresCompatibilities(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `ephemeral_storage` block of
 /// `aws_ecs_task_definition` (derived from provider schema).
 @immutable
@@ -29,12 +74,21 @@ final class EcsTaskDefinitionPlacementConstraints {
 
   final TfArg<String>? expression;
 
-  final TfArg<String> type;
+  final TfArg<EcsTaskDefinitionPlacementConstraintsType> type;
 
   Map<String, Object?> encode() => {
     if (expression != null) 'expression': expression!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum EcsTaskDefinitionPlacementConstraintsType implements TerraformEnum {
+  memberof('memberOf');
+
+  const EcsTaskDefinitionPlacementConstraintsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `proxy_configuration` block of
@@ -51,13 +105,22 @@ final class EcsTaskDefinitionProxyConfiguration {
 
   final TfArg<Map<String, String>>? properties;
 
-  final TfArg<String>? type;
+  final TfArg<EcsTaskDefinitionProxyConfigurationType>? type;
 
   Map<String, Object?> encode() => {
     'container_name': containerName.toTfJson(),
     if (properties != null) 'properties': properties!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum EcsTaskDefinitionProxyConfigurationType implements TerraformEnum {
+  appmesh('APPMESH');
+
+  const EcsTaskDefinitionProxyConfigurationType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `runtime_platform` block of
@@ -69,9 +132,10 @@ final class EcsTaskDefinitionRuntimePlatform {
     this.operatingSystemFamily,
   });
 
-  final TfArg<String>? cpuArchitecture;
+  final TfArg<EcsTaskDefinitionRuntimePlatformCpuArchitecture>? cpuArchitecture;
 
-  final TfArg<String>? operatingSystemFamily;
+  final TfArg<EcsTaskDefinitionRuntimePlatformOperatingSystemFamily>?
+  operatingSystemFamily;
 
   Map<String, Object?> encode() => {
     if (cpuArchitecture != null)
@@ -79,6 +143,37 @@ final class EcsTaskDefinitionRuntimePlatform {
     if (operatingSystemFamily != null)
       'operating_system_family': operatingSystemFamily!.toTfJson(),
   };
+}
+
+/// `cpu_architecture` — derived from the provider schema description.
+enum EcsTaskDefinitionRuntimePlatformCpuArchitecture implements TerraformEnum {
+  x8664('X86_64'),
+  arm64('ARM64');
+
+  const EcsTaskDefinitionRuntimePlatformCpuArchitecture(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `operating_system_family` — derived from the provider schema description.
+enum EcsTaskDefinitionRuntimePlatformOperatingSystemFamily
+    implements TerraformEnum {
+  windowsServer2019Full('WINDOWS_SERVER_2019_FULL'),
+  windowsServer2019Core('WINDOWS_SERVER_2019_CORE'),
+  windowsServer2016Full('WINDOWS_SERVER_2016_FULL'),
+  windowsServer2004Core('WINDOWS_SERVER_2004_CORE'),
+  windowsServer2022Core('WINDOWS_SERVER_2022_CORE'),
+  windowsServer2022Full('WINDOWS_SERVER_2022_FULL'),
+  windowsServer2025Core('WINDOWS_SERVER_2025_CORE'),
+  windowsServer2025Full('WINDOWS_SERVER_2025_FULL'),
+  windowsServer20h2Core('WINDOWS_SERVER_20H2_CORE'),
+  linux('LINUX');
+
+  const EcsTaskDefinitionRuntimePlatformOperatingSystemFamily(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `volume` block of
@@ -149,7 +244,7 @@ final class EcsTaskDefinitionVolumeDockerVolumeConfiguration {
 
   final TfArg<Map<String, String>>? labels;
 
-  final TfArg<String>? scope;
+  final TfArg<EcsTaskDefinitionVolumeDockerVolumeConfigurationScope>? scope;
 
   Map<String, Object?> encode() => {
     if (autoprovision != null) 'autoprovision': autoprovision!.toTfJson(),
@@ -158,6 +253,19 @@ final class EcsTaskDefinitionVolumeDockerVolumeConfiguration {
     if (labels != null) 'labels': labels!.toTfJson(),
     if (scope != null) 'scope': scope!.toTfJson(),
   };
+}
+
+/// `scope` — derived from the provider schema description.
+enum EcsTaskDefinitionVolumeDockerVolumeConfigurationScope
+    implements TerraformEnum {
+  task('task'),
+  shared('shared');
+
+  const EcsTaskDefinitionVolumeDockerVolumeConfigurationScope(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `volume.efs_volume_configuration` block of
@@ -176,7 +284,8 @@ final class EcsTaskDefinitionVolumeEfsVolumeConfiguration {
 
   final TfArg<String>? rootDirectory;
 
-  final TfArg<String>? transitEncryption;
+  final TfArg<EcsTaskDefinitionVolumeEfsVolumeConfigurationTransitEncryption>?
+  transitEncryption;
 
   final TfArg<num>? transitEncryptionPort;
 
@@ -195,6 +304,19 @@ final class EcsTaskDefinitionVolumeEfsVolumeConfiguration {
   };
 }
 
+/// `transit_encryption` — derived from the provider schema description.
+enum EcsTaskDefinitionVolumeEfsVolumeConfigurationTransitEncryption
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const EcsTaskDefinitionVolumeEfsVolumeConfigurationTransitEncryption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `volume.efs_volume_configuration.authorization_config` block of
 /// `aws_ecs_task_definition` (derived from provider schema).
 @immutable
@@ -206,12 +328,28 @@ final class EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfig {
 
   final TfArg<String>? accessPointId;
 
-  final TfArg<String>? iam;
+  final TfArg<
+    EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfigIam
+  >?
+  iam;
 
   Map<String, Object?> encode() => {
     if (accessPointId != null) 'access_point_id': accessPointId!.toTfJson(),
     if (iam != null) 'iam': iam!.toTfJson(),
   };
+}
+
+/// `iam` — derived from the provider schema description.
+enum EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfigIam
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const EcsTaskDefinitionVolumeEfsVolumeConfigurationAuthorizationConfigIam(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `volume.fsx_windows_file_server_volume_configuration` block of
@@ -296,12 +434,13 @@ final class AwsEcsTaskDefinition extends Resource {
     TfArg<bool>? enableFaultInjection,
     TfArg<String>? executionRoleArn,
     required TfArg<String> family,
-    TfArg<String>? ipcMode,
+    TfArg<EcsTaskDefinitionIpcMode>? ipcMode,
     TfArg<String>? memory,
-    TfArg<String>? networkMode,
-    TfArg<String>? pidMode,
+    TfArg<EcsTaskDefinitionNetworkMode>? networkMode,
+    TfArg<EcsTaskDefinitionPidMode>? pidMode,
     TfArg<String>? region,
-    TfArg<List<String>>? requiresCompatibilities,
+    List<TfArg<EcsTaskDefinitionRequiresCompatibilities>>?
+    requiresCompatibilities,
     TfArg<bool>? skipDestroy,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? taskRoleArn,
@@ -330,7 +469,9 @@ final class AwsEcsTaskDefinition extends Resource {
            if (pidMode != null) 'pid_mode': pidMode,
            if (region != null) 'region': region,
            if (requiresCompatibilities != null)
-             'requires_compatibilities': requiresCompatibilities,
+             'requires_compatibilities': TfArg.literal([
+               for (final e in requiresCompatibilities) e.toTfJson(),
+             ]),
            if (skipDestroy != null) 'skip_destroy': skipDestroy,
            if (tags != null) 'tags': tags,
            if (taskRoleArn != null) 'task_role_arn': taskRoleArn,

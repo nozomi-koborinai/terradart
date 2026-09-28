@@ -10,6 +10,52 @@ const Set<String> _awsStoragegatewayGatewaySensitive = <String>{
   'smb_guest_password',
 };
 
+/// Storagegateway Gateway Gateway enum for `gateway_type`.
+enum StoragegatewayGatewayGatewayType implements TerraformEnum {
+  cached('CACHED'),
+  fileFsxSmb('FILE_FSX_SMB'),
+  fileS3('FILE_S3'),
+  stored('STORED'),
+  vtl('VTL'),
+  vtlSnow('VTL_SNOW');
+
+  const StoragegatewayGatewayGatewayType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Storagegateway Gateway Medium Changer enum for `medium_changer_type`.
+enum StoragegatewayGatewayMediumChangerType implements TerraformEnum {
+  awsGatewayVtl('AWS-Gateway-VTL'),
+  ibm03584l320402('IBM-03584L32-0402'),
+  stkL700('STK-L700');
+
+  const StoragegatewayGatewayMediumChangerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Storagegateway Gateway Smb Security enum for `smb_security_strategy`.
+enum StoragegatewayGatewaySmbSecurityStrategy implements TerraformEnum {
+  clientspecified('ClientSpecified'),
+  mandatorysigning('MandatorySigning'),
+  mandatoryencryption('MandatoryEncryption'),
+  mandatoryencryptionnoaes128('MandatoryEncryptionNoAes128');
+
+  const StoragegatewayGatewaySmbSecurityStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Storagegateway Gateway Tape Drive enum for `tape_drive_type`.
+enum StoragegatewayGatewayTapeDriveType implements TerraformEnum {
+  ibmUlt3580Td5('IBM-ULT3580-TD5');
+
+  const StoragegatewayGatewayTapeDriveType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `maintenance_start_time` block of
 /// `aws_storagegateway_gateway` (derived from provider schema).
 @immutable
@@ -88,15 +134,15 @@ final class AwsStoragegatewayGateway extends Resource {
     TfArg<String>? gatewayIpAddress,
     required TfArg<String> gatewayName,
     required TfArg<String> gatewayTimezone,
-    TfArg<String>? gatewayType,
+    TfArg<StoragegatewayGatewayGatewayType>? gatewayType,
     TfArg<String>? gatewayVpcEndpoint,
-    TfArg<String>? mediumChangerType,
+    TfArg<StoragegatewayGatewayMediumChangerType>? mediumChangerType,
     TfArg<String>? region,
     TfArg<bool>? smbFileShareVisibility,
     TfArg<String>? smbGuestPassword,
-    TfArg<String>? smbSecurityStrategy,
+    TfArg<StoragegatewayGatewaySmbSecurityStrategy>? smbSecurityStrategy,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? tapeDriveType,
+    TfArg<StoragegatewayGatewayTapeDriveType>? tapeDriveType,
     StoragegatewayGatewayMaintenanceStartTime? maintenanceStartTime,
     StoragegatewayGatewaySmbActiveDirectorySettings? smbActiveDirectorySettings,
     super.lifecycle,

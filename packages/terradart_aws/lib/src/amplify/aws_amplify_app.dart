@@ -12,6 +12,17 @@ const Set<String> _awsAmplifyAppSensitive = <String>{
   'oauth_token',
 };
 
+/// Amplify App enum for `platform`.
+enum AmplifyAppPlatform implements TerraformEnum {
+  web('WEB'),
+  webDynamic('WEB_DYNAMIC'),
+  webCompute('WEB_COMPUTE');
+
+  const AmplifyAppPlatform(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `auto_branch_creation_config` block of
 /// `aws_amplify_app` (derived from provider schema).
 @immutable
@@ -47,7 +58,7 @@ final class AmplifyAppAutoBranchCreationConfig {
 
   final TfArg<String>? pullRequestEnvironmentName;
 
-  final TfArg<String>? stage;
+  final TfArg<AmplifyAppAutoBranchCreationConfigStage>? stage;
 
   Map<String, Object?> encode() => {
     if (basicAuthCredentials != null)
@@ -70,15 +81,38 @@ final class AmplifyAppAutoBranchCreationConfig {
   };
 }
 
+/// `stage` — derived from the provider schema description.
+enum AmplifyAppAutoBranchCreationConfigStage implements TerraformEnum {
+  production('PRODUCTION'),
+  beta('BETA'),
+  development('DEVELOPMENT'),
+  experimental('EXPERIMENTAL'),
+  pullRequest('PULL_REQUEST');
+
+  const AmplifyAppAutoBranchCreationConfigStage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cache_config` block of
 /// `aws_amplify_app` (derived from provider schema).
 @immutable
 final class AmplifyAppCacheConfig {
   const AmplifyAppCacheConfig({required this.type});
 
-  final TfArg<String> type;
+  final TfArg<AmplifyAppCacheConfigType> type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum AmplifyAppCacheConfigType implements TerraformEnum {
+  amplifyManaged('AMPLIFY_MANAGED'),
+  amplifyManagedNoCookies('AMPLIFY_MANAGED_NO_COOKIES');
+
+  const AmplifyAppCacheConfigType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `custom_rule` block of
@@ -96,7 +130,7 @@ final class AmplifyAppCustomRule {
 
   final TfArg<String> source;
 
-  final TfArg<String>? status;
+  final TfArg<AmplifyAppCustomRuleStatus>? status;
 
   final TfArg<String> target;
 
@@ -108,18 +142,42 @@ final class AmplifyAppCustomRule {
   };
 }
 
+/// `status` — derived from the provider schema description.
+enum AmplifyAppCustomRuleStatus implements TerraformEnum {
+  v200('200'),
+  v301('301'),
+  v302('302'),
+  v404('404'),
+  v404x200('404-200');
+
+  const AmplifyAppCustomRuleStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `job_config` block of
 /// `aws_amplify_app` (derived from provider schema).
 @immutable
 final class AmplifyAppJobConfig {
   const AmplifyAppJobConfig({this.buildComputeType});
 
-  final TfArg<String>? buildComputeType;
+  final TfArg<AmplifyAppJobConfigBuildComputeType>? buildComputeType;
 
   Map<String, Object?> encode() => {
     if (buildComputeType != null)
       'build_compute_type': buildComputeType!.toTfJson(),
   };
+}
+
+/// `build_compute_type` — derived from the provider schema description.
+enum AmplifyAppJobConfigBuildComputeType implements TerraformEnum {
+  standard8gb('STANDARD_8GB'),
+  large16gb('LARGE_16GB'),
+  xlarge72gb('XLARGE_72GB');
+
+  const AmplifyAppJobConfigBuildComputeType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_amplify_app`.
@@ -143,7 +201,7 @@ final class AwsAmplifyApp extends Resource {
     TfArg<String>? iamServiceRoleArn,
     required TfArg<String> name,
     TfArg<String>? oauthToken,
-    TfArg<String>? platform,
+    TfArg<AmplifyAppPlatform>? platform,
     TfArg<String>? region,
     TfArg<String>? repository,
     TfArg<Map<String, String>>? tags,

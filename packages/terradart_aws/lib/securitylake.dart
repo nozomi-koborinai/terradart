@@ -22,8 +22,10 @@ export 'src/securitylake/aws_securitylake_data_lake.dart'
 export 'src/securitylake/aws_securitylake_subscriber.dart'
     show
         AwsSecuritylakeSubscriber,
+        SecuritylakeSubscriberAccessType,
         SecuritylakeSubscriberSource,
         SecuritylakeSubscriberSourceAwsLogSourceResource,
+        SecuritylakeSubscriberSourceAwsLogSourceResourceSourceName,
         SecuritylakeSubscriberSourceCustomLogSourceResource,
         SecuritylakeSubscriberSubscriberIdentity;
 export 'src/securitylake/aws_securitylake_subscriber_notification.dart'
@@ -31,4 +33,5 @@ export 'src/securitylake/aws_securitylake_subscriber_notification.dart'
         AwsSecuritylakeSubscriberNotification,
         SecuritylakeSubscriberNotificationConfiguration,
         SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfiguration,
+        SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfigurationHttpMethod,
         SecuritylakeSubscriberNotificationConfigurationSqsNotificationConfiguration;

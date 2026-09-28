@@ -59,7 +59,8 @@ final class BedrockagentcoreCodeInterpreterNetworkConfiguration {
     this.vpcConfig,
   });
 
-  final TfArg<String> networkMode;
+  final TfArg<BedrockagentcoreCodeInterpreterNetworkConfigurationNetworkMode>
+  networkMode;
 
   final List<BedrockagentcoreCodeInterpreterNetworkConfigurationVpcConfig>?
   vpcConfig;
@@ -69,6 +70,20 @@ final class BedrockagentcoreCodeInterpreterNetworkConfiguration {
     if (vpcConfig != null)
       'vpc_config': [for (final e in vpcConfig!) e.encode()],
   };
+}
+
+/// `network_mode` — derived from the provider schema description.
+enum BedrockagentcoreCodeInterpreterNetworkConfigurationNetworkMode
+    implements TerraformEnum {
+  public('PUBLIC'),
+  sandbox('SANDBOX'),
+  vpc('VPC');
+
+  const BedrockagentcoreCodeInterpreterNetworkConfigurationNetworkMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `network_configuration.vpc_config` block of

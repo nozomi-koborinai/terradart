@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appsync_type`.
 const Set<String> _awsAppsyncTypeSensitive = <String>{};
 
+/// Appsync Type enum for `format`.
+enum AppsyncTypeFormat implements TerraformEnum {
+  sdl('SDL'),
+  json('JSON');
+
+  const AppsyncTypeFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_appsync_type`.
 final class AwsAppsyncType extends Resource {
   static const String tfType = 'aws_appsync_type';
@@ -14,7 +24,7 @@ final class AwsAppsyncType extends Resource {
     required super.localName,
     required TfArg<String> apiId,
     required TfArg<String> definition,
-    required TfArg<String> format,
+    required TfArg<AppsyncTypeFormat> format,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

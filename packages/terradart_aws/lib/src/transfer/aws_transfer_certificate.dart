@@ -10,6 +10,17 @@ const Set<String> _awsTransferCertificateSensitive = <String>{
   'private_key',
 };
 
+/// Transfer Certificate enum for `usage`.
+enum TransferCertificateUsage implements TerraformEnum {
+  signing('SIGNING'),
+  encryption('ENCRYPTION'),
+  tls('TLS');
+
+  const TransferCertificateUsage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_transfer_certificate`.
 final class AwsTransferCertificate extends Resource {
   static const String tfType = 'aws_transfer_certificate';
@@ -22,7 +33,7 @@ final class AwsTransferCertificate extends Resource {
     TfArg<String>? privateKey,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> usage,
+    required TfArg<TransferCertificateUsage> usage,
     super.lifecycle,
     super.dependsOn,
     super.provider,

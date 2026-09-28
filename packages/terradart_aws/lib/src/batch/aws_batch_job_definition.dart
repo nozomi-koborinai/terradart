@@ -7,6 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_batch_job_definition`.
 const Set<String> _awsBatchJobDefinitionSensitive = <String>{};
 
+/// Batch Job Definition Platform enum for `platform_capabilities`.
+enum BatchJobDefinitionPlatformCapabilities implements TerraformEnum {
+  ec2('EC2'),
+  fargate('FARGATE'),
+  managedInstances('MANAGED_INSTANCES');
+
+  const BatchJobDefinitionPlatformCapabilities(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Batch Job Definition enum for `type`.
+enum BatchJobDefinitionType implements TerraformEnum {
+  container('container'),
+  multinode('multinode');
+
+  const BatchJobDefinitionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `eks_properties` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
@@ -34,7 +55,7 @@ final class BatchJobDefinitionEksPropertiesPodProperties {
     this.volumes,
   });
 
-  final TfArg<String>? dnsPolicy;
+  final TfArg<BatchJobDefinitionEksPropertiesPodPropertiesDnsPolicy>? dnsPolicy;
 
   final TfArg<bool>? hostNetwork;
 
@@ -71,6 +92,20 @@ final class BatchJobDefinitionEksPropertiesPodProperties {
   };
 }
 
+/// `dns_policy` — derived from the provider schema description.
+enum BatchJobDefinitionEksPropertiesPodPropertiesDnsPolicy
+    implements TerraformEnum {
+  defaultCase('Default'),
+  clusterfirst('ClusterFirst'),
+  clusterfirstwithhostnet('ClusterFirstWithHostNet');
+
+  const BatchJobDefinitionEksPropertiesPodPropertiesDnsPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `eks_properties.pod_properties.containers` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
@@ -93,7 +128,10 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainers {
 
   final TfArg<String> image;
 
-  final TfArg<String>? imagePullPolicy;
+  final TfArg<
+    BatchJobDefinitionEksPropertiesPodPropertiesContainersImagePullPolicy
+  >?
+  imagePullPolicy;
 
   final TfArg<String>? name;
 
@@ -123,6 +161,20 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainers {
     if (volumeMounts != null)
       'volume_mounts': [for (final e in volumeMounts!) e.encode()],
   };
+}
+
+/// `image_pull_policy` — derived from the provider schema description.
+enum BatchJobDefinitionEksPropertiesPodPropertiesContainersImagePullPolicy
+    implements TerraformEnum {
+  always('Always'),
+  ifnotpresent('IfNotPresent'),
+  never('Never');
+
+  const BatchJobDefinitionEksPropertiesPodPropertiesContainersImagePullPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `eks_properties.pod_properties.containers.env` block of
@@ -258,7 +310,10 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainers {
 
   final TfArg<String> image;
 
-  final TfArg<String>? imagePullPolicy;
+  final TfArg<
+    BatchJobDefinitionEksPropertiesPodPropertiesInitContainersImagePullPolicy
+  >?
+  imagePullPolicy;
 
   final TfArg<String>? name;
 
@@ -289,6 +344,20 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainers {
     if (volumeMounts != null)
       'volume_mounts': [for (final e in volumeMounts!) e.encode()],
   };
+}
+
+/// `image_pull_policy` — derived from the provider schema description.
+enum BatchJobDefinitionEksPropertiesPodPropertiesInitContainersImagePullPolicy
+    implements TerraformEnum {
+  always('Always'),
+  ifnotpresent('IfNotPresent'),
+  never('Never');
+
+  const BatchJobDefinitionEksPropertiesPodPropertiesInitContainersImagePullPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `eks_properties.pod_properties.init_containers.env` block of
@@ -438,7 +507,10 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDir {
     required this.sizeLimit,
   });
 
-  final TfArg<String>? medium;
+  final TfArg<
+    BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDirMedium
+  >?
+  medium;
 
   final TfArg<String> sizeLimit;
 
@@ -446,6 +518,19 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDir {
     if (medium != null) 'medium': medium!.toTfJson(),
     'size_limit': sizeLimit.toTfJson(),
   };
+}
+
+/// `medium` — derived from the provider schema description.
+enum BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDirMedium
+    implements TerraformEnum {
+  empty(''),
+  memory('Memory');
+
+  const BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDirMedium(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `eks_properties.pod_properties.volumes.host_path` block of
@@ -508,7 +593,7 @@ final class BatchJobDefinitionRetryStrategyEvaluateOnExit {
     this.onStatusReason,
   });
 
-  final TfArg<String> action;
+  final TfArg<BatchJobDefinitionRetryStrategyEvaluateOnExitAction> action;
 
   final TfArg<String>? onExitCode;
 
@@ -522,6 +607,19 @@ final class BatchJobDefinitionRetryStrategyEvaluateOnExit {
     if (onReason != null) 'on_reason': onReason!.toTfJson(),
     if (onStatusReason != null) 'on_status_reason': onStatusReason!.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum BatchJobDefinitionRetryStrategyEvaluateOnExitAction
+    implements TerraformEnum {
+  retry('RETRY'),
+  exit('EXIT');
+
+  const BatchJobDefinitionRetryStrategyEvaluateOnExitAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `timeout` block of
@@ -550,12 +648,12 @@ final class AwsBatchJobDefinition extends Resource {
     required TfArg<String> name,
     TfArg<String>? nodeProperties,
     TfArg<Map<String, String>>? parameters,
-    TfArg<List<String>>? platformCapabilities,
+    List<TfArg<BatchJobDefinitionPlatformCapabilities>>? platformCapabilities,
     TfArg<bool>? propagateTags,
     TfArg<String>? region,
     TfArg<num>? schedulingPriority,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<BatchJobDefinitionType> type,
     BatchJobDefinitionEksProperties? eksProperties,
     BatchJobDefinitionRetryStrategy? retryStrategy,
     BatchJobDefinitionTimeout? timeout,
@@ -575,7 +673,9 @@ final class AwsBatchJobDefinition extends Resource {
            if (nodeProperties != null) 'node_properties': nodeProperties,
            if (parameters != null) 'parameters': parameters,
            if (platformCapabilities != null)
-             'platform_capabilities': platformCapabilities,
+             'platform_capabilities': TfArg.literal([
+               for (final e in platformCapabilities) e.toTfJson(),
+             ]),
            if (propagateTags != null) 'propagate_tags': propagateTags,
            if (region != null) 'region': region,
            if (schedulingPriority != null)

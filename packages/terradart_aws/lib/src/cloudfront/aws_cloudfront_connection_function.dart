@@ -19,7 +19,8 @@ final class CloudfrontConnectionFunctionConnectionFunctionConfig {
 
   final TfArg<String> comment;
 
-  final TfArg<String> runtime;
+  final TfArg<CloudfrontConnectionFunctionConnectionFunctionConfigRuntime>
+  runtime;
 
   final List<
     CloudfrontConnectionFunctionConnectionFunctionConfigKeyValueStoreAssociation
@@ -34,6 +35,19 @@ final class CloudfrontConnectionFunctionConnectionFunctionConfig {
         for (final e in keyValueStoreAssociation!) e.encode(),
       ],
   };
+}
+
+/// `runtime` — derived from the provider schema description.
+enum CloudfrontConnectionFunctionConnectionFunctionConfigRuntime
+    implements TerraformEnum {
+  cloudfrontJs1p0('cloudfront-js-1.0'),
+  cloudfrontJs2p0('cloudfront-js-2.0');
+
+  const CloudfrontConnectionFunctionConnectionFunctionConfigRuntime(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `connection_function_config.key_value_store_association` block of

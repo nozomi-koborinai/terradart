@@ -32,7 +32,7 @@ final class S3BucketAclAccessControlPolicyGrant {
     this.grantee,
   });
 
-  final TfArg<String> permission;
+  final TfArg<S3BucketAclAccessControlPolicyGrantPermission> permission;
 
   final S3BucketAclAccessControlPolicyGrantGrantee? grantee;
 
@@ -40,6 +40,19 @@ final class S3BucketAclAccessControlPolicyGrant {
     'permission': permission.toTfJson(),
     if (grantee != null) 'grantee': grantee!.encode(),
   };
+}
+
+/// `permission` — derived from the provider schema description.
+enum S3BucketAclAccessControlPolicyGrantPermission implements TerraformEnum {
+  fullControl('FULL_CONTROL'),
+  write('WRITE'),
+  writeAcp('WRITE_ACP'),
+  read('READ'),
+  readAcp('READ_ACP');
+
+  const S3BucketAclAccessControlPolicyGrantPermission(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `access_control_policy.grant.grantee` block of
@@ -57,7 +70,7 @@ final class S3BucketAclAccessControlPolicyGrantGrantee {
 
   final TfArg<String>? id;
 
-  final TfArg<String> type;
+  final TfArg<S3BucketAclAccessControlPolicyGrantGranteeType> type;
 
   final TfArg<String>? uri;
 
@@ -67,6 +80,17 @@ final class S3BucketAclAccessControlPolicyGrantGrantee {
     'type': type.toTfJson(),
     if (uri != null) 'uri': uri!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum S3BucketAclAccessControlPolicyGrantGranteeType implements TerraformEnum {
+  canonicaluser('CanonicalUser'),
+  amazoncustomerbyemail('AmazonCustomerByEmail'),
+  group('Group');
+
+  const S3BucketAclAccessControlPolicyGrantGranteeType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `access_control_policy.owner` block of

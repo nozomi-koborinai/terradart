@@ -28,7 +28,8 @@ final class CloudfrontVpcOriginVpcOriginEndpointConfig {
 
   final TfArg<String> name;
 
-  final TfArg<String> originProtocolPolicy;
+  final TfArg<CloudfrontVpcOriginVpcOriginEndpointConfigOriginProtocolPolicy>
+  originProtocolPolicy;
 
   final List<CloudfrontVpcOriginVpcOriginEndpointConfigOriginSslProtocols>?
   originSslProtocols;
@@ -42,6 +43,20 @@ final class CloudfrontVpcOriginVpcOriginEndpointConfig {
     if (originSslProtocols != null)
       'origin_ssl_protocols': [for (final e in originSslProtocols!) e.encode()],
   };
+}
+
+/// `origin_protocol_policy` — derived from the provider schema description.
+enum CloudfrontVpcOriginVpcOriginEndpointConfigOriginProtocolPolicy
+    implements TerraformEnum {
+  httpOnly('http-only'),
+  matchViewer('match-viewer'),
+  httpsOnly('https-only');
+
+  const CloudfrontVpcOriginVpcOriginEndpointConfigOriginProtocolPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `vpc_origin_endpoint_config.origin_ssl_protocols` block of

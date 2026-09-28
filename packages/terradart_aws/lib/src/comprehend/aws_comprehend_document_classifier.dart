@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_comprehend_document_classifier`.
 const Set<String> _awsComprehendDocumentClassifierSensitive = <String>{};
 
+/// Comprehend Document Classifier Language enum for `language_code`.
+enum ComprehendDocumentClassifierLanguageCode implements TerraformEnum {
+  en('en'),
+  es('es'),
+  fr('fr'),
+  de('de'),
+  it('it'),
+  pt('pt');
+
+  const ComprehendDocumentClassifierLanguageCode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Comprehend Document Classifier enum for `mode`.
+enum ComprehendDocumentClassifierMode implements TerraformEnum {
+  multiClass('MULTI_CLASS'),
+  multiLabel('MULTI_LABEL');
+
+  const ComprehendDocumentClassifierMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `input_data_config` block of
 /// `aws_comprehend_document_classifier` (derived from provider schema).
 @immutable
@@ -19,9 +43,11 @@ final class ComprehendDocumentClassifierInputDataConfig {
     this.augmentedManifests,
   });
 
-  final TfArg<String>? dataFormat;
+  final TfArg<ComprehendDocumentClassifierInputDataConfigDataFormat>?
+  dataFormat;
 
-  final TfArg<String>? labelDelimiter;
+  final TfArg<ComprehendDocumentClassifierInputDataConfigLabelDelimiter>?
+  labelDelimiter;
 
   final TfArg<String>? s3Uri;
 
@@ -38,6 +64,51 @@ final class ComprehendDocumentClassifierInputDataConfig {
     if (augmentedManifests != null)
       'augmented_manifests': [for (final e in augmentedManifests!) e.encode()],
   };
+}
+
+/// `data_format` — derived from the provider schema description.
+enum ComprehendDocumentClassifierInputDataConfigDataFormat
+    implements TerraformEnum {
+  comprehendCsv('COMPREHEND_CSV'),
+  augmentedManifest('AUGMENTED_MANIFEST');
+
+  const ComprehendDocumentClassifierInputDataConfigDataFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `label_delimiter` — derived from the provider schema description.
+enum ComprehendDocumentClassifierInputDataConfigLabelDelimiter
+    implements TerraformEnum {
+  value('|'),
+  value2('~'),
+  value3('!'),
+  value4('@'),
+  value5('#'),
+  value6('\$'),
+  value7('%'),
+  value8('^'),
+  value9('*'),
+  value10('-'),
+  value11('_'),
+  value12('+'),
+  eq('='),
+  value13('\\'),
+  value14(':'),
+  value15(';'),
+  gt('>'),
+  value16('?'),
+  value17('/'),
+  value18(' '),
+  value19('	');
+
+  const ComprehendDocumentClassifierInputDataConfigLabelDelimiter(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_data_config.augmented_manifests` block of
@@ -57,13 +128,19 @@ final class ComprehendDocumentClassifierInputDataConfigAugmentedManifests {
 
   final TfArg<List<Object?>> attributeNames;
 
-  final TfArg<String>? documentType;
+  final TfArg<
+    ComprehendDocumentClassifierInputDataConfigAugmentedManifestsDocumentType
+  >?
+  documentType;
 
   final TfArg<String> s3Uri;
 
   final TfArg<String>? sourceDocumentsS3Uri;
 
-  final TfArg<String>? split;
+  final TfArg<
+    ComprehendDocumentClassifierInputDataConfigAugmentedManifestsSplit
+  >?
+  split;
 
   Map<String, Object?> encode() => {
     if (annotationDataS3Uri != null)
@@ -75,6 +152,32 @@ final class ComprehendDocumentClassifierInputDataConfigAugmentedManifests {
       'source_documents_s3_uri': sourceDocumentsS3Uri!.toTfJson(),
     if (split != null) 'split': split!.toTfJson(),
   };
+}
+
+/// `document_type` — derived from the provider schema description.
+enum ComprehendDocumentClassifierInputDataConfigAugmentedManifestsDocumentType
+    implements TerraformEnum {
+  plainTextDocument('PLAIN_TEXT_DOCUMENT'),
+  semiStructuredDocument('SEMI_STRUCTURED_DOCUMENT');
+
+  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsDocumentType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `split` — derived from the provider schema description.
+enum ComprehendDocumentClassifierInputDataConfigAugmentedManifestsSplit
+    implements TerraformEnum {
+  train('TRAIN'),
+  test('TEST');
+
+  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsSplit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `output_data_config` block of
@@ -122,8 +225,8 @@ final class AwsComprehendDocumentClassifier extends Resource {
   AwsComprehendDocumentClassifier({
     required super.localName,
     required TfArg<String> dataAccessRoleArn,
-    required TfArg<String> languageCode,
-    TfArg<String>? mode,
+    required TfArg<ComprehendDocumentClassifierLanguageCode> languageCode,
+    TfArg<ComprehendDocumentClassifierMode>? mode,
     TfArg<String>? modelKmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,

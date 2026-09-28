@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloud9_environment_membership`.
 const Set<String> _awsCloud9EnvironmentMembershipSensitive = <String>{};
 
+/// Cloud9 Environment Membership enum for `permissions`.
+enum Cloud9EnvironmentMembershipPermissions implements TerraformEnum {
+  owner('owner'),
+  readWrite('read-write'),
+  readOnly('read-only');
+
+  const Cloud9EnvironmentMembershipPermissions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloud9_environment_membership`.
 final class AwsCloud9EnvironmentMembership extends Resource {
   static const String tfType = 'aws_cloud9_environment_membership';
@@ -13,7 +24,7 @@ final class AwsCloud9EnvironmentMembership extends Resource {
   AwsCloud9EnvironmentMembership({
     required super.localName,
     required TfArg<String> environmentId,
-    required TfArg<String> permissions,
+    required TfArg<Cloud9EnvironmentMembershipPermissions> permissions,
     TfArg<String>? region,
     required TfArg<String> userArn,
     super.lifecycle,

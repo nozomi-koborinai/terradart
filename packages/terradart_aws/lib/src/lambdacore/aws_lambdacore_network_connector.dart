@@ -35,22 +35,56 @@ final class LambdacoreNetworkConnectorConfigurationVpcEgressConfiguration {
     required this.subnetIds,
   });
 
-  final TfArg<List<Object?>> associatedComputeResourceTypes;
+  final List<
+    TfArg<
+      LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationAssociatedComputeResourceTypes
+    >
+  >
+  associatedComputeResourceTypes;
 
-  final TfArg<String>? networkProtocol;
+  final TfArg<
+    LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationNetworkProtocol
+  >?
+  networkProtocol;
 
   final TfArg<List<Object?>> securityGroupIds;
 
   final TfArg<List<Object?>> subnetIds;
 
   Map<String, Object?> encode() => {
-    'associated_compute_resource_types': associatedComputeResourceTypes
-        .toTfJson(),
+    'associated_compute_resource_types': [
+      for (final e in associatedComputeResourceTypes) e.toTfJson(),
+    ],
     if (networkProtocol != null)
       'network_protocol': networkProtocol!.toTfJson(),
     'security_group_ids': securityGroupIds.toTfJson(),
     'subnet_ids': subnetIds.toTfJson(),
   };
+}
+
+/// `associated_compute_resource_types` — derived from the provider schema description.
+enum LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationAssociatedComputeResourceTypes
+    implements TerraformEnum {
+  microvm('MicroVm');
+
+  const LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationAssociatedComputeResourceTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `network_protocol` — derived from the provider schema description.
+enum LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationNetworkProtocol
+    implements TerraformEnum {
+  ipv4('IPv4'),
+  dualstack('DualStack');
+
+  const LambdacoreNetworkConnectorConfigurationVpcEgressConfigurationNetworkProtocol(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_lambdacore_network_connector`.

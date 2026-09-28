@@ -10,15 +10,34 @@ export 'src/workspaces/aws_workspaces_directory.dart'
         AwsWorkspacesDirectory,
         WorkspacesDirectoryActiveDirectoryConfig,
         WorkspacesDirectoryCertificateBasedAuthProperties,
+        WorkspacesDirectoryCertificateBasedAuthPropertiesStatus,
         WorkspacesDirectorySamlProperties,
+        WorkspacesDirectorySamlPropertiesStatus,
         WorkspacesDirectorySelfServicePermissions,
+        WorkspacesDirectoryTenancy,
+        WorkspacesDirectoryUserIdentityType,
         WorkspacesDirectoryWorkspaceAccessProperties,
         WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfig,
         WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpoints,
-        WorkspacesDirectoryWorkspaceCreationProperties;
+        WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigAccessEndpointsAccessEndpointType,
+        WorkspacesDirectoryWorkspaceAccessPropertiesAccessEndpointConfigInternetFallbackProtocols,
+        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeAndroid,
+        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeChromeos,
+        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeIos,
+        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeLinux,
+        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeOsx,
+        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWeb,
+        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeWindows,
+        WorkspacesDirectoryWorkspaceAccessPropertiesDeviceTypeZeroclient,
+        WorkspacesDirectoryWorkspaceCreationProperties,
+        WorkspacesDirectoryWorkspaceType;
 export 'src/workspaces/aws_workspaces_ip_group.dart'
     show AwsWorkspacesIpGroup, WorkspacesIpGroupRules;
 export 'src/workspaces/aws_workspaces_pool.dart'
-    show AwsWorkspacesPool, WorkspacesPoolCapacity;
+    show AwsWorkspacesPool, WorkspacesPoolCapacity, WorkspacesPoolRunningMode;
 export 'src/workspaces/aws_workspaces_workspace.dart'
-    show AwsWorkspacesWorkspace, WorkspacesWorkspaceWorkspaceProperties;
+    show
+        AwsWorkspacesWorkspace,
+        WorkspacesWorkspaceWorkspaceProperties,
+        WorkspacesWorkspaceWorkspacePropertiesComputeTypeName,
+        WorkspacesWorkspaceWorkspacePropertiesRunningMode;

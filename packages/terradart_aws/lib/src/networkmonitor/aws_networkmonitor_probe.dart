@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_networkmonitor_probe`.
 const Set<String> _awsNetworkmonitorProbeSensitive = <String>{};
 
+/// Networkmonitor Probe enum for `protocol`.
+enum NetworkmonitorProbeProtocol implements TerraformEnum {
+  tcp('TCP'),
+  icmp('ICMP');
+
+  const NetworkmonitorProbeProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_networkmonitor_probe`.
 final class AwsNetworkmonitorProbe extends Resource {
   static const String tfType = 'aws_networkmonitor_probe';
@@ -16,7 +26,7 @@ final class AwsNetworkmonitorProbe extends Resource {
     TfArg<num>? destinationPort,
     required TfArg<String> monitorName,
     TfArg<num>? packetSize,
-    required TfArg<String> protocol,
+    required TfArg<NetworkmonitorProbeProtocol> protocol,
     TfArg<String>? region,
     required TfArg<String> sourceArn,
     TfArg<Map<String, String>>? tags,

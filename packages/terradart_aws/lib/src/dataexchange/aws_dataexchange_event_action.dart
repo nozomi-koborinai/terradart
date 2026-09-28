@@ -62,12 +62,26 @@ final class DataexchangeEventActionActionExportRevisionToS3Encryption {
 
   final TfArg<String>? kmsKeyArn;
 
-  final TfArg<String>? type;
+  final TfArg<DataexchangeEventActionActionExportRevisionToS3EncryptionType>?
+  type;
 
   Map<String, Object?> encode() => {
     if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum DataexchangeEventActionActionExportRevisionToS3EncryptionType
+    implements TerraformEnum {
+  awsKms('aws:kms'),
+  aes256('AES256');
+
+  const DataexchangeEventActionActionExportRevisionToS3EncryptionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `action.export_revision_to_s3.revision_destination` block of

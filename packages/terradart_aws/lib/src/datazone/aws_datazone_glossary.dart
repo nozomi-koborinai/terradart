@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_datazone_glossary`.
 const Set<String> _awsDatazoneGlossarySensitive = <String>{};
 
+/// Datazone Glossary enum for `status`.
+enum DatazoneGlossaryStatus implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED');
+
+  const DatazoneGlossaryStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_datazone_glossary`.
 final class AwsDatazoneGlossary extends Resource {
   static const String tfType = 'aws_datazone_glossary';
@@ -17,7 +27,7 @@ final class AwsDatazoneGlossary extends Resource {
     required TfArg<String> name,
     required TfArg<String> owningProjectIdentifier,
     TfArg<String>? region,
-    TfArg<String>? status,
+    TfArg<DatazoneGlossaryStatus>? status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

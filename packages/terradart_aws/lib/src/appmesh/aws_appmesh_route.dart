@@ -247,7 +247,7 @@ final class AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeout {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeoutUnit> unit;
 
   final TfArg<num> value;
 
@@ -255,6 +255,19 @@ final class AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeout {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeoutUnit
+    implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshRouteSpecGrpcRouteRetryPolicyPerRetryTimeoutUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.grpc_route.timeout` block of
@@ -282,7 +295,7 @@ final class AppmeshRouteSpecGrpcRouteTimeoutIdle {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshRouteSpecGrpcRouteTimeoutIdleUnit> unit;
 
   final TfArg<num> value;
 
@@ -290,6 +303,16 @@ final class AppmeshRouteSpecGrpcRouteTimeoutIdle {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshRouteSpecGrpcRouteTimeoutIdleUnit implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshRouteSpecGrpcRouteTimeoutIdleUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.grpc_route.timeout.per_request` block of
@@ -301,7 +324,7 @@ final class AppmeshRouteSpecGrpcRouteTimeoutPerRequest {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshRouteSpecGrpcRouteTimeoutPerRequestUnit> unit;
 
   final TfArg<num> value;
 
@@ -309,6 +332,16 @@ final class AppmeshRouteSpecGrpcRouteTimeoutPerRequest {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshRouteSpecGrpcRouteTimeoutPerRequestUnit implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshRouteSpecGrpcRouteTimeoutPerRequestUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.http2_route` block of
@@ -1051,7 +1084,7 @@ final class AppmeshRouteSpecTcpRouteTimeoutIdle {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<AppmeshRouteSpecTcpRouteTimeoutIdleUnit> unit;
 
   final TfArg<num> value;
 
@@ -1059,6 +1092,16 @@ final class AppmeshRouteSpecTcpRouteTimeoutIdle {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum AppmeshRouteSpecTcpRouteTimeoutIdleUnit implements TerraformEnum {
+  s('s'),
+  ms('ms');
+
+  const AppmeshRouteSpecTcpRouteTimeoutIdleUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_appmesh_route`.

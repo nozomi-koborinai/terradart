@@ -16,7 +16,7 @@ final class BedrockagentcoreTokenVaultCmkKmsConfiguration {
     this.kmsKeyArn,
   });
 
-  final TfArg<String> keyType;
+  final TfArg<BedrockagentcoreTokenVaultCmkKmsConfigurationKeyType> keyType;
 
   final TfArg<String>? kmsKeyArn;
 
@@ -24,6 +24,19 @@ final class BedrockagentcoreTokenVaultCmkKmsConfiguration {
     'key_type': keyType.toTfJson(),
     if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
   };
+}
+
+/// `key_type` — derived from the provider schema description.
+enum BedrockagentcoreTokenVaultCmkKmsConfigurationKeyType
+    implements TerraformEnum {
+  customermanagedkey('CustomerManagedKey'),
+  servicemanagedkey('ServiceManagedKey');
+
+  const BedrockagentcoreTokenVaultCmkKmsConfigurationKeyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_bedrockagentcore_token_vault_cmk`.

@@ -7,4 +7,5 @@ export 'src/outposts/aws_outposts_capacity_task.dart'
     show
         AwsOutpostsCapacityTask,
         OutpostsCapacityTaskInstancePool,
-        OutpostsCapacityTaskInstancesToExclude;
+        OutpostsCapacityTaskInstancesToExclude,
+        OutpostsCapacityTaskTaskActionOnBlockingInstances;

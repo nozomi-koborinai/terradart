@@ -7,6 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_oam_link`.
 const Set<String> _awsOamLinkSensitive = <String>{};
 
+/// Oam Link Resource enum for `resource_types`.
+enum OamLinkResourceTypes implements TerraformEnum {
+  awsCloudwatchMetric('AWS::CloudWatch::Metric'),
+  awsLogsLoggroup('AWS::Logs::LogGroup'),
+  awsXrayTrace('AWS::XRay::Trace'),
+  awsApplicationinsightsApplication('AWS::ApplicationInsights::Application'),
+  awsInternetmonitorMonitor('AWS::InternetMonitor::Monitor'),
+  awsApplicationsignalsService('AWS::ApplicationSignals::Service'),
+  awsApplicationsignalsServicelevelobjective(
+    'AWS::ApplicationSignals::ServiceLevelObjective',
+  );
+
+  const OamLinkResourceTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `link_configuration` block of
 /// `aws_oam_link` (derived from provider schema).
 @immutable
@@ -58,7 +75,7 @@ final class AwsOamLink extends Resource {
     required super.localName,
     required TfArg<String> labelTemplate,
     TfArg<String>? region,
-    required TfArg<List<String>> resourceTypes,
+    required List<TfArg<OamLinkResourceTypes>> resourceTypes,
     required TfArg<String> sinkIdentifier,
     TfArg<Map<String, String>>? tags,
     OamLinkLinkConfiguration? linkConfiguration,
@@ -71,7 +88,9 @@ final class AwsOamLink extends Resource {
          argMap: {
            'label_template': labelTemplate,
            if (region != null) 'region': region,
-           'resource_types': resourceTypes,
+           'resource_types': TfArg.literal([
+             for (final e in resourceTypes) e.toTfJson(),
+           ]),
            'sink_identifier': sinkIdentifier,
            if (tags != null) 'tags': tags,
            if (linkConfiguration != null)
