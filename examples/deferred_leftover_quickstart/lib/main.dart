@@ -42,7 +42,6 @@ import 'package:terradart_google/service_networking.dart';
 import 'package:terradart_google/site_verification.dart';
 import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/transcoder.dart';
-import 'package:terradart_google/vertex_ai.dart';
 
 final class DeferredLeftoverStack extends Stack {
   DeferredLeftoverStack({required String projectId})
