@@ -198,6 +198,9 @@ List<LintViolation> lintMigrateShapes(
         var shape =
             resolveEnumPayload(classifyDartType(f.typeSource, ctx), ctx);
         if (f.merged) shape = mergedShape(shape);
+        if (shape.keyed && !f.keyedEncoding) {
+          shape = unkeyedMapShape(f.typeSource);
+        }
         if (shape.isManual) {
           flag(
             'prelude helper `${h.name}` field `${f.name}` has a type the '
