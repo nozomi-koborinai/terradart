@@ -552,8 +552,14 @@ String _dummyForType(
       return _secretVarRef;
     }
     final inner = t.substring(6, t.length - 1);
-    final value = _literalInner(inner, helpers,
-        depth: depth, name: name, sensitive: sensitive, owner: owner);
+    final value = _literalInner(
+      inner,
+      helpers,
+      depth: depth,
+      name: name,
+      sensitive: sensitive,
+      owner: owner,
+    );
     // An enum member's long name makes the formatter wrap the call; the
     // trailing comma keeps the wrapped shape `require_trailing_commas` wants.
     return _enums.containsKey(inner.trim())
