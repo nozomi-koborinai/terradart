@@ -119,7 +119,6 @@ properties:
     description: Optional constraint on the Terraform version.
   - name: artifactsGcsBucket
     type: String
-    default_from_api: true
     description: Location for Cloud Build logs and artifacts.
   - name: workerPool
     type: String

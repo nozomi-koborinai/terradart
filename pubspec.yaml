@@ -112,7 +112,6 @@ workspace:
   - examples/network_security_gateway_policy_quickstart
   - examples/network_security_ull_quickstart
   - examples/network_services_mesh_quickstart
-  - examples/notebooks_quickstart
   - examples/observability_quickstart
   - examples/oracle_autonomous_database_quickstart
   - examples/oracle_db_system_quickstart

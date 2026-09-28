@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleGkeHubScopeSensitive = <String>{};
 
 /// Factory wrapper for `google_gke_hub_scope`.
+///
+/// Scope represents a Scope in a Fleet.
 final class GoogleGkeHubScope extends Resource {
   static const String tfType = 'google_gke_hub_scope';
 

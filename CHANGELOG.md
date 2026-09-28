@@ -19,6 +19,24 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **MM YAML sync pinned to the provider release** — `tool/sync_mm_yaml.dart`
+  reads the magic-modules commit the fixture's `hashicorp/google` release
+  was generated from (the `[upstream:<sha>]` stamp nearest the release tag,
+  declared by `upstream_ref` in `tool/mm_yaml_sources.yaml` and recorded in
+  `source/mm_upstream_ref.txt`) instead of `main`, which had run ahead of
+  the schema with provider 8.0 content. `--ref` overrides the pin. The new
+  type scaffold fetches from the same commit, and the drift report names
+  it. The three remaining 404 paths (`gkehub2/Scope.yaml`,
+  `gkehub2/Namespace.yaml`, `networksecurity/UrlLists.yaml`) are fixed, so
+  the weekly sync reports no failures. Generated doc comments follow the
+  7.46.1 MM text.
+- **`terradart wrap` removes orphaned generated files** — a full `wrap`
+  deletes every generated wrapper or barrel no override emits any more (a
+  deleted override used to leave its file behind, still compiling), and
+  `wrap --check` fails on one. The leftover-example generators
+  (`generate_data_source_leftover_example.dart`,
+  `generate_aws_leftover_example.dart`) cover only the factories the
+  catalog lists.
 - **`terradart_cloudflare` follows `cloudflare/cloudflare` 5.26.0**
   (**breaking**) — the pin moves from `5.23.0`, `DataCloudflareRateLimits`
   is removed with the upstream data source, the factories follow the
@@ -50,6 +68,16 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Removed
 
+- **`terradart_google`: the 22 factories `hashicorp/google` 8.0 removes**
+  (breaking) — `google_beyondcorp_app_{connection,connector,gateway}`,
+  `google_iap_{brand,client}`, `google_ml_engine_model`,
+  `google_notebooks_{environment,instance,runtime}` with their six IAM
+  factories, `google_vertex_ai_schedule`, and the data sources
+  `google_beyondcorp_app_{connection,connector,gateway}`, `google_iap_client`
+  and `google_notebooks_{instance,runtime}_iam_policy`. The `notebooks`
+  barrel and `examples/notebooks_quickstart` go with them. The catalog is
+  1322 curated resource factories + 455 data sources (1777 entries). See
+  `MIGRATING.md` for the successors and the state steps before upgrading.
 - **`terradart-coverage` (`packages/terradart_coverage`)** — the coverage
   CLI, its release binaries and its Homebrew formula. With every provider
   catalog filled, "does this type have a factory" is nearly always yes;

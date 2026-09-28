@@ -199,6 +199,10 @@ jobs:
 
       - name: Sync MM YAML overlays
         if: matrix.mm
+        env:
+          # Resolves the magic-modules commit of the release just fetched
+          # (tool/mm_yaml_sources.yaml upstream_ref) through the GitHub API.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           dart tool/sync_mm_yaml.dart \
             --manifest=tool/mm_yaml_sources.yaml \
