@@ -160,7 +160,6 @@ paramOrder:
 - annotations
 - client
 - client_version
-- custom_audiences
 - deletion_protection
 - description
 - labels

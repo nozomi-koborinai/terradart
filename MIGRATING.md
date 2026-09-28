@@ -2,6 +2,105 @@
 
 ## 0.29.x → next release
 
+### `terradart_google` / `terradart_google_beta`: `hashicorp/google` 8.x
+
+`terradart_google` and `terradart_google_beta` now target provider 8.x. The
+stack's `required_providers` pin moves from `~> 7.0` to `~> 8.0` for both
+`google` and `google-beta`. The provider's own
+[v8 upgrade guide](https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/version_8_upgrade)
+applies in full; the steps below are the TerraDart side of it.
+
+#### Upgrade steps
+
+1. **Take removed resource types out of state first, on your current
+   version.** Terraform on provider 8.x cannot read a resource whose type 8.0
+   deleted ([list](#terradart_google-factories-hashicorpgoogle-80-removes)).
+   Keep the cloud resource with `terraform state rm <address>`, or replace it
+   with its successor and apply while you are still on 0.29.x.
+2. **Raise the constraint by hand.** A caret constraint never crosses a
+   minor below 1.0, so `terradart_google: ^0.29.0` does not pull 0.30.0 and
+   `dart pub upgrade` alone changes nothing. Move every TerraDart package in
+   `pubspec.yaml` to `^0.30.0` together (they release in lockstep), then run
+   `dart pub upgrade`.
+3. **Fix the compile errors.** Each maps to one row of
+   [Dart API changes](#dart-api-changes); a removed factory is in the
+   [removed list](#terradart_google-factories-hashicorpgoogle-80-removes).
+4. **Synthesize, then upgrade the provider lock.** The new
+   `required_providers` (`~> 8.0`) no longer matches the 7.x version in
+   `.terraform.lock.hcl`, so a plain `terraform init` fails with *locked
+   provider … does not match configured version constraint*. Run
+   `terraform init -upgrade` once and commit the updated lock file. Every
+   other module in the same root module has to accept provider 8.x too.
+5. **Run `terraform plan` and read it before you apply.** 8.0 changes some
+   defaults with no Dart signal (see
+   [Behaviour changes](#behaviour-changes-the-compiler-cannot-show)); a
+   routine plan that suddenly wants to update or replace a load balancer,
+   an accelerator-backed instance or a dataset comes from those. Set the old
+   value explicitly in the Stack when you want to keep it, and apply only
+   once the plan shows what you expect.
+
+#### Dart API changes
+
+| Change | What to do |
+|--------|------------|
+| `GoogleSecretManagerSecretVersion.secretDataWoVersion` is `TfArg<String>` (was `int`) | `TfArg.literal(1)` → `TfArg.literal('1')`. `'0'` counts as unset; start at `'1'`. State migrates automatically. |
+| `BigqueryDataTransferConfigSensitiveParams.secretAccessKeyWoVersion` is `TfArg<String>` (was `num`) | Same: pass the version as a string. |
+| `GoogleWorkflowsWorkflow.sourceContents` is required | Pass the workflow definition. |
+| `GoogleIamWorkforcePoolProviderScimTenant.claimMapping` is required | Pass the SCIM attribute mapping, e.g. `{'google.subject': 'user.externalId', 'google.group': 'group.externalId'}`. |
+| `GoogleCloudRunV2WorkerPool.customAudiences` and the `DataGoogleCloudRunV2WorkerPool.customAudiences` getter are removed | Drop them; the API no longer accepts custom audiences on worker pools. |
+| `GoogleIntegrationsClient.runAsServiceAccount` is removed | Drop it. |
+| `DataGoogleBackupDrBackupPlanAssociations.resourceType` and `DataGoogleBackupDrDataSourceReferences.resourceType` are removed | Drop them. |
+| `GoogleComputeReservation.reservationBlockCount` (and the data source getter) is removed | Drop the reference. |
+
+Blocks 8.0 turned from lists into sets
+(`compute_service_attachment.nat_subnets` / `consumer_reject_lists`,
+`container_cluster.*_config.enable_components`,
+`cloud_security_compliance_framework.cloud_control_details`) keep their Dart
+`List` type. A Terraform expression that indexes one (`...nat_subnets[0]`)
+needs `tolist(...)` now.
+
+#### Behaviour changes the compiler cannot show
+
+- **`load_balancing_scheme` defaults to `EXTERNAL_MANAGED`** on
+  `GoogleComputeBackendService` and `GoogleComputeGlobalForwardingRule`
+  (was `EXTERNAL`). Leaving it unset now plans a change or a replacement of
+  a classic load balancer; set `loadBalancingScheme: 'EXTERNAL'` to keep it.
+- **`guest_accelerator` on `GoogleComputeInstance`** can now be updated to
+  `count = 0` in place, which detaches the accelerators. Removing the block
+  still detaches nothing (the field is computed); set `count = 0` explicitly.
+- **Write-only secrets**: `secret_data_wo` needs `secret_data_wo_version`,
+  and the plaintext and write-only forms of the BigQuery Data Transfer
+  `secret_access_key` and the uptime check `password` are exactly-one-of.
+- **`GoogleBigqueryDataset.defaultCollation`** is no longer computed: a
+  dataset whose collation was set outside Terraform now shows a diff until
+  the Stack sets it.
+- **GKE node pool `name_prefix`** may now be up to 31 characters (was 14).
+  A prefix longer than 14 characters gets a shorter, more collision-prone
+  random suffix.
+- **`GoogleComputeServiceAttachment.consumerAcceptLists`**: the
+  `project_id_or_num`, `network_url` and `endpoint_url` fields default to
+  `""` instead of null.
+- **Nested fields 8.0 removed that TerraDart passes as raw maps** do not
+  fail to compile; `terraform validate` rejects them. Drop
+  `http_get.http_headers.port` from Cloud Run v2 worker pool probes (and set
+  `http_headers.name`, now required), `actions.publish_findings_to_cloud_data_catalog`
+  from `GoogleDataLossPreventionJobTrigger` (use
+  `publish_findings_to_dataplex_catalog`). The
+  `logical_structure[*].zones[*].attachment` output of
+  `GoogleComputeInterconnectAttachmentGroup` is gone too.
+
+#### `terradart-migrate` users
+
+Migrate HCL that already runs on provider 8.x. The migrator emits the
+`terradart_google` pin (`~> 8.0`) and warns when the source pins something
+else (*required_providers.google pins "~> 7.0"; the Stack emits the
+terradart_google pin "~> 8.0"*); a resource of a type 8.0 removed has no
+factory and stays in the sidecar. So upgrade the source first — the steps of
+the provider's v8 upgrade guide, `terraform init -upgrade`, and a plan with
+*No changes* — then migrate, and expect *No changes* again from the
+migrated package. A package you migrated earlier follows the upgrade steps
+above like any other Stack.
+
 ### `terradart_google`: factories `hashicorp/google` 8.0 removes
 
 Provider 8.0 deletes these Terraform types, so their factories are gone from

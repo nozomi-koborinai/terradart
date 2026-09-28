@@ -20,7 +20,7 @@ final class GoogleBigqueryAnalyticsHubListingSubscription extends Resource {
     required TfArg<String> listingId,
     required TfArg<String> location,
     TfArg<String>? project,
-    required TfArg<Map<String, dynamic>> destinationDataset,
+    TfArg<Map<String, dynamic>>? destinationDataset,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -32,7 +32,8 @@ final class GoogleBigqueryAnalyticsHubListingSubscription extends Resource {
            'listing_id': listingId,
            'location': location,
            if (project != null) 'project': project,
-           'destination_dataset': destinationDataset,
+           if (destinationDataset != null)
+             'destination_dataset': destinationDataset,
          },
        );
 

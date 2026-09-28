@@ -27,6 +27,7 @@ final class VertexAiReasoningEngineSpec {
     this.classMethods,
     this.identityType,
     this.serviceAccount,
+    this.buildSpec,
     this.containerSpec,
     this.deploymentSpec,
     this.packageSpec,
@@ -41,6 +42,8 @@ final class VertexAiReasoningEngineSpec {
 
   final TfArg<String>? serviceAccount;
 
+  final VertexAiReasoningEngineSpecBuildSpec? buildSpec;
+
   final VertexAiReasoningEngineSpecContainerSpec? containerSpec;
 
   final VertexAiReasoningEngineSpecDeploymentSpec? deploymentSpec;
@@ -54,6 +57,7 @@ final class VertexAiReasoningEngineSpec {
     if (classMethods != null) 'class_methods': classMethods!.toTfJson(),
     if (identityType != null) 'identity_type': identityType!.toTfJson(),
     if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (buildSpec != null) 'build_spec': buildSpec!.encode(),
     if (containerSpec != null) 'container_spec': containerSpec!.encode(),
     if (deploymentSpec != null) 'deployment_spec': deploymentSpec!.encode(),
     if (packageSpec != null) 'package_spec': packageSpec!.encode(),
@@ -69,6 +73,25 @@ enum VertexAiReasoningEngineSpecIdentityType implements TerraformEnum {
   const VertexAiReasoningEngineSpecIdentityType(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `spec.build_spec` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineSpecBuildSpec {
+  const VertexAiReasoningEngineSpecBuildSpec({
+    this.serviceAccount,
+    this.workerPool,
+  });
+
+  final TfArg<String>? serviceAccount;
+
+  final TfArg<String>? workerPool;
+
+  Map<String, Object?> encode() => {
+    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (workerPool != null) 'worker_pool': workerPool!.toTfJson(),
+  };
 }
 
 /// Typed helper for the `spec.container_spec` block of
@@ -99,6 +122,7 @@ final class VertexAiReasoningEngineSpecDeploymentSpec {
     this.maxInstances,
     this.minInstances,
     this.resourceLimits,
+    this.agentGatewayConfig,
     this.env,
     this.pscInterfaceConfig,
     this.secretEnv,
@@ -111,6 +135,9 @@ final class VertexAiReasoningEngineSpecDeploymentSpec {
   final TfArg<num>? minInstances;
 
   final TfArg<Map<String, String>>? resourceLimits;
+
+  final VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfig?
+  agentGatewayConfig;
 
   final List<VertexAiReasoningEngineSpecDeploymentSpecEnv>? env;
 
@@ -125,12 +152,63 @@ final class VertexAiReasoningEngineSpecDeploymentSpec {
     if (maxInstances != null) 'max_instances': maxInstances!.toTfJson(),
     if (minInstances != null) 'min_instances': minInstances!.toTfJson(),
     if (resourceLimits != null) 'resource_limits': resourceLimits!.toTfJson(),
+    if (agentGatewayConfig != null)
+      'agent_gateway_config': agentGatewayConfig!.encode(),
     if (env != null) 'env': [for (final e in env!) e.encode()],
     if (pscInterfaceConfig != null)
       'psc_interface_config': pscInterfaceConfig!.encode(),
     if (secretEnv != null)
       'secret_env': [for (final e in secretEnv!) e.encode()],
   };
+}
+
+/// Typed helper for the `spec.deployment_spec.agent_gateway_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfig {
+  const VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfig({
+    this.agentToAnywhereConfig,
+    this.clientToAgentConfig,
+  });
+
+  final VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig?
+  agentToAnywhereConfig;
+
+  final VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig?
+  clientToAgentConfig;
+
+  Map<String, Object?> encode() => {
+    if (agentToAnywhereConfig != null)
+      'agent_to_anywhere_config': agentToAnywhereConfig!.encode(),
+    if (clientToAgentConfig != null)
+      'client_to_agent_config': clientToAgentConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `spec.deployment_spec.agent_gateway_config.agent_to_anywhere_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig {
+  const VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig({
+    required this.agentGateway,
+  });
+
+  final TfArg<String> agentGateway;
+
+  Map<String, Object?> encode() => {'agent_gateway': agentGateway.toTfJson()};
+}
+
+/// Typed helper for the `spec.deployment_spec.agent_gateway_config.client_to_agent_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig {
+  const VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigClientToAgentConfig({
+    required this.agentGateway,
+  });
+
+  final TfArg<String> agentGateway;
+
+  Map<String, Object?> encode() => {'agent_gateway': agentGateway.toTfJson()};
 }
 
 /// Typed helper for the `spec.deployment_spec.env` block of
@@ -272,11 +350,15 @@ final class VertexAiReasoningEngineSpecPackageSpec {
 @immutable
 final class VertexAiReasoningEngineSpecSourceCodeSpec {
   const VertexAiReasoningEngineSpecSourceCodeSpec({
+    this.agentConfigSource,
     this.developerConnectSource,
     this.imageSpec,
     this.inlineSource,
     this.pythonSpec,
   });
+
+  final VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSource?
+  agentConfigSource;
 
   final VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSource?
   developerConnectSource;
@@ -288,12 +370,61 @@ final class VertexAiReasoningEngineSpecSourceCodeSpec {
   final VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec? pythonSpec;
 
   Map<String, Object?> encode() => {
+    if (agentConfigSource != null)
+      'agent_config_source': agentConfigSource!.encode(),
     if (developerConnectSource != null)
       'developer_connect_source': developerConnectSource!.encode(),
     if (imageSpec != null) 'image_spec': imageSpec!.encode(),
     if (inlineSource != null) 'inline_source': inlineSource!.encode(),
     if (pythonSpec != null) 'python_spec': pythonSpec!.encode(),
   };
+}
+
+/// Typed helper for the `spec.source_code_spec.agent_config_source` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSource {
+  const VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSource({
+    this.adkConfig,
+    this.inlineSource,
+  });
+
+  final VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig?
+  adkConfig;
+
+  final VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceInlineSource?
+  inlineSource;
+
+  Map<String, Object?> encode() => {
+    if (adkConfig != null) 'adk_config': adkConfig!.encode(),
+    if (inlineSource != null) 'inline_source': inlineSource!.encode(),
+  };
+}
+
+/// Typed helper for the `spec.source_code_spec.agent_config_source.adk_config` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig {
+  const VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceAdkConfig({
+    required this.jsonConfig,
+  });
+
+  final TfArg<String> jsonConfig;
+
+  Map<String, Object?> encode() => {'json_config': jsonConfig.toTfJson()};
+}
+
+/// Typed helper for the `spec.source_code_spec.agent_config_source.inline_source` block of
+/// `google_vertex_ai_reasoning_engine` (derived from provider schema).
+@immutable
+final class VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceInlineSource {
+  const VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSourceInlineSource({
+    required this.sourceArchive,
+  });
+
+  final TfArg<String> sourceArchive;
+
+  Map<String, Object?> encode() => {'source_archive': sourceArchive.toTfJson()};
 }
 
 /// Typed helper for the `spec.source_code_spec.developer_connect_source` block of

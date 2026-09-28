@@ -78,10 +78,6 @@ final class DataGoogleComputeReservation extends Data {
   TfRef<List<Map<String, Object?>>> get params =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'params');
 
-  /// Reference to `reservation_block_count` attribute.
-  TfRef<num> get reservationBlockCount =>
-      TfRef.attribute<num>(this, 'reservation_block_count');
-
   /// Reference to `reservation_sharing_policy` attribute.
   TfRef<List<Map<String, Object?>>> get reservationSharingPolicy =>
       TfRef.attribute<List<Map<String, Object?>>>(

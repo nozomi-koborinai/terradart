@@ -2,7 +2,7 @@
 // Run `terradart wrap` to regenerate.
 /// terradart_google — curated GCP factory wrappers for `terradart`.
 ///
-/// Pinned to `hashicorp/google ~> 7.0`. See [kProviderSource] /
+/// Pinned to `hashicorp/google ~> 8.0`. See [kProviderSource] /
 /// [kProviderVersionConstraint].
 ///
 /// This umbrella re-exports every per-service barrel. New code is encouraged

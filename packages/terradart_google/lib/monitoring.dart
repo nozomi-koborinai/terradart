@@ -72,6 +72,8 @@ export 'src/monitoring/google_monitoring_slo.dart'
         MonitoringSloSli,
         MonitoringSloWindowsBasedSli,
         MonitoringSloWindowsGoodTotalRatioThreshold;
+export 'src/monitoring/google_monitoring_snooze.dart'
+    show GoogleMonitoringSnooze;
 export 'src/monitoring/google_monitoring_uptime_check_config.dart'
     show
         GoogleMonitoringUptimeCheckConfig,

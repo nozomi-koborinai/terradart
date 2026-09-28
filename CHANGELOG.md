@@ -19,6 +19,24 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **`terradart_google` / `terradart_google_beta` target `hashicorp/google`
+  8.x** (breaking) — the fixtures move to 8.1.0 and `required_providers`
+  pins `~> 8.0` for `google` and `google-beta`, so an existing root module
+  needs `terraform init -upgrade`. Dart API breaks follow the provider:
+  `GoogleSecretManagerSecretVersion.secretDataWoVersion` and
+  `BigqueryDataTransferConfigSensitiveParams.secretAccessKeyWoVersion` are
+  `TfArg<String>`; `GoogleWorkflowsWorkflow.sourceContents` and
+  `GoogleIamWorkforcePoolProviderScimTenant.claimMapping` are required;
+  worker pool `customAudiences`, `GoogleIntegrationsClient.runAsServiceAccount`,
+  the backup DR data sources' `resourceType` and the reservation
+  `reservationBlockCount` getters are gone. 8.1.0's seven new types
+  (`google_eventarc_pipeline_iam_*`, `google_monitoring_snooze`,
+  `google_network_management_network_monitoring_provider`,
+  `google_observability_bucket`, `google_scc_notification_service_account`)
+  get scaffolded factories, recorded in `tool/curation_backlog.yaml` and
+  `tool/example_debt.yaml` like any weekly bump. The weekly bump tracks major 8.
+  See `MIGRATING.md` for the upgrade steps and the behaviour changes a plan
+  shows.
 - **MM YAML sync pinned to the provider release** — `tool/sync_mm_yaml.dart`
   reads the magic-modules commit the fixture's `hashicorp/google` release
   was generated from (the `[upstream:<sha>]` stamp nearest the release tag,

@@ -79,7 +79,7 @@ providers:
     bump:
       mode: auto
       repo: hashicorp/terraform-provider-google
-      major: 7
+      major: 8
       cron: '0 22 * * 0' # Sunday 22:00 UTC (Monday 07:00 JST)
       refresh: dump
       scaffold: wrap-init

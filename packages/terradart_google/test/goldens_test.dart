@@ -165,7 +165,7 @@ void main() {
           localName: 'api_key_v1',
           secret: TfArg.ref(secret.id),
           secretDataWo: TfArg.literal('REPLACE_ME'),
-          secretDataWoVersion: TfArg.literal(1),
+          secretDataWoVersion: TfArg.literal('1'),
         ),
       );
 

@@ -21,7 +21,7 @@ void main() {
       localName: 'api_key_v1',
       secret: TfArg.ref(secret.id),
       secretDataWo: TfArg.literal('plain-secret'),
-      secretDataWoVersion: TfArg.literal(1),
+      secretDataWoVersion: TfArg.literal('1'),
     );
     expect(
       v.argMap.keys.toList(),
@@ -32,7 +32,7 @@ void main() {
       equals(r'${google_secret_manager_secret.api_key.id}'),
     );
     expect(v.argMap['secret_data_wo']!.toTfJson(), equals('plain-secret'));
-    expect(v.argMap['secret_data_wo_version']!.toTfJson(), equals(1));
+    expect(v.argMap['secret_data_wo_version']!.toTfJson(), equals('1'));
   });
 
   test('sensitiveFields contains secret_data per provider schema', () {

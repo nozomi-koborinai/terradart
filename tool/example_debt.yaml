@@ -964,3 +964,15 @@ DataCloudflareAccount: leftover dummy cannot satisfy account_id XOR filter witho
 DataCloudflareFirewallRule: leftover dummy cannot satisfy deprecated firewall-rule data schema
 DataCloudflareZone: leftover dummy cannot satisfy zone_id XOR filter without a real zone lookup
 
+# Awaiting an example: factories the weekly schema bump generated with a
+# default override (tool/bump_new_factories.dart record). Each one also has
+# a tool/curation_backlog.yaml entry; the synth gate fails an
+# `awaiting-example:` line without one. Cover the factory in an example (and
+# delete the line) or replace the line with a reasoned entry.
+GoogleEventarcPipelineIamBinding: awaiting-example: google_eventarc_pipeline_iam_binding added in hashicorp/google 8.1.0 (schema bump 2026-09-28)
+GoogleEventarcPipelineIamMember: awaiting-example: google_eventarc_pipeline_iam_member added in hashicorp/google 8.1.0 (schema bump 2026-09-28)
+GoogleEventarcPipelineIamPolicy: awaiting-example: google_eventarc_pipeline_iam_policy added in hashicorp/google 8.1.0 (schema bump 2026-09-28)
+GoogleMonitoringSnooze: awaiting-example: google_monitoring_snooze added in hashicorp/google 8.1.0 (schema bump 2026-09-28)
+GoogleNetworkManagementNetworkMonitoringProvider: awaiting-example: google_network_management_network_monitoring_provider added in hashicorp/google 8.1.0 (schema bump 2026-09-28)
+GoogleObservabilityBucket: awaiting-example: google_observability_bucket added in hashicorp/google 8.1.0 (schema bump 2026-09-28)
+GoogleSccNotificationServiceAccount: awaiting-example: google_scc_notification_service_account added in hashicorp/google 8.1.0 (schema bump 2026-09-28)

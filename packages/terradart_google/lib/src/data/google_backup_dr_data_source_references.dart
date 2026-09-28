@@ -17,7 +17,6 @@ final class DataGoogleBackupDrDataSourceReferences extends Data {
     required super.localName,
     required TfArg<String> location,
     TfArg<String>? project,
-    TfArg<String>? resourceType,
     super.provider,
     super.timeouts,
   }) : super(
@@ -25,7 +24,6 @@ final class DataGoogleBackupDrDataSourceReferences extends Data {
          argMap: {
            'location': location,
            if (project != null) 'project': project,
-           if (resourceType != null) 'resource_type': resourceType,
          },
        );
 
