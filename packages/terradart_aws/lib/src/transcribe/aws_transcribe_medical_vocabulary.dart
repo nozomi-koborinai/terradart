@@ -6,13 +6,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_transcribe_medical_vocabulary`.
 const Set<String> _awsTranscribeMedicalVocabularySensitive = <String>{};
 
+/// Transcribe Medical Vocabulary Language enum for `language_code`.
+enum TranscribeMedicalVocabularyLanguageCode implements TerraformEnum {
+  enUs('en-US');
+
+  const TranscribeMedicalVocabularyLanguageCode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_transcribe_medical_vocabulary`.
 final class AwsTranscribeMedicalVocabulary extends Resource {
   static const String tfType = 'aws_transcribe_medical_vocabulary';
 
   AwsTranscribeMedicalVocabulary({
     required super.localName,
-    required TfArg<String> languageCode,
+    required TfArg<TranscribeMedicalVocabularyLanguageCode> languageCode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> vocabularyFileUri,

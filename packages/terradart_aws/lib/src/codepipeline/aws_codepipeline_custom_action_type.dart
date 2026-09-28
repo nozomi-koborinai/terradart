@@ -7,6 +7,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_codepipeline_custom_action_type`.
 const Set<String> _awsCodepipelineCustomActionTypeSensitive = <String>{};
 
+/// Codepipeline Custom Action Type enum for `category`.
+enum CodepipelineCustomActionTypeCategory implements TerraformEnum {
+  source('Source'),
+  build('Build'),
+  deploy('Deploy'),
+  test('Test'),
+  invoke('Invoke'),
+  approval('Approval'),
+  compute('Compute');
+
+  const CodepipelineCustomActionTypeCategory(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `configuration_property` block of
 /// `aws_codepipeline_custom_action_type` (derived from provider schema).
 @immutable
@@ -33,7 +48,7 @@ final class CodepipelineCustomActionTypeConfigurationProperty {
 
   final TfArg<bool> secret;
 
-  final TfArg<String>? type;
+  final TfArg<CodepipelineCustomActionTypeConfigurationPropertyType>? type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -44,6 +59,20 @@ final class CodepipelineCustomActionTypeConfigurationProperty {
     'secret': secret.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CodepipelineCustomActionTypeConfigurationPropertyType
+    implements TerraformEnum {
+  string('String'),
+  number('Number'),
+  boolean('Boolean');
+
+  const CodepipelineCustomActionTypeConfigurationPropertyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_artifact_details` block of
@@ -121,7 +150,7 @@ final class AwsCodepipelineCustomActionType extends Resource {
 
   AwsCodepipelineCustomActionType({
     required super.localName,
-    required TfArg<String> category,
+    required TfArg<CodepipelineCustomActionTypeCategory> category,
     required TfArg<String> providerName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

@@ -7,6 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String>
 _awsArczonalshiftAutoshiftObserverNotificationStatusSensitive = <String>{};
 
+/// Arczonalshift Autoshift Observer Notification Status enum for `status`.
+enum ArczonalshiftAutoshiftObserverNotificationStatusStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const ArczonalshiftAutoshiftObserverNotificationStatusStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_arczonalshift_autoshift_observer_notification_status`.
 final class AwsArczonalshiftAutoshiftObserverNotificationStatus
     extends Resource {
@@ -16,7 +29,8 @@ final class AwsArczonalshiftAutoshiftObserverNotificationStatus
   AwsArczonalshiftAutoshiftObserverNotificationStatus({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> status,
+    required TfArg<ArczonalshiftAutoshiftObserverNotificationStatusStatus>
+    status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

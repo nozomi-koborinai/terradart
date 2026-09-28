@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ses_domain_mail_from`.
 const Set<String> _awsSesDomainMailFromSensitive = <String>{};
 
+/// Ses Domain Mail From Behavior On Mx enum for `behavior_on_mx_failure`.
+enum SesDomainMailFromBehaviorOnMxFailure implements TerraformEnum {
+  usedefaultvalue('UseDefaultValue'),
+  rejectmessage('RejectMessage');
+
+  const SesDomainMailFromBehaviorOnMxFailure(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ses_domain_mail_from`.
 final class AwsSesDomainMailFrom extends Resource {
   static const String tfType = 'aws_ses_domain_mail_from';
 
   AwsSesDomainMailFrom({
     required super.localName,
-    TfArg<String>? behaviorOnMxFailure,
+    TfArg<SesDomainMailFromBehaviorOnMxFailure>? behaviorOnMxFailure,
     required TfArg<String> domain,
     required TfArg<String> mailFromDomain,
     TfArg<String>? region,

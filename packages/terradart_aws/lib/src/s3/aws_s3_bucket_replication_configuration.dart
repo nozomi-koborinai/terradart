@@ -31,7 +31,7 @@ final class S3BucketReplicationConfigurationRule {
 
   final TfArg<num>? priority;
 
-  final TfArg<String> status;
+  final TfArg<S3BucketReplicationConfigurationRuleStatus> status;
 
   final S3BucketReplicationConfigurationRuleDeleteMarkerReplication?
   deleteMarkerReplication;
@@ -62,6 +62,16 @@ final class S3BucketReplicationConfigurationRule {
   };
 }
 
+/// `status` — derived from the provider schema description.
+enum S3BucketReplicationConfigurationRuleStatus implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const S3BucketReplicationConfigurationRuleStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule.delete_marker_replication` block of
 /// `aws_s3_bucket_replication_configuration` (derived from provider schema).
 @immutable
@@ -70,9 +80,23 @@ final class S3BucketReplicationConfigurationRuleDeleteMarkerReplication {
     required this.status,
   });
 
-  final TfArg<String> status;
+  final TfArg<S3BucketReplicationConfigurationRuleDeleteMarkerReplicationStatus>
+  status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
+}
+
+/// `status` — derived from the provider schema description.
+enum S3BucketReplicationConfigurationRuleDeleteMarkerReplicationStatus
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const S3BucketReplicationConfigurationRuleDeleteMarkerReplicationStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination` block of
@@ -93,7 +117,8 @@ final class S3BucketReplicationConfigurationRuleDestination {
 
   final TfArg<String> bucket;
 
-  final TfArg<String>? storageClass;
+  final TfArg<S3BucketReplicationConfigurationRuleDestinationStorageClass>?
+  storageClass;
 
   final S3BucketReplicationConfigurationRuleDestinationAccessControlTranslation?
   accessControlTranslation;
@@ -119,6 +144,32 @@ final class S3BucketReplicationConfigurationRuleDestination {
   };
 }
 
+/// `storage_class` — derived from the provider schema description.
+enum S3BucketReplicationConfigurationRuleDestinationStorageClass
+    implements TerraformEnum {
+  standard('STANDARD'),
+  reducedRedundancy('REDUCED_REDUNDANCY'),
+  standardIa('STANDARD_IA'),
+  onezoneIa('ONEZONE_IA'),
+  intelligentTiering('INTELLIGENT_TIERING'),
+  glacier('GLACIER'),
+  deepArchive('DEEP_ARCHIVE'),
+  outposts('OUTPOSTS'),
+  glacierIr('GLACIER_IR'),
+  snow('SNOW'),
+  expressOnezone('EXPRESS_ONEZONE'),
+  fsxOpenzfs('FSX_OPENZFS'),
+  fsxOntap('FSX_ONTAP'),
+  awsBackupWarm('AWS_BACKUP_WARM'),
+  awsBackupLowCostWarm('AWS_BACKUP_LOW_COST_WARM');
+
+  const S3BucketReplicationConfigurationRuleDestinationStorageClass(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule.destination.access_control_translation` block of
 /// `aws_s3_bucket_replication_configuration` (derived from provider schema).
 @immutable
@@ -127,9 +178,24 @@ final class S3BucketReplicationConfigurationRuleDestinationAccessControlTranslat
     required this.owner,
   });
 
-  final TfArg<String> owner;
+  final TfArg<
+    S3BucketReplicationConfigurationRuleDestinationAccessControlTranslationOwner
+  >
+  owner;
 
   Map<String, Object?> encode() => {'owner': owner.toTfJson()};
+}
+
+/// `owner` — derived from the provider schema description.
+enum S3BucketReplicationConfigurationRuleDestinationAccessControlTranslationOwner
+    implements TerraformEnum {
+  destination('Destination');
+
+  const S3BucketReplicationConfigurationRuleDestinationAccessControlTranslationOwner(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination.encryption_configuration` block of
@@ -156,7 +222,8 @@ final class S3BucketReplicationConfigurationRuleDestinationMetrics {
     this.eventThreshold,
   });
 
-  final TfArg<String> status;
+  final TfArg<S3BucketReplicationConfigurationRuleDestinationMetricsStatus>
+  status;
 
   final S3BucketReplicationConfigurationRuleDestinationMetricsEventThreshold?
   eventThreshold;
@@ -165,6 +232,19 @@ final class S3BucketReplicationConfigurationRuleDestinationMetrics {
     'status': status.toTfJson(),
     if (eventThreshold != null) 'event_threshold': eventThreshold!.encode(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum S3BucketReplicationConfigurationRuleDestinationMetricsStatus
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const S3BucketReplicationConfigurationRuleDestinationMetricsStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination.metrics.event_threshold` block of
@@ -189,7 +269,10 @@ final class S3BucketReplicationConfigurationRuleDestinationReplicationTime {
     required this.time,
   });
 
-  final TfArg<String> status;
+  final TfArg<
+    S3BucketReplicationConfigurationRuleDestinationReplicationTimeStatus
+  >
+  status;
 
   final S3BucketReplicationConfigurationRuleDestinationReplicationTimeTime time;
 
@@ -197,6 +280,19 @@ final class S3BucketReplicationConfigurationRuleDestinationReplicationTime {
     'status': status.toTfJson(),
     'time': time.encode(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum S3BucketReplicationConfigurationRuleDestinationReplicationTimeStatus
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const S3BucketReplicationConfigurationRuleDestinationReplicationTimeStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination.replication_time.time` block of
@@ -220,9 +316,25 @@ final class S3BucketReplicationConfigurationRuleExistingObjectReplication {
     required this.status,
   });
 
-  final TfArg<String> status;
+  final TfArg<
+    S3BucketReplicationConfigurationRuleExistingObjectReplicationStatus
+  >
+  status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
+}
+
+/// `status` — derived from the provider schema description.
+enum S3BucketReplicationConfigurationRuleExistingObjectReplicationStatus
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const S3BucketReplicationConfigurationRuleExistingObjectReplicationStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.filter` block of
@@ -314,9 +426,25 @@ final class S3BucketReplicationConfigurationRuleSourceSelectionCriteriaReplicaMo
     required this.status,
   });
 
-  final TfArg<String> status;
+  final TfArg<
+    S3BucketReplicationConfigurationRuleSourceSelectionCriteriaReplicaModificationsStatus
+  >
+  status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
+}
+
+/// `status` — derived from the provider schema description.
+enum S3BucketReplicationConfigurationRuleSourceSelectionCriteriaReplicaModificationsStatus
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const S3BucketReplicationConfigurationRuleSourceSelectionCriteriaReplicaModificationsStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.source_selection_criteria.sse_kms_encrypted_objects` block of
@@ -327,9 +455,25 @@ final class S3BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEnc
     required this.status,
   });
 
-  final TfArg<String> status;
+  final TfArg<
+    S3BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEncryptedObjectsStatus
+  >
+  status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
+}
+
+/// `status` — derived from the provider schema description.
+enum S3BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEncryptedObjectsStatus
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const S3BucketReplicationConfigurationRuleSourceSelectionCriteriaSseKmsEncryptedObjectsStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_s3_bucket_replication_configuration`.

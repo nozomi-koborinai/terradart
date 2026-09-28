@@ -88,11 +88,11 @@ final class LaunchConfigurationMetadataOptions {
     this.httpTokens,
   });
 
-  final TfArg<String>? httpEndpoint;
+  final TfArg<LaunchConfigurationMetadataOptionsHttpEndpoint>? httpEndpoint;
 
   final TfArg<num>? httpPutResponseHopLimit;
 
-  final TfArg<String>? httpTokens;
+  final TfArg<LaunchConfigurationMetadataOptionsHttpTokens>? httpTokens;
 
   Map<String, Object?> encode() => {
     if (httpEndpoint != null) 'http_endpoint': httpEndpoint!.toTfJson(),
@@ -100,6 +100,26 @@ final class LaunchConfigurationMetadataOptions {
       'http_put_response_hop_limit': httpPutResponseHopLimit!.toTfJson(),
     if (httpTokens != null) 'http_tokens': httpTokens!.toTfJson(),
   };
+}
+
+/// `http_endpoint` — derived from the provider schema description.
+enum LaunchConfigurationMetadataOptionsHttpEndpoint implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled');
+
+  const LaunchConfigurationMetadataOptionsHttpEndpoint(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `http_tokens` — derived from the provider schema description.
+enum LaunchConfigurationMetadataOptionsHttpTokens implements TerraformEnum {
+  optional('optional'),
+  required('required');
+
+  const LaunchConfigurationMetadataOptionsHttpTokens(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `root_block_device` block of

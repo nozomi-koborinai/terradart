@@ -2,3 +2,4 @@ outputDir: ssmcontacts
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true

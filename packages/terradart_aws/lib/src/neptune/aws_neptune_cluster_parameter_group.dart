@@ -17,7 +17,7 @@ final class NeptuneClusterParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<String>? applyMethod;
+  final TfArg<NeptuneClusterParameterGroupParameterApplyMethod>? applyMethod;
 
   final TfArg<String> name;
 
@@ -28,6 +28,16 @@ final class NeptuneClusterParameterGroupParameter {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `apply_method` — derived from the provider schema description.
+enum NeptuneClusterParameterGroupParameterApplyMethod implements TerraformEnum {
+  immediate('immediate'),
+  pendingReboot('pending-reboot');
+
+  const NeptuneClusterParameterGroupParameterApplyMethod(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_neptune_cluster_parameter_group`.

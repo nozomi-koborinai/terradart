@@ -11,6 +11,9 @@ export 'src/timestreamwrite/aws_timestreamwrite_table.dart'
         TimestreamwriteTableMagneticStoreWriteProperties,
         TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocation,
         TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3Configuration,
+        TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3ConfigurationEncryptionOption,
         TimestreamwriteTableRetentionProperties,
         TimestreamwriteTableSchema,
-        TimestreamwriteTableSchemaCompositePartitionKey;
+        TimestreamwriteTableSchemaCompositePartitionKey,
+        TimestreamwriteTableSchemaCompositePartitionKeyEnforcementInRecord,
+        TimestreamwriteTableSchemaCompositePartitionKeyType;

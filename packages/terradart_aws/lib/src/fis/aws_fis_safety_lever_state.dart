@@ -15,12 +15,22 @@ final class FisSafetyLeverStateState {
 
   final TfArg<String> reason;
 
-  final TfArg<String> status;
+  final TfArg<FisSafetyLeverStateStateStatus> status;
 
   Map<String, Object?> encode() => {
     'reason': reason.toTfJson(),
     'status': status.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum FisSafetyLeverStateStateStatus implements TerraformEnum {
+  engaged('engaged'),
+  disengaged('disengaged');
+
+  const FisSafetyLeverStateStateStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_fis_safety_lever_state`.

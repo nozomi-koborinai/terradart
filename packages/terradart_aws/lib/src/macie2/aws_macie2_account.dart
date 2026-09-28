@@ -6,15 +6,36 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_macie2_account`.
 const Set<String> _awsMacie2AccountSensitive = <String>{};
 
+/// Macie2 Account Finding Publishing enum for `finding_publishing_frequency`.
+enum Macie2AccountFindingPublishingFrequency implements TerraformEnum {
+  fifteenMinutes('FIFTEEN_MINUTES'),
+  oneHour('ONE_HOUR'),
+  sixHours('SIX_HOURS');
+
+  const Macie2AccountFindingPublishingFrequency(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Macie2 Account enum for `status`.
+enum Macie2AccountStatus implements TerraformEnum {
+  paused('PAUSED'),
+  enabled('ENABLED');
+
+  const Macie2AccountStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_macie2_account`.
 final class AwsMacie2Account extends Resource {
   static const String tfType = 'aws_macie2_account';
 
   AwsMacie2Account({
     required super.localName,
-    TfArg<String>? findingPublishingFrequency,
+    TfArg<Macie2AccountFindingPublishingFrequency>? findingPublishingFrequency,
     TfArg<String>? region,
-    TfArg<String>? status,
+    TfArg<Macie2AccountStatus>? status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

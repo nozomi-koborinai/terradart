@@ -34,6 +34,11 @@ void main() {
         "TfRef<String> get id => TfRef.attribute<String>(this, 'id');",
       ]);
     });
+
+    test('scaffolds typed nested blocks and provider enums', () {
+      expect(rules.typedNestedDefaults, isTrue);
+      expect(rules.derivedEnumDefaults, isTrue);
+    });
   });
 
   test('providerRulesById keys match each adapter providerId', () {

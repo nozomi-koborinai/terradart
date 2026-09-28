@@ -16,6 +16,7 @@ export 'src/pinpoint/aws_pinpoint_app.dart'
     show
         AwsPinpointApp,
         PinpointAppCampaignHook,
+        PinpointAppCampaignHookMode,
         PinpointAppLimits,
         PinpointAppQuietTime;
 export 'src/pinpoint/aws_pinpoint_baidu_channel.dart'
@@ -29,5 +30,6 @@ export 'src/pinpoint/aws_pinpoint_email_template.dart'
         PinpointEmailTemplateEmailTemplateHeader;
 export 'src/pinpoint/aws_pinpoint_event_stream.dart'
     show AwsPinpointEventStream;
-export 'src/pinpoint/aws_pinpoint_gcm_channel.dart' show AwsPinpointGcmChannel;
+export 'src/pinpoint/aws_pinpoint_gcm_channel.dart'
+    show AwsPinpointGcmChannel, PinpointGcmChannelDefaultAuthenticationMethod;
 export 'src/pinpoint/aws_pinpoint_sms_channel.dart' show AwsPinpointSmsChannel;

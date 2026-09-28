@@ -46,11 +46,24 @@ final class DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptions {
     this.version,
   });
 
-  final TfArg<String>? version;
+  final TfArg<DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion>?
+  version;
 
   Map<String, Object?> encode() => {
     if (version != null) 'version': version!.toTfJson(),
   };
+}
+
+/// `version` — derived from the provider schema description.
+enum DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion
+    implements TerraformEnum {
+  nfs3('NFS3');
+
+  const DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `protocol.smb` block of
@@ -88,11 +101,27 @@ final class DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptions {
     this.version,
   });
 
-  final TfArg<String>? version;
+  final TfArg<DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion>?
+  version;
 
   Map<String, Object?> encode() => {
     if (version != null) 'version': version!.toTfJson(),
   };
+}
+
+/// `version` — derived from the provider schema description.
+enum DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion
+    implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  smb2('SMB2'),
+  smb3('SMB3'),
+  smb20('SMB2_0');
+
+  const DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_datasync_location_fsx_ontap_file_system`.

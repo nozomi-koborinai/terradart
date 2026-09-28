@@ -7,6 +7,31 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_connect_instance_storage_config`.
 const Set<String> _awsConnectInstanceStorageConfigSensitive = <String>{};
 
+/// Connect Instance Storage Config Resource enum for `resource_type`.
+enum ConnectInstanceStorageConfigResourceType implements TerraformEnum {
+  chatTranscripts('CHAT_TRANSCRIPTS'),
+  callRecordings('CALL_RECORDINGS'),
+  scheduledReports('SCHEDULED_REPORTS'),
+  mediaStreams('MEDIA_STREAMS'),
+  contactTraceRecords('CONTACT_TRACE_RECORDS'),
+  agentEvents('AGENT_EVENTS'),
+  realTimeContactAnalysisSegments('REAL_TIME_CONTACT_ANALYSIS_SEGMENTS'),
+  attachments('ATTACHMENTS'),
+  contactEvaluations('CONTACT_EVALUATIONS'),
+  screenRecordings('SCREEN_RECORDINGS'),
+  realTimeContactAnalysisChatSegments(
+    'REAL_TIME_CONTACT_ANALYSIS_CHAT_SEGMENTS',
+  ),
+  realTimeContactAnalysisVoiceSegments(
+    'REAL_TIME_CONTACT_ANALYSIS_VOICE_SEGMENTS',
+  ),
+  emailMessages('EMAIL_MESSAGES');
+
+  const ConnectInstanceStorageConfigResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `storage_config` block of
 /// `aws_connect_instance_storage_config` (derived from provider schema).
 @immutable
@@ -19,7 +44,7 @@ final class ConnectInstanceStorageConfigStorageConfig {
     this.s3Config,
   });
 
-  final TfArg<String> storageType;
+  final TfArg<ConnectInstanceStorageConfigStorageConfigStorageType> storageType;
 
   final ConnectInstanceStorageConfigStorageConfigKinesisFirehoseConfig?
   kinesisFirehoseConfig;
@@ -42,6 +67,21 @@ final class ConnectInstanceStorageConfigStorageConfig {
       'kinesis_video_stream_config': kinesisVideoStreamConfig!.encode(),
     if (s3Config != null) 's3_config': s3Config!.encode(),
   };
+}
+
+/// `storage_type` — derived from the provider schema description.
+enum ConnectInstanceStorageConfigStorageConfigStorageType
+    implements TerraformEnum {
+  s3('S3'),
+  kinesisVideoStream('KINESIS_VIDEO_STREAM'),
+  kinesisStream('KINESIS_STREAM'),
+  kinesisFirehose('KINESIS_FIREHOSE');
+
+  const ConnectInstanceStorageConfigStorageConfigStorageType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `storage_config.kinesis_firehose_config` block of
@@ -103,7 +143,10 @@ final class ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEnc
     required this.keyId,
   });
 
-  final TfArg<String> encryptionType;
+  final TfArg<
+    ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfigEncryptionType
+  >
+  encryptionType;
 
   final TfArg<String> keyId;
 
@@ -111,6 +154,18 @@ final class ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEnc
     'encryption_type': encryptionType.toTfJson(),
     'key_id': keyId.toTfJson(),
   };
+}
+
+/// `encryption_type` — derived from the provider schema description.
+enum ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfigEncryptionType
+    implements TerraformEnum {
+  kms('KMS');
+
+  const ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEncryptionConfigEncryptionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `storage_config.s3_config` block of
@@ -147,7 +202,10 @@ final class ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfig {
     required this.keyId,
   });
 
-  final TfArg<String> encryptionType;
+  final TfArg<
+    ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfigEncryptionType
+  >
+  encryptionType;
 
   final TfArg<String> keyId;
 
@@ -155,6 +213,18 @@ final class ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfig {
     'encryption_type': encryptionType.toTfJson(),
     'key_id': keyId.toTfJson(),
   };
+}
+
+/// `encryption_type` — derived from the provider schema description.
+enum ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfigEncryptionType
+    implements TerraformEnum {
+  kms('KMS');
+
+  const ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfigEncryptionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_connect_instance_storage_config`.
@@ -165,7 +235,7 @@ final class AwsConnectInstanceStorageConfig extends Resource {
     required super.localName,
     required TfArg<String> instanceId,
     TfArg<String>? region,
-    required TfArg<String> resourceType,
+    required TfArg<ConnectInstanceStorageConfigResourceType> resourceType,
     required ConnectInstanceStorageConfigStorageConfig storageConfig,
     super.lifecycle,
     super.dependsOn,

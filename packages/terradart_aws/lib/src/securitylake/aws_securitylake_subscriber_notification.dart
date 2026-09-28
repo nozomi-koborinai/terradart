@@ -58,7 +58,10 @@ final class SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConf
 
   final TfArg<String> endpoint;
 
-  final TfArg<String>? httpMethod;
+  final TfArg<
+    SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfigurationHttpMethod
+  >?
+  httpMethod;
 
   final TfArg<String> targetRoleArn;
 
@@ -71,6 +74,19 @@ final class SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConf
     if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
     'target_role_arn': targetRoleArn.toTfJson(),
   };
+}
+
+/// `http_method` — derived from the provider schema description.
+enum SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfigurationHttpMethod
+    implements TerraformEnum {
+  post('POST'),
+  put('PUT');
+
+  const SecuritylakeSubscriberNotificationConfigurationHttpsNotificationConfigurationHttpMethod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.sqs_notification_configuration` block of

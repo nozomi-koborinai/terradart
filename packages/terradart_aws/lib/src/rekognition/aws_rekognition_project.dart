@@ -6,14 +6,34 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rekognition_project`.
 const Set<String> _awsRekognitionProjectSensitive = <String>{};
 
+/// Rekognition Project Auto enum for `auto_update`.
+enum RekognitionProjectAutoUpdate implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const RekognitionProjectAutoUpdate(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Rekognition Project enum for `feature`.
+enum RekognitionProjectFeature implements TerraformEnum {
+  contentModeration('CONTENT_MODERATION'),
+  customLabels('CUSTOM_LABELS');
+
+  const RekognitionProjectFeature(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_rekognition_project`.
 final class AwsRekognitionProject extends Resource {
   static const String tfType = 'aws_rekognition_project';
 
   AwsRekognitionProject({
     required super.localName,
-    TfArg<String>? autoUpdate,
-    TfArg<String>? feature,
+    TfArg<RekognitionProjectAutoUpdate>? autoUpdate,
+    TfArg<RekognitionProjectFeature>? feature,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

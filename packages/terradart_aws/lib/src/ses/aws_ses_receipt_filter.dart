@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ses_receipt_filter`.
 const Set<String> _awsSesReceiptFilterSensitive = <String>{};
 
+/// Ses Receipt Filter enum for `policy`.
+enum SesReceiptFilterPolicy implements TerraformEnum {
+  block('Block'),
+  allow('Allow');
+
+  const SesReceiptFilterPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ses_receipt_filter`.
 final class AwsSesReceiptFilter extends Resource {
   static const String tfType = 'aws_ses_receipt_filter';
@@ -14,7 +24,7 @@ final class AwsSesReceiptFilter extends Resource {
     required super.localName,
     required TfArg<String> cidr,
     required TfArg<String> name,
-    required TfArg<String> policy,
+    required TfArg<SesReceiptFilterPolicy> policy,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

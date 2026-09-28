@@ -40,12 +40,26 @@ final class S3BucketWebsiteConfigurationRedirectAllRequestsTo {
 
   final TfArg<String> hostName;
 
-  final TfArg<String>? protocol;
+  final TfArg<S3BucketWebsiteConfigurationRedirectAllRequestsToProtocol>?
+  protocol;
 
   Map<String, Object?> encode() => {
     'host_name': hostName.toTfJson(),
     if (protocol != null) 'protocol': protocol!.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+enum S3BucketWebsiteConfigurationRedirectAllRequestsToProtocol
+    implements TerraformEnum {
+  http('http'),
+  https('https');
+
+  const S3BucketWebsiteConfigurationRedirectAllRequestsToProtocol(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `routing_rule` block of
@@ -105,7 +119,8 @@ final class S3BucketWebsiteConfigurationRoutingRuleRedirect {
 
   final TfArg<String>? httpRedirectCode;
 
-  final TfArg<String>? protocol;
+  final TfArg<S3BucketWebsiteConfigurationRoutingRuleRedirectProtocol>?
+  protocol;
 
   final TfArg<String>? replaceKeyPrefixWith;
 
@@ -120,6 +135,19 @@ final class S3BucketWebsiteConfigurationRoutingRuleRedirect {
       'replace_key_prefix_with': replaceKeyPrefixWith!.toTfJson(),
     if (replaceKeyWith != null) 'replace_key_with': replaceKeyWith!.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+enum S3BucketWebsiteConfigurationRoutingRuleRedirectProtocol
+    implements TerraformEnum {
+  http('http'),
+  https('https');
+
+  const S3BucketWebsiteConfigurationRoutingRuleRedirectProtocol(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_s3_bucket_website_configuration`.

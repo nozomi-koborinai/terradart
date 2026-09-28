@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_route53_hosted_zone_dnssec`.
 const Set<String> _awsRoute53HostedZoneDnssecSensitive = <String>{};
 
+/// Route53 Hosted Zone Dnssec Signing enum for `signing_status`.
+enum Route53HostedZoneDnssecSigningStatus implements TerraformEnum {
+  signing('SIGNING'),
+  notSigning('NOT_SIGNING');
+
+  const Route53HostedZoneDnssecSigningStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_route53_hosted_zone_dnssec`.
 final class AwsRoute53HostedZoneDnssec extends Resource {
   static const String tfType = 'aws_route53_hosted_zone_dnssec';
@@ -13,7 +23,7 @@ final class AwsRoute53HostedZoneDnssec extends Resource {
   AwsRoute53HostedZoneDnssec({
     required super.localName,
     required TfArg<String> hostedZoneId,
-    TfArg<String>? signingStatus,
+    TfArg<Route53HostedZoneDnssecSigningStatus>? signingStatus,
     super.lifecycle,
     super.dependsOn,
     super.provider,

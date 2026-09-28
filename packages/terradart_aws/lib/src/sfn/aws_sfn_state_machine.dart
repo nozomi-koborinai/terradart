@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_sfn_state_machine`.
 const Set<String> _awsSfnStateMachineSensitive = <String>{};
 
+/// Sfn State Machine enum for `type`.
+enum SfnStateMachineType implements TerraformEnum {
+  standard('STANDARD'),
+  express('EXPRESS');
+
+  const SfnStateMachineType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `encryption_configuration` block of
 /// `aws_sfn_state_machine` (derived from provider schema).
 @immutable
@@ -21,7 +31,7 @@ final class SfnStateMachineEncryptionConfiguration {
 
   final TfArg<String>? kmsKeyId;
 
-  final TfArg<String>? type;
+  final TfArg<SfnStateMachineEncryptionConfigurationType>? type;
 
   Map<String, Object?> encode() => {
     if (kmsDataKeyReusePeriodSeconds != null)
@@ -30,6 +40,16 @@ final class SfnStateMachineEncryptionConfiguration {
     if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SfnStateMachineEncryptionConfigurationType implements TerraformEnum {
+  awsOwnedKey('AWS_OWNED_KEY'),
+  customerManagedKmsKey('CUSTOMER_MANAGED_KMS_KEY');
+
+  const SfnStateMachineEncryptionConfigurationType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `logging_configuration` block of
@@ -44,7 +64,7 @@ final class SfnStateMachineLoggingConfiguration {
 
   final TfArg<bool>? includeExecutionData;
 
-  final TfArg<String>? level;
+  final TfArg<SfnStateMachineLoggingConfigurationLevel>? level;
 
   final TfArg<String>? logDestination;
 
@@ -54,6 +74,18 @@ final class SfnStateMachineLoggingConfiguration {
     if (level != null) 'level': level!.toTfJson(),
     if (logDestination != null) 'log_destination': logDestination!.toTfJson(),
   };
+}
+
+/// `level` — derived from the provider schema description.
+enum SfnStateMachineLoggingConfigurationLevel implements TerraformEnum {
+  all('ALL'),
+  error('ERROR'),
+  fatal('FATAL'),
+  off('OFF');
+
+  const SfnStateMachineLoggingConfigurationLevel(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `tracing_configuration` block of
@@ -82,7 +114,7 @@ final class AwsSfnStateMachine extends Resource {
     TfArg<String>? region,
     required TfArg<String> roleArn,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    TfArg<SfnStateMachineType>? type,
     SfnStateMachineEncryptionConfiguration? encryptionConfiguration,
     SfnStateMachineLoggingConfiguration? loggingConfiguration,
     SfnStateMachineTracingConfiguration? tracingConfiguration,

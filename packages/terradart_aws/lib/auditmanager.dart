@@ -8,17 +8,26 @@ export 'src/auditmanager/aws_auditmanager_account_registration.dart'
 export 'src/auditmanager/aws_auditmanager_assessment.dart'
     show
         AuditmanagerAssessmentAssessmentReportsDestination,
+        AuditmanagerAssessmentAssessmentReportsDestinationDestinationType,
         AuditmanagerAssessmentRoles,
+        AuditmanagerAssessmentRolesRoleType,
         AuditmanagerAssessmentScope,
         AuditmanagerAssessmentScopeAwsAccounts,
         AuditmanagerAssessmentScopeAwsServices,
         AwsAuditmanagerAssessment;
 export 'src/auditmanager/aws_auditmanager_assessment_delegation.dart'
-    show AwsAuditmanagerAssessmentDelegation;
+    show
+        AuditmanagerAssessmentDelegationRoleType,
+        AwsAuditmanagerAssessmentDelegation;
 export 'src/auditmanager/aws_auditmanager_assessment_report.dart'
     show AwsAuditmanagerAssessmentReport;
 export 'src/auditmanager/aws_auditmanager_control.dart'
-    show AuditmanagerControlControlMappingSources, AwsAuditmanagerControl;
+    show
+        AuditmanagerControlControlMappingSources,
+        AuditmanagerControlControlMappingSourcesSourceFrequency,
+        AuditmanagerControlControlMappingSourcesSourceSetUpOption,
+        AuditmanagerControlControlMappingSourcesSourceType,
+        AwsAuditmanagerControl;
 export 'src/auditmanager/aws_auditmanager_framework.dart'
     show
         AuditmanagerFrameworkControlSets,

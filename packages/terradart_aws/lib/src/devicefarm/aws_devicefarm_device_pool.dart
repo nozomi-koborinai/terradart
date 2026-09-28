@@ -13,9 +13,9 @@ const Set<String> _awsDevicefarmDevicePoolSensitive = <String>{};
 final class DevicefarmDevicePoolRule {
   const DevicefarmDevicePoolRule({this.attribute, this.operator, this.value});
 
-  final TfArg<String>? attribute;
+  final TfArg<DevicefarmDevicePoolRuleAttribute>? attribute;
 
-  final TfArg<String>? operator;
+  final TfArg<DevicefarmDevicePoolRuleOperator>? operator;
 
   final TfArg<String>? value;
 
@@ -24,6 +24,43 @@ final class DevicefarmDevicePoolRule {
     if (operator != null) 'operator': operator!.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `attribute` — derived from the provider schema description.
+enum DevicefarmDevicePoolRuleAttribute implements TerraformEnum {
+  arn('ARN'),
+  platform('PLATFORM'),
+  formFactor('FORM_FACTOR'),
+  manufacturer('MANUFACTURER'),
+  remoteAccessEnabled('REMOTE_ACCESS_ENABLED'),
+  remoteDebugEnabled('REMOTE_DEBUG_ENABLED'),
+  appiumVersion('APPIUM_VERSION'),
+  instanceArn('INSTANCE_ARN'),
+  instanceLabels('INSTANCE_LABELS'),
+  fleetType('FLEET_TYPE'),
+  osVersion('OS_VERSION'),
+  model('MODEL'),
+  availability('AVAILABILITY');
+
+  const DevicefarmDevicePoolRuleAttribute(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `operator` — derived from the provider schema description.
+enum DevicefarmDevicePoolRuleOperator implements TerraformEnum {
+  equals('EQUALS'),
+  lessThan('LESS_THAN'),
+  lessThanOrEquals('LESS_THAN_OR_EQUALS'),
+  greaterThan('GREATER_THAN'),
+  greaterThanOrEquals('GREATER_THAN_OR_EQUALS'),
+  inCase('IN'),
+  notIn('NOT_IN'),
+  contains('CONTAINS');
+
+  const DevicefarmDevicePoolRuleOperator(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_devicefarm_device_pool`.

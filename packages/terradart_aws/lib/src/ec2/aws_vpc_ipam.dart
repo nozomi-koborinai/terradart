@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpc_ipam`.
 const Set<String> _awsVpcIpamSensitive = <String>{};
 
+/// Vpc Ipam Metered enum for `metered_account`.
+enum VpcIpamMeteredAccount implements TerraformEnum {
+  ipamOwner('ipam-owner'),
+  resourceOwner('resource-owner');
+
+  const VpcIpamMeteredAccount(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpc Ipam enum for `tier`.
+enum VpcIpamTier implements TerraformEnum {
+  free('free'),
+  advanced('advanced');
+
+  const VpcIpamTier(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `operating_regions` block of
 /// `aws_vpc_ipam` (derived from provider schema).
 @immutable
@@ -27,10 +47,10 @@ final class AwsVpcIpam extends Resource {
     TfArg<bool>? cascade,
     TfArg<String>? description,
     TfArg<bool>? enablePrivateGua,
-    TfArg<String>? meteredAccount,
+    TfArg<VpcIpamMeteredAccount>? meteredAccount,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? tier,
+    TfArg<VpcIpamTier>? tier,
     required List<VpcIpamOperatingRegions> operatingRegions,
     super.lifecycle,
     super.dependsOn,

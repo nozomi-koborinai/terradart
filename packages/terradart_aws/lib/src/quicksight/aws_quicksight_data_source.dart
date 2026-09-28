@@ -10,6 +10,52 @@ const Set<String> _awsQuicksightDataSourceSensitive = <String>{
   'credentials.credential_pair.username',
 };
 
+/// Quicksight Data Source enum for `type`.
+enum QuicksightDataSourceType implements TerraformEnum {
+  adobeAnalytics('ADOBE_ANALYTICS'),
+  amazonElasticsearch('AMAZON_ELASTICSEARCH'),
+  athena('ATHENA'),
+  aurora('AURORA'),
+  auroraPostgresql('AURORA_POSTGRESQL'),
+  awsIotAnalytics('AWS_IOT_ANALYTICS'),
+  github('GITHUB'),
+  jira('JIRA'),
+  mariadb('MARIADB'),
+  mysql('MYSQL'),
+  oracle('ORACLE'),
+  postgresql('POSTGRESQL'),
+  presto('PRESTO'),
+  redshift('REDSHIFT'),
+  s3('S3'),
+  s3Tables('S3_TABLES'),
+  salesforce('SALESFORCE'),
+  servicenow('SERVICENOW'),
+  snowflake('SNOWFLAKE'),
+  spark('SPARK'),
+  sqlserver('SQLSERVER'),
+  teradata('TERADATA'),
+  twitter('TWITTER'),
+  timestream('TIMESTREAM'),
+  amazonOpensearch('AMAZON_OPENSEARCH'),
+  exasol('EXASOL'),
+  databricks('DATABRICKS'),
+  starburst('STARBURST'),
+  trino('TRINO'),
+  bigquery('BIGQUERY'),
+  googlesheets('GOOGLESHEETS'),
+  googleDrive('GOOGLE_DRIVE'),
+  confluence('CONFLUENCE'),
+  sharepoint('SHAREPOINT'),
+  oneDrive('ONE_DRIVE'),
+  webCrawler('WEB_CRAWLER'),
+  s3KnowledgeBase('S3_KNOWLEDGE_BASE'),
+  qbusiness('QBUSINESS');
+
+  const QuicksightDataSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `credentials` block of
 /// `aws_quicksight_data_source` (derived from provider schema).
 @immutable
@@ -645,7 +691,7 @@ final class AwsQuicksightDataSource extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<QuicksightDataSourceType> type,
     QuicksightDataSourceCredentials? credentials,
     required QuicksightDataSourceParameters parameters,
     List<QuicksightDataSourcePermission>? permission,

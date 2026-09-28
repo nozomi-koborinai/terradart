@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_elasticache_user_group`.
 const Set<String> _awsElasticacheUserGroupSensitive = <String>{};
 
+/// Elasticache User Group enum for `engine`.
+enum ElasticacheUserGroupEngine implements TerraformEnum {
+  redis('redis'),
+  valkey('valkey');
+
+  const ElasticacheUserGroupEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_elasticache_user_group`.
 final class AwsElasticacheUserGroup extends Resource {
   static const String tfType = 'aws_elasticache_user_group';
 
   AwsElasticacheUserGroup({
     required super.localName,
-    required TfArg<String> engine,
+    required TfArg<ElasticacheUserGroupEngine> engine,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> userGroupId,

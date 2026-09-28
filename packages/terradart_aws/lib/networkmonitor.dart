@@ -6,4 +6,4 @@ library;
 export 'src/networkmonitor/aws_networkmonitor_monitor.dart'
     show AwsNetworkmonitorMonitor;
 export 'src/networkmonitor/aws_networkmonitor_probe.dart'
-    show AwsNetworkmonitorProbe;
+    show AwsNetworkmonitorProbe, NetworkmonitorProbeProtocol;

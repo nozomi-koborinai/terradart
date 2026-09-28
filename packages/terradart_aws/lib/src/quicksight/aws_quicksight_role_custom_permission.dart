@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_quicksight_role_custom_permission`.
 const Set<String> _awsQuicksightRoleCustomPermissionSensitive = <String>{};
 
+/// Quicksight Role Custom Permission enum for `role`.
+enum QuicksightRoleCustomPermissionRole implements TerraformEnum {
+  admin('ADMIN'),
+  author('AUTHOR'),
+  reader('READER'),
+  adminPro('ADMIN_PRO'),
+  authorPro('AUTHOR_PRO'),
+  readerPro('READER_PRO');
+
+  const QuicksightRoleCustomPermissionRole(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_quicksight_role_custom_permission`.
 final class AwsQuicksightRoleCustomPermission extends Resource {
   static const String tfType = 'aws_quicksight_role_custom_permission';
@@ -16,7 +30,7 @@ final class AwsQuicksightRoleCustomPermission extends Resource {
     required TfArg<String> customPermissionsName,
     TfArg<String>? namespace,
     TfArg<String>? region,
-    required TfArg<String> role,
+    required TfArg<QuicksightRoleCustomPermissionRole> role,
     super.lifecycle,
     super.dependsOn,
     super.provider,

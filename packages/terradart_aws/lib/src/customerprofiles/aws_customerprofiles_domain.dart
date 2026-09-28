@@ -74,7 +74,10 @@ final class CustomerprofilesDomainMatchingAutoMergingConflictResolution {
     this.sourceName,
   });
 
-  final TfArg<String> conflictResolvingModel;
+  final TfArg<
+    CustomerprofilesDomainMatchingAutoMergingConflictResolutionConflictResolvingModel
+  >
+  conflictResolvingModel;
 
   final TfArg<String>? sourceName;
 
@@ -82,6 +85,19 @@ final class CustomerprofilesDomainMatchingAutoMergingConflictResolution {
     'conflict_resolving_model': conflictResolvingModel.toTfJson(),
     if (sourceName != null) 'source_name': sourceName!.toTfJson(),
   };
+}
+
+/// `conflict_resolving_model` — derived from the provider schema description.
+enum CustomerprofilesDomainMatchingAutoMergingConflictResolutionConflictResolvingModel
+    implements TerraformEnum {
+  recency('RECENCY'),
+  source('SOURCE');
+
+  const CustomerprofilesDomainMatchingAutoMergingConflictResolutionConflictResolvingModel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `matching.auto_merging.consolidation` block of
@@ -140,7 +156,8 @@ final class CustomerprofilesDomainMatchingJobSchedule {
     required this.time,
   });
 
-  final TfArg<String> dayOfTheWeek;
+  final TfArg<CustomerprofilesDomainMatchingJobScheduleDayOfTheWeek>
+  dayOfTheWeek;
 
   final TfArg<String> time;
 
@@ -148,6 +165,24 @@ final class CustomerprofilesDomainMatchingJobSchedule {
     'day_of_the_week': dayOfTheWeek.toTfJson(),
     'time': time.toTfJson(),
   };
+}
+
+/// `day_of_the_week` — derived from the provider schema description.
+enum CustomerprofilesDomainMatchingJobScheduleDayOfTheWeek
+    implements TerraformEnum {
+  sunday('SUNDAY'),
+  monday('MONDAY'),
+  tuesday('TUESDAY'),
+  wednesday('WEDNESDAY'),
+  thursday('THURSDAY'),
+  friday('FRIDAY'),
+  saturday('SATURDAY');
+
+  const CustomerprofilesDomainMatchingJobScheduleDayOfTheWeek(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule_based_matching` block of
@@ -171,7 +206,7 @@ final class CustomerprofilesDomainRuleBasedMatching {
 
   final TfArg<num>? maxAllowedRuleLevelForMerging;
 
-  final TfArg<String>? status;
+  final TfArg<CustomerprofilesDomainRuleBasedMatchingStatus>? status;
 
   final CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector?
   attributeTypesSelector;
@@ -203,6 +238,17 @@ final class CustomerprofilesDomainRuleBasedMatching {
   };
 }
 
+/// `status` — derived from the provider schema description.
+enum CustomerprofilesDomainRuleBasedMatchingStatus implements TerraformEnum {
+  pending('PENDING'),
+  inProgress('IN_PROGRESS'),
+  active('ACTIVE');
+
+  const CustomerprofilesDomainRuleBasedMatchingStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule_based_matching.attribute_types_selector` block of
 /// `aws_customerprofiles_domain` (derived from provider schema).
 @immutable
@@ -216,7 +262,10 @@ final class CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector {
 
   final TfArg<List<Object?>>? address;
 
-  final TfArg<String> attributeMatchingModel;
+  final TfArg<
+    CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelectorAttributeMatchingModel
+  >
+  attributeMatchingModel;
 
   final TfArg<List<Object?>>? emailAddress;
 
@@ -230,6 +279,19 @@ final class CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelector {
   };
 }
 
+/// `attribute_matching_model` — derived from the provider schema description.
+enum CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelectorAttributeMatchingModel
+    implements TerraformEnum {
+  oneToOne('ONE_TO_ONE'),
+  manyToMany('MANY_TO_MANY');
+
+  const CustomerprofilesDomainRuleBasedMatchingAttributeTypesSelectorAttributeMatchingModel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule_based_matching.conflict_resolution` block of
 /// `aws_customerprofiles_domain` (derived from provider schema).
 @immutable
@@ -239,7 +301,10 @@ final class CustomerprofilesDomainRuleBasedMatchingConflictResolution {
     this.sourceName,
   });
 
-  final TfArg<String> conflictResolvingModel;
+  final TfArg<
+    CustomerprofilesDomainRuleBasedMatchingConflictResolutionConflictResolvingModel
+  >
+  conflictResolvingModel;
 
   final TfArg<String>? sourceName;
 
@@ -247,6 +312,19 @@ final class CustomerprofilesDomainRuleBasedMatchingConflictResolution {
     'conflict_resolving_model': conflictResolvingModel.toTfJson(),
     if (sourceName != null) 'source_name': sourceName!.toTfJson(),
   };
+}
+
+/// `conflict_resolving_model` — derived from the provider schema description.
+enum CustomerprofilesDomainRuleBasedMatchingConflictResolutionConflictResolvingModel
+    implements TerraformEnum {
+  recency('RECENCY'),
+  source('SOURCE');
+
+  const CustomerprofilesDomainRuleBasedMatchingConflictResolutionConflictResolvingModel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule_based_matching.exporting_config` block of

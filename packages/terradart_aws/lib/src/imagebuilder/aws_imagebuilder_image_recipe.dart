@@ -63,7 +63,8 @@ final class ImagebuilderImageRecipeBlockDeviceMappingEbs {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<String>? volumeType;
+  final TfArg<ImagebuilderImageRecipeBlockDeviceMappingEbsVolumeType>?
+  volumeType;
 
   Map<String, Object?> encode() => {
     if (deleteOnTermination != null)
@@ -76,6 +77,24 @@ final class ImagebuilderImageRecipeBlockDeviceMappingEbs {
     if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
     if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
   };
+}
+
+/// `volume_type` — derived from the provider schema description.
+enum ImagebuilderImageRecipeBlockDeviceMappingEbsVolumeType
+    implements TerraformEnum {
+  standard('standard'),
+  io1('io1'),
+  io2('io2'),
+  gp2('gp2'),
+  gp3('gp3'),
+  sc1('sc1'),
+  st1('st1');
+
+  const ImagebuilderImageRecipeBlockDeviceMappingEbsVolumeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `component` block of

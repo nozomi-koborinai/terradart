@@ -6,6 +6,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_datazone_user_profile`.
 const Set<String> _awsDatazoneUserProfileSensitive = <String>{};
 
+/// Datazone User Profile enum for `status`.
+enum DatazoneUserProfileStatus implements TerraformEnum {
+  assigned('ASSIGNED'),
+  notAssigned('NOT_ASSIGNED'),
+  activated('ACTIVATED'),
+  deactivated('DEACTIVATED');
+
+  const DatazoneUserProfileStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Datazone User Profile User enum for `user_type`.
+enum DatazoneUserProfileUserType implements TerraformEnum {
+  iamUser('IAM_USER'),
+  iamRole('IAM_ROLE'),
+  ssoUser('SSO_USER'),
+  iamRoleSession('IAM_ROLE_SESSION');
+
+  const DatazoneUserProfileUserType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_datazone_user_profile`.
 final class AwsDatazoneUserProfile extends Resource {
   static const String tfType = 'aws_datazone_user_profile';
@@ -14,9 +38,9 @@ final class AwsDatazoneUserProfile extends Resource {
     required super.localName,
     required TfArg<String> domainIdentifier,
     TfArg<String>? region,
-    TfArg<String>? status,
+    TfArg<DatazoneUserProfileStatus>? status,
     required TfArg<String> userIdentifier,
-    TfArg<String>? userType,
+    TfArg<DatazoneUserProfileUserType>? userType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -6,6 +6,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appconfig_deployment_strategy`.
 const Set<String> _awsAppconfigDeploymentStrategySensitive = <String>{};
 
+/// Appconfig Deployment Strategy Growth enum for `growth_type`.
+enum AppconfigDeploymentStrategyGrowthType implements TerraformEnum {
+  linear('LINEAR'),
+  exponential('EXPONENTIAL');
+
+  const AppconfigDeploymentStrategyGrowthType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Appconfig Deployment Strategy Replicate enum for `replicate_to`.
+enum AppconfigDeploymentStrategyReplicateTo implements TerraformEnum {
+  none('NONE'),
+  ssmDocument('SSM_DOCUMENT');
+
+  const AppconfigDeploymentStrategyReplicateTo(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_appconfig_deployment_strategy`.
 final class AwsAppconfigDeploymentStrategy extends Resource {
   static const String tfType = 'aws_appconfig_deployment_strategy';
@@ -16,10 +36,10 @@ final class AwsAppconfigDeploymentStrategy extends Resource {
     TfArg<String>? description,
     TfArg<num>? finalBakeTimeInMinutes,
     required TfArg<num> growthFactor,
-    TfArg<String>? growthType,
+    TfArg<AppconfigDeploymentStrategyGrowthType>? growthType,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> replicateTo,
+    required TfArg<AppconfigDeploymentStrategyReplicateTo> replicateTo,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

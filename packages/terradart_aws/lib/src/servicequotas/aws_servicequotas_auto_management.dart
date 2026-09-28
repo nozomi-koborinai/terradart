@@ -6,6 +6,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_servicequotas_auto_management`.
 const Set<String> _awsServicequotasAutoManagementSensitive = <String>{};
 
+/// Servicequotas Auto Management Opt In enum for `opt_in_level`.
+enum ServicequotasAutoManagementOptInLevel implements TerraformEnum {
+  account('ACCOUNT');
+
+  const ServicequotasAutoManagementOptInLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Servicequotas Auto Management Opt In enum for `opt_in_type`.
+enum ServicequotasAutoManagementOptInType implements TerraformEnum {
+  notifyonly('NotifyOnly'),
+  notifyandadjust('NotifyAndAdjust');
+
+  const ServicequotasAutoManagementOptInType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_servicequotas_auto_management`.
 final class AwsServicequotasAutoManagement extends Resource {
   static const String tfType = 'aws_servicequotas_auto_management';
@@ -14,8 +33,8 @@ final class AwsServicequotasAutoManagement extends Resource {
     required super.localName,
     TfArg<Map<String, List<String>>>? exclusionList,
     TfArg<String>? notificationArn,
-    required TfArg<String> optInLevel,
-    required TfArg<String> optInType,
+    required TfArg<ServicequotasAutoManagementOptInLevel> optInLevel,
+    required TfArg<ServicequotasAutoManagementOptInType> optInType,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

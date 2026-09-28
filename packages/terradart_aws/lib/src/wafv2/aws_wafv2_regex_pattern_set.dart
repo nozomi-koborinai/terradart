@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_wafv2_regex_pattern_set`.
 const Set<String> _awsWafv2RegexPatternSetSensitive = <String>{};
 
+/// Wafv2 Regex Pattern Set enum for `scope`.
+enum Wafv2RegexPatternSetScope implements TerraformEnum {
+  cloudfront('CLOUDFRONT'),
+  regional('REGIONAL');
+
+  const Wafv2RegexPatternSetScope(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `regular_expression` block of
 /// `aws_wafv2_regex_pattern_set` (derived from provider schema).
 @immutable
@@ -28,7 +38,7 @@ final class AwsWafv2RegexPatternSet extends Resource {
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<String>? region,
-    required TfArg<String> scope,
+    required TfArg<Wafv2RegexPatternSetScope> scope,
     TfArg<Map<String, String>>? tags,
     List<Wafv2RegexPatternSetRegularExpression>? regularExpression,
     super.lifecycle,

@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrockagent_data_source`.
 const Set<String> _awsBedrockagentDataSourceSensitive = <String>{};
 
+/// Bedrockagent Data Source Data Deletion enum for `data_deletion_policy`.
+enum BedrockagentDataSourceDataDeletionPolicy implements TerraformEnum {
+  retain('RETAIN'),
+  delete('DELETE');
+
+  const BedrockagentDataSourceDataDeletionPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `data_source_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
@@ -21,7 +31,7 @@ final class BedrockagentDataSourceDataSourceConfiguration {
     this.webConfiguration,
   });
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentDataSourceDataSourceConfigurationType> type;
 
   final List<
     BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
@@ -72,6 +82,23 @@ final class BedrockagentDataSourceDataSourceConfiguration {
     if (webConfiguration != null)
       'web_configuration': [for (final e in webConfiguration!) e.encode()],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationType
+    implements TerraformEnum {
+  s3('S3'),
+  web('WEB'),
+  confluence('CONFLUENCE'),
+  salesforce('SALESFORCE'),
+  sharepoint('SHAREPOINT'),
+  custom('CUSTOM'),
+  redshiftMetadata('REDSHIFT_METADATA'),
+  managedKnowledgeBaseConnector('MANAGED_KNOWLEDGE_BASE_CONNECTOR');
+
+  const BedrockagentDataSourceDataSourceConfigurationType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `data_source_configuration.confluence_configuration` block of
@@ -205,11 +232,17 @@ final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
     required this.hostUrl,
   });
 
-  final TfArg<String> authType;
+  final TfArg<
+    BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationAuthType
+  >
+  authType;
 
   final TfArg<String> credentialsSecretArn;
 
-  final TfArg<String> hostType;
+  final TfArg<
+    BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationHostType
+  >
+  hostType;
 
   final TfArg<String> hostUrl;
 
@@ -219,6 +252,31 @@ final class BedrockagentDataSourceDataSourceConfigurationConfluenceConfiguration
     'host_type': hostType.toTfJson(),
     'host_url': hostUrl.toTfJson(),
   };
+}
+
+/// `auth_type` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationAuthType
+    implements TerraformEnum {
+  basic('BASIC'),
+  oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS');
+
+  const BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationAuthType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `host_type` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationHostType
+    implements TerraformEnum {
+  saas('SAAS');
+
+  const BedrockagentDataSourceDataSourceConfigurationConfluenceConfigurationSourceConfigurationHostType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration` block of
@@ -266,7 +324,10 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
     this.deletionProtectionThreshold,
   });
 
-  final TfArg<String> deletionProtectionStatus;
+  final TfArg<
+    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfigurationDeletionProtectionStatus
+  >
+  deletionProtectionStatus;
 
   final TfArg<num>? deletionProtectionThreshold;
 
@@ -275,6 +336,19 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
     if (deletionProtectionThreshold != null)
       'deletion_protection_threshold': deletionProtectionThreshold!.toTfJson(),
   };
+}
+
+/// `deletion_protection_status` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfigurationDeletionProtectionStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationDeletionProtectionConfigurationDeletionProtectionStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.media_extraction_configuration` block of
@@ -326,11 +400,27 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
     required this.audioExtractionStatus,
   });
 
-  final TfArg<String> audioExtractionStatus;
+  final TfArg<
+    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfigurationAudioExtractionStatus
+  >
+  audioExtractionStatus;
 
   Map<String, Object?> encode() => {
     'audio_extraction_status': audioExtractionStatus.toTfJson(),
   };
+}
+
+/// `audio_extraction_status` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfigurationAudioExtractionStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationAudioExtractionConfigurationAudioExtractionStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.media_extraction_configuration.image_extraction_configuration` block of
@@ -341,11 +431,27 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
     required this.imageExtractionStatus,
   });
 
-  final TfArg<String> imageExtractionStatus;
+  final TfArg<
+    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfigurationImageExtractionStatus
+  >
+  imageExtractionStatus;
 
   Map<String, Object?> encode() => {
     'image_extraction_status': imageExtractionStatus.toTfJson(),
   };
+}
+
+/// `image_extraction_status` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfigurationImageExtractionStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationImageExtractionConfigurationImageExtractionStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `data_source_configuration.managed_knowledge_base_connector_configuration.media_extraction_configuration.video_extraction_configuration` block of
@@ -356,11 +462,27 @@ final class BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseCon
     required this.videoExtractionStatus,
   });
 
-  final TfArg<String> videoExtractionStatus;
+  final TfArg<
+    BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfigurationVideoExtractionStatus
+  >
+  videoExtractionStatus;
 
   Map<String, Object?> encode() => {
     'video_extraction_status': videoExtractionStatus.toTfJson(),
   };
+}
+
+/// `video_extraction_status` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfigurationVideoExtractionStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const BedrockagentDataSourceDataSourceConfigurationManagedKnowledgeBaseConnectorConfigurationMediaExtractionConfigurationVideoExtractionConfigurationVideoExtractionStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `data_source_configuration.s3_configuration` block of
@@ -518,7 +640,10 @@ final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfiguration
     required this.hostUrl,
   });
 
-  final TfArg<String> authType;
+  final TfArg<
+    BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfigurationAuthType
+  >
+  authType;
 
   final TfArg<String> credentialsSecretArn;
 
@@ -529,6 +654,18 @@ final class BedrockagentDataSourceDataSourceConfigurationSalesforceConfiguration
     'credentials_secret_arn': credentialsSecretArn.toTfJson(),
     'host_url': hostUrl.toTfJson(),
   };
+}
+
+/// `auth_type` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfigurationAuthType
+    implements TerraformEnum {
+  oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS');
+
+  const BedrockagentDataSourceDataSourceConfigurationSalesforceConfigurationSourceConfigurationAuthType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `data_source_configuration.share_point_configuration` block of
@@ -664,13 +801,19 @@ final class BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration
     this.tenantId,
   });
 
-  final TfArg<String> authType;
+  final TfArg<
+    BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationAuthType
+  >
+  authType;
 
   final TfArg<String> credentialsSecretArn;
 
   final TfArg<String> domain;
 
-  final TfArg<String> hostType;
+  final TfArg<
+    BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationHostType
+  >
+  hostType;
 
   final TfArg<List<Object?>> siteUrls;
 
@@ -684,6 +827,33 @@ final class BedrockagentDataSourceDataSourceConfigurationSharePointConfiguration
     'site_urls': siteUrls.toTfJson(),
     if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
   };
+}
+
+/// `auth_type` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationAuthType
+    implements TerraformEnum {
+  oauth2ClientCredentials('OAUTH2_CLIENT_CREDENTIALS'),
+  oauth2SharepointAppOnlyClientCredentials(
+    'OAUTH2_SHAREPOINT_APP_ONLY_CLIENT_CREDENTIALS',
+  );
+
+  const BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationAuthType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `host_type` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationHostType
+    implements TerraformEnum {
+  online('ONLINE');
+
+  const BedrockagentDataSourceDataSourceConfigurationSharePointConfigurationSourceConfigurationHostType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `data_source_configuration.web_configuration` block of
@@ -733,7 +903,10 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawler
 
   final TfArg<List<Object?>>? inclusionFilters;
 
-  final TfArg<String>? scope;
+  final TfArg<
+    BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationScope
+  >?
+  scope;
 
   final TfArg<String>? userAgent;
 
@@ -752,6 +925,19 @@ final class BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawler
     if (crawlerLimits != null)
       'crawler_limits': [for (final e in crawlerLimits!) e.encode()],
   };
+}
+
+/// `scope` — derived from the provider schema description.
+enum BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationScope
+    implements TerraformEnum {
+  hostOnly('HOST_ONLY'),
+  subdomains('SUBDOMAINS');
+
+  const BedrockagentDataSourceDataSourceConfigurationWebConfigurationCrawlerConfigurationScope(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `data_source_configuration.web_configuration.crawler_configuration.crawler_limits` block of
@@ -890,7 +1076,10 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
     this.semanticChunkingConfiguration,
   });
 
-  final TfArg<String> chunkingStrategy;
+  final TfArg<
+    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingStrategy
+  >
+  chunkingStrategy;
 
   final List<
     BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfiguration
@@ -922,6 +1111,21 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
         for (final e in semanticChunkingConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `chunking_strategy` — derived from the provider schema description.
+enum BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingStrategy
+    implements TerraformEnum {
+  fixedSize('FIXED_SIZE'),
+  none('NONE'),
+  hierarchical('HIERARCHICAL'),
+  semantic('SEMANTIC');
+
+  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `vector_ingestion_configuration.chunking_configuration.fixed_size_chunking_configuration` block of
@@ -1072,7 +1276,10 @@ final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformati
     this.transformationFunction,
   });
 
-  final TfArg<String> stepToApply;
+  final TfArg<
+    BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationStepToApply
+  >
+  stepToApply;
 
   final List<
     BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationTransformationFunction
@@ -1086,6 +1293,18 @@ final class BedrockagentDataSourceVectorIngestionConfigurationCustomTransformati
         for (final e in transformationFunction!) e.encode(),
       ],
   };
+}
+
+/// `step_to_apply` — derived from the provider schema description.
+enum BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationStepToApply
+    implements TerraformEnum {
+  postChunking('POST_CHUNKING');
+
+  const BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationTransformationStepToApply(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `vector_ingestion_configuration.custom_transformation_configuration.transformation.transformation_function` block of
@@ -1132,7 +1351,10 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
     this.bedrockFoundationModelConfiguration,
   });
 
-  final TfArg<String> parsingStrategy;
+  final TfArg<
+    BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationParsingStrategy
+  >
+  parsingStrategy;
 
   final List<
     BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfiguration
@@ -1157,6 +1379,21 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
   };
 }
 
+/// `parsing_strategy` — derived from the provider schema description.
+enum BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationParsingStrategy
+    implements TerraformEnum {
+  bedrockFoundationModel('BEDROCK_FOUNDATION_MODEL'),
+  bedrockDataAutomation('BEDROCK_DATA_AUTOMATION'),
+  smartParsing('SMART_PARSING'),
+  multiModalEmbeddings('MULTI_MODAL_EMBEDDINGS');
+
+  const BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationParsingStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration.bedrock_data_automation_configuration` block of
 /// `aws_bedrockagent_data_source` (derived from provider schema).
 @immutable
@@ -1165,12 +1402,27 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
     this.parsingModality,
   });
 
-  final TfArg<String>? parsingModality;
+  final TfArg<
+    BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfigurationParsingModality
+  >?
+  parsingModality;
 
   Map<String, Object?> encode() => {
     if (parsingModality != null)
       'parsing_modality': parsingModality!.toTfJson(),
   };
+}
+
+/// `parsing_modality` — derived from the provider schema description.
+enum BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfigurationParsingModality
+    implements TerraformEnum {
+  multimodal('MULTIMODAL');
+
+  const BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockDataAutomationConfigurationParsingModality(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration.bedrock_foundation_model_configuration` block of
@@ -1185,7 +1437,10 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
 
   final TfArg<String> modelArn;
 
-  final TfArg<String>? parsingModality;
+  final TfArg<
+    BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingModality
+  >?
+  parsingModality;
 
   final List<
     BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingPrompt
@@ -1199,6 +1454,18 @@ final class BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurati
     if (parsingPrompt != null)
       'parsing_prompt': [for (final e in parsingPrompt!) e.encode()],
   };
+}
+
+/// `parsing_modality` — derived from the provider schema description.
+enum BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingModality
+    implements TerraformEnum {
+  multimodal('MULTIMODAL');
+
+  const BedrockagentDataSourceVectorIngestionConfigurationParsingConfigurationBedrockFoundationModelConfigurationParsingModality(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `vector_ingestion_configuration.parsing_configuration.bedrock_foundation_model_configuration.parsing_prompt` block of
@@ -1222,7 +1489,7 @@ final class AwsBedrockagentDataSource extends Resource {
 
   AwsBedrockagentDataSource({
     required super.localName,
-    TfArg<String>? dataDeletionPolicy,
+    TfArg<BedrockagentDataSourceDataDeletionPolicy>? dataDeletionPolicy,
     TfArg<String>? description,
     required TfArg<String> knowledgeBaseId,
     required TfArg<String> name,

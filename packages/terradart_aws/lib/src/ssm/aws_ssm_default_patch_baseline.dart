@@ -6,6 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ssm_default_patch_baseline`.
 const Set<String> _awsSsmDefaultPatchBaselineSensitive = <String>{};
 
+/// Ssm Default Patch Baseline Operating enum for `operating_system`.
+enum SsmDefaultPatchBaselineOperatingSystem implements TerraformEnum {
+  windows('WINDOWS'),
+  amazonLinux('AMAZON_LINUX'),
+  amazonLinux2('AMAZON_LINUX_2'),
+  amazonLinux2022('AMAZON_LINUX_2022'),
+  ubuntu('UBUNTU'),
+  redhatEnterpriseLinux('REDHAT_ENTERPRISE_LINUX'),
+  suse('SUSE'),
+  centos('CENTOS'),
+  oracleLinux('ORACLE_LINUX'),
+  debian('DEBIAN'),
+  macos('MACOS'),
+  raspbian('RASPBIAN'),
+  rockyLinux('ROCKY_LINUX'),
+  almaLinux('ALMA_LINUX'),
+  amazonLinux2023('AMAZON_LINUX_2023');
+
+  const SsmDefaultPatchBaselineOperatingSystem(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ssm_default_patch_baseline`.
 final class AwsSsmDefaultPatchBaseline extends Resource {
   static const String tfType = 'aws_ssm_default_patch_baseline';
@@ -13,7 +36,7 @@ final class AwsSsmDefaultPatchBaseline extends Resource {
   AwsSsmDefaultPatchBaseline({
     required super.localName,
     required TfArg<String> baselineId,
-    required TfArg<String> operatingSystem,
+    required TfArg<SsmDefaultPatchBaselineOperatingSystem> operatingSystem,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

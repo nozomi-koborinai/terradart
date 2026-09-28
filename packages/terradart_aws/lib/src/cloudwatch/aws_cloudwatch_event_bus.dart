@@ -24,14 +24,36 @@ final class CloudwatchEventBusDeadLetterConfig {
 final class CloudwatchEventBusLogConfig {
   const CloudwatchEventBusLogConfig({this.includeDetail, this.level});
 
-  final TfArg<String>? includeDetail;
+  final TfArg<CloudwatchEventBusLogConfigIncludeDetail>? includeDetail;
 
-  final TfArg<String>? level;
+  final TfArg<CloudwatchEventBusLogConfigLevel>? level;
 
   Map<String, Object?> encode() => {
     if (includeDetail != null) 'include_detail': includeDetail!.toTfJson(),
     if (level != null) 'level': level!.toTfJson(),
   };
+}
+
+/// `include_detail` — derived from the provider schema description.
+enum CloudwatchEventBusLogConfigIncludeDetail implements TerraformEnum {
+  none('NONE'),
+  full('FULL');
+
+  const CloudwatchEventBusLogConfigIncludeDetail(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `level` — derived from the provider schema description.
+enum CloudwatchEventBusLogConfigLevel implements TerraformEnum {
+  off('OFF'),
+  error('ERROR'),
+  info('INFO'),
+  trace('TRACE');
+
+  const CloudwatchEventBusLogConfigLevel(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_cloudwatch_event_bus`.

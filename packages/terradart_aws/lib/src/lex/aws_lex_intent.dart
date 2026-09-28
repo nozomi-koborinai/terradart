@@ -227,7 +227,7 @@ final class LexIntentFollowUpPromptRejectionStatementMessage {
 final class LexIntentFulfillmentActivity {
   const LexIntentFulfillmentActivity({required this.type, this.codeHook});
 
-  final TfArg<String> type;
+  final TfArg<LexIntentFulfillmentActivityType> type;
 
   final LexIntentFulfillmentActivityCodeHook? codeHook;
 
@@ -235,6 +235,16 @@ final class LexIntentFulfillmentActivity {
     'type': type.toTfJson(),
     if (codeHook != null) 'code_hook': codeHook!.encode(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum LexIntentFulfillmentActivityType implements TerraformEnum {
+  returnintent('ReturnIntent'),
+  codehook('CodeHook');
+
+  const LexIntentFulfillmentActivityType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `fulfillment_activity.code_hook` block of
@@ -321,7 +331,7 @@ final class LexIntentSlot {
 
   final TfArg<List<Object?>>? sampleUtterances;
 
-  final TfArg<String> slotConstraint;
+  final TfArg<LexIntentSlotSlotConstraint> slotConstraint;
 
   final TfArg<String> slotType;
 
@@ -343,6 +353,16 @@ final class LexIntentSlot {
     if (valueElicitationPrompt != null)
       'value_elicitation_prompt': valueElicitationPrompt!.encode(),
   };
+}
+
+/// `slot_constraint` — derived from the provider schema description.
+enum LexIntentSlotSlotConstraint implements TerraformEnum {
+  required('Required'),
+  optional('Optional');
+
+  const LexIntentSlotSlotConstraint(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `slot.value_elicitation_prompt` block of

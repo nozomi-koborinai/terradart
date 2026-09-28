@@ -18,12 +18,23 @@ final class ElastictranscoderPipelineContentConfig {
 
   final TfArg<String>? bucket;
 
-  final TfArg<String>? storageClass;
+  final TfArg<ElastictranscoderPipelineContentConfigStorageClass>? storageClass;
 
   Map<String, Object?> encode() => {
     if (bucket != null) 'bucket': bucket!.toTfJson(),
     if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
   };
+}
+
+/// `storage_class` — derived from the provider schema description.
+enum ElastictranscoderPipelineContentConfigStorageClass
+    implements TerraformEnum {
+  standard('Standard'),
+  reducedredundancy('ReducedRedundancy');
+
+  const ElastictranscoderPipelineContentConfigStorageClass(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `content_config_permissions` block of
@@ -36,17 +47,48 @@ final class ElastictranscoderPipelineContentConfigPermissions {
     this.granteeType,
   });
 
-  final TfArg<List<Object?>>? access;
+  final List<TfArg<ElastictranscoderPipelineContentConfigPermissionsAccess>>?
+  access;
 
   final TfArg<String>? grantee;
 
-  final TfArg<String>? granteeType;
+  final TfArg<ElastictranscoderPipelineContentConfigPermissionsGranteeType>?
+  granteeType;
 
   Map<String, Object?> encode() => {
-    if (access != null) 'access': access!.toTfJson(),
+    if (access != null) 'access': [for (final e in access!) e.toTfJson()],
     if (grantee != null) 'grantee': grantee!.toTfJson(),
     if (granteeType != null) 'grantee_type': granteeType!.toTfJson(),
   };
+}
+
+/// `access` — derived from the provider schema description.
+enum ElastictranscoderPipelineContentConfigPermissionsAccess
+    implements TerraformEnum {
+  read('Read'),
+  readacp('ReadAcp'),
+  writeacp('WriteAcp'),
+  fullcontrol('FullControl');
+
+  const ElastictranscoderPipelineContentConfigPermissionsAccess(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `grantee_type` — derived from the provider schema description.
+enum ElastictranscoderPipelineContentConfigPermissionsGranteeType
+    implements TerraformEnum {
+  canonical('Canonical'),
+  email('Email'),
+  group('Group');
+
+  const ElastictranscoderPipelineContentConfigPermissionsGranteeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `notifications` block of
@@ -87,12 +129,26 @@ final class ElastictranscoderPipelineThumbnailConfig {
 
   final TfArg<String>? bucket;
 
-  final TfArg<String>? storageClass;
+  final TfArg<ElastictranscoderPipelineThumbnailConfigStorageClass>?
+  storageClass;
 
   Map<String, Object?> encode() => {
     if (bucket != null) 'bucket': bucket!.toTfJson(),
     if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
   };
+}
+
+/// `storage_class` — derived from the provider schema description.
+enum ElastictranscoderPipelineThumbnailConfigStorageClass
+    implements TerraformEnum {
+  standard('Standard'),
+  reducedredundancy('ReducedRedundancy');
+
+  const ElastictranscoderPipelineThumbnailConfigStorageClass(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `thumbnail_config_permissions` block of
@@ -105,17 +161,48 @@ final class ElastictranscoderPipelineThumbnailConfigPermissions {
     this.granteeType,
   });
 
-  final TfArg<List<Object?>>? access;
+  final List<TfArg<ElastictranscoderPipelineThumbnailConfigPermissionsAccess>>?
+  access;
 
   final TfArg<String>? grantee;
 
-  final TfArg<String>? granteeType;
+  final TfArg<ElastictranscoderPipelineThumbnailConfigPermissionsGranteeType>?
+  granteeType;
 
   Map<String, Object?> encode() => {
-    if (access != null) 'access': access!.toTfJson(),
+    if (access != null) 'access': [for (final e in access!) e.toTfJson()],
     if (grantee != null) 'grantee': grantee!.toTfJson(),
     if (granteeType != null) 'grantee_type': granteeType!.toTfJson(),
   };
+}
+
+/// `access` — derived from the provider schema description.
+enum ElastictranscoderPipelineThumbnailConfigPermissionsAccess
+    implements TerraformEnum {
+  read('Read'),
+  readacp('ReadAcp'),
+  writeacp('WriteAcp'),
+  fullcontrol('FullControl');
+
+  const ElastictranscoderPipelineThumbnailConfigPermissionsAccess(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `grantee_type` — derived from the provider schema description.
+enum ElastictranscoderPipelineThumbnailConfigPermissionsGranteeType
+    implements TerraformEnum {
+  canonical('Canonical'),
+  email('Email'),
+  group('Group');
+
+  const ElastictranscoderPipelineThumbnailConfigPermissionsGranteeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_elastictranscoder_pipeline`.

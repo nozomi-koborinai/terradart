@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dlm_lifecycle_policy`.
 const Set<String> _awsDlmLifecyclePolicySensitive = <String>{};
 
+/// Dlm Lifecycle Policy Default enum for `default_policy`.
+enum DlmLifecyclePolicyDefaultPolicy implements TerraformEnum {
+  volume('VOLUME'),
+  instance('INSTANCE');
+
+  const DlmLifecyclePolicyDefaultPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dlm Lifecycle Policy enum for `state`.
+enum DlmLifecyclePolicyState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const DlmLifecyclePolicyState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `policy_details` block of
 /// `aws_dlm_lifecycle_policy` (derived from provider schema).
 @immutable
@@ -35,15 +55,17 @@ final class DlmLifecyclePolicyPolicyDetails {
 
   final TfArg<bool>? extendDeletion;
 
-  final TfArg<String>? policyLanguage;
+  final TfArg<DlmLifecyclePolicyPolicyDetailsPolicyLanguage>? policyLanguage;
 
-  final TfArg<String>? policyType;
+  final TfArg<DlmLifecyclePolicyPolicyDetailsPolicyType>? policyType;
 
-  final TfArg<List<Object?>>? resourceLocations;
+  final List<TfArg<DlmLifecyclePolicyPolicyDetailsResourceLocations>>?
+  resourceLocations;
 
-  final TfArg<String>? resourceType;
+  final TfArg<DlmLifecyclePolicyPolicyDetailsResourceType>? resourceType;
 
-  final TfArg<List<Object?>>? resourceTypes;
+  final List<TfArg<DlmLifecyclePolicyPolicyDetailsResourceTypes>>?
+  resourceTypes;
 
   final TfArg<num>? retainInterval;
 
@@ -66,9 +88,10 @@ final class DlmLifecyclePolicyPolicyDetails {
     if (policyLanguage != null) 'policy_language': policyLanguage!.toTfJson(),
     if (policyType != null) 'policy_type': policyType!.toTfJson(),
     if (resourceLocations != null)
-      'resource_locations': resourceLocations!.toTfJson(),
+      'resource_locations': [for (final e in resourceLocations!) e.toTfJson()],
     if (resourceType != null) 'resource_type': resourceType!.toTfJson(),
-    if (resourceTypes != null) 'resource_types': resourceTypes!.toTfJson(),
+    if (resourceTypes != null)
+      'resource_types': [for (final e in resourceTypes!) e.toTfJson()],
     if (retainInterval != null) 'retain_interval': retainInterval!.toTfJson(),
     if (targetTags != null) 'target_tags': targetTags!.toTfJson(),
     if (action != null) 'action': action!.encode(),
@@ -77,6 +100,58 @@ final class DlmLifecyclePolicyPolicyDetails {
     if (parameters != null) 'parameters': parameters!.encode(),
     if (schedule != null) 'schedule': [for (final e in schedule!) e.encode()],
   };
+}
+
+/// `policy_language` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsPolicyLanguage implements TerraformEnum {
+  simplified('SIMPLIFIED'),
+  standard('STANDARD');
+
+  const DlmLifecyclePolicyPolicyDetailsPolicyLanguage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `policy_type` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsPolicyType implements TerraformEnum {
+  ebsSnapshotManagement('EBS_SNAPSHOT_MANAGEMENT'),
+  imageManagement('IMAGE_MANAGEMENT'),
+  eventBasedPolicy('EVENT_BASED_POLICY');
+
+  const DlmLifecyclePolicyPolicyDetailsPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `resource_locations` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsResourceLocations implements TerraformEnum {
+  cloud('CLOUD'),
+  outpost('OUTPOST'),
+  localZone('LOCAL_ZONE');
+
+  const DlmLifecyclePolicyPolicyDetailsResourceLocations(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `resource_type` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsResourceType implements TerraformEnum {
+  volume('VOLUME'),
+  instance('INSTANCE');
+
+  const DlmLifecyclePolicyPolicyDetailsResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `resource_types` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsResourceTypes implements TerraformEnum {
+  volume('VOLUME'),
+  instance('INSTANCE');
+
+  const DlmLifecyclePolicyPolicyDetailsResourceTypes(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.action` block of
@@ -154,12 +229,30 @@ final class DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRule {
 
   final TfArg<num> interval;
 
-  final TfArg<String> intervalUnit;
+  final TfArg<
+    DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRuleIntervalUnit
+  >
+  intervalUnit;
 
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
     'interval_unit': intervalUnit.toTfJson(),
   };
+}
+
+/// `interval_unit` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRuleIntervalUnit
+    implements TerraformEnum {
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const DlmLifecyclePolicyPolicyDetailsActionCrossRegionCopyRetainRuleIntervalUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.event_source` block of
@@ -171,7 +264,7 @@ final class DlmLifecyclePolicyPolicyDetailsEventSource {
     required this.parameters,
   });
 
-  final TfArg<String> type;
+  final TfArg<DlmLifecyclePolicyPolicyDetailsEventSourceType> type;
 
   final DlmLifecyclePolicyPolicyDetailsEventSourceParameters parameters;
 
@@ -179,6 +272,15 @@ final class DlmLifecyclePolicyPolicyDetailsEventSource {
     'type': type.toTfJson(),
     'parameters': parameters.encode(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsEventSourceType implements TerraformEnum {
+  managedCwe('MANAGED_CWE');
+
+  const DlmLifecyclePolicyPolicyDetailsEventSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.event_source.parameters` block of
@@ -193,7 +295,8 @@ final class DlmLifecyclePolicyPolicyDetailsEventSourceParameters {
 
   final TfArg<String> descriptionRegex;
 
-  final TfArg<String> eventType;
+  final TfArg<DlmLifecyclePolicyPolicyDetailsEventSourceParametersEventType>
+  eventType;
 
   final TfArg<List<Object?>> snapshotOwner;
 
@@ -202,6 +305,18 @@ final class DlmLifecyclePolicyPolicyDetailsEventSourceParameters {
     'event_type': eventType.toTfJson(),
     'snapshot_owner': snapshotOwner.toTfJson(),
   };
+}
+
+/// `event_type` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsEventSourceParametersEventType
+    implements TerraformEnum {
+  sharesnapshot('shareSnapshot');
+
+  const DlmLifecyclePolicyPolicyDetailsEventSourceParametersEventType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.exclusions` block of
@@ -359,13 +474,31 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleR
 
   final TfArg<num>? interval;
 
-  final TfArg<String>? intervalUnit;
+  final TfArg<
+    DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleRetentionArchiveTierIntervalUnit
+  >?
+  intervalUnit;
 
   Map<String, Object?> encode() => {
     if (count != null) 'count': count!.toTfJson(),
     if (interval != null) 'interval': interval!.toTfJson(),
     if (intervalUnit != null) 'interval_unit': intervalUnit!.toTfJson(),
   };
+}
+
+/// `interval_unit` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleRetentionArchiveTierIntervalUnit
+    implements TerraformEnum {
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleArchiveRuleArchiveRetainRuleRetentionArchiveTierIntervalUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.schedule.create_rule` block of
@@ -385,9 +518,11 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<String>? intervalUnit;
+  final TfArg<DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleIntervalUnit>?
+  intervalUnit;
 
-  final TfArg<String>? location;
+  final TfArg<DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleLocation>?
+  location;
 
   final TfArg<List<Object?>>? times;
 
@@ -401,6 +536,32 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRule {
     if (times != null) 'times': times!.toTfJson(),
     if (scripts != null) 'scripts': scripts!.encode(),
   };
+}
+
+/// `interval_unit` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleIntervalUnit
+    implements TerraformEnum {
+  hours('HOURS');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleIntervalUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `location` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleLocation
+    implements TerraformEnum {
+  cloud('CLOUD'),
+  outpostLocal('OUTPOST_LOCAL'),
+  localZone('LOCAL_ZONE');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleLocation(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.schedule.create_rule.scripts` block of
@@ -420,13 +581,19 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScripts {
 
   final TfArg<String> executionHandler;
 
-  final TfArg<String>? executionHandlerService;
+  final TfArg<
+    DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsExecutionHandlerService
+  >?
+  executionHandlerService;
 
   final TfArg<num>? executionTimeout;
 
   final TfArg<num>? maximumRetryCount;
 
-  final TfArg<List<Object?>>? stages;
+  final List<
+    TfArg<DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsStages>
+  >?
+  stages;
 
   Map<String, Object?> encode() => {
     if (executeOperationOnScriptFailure != null)
@@ -439,8 +606,33 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScripts {
       'execution_timeout': executionTimeout!.toTfJson(),
     if (maximumRetryCount != null)
       'maximum_retry_count': maximumRetryCount!.toTfJson(),
-    if (stages != null) 'stages': stages!.toTfJson(),
+    if (stages != null) 'stages': [for (final e in stages!) e.toTfJson()],
   };
+}
+
+/// `execution_handler_service` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsExecutionHandlerService
+    implements TerraformEnum {
+  awsSystemsManager('AWS_SYSTEMS_MANAGER');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsExecutionHandlerService(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `stages` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsStages
+    implements TerraformEnum {
+  pre('PRE'),
+  post('POST');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleCreateRuleScriptsStages(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.schedule.cross_region_copy_rule` block of
@@ -495,12 +687,30 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleDeprecateR
 
   final TfArg<num> interval;
 
-  final TfArg<String> intervalUnit;
+  final TfArg<
+    DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleDeprecateRuleIntervalUnit
+  >
+  intervalUnit;
 
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
     'interval_unit': intervalUnit.toTfJson(),
   };
+}
+
+/// `interval_unit` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleDeprecateRuleIntervalUnit
+    implements TerraformEnum {
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleDeprecateRuleIntervalUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.schedule.cross_region_copy_rule.retain_rule` block of
@@ -514,12 +724,30 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleRetainRule
 
   final TfArg<num> interval;
 
-  final TfArg<String> intervalUnit;
+  final TfArg<
+    DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleRetainRuleIntervalUnit
+  >
+  intervalUnit;
 
   Map<String, Object?> encode() => {
     'interval': interval.toTfJson(),
     'interval_unit': intervalUnit.toTfJson(),
   };
+}
+
+/// `interval_unit` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleRetainRuleIntervalUnit
+    implements TerraformEnum {
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleCrossRegionCopyRuleRetainRuleIntervalUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.schedule.deprecate_rule` block of
@@ -536,13 +764,29 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<String>? intervalUnit;
+  final TfArg<DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRuleIntervalUnit>?
+  intervalUnit;
 
   Map<String, Object?> encode() => {
     if (count != null) 'count': count!.toTfJson(),
     if (interval != null) 'interval': interval!.toTfJson(),
     if (intervalUnit != null) 'interval_unit': intervalUnit!.toTfJson(),
   };
+}
+
+/// `interval_unit` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRuleIntervalUnit
+    implements TerraformEnum {
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleDeprecateRuleIntervalUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.schedule.fast_restore_rule` block of
@@ -562,7 +806,10 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<String>? intervalUnit;
+  final TfArg<
+    DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRuleIntervalUnit
+  >?
+  intervalUnit;
 
   Map<String, Object?> encode() => {
     'availability_zones': availabilityZones.toTfJson(),
@@ -570,6 +817,21 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRule {
     if (interval != null) 'interval': interval!.toTfJson(),
     if (intervalUnit != null) 'interval_unit': intervalUnit!.toTfJson(),
   };
+}
+
+/// `interval_unit` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRuleIntervalUnit
+    implements TerraformEnum {
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleFastRestoreRuleIntervalUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.schedule.retain_rule` block of
@@ -586,13 +848,29 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleRetainRule {
 
   final TfArg<num>? interval;
 
-  final TfArg<String>? intervalUnit;
+  final TfArg<DlmLifecyclePolicyPolicyDetailsScheduleRetainRuleIntervalUnit>?
+  intervalUnit;
 
   Map<String, Object?> encode() => {
     if (count != null) 'count': count!.toTfJson(),
     if (interval != null) 'interval': interval!.toTfJson(),
     if (intervalUnit != null) 'interval_unit': intervalUnit!.toTfJson(),
   };
+}
+
+/// `interval_unit` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleRetainRuleIntervalUnit
+    implements TerraformEnum {
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleRetainRuleIntervalUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_details.schedule.share_rule` block of
@@ -609,7 +887,10 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleShareRule {
 
   final TfArg<num>? unshareInterval;
 
-  final TfArg<String>? unshareIntervalUnit;
+  final TfArg<
+    DlmLifecyclePolicyPolicyDetailsScheduleShareRuleUnshareIntervalUnit
+  >?
+  unshareIntervalUnit;
 
   Map<String, Object?> encode() => {
     'target_accounts': targetAccounts.toTfJson(),
@@ -620,17 +901,32 @@ final class DlmLifecyclePolicyPolicyDetailsScheduleShareRule {
   };
 }
 
+/// `unshare_interval_unit` — derived from the provider schema description.
+enum DlmLifecyclePolicyPolicyDetailsScheduleShareRuleUnshareIntervalUnit
+    implements TerraformEnum {
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const DlmLifecyclePolicyPolicyDetailsScheduleShareRuleUnshareIntervalUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dlm_lifecycle_policy`.
 final class AwsDlmLifecyclePolicy extends Resource {
   static const String tfType = 'aws_dlm_lifecycle_policy';
 
   AwsDlmLifecyclePolicy({
     required super.localName,
-    TfArg<String>? defaultPolicy,
+    TfArg<DlmLifecyclePolicyDefaultPolicy>? defaultPolicy,
     required TfArg<String> description,
     required TfArg<String> executionRoleArn,
     TfArg<String>? region,
-    TfArg<String>? state,
+    TfArg<DlmLifecyclePolicyState>? state,
     TfArg<Map<String, String>>? tags,
     required DlmLifecyclePolicyPolicyDetails policyDetails,
     super.lifecycle,

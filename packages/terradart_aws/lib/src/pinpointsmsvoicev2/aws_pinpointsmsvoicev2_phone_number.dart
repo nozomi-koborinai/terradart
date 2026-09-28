@@ -6,6 +6,40 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_pinpointsmsvoicev2_phone_number`.
 const Set<String> _awsPinpointsmsvoicev2PhoneNumberSensitive = <String>{};
 
+/// Pinpointsmsvoicev2 Phone Number Message enum for `message_type`.
+enum Pinpointsmsvoicev2PhoneNumberMessageType implements TerraformEnum {
+  transactional('TRANSACTIONAL'),
+  promotional('PROMOTIONAL');
+
+  const Pinpointsmsvoicev2PhoneNumberMessageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Pinpointsmsvoicev2 Phone Number Number enum for `number_capabilities`.
+enum Pinpointsmsvoicev2PhoneNumberNumberCapabilities implements TerraformEnum {
+  sms('SMS'),
+  voice('VOICE'),
+  mms('MMS'),
+  rcs('RCS');
+
+  const Pinpointsmsvoicev2PhoneNumberNumberCapabilities(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Pinpointsmsvoicev2 Phone Number Number enum for `number_type`.
+enum Pinpointsmsvoicev2PhoneNumberNumberType implements TerraformEnum {
+  longCode('LONG_CODE'),
+  tollFree('TOLL_FREE'),
+  tenDlc('TEN_DLC'),
+  simulator('SIMULATOR');
+
+  const Pinpointsmsvoicev2PhoneNumberNumberType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_pinpointsmsvoicev2_phone_number`.
 final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_phone_number';
@@ -15,9 +49,10 @@ final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<bool>? forceDisassociate,
     required TfArg<String> isoCountryCode,
-    required TfArg<String> messageType,
-    required TfArg<List<String>> numberCapabilities,
-    required TfArg<String> numberType,
+    required TfArg<Pinpointsmsvoicev2PhoneNumberMessageType> messageType,
+    required List<TfArg<Pinpointsmsvoicev2PhoneNumberNumberCapabilities>>
+    numberCapabilities,
+    required TfArg<Pinpointsmsvoicev2PhoneNumberNumberType> numberType,
     TfArg<String>? optOutListName,
     TfArg<String>? region,
     TfArg<String>? registrationId,
@@ -40,7 +75,9 @@ final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
              'force_disassociate': forceDisassociate,
            'iso_country_code': isoCountryCode,
            'message_type': messageType,
-           'number_capabilities': numberCapabilities,
+           'number_capabilities': TfArg.literal([
+             for (final e in numberCapabilities) e.toTfJson(),
+           ]),
            'number_type': numberType,
            if (optOutListName != null) 'opt_out_list_name': optOutListName,
            if (region != null) 'region': region,

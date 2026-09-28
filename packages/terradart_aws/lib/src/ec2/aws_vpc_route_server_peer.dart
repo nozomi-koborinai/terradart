@@ -18,13 +18,25 @@ final class VpcRouteServerPeerBgpOptions {
 
   final TfArg<num> peerAsn;
 
-  final TfArg<String>? peerLivenessDetection;
+  final TfArg<VpcRouteServerPeerBgpOptionsPeerLivenessDetection>?
+  peerLivenessDetection;
 
   Map<String, Object?> encode() => {
     'peer_asn': peerAsn.toTfJson(),
     if (peerLivenessDetection != null)
       'peer_liveness_detection': peerLivenessDetection!.toTfJson(),
   };
+}
+
+/// `peer_liveness_detection` — derived from the provider schema description.
+enum VpcRouteServerPeerBgpOptionsPeerLivenessDetection
+    implements TerraformEnum {
+  bfd('bfd'),
+  bgpKeepalive('bgp-keepalive');
+
+  const VpcRouteServerPeerBgpOptionsPeerLivenessDetection(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_vpc_route_server_peer`.

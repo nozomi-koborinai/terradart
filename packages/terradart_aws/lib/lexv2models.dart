@@ -4,9 +4,16 @@
 library;
 
 export 'src/lexv2models/aws_lexv2models_bot.dart'
-    show AwsLexv2modelsBot, Lexv2modelsBotDataPrivacy, Lexv2modelsBotMembers;
+    show
+        AwsLexv2modelsBot,
+        Lexv2modelsBotDataPrivacy,
+        Lexv2modelsBotMembers,
+        Lexv2modelsBotType;
 export 'src/lexv2models/aws_lexv2models_bot_locale.dart'
-    show AwsLexv2modelsBotLocale, Lexv2modelsBotLocaleVoiceSettings;
+    show
+        AwsLexv2modelsBotLocale,
+        Lexv2modelsBotLocaleVoiceSettings,
+        Lexv2modelsBotLocaleVoiceSettingsEngine;
 export 'src/lexv2models/aws_lexv2models_bot_version.dart'
     show AwsLexv2modelsBotVersion;
 export 'src/lexv2models/aws_lexv2models_intent.dart'
@@ -1095,4 +1102,6 @@ export 'src/lexv2models/aws_lexv2models_slot_type.dart'
         Lexv2modelsSlotTypeSlotTypeValuesSynonyms,
         Lexv2modelsSlotTypeValueSelectionSetting,
         Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSetting,
-        Lexv2modelsSlotTypeValueSelectionSettingRegexFilter;
+        Lexv2modelsSlotTypeValueSelectionSettingAdvancedRecognitionSettingAudioRecognitionStrategy,
+        Lexv2modelsSlotTypeValueSelectionSettingRegexFilter,
+        Lexv2modelsSlotTypeValueSelectionSettingResolutionStrategy;

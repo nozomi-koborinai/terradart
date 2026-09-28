@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_neptune_cluster_instance`.
 const Set<String> _awsNeptuneClusterInstanceSensitive = <String>{};
 
+/// Neptune Cluster Instance enum for `engine`.
+enum NeptuneClusterInstanceEngine implements TerraformEnum {
+  neptune('neptune');
+
+  const NeptuneClusterInstanceEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_neptune_cluster_instance`.
 final class AwsNeptuneClusterInstance extends Resource {
   static const String tfType = 'aws_neptune_cluster_instance';
@@ -16,7 +25,7 @@ final class AwsNeptuneClusterInstance extends Resource {
     TfArg<bool>? autoMinorVersionUpgrade,
     TfArg<String>? availabilityZone,
     required TfArg<String> clusterIdentifier,
-    TfArg<String>? engine,
+    TfArg<NeptuneClusterInstanceEngine>? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? identifier,
     TfArg<String>? identifierPrefix,

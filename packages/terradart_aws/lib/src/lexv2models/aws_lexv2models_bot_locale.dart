@@ -13,7 +13,7 @@ const Set<String> _awsLexv2modelsBotLocaleSensitive = <String>{};
 final class Lexv2modelsBotLocaleVoiceSettings {
   const Lexv2modelsBotLocaleVoiceSettings({this.engine, required this.voiceId});
 
-  final TfArg<String>? engine;
+  final TfArg<Lexv2modelsBotLocaleVoiceSettingsEngine>? engine;
 
   final TfArg<String> voiceId;
 
@@ -21,6 +21,18 @@ final class Lexv2modelsBotLocaleVoiceSettings {
     if (engine != null) 'engine': engine!.toTfJson(),
     'voice_id': voiceId.toTfJson(),
   };
+}
+
+/// `engine` — derived from the provider schema description.
+enum Lexv2modelsBotLocaleVoiceSettingsEngine implements TerraformEnum {
+  standard('standard'),
+  neural('neural'),
+  longForm('long-form'),
+  generative('generative');
+
+  const Lexv2modelsBotLocaleVoiceSettingsEngine(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_lexv2models_bot_locale`.

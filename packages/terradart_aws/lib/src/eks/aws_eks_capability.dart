@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_eks_capability`.
 const Set<String> _awsEksCapabilitySensitive = <String>{};
 
+/// Eks Capability Delete Propagation enum for `delete_propagation_policy`.
+enum EksCapabilityDeletePropagationPolicy implements TerraformEnum {
+  retain('RETAIN');
+
+  const EksCapabilityDeletePropagationPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Eks Capability enum for `type`.
+enum EksCapabilityType implements TerraformEnum {
+  ack('ACK'),
+  kro('KRO'),
+  argocd('ARGOCD');
+
+  const EksCapabilityType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `configuration` block of
 /// `aws_eks_capability` (derived from provider schema).
 @immutable
@@ -90,7 +110,7 @@ final class EksCapabilityConfigurationArgoCdRbacRoleMapping {
     this.identity,
   });
 
-  final TfArg<String> role;
+  final TfArg<EksCapabilityConfigurationArgoCdRbacRoleMappingRole> role;
 
   final List<EksCapabilityConfigurationArgoCdRbacRoleMappingIdentity>? identity;
 
@@ -98,6 +118,20 @@ final class EksCapabilityConfigurationArgoCdRbacRoleMapping {
     'role': role.toTfJson(),
     if (identity != null) 'identity': [for (final e in identity!) e.encode()],
   };
+}
+
+/// `role` — derived from the provider schema description.
+enum EksCapabilityConfigurationArgoCdRbacRoleMappingRole
+    implements TerraformEnum {
+  admin('ADMIN'),
+  editor('EDITOR'),
+  viewer('VIEWER');
+
+  const EksCapabilityConfigurationArgoCdRbacRoleMappingRole(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.argo_cd.rbac_role_mapping.identity` block of
@@ -111,12 +145,25 @@ final class EksCapabilityConfigurationArgoCdRbacRoleMappingIdentity {
 
   final TfArg<String> id;
 
-  final TfArg<String> type;
+  final TfArg<EksCapabilityConfigurationArgoCdRbacRoleMappingIdentityType> type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum EksCapabilityConfigurationArgoCdRbacRoleMappingIdentityType
+    implements TerraformEnum {
+  ssoUser('SSO_USER'),
+  ssoGroup('SSO_GROUP');
+
+  const EksCapabilityConfigurationArgoCdRbacRoleMappingIdentityType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_eks_capability`.
@@ -127,11 +174,12 @@ final class AwsEksCapability extends Resource {
     required super.localName,
     required TfArg<String> capabilityName,
     required TfArg<String> clusterName,
-    required TfArg<String> deletePropagationPolicy,
+    required TfArg<EksCapabilityDeletePropagationPolicy>
+    deletePropagationPolicy,
     TfArg<String>? region,
     required TfArg<String> roleArn,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<EksCapabilityType> type,
     List<EksCapabilityConfiguration>? configuration,
     super.lifecycle,
     super.dependsOn,

@@ -37,7 +37,7 @@ final class AppsyncChannelNamespaceHandlerConfigsOnPublish {
     this.integration,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<AppsyncChannelNamespaceHandlerConfigsOnPublishBehavior> behavior;
 
   final List<AppsyncChannelNamespaceHandlerConfigsOnPublishIntegration>?
   integration;
@@ -47,6 +47,19 @@ final class AppsyncChannelNamespaceHandlerConfigsOnPublish {
     if (integration != null)
       'integration': [for (final e in integration!) e.encode()],
   };
+}
+
+/// `behavior` — derived from the provider schema description.
+enum AppsyncChannelNamespaceHandlerConfigsOnPublishBehavior
+    implements TerraformEnum {
+  code('CODE'),
+  direct('DIRECT');
+
+  const AppsyncChannelNamespaceHandlerConfigsOnPublishBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `handler_configs.on_publish.integration` block of
@@ -80,11 +93,27 @@ final class AppsyncChannelNamespaceHandlerConfigsOnPublishIntegrationLambdaConfi
     this.invokeType,
   });
 
-  final TfArg<String>? invokeType;
+  final TfArg<
+    AppsyncChannelNamespaceHandlerConfigsOnPublishIntegrationLambdaConfigInvokeType
+  >?
+  invokeType;
 
   Map<String, Object?> encode() => {
     if (invokeType != null) 'invoke_type': invokeType!.toTfJson(),
   };
+}
+
+/// `invoke_type` — derived from the provider schema description.
+enum AppsyncChannelNamespaceHandlerConfigsOnPublishIntegrationLambdaConfigInvokeType
+    implements TerraformEnum {
+  requestResponse('REQUEST_RESPONSE'),
+  event('EVENT');
+
+  const AppsyncChannelNamespaceHandlerConfigsOnPublishIntegrationLambdaConfigInvokeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `handler_configs.on_subscribe` block of
@@ -96,7 +125,8 @@ final class AppsyncChannelNamespaceHandlerConfigsOnSubscribe {
     this.integration,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<AppsyncChannelNamespaceHandlerConfigsOnSubscribeBehavior>
+  behavior;
 
   final List<AppsyncChannelNamespaceHandlerConfigsOnSubscribeIntegration>?
   integration;
@@ -106,6 +136,19 @@ final class AppsyncChannelNamespaceHandlerConfigsOnSubscribe {
     if (integration != null)
       'integration': [for (final e in integration!) e.encode()],
   };
+}
+
+/// `behavior` — derived from the provider schema description.
+enum AppsyncChannelNamespaceHandlerConfigsOnSubscribeBehavior
+    implements TerraformEnum {
+  code('CODE'),
+  direct('DIRECT');
+
+  const AppsyncChannelNamespaceHandlerConfigsOnSubscribeBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `handler_configs.on_subscribe.integration` block of
@@ -139,11 +182,27 @@ final class AppsyncChannelNamespaceHandlerConfigsOnSubscribeIntegrationLambdaCon
     this.invokeType,
   });
 
-  final TfArg<String>? invokeType;
+  final TfArg<
+    AppsyncChannelNamespaceHandlerConfigsOnSubscribeIntegrationLambdaConfigInvokeType
+  >?
+  invokeType;
 
   Map<String, Object?> encode() => {
     if (invokeType != null) 'invoke_type': invokeType!.toTfJson(),
   };
+}
+
+/// `invoke_type` — derived from the provider schema description.
+enum AppsyncChannelNamespaceHandlerConfigsOnSubscribeIntegrationLambdaConfigInvokeType
+    implements TerraformEnum {
+  requestResponse('REQUEST_RESPONSE'),
+  event('EVENT');
+
+  const AppsyncChannelNamespaceHandlerConfigsOnSubscribeIntegrationLambdaConfigInvokeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `publish_auth_mode` block of
@@ -152,9 +211,22 @@ final class AppsyncChannelNamespaceHandlerConfigsOnSubscribeIntegrationLambdaCon
 final class AppsyncChannelNamespacePublishAuthMode {
   const AppsyncChannelNamespacePublishAuthMode({required this.authType});
 
-  final TfArg<String> authType;
+  final TfArg<AppsyncChannelNamespacePublishAuthModeAuthType> authType;
 
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
+}
+
+/// `auth_type` — derived from the provider schema description.
+enum AppsyncChannelNamespacePublishAuthModeAuthType implements TerraformEnum {
+  apiKey('API_KEY'),
+  awsIam('AWS_IAM'),
+  amazonCognitoUserPools('AMAZON_COGNITO_USER_POOLS'),
+  openidConnect('OPENID_CONNECT'),
+  awsLambda('AWS_LAMBDA');
+
+  const AppsyncChannelNamespacePublishAuthModeAuthType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `subscribe_auth_mode` block of
@@ -163,9 +235,22 @@ final class AppsyncChannelNamespacePublishAuthMode {
 final class AppsyncChannelNamespaceSubscribeAuthMode {
   const AppsyncChannelNamespaceSubscribeAuthMode({required this.authType});
 
-  final TfArg<String> authType;
+  final TfArg<AppsyncChannelNamespaceSubscribeAuthModeAuthType> authType;
 
   Map<String, Object?> encode() => {'auth_type': authType.toTfJson()};
+}
+
+/// `auth_type` — derived from the provider schema description.
+enum AppsyncChannelNamespaceSubscribeAuthModeAuthType implements TerraformEnum {
+  apiKey('API_KEY'),
+  awsIam('AWS_IAM'),
+  amazonCognitoUserPools('AMAZON_COGNITO_USER_POOLS'),
+  openidConnect('OPENID_CONNECT'),
+  awsLambda('AWS_LAMBDA');
+
+  const AppsyncChannelNamespaceSubscribeAuthModeAuthType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_appsync_channel_namespace`.

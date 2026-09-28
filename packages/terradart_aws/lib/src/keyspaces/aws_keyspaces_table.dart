@@ -19,7 +19,8 @@ final class KeyspacesTableCapacitySpecification {
 
   final TfArg<num>? readCapacityUnits;
 
-  final TfArg<String>? throughputMode;
+  final TfArg<KeyspacesTableCapacitySpecificationThroughputMode>?
+  throughputMode;
 
   final TfArg<num>? writeCapacityUnits;
 
@@ -32,15 +33,35 @@ final class KeyspacesTableCapacitySpecification {
   };
 }
 
+/// `throughput_mode` — derived from the provider schema description.
+enum KeyspacesTableCapacitySpecificationThroughputMode
+    implements TerraformEnum {
+  payPerRequest('PAY_PER_REQUEST'),
+  provisioned('PROVISIONED');
+
+  const KeyspacesTableCapacitySpecificationThroughputMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `client_side_timestamps` block of
 /// `aws_keyspaces_table` (derived from provider schema).
 @immutable
 final class KeyspacesTableClientSideTimestamps {
   const KeyspacesTableClientSideTimestamps({required this.status});
 
-  final TfArg<String> status;
+  final TfArg<KeyspacesTableClientSideTimestampsStatus> status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
+}
+
+/// `status` — derived from the provider schema description.
+enum KeyspacesTableClientSideTimestampsStatus implements TerraformEnum {
+  enabled('ENABLED');
+
+  const KeyspacesTableClientSideTimestampsStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `comment` block of
@@ -67,7 +88,7 @@ final class KeyspacesTableEncryptionSpecification {
 
   final TfArg<String>? kmsKeyIdentifier;
 
-  final TfArg<String>? type;
+  final TfArg<KeyspacesTableEncryptionSpecificationType>? type;
 
   Map<String, Object?> encode() => {
     if (kmsKeyIdentifier != null)
@@ -76,17 +97,37 @@ final class KeyspacesTableEncryptionSpecification {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum KeyspacesTableEncryptionSpecificationType implements TerraformEnum {
+  customerManagedKmsKey('CUSTOMER_MANAGED_KMS_KEY'),
+  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
+
+  const KeyspacesTableEncryptionSpecificationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `point_in_time_recovery` block of
 /// `aws_keyspaces_table` (derived from provider schema).
 @immutable
 final class KeyspacesTablePointInTimeRecovery {
   const KeyspacesTablePointInTimeRecovery({this.status});
 
-  final TfArg<String>? status;
+  final TfArg<KeyspacesTablePointInTimeRecoveryStatus>? status;
 
   Map<String, Object?> encode() => {
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum KeyspacesTablePointInTimeRecoveryStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const KeyspacesTablePointInTimeRecoveryStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `schema_definition` block of
@@ -129,12 +170,23 @@ final class KeyspacesTableSchemaDefinitionClusteringKey {
 
   final TfArg<String> name;
 
-  final TfArg<String> orderBy;
+  final TfArg<KeyspacesTableSchemaDefinitionClusteringKeyOrderBy> orderBy;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'order_by': orderBy.toTfJson(),
   };
+}
+
+/// `order_by` — derived from the provider schema description.
+enum KeyspacesTableSchemaDefinitionClusteringKeyOrderBy
+    implements TerraformEnum {
+  asc('ASC'),
+  desc('DESC');
+
+  const KeyspacesTableSchemaDefinitionClusteringKeyOrderBy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `schema_definition.column` block of
@@ -184,9 +236,18 @@ final class KeyspacesTableSchemaDefinitionStaticColumn {
 final class KeyspacesTableTtl {
   const KeyspacesTableTtl({required this.status});
 
-  final TfArg<String> status;
+  final TfArg<KeyspacesTableTtlStatus> status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
+}
+
+/// `status` — derived from the provider schema description.
+enum KeyspacesTableTtlStatus implements TerraformEnum {
+  enabled('ENABLED');
+
+  const KeyspacesTableTtlStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_keyspaces_table`.

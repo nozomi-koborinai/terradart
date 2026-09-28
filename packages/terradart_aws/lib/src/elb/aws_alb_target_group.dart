@@ -7,6 +7,88 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_alb_target_group`.
 const Set<String> _awsAlbTargetGroupSensitive = <String>{};
 
+/// Alb Target Group Ip Address enum for `ip_address_type`.
+enum AlbTargetGroupIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const AlbTargetGroupIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Target Group Load Balancing Algorithm enum for `load_balancing_algorithm_type`.
+enum AlbTargetGroupLoadBalancingAlgorithmType implements TerraformEnum {
+  roundRobin('round_robin'),
+  leastOutstandingRequests('least_outstanding_requests'),
+  weightedRandom('weighted_random');
+
+  const AlbTargetGroupLoadBalancingAlgorithmType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Target Group Load Balancing Anomaly enum for `load_balancing_anomaly_mitigation`.
+enum AlbTargetGroupLoadBalancingAnomalyMitigation implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const AlbTargetGroupLoadBalancingAnomalyMitigation(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Target Group Load Balancing Cross Zone enum for `load_balancing_cross_zone_enabled`.
+enum AlbTargetGroupLoadBalancingCrossZoneEnabled implements TerraformEnum {
+  trueCase('true'),
+  falseCase('false'),
+  useLoadBalancerConfiguration('use_load_balancer_configuration');
+
+  const AlbTargetGroupLoadBalancingCrossZoneEnabled(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Target Group enum for `protocol`.
+enum AlbTargetGroupProtocol implements TerraformEnum {
+  http('HTTP'),
+  https('HTTPS'),
+  tcp('TCP'),
+  tls('TLS'),
+  udp('UDP'),
+  tcpUdp('TCP_UDP'),
+  geneve('GENEVE'),
+  quic('QUIC'),
+  tcpQuic('TCP_QUIC');
+
+  const AlbTargetGroupProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Target Group Protocol enum for `protocol_version`.
+enum AlbTargetGroupProtocolVersion implements TerraformEnum {
+  grpc('GRPC'),
+  http1('HTTP1'),
+  http2('HTTP2');
+
+  const AlbTargetGroupProtocolVersion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Alb Target Group Target enum for `target_type`.
+enum AlbTargetGroupTargetType implements TerraformEnum {
+  instance('instance'),
+  ip('ip'),
+  lambda('lambda'),
+  alb('alb');
+
+  const AlbTargetGroupTargetType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `health_check` block of
 /// `aws_alb_target_group` (derived from provider schema).
 @immutable
@@ -73,7 +155,7 @@ final class AlbTargetGroupStickiness {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String> type;
+  final TfArg<AlbTargetGroupStickinessType> type;
 
   Map<String, Object?> encode() => {
     if (cookieDuration != null) 'cookie_duration': cookieDuration!.toTfJson(),
@@ -81,6 +163,19 @@ final class AlbTargetGroupStickiness {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum AlbTargetGroupStickinessType implements TerraformEnum {
+  lbCookie('lb_cookie'),
+  appCookie('app_cookie'),
+  sourceIp('source_ip'),
+  sourceIpDestIp('source_ip_dest_ip'),
+  sourceIpDestIpProto('source_ip_dest_ip_proto');
+
+  const AlbTargetGroupStickinessType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_failover` block of
@@ -92,14 +187,34 @@ final class AlbTargetGroupTargetFailover {
     required this.onUnhealthy,
   });
 
-  final TfArg<String> onDeregistration;
+  final TfArg<AlbTargetGroupTargetFailoverOnDeregistration> onDeregistration;
 
-  final TfArg<String> onUnhealthy;
+  final TfArg<AlbTargetGroupTargetFailoverOnUnhealthy> onUnhealthy;
 
   Map<String, Object?> encode() => {
     'on_deregistration': onDeregistration.toTfJson(),
     'on_unhealthy': onUnhealthy.toTfJson(),
   };
+}
+
+/// `on_deregistration` — derived from the provider schema description.
+enum AlbTargetGroupTargetFailoverOnDeregistration implements TerraformEnum {
+  rebalance('rebalance'),
+  noRebalance('no_rebalance');
+
+  const AlbTargetGroupTargetFailoverOnDeregistration(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `on_unhealthy` — derived from the provider schema description.
+enum AlbTargetGroupTargetFailoverOnUnhealthy implements TerraformEnum {
+  rebalance('rebalance'),
+  noRebalance('no_rebalance');
+
+  const AlbTargetGroupTargetFailoverOnUnhealthy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_group_health` block of
@@ -196,23 +311,25 @@ final class AwsAlbTargetGroup extends Resource {
     required super.localName,
     TfArg<bool>? connectionTermination,
     TfArg<String>? deregistrationDelay,
-    TfArg<String>? ipAddressType,
+    TfArg<AlbTargetGroupIpAddressType>? ipAddressType,
     TfArg<bool>? lambdaMultiValueHeadersEnabled,
-    TfArg<String>? loadBalancingAlgorithmType,
-    TfArg<String>? loadBalancingAnomalyMitigation,
-    TfArg<String>? loadBalancingCrossZoneEnabled,
+    TfArg<AlbTargetGroupLoadBalancingAlgorithmType>? loadBalancingAlgorithmType,
+    TfArg<AlbTargetGroupLoadBalancingAnomalyMitigation>?
+    loadBalancingAnomalyMitigation,
+    TfArg<AlbTargetGroupLoadBalancingCrossZoneEnabled>?
+    loadBalancingCrossZoneEnabled,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<num>? port,
     TfArg<String>? preserveClientIp,
-    TfArg<String>? protocol,
-    TfArg<String>? protocolVersion,
+    TfArg<AlbTargetGroupProtocol>? protocol,
+    TfArg<AlbTargetGroupProtocolVersion>? protocolVersion,
     TfArg<bool>? proxyProtocolV2,
     TfArg<String>? region,
     TfArg<num>? slowStart,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? targetControlPort,
-    TfArg<String>? targetType,
+    TfArg<AlbTargetGroupTargetType>? targetType,
     TfArg<String>? vpcId,
     AlbTargetGroupHealthCheck? healthCheck,
     AlbTargetGroupStickiness? stickiness,

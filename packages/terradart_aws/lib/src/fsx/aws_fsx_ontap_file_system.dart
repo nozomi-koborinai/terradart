@@ -9,6 +9,39 @@ const Set<String> _awsFsxOntapFileSystemSensitive = <String>{
   'fsx_admin_password',
 };
 
+/// Fsx Ontap File System Deployment enum for `deployment_type`.
+enum FsxOntapFileSystemDeploymentType implements TerraformEnum {
+  multiAz1('MULTI_AZ_1'),
+  singleAz1('SINGLE_AZ_1'),
+  singleAz2('SINGLE_AZ_2'),
+  multiAz2('MULTI_AZ_2');
+
+  const FsxOntapFileSystemDeploymentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Fsx Ontap File System Network enum for `network_type`.
+enum FsxOntapFileSystemNetworkType implements TerraformEnum {
+  ipv4('IPV4'),
+  dual('DUAL');
+
+  const FsxOntapFileSystemNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Fsx Ontap File System Storage enum for `storage_type`.
+enum FsxOntapFileSystemStorageType implements TerraformEnum {
+  ssd('SSD'),
+  hdd('HDD'),
+  intelligentTiering('INTELLIGENT_TIERING');
+
+  const FsxOntapFileSystemStorageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `disk_iops_configuration` block of
 /// `aws_fsx_ontap_file_system` (derived from provider schema).
 @immutable
@@ -17,12 +50,22 @@ final class FsxOntapFileSystemDiskIopsConfiguration {
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? mode;
+  final TfArg<FsxOntapFileSystemDiskIopsConfigurationMode>? mode;
 
   Map<String, Object?> encode() => {
     if (iops != null) 'iops': iops!.toTfJson(),
     if (mode != null) 'mode': mode!.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum FsxOntapFileSystemDiskIopsConfigurationMode implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  userProvisioned('USER_PROVISIONED');
+
+  const FsxOntapFileSystemDiskIopsConfigurationMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_fsx_ontap_file_system`.
@@ -33,18 +76,18 @@ final class AwsFsxOntapFileSystem extends Resource {
     required super.localName,
     TfArg<num>? automaticBackupRetentionDays,
     TfArg<String>? dailyAutomaticBackupStartTime,
-    required TfArg<String> deploymentType,
+    required TfArg<FsxOntapFileSystemDeploymentType> deploymentType,
     TfArg<String>? endpointIpAddressRange,
     TfArg<String>? fsxAdminPassword,
     TfArg<num>? haPairs,
     TfArg<String>? kmsKeyId,
-    TfArg<String>? networkType,
+    TfArg<FsxOntapFileSystemNetworkType>? networkType,
     required TfArg<String> preferredSubnetId,
     TfArg<String>? region,
     TfArg<List<String>>? routeTableIds,
     TfArg<List<String>>? securityGroupIds,
     required TfArg<num> storageCapacity,
-    TfArg<String>? storageType,
+    TfArg<FsxOntapFileSystemStorageType>? storageType,
     required TfArg<List<String>> subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? throughputCapacity,

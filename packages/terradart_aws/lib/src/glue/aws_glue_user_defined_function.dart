@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_glue_user_defined_function`.
 const Set<String> _awsGlueUserDefinedFunctionSensitive = <String>{};
 
+/// Glue User Defined Function Owner enum for `owner_type`.
+enum GlueUserDefinedFunctionOwnerType implements TerraformEnum {
+  user('USER'),
+  role('ROLE'),
+  group('GROUP');
+
+  const GlueUserDefinedFunctionOwnerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `resource_uris` block of
 /// `aws_glue_user_defined_function` (derived from provider schema).
 @immutable
@@ -16,7 +27,7 @@ final class GlueUserDefinedFunctionResourceUris {
     required this.uri,
   });
 
-  final TfArg<String> resourceType;
+  final TfArg<GlueUserDefinedFunctionResourceUrisResourceType> resourceType;
 
   final TfArg<String> uri;
 
@@ -24,6 +35,17 @@ final class GlueUserDefinedFunctionResourceUris {
     'resource_type': resourceType.toTfJson(),
     'uri': uri.toTfJson(),
   };
+}
+
+/// `resource_type` — derived from the provider schema description.
+enum GlueUserDefinedFunctionResourceUrisResourceType implements TerraformEnum {
+  jar('JAR'),
+  file('FILE'),
+  archive('ARCHIVE');
+
+  const GlueUserDefinedFunctionResourceUrisResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_glue_user_defined_function`.
@@ -37,7 +59,7 @@ final class AwsGlueUserDefinedFunction extends Resource {
     required TfArg<String> databaseName,
     required TfArg<String> name,
     required TfArg<String> ownerName,
-    required TfArg<String> ownerType,
+    required TfArg<GlueUserDefinedFunctionOwnerType> ownerType,
     TfArg<String>? region,
     List<GlueUserDefinedFunctionResourceUris>? resourceUris,
     super.lifecycle,

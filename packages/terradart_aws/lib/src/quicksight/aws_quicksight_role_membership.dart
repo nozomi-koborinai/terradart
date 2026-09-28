@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_quicksight_role_membership`.
 const Set<String> _awsQuicksightRoleMembershipSensitive = <String>{};
 
+/// Quicksight Role Membership enum for `role`.
+enum QuicksightRoleMembershipRole implements TerraformEnum {
+  admin('ADMIN'),
+  author('AUTHOR'),
+  reader('READER'),
+  adminPro('ADMIN_PRO'),
+  authorPro('AUTHOR_PRO'),
+  readerPro('READER_PRO');
+
+  const QuicksightRoleMembershipRole(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_quicksight_role_membership`.
 final class AwsQuicksightRoleMembership extends Resource {
   static const String tfType = 'aws_quicksight_role_membership';
@@ -16,7 +30,7 @@ final class AwsQuicksightRoleMembership extends Resource {
     required TfArg<String> memberName,
     TfArg<String>? namespace,
     TfArg<String>? region,
-    required TfArg<String> role,
+    required TfArg<QuicksightRoleMembershipRole> role,
     super.lifecycle,
     super.dependsOn,
     super.provider,

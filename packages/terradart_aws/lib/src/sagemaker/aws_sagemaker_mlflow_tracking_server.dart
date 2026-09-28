@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_sagemaker_mlflow_tracking_server`.
 const Set<String> _awsSagemakerMlflowTrackingServerSensitive = <String>{};
 
+/// Sagemaker Mlflow Tracking Server Tracking Server enum for `tracking_server_size`.
+enum SagemakerMlflowTrackingServerTrackingServerSize implements TerraformEnum {
+  small('Small'),
+  medium('Medium'),
+  large('Large');
+
+  const SagemakerMlflowTrackingServerTrackingServerSize(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_sagemaker_mlflow_tracking_server`.
 final class AwsSagemakerMlflowTrackingServer extends Resource {
   static const String tfType = 'aws_sagemaker_mlflow_tracking_server';
@@ -19,7 +30,7 @@ final class AwsSagemakerMlflowTrackingServer extends Resource {
     required TfArg<String> roleArn,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> trackingServerName,
-    TfArg<String>? trackingServerSize,
+    TfArg<SagemakerMlflowTrackingServerTrackingServerSize>? trackingServerSize,
     TfArg<String>? weeklyMaintenanceWindowStart,
     super.lifecycle,
     super.dependsOn,

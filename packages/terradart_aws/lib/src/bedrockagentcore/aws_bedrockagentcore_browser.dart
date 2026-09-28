@@ -65,7 +65,7 @@ final class BedrockagentcoreBrowserCertificateLocationSecretsManager {
 final class BedrockagentcoreBrowserEnterprisePolicy {
   const BedrockagentcoreBrowserEnterprisePolicy({this.type, this.location});
 
-  final TfArg<String>? type;
+  final TfArg<BedrockagentcoreBrowserEnterprisePolicyType>? type;
 
   final List<BedrockagentcoreBrowserEnterprisePolicyLocation>? location;
 
@@ -73,6 +73,16 @@ final class BedrockagentcoreBrowserEnterprisePolicy {
     if (type != null) 'type': type!.toTfJson(),
     if (location != null) 'location': [for (final e in location!) e.encode()],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreBrowserEnterprisePolicyType implements TerraformEnum {
+  managed('MANAGED'),
+  recommended('RECOMMENDED');
+
+  const BedrockagentcoreBrowserEnterprisePolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `enterprise_policy.location` block of
@@ -120,7 +130,8 @@ final class BedrockagentcoreBrowserNetworkConfiguration {
     this.vpcConfig,
   });
 
-  final TfArg<String> networkMode;
+  final TfArg<BedrockagentcoreBrowserNetworkConfigurationNetworkMode>
+  networkMode;
 
   final List<BedrockagentcoreBrowserNetworkConfigurationVpcConfig>? vpcConfig;
 
@@ -129,6 +140,19 @@ final class BedrockagentcoreBrowserNetworkConfiguration {
     if (vpcConfig != null)
       'vpc_config': [for (final e in vpcConfig!) e.encode()],
   };
+}
+
+/// `network_mode` — derived from the provider schema description.
+enum BedrockagentcoreBrowserNetworkConfigurationNetworkMode
+    implements TerraformEnum {
+  public('PUBLIC'),
+  vpc('VPC');
+
+  const BedrockagentcoreBrowserNetworkConfigurationNetworkMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `network_configuration.vpc_config` block of

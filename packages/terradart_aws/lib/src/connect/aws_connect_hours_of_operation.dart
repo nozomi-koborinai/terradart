@@ -17,7 +17,7 @@ final class ConnectHoursOfOperationConfig {
     required this.startTime,
   });
 
-  final TfArg<String> day;
+  final TfArg<ConnectHoursOfOperationConfigDay> day;
 
   final ConnectHoursOfOperationConfigEndTime endTime;
 
@@ -28,6 +28,21 @@ final class ConnectHoursOfOperationConfig {
     'end_time': endTime.encode(),
     'start_time': startTime.encode(),
   };
+}
+
+/// `day` — derived from the provider schema description.
+enum ConnectHoursOfOperationConfigDay implements TerraformEnum {
+  sunday('SUNDAY'),
+  monday('MONDAY'),
+  tuesday('TUESDAY'),
+  wednesday('WEDNESDAY'),
+  thursday('THURSDAY'),
+  friday('FRIDAY'),
+  saturday('SATURDAY');
+
+  const ConnectHoursOfOperationConfigDay(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `config.end_time` block of

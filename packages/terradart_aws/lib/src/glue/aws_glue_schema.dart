@@ -6,14 +6,41 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_glue_schema`.
 const Set<String> _awsGlueSchemaSensitive = <String>{};
 
+/// Glue Schema enum for `compatibility`.
+enum GlueSchemaCompatibility implements TerraformEnum {
+  none('NONE'),
+  disabled('DISABLED'),
+  backward('BACKWARD'),
+  backwardAll('BACKWARD_ALL'),
+  forward('FORWARD'),
+  forwardAll('FORWARD_ALL'),
+  full('FULL'),
+  fullAll('FULL_ALL');
+
+  const GlueSchemaCompatibility(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Glue Schema Data enum for `data_format`.
+enum GlueSchemaDataFormat implements TerraformEnum {
+  avro('AVRO'),
+  json('JSON'),
+  protobuf('PROTOBUF');
+
+  const GlueSchemaDataFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_glue_schema`.
 final class AwsGlueSchema extends Resource {
   static const String tfType = 'aws_glue_schema';
 
   AwsGlueSchema({
     required super.localName,
-    required TfArg<String> compatibility,
-    required TfArg<String> dataFormat,
+    required TfArg<GlueSchemaCompatibility> compatibility,
+    required TfArg<GlueSchemaDataFormat> dataFormat,
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<String>? registryArn,

@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_elastic_beanstalk_environment`.
 const Set<String> _awsElasticBeanstalkEnvironmentSensitive = <String>{};
 
+/// Elastic Beanstalk Environment enum for `tier`.
+enum ElasticBeanstalkEnvironmentTier implements TerraformEnum {
+  webserver('WebServer'),
+  worker('Worker');
+
+  const ElasticBeanstalkEnvironmentTier(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `setting` block of
 /// `aws_elastic_beanstalk_environment` (derived from provider schema).
 @immutable
@@ -50,7 +60,7 @@ final class AwsElasticBeanstalkEnvironment extends Resource {
     TfArg<String>? solutionStackName,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? templateName,
-    TfArg<String>? tier,
+    TfArg<ElasticBeanstalkEnvironmentTier>? tier,
     TfArg<String>? versionLabel,
     TfArg<String>? waitForReadyTimeout,
     List<ElasticBeanstalkEnvironmentSetting>? setting,

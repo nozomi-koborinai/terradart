@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iot_provisioning_template`.
 const Set<String> _awsIotProvisioningTemplateSensitive = <String>{};
 
+/// Iot Provisioning Template enum for `type`.
+enum IotProvisioningTemplateType implements TerraformEnum {
+  fleetProvisioning('FLEET_PROVISIONING'),
+  jitp('JITP');
+
+  const IotProvisioningTemplateType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `pre_provisioning_hook` block of
 /// `aws_iot_provisioning_template` (derived from provider schema).
 @immutable
@@ -16,7 +26,8 @@ final class IotProvisioningTemplatePreProvisioningHook {
     required this.targetArn,
   });
 
-  final TfArg<String>? payloadVersion;
+  final TfArg<IotProvisioningTemplatePreProvisioningHookPayloadVersion>?
+  payloadVersion;
 
   final TfArg<String> targetArn;
 
@@ -24,6 +35,18 @@ final class IotProvisioningTemplatePreProvisioningHook {
     if (payloadVersion != null) 'payload_version': payloadVersion!.toTfJson(),
     'target_arn': targetArn.toTfJson(),
   };
+}
+
+/// `payload_version` — derived from the provider schema description.
+enum IotProvisioningTemplatePreProvisioningHookPayloadVersion
+    implements TerraformEnum {
+  v2020x04x01('2020-04-01');
+
+  const IotProvisioningTemplatePreProvisioningHookPayloadVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_iot_provisioning_template`.
@@ -39,7 +62,7 @@ final class AwsIotProvisioningTemplate extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> templateBody,
-    TfArg<String>? type,
+    TfArg<IotProvisioningTemplateType>? type,
     IotProvisioningTemplatePreProvisioningHook? preProvisioningHook,
     super.lifecycle,
     super.dependsOn,

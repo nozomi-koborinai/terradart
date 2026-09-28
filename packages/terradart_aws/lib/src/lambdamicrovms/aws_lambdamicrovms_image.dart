@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lambdamicrovms_image`.
 const Set<String> _awsLambdamicrovmsImageSensitive = <String>{};
 
+/// Lambdamicrovms Image Additional Os enum for `additional_os_capabilities`.
+enum LambdamicrovmsImageAdditionalOsCapabilities implements TerraformEnum {
+  all('ALL');
+
+  const LambdamicrovmsImageAdditionalOsCapabilities(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `code_artifact` block of
 /// `aws_lambdamicrovms_image` (derived from provider schema).
 @immutable
@@ -24,9 +33,18 @@ final class LambdamicrovmsImageCodeArtifact {
 final class LambdamicrovmsImageCpuConfiguration {
   const LambdamicrovmsImageCpuConfiguration({required this.architecture});
 
-  final TfArg<String> architecture;
+  final TfArg<LambdamicrovmsImageCpuConfigurationArchitecture> architecture;
 
   Map<String, Object?> encode() => {'architecture': architecture.toTfJson()};
+}
+
+/// `architecture` — derived from the provider schema description.
+enum LambdamicrovmsImageCpuConfigurationArchitecture implements TerraformEnum {
+  arm64('ARM_64');
+
+  const LambdamicrovmsImageCpuConfigurationArchitecture(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_lambdamicrovms_image`.
@@ -35,7 +53,8 @@ final class AwsLambdamicrovmsImage extends Resource {
 
   AwsLambdamicrovmsImage({
     required super.localName,
-    TfArg<List<String>>? additionalOsCapabilities,
+    List<TfArg<LambdamicrovmsImageAdditionalOsCapabilities>>?
+    additionalOsCapabilities,
     required TfArg<String> baseImageArn,
     TfArg<String>? baseImageVersion,
     required TfArg<String> buildRoleArn,
@@ -55,7 +74,9 @@ final class AwsLambdamicrovmsImage extends Resource {
          terraformType: tfType,
          argMap: {
            if (additionalOsCapabilities != null)
-             'additional_os_capabilities': additionalOsCapabilities,
+             'additional_os_capabilities': TfArg.literal([
+               for (final e in additionalOsCapabilities) e.toTfJson(),
+             ]),
            'base_image_arn': baseImageArn,
            if (baseImageVersion != null) 'base_image_version': baseImageVersion,
            'build_role_arn': buildRoleArn,

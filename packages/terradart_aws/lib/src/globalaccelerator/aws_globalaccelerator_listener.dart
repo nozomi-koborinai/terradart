@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_globalaccelerator_listener`.
 const Set<String> _awsGlobalacceleratorListenerSensitive = <String>{};
 
+/// Globalaccelerator Listener Client enum for `client_affinity`.
+enum GlobalacceleratorListenerClientAffinity implements TerraformEnum {
+  none('NONE'),
+  sourceIp('SOURCE_IP');
+
+  const GlobalacceleratorListenerClientAffinity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Globalaccelerator Listener enum for `protocol`.
+enum GlobalacceleratorListenerProtocol implements TerraformEnum {
+  tcp('TCP'),
+  udp('UDP');
+
+  const GlobalacceleratorListenerProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `port_range` block of
 /// `aws_globalaccelerator_listener` (derived from provider schema).
 @immutable
@@ -30,8 +50,8 @@ final class AwsGlobalacceleratorListener extends Resource {
   AwsGlobalacceleratorListener({
     required super.localName,
     required TfArg<String> acceleratorArn,
-    TfArg<String>? clientAffinity,
-    required TfArg<String> protocol,
+    TfArg<GlobalacceleratorListenerClientAffinity>? clientAffinity,
+    required TfArg<GlobalacceleratorListenerProtocol> protocol,
     required List<GlobalacceleratorListenerPortRange> portRange,
     super.lifecycle,
     super.dependsOn,

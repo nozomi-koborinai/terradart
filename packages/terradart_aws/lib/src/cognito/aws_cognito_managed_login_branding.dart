@@ -21,11 +21,11 @@ final class CognitoManagedLoginBrandingAsset {
 
   final TfArg<String>? bytes;
 
-  final TfArg<String> category;
+  final TfArg<CognitoManagedLoginBrandingAssetCategory> category;
 
-  final TfArg<String> colorMode;
+  final TfArg<CognitoManagedLoginBrandingAssetColorMode> colorMode;
 
-  final TfArg<String> extension;
+  final TfArg<CognitoManagedLoginBrandingAssetExtension> extension;
 
   final TfArg<String>? resourceId;
 
@@ -36,6 +36,53 @@ final class CognitoManagedLoginBrandingAsset {
     'extension': extension.toTfJson(),
     if (resourceId != null) 'resource_id': resourceId!.toTfJson(),
   };
+}
+
+/// `category` — derived from the provider schema description.
+enum CognitoManagedLoginBrandingAssetCategory implements TerraformEnum {
+  faviconIco('FAVICON_ICO'),
+  faviconSvg('FAVICON_SVG'),
+  emailGraphic('EMAIL_GRAPHIC'),
+  smsGraphic('SMS_GRAPHIC'),
+  authAppGraphic('AUTH_APP_GRAPHIC'),
+  passwordGraphic('PASSWORD_GRAPHIC'),
+  passkeyGraphic('PASSKEY_GRAPHIC'),
+  pageHeaderLogo('PAGE_HEADER_LOGO'),
+  pageHeaderBackground('PAGE_HEADER_BACKGROUND'),
+  pageFooterLogo('PAGE_FOOTER_LOGO'),
+  pageFooterBackground('PAGE_FOOTER_BACKGROUND'),
+  pageBackground('PAGE_BACKGROUND'),
+  formBackground('FORM_BACKGROUND'),
+  formLogo('FORM_LOGO'),
+  idpButtonIcon('IDP_BUTTON_ICON');
+
+  const CognitoManagedLoginBrandingAssetCategory(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `color_mode` — derived from the provider schema description.
+enum CognitoManagedLoginBrandingAssetColorMode implements TerraformEnum {
+  light('LIGHT'),
+  dark('DARK'),
+  dynamic('DYNAMIC');
+
+  const CognitoManagedLoginBrandingAssetColorMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `extension` — derived from the provider schema description.
+enum CognitoManagedLoginBrandingAssetExtension implements TerraformEnum {
+  ico('ICO'),
+  jpeg('JPEG'),
+  png('PNG'),
+  svg('SVG'),
+  webp('WEBP');
+
+  const CognitoManagedLoginBrandingAssetExtension(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_cognito_managed_login_branding`.

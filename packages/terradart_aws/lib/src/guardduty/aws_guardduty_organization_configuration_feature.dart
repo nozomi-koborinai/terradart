@@ -8,6 +8,36 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGuarddutyOrganizationConfigurationFeatureSensitive =
     <String>{};
 
+/// Guardduty Organization Configuration Feature Auto enum for `auto_enable`.
+enum GuarddutyOrganizationConfigurationFeatureAutoEnable
+    implements TerraformEnum {
+  newCase('NEW'),
+  none('NONE'),
+  all('ALL');
+
+  const GuarddutyOrganizationConfigurationFeatureAutoEnable(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Guardduty Organization Configuration Feature enum for `name`.
+enum GuarddutyOrganizationConfigurationFeatureName implements TerraformEnum {
+  s3DataEvents('S3_DATA_EVENTS'),
+  eksAuditLogs('EKS_AUDIT_LOGS'),
+  ebsMalwareProtection('EBS_MALWARE_PROTECTION'),
+  rdsLoginEvents('RDS_LOGIN_EVENTS'),
+  lambdaNetworkLogs('LAMBDA_NETWORK_LOGS'),
+  eksRuntimeMonitoring('EKS_RUNTIME_MONITORING'),
+  runtimeMonitoring('RUNTIME_MONITORING'),
+  aiProtection('AI_PROTECTION');
+
+  const GuarddutyOrganizationConfigurationFeatureName(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `additional_configuration` block of
 /// `aws_guardduty_organization_configuration_feature` (derived from provider schema).
 @immutable
@@ -17,14 +47,48 @@ final class GuarddutyOrganizationConfigurationFeatureAdditionalConfiguration {
     required this.name,
   });
 
-  final TfArg<String> autoEnable;
+  final TfArg<
+    GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable
+  >
+  autoEnable;
 
-  final TfArg<String> name;
+  final TfArg<
+    GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName
+  >
+  name;
 
   Map<String, Object?> encode() => {
     'auto_enable': autoEnable.toTfJson(),
     'name': name.toTfJson(),
   };
+}
+
+/// `auto_enable` — derived from the provider schema description.
+enum GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable
+    implements TerraformEnum {
+  newCase('NEW'),
+  none('NONE'),
+  all('ALL');
+
+  const GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationAutoEnable(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `name` — derived from the provider schema description.
+enum GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName
+    implements TerraformEnum {
+  eksAddonManagement('EKS_ADDON_MANAGEMENT'),
+  ecsFargateAgentManagement('ECS_FARGATE_AGENT_MANAGEMENT'),
+  ec2AgentManagement('EC2_AGENT_MANAGEMENT');
+
+  const GuarddutyOrganizationConfigurationFeatureAdditionalConfigurationName(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_guardduty_organization_configuration_feature`.
@@ -34,9 +98,10 @@ final class AwsGuarddutyOrganizationConfigurationFeature extends Resource {
 
   AwsGuarddutyOrganizationConfigurationFeature({
     required super.localName,
-    required TfArg<String> autoEnable,
+    required TfArg<GuarddutyOrganizationConfigurationFeatureAutoEnable>
+    autoEnable,
     required TfArg<String> detectorId,
-    required TfArg<String> name,
+    required TfArg<GuarddutyOrganizationConfigurationFeatureName> name,
     TfArg<String>? region,
     List<GuarddutyOrganizationConfigurationFeatureAdditionalConfiguration>?
     additionalConfiguration,

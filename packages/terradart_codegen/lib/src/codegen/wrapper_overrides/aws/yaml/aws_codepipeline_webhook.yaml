@@ -2,3 +2,4 @@ outputDir: codepipeline
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true

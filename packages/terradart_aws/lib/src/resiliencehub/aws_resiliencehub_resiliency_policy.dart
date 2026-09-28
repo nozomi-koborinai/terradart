@@ -7,6 +7,34 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_resiliencehub_resiliency_policy`.
 const Set<String> _awsResiliencehubResiliencyPolicySensitive = <String>{};
 
+/// Resiliencehub Resiliency Policy Data Location enum for `data_location_constraint`.
+enum ResiliencehubResiliencyPolicyDataLocationConstraint
+    implements TerraformEnum {
+  anylocation('AnyLocation'),
+  samecontinent('SameContinent'),
+  samecountry('SameCountry');
+
+  const ResiliencehubResiliencyPolicyDataLocationConstraint(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Resiliencehub Resiliency Policy enum for `tier`.
+enum ResiliencehubResiliencyPolicyTier implements TerraformEnum {
+  missioncritical('MissionCritical'),
+  critical('Critical'),
+  important('Important'),
+  coreservices('CoreServices'),
+  noncritical('NonCritical'),
+  notapplicable('NotApplicable');
+
+  const ResiliencehubResiliencyPolicyTier(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `policy` block of
 /// `aws_resiliencehub_resiliency_policy` (derived from provider schema).
 @immutable
@@ -113,12 +141,13 @@ final class AwsResiliencehubResiliencyPolicy extends Resource {
 
   AwsResiliencehubResiliencyPolicy({
     required super.localName,
-    TfArg<String>? dataLocationConstraint,
+    TfArg<ResiliencehubResiliencyPolicyDataLocationConstraint>?
+    dataLocationConstraint,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> tier,
+    required TfArg<ResiliencehubResiliencyPolicyTier> tier,
     List<ResiliencehubResiliencyPolicyPolicy>? policy,
     super.lifecycle,
     super.dependsOn,

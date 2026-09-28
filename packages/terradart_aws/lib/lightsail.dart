@@ -34,18 +34,23 @@ export 'src/lightsail/aws_lightsail_distribution.dart'
         LightsailDistributionCacheBehaviorSettings,
         LightsailDistributionCacheBehaviorSettingsForwardedCookies,
         LightsailDistributionCacheBehaviorSettingsForwardedHeaders,
+        LightsailDistributionCacheBehaviorSettingsForwardedHeadersOption,
         LightsailDistributionCacheBehaviorSettingsForwardedQueryStrings,
         LightsailDistributionDefaultCacheBehavior,
         LightsailDistributionOrigin;
 export 'src/lightsail/aws_lightsail_domain.dart' show AwsLightsailDomain;
 export 'src/lightsail/aws_lightsail_domain_entry.dart'
-    show AwsLightsailDomainEntry;
+    show AwsLightsailDomainEntry, LightsailDomainEntryType;
 export 'src/lightsail/aws_lightsail_instance.dart'
-    show AwsLightsailInstance, LightsailInstanceAddOn;
+    show
+        AwsLightsailInstance,
+        LightsailInstanceAddOn,
+        LightsailInstanceAddOnStatus;
 export 'src/lightsail/aws_lightsail_instance_public_ports.dart'
     show AwsLightsailInstancePublicPorts, LightsailInstancePublicPortsPortInfo;
 export 'src/lightsail/aws_lightsail_key_pair.dart' show AwsLightsailKeyPair;
-export 'src/lightsail/aws_lightsail_lb.dart' show AwsLightsailLb;
+export 'src/lightsail/aws_lightsail_lb.dart'
+    show AwsLightsailLb, LightsailLbIpAddressType;
 export 'src/lightsail/aws_lightsail_lb_attachment.dart'
     show AwsLightsailLbAttachment;
 export 'src/lightsail/aws_lightsail_lb_certificate.dart'

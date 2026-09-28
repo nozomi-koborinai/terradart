@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lambda_event_source_mapping`.
 const Set<String> _awsLambdaEventSourceMappingSensitive = <String>{};
 
+/// Lambda Event Source Mapping Function Response enum for `function_response_types`.
+enum LambdaEventSourceMappingFunctionResponseTypes implements TerraformEnum {
+  reportbatchitemfailures('ReportBatchItemFailures');
+
+  const LambdaEventSourceMappingFunctionResponseTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lambda Event Source Mapping Starting enum for `starting_position`.
+enum LambdaEventSourceMappingStartingPosition implements TerraformEnum {
+  trimHorizon('TRIM_HORIZON'),
+  latest('LATEST'),
+  atTimestamp('AT_TIMESTAMP');
+
+  const LambdaEventSourceMappingStartingPosition(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `amazon_managed_kafka_event_source_config` block of
 /// `aws_lambda_event_source_mapping` (derived from provider schema).
 @immutable
@@ -40,7 +60,10 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaReg
     this.schemaValidationConfig,
   });
 
-  final TfArg<String>? eventRecordFormat;
+  final TfArg<
+    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat
+  >?
+  eventRecordFormat;
 
   final TfArg<String>? schemaRegistryUri;
 
@@ -68,6 +91,19 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaReg
   };
 }
 
+/// `event_record_format` — derived from the provider schema description.
+enum LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat
+    implements TerraformEnum {
+  json('JSON'),
+  source('SOURCE');
+
+  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `amazon_managed_kafka_event_source_config.schema_registry_config.access_config` block of
 /// `aws_lambda_event_source_mapping` (derived from provider schema).
 @immutable
@@ -77,7 +113,10 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaReg
     this.uri,
   });
 
-  final TfArg<String>? type;
+  final TfArg<
+    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType
+  >?
+  type;
 
   final TfArg<String>? uri;
 
@@ -85,6 +124,20 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaReg
     if (type != null) 'type': type!.toTfJson(),
     if (uri != null) 'uri': uri!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType
+    implements TerraformEnum {
+  basicAuth('BASIC_AUTH'),
+  clientCertificateTlsAuth('CLIENT_CERTIFICATE_TLS_AUTH'),
+  serverRootCaCertificate('SERVER_ROOT_CA_CERTIFICATE');
+
+  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `amazon_managed_kafka_event_source_config.schema_registry_config.schema_validation_config` block of
@@ -95,11 +148,27 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaReg
     this.attribute,
   });
 
-  final TfArg<String>? attribute;
+  final TfArg<
+    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute
+  >?
+  attribute;
 
   Map<String, Object?> encode() => {
     if (attribute != null) 'attribute': attribute!.toTfJson(),
   };
+}
+
+/// `attribute` — derived from the provider schema description.
+enum LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute
+    implements TerraformEnum {
+  key('KEY'),
+  value('VALUE');
+
+  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination_config` block of
@@ -144,13 +213,27 @@ final class LambdaEventSourceMappingDocumentDbEventSourceConfig {
 
   final TfArg<String> databaseName;
 
-  final TfArg<String>? fullDocument;
+  final TfArg<LambdaEventSourceMappingDocumentDbEventSourceConfigFullDocument>?
+  fullDocument;
 
   Map<String, Object?> encode() => {
     if (collectionName != null) 'collection_name': collectionName!.toTfJson(),
     'database_name': databaseName.toTfJson(),
     if (fullDocument != null) 'full_document': fullDocument!.toTfJson(),
   };
+}
+
+/// `full_document` — derived from the provider schema description.
+enum LambdaEventSourceMappingDocumentDbEventSourceConfigFullDocument
+    implements TerraformEnum {
+  updatelookup('UpdateLookup'),
+  defaultCase('Default');
+
+  const LambdaEventSourceMappingDocumentDbEventSourceConfigFullDocument(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `filter_criteria` block of
@@ -185,9 +268,22 @@ final class LambdaEventSourceMappingFilterCriteriaFilter {
 final class LambdaEventSourceMappingMetricsConfig {
   const LambdaEventSourceMappingMetricsConfig({required this.metrics});
 
-  final TfArg<List<Object?>> metrics;
+  final List<TfArg<LambdaEventSourceMappingMetricsConfigMetrics>> metrics;
 
-  Map<String, Object?> encode() => {'metrics': metrics.toTfJson()};
+  Map<String, Object?> encode() => {
+    'metrics': [for (final e in metrics) e.toTfJson()],
+  };
+}
+
+/// `metrics` — derived from the provider schema description.
+enum LambdaEventSourceMappingMetricsConfigMetrics implements TerraformEnum {
+  eventcount('EventCount'),
+  errorcount('ErrorCount'),
+  kafkametrics('KafkaMetrics');
+
+  const LambdaEventSourceMappingMetricsConfigMetrics(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `provisioned_poller_config` block of
@@ -274,7 +370,10 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegis
     this.schemaValidationConfig,
   });
 
-  final TfArg<String>? eventRecordFormat;
+  final TfArg<
+    LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat
+  >?
+  eventRecordFormat;
 
   final TfArg<String>? schemaRegistryUri;
 
@@ -302,6 +401,19 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegis
   };
 }
 
+/// `event_record_format` — derived from the provider schema description.
+enum LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat
+    implements TerraformEnum {
+  json('JSON'),
+  source('SOURCE');
+
+  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigEventRecordFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `self_managed_kafka_event_source_config.schema_registry_config.access_config` block of
 /// `aws_lambda_event_source_mapping` (derived from provider schema).
 @immutable
@@ -311,7 +423,10 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegis
     this.uri,
   });
 
-  final TfArg<String>? type;
+  final TfArg<
+    LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType
+  >?
+  type;
 
   final TfArg<String>? uri;
 
@@ -319,6 +434,20 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegis
     if (type != null) 'type': type!.toTfJson(),
     if (uri != null) 'uri': uri!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType
+    implements TerraformEnum {
+  basicAuth('BASIC_AUTH'),
+  clientCertificateTlsAuth('CLIENT_CERTIFICATE_TLS_AUTH'),
+  serverRootCaCertificate('SERVER_ROOT_CA_CERTIFICATE');
+
+  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `self_managed_kafka_event_source_config.schema_registry_config.schema_validation_config` block of
@@ -329,11 +458,27 @@ final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegis
     this.attribute,
   });
 
-  final TfArg<String>? attribute;
+  final TfArg<
+    LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute
+  >?
+  attribute;
 
   Map<String, Object?> encode() => {
     if (attribute != null) 'attribute': attribute!.toTfJson(),
   };
+}
+
+/// `attribute` — derived from the provider schema description.
+enum LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute
+    implements TerraformEnum {
+  key('KEY'),
+  value('VALUE');
+
+  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigSchemaValidationConfigAttribute(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_access_configuration` block of
@@ -345,7 +490,7 @@ final class LambdaEventSourceMappingSourceAccessConfiguration {
     required this.uri,
   });
 
-  final TfArg<String> type;
+  final TfArg<LambdaEventSourceMappingSourceAccessConfigurationType> type;
 
   final TfArg<String> uri;
 
@@ -353,6 +498,25 @@ final class LambdaEventSourceMappingSourceAccessConfiguration {
     'type': type.toTfJson(),
     'uri': uri.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum LambdaEventSourceMappingSourceAccessConfigurationType
+    implements TerraformEnum {
+  basicAuth('BASIC_AUTH'),
+  vpcSubnet('VPC_SUBNET'),
+  vpcSecurityGroup('VPC_SECURITY_GROUP'),
+  saslScram512Auth('SASL_SCRAM_512_AUTH'),
+  saslScram256Auth('SASL_SCRAM_256_AUTH'),
+  virtualHost('VIRTUAL_HOST'),
+  clientCertificateTlsAuth('CLIENT_CERTIFICATE_TLS_AUTH'),
+  serverRootCaCertificate('SERVER_ROOT_CA_CERTIFICATE');
+
+  const LambdaEventSourceMappingSourceAccessConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_lambda_event_source_mapping`.
@@ -366,7 +530,8 @@ final class AwsLambdaEventSourceMapping extends Resource {
     TfArg<bool>? enabled,
     TfArg<String>? eventSourceArn,
     required TfArg<String> functionName,
-    TfArg<List<String>>? functionResponseTypes,
+    List<TfArg<LambdaEventSourceMappingFunctionResponseTypes>>?
+    functionResponseTypes,
     TfArg<String>? kmsKeyArn,
     TfArg<num>? maximumBatchingWindowInSeconds,
     TfArg<num>? maximumRecordAgeInSeconds,
@@ -374,7 +539,7 @@ final class AwsLambdaEventSourceMapping extends Resource {
     TfArg<num>? parallelizationFactor,
     TfArg<List<String>>? queues,
     TfArg<String>? region,
-    TfArg<String>? startingPosition,
+    TfArg<LambdaEventSourceMappingStartingPosition>? startingPosition,
     TfArg<String>? startingPositionTimestamp,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? topics,
@@ -408,7 +573,9 @@ final class AwsLambdaEventSourceMapping extends Resource {
            if (eventSourceArn != null) 'event_source_arn': eventSourceArn,
            'function_name': functionName,
            if (functionResponseTypes != null)
-             'function_response_types': functionResponseTypes,
+             'function_response_types': TfArg.literal([
+               for (final e in functionResponseTypes) e.toTfJson(),
+             ]),
            if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
            if (maximumBatchingWindowInSeconds != null)
              'maximum_batching_window_in_seconds':

@@ -51,12 +51,21 @@ final class ResourcegroupsGroupResourceQuery {
 
   final TfArg<String> query;
 
-  final TfArg<String>? type;
+  final TfArg<ResourcegroupsGroupResourceQueryType>? type;
 
   Map<String, Object?> encode() => {
     'query': query.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ResourcegroupsGroupResourceQueryType implements TerraformEnum {
+  tagFilters10('TAG_FILTERS_1_0');
+
+  const ResourcegroupsGroupResourceQueryType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_resourcegroups_group`.

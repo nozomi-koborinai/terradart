@@ -18,13 +18,25 @@ final class CloudsearchDomainEndpointOptions {
 
   final TfArg<bool>? enforceHttps;
 
-  final TfArg<String>? tlsSecurityPolicy;
+  final TfArg<CloudsearchDomainEndpointOptionsTlsSecurityPolicy>?
+  tlsSecurityPolicy;
 
   Map<String, Object?> encode() => {
     if (enforceHttps != null) 'enforce_https': enforceHttps!.toTfJson(),
     if (tlsSecurityPolicy != null)
       'tls_security_policy': tlsSecurityPolicy!.toTfJson(),
   };
+}
+
+/// `tls_security_policy` — derived from the provider schema description.
+enum CloudsearchDomainEndpointOptionsTlsSecurityPolicy
+    implements TerraformEnum {
+  policyMinTls10201907('Policy-Min-TLS-1-0-2019-07'),
+  policyMinTls12201907('Policy-Min-TLS-1-2-2019-07');
+
+  const CloudsearchDomainEndpointOptionsTlsSecurityPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `index_field` block of
@@ -62,7 +74,7 @@ final class CloudsearchDomainIndexField {
 
   final TfArg<String>? sourceFields;
 
-  final TfArg<String> type;
+  final TfArg<CloudsearchDomainIndexFieldType> type;
 
   Map<String, Object?> encode() => {
     if (analysisScheme != null) 'analysis_scheme': analysisScheme!.toTfJson(),
@@ -78,6 +90,25 @@ final class CloudsearchDomainIndexField {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum CloudsearchDomainIndexFieldType implements TerraformEnum {
+  int('int'),
+  double('double'),
+  literal('literal'),
+  text('text'),
+  date('date'),
+  latlon('latlon'),
+  intArray('int-array'),
+  doubleArray('double-array'),
+  literalArray('literal-array'),
+  textArray('text-array'),
+  dateArray('date-array');
+
+  const CloudsearchDomainIndexFieldType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `scaling_parameters` block of
 /// `aws_cloudsearch_domain` (derived from provider schema).
 @immutable
@@ -88,7 +119,8 @@ final class CloudsearchDomainScalingParameters {
     this.desiredReplicationCount,
   });
 
-  final TfArg<String>? desiredInstanceType;
+  final TfArg<CloudsearchDomainScalingParametersDesiredInstanceType>?
+  desiredInstanceType;
 
   final TfArg<num>? desiredPartitionCount;
 
@@ -102,6 +134,34 @@ final class CloudsearchDomainScalingParameters {
     if (desiredReplicationCount != null)
       'desired_replication_count': desiredReplicationCount!.toTfJson(),
   };
+}
+
+/// `desired_instance_type` — derived from the provider schema description.
+enum CloudsearchDomainScalingParametersDesiredInstanceType
+    implements TerraformEnum {
+  searchM1Small('search.m1.small'),
+  searchM1Large('search.m1.large'),
+  searchM2Xlarge('search.m2.xlarge'),
+  searchM2p2xlarge('search.m2.2xlarge'),
+  searchM3Medium('search.m3.medium'),
+  searchM3Large('search.m3.large'),
+  searchM3Xlarge('search.m3.xlarge'),
+  searchM3p2xlarge('search.m3.2xlarge'),
+  searchSmall('search.small'),
+  searchMedium('search.medium'),
+  searchLarge('search.large'),
+  searchXlarge('search.xlarge'),
+  search2xlarge('search.2xlarge'),
+  searchPreviousgenerationSmall('search.previousgeneration.small'),
+  searchPreviousgenerationLarge('search.previousgeneration.large'),
+  searchPreviousgenerationXlarge('search.previousgeneration.xlarge'),
+  searchPreviousgeneration2xlarge('search.previousgeneration.2xlarge');
+
+  const CloudsearchDomainScalingParametersDesiredInstanceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_cloudsearch_domain`.

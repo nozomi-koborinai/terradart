@@ -7,6 +7,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_servicecatalog_product`.
 const Set<String> _awsServicecatalogProductSensitive = <String>{};
 
+/// Servicecatalog Product Accept enum for `accept_language`.
+enum ServicecatalogProductAcceptLanguage implements TerraformEnum {
+  en('en'),
+  jp('jp'),
+  zh('zh');
+
+  const ServicecatalogProductAcceptLanguage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Servicecatalog Product enum for `type`.
+enum ServicecatalogProductType implements TerraformEnum {
+  cloudFormationTemplate('CLOUD_FORMATION_TEMPLATE'),
+  marketplace('MARKETPLACE'),
+  terraformOpenSource('TERRAFORM_OPEN_SOURCE'),
+  terraformCloud('TERRAFORM_CLOUD'),
+  external('EXTERNAL');
+
+  const ServicecatalogProductType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `provisioning_artifact_parameters` block of
 /// `aws_servicecatalog_product` (derived from provider schema).
 @immutable
@@ -30,7 +54,7 @@ final class ServicecatalogProductProvisioningArtifactParameters {
 
   final TfArg<String>? templateUrl;
 
-  final TfArg<String>? type;
+  final TfArg<ServicecatalogProductProvisioningArtifactParametersType>? type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -44,13 +68,30 @@ final class ServicecatalogProductProvisioningArtifactParameters {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum ServicecatalogProductProvisioningArtifactParametersType
+    implements TerraformEnum {
+  cloudFormationTemplate('CLOUD_FORMATION_TEMPLATE'),
+  marketplaceAmi('MARKETPLACE_AMI'),
+  marketplaceCar('MARKETPLACE_CAR'),
+  terraformOpenSource('TERRAFORM_OPEN_SOURCE'),
+  terraformCloud('TERRAFORM_CLOUD'),
+  external('EXTERNAL');
+
+  const ServicecatalogProductProvisioningArtifactParametersType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_servicecatalog_product`.
 final class AwsServicecatalogProduct extends Resource {
   static const String tfType = 'aws_servicecatalog_product';
 
   AwsServicecatalogProduct({
     required super.localName,
-    TfArg<String>? acceptLanguage,
+    TfArg<ServicecatalogProductAcceptLanguage>? acceptLanguage,
     TfArg<String>? description,
     TfArg<String>? distributor,
     required TfArg<String> name,
@@ -60,7 +101,7 @@ final class AwsServicecatalogProduct extends Resource {
     TfArg<String>? supportEmail,
     TfArg<String>? supportUrl,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<ServicecatalogProductType> type,
     required ServicecatalogProductProvisioningArtifactParameters
     provisioningArtifactParameters,
     super.lifecycle,

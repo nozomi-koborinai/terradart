@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_controltower_landing_zone`.
 const Set<String> _awsControltowerLandingZoneSensitive = <String>{};
 
+/// Controltower Landing Zone Remediation enum for `remediation_types`.
+enum ControltowerLandingZoneRemediationTypes implements TerraformEnum {
+  inheritanceDrift('INHERITANCE_DRIFT');
+
+  const ControltowerLandingZoneRemediationTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_controltower_landing_zone`.
 final class AwsControltowerLandingZone extends Resource {
   static const String tfType = 'aws_controltower_landing_zone';
@@ -14,7 +23,7 @@ final class AwsControltowerLandingZone extends Resource {
     required super.localName,
     required TfArg<String> manifestJson,
     TfArg<String>? region,
-    TfArg<List<String>>? remediationTypes,
+    List<TfArg<ControltowerLandingZoneRemediationTypes>>? remediationTypes,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> version,
     super.lifecycle,
@@ -26,7 +35,10 @@ final class AwsControltowerLandingZone extends Resource {
          argMap: {
            'manifest_json': manifestJson,
            if (region != null) 'region': region,
-           if (remediationTypes != null) 'remediation_types': remediationTypes,
+           if (remediationTypes != null)
+             'remediation_types': TfArg.literal([
+               for (final e in remediationTypes) e.toTfJson(),
+             ]),
            if (tags != null) 'tags': tags,
            'version': version,
          },

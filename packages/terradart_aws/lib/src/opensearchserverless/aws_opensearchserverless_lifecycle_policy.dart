@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_opensearchserverless_lifecycle_policy`.
 const Set<String> _awsOpensearchserverlessLifecyclePolicySensitive = <String>{};
 
+/// Opensearchserverless Lifecycle Policy enum for `type`.
+enum OpensearchserverlessLifecyclePolicyType implements TerraformEnum {
+  retention('retention');
+
+  const OpensearchserverlessLifecyclePolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_opensearchserverless_lifecycle_policy`.
 final class AwsOpensearchserverlessLifecyclePolicy extends Resource {
   static const String tfType = 'aws_opensearchserverless_lifecycle_policy';
@@ -16,7 +25,7 @@ final class AwsOpensearchserverlessLifecyclePolicy extends Resource {
     required TfArg<String> name,
     required TfArg<String> policy,
     TfArg<String>? region,
-    required TfArg<String> type,
+    required TfArg<OpensearchserverlessLifecyclePolicyType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

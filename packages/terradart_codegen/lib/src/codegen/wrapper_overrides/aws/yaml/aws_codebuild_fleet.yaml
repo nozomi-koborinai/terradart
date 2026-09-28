@@ -2,3 +2,4 @@ outputDir: codebuild
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true

@@ -5,7 +5,8 @@ library;
 
 export 'src/redshift/aws_redshift_authentication_profile.dart'
     show AwsRedshiftAuthenticationProfile;
-export 'src/redshift/aws_redshift_cluster.dart' show AwsRedshiftCluster;
+export 'src/redshift/aws_redshift_cluster.dart'
+    show AwsRedshiftCluster, RedshiftClusterAquaConfigurationStatus;
 export 'src/redshift/aws_redshift_cluster_iam_roles.dart'
     show AwsRedshiftClusterIamRoles;
 export 'src/redshift/aws_redshift_cluster_snapshot.dart'
@@ -19,7 +20,11 @@ export 'src/redshift/aws_redshift_endpoint_access.dart'
 export 'src/redshift/aws_redshift_endpoint_authorization.dart'
     show AwsRedshiftEndpointAuthorization;
 export 'src/redshift/aws_redshift_event_subscription.dart'
-    show AwsRedshiftEventSubscription;
+    show
+        AwsRedshiftEventSubscription,
+        RedshiftEventSubscriptionEventCategories,
+        RedshiftEventSubscriptionSeverity,
+        RedshiftEventSubscriptionSourceType;
 export 'src/redshift/aws_redshift_hsm_client_certificate.dart'
     show AwsRedshiftHsmClientCertificate;
 export 'src/redshift/aws_redshift_hsm_configuration.dart'
@@ -27,16 +32,24 @@ export 'src/redshift/aws_redshift_hsm_configuration.dart'
 export 'src/redshift/aws_redshift_idc_application.dart'
     show
         AwsRedshiftIdcApplication,
+        RedshiftIdcApplicationApplicationType,
         RedshiftIdcApplicationAuthorizedTokenIssuer,
         RedshiftIdcApplicationServiceIntegration,
         RedshiftIdcApplicationServiceIntegrationLakeFormation,
         RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQuery,
+        RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQueryAuthorization,
         RedshiftIdcApplicationServiceIntegrationRedshift,
         RedshiftIdcApplicationServiceIntegrationRedshiftConnect,
+        RedshiftIdcApplicationServiceIntegrationRedshiftConnectAuthorization,
         RedshiftIdcApplicationServiceIntegrationS3AccessGrants,
-        RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccess;
+        RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccess,
+        RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccessAuthorization;
 export 'src/redshift/aws_redshift_integration.dart' show AwsRedshiftIntegration;
-export 'src/redshift/aws_redshift_logging.dart' show AwsRedshiftLogging;
+export 'src/redshift/aws_redshift_logging.dart'
+    show
+        AwsRedshiftLogging,
+        RedshiftLoggingLogDestinationType,
+        RedshiftLoggingLogExports;
 export 'src/redshift/aws_redshift_namespace_registration.dart'
     show AwsRedshiftNamespaceRegistration;
 export 'src/redshift/aws_redshift_parameter_group.dart'
@@ -61,4 +74,10 @@ export 'src/redshift/aws_redshift_snapshot_schedule_association.dart'
     show AwsRedshiftSnapshotScheduleAssociation;
 export 'src/redshift/aws_redshift_subnet_group.dart'
     show AwsRedshiftSubnetGroup;
-export 'src/redshift/aws_redshift_usage_limit.dart' show AwsRedshiftUsageLimit;
+export 'src/redshift/aws_redshift_usage_limit.dart'
+    show
+        AwsRedshiftUsageLimit,
+        RedshiftUsageLimitBreachAction,
+        RedshiftUsageLimitFeatureType,
+        RedshiftUsageLimitLimitType,
+        RedshiftUsageLimitPeriod;

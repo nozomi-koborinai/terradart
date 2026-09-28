@@ -20,9 +20,13 @@ final class EcsCapacityProviderAutoScalingGroupProvider {
 
   final TfArg<String> autoScalingGroupArn;
 
-  final TfArg<String>? managedDraining;
+  final TfArg<EcsCapacityProviderAutoScalingGroupProviderManagedDraining>?
+  managedDraining;
 
-  final TfArg<String>? managedTerminationProtection;
+  final TfArg<
+    EcsCapacityProviderAutoScalingGroupProviderManagedTerminationProtection
+  >?
+  managedTerminationProtection;
 
   final EcsCapacityProviderAutoScalingGroupProviderManagedScaling?
   managedScaling;
@@ -36,6 +40,32 @@ final class EcsCapacityProviderAutoScalingGroupProvider {
           .toTfJson(),
     if (managedScaling != null) 'managed_scaling': managedScaling!.encode(),
   };
+}
+
+/// `managed_draining` — derived from the provider schema description.
+enum EcsCapacityProviderAutoScalingGroupProviderManagedDraining
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const EcsCapacityProviderAutoScalingGroupProviderManagedDraining(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `managed_termination_protection` — derived from the provider schema description.
+enum EcsCapacityProviderAutoScalingGroupProviderManagedTerminationProtection
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const EcsCapacityProviderAutoScalingGroupProviderManagedTerminationProtection(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `auto_scaling_group_provider.managed_scaling` block of
@@ -56,7 +86,8 @@ final class EcsCapacityProviderAutoScalingGroupProviderManagedScaling {
 
   final TfArg<num>? minimumScalingStepSize;
 
-  final TfArg<String>? status;
+  final TfArg<EcsCapacityProviderAutoScalingGroupProviderManagedScalingStatus>?
+  status;
 
   final TfArg<num>? targetCapacity;
 
@@ -70,6 +101,19 @@ final class EcsCapacityProviderAutoScalingGroupProviderManagedScaling {
     if (status != null) 'status': status!.toTfJson(),
     if (targetCapacity != null) 'target_capacity': targetCapacity!.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum EcsCapacityProviderAutoScalingGroupProviderManagedScalingStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const EcsCapacityProviderAutoScalingGroupProviderManagedScalingStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `managed_instances_provider` block of
@@ -86,7 +130,8 @@ final class EcsCapacityProviderManagedInstancesProvider {
 
   final TfArg<String> infrastructureRoleArn;
 
-  final TfArg<String>? propagateTags;
+  final TfArg<EcsCapacityProviderManagedInstancesProviderPropagateTags>?
+  propagateTags;
 
   final EcsCapacityProviderManagedInstancesProviderAutoRepairConfiguration?
   autoRepairConfiguration;
@@ -108,6 +153,19 @@ final class EcsCapacityProviderManagedInstancesProvider {
   };
 }
 
+/// `propagate_tags` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderPropagateTags
+    implements TerraformEnum {
+  capacityProvider('CAPACITY_PROVIDER'),
+  none('NONE');
+
+  const EcsCapacityProviderManagedInstancesProviderPropagateTags(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `managed_instances_provider.auto_repair_configuration` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
@@ -116,11 +174,27 @@ final class EcsCapacityProviderManagedInstancesProviderAutoRepairConfiguration {
     this.actionsStatus,
   });
 
-  final TfArg<String>? actionsStatus;
+  final TfArg<
+    EcsCapacityProviderManagedInstancesProviderAutoRepairConfigurationActionsStatus
+  >?
+  actionsStatus;
 
   Map<String, Object?> encode() => {
     if (actionsStatus != null) 'actions_status': actionsStatus!.toTfJson(),
   };
+}
+
+/// `actions_status` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderAutoRepairConfigurationActionsStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const EcsCapacityProviderManagedInstancesProviderAutoRepairConfigurationActionsStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `managed_instances_provider.infrastructure_optimization` block of
@@ -153,11 +227,17 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplate {
     this.storageConfiguration,
   });
 
-  final TfArg<String>? capacityOptionType;
+  final TfArg<
+    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityOptionType
+  >?
+  capacityOptionType;
 
   final TfArg<String> ec2InstanceProfileArn;
 
-  final TfArg<String>? monitoring;
+  final TfArg<
+    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateMonitoring
+  >?
+  monitoring;
 
   final EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityReservations?
   capacityReservations;
@@ -191,6 +271,33 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplate {
   };
 }
 
+/// `capacity_option_type` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityOptionType
+    implements TerraformEnum {
+  onDemand('ON_DEMAND'),
+  spot('SPOT'),
+  reserved('RESERVED');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityOptionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `monitoring` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateMonitoring
+    implements TerraformEnum {
+  basic('BASIC'),
+  detailed('DETAILED');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateMonitoring(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `managed_instances_provider.instance_launch_template.capacity_reservations` block of
 /// `aws_ecs_capacity_provider` (derived from provider schema).
 @immutable
@@ -202,7 +309,10 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCap
 
   final TfArg<String>? reservationGroupArn;
 
-  final TfArg<String>? reservationPreference;
+  final TfArg<
+    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityReservationsReservationPreference
+  >?
+  reservationPreference;
 
   Map<String, Object?> encode() => {
     if (reservationGroupArn != null)
@@ -210,6 +320,20 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCap
     if (reservationPreference != null)
       'reservation_preference': reservationPreference!.toTfJson(),
   };
+}
+
+/// `reservation_preference` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityReservationsReservationPreference
+    implements TerraformEnum {
+  reservationsOnly('RESERVATIONS_ONLY'),
+  reservationsFirst('RESERVATIONS_FIRST'),
+  reservationsExcluded('RESERVATIONS_EXCLUDED');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateCapacityReservationsReservationPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements` block of
@@ -243,27 +367,66 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
     required this.vcpuCount,
   });
 
-  final TfArg<List<Object?>>? acceleratorManufacturers;
+  final List<
+    TfArg<
+      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorManufacturers
+    >
+  >?
+  acceleratorManufacturers;
 
-  final TfArg<List<Object?>>? acceleratorNames;
+  final List<
+    TfArg<
+      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorNames
+    >
+  >?
+  acceleratorNames;
 
-  final TfArg<List<Object?>>? acceleratorTypes;
+  final List<
+    TfArg<
+      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorTypes
+    >
+  >?
+  acceleratorTypes;
 
   final TfArg<List<Object?>>? allowedInstanceTypes;
 
-  final TfArg<String>? bareMetal;
+  final TfArg<
+    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBareMetal
+  >?
+  bareMetal;
 
-  final TfArg<String>? burstablePerformance;
+  final TfArg<
+    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBurstablePerformance
+  >?
+  burstablePerformance;
 
-  final TfArg<List<Object?>>? cpuManufacturers;
+  final List<
+    TfArg<
+      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsCpuManufacturers
+    >
+  >?
+  cpuManufacturers;
 
   final TfArg<List<Object?>>? excludedInstanceTypes;
 
-  final TfArg<List<Object?>>? instanceGenerations;
+  final List<
+    TfArg<
+      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsInstanceGenerations
+    >
+  >?
+  instanceGenerations;
 
-  final TfArg<String>? localStorage;
+  final TfArg<
+    EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorage
+  >?
+  localStorage;
 
-  final TfArg<List<Object?>>? localStorageTypes;
+  final List<
+    TfArg<
+      EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorageTypes
+    >
+  >?
+  localStorageTypes;
 
   final TfArg<num>? maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
 
@@ -302,25 +465,29 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
 
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
-      'accelerator_manufacturers': acceleratorManufacturers!.toTfJson(),
+      'accelerator_manufacturers': [
+        for (final e in acceleratorManufacturers!) e.toTfJson(),
+      ],
     if (acceleratorNames != null)
-      'accelerator_names': acceleratorNames!.toTfJson(),
+      'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
     if (acceleratorTypes != null)
-      'accelerator_types': acceleratorTypes!.toTfJson(),
+      'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
     if (allowedInstanceTypes != null)
       'allowed_instance_types': allowedInstanceTypes!.toTfJson(),
     if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
     if (burstablePerformance != null)
       'burstable_performance': burstablePerformance!.toTfJson(),
     if (cpuManufacturers != null)
-      'cpu_manufacturers': cpuManufacturers!.toTfJson(),
+      'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
     if (excludedInstanceTypes != null)
       'excluded_instance_types': excludedInstanceTypes!.toTfJson(),
     if (instanceGenerations != null)
-      'instance_generations': instanceGenerations!.toTfJson(),
+      'instance_generations': [
+        for (final e in instanceGenerations!) e.toTfJson(),
+      ],
     if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
     if (localStorageTypes != null)
-      'local_storage_types': localStorageTypes!.toTfJson(),
+      'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
     if (maxSpotPriceAsPercentageOfOptimalOnDemandPrice != null)
       'max_spot_price_as_percentage_of_optimal_on_demand_price':
           maxSpotPriceAsPercentageOfOptimalOnDemandPrice!.toTfJson(),
@@ -349,6 +516,141 @@ final class EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateIns
       'total_local_storage_gb': totalLocalStorageGb!.encode(),
     'vcpu_count': vcpuCount.encode(),
   };
+}
+
+/// `accelerator_manufacturers` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorManufacturers
+    implements TerraformEnum {
+  amazonWebServices('amazon-web-services'),
+  amd('amd'),
+  nvidia('nvidia'),
+  xilinx('xilinx'),
+  habana('habana');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorManufacturers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `accelerator_names` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorNames
+    implements TerraformEnum {
+  a100('a100'),
+  inferentia('inferentia'),
+  k520('k520'),
+  k80('k80'),
+  m60('m60'),
+  radeonProV520('radeon-pro-v520'),
+  t4('t4'),
+  vu9p('vu9p'),
+  v100('v100'),
+  a10g('a10g'),
+  h100('h100'),
+  t4g('t4g');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorNames(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `accelerator_types` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorTypes
+    implements TerraformEnum {
+  gpu('gpu'),
+  fpga('fpga'),
+  inference('inference');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsAcceleratorTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `bare_metal` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBareMetal
+    implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBareMetal(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `burstable_performance` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBurstablePerformance
+    implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsBurstablePerformance(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `cpu_manufacturers` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsCpuManufacturers
+    implements TerraformEnum {
+  intel('intel'),
+  amd('amd'),
+  amazonWebServices('amazon-web-services');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsCpuManufacturers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `instance_generations` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsInstanceGenerations
+    implements TerraformEnum {
+  current('current'),
+  previous('previous');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsInstanceGenerations(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `local_storage` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorage
+    implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `local_storage_types` — derived from the provider schema description.
+enum EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorageTypes
+    implements TerraformEnum {
+  hdd('hdd'),
+  ssd('ssd');
+
+  const EcsCapacityProviderManagedInstancesProviderInstanceLaunchTemplateInstanceRequirementsLocalStorageTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `managed_instances_provider.instance_launch_template.instance_requirements.accelerator_count` block of

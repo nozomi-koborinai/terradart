@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpc_route_server`.
 const Set<String> _awsVpcRouteServerSensitive = <String>{};
 
+/// Vpc Route Server Persist enum for `persist_routes`.
+enum VpcRouteServerPersistRoutes implements TerraformEnum {
+  enable('enable'),
+  disable('disable'),
+  reset('reset');
+
+  const VpcRouteServerPersistRoutes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_vpc_route_server`.
 final class AwsVpcRouteServer extends Resource {
   static const String tfType = 'aws_vpc_route_server';
@@ -13,7 +24,7 @@ final class AwsVpcRouteServer extends Resource {
   AwsVpcRouteServer({
     required super.localName,
     required TfArg<num> amazonSideAsn,
-    TfArg<String>? persistRoutes,
+    TfArg<VpcRouteServerPersistRoutes>? persistRoutes,
     TfArg<num>? persistRoutesDuration,
     TfArg<String>? region,
     TfArg<bool>? snsNotificationsEnabled,

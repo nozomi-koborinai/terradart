@@ -7,13 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsNotificationsNotificationConfigurationSensitive =
     <String>{};
 
+/// Notifications Notification Configuration Aggregation enum for `aggregation_duration`.
+enum NotificationsNotificationConfigurationAggregationDuration
+    implements TerraformEnum {
+  long('LONG'),
+  short('SHORT'),
+  none('NONE');
+
+  const NotificationsNotificationConfigurationAggregationDuration(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_notifications_notification_configuration`.
 final class AwsNotificationsNotificationConfiguration extends Resource {
   static const String tfType = 'aws_notifications_notification_configuration';
 
   AwsNotificationsNotificationConfiguration({
     required super.localName,
-    TfArg<String>? aggregationDuration,
+    TfArg<NotificationsNotificationConfigurationAggregationDuration>?
+    aggregationDuration,
     required TfArg<String> description,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

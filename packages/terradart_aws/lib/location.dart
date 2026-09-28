@@ -8,9 +8,13 @@ export 'src/location/aws_location_geofence_collection.dart'
 export 'src/location/aws_location_map.dart'
     show AwsLocationMap, LocationMapConfiguration;
 export 'src/location/aws_location_place_index.dart'
-    show AwsLocationPlaceIndex, LocationPlaceIndexDataSourceConfiguration;
+    show
+        AwsLocationPlaceIndex,
+        LocationPlaceIndexDataSourceConfiguration,
+        LocationPlaceIndexDataSourceConfigurationIntendedUse;
 export 'src/location/aws_location_route_calculator.dart'
     show AwsLocationRouteCalculator;
-export 'src/location/aws_location_tracker.dart' show AwsLocationTracker;
+export 'src/location/aws_location_tracker.dart'
+    show AwsLocationTracker, LocationTrackerPositionFiltering;
 export 'src/location/aws_location_tracker_association.dart'
     show AwsLocationTrackerAssociation;

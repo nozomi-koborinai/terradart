@@ -52,7 +52,10 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookies
     this.cookies,
   });
 
-  final TfArg<String> cookieBehavior;
+  final TfArg<
+    CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookieBehavior
+  >
+  cookieBehavior;
 
   final CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookies?
   cookies;
@@ -61,6 +64,21 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookies
     'cookie_behavior': cookieBehavior.toTfJson(),
     if (cookies != null) 'cookies': cookies!.encode(),
   };
+}
+
+/// `cookie_behavior` — derived from the provider schema description.
+enum CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookieBehavior
+    implements TerraformEnum {
+  none('none'),
+  whitelist('whitelist'),
+  allexcept('allExcept'),
+  all('all');
+
+  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookiesConfigCookieBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.cookies_config.cookies` block of
@@ -87,7 +105,10 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeaders
     this.headers,
   });
 
-  final TfArg<String>? headerBehavior;
+  final TfArg<
+    CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaderBehavior
+  >?
+  headerBehavior;
 
   final CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaders?
   headers;
@@ -96,6 +117,19 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeaders
     if (headerBehavior != null) 'header_behavior': headerBehavior!.toTfJson(),
     if (headers != null) 'headers': headers!.encode(),
   };
+}
+
+/// `header_behavior` — derived from the provider schema description.
+enum CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaderBehavior
+    implements TerraformEnum {
+  none('none'),
+  whitelist('whitelist');
+
+  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeadersConfigHeaderBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.headers_config.headers` block of
@@ -122,7 +156,10 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQuerySt
     this.queryStrings,
   });
 
-  final TfArg<String> queryStringBehavior;
+  final TfArg<
+    CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStringBehavior
+  >
+  queryStringBehavior;
 
   final CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStrings?
   queryStrings;
@@ -131,6 +168,21 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQuerySt
     'query_string_behavior': queryStringBehavior.toTfJson(),
     if (queryStrings != null) 'query_strings': queryStrings!.encode(),
   };
+}
+
+/// `query_string_behavior` — derived from the provider schema description.
+enum CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStringBehavior
+    implements TerraformEnum {
+  none('none'),
+  whitelist('whitelist'),
+  allexcept('allExcept'),
+  all('all');
+
+  const CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQueryStringsConfigQueryStringBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.query_strings_config.query_strings` block of

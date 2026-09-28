@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_scheduler_schedule`.
 const Set<String> _awsSchedulerScheduleSensitive = <String>{};
 
+/// Scheduler Schedule Action After enum for `action_after_completion`.
+enum SchedulerScheduleActionAfterCompletion implements TerraformEnum {
+  none('NONE'),
+  delete('DELETE');
+
+  const SchedulerScheduleActionAfterCompletion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Scheduler Schedule enum for `state`.
+enum SchedulerScheduleState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SchedulerScheduleState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `flexible_time_window` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
@@ -18,13 +38,23 @@ final class SchedulerScheduleFlexibleTimeWindow {
 
   final TfArg<num>? maximumWindowInMinutes;
 
-  final TfArg<String> mode;
+  final TfArg<SchedulerScheduleFlexibleTimeWindowMode> mode;
 
   Map<String, Object?> encode() => {
     if (maximumWindowInMinutes != null)
       'maximum_window_in_minutes': maximumWindowInMinutes!.toTfJson(),
     'mode': mode.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum SchedulerScheduleFlexibleTimeWindowMode implements TerraformEnum {
+  off('OFF'),
+  flexible('FLEXIBLE');
+
+  const SchedulerScheduleFlexibleTimeWindowMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target` block of
@@ -121,11 +151,11 @@ final class SchedulerScheduleTargetEcsParameters {
 
   final TfArg<String>? group;
 
-  final TfArg<String>? launchType;
+  final TfArg<SchedulerScheduleTargetEcsParametersLaunchType>? launchType;
 
   final TfArg<String>? platformVersion;
 
-  final TfArg<String>? propagateTags;
+  final TfArg<SchedulerScheduleTargetEcsParametersPropagateTags>? propagateTags;
 
   final TfArg<String>? referenceId;
 
@@ -174,6 +204,27 @@ final class SchedulerScheduleTargetEcsParameters {
     if (placementStrategy != null)
       'placement_strategy': [for (final e in placementStrategy!) e.encode()],
   };
+}
+
+/// `launch_type` — derived from the provider schema description.
+enum SchedulerScheduleTargetEcsParametersLaunchType implements TerraformEnum {
+  ec2('EC2'),
+  fargate('FARGATE'),
+  external('EXTERNAL');
+
+  const SchedulerScheduleTargetEcsParametersLaunchType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `propagate_tags` — derived from the provider schema description.
+enum SchedulerScheduleTargetEcsParametersPropagateTags
+    implements TerraformEnum {
+  taskDefinition('TASK_DEFINITION');
+
+  const SchedulerScheduleTargetEcsParametersPropagateTags(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target.ecs_parameters.capacity_provider_strategy` block of
@@ -233,12 +284,26 @@ final class SchedulerScheduleTargetEcsParametersPlacementConstraints {
 
   final TfArg<String>? expression;
 
-  final TfArg<String> type;
+  final TfArg<SchedulerScheduleTargetEcsParametersPlacementConstraintsType>
+  type;
 
   Map<String, Object?> encode() => {
     if (expression != null) 'expression': expression!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SchedulerScheduleTargetEcsParametersPlacementConstraintsType
+    implements TerraformEnum {
+  distinctinstance('distinctInstance'),
+  memberof('memberOf');
+
+  const SchedulerScheduleTargetEcsParametersPlacementConstraintsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target.ecs_parameters.placement_strategy` block of
@@ -252,12 +317,26 @@ final class SchedulerScheduleTargetEcsParametersPlacementStrategy {
 
   final TfArg<String>? field;
 
-  final TfArg<String> type;
+  final TfArg<SchedulerScheduleTargetEcsParametersPlacementStrategyType> type;
 
   Map<String, Object?> encode() => {
     if (field != null) 'field': field!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SchedulerScheduleTargetEcsParametersPlacementStrategyType
+    implements TerraformEnum {
+  random('random'),
+  spread('spread'),
+  binpack('binpack');
+
+  const SchedulerScheduleTargetEcsParametersPlacementStrategyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target.eventbridge_parameters` block of
@@ -368,7 +447,7 @@ final class AwsSchedulerSchedule extends Resource {
 
   AwsSchedulerSchedule({
     required super.localName,
-    TfArg<String>? actionAfterCompletion,
+    TfArg<SchedulerScheduleActionAfterCompletion>? actionAfterCompletion,
     TfArg<String>? description,
     TfArg<String>? endDate,
     TfArg<String>? groupName,
@@ -379,7 +458,7 @@ final class AwsSchedulerSchedule extends Resource {
     required TfArg<String> scheduleExpression,
     TfArg<String>? scheduleExpressionTimezone,
     TfArg<String>? startDate,
-    TfArg<String>? state,
+    TfArg<SchedulerScheduleState>? state,
     required SchedulerScheduleFlexibleTimeWindow flexibleTimeWindow,
     required SchedulerScheduleTarget target,
     super.lifecycle,

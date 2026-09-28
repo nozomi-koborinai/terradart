@@ -7,6 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_imagebuilder_container_recipe`.
 const Set<String> _awsImagebuilderContainerRecipeSensitive = <String>{};
 
+/// Imagebuilder Container Recipe Container enum for `container_type`.
+enum ImagebuilderContainerRecipeContainerType implements TerraformEnum {
+  docker('DOCKER');
+
+  const ImagebuilderContainerRecipeContainerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Imagebuilder Container Recipe Platform enum for `platform_override`.
+enum ImagebuilderContainerRecipePlatformOverride implements TerraformEnum {
+  linux('Linux'),
+  windows('Windows');
+
+  const ImagebuilderContainerRecipePlatformOverride(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `component` block of
 /// `aws_imagebuilder_container_recipe` (derived from provider schema).
 @immutable
@@ -126,7 +145,10 @@ final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEb
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<String>? volumeType;
+  final TfArg<
+    ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbsVolumeType
+  >?
+  volumeType;
 
   Map<String, Object?> encode() => {
     if (deleteOnTermination != null)
@@ -141,6 +163,24 @@ final class ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEb
   };
 }
 
+/// `volume_type` — derived from the provider schema description.
+enum ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbsVolumeType
+    implements TerraformEnum {
+  standard('standard'),
+  io1('io1'),
+  io2('io2'),
+  gp2('gp2'),
+  gp3('gp3'),
+  sc1('sc1'),
+  st1('st1');
+
+  const ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbsVolumeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_repository` block of
 /// `aws_imagebuilder_container_recipe` (derived from provider schema).
 @immutable
@@ -152,12 +192,22 @@ final class ImagebuilderContainerRecipeTargetRepository {
 
   final TfArg<String> repositoryName;
 
-  final TfArg<String> service;
+  final TfArg<ImagebuilderContainerRecipeTargetRepositoryService> service;
 
   Map<String, Object?> encode() => {
     'repository_name': repositoryName.toTfJson(),
     'service': service.toTfJson(),
   };
+}
+
+/// `service` — derived from the provider schema description.
+enum ImagebuilderContainerRecipeTargetRepositoryService
+    implements TerraformEnum {
+  ecr('ECR');
+
+  const ImagebuilderContainerRecipeTargetRepositoryService(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_imagebuilder_container_recipe`.
@@ -166,14 +216,14 @@ final class AwsImagebuilderContainerRecipe extends Resource {
 
   AwsImagebuilderContainerRecipe({
     required super.localName,
-    required TfArg<String> containerType,
+    required TfArg<ImagebuilderContainerRecipeContainerType> containerType,
     TfArg<String>? description,
     TfArg<String>? dockerfileTemplateData,
     TfArg<String>? dockerfileTemplateUri,
     TfArg<String>? kmsKeyId,
     required TfArg<String> name,
     required TfArg<String> parentImage,
-    TfArg<String>? platformOverride,
+    TfArg<ImagebuilderContainerRecipePlatformOverride>? platformOverride,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> version,

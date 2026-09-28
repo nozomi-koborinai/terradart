@@ -7,18 +7,24 @@ export 'src/appconfig/aws_appconfig_application.dart'
     show AwsAppconfigApplication;
 export 'src/appconfig/aws_appconfig_configuration_profile.dart'
     show
+        AppconfigConfigurationProfileType,
         AppconfigConfigurationProfileValidator,
+        AppconfigConfigurationProfileValidatorType,
         AwsAppconfigConfigurationProfile;
 export 'src/appconfig/aws_appconfig_deployment.dart'
     show AwsAppconfigDeployment;
 export 'src/appconfig/aws_appconfig_deployment_strategy.dart'
-    show AwsAppconfigDeploymentStrategy;
+    show
+        AppconfigDeploymentStrategyGrowthType,
+        AppconfigDeploymentStrategyReplicateTo,
+        AwsAppconfigDeploymentStrategy;
 export 'src/appconfig/aws_appconfig_environment.dart'
     show AppconfigEnvironmentMonitor, AwsAppconfigEnvironment;
 export 'src/appconfig/aws_appconfig_extension.dart'
     show
         AppconfigExtensionActionPoint,
         AppconfigExtensionActionPointAction,
+        AppconfigExtensionActionPointPoint,
         AppconfigExtensionParameter,
         AwsAppconfigExtension;
 export 'src/appconfig/aws_appconfig_extension_association.dart'

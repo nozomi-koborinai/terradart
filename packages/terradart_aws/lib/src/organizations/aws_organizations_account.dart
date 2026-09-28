@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_organizations_account`.
 const Set<String> _awsOrganizationsAccountSensitive = <String>{};
 
+/// Organizations Account Iam User Access To enum for `iam_user_access_to_billing`.
+enum OrganizationsAccountIamUserAccessToBilling implements TerraformEnum {
+  allow('ALLOW'),
+  deny('DENY');
+
+  const OrganizationsAccountIamUserAccessToBilling(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_organizations_account`.
 final class AwsOrganizationsAccount extends Resource {
   static const String tfType = 'aws_organizations_account';
@@ -15,7 +25,7 @@ final class AwsOrganizationsAccount extends Resource {
     TfArg<bool>? closeOnDeletion,
     TfArg<bool>? createGovcloud,
     required TfArg<String> email,
-    TfArg<String>? iamUserAccessToBilling,
+    TfArg<OrganizationsAccountIamUserAccessToBilling>? iamUserAccessToBilling,
     required TfArg<String> name,
     TfArg<String>? parentId,
     TfArg<String>? roleName,

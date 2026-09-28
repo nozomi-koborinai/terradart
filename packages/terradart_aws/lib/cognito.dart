@@ -11,23 +11,37 @@ export 'src/cognito/aws_cognito_identity_pool_roles_attachment.dart'
     show
         AwsCognitoIdentityPoolRolesAttachment,
         CognitoIdentityPoolRolesAttachmentRoleMapping,
-        CognitoIdentityPoolRolesAttachmentRoleMappingMappingRule;
+        CognitoIdentityPoolRolesAttachmentRoleMappingAmbiguousRoleResolution,
+        CognitoIdentityPoolRolesAttachmentRoleMappingMappingRule,
+        CognitoIdentityPoolRolesAttachmentRoleMappingMappingRuleMatchType,
+        CognitoIdentityPoolRolesAttachmentRoleMappingType;
 export 'src/cognito/aws_cognito_identity_provider.dart'
-    show AwsCognitoIdentityProvider;
+    show AwsCognitoIdentityProvider, CognitoIdentityProviderProviderType;
 export 'src/cognito/aws_cognito_log_delivery_configuration.dart'
     show
         AwsCognitoLogDeliveryConfiguration,
         CognitoLogDeliveryConfigurationLogConfigurations,
         CognitoLogDeliveryConfigurationLogConfigurationsCloudWatchLogsConfiguration,
+        CognitoLogDeliveryConfigurationLogConfigurationsEventSource,
         CognitoLogDeliveryConfigurationLogConfigurationsFirehoseConfiguration,
+        CognitoLogDeliveryConfigurationLogConfigurationsLogLevel,
         CognitoLogDeliveryConfigurationLogConfigurationsS3Configuration;
 export 'src/cognito/aws_cognito_managed_login_branding.dart'
-    show AwsCognitoManagedLoginBranding, CognitoManagedLoginBrandingAsset;
+    show
+        AwsCognitoManagedLoginBranding,
+        CognitoManagedLoginBrandingAsset,
+        CognitoManagedLoginBrandingAssetCategory,
+        CognitoManagedLoginBrandingAssetColorMode,
+        CognitoManagedLoginBrandingAssetExtension;
 export 'src/cognito/aws_cognito_managed_user_pool_client.dart'
     show
         AwsCognitoManagedUserPoolClient,
+        CognitoManagedUserPoolClientAllowedOauthFlows,
         CognitoManagedUserPoolClientAnalyticsConfiguration,
+        CognitoManagedUserPoolClientExplicitAuthFlows,
+        CognitoManagedUserPoolClientPreventUserExistenceErrors,
         CognitoManagedUserPoolClientRefreshTokenRotation,
+        CognitoManagedUserPoolClientRefreshTokenRotationFeature,
         CognitoManagedUserPoolClientTokenValidityUnits;
 export 'src/cognito/aws_cognito_resource_server.dart'
     show AwsCognitoResourceServer, CognitoResourceServerScope;
@@ -37,16 +51,25 @@ export 'src/cognito/aws_cognito_risk_configuration.dart'
         CognitoRiskConfigurationAccountTakeoverRiskConfiguration,
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationActions,
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighAction,
+        CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsHighActionEventAction,
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowAction,
+        CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsLowActionEventAction,
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumAction,
+        CognitoRiskConfigurationAccountTakeoverRiskConfigurationActionsMediumActionEventAction,
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfiguration,
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationBlockEmail,
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationMfaEmail,
         CognitoRiskConfigurationAccountTakeoverRiskConfigurationNotifyConfigurationNoActionEmail,
         CognitoRiskConfigurationCompromisedCredentialsRiskConfiguration,
         CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActions,
+        CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationActionsEventAction,
+        CognitoRiskConfigurationCompromisedCredentialsRiskConfigurationEventFilter,
         CognitoRiskConfigurationRiskExceptionConfiguration;
-export 'src/cognito/aws_cognito_user.dart' show AwsCognitoUser;
+export 'src/cognito/aws_cognito_user.dart'
+    show
+        AwsCognitoUser,
+        CognitoUserDesiredDeliveryMediums,
+        CognitoUserMessageAction;
 export 'src/cognito/aws_cognito_user_group.dart' show AwsCognitoUserGroup;
 export 'src/cognito/aws_cognito_user_in_group.dart' show AwsCognitoUserInGroup;
 export 'src/cognito/aws_cognito_user_pool.dart'
@@ -54,33 +77,55 @@ export 'src/cognito/aws_cognito_user_pool.dart'
         AwsCognitoUserPool,
         CognitoUserPoolAccountRecoverySetting,
         CognitoUserPoolAccountRecoverySettingRecoveryMechanism,
+        CognitoUserPoolAccountRecoverySettingRecoveryMechanismName,
         CognitoUserPoolAdminCreateUserConfig,
         CognitoUserPoolAdminCreateUserConfigInviteMessageTemplate,
+        CognitoUserPoolAliasAttributes,
+        CognitoUserPoolAutoVerifiedAttributes,
+        CognitoUserPoolDeletionProtection,
         CognitoUserPoolDeviceConfiguration,
         CognitoUserPoolEmailConfiguration,
+        CognitoUserPoolEmailConfigurationEmailSendingAccount,
         CognitoUserPoolEmailMfaConfiguration,
         CognitoUserPoolLambdaConfig,
         CognitoUserPoolLambdaConfigCustomEmailSender,
+        CognitoUserPoolLambdaConfigCustomEmailSenderLambdaVersion,
         CognitoUserPoolLambdaConfigCustomSmsSender,
+        CognitoUserPoolLambdaConfigCustomSmsSenderLambdaVersion,
         CognitoUserPoolLambdaConfigPreTokenGenerationConfig,
+        CognitoUserPoolLambdaConfigPreTokenGenerationConfigLambdaVersion,
+        CognitoUserPoolMfaConfiguration,
         CognitoUserPoolPasswordPolicy,
         CognitoUserPoolSchema,
+        CognitoUserPoolSchemaAttributeDataType,
         CognitoUserPoolSchemaNumberAttributeConstraints,
         CognitoUserPoolSchemaStringAttributeConstraints,
         CognitoUserPoolSignInPolicy,
+        CognitoUserPoolSignInPolicyAllowedFirstAuthFactors,
         CognitoUserPoolSmsConfiguration,
         CognitoUserPoolSoftwareTokenMfaConfiguration,
         CognitoUserPoolUserAttributeUpdateSettings,
+        CognitoUserPoolUserAttributeUpdateSettingsAttributesRequireVerificationBeforeUpdate,
         CognitoUserPoolUserPoolAddOns,
         CognitoUserPoolUserPoolAddOnsAdvancedSecurityAdditionalFlows,
+        CognitoUserPoolUserPoolAddOnsAdvancedSecurityAdditionalFlowsCustomAuthMode,
+        CognitoUserPoolUserPoolAddOnsAdvancedSecurityMode,
+        CognitoUserPoolUserPoolTier,
+        CognitoUserPoolUsernameAttributes,
         CognitoUserPoolUsernameConfiguration,
         CognitoUserPoolVerificationMessageTemplate,
-        CognitoUserPoolWebAuthnConfiguration;
+        CognitoUserPoolVerificationMessageTemplateDefaultEmailOption,
+        CognitoUserPoolWebAuthnConfiguration,
+        CognitoUserPoolWebAuthnConfigurationUserVerification;
 export 'src/cognito/aws_cognito_user_pool_client.dart'
     show
         AwsCognitoUserPoolClient,
+        CognitoUserPoolClientAllowedOauthFlows,
         CognitoUserPoolClientAnalyticsConfiguration,
+        CognitoUserPoolClientExplicitAuthFlows,
+        CognitoUserPoolClientPreventUserExistenceErrors,
         CognitoUserPoolClientRefreshTokenRotation,
+        CognitoUserPoolClientRefreshTokenRotationFeature,
         CognitoUserPoolClientTokenValidityUnits;
 export 'src/cognito/aws_cognito_user_pool_domain.dart'
     show AwsCognitoUserPoolDomain;

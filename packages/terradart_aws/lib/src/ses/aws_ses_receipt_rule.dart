@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ses_receipt_rule`.
 const Set<String> _awsSesReceiptRuleSensitive = <String>{};
 
+/// Ses Receipt Rule Tls enum for `tls_policy`.
+enum SesReceiptRuleTlsPolicy implements TerraformEnum {
+  require('Require'),
+  optional('Optional');
+
+  const SesReceiptRuleTlsPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `add_header_action` block of
 /// `aws_ses_receipt_rule` (derived from provider schema).
 @immutable
@@ -78,7 +88,7 @@ final class SesReceiptRuleLambdaAction {
 
   final TfArg<String> functionArn;
 
-  final TfArg<String>? invocationType;
+  final TfArg<SesReceiptRuleLambdaActionInvocationType>? invocationType;
 
   final TfArg<num> position;
 
@@ -90,6 +100,16 @@ final class SesReceiptRuleLambdaAction {
     'position': position.toTfJson(),
     if (topicArn != null) 'topic_arn': topicArn!.toTfJson(),
   };
+}
+
+/// `invocation_type` — derived from the provider schema description.
+enum SesReceiptRuleLambdaActionInvocationType implements TerraformEnum {
+  event('Event'),
+  requestresponse('RequestResponse');
+
+  const SesReceiptRuleLambdaActionInvocationType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `s3_action` block of
@@ -138,7 +158,7 @@ final class SesReceiptRuleSnsAction {
     required this.topicArn,
   });
 
-  final TfArg<String>? encoding;
+  final TfArg<SesReceiptRuleSnsActionEncoding>? encoding;
 
   final TfArg<num> position;
 
@@ -149,6 +169,16 @@ final class SesReceiptRuleSnsAction {
     'position': position.toTfJson(),
     'topic_arn': topicArn.toTfJson(),
   };
+}
+
+/// `encoding` — derived from the provider schema description.
+enum SesReceiptRuleSnsActionEncoding implements TerraformEnum {
+  utf8('UTF-8'),
+  base64('Base64');
+
+  const SesReceiptRuleSnsActionEncoding(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `stop_action` block of
@@ -163,7 +193,7 @@ final class SesReceiptRuleStopAction {
 
   final TfArg<num> position;
 
-  final TfArg<String> scope;
+  final TfArg<SesReceiptRuleStopActionScope> scope;
 
   final TfArg<String>? topicArn;
 
@@ -172,6 +202,15 @@ final class SesReceiptRuleStopAction {
     'scope': scope.toTfJson(),
     if (topicArn != null) 'topic_arn': topicArn!.toTfJson(),
   };
+}
+
+/// `scope` — derived from the provider schema description.
+enum SesReceiptRuleStopActionScope implements TerraformEnum {
+  ruleset('RuleSet');
+
+  const SesReceiptRuleStopActionScope(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workmail_action` block of
@@ -210,7 +249,7 @@ final class AwsSesReceiptRule extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleSetName,
     TfArg<bool>? scanEnabled,
-    TfArg<String>? tlsPolicy,
+    TfArg<SesReceiptRuleTlsPolicy>? tlsPolicy,
     List<SesReceiptRuleAddHeaderAction>? addHeaderAction,
     List<SesReceiptRuleBounceAction>? bounceAction,
     List<SesReceiptRuleLambdaAction>? lambdaAction,

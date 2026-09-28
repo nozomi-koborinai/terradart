@@ -9,6 +9,17 @@ const Set<String> _awsIamAccessKeySensitive = <String>{
   'ses_smtp_password_v4',
 };
 
+/// Iam Access Key enum for `status`.
+enum IamAccessKeyStatus implements TerraformEnum {
+  active('Active'),
+  inactive('Inactive'),
+  expired('Expired');
+
+  const IamAccessKeyStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_iam_access_key`.
 final class AwsIamAccessKey extends Resource {
   static const String tfType = 'aws_iam_access_key';
@@ -16,7 +27,7 @@ final class AwsIamAccessKey extends Resource {
   AwsIamAccessKey({
     required super.localName,
     TfArg<String>? pgpKey,
-    TfArg<String>? status,
+    TfArg<IamAccessKeyStatus>? status,
     required TfArg<String> user,
     super.lifecycle,
     super.dependsOn,

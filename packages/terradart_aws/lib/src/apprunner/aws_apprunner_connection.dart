@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_apprunner_connection`.
 const Set<String> _awsApprunnerConnectionSensitive = <String>{};
 
+/// Apprunner Connection Provider enum for `provider_type`.
+enum ApprunnerConnectionProviderType implements TerraformEnum {
+  github('GITHUB'),
+  bitbucket('BITBUCKET');
+
+  const ApprunnerConnectionProviderType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_apprunner_connection`.
 final class AwsApprunnerConnection extends Resource {
   static const String tfType = 'aws_apprunner_connection';
@@ -13,7 +23,7 @@ final class AwsApprunnerConnection extends Resource {
   AwsApprunnerConnection({
     required super.localName,
     required TfArg<String> connectionName,
-    required TfArg<String> providerType,
+    required TfArg<ApprunnerConnectionProviderType> providerType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

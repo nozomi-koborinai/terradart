@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_m2_application`.
 const Set<String> _awsM2ApplicationSensitive = <String>{};
 
+/// M2 Application Engine enum for `engine_type`.
+enum M2ApplicationEngineType implements TerraformEnum {
+  microfocus('microfocus'),
+  bluage('bluage');
+
+  const M2ApplicationEngineType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `definition` block of
 /// `aws_m2_application` (derived from provider schema).
 @immutable
@@ -30,7 +40,7 @@ final class AwsM2Application extends Resource {
   AwsM2Application({
     required super.localName,
     TfArg<String>? description,
-    required TfArg<String> engineType,
+    required TfArg<M2ApplicationEngineType> engineType,
     TfArg<String>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,

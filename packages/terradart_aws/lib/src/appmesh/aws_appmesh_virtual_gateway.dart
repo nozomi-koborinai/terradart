@@ -372,7 +372,7 @@ final class AppmeshVirtualGatewaySpecListenerHealthCheck {
 
   final TfArg<num>? port;
 
-  final TfArg<String> protocol;
+  final TfArg<AppmeshVirtualGatewaySpecListenerHealthCheckProtocol> protocol;
 
   final TfArg<num> timeoutMillis;
 
@@ -389,6 +389,20 @@ final class AppmeshVirtualGatewaySpecListenerHealthCheck {
   };
 }
 
+/// `protocol` — derived from the provider schema description.
+enum AppmeshVirtualGatewaySpecListenerHealthCheckProtocol
+    implements TerraformEnum {
+  http('http'),
+  http2('http2'),
+  grpc('grpc');
+
+  const AppmeshVirtualGatewaySpecListenerHealthCheckProtocol(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `spec.listener.port_mapping` block of
 /// `aws_appmesh_virtual_gateway` (derived from provider schema).
 @immutable
@@ -400,12 +414,26 @@ final class AppmeshVirtualGatewaySpecListenerPortMapping {
 
   final TfArg<num> port;
 
-  final TfArg<String> protocol;
+  final TfArg<AppmeshVirtualGatewaySpecListenerPortMappingProtocol> protocol;
 
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'protocol': protocol.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+enum AppmeshVirtualGatewaySpecListenerPortMappingProtocol
+    implements TerraformEnum {
+  http('http'),
+  http2('http2'),
+  grpc('grpc');
+
+  const AppmeshVirtualGatewaySpecListenerPortMappingProtocol(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.tls` block of
@@ -418,7 +446,7 @@ final class AppmeshVirtualGatewaySpecListenerTls {
     this.validation,
   });
 
-  final TfArg<String> mode;
+  final TfArg<AppmeshVirtualGatewaySpecListenerTlsMode> mode;
 
   final AppmeshVirtualGatewaySpecListenerTlsCertificate certificate;
 
@@ -429,6 +457,17 @@ final class AppmeshVirtualGatewaySpecListenerTls {
     'certificate': certificate.encode(),
     if (validation != null) 'validation': validation!.encode(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum AppmeshVirtualGatewaySpecListenerTlsMode implements TerraformEnum {
+  strict('STRICT'),
+  permissive('PERMISSIVE'),
+  disabled('DISABLED');
+
+  const AppmeshVirtualGatewaySpecListenerTlsMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `spec.listener.tls.certificate` block of

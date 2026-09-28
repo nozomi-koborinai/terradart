@@ -9,6 +9,17 @@ const Set<String> _awsBedrockagentcoreEvaluatorSensitive = <String>{
   'evaluator_config.llm_as_a_judge.instructions',
 };
 
+/// Bedrockagentcore Evaluator enum for `level`.
+enum BedrockagentcoreEvaluatorLevel implements TerraformEnum {
+  toolCall('TOOL_CALL'),
+  trace('TRACE'),
+  session('SESSION');
+
+  const BedrockagentcoreEvaluatorLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `evaluator_config` block of
 /// `aws_bedrockagentcore_evaluator` (derived from provider schema).
 @immutable
@@ -247,7 +258,7 @@ final class AwsBedrockagentcoreEvaluator extends Resource {
     TfArg<String>? description,
     required TfArg<String> evaluatorName,
     TfArg<String>? kmsKeyArn,
-    required TfArg<String> level,
+    required TfArg<BedrockagentcoreEvaluatorLevel> level,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<BedrockagentcoreEvaluatorEvaluatorConfig>? evaluatorConfig,

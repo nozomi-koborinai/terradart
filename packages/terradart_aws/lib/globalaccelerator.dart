@@ -6,7 +6,8 @@ library;
 export 'src/globalaccelerator/aws_globalaccelerator_accelerator.dart'
     show
         AwsGlobalacceleratorAccelerator,
-        GlobalacceleratorAcceleratorAttributes;
+        GlobalacceleratorAcceleratorAttributes,
+        GlobalacceleratorAcceleratorIpAddressType;
 export 'src/globalaccelerator/aws_globalaccelerator_cross_account_attachment.dart'
     show
         AwsGlobalacceleratorCrossAccountAttachment,
@@ -14,11 +15,13 @@ export 'src/globalaccelerator/aws_globalaccelerator_cross_account_attachment.dar
 export 'src/globalaccelerator/aws_globalaccelerator_custom_routing_accelerator.dart'
     show
         AwsGlobalacceleratorCustomRoutingAccelerator,
-        GlobalacceleratorCustomRoutingAcceleratorAttributes;
+        GlobalacceleratorCustomRoutingAcceleratorAttributes,
+        GlobalacceleratorCustomRoutingAcceleratorIpAddressType;
 export 'src/globalaccelerator/aws_globalaccelerator_custom_routing_endpoint_group.dart'
     show
         AwsGlobalacceleratorCustomRoutingEndpointGroup,
         GlobalacceleratorCustomRoutingEndpointGroupDestinationConfiguration,
+        GlobalacceleratorCustomRoutingEndpointGroupDestinationConfigurationProtocols,
         GlobalacceleratorCustomRoutingEndpointGroupEndpointConfiguration;
 export 'src/globalaccelerator/aws_globalaccelerator_custom_routing_listener.dart'
     show
@@ -28,6 +31,11 @@ export 'src/globalaccelerator/aws_globalaccelerator_endpoint_group.dart'
     show
         AwsGlobalacceleratorEndpointGroup,
         GlobalacceleratorEndpointGroupEndpointConfiguration,
+        GlobalacceleratorEndpointGroupHealthCheckProtocol,
         GlobalacceleratorEndpointGroupPortOverride;
 export 'src/globalaccelerator/aws_globalaccelerator_listener.dart'
-    show AwsGlobalacceleratorListener, GlobalacceleratorListenerPortRange;
+    show
+        AwsGlobalacceleratorListener,
+        GlobalacceleratorListenerClientAffinity,
+        GlobalacceleratorListenerPortRange,
+        GlobalacceleratorListenerProtocol;

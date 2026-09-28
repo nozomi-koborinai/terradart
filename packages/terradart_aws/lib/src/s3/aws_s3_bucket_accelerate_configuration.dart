@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_s3_bucket_accelerate_configuration`.
 const Set<String> _awsS3BucketAccelerateConfigurationSensitive = <String>{};
 
+/// S3 Bucket Accelerate Configuration enum for `status`.
+enum S3BucketAccelerateConfigurationStatus implements TerraformEnum {
+  enabled('Enabled'),
+  suspended('Suspended');
+
+  const S3BucketAccelerateConfigurationStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_s3_bucket_accelerate_configuration`.
 final class AwsS3BucketAccelerateConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_accelerate_configuration';
@@ -15,7 +25,7 @@ final class AwsS3BucketAccelerateConfiguration extends Resource {
     required TfArg<String> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
-    required TfArg<String> status,
+    required TfArg<S3BucketAccelerateConfigurationStatus> status,
     super.lifecycle,
     super.dependsOn,
     super.provider,

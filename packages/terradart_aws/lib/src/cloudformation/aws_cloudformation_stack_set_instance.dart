@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudformation_stack_set_instance`.
 const Set<String> _awsCloudformationStackSetInstanceSensitive = <String>{};
 
+/// Cloudformation Stack Set Instance Call enum for `call_as`.
+enum CloudformationStackSetInstanceCallAs implements TerraformEnum {
+  self('SELF'),
+  delegatedAdmin('DELEGATED_ADMIN');
+
+  const CloudformationStackSetInstanceCallAs(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `deployment_targets` block of
 /// `aws_cloudformation_stack_set_instance` (derived from provider schema).
 @immutable
@@ -50,7 +60,10 @@ final class CloudformationStackSetInstanceOperationPreferences {
     this.regionOrder,
   });
 
-  final TfArg<String>? concurrencyMode;
+  final TfArg<
+    CloudformationStackSetInstanceOperationPreferencesConcurrencyMode
+  >?
+  concurrencyMode;
 
   final TfArg<num>? failureToleranceCount;
 
@@ -60,7 +73,10 @@ final class CloudformationStackSetInstanceOperationPreferences {
 
   final TfArg<num>? maxConcurrentPercentage;
 
-  final TfArg<String>? regionConcurrencyType;
+  final TfArg<
+    CloudformationStackSetInstanceOperationPreferencesRegionConcurrencyType
+  >?
+  regionConcurrencyType;
 
   final TfArg<List<Object?>>? regionOrder;
 
@@ -81,6 +97,32 @@ final class CloudformationStackSetInstanceOperationPreferences {
   };
 }
 
+/// `concurrency_mode` — derived from the provider schema description.
+enum CloudformationStackSetInstanceOperationPreferencesConcurrencyMode
+    implements TerraformEnum {
+  strictFailureTolerance('STRICT_FAILURE_TOLERANCE'),
+  softFailureTolerance('SOFT_FAILURE_TOLERANCE');
+
+  const CloudformationStackSetInstanceOperationPreferencesConcurrencyMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `region_concurrency_type` — derived from the provider schema description.
+enum CloudformationStackSetInstanceOperationPreferencesRegionConcurrencyType
+    implements TerraformEnum {
+  sequential('SEQUENTIAL'),
+  parallel('PARALLEL');
+
+  const CloudformationStackSetInstanceOperationPreferencesRegionConcurrencyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudformation_stack_set_instance`.
 final class AwsCloudformationStackSetInstance extends Resource {
   static const String tfType = 'aws_cloudformation_stack_set_instance';
@@ -88,7 +130,7 @@ final class AwsCloudformationStackSetInstance extends Resource {
   AwsCloudformationStackSetInstance({
     required super.localName,
     TfArg<String>? accountId,
-    TfArg<String>? callAs,
+    TfArg<CloudformationStackSetInstanceCallAs>? callAs,
     TfArg<Map<String, String>>? parameterOverrides,
     TfArg<String>? region,
     TfArg<bool>? retainStack,

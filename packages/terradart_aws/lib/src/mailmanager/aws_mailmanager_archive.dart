@@ -13,11 +13,35 @@ const Set<String> _awsMailmanagerArchiveSensitive = <String>{};
 final class MailmanagerArchiveRetention {
   const MailmanagerArchiveRetention({required this.retentionPeriod});
 
-  final TfArg<String> retentionPeriod;
+  final TfArg<MailmanagerArchiveRetentionRetentionPeriod> retentionPeriod;
 
   Map<String, Object?> encode() => {
     'retention_period': retentionPeriod.toTfJson(),
   };
+}
+
+/// `retention_period` — derived from the provider schema description.
+enum MailmanagerArchiveRetentionRetentionPeriod implements TerraformEnum {
+  threeMonths('THREE_MONTHS'),
+  sixMonths('SIX_MONTHS'),
+  nineMonths('NINE_MONTHS'),
+  oneYear('ONE_YEAR'),
+  eighteenMonths('EIGHTEEN_MONTHS'),
+  twoYears('TWO_YEARS'),
+  thirtyMonths('THIRTY_MONTHS'),
+  threeYears('THREE_YEARS'),
+  fourYears('FOUR_YEARS'),
+  fiveYears('FIVE_YEARS'),
+  sixYears('SIX_YEARS'),
+  sevenYears('SEVEN_YEARS'),
+  eightYears('EIGHT_YEARS'),
+  nineYears('NINE_YEARS'),
+  tenYears('TEN_YEARS'),
+  permanent('PERMANENT');
+
+  const MailmanagerArchiveRetentionRetentionPeriod(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_mailmanager_archive`.

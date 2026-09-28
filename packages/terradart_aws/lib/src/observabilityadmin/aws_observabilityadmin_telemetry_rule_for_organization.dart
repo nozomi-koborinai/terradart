@@ -30,15 +30,22 @@ final class ObservabilityadminTelemetryRuleForOrganizationRule {
 
   final TfArg<List<Object?>>? regions;
 
-  final TfArg<String>? resourceType;
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationRuleResourceType>?
+  resourceType;
 
   final TfArg<String>? scope;
 
   final TfArg<String>? selectionCriteria;
 
-  final TfArg<List<Object?>>? telemetrySourceTypes;
+  final List<
+    TfArg<
+      ObservabilityadminTelemetryRuleForOrganizationRuleTelemetrySourceTypes
+    >
+  >?
+  telemetrySourceTypes;
 
-  final TfArg<String> telemetryType;
+  final TfArg<ObservabilityadminTelemetryRuleForOrganizationRuleTelemetryType>
+  telemetryType;
 
   final List<
     ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfiguration
@@ -55,13 +62,83 @@ final class ObservabilityadminTelemetryRuleForOrganizationRule {
     if (selectionCriteria != null)
       'selection_criteria': selectionCriteria!.toTfJson(),
     if (telemetrySourceTypes != null)
-      'telemetry_source_types': telemetrySourceTypes!.toTfJson(),
+      'telemetry_source_types': [
+        for (final e in telemetrySourceTypes!) e.toTfJson(),
+      ],
     'telemetry_type': telemetryType.toTfJson(),
     if (destinationConfiguration != null)
       'destination_configuration': [
         for (final e in destinationConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `resource_type` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleResourceType
+    implements TerraformEnum {
+  awsEc2Instance('AWS::EC2::Instance'),
+  awsEc2Vpc('AWS::EC2::VPC'),
+  awsLambdaFunction('AWS::Lambda::Function'),
+  awsCloudtrail('AWS::CloudTrail'),
+  awsEksCluster('AWS::EKS::Cluster'),
+  awsWafv2Webacl('AWS::WAFv2::WebACL'),
+  awsElasticloadbalancingv2Loadbalancer(
+    'AWS::ElasticLoadBalancingV2::LoadBalancer',
+  ),
+  awsRoute53resolverResolverendpoint('AWS::Route53Resolver::ResolverEndpoint'),
+  awsBedrockagentcoreRuntime('AWS::BedrockAgentCore::Runtime'),
+  awsBedrockagentcoreBrowser('AWS::BedrockAgentCore::Browser'),
+  awsBedrockagentcoreCodeinterpreter('AWS::BedrockAgentCore::CodeInterpreter'),
+  awsBedrockagentcoreGateway('AWS::BedrockAgentCore::Gateway'),
+  awsBedrockagentcoreMemory('AWS::BedrockAgentCore::Memory'),
+  awsBedrockagentcoreWorkloadidentity(
+    'AWS::BedrockAgentCore::WorkloadIdentity',
+  ),
+  awsSecurityhubHub('AWS::SecurityHub::Hub'),
+  awsCloudfrontDistribution('AWS::CloudFront::Distribution'),
+  awsSecurityhubHubv2('AWS::SecurityHub::HubV2'),
+  awsCloudwatchOtelenrichment('AWS::CloudWatch::OTelEnrichment'),
+  awsMskCluster('AWS::MSK::Cluster'),
+  awsS3Bucket('AWS::S3::Bucket'),
+  awsBedrockKnowledgebase('AWS::Bedrock::KnowledgeBase');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleResourceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `telemetry_source_types` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleTelemetrySourceTypes
+    implements TerraformEnum {
+  vpcFlowLogs('VPC_FLOW_LOGS'),
+  route53ResolverQueryLogs('ROUTE53_RESOLVER_QUERY_LOGS'),
+  eksAuditLogs('EKS_AUDIT_LOGS'),
+  eksAuthenticatorLogs('EKS_AUTHENTICATOR_LOGS'),
+  eksControllerManagerLogs('EKS_CONTROLLER_MANAGER_LOGS'),
+  eksSchedulerLogs('EKS_SCHEDULER_LOGS'),
+  eksApiLogs('EKS_API_LOGS');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleTelemetrySourceTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `telemetry_type` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleTelemetryType
+    implements TerraformEnum {
+  logs('Logs'),
+  metrics('Metrics'),
+  traces('Traces');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleTelemetryType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination_configuration` block of
@@ -82,7 +159,10 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 
   final TfArg<String>? destinationPattern;
 
-  final TfArg<String>? destinationType;
+  final TfArg<
+    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationDestinationType
+  >?
+  destinationType;
 
   final TfArg<num>? retentionInDays;
 
@@ -148,6 +228,18 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
         for (final e in wafLoggingParameters!) e.encode(),
       ],
   };
+}
+
+/// `destination_type` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationDestinationType
+    implements TerraformEnum {
+  cloudWatchLogs('cloud-watch-logs');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationDestinationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination_configuration.cloudtrail_parameters` block of
@@ -244,12 +336,28 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
 
   final TfArg<String>? fieldDelimiter;
 
-  final TfArg<String>? outputFormat;
+  final TfArg<
+    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParametersOutputFormat
+  >?
+  outputFormat;
 
   Map<String, Object?> encode() => {
     if (fieldDelimiter != null) 'field_delimiter': fieldDelimiter!.toTfJson(),
     if (outputFormat != null) 'output_format': outputFormat!.toTfJson(),
   };
+}
+
+/// `output_format` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParametersOutputFormat
+    implements TerraformEnum {
+  plain('plain'),
+  json('json');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationElbLoadBalancerLoggingParametersOutputFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination_configuration.log_delivery_parameters` block of
@@ -260,11 +368,37 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
     this.logTypes,
   });
 
-  final TfArg<List<Object?>>? logTypes;
+  final List<
+    TfArg<
+      ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParametersLogTypes
+    >
+  >?
+  logTypes;
 
   Map<String, Object?> encode() => {
-    if (logTypes != null) 'log_types': logTypes!.toTfJson(),
+    if (logTypes != null)
+      'log_types': [for (final e in logTypes!) e.toTfJson()],
   };
+}
+
+/// `log_types` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParametersLogTypes
+    implements TerraformEnum {
+  applicationLogs('APPLICATION_LOGS'),
+  usageLogs('USAGE_LOGS'),
+  securityFindingLogs('SECURITY_FINDING_LOGS'),
+  accessLogs('ACCESS_LOGS'),
+  connectionLogs('CONNECTION_LOGS'),
+  s3ServerAccessLogs('S3_SERVER_ACCESS_LOGS'),
+  albAccessLogs('ALB_ACCESS_LOGS'),
+  albConnectionLogs('ALB_CONNECTION_LOGS'),
+  albHealthCheckLogs('ALB_HEALTH_CHECK_LOGS');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationLogDeliveryParametersLogTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination_configuration.msk_monitoring_parameters` block of
@@ -275,12 +409,30 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
     this.enhancedMonitoring,
   });
 
-  final TfArg<String>? enhancedMonitoring;
+  final TfArg<
+    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParametersEnhancedMonitoring
+  >?
+  enhancedMonitoring;
 
   Map<String, Object?> encode() => {
     if (enhancedMonitoring != null)
       'enhanced_monitoring': enhancedMonitoring!.toTfJson(),
   };
+}
+
+/// `enhanced_monitoring` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParametersEnhancedMonitoring
+    implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  perBroker('PER_BROKER'),
+  perTopicPerBroker('PER_TOPIC_PER_BROKER'),
+  perTopicPerPartition('PER_TOPIC_PER_PARTITION');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationMskMonitoringParametersEnhancedMonitoring(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination_configuration.vpc_flow_log_parameters` block of
@@ -317,7 +469,10 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
     this.redactedFields,
   });
 
-  final TfArg<String>? logType;
+  final TfArg<
+    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLogType
+  >?
+  logType;
 
   final List<
     ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilter
@@ -338,6 +493,18 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
   };
 }
 
+/// `log_type` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLogType
+    implements TerraformEnum {
+  wafLogs('WAF_LOGS');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLogType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
@@ -347,7 +514,10 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
     this.filters,
   });
 
-  final TfArg<String>? defaultBehavior;
+  final TfArg<
+    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterDefaultBehavior
+  >?
+  defaultBehavior;
 
   final List<
     ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFilters
@@ -361,6 +531,19 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
   };
 }
 
+/// `default_behavior` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterDefaultBehavior
+    implements TerraformEnum {
+  keep('KEEP'),
+  drop('DROP');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterDefaultBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter.filters` block of
 /// `aws_observabilityadmin_telemetry_rule_for_organization` (derived from provider schema).
 @immutable
@@ -371,9 +554,15 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
     this.conditions,
   });
 
-  final TfArg<String>? behavior;
+  final TfArg<
+    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersBehavior
+  >?
+  behavior;
 
-  final TfArg<String>? requirement;
+  final TfArg<
+    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersRequirement
+  >?
+  requirement;
 
   final List<
     ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditions
@@ -386,6 +575,32 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
     if (conditions != null)
       'conditions': [for (final e in conditions!) e.encode()],
   };
+}
+
+/// `behavior` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersBehavior
+    implements TerraformEnum {
+  keep('KEEP'),
+  drop('DROP');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `requirement` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersRequirement
+    implements TerraformEnum {
+  meetsAll('MEETS_ALL'),
+  meetsAny('MEETS_ANY');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersRequirement(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter.filters.conditions` block of
@@ -423,9 +638,29 @@ final class ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigu
     required this.action,
   });
 
-  final TfArg<String> action;
+  final TfArg<
+    ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionConditionAction
+  >
+  action;
 
   Map<String, Object?> encode() => {'action': action.toTfJson()};
+}
+
+/// `action` — derived from the provider schema description.
+enum ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionConditionAction
+    implements TerraformEnum {
+  allow('ALLOW'),
+  block('BLOCK'),
+  count('COUNT'),
+  captcha('CAPTCHA'),
+  challenge('CHALLENGE'),
+  excludedAsCount('EXCLUDED_AS_COUNT');
+
+  const ObservabilityadminTelemetryRuleForOrganizationRuleDestinationConfigurationWafLoggingParametersLoggingFilterFiltersConditionsActionConditionAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.logging_filter.filters.conditions.label_name_condition` block of

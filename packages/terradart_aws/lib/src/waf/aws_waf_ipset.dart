@@ -13,7 +13,7 @@ const Set<String> _awsWafIpsetSensitive = <String>{};
 final class WafIpsetIpSetDescriptors {
   const WafIpsetIpSetDescriptors({required this.type, required this.value});
 
-  final TfArg<String> type;
+  final TfArg<WafIpsetIpSetDescriptorsType> type;
 
   final TfArg<String> value;
 
@@ -21,6 +21,16 @@ final class WafIpsetIpSetDescriptors {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum WafIpsetIpSetDescriptorsType implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const WafIpsetIpSetDescriptorsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_waf_ipset`.

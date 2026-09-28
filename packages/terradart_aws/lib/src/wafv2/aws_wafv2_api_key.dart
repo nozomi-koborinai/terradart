@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_wafv2_api_key`.
 const Set<String> _awsWafv2ApiKeySensitive = <String>{'api_key'};
 
+/// Wafv2 Api Key enum for `scope`.
+enum Wafv2ApiKeyScope implements TerraformEnum {
+  cloudfront('CLOUDFRONT'),
+  regional('REGIONAL');
+
+  const Wafv2ApiKeyScope(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_wafv2_api_key`.
 ///
 /// Provides a WAFv2 API Key resource.
@@ -15,7 +25,7 @@ final class AwsWafv2ApiKey extends Resource {
   AwsWafv2ApiKey({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> scope,
+    required TfArg<Wafv2ApiKeyScope> scope,
     required TfArg<List<String>> tokenDomains,
     super.lifecycle,
     super.dependsOn,

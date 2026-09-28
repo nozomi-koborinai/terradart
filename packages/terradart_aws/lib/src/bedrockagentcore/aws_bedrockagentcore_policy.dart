@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrockagentcore_policy`.
 const Set<String> _awsBedrockagentcorePolicySensitive = <String>{};
 
+/// Bedrockagentcore Policy Validation enum for `validation_mode`.
+enum BedrockagentcorePolicyValidationMode implements TerraformEnum {
+  failOnAnyFindings('FAIL_ON_ANY_FINDINGS'),
+  ignoreAllFindings('IGNORE_ALL_FINDINGS');
+
+  const BedrockagentcorePolicyValidationMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `definition` block of
 /// `aws_bedrockagentcore_policy` (derived from provider schema).
 @immutable
@@ -41,7 +51,7 @@ final class AwsBedrockagentcorePolicy extends Resource {
     required TfArg<String> name,
     required TfArg<String> policyEngineId,
     TfArg<String>? region,
-    TfArg<String>? validationMode,
+    TfArg<BedrockagentcorePolicyValidationMode>? validationMode,
     List<BedrockagentcorePolicyDefinition>? definition,
     super.lifecycle,
     super.dependsOn,

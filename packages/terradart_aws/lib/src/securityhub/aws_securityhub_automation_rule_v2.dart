@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_securityhub_automation_rule_v2`.
 const Set<String> _awsSecurityhubAutomationRuleV2Sensitive = <String>{};
 
+/// Securityhub Automation Rule V2 Rule enum for `rule_status`.
+enum SecurityhubAutomationRuleV2RuleStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SecurityhubAutomationRuleV2RuleStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `action` block of
 /// `aws_securityhub_automation_rule_v2` (derived from provider schema).
 @immutable
@@ -17,7 +27,7 @@ final class SecurityhubAutomationRuleV2Action {
     this.findingFieldsUpdate,
   });
 
-  final TfArg<String> type;
+  final TfArg<SecurityhubAutomationRuleV2ActionType> type;
 
   final List<SecurityhubAutomationRuleV2ActionExternalIntegrationConfiguration>?
   externalIntegrationConfiguration;
@@ -36,6 +46,16 @@ final class SecurityhubAutomationRuleV2Action {
         for (final e in findingFieldsUpdate!) e.encode(),
       ],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SecurityhubAutomationRuleV2ActionType implements TerraformEnum {
+  findingFieldsUpdate('FINDING_FIELDS_UPDATE'),
+  externalIntegration('EXTERNAL_INTEGRATION');
+
+  const SecurityhubAutomationRuleV2ActionType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `action.external_integration_configuration` block of
@@ -99,7 +119,7 @@ final class AwsSecurityhubAutomationRuleV2 extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     required TfArg<num> ruleOrder,
-    TfArg<String>? ruleStatus,
+    TfArg<SecurityhubAutomationRuleV2RuleStatus>? ruleStatus,
     TfArg<Map<String, String>>? tags,
     List<SecurityhubAutomationRuleV2Action>? action,
     List<SecurityhubAutomationRuleV2Criteria>? criteria,

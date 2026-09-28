@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_opensearch_outbound_connection`.
 const Set<String> _awsOpensearchOutboundConnectionSensitive = <String>{};
 
+/// Opensearch Outbound Connection Connection enum for `connection_mode`.
+enum OpensearchOutboundConnectionConnectionMode implements TerraformEnum {
+  direct('DIRECT'),
+  vpcEndpoint('VPC_ENDPOINT');
+
+  const OpensearchOutboundConnectionConnectionMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `connection_properties` block of
 /// `aws_opensearch_outbound_connection` (derived from provider schema).
 @immutable
@@ -94,7 +104,7 @@ final class AwsOpensearchOutboundConnection extends Resource {
     required super.localName,
     TfArg<bool>? acceptConnection,
     required TfArg<String> connectionAlias,
-    TfArg<String>? connectionMode,
+    TfArg<OpensearchOutboundConnectionConnectionMode>? connectionMode,
     TfArg<String>? region,
     OpensearchOutboundConnectionConnectionProperties? connectionProperties,
     required OpensearchOutboundConnectionLocalDomainInfo localDomainInfo,

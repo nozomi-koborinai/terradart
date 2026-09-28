@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_pipes_pipe`.
 const Set<String> _awsPipesPipeSensitive = <String>{};
 
+/// Pipes Pipe Desired enum for `desired_state`.
+enum PipesPipeDesiredState implements TerraformEnum {
+  running('RUNNING'),
+  stopped('STOPPED');
+
+  const PipesPipeDesiredState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `enrichment_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
@@ -64,9 +74,10 @@ final class PipesPipeLogConfiguration {
     this.s3LogDestination,
   });
 
-  final TfArg<List<Object?>>? includeExecutionData;
+  final List<TfArg<PipesPipeLogConfigurationIncludeExecutionData>>?
+  includeExecutionData;
 
-  final TfArg<String> level;
+  final TfArg<PipesPipeLogConfigurationLevel> level;
 
   final PipesPipeLogConfigurationCloudwatchLogsLogDestination?
   cloudwatchLogsLogDestination;
@@ -77,7 +88,9 @@ final class PipesPipeLogConfiguration {
 
   Map<String, Object?> encode() => {
     if (includeExecutionData != null)
-      'include_execution_data': includeExecutionData!.toTfJson(),
+      'include_execution_data': [
+        for (final e in includeExecutionData!) e.toTfJson(),
+      ],
     'level': level.toTfJson(),
     if (cloudwatchLogsLogDestination != null)
       'cloudwatch_logs_log_destination': cloudwatchLogsLogDestination!.encode(),
@@ -86,6 +99,27 @@ final class PipesPipeLogConfiguration {
     if (s3LogDestination != null)
       's3_log_destination': s3LogDestination!.encode(),
   };
+}
+
+/// `include_execution_data` — derived from the provider schema description.
+enum PipesPipeLogConfigurationIncludeExecutionData implements TerraformEnum {
+  all('ALL');
+
+  const PipesPipeLogConfigurationIncludeExecutionData(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `level` — derived from the provider schema description.
+enum PipesPipeLogConfigurationLevel implements TerraformEnum {
+  off('OFF'),
+  error('ERROR'),
+  info('INFO'),
+  trace('TRACE');
+
+  const PipesPipeLogConfigurationLevel(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `log_configuration.cloudwatch_logs_log_destination` block of
@@ -131,7 +165,8 @@ final class PipesPipeLogConfigurationS3LogDestination {
 
   final TfArg<String> bucketOwner;
 
-  final TfArg<String>? outputFormat;
+  final TfArg<PipesPipeLogConfigurationS3LogDestinationOutputFormat>?
+  outputFormat;
 
   final TfArg<String>? prefix;
 
@@ -141,6 +176,20 @@ final class PipesPipeLogConfigurationS3LogDestination {
     if (outputFormat != null) 'output_format': outputFormat!.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
+}
+
+/// `output_format` — derived from the provider schema description.
+enum PipesPipeLogConfigurationS3LogDestinationOutputFormat
+    implements TerraformEnum {
+  json('json'),
+  plain('plain'),
+  w3c('w3c');
+
+  const PipesPipeLogConfigurationS3LogDestinationOutputFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_parameters` block of
@@ -266,11 +315,15 @@ final class PipesPipeSourceParametersDynamodbStreamParameters {
 
   final TfArg<num>? maximumRetryAttempts;
 
-  final TfArg<String>? onPartialBatchItemFailure;
+  final TfArg<
+    PipesPipeSourceParametersDynamodbStreamParametersOnPartialBatchItemFailure
+  >?
+  onPartialBatchItemFailure;
 
   final TfArg<num>? parallelizationFactor;
 
-  final TfArg<String> startingPosition;
+  final TfArg<PipesPipeSourceParametersDynamodbStreamParametersStartingPosition>
+  startingPosition;
 
   final PipesPipeSourceParametersDynamodbStreamParametersDeadLetterConfig?
   deadLetterConfig;
@@ -292,6 +345,31 @@ final class PipesPipeSourceParametersDynamodbStreamParameters {
     if (deadLetterConfig != null)
       'dead_letter_config': deadLetterConfig!.encode(),
   };
+}
+
+/// `on_partial_batch_item_failure` — derived from the provider schema description.
+enum PipesPipeSourceParametersDynamodbStreamParametersOnPartialBatchItemFailure
+    implements TerraformEnum {
+  automaticBisect('AUTOMATIC_BISECT');
+
+  const PipesPipeSourceParametersDynamodbStreamParametersOnPartialBatchItemFailure(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `starting_position` — derived from the provider schema description.
+enum PipesPipeSourceParametersDynamodbStreamParametersStartingPosition
+    implements TerraformEnum {
+  trimHorizon('TRIM_HORIZON'),
+  latest('LATEST');
+
+  const PipesPipeSourceParametersDynamodbStreamParametersStartingPosition(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_parameters.dynamodb_stream_parameters.dead_letter_config` block of
@@ -355,11 +433,15 @@ final class PipesPipeSourceParametersKinesisStreamParameters {
 
   final TfArg<num>? maximumRetryAttempts;
 
-  final TfArg<String>? onPartialBatchItemFailure;
+  final TfArg<
+    PipesPipeSourceParametersKinesisStreamParametersOnPartialBatchItemFailure
+  >?
+  onPartialBatchItemFailure;
 
   final TfArg<num>? parallelizationFactor;
 
-  final TfArg<String> startingPosition;
+  final TfArg<PipesPipeSourceParametersKinesisStreamParametersStartingPosition>
+  startingPosition;
 
   final TfArg<String>? startingPositionTimestamp;
 
@@ -385,6 +467,32 @@ final class PipesPipeSourceParametersKinesisStreamParameters {
     if (deadLetterConfig != null)
       'dead_letter_config': deadLetterConfig!.encode(),
   };
+}
+
+/// `on_partial_batch_item_failure` — derived from the provider schema description.
+enum PipesPipeSourceParametersKinesisStreamParametersOnPartialBatchItemFailure
+    implements TerraformEnum {
+  automaticBisect('AUTOMATIC_BISECT');
+
+  const PipesPipeSourceParametersKinesisStreamParametersOnPartialBatchItemFailure(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `starting_position` — derived from the provider schema description.
+enum PipesPipeSourceParametersKinesisStreamParametersStartingPosition
+    implements TerraformEnum {
+  trimHorizon('TRIM_HORIZON'),
+  latest('LATEST'),
+  atTimestamp('AT_TIMESTAMP');
+
+  const PipesPipeSourceParametersKinesisStreamParametersStartingPosition(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_parameters.kinesis_stream_parameters.dead_letter_config` block of
@@ -419,7 +527,10 @@ final class PipesPipeSourceParametersManagedStreamingKafkaParameters {
 
   final TfArg<num>? maximumBatchingWindowInSeconds;
 
-  final TfArg<String>? startingPosition;
+  final TfArg<
+    PipesPipeSourceParametersManagedStreamingKafkaParametersStartingPosition
+  >?
+  startingPosition;
 
   final TfArg<String> topicName;
 
@@ -438,6 +549,19 @@ final class PipesPipeSourceParametersManagedStreamingKafkaParameters {
     'topic_name': topicName.toTfJson(),
     if (credentials != null) 'credentials': credentials!.encode(),
   };
+}
+
+/// `starting_position` — derived from the provider schema description.
+enum PipesPipeSourceParametersManagedStreamingKafkaParametersStartingPosition
+    implements TerraformEnum {
+  trimHorizon('TRIM_HORIZON'),
+  latest('LATEST');
+
+  const PipesPipeSourceParametersManagedStreamingKafkaParametersStartingPosition(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_parameters.managed_streaming_kafka_parameters.credentials` block of
@@ -534,7 +658,10 @@ final class PipesPipeSourceParametersSelfManagedKafkaParameters {
 
   final TfArg<String>? serverRootCaCertificate;
 
-  final TfArg<String>? startingPosition;
+  final TfArg<
+    PipesPipeSourceParametersSelfManagedKafkaParametersStartingPosition
+  >?
+  startingPosition;
 
   final TfArg<String> topicName;
 
@@ -560,6 +687,19 @@ final class PipesPipeSourceParametersSelfManagedKafkaParameters {
     if (credentials != null) 'credentials': credentials!.encode(),
     if (vpc != null) 'vpc': vpc!.encode(),
   };
+}
+
+/// `starting_position` — derived from the provider schema description.
+enum PipesPipeSourceParametersSelfManagedKafkaParametersStartingPosition
+    implements TerraformEnum {
+  trimHorizon('TRIM_HORIZON'),
+  latest('LATEST');
+
+  const PipesPipeSourceParametersSelfManagedKafkaParametersStartingPosition(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_parameters.self_managed_kafka_parameters.credentials` block of
@@ -828,7 +968,10 @@ final class PipesPipeTargetParametersBatchJobParametersContainerOverridesResourc
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    PipesPipeTargetParametersBatchJobParametersContainerOverridesResourceRequirementType
+  >
+  type;
 
   final TfArg<String> value;
 
@@ -836,6 +979,20 @@ final class PipesPipeTargetParametersBatchJobParametersContainerOverridesResourc
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PipesPipeTargetParametersBatchJobParametersContainerOverridesResourceRequirementType
+    implements TerraformEnum {
+  gpu('GPU'),
+  memory('MEMORY'),
+  vcpu('VCPU');
+
+  const PipesPipeTargetParametersBatchJobParametersContainerOverridesResourceRequirementType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_parameters.batch_job_parameters.depends_on` block of
@@ -849,12 +1006,25 @@ final class PipesPipeTargetParametersBatchJobParametersDependsOn {
 
   final TfArg<String>? jobId;
 
-  final TfArg<String>? type;
+  final TfArg<PipesPipeTargetParametersBatchJobParametersDependsOnType>? type;
 
   Map<String, Object?> encode() => {
     if (jobId != null) 'job_id': jobId!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PipesPipeTargetParametersBatchJobParametersDependsOnType
+    implements TerraformEnum {
+  nToN('N_TO_N'),
+  sequential('SEQUENTIAL');
+
+  const PipesPipeTargetParametersBatchJobParametersDependsOnType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_parameters.batch_job_parameters.retry_strategy` block of
@@ -919,11 +1089,12 @@ final class PipesPipeTargetParametersEcsTaskParameters {
 
   final TfArg<String>? group;
 
-  final TfArg<String>? launchType;
+  final TfArg<PipesPipeTargetParametersEcsTaskParametersLaunchType>? launchType;
 
   final TfArg<String>? platformVersion;
 
-  final TfArg<String>? propagateTags;
+  final TfArg<PipesPipeTargetParametersEcsTaskParametersPropagateTags>?
+  propagateTags;
 
   final TfArg<String>? referenceId;
 
@@ -979,6 +1150,32 @@ final class PipesPipeTargetParametersEcsTaskParameters {
   };
 }
 
+/// `launch_type` — derived from the provider schema description.
+enum PipesPipeTargetParametersEcsTaskParametersLaunchType
+    implements TerraformEnum {
+  ec2('EC2'),
+  fargate('FARGATE'),
+  external('EXTERNAL');
+
+  const PipesPipeTargetParametersEcsTaskParametersLaunchType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `propagate_tags` — derived from the provider schema description.
+enum PipesPipeTargetParametersEcsTaskParametersPropagateTags
+    implements TerraformEnum {
+  taskDefinition('TASK_DEFINITION');
+
+  const PipesPipeTargetParametersEcsTaskParametersPropagateTags(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_parameters.ecs_task_parameters.capacity_provider_strategy` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
@@ -1029,7 +1226,10 @@ final class PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpc
     this.subnets,
   });
 
-  final TfArg<String>? assignPublicIp;
+  final TfArg<
+    PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpcConfigurationAssignPublicIp
+  >?
+  assignPublicIp;
 
   final TfArg<List<Object?>>? securityGroups;
 
@@ -1040,6 +1240,19 @@ final class PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpc
     if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
     if (subnets != null) 'subnets': subnets!.toTfJson(),
   };
+}
+
+/// `assign_public_ip` — derived from the provider schema description.
+enum PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpcConfigurationAssignPublicIp
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpcConfigurationAssignPublicIp(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_parameters.ecs_task_parameters.overrides` block of
@@ -1180,7 +1393,10 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironmentFileType
+  >
+  type;
 
   final TfArg<String> value;
 
@@ -1188,6 +1404,18 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironmentFileType
+    implements TerraformEnum {
+  s3('s3');
+
+  const PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideEnvironmentFileType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_parameters.ecs_task_parameters.overrides.container_override.resource_requirement` block of
@@ -1199,7 +1427,10 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideResourceRequirementType
+  >
+  type;
 
   final TfArg<String> value;
 
@@ -1207,6 +1438,19 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideResourceRequirementType
+    implements TerraformEnum {
+  gpu('GPU'),
+  inferenceaccelerator('InferenceAccelerator');
+
+  const PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverrideResourceRequirementType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_parameters.ecs_task_parameters.overrides.ephemeral_storage` block of
@@ -1252,12 +1496,28 @@ final class PipesPipeTargetParametersEcsTaskParametersPlacementConstraint {
 
   final TfArg<String>? expression;
 
-  final TfArg<String>? type;
+  final TfArg<
+    PipesPipeTargetParametersEcsTaskParametersPlacementConstraintType
+  >?
+  type;
 
   Map<String, Object?> encode() => {
     if (expression != null) 'expression': expression!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PipesPipeTargetParametersEcsTaskParametersPlacementConstraintType
+    implements TerraformEnum {
+  distinctinstance('distinctInstance'),
+  memberof('memberOf');
+
+  const PipesPipeTargetParametersEcsTaskParametersPlacementConstraintType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_parameters.ecs_task_parameters.placement_strategy` block of
@@ -1271,12 +1531,27 @@ final class PipesPipeTargetParametersEcsTaskParametersPlacementStrategy {
 
   final TfArg<String>? field;
 
-  final TfArg<String>? type;
+  final TfArg<PipesPipeTargetParametersEcsTaskParametersPlacementStrategyType>?
+  type;
 
   Map<String, Object?> encode() => {
     if (field != null) 'field': field!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PipesPipeTargetParametersEcsTaskParametersPlacementStrategyType
+    implements TerraformEnum {
+  random('random'),
+  spread('spread'),
+  binpack('binpack');
+
+  const PipesPipeTargetParametersEcsTaskParametersPlacementStrategyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_parameters.eventbridge_event_bus_parameters` block of
@@ -1357,11 +1632,25 @@ final class PipesPipeTargetParametersLambdaFunctionParameters {
     required this.invocationType,
   });
 
-  final TfArg<String> invocationType;
+  final TfArg<PipesPipeTargetParametersLambdaFunctionParametersInvocationType>
+  invocationType;
 
   Map<String, Object?> encode() => {
     'invocation_type': invocationType.toTfJson(),
   };
+}
+
+/// `invocation_type` — derived from the provider schema description.
+enum PipesPipeTargetParametersLambdaFunctionParametersInvocationType
+    implements TerraformEnum {
+  requestResponse('REQUEST_RESPONSE'),
+  fireAndForget('FIRE_AND_FORGET');
+
+  const PipesPipeTargetParametersLambdaFunctionParametersInvocationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_parameters.redshift_data_parameters` block of
@@ -1466,11 +1755,27 @@ final class PipesPipeTargetParametersStepFunctionStateMachineParameters {
     required this.invocationType,
   });
 
-  final TfArg<String> invocationType;
+  final TfArg<
+    PipesPipeTargetParametersStepFunctionStateMachineParametersInvocationType
+  >
+  invocationType;
 
   Map<String, Object?> encode() => {
     'invocation_type': invocationType.toTfJson(),
   };
+}
+
+/// `invocation_type` — derived from the provider schema description.
+enum PipesPipeTargetParametersStepFunctionStateMachineParametersInvocationType
+    implements TerraformEnum {
+  requestResponse('REQUEST_RESPONSE'),
+  fireAndForget('FIRE_AND_FORGET');
+
+  const PipesPipeTargetParametersStepFunctionStateMachineParametersInvocationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_pipes_pipe`.
@@ -1480,7 +1785,7 @@ final class AwsPipesPipe extends Resource {
   AwsPipesPipe({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? desiredState,
+    TfArg<PipesPipeDesiredState>? desiredState,
     TfArg<String>? enrichment,
     TfArg<String>? kmsKeyIdentifier,
     TfArg<String>? name,

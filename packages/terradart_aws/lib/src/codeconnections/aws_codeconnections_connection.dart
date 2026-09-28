@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_codeconnections_connection`.
 const Set<String> _awsCodeconnectionsConnectionSensitive = <String>{};
 
+/// Codeconnections Connection Provider enum for `provider_type`.
+enum CodeconnectionsConnectionProviderType implements TerraformEnum {
+  bitbucket('Bitbucket'),
+  github('GitHub'),
+  githubenterpriseserver('GitHubEnterpriseServer'),
+  gitlab('GitLab'),
+  gitlabselfmanaged('GitLabSelfManaged'),
+  azuredevops('AzureDevOps');
+
+  const CodeconnectionsConnectionProviderType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_codeconnections_connection`.
 final class AwsCodeconnectionsConnection extends Resource {
   static const String tfType = 'aws_codeconnections_connection';
@@ -14,7 +28,7 @@ final class AwsCodeconnectionsConnection extends Resource {
     required super.localName,
     TfArg<String>? hostArn,
     required TfArg<String> name,
-    TfArg<String>? providerType,
+    TfArg<CodeconnectionsConnectionProviderType>? providerType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

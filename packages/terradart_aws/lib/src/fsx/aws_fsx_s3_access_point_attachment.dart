@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_fsx_s3_access_point_attachment`.
 const Set<String> _awsFsxS3AccessPointAttachmentSensitive = <String>{};
 
+/// Fsx S3 Access Point Attachment enum for `type`.
+enum FsxS3AccessPointAttachmentType implements TerraformEnum {
+  openzfs('OPENZFS'),
+  ontap('ONTAP');
+
+  const FsxS3AccessPointAttachmentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `openzfs_configuration` block of
 /// `aws_fsx_s3_access_point_attachment` (derived from provider schema).
 @immutable
@@ -37,7 +47,10 @@ final class FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity {
     this.posixUser,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityType
+  >
+  type;
 
   final List<
     FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityPosixUser
@@ -49,6 +62,18 @@ final class FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentity {
     if (posixUser != null)
       'posix_user': [for (final e in posixUser!) e.encode()],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityType
+    implements TerraformEnum {
+  posix('POSIX');
+
+  const FsxS3AccessPointAttachmentOpenzfsConfigurationFileSystemIdentityType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `openzfs_configuration.file_system_identity.posix_user` block of
@@ -116,7 +141,7 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> type,
+    required TfArg<FsxS3AccessPointAttachmentType> type,
     List<FsxS3AccessPointAttachmentOpenzfsConfiguration>? openzfsConfiguration,
     List<FsxS3AccessPointAttachmentS3AccessPoint>? s3AccessPoint,
     super.lifecycle,

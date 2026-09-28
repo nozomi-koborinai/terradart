@@ -7,6 +7,42 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_s3_bucket_inventory`.
 const Set<String> _awsS3BucketInventorySensitive = <String>{};
 
+/// S3 Bucket Inventory Included Object enum for `included_object_versions`.
+enum S3BucketInventoryIncludedObjectVersions implements TerraformEnum {
+  all('All'),
+  current('Current');
+
+  const S3BucketInventoryIncludedObjectVersions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// S3 Bucket Inventory Optional enum for `optional_fields`.
+enum S3BucketInventoryOptionalFields implements TerraformEnum {
+  size('Size'),
+  lastmodifieddate('LastModifiedDate'),
+  storageclass('StorageClass'),
+  etag('ETag'),
+  ismultipartuploaded('IsMultipartUploaded'),
+  replicationstatus('ReplicationStatus'),
+  encryptionstatus('EncryptionStatus'),
+  objectlockretainuntildate('ObjectLockRetainUntilDate'),
+  objectlockmode('ObjectLockMode'),
+  objectlocklegalholdstatus('ObjectLockLegalHoldStatus'),
+  objectlockeventholdstatus('ObjectLockEventHoldStatus'),
+  objectlockeventholdduration('ObjectLockEventHoldDuration'),
+  intelligenttieringaccesstier('IntelligentTieringAccessTier'),
+  bucketkeystatus('BucketKeyStatus'),
+  checksumalgorithm('ChecksumAlgorithm'),
+  objectaccesscontrollist('ObjectAccessControlList'),
+  objectowner('ObjectOwner'),
+  lifecycleexpirationdate('LifecycleExpirationDate');
+
+  const S3BucketInventoryOptionalFields(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `destination` block of
 /// `aws_s3_bucket_inventory` (derived from provider schema).
 @immutable
@@ -34,7 +70,7 @@ final class S3BucketInventoryDestinationBucket {
 
   final TfArg<String> bucketArn;
 
-  final TfArg<String> format;
+  final TfArg<S3BucketInventoryDestinationBucketFormat> format;
 
   final TfArg<String>? prefix;
 
@@ -47,6 +83,17 @@ final class S3BucketInventoryDestinationBucket {
     if (prefix != null) 'prefix': prefix!.toTfJson(),
     if (encryption != null) 'encryption': encryption!.encode(),
   };
+}
+
+/// `format` — derived from the provider schema description.
+enum S3BucketInventoryDestinationBucketFormat implements TerraformEnum {
+  csv('CSV'),
+  orc('ORC'),
+  parquet('Parquet');
+
+  const S3BucketInventoryDestinationBucketFormat(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination.bucket.encryption` block of
@@ -106,9 +153,19 @@ final class S3BucketInventoryFilter {
 final class S3BucketInventorySchedule {
   const S3BucketInventorySchedule({required this.frequency});
 
-  final TfArg<String> frequency;
+  final TfArg<S3BucketInventoryScheduleFrequency> frequency;
 
   Map<String, Object?> encode() => {'frequency': frequency.toTfJson()};
+}
+
+/// `frequency` — derived from the provider schema description.
+enum S3BucketInventoryScheduleFrequency implements TerraformEnum {
+  daily('Daily'),
+  weekly('Weekly');
+
+  const S3BucketInventoryScheduleFrequency(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_s3_bucket_inventory`.
@@ -119,9 +176,10 @@ final class AwsS3BucketInventory extends Resource {
     required super.localName,
     required TfArg<String> bucket,
     TfArg<bool>? enabled,
-    required TfArg<String> includedObjectVersions,
+    required TfArg<S3BucketInventoryIncludedObjectVersions>
+    includedObjectVersions,
     required TfArg<String> name,
-    TfArg<List<String>>? optionalFields,
+    List<TfArg<S3BucketInventoryOptionalFields>>? optionalFields,
     TfArg<String>? region,
     required S3BucketInventoryDestination destination,
     S3BucketInventoryFilter? filter,
@@ -137,7 +195,10 @@ final class AwsS3BucketInventory extends Resource {
            if (enabled != null) 'enabled': enabled,
            'included_object_versions': includedObjectVersions,
            'name': name,
-           if (optionalFields != null) 'optional_fields': optionalFields,
+           if (optionalFields != null)
+             'optional_fields': TfArg.literal([
+               for (final e in optionalFields) e.toTfJson(),
+             ]),
            if (region != null) 'region': region,
            'destination': TfArg.literal(destination.encode()),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),

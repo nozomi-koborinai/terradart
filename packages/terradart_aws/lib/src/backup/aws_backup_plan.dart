@@ -18,12 +18,21 @@ final class BackupPlanAdvancedBackupSetting {
 
   final TfArg<Map<String, String>> backupOptions;
 
-  final TfArg<String> resourceType;
+  final TfArg<BackupPlanAdvancedBackupSettingResourceType> resourceType;
 
   Map<String, Object?> encode() => {
     'backup_options': backupOptions.toTfJson(),
     'resource_type': resourceType.toTfJson(),
   };
+}
+
+/// `resource_type` — derived from the provider schema description.
+enum BackupPlanAdvancedBackupSettingResourceType implements TerraformEnum {
+  ec2('EC2');
+
+  const BackupPlanAdvancedBackupSettingResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule` block of
@@ -173,14 +182,33 @@ final class BackupPlanRuleScanAction {
     required this.scanMode,
   });
 
-  final TfArg<String> malwareScanner;
+  final TfArg<BackupPlanRuleScanActionMalwareScanner> malwareScanner;
 
-  final TfArg<String> scanMode;
+  final TfArg<BackupPlanRuleScanActionScanMode> scanMode;
 
   Map<String, Object?> encode() => {
     'malware_scanner': malwareScanner.toTfJson(),
     'scan_mode': scanMode.toTfJson(),
   };
+}
+
+/// `malware_scanner` — derived from the provider schema description.
+enum BackupPlanRuleScanActionMalwareScanner implements TerraformEnum {
+  guardduty('GUARDDUTY');
+
+  const BackupPlanRuleScanActionMalwareScanner(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `scan_mode` — derived from the provider schema description.
+enum BackupPlanRuleScanActionScanMode implements TerraformEnum {
+  fullScan('FULL_SCAN'),
+  incrementalScan('INCREMENTAL_SCAN');
+
+  const BackupPlanRuleScanActionScanMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `scan_setting` block of
@@ -193,7 +221,7 @@ final class BackupPlanScanSetting {
     required this.scannerRoleArn,
   });
 
-  final TfArg<String> malwareScanner;
+  final TfArg<BackupPlanScanSettingMalwareScanner> malwareScanner;
 
   final TfArg<List<Object?>> resourceTypes;
 
@@ -204,6 +232,15 @@ final class BackupPlanScanSetting {
     'resource_types': resourceTypes.toTfJson(),
     'scanner_role_arn': scannerRoleArn.toTfJson(),
   };
+}
+
+/// `malware_scanner` — derived from the provider schema description.
+enum BackupPlanScanSettingMalwareScanner implements TerraformEnum {
+  guardduty('GUARDDUTY');
+
+  const BackupPlanScanSettingMalwareScanner(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_backup_plan`.

@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_fsx_file_cache`.
 const Set<String> _awsFsxFileCacheSensitive = <String>{};
 
+/// Fsx File Cache File Cache enum for `file_cache_type`.
+enum FsxFileCacheFileCacheType implements TerraformEnum {
+  lustre('LUSTRE');
+
+  const FsxFileCacheFileCacheType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `data_repository_association` block of
 /// `aws_fsx_file_cache` (derived from provider schema).
 @immutable
@@ -51,12 +60,21 @@ final class FsxFileCacheDataRepositoryAssociationNfs {
 
   final TfArg<List<Object?>>? dnsIps;
 
-  final TfArg<String> version;
+  final TfArg<FsxFileCacheDataRepositoryAssociationNfsVersion> version;
 
   Map<String, Object?> encode() => {
     if (dnsIps != null) 'dns_ips': dnsIps!.toTfJson(),
     'version': version.toTfJson(),
   };
+}
+
+/// `version` — derived from the provider schema description.
+enum FsxFileCacheDataRepositoryAssociationNfsVersion implements TerraformEnum {
+  nfs3('NFS3');
+
+  const FsxFileCacheDataRepositoryAssociationNfsVersion(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `lustre_configuration` block of
@@ -70,7 +88,7 @@ final class FsxFileCacheLustreConfiguration {
     required this.metadataConfiguration,
   });
 
-  final TfArg<String> deploymentType;
+  final TfArg<FsxFileCacheLustreConfigurationDeploymentType> deploymentType;
 
   final TfArg<num> perUnitStorageThroughput;
 
@@ -88,6 +106,15 @@ final class FsxFileCacheLustreConfiguration {
       for (final e in metadataConfiguration) e.encode(),
     ],
   };
+}
+
+/// `deployment_type` — derived from the provider schema description.
+enum FsxFileCacheLustreConfigurationDeploymentType implements TerraformEnum {
+  cache1('CACHE_1');
+
+  const FsxFileCacheLustreConfigurationDeploymentType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `lustre_configuration.metadata_configuration` block of
@@ -112,7 +139,7 @@ final class AwsFsxFileCache extends Resource {
   AwsFsxFileCache({
     required super.localName,
     TfArg<bool>? copyTagsToDataRepositoryAssociations,
-    required TfArg<String> fileCacheType,
+    required TfArg<FsxFileCacheFileCacheType> fileCacheType,
     required TfArg<String> fileCacheTypeVersion,
     TfArg<String>? kmsKeyId,
     TfArg<String>? region,

@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appsync_resolver`.
 const Set<String> _awsAppsyncResolverSensitive = <String>{};
 
+/// Appsync Resolver enum for `kind`.
+enum AppsyncResolverKind implements TerraformEnum {
+  unit('UNIT'),
+  pipeline('PIPELINE');
+
+  const AppsyncResolverKind(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `caching_config` block of
 /// `aws_appsync_resolver` (derived from provider schema).
 @immutable
@@ -45,7 +55,7 @@ final class AppsyncResolverRuntime {
     required this.runtimeVersion,
   });
 
-  final TfArg<String> name;
+  final TfArg<AppsyncResolverRuntimeName> name;
 
   final TfArg<String> runtimeVersion;
 
@@ -53,6 +63,15 @@ final class AppsyncResolverRuntime {
     'name': name.toTfJson(),
     'runtime_version': runtimeVersion.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+enum AppsyncResolverRuntimeName implements TerraformEnum {
+  appsyncJs('APPSYNC_JS');
+
+  const AppsyncResolverRuntimeName(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `sync_config` block of
@@ -65,9 +84,9 @@ final class AppsyncResolverSyncConfig {
     this.lambdaConflictHandlerConfig,
   });
 
-  final TfArg<String>? conflictDetection;
+  final TfArg<AppsyncResolverSyncConfigConflictDetection>? conflictDetection;
 
-  final TfArg<String>? conflictHandler;
+  final TfArg<AppsyncResolverSyncConfigConflictHandler>? conflictHandler;
 
   final AppsyncResolverSyncConfigLambdaConflictHandlerConfig?
   lambdaConflictHandlerConfig;
@@ -80,6 +99,28 @@ final class AppsyncResolverSyncConfig {
     if (lambdaConflictHandlerConfig != null)
       'lambda_conflict_handler_config': lambdaConflictHandlerConfig!.encode(),
   };
+}
+
+/// `conflict_detection` — derived from the provider schema description.
+enum AppsyncResolverSyncConfigConflictDetection implements TerraformEnum {
+  version('VERSION'),
+  none('NONE');
+
+  const AppsyncResolverSyncConfigConflictDetection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `conflict_handler` — derived from the provider schema description.
+enum AppsyncResolverSyncConfigConflictHandler implements TerraformEnum {
+  optimisticConcurrency('OPTIMISTIC_CONCURRENCY'),
+  lambda('LAMBDA'),
+  automerge('AUTOMERGE'),
+  none('NONE');
+
+  const AppsyncResolverSyncConfigConflictHandler(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `sync_config.lambda_conflict_handler_config` block of
@@ -108,7 +149,7 @@ final class AwsAppsyncResolver extends Resource {
     TfArg<String>? code,
     TfArg<String>? dataSource,
     required TfArg<String> field,
-    TfArg<String>? kind,
+    TfArg<AppsyncResolverKind>? kind,
     TfArg<num>? maxBatchSize,
     TfArg<String>? region,
     TfArg<String>? requestTemplate,

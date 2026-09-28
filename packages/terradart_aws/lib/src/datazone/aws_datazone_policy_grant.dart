@@ -7,6 +7,40 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_datazone_policy_grant`.
 const Set<String> _awsDatazonePolicyGrantSensitive = <String>{};
 
+/// Datazone Policy Grant Entity enum for `entity_type`.
+enum DatazonePolicyGrantEntityType implements TerraformEnum {
+  domainUnit('DOMAIN_UNIT'),
+  environmentBlueprintConfiguration('ENVIRONMENT_BLUEPRINT_CONFIGURATION'),
+  environmentProfile('ENVIRONMENT_PROFILE'),
+  assetType('ASSET_TYPE');
+
+  const DatazonePolicyGrantEntityType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Datazone Policy Grant Policy enum for `policy_type`.
+enum DatazonePolicyGrantPolicyType implements TerraformEnum {
+  createDomainUnit('CREATE_DOMAIN_UNIT'),
+  overrideDomainUnitOwners('OVERRIDE_DOMAIN_UNIT_OWNERS'),
+  addToProjectMemberPool('ADD_TO_PROJECT_MEMBER_POOL'),
+  overrideProjectOwners('OVERRIDE_PROJECT_OWNERS'),
+  createGlossary('CREATE_GLOSSARY'),
+  createFormType('CREATE_FORM_TYPE'),
+  createAssetType('CREATE_ASSET_TYPE'),
+  createProject('CREATE_PROJECT'),
+  createEnvironmentProfile('CREATE_ENVIRONMENT_PROFILE'),
+  delegateCreateEnvironmentProfile('DELEGATE_CREATE_ENVIRONMENT_PROFILE'),
+  createEnvironment('CREATE_ENVIRONMENT'),
+  createEnvironmentFromBlueprint('CREATE_ENVIRONMENT_FROM_BLUEPRINT'),
+  createProjectFromProjectProfile('CREATE_PROJECT_FROM_PROJECT_PROFILE'),
+  useAssetType('USE_ASSET_TYPE');
+
+  const DatazonePolicyGrantPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `detail` block of
 /// `aws_datazone_policy_grant` (derived from provider schema).
 @immutable
@@ -343,7 +377,8 @@ final class DatazonePolicyGrantPrincipalDomainUnit {
     this.allDomainUnitsGrantFilter,
   });
 
-  final TfArg<String> domainUnitDesignation;
+  final TfArg<DatazonePolicyGrantPrincipalDomainUnitDomainUnitDesignation>
+  domainUnitDesignation;
 
   final TfArg<String>? domainUnitIdentifier;
 
@@ -359,6 +394,18 @@ final class DatazonePolicyGrantPrincipalDomainUnit {
         for (final e in allDomainUnitsGrantFilter!) e.encode(),
       ],
   };
+}
+
+/// `domain_unit_designation` — derived from the provider schema description.
+enum DatazonePolicyGrantPrincipalDomainUnitDomainUnitDesignation
+    implements TerraformEnum {
+  owner('OWNER');
+
+  const DatazonePolicyGrantPrincipalDomainUnitDomainUnitDesignation(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `principal.domain_unit.all_domain_units_grant_filter` block of
@@ -393,7 +440,8 @@ final class DatazonePolicyGrantPrincipalProject {
     this.domainUnitFilter,
   });
 
-  final TfArg<String> projectDesignation;
+  final TfArg<DatazonePolicyGrantPrincipalProjectProjectDesignation>
+  projectDesignation;
 
   final TfArg<String>? projectIdentifier;
 
@@ -407,6 +455,20 @@ final class DatazonePolicyGrantPrincipalProject {
     if (domainUnitFilter != null)
       'domain_unit_filter': [for (final e in domainUnitFilter!) e.encode()],
   };
+}
+
+/// `project_designation` — derived from the provider schema description.
+enum DatazonePolicyGrantPrincipalProjectProjectDesignation
+    implements TerraformEnum {
+  owner('OWNER'),
+  contributor('CONTRIBUTOR'),
+  projectCatalogSteward('PROJECT_CATALOG_STEWARD');
+
+  const DatazonePolicyGrantPrincipalProjectProjectDesignation(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `principal.project.domain_unit_filter` block of
@@ -469,8 +531,8 @@ final class AwsDatazonePolicyGrant extends Resource {
     required super.localName,
     required TfArg<String> domainIdentifier,
     required TfArg<String> entityIdentifier,
-    required TfArg<String> entityType,
-    required TfArg<String> policyType,
+    required TfArg<DatazonePolicyGrantEntityType> entityType,
+    required TfArg<DatazonePolicyGrantPolicyType> policyType,
     TfArg<String>? region,
     List<DatazonePolicyGrantDetail>? detail,
     List<DatazonePolicyGrantPrincipal>? principal,

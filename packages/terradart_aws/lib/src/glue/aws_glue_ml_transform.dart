@@ -7,6 +7,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_glue_ml_transform`.
 const Set<String> _awsGlueMlTransformSensitive = <String>{};
 
+/// Glue Ml Transform Worker enum for `worker_type`.
+enum GlueMlTransformWorkerType implements TerraformEnum {
+  standard('Standard'),
+  g1x('G.1X'),
+  g2x('G.2X'),
+  g025x('G.025X'),
+  g4x('G.4X'),
+  g8x('G.8X'),
+  z2x('Z.2X');
+
+  const GlueMlTransformWorkerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `input_record_tables` block of
 /// `aws_glue_ml_transform` (derived from provider schema).
 @immutable
@@ -43,7 +58,7 @@ final class GlueMlTransformParameters {
     required this.findMatchesParameters,
   });
 
-  final TfArg<String> transformType;
+  final TfArg<GlueMlTransformParametersTransformType> transformType;
 
   final GlueMlTransformParametersFindMatchesParameters findMatchesParameters;
 
@@ -51,6 +66,15 @@ final class GlueMlTransformParameters {
     'transform_type': transformType.toTfJson(),
     'find_matches_parameters': findMatchesParameters.encode(),
   };
+}
+
+/// `transform_type` — derived from the provider schema description.
+enum GlueMlTransformParametersTransformType implements TerraformEnum {
+  findMatches('FIND_MATCHES');
+
+  const GlueMlTransformParametersTransformType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `parameters.find_matches_parameters` block of
@@ -100,7 +124,7 @@ final class AwsGlueMlTransform extends Resource {
     required TfArg<String> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? timeout,
-    TfArg<String>? workerType,
+    TfArg<GlueMlTransformWorkerType>? workerType,
     required List<GlueMlTransformInputRecordTables> inputRecordTables,
     required GlueMlTransformParameters parameters,
     super.lifecycle,

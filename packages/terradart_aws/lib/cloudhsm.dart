@@ -3,5 +3,6 @@
 /// AWS CloudHSM.
 library;
 
-export 'src/cloudhsm/aws_cloudhsm_v2_cluster.dart' show AwsCloudhsmV2Cluster;
+export 'src/cloudhsm/aws_cloudhsm_v2_cluster.dart'
+    show AwsCloudhsmV2Cluster, CloudhsmV2ClusterHsmType, CloudhsmV2ClusterMode;
 export 'src/cloudhsm/aws_cloudhsm_v2_hsm.dart' show AwsCloudhsmV2Hsm;

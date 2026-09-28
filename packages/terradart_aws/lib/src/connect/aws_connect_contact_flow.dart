@@ -6,6 +6,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_connect_contact_flow`.
 const Set<String> _awsConnectContactFlowSensitive = <String>{};
 
+/// Connect Contact Flow enum for `type`.
+enum ConnectContactFlowType implements TerraformEnum {
+  contactFlow('CONTACT_FLOW'),
+  customerQueue('CUSTOMER_QUEUE'),
+  customerHold('CUSTOMER_HOLD'),
+  customerWhisper('CUSTOMER_WHISPER'),
+  agentHold('AGENT_HOLD'),
+  agentWhisper('AGENT_WHISPER'),
+  outboundWhisper('OUTBOUND_WHISPER'),
+  agentTransfer('AGENT_TRANSFER'),
+  queueTransfer('QUEUE_TRANSFER'),
+  campaign('CAMPAIGN');
+
+  const ConnectContactFlowType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_connect_contact_flow`.
 final class AwsConnectContactFlow extends Resource {
   static const String tfType = 'aws_connect_contact_flow';
@@ -20,7 +38,7 @@ final class AwsConnectContactFlow extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    TfArg<ConnectContactFlowType>? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

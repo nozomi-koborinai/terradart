@@ -34,7 +34,10 @@ final class BedrockModelInvocationJobInputDataConfigS3InputDataConfig {
 
   final TfArg<String>? s3BucketOwner;
 
-  final TfArg<String>? s3InputFormat;
+  final TfArg<
+    BedrockModelInvocationJobInputDataConfigS3InputDataConfigS3InputFormat
+  >?
+  s3InputFormat;
 
   final TfArg<String> s3Uri;
 
@@ -43,6 +46,18 @@ final class BedrockModelInvocationJobInputDataConfigS3InputDataConfig {
     if (s3InputFormat != null) 's3_input_format': s3InputFormat!.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
   };
+}
+
+/// `s3_input_format` — derived from the provider schema description.
+enum BedrockModelInvocationJobInputDataConfigS3InputDataConfigS3InputFormat
+    implements TerraformEnum {
+  jsonl('JSONL');
+
+  const BedrockModelInvocationJobInputDataConfigS3InputDataConfigS3InputFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `output_data_config` block of

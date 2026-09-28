@@ -6,15 +6,24 @@ library;
 export 'src/odb/aws_odb_cloud_autonomous_vm_cluster.dart'
     show
         AwsOdbCloudAutonomousVmCluster,
-        OdbCloudAutonomousVmClusterMaintenanceWindow;
+        OdbCloudAutonomousVmClusterMaintenanceWindow,
+        OdbCloudAutonomousVmClusterMaintenanceWindowPreference;
 export 'src/odb/aws_odb_cloud_exadata_infrastructure.dart'
     show
         AwsOdbCloudExadataInfrastructure,
-        OdbCloudExadataInfrastructureMaintenanceWindow;
+        OdbCloudExadataInfrastructureMaintenanceWindow,
+        OdbCloudExadataInfrastructureMaintenanceWindowPatchingMode,
+        OdbCloudExadataInfrastructureMaintenanceWindowPreference;
 export 'src/odb/aws_odb_cloud_vm_cluster.dart'
     show AwsOdbCloudVmCluster, OdbCloudVmClusterDataCollectionOptions;
 export 'src/odb/aws_odb_iam_role_association.dart'
     show AwsOdbIamRoleAssociation;
-export 'src/odb/aws_odb_network.dart' show AwsOdbNetwork;
+export 'src/odb/aws_odb_network.dart'
+    show
+        AwsOdbNetwork,
+        OdbNetworkKmsAccess,
+        OdbNetworkS3Access,
+        OdbNetworkStsAccess,
+        OdbNetworkZeroEtlAccess;
 export 'src/odb/aws_odb_network_peering_connection.dart'
     show AwsOdbNetworkPeeringConnection;

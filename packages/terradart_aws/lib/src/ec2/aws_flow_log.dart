@@ -7,6 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_flow_log`.
 const Set<String> _awsFlowLogSensitive = <String>{};
 
+/// Flow Log Log Destination enum for `log_destination_type`.
+enum FlowLogLogDestinationType implements TerraformEnum {
+  cloudWatchLogs('cloud-watch-logs'),
+  s3('s3'),
+  kinesisDataFirehose('kinesis-data-firehose');
+
+  const FlowLogLogDestinationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Flow Log Traffic enum for `traffic_type`.
+enum FlowLogTrafficType implements TerraformEnum {
+  accept('ACCEPT'),
+  reject('REJECT'),
+  all('ALL');
+
+  const FlowLogTrafficType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `destination_options` block of
 /// `aws_flow_log` (derived from provider schema).
 @immutable
@@ -17,7 +39,7 @@ final class FlowLogDestinationOptions {
     this.perHourPartition,
   });
 
-  final TfArg<String>? fileFormat;
+  final TfArg<FlowLogDestinationOptionsFileFormat>? fileFormat;
 
   final TfArg<bool>? hiveCompatiblePartitions;
 
@@ -32,6 +54,16 @@ final class FlowLogDestinationOptions {
   };
 }
 
+/// `file_format` — derived from the provider schema description.
+enum FlowLogDestinationOptionsFileFormat implements TerraformEnum {
+  plainText('plain-text'),
+  parquet('parquet');
+
+  const FlowLogDestinationOptionsFileFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `tag_field_specification` block of
 /// `aws_flow_log` (derived from provider schema).
 @immutable
@@ -41,7 +73,7 @@ final class FlowLogTagFieldSpecification {
     required this.tagKeys,
   });
 
-  final TfArg<String> resourceType;
+  final TfArg<FlowLogTagFieldSpecificationResourceType> resourceType;
 
   final TfArg<List<Object?>> tagKeys;
 
@@ -49,6 +81,17 @@ final class FlowLogTagFieldSpecification {
     'resource_type': resourceType.toTfJson(),
     'tag_keys': tagKeys.toTfJson(),
   };
+}
+
+/// `resource_type` — derived from the provider schema description.
+enum FlowLogTagFieldSpecificationResourceType implements TerraformEnum {
+  networkInterface('network-interface'),
+  instance('instance'),
+  autoScalingGroup('auto-scaling-group');
+
+  const FlowLogTagFieldSpecificationResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_flow_log`.
@@ -61,14 +104,14 @@ final class AwsFlowLog extends Resource {
     TfArg<String>? eniId,
     TfArg<String>? iamRoleArn,
     TfArg<String>? logDestination,
-    TfArg<String>? logDestinationType,
+    TfArg<FlowLogLogDestinationType>? logDestinationType,
     TfArg<String>? logFormat,
     TfArg<num>? maxAggregationInterval,
     TfArg<String>? region,
     TfArg<String>? regionalNatGatewayId,
     TfArg<String>? subnetId,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? trafficType,
+    TfArg<FlowLogTrafficType>? trafficType,
     TfArg<String>? transitGatewayAttachmentId,
     TfArg<String>? transitGatewayId,
     TfArg<String>? vpcId,

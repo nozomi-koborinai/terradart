@@ -16,14 +16,36 @@ final class GlueCatalogDatabaseCreateTableDefaultPermission {
     this.principal,
   });
 
-  final TfArg<List<Object?>>? permissions;
+  final List<TfArg<GlueCatalogDatabaseCreateTableDefaultPermissionPermissions>>?
+  permissions;
 
   final GlueCatalogDatabaseCreateTableDefaultPermissionPrincipal? principal;
 
   Map<String, Object?> encode() => {
-    if (permissions != null) 'permissions': permissions!.toTfJson(),
+    if (permissions != null)
+      'permissions': [for (final e in permissions!) e.toTfJson()],
     if (principal != null) 'principal': principal!.encode(),
   };
+}
+
+/// `permissions` — derived from the provider schema description.
+enum GlueCatalogDatabaseCreateTableDefaultPermissionPermissions
+    implements TerraformEnum {
+  all('ALL'),
+  select('SELECT'),
+  alter('ALTER'),
+  drop('DROP'),
+  delete('DELETE'),
+  insert('INSERT'),
+  createDatabase('CREATE_DATABASE'),
+  createTable('CREATE_TABLE'),
+  dataLocationAccess('DATA_LOCATION_ACCESS');
+
+  const GlueCatalogDatabaseCreateTableDefaultPermissionPermissions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `create_table_default_permission.principal` block of

@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_grafana_workspace_api_key`.
 const Set<String> _awsGrafanaWorkspaceApiKeySensitive = <String>{'key'};
 
+/// Grafana Workspace Api Key Key enum for `key_role`.
+enum GrafanaWorkspaceApiKeyKeyRole implements TerraformEnum {
+  admin('ADMIN'),
+  editor('EDITOR'),
+  viewer('VIEWER');
+
+  const GrafanaWorkspaceApiKeyKeyRole(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_grafana_workspace_api_key`.
 final class AwsGrafanaWorkspaceApiKey extends Resource {
   static const String tfType = 'aws_grafana_workspace_api_key';
@@ -13,7 +24,7 @@ final class AwsGrafanaWorkspaceApiKey extends Resource {
   AwsGrafanaWorkspaceApiKey({
     required super.localName,
     required TfArg<String> keyName,
-    required TfArg<String> keyRole,
+    required TfArg<GrafanaWorkspaceApiKeyKeyRole> keyRole,
     TfArg<String>? region,
     required TfArg<num> secondsToLive,
     required TfArg<String> workspaceId,

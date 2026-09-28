@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_datazone_form_type`.
 const Set<String> _awsDatazoneFormTypeSensitive = <String>{};
 
+/// Datazone Form Type enum for `status`.
+enum DatazoneFormTypeStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const DatazoneFormTypeStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `model` block of
 /// `aws_datazone_form_type` (derived from provider schema).
 @immutable
@@ -29,7 +39,7 @@ final class AwsDatazoneFormType extends Resource {
     required TfArg<String> name,
     required TfArg<String> owningProjectIdentifier,
     TfArg<String>? region,
-    TfArg<String>? status,
+    TfArg<DatazoneFormTypeStatus>? status,
     List<DatazoneFormTypeModel>? model,
     super.lifecycle,
     super.dependsOn,

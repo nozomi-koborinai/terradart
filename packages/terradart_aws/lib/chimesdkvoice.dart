@@ -12,7 +12,10 @@ export 'src/chimesdkvoice/aws_chimesdkvoice_sip_media_application.dart'
         AwsChimesdkvoiceSipMediaApplication,
         ChimesdkvoiceSipMediaApplicationEndpoints;
 export 'src/chimesdkvoice/aws_chimesdkvoice_sip_rule.dart'
-    show AwsChimesdkvoiceSipRule, ChimesdkvoiceSipRuleTargetApplications;
+    show
+        AwsChimesdkvoiceSipRule,
+        ChimesdkvoiceSipRuleTargetApplications,
+        ChimesdkvoiceSipRuleTriggerType;
 export 'src/chimesdkvoice/aws_chimesdkvoice_voice_profile_domain.dart'
     show
         AwsChimesdkvoiceVoiceProfileDomain,

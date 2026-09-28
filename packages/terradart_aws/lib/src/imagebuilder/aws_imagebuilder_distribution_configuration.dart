@@ -179,12 +179,27 @@ final class ImagebuilderDistributionConfigurationDistributionContainerDistributi
 
   final TfArg<String> repositoryName;
 
-  final TfArg<String> service;
+  final TfArg<
+    ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepositoryService
+  >
+  service;
 
   Map<String, Object?> encode() => {
     'repository_name': repositoryName.toTfJson(),
     'service': service.toTfJson(),
   };
+}
+
+/// `service` — derived from the provider schema description.
+enum ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepositoryService
+    implements TerraformEnum {
+  ecr('ECR');
+
+  const ImagebuilderDistributionConfigurationDistributionContainerDistributionConfigurationTargetRepositoryService(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `distribution.fast_launch_configuration` block of
@@ -298,7 +313,10 @@ final class ImagebuilderDistributionConfigurationDistributionS3ExportConfigurati
     this.s3Prefix,
   });
 
-  final TfArg<String> diskImageFormat;
+  final TfArg<
+    ImagebuilderDistributionConfigurationDistributionS3ExportConfigurationDiskImageFormat
+  >
+  diskImageFormat;
 
   final TfArg<String> roleName;
 
@@ -314,6 +332,20 @@ final class ImagebuilderDistributionConfigurationDistributionS3ExportConfigurati
   };
 }
 
+/// `disk_image_format` — derived from the provider schema description.
+enum ImagebuilderDistributionConfigurationDistributionS3ExportConfigurationDiskImageFormat
+    implements TerraformEnum {
+  vmdk('VMDK'),
+  raw('RAW'),
+  vhd('VHD');
+
+  const ImagebuilderDistributionConfigurationDistributionS3ExportConfigurationDiskImageFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `distribution.ssm_parameter_configuration` block of
 /// `aws_imagebuilder_distribution_configuration` (derived from provider schema).
 @immutable
@@ -326,7 +358,10 @@ final class ImagebuilderDistributionConfigurationDistributionSsmParameterConfigu
 
   final TfArg<String>? amiAccountId;
 
-  final TfArg<String>? dataType;
+  final TfArg<
+    ImagebuilderDistributionConfigurationDistributionSsmParameterConfigurationDataType
+  >?
+  dataType;
 
   final TfArg<String> parameterName;
 
@@ -335,6 +370,19 @@ final class ImagebuilderDistributionConfigurationDistributionSsmParameterConfigu
     if (dataType != null) 'data_type': dataType!.toTfJson(),
     'parameter_name': parameterName.toTfJson(),
   };
+}
+
+/// `data_type` — derived from the provider schema description.
+enum ImagebuilderDistributionConfigurationDistributionSsmParameterConfigurationDataType
+    implements TerraformEnum {
+  text('text'),
+  awsEc2Image('aws:ec2:image');
+
+  const ImagebuilderDistributionConfigurationDistributionSsmParameterConfigurationDataType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_imagebuilder_distribution_configuration`.

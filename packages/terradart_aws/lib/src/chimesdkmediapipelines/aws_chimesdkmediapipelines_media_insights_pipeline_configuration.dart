@@ -25,7 +25,10 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElements {
     this.voiceAnalyticsProcessorConfiguration,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsType
+  >
+  type;
 
   final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfiguration?
   amazonTranscribeCallAnalyticsProcessorConfiguration;
@@ -77,6 +80,28 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElements {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsType
+    implements TerraformEnum {
+  amazontranscribecallanalyticsprocessor(
+    'AmazonTranscribeCallAnalyticsProcessor',
+  ),
+  voiceanalyticsprocessor('VoiceAnalyticsProcessor'),
+  amazontranscribeprocessor('AmazonTranscribeProcessor'),
+  kinesisdatastreamsink('KinesisDataStreamSink'),
+  lambdafunctionsink('LambdaFunctionSink'),
+  sqsqueuesink('SqsQueueSink'),
+  snstopicsink('SnsTopicSink'),
+  s3recordingsink('S3RecordingSink'),
+  voiceenhancementsink('VoiceEnhancementSink');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `elements.amazon_transcribe_call_analytics_processor_configuration` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
@@ -99,23 +124,38 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
 
   final TfArg<List<Object?>>? callAnalyticsStreamCategories;
 
-  final TfArg<String>? contentIdentificationType;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentIdentificationType
+  >?
+  contentIdentificationType;
 
-  final TfArg<String>? contentRedactionType;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentRedactionType
+  >?
+  contentRedactionType;
 
   final TfArg<bool>? enablePartialResultsStabilization;
 
   final TfArg<bool>? filterPartialResults;
 
-  final TfArg<String> languageCode;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationLanguageCode
+  >
+  languageCode;
 
   final TfArg<String>? languageModelName;
 
-  final TfArg<String>? partialResultsStability;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPartialResultsStability
+  >?
+  partialResultsStability;
 
   final TfArg<String>? piiEntityTypes;
 
-  final TfArg<String>? vocabularyFilterMethod;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationVocabularyFilterMethod
+  >?
+  vocabularyFilterMethod;
 
   final TfArg<String>? vocabularyFilterName;
 
@@ -153,6 +193,78 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
   };
 }
 
+/// `content_identification_type` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentIdentificationType
+    implements TerraformEnum {
+  pii('PII');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentIdentificationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `content_redaction_type` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentRedactionType
+    implements TerraformEnum {
+  pii('PII');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationContentRedactionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `language_code` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationLanguageCode
+    implements TerraformEnum {
+  enUs('en-US'),
+  enGb('en-GB'),
+  esUs('es-US'),
+  frCa('fr-CA'),
+  frFr('fr-FR'),
+  enAu('en-AU'),
+  itIt('it-IT'),
+  deDe('de-DE'),
+  ptBr('pt-BR');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationLanguageCode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `partial_results_stability` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPartialResultsStability
+    implements TerraformEnum {
+  high('high'),
+  medium('medium'),
+  low('low');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPartialResultsStability(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `vocabulary_filter_method` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationVocabularyFilterMethod
+    implements TerraformEnum {
+  remove('remove'),
+  mask('mask'),
+  tag('tag');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationVocabularyFilterMethod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `elements.amazon_transcribe_call_analytics_processor_configuration.post_call_analytics_settings` block of
 /// `aws_chimesdkmediapipelines_media_insights_pipeline_configuration` (derived from provider schema).
 @immutable
@@ -164,7 +276,10 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
     required this.outputLocation,
   });
 
-  final TfArg<String>? contentRedactionOutput;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPostCallAnalyticsSettingsContentRedactionOutput
+  >?
+  contentRedactionOutput;
 
   final TfArg<String> dataAccessRoleArn;
 
@@ -180,6 +295,19 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
       'output_encryption_kms_key_id': outputEncryptionKmsKeyId!.toTfJson(),
     'output_location': outputLocation.toTfJson(),
   };
+}
+
+/// `content_redaction_output` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPostCallAnalyticsSettingsContentRedactionOutput
+    implements TerraformEnum {
+  redacted('redacted'),
+  redactedAndUnredacted('redacted_and_unredacted');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeCallAnalyticsProcessorConfigurationPostCallAnalyticsSettingsContentRedactionOutput(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `elements.amazon_transcribe_processor_configuration` block of
@@ -201,25 +329,40 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
     this.vocabularyName,
   });
 
-  final TfArg<String>? contentIdentificationType;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentIdentificationType
+  >?
+  contentIdentificationType;
 
-  final TfArg<String>? contentRedactionType;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentRedactionType
+  >?
+  contentRedactionType;
 
   final TfArg<bool>? enablePartialResultsStabilization;
 
   final TfArg<bool>? filterPartialResults;
 
-  final TfArg<String> languageCode;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationLanguageCode
+  >
+  languageCode;
 
   final TfArg<String>? languageModelName;
 
-  final TfArg<String>? partialResultsStability;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationPartialResultsStability
+  >?
+  partialResultsStability;
 
   final TfArg<String>? piiEntityTypes;
 
   final TfArg<bool>? showSpeakerLabel;
 
-  final TfArg<String>? vocabularyFilterMethod;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationVocabularyFilterMethod
+  >?
+  vocabularyFilterMethod;
 
   final TfArg<String>? vocabularyFilterName;
 
@@ -249,6 +392,78 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmaz
       'vocabulary_filter_name': vocabularyFilterName!.toTfJson(),
     if (vocabularyName != null) 'vocabulary_name': vocabularyName!.toTfJson(),
   };
+}
+
+/// `content_identification_type` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentIdentificationType
+    implements TerraformEnum {
+  pii('PII');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentIdentificationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `content_redaction_type` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentRedactionType
+    implements TerraformEnum {
+  pii('PII');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationContentRedactionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `language_code` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationLanguageCode
+    implements TerraformEnum {
+  enUs('en-US'),
+  enGb('en-GB'),
+  esUs('es-US'),
+  frCa('fr-CA'),
+  frFr('fr-FR'),
+  enAu('en-AU'),
+  itIt('it-IT'),
+  deDe('de-DE'),
+  ptBr('pt-BR');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationLanguageCode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `partial_results_stability` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationPartialResultsStability
+    implements TerraformEnum {
+  high('high'),
+  medium('medium'),
+  low('low');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationPartialResultsStability(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `vocabulary_filter_method` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationVocabularyFilterMethod
+    implements TerraformEnum {
+  remove('remove'),
+  mask('mask'),
+  tag('tag');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsAmazonTranscribeProcessorConfigurationVocabularyFilterMethod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `elements.kinesis_data_stream_sink_configuration` block of
@@ -335,14 +550,46 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoic
     required this.voiceToneAnalysisStatus,
   });
 
-  final TfArg<String> speakerSearchStatus;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationSpeakerSearchStatus
+  >
+  speakerSearchStatus;
 
-  final TfArg<String> voiceToneAnalysisStatus;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationVoiceToneAnalysisStatus
+  >
+  voiceToneAnalysisStatus;
 
   Map<String, Object?> encode() => {
     'speaker_search_status': speakerSearchStatus.toTfJson(),
     'voice_tone_analysis_status': voiceToneAnalysisStatus.toTfJson(),
   };
+}
+
+/// `speaker_search_status` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationSpeakerSearchStatus
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationSpeakerSearchStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `voice_tone_analysis_status` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationVoiceToneAnalysisStatus
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationElementsVoiceAnalyticsProcessorConfigurationVoiceToneAnalysisStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `real_time_alert_configuration` block of
@@ -378,7 +625,10 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
     this.sentimentConfiguration,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesType
+  >
+  type;
 
   final ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesIssueDetectionConfiguration?
   issueDetectionConfiguration;
@@ -398,6 +648,20 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
     if (sentimentConfiguration != null)
       'sentiment_configuration': sentimentConfiguration!.encode(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesType
+    implements TerraformEnum {
+  keywordmatch('KeywordMatch'),
+  sentiment('Sentiment'),
+  issuedetection('IssueDetection');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `real_time_alert_configuration.rules.issue_detection_configuration` block of
@@ -448,7 +712,10 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
 
   final TfArg<String> ruleName;
 
-  final TfArg<String> sentimentType;
+  final TfArg<
+    ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesSentimentConfigurationSentimentType
+  >
+  sentimentType;
 
   final TfArg<num> timePeriod;
 
@@ -457,6 +724,18 @@ final class ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAler
     'sentiment_type': sentimentType.toTfJson(),
     'time_period': timePeriod.toTfJson(),
   };
+}
+
+/// `sentiment_type` — derived from the provider schema description.
+enum ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesSentimentConfigurationSentimentType
+    implements TerraformEnum {
+  negative('NEGATIVE');
+
+  const ChimesdkmediapipelinesMediaInsightsPipelineConfigurationRealTimeAlertConfigurationRulesSentimentConfigurationSentimentType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_chimesdkmediapipelines_media_insights_pipeline_configuration`.

@@ -22,7 +22,7 @@ final class AppflowFlowDestinationFlowConfig {
 
   final TfArg<String>? connectorProfileName;
 
-  final TfArg<String> connectorType;
+  final TfArg<AppflowFlowDestinationFlowConfigConnectorType> connectorType;
 
   final AppflowFlowDestinationFlowConfigDestinationConnectorProperties
   destinationConnectorProperties;
@@ -34,6 +34,38 @@ final class AppflowFlowDestinationFlowConfig {
     'connector_type': connectorType.toTfJson(),
     'destination_connector_properties': destinationConnectorProperties.encode(),
   };
+}
+
+/// `connector_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigConnectorType implements TerraformEnum {
+  salesforce('Salesforce'),
+  singular('Singular'),
+  slack('Slack'),
+  redshift('Redshift'),
+  s3('S3'),
+  marketo('Marketo'),
+  googleanalytics('Googleanalytics'),
+  zendesk('Zendesk'),
+  servicenow('Servicenow'),
+  datadog('Datadog'),
+  trendmicro('Trendmicro'),
+  snowflake('Snowflake'),
+  dynatrace('Dynatrace'),
+  infornexus('Infornexus'),
+  amplitude('Amplitude'),
+  veeva('Veeva'),
+  eventbridge('EventBridge'),
+  lookoutmetrics('LookoutMetrics'),
+  upsolver('Upsolver'),
+  honeycode('Honeycode'),
+  customerprofiles('CustomerProfiles'),
+  sapodata('SAPOData'),
+  customconnector('CustomConnector'),
+  pardot('Pardot');
+
+  const AppflowFlowDestinationFlowConfigConnectorType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties` block of
@@ -130,7 +162,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
 
   final TfArg<List<Object?>>? idFieldNames;
 
-  final TfArg<String>? writeOperationType;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorWriteOperationType
+  >?
+  writeOperationType;
 
   final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorErrorHandlingConfig?
   errorHandlingConfig;
@@ -145,6 +180,21 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustom
     if (errorHandlingConfig != null)
       'error_handling_config': errorHandlingConfig!.encode(),
   };
+}
+
+/// `write_operation_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorWriteOperationType
+    implements TerraformEnum {
+  insert('INSERT'),
+  upsert('UPSERT'),
+  update('UPDATE'),
+  delete('DELETE');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesCustomConnectorWriteOperationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.custom_connector.error_handling_config` block of
@@ -428,7 +478,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
     this.prefixConfig,
   });
 
-  final TfArg<String>? fileType;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigFileType
+  >?
+  fileType;
 
   final TfArg<bool>? preserveSourceDataTyping;
 
@@ -448,6 +501,20 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
   };
 }
 
+/// `file_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigFileType
+    implements TerraformEnum {
+  csv('CSV'),
+  json('JSON'),
+  parquet('PARQUET');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigFileType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `destination_flow_config.destination_connector_properties.s3.s3_output_format_config.aggregation_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
@@ -457,7 +524,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
     this.targetFileSize,
   });
 
-  final TfArg<String>? aggregationType;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigAggregationConfigAggregationType
+  >?
+  aggregationType;
 
   final TfArg<num>? targetFileSize;
 
@@ -466,6 +536,19 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
       'aggregation_type': aggregationType!.toTfJson(),
     if (targetFileSize != null) 'target_file_size': targetFileSize!.toTfJson(),
   };
+}
+
+/// `aggregation_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigAggregationConfigAggregationType
+    implements TerraformEnum {
+  none('None'),
+  singlefile('SingleFile');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigAggregationConfigAggregationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.s3.s3_output_format_config.prefix_config` block of
@@ -478,18 +561,72 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3Ou
     this.prefixType,
   });
 
-  final TfArg<String>? prefixFormat;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixFormat
+  >?
+  prefixFormat;
 
-  final TfArg<List<Object?>>? prefixHierarchy;
+  final List<
+    TfArg<
+      AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixHierarchy
+    >
+  >?
+  prefixHierarchy;
 
-  final TfArg<String>? prefixType;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixType
+  >?
+  prefixType;
 
   Map<String, Object?> encode() => {
     if (prefixFormat != null) 'prefix_format': prefixFormat!.toTfJson(),
     if (prefixHierarchy != null)
-      'prefix_hierarchy': prefixHierarchy!.toTfJson(),
+      'prefix_hierarchy': [for (final e in prefixHierarchy!) e.toTfJson()],
     if (prefixType != null) 'prefix_type': prefixType!.toTfJson(),
   };
+}
+
+/// `prefix_format` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixFormat
+    implements TerraformEnum {
+  year('YEAR'),
+  month('MONTH'),
+  day('DAY'),
+  hour('HOUR'),
+  minute('MINUTE');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `prefix_hierarchy` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixHierarchy
+    implements TerraformEnum {
+  executionId('EXECUTION_ID'),
+  schemaVersion('SCHEMA_VERSION');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixHierarchy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `prefix_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixType
+    implements TerraformEnum {
+  filename('FILENAME'),
+  path('PATH'),
+  pathAndFilename('PATH_AND_FILENAME');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesS3S3OutputFormatConfigPrefixConfigPrefixType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.salesforce` block of
@@ -504,13 +641,19 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesf
     this.errorHandlingConfig,
   });
 
-  final TfArg<String>? dataTransferApi;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceDataTransferApi
+  >?
+  dataTransferApi;
 
   final TfArg<List<Object?>>? idFieldNames;
 
   final TfArg<String> object;
 
-  final TfArg<String>? writeOperationType;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceWriteOperationType
+  >?
+  writeOperationType;
 
   final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceErrorHandlingConfig?
   errorHandlingConfig;
@@ -525,6 +668,35 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesf
     if (errorHandlingConfig != null)
       'error_handling_config': errorHandlingConfig!.encode(),
   };
+}
+
+/// `data_transfer_api` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceDataTransferApi
+    implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  bulkv2('BULKV2'),
+  restSync('REST_SYNC');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceDataTransferApi(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `write_operation_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceWriteOperationType
+    implements TerraformEnum {
+  insert('INSERT'),
+  upsert('UPSERT'),
+  update('UPDATE'),
+  delete('DELETE');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSalesforceWriteOperationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.salesforce.error_handling_config` block of
@@ -568,7 +740,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
 
   final TfArg<String> objectPath;
 
-  final TfArg<String>? writeOperationType;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataWriteOperationType
+  >?
+  writeOperationType;
 
   final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataErrorHandlingConfig?
   errorHandlingConfig;
@@ -587,6 +762,21 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDa
       'success_response_handling_config': successResponseHandlingConfig!
           .encode(),
   };
+}
+
+/// `write_operation_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataWriteOperationType
+    implements TerraformEnum {
+  insert('INSERT'),
+  upsert('UPSERT'),
+  update('UPDATE'),
+  delete('DELETE');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesSapoDataWriteOperationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.sapo_data.error_handling_config` block of
@@ -721,7 +911,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
     required this.prefixConfig,
   });
 
-  final TfArg<String>? fileType;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigFileType
+  >?
+  fileType;
 
   final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigAggregationConfig?
   aggregationConfig;
@@ -737,6 +930,20 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
   };
 }
 
+/// `file_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigFileType
+    implements TerraformEnum {
+  csv('CSV'),
+  json('JSON'),
+  parquet('PARQUET');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigFileType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `destination_flow_config.destination_connector_properties.upsolver.s3_output_format_config.aggregation_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
@@ -745,12 +952,28 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
     this.aggregationType,
   });
 
-  final TfArg<String>? aggregationType;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigAggregationConfigAggregationType
+  >?
+  aggregationType;
 
   Map<String, Object?> encode() => {
     if (aggregationType != null)
       'aggregation_type': aggregationType!.toTfJson(),
   };
+}
+
+/// `aggregation_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigAggregationConfigAggregationType
+    implements TerraformEnum {
+  none('None'),
+  singlefile('SingleFile');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigAggregationConfigAggregationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.upsolver.s3_output_format_config.prefix_config` block of
@@ -763,18 +986,72 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolv
     required this.prefixType,
   });
 
-  final TfArg<String>? prefixFormat;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixFormat
+  >?
+  prefixFormat;
 
-  final TfArg<List<Object?>>? prefixHierarchy;
+  final List<
+    TfArg<
+      AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixHierarchy
+    >
+  >?
+  prefixHierarchy;
 
-  final TfArg<String> prefixType;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixType
+  >
+  prefixType;
 
   Map<String, Object?> encode() => {
     if (prefixFormat != null) 'prefix_format': prefixFormat!.toTfJson(),
     if (prefixHierarchy != null)
-      'prefix_hierarchy': prefixHierarchy!.toTfJson(),
+      'prefix_hierarchy': [for (final e in prefixHierarchy!) e.toTfJson()],
     'prefix_type': prefixType.toTfJson(),
   };
+}
+
+/// `prefix_format` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixFormat
+    implements TerraformEnum {
+  year('YEAR'),
+  month('MONTH'),
+  day('DAY'),
+  hour('HOUR'),
+  minute('MINUTE');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `prefix_hierarchy` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixHierarchy
+    implements TerraformEnum {
+  executionId('EXECUTION_ID'),
+  schemaVersion('SCHEMA_VERSION');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixHierarchy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `prefix_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixType
+    implements TerraformEnum {
+  filename('FILENAME'),
+  path('PATH'),
+  pathAndFilename('PATH_AND_FILENAME');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesUpsolverS3OutputFormatConfigPrefixConfigPrefixType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.zendesk` block of
@@ -792,7 +1069,10 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendes
 
   final TfArg<String> object;
 
-  final TfArg<String>? writeOperationType;
+  final TfArg<
+    AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendeskWriteOperationType
+  >?
+  writeOperationType;
 
   final AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendeskErrorHandlingConfig?
   errorHandlingConfig;
@@ -805,6 +1085,21 @@ final class AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendes
     if (errorHandlingConfig != null)
       'error_handling_config': errorHandlingConfig!.encode(),
   };
+}
+
+/// `write_operation_type` — derived from the provider schema description.
+enum AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendeskWriteOperationType
+    implements TerraformEnum {
+  insert('INSERT'),
+  upsert('UPSERT'),
+  update('UPDATE'),
+  delete('DELETE');
+
+  const AppflowFlowDestinationFlowConfigDestinationConnectorPropertiesZendeskWriteOperationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `destination_flow_config.destination_connector_properties.zendesk.error_handling_config` block of
@@ -884,7 +1179,7 @@ final class AppflowFlowSourceFlowConfig {
 
   final TfArg<String>? connectorProfileName;
 
-  final TfArg<String> connectorType;
+  final TfArg<AppflowFlowSourceFlowConfigConnectorType> connectorType;
 
   final AppflowFlowSourceFlowConfigIncrementalPullConfig? incrementalPullConfig;
 
@@ -900,6 +1195,38 @@ final class AppflowFlowSourceFlowConfig {
       'incremental_pull_config': incrementalPullConfig!.encode(),
     'source_connector_properties': sourceConnectorProperties.encode(),
   };
+}
+
+/// `connector_type` — derived from the provider schema description.
+enum AppflowFlowSourceFlowConfigConnectorType implements TerraformEnum {
+  salesforce('Salesforce'),
+  singular('Singular'),
+  slack('Slack'),
+  redshift('Redshift'),
+  s3('S3'),
+  marketo('Marketo'),
+  googleanalytics('Googleanalytics'),
+  zendesk('Zendesk'),
+  servicenow('Servicenow'),
+  datadog('Datadog'),
+  trendmicro('Trendmicro'),
+  snowflake('Snowflake'),
+  dynatrace('Dynatrace'),
+  infornexus('Infornexus'),
+  amplitude('Amplitude'),
+  veeva('Veeva'),
+  eventbridge('EventBridge'),
+  lookoutmetrics('LookoutMetrics'),
+  upsolver('Upsolver'),
+  honeycode('Honeycode'),
+  customerprofiles('CustomerProfiles'),
+  sapodata('SAPOData'),
+  customconnector('CustomConnector'),
+  pardot('Pardot');
+
+  const AppflowFlowSourceFlowConfigConnectorType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_flow_config.incremental_pull_config` block of
@@ -1132,12 +1459,28 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatC
     this.s3InputFileType,
   });
 
-  final TfArg<String>? s3InputFileType;
+  final TfArg<
+    AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatConfigS3InputFileType
+  >?
+  s3InputFileType;
 
   Map<String, Object?> encode() => {
     if (s3InputFileType != null)
       's3_input_file_type': s3InputFileType!.toTfJson(),
   };
+}
+
+/// `s3_input_file_type` — derived from the provider schema description.
+enum AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatConfigS3InputFileType
+    implements TerraformEnum {
+  csv('CSV'),
+  json('JSON');
+
+  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesS3S3InputFormatConfigS3InputFileType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_flow_config.source_connector_properties.salesforce` block of
@@ -1151,7 +1494,10 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforce {
     required this.object,
   });
 
-  final TfArg<String>? dataTransferApi;
+  final TfArg<
+    AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforceDataTransferApi
+  >?
+  dataTransferApi;
 
   final TfArg<bool>? enableDynamicFieldUpdate;
 
@@ -1168,6 +1514,20 @@ final class AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforce {
       'include_deleted_records': includeDeletedRecords!.toTfJson(),
     'object': object.toTfJson(),
   };
+}
+
+/// `data_transfer_api` — derived from the provider schema description.
+enum AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforceDataTransferApi
+    implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  bulkv2('BULKV2'),
+  restSync('REST_SYNC');
+
+  const AppflowFlowSourceFlowConfigSourceConnectorPropertiesSalesforceDataTransferApi(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_flow_config.source_connector_properties.sapo_data` block of
@@ -1340,7 +1700,7 @@ final class AppflowFlowTask {
 
   final TfArg<Map<String, String>>? taskProperties;
 
-  final TfArg<String> taskType;
+  final TfArg<AppflowFlowTaskTaskType> taskType;
 
   final List<AppflowFlowTaskConnectorOperator>? connectorOperator;
 
@@ -1353,6 +1713,24 @@ final class AppflowFlowTask {
     if (connectorOperator != null)
       'connector_operator': [for (final e in connectorOperator!) e.encode()],
   };
+}
+
+/// `task_type` — derived from the provider schema description.
+enum AppflowFlowTaskTaskType implements TerraformEnum {
+  arithmetic('Arithmetic'),
+  filter('Filter'),
+  map('Map'),
+  mapAll('Map_all'),
+  mask('Mask'),
+  merge('Merge'),
+  passthrough('Passthrough'),
+  truncate('Truncate'),
+  validate('Validate'),
+  partition('Partition');
+
+  const AppflowFlowTaskTaskType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `task.connector_operator` block of
@@ -1378,37 +1756,37 @@ final class AppflowFlowTaskConnectorOperator {
     this.zendesk,
   });
 
-  final TfArg<String>? amplitude;
+  final TfArg<AppflowFlowTaskConnectorOperatorAmplitude>? amplitude;
 
-  final TfArg<String>? customConnector;
+  final TfArg<AppflowFlowTaskConnectorOperatorCustomConnector>? customConnector;
 
-  final TfArg<String>? datadog;
+  final TfArg<AppflowFlowTaskConnectorOperatorDatadog>? datadog;
 
-  final TfArg<String>? dynatrace;
+  final TfArg<AppflowFlowTaskConnectorOperatorDynatrace>? dynatrace;
 
-  final TfArg<String>? googleAnalytics;
+  final TfArg<AppflowFlowTaskConnectorOperatorGoogleAnalytics>? googleAnalytics;
 
-  final TfArg<String>? inforNexus;
+  final TfArg<AppflowFlowTaskConnectorOperatorInforNexus>? inforNexus;
 
-  final TfArg<String>? marketo;
+  final TfArg<AppflowFlowTaskConnectorOperatorMarketo>? marketo;
 
-  final TfArg<String>? s3;
+  final TfArg<AppflowFlowTaskConnectorOperatorS3>? s3;
 
-  final TfArg<String>? salesforce;
+  final TfArg<AppflowFlowTaskConnectorOperatorSalesforce>? salesforce;
 
-  final TfArg<String>? sapoData;
+  final TfArg<AppflowFlowTaskConnectorOperatorSapoData>? sapoData;
 
-  final TfArg<String>? serviceNow;
+  final TfArg<AppflowFlowTaskConnectorOperatorServiceNow>? serviceNow;
 
-  final TfArg<String>? singular;
+  final TfArg<AppflowFlowTaskConnectorOperatorSingular>? singular;
 
-  final TfArg<String>? slack;
+  final TfArg<AppflowFlowTaskConnectorOperatorSlack>? slack;
 
-  final TfArg<String>? trendmicro;
+  final TfArg<AppflowFlowTaskConnectorOperatorTrendmicro>? trendmicro;
 
-  final TfArg<String>? veeva;
+  final TfArg<AppflowFlowTaskConnectorOperatorVeeva>? veeva;
 
-  final TfArg<String>? zendesk;
+  final TfArg<AppflowFlowTaskConnectorOperatorZendesk>? zendesk;
 
   Map<String, Object?> encode() => {
     if (amplitude != null) 'amplitude': amplitude!.toTfJson(),
@@ -1432,6 +1810,384 @@ final class AppflowFlowTaskConnectorOperator {
   };
 }
 
+/// `amplitude` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorAmplitude implements TerraformEnum {
+  between('BETWEEN');
+
+  const AppflowFlowTaskConnectorOperatorAmplitude(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `custom_connector` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorCustomConnector implements TerraformEnum {
+  projection('PROJECTION'),
+  lessThan('LESS_THAN'),
+  greaterThan('GREATER_THAN'),
+  contains('CONTAINS'),
+  between('BETWEEN'),
+  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
+  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
+  equalTo('EQUAL_TO'),
+  notEqualTo('NOT_EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorCustomConnector(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `datadog` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorDatadog implements TerraformEnum {
+  projection('PROJECTION'),
+  between('BETWEEN'),
+  equalTo('EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorDatadog(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `dynatrace` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorDynatrace implements TerraformEnum {
+  projection('PROJECTION'),
+  between('BETWEEN'),
+  equalTo('EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorDynatrace(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `google_analytics` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorGoogleAnalytics implements TerraformEnum {
+  projection('PROJECTION'),
+  between('BETWEEN');
+
+  const AppflowFlowTaskConnectorOperatorGoogleAnalytics(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `infor_nexus` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorInforNexus implements TerraformEnum {
+  projection('PROJECTION'),
+  between('BETWEEN'),
+  equalTo('EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorInforNexus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `marketo` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorMarketo implements TerraformEnum {
+  projection('PROJECTION'),
+  lessThan('LESS_THAN'),
+  greaterThan('GREATER_THAN'),
+  between('BETWEEN'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorMarketo(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `s3` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorS3 implements TerraformEnum {
+  projection('PROJECTION'),
+  lessThan('LESS_THAN'),
+  greaterThan('GREATER_THAN'),
+  between('BETWEEN'),
+  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
+  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
+  equalTo('EQUAL_TO'),
+  notEqualTo('NOT_EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorS3(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `salesforce` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorSalesforce implements TerraformEnum {
+  projection('PROJECTION'),
+  lessThan('LESS_THAN'),
+  contains('CONTAINS'),
+  greaterThan('GREATER_THAN'),
+  between('BETWEEN'),
+  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
+  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
+  equalTo('EQUAL_TO'),
+  notEqualTo('NOT_EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorSalesforce(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `sapo_data` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorSapoData implements TerraformEnum {
+  projection('PROJECTION'),
+  lessThan('LESS_THAN'),
+  contains('CONTAINS'),
+  greaterThan('GREATER_THAN'),
+  between('BETWEEN'),
+  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
+  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
+  equalTo('EQUAL_TO'),
+  notEqualTo('NOT_EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorSapoData(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `service_now` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorServiceNow implements TerraformEnum {
+  projection('PROJECTION'),
+  contains('CONTAINS'),
+  lessThan('LESS_THAN'),
+  greaterThan('GREATER_THAN'),
+  between('BETWEEN'),
+  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
+  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
+  equalTo('EQUAL_TO'),
+  notEqualTo('NOT_EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorServiceNow(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `singular` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorSingular implements TerraformEnum {
+  projection('PROJECTION'),
+  equalTo('EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorSingular(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `slack` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorSlack implements TerraformEnum {
+  projection('PROJECTION'),
+  lessThan('LESS_THAN'),
+  greaterThan('GREATER_THAN'),
+  between('BETWEEN'),
+  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
+  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
+  equalTo('EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorSlack(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `trendmicro` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorTrendmicro implements TerraformEnum {
+  projection('PROJECTION'),
+  equalTo('EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorTrendmicro(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `veeva` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorVeeva implements TerraformEnum {
+  projection('PROJECTION'),
+  lessThan('LESS_THAN'),
+  greaterThan('GREATER_THAN'),
+  contains('CONTAINS'),
+  between('BETWEEN'),
+  lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
+  greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
+  equalTo('EQUAL_TO'),
+  notEqualTo('NOT_EQUAL_TO'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorVeeva(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `zendesk` — derived from the provider schema description.
+enum AppflowFlowTaskConnectorOperatorZendesk implements TerraformEnum {
+  projection('PROJECTION'),
+  greaterThan('GREATER_THAN'),
+  addition('ADDITION'),
+  multiplication('MULTIPLICATION'),
+  division('DIVISION'),
+  subtraction('SUBTRACTION'),
+  maskAll('MASK_ALL'),
+  maskFirstN('MASK_FIRST_N'),
+  maskLastN('MASK_LAST_N'),
+  validateNonNull('VALIDATE_NON_NULL'),
+  validateNonZero('VALIDATE_NON_ZERO'),
+  validateNonNegative('VALIDATE_NON_NEGATIVE'),
+  validateNumeric('VALIDATE_NUMERIC'),
+  noOp('NO_OP');
+
+  const AppflowFlowTaskConnectorOperatorZendesk(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `trigger_config` block of
 /// `aws_appflow_flow` (derived from provider schema).
 @immutable
@@ -1441,7 +2197,7 @@ final class AppflowFlowTriggerConfig {
     this.triggerProperties,
   });
 
-  final TfArg<String> triggerType;
+  final TfArg<AppflowFlowTriggerConfigTriggerType> triggerType;
 
   final AppflowFlowTriggerConfigTriggerProperties? triggerProperties;
 
@@ -1450,6 +2206,17 @@ final class AppflowFlowTriggerConfig {
     if (triggerProperties != null)
       'trigger_properties': triggerProperties!.encode(),
   };
+}
+
+/// `trigger_type` — derived from the provider schema description.
+enum AppflowFlowTriggerConfigTriggerType implements TerraformEnum {
+  scheduled('Scheduled'),
+  event('Event'),
+  ondemand('OnDemand');
+
+  const AppflowFlowTriggerConfigTriggerType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `trigger_config.trigger_properties` block of
@@ -1479,7 +2246,8 @@ final class AppflowFlowTriggerConfigTriggerPropertiesScheduled {
     this.timezone,
   });
 
-  final TfArg<String>? dataPullMode;
+  final TfArg<AppflowFlowTriggerConfigTriggerPropertiesScheduledDataPullMode>?
+  dataPullMode;
 
   final TfArg<String>? firstExecutionFrom;
 
@@ -1505,6 +2273,19 @@ final class AppflowFlowTriggerConfigTriggerPropertiesScheduled {
       'schedule_start_time': scheduleStartTime!.toTfJson(),
     if (timezone != null) 'timezone': timezone!.toTfJson(),
   };
+}
+
+/// `data_pull_mode` — derived from the provider schema description.
+enum AppflowFlowTriggerConfigTriggerPropertiesScheduledDataPullMode
+    implements TerraformEnum {
+  incremental('Incremental'),
+  complete('Complete');
+
+  const AppflowFlowTriggerConfigTriggerPropertiesScheduledDataPullMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_appflow_flow`.

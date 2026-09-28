@@ -6,13 +6,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appstream_user_stack_association`.
 const Set<String> _awsAppstreamUserStackAssociationSensitive = <String>{};
 
+/// Appstream User Stack Association Authentication enum for `authentication_type`.
+enum AppstreamUserStackAssociationAuthenticationType implements TerraformEnum {
+  api('API'),
+  saml('SAML'),
+  userpool('USERPOOL'),
+  awsAd('AWS_AD');
+
+  const AppstreamUserStackAssociationAuthenticationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_appstream_user_stack_association`.
 final class AwsAppstreamUserStackAssociation extends Resource {
   static const String tfType = 'aws_appstream_user_stack_association';
 
   AwsAppstreamUserStackAssociation({
     required super.localName,
-    required TfArg<String> authenticationType,
+    required TfArg<AppstreamUserStackAssociationAuthenticationType>
+    authenticationType,
     TfArg<String>? region,
     TfArg<bool>? sendEmailNotification,
     required TfArg<String> stackName,

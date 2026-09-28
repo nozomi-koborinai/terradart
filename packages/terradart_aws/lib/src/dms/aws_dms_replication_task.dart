@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dms_replication_task`.
 const Set<String> _awsDmsReplicationTaskSensitive = <String>{};
 
+/// Dms Replication Task Migration enum for `migration_type`.
+enum DmsReplicationTaskMigrationType implements TerraformEnum {
+  fullLoad('full-load'),
+  cdc('cdc'),
+  fullLoadAndCdc('full-load-and-cdc');
+
+  const DmsReplicationTaskMigrationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dms_replication_task`.
 final class AwsDmsReplicationTask extends Resource {
   static const String tfType = 'aws_dms_replication_task';
@@ -14,7 +25,7 @@ final class AwsDmsReplicationTask extends Resource {
     required super.localName,
     TfArg<String>? cdcStartPosition,
     TfArg<String>? cdcStartTime,
-    required TfArg<String> migrationType,
+    required TfArg<DmsReplicationTaskMigrationType> migrationType,
     TfArg<String>? region,
     required TfArg<String> replicationInstanceArn,
     required TfArg<String> replicationTaskId,

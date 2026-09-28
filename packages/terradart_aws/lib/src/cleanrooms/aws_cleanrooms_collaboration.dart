@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cleanrooms_collaboration`.
 const Set<String> _awsCleanroomsCollaborationSensitive = <String>{};
 
+/// Cleanrooms Collaboration Analytics enum for `analytics_engine`.
+enum CleanroomsCollaborationAnalyticsEngine implements TerraformEnum {
+  spark('SPARK'),
+  cleanRoomsSql('CLEAN_ROOMS_SQL');
+
+  const CleanroomsCollaborationAnalyticsEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `data_encryption_metadata` block of
 /// `aws_cleanrooms_collaboration` (derived from provider schema).
 @immutable
@@ -64,7 +74,7 @@ final class AwsCleanroomsCollaboration extends Resource {
 
   AwsCleanroomsCollaboration({
     required super.localName,
-    TfArg<String>? analyticsEngine,
+    TfArg<CleanroomsCollaborationAnalyticsEngine>? analyticsEngine,
     required TfArg<String> creatorDisplayName,
     required TfArg<List<String>> creatorMemberAbilities,
     required TfArg<String> description,

@@ -9,10 +9,16 @@ export 'src/config/aws_config_config_rule.dart'
     show
         AwsConfigConfigRule,
         ConfigConfigRuleEvaluationMode,
+        ConfigConfigRuleEvaluationModeMode,
+        ConfigConfigRuleMaximumExecutionFrequency,
         ConfigConfigRuleScope,
         ConfigConfigRuleSource,
         ConfigConfigRuleSourceCustomPolicyDetails,
-        ConfigConfigRuleSourceSourceDetail;
+        ConfigConfigRuleSourceOwner,
+        ConfigConfigRuleSourceSourceDetail,
+        ConfigConfigRuleSourceSourceDetailEventSource,
+        ConfigConfigRuleSourceSourceDetailMaximumExecutionFrequency,
+        ConfigConfigRuleSourceSourceDetailMessageType;
 export 'src/config/aws_config_configuration_aggregator.dart'
     show
         AwsConfigConfigurationAggregator,
@@ -24,8 +30,11 @@ export 'src/config/aws_config_configuration_recorder.dart'
         ConfigConfigurationRecorderRecordingGroup,
         ConfigConfigurationRecorderRecordingGroupExclusionByResourceTypes,
         ConfigConfigurationRecorderRecordingGroupRecordingStrategy,
+        ConfigConfigurationRecorderRecordingGroupRecordingStrategyUseOnly,
         ConfigConfigurationRecorderRecordingMode,
-        ConfigConfigurationRecorderRecordingModeRecordingModeOverride;
+        ConfigConfigurationRecorderRecordingModeRecordingFrequency,
+        ConfigConfigurationRecorderRecordingModeRecordingModeOverride,
+        ConfigConfigurationRecorderRecordingModeRecordingModeOverrideRecordingFrequency;
 export 'src/config/aws_config_configuration_recorder_status.dart'
     show AwsConfigConfigurationRecorderStatus;
 export 'src/config/aws_config_conformance_pack.dart'
@@ -33,22 +42,32 @@ export 'src/config/aws_config_conformance_pack.dart'
 export 'src/config/aws_config_delivery_channel.dart'
     show
         AwsConfigDeliveryChannel,
-        ConfigDeliveryChannelSnapshotDeliveryProperties;
+        ConfigDeliveryChannelSnapshotDeliveryProperties,
+        ConfigDeliveryChannelSnapshotDeliveryPropertiesDeliveryFrequency;
 export 'src/config/aws_config_organization_conformance_pack.dart'
     show
         AwsConfigOrganizationConformancePack,
         ConfigOrganizationConformancePackInputParameter;
 export 'src/config/aws_config_organization_custom_policy_rule.dart'
-    show AwsConfigOrganizationCustomPolicyRule;
+    show
+        AwsConfigOrganizationCustomPolicyRule,
+        ConfigOrganizationCustomPolicyRuleMaximumExecutionFrequency,
+        ConfigOrganizationCustomPolicyRuleTriggerTypes;
 export 'src/config/aws_config_organization_custom_rule.dart'
-    show AwsConfigOrganizationCustomRule;
+    show
+        AwsConfigOrganizationCustomRule,
+        ConfigOrganizationCustomRuleMaximumExecutionFrequency,
+        ConfigOrganizationCustomRuleTriggerTypes;
 export 'src/config/aws_config_organization_managed_rule.dart'
-    show AwsConfigOrganizationManagedRule;
+    show
+        AwsConfigOrganizationManagedRule,
+        ConfigOrganizationManagedRuleMaximumExecutionFrequency;
 export 'src/config/aws_config_remediation_configuration.dart'
     show
         AwsConfigRemediationConfiguration,
         ConfigRemediationConfigurationExecutionControls,
         ConfigRemediationConfigurationExecutionControlsSsmControls,
-        ConfigRemediationConfigurationParameter;
+        ConfigRemediationConfigurationParameter,
+        ConfigRemediationConfigurationTargetType;
 export 'src/config/aws_config_retention_configuration.dart'
     show AwsConfigRetentionConfiguration;

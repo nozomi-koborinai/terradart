@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_networkfirewall_container_association`.
 const Set<String> _awsNetworkfirewallContainerAssociationSensitive = <String>{};
 
+/// Networkfirewall Container Association enum for `type`.
+enum NetworkfirewallContainerAssociationType implements TerraformEnum {
+  ecs('ECS'),
+  eks('EKS');
+
+  const NetworkfirewallContainerAssociationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `container_monitoring_configuration` block of
 /// `aws_networkfirewall_container_association` (derived from provider schema).
 @immutable
@@ -59,7 +69,7 @@ final class AwsNetworkfirewallContainerAssociation extends Resource {
     TfArg<String>? description,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<NetworkfirewallContainerAssociationType> type,
     List<NetworkfirewallContainerAssociationContainerMonitoringConfiguration>?
     containerMonitoringConfiguration,
     super.lifecycle,

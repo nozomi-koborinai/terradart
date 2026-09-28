@@ -6,13 +6,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_transit_gateway_connect`.
 const Set<String> _awsEc2TransitGatewayConnectSensitive = <String>{};
 
+/// Ec2 Transit Gateway Connect enum for `protocol`.
+enum Ec2TransitGatewayConnectProtocol implements TerraformEnum {
+  gre('gre');
+
+  const Ec2TransitGatewayConnectProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_transit_gateway_connect`.
 final class AwsEc2TransitGatewayConnect extends Resource {
   static const String tfType = 'aws_ec2_transit_gateway_connect';
 
   AwsEc2TransitGatewayConnect({
     required super.localName,
-    TfArg<String>? protocol,
+    TfArg<Ec2TransitGatewayConnectProtocol>? protocol,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? transitGatewayDefaultRouteTableAssociation,

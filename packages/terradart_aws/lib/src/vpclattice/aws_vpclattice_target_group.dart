@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpclattice_target_group`.
 const Set<String> _awsVpclatticeTargetGroupSensitive = <String>{};
 
+/// Vpclattice Target Group enum for `type`.
+enum VpclatticeTargetGroupType implements TerraformEnum {
+  ip('IP'),
+  lambda('LAMBDA'),
+  instance('INSTANCE'),
+  alb('ALB');
+
+  const VpclatticeTargetGroupType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `config` block of
 /// `aws_vpclattice_target_group` (derived from provider schema).
 @immutable
@@ -21,15 +33,16 @@ final class VpclatticeTargetGroupConfig {
     this.healthCheck,
   });
 
-  final TfArg<String>? ipAddressType;
+  final TfArg<VpclatticeTargetGroupConfigIpAddressType>? ipAddressType;
 
-  final TfArg<String>? lambdaEventStructureVersion;
+  final TfArg<VpclatticeTargetGroupConfigLambdaEventStructureVersion>?
+  lambdaEventStructureVersion;
 
   final TfArg<num>? port;
 
-  final TfArg<String>? protocol;
+  final TfArg<VpclatticeTargetGroupConfigProtocol>? protocol;
 
-  final TfArg<String>? protocolVersion;
+  final TfArg<VpclatticeTargetGroupConfigProtocolVersion>? protocolVersion;
 
   final TfArg<String>? vpcIdentifier;
 
@@ -46,6 +59,51 @@ final class VpclatticeTargetGroupConfig {
     if (vpcIdentifier != null) 'vpc_identifier': vpcIdentifier!.toTfJson(),
     if (healthCheck != null) 'health_check': healthCheck!.encode(),
   };
+}
+
+/// `ip_address_type` — derived from the provider schema description.
+enum VpclatticeTargetGroupConfigIpAddressType implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const VpclatticeTargetGroupConfigIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `lambda_event_structure_version` — derived from the provider schema description.
+enum VpclatticeTargetGroupConfigLambdaEventStructureVersion
+    implements TerraformEnum {
+  v1('V1'),
+  v2('V2');
+
+  const VpclatticeTargetGroupConfigLambdaEventStructureVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `protocol` — derived from the provider schema description.
+enum VpclatticeTargetGroupConfigProtocol implements TerraformEnum {
+  http('HTTP'),
+  https('HTTPS'),
+  tcp('TCP');
+
+  const VpclatticeTargetGroupConfigProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `protocol_version` — derived from the provider schema description.
+enum VpclatticeTargetGroupConfigProtocolVersion implements TerraformEnum {
+  http1('HTTP1'),
+  http2('HTTP2'),
+  grpc('GRPC');
+
+  const VpclatticeTargetGroupConfigProtocolVersion(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `config.health_check` block of
@@ -77,9 +135,10 @@ final class VpclatticeTargetGroupConfigHealthCheck {
 
   final TfArg<num>? port;
 
-  final TfArg<String>? protocol;
+  final TfArg<VpclatticeTargetGroupConfigHealthCheckProtocol>? protocol;
 
-  final TfArg<String>? protocolVersion;
+  final TfArg<VpclatticeTargetGroupConfigHealthCheckProtocolVersion>?
+  protocolVersion;
 
   final TfArg<num>? unhealthyThresholdCount;
 
@@ -104,6 +163,30 @@ final class VpclatticeTargetGroupConfigHealthCheck {
   };
 }
 
+/// `protocol` — derived from the provider schema description.
+enum VpclatticeTargetGroupConfigHealthCheckProtocol implements TerraformEnum {
+  http('HTTP'),
+  https('HTTPS'),
+  tcp('TCP');
+
+  const VpclatticeTargetGroupConfigHealthCheckProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `protocol_version` — derived from the provider schema description.
+enum VpclatticeTargetGroupConfigHealthCheckProtocolVersion
+    implements TerraformEnum {
+  http1('HTTP1'),
+  http2('HTTP2');
+
+  const VpclatticeTargetGroupConfigHealthCheckProtocolVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `config.health_check.matcher` block of
 /// `aws_vpclattice_target_group` (derived from provider schema).
 @immutable
@@ -126,7 +209,7 @@ final class AwsVpclatticeTargetGroup extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<VpclatticeTargetGroupType> type,
     VpclatticeTargetGroupConfig? config,
     super.lifecycle,
     super.dependsOn,

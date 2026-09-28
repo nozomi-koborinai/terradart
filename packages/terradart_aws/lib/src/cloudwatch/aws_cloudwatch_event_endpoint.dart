@@ -24,11 +24,21 @@ final class CloudwatchEventEndpointEventBus {
 final class CloudwatchEventEndpointReplicationConfig {
   const CloudwatchEventEndpointReplicationConfig({this.state});
 
-  final TfArg<String>? state;
+  final TfArg<CloudwatchEventEndpointReplicationConfigState>? state;
 
   Map<String, Object?> encode() => {
     if (state != null) 'state': state!.toTfJson(),
   };
+}
+
+/// `state` — derived from the provider schema description.
+enum CloudwatchEventEndpointReplicationConfigState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const CloudwatchEventEndpointReplicationConfigState(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `routing_config` block of

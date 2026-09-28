@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ecs_task_set`.
 const Set<String> _awsEcsTaskSetSensitive = <String>{};
 
+/// Ecs Task Set Launch enum for `launch_type`.
+enum EcsTaskSetLaunchType implements TerraformEnum {
+  ec2('EC2'),
+  fargate('FARGATE'),
+  external('EXTERNAL'),
+  managedInstances('MANAGED_INSTANCES');
+
+  const EcsTaskSetLaunchType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `capacity_provider_strategy` block of
 /// `aws_ecs_task_set` (derived from provider schema).
 @immutable
@@ -87,7 +99,7 @@ final class EcsTaskSetNetworkConfiguration {
 final class EcsTaskSetScale {
   const EcsTaskSetScale({this.unit, this.value});
 
-  final TfArg<String>? unit;
+  final TfArg<EcsTaskSetScaleUnit>? unit;
 
   final TfArg<num>? value;
 
@@ -95,6 +107,15 @@ final class EcsTaskSetScale {
     if (unit != null) 'unit': unit!.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum EcsTaskSetScaleUnit implements TerraformEnum {
+  percent('PERCENT');
+
+  const EcsTaskSetScaleUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `service_registries` block of
@@ -133,7 +154,7 @@ final class AwsEcsTaskSet extends Resource {
     required TfArg<String> cluster,
     TfArg<String>? externalId,
     TfArg<bool>? forceDelete,
-    TfArg<String>? launchType,
+    TfArg<EcsTaskSetLaunchType>? launchType,
     TfArg<String>? platformVersion,
     TfArg<String>? region,
     required TfArg<String> service,

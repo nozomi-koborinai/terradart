@@ -4,13 +4,14 @@
 library;
 
 export 'src/dataexchange/aws_dataexchange_data_set.dart'
-    show AwsDataexchangeDataSet;
+    show AwsDataexchangeDataSet, DataexchangeDataSetAssetType;
 export 'src/dataexchange/aws_dataexchange_event_action.dart'
     show
         AwsDataexchangeEventAction,
         DataexchangeEventActionAction,
         DataexchangeEventActionActionExportRevisionToS3,
         DataexchangeEventActionActionExportRevisionToS3Encryption,
+        DataexchangeEventActionActionExportRevisionToS3EncryptionType,
         DataexchangeEventActionActionExportRevisionToS3RevisionDestination,
         DataexchangeEventActionEvent,
         DataexchangeEventActionEventRevisionPublished;

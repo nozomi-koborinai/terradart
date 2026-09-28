@@ -75,7 +75,7 @@ void main() {
       );
     });
 
-    test('aws wrap omits --resource-provider', () {
+    test('aws wrap omits --resource-provider, types provider enums', () {
       expect(
         wrap('aws'),
         'wrap --provider hashicorp/aws '
@@ -83,6 +83,7 @@ void main() {
         '--output ../terradart_aws/lib/src '
         '--overrides-root lib/src/codegen/wrapper_overrides/aws/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels_aws.yaml '
+        '--provider-enums '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/aws.g.dart '
         '--check',
       );
@@ -192,6 +193,14 @@ providers:
           .singleWhere((l) => l.name == 'appwrite');
       expect(appwrite.providerEnums, isTrue);
       expect(staleHints(appwrite.schemaDir), isEmpty);
+    });
+
+    test('the committed aws lane re-extracts hints from its repo', () {
+      final aws = parseWrapLanes(File(providersPath).readAsStringSync())
+          .singleWhere((l) => l.name == 'aws');
+      expect(aws.providerEnums, isTrue);
+      expect(aws.hintsRepo, 'hashicorp/terraform-provider-aws');
+      expect(staleHints(aws.schemaDir), isEmpty);
     });
   });
 

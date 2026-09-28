@@ -7,6 +7,48 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_db_proxy`.
 const Set<String> _awsDbProxySensitive = <String>{};
 
+/// Db Proxy Default Auth enum for `default_auth_scheme`.
+enum DbProxyDefaultAuthScheme implements TerraformEnum {
+  iamAuth('IAM_AUTH'),
+  none('NONE');
+
+  const DbProxyDefaultAuthScheme(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Db Proxy Endpoint Network enum for `endpoint_network_type`.
+enum DbProxyEndpointNetworkType implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6'),
+  dual('DUAL');
+
+  const DbProxyEndpointNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Db Proxy Engine enum for `engine_family`.
+enum DbProxyEngineFamily implements TerraformEnum {
+  mysql('MYSQL'),
+  postgresql('POSTGRESQL'),
+  sqlserver('SQLSERVER');
+
+  const DbProxyEngineFamily(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Db Proxy Target Connection Network enum for `target_connection_network_type`.
+enum DbProxyTargetConnectionNetworkType implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const DbProxyTargetConnectionNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `auth` block of
 /// `aws_db_proxy` (derived from provider schema).
 @immutable
@@ -20,13 +62,13 @@ final class DbProxyAuth {
     this.username,
   });
 
-  final TfArg<String>? authScheme;
+  final TfArg<DbProxyAuthAuthScheme>? authScheme;
 
-  final TfArg<String>? clientPasswordAuthType;
+  final TfArg<DbProxyAuthClientPasswordAuthType>? clientPasswordAuthType;
 
   final TfArg<String>? description;
 
-  final TfArg<String>? iamAuth;
+  final TfArg<DbProxyAuthIamAuth>? iamAuth;
 
   final TfArg<String>? secretArn;
 
@@ -43,6 +85,39 @@ final class DbProxyAuth {
   };
 }
 
+/// `auth_scheme` — derived from the provider schema description.
+enum DbProxyAuthAuthScheme implements TerraformEnum {
+  secrets('SECRETS');
+
+  const DbProxyAuthAuthScheme(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `client_password_auth_type` — derived from the provider schema description.
+enum DbProxyAuthClientPasswordAuthType implements TerraformEnum {
+  mysqlNativePassword('MYSQL_NATIVE_PASSWORD'),
+  mysqlCachingSha2Password('MYSQL_CACHING_SHA2_PASSWORD'),
+  postgresScramSha256('POSTGRES_SCRAM_SHA_256'),
+  postgresMd5('POSTGRES_MD5'),
+  sqlServerAuthentication('SQL_SERVER_AUTHENTICATION');
+
+  const DbProxyAuthClientPasswordAuthType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `iam_auth` — derived from the provider schema description.
+enum DbProxyAuthIamAuth implements TerraformEnum {
+  disabled('DISABLED'),
+  required('REQUIRED'),
+  enabled('ENABLED');
+
+  const DbProxyAuthIamAuth(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_db_proxy`.
 final class AwsDbProxy extends Resource {
   static const String tfType = 'aws_db_proxy';
@@ -50,16 +125,16 @@ final class AwsDbProxy extends Resource {
   AwsDbProxy({
     required super.localName,
     TfArg<bool>? debugLogging,
-    TfArg<String>? defaultAuthScheme,
-    TfArg<String>? endpointNetworkType,
-    required TfArg<String> engineFamily,
+    TfArg<DbProxyDefaultAuthScheme>? defaultAuthScheme,
+    TfArg<DbProxyEndpointNetworkType>? endpointNetworkType,
+    required TfArg<DbProxyEngineFamily> engineFamily,
     TfArg<num>? idleClientTimeout,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<bool>? requireTls,
     required TfArg<String> roleArn,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? targetConnectionNetworkType,
+    TfArg<DbProxyTargetConnectionNetworkType>? targetConnectionNetworkType,
     TfArg<List<String>>? vpcSecurityGroupIds,
     required TfArg<List<String>> vpcSubnetIds,
     List<DbProxyAuth>? auth,

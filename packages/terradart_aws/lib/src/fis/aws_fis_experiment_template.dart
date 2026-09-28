@@ -90,9 +90,11 @@ final class FisExperimentTemplateExperimentOptions {
     this.emptyTargetResolutionMode,
   });
 
-  final TfArg<String>? accountTargeting;
+  final TfArg<FisExperimentTemplateExperimentOptionsAccountTargeting>?
+  accountTargeting;
 
-  final TfArg<String>? emptyTargetResolutionMode;
+  final TfArg<FisExperimentTemplateExperimentOptionsEmptyTargetResolutionMode>?
+  emptyTargetResolutionMode;
 
   Map<String, Object?> encode() => {
     if (accountTargeting != null)
@@ -100,6 +102,32 @@ final class FisExperimentTemplateExperimentOptions {
     if (emptyTargetResolutionMode != null)
       'empty_target_resolution_mode': emptyTargetResolutionMode!.toTfJson(),
   };
+}
+
+/// `account_targeting` — derived from the provider schema description.
+enum FisExperimentTemplateExperimentOptionsAccountTargeting
+    implements TerraformEnum {
+  singleAccount('single-account'),
+  multiAccount('multi-account');
+
+  const FisExperimentTemplateExperimentOptionsAccountTargeting(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `empty_target_resolution_mode` — derived from the provider schema description.
+enum FisExperimentTemplateExperimentOptionsEmptyTargetResolutionMode
+    implements TerraformEnum {
+  fail('fail'),
+  skip('skip');
+
+  const FisExperimentTemplateExperimentOptionsEmptyTargetResolutionMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `experiment_report_configuration` block of

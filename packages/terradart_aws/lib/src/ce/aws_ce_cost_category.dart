@@ -18,7 +18,7 @@ final class CeCostCategoryRule {
     this.rule,
   });
 
-  final TfArg<String>? type;
+  final TfArg<CeCostCategoryRuleType>? type;
 
   final TfArg<String>? value;
 
@@ -34,6 +34,16 @@ final class CeCostCategoryRule {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum CeCostCategoryRuleType implements TerraformEnum {
+  regular('REGULAR'),
+  inheritedValue('INHERITED_VALUE');
+
+  const CeCostCategoryRuleType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rule.inherited_value` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
@@ -45,12 +55,22 @@ final class CeCostCategoryRuleInheritedValue {
 
   final TfArg<String>? dimensionKey;
 
-  final TfArg<String>? dimensionName;
+  final TfArg<CeCostCategoryRuleInheritedValueDimensionName>? dimensionName;
 
   Map<String, Object?> encode() => {
     if (dimensionKey != null) 'dimension_key': dimensionKey!.toTfJson(),
     if (dimensionName != null) 'dimension_name': dimensionName!.toTfJson(),
   };
+}
+
+/// `dimension_name` — derived from the provider schema description.
+enum CeCostCategoryRuleInheritedValueDimensionName implements TerraformEnum {
+  linkedAccountName('LINKED_ACCOUNT_NAME'),
+  tag('TAG');
+
+  const CeCostCategoryRuleInheritedValueDimensionName(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.rule` block of
@@ -480,15 +500,33 @@ final class CeCostCategoryRuleRuleCostCategory {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final List<TfArg<CeCostCategoryRuleRuleCostCategoryMatchOptions>>?
+  matchOptions;
 
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
     if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    if (matchOptions != null)
+      'match_options': [for (final e in matchOptions!) e.toTfJson()],
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `match_options` — derived from the provider schema description.
+enum CeCostCategoryRuleRuleCostCategoryMatchOptions implements TerraformEnum {
+  equals('EQUALS'),
+  absent('ABSENT'),
+  startsWith('STARTS_WITH'),
+  endsWith('ENDS_WITH'),
+  contains('CONTAINS'),
+  caseSensitive('CASE_SENSITIVE'),
+  caseInsensitive('CASE_INSENSITIVE'),
+  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
+
+  const CeCostCategoryRuleRuleCostCategoryMatchOptions(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.rule.dimension` block of
@@ -501,17 +539,77 @@ final class CeCostCategoryRuleRuleDimension {
     this.values,
   });
 
-  final TfArg<String>? key;
+  final TfArg<CeCostCategoryRuleRuleDimensionKey>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final List<TfArg<CeCostCategoryRuleRuleDimensionMatchOptions>>? matchOptions;
 
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
     if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    if (matchOptions != null)
+      'match_options': [for (final e in matchOptions!) e.toTfJson()],
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `key` — derived from the provider schema description.
+enum CeCostCategoryRuleRuleDimensionKey implements TerraformEnum {
+  az('AZ'),
+  instanceType('INSTANCE_TYPE'),
+  linkedAccount('LINKED_ACCOUNT'),
+  payerAccount('PAYER_ACCOUNT'),
+  linkedAccountName('LINKED_ACCOUNT_NAME'),
+  operation('OPERATION'),
+  purchaseType('PURCHASE_TYPE'),
+  region('REGION'),
+  service('SERVICE'),
+  serviceCode('SERVICE_CODE'),
+  usageType('USAGE_TYPE'),
+  usageTypeGroup('USAGE_TYPE_GROUP'),
+  recordType('RECORD_TYPE'),
+  operatingSystem('OPERATING_SYSTEM'),
+  tenancy('TENANCY'),
+  scope('SCOPE'),
+  platform('PLATFORM'),
+  subscriptionId('SUBSCRIPTION_ID'),
+  legalEntityName('LEGAL_ENTITY_NAME'),
+  deploymentOption('DEPLOYMENT_OPTION'),
+  databaseEngine('DATABASE_ENGINE'),
+  cacheEngine('CACHE_ENGINE'),
+  instanceTypeFamily('INSTANCE_TYPE_FAMILY'),
+  billingEntity('BILLING_ENTITY'),
+  reservationId('RESERVATION_ID'),
+  resourceId('RESOURCE_ID'),
+  rightsizingType('RIGHTSIZING_TYPE'),
+  savingsPlansType('SAVINGS_PLANS_TYPE'),
+  savingsPlanArn('SAVINGS_PLAN_ARN'),
+  paymentOption('PAYMENT_OPTION'),
+  agreementEndDateTimeAfter('AGREEMENT_END_DATE_TIME_AFTER'),
+  agreementEndDateTimeBefore('AGREEMENT_END_DATE_TIME_BEFORE'),
+  invoicingEntity('INVOICING_ENTITY'),
+  anomalyTotalImpactAbsolute('ANOMALY_TOTAL_IMPACT_ABSOLUTE'),
+  anomalyTotalImpactPercentage('ANOMALY_TOTAL_IMPACT_PERCENTAGE');
+
+  const CeCostCategoryRuleRuleDimensionKey(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `match_options` — derived from the provider schema description.
+enum CeCostCategoryRuleRuleDimensionMatchOptions implements TerraformEnum {
+  equals('EQUALS'),
+  absent('ABSENT'),
+  startsWith('STARTS_WITH'),
+  endsWith('ENDS_WITH'),
+  contains('CONTAINS'),
+  caseSensitive('CASE_SENSITIVE'),
+  caseInsensitive('CASE_INSENSITIVE'),
+  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
+
+  const CeCostCategoryRuleRuleDimensionMatchOptions(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rule.rule.not` block of
@@ -1282,15 +1380,32 @@ final class CeCostCategoryRuleRuleTags {
 
   final TfArg<String>? key;
 
-  final TfArg<List<Object?>>? matchOptions;
+  final List<TfArg<CeCostCategoryRuleRuleTagsMatchOptions>>? matchOptions;
 
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
     if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
+    if (matchOptions != null)
+      'match_options': [for (final e in matchOptions!) e.toTfJson()],
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `match_options` — derived from the provider schema description.
+enum CeCostCategoryRuleRuleTagsMatchOptions implements TerraformEnum {
+  equals('EQUALS'),
+  absent('ABSENT'),
+  startsWith('STARTS_WITH'),
+  endsWith('ENDS_WITH'),
+  contains('CONTAINS'),
+  caseSensitive('CASE_SENSITIVE'),
+  caseInsensitive('CASE_INSENSITIVE'),
+  greaterThanOrEqual('GREATER_THAN_OR_EQUAL');
+
+  const CeCostCategoryRuleRuleTagsMatchOptions(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `split_charge_rule` block of
@@ -1304,7 +1419,7 @@ final class CeCostCategorySplitChargeRule {
     this.parameter,
   });
 
-  final TfArg<String> method;
+  final TfArg<CeCostCategorySplitChargeRuleMethod> method;
 
   final TfArg<String> source;
 
@@ -1321,13 +1436,24 @@ final class CeCostCategorySplitChargeRule {
   };
 }
 
+/// `method` — derived from the provider schema description.
+enum CeCostCategorySplitChargeRuleMethod implements TerraformEnum {
+  fixed('FIXED'),
+  proportional('PROPORTIONAL'),
+  even('EVEN');
+
+  const CeCostCategorySplitChargeRuleMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `split_charge_rule.parameter` block of
 /// `aws_ce_cost_category` (derived from provider schema).
 @immutable
 final class CeCostCategorySplitChargeRuleParameter {
   const CeCostCategorySplitChargeRuleParameter({this.type, this.values});
 
-  final TfArg<String>? type;
+  final TfArg<CeCostCategorySplitChargeRuleParameterType>? type;
 
   final TfArg<List<Object?>>? values;
 
@@ -1335,6 +1461,15 @@ final class CeCostCategorySplitChargeRuleParameter {
     if (type != null) 'type': type!.toTfJson(),
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CeCostCategorySplitChargeRuleParameterType implements TerraformEnum {
+  allocationPercentages('ALLOCATION_PERCENTAGES');
+
+  const CeCostCategorySplitChargeRuleParameterType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ce_cost_category`.

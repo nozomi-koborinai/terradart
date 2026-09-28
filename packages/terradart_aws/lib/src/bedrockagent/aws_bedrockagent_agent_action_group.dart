@@ -7,6 +7,32 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrockagent_agent_action_group`.
 const Set<String> _awsBedrockagentAgentActionGroupSensitive = <String>{};
 
+/// Bedrockagent Agent Action Group Action Group enum for `action_group_state`.
+enum BedrockagentAgentActionGroupActionGroupState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const BedrockagentAgentActionGroupActionGroupState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Bedrockagent Agent Action Group Parent Action Group enum for `parent_action_group_signature`.
+enum BedrockagentAgentActionGroupParentActionGroupSignature
+    implements TerraformEnum {
+  amazonUserinput('AMAZON.UserInput'),
+  amazonCodeinterpreter('AMAZON.CodeInterpreter'),
+  anthropicComputer('ANTHROPIC.Computer'),
+  anthropicBash('ANTHROPIC.Bash'),
+  anthropicTexteditor('ANTHROPIC.TextEditor');
+
+  const BedrockagentAgentActionGroupParentActionGroupSignature(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `action_group_executor` block of
 /// `aws_bedrockagent_agent_action_group` (derived from provider schema).
 @immutable
@@ -16,7 +42,8 @@ final class BedrockagentAgentActionGroupActionGroupExecutor {
     this.lambda,
   });
 
-  final TfArg<String>? customControl;
+  final TfArg<BedrockagentAgentActionGroupActionGroupExecutorCustomControl>?
+  customControl;
 
   final TfArg<String>? lambda;
 
@@ -24,6 +51,18 @@ final class BedrockagentAgentActionGroupActionGroupExecutor {
     if (customControl != null) 'custom_control': customControl!.toTfJson(),
     if (lambda != null) 'lambda': lambda!.toTfJson(),
   };
+}
+
+/// `custom_control` — derived from the provider schema description.
+enum BedrockagentAgentActionGroupActionGroupExecutorCustomControl
+    implements TerraformEnum {
+  returnControl('RETURN_CONTROL');
+
+  const BedrockagentAgentActionGroupActionGroupExecutorCustomControl(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `api_schema` block of
@@ -139,7 +178,10 @@ final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsPa
 
   final TfArg<bool>? required;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParametersType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -149,6 +191,22 @@ final class BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsPa
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParametersType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  integer('integer'),
+  boolean('boolean'),
+  array('array');
+
+  const BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParametersType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_bedrockagent_agent_action_group`.
 final class AwsBedrockagentAgentActionGroup extends Resource {
   static const String tfType = 'aws_bedrockagent_agent_action_group';
@@ -156,11 +214,12 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
   AwsBedrockagentAgentActionGroup({
     required super.localName,
     required TfArg<String> actionGroupName,
-    TfArg<String>? actionGroupState,
+    TfArg<BedrockagentAgentActionGroupActionGroupState>? actionGroupState,
     required TfArg<String> agentId,
     required TfArg<String> agentVersion,
     TfArg<String>? description,
-    TfArg<String>? parentActionGroupSignature,
+    TfArg<BedrockagentAgentActionGroupParentActionGroupSignature>?
+    parentActionGroupSignature,
     TfArg<bool>? prepareAgent,
     TfArg<String>? region,
     TfArg<bool>? skipResourceInUseCheck,

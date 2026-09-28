@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_s3tables_table`.
 const Set<String> _awsS3tablesTableSensitive = <String>{};
 
+/// S3tables Table enum for `format`.
+enum S3tablesTableFormat implements TerraformEnum {
+  iceberg('ICEBERG');
+
+  const S3tablesTableFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `metadata` block of
 /// `aws_s3tables_table` (derived from provider schema).
 @immutable
@@ -79,7 +88,7 @@ final class AwsS3tablesTable extends Resource {
   AwsS3tablesTable({
     required super.localName,
     TfArg<Map<String, Object?>>? encryptionConfiguration,
-    required TfArg<String> format,
+    required TfArg<S3tablesTableFormat> format,
     TfArg<Map<String, Object?>>? maintenanceConfiguration,
     required TfArg<String> name,
     required TfArg<String> namespace,

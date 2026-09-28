@@ -4,6 +4,11 @@
 library;
 
 export 'src/codestarconnections/aws_codestarconnections_connection.dart'
-    show AwsCodestarconnectionsConnection;
+    show
+        AwsCodestarconnectionsConnection,
+        CodestarconnectionsConnectionProviderType;
 export 'src/codestarconnections/aws_codestarconnections_host.dart'
-    show AwsCodestarconnectionsHost, CodestarconnectionsHostVpcConfiguration;
+    show
+        AwsCodestarconnectionsHost,
+        CodestarconnectionsHostProviderType,
+        CodestarconnectionsHostVpcConfiguration;

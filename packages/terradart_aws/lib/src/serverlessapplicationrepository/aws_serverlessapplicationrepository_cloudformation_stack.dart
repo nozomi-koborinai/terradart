@@ -7,6 +7,21 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String>
 _awsServerlessapplicationrepositoryCloudformationStackSensitive = <String>{};
 
+/// Serverlessapplicationrepository Cloudformation Stack enum for `capabilities`.
+enum ServerlessapplicationrepositoryCloudformationStackCapabilities
+    implements TerraformEnum {
+  capabilityIam('CAPABILITY_IAM'),
+  capabilityNamedIam('CAPABILITY_NAMED_IAM'),
+  capabilityAutoExpand('CAPABILITY_AUTO_EXPAND'),
+  capabilityResourcePolicy('CAPABILITY_RESOURCE_POLICY');
+
+  const ServerlessapplicationrepositoryCloudformationStackCapabilities(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_serverlessapplicationrepository_cloudformation_stack`.
 final class AwsServerlessapplicationrepositoryCloudformationStack
     extends Resource {
@@ -16,7 +31,8 @@ final class AwsServerlessapplicationrepositoryCloudformationStack
   AwsServerlessapplicationrepositoryCloudformationStack({
     required super.localName,
     required TfArg<String> applicationId,
-    TfArg<List<String>>? capabilities,
+    List<TfArg<ServerlessapplicationrepositoryCloudformationStackCapabilities>>?
+    capabilities,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? region,
@@ -30,7 +46,10 @@ final class AwsServerlessapplicationrepositoryCloudformationStack
          terraformType: tfType,
          argMap: {
            'application_id': applicationId,
-           if (capabilities != null) 'capabilities': capabilities,
+           if (capabilities != null)
+             'capabilities': TfArg.literal([
+               for (final e in capabilities) e.toTfJson(),
+             ]),
            'name': name,
            if (parameters != null) 'parameters': parameters,
            if (region != null) 'region': region,

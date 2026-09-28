@@ -6,6 +6,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_networkmanager_attachment_accepter`.
 const Set<String> _awsNetworkmanagerAttachmentAccepterSensitive = <String>{};
 
+/// Networkmanager Attachment Accepter Attachment enum for `attachment_type`.
+enum NetworkmanagerAttachmentAccepterAttachmentType implements TerraformEnum {
+  connect('CONNECT'),
+  siteToSiteVpn('SITE_TO_SITE_VPN'),
+  vpc('VPC'),
+  directConnectGateway('DIRECT_CONNECT_GATEWAY'),
+  transitGatewayRouteTable('TRANSIT_GATEWAY_ROUTE_TABLE');
+
+  const NetworkmanagerAttachmentAccepterAttachmentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_networkmanager_attachment_accepter`.
 final class AwsNetworkmanagerAttachmentAccepter extends Resource {
   static const String tfType = 'aws_networkmanager_attachment_accepter';
@@ -13,7 +26,8 @@ final class AwsNetworkmanagerAttachmentAccepter extends Resource {
   AwsNetworkmanagerAttachmentAccepter({
     required super.localName,
     required TfArg<String> attachmentId,
-    required TfArg<String> attachmentType,
+    required TfArg<NetworkmanagerAttachmentAccepterAttachmentType>
+    attachmentType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpclattice_service`.
 const Set<String> _awsVpclatticeServiceSensitive = <String>{};
 
+/// Vpclattice Service Auth enum for `auth_type`.
+enum VpclatticeServiceAuthType implements TerraformEnum {
+  none('NONE'),
+  awsIam('AWS_IAM');
+
+  const VpclatticeServiceAuthType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_vpclattice_service`.
 final class AwsVpclatticeService extends Resource {
   static const String tfType = 'aws_vpclattice_service';
 
   AwsVpclatticeService({
     required super.localName,
-    TfArg<String>? authType,
+    TfArg<VpclatticeServiceAuthType>? authType,
     TfArg<String>? certificateArn,
     TfArg<String>? customDomainName,
     TfArg<num>? idleTimeoutSeconds,

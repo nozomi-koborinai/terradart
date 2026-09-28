@@ -9,4 +9,5 @@ export 'src/workmail/aws_workmail_domain.dart' show AwsWorkmailDomain;
 export 'src/workmail/aws_workmail_group.dart' show AwsWorkmailGroup;
 export 'src/workmail/aws_workmail_organization.dart'
     show AwsWorkmailOrganization;
-export 'src/workmail/aws_workmail_user.dart' show AwsWorkmailUser;
+export 'src/workmail/aws_workmail_user.dart'
+    show AwsWorkmailUser, WorkmailUserUserRole;

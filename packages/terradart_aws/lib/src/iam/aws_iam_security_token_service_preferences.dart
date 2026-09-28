@@ -6,13 +6,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iam_security_token_service_preferences`.
 const Set<String> _awsIamSecurityTokenServicePreferencesSensitive = <String>{};
 
+/// Iam Security Token Service Preferences Global Endpoint Token enum for `global_endpoint_token_version`.
+enum IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion
+    implements TerraformEnum {
+  v1token('v1Token'),
+  v2token('v2Token');
+
+  const IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_iam_security_token_service_preferences`.
 final class AwsIamSecurityTokenServicePreferences extends Resource {
   static const String tfType = 'aws_iam_security_token_service_preferences';
 
   AwsIamSecurityTokenServicePreferences({
     required super.localName,
-    required TfArg<String> globalEndpointTokenVersion,
+    required TfArg<IamSecurityTokenServicePreferencesGlobalEndpointTokenVersion>
+    globalEndpointTokenVersion,
     super.lifecycle,
     super.dependsOn,
     super.provider,

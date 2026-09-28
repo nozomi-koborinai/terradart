@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_traffic_mirror_filter`.
 const Set<String> _awsEc2TrafficMirrorFilterSensitive = <String>{};
 
+/// Ec2 Traffic Mirror Filter Network enum for `network_services`.
+enum Ec2TrafficMirrorFilterNetworkServices implements TerraformEnum {
+  amazonDns('amazon-dns');
+
+  const Ec2TrafficMirrorFilterNetworkServices(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_traffic_mirror_filter`.
 final class AwsEc2TrafficMirrorFilter extends Resource {
   static const String tfType = 'aws_ec2_traffic_mirror_filter';
@@ -13,7 +22,7 @@ final class AwsEc2TrafficMirrorFilter extends Resource {
   AwsEc2TrafficMirrorFilter({
     required super.localName,
     TfArg<String>? description,
-    TfArg<List<String>>? networkServices,
+    List<TfArg<Ec2TrafficMirrorFilterNetworkServices>>? networkServices,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -24,7 +33,10 @@ final class AwsEc2TrafficMirrorFilter extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (networkServices != null) 'network_services': networkServices,
+           if (networkServices != null)
+             'network_services': TfArg.literal([
+               for (final e in networkServices) e.toTfJson(),
+             ]),
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

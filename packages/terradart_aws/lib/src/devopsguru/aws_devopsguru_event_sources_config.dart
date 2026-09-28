@@ -32,9 +32,25 @@ final class DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfiler {
     required this.status,
   });
 
-  final TfArg<String> status;
+  final TfArg<
+    DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfilerStatus
+  >
+  status;
 
   Map<String, Object?> encode() => {'status': status.toTfJson()};
+}
+
+/// `status` — derived from the provider schema description.
+enum DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfilerStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const DevopsguruEventSourcesConfigEventSourcesAmazonCodeGuruProfilerStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_devopsguru_event_sources_config`.

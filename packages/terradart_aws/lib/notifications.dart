@@ -8,11 +8,15 @@ export 'src/notifications/aws_notifications_channel_association.dart'
 export 'src/notifications/aws_notifications_event_rule.dart'
     show AwsNotificationsEventRule;
 export 'src/notifications/aws_notifications_managed_notification_account_contact_association.dart'
-    show AwsNotificationsManagedNotificationAccountContactAssociation;
+    show
+        AwsNotificationsManagedNotificationAccountContactAssociation,
+        NotificationsManagedNotificationAccountContactAssociationContactIdentifier;
 export 'src/notifications/aws_notifications_managed_notification_additional_channel_association.dart'
     show AwsNotificationsManagedNotificationAdditionalChannelAssociation;
 export 'src/notifications/aws_notifications_notification_configuration.dart'
-    show AwsNotificationsNotificationConfiguration;
+    show
+        AwsNotificationsNotificationConfiguration,
+        NotificationsNotificationConfigurationAggregationDuration;
 export 'src/notifications/aws_notifications_notification_hub.dart'
     show AwsNotificationsNotificationHub;
 export 'src/notifications/aws_notifications_organizational_unit_association.dart'

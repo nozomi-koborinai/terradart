@@ -6,6 +6,7 @@ library;
 export 'src/evidently/aws_evidently_feature.dart'
     show
         AwsEvidentlyFeature,
+        EvidentlyFeatureEvaluationStrategy,
         EvidentlyFeatureVariations,
         EvidentlyFeatureVariationsValue;
 export 'src/evidently/aws_evidently_launch.dart'

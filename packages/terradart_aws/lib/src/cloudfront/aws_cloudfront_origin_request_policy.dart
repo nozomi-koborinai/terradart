@@ -16,7 +16,8 @@ final class CloudfrontOriginRequestPolicyCookiesConfig {
     this.cookies,
   });
 
-  final TfArg<String> cookieBehavior;
+  final TfArg<CloudfrontOriginRequestPolicyCookiesConfigCookieBehavior>
+  cookieBehavior;
 
   final CloudfrontOriginRequestPolicyCookiesConfigCookies? cookies;
 
@@ -24,6 +25,21 @@ final class CloudfrontOriginRequestPolicyCookiesConfig {
     'cookie_behavior': cookieBehavior.toTfJson(),
     if (cookies != null) 'cookies': cookies!.encode(),
   };
+}
+
+/// `cookie_behavior` — derived from the provider schema description.
+enum CloudfrontOriginRequestPolicyCookiesConfigCookieBehavior
+    implements TerraformEnum {
+  none('none'),
+  whitelist('whitelist'),
+  all('all'),
+  allexcept('allExcept');
+
+  const CloudfrontOriginRequestPolicyCookiesConfigCookieBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `cookies_config.cookies` block of
@@ -48,7 +64,8 @@ final class CloudfrontOriginRequestPolicyHeadersConfig {
     this.headers,
   });
 
-  final TfArg<String>? headerBehavior;
+  final TfArg<CloudfrontOriginRequestPolicyHeadersConfigHeaderBehavior>?
+  headerBehavior;
 
   final CloudfrontOriginRequestPolicyHeadersConfigHeaders? headers;
 
@@ -56,6 +73,22 @@ final class CloudfrontOriginRequestPolicyHeadersConfig {
     if (headerBehavior != null) 'header_behavior': headerBehavior!.toTfJson(),
     if (headers != null) 'headers': headers!.encode(),
   };
+}
+
+/// `header_behavior` — derived from the provider schema description.
+enum CloudfrontOriginRequestPolicyHeadersConfigHeaderBehavior
+    implements TerraformEnum {
+  none('none'),
+  whitelist('whitelist'),
+  allviewer('allViewer'),
+  allviewerandwhitelistcloudfront('allViewerAndWhitelistCloudFront'),
+  allexcept('allExcept');
+
+  const CloudfrontOriginRequestPolicyHeadersConfigHeaderBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `headers_config.headers` block of
@@ -80,7 +113,10 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfig {
     this.queryStrings,
   });
 
-  final TfArg<String> queryStringBehavior;
+  final TfArg<
+    CloudfrontOriginRequestPolicyQueryStringsConfigQueryStringBehavior
+  >
+  queryStringBehavior;
 
   final CloudfrontOriginRequestPolicyQueryStringsConfigQueryStrings?
   queryStrings;
@@ -89,6 +125,21 @@ final class CloudfrontOriginRequestPolicyQueryStringsConfig {
     'query_string_behavior': queryStringBehavior.toTfJson(),
     if (queryStrings != null) 'query_strings': queryStrings!.encode(),
   };
+}
+
+/// `query_string_behavior` — derived from the provider schema description.
+enum CloudfrontOriginRequestPolicyQueryStringsConfigQueryStringBehavior
+    implements TerraformEnum {
+  none('none'),
+  whitelist('whitelist'),
+  all('all'),
+  allexcept('allExcept');
+
+  const CloudfrontOriginRequestPolicyQueryStringsConfigQueryStringBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `query_strings_config.query_strings` block of

@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_opensearch_package`.
 const Set<String> _awsOpensearchPackageSensitive = <String>{};
 
+/// Opensearch Package Package enum for `package_type`.
+enum OpensearchPackagePackageType implements TerraformEnum {
+  txtDictionary('TXT-DICTIONARY'),
+  zipPlugin('ZIP-PLUGIN'),
+  packageLicense('PACKAGE-LICENSE'),
+  packageConfig('PACKAGE-CONFIG');
+
+  const OpensearchPackagePackageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `package_source` block of
 /// `aws_opensearch_package` (derived from provider schema).
 @immutable
@@ -35,7 +47,7 @@ final class AwsOpensearchPackage extends Resource {
     TfArg<String>? engineVersion,
     TfArg<String>? packageDescription,
     required TfArg<String> packageName,
-    required TfArg<String> packageType,
+    required TfArg<OpensearchPackagePackageType> packageType,
     TfArg<String>? region,
     required OpensearchPackagePackageSource packageSource,
     super.lifecycle,

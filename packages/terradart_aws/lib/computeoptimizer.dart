@@ -4,12 +4,25 @@
 library;
 
 export 'src/computeoptimizer/aws_computeoptimizer_enrollment_status.dart'
-    show AwsComputeoptimizerEnrollmentStatus;
+    show
+        AwsComputeoptimizerEnrollmentStatus,
+        ComputeoptimizerEnrollmentStatusStatus;
 export 'src/computeoptimizer/aws_computeoptimizer_recommendation_preferences.dart'
     show
         AwsComputeoptimizerRecommendationPreferences,
+        ComputeoptimizerRecommendationPreferencesEnhancedInfrastructureMetrics,
         ComputeoptimizerRecommendationPreferencesExternalMetricsPreference,
+        ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceSource,
+        ComputeoptimizerRecommendationPreferencesInferredWorkloadTypes,
+        ComputeoptimizerRecommendationPreferencesLookBackPeriod,
         ComputeoptimizerRecommendationPreferencesPreferredResource,
+        ComputeoptimizerRecommendationPreferencesPreferredResourceName,
+        ComputeoptimizerRecommendationPreferencesResourceType,
+        ComputeoptimizerRecommendationPreferencesSavingsEstimationMode,
         ComputeoptimizerRecommendationPreferencesScope,
+        ComputeoptimizerRecommendationPreferencesScopeName,
         ComputeoptimizerRecommendationPreferencesUtilizationPreference,
-        ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParameters;
+        ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricName,
+        ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParameters,
+        ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersHeadroom,
+        ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersThreshold;

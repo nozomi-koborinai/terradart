@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dynamodb_contributor_insights`.
 const Set<String> _awsDynamodbContributorInsightsSensitive = <String>{};
 
+/// Dynamodb Contributor Insights enum for `mode`.
+enum DynamodbContributorInsightsMode implements TerraformEnum {
+  accessedAndThrottledKeys('ACCESSED_AND_THROTTLED_KEYS'),
+  throttledKeys('THROTTLED_KEYS');
+
+  const DynamodbContributorInsightsMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dynamodb_contributor_insights`.
 final class AwsDynamodbContributorInsights extends Resource {
   static const String tfType = 'aws_dynamodb_contributor_insights';
@@ -13,7 +23,7 @@ final class AwsDynamodbContributorInsights extends Resource {
   AwsDynamodbContributorInsights({
     required super.localName,
     TfArg<String>? indexName,
-    TfArg<String>? mode,
+    TfArg<DynamodbContributorInsightsMode>? mode,
     TfArg<String>? region,
     required TfArg<String> tableName,
     super.lifecycle,

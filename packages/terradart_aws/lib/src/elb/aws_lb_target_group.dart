@@ -7,6 +7,88 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lb_target_group`.
 const Set<String> _awsLbTargetGroupSensitive = <String>{};
 
+/// Lb Target Group Ip Address enum for `ip_address_type`.
+enum LbTargetGroupIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const LbTargetGroupIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Target Group Load Balancing Algorithm enum for `load_balancing_algorithm_type`.
+enum LbTargetGroupLoadBalancingAlgorithmType implements TerraformEnum {
+  roundRobin('round_robin'),
+  leastOutstandingRequests('least_outstanding_requests'),
+  weightedRandom('weighted_random');
+
+  const LbTargetGroupLoadBalancingAlgorithmType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Target Group Load Balancing Anomaly enum for `load_balancing_anomaly_mitigation`.
+enum LbTargetGroupLoadBalancingAnomalyMitigation implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const LbTargetGroupLoadBalancingAnomalyMitigation(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Target Group Load Balancing Cross Zone enum for `load_balancing_cross_zone_enabled`.
+enum LbTargetGroupLoadBalancingCrossZoneEnabled implements TerraformEnum {
+  trueCase('true'),
+  falseCase('false'),
+  useLoadBalancerConfiguration('use_load_balancer_configuration');
+
+  const LbTargetGroupLoadBalancingCrossZoneEnabled(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Target Group enum for `protocol`.
+enum LbTargetGroupProtocol implements TerraformEnum {
+  http('HTTP'),
+  https('HTTPS'),
+  tcp('TCP'),
+  tls('TLS'),
+  udp('UDP'),
+  tcpUdp('TCP_UDP'),
+  geneve('GENEVE'),
+  quic('QUIC'),
+  tcpQuic('TCP_QUIC');
+
+  const LbTargetGroupProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Target Group Protocol enum for `protocol_version`.
+enum LbTargetGroupProtocolVersion implements TerraformEnum {
+  grpc('GRPC'),
+  http1('HTTP1'),
+  http2('HTTP2');
+
+  const LbTargetGroupProtocolVersion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Target Group Target enum for `target_type`.
+enum LbTargetGroupTargetType implements TerraformEnum {
+  instance('instance'),
+  ip('ip'),
+  lambda('lambda'),
+  alb('alb');
+
+  const LbTargetGroupTargetType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `health_check` block of
 /// `aws_lb_target_group` (derived from provider schema).
 @immutable
@@ -73,7 +155,7 @@ final class LbTargetGroupStickiness {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String> type;
+  final TfArg<LbTargetGroupStickinessType> type;
 
   Map<String, Object?> encode() => {
     if (cookieDuration != null) 'cookie_duration': cookieDuration!.toTfJson(),
@@ -81,6 +163,19 @@ final class LbTargetGroupStickiness {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum LbTargetGroupStickinessType implements TerraformEnum {
+  lbCookie('lb_cookie'),
+  appCookie('app_cookie'),
+  sourceIp('source_ip'),
+  sourceIpDestIp('source_ip_dest_ip'),
+  sourceIpDestIpProto('source_ip_dest_ip_proto');
+
+  const LbTargetGroupStickinessType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_failover` block of
@@ -92,14 +187,34 @@ final class LbTargetGroupTargetFailover {
     required this.onUnhealthy,
   });
 
-  final TfArg<String> onDeregistration;
+  final TfArg<LbTargetGroupTargetFailoverOnDeregistration> onDeregistration;
 
-  final TfArg<String> onUnhealthy;
+  final TfArg<LbTargetGroupTargetFailoverOnUnhealthy> onUnhealthy;
 
   Map<String, Object?> encode() => {
     'on_deregistration': onDeregistration.toTfJson(),
     'on_unhealthy': onUnhealthy.toTfJson(),
   };
+}
+
+/// `on_deregistration` — derived from the provider schema description.
+enum LbTargetGroupTargetFailoverOnDeregistration implements TerraformEnum {
+  rebalance('rebalance'),
+  noRebalance('no_rebalance');
+
+  const LbTargetGroupTargetFailoverOnDeregistration(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `on_unhealthy` — derived from the provider schema description.
+enum LbTargetGroupTargetFailoverOnUnhealthy implements TerraformEnum {
+  rebalance('rebalance'),
+  noRebalance('no_rebalance');
+
+  const LbTargetGroupTargetFailoverOnUnhealthy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_group_health` block of
@@ -196,23 +311,25 @@ final class AwsLbTargetGroup extends Resource {
     required super.localName,
     TfArg<bool>? connectionTermination,
     TfArg<String>? deregistrationDelay,
-    TfArg<String>? ipAddressType,
+    TfArg<LbTargetGroupIpAddressType>? ipAddressType,
     TfArg<bool>? lambdaMultiValueHeadersEnabled,
-    TfArg<String>? loadBalancingAlgorithmType,
-    TfArg<String>? loadBalancingAnomalyMitigation,
-    TfArg<String>? loadBalancingCrossZoneEnabled,
+    TfArg<LbTargetGroupLoadBalancingAlgorithmType>? loadBalancingAlgorithmType,
+    TfArg<LbTargetGroupLoadBalancingAnomalyMitigation>?
+    loadBalancingAnomalyMitigation,
+    TfArg<LbTargetGroupLoadBalancingCrossZoneEnabled>?
+    loadBalancingCrossZoneEnabled,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<num>? port,
     TfArg<String>? preserveClientIp,
-    TfArg<String>? protocol,
-    TfArg<String>? protocolVersion,
+    TfArg<LbTargetGroupProtocol>? protocol,
+    TfArg<LbTargetGroupProtocolVersion>? protocolVersion,
     TfArg<bool>? proxyProtocolV2,
     TfArg<String>? region,
     TfArg<num>? slowStart,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? targetControlPort,
-    TfArg<String>? targetType,
+    TfArg<LbTargetGroupTargetType>? targetType,
     TfArg<String>? vpcId,
     LbTargetGroupHealthCheck? healthCheck,
     LbTargetGroupStickiness? stickiness,

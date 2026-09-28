@@ -3,16 +3,24 @@
 /// AWS IoT Core.
 library;
 
-export 'src/iot/aws_iot_authorizer.dart' show AwsIotAuthorizer;
+export 'src/iot/aws_iot_authorizer.dart'
+    show AwsIotAuthorizer, IotAuthorizerStatus;
 export 'src/iot/aws_iot_billing_group.dart'
     show AwsIotBillingGroup, IotBillingGroupProperties;
 export 'src/iot/aws_iot_ca_certificate.dart'
-    show AwsIotCaCertificate, IotCaCertificateRegistrationConfig;
+    show
+        AwsIotCaCertificate,
+        IotCaCertificateCertificateMode,
+        IotCaCertificateRegistrationConfig;
 export 'src/iot/aws_iot_certificate.dart' show AwsIotCertificate;
 export 'src/iot/aws_iot_domain_configuration.dart'
     show
         AwsIotDomainConfiguration,
+        IotDomainConfigurationApplicationProtocol,
+        IotDomainConfigurationAuthenticationType,
         IotDomainConfigurationAuthorizerConfig,
+        IotDomainConfigurationServiceType,
+        IotDomainConfigurationStatus,
         IotDomainConfigurationTlsConfig;
 export 'src/iot/aws_iot_event_configurations.dart'
     show AwsIotEventConfigurations;
@@ -21,16 +29,30 @@ export 'src/iot/aws_iot_indexing_configuration.dart'
         AwsIotIndexingConfiguration,
         IotIndexingConfigurationThingGroupIndexingConfiguration,
         IotIndexingConfigurationThingGroupIndexingConfigurationCustomField,
+        IotIndexingConfigurationThingGroupIndexingConfigurationCustomFieldType,
         IotIndexingConfigurationThingGroupIndexingConfigurationManagedField,
+        IotIndexingConfigurationThingGroupIndexingConfigurationManagedFieldType,
+        IotIndexingConfigurationThingGroupIndexingConfigurationThingGroupIndexingMode,
         IotIndexingConfigurationThingIndexingConfiguration,
         IotIndexingConfigurationThingIndexingConfigurationCustomField,
+        IotIndexingConfigurationThingIndexingConfigurationCustomFieldType,
+        IotIndexingConfigurationThingIndexingConfigurationDeviceDefenderIndexingMode,
         IotIndexingConfigurationThingIndexingConfigurationFilter,
-        IotIndexingConfigurationThingIndexingConfigurationManagedField;
-export 'src/iot/aws_iot_logging_options.dart' show AwsIotLoggingOptions;
+        IotIndexingConfigurationThingIndexingConfigurationManagedField,
+        IotIndexingConfigurationThingIndexingConfigurationManagedFieldType,
+        IotIndexingConfigurationThingIndexingConfigurationNamedShadowIndexingMode,
+        IotIndexingConfigurationThingIndexingConfigurationThingConnectivityIndexingMode,
+        IotIndexingConfigurationThingIndexingConfigurationThingIndexingMode;
+export 'src/iot/aws_iot_logging_options.dart'
+    show AwsIotLoggingOptions, IotLoggingOptionsDefaultLogLevel;
 export 'src/iot/aws_iot_policy.dart' show AwsIotPolicy;
 export 'src/iot/aws_iot_policy_attachment.dart' show AwsIotPolicyAttachment;
 export 'src/iot/aws_iot_provisioning_template.dart'
-    show AwsIotProvisioningTemplate, IotProvisioningTemplatePreProvisioningHook;
+    show
+        AwsIotProvisioningTemplate,
+        IotProvisioningTemplatePreProvisioningHook,
+        IotProvisioningTemplatePreProvisioningHookPayloadVersion,
+        IotProvisioningTemplateType;
 export 'src/iot/aws_iot_role_alias.dart' show AwsIotRoleAlias;
 export 'src/iot/aws_iot_thing.dart' show AwsIotThing;
 export 'src/iot/aws_iot_thing_group.dart'
@@ -41,7 +63,9 @@ export 'src/iot/aws_iot_thing_group.dart'
 export 'src/iot/aws_iot_thing_group_membership.dart'
     show AwsIotThingGroupMembership;
 export 'src/iot/aws_iot_thing_principal_attachment.dart'
-    show AwsIotThingPrincipalAttachment;
+    show
+        AwsIotThingPrincipalAttachment,
+        IotThingPrincipalAttachmentThingPrincipalType;
 export 'src/iot/aws_iot_thing_type.dart'
     show AwsIotThingType, IotThingTypeProperties;
 export 'src/iot/aws_iot_topic_rule.dart'
@@ -51,6 +75,7 @@ export 'src/iot/aws_iot_topic_rule.dart'
         IotTopicRuleCloudwatchLogs,
         IotTopicRuleCloudwatchMetric,
         IotTopicRuleDynamodb,
+        IotTopicRuleDynamodbOperation,
         IotTopicRuleDynamodbv2,
         IotTopicRuleDynamodbv2PutItem,
         IotTopicRuleElasticsearch,
@@ -59,6 +84,7 @@ export 'src/iot/aws_iot_topic_rule.dart'
         IotTopicRuleErrorActionCloudwatchLogs,
         IotTopicRuleErrorActionCloudwatchMetric,
         IotTopicRuleErrorActionDynamodb,
+        IotTopicRuleErrorActionDynamodbOperation,
         IotTopicRuleErrorActionDynamodbv2,
         IotTopicRuleErrorActionDynamodbv2PutItem,
         IotTopicRuleErrorActionElasticsearch,
@@ -73,12 +99,14 @@ export 'src/iot/aws_iot_topic_rule.dart'
         IotTopicRuleErrorActionLambda,
         IotTopicRuleErrorActionRepublish,
         IotTopicRuleErrorActionS3,
+        IotTopicRuleErrorActionS3CannedAcl,
         IotTopicRuleErrorActionSns,
         IotTopicRuleErrorActionSqs,
         IotTopicRuleErrorActionStepFunctions,
         IotTopicRuleErrorActionTimestream,
         IotTopicRuleErrorActionTimestreamDimension,
         IotTopicRuleErrorActionTimestreamTimestamp,
+        IotTopicRuleErrorActionTimestreamTimestampUnit,
         IotTopicRuleFirehose,
         IotTopicRuleHttp,
         IotTopicRuleHttpHttpHeader,
@@ -90,11 +118,13 @@ export 'src/iot/aws_iot_topic_rule.dart'
         IotTopicRuleLambda,
         IotTopicRuleRepublish,
         IotTopicRuleS3,
+        IotTopicRuleS3CannedAcl,
         IotTopicRuleSns,
         IotTopicRuleSqs,
         IotTopicRuleStepFunctions,
         IotTopicRuleTimestream,
         IotTopicRuleTimestreamDimension,
-        IotTopicRuleTimestreamTimestamp;
+        IotTopicRuleTimestreamTimestamp,
+        IotTopicRuleTimestreamTimestampUnit;
 export 'src/iot/aws_iot_topic_rule_destination.dart'
     show AwsIotTopicRuleDestination, IotTopicRuleDestinationVpcConfiguration;

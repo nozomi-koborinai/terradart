@@ -28,7 +28,8 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInput {
     this.icebergTableInput,
   });
 
-  final TfArg<String> metadataOperation;
+  final TfArg<GlueCatalogTableOpenTableFormatInputIcebergInputMetadataOperation>
+  metadataOperation;
 
   final TfArg<String>? version;
 
@@ -41,6 +42,18 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInput {
     if (icebergTableInput != null)
       'iceberg_table_input': icebergTableInput!.encode(),
   };
+}
+
+/// `metadata_operation` — derived from the provider schema description.
+enum GlueCatalogTableOpenTableFormatInputIcebergInputMetadataOperation
+    implements TerraformEnum {
+  create('CREATE');
+
+  const GlueCatalogTableOpenTableFormatInputIcebergInputMetadataOperation(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input` block of
@@ -141,7 +154,10 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSch
 
   final TfArg<num>? schemaId;
 
-  final TfArg<String>? type;
+  final TfArg<
+    GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaType
+  >?
+  type;
 
   final List<
     GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaFields
@@ -155,6 +171,18 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSch
     if (type != null) 'type': type!.toTfJson(),
     'fields': [for (final e in fields) e.encode()],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaType
+    implements TerraformEnum {
+  struct('struct');
+
+  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSchemaType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `open_table_format_input.iceberg_input.iceberg_table_input.schema.fields` block of
@@ -229,9 +257,15 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSor
     required this.transform,
   });
 
-  final TfArg<String> direction;
+  final TfArg<
+    GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsDirection
+  >
+  direction;
 
-  final TfArg<String> nullOrder;
+  final TfArg<
+    GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsNullOrder
+  >
+  nullOrder;
 
   final TfArg<num> sourceId;
 
@@ -243,6 +277,32 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSor
     'source_id': sourceId.toTfJson(),
     'transform': transform.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsDirection
+    implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsDirection(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `null_order` — derived from the provider schema description.
+enum GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsNullOrder
+    implements TerraformEnum {
+  nullsFirst('nulls-first'),
+  nullsLast('nulls-last');
+
+  const GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSortOrderFieldsNullOrder(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `partition_index` block of
@@ -553,7 +613,7 @@ final class GlueCatalogTableViewDefinition {
 
   final TfArg<bool>? isProtected;
 
-  final TfArg<String>? lastRefreshType;
+  final TfArg<GlueCatalogTableViewDefinitionLastRefreshType>? lastRefreshType;
 
   final TfArg<num>? refreshSeconds;
 
@@ -584,6 +644,16 @@ final class GlueCatalogTableViewDefinition {
   };
 }
 
+/// `last_refresh_type` — derived from the provider schema description.
+enum GlueCatalogTableViewDefinitionLastRefreshType implements TerraformEnum {
+  full('FULL'),
+  incremental('INCREMENTAL');
+
+  const GlueCatalogTableViewDefinitionLastRefreshType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `view_definition.representations` block of
 /// `aws_glue_catalog_table` (derived from provider schema).
 @immutable
@@ -596,7 +666,7 @@ final class GlueCatalogTableViewDefinitionRepresentations {
     this.viewOriginalText,
   });
 
-  final TfArg<String>? dialect;
+  final TfArg<GlueCatalogTableViewDefinitionRepresentationsDialect>? dialect;
 
   final TfArg<String>? dialectVersion;
 
@@ -616,6 +686,20 @@ final class GlueCatalogTableViewDefinitionRepresentations {
     if (viewOriginalText != null)
       'view_original_text': viewOriginalText!.toTfJson(),
   };
+}
+
+/// `dialect` — derived from the provider schema description.
+enum GlueCatalogTableViewDefinitionRepresentationsDialect
+    implements TerraformEnum {
+  redshift('REDSHIFT'),
+  athena('ATHENA'),
+  spark('SPARK');
+
+  const GlueCatalogTableViewDefinitionRepresentationsDialect(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_glue_catalog_table`.

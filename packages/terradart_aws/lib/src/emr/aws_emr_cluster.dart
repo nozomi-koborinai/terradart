@@ -11,6 +11,31 @@ const Set<String> _awsEmrClusterSensitive = <String>{
   'kerberos_attributes.kdc_admin_password',
 };
 
+/// Emr Cluster List Steps enum for `list_steps_states`.
+enum EmrClusterListStepsStates implements TerraformEnum {
+  pending('PENDING'),
+  cancelPending('CANCEL_PENDING'),
+  running('RUNNING'),
+  completed('COMPLETED'),
+  cancelled('CANCELLED'),
+  failed('FAILED'),
+  interrupted('INTERRUPTED');
+
+  const EmrClusterListStepsStates(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Emr Cluster Scale Down enum for `scale_down_behavior`.
+enum EmrClusterScaleDownBehavior implements TerraformEnum {
+  terminateAtInstanceHour('TERMINATE_AT_INSTANCE_HOUR'),
+  terminateAtTaskCompletion('TERMINATE_AT_TASK_COMPLETION');
+
+  const EmrClusterScaleDownBehavior(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `auto_termination_policy` block of
 /// `aws_emr_cluster` (derived from provider schema).
 @immutable
@@ -681,7 +706,7 @@ final class AwsEmrCluster extends Resource {
     TfArg<String>? customAmiId,
     TfArg<num>? ebsRootVolumeSize,
     TfArg<bool>? keepJobFlowAliveWhenNoSteps,
-    TfArg<List<String>>? listStepsStates,
+    List<TfArg<EmrClusterListStepsStates>>? listStepsStates,
     TfArg<String>? logEncryptionKmsKeyId,
     TfArg<String>? logUri,
     required TfArg<String> name,
@@ -689,7 +714,7 @@ final class AwsEmrCluster extends Resource {
     TfArg<List<Map<String, Object?>>>? placementGroupConfig,
     TfArg<String>? region,
     required TfArg<String> releaseLabel,
-    TfArg<String>? scaleDownBehavior,
+    TfArg<EmrClusterScaleDownBehavior>? scaleDownBehavior,
     TfArg<String>? securityConfiguration,
     required TfArg<String> serviceRole,
     TfArg<List<Map<String, Object?>>>? step,
@@ -724,7 +749,10 @@ final class AwsEmrCluster extends Resource {
              'ebs_root_volume_size': ebsRootVolumeSize,
            if (keepJobFlowAliveWhenNoSteps != null)
              'keep_job_flow_alive_when_no_steps': keepJobFlowAliveWhenNoSteps,
-           if (listStepsStates != null) 'list_steps_states': listStepsStates,
+           if (listStepsStates != null)
+             'list_steps_states': TfArg.literal([
+               for (final e in listStepsStates) e.toTfJson(),
+             ]),
            if (logEncryptionKmsKeyId != null)
              'log_encryption_kms_key_id': logEncryptionKmsKeyId,
            if (logUri != null) 'log_uri': logUri,

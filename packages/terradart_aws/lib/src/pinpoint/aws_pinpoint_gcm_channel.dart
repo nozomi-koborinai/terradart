@@ -9,6 +9,16 @@ const Set<String> _awsPinpointGcmChannelSensitive = <String>{
   'service_json',
 };
 
+/// Pinpoint Gcm Channel Default Authentication enum for `default_authentication_method`.
+enum PinpointGcmChannelDefaultAuthenticationMethod implements TerraformEnum {
+  key('KEY'),
+  token('TOKEN');
+
+  const PinpointGcmChannelDefaultAuthenticationMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_pinpoint_gcm_channel`.
 final class AwsPinpointGcmChannel extends Resource {
   static const String tfType = 'aws_pinpoint_gcm_channel';
@@ -17,7 +27,8 @@ final class AwsPinpointGcmChannel extends Resource {
     required super.localName,
     TfArg<String>? apiKey,
     required TfArg<String> applicationId,
-    TfArg<String>? defaultAuthenticationMethod,
+    TfArg<PinpointGcmChannelDefaultAuthenticationMethod>?
+    defaultAuthenticationMethod,
     TfArg<bool>? enabled,
     TfArg<String>? region,
     TfArg<String>? serviceJson,

@@ -6,14 +6,34 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudhsm_v2_cluster`.
 const Set<String> _awsCloudhsmV2ClusterSensitive = <String>{};
 
+/// Cloudhsm V2 Cluster Hsm enum for `hsm_type`.
+enum CloudhsmV2ClusterHsmType implements TerraformEnum {
+  hsm1Medium('hsm1.medium'),
+  hsm2mMedium('hsm2m.medium');
+
+  const CloudhsmV2ClusterHsmType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cloudhsm V2 Cluster enum for `mode`.
+enum CloudhsmV2ClusterMode implements TerraformEnum {
+  fips('FIPS'),
+  nonFips('NON_FIPS');
+
+  const CloudhsmV2ClusterMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudhsm_v2_cluster`.
 final class AwsCloudhsmV2Cluster extends Resource {
   static const String tfType = 'aws_cloudhsm_v2_cluster';
 
   AwsCloudhsmV2Cluster({
     required super.localName,
-    required TfArg<String> hsmType,
-    TfArg<String>? mode,
+    required TfArg<CloudhsmV2ClusterHsmType> hsmType,
+    TfArg<CloudhsmV2ClusterMode>? mode,
     TfArg<String>? region,
     TfArg<String>? sourceBackupIdentifier,
     required TfArg<List<String>> subnetIds,

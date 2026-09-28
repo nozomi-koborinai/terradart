@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_elasticache_global_replication_group`.
 const Set<String> _awsElasticacheGlobalReplicationGroupSensitive = <String>{};
 
+/// Elasticache Global Replication Group enum for `engine`.
+enum ElasticacheGlobalReplicationGroupEngine implements TerraformEnum {
+  redis('redis'),
+  valkey('valkey');
+
+  const ElasticacheGlobalReplicationGroupEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_elasticache_global_replication_group`.
 final class AwsElasticacheGlobalReplicationGroup extends Resource {
   static const String tfType = 'aws_elasticache_global_replication_group';
@@ -14,7 +24,7 @@ final class AwsElasticacheGlobalReplicationGroup extends Resource {
     required super.localName,
     TfArg<bool>? automaticFailoverEnabled,
     TfArg<String>? cacheNodeType,
-    TfArg<String>? engine,
+    TfArg<ElasticacheGlobalReplicationGroupEngine>? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? globalReplicationGroupDescription,
     required TfArg<String> globalReplicationGroupIdSuffix,

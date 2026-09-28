@@ -6,13 +6,31 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_chime_voice_connector`.
 const Set<String> _awsChimeVoiceConnectorSensitive = <String>{};
 
+/// Chime Voice Connector Aws enum for `aws_region`.
+enum ChimeVoiceConnectorAwsRegion implements TerraformEnum {
+  usEast1('us-east-1'),
+  usWest2('us-west-2'),
+  caCentral1('ca-central-1'),
+  euCentral1('eu-central-1'),
+  euWest1('eu-west-1'),
+  euWest2('eu-west-2'),
+  apNortheast2('ap-northeast-2'),
+  apNortheast1('ap-northeast-1'),
+  apSoutheast1('ap-southeast-1'),
+  apSoutheast2('ap-southeast-2');
+
+  const ChimeVoiceConnectorAwsRegion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_chime_voice_connector`.
 final class AwsChimeVoiceConnector extends Resource {
   static const String tfType = 'aws_chime_voice_connector';
 
   AwsChimeVoiceConnector({
     required super.localName,
-    TfArg<String>? awsRegion,
+    TfArg<ChimeVoiceConnectorAwsRegion>? awsRegion,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<bool> requireEncryption,

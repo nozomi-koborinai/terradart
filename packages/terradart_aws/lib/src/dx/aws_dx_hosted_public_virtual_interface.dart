@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dx_hosted_public_virtual_interface`.
 const Set<String> _awsDxHostedPublicVirtualInterfaceSensitive = <String>{};
 
+/// Dx Hosted Public Virtual Interface Address enum for `address_family`.
+enum DxHostedPublicVirtualInterfaceAddressFamily implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const DxHostedPublicVirtualInterfaceAddressFamily(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_dx_hosted_public_virtual_interface`.
 final class AwsDxHostedPublicVirtualInterface extends Resource {
   static const String tfType = 'aws_dx_hosted_public_virtual_interface';
 
   AwsDxHostedPublicVirtualInterface({
     required super.localName,
-    required TfArg<String> addressFamily,
+    required TfArg<DxHostedPublicVirtualInterfaceAddressFamily> addressFamily,
     TfArg<String>? amazonAddress,
     TfArg<num>? bgpAsn,
     TfArg<String>? bgpAsnLong,

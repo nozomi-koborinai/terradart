@@ -11,6 +11,214 @@ const Set<String> _awsVpnConnectionSensitive = <String>{
   'tunnel2_preshared_key',
 };
 
+/// Vpn Connection Outside Ip Address enum for `outside_ip_address_type`.
+enum VpnConnectionOutsideIpAddressType implements TerraformEnum {
+  privateipv4('PrivateIpv4'),
+  publicipv4('PublicIpv4');
+
+  const VpnConnectionOutsideIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Preshared Key enum for `preshared_key_storage`.
+enum VpnConnectionPresharedKeyStorage implements TerraformEnum {
+  secretsmanager('SecretsManager'),
+  standard('Standard');
+
+  const VpnConnectionPresharedKeyStorage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel1 Dpd Timeout enum for `tunnel1_dpd_timeout_action`.
+enum VpnConnectionTunnel1DpdTimeoutAction implements TerraformEnum {
+  clear('clear'),
+  none('none'),
+  restart('restart');
+
+  const VpnConnectionTunnel1DpdTimeoutAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel1 Ike enum for `tunnel1_ike_versions`.
+enum VpnConnectionTunnel1IkeVersions implements TerraformEnum {
+  ikev1('ikev1'),
+  ikev2('ikev2');
+
+  const VpnConnectionTunnel1IkeVersions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel1 Phase1 Encryption enum for `tunnel1_phase1_encryption_algorithms`.
+enum VpnConnectionTunnel1Phase1EncryptionAlgorithms implements TerraformEnum {
+  aes128('AES128'),
+  aes256('AES256'),
+  aes128Gcm16('AES128-GCM-16'),
+  aes256Gcm16('AES256-GCM-16');
+
+  const VpnConnectionTunnel1Phase1EncryptionAlgorithms(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel1 Phase1 Integrity enum for `tunnel1_phase1_integrity_algorithms`.
+enum VpnConnectionTunnel1Phase1IntegrityAlgorithms implements TerraformEnum {
+  sha1('SHA1'),
+  sha2256('SHA2-256'),
+  sha2384('SHA2-384'),
+  sha2512('SHA2-512');
+
+  const VpnConnectionTunnel1Phase1IntegrityAlgorithms(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel1 Phase2 Encryption enum for `tunnel1_phase2_encryption_algorithms`.
+enum VpnConnectionTunnel1Phase2EncryptionAlgorithms implements TerraformEnum {
+  aes128('AES128'),
+  aes256('AES256'),
+  aes128Gcm16('AES128-GCM-16'),
+  aes256Gcm16('AES256-GCM-16');
+
+  const VpnConnectionTunnel1Phase2EncryptionAlgorithms(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel1 Phase2 Integrity enum for `tunnel1_phase2_integrity_algorithms`.
+enum VpnConnectionTunnel1Phase2IntegrityAlgorithms implements TerraformEnum {
+  sha1('SHA1'),
+  sha2256('SHA2-256'),
+  sha2384('SHA2-384'),
+  sha2512('SHA2-512');
+
+  const VpnConnectionTunnel1Phase2IntegrityAlgorithms(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel1 Startup enum for `tunnel1_startup_action`.
+enum VpnConnectionTunnel1StartupAction implements TerraformEnum {
+  add('add'),
+  start('start');
+
+  const VpnConnectionTunnel1StartupAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel2 Dpd Timeout enum for `tunnel2_dpd_timeout_action`.
+enum VpnConnectionTunnel2DpdTimeoutAction implements TerraformEnum {
+  clear('clear'),
+  none('none'),
+  restart('restart');
+
+  const VpnConnectionTunnel2DpdTimeoutAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel2 Ike enum for `tunnel2_ike_versions`.
+enum VpnConnectionTunnel2IkeVersions implements TerraformEnum {
+  ikev1('ikev1'),
+  ikev2('ikev2');
+
+  const VpnConnectionTunnel2IkeVersions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel2 Phase1 Encryption enum for `tunnel2_phase1_encryption_algorithms`.
+enum VpnConnectionTunnel2Phase1EncryptionAlgorithms implements TerraformEnum {
+  aes128('AES128'),
+  aes256('AES256'),
+  aes128Gcm16('AES128-GCM-16'),
+  aes256Gcm16('AES256-GCM-16');
+
+  const VpnConnectionTunnel2Phase1EncryptionAlgorithms(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel2 Phase1 Integrity enum for `tunnel2_phase1_integrity_algorithms`.
+enum VpnConnectionTunnel2Phase1IntegrityAlgorithms implements TerraformEnum {
+  sha1('SHA1'),
+  sha2256('SHA2-256'),
+  sha2384('SHA2-384'),
+  sha2512('SHA2-512');
+
+  const VpnConnectionTunnel2Phase1IntegrityAlgorithms(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel2 Phase2 Encryption enum for `tunnel2_phase2_encryption_algorithms`.
+enum VpnConnectionTunnel2Phase2EncryptionAlgorithms implements TerraformEnum {
+  aes128('AES128'),
+  aes256('AES256'),
+  aes128Gcm16('AES128-GCM-16'),
+  aes256Gcm16('AES256-GCM-16');
+
+  const VpnConnectionTunnel2Phase2EncryptionAlgorithms(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel2 Phase2 Integrity enum for `tunnel2_phase2_integrity_algorithms`.
+enum VpnConnectionTunnel2Phase2IntegrityAlgorithms implements TerraformEnum {
+  sha1('SHA1'),
+  sha2256('SHA2-256'),
+  sha2384('SHA2-384'),
+  sha2512('SHA2-512');
+
+  const VpnConnectionTunnel2Phase2IntegrityAlgorithms(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel2 Startup enum for `tunnel2_startup_action`.
+enum VpnConnectionTunnel2StartupAction implements TerraformEnum {
+  add('add'),
+  start('start');
+
+  const VpnConnectionTunnel2StartupAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel enum for `tunnel_bandwidth`.
+enum VpnConnectionTunnelBandwidth implements TerraformEnum {
+  standard('standard'),
+  large('large');
+
+  const VpnConnectionTunnelBandwidth(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection Tunnel Inside Ip enum for `tunnel_inside_ip_version`.
+enum VpnConnectionTunnelInsideIpVersion implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const VpnConnectionTunnelInsideIpVersion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Vpn Connection enum for `type`.
+enum VpnConnectionType implements TerraformEnum {
+  ipsec1('ipsec.1'),
+  ipsec1Aes256('ipsec.1-aes256');
+
+  const VpnConnectionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `tunnel1_log_options` block of
 /// `aws_vpn_connection` (derived from provider schema).
 @immutable
@@ -125,8 +333,8 @@ final class AwsVpnConnection extends Resource {
     TfArg<bool>? enableAcceleration,
     TfArg<String>? localIpv4NetworkCidr,
     TfArg<String>? localIpv6NetworkCidr,
-    TfArg<String>? outsideIpAddressType,
-    TfArg<String>? presharedKeyStorage,
+    TfArg<VpnConnectionOutsideIpAddressType>? outsideIpAddressType,
+    TfArg<VpnConnectionPresharedKeyStorage>? presharedKeyStorage,
     TfArg<String>? region,
     TfArg<String>? remoteIpv4NetworkCidr,
     TfArg<String>? remoteIpv6NetworkCidr,
@@ -134,47 +342,55 @@ final class AwsVpnConnection extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<String>? transitGatewayId,
     TfArg<String>? transportTransitGatewayAttachmentId,
-    TfArg<String>? tunnel1DpdTimeoutAction,
+    TfArg<VpnConnectionTunnel1DpdTimeoutAction>? tunnel1DpdTimeoutAction,
     TfArg<num>? tunnel1DpdTimeoutSeconds,
     TfArg<bool>? tunnel1EnableTunnelLifecycleControl,
-    TfArg<List<String>>? tunnel1IkeVersions,
+    List<TfArg<VpnConnectionTunnel1IkeVersions>>? tunnel1IkeVersions,
     TfArg<String>? tunnel1InsideCidr,
     TfArg<String>? tunnel1InsideIpv6Cidr,
     TfArg<List<num>>? tunnel1Phase1DhGroupNumbers,
-    TfArg<List<String>>? tunnel1Phase1EncryptionAlgorithms,
-    TfArg<List<String>>? tunnel1Phase1IntegrityAlgorithms,
+    List<TfArg<VpnConnectionTunnel1Phase1EncryptionAlgorithms>>?
+    tunnel1Phase1EncryptionAlgorithms,
+    List<TfArg<VpnConnectionTunnel1Phase1IntegrityAlgorithms>>?
+    tunnel1Phase1IntegrityAlgorithms,
     TfArg<num>? tunnel1Phase1LifetimeSeconds,
     TfArg<List<num>>? tunnel1Phase2DhGroupNumbers,
-    TfArg<List<String>>? tunnel1Phase2EncryptionAlgorithms,
-    TfArg<List<String>>? tunnel1Phase2IntegrityAlgorithms,
+    List<TfArg<VpnConnectionTunnel1Phase2EncryptionAlgorithms>>?
+    tunnel1Phase2EncryptionAlgorithms,
+    List<TfArg<VpnConnectionTunnel1Phase2IntegrityAlgorithms>>?
+    tunnel1Phase2IntegrityAlgorithms,
     TfArg<num>? tunnel1Phase2LifetimeSeconds,
     TfArg<String>? tunnel1PresharedKey,
     TfArg<num>? tunnel1RekeyFuzzPercentage,
     TfArg<num>? tunnel1RekeyMarginTimeSeconds,
     TfArg<num>? tunnel1ReplayWindowSize,
-    TfArg<String>? tunnel1StartupAction,
-    TfArg<String>? tunnel2DpdTimeoutAction,
+    TfArg<VpnConnectionTunnel1StartupAction>? tunnel1StartupAction,
+    TfArg<VpnConnectionTunnel2DpdTimeoutAction>? tunnel2DpdTimeoutAction,
     TfArg<num>? tunnel2DpdTimeoutSeconds,
     TfArg<bool>? tunnel2EnableTunnelLifecycleControl,
-    TfArg<List<String>>? tunnel2IkeVersions,
+    List<TfArg<VpnConnectionTunnel2IkeVersions>>? tunnel2IkeVersions,
     TfArg<String>? tunnel2InsideCidr,
     TfArg<String>? tunnel2InsideIpv6Cidr,
     TfArg<List<num>>? tunnel2Phase1DhGroupNumbers,
-    TfArg<List<String>>? tunnel2Phase1EncryptionAlgorithms,
-    TfArg<List<String>>? tunnel2Phase1IntegrityAlgorithms,
+    List<TfArg<VpnConnectionTunnel2Phase1EncryptionAlgorithms>>?
+    tunnel2Phase1EncryptionAlgorithms,
+    List<TfArg<VpnConnectionTunnel2Phase1IntegrityAlgorithms>>?
+    tunnel2Phase1IntegrityAlgorithms,
     TfArg<num>? tunnel2Phase1LifetimeSeconds,
     TfArg<List<num>>? tunnel2Phase2DhGroupNumbers,
-    TfArg<List<String>>? tunnel2Phase2EncryptionAlgorithms,
-    TfArg<List<String>>? tunnel2Phase2IntegrityAlgorithms,
+    List<TfArg<VpnConnectionTunnel2Phase2EncryptionAlgorithms>>?
+    tunnel2Phase2EncryptionAlgorithms,
+    List<TfArg<VpnConnectionTunnel2Phase2IntegrityAlgorithms>>?
+    tunnel2Phase2IntegrityAlgorithms,
     TfArg<num>? tunnel2Phase2LifetimeSeconds,
     TfArg<String>? tunnel2PresharedKey,
     TfArg<num>? tunnel2RekeyFuzzPercentage,
     TfArg<num>? tunnel2RekeyMarginTimeSeconds,
     TfArg<num>? tunnel2ReplayWindowSize,
-    TfArg<String>? tunnel2StartupAction,
-    TfArg<String>? tunnelBandwidth,
-    TfArg<String>? tunnelInsideIpVersion,
-    required TfArg<String> type,
+    TfArg<VpnConnectionTunnel2StartupAction>? tunnel2StartupAction,
+    TfArg<VpnConnectionTunnelBandwidth>? tunnelBandwidth,
+    TfArg<VpnConnectionTunnelInsideIpVersion>? tunnelInsideIpVersion,
+    required TfArg<VpnConnectionType> type,
     TfArg<String>? vpnConcentratorId,
     TfArg<String>? vpnGatewayId,
     VpnConnectionTunnel1LogOptions? tunnel1LogOptions,
@@ -216,7 +432,9 @@ final class AwsVpnConnection extends Resource {
              'tunnel1_enable_tunnel_lifecycle_control':
                  tunnel1EnableTunnelLifecycleControl,
            if (tunnel1IkeVersions != null)
-             'tunnel1_ike_versions': tunnel1IkeVersions,
+             'tunnel1_ike_versions': TfArg.literal([
+               for (final e in tunnel1IkeVersions) e.toTfJson(),
+             ]),
            if (tunnel1InsideCidr != null)
              'tunnel1_inside_cidr': tunnel1InsideCidr,
            if (tunnel1InsideIpv6Cidr != null)
@@ -224,21 +442,25 @@ final class AwsVpnConnection extends Resource {
            if (tunnel1Phase1DhGroupNumbers != null)
              'tunnel1_phase1_dh_group_numbers': tunnel1Phase1DhGroupNumbers,
            if (tunnel1Phase1EncryptionAlgorithms != null)
-             'tunnel1_phase1_encryption_algorithms':
-                 tunnel1Phase1EncryptionAlgorithms,
+             'tunnel1_phase1_encryption_algorithms': TfArg.literal([
+               for (final e in tunnel1Phase1EncryptionAlgorithms) e.toTfJson(),
+             ]),
            if (tunnel1Phase1IntegrityAlgorithms != null)
-             'tunnel1_phase1_integrity_algorithms':
-                 tunnel1Phase1IntegrityAlgorithms,
+             'tunnel1_phase1_integrity_algorithms': TfArg.literal([
+               for (final e in tunnel1Phase1IntegrityAlgorithms) e.toTfJson(),
+             ]),
            if (tunnel1Phase1LifetimeSeconds != null)
              'tunnel1_phase1_lifetime_seconds': tunnel1Phase1LifetimeSeconds,
            if (tunnel1Phase2DhGroupNumbers != null)
              'tunnel1_phase2_dh_group_numbers': tunnel1Phase2DhGroupNumbers,
            if (tunnel1Phase2EncryptionAlgorithms != null)
-             'tunnel1_phase2_encryption_algorithms':
-                 tunnel1Phase2EncryptionAlgorithms,
+             'tunnel1_phase2_encryption_algorithms': TfArg.literal([
+               for (final e in tunnel1Phase2EncryptionAlgorithms) e.toTfJson(),
+             ]),
            if (tunnel1Phase2IntegrityAlgorithms != null)
-             'tunnel1_phase2_integrity_algorithms':
-                 tunnel1Phase2IntegrityAlgorithms,
+             'tunnel1_phase2_integrity_algorithms': TfArg.literal([
+               for (final e in tunnel1Phase2IntegrityAlgorithms) e.toTfJson(),
+             ]),
            if (tunnel1Phase2LifetimeSeconds != null)
              'tunnel1_phase2_lifetime_seconds': tunnel1Phase2LifetimeSeconds,
            if (tunnel1PresharedKey != null)
@@ -259,7 +481,9 @@ final class AwsVpnConnection extends Resource {
              'tunnel2_enable_tunnel_lifecycle_control':
                  tunnel2EnableTunnelLifecycleControl,
            if (tunnel2IkeVersions != null)
-             'tunnel2_ike_versions': tunnel2IkeVersions,
+             'tunnel2_ike_versions': TfArg.literal([
+               for (final e in tunnel2IkeVersions) e.toTfJson(),
+             ]),
            if (tunnel2InsideCidr != null)
              'tunnel2_inside_cidr': tunnel2InsideCidr,
            if (tunnel2InsideIpv6Cidr != null)
@@ -267,21 +491,25 @@ final class AwsVpnConnection extends Resource {
            if (tunnel2Phase1DhGroupNumbers != null)
              'tunnel2_phase1_dh_group_numbers': tunnel2Phase1DhGroupNumbers,
            if (tunnel2Phase1EncryptionAlgorithms != null)
-             'tunnel2_phase1_encryption_algorithms':
-                 tunnel2Phase1EncryptionAlgorithms,
+             'tunnel2_phase1_encryption_algorithms': TfArg.literal([
+               for (final e in tunnel2Phase1EncryptionAlgorithms) e.toTfJson(),
+             ]),
            if (tunnel2Phase1IntegrityAlgorithms != null)
-             'tunnel2_phase1_integrity_algorithms':
-                 tunnel2Phase1IntegrityAlgorithms,
+             'tunnel2_phase1_integrity_algorithms': TfArg.literal([
+               for (final e in tunnel2Phase1IntegrityAlgorithms) e.toTfJson(),
+             ]),
            if (tunnel2Phase1LifetimeSeconds != null)
              'tunnel2_phase1_lifetime_seconds': tunnel2Phase1LifetimeSeconds,
            if (tunnel2Phase2DhGroupNumbers != null)
              'tunnel2_phase2_dh_group_numbers': tunnel2Phase2DhGroupNumbers,
            if (tunnel2Phase2EncryptionAlgorithms != null)
-             'tunnel2_phase2_encryption_algorithms':
-                 tunnel2Phase2EncryptionAlgorithms,
+             'tunnel2_phase2_encryption_algorithms': TfArg.literal([
+               for (final e in tunnel2Phase2EncryptionAlgorithms) e.toTfJson(),
+             ]),
            if (tunnel2Phase2IntegrityAlgorithms != null)
-             'tunnel2_phase2_integrity_algorithms':
-                 tunnel2Phase2IntegrityAlgorithms,
+             'tunnel2_phase2_integrity_algorithms': TfArg.literal([
+               for (final e in tunnel2Phase2IntegrityAlgorithms) e.toTfJson(),
+             ]),
            if (tunnel2Phase2LifetimeSeconds != null)
              'tunnel2_phase2_lifetime_seconds': tunnel2Phase2LifetimeSeconds,
            if (tunnel2PresharedKey != null)

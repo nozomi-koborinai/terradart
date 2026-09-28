@@ -3,6 +3,7 @@
 /// AWS QLDB.
 library;
 
-export 'src/qldb/aws_qldb_ledger.dart' show AwsQldbLedger;
+export 'src/qldb/aws_qldb_ledger.dart'
+    show AwsQldbLedger, QldbLedgerPermissionsMode;
 export 'src/qldb/aws_qldb_stream.dart'
     show AwsQldbStream, QldbStreamKinesisConfiguration;

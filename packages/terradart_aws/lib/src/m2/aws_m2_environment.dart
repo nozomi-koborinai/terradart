@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_m2_environment`.
 const Set<String> _awsM2EnvironmentSensitive = <String>{};
 
+/// M2 Environment Engine enum for `engine_type`.
+enum M2EnvironmentEngineType implements TerraformEnum {
+  microfocus('microfocus'),
+  bluage('bluage');
+
+  const M2EnvironmentEngineType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `high_availability_config` block of
 /// `aws_m2_environment` (derived from provider schema).
 @immutable
@@ -82,7 +92,7 @@ final class AwsM2Environment extends Resource {
     required super.localName,
     TfArg<bool>? applyChangesDuringMaintenanceWindow,
     TfArg<String>? description,
-    required TfArg<String> engineType,
+    required TfArg<M2EnvironmentEngineType> engineType,
     TfArg<String>? engineVersion,
     TfArg<bool>? forceUpdate,
     required TfArg<String> instanceType,

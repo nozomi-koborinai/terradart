@@ -7,6 +7,44 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_storagegateway_nfs_file_share`.
 const Set<String> _awsStoragegatewayNfsFileShareSensitive = <String>{};
 
+/// Storagegateway Nfs File Share Default Storage enum for `default_storage_class`.
+enum StoragegatewayNfsFileShareDefaultStorageClass implements TerraformEnum {
+  s3IntelligentTiering('S3_INTELLIGENT_TIERING'),
+  s3OnezoneIa('S3_ONEZONE_IA'),
+  s3Standard('S3_STANDARD'),
+  s3StandardIa('S3_STANDARD_IA');
+
+  const StoragegatewayNfsFileShareDefaultStorageClass(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Storagegateway Nfs File Share Object enum for `object_acl`.
+enum StoragegatewayNfsFileShareObjectAcl implements TerraformEnum {
+  private('private'),
+  publicRead('public-read'),
+  publicReadWrite('public-read-write'),
+  authenticatedRead('authenticated-read'),
+  bucketOwnerRead('bucket-owner-read'),
+  bucketOwnerFullControl('bucket-owner-full-control'),
+  awsExecRead('aws-exec-read');
+
+  const StoragegatewayNfsFileShareObjectAcl(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Storagegateway Nfs File Share enum for `squash`.
+enum StoragegatewayNfsFileShareSquash implements TerraformEnum {
+  allsquash('AllSquash'),
+  nosquash('NoSquash'),
+  rootsquash('RootSquash');
+
+  const StoragegatewayNfsFileShareSquash(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cache_attributes` block of
 /// `aws_storagegateway_nfs_file_share` (derived from provider schema).
 @immutable
@@ -59,7 +97,7 @@ final class AwsStoragegatewayNfsFileShare extends Resource {
     TfArg<String>? auditDestinationArn,
     TfArg<String>? bucketRegion,
     required TfArg<List<String>> clientList,
-    TfArg<String>? defaultStorageClass,
+    TfArg<StoragegatewayNfsFileShareDefaultStorageClass>? defaultStorageClass,
     TfArg<String>? fileShareName,
     required TfArg<String> gatewayArn,
     TfArg<bool>? guessMimeTypeEnabled,
@@ -67,12 +105,12 @@ final class AwsStoragegatewayNfsFileShare extends Resource {
     TfArg<String>? kmsKeyArn,
     required TfArg<String> locationArn,
     TfArg<String>? notificationPolicy,
-    TfArg<String>? objectAcl,
+    TfArg<StoragegatewayNfsFileShareObjectAcl>? objectAcl,
     TfArg<bool>? readOnly,
     TfArg<String>? region,
     TfArg<bool>? requesterPays,
     required TfArg<String> roleArn,
-    TfArg<String>? squash,
+    TfArg<StoragegatewayNfsFileShareSquash>? squash,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? vpcEndpointDnsName,
     StoragegatewayNfsFileShareCacheAttributes? cacheAttributes,

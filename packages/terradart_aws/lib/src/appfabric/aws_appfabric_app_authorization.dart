@@ -10,6 +10,16 @@ const Set<String> _awsAppfabricAppAuthorizationSensitive = <String>{
   'credential.oauth2_credential.client_secret',
 };
 
+/// Appfabric App Authorization Auth enum for `auth_type`.
+enum AppfabricAppAuthorizationAuthType implements TerraformEnum {
+  oauth2('oauth2'),
+  apikey('apiKey');
+
+  const AppfabricAppAuthorizationAuthType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `credential` block of
 /// `aws_appfabric_app_authorization` (derived from provider schema).
 @immutable
@@ -92,7 +102,7 @@ final class AwsAppfabricAppAuthorization extends Resource {
     required super.localName,
     required TfArg<String> app,
     required TfArg<String> appBundleArn,
-    required TfArg<String> authType,
+    required TfArg<AppfabricAppAuthorizationAuthType> authType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<AppfabricAppAuthorizationCredential>? credential,

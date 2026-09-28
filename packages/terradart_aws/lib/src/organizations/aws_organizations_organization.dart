@@ -6,6 +6,37 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_organizations_organization`.
 const Set<String> _awsOrganizationsOrganizationSensitive = <String>{};
 
+/// Organizations Organization Enabled Policy enum for `enabled_policy_types`.
+enum OrganizationsOrganizationEnabledPolicyTypes implements TerraformEnum {
+  serviceControlPolicy('SERVICE_CONTROL_POLICY'),
+  resourceControlPolicy('RESOURCE_CONTROL_POLICY'),
+  tagPolicy('TAG_POLICY'),
+  backupPolicy('BACKUP_POLICY'),
+  aiservicesOptOutPolicy('AISERVICES_OPT_OUT_POLICY'),
+  chatbotPolicy('CHATBOT_POLICY'),
+  declarativePolicyEc2('DECLARATIVE_POLICY_EC2'),
+  securityhubPolicy('SECURITYHUB_POLICY'),
+  inspectorPolicy('INSPECTOR_POLICY'),
+  upgradeRolloutPolicy('UPGRADE_ROLLOUT_POLICY'),
+  bedrockPolicy('BEDROCK_POLICY'),
+  s3Policy('S3_POLICY'),
+  networkSecurityDirectorPolicy('NETWORK_SECURITY_DIRECTOR_POLICY');
+
+  const OrganizationsOrganizationEnabledPolicyTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Organizations Organization Feature enum for `feature_set`.
+enum OrganizationsOrganizationFeatureSet implements TerraformEnum {
+  all('ALL'),
+  consolidatedBilling('CONSOLIDATED_BILLING');
+
+  const OrganizationsOrganizationFeatureSet(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_organizations_organization`.
 final class AwsOrganizationsOrganization extends Resource {
   static const String tfType = 'aws_organizations_organization';
@@ -13,8 +44,9 @@ final class AwsOrganizationsOrganization extends Resource {
   AwsOrganizationsOrganization({
     required super.localName,
     TfArg<List<String>>? awsServiceAccessPrincipals,
-    TfArg<List<String>>? enabledPolicyTypes,
-    TfArg<String>? featureSet,
+    List<TfArg<OrganizationsOrganizationEnabledPolicyTypes>>?
+    enabledPolicyTypes,
+    TfArg<OrganizationsOrganizationFeatureSet>? featureSet,
     TfArg<bool>? returnOrganizationOnly,
     super.lifecycle,
     super.dependsOn,
@@ -26,7 +58,9 @@ final class AwsOrganizationsOrganization extends Resource {
            if (awsServiceAccessPrincipals != null)
              'aws_service_access_principals': awsServiceAccessPrincipals,
            if (enabledPolicyTypes != null)
-             'enabled_policy_types': enabledPolicyTypes,
+             'enabled_policy_types': TfArg.literal([
+               for (final e in enabledPolicyTypes) e.toTfJson(),
+             ]),
            if (featureSet != null) 'feature_set': featureSet,
            if (returnOrganizationOnly != null)
              'return_organization_only': returnOrganizationOnly,

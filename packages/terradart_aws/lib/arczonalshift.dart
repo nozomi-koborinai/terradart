@@ -4,9 +4,14 @@
 library;
 
 export 'src/arczonalshift/aws_arczonalshift_autoshift_observer_notification_status.dart'
-    show AwsArczonalshiftAutoshiftObserverNotificationStatus;
+    show
+        ArczonalshiftAutoshiftObserverNotificationStatusStatus,
+        AwsArczonalshiftAutoshiftObserverNotificationStatus;
 export 'src/arczonalshift/aws_arczonalshift_zonal_autoshift_configuration.dart'
     show
         ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms,
+        ArczonalshiftZonalAutoshiftConfigurationBlockingAlarmsType,
         ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarms,
+        ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarmsType,
+        ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus,
         AwsArczonalshiftZonalAutoshiftConfiguration;

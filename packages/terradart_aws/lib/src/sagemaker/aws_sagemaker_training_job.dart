@@ -32,7 +32,8 @@ final class SagemakerTrainingJobAlgorithmSpecification {
 
   final TfArg<String>? trainingImage;
 
-  final TfArg<String>? trainingInputMode;
+  final TfArg<SagemakerTrainingJobAlgorithmSpecificationTrainingInputMode>?
+  trainingInputMode;
 
   final List<SagemakerTrainingJobAlgorithmSpecificationMetricDefinitions>?
   metricDefinitions;
@@ -59,6 +60,20 @@ final class SagemakerTrainingJobAlgorithmSpecification {
         for (final e in trainingImageConfig!) e.encode(),
       ],
   };
+}
+
+/// `training_input_mode` — derived from the provider schema description.
+enum SagemakerTrainingJobAlgorithmSpecificationTrainingInputMode
+    implements TerraformEnum {
+  pipe('Pipe'),
+  file('File'),
+  fastfile('FastFile');
+
+  const SagemakerTrainingJobAlgorithmSpecificationTrainingInputMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `algorithm_specification.metric_definitions` block of
@@ -208,7 +223,8 @@ final class SagemakerTrainingJobDebugRuleConfigurations {
     this.volumeSizeInGb,
   });
 
-  final TfArg<String>? instanceType;
+  final TfArg<SagemakerTrainingJobDebugRuleConfigurationsInstanceType>?
+  instanceType;
 
   final TfArg<String>? localPath;
 
@@ -231,6 +247,150 @@ final class SagemakerTrainingJobDebugRuleConfigurations {
     if (s3OutputPath != null) 's3_output_path': s3OutputPath!.toTfJson(),
     if (volumeSizeInGb != null) 'volume_size_in_gb': volumeSizeInGb!.toTfJson(),
   };
+}
+
+/// `instance_type` — derived from the provider schema description.
+enum SagemakerTrainingJobDebugRuleConfigurationsInstanceType
+    implements TerraformEnum {
+  mlT3Medium('ml.t3.medium'),
+  mlT3Large('ml.t3.large'),
+  mlT3Xlarge('ml.t3.xlarge'),
+  mlT3p2xlarge('ml.t3.2xlarge'),
+  mlM4Xlarge('ml.m4.xlarge'),
+  mlM4p2xlarge('ml.m4.2xlarge'),
+  mlM4p4xlarge('ml.m4.4xlarge'),
+  mlM4p10xlarge('ml.m4.10xlarge'),
+  mlM4p16xlarge('ml.m4.16xlarge'),
+  mlC4Xlarge('ml.c4.xlarge'),
+  mlC4p2xlarge('ml.c4.2xlarge'),
+  mlC4p4xlarge('ml.c4.4xlarge'),
+  mlC4p8xlarge('ml.c4.8xlarge'),
+  mlP2Xlarge('ml.p2.xlarge'),
+  mlP2p8xlarge('ml.p2.8xlarge'),
+  mlP2p16xlarge('ml.p2.16xlarge'),
+  mlP3p2xlarge('ml.p3.2xlarge'),
+  mlP3p8xlarge('ml.p3.8xlarge'),
+  mlP3p16xlarge('ml.p3.16xlarge'),
+  mlC5Xlarge('ml.c5.xlarge'),
+  mlC5p2xlarge('ml.c5.2xlarge'),
+  mlC5p4xlarge('ml.c5.4xlarge'),
+  mlC5p9xlarge('ml.c5.9xlarge'),
+  mlC5p18xlarge('ml.c5.18xlarge'),
+  mlM5Large('ml.m5.large'),
+  mlM5Xlarge('ml.m5.xlarge'),
+  mlM5p2xlarge('ml.m5.2xlarge'),
+  mlM5p4xlarge('ml.m5.4xlarge'),
+  mlM5p12xlarge('ml.m5.12xlarge'),
+  mlM5p24xlarge('ml.m5.24xlarge'),
+  mlR5Large('ml.r5.large'),
+  mlR5Xlarge('ml.r5.xlarge'),
+  mlR5p2xlarge('ml.r5.2xlarge'),
+  mlR5p4xlarge('ml.r5.4xlarge'),
+  mlR5p8xlarge('ml.r5.8xlarge'),
+  mlR5p12xlarge('ml.r5.12xlarge'),
+  mlR5p16xlarge('ml.r5.16xlarge'),
+  mlR5p24xlarge('ml.r5.24xlarge'),
+  mlG4dnXlarge('ml.g4dn.xlarge'),
+  mlG4dn2xlarge('ml.g4dn.2xlarge'),
+  mlG4dn4xlarge('ml.g4dn.4xlarge'),
+  mlG4dn8xlarge('ml.g4dn.8xlarge'),
+  mlG4dn12xlarge('ml.g4dn.12xlarge'),
+  mlG4dn16xlarge('ml.g4dn.16xlarge'),
+  mlG5Xlarge('ml.g5.xlarge'),
+  mlG5p2xlarge('ml.g5.2xlarge'),
+  mlG5p4xlarge('ml.g5.4xlarge'),
+  mlG5p8xlarge('ml.g5.8xlarge'),
+  mlG5p16xlarge('ml.g5.16xlarge'),
+  mlG5p12xlarge('ml.g5.12xlarge'),
+  mlG5p24xlarge('ml.g5.24xlarge'),
+  mlG5p48xlarge('ml.g5.48xlarge'),
+  mlR5dLarge('ml.r5d.large'),
+  mlR5dXlarge('ml.r5d.xlarge'),
+  mlR5d2xlarge('ml.r5d.2xlarge'),
+  mlR5d4xlarge('ml.r5d.4xlarge'),
+  mlR5d8xlarge('ml.r5d.8xlarge'),
+  mlR5d12xlarge('ml.r5d.12xlarge'),
+  mlR5d16xlarge('ml.r5d.16xlarge'),
+  mlR5d24xlarge('ml.r5d.24xlarge'),
+  mlG6Xlarge('ml.g6.xlarge'),
+  mlG6p2xlarge('ml.g6.2xlarge'),
+  mlG6p4xlarge('ml.g6.4xlarge'),
+  mlG6p8xlarge('ml.g6.8xlarge'),
+  mlG6p12xlarge('ml.g6.12xlarge'),
+  mlG6p16xlarge('ml.g6.16xlarge'),
+  mlG6p24xlarge('ml.g6.24xlarge'),
+  mlG6p48xlarge('ml.g6.48xlarge'),
+  mlG6eXlarge('ml.g6e.xlarge'),
+  mlG6e2xlarge('ml.g6e.2xlarge'),
+  mlG6e4xlarge('ml.g6e.4xlarge'),
+  mlG6e8xlarge('ml.g6e.8xlarge'),
+  mlG6e12xlarge('ml.g6e.12xlarge'),
+  mlG6e16xlarge('ml.g6e.16xlarge'),
+  mlG6e24xlarge('ml.g6e.24xlarge'),
+  mlG6e48xlarge('ml.g6e.48xlarge'),
+  mlM6iLarge('ml.m6i.large'),
+  mlM6iXlarge('ml.m6i.xlarge'),
+  mlM6i2xlarge('ml.m6i.2xlarge'),
+  mlM6i4xlarge('ml.m6i.4xlarge'),
+  mlM6i8xlarge('ml.m6i.8xlarge'),
+  mlM6i12xlarge('ml.m6i.12xlarge'),
+  mlM6i16xlarge('ml.m6i.16xlarge'),
+  mlM6i24xlarge('ml.m6i.24xlarge'),
+  mlM6i32xlarge('ml.m6i.32xlarge'),
+  mlC6iXlarge('ml.c6i.xlarge'),
+  mlC6i2xlarge('ml.c6i.2xlarge'),
+  mlC6i4xlarge('ml.c6i.4xlarge'),
+  mlC6i8xlarge('ml.c6i.8xlarge'),
+  mlC6i12xlarge('ml.c6i.12xlarge'),
+  mlC6i16xlarge('ml.c6i.16xlarge'),
+  mlC6i24xlarge('ml.c6i.24xlarge'),
+  mlC6i32xlarge('ml.c6i.32xlarge'),
+  mlM7iLarge('ml.m7i.large'),
+  mlM7iXlarge('ml.m7i.xlarge'),
+  mlM7i2xlarge('ml.m7i.2xlarge'),
+  mlM7i4xlarge('ml.m7i.4xlarge'),
+  mlM7i8xlarge('ml.m7i.8xlarge'),
+  mlM7i12xlarge('ml.m7i.12xlarge'),
+  mlM7i16xlarge('ml.m7i.16xlarge'),
+  mlM7i24xlarge('ml.m7i.24xlarge'),
+  mlM7i48xlarge('ml.m7i.48xlarge'),
+  mlC7iLarge('ml.c7i.large'),
+  mlC7iXlarge('ml.c7i.xlarge'),
+  mlC7i2xlarge('ml.c7i.2xlarge'),
+  mlC7i4xlarge('ml.c7i.4xlarge'),
+  mlC7i8xlarge('ml.c7i.8xlarge'),
+  mlC7i12xlarge('ml.c7i.12xlarge'),
+  mlC7i16xlarge('ml.c7i.16xlarge'),
+  mlC7i24xlarge('ml.c7i.24xlarge'),
+  mlC7i48xlarge('ml.c7i.48xlarge'),
+  mlR7iLarge('ml.r7i.large'),
+  mlR7iXlarge('ml.r7i.xlarge'),
+  mlR7i2xlarge('ml.r7i.2xlarge'),
+  mlR7i4xlarge('ml.r7i.4xlarge'),
+  mlR7i8xlarge('ml.r7i.8xlarge'),
+  mlR7i12xlarge('ml.r7i.12xlarge'),
+  mlR7i16xlarge('ml.r7i.16xlarge'),
+  mlR7i24xlarge('ml.r7i.24xlarge'),
+  mlR7i48xlarge('ml.r7i.48xlarge'),
+  mlP5p4xlarge('ml.p5.4xlarge'),
+  mlG7e2xlarge('ml.g7e.2xlarge'),
+  mlG7e4xlarge('ml.g7e.4xlarge'),
+  mlG7e8xlarge('ml.g7e.8xlarge'),
+  mlG7e12xlarge('ml.g7e.12xlarge'),
+  mlG7e24xlarge('ml.g7e.24xlarge'),
+  mlG7e48xlarge('ml.g7e.48xlarge'),
+  mlG7p2xlarge('ml.g7.2xlarge'),
+  mlG7p4xlarge('ml.g7.4xlarge'),
+  mlG7p8xlarge('ml.g7.8xlarge'),
+  mlG7p12xlarge('ml.g7.12xlarge'),
+  mlG7p24xlarge('ml.g7.24xlarge'),
+  mlG7p48xlarge('ml.g7.48xlarge');
+
+  const SagemakerTrainingJobDebugRuleConfigurationsInstanceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `experiment_config` block of
@@ -291,13 +451,15 @@ final class SagemakerTrainingJobInputDataConfig {
 
   final TfArg<String> channelName;
 
-  final TfArg<String>? compressionType;
+  final TfArg<SagemakerTrainingJobInputDataConfigCompressionType>?
+  compressionType;
 
   final TfArg<String>? contentType;
 
-  final TfArg<String>? inputMode;
+  final TfArg<SagemakerTrainingJobInputDataConfigInputMode>? inputMode;
 
-  final TfArg<String>? recordWrapperType;
+  final TfArg<SagemakerTrainingJobInputDataConfigRecordWrapperType>?
+  recordWrapperType;
 
   final List<SagemakerTrainingJobInputDataConfigDataSource>? dataSource;
 
@@ -316,6 +478,41 @@ final class SagemakerTrainingJobInputDataConfig {
     if (shuffleConfig != null)
       'shuffle_config': [for (final e in shuffleConfig!) e.encode()],
   };
+}
+
+/// `compression_type` — derived from the provider schema description.
+enum SagemakerTrainingJobInputDataConfigCompressionType
+    implements TerraformEnum {
+  none('None'),
+  gzip('Gzip');
+
+  const SagemakerTrainingJobInputDataConfigCompressionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `input_mode` — derived from the provider schema description.
+enum SagemakerTrainingJobInputDataConfigInputMode implements TerraformEnum {
+  pipe('Pipe'),
+  file('File'),
+  fastfile('FastFile');
+
+  const SagemakerTrainingJobInputDataConfigInputMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `record_wrapper_type` — derived from the provider schema description.
+enum SagemakerTrainingJobInputDataConfigRecordWrapperType
+    implements TerraformEnum {
+  none('None'),
+  recordio('RecordIO');
+
+  const SagemakerTrainingJobInputDataConfigRecordWrapperType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_data_config.data_source` block of
@@ -356,11 +553,17 @@ final class SagemakerTrainingJobInputDataConfigDataSourceFileSystemDataSource {
 
   final TfArg<String> directoryPath;
 
-  final TfArg<String> fileSystemAccessMode;
+  final TfArg<
+    SagemakerTrainingJobInputDataConfigDataSourceFileSystemDataSourceFileSystemAccessMode
+  >
+  fileSystemAccessMode;
 
   final TfArg<String> fileSystemId;
 
-  final TfArg<String> fileSystemType;
+  final TfArg<
+    SagemakerTrainingJobInputDataConfigDataSourceFileSystemDataSourceFileSystemType
+  >
+  fileSystemType;
 
   Map<String, Object?> encode() => {
     'directory_path': directoryPath.toTfJson(),
@@ -368,6 +571,32 @@ final class SagemakerTrainingJobInputDataConfigDataSourceFileSystemDataSource {
     'file_system_id': fileSystemId.toTfJson(),
     'file_system_type': fileSystemType.toTfJson(),
   };
+}
+
+/// `file_system_access_mode` — derived from the provider schema description.
+enum SagemakerTrainingJobInputDataConfigDataSourceFileSystemDataSourceFileSystemAccessMode
+    implements TerraformEnum {
+  rw('rw'),
+  ro('ro');
+
+  const SagemakerTrainingJobInputDataConfigDataSourceFileSystemDataSourceFileSystemAccessMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `file_system_type` — derived from the provider schema description.
+enum SagemakerTrainingJobInputDataConfigDataSourceFileSystemDataSourceFileSystemType
+    implements TerraformEnum {
+  efs('EFS'),
+  fsxlustre('FSxLustre');
+
+  const SagemakerTrainingJobInputDataConfigDataSourceFileSystemDataSourceFileSystemType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_data_config.data_source.s3_data_source` block of
@@ -388,9 +617,15 @@ final class SagemakerTrainingJobInputDataConfigDataSourceS3DataSource {
 
   final TfArg<List<Object?>>? instanceGroupNames;
 
-  final TfArg<String>? s3DataDistributionType;
+  final TfArg<
+    SagemakerTrainingJobInputDataConfigDataSourceS3DataSourceS3DataDistributionType
+  >?
+  s3DataDistributionType;
 
-  final TfArg<String> s3DataType;
+  final TfArg<
+    SagemakerTrainingJobInputDataConfigDataSourceS3DataSourceS3DataType
+  >
+  s3DataType;
 
   final TfArg<String> s3Uri;
 
@@ -417,6 +652,34 @@ final class SagemakerTrainingJobInputDataConfigDataSourceS3DataSource {
     if (modelAccessConfig != null)
       'model_access_config': [for (final e in modelAccessConfig!) e.encode()],
   };
+}
+
+/// `s3_data_distribution_type` — derived from the provider schema description.
+enum SagemakerTrainingJobInputDataConfigDataSourceS3DataSourceS3DataDistributionType
+    implements TerraformEnum {
+  fullyreplicated('FullyReplicated'),
+  shardedbys3key('ShardedByS3Key');
+
+  const SagemakerTrainingJobInputDataConfigDataSourceS3DataSourceS3DataDistributionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `s3_data_type` — derived from the provider schema description.
+enum SagemakerTrainingJobInputDataConfigDataSourceS3DataSourceS3DataType
+    implements TerraformEnum {
+  manifestfile('ManifestFile'),
+  s3prefix('S3Prefix'),
+  augmentedmanifestfile('AugmentedManifestFile'),
+  converse('Converse');
+
+  const SagemakerTrainingJobInputDataConfigDataSourceS3DataSourceS3DataType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_data_config.data_source.s3_data_source.hub_access_config` block of
@@ -512,7 +775,8 @@ final class SagemakerTrainingJobOutputDataConfig {
     required this.s3OutputPath,
   });
 
-  final TfArg<String>? compressionType;
+  final TfArg<SagemakerTrainingJobOutputDataConfigCompressionType>?
+  compressionType;
 
   final TfArg<String>? kmsKeyId;
 
@@ -524,6 +788,19 @@ final class SagemakerTrainingJobOutputDataConfig {
     if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
+}
+
+/// `compression_type` — derived from the provider schema description.
+enum SagemakerTrainingJobOutputDataConfigCompressionType
+    implements TerraformEnum {
+  gzip('GZIP'),
+  none('NONE');
+
+  const SagemakerTrainingJobOutputDataConfigCompressionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `profiler_config` block of
@@ -571,7 +848,8 @@ final class SagemakerTrainingJobProfilerRuleConfigurations {
     this.volumeSizeInGb,
   });
 
-  final TfArg<String>? instanceType;
+  final TfArg<SagemakerTrainingJobProfilerRuleConfigurationsInstanceType>?
+  instanceType;
 
   final TfArg<String>? localPath;
 
@@ -594,6 +872,150 @@ final class SagemakerTrainingJobProfilerRuleConfigurations {
     if (s3OutputPath != null) 's3_output_path': s3OutputPath!.toTfJson(),
     if (volumeSizeInGb != null) 'volume_size_in_gb': volumeSizeInGb!.toTfJson(),
   };
+}
+
+/// `instance_type` — derived from the provider schema description.
+enum SagemakerTrainingJobProfilerRuleConfigurationsInstanceType
+    implements TerraformEnum {
+  mlT3Medium('ml.t3.medium'),
+  mlT3Large('ml.t3.large'),
+  mlT3Xlarge('ml.t3.xlarge'),
+  mlT3p2xlarge('ml.t3.2xlarge'),
+  mlM4Xlarge('ml.m4.xlarge'),
+  mlM4p2xlarge('ml.m4.2xlarge'),
+  mlM4p4xlarge('ml.m4.4xlarge'),
+  mlM4p10xlarge('ml.m4.10xlarge'),
+  mlM4p16xlarge('ml.m4.16xlarge'),
+  mlC4Xlarge('ml.c4.xlarge'),
+  mlC4p2xlarge('ml.c4.2xlarge'),
+  mlC4p4xlarge('ml.c4.4xlarge'),
+  mlC4p8xlarge('ml.c4.8xlarge'),
+  mlP2Xlarge('ml.p2.xlarge'),
+  mlP2p8xlarge('ml.p2.8xlarge'),
+  mlP2p16xlarge('ml.p2.16xlarge'),
+  mlP3p2xlarge('ml.p3.2xlarge'),
+  mlP3p8xlarge('ml.p3.8xlarge'),
+  mlP3p16xlarge('ml.p3.16xlarge'),
+  mlC5Xlarge('ml.c5.xlarge'),
+  mlC5p2xlarge('ml.c5.2xlarge'),
+  mlC5p4xlarge('ml.c5.4xlarge'),
+  mlC5p9xlarge('ml.c5.9xlarge'),
+  mlC5p18xlarge('ml.c5.18xlarge'),
+  mlM5Large('ml.m5.large'),
+  mlM5Xlarge('ml.m5.xlarge'),
+  mlM5p2xlarge('ml.m5.2xlarge'),
+  mlM5p4xlarge('ml.m5.4xlarge'),
+  mlM5p12xlarge('ml.m5.12xlarge'),
+  mlM5p24xlarge('ml.m5.24xlarge'),
+  mlR5Large('ml.r5.large'),
+  mlR5Xlarge('ml.r5.xlarge'),
+  mlR5p2xlarge('ml.r5.2xlarge'),
+  mlR5p4xlarge('ml.r5.4xlarge'),
+  mlR5p8xlarge('ml.r5.8xlarge'),
+  mlR5p12xlarge('ml.r5.12xlarge'),
+  mlR5p16xlarge('ml.r5.16xlarge'),
+  mlR5p24xlarge('ml.r5.24xlarge'),
+  mlG4dnXlarge('ml.g4dn.xlarge'),
+  mlG4dn2xlarge('ml.g4dn.2xlarge'),
+  mlG4dn4xlarge('ml.g4dn.4xlarge'),
+  mlG4dn8xlarge('ml.g4dn.8xlarge'),
+  mlG4dn12xlarge('ml.g4dn.12xlarge'),
+  mlG4dn16xlarge('ml.g4dn.16xlarge'),
+  mlG5Xlarge('ml.g5.xlarge'),
+  mlG5p2xlarge('ml.g5.2xlarge'),
+  mlG5p4xlarge('ml.g5.4xlarge'),
+  mlG5p8xlarge('ml.g5.8xlarge'),
+  mlG5p16xlarge('ml.g5.16xlarge'),
+  mlG5p12xlarge('ml.g5.12xlarge'),
+  mlG5p24xlarge('ml.g5.24xlarge'),
+  mlG5p48xlarge('ml.g5.48xlarge'),
+  mlR5dLarge('ml.r5d.large'),
+  mlR5dXlarge('ml.r5d.xlarge'),
+  mlR5d2xlarge('ml.r5d.2xlarge'),
+  mlR5d4xlarge('ml.r5d.4xlarge'),
+  mlR5d8xlarge('ml.r5d.8xlarge'),
+  mlR5d12xlarge('ml.r5d.12xlarge'),
+  mlR5d16xlarge('ml.r5d.16xlarge'),
+  mlR5d24xlarge('ml.r5d.24xlarge'),
+  mlG6Xlarge('ml.g6.xlarge'),
+  mlG6p2xlarge('ml.g6.2xlarge'),
+  mlG6p4xlarge('ml.g6.4xlarge'),
+  mlG6p8xlarge('ml.g6.8xlarge'),
+  mlG6p12xlarge('ml.g6.12xlarge'),
+  mlG6p16xlarge('ml.g6.16xlarge'),
+  mlG6p24xlarge('ml.g6.24xlarge'),
+  mlG6p48xlarge('ml.g6.48xlarge'),
+  mlG6eXlarge('ml.g6e.xlarge'),
+  mlG6e2xlarge('ml.g6e.2xlarge'),
+  mlG6e4xlarge('ml.g6e.4xlarge'),
+  mlG6e8xlarge('ml.g6e.8xlarge'),
+  mlG6e12xlarge('ml.g6e.12xlarge'),
+  mlG6e16xlarge('ml.g6e.16xlarge'),
+  mlG6e24xlarge('ml.g6e.24xlarge'),
+  mlG6e48xlarge('ml.g6e.48xlarge'),
+  mlM6iLarge('ml.m6i.large'),
+  mlM6iXlarge('ml.m6i.xlarge'),
+  mlM6i2xlarge('ml.m6i.2xlarge'),
+  mlM6i4xlarge('ml.m6i.4xlarge'),
+  mlM6i8xlarge('ml.m6i.8xlarge'),
+  mlM6i12xlarge('ml.m6i.12xlarge'),
+  mlM6i16xlarge('ml.m6i.16xlarge'),
+  mlM6i24xlarge('ml.m6i.24xlarge'),
+  mlM6i32xlarge('ml.m6i.32xlarge'),
+  mlC6iXlarge('ml.c6i.xlarge'),
+  mlC6i2xlarge('ml.c6i.2xlarge'),
+  mlC6i4xlarge('ml.c6i.4xlarge'),
+  mlC6i8xlarge('ml.c6i.8xlarge'),
+  mlC6i12xlarge('ml.c6i.12xlarge'),
+  mlC6i16xlarge('ml.c6i.16xlarge'),
+  mlC6i24xlarge('ml.c6i.24xlarge'),
+  mlC6i32xlarge('ml.c6i.32xlarge'),
+  mlM7iLarge('ml.m7i.large'),
+  mlM7iXlarge('ml.m7i.xlarge'),
+  mlM7i2xlarge('ml.m7i.2xlarge'),
+  mlM7i4xlarge('ml.m7i.4xlarge'),
+  mlM7i8xlarge('ml.m7i.8xlarge'),
+  mlM7i12xlarge('ml.m7i.12xlarge'),
+  mlM7i16xlarge('ml.m7i.16xlarge'),
+  mlM7i24xlarge('ml.m7i.24xlarge'),
+  mlM7i48xlarge('ml.m7i.48xlarge'),
+  mlC7iLarge('ml.c7i.large'),
+  mlC7iXlarge('ml.c7i.xlarge'),
+  mlC7i2xlarge('ml.c7i.2xlarge'),
+  mlC7i4xlarge('ml.c7i.4xlarge'),
+  mlC7i8xlarge('ml.c7i.8xlarge'),
+  mlC7i12xlarge('ml.c7i.12xlarge'),
+  mlC7i16xlarge('ml.c7i.16xlarge'),
+  mlC7i24xlarge('ml.c7i.24xlarge'),
+  mlC7i48xlarge('ml.c7i.48xlarge'),
+  mlR7iLarge('ml.r7i.large'),
+  mlR7iXlarge('ml.r7i.xlarge'),
+  mlR7i2xlarge('ml.r7i.2xlarge'),
+  mlR7i4xlarge('ml.r7i.4xlarge'),
+  mlR7i8xlarge('ml.r7i.8xlarge'),
+  mlR7i12xlarge('ml.r7i.12xlarge'),
+  mlR7i16xlarge('ml.r7i.16xlarge'),
+  mlR7i24xlarge('ml.r7i.24xlarge'),
+  mlR7i48xlarge('ml.r7i.48xlarge'),
+  mlP5p4xlarge('ml.p5.4xlarge'),
+  mlG7e2xlarge('ml.g7e.2xlarge'),
+  mlG7e4xlarge('ml.g7e.4xlarge'),
+  mlG7e8xlarge('ml.g7e.8xlarge'),
+  mlG7e12xlarge('ml.g7e.12xlarge'),
+  mlG7e24xlarge('ml.g7e.24xlarge'),
+  mlG7e48xlarge('ml.g7e.48xlarge'),
+  mlG7p2xlarge('ml.g7.2xlarge'),
+  mlG7p4xlarge('ml.g7.4xlarge'),
+  mlG7p8xlarge('ml.g7.8xlarge'),
+  mlG7p12xlarge('ml.g7.12xlarge'),
+  mlG7p24xlarge('ml.g7.24xlarge'),
+  mlG7p48xlarge('ml.g7.48xlarge');
+
+  const SagemakerTrainingJobProfilerRuleConfigurationsInstanceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `remote_debug_config` block of
@@ -627,7 +1049,7 @@ final class SagemakerTrainingJobResourceConfig {
 
   final TfArg<num>? instanceCount;
 
-  final TfArg<String>? instanceType;
+  final TfArg<SagemakerTrainingJobResourceConfigInstanceType>? instanceType;
 
   final TfArg<num>? keepAlivePeriodInSeconds;
 
@@ -660,6 +1082,165 @@ final class SagemakerTrainingJobResourceConfig {
   };
 }
 
+/// `instance_type` — derived from the provider schema description.
+enum SagemakerTrainingJobResourceConfigInstanceType implements TerraformEnum {
+  mlM4Xlarge('ml.m4.xlarge'),
+  mlM4p2xlarge('ml.m4.2xlarge'),
+  mlM4p4xlarge('ml.m4.4xlarge'),
+  mlM4p10xlarge('ml.m4.10xlarge'),
+  mlM4p16xlarge('ml.m4.16xlarge'),
+  mlG4dnXlarge('ml.g4dn.xlarge'),
+  mlG4dn2xlarge('ml.g4dn.2xlarge'),
+  mlG4dn4xlarge('ml.g4dn.4xlarge'),
+  mlG4dn8xlarge('ml.g4dn.8xlarge'),
+  mlG4dn12xlarge('ml.g4dn.12xlarge'),
+  mlG4dn16xlarge('ml.g4dn.16xlarge'),
+  mlM5Large('ml.m5.large'),
+  mlM5Xlarge('ml.m5.xlarge'),
+  mlM5p2xlarge('ml.m5.2xlarge'),
+  mlM5p4xlarge('ml.m5.4xlarge'),
+  mlM5p12xlarge('ml.m5.12xlarge'),
+  mlM5p24xlarge('ml.m5.24xlarge'),
+  mlC4Xlarge('ml.c4.xlarge'),
+  mlC4p2xlarge('ml.c4.2xlarge'),
+  mlC4p4xlarge('ml.c4.4xlarge'),
+  mlC4p8xlarge('ml.c4.8xlarge'),
+  mlP2Xlarge('ml.p2.xlarge'),
+  mlP2p8xlarge('ml.p2.8xlarge'),
+  mlP2p16xlarge('ml.p2.16xlarge'),
+  mlP3p2xlarge('ml.p3.2xlarge'),
+  mlP3p8xlarge('ml.p3.8xlarge'),
+  mlP3p16xlarge('ml.p3.16xlarge'),
+  mlP3dn24xlarge('ml.p3dn.24xlarge'),
+  mlP4d24xlarge('ml.p4d.24xlarge'),
+  mlP4de24xlarge('ml.p4de.24xlarge'),
+  mlP5p48xlarge('ml.p5.48xlarge'),
+  mlP5e48xlarge('ml.p5e.48xlarge'),
+  mlP5en48xlarge('ml.p5en.48xlarge'),
+  mlC5Xlarge('ml.c5.xlarge'),
+  mlC5p2xlarge('ml.c5.2xlarge'),
+  mlC5p4xlarge('ml.c5.4xlarge'),
+  mlC5p9xlarge('ml.c5.9xlarge'),
+  mlC5p18xlarge('ml.c5.18xlarge'),
+  mlC5nXlarge('ml.c5n.xlarge'),
+  mlC5n2xlarge('ml.c5n.2xlarge'),
+  mlC5n4xlarge('ml.c5n.4xlarge'),
+  mlC5n9xlarge('ml.c5n.9xlarge'),
+  mlC5n18xlarge('ml.c5n.18xlarge'),
+  mlG5Xlarge('ml.g5.xlarge'),
+  mlG5p2xlarge('ml.g5.2xlarge'),
+  mlG5p4xlarge('ml.g5.4xlarge'),
+  mlG5p8xlarge('ml.g5.8xlarge'),
+  mlG5p16xlarge('ml.g5.16xlarge'),
+  mlG5p12xlarge('ml.g5.12xlarge'),
+  mlG5p24xlarge('ml.g5.24xlarge'),
+  mlG5p48xlarge('ml.g5.48xlarge'),
+  mlG6Xlarge('ml.g6.xlarge'),
+  mlG6p2xlarge('ml.g6.2xlarge'),
+  mlG6p4xlarge('ml.g6.4xlarge'),
+  mlG6p8xlarge('ml.g6.8xlarge'),
+  mlG6p16xlarge('ml.g6.16xlarge'),
+  mlG6p12xlarge('ml.g6.12xlarge'),
+  mlG6p24xlarge('ml.g6.24xlarge'),
+  mlG6p48xlarge('ml.g6.48xlarge'),
+  mlG6eXlarge('ml.g6e.xlarge'),
+  mlG6e2xlarge('ml.g6e.2xlarge'),
+  mlG6e4xlarge('ml.g6e.4xlarge'),
+  mlG6e8xlarge('ml.g6e.8xlarge'),
+  mlG6e16xlarge('ml.g6e.16xlarge'),
+  mlG6e12xlarge('ml.g6e.12xlarge'),
+  mlG6e24xlarge('ml.g6e.24xlarge'),
+  mlG6e48xlarge('ml.g6e.48xlarge'),
+  mlTrn1p2xlarge('ml.trn1.2xlarge'),
+  mlTrn1p32xlarge('ml.trn1.32xlarge'),
+  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
+  mlTrn2p48xlarge('ml.trn2.48xlarge'),
+  mlM6iLarge('ml.m6i.large'),
+  mlM6iXlarge('ml.m6i.xlarge'),
+  mlM6i2xlarge('ml.m6i.2xlarge'),
+  mlM6i4xlarge('ml.m6i.4xlarge'),
+  mlM6i8xlarge('ml.m6i.8xlarge'),
+  mlM6i12xlarge('ml.m6i.12xlarge'),
+  mlM6i16xlarge('ml.m6i.16xlarge'),
+  mlM6i24xlarge('ml.m6i.24xlarge'),
+  mlM6i32xlarge('ml.m6i.32xlarge'),
+  mlC6iXlarge('ml.c6i.xlarge'),
+  mlC6i2xlarge('ml.c6i.2xlarge'),
+  mlC6i8xlarge('ml.c6i.8xlarge'),
+  mlC6i4xlarge('ml.c6i.4xlarge'),
+  mlC6i12xlarge('ml.c6i.12xlarge'),
+  mlC6i16xlarge('ml.c6i.16xlarge'),
+  mlC6i24xlarge('ml.c6i.24xlarge'),
+  mlC6i32xlarge('ml.c6i.32xlarge'),
+  mlR5dLarge('ml.r5d.large'),
+  mlR5dXlarge('ml.r5d.xlarge'),
+  mlR5d2xlarge('ml.r5d.2xlarge'),
+  mlR5d4xlarge('ml.r5d.4xlarge'),
+  mlR5d8xlarge('ml.r5d.8xlarge'),
+  mlR5d12xlarge('ml.r5d.12xlarge'),
+  mlR5d16xlarge('ml.r5d.16xlarge'),
+  mlR5d24xlarge('ml.r5d.24xlarge'),
+  mlT3Medium('ml.t3.medium'),
+  mlT3Large('ml.t3.large'),
+  mlT3Xlarge('ml.t3.xlarge'),
+  mlT3p2xlarge('ml.t3.2xlarge'),
+  mlR5Large('ml.r5.large'),
+  mlR5Xlarge('ml.r5.xlarge'),
+  mlR5p2xlarge('ml.r5.2xlarge'),
+  mlR5p4xlarge('ml.r5.4xlarge'),
+  mlR5p8xlarge('ml.r5.8xlarge'),
+  mlR5p12xlarge('ml.r5.12xlarge'),
+  mlR5p16xlarge('ml.r5.16xlarge'),
+  mlR5p24xlarge('ml.r5.24xlarge'),
+  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
+  mlM7iLarge('ml.m7i.large'),
+  mlM7iXlarge('ml.m7i.xlarge'),
+  mlM7i2xlarge('ml.m7i.2xlarge'),
+  mlM7i4xlarge('ml.m7i.4xlarge'),
+  mlM7i8xlarge('ml.m7i.8xlarge'),
+  mlM7i12xlarge('ml.m7i.12xlarge'),
+  mlM7i16xlarge('ml.m7i.16xlarge'),
+  mlM7i24xlarge('ml.m7i.24xlarge'),
+  mlM7i48xlarge('ml.m7i.48xlarge'),
+  mlC7iLarge('ml.c7i.large'),
+  mlC7iXlarge('ml.c7i.xlarge'),
+  mlC7i2xlarge('ml.c7i.2xlarge'),
+  mlC7i4xlarge('ml.c7i.4xlarge'),
+  mlC7i8xlarge('ml.c7i.8xlarge'),
+  mlC7i12xlarge('ml.c7i.12xlarge'),
+  mlC7i16xlarge('ml.c7i.16xlarge'),
+  mlC7i24xlarge('ml.c7i.24xlarge'),
+  mlC7i48xlarge('ml.c7i.48xlarge'),
+  mlR7iLarge('ml.r7i.large'),
+  mlR7iXlarge('ml.r7i.xlarge'),
+  mlR7i2xlarge('ml.r7i.2xlarge'),
+  mlR7i4xlarge('ml.r7i.4xlarge'),
+  mlR7i8xlarge('ml.r7i.8xlarge'),
+  mlR7i12xlarge('ml.r7i.12xlarge'),
+  mlR7i16xlarge('ml.r7i.16xlarge'),
+  mlR7i24xlarge('ml.r7i.24xlarge'),
+  mlR7i48xlarge('ml.r7i.48xlarge'),
+  mlP6eGb200p36xlarge('ml.p6e-gb200.36xlarge'),
+  mlP5p4xlarge('ml.p5.4xlarge'),
+  mlP6B300p48xlarge('ml.p6-b300.48xlarge'),
+  mlG7e2xlarge('ml.g7e.2xlarge'),
+  mlG7e4xlarge('ml.g7e.4xlarge'),
+  mlG7e8xlarge('ml.g7e.8xlarge'),
+  mlG7e12xlarge('ml.g7e.12xlarge'),
+  mlG7e24xlarge('ml.g7e.24xlarge'),
+  mlG7e48xlarge('ml.g7e.48xlarge'),
+  mlG7p2xlarge('ml.g7.2xlarge'),
+  mlG7p4xlarge('ml.g7.4xlarge'),
+  mlG7p8xlarge('ml.g7.8xlarge'),
+  mlG7p12xlarge('ml.g7.12xlarge'),
+  mlG7p24xlarge('ml.g7.24xlarge'),
+  mlG7p48xlarge('ml.g7.48xlarge');
+
+  const SagemakerTrainingJobResourceConfigInstanceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `resource_config.instance_groups` block of
 /// `aws_sagemaker_training_job` (derived from provider schema).
 @immutable
@@ -674,7 +1255,8 @@ final class SagemakerTrainingJobResourceConfigInstanceGroups {
 
   final TfArg<String>? instanceGroupName;
 
-  final TfArg<String>? instanceType;
+  final TfArg<SagemakerTrainingJobResourceConfigInstanceGroupsInstanceType>?
+  instanceType;
 
   Map<String, Object?> encode() => {
     if (instanceCount != null) 'instance_count': instanceCount!.toTfJson(),
@@ -682,6 +1264,168 @@ final class SagemakerTrainingJobResourceConfigInstanceGroups {
       'instance_group_name': instanceGroupName!.toTfJson(),
     if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
   };
+}
+
+/// `instance_type` — derived from the provider schema description.
+enum SagemakerTrainingJobResourceConfigInstanceGroupsInstanceType
+    implements TerraformEnum {
+  mlM4Xlarge('ml.m4.xlarge'),
+  mlM4p2xlarge('ml.m4.2xlarge'),
+  mlM4p4xlarge('ml.m4.4xlarge'),
+  mlM4p10xlarge('ml.m4.10xlarge'),
+  mlM4p16xlarge('ml.m4.16xlarge'),
+  mlG4dnXlarge('ml.g4dn.xlarge'),
+  mlG4dn2xlarge('ml.g4dn.2xlarge'),
+  mlG4dn4xlarge('ml.g4dn.4xlarge'),
+  mlG4dn8xlarge('ml.g4dn.8xlarge'),
+  mlG4dn12xlarge('ml.g4dn.12xlarge'),
+  mlG4dn16xlarge('ml.g4dn.16xlarge'),
+  mlM5Large('ml.m5.large'),
+  mlM5Xlarge('ml.m5.xlarge'),
+  mlM5p2xlarge('ml.m5.2xlarge'),
+  mlM5p4xlarge('ml.m5.4xlarge'),
+  mlM5p12xlarge('ml.m5.12xlarge'),
+  mlM5p24xlarge('ml.m5.24xlarge'),
+  mlC4Xlarge('ml.c4.xlarge'),
+  mlC4p2xlarge('ml.c4.2xlarge'),
+  mlC4p4xlarge('ml.c4.4xlarge'),
+  mlC4p8xlarge('ml.c4.8xlarge'),
+  mlP2Xlarge('ml.p2.xlarge'),
+  mlP2p8xlarge('ml.p2.8xlarge'),
+  mlP2p16xlarge('ml.p2.16xlarge'),
+  mlP3p2xlarge('ml.p3.2xlarge'),
+  mlP3p8xlarge('ml.p3.8xlarge'),
+  mlP3p16xlarge('ml.p3.16xlarge'),
+  mlP3dn24xlarge('ml.p3dn.24xlarge'),
+  mlP4d24xlarge('ml.p4d.24xlarge'),
+  mlP4de24xlarge('ml.p4de.24xlarge'),
+  mlP5p48xlarge('ml.p5.48xlarge'),
+  mlP5e48xlarge('ml.p5e.48xlarge'),
+  mlP5en48xlarge('ml.p5en.48xlarge'),
+  mlC5Xlarge('ml.c5.xlarge'),
+  mlC5p2xlarge('ml.c5.2xlarge'),
+  mlC5p4xlarge('ml.c5.4xlarge'),
+  mlC5p9xlarge('ml.c5.9xlarge'),
+  mlC5p18xlarge('ml.c5.18xlarge'),
+  mlC5nXlarge('ml.c5n.xlarge'),
+  mlC5n2xlarge('ml.c5n.2xlarge'),
+  mlC5n4xlarge('ml.c5n.4xlarge'),
+  mlC5n9xlarge('ml.c5n.9xlarge'),
+  mlC5n18xlarge('ml.c5n.18xlarge'),
+  mlG5Xlarge('ml.g5.xlarge'),
+  mlG5p2xlarge('ml.g5.2xlarge'),
+  mlG5p4xlarge('ml.g5.4xlarge'),
+  mlG5p8xlarge('ml.g5.8xlarge'),
+  mlG5p16xlarge('ml.g5.16xlarge'),
+  mlG5p12xlarge('ml.g5.12xlarge'),
+  mlG5p24xlarge('ml.g5.24xlarge'),
+  mlG5p48xlarge('ml.g5.48xlarge'),
+  mlG6Xlarge('ml.g6.xlarge'),
+  mlG6p2xlarge('ml.g6.2xlarge'),
+  mlG6p4xlarge('ml.g6.4xlarge'),
+  mlG6p8xlarge('ml.g6.8xlarge'),
+  mlG6p16xlarge('ml.g6.16xlarge'),
+  mlG6p12xlarge('ml.g6.12xlarge'),
+  mlG6p24xlarge('ml.g6.24xlarge'),
+  mlG6p48xlarge('ml.g6.48xlarge'),
+  mlG6eXlarge('ml.g6e.xlarge'),
+  mlG6e2xlarge('ml.g6e.2xlarge'),
+  mlG6e4xlarge('ml.g6e.4xlarge'),
+  mlG6e8xlarge('ml.g6e.8xlarge'),
+  mlG6e16xlarge('ml.g6e.16xlarge'),
+  mlG6e12xlarge('ml.g6e.12xlarge'),
+  mlG6e24xlarge('ml.g6e.24xlarge'),
+  mlG6e48xlarge('ml.g6e.48xlarge'),
+  mlTrn1p2xlarge('ml.trn1.2xlarge'),
+  mlTrn1p32xlarge('ml.trn1.32xlarge'),
+  mlTrn1n32xlarge('ml.trn1n.32xlarge'),
+  mlTrn2p48xlarge('ml.trn2.48xlarge'),
+  mlM6iLarge('ml.m6i.large'),
+  mlM6iXlarge('ml.m6i.xlarge'),
+  mlM6i2xlarge('ml.m6i.2xlarge'),
+  mlM6i4xlarge('ml.m6i.4xlarge'),
+  mlM6i8xlarge('ml.m6i.8xlarge'),
+  mlM6i12xlarge('ml.m6i.12xlarge'),
+  mlM6i16xlarge('ml.m6i.16xlarge'),
+  mlM6i24xlarge('ml.m6i.24xlarge'),
+  mlM6i32xlarge('ml.m6i.32xlarge'),
+  mlC6iXlarge('ml.c6i.xlarge'),
+  mlC6i2xlarge('ml.c6i.2xlarge'),
+  mlC6i8xlarge('ml.c6i.8xlarge'),
+  mlC6i4xlarge('ml.c6i.4xlarge'),
+  mlC6i12xlarge('ml.c6i.12xlarge'),
+  mlC6i16xlarge('ml.c6i.16xlarge'),
+  mlC6i24xlarge('ml.c6i.24xlarge'),
+  mlC6i32xlarge('ml.c6i.32xlarge'),
+  mlR5dLarge('ml.r5d.large'),
+  mlR5dXlarge('ml.r5d.xlarge'),
+  mlR5d2xlarge('ml.r5d.2xlarge'),
+  mlR5d4xlarge('ml.r5d.4xlarge'),
+  mlR5d8xlarge('ml.r5d.8xlarge'),
+  mlR5d12xlarge('ml.r5d.12xlarge'),
+  mlR5d16xlarge('ml.r5d.16xlarge'),
+  mlR5d24xlarge('ml.r5d.24xlarge'),
+  mlT3Medium('ml.t3.medium'),
+  mlT3Large('ml.t3.large'),
+  mlT3Xlarge('ml.t3.xlarge'),
+  mlT3p2xlarge('ml.t3.2xlarge'),
+  mlR5Large('ml.r5.large'),
+  mlR5Xlarge('ml.r5.xlarge'),
+  mlR5p2xlarge('ml.r5.2xlarge'),
+  mlR5p4xlarge('ml.r5.4xlarge'),
+  mlR5p8xlarge('ml.r5.8xlarge'),
+  mlR5p12xlarge('ml.r5.12xlarge'),
+  mlR5p16xlarge('ml.r5.16xlarge'),
+  mlR5p24xlarge('ml.r5.24xlarge'),
+  mlP6B200p48xlarge('ml.p6-b200.48xlarge'),
+  mlM7iLarge('ml.m7i.large'),
+  mlM7iXlarge('ml.m7i.xlarge'),
+  mlM7i2xlarge('ml.m7i.2xlarge'),
+  mlM7i4xlarge('ml.m7i.4xlarge'),
+  mlM7i8xlarge('ml.m7i.8xlarge'),
+  mlM7i12xlarge('ml.m7i.12xlarge'),
+  mlM7i16xlarge('ml.m7i.16xlarge'),
+  mlM7i24xlarge('ml.m7i.24xlarge'),
+  mlM7i48xlarge('ml.m7i.48xlarge'),
+  mlC7iLarge('ml.c7i.large'),
+  mlC7iXlarge('ml.c7i.xlarge'),
+  mlC7i2xlarge('ml.c7i.2xlarge'),
+  mlC7i4xlarge('ml.c7i.4xlarge'),
+  mlC7i8xlarge('ml.c7i.8xlarge'),
+  mlC7i12xlarge('ml.c7i.12xlarge'),
+  mlC7i16xlarge('ml.c7i.16xlarge'),
+  mlC7i24xlarge('ml.c7i.24xlarge'),
+  mlC7i48xlarge('ml.c7i.48xlarge'),
+  mlR7iLarge('ml.r7i.large'),
+  mlR7iXlarge('ml.r7i.xlarge'),
+  mlR7i2xlarge('ml.r7i.2xlarge'),
+  mlR7i4xlarge('ml.r7i.4xlarge'),
+  mlR7i8xlarge('ml.r7i.8xlarge'),
+  mlR7i12xlarge('ml.r7i.12xlarge'),
+  mlR7i16xlarge('ml.r7i.16xlarge'),
+  mlR7i24xlarge('ml.r7i.24xlarge'),
+  mlR7i48xlarge('ml.r7i.48xlarge'),
+  mlP6eGb200p36xlarge('ml.p6e-gb200.36xlarge'),
+  mlP5p4xlarge('ml.p5.4xlarge'),
+  mlP6B300p48xlarge('ml.p6-b300.48xlarge'),
+  mlG7e2xlarge('ml.g7e.2xlarge'),
+  mlG7e4xlarge('ml.g7e.4xlarge'),
+  mlG7e8xlarge('ml.g7e.8xlarge'),
+  mlG7e12xlarge('ml.g7e.12xlarge'),
+  mlG7e24xlarge('ml.g7e.24xlarge'),
+  mlG7e48xlarge('ml.g7e.48xlarge'),
+  mlG7p2xlarge('ml.g7.2xlarge'),
+  mlG7p4xlarge('ml.g7.4xlarge'),
+  mlG7p8xlarge('ml.g7.8xlarge'),
+  mlG7p12xlarge('ml.g7.12xlarge'),
+  mlG7p24xlarge('ml.g7.24xlarge'),
+  mlG7p48xlarge('ml.g7.48xlarge');
+
+  const SagemakerTrainingJobResourceConfigInstanceGroupsInstanceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `resource_config.instance_placement_config` block of
@@ -760,15 +1504,17 @@ final class SagemakerTrainingJobServerlessJobConfig {
 
   final TfArg<String> baseModelArn;
 
-  final TfArg<String>? customizationTechnique;
+  final TfArg<SagemakerTrainingJobServerlessJobConfigCustomizationTechnique>?
+  customizationTechnique;
 
-  final TfArg<String>? evaluationType;
+  final TfArg<SagemakerTrainingJobServerlessJobConfigEvaluationType>?
+  evaluationType;
 
   final TfArg<String>? evaluatorArn;
 
-  final TfArg<String> jobType;
+  final TfArg<SagemakerTrainingJobServerlessJobConfigJobType> jobType;
 
-  final TfArg<String>? peft;
+  final TfArg<SagemakerTrainingJobServerlessJobConfigPeft>? peft;
 
   Map<String, Object?> encode() => {
     if (acceptEula != null) 'accept_eula': acceptEula!.toTfJson(),
@@ -780,6 +1526,54 @@ final class SagemakerTrainingJobServerlessJobConfig {
     'job_type': jobType.toTfJson(),
     if (peft != null) 'peft': peft!.toTfJson(),
   };
+}
+
+/// `customization_technique` — derived from the provider schema description.
+enum SagemakerTrainingJobServerlessJobConfigCustomizationTechnique
+    implements TerraformEnum {
+  sft('SFT'),
+  dpo('DPO'),
+  rlvr('RLVR'),
+  rlaif('RLAIF');
+
+  const SagemakerTrainingJobServerlessJobConfigCustomizationTechnique(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `evaluation_type` — derived from the provider schema description.
+enum SagemakerTrainingJobServerlessJobConfigEvaluationType
+    implements TerraformEnum {
+  llmajevaluation('LLMAJEvaluation'),
+  customscorerevaluation('CustomScorerEvaluation'),
+  benchmarkevaluation('BenchmarkEvaluation');
+
+  const SagemakerTrainingJobServerlessJobConfigEvaluationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `job_type` — derived from the provider schema description.
+enum SagemakerTrainingJobServerlessJobConfigJobType implements TerraformEnum {
+  finetuning('FineTuning'),
+  evaluation('Evaluation');
+
+  const SagemakerTrainingJobServerlessJobConfigJobType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `peft` — derived from the provider schema description.
+enum SagemakerTrainingJobServerlessJobConfigPeft implements TerraformEnum {
+  lora('LORA');
+
+  const SagemakerTrainingJobServerlessJobConfigPeft(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `session_chaining_config` block of

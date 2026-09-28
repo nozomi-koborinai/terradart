@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpc_encryption_control`.
 const Set<String> _awsVpcEncryptionControlSensitive = <String>{};
 
+/// Vpc Encryption Control enum for `mode`.
+enum VpcEncryptionControlMode implements TerraformEnum {
+  monitor('monitor'),
+  enforce('enforce');
+
+  const VpcEncryptionControlMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_vpc_encryption_control`.
 final class AwsVpcEncryptionControl extends Resource {
   static const String tfType = 'aws_vpc_encryption_control';
@@ -16,7 +26,7 @@ final class AwsVpcEncryptionControl extends Resource {
     TfArg<String>? elasticFileSystemExclusion,
     TfArg<String>? internetGatewayExclusion,
     TfArg<String>? lambdaExclusion,
-    required TfArg<String> mode,
+    required TfArg<VpcEncryptionControlMode> mode,
     TfArg<String>? natGatewayExclusion,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

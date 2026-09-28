@@ -7,6 +7,35 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_neptune_cluster`.
 const Set<String> _awsNeptuneClusterSensitive = <String>{};
 
+/// Neptune Cluster Enable Cloudwatch Logs enum for `enable_cloudwatch_logs_exports`.
+enum NeptuneClusterEnableCloudwatchLogsExports implements TerraformEnum {
+  audit('audit'),
+  slowquery('slowquery');
+
+  const NeptuneClusterEnableCloudwatchLogsExports(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Neptune Cluster enum for `engine`.
+enum NeptuneClusterEngine implements TerraformEnum {
+  neptune('neptune');
+
+  const NeptuneClusterEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Neptune Cluster Storage enum for `storage_type`.
+enum NeptuneClusterStorageType implements TerraformEnum {
+  standard('standard'),
+  iopt1('iopt1');
+
+  const NeptuneClusterStorageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `serverless_v2_scaling_configuration` block of
 /// `aws_neptune_cluster` (derived from provider schema).
 @immutable
@@ -40,8 +69,9 @@ final class AwsNeptuneCluster extends Resource {
     TfArg<String>? clusterIdentifierPrefix,
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<bool>? deletionProtection,
-    TfArg<List<String>>? enableCloudwatchLogsExports,
-    TfArg<String>? engine,
+    List<TfArg<NeptuneClusterEnableCloudwatchLogsExports>>?
+    enableCloudwatchLogsExports,
+    TfArg<NeptuneClusterEngine>? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalClusterIdentifier,
@@ -59,7 +89,7 @@ final class AwsNeptuneCluster extends Resource {
     TfArg<bool>? skipFinalSnapshot,
     TfArg<String>? snapshotIdentifier,
     TfArg<bool>? storageEncrypted,
-    TfArg<String>? storageType,
+    TfArg<NeptuneClusterStorageType>? storageType,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? vpcSecurityGroupIds,
     NeptuneClusterServerlessV2ScalingConfiguration?
@@ -87,7 +117,9 @@ final class AwsNeptuneCluster extends Resource {
            if (deletionProtection != null)
              'deletion_protection': deletionProtection,
            if (enableCloudwatchLogsExports != null)
-             'enable_cloudwatch_logs_exports': enableCloudwatchLogsExports,
+             'enable_cloudwatch_logs_exports': TfArg.literal([
+               for (final e in enableCloudwatchLogsExports) e.toTfJson(),
+             ]),
            if (engine != null) 'engine': engine,
            if (engineVersion != null) 'engine_version': engineVersion,
            if (finalSnapshotIdentifier != null)

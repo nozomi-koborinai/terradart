@@ -20,7 +20,7 @@ final class TransferWorkflowOnExceptionSteps {
     this.tagStepDetails,
   });
 
-  final TfArg<String> type;
+  final TfArg<TransferWorkflowOnExceptionStepsType> type;
 
   final TransferWorkflowOnExceptionStepsCopyStepDetails? copyStepDetails;
 
@@ -45,6 +45,19 @@ final class TransferWorkflowOnExceptionSteps {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum TransferWorkflowOnExceptionStepsType implements TerraformEnum {
+  copy('COPY'),
+  custom('CUSTOM'),
+  tag('TAG'),
+  delete('DELETE'),
+  decrypt('DECRYPT');
+
+  const TransferWorkflowOnExceptionStepsType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `on_exception_steps.copy_step_details` block of
 /// `aws_transfer_workflow` (derived from provider schema).
 @immutable
@@ -58,7 +71,8 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetails {
 
   final TfArg<String>? name;
 
-  final TfArg<String>? overwriteExisting;
+  final TfArg<TransferWorkflowOnExceptionStepsCopyStepDetailsOverwriteExisting>?
+  overwriteExisting;
 
   final TfArg<String>? sourceFileLocation;
 
@@ -74,6 +88,19 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetails {
     if (destinationFileLocation != null)
       'destination_file_location': destinationFileLocation!.encode(),
   };
+}
+
+/// `overwrite_existing` — derived from the provider schema description.
+enum TransferWorkflowOnExceptionStepsCopyStepDetailsOverwriteExisting
+    implements TerraformEnum {
+  trueCase('TRUE'),
+  falseCase('FALSE');
+
+  const TransferWorkflowOnExceptionStepsCopyStepDetailsOverwriteExisting(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `on_exception_steps.copy_step_details.destination_file_location` block of
@@ -177,11 +204,14 @@ final class TransferWorkflowOnExceptionStepsDecryptStepDetails {
 
   final TfArg<String>? name;
 
-  final TfArg<String>? overwriteExisting;
+  final TfArg<
+    TransferWorkflowOnExceptionStepsDecryptStepDetailsOverwriteExisting
+  >?
+  overwriteExisting;
 
   final TfArg<String>? sourceFileLocation;
 
-  final TfArg<String> type;
+  final TfArg<TransferWorkflowOnExceptionStepsDecryptStepDetailsType> type;
 
   final TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLocation?
   destinationFileLocation;
@@ -196,6 +226,31 @@ final class TransferWorkflowOnExceptionStepsDecryptStepDetails {
     if (destinationFileLocation != null)
       'destination_file_location': destinationFileLocation!.encode(),
   };
+}
+
+/// `overwrite_existing` — derived from the provider schema description.
+enum TransferWorkflowOnExceptionStepsDecryptStepDetailsOverwriteExisting
+    implements TerraformEnum {
+  trueCase('TRUE'),
+  falseCase('FALSE');
+
+  const TransferWorkflowOnExceptionStepsDecryptStepDetailsOverwriteExisting(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum TransferWorkflowOnExceptionStepsDecryptStepDetailsType
+    implements TerraformEnum {
+  pgp('PGP');
+
+  const TransferWorkflowOnExceptionStepsDecryptStepDetailsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `on_exception_steps.decrypt_step_details.destination_file_location` block of
@@ -333,7 +388,7 @@ final class TransferWorkflowSteps {
     this.tagStepDetails,
   });
 
-  final TfArg<String> type;
+  final TfArg<TransferWorkflowStepsType> type;
 
   final TransferWorkflowStepsCopyStepDetails? copyStepDetails;
 
@@ -358,6 +413,19 @@ final class TransferWorkflowSteps {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum TransferWorkflowStepsType implements TerraformEnum {
+  copy('COPY'),
+  custom('CUSTOM'),
+  tag('TAG'),
+  delete('DELETE'),
+  decrypt('DECRYPT');
+
+  const TransferWorkflowStepsType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `steps.copy_step_details` block of
 /// `aws_transfer_workflow` (derived from provider schema).
 @immutable
@@ -371,7 +439,8 @@ final class TransferWorkflowStepsCopyStepDetails {
 
   final TfArg<String>? name;
 
-  final TfArg<String>? overwriteExisting;
+  final TfArg<TransferWorkflowStepsCopyStepDetailsOverwriteExisting>?
+  overwriteExisting;
 
   final TfArg<String>? sourceFileLocation;
 
@@ -387,6 +456,19 @@ final class TransferWorkflowStepsCopyStepDetails {
     if (destinationFileLocation != null)
       'destination_file_location': destinationFileLocation!.encode(),
   };
+}
+
+/// `overwrite_existing` — derived from the provider schema description.
+enum TransferWorkflowStepsCopyStepDetailsOverwriteExisting
+    implements TerraformEnum {
+  trueCase('TRUE'),
+  falseCase('FALSE');
+
+  const TransferWorkflowStepsCopyStepDetailsOverwriteExisting(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `steps.copy_step_details.destination_file_location` block of
@@ -490,11 +572,12 @@ final class TransferWorkflowStepsDecryptStepDetails {
 
   final TfArg<String>? name;
 
-  final TfArg<String>? overwriteExisting;
+  final TfArg<TransferWorkflowStepsDecryptStepDetailsOverwriteExisting>?
+  overwriteExisting;
 
   final TfArg<String>? sourceFileLocation;
 
-  final TfArg<String> type;
+  final TfArg<TransferWorkflowStepsDecryptStepDetailsType> type;
 
   final TransferWorkflowStepsDecryptStepDetailsDestinationFileLocation?
   destinationFileLocation;
@@ -509,6 +592,28 @@ final class TransferWorkflowStepsDecryptStepDetails {
     if (destinationFileLocation != null)
       'destination_file_location': destinationFileLocation!.encode(),
   };
+}
+
+/// `overwrite_existing` — derived from the provider schema description.
+enum TransferWorkflowStepsDecryptStepDetailsOverwriteExisting
+    implements TerraformEnum {
+  trueCase('TRUE'),
+  falseCase('FALSE');
+
+  const TransferWorkflowStepsDecryptStepDetailsOverwriteExisting(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum TransferWorkflowStepsDecryptStepDetailsType implements TerraformEnum {
+  pgp('PGP');
+
+  const TransferWorkflowStepsDecryptStepDetailsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `steps.decrypt_step_details.destination_file_location` block of

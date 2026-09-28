@@ -9,6 +9,36 @@ const Set<String> _awsLbListenerSensitive = <String>{
   'default_action.authenticate_oidc.client_secret',
 };
 
+/// Lb Listener Alpn enum for `alpn_policy`.
+enum LbListenerAlpnPolicy implements TerraformEnum {
+  http1only('HTTP1Only'),
+  http2only('HTTP2Only'),
+  http2optional('HTTP2Optional'),
+  http2preferred('HTTP2Preferred'),
+  none('None');
+
+  const LbListenerAlpnPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lb Listener enum for `protocol`.
+enum LbListenerProtocol implements TerraformEnum {
+  http('HTTP'),
+  https('HTTPS'),
+  tcp('TCP'),
+  tls('TLS'),
+  udp('UDP'),
+  tcpUdp('TCP_UDP'),
+  geneve('GENEVE'),
+  quic('QUIC'),
+  tcpQuic('TCP_QUIC');
+
+  const LbListenerProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `default_action` block of
 /// `aws_lb_listener` (derived from provider schema).
 @immutable
@@ -29,7 +59,7 @@ final class LbListenerDefaultAction {
 
   final TfArg<String>? targetGroupArn;
 
-  final TfArg<String> type;
+  final TfArg<LbListenerDefaultActionType> type;
 
   final LbListenerDefaultActionAuthenticateCognito? authenticateCognito;
 
@@ -58,6 +88,20 @@ final class LbListenerDefaultAction {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum LbListenerDefaultActionType implements TerraformEnum {
+  forward('forward'),
+  authenticateOidc('authenticate-oidc'),
+  authenticateCognito('authenticate-cognito'),
+  redirect('redirect'),
+  fixedResponse('fixed-response'),
+  jwtValidation('jwt-validation');
+
+  const LbListenerDefaultActionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `default_action.authenticate_cognito` block of
 /// `aws_lb_listener` (derived from provider schema).
 @immutable
@@ -75,7 +119,10 @@ final class LbListenerDefaultActionAuthenticateCognito {
 
   final TfArg<Map<String, String>>? authenticationRequestExtraParams;
 
-  final TfArg<String>? onUnauthenticatedRequest;
+  final TfArg<
+    LbListenerDefaultActionAuthenticateCognitoOnUnauthenticatedRequest
+  >?
+  onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -103,6 +150,20 @@ final class LbListenerDefaultActionAuthenticateCognito {
     'user_pool_client_id': userPoolClientId.toTfJson(),
     'user_pool_domain': userPoolDomain.toTfJson(),
   };
+}
+
+/// `on_unauthenticated_request` — derived from the provider schema description.
+enum LbListenerDefaultActionAuthenticateCognitoOnUnauthenticatedRequest
+    implements TerraformEnum {
+  deny('deny'),
+  allow('allow'),
+  authenticate('authenticate');
+
+  const LbListenerDefaultActionAuthenticateCognitoOnUnauthenticatedRequest(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `default_action.authenticate_oidc` block of
@@ -133,7 +194,8 @@ final class LbListenerDefaultActionAuthenticateOidc {
 
   final TfArg<String> issuer;
 
-  final TfArg<String>? onUnauthenticatedRequest;
+  final TfArg<LbListenerDefaultActionAuthenticateOidcOnUnauthenticatedRequest>?
+  onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -164,6 +226,20 @@ final class LbListenerDefaultActionAuthenticateOidc {
   };
 }
 
+/// `on_unauthenticated_request` — derived from the provider schema description.
+enum LbListenerDefaultActionAuthenticateOidcOnUnauthenticatedRequest
+    implements TerraformEnum {
+  deny('deny'),
+  allow('allow'),
+  authenticate('authenticate');
+
+  const LbListenerDefaultActionAuthenticateOidcOnUnauthenticatedRequest(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `default_action.fixed_response` block of
 /// `aws_lb_listener` (derived from provider schema).
 @immutable
@@ -174,7 +250,7 @@ final class LbListenerDefaultActionFixedResponse {
     this.statusCode,
   });
 
-  final TfArg<String> contentType;
+  final TfArg<LbListenerDefaultActionFixedResponseContentType> contentType;
 
   final TfArg<String>? messageBody;
 
@@ -185,6 +261,19 @@ final class LbListenerDefaultActionFixedResponse {
     if (messageBody != null) 'message_body': messageBody!.toTfJson(),
     if (statusCode != null) 'status_code': statusCode!.toTfJson(),
   };
+}
+
+/// `content_type` — derived from the provider schema description.
+enum LbListenerDefaultActionFixedResponseContentType implements TerraformEnum {
+  textPlain('text/plain'),
+  textCss('text/css'),
+  textHtml('text/html'),
+  applicationJavascript('application/javascript'),
+  applicationJson('application/json');
+
+  const LbListenerDefaultActionFixedResponseContentType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `default_action.forward` block of
@@ -279,7 +368,7 @@ final class LbListenerDefaultActionJwtValidationAdditionalClaim {
     required this.values,
   });
 
-  final TfArg<String> format;
+  final TfArg<LbListenerDefaultActionJwtValidationAdditionalClaimFormat> format;
 
   final TfArg<String> name;
 
@@ -290,6 +379,20 @@ final class LbListenerDefaultActionJwtValidationAdditionalClaim {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `format` — derived from the provider schema description.
+enum LbListenerDefaultActionJwtValidationAdditionalClaimFormat
+    implements TerraformEnum {
+  singleString('single-string'),
+  stringArray('string-array'),
+  spaceSeparatedValues('space-separated-values');
+
+  const LbListenerDefaultActionJwtValidationAdditionalClaimFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `default_action.redirect` block of
@@ -311,11 +414,11 @@ final class LbListenerDefaultActionRedirect {
 
   final TfArg<String>? port;
 
-  final TfArg<String>? protocol;
+  final TfArg<LbListenerDefaultActionRedirectProtocol>? protocol;
 
   final TfArg<String>? query;
 
-  final TfArg<String> statusCode;
+  final TfArg<LbListenerDefaultActionRedirectStatusCode> statusCode;
 
   Map<String, Object?> encode() => {
     if (host != null) 'host': host!.toTfJson(),
@@ -325,6 +428,27 @@ final class LbListenerDefaultActionRedirect {
     if (query != null) 'query': query!.toTfJson(),
     'status_code': statusCode.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+enum LbListenerDefaultActionRedirectProtocol implements TerraformEnum {
+  protocol('#{protocol}'),
+  http('HTTP'),
+  https('HTTPS');
+
+  const LbListenerDefaultActionRedirectProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `status_code` — derived from the provider schema description.
+enum LbListenerDefaultActionRedirectStatusCode implements TerraformEnum {
+  http301('HTTP_301'),
+  http302('HTTP_302');
+
+  const LbListenerDefaultActionRedirectStatusCode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `mutual_authentication` block of
@@ -338,11 +462,12 @@ final class LbListenerMutualAuthentication {
     this.trustStoreArn,
   });
 
-  final TfArg<String>? advertiseTrustStoreCaNames;
+  final TfArg<LbListenerMutualAuthenticationAdvertiseTrustStoreCaNames>?
+  advertiseTrustStoreCaNames;
 
   final TfArg<bool>? ignoreClientCertificateExpiry;
 
-  final TfArg<String> mode;
+  final TfArg<LbListenerMutualAuthenticationMode> mode;
 
   final TfArg<String>? trustStoreArn;
 
@@ -357,17 +482,41 @@ final class LbListenerMutualAuthentication {
   };
 }
 
+/// `advertise_trust_store_ca_names` — derived from the provider schema description.
+enum LbListenerMutualAuthenticationAdvertiseTrustStoreCaNames
+    implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const LbListenerMutualAuthenticationAdvertiseTrustStoreCaNames(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `mode` — derived from the provider schema description.
+enum LbListenerMutualAuthenticationMode implements TerraformEnum {
+  off('off'),
+  verify('verify'),
+  passthrough('passthrough');
+
+  const LbListenerMutualAuthenticationMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_lb_listener`.
 final class AwsLbListener extends Resource {
   static const String tfType = 'aws_lb_listener';
 
   AwsLbListener({
     required super.localName,
-    TfArg<String>? alpnPolicy,
+    TfArg<LbListenerAlpnPolicy>? alpnPolicy,
     TfArg<String>? certificateArn,
     required TfArg<String> loadBalancerArn,
     TfArg<num>? port,
-    TfArg<String>? protocol,
+    TfArg<LbListenerProtocol>? protocol,
     TfArg<String>? region,
     TfArg<String>? routingHttpRequestXAmznMtlsClientcertHeaderName,
     TfArg<String>? routingHttpRequestXAmznMtlsClientcertIssuerHeaderName,

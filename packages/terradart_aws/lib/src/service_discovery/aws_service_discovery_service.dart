@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_service_discovery_service`.
 const Set<String> _awsServiceDiscoveryServiceSensitive = <String>{};
 
+/// Service Discovery Service enum for `type`.
+enum ServiceDiscoveryServiceType implements TerraformEnum {
+  http('HTTP');
+
+  const ServiceDiscoveryServiceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `dns_config` block of
 /// `aws_service_discovery_service` (derived from provider schema).
 @immutable
@@ -19,7 +28,7 @@ final class ServiceDiscoveryServiceDnsConfig {
 
   final TfArg<String> namespaceId;
 
-  final TfArg<String>? routingPolicy;
+  final TfArg<ServiceDiscoveryServiceDnsConfigRoutingPolicy>? routingPolicy;
 
   final List<ServiceDiscoveryServiceDnsConfigDnsRecords> dnsRecords;
 
@@ -28,6 +37,16 @@ final class ServiceDiscoveryServiceDnsConfig {
     if (routingPolicy != null) 'routing_policy': routingPolicy!.toTfJson(),
     'dns_records': [for (final e in dnsRecords) e.encode()],
   };
+}
+
+/// `routing_policy` — derived from the provider schema description.
+enum ServiceDiscoveryServiceDnsConfigRoutingPolicy implements TerraformEnum {
+  multivalue('MULTIVALUE'),
+  weighted('WEIGHTED');
+
+  const ServiceDiscoveryServiceDnsConfigRoutingPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `dns_config.dns_records` block of
@@ -41,12 +60,24 @@ final class ServiceDiscoveryServiceDnsConfigDnsRecords {
 
   final TfArg<num> ttl;
 
-  final TfArg<String> type;
+  final TfArg<ServiceDiscoveryServiceDnsConfigDnsRecordsType> type;
 
   Map<String, Object?> encode() => {
     'ttl': ttl.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ServiceDiscoveryServiceDnsConfigDnsRecordsType implements TerraformEnum {
+  srv('SRV'),
+  a('A'),
+  aaaa('AAAA'),
+  cname('CNAME');
+
+  const ServiceDiscoveryServiceDnsConfigDnsRecordsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `health_check_config` block of
@@ -63,7 +94,7 @@ final class ServiceDiscoveryServiceHealthCheckConfig {
 
   final TfArg<String>? resourcePath;
 
-  final TfArg<String>? type;
+  final TfArg<ServiceDiscoveryServiceHealthCheckConfigType>? type;
 
   Map<String, Object?> encode() => {
     if (failureThreshold != null)
@@ -71,6 +102,17 @@ final class ServiceDiscoveryServiceHealthCheckConfig {
     if (resourcePath != null) 'resource_path': resourcePath!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ServiceDiscoveryServiceHealthCheckConfigType implements TerraformEnum {
+  http('HTTP'),
+  https('HTTPS'),
+  tcp('TCP');
+
+  const ServiceDiscoveryServiceHealthCheckConfigType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `health_check_custom_config` block of
@@ -99,7 +141,7 @@ final class AwsServiceDiscoveryService extends Resource {
     TfArg<String>? namespaceId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    TfArg<ServiceDiscoveryServiceType>? type,
     ServiceDiscoveryServiceDnsConfig? dnsConfig,
     ServiceDiscoveryServiceHealthCheckConfig? healthCheckConfig,
     ServiceDiscoveryServiceHealthCheckCustomConfig? healthCheckCustomConfig,

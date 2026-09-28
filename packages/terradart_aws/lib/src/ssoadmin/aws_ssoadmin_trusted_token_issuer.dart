@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ssoadmin_trusted_token_issuer`.
 const Set<String> _awsSsoadminTrustedTokenIssuerSensitive = <String>{};
 
+/// Ssoadmin Trusted Token Issuer Trusted Token Issuer enum for `trusted_token_issuer_type`.
+enum SsoadminTrustedTokenIssuerTrustedTokenIssuerType implements TerraformEnum {
+  oidcJwt('OIDC_JWT');
+
+  const SsoadminTrustedTokenIssuerTrustedTokenIssuerType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `trusted_token_issuer_configuration` block of
 /// `aws_ssoadmin_trusted_token_issuer` (derived from provider schema).
 @immutable
@@ -45,7 +54,10 @@ final class SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConf
 
   final TfArg<String> issuerUrl;
 
-  final TfArg<String> jwksRetrievalOption;
+  final TfArg<
+    SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfigurationJwksRetrievalOption
+  >
+  jwksRetrievalOption;
 
   Map<String, Object?> encode() => {
     'claim_attribute_path': claimAttributePath.toTfJson(),
@@ -53,6 +65,18 @@ final class SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConf
     'issuer_url': issuerUrl.toTfJson(),
     'jwks_retrieval_option': jwksRetrievalOption.toTfJson(),
   };
+}
+
+/// `jwks_retrieval_option` — derived from the provider schema description.
+enum SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfigurationJwksRetrievalOption
+    implements TerraformEnum {
+  openIdDiscovery('OPEN_ID_DISCOVERY');
+
+  const SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationOidcJwtConfigurationJwksRetrievalOption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ssoadmin_trusted_token_issuer`.
@@ -66,7 +90,8 @@ final class AwsSsoadminTrustedTokenIssuer extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> trustedTokenIssuerType,
+    required TfArg<SsoadminTrustedTokenIssuerTrustedTokenIssuerType>
+    trustedTokenIssuerType,
     List<SsoadminTrustedTokenIssuerTrustedTokenIssuerConfiguration>?
     trustedTokenIssuerConfiguration,
     super.lifecycle,

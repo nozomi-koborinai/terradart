@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_internetmonitor_monitor`.
 const Set<String> _awsInternetmonitorMonitorSensitive = <String>{};
 
+/// Internetmonitor Monitor enum for `status`.
+enum InternetmonitorMonitorStatus implements TerraformEnum {
+  active('ACTIVE'),
+  inactive('INACTIVE');
+
+  const InternetmonitorMonitorStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `health_events_config` block of
 /// `aws_internetmonitor_monitor` (derived from provider schema).
 @immutable
@@ -55,7 +65,10 @@ final class InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config {
 
   final TfArg<String>? bucketPrefix;
 
-  final TfArg<String>? logDeliveryStatus;
+  final TfArg<
+    InternetmonitorMonitorInternetMeasurementsLogDeliveryS3ConfigLogDeliveryStatus
+  >?
+  logDeliveryStatus;
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.toTfJson(),
@@ -63,6 +76,19 @@ final class InternetmonitorMonitorInternetMeasurementsLogDeliveryS3Config {
     if (logDeliveryStatus != null)
       'log_delivery_status': logDeliveryStatus!.toTfJson(),
   };
+}
+
+/// `log_delivery_status` — derived from the provider schema description.
+enum InternetmonitorMonitorInternetMeasurementsLogDeliveryS3ConfigLogDeliveryStatus
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const InternetmonitorMonitorInternetMeasurementsLogDeliveryS3ConfigLogDeliveryStatus(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_internetmonitor_monitor`.
@@ -75,7 +101,7 @@ final class AwsInternetmonitorMonitor extends Resource {
     required TfArg<String> monitorName,
     TfArg<String>? region,
     TfArg<List<String>>? resources,
-    TfArg<String>? status,
+    TfArg<InternetmonitorMonitorStatus>? status,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? trafficPercentageToMonitor,
     InternetmonitorMonitorHealthEventsConfig? healthEventsConfig,

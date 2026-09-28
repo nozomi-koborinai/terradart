@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_s3_bucket_request_payment_configuration`.
 const Set<String> _awsS3BucketRequestPaymentConfigurationSensitive = <String>{};
 
+/// S3 Bucket Request Payment Configuration enum for `payer`.
+enum S3BucketRequestPaymentConfigurationPayer implements TerraformEnum {
+  requester('Requester'),
+  bucketowner('BucketOwner');
+
+  const S3BucketRequestPaymentConfigurationPayer(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_s3_bucket_request_payment_configuration`.
 final class AwsS3BucketRequestPaymentConfiguration extends Resource {
   static const String tfType = 'aws_s3_bucket_request_payment_configuration';
@@ -14,7 +24,7 @@ final class AwsS3BucketRequestPaymentConfiguration extends Resource {
     required super.localName,
     required TfArg<String> bucket,
     TfArg<String>? expectedBucketOwner,
-    required TfArg<String> payer,
+    required TfArg<S3BucketRequestPaymentConfigurationPayer> payer,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

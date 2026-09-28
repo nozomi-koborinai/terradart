@@ -7,6 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_chime_voice_connector_streaming`.
 const Set<String> _awsChimeVoiceConnectorStreamingSensitive = <String>{};
 
+/// Chime Voice Connector Streaming Streaming Notification enum for `streaming_notification_targets`.
+enum ChimeVoiceConnectorStreamingStreamingNotificationTargets
+    implements TerraformEnum {
+  eventbridge('EventBridge'),
+  sns('SNS'),
+  sqs('SQS');
+
+  const ChimeVoiceConnectorStreamingStreamingNotificationTargets(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `media_insights_configuration` block of
 /// `aws_chime_voice_connector_streaming` (derived from provider schema).
 @immutable
@@ -36,7 +50,8 @@ final class AwsChimeVoiceConnectorStreaming extends Resource {
     required TfArg<num> dataRetention,
     TfArg<bool>? disabled,
     TfArg<String>? region,
-    TfArg<List<String>>? streamingNotificationTargets,
+    List<TfArg<ChimeVoiceConnectorStreamingStreamingNotificationTargets>>?
+    streamingNotificationTargets,
     required TfArg<String> voiceConnectorId,
     ChimeVoiceConnectorStreamingMediaInsightsConfiguration?
     mediaInsightsConfiguration,
@@ -51,7 +66,9 @@ final class AwsChimeVoiceConnectorStreaming extends Resource {
            if (disabled != null) 'disabled': disabled,
            if (region != null) 'region': region,
            if (streamingNotificationTargets != null)
-             'streaming_notification_targets': streamingNotificationTargets,
+             'streaming_notification_targets': TfArg.literal([
+               for (final e in streamingNotificationTargets) e.toTfJson(),
+             ]),
            'voice_connector_id': voiceConnectorId,
            if (mediaInsightsConfiguration != null)
              'media_insights_configuration': TfArg.literal(

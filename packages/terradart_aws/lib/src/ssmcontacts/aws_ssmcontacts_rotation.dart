@@ -114,7 +114,8 @@ final class SsmcontactsRotationRecurrenceShiftCoverages {
     this.coverageTimes,
   });
 
-  final TfArg<String> mapBlockKey;
+  final TfArg<SsmcontactsRotationRecurrenceShiftCoveragesMapBlockKey>
+  mapBlockKey;
 
   final List<SsmcontactsRotationRecurrenceShiftCoveragesCoverageTimes>?
   coverageTimes;
@@ -124,6 +125,24 @@ final class SsmcontactsRotationRecurrenceShiftCoverages {
     if (coverageTimes != null)
       'coverage_times': [for (final e in coverageTimes!) e.encode()],
   };
+}
+
+/// `map_block_key` — derived from the provider schema description.
+enum SsmcontactsRotationRecurrenceShiftCoveragesMapBlockKey
+    implements TerraformEnum {
+  mon('MON'),
+  tue('TUE'),
+  wed('WED'),
+  thu('THU'),
+  fri('FRI'),
+  sat('SAT'),
+  sun('SUN');
+
+  const SsmcontactsRotationRecurrenceShiftCoveragesMapBlockKey(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `recurrence.shift_coverages.coverage_times` block of
@@ -193,7 +212,7 @@ final class SsmcontactsRotationRecurrenceWeeklySettings {
     this.handOffTime,
   });
 
-  final TfArg<String> dayOfWeek;
+  final TfArg<SsmcontactsRotationRecurrenceWeeklySettingsDayOfWeek> dayOfWeek;
 
   final List<SsmcontactsRotationRecurrenceWeeklySettingsHandOffTime>?
   handOffTime;
@@ -203,6 +222,24 @@ final class SsmcontactsRotationRecurrenceWeeklySettings {
     if (handOffTime != null)
       'hand_off_time': [for (final e in handOffTime!) e.encode()],
   };
+}
+
+/// `day_of_week` — derived from the provider schema description.
+enum SsmcontactsRotationRecurrenceWeeklySettingsDayOfWeek
+    implements TerraformEnum {
+  mon('MON'),
+  tue('TUE'),
+  wed('WED'),
+  thu('THU'),
+  fri('FRI'),
+  sat('SAT'),
+  sun('SUN');
+
+  const SsmcontactsRotationRecurrenceWeeklySettingsDayOfWeek(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `recurrence.weekly_settings.hand_off_time` block of

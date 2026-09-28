@@ -7,6 +7,62 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_grafana_workspace`.
 const Set<String> _awsGrafanaWorkspaceSensitive = <String>{};
 
+/// Grafana Workspace Account Access enum for `account_access_type`.
+enum GrafanaWorkspaceAccountAccessType implements TerraformEnum {
+  currentAccount('CURRENT_ACCOUNT'),
+  organization('ORGANIZATION');
+
+  const GrafanaWorkspaceAccountAccessType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Grafana Workspace Authentication enum for `authentication_providers`.
+enum GrafanaWorkspaceAuthenticationProviders implements TerraformEnum {
+  awsSso('AWS_SSO'),
+  saml('SAML');
+
+  const GrafanaWorkspaceAuthenticationProviders(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Grafana Workspace Data enum for `data_sources`.
+enum GrafanaWorkspaceDataSources implements TerraformEnum {
+  amazonOpensearchService('AMAZON_OPENSEARCH_SERVICE'),
+  cloudwatch('CLOUDWATCH'),
+  prometheus('PROMETHEUS'),
+  xray('XRAY'),
+  timestream('TIMESTREAM'),
+  sitewise('SITEWISE'),
+  athena('ATHENA'),
+  redshift('REDSHIFT'),
+  twinmaker('TWINMAKER');
+
+  const GrafanaWorkspaceDataSources(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Grafana Workspace Notification enum for `notification_destinations`.
+enum GrafanaWorkspaceNotificationDestinations implements TerraformEnum {
+  sns('SNS');
+
+  const GrafanaWorkspaceNotificationDestinations(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Grafana Workspace Permission enum for `permission_type`.
+enum GrafanaWorkspacePermissionType implements TerraformEnum {
+  customerManaged('CUSTOMER_MANAGED'),
+  serviceManaged('SERVICE_MANAGED');
+
+  const GrafanaWorkspacePermissionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `network_access_control` block of
 /// `aws_grafana_workspace` (derived from provider schema).
 @immutable
@@ -51,18 +107,20 @@ final class AwsGrafanaWorkspace extends Resource {
 
   AwsGrafanaWorkspace({
     required super.localName,
-    required TfArg<String> accountAccessType,
-    required TfArg<List<String>> authenticationProviders,
+    required TfArg<GrafanaWorkspaceAccountAccessType> accountAccessType,
+    required List<TfArg<GrafanaWorkspaceAuthenticationProviders>>
+    authenticationProviders,
     TfArg<String>? configuration,
-    TfArg<List<String>>? dataSources,
+    List<TfArg<GrafanaWorkspaceDataSources>>? dataSources,
     TfArg<String>? description,
     TfArg<String>? grafanaVersion,
     TfArg<String>? kmsKeyId,
     TfArg<String>? name,
-    TfArg<List<String>>? notificationDestinations,
+    List<TfArg<GrafanaWorkspaceNotificationDestinations>>?
+    notificationDestinations,
     TfArg<String>? organizationRoleName,
     TfArg<List<String>>? organizationalUnits,
-    required TfArg<String> permissionType,
+    required TfArg<GrafanaWorkspacePermissionType> permissionType,
     TfArg<String>? region,
     TfArg<String>? roleArn,
     TfArg<String>? stackSetName,
@@ -77,15 +135,22 @@ final class AwsGrafanaWorkspace extends Resource {
          terraformType: tfType,
          argMap: {
            'account_access_type': accountAccessType,
-           'authentication_providers': authenticationProviders,
+           'authentication_providers': TfArg.literal([
+             for (final e in authenticationProviders) e.toTfJson(),
+           ]),
            if (configuration != null) 'configuration': configuration,
-           if (dataSources != null) 'data_sources': dataSources,
+           if (dataSources != null)
+             'data_sources': TfArg.literal([
+               for (final e in dataSources) e.toTfJson(),
+             ]),
            if (description != null) 'description': description,
            if (grafanaVersion != null) 'grafana_version': grafanaVersion,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            if (name != null) 'name': name,
            if (notificationDestinations != null)
-             'notification_destinations': notificationDestinations,
+             'notification_destinations': TfArg.literal([
+               for (final e in notificationDestinations) e.toTfJson(),
+             ]),
            if (organizationRoleName != null)
              'organization_role_name': organizationRoleName,
            if (organizationalUnits != null)

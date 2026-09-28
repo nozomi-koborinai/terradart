@@ -7,6 +7,72 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_spot_fleet_request`.
 const Set<String> _awsSpotFleetRequestSensitive = <String>{};
 
+/// Spot Fleet Request Allocation enum for `allocation_strategy`.
+enum SpotFleetRequestAllocationStrategy implements TerraformEnum {
+  lowestprice('lowestPrice'),
+  diversified('diversified'),
+  capacityoptimized('capacityOptimized'),
+  capacityoptimizedprioritized('capacityOptimizedPrioritized'),
+  pricecapacityoptimized('priceCapacityOptimized');
+
+  const SpotFleetRequestAllocationStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Spot Fleet Request Excess Capacity Termination enum for `excess_capacity_termination_policy`.
+enum SpotFleetRequestExcessCapacityTerminationPolicy implements TerraformEnum {
+  defaultCase('Default'),
+  notermination('NoTermination');
+
+  const SpotFleetRequestExcessCapacityTerminationPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Spot Fleet Request Fleet enum for `fleet_type`.
+enum SpotFleetRequestFleetType implements TerraformEnum {
+  request('request'),
+  maintain('maintain'),
+  instant('instant');
+
+  const SpotFleetRequestFleetType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Spot Fleet Request Instance Interruption enum for `instance_interruption_behaviour`.
+enum SpotFleetRequestInstanceInterruptionBehaviour implements TerraformEnum {
+  hibernate('hibernate'),
+  stop('stop'),
+  terminate('terminate');
+
+  const SpotFleetRequestInstanceInterruptionBehaviour(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Spot Fleet Request On Demand Allocation enum for `on_demand_allocation_strategy`.
+enum SpotFleetRequestOnDemandAllocationStrategy implements TerraformEnum {
+  lowestprice('lowestPrice'),
+  prioritized('prioritized');
+
+  const SpotFleetRequestOnDemandAllocationStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Spot Fleet Request Target Capacity Unit enum for `target_capacity_unit_type`.
+enum SpotFleetRequestTargetCapacityUnitType implements TerraformEnum {
+  vcpu('vcpu'),
+  memoryMib('memory-mib'),
+  units('units');
+
+  const SpotFleetRequestTargetCapacityUnitType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `launch_specification` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
@@ -54,7 +120,8 @@ final class SpotFleetRequestLaunchSpecification {
 
   final TfArg<String>? placementGroup;
 
-  final TfArg<String>? placementTenancy;
+  final TfArg<SpotFleetRequestLaunchSpecificationPlacementTenancy>?
+  placementTenancy;
 
   final TfArg<String>? spotPrice;
 
@@ -112,6 +179,20 @@ final class SpotFleetRequestLaunchSpecification {
   };
 }
 
+/// `placement_tenancy` — derived from the provider schema description.
+enum SpotFleetRequestLaunchSpecificationPlacementTenancy
+    implements TerraformEnum {
+  defaultCase('default'),
+  dedicated('dedicated'),
+  host('host');
+
+  const SpotFleetRequestLaunchSpecificationPlacementTenancy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `launch_specification.ebs_block_device` block of
 /// `aws_spot_fleet_request` (derived from provider schema).
 @immutable
@@ -144,7 +225,8 @@ final class SpotFleetRequestLaunchSpecificationEbsBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<String>? volumeType;
+  final TfArg<SpotFleetRequestLaunchSpecificationEbsBlockDeviceVolumeType>?
+  volumeType;
 
   Map<String, Object?> encode() => {
     if (deleteOnTermination != null)
@@ -158,6 +240,24 @@ final class SpotFleetRequestLaunchSpecificationEbsBlockDevice {
     if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
     if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
   };
+}
+
+/// `volume_type` — derived from the provider schema description.
+enum SpotFleetRequestLaunchSpecificationEbsBlockDeviceVolumeType
+    implements TerraformEnum {
+  standard('standard'),
+  io1('io1'),
+  io2('io2'),
+  gp2('gp2'),
+  sc1('sc1'),
+  st1('st1'),
+  gp3('gp3');
+
+  const SpotFleetRequestLaunchSpecificationEbsBlockDeviceVolumeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `launch_specification.ephemeral_block_device` block of
@@ -205,7 +305,8 @@ final class SpotFleetRequestLaunchSpecificationRootBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<String>? volumeType;
+  final TfArg<SpotFleetRequestLaunchSpecificationRootBlockDeviceVolumeType>?
+  volumeType;
 
   Map<String, Object?> encode() => {
     if (deleteOnTermination != null)
@@ -217,6 +318,24 @@ final class SpotFleetRequestLaunchSpecificationRootBlockDevice {
     if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
     if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
   };
+}
+
+/// `volume_type` — derived from the provider schema description.
+enum SpotFleetRequestLaunchSpecificationRootBlockDeviceVolumeType
+    implements TerraformEnum {
+  standard('standard'),
+  io1('io1'),
+  io2('io2'),
+  gp2('gp2'),
+  sc1('sc1'),
+  st1('st1'),
+  gp3('gp3');
+
+  const SpotFleetRequestLaunchSpecificationRootBlockDeviceVolumeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `launch_template_config` block of
@@ -336,27 +455,66 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements {
     this.vcpuCount,
   });
 
-  final TfArg<List<Object?>>? acceleratorManufacturers;
+  final List<
+    TfArg<
+      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorManufacturers
+    >
+  >?
+  acceleratorManufacturers;
 
-  final TfArg<List<Object?>>? acceleratorNames;
+  final List<
+    TfArg<
+      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorNames
+    >
+  >?
+  acceleratorNames;
 
-  final TfArg<List<Object?>>? acceleratorTypes;
+  final List<
+    TfArg<
+      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTypes
+    >
+  >?
+  acceleratorTypes;
 
   final TfArg<List<Object?>>? allowedInstanceTypes;
 
-  final TfArg<String>? bareMetal;
+  final TfArg<
+    SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBareMetal
+  >?
+  bareMetal;
 
-  final TfArg<String>? burstablePerformance;
+  final TfArg<
+    SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBurstablePerformance
+  >?
+  burstablePerformance;
 
-  final TfArg<List<Object?>>? cpuManufacturers;
+  final List<
+    TfArg<
+      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsCpuManufacturers
+    >
+  >?
+  cpuManufacturers;
 
   final TfArg<List<Object?>>? excludedInstanceTypes;
 
-  final TfArg<List<Object?>>? instanceGenerations;
+  final List<
+    TfArg<
+      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsInstanceGenerations
+    >
+  >?
+  instanceGenerations;
 
-  final TfArg<String>? localStorage;
+  final TfArg<
+    SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorage
+  >?
+  localStorage;
 
-  final TfArg<List<Object?>>? localStorageTypes;
+  final List<
+    TfArg<
+      SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorageTypes
+    >
+  >?
+  localStorageTypes;
 
   final TfArg<num>? onDemandMaxPricePercentageOverLowestPrice;
 
@@ -393,25 +551,29 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements {
 
   Map<String, Object?> encode() => {
     if (acceleratorManufacturers != null)
-      'accelerator_manufacturers': acceleratorManufacturers!.toTfJson(),
+      'accelerator_manufacturers': [
+        for (final e in acceleratorManufacturers!) e.toTfJson(),
+      ],
     if (acceleratorNames != null)
-      'accelerator_names': acceleratorNames!.toTfJson(),
+      'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
     if (acceleratorTypes != null)
-      'accelerator_types': acceleratorTypes!.toTfJson(),
+      'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
     if (allowedInstanceTypes != null)
       'allowed_instance_types': allowedInstanceTypes!.toTfJson(),
     if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
     if (burstablePerformance != null)
       'burstable_performance': burstablePerformance!.toTfJson(),
     if (cpuManufacturers != null)
-      'cpu_manufacturers': cpuManufacturers!.toTfJson(),
+      'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
     if (excludedInstanceTypes != null)
       'excluded_instance_types': excludedInstanceTypes!.toTfJson(),
     if (instanceGenerations != null)
-      'instance_generations': instanceGenerations!.toTfJson(),
+      'instance_generations': [
+        for (final e in instanceGenerations!) e.toTfJson(),
+      ],
     if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
     if (localStorageTypes != null)
-      'local_storage_types': localStorageTypes!.toTfJson(),
+      'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
     if (onDemandMaxPricePercentageOverLowestPrice != null)
       'on_demand_max_price_percentage_over_lowest_price':
           onDemandMaxPricePercentageOverLowestPrice!.toTfJson(),
@@ -437,6 +599,150 @@ final class SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirements {
       'total_local_storage_gb': totalLocalStorageGb!.encode(),
     if (vcpuCount != null) 'vcpu_count': vcpuCount!.encode(),
   };
+}
+
+/// `accelerator_manufacturers` — derived from the provider schema description.
+enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorManufacturers
+    implements TerraformEnum {
+  amazonWebServices('amazon-web-services'),
+  amd('amd'),
+  nvidia('nvidia'),
+  xilinx('xilinx'),
+  habana('habana');
+
+  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorManufacturers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `accelerator_names` — derived from the provider schema description.
+enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorNames
+    implements TerraformEnum {
+  a100('a100'),
+  inferentia('inferentia'),
+  k520('k520'),
+  k80('k80'),
+  m60('m60'),
+  radeonProV520('radeon-pro-v520'),
+  t4('t4'),
+  vu9p('vu9p'),
+  v100('v100'),
+  a10g('a10g'),
+  h100('h100'),
+  t4g('t4g'),
+  l40s('l40s'),
+  l4('l4'),
+  gaudiHl205('gaudi-hl-205'),
+  inferentia2('inferentia2'),
+  trainium('trainium'),
+  trainium2('trainium2'),
+  u30('u30');
+
+  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorNames(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `accelerator_types` — derived from the provider schema description.
+enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTypes
+    implements TerraformEnum {
+  gpu('gpu'),
+  fpga('fpga'),
+  inference('inference'),
+  media('media');
+
+  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsAcceleratorTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `bare_metal` — derived from the provider schema description.
+enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBareMetal
+    implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBareMetal(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `burstable_performance` — derived from the provider schema description.
+enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBurstablePerformance
+    implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsBurstablePerformance(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `cpu_manufacturers` — derived from the provider schema description.
+enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsCpuManufacturers
+    implements TerraformEnum {
+  intel('intel'),
+  amd('amd'),
+  amazonWebServices('amazon-web-services'),
+  apple('apple');
+
+  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsCpuManufacturers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `instance_generations` — derived from the provider schema description.
+enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsInstanceGenerations
+    implements TerraformEnum {
+  current('current'),
+  previous('previous');
+
+  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsInstanceGenerations(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `local_storage` — derived from the provider schema description.
+enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorage
+    implements TerraformEnum {
+  included('included'),
+  required('required'),
+  excluded('excluded');
+
+  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorage(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `local_storage_types` — derived from the provider schema description.
+enum SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorageTypes
+    implements TerraformEnum {
+  hdd('hdd'),
+  ssd('ssd');
+
+  const SpotFleetRequestLaunchTemplateConfigOverridesInstanceRequirementsLocalStorageTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `launch_template_config.overrides.instance_requirements.accelerator_count` block of
@@ -633,12 +939,28 @@ final class SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalance {
     this.replacementStrategy,
   });
 
-  final TfArg<String>? replacementStrategy;
+  final TfArg<
+    SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalanceReplacementStrategy
+  >?
+  replacementStrategy;
 
   Map<String, Object?> encode() => {
     if (replacementStrategy != null)
       'replacement_strategy': replacementStrategy!.toTfJson(),
   };
+}
+
+/// `replacement_strategy` — derived from the provider schema description.
+enum SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalanceReplacementStrategy
+    implements TerraformEnum {
+  launch('launch'),
+  launchBeforeTerminate('launch-before-terminate');
+
+  const SpotFleetRequestSpotMaintenanceStrategiesCapacityRebalanceReplacementStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_spot_fleet_request`.
@@ -647,15 +969,18 @@ final class AwsSpotFleetRequest extends Resource {
 
   AwsSpotFleetRequest({
     required super.localName,
-    TfArg<String>? allocationStrategy,
+    TfArg<SpotFleetRequestAllocationStrategy>? allocationStrategy,
     TfArg<String>? context,
-    TfArg<String>? excessCapacityTerminationPolicy,
-    TfArg<String>? fleetType,
+    TfArg<SpotFleetRequestExcessCapacityTerminationPolicy>?
+    excessCapacityTerminationPolicy,
+    TfArg<SpotFleetRequestFleetType>? fleetType,
     required TfArg<String> iamFleetRole,
-    TfArg<String>? instanceInterruptionBehaviour,
+    TfArg<SpotFleetRequestInstanceInterruptionBehaviour>?
+    instanceInterruptionBehaviour,
     TfArg<num>? instancePoolsToUseCount,
     TfArg<List<String>>? loadBalancers,
-    TfArg<String>? onDemandAllocationStrategy,
+    TfArg<SpotFleetRequestOnDemandAllocationStrategy>?
+    onDemandAllocationStrategy,
     TfArg<String>? onDemandMaxTotalPrice,
     TfArg<num>? onDemandTargetCapacity,
     TfArg<String>? region,
@@ -663,7 +988,7 @@ final class AwsSpotFleetRequest extends Resource {
     TfArg<String>? spotPrice,
     TfArg<Map<String, String>>? tags,
     required TfArg<num> targetCapacity,
-    TfArg<String>? targetCapacityUnitType,
+    TfArg<SpotFleetRequestTargetCapacityUnitType>? targetCapacityUnitType,
     TfArg<List<String>>? targetGroupArns,
     TfArg<String>? terminateInstancesOnDelete,
     TfArg<bool>? terminateInstancesWithExpiration,

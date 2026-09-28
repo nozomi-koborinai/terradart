@@ -7,6 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_guardduty_organization_configuration`.
 const Set<String> _awsGuarddutyOrganizationConfigurationSensitive = <String>{};
 
+/// Guardduty Organization Configuration Auto Enable Organization enum for `auto_enable_organization_members`.
+enum GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers
+    implements TerraformEnum {
+  newCase('NEW'),
+  all('ALL'),
+  none('NONE');
+
+  const GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `datasources` block of
 /// `aws_guardduty_organization_configuration` (derived from provider schema).
 @immutable
@@ -121,7 +135,10 @@ final class AwsGuarddutyOrganizationConfiguration extends Resource {
 
   AwsGuarddutyOrganizationConfiguration({
     required super.localName,
-    required TfArg<String> autoEnableOrganizationMembers,
+    required TfArg<
+      GuarddutyOrganizationConfigurationAutoEnableOrganizationMembers
+    >
+    autoEnableOrganizationMembers,
     required TfArg<String> detectorId,
     TfArg<String>? region,
     GuarddutyOrganizationConfigurationDatasources? datasources,

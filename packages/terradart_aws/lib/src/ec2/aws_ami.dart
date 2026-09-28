@@ -7,6 +7,58 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ami`.
 const Set<String> _awsAmiSensitive = <String>{};
 
+/// Ami enum for `architecture`.
+enum AmiArchitecture implements TerraformEnum {
+  i386('i386'),
+  x8664('x86_64'),
+  arm64('arm64'),
+  x8664Mac('x86_64_mac'),
+  arm64Mac('arm64_mac');
+
+  const AmiArchitecture(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ami Boot enum for `boot_mode`.
+enum AmiBootMode implements TerraformEnum {
+  legacyBios('legacy-bios'),
+  uefi('uefi'),
+  uefiPreferred('uefi-preferred');
+
+  const AmiBootMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ami Imds enum for `imds_support`.
+enum AmiImdsSupport implements TerraformEnum {
+  v2p0('v2.0');
+
+  const AmiImdsSupport(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ami Tpm enum for `tpm_support`.
+enum AmiTpmSupport implements TerraformEnum {
+  v2p0('v2.0');
+
+  const AmiTpmSupport(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ami Virtualization enum for `virtualization_type`.
+enum AmiVirtualizationType implements TerraformEnum {
+  hvm('hvm'),
+  paravirtual('paravirtual');
+
+  const AmiVirtualizationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `ebs_block_device` block of
 /// `aws_ami` (derived from provider schema).
 @immutable
@@ -39,7 +91,7 @@ final class AmiEbsBlockDevice {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<String>? volumeType;
+  final TfArg<AmiEbsBlockDeviceVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     if (deleteOnTermination != null)
@@ -53,6 +105,21 @@ final class AmiEbsBlockDevice {
     if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
     if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
   };
+}
+
+/// `volume_type` — derived from the provider schema description.
+enum AmiEbsBlockDeviceVolumeType implements TerraformEnum {
+  standard('standard'),
+  io1('io1'),
+  io2('io2'),
+  gp2('gp2'),
+  sc1('sc1'),
+  st1('st1'),
+  gp3('gp3');
+
+  const AmiEbsBlockDeviceVolumeType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `ephemeral_block_device` block of
@@ -80,13 +147,13 @@ final class AwsAmi extends Resource {
 
   AwsAmi({
     required super.localName,
-    TfArg<String>? architecture,
-    TfArg<String>? bootMode,
+    TfArg<AmiArchitecture>? architecture,
+    TfArg<AmiBootMode>? bootMode,
     TfArg<String>? deprecationTime,
     TfArg<String>? description,
     TfArg<bool>? enaSupport,
     TfArg<String>? imageLocation,
-    TfArg<String>? imdsSupport,
+    TfArg<AmiImdsSupport>? imdsSupport,
     TfArg<String>? kernelId,
     required TfArg<String> name,
     TfArg<String>? ramdiskId,
@@ -94,9 +161,9 @@ final class AwsAmi extends Resource {
     TfArg<String>? rootDeviceName,
     TfArg<String>? sriovNetSupport,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? tpmSupport,
+    TfArg<AmiTpmSupport>? tpmSupport,
     TfArg<String>? uefiData,
-    TfArg<String>? virtualizationType,
+    TfArg<AmiVirtualizationType>? virtualizationType,
     List<AmiEbsBlockDevice>? ebsBlockDevice,
     List<AmiEphemeralBlockDevice>? ephemeralBlockDevice,
     super.lifecycle,

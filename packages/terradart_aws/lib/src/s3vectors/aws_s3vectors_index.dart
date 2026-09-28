@@ -7,6 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_s3vectors_index`.
 const Set<String> _awsS3vectorsIndexSensitive = <String>{};
 
+/// S3vectors Index Data enum for `data_type`.
+enum S3vectorsIndexDataType implements TerraformEnum {
+  float32('float32');
+
+  const S3vectorsIndexDataType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// S3vectors Index Distance enum for `distance_metric`.
+enum S3vectorsIndexDistanceMetric implements TerraformEnum {
+  euclidean('euclidean'),
+  cosine('cosine');
+
+  const S3vectorsIndexDistanceMetric(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `metadata_configuration` block of
 /// `aws_s3vectors_index` (derived from provider schema).
 @immutable
@@ -28,9 +47,9 @@ final class AwsS3vectorsIndex extends Resource {
 
   AwsS3vectorsIndex({
     required super.localName,
-    required TfArg<String> dataType,
+    required TfArg<S3vectorsIndexDataType> dataType,
     required TfArg<num> dimension,
-    required TfArg<String> distanceMetric,
+    required TfArg<S3vectorsIndexDistanceMetric> distanceMetric,
     TfArg<List<Map<String, Object?>>>? encryptionConfiguration,
     required TfArg<String> indexName,
     TfArg<String>? region,

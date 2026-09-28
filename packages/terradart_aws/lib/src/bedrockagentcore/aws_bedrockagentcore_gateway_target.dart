@@ -67,7 +67,10 @@ final class BedrockagentcoreGatewayTargetCredentialProviderConfigurationApiKey {
     required this.providerArn,
   });
 
-  final TfArg<String>? credentialLocation;
+  final TfArg<
+    BedrockagentcoreGatewayTargetCredentialProviderConfigurationApiKeyCredentialLocation
+  >?
+  credentialLocation;
 
   final TfArg<String>? credentialParameterName;
 
@@ -84,6 +87,19 @@ final class BedrockagentcoreGatewayTargetCredentialProviderConfigurationApiKey {
       'credential_prefix': credentialPrefix!.toTfJson(),
     'provider_arn': providerArn.toTfJson(),
   };
+}
+
+/// `credential_location` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetCredentialProviderConfigurationApiKeyCredentialLocation
+    implements TerraformEnum {
+  header('HEADER'),
+  queryParameter('QUERY_PARAMETER');
+
+  const BedrockagentcoreGatewayTargetCredentialProviderConfigurationApiKeyCredentialLocation(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `credential_provider_configuration.caller_iam_credentials` block of
@@ -149,7 +165,10 @@ final class BedrockagentcoreGatewayTargetCredentialProviderConfigurationOauth {
 
   final TfArg<String>? defaultReturnUrl;
 
-  final TfArg<String>? grantType;
+  final TfArg<
+    BedrockagentcoreGatewayTargetCredentialProviderConfigurationOauthGrantType
+  >?
+  grantType;
 
   final TfArg<String> providerArn;
 
@@ -164,6 +183,20 @@ final class BedrockagentcoreGatewayTargetCredentialProviderConfigurationOauth {
     'provider_arn': providerArn.toTfJson(),
     'scopes': scopes.toTfJson(),
   };
+}
+
+/// `grant_type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetCredentialProviderConfigurationOauthGrantType
+    implements TerraformEnum {
+  clientCredentials('CLIENT_CREDENTIALS'),
+  authorizationCode('AUTHORIZATION_CODE'),
+  tokenExchange('TOKEN_EXCHANGE');
+
+  const BedrockagentcoreGatewayTargetCredentialProviderConfigurationOauthGrantType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `metadata_configuration` block of
@@ -232,7 +265,10 @@ final class BedrockagentcoreGatewayTargetPrivateEndpointManagedVpcResource {
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    BedrockagentcoreGatewayTargetPrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -253,6 +289,19 @@ final class BedrockagentcoreGatewayTargetPrivateEndpointManagedVpcResource {
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetPrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const BedrockagentcoreGatewayTargetPrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `private_endpoint.self_managed_lattice_resource` block of
@@ -440,9 +489,15 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthrough {
 
   final TfArg<String> endpoint;
 
-  final TfArg<String> protocolType;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughProtocolType
+  >
+  protocolType;
 
-  final TfArg<String>? staticQueryParameterConflictResolution;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughStaticQueryParameterConflictResolution
+  >?
+  staticQueryParameterConflictResolution;
 
   final TfArg<Map<String, String>>? staticQueryParameters;
 
@@ -470,6 +525,34 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthrough {
         for (final e in stickinessConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `protocol_type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughProtocolType
+    implements TerraformEnum {
+  mcp('MCP'),
+  a2a('A2A'),
+  inference('INFERENCE'),
+  custom('CUSTOM');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughProtocolType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `static_query_parameter_conflict_resolution` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughStaticQueryParameterConflictResolution
+    implements TerraformEnum {
+  clientOverride('CLIENT_OVERRIDE'),
+  staticOverride('STATIC_OVERRIDE');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationHttpPassthroughStaticQueryParameterConflictResolution(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.http.passthrough.schema` block of
@@ -848,12 +931,35 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGate
 
   final TfArg<String> filterPath;
 
-  final TfArg<List<Object?>> methods;
+  final List<
+    TfArg<
+      BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfigurationToolFilterMethods
+    >
+  >
+  methods;
 
   Map<String, Object?> encode() => {
     'filter_path': filterPath.toTfJson(),
-    'methods': methods.toTfJson(),
+    'methods': [for (final e in methods) e.toTfJson()],
   };
+}
+
+/// `methods` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfigurationToolFilterMethods
+    implements TerraformEnum {
+  get('GET'),
+  delete('DELETE'),
+  head('HEAD'),
+  options('OPTIONS'),
+  patch('PATCH'),
+  put('PUT'),
+  post('POST');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfigurationToolFilterMethods(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.api_gateway.api_gateway_tool_configuration.tool_override` block of
@@ -869,7 +975,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGate
 
   final TfArg<String>? description;
 
-  final TfArg<String> method;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfigurationToolOverrideMethod
+  >
+  method;
 
   final TfArg<String> name;
 
@@ -881,6 +990,24 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGate
     'name': name.toTfJson(),
     'path': path.toTfJson(),
   };
+}
+
+/// `method` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfigurationToolOverrideMethod
+    implements TerraformEnum {
+  get('GET'),
+  delete('DELETE'),
+  head('HEAD'),
+  options('OPTIONS'),
+  patch('PATCH'),
+  put('PUT'),
+  post('POST');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpApiGatewayApiGatewayToolConfigurationToolOverrideMethod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.connector` block of
@@ -1084,7 +1211,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<String>? description;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaType
+  >
+  type;
 
   final List<
     BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItems
@@ -1104,6 +1234,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.input_schema.items` block of
 /// `aws_bedrockagentcore_gateway_target` (derived from provider schema).
 @immutable
@@ -1117,7 +1264,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<String>? description;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsType
+  >
+  type;
 
   final List<
     BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsItems
@@ -1137,6 +1287,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.input_schema.items.items` block of
 /// `aws_bedrockagentcore_gateway_target` (derived from provider schema).
 @immutable
@@ -1154,7 +1321,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<String>? propertiesJson;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsItemsType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -1162,6 +1332,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
     if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsItemsType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsItemsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.input_schema.items.property` block of
@@ -1187,7 +1374,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<bool>? required;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsPropertyType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -1197,6 +1387,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
     if (required != null) 'required': required!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsPropertyType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaItemsPropertyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.input_schema.property` block of
@@ -1218,7 +1425,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<bool>? required;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyType
+  >
+  type;
 
   final List<
     BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItems
@@ -1240,6 +1450,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.input_schema.property.items` block of
 /// `aws_bedrockagentcore_gateway_target` (derived from provider schema).
 @immutable
@@ -1253,7 +1480,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<String>? description;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsType
+  >
+  type;
 
   final List<
     BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsItems
@@ -1273,6 +1503,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.input_schema.property.items.items` block of
 /// `aws_bedrockagentcore_gateway_target` (derived from provider schema).
 @immutable
@@ -1290,7 +1537,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<String>? propertiesJson;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsItemsType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -1298,6 +1548,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
     if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsItemsType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsItemsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.input_schema.property.items.property` block of
@@ -1323,7 +1590,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<bool>? required;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsPropertyType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -1333,6 +1603,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
     if (required != null) 'required': required!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsPropertyType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyItemsPropertyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.input_schema.property.property` block of
@@ -1358,7 +1645,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<bool>? required;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyPropertyType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -1368,6 +1658,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
     if (required != null) 'required': required!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyPropertyType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadInputSchemaPropertyPropertyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.output_schema` block of
@@ -1383,7 +1690,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<String>? description;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaType
+  >
+  type;
 
   final List<
     BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItems
@@ -1403,6 +1713,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.output_schema.items` block of
 /// `aws_bedrockagentcore_gateway_target` (derived from provider schema).
 @immutable
@@ -1416,7 +1743,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<String>? description;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsType
+  >
+  type;
 
   final List<
     BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsItems
@@ -1436,6 +1766,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.output_schema.items.items` block of
 /// `aws_bedrockagentcore_gateway_target` (derived from provider schema).
 @immutable
@@ -1453,7 +1800,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<String>? propertiesJson;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsItemsType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -1461,6 +1811,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
     if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsItemsType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsItemsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.output_schema.items.property` block of
@@ -1486,7 +1853,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<bool>? required;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsPropertyType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -1496,6 +1866,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
     if (required != null) 'required': required!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsPropertyType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaItemsPropertyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.output_schema.property` block of
@@ -1517,7 +1904,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<bool>? required;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyType
+  >
+  type;
 
   final List<
     BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItems
@@ -1539,6 +1929,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.output_schema.property.items` block of
 /// `aws_bedrockagentcore_gateway_target` (derived from provider schema).
 @immutable
@@ -1552,7 +1959,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<String>? description;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsType
+  >
+  type;
 
   final List<
     BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsItems
@@ -1572,6 +1982,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.output_schema.property.items.items` block of
 /// `aws_bedrockagentcore_gateway_target` (derived from provider schema).
 @immutable
@@ -1589,7 +2016,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<String>? propertiesJson;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsItemsType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -1597,6 +2027,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
     if (propertiesJson != null) 'properties_json': propertiesJson!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsItemsType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsItemsType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.output_schema.property.items.property` block of
@@ -1622,7 +2069,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<bool>? required;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsPropertyType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -1632,6 +2082,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
     if (required != null) 'required': required!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsPropertyType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyItemsPropertyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.inline_payload.output_schema.property.property` block of
@@ -1657,7 +2124,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
 
   final TfArg<bool>? required;
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyPropertyType
+  >
+  type;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -1667,6 +2137,23 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaI
     if (required != null) 'required': required!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyPropertyType
+    implements TerraformEnum {
+  string('string'),
+  number('number'),
+  object('object'),
+  array('array'),
+  boolean('boolean'),
+  integer('integer');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchemaInlinePayloadOutputSchemaPropertyPropertyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.lambda.tool_schema.s3` block of
@@ -1702,7 +2189,10 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServer {
 
   final TfArg<String> endpoint;
 
-  final TfArg<String>? listingMode;
+  final TfArg<
+    BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServerListingMode
+  >?
+  listingMode;
 
   final TfArg<num>? resourcePriority;
 
@@ -1719,6 +2209,19 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServer {
     if (mcpToolSchema != null)
       'mcp_tool_schema': [for (final e in mcpToolSchema!) e.encode()],
   };
+}
+
+/// `listing_mode` — derived from the provider schema description.
+enum BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServerListingMode
+    implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  dynamic('DYNAMIC');
+
+  const BedrockagentcoreGatewayTargetTargetConfigurationMcpMcpServerListingMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_configuration.mcp.mcp_server.mcp_tool_schema` block of

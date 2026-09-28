@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dax_cluster`.
 const Set<String> _awsDaxClusterSensitive = <String>{};
 
+/// Dax Cluster Cluster Endpoint Encryption enum for `cluster_endpoint_encryption_type`.
+enum DaxClusterClusterEndpointEncryptionType implements TerraformEnum {
+  none('NONE'),
+  tls('TLS');
+
+  const DaxClusterClusterEndpointEncryptionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `server_side_encryption` block of
 /// `aws_dax_cluster` (derived from provider schema).
 @immutable
@@ -27,7 +37,8 @@ final class AwsDaxCluster extends Resource {
   AwsDaxCluster({
     required super.localName,
     TfArg<List<String>>? availabilityZones,
-    TfArg<String>? clusterEndpointEncryptionType,
+    TfArg<DaxClusterClusterEndpointEncryptionType>?
+    clusterEndpointEncryptionType,
     required TfArg<String> clusterName,
     TfArg<String>? description,
     required TfArg<String> iamRoleArn,

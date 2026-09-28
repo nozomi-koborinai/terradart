@@ -7,6 +7,48 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_eks_node_group`.
 const Set<String> _awsEksNodeGroupSensitive = <String>{};
 
+/// Eks Node Group Ami enum for `ami_type`.
+enum EksNodeGroupAmiType implements TerraformEnum {
+  al2X8664('AL2_x86_64'),
+  al2X8664Gpu('AL2_x86_64_GPU'),
+  al2Arm64('AL2_ARM_64'),
+  custom('CUSTOM'),
+  bottlerocketArm64('BOTTLEROCKET_ARM_64'),
+  bottlerocketX8664('BOTTLEROCKET_x86_64'),
+  bottlerocketArm64Fips('BOTTLEROCKET_ARM_64_FIPS'),
+  bottlerocketX8664Fips('BOTTLEROCKET_x86_64_FIPS'),
+  bottlerocketArm64Nvidia('BOTTLEROCKET_ARM_64_NVIDIA'),
+  bottlerocketX8664Nvidia('BOTTLEROCKET_x86_64_NVIDIA'),
+  bottlerocketArm64NvidiaFips('BOTTLEROCKET_ARM_64_NVIDIA_FIPS'),
+  bottlerocketX8664NvidiaFips('BOTTLEROCKET_x86_64_NVIDIA_FIPS'),
+  windowsCore2019X8664('WINDOWS_CORE_2019_x86_64'),
+  windowsFull2019X8664('WINDOWS_FULL_2019_x86_64'),
+  windowsCore2022X8664('WINDOWS_CORE_2022_x86_64'),
+  windowsFull2022X8664('WINDOWS_FULL_2022_x86_64'),
+  windowsCore2025X8664('WINDOWS_CORE_2025_x86_64'),
+  windowsFull2025X8664('WINDOWS_FULL_2025_x86_64'),
+  al2023X8664Standard('AL2023_x86_64_STANDARD'),
+  al2023Arm64Standard('AL2023_ARM_64_STANDARD'),
+  al2023X8664Neuron('AL2023_x86_64_NEURON'),
+  al2023X8664Nvidia('AL2023_x86_64_NVIDIA'),
+  al2023Arm64Nvidia('AL2023_ARM_64_NVIDIA');
+
+  const EksNodeGroupAmiType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Eks Node Group Capacity enum for `capacity_type`.
+enum EksNodeGroupCapacityType implements TerraformEnum {
+  onDemand('ON_DEMAND'),
+  spot('SPOT'),
+  capacityBlock('CAPACITY_BLOCK');
+
+  const EksNodeGroupCapacityType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `launch_template` block of
 /// `aws_eks_node_group` (derived from provider schema).
 @immutable
@@ -90,7 +132,8 @@ final class EksNodeGroupNodeRepairConfigNodeRepairConfigOverrides {
 
   final TfArg<String> nodeUnhealthyReason;
 
-  final TfArg<String> repairAction;
+  final TfArg<EksNodeGroupNodeRepairConfigNodeRepairConfigOverridesRepairAction>
+  repairAction;
 
   Map<String, Object?> encode() => {
     'min_repair_wait_time_mins': minRepairWaitTimeMins.toTfJson(),
@@ -98,6 +141,20 @@ final class EksNodeGroupNodeRepairConfigNodeRepairConfigOverrides {
     'node_unhealthy_reason': nodeUnhealthyReason.toTfJson(),
     'repair_action': repairAction.toTfJson(),
   };
+}
+
+/// `repair_action` — derived from the provider schema description.
+enum EksNodeGroupNodeRepairConfigNodeRepairConfigOverridesRepairAction
+    implements TerraformEnum {
+  replace('Replace'),
+  reboot('Reboot'),
+  noaction('NoAction');
+
+  const EksNodeGroupNodeRepairConfigNodeRepairConfigOverridesRepairAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `remote_access` block of
@@ -150,7 +207,7 @@ final class EksNodeGroupTaint {
     this.value,
   });
 
-  final TfArg<String> effect;
+  final TfArg<EksNodeGroupTaintEffect> effect;
 
   final TfArg<String> key;
 
@@ -161,6 +218,17 @@ final class EksNodeGroupTaint {
     'key': key.toTfJson(),
     if (value != null) 'value': value!.toTfJson(),
   };
+}
+
+/// `effect` — derived from the provider schema description.
+enum EksNodeGroupTaintEffect implements TerraformEnum {
+  noSchedule('NO_SCHEDULE'),
+  noExecute('NO_EXECUTE'),
+  preferNoSchedule('PREFER_NO_SCHEDULE');
+
+  const EksNodeGroupTaintEffect(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `update_config` block of
@@ -177,7 +245,7 @@ final class EksNodeGroupUpdateConfig {
 
   final TfArg<num>? maxUnavailablePercentage;
 
-  final TfArg<String>? updateStrategy;
+  final TfArg<EksNodeGroupUpdateConfigUpdateStrategy>? updateStrategy;
 
   Map<String, Object?> encode() => {
     if (maxUnavailable != null) 'max_unavailable': maxUnavailable!.toTfJson(),
@@ -185,6 +253,16 @@ final class EksNodeGroupUpdateConfig {
       'max_unavailable_percentage': maxUnavailablePercentage!.toTfJson(),
     if (updateStrategy != null) 'update_strategy': updateStrategy!.toTfJson(),
   };
+}
+
+/// `update_strategy` — derived from the provider schema description.
+enum EksNodeGroupUpdateConfigUpdateStrategy implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  minimal('MINIMAL');
+
+  const EksNodeGroupUpdateConfigUpdateStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `warm_pool_config` block of
@@ -202,7 +280,7 @@ final class EksNodeGroupWarmPoolConfig {
 
   final TfArg<num>? minSize;
 
-  final TfArg<String>? poolState;
+  final TfArg<EksNodeGroupWarmPoolConfigPoolState>? poolState;
 
   final TfArg<bool>? reuseOnScaleIn;
 
@@ -215,14 +293,25 @@ final class EksNodeGroupWarmPoolConfig {
   };
 }
 
+/// `pool_state` — derived from the provider schema description.
+enum EksNodeGroupWarmPoolConfigPoolState implements TerraformEnum {
+  stopped('STOPPED'),
+  running('RUNNING'),
+  hibernated('HIBERNATED');
+
+  const EksNodeGroupWarmPoolConfigPoolState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_eks_node_group`.
 final class AwsEksNodeGroup extends Resource {
   static const String tfType = 'aws_eks_node_group';
 
   AwsEksNodeGroup({
     required super.localName,
-    TfArg<String>? amiType,
-    TfArg<String>? capacityType,
+    TfArg<EksNodeGroupAmiType>? amiType,
+    TfArg<EksNodeGroupCapacityType>? capacityType,
     required TfArg<String> clusterName,
     TfArg<num>? diskSize,
     TfArg<bool>? forceUpdateVersion,

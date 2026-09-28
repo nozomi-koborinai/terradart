@@ -4,9 +4,15 @@
 library;
 
 export 'src/transcribe/aws_transcribe_language_model.dart'
-    show AwsTranscribeLanguageModel, TranscribeLanguageModelInputDataConfig;
+    show
+        AwsTranscribeLanguageModel,
+        TranscribeLanguageModelBaseModelName,
+        TranscribeLanguageModelInputDataConfig,
+        TranscribeLanguageModelLanguageCode;
 export 'src/transcribe/aws_transcribe_medical_vocabulary.dart'
-    show AwsTranscribeMedicalVocabulary;
+    show
+        AwsTranscribeMedicalVocabulary,
+        TranscribeMedicalVocabularyLanguageCode;
 export 'src/transcribe/aws_transcribe_vocabulary.dart'
     show AwsTranscribeVocabulary;
 export 'src/transcribe/aws_transcribe_vocabulary_filter.dart'

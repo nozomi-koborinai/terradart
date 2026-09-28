@@ -7,6 +7,52 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iot_domain_configuration`.
 const Set<String> _awsIotDomainConfigurationSensitive = <String>{};
 
+/// Iot Domain Configuration Application enum for `application_protocol`.
+enum IotDomainConfigurationApplicationProtocol implements TerraformEnum {
+  secureMqtt('SECURE_MQTT'),
+  mqttWss('MQTT_WSS'),
+  https('HTTPS'),
+  defaultCase('DEFAULT');
+
+  const IotDomainConfigurationApplicationProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Iot Domain Configuration Authentication enum for `authentication_type`.
+enum IotDomainConfigurationAuthenticationType implements TerraformEnum {
+  customAuthX509('CUSTOM_AUTH_X509'),
+  customAuth('CUSTOM_AUTH'),
+  awsX509('AWS_X509'),
+  awsSigv4('AWS_SIGV4'),
+  defaultCase('DEFAULT');
+
+  const IotDomainConfigurationAuthenticationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Iot Domain Configuration Service enum for `service_type`.
+enum IotDomainConfigurationServiceType implements TerraformEnum {
+  data('DATA'),
+  credentialProvider('CREDENTIAL_PROVIDER'),
+  jobs('JOBS');
+
+  const IotDomainConfigurationServiceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Iot Domain Configuration enum for `status`.
+enum IotDomainConfigurationStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const IotDomainConfigurationStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `authorizer_config` block of
 /// `aws_iot_domain_configuration` (derived from provider schema).
 @immutable
@@ -47,14 +93,14 @@ final class AwsIotDomainConfiguration extends Resource {
 
   AwsIotDomainConfiguration({
     required super.localName,
-    TfArg<String>? applicationProtocol,
-    TfArg<String>? authenticationType,
+    TfArg<IotDomainConfigurationApplicationProtocol>? applicationProtocol,
+    TfArg<IotDomainConfigurationAuthenticationType>? authenticationType,
     TfArg<String>? domainName,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<List<String>>? serverCertificateArns,
-    TfArg<String>? serviceType,
-    TfArg<String>? status,
+    TfArg<IotDomainConfigurationServiceType>? serviceType,
+    TfArg<IotDomainConfigurationStatus>? status,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? validationCertificateArn,
     IotDomainConfigurationAuthorizerConfig? authorizerConfig,

@@ -17,14 +17,35 @@ final class S3controlDirectoryBucketAccessPointScopeScope {
     this.prefixes,
   });
 
-  final TfArg<List<Object?>>? permissions;
+  final List<TfArg<S3controlDirectoryBucketAccessPointScopeScopePermissions>>?
+  permissions;
 
   final TfArg<List<Object?>>? prefixes;
 
   Map<String, Object?> encode() => {
-    if (permissions != null) 'permissions': permissions!.toTfJson(),
+    if (permissions != null)
+      'permissions': [for (final e in permissions!) e.toTfJson()],
     if (prefixes != null) 'prefixes': prefixes!.toTfJson(),
   };
+}
+
+/// `permissions` — derived from the provider schema description.
+enum S3controlDirectoryBucketAccessPointScopeScopePermissions
+    implements TerraformEnum {
+  getobject('GetObject'),
+  getobjectattributes('GetObjectAttributes'),
+  listmultipartuploadparts('ListMultipartUploadParts'),
+  listbucket('ListBucket'),
+  listbucketmultipartuploads('ListBucketMultipartUploads'),
+  putobject('PutObject'),
+  deleteobject('DeleteObject'),
+  abortmultipartupload('AbortMultipartUpload');
+
+  const S3controlDirectoryBucketAccessPointScopeScopePermissions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_s3control_directory_bucket_access_point_scope`.

@@ -27,7 +27,10 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
 
   final TfArg<num>? maxIdleConnectionsPercent;
 
-  final TfArg<List<Object?>>? sessionPinningFilters;
+  final List<
+    TfArg<DbProxyDefaultTargetGroupConnectionPoolConfigSessionPinningFilters>
+  >?
+  sessionPinningFilters;
 
   Map<String, Object?> encode() => {
     if (connectionBorrowTimeout != null)
@@ -38,8 +41,22 @@ final class DbProxyDefaultTargetGroupConnectionPoolConfig {
     if (maxIdleConnectionsPercent != null)
       'max_idle_connections_percent': maxIdleConnectionsPercent!.toTfJson(),
     if (sessionPinningFilters != null)
-      'session_pinning_filters': sessionPinningFilters!.toTfJson(),
+      'session_pinning_filters': [
+        for (final e in sessionPinningFilters!) e.toTfJson(),
+      ],
   };
+}
+
+/// `session_pinning_filters` — derived from the provider schema description.
+enum DbProxyDefaultTargetGroupConnectionPoolConfigSessionPinningFilters
+    implements TerraformEnum {
+  excludeVariableSets('EXCLUDE_VARIABLE_SETS');
+
+  const DbProxyDefaultTargetGroupConnectionPoolConfigSessionPinningFilters(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_db_proxy_default_target_group`.

@@ -17,7 +17,7 @@ final class DocdbClusterParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<String>? applyMethod;
+  final TfArg<DocdbClusterParameterGroupParameterApplyMethod>? applyMethod;
 
   final TfArg<String> name;
 
@@ -28,6 +28,16 @@ final class DocdbClusterParameterGroupParameter {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `apply_method` — derived from the provider schema description.
+enum DocdbClusterParameterGroupParameterApplyMethod implements TerraformEnum {
+  immediate('immediate'),
+  pendingReboot('pending-reboot');
+
+  const DocdbClusterParameterGroupParameterApplyMethod(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_docdb_cluster_parameter_group`.

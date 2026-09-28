@@ -16,7 +16,7 @@ final class AppstreamStackAccessEndpoints {
     this.vpceId,
   });
 
-  final TfArg<String> endpointType;
+  final TfArg<AppstreamStackAccessEndpointsEndpointType> endpointType;
 
   final TfArg<String>? vpceId;
 
@@ -24,6 +24,15 @@ final class AppstreamStackAccessEndpoints {
     'endpoint_type': endpointType.toTfJson(),
     if (vpceId != null) 'vpce_id': vpceId!.toTfJson(),
   };
+}
+
+/// `endpoint_type` — derived from the provider schema description.
+enum AppstreamStackAccessEndpointsEndpointType implements TerraformEnum {
+  streaming('STREAMING');
+
+  const AppstreamStackAccessEndpointsEndpointType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `application_settings` block of
@@ -55,7 +64,7 @@ final class AppstreamStackStorageConnectors {
     this.resourceIdentifier,
   });
 
-  final TfArg<String> connectorType;
+  final TfArg<AppstreamStackStorageConnectorsConnectorType> connectorType;
 
   final TfArg<List<Object?>>? domains;
 
@@ -69,18 +78,43 @@ final class AppstreamStackStorageConnectors {
   };
 }
 
+/// `connector_type` — derived from the provider schema description.
+enum AppstreamStackStorageConnectorsConnectorType implements TerraformEnum {
+  homefolders('HOMEFOLDERS'),
+  googleDrive('GOOGLE_DRIVE'),
+  oneDrive('ONE_DRIVE');
+
+  const AppstreamStackStorageConnectorsConnectorType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `streaming_experience_settings` block of
 /// `aws_appstream_stack` (derived from provider schema).
 @immutable
 final class AppstreamStackStreamingExperienceSettings {
   const AppstreamStackStreamingExperienceSettings({this.preferredProtocol});
 
-  final TfArg<String>? preferredProtocol;
+  final TfArg<AppstreamStackStreamingExperienceSettingsPreferredProtocol>?
+  preferredProtocol;
 
   Map<String, Object?> encode() => {
     if (preferredProtocol != null)
       'preferred_protocol': preferredProtocol!.toTfJson(),
   };
+}
+
+/// `preferred_protocol` — derived from the provider schema description.
+enum AppstreamStackStreamingExperienceSettingsPreferredProtocol
+    implements TerraformEnum {
+  tcp('TCP'),
+  udp('UDP');
+
+  const AppstreamStackStreamingExperienceSettingsPreferredProtocol(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `user_settings` block of
@@ -92,14 +126,40 @@ final class AppstreamStackUserSettings {
     required this.permission,
   });
 
-  final TfArg<String> action;
+  final TfArg<AppstreamStackUserSettingsAction> action;
 
-  final TfArg<String> permission;
+  final TfArg<AppstreamStackUserSettingsPermission> permission;
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
     'permission': permission.toTfJson(),
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum AppstreamStackUserSettingsAction implements TerraformEnum {
+  clipboardCopyFromLocalDevice('CLIPBOARD_COPY_FROM_LOCAL_DEVICE'),
+  clipboardCopyToLocalDevice('CLIPBOARD_COPY_TO_LOCAL_DEVICE'),
+  fileUpload('FILE_UPLOAD'),
+  fileDownload('FILE_DOWNLOAD'),
+  printingToLocalDevice('PRINTING_TO_LOCAL_DEVICE'),
+  domainPasswordSignin('DOMAIN_PASSWORD_SIGNIN'),
+  domainSmartCardSignin('DOMAIN_SMART_CARD_SIGNIN'),
+  autoTimeZoneRedirection('AUTO_TIME_ZONE_REDIRECTION');
+
+  const AppstreamStackUserSettingsAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `permission` — derived from the provider schema description.
+enum AppstreamStackUserSettingsPermission implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const AppstreamStackUserSettingsPermission(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_appstream_stack`.

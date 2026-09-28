@@ -6,6 +6,32 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_capacity_block_reservation`.
 const Set<String> _awsEc2CapacityBlockReservationSensitive = <String>{};
 
+/// Ec2 Capacity Block Reservation Instance enum for `instance_platform`.
+enum Ec2CapacityBlockReservationInstancePlatform implements TerraformEnum {
+  linuxUnix('Linux/UNIX'),
+  redHatEnterpriseLinux('Red Hat Enterprise Linux'),
+  suseLinux('SUSE Linux'),
+  windows('Windows'),
+  windowsWithSqlServer('Windows with SQL Server'),
+  windowsWithSqlServerEnterprise('Windows with SQL Server Enterprise'),
+  windowsWithSqlServerStandard('Windows with SQL Server Standard'),
+  windowsWithSqlServerWeb('Windows with SQL Server Web'),
+  linuxWithSqlServerStandard('Linux with SQL Server Standard'),
+  linuxWithSqlServerWeb('Linux with SQL Server Web'),
+  linuxWithSqlServerEnterprise('Linux with SQL Server Enterprise'),
+  rhelWithSqlServerStandard('RHEL with SQL Server Standard'),
+  rhelWithSqlServerEnterprise('RHEL with SQL Server Enterprise'),
+  rhelWithSqlServerWeb('RHEL with SQL Server Web'),
+  rhelWithHa('RHEL with HA'),
+  rhelWithHaAndSqlServerStandard('RHEL with HA and SQL Server Standard'),
+  rhelWithHaAndSqlServerEnterprise('RHEL with HA and SQL Server Enterprise'),
+  ubuntuPro('Ubuntu Pro');
+
+  const Ec2CapacityBlockReservationInstancePlatform(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_capacity_block_reservation`.
 final class AwsEc2CapacityBlockReservation extends Resource {
   static const String tfType = 'aws_ec2_capacity_block_reservation';
@@ -13,7 +39,8 @@ final class AwsEc2CapacityBlockReservation extends Resource {
   AwsEc2CapacityBlockReservation({
     required super.localName,
     required TfArg<String> capacityBlockOfferingId,
-    required TfArg<String> instancePlatform,
+    required TfArg<Ec2CapacityBlockReservationInstancePlatform>
+    instancePlatform,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

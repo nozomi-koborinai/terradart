@@ -6,6 +6,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_autoscaling_lifecycle_hook`.
 const Set<String> _awsAutoscalingLifecycleHookSensitive = <String>{};
 
+/// Autoscaling Lifecycle Hook Default enum for `default_result`.
+enum AutoscalingLifecycleHookDefaultResult implements TerraformEnum {
+  abandon('ABANDON'),
+  continueCase('CONTINUE');
+
+  const AutoscalingLifecycleHookDefaultResult(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Autoscaling Lifecycle Hook Lifecycle enum for `lifecycle_transition`.
+enum AutoscalingLifecycleHookLifecycleTransition implements TerraformEnum {
+  autoscalingEc2InstanceLaunching('autoscaling:EC2_INSTANCE_LAUNCHING'),
+  autoscalingEc2InstanceTerminating('autoscaling:EC2_INSTANCE_TERMINATING');
+
+  const AutoscalingLifecycleHookLifecycleTransition(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_autoscaling_lifecycle_hook`.
 final class AwsAutoscalingLifecycleHook extends Resource {
   static const String tfType = 'aws_autoscaling_lifecycle_hook';
@@ -13,9 +33,10 @@ final class AwsAutoscalingLifecycleHook extends Resource {
   AwsAutoscalingLifecycleHook({
     required super.localName,
     required TfArg<String> autoscalingGroupName,
-    TfArg<String>? defaultResult,
+    TfArg<AutoscalingLifecycleHookDefaultResult>? defaultResult,
     TfArg<num>? heartbeatTimeout,
-    required TfArg<String> lifecycleTransition,
+    required TfArg<AutoscalingLifecycleHookLifecycleTransition>
+    lifecycleTransition,
     required TfArg<String> name,
     TfArg<String>? notificationMetadata,
     TfArg<String>? notificationTargetArn,

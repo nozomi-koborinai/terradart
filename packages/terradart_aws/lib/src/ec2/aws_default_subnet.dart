@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_default_subnet`.
 const Set<String> _awsDefaultSubnetSensitive = <String>{};
 
+/// Default Subnet Private Dns Hostname Type On enum for `private_dns_hostname_type_on_launch`.
+enum DefaultSubnetPrivateDnsHostnameTypeOnLaunch implements TerraformEnum {
+  ipName('ip-name'),
+  resourceName('resource-name');
+
+  const DefaultSubnetPrivateDnsHostnameTypeOnLaunch(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_default_subnet`.
 final class AwsDefaultSubnet extends Resource {
   static const String tfType = 'aws_default_subnet';
@@ -23,7 +33,8 @@ final class AwsDefaultSubnet extends Resource {
     TfArg<bool>? ipv6Native,
     TfArg<bool>? mapCustomerOwnedIpOnLaunch,
     TfArg<bool>? mapPublicIpOnLaunch,
-    TfArg<String>? privateDnsHostnameTypeOnLaunch,
+    TfArg<DefaultSubnetPrivateDnsHostnameTypeOnLaunch>?
+    privateDnsHostnameTypeOnLaunch,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,

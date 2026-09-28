@@ -7,6 +7,7 @@ export 'src/codegurureviewer/aws_codegurureviewer_repository_association.dart'
     show
         AwsCodegurureviewerRepositoryAssociation,
         CodegurureviewerRepositoryAssociationKmsKeyDetails,
+        CodegurureviewerRepositoryAssociationKmsKeyDetailsEncryptionOption,
         CodegurureviewerRepositoryAssociationRepository,
         CodegurureviewerRepositoryAssociationRepositoryBitbucket,
         CodegurureviewerRepositoryAssociationRepositoryCodecommit,

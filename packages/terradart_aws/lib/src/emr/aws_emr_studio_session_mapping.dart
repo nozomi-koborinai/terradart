@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_emr_studio_session_mapping`.
 const Set<String> _awsEmrStudioSessionMappingSensitive = <String>{};
 
+/// Emr Studio Session Mapping Identity enum for `identity_type`.
+enum EmrStudioSessionMappingIdentityType implements TerraformEnum {
+  user('USER'),
+  group('GROUP');
+
+  const EmrStudioSessionMappingIdentityType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_emr_studio_session_mapping`.
 final class AwsEmrStudioSessionMapping extends Resource {
   static const String tfType = 'aws_emr_studio_session_mapping';
@@ -14,7 +24,7 @@ final class AwsEmrStudioSessionMapping extends Resource {
     required super.localName,
     TfArg<String>? identityId,
     TfArg<String>? identityName,
-    required TfArg<String> identityType,
+    required TfArg<EmrStudioSessionMappingIdentityType> identityType,
     TfArg<String>? region,
     required TfArg<String> sessionPolicyArn,
     required TfArg<String> studioId,

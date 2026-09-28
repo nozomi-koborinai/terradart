@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_codecatalyst_dev_environment`.
 const Set<String> _awsCodecatalystDevEnvironmentSensitive = <String>{};
 
+/// Codecatalyst Dev Environment Instance enum for `instance_type`.
+enum CodecatalystDevEnvironmentInstanceType implements TerraformEnum {
+  devStandard1Small('dev.standard1.small'),
+  devStandard1Medium('dev.standard1.medium'),
+  devStandard1Large('dev.standard1.large'),
+  devStandard1Xlarge('dev.standard1.xlarge');
+
+  const CodecatalystDevEnvironmentInstanceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `ides` block of
 /// `aws_codecatalyst_dev_environment` (derived from provider schema).
 @immutable
@@ -61,7 +73,7 @@ final class AwsCodecatalystDevEnvironment extends Resource {
     required super.localName,
     TfArg<String>? alias,
     TfArg<num>? inactivityTimeoutMinutes,
-    required TfArg<String> instanceType,
+    required TfArg<CodecatalystDevEnvironmentInstanceType> instanceType,
     required TfArg<String> projectName,
     TfArg<String>? region,
     required TfArg<String> spaceName,

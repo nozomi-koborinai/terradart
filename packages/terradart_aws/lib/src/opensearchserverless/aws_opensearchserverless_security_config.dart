@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_opensearchserverless_security_config`.
 const Set<String> _awsOpensearchserverlessSecurityConfigSensitive = <String>{};
 
+/// Opensearchserverless Security Config enum for `type`.
+enum OpensearchserverlessSecurityConfigType implements TerraformEnum {
+  saml('saml'),
+  iamidentitycenter('iamidentitycenter'),
+  iamfederation('iamfederation');
+
+  const OpensearchserverlessSecurityConfigType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `iam_federation_options` block of
 /// `aws_opensearchserverless_security_config` (derived from provider schema).
 @immutable
@@ -36,17 +47,50 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptions {
     this.userAttribute,
   });
 
-  final TfArg<String>? groupAttribute;
+  final TfArg<
+    OpensearchserverlessSecurityConfigIamIdentityCenterOptionsGroupAttribute
+  >?
+  groupAttribute;
 
   final TfArg<String> instanceArn;
 
-  final TfArg<String>? userAttribute;
+  final TfArg<
+    OpensearchserverlessSecurityConfigIamIdentityCenterOptionsUserAttribute
+  >?
+  userAttribute;
 
   Map<String, Object?> encode() => {
     if (groupAttribute != null) 'group_attribute': groupAttribute!.toTfJson(),
     'instance_arn': instanceArn.toTfJson(),
     if (userAttribute != null) 'user_attribute': userAttribute!.toTfJson(),
   };
+}
+
+/// `group_attribute` — derived from the provider schema description.
+enum OpensearchserverlessSecurityConfigIamIdentityCenterOptionsGroupAttribute
+    implements TerraformEnum {
+  groupid('GroupId'),
+  groupname('GroupName');
+
+  const OpensearchserverlessSecurityConfigIamIdentityCenterOptionsGroupAttribute(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `user_attribute` — derived from the provider schema description.
+enum OpensearchserverlessSecurityConfigIamIdentityCenterOptionsUserAttribute
+    implements TerraformEnum {
+  userid('UserId'),
+  username('UserName'),
+  email('Email');
+
+  const OpensearchserverlessSecurityConfigIamIdentityCenterOptionsUserAttribute(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `saml_options` block of
@@ -85,7 +129,7 @@ final class AwsOpensearchserverlessSecurityConfig extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> type,
+    required TfArg<OpensearchserverlessSecurityConfigType> type,
     List<OpensearchserverlessSecurityConfigIamFederationOptions>?
     iamFederationOptions,
     List<OpensearchserverlessSecurityConfigIamIdentityCenterOptions>?

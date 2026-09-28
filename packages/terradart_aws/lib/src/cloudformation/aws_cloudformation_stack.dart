@@ -6,18 +6,40 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudformation_stack`.
 const Set<String> _awsCloudformationStackSensitive = <String>{};
 
+/// Cloudformation Stack enum for `capabilities`.
+enum CloudformationStackCapabilities implements TerraformEnum {
+  capabilityIam('CAPABILITY_IAM'),
+  capabilityNamedIam('CAPABILITY_NAMED_IAM'),
+  capabilityAutoExpand('CAPABILITY_AUTO_EXPAND');
+
+  const CloudformationStackCapabilities(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cloudformation Stack On enum for `on_failure`.
+enum CloudformationStackOnFailure implements TerraformEnum {
+  doNothing('DO_NOTHING'),
+  rollback('ROLLBACK'),
+  delete('DELETE');
+
+  const CloudformationStackOnFailure(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudformation_stack`.
 final class AwsCloudformationStack extends Resource {
   static const String tfType = 'aws_cloudformation_stack';
 
   AwsCloudformationStack({
     required super.localName,
-    TfArg<List<String>>? capabilities,
+    List<TfArg<CloudformationStackCapabilities>>? capabilities,
     TfArg<bool>? disableRollback,
     TfArg<String>? iamRoleArn,
     required TfArg<String> name,
     TfArg<List<String>>? notificationArns,
-    TfArg<String>? onFailure,
+    TfArg<CloudformationStackOnFailure>? onFailure,
     TfArg<Map<String, String>>? parameters,
     TfArg<String>? policyBody,
     TfArg<String>? policyUrl,
@@ -33,7 +55,10 @@ final class AwsCloudformationStack extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (capabilities != null) 'capabilities': capabilities,
+           if (capabilities != null)
+             'capabilities': TfArg.literal([
+               for (final e in capabilities) e.toTfJson(),
+             ]),
            if (disableRollback != null) 'disable_rollback': disableRollback,
            if (iamRoleArn != null) 'iam_role_arn': iamRoleArn,
            'name': name,

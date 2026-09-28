@@ -10,6 +10,38 @@ const Set<String> _awsFsxWindowsFileSystemSensitive = <String>{
   'self_managed_active_directory.password_wo',
 };
 
+/// Fsx Windows File System Deployment enum for `deployment_type`.
+enum FsxWindowsFileSystemDeploymentType implements TerraformEnum {
+  multiAz1('MULTI_AZ_1'),
+  singleAz1('SINGLE_AZ_1'),
+  singleAz2('SINGLE_AZ_2');
+
+  const FsxWindowsFileSystemDeploymentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Fsx Windows File System Network enum for `network_type`.
+enum FsxWindowsFileSystemNetworkType implements TerraformEnum {
+  ipv4('IPV4'),
+  dual('DUAL');
+
+  const FsxWindowsFileSystemNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Fsx Windows File System Storage enum for `storage_type`.
+enum FsxWindowsFileSystemStorageType implements TerraformEnum {
+  ssd('SSD'),
+  hdd('HDD'),
+  intelligentTiering('INTELLIGENT_TIERING');
+
+  const FsxWindowsFileSystemStorageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `audit_log_configuration` block of
 /// `aws_fsx_windows_file_system` (derived from provider schema).
 @immutable
@@ -22,9 +54,13 @@ final class FsxWindowsFileSystemAuditLogConfiguration {
 
   final TfArg<String>? auditLogDestination;
 
-  final TfArg<String>? fileAccessAuditLogLevel;
+  final TfArg<FsxWindowsFileSystemAuditLogConfigurationFileAccessAuditLogLevel>?
+  fileAccessAuditLogLevel;
 
-  final TfArg<String>? fileShareAccessAuditLogLevel;
+  final TfArg<
+    FsxWindowsFileSystemAuditLogConfigurationFileShareAccessAuditLogLevel
+  >?
+  fileShareAccessAuditLogLevel;
 
   Map<String, Object?> encode() => {
     if (auditLogDestination != null)
@@ -37,6 +73,36 @@ final class FsxWindowsFileSystemAuditLogConfiguration {
   };
 }
 
+/// `file_access_audit_log_level` — derived from the provider schema description.
+enum FsxWindowsFileSystemAuditLogConfigurationFileAccessAuditLogLevel
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  successOnly('SUCCESS_ONLY'),
+  failureOnly('FAILURE_ONLY'),
+  successAndFailure('SUCCESS_AND_FAILURE');
+
+  const FsxWindowsFileSystemAuditLogConfigurationFileAccessAuditLogLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `file_share_access_audit_log_level` — derived from the provider schema description.
+enum FsxWindowsFileSystemAuditLogConfigurationFileShareAccessAuditLogLevel
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  successOnly('SUCCESS_ONLY'),
+  failureOnly('FAILURE_ONLY'),
+  successAndFailure('SUCCESS_AND_FAILURE');
+
+  const FsxWindowsFileSystemAuditLogConfigurationFileShareAccessAuditLogLevel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `disk_iops_configuration` block of
 /// `aws_fsx_windows_file_system` (derived from provider schema).
 @immutable
@@ -45,12 +111,22 @@ final class FsxWindowsFileSystemDiskIopsConfiguration {
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? mode;
+  final TfArg<FsxWindowsFileSystemDiskIopsConfigurationMode>? mode;
 
   Map<String, Object?> encode() => {
     if (iops != null) 'iops': iops!.toTfJson(),
     if (mode != null) 'mode': mode!.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum FsxWindowsFileSystemDiskIopsConfigurationMode implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  userProvisioned('USER_PROVISIONED');
+
+  const FsxWindowsFileSystemDiskIopsConfigurationMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `self_managed_active_directory` block of
@@ -119,16 +195,16 @@ final class AwsFsxWindowsFileSystem extends Resource {
     TfArg<String>? backupId,
     TfArg<bool>? copyTagsToBackups,
     TfArg<String>? dailyAutomaticBackupStartTime,
-    TfArg<String>? deploymentType,
+    TfArg<FsxWindowsFileSystemDeploymentType>? deploymentType,
     TfArg<Map<String, String>>? finalBackupTags,
     TfArg<String>? kmsKeyId,
-    TfArg<String>? networkType,
+    TfArg<FsxWindowsFileSystemNetworkType>? networkType,
     TfArg<String>? preferredSubnetId,
     TfArg<String>? region,
     TfArg<List<String>>? securityGroupIds,
     TfArg<bool>? skipFinalBackup,
     TfArg<num>? storageCapacity,
-    TfArg<String>? storageType,
+    TfArg<FsxWindowsFileSystemStorageType>? storageType,
     required TfArg<List<String>> subnetIds,
     TfArg<Map<String, String>>? tags,
     required TfArg<num> throughputCapacity,

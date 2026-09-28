@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_servicecatalog_service_action`.
 const Set<String> _awsServicecatalogServiceActionSensitive = <String>{};
 
+/// Servicecatalog Service Action Accept enum for `accept_language`.
+enum ServicecatalogServiceActionAcceptLanguage implements TerraformEnum {
+  en('en'),
+  jp('jp'),
+  zh('zh');
+
+  const ServicecatalogServiceActionAcceptLanguage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `definition` block of
 /// `aws_servicecatalog_service_action` (derived from provider schema).
 @immutable
@@ -25,7 +36,7 @@ final class ServicecatalogServiceActionDefinition {
 
   final TfArg<String>? parameters;
 
-  final TfArg<String>? type;
+  final TfArg<ServicecatalogServiceActionDefinitionType>? type;
 
   final TfArg<String> version;
 
@@ -38,13 +49,22 @@ final class ServicecatalogServiceActionDefinition {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum ServicecatalogServiceActionDefinitionType implements TerraformEnum {
+  ssmAutomation('SSM_AUTOMATION');
+
+  const ServicecatalogServiceActionDefinitionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_servicecatalog_service_action`.
 final class AwsServicecatalogServiceAction extends Resource {
   static const String tfType = 'aws_servicecatalog_service_action';
 
   AwsServicecatalogServiceAction({
     required super.localName,
-    TfArg<String>? acceptLanguage,
+    TfArg<ServicecatalogServiceActionAcceptLanguage>? acceptLanguage,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

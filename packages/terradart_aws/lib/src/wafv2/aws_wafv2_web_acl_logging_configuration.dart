@@ -16,7 +16,8 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilter {
     required this.filter,
   });
 
-  final TfArg<String> defaultBehavior;
+  final TfArg<Wafv2WebAclLoggingConfigurationLoggingFilterDefaultBehavior>
+  defaultBehavior;
 
   final List<Wafv2WebAclLoggingConfigurationLoggingFilterFilter> filter;
 
@@ -24,6 +25,19 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilter {
     'default_behavior': defaultBehavior.toTfJson(),
     'filter': [for (final e in filter) e.encode()],
   };
+}
+
+/// `default_behavior` — derived from the provider schema description.
+enum Wafv2WebAclLoggingConfigurationLoggingFilterDefaultBehavior
+    implements TerraformEnum {
+  keep('KEEP'),
+  drop('DROP');
+
+  const Wafv2WebAclLoggingConfigurationLoggingFilterDefaultBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `logging_filter.filter` block of
@@ -36,9 +50,11 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilterFilter {
     required this.condition,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<Wafv2WebAclLoggingConfigurationLoggingFilterFilterBehavior>
+  behavior;
 
-  final TfArg<String> requirement;
+  final TfArg<Wafv2WebAclLoggingConfigurationLoggingFilterFilterRequirement>
+  requirement;
 
   final List<Wafv2WebAclLoggingConfigurationLoggingFilterFilterCondition>
   condition;
@@ -48,6 +64,32 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilterFilter {
     'requirement': requirement.toTfJson(),
     'condition': [for (final e in condition) e.encode()],
   };
+}
+
+/// `behavior` — derived from the provider schema description.
+enum Wafv2WebAclLoggingConfigurationLoggingFilterFilterBehavior
+    implements TerraformEnum {
+  keep('KEEP'),
+  drop('DROP');
+
+  const Wafv2WebAclLoggingConfigurationLoggingFilterFilterBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `requirement` — derived from the provider schema description.
+enum Wafv2WebAclLoggingConfigurationLoggingFilterFilterRequirement
+    implements TerraformEnum {
+  meetsAll('MEETS_ALL'),
+  meetsAny('MEETS_ANY');
+
+  const Wafv2WebAclLoggingConfigurationLoggingFilterFilterRequirement(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `logging_filter.filter.condition` block of
@@ -80,9 +122,30 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionCon
     required this.action,
   });
 
-  final TfArg<String> action;
+  final TfArg<
+    Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionConditionAction
+  >
+  action;
 
   Map<String, Object?> encode() => {'action': action.toTfJson()};
+}
+
+/// `action` — derived from the provider schema description.
+enum Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionConditionAction
+    implements TerraformEnum {
+  allow('ALLOW'),
+  block('BLOCK'),
+  count('COUNT'),
+  captcha('CAPTCHA'),
+  challenge('CHALLENGE'),
+  monetize('MONETIZE'),
+  excludedAsCount('EXCLUDED_AS_COUNT');
+
+  const Wafv2WebAclLoggingConfigurationLoggingFilterFilterConditionActionConditionAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `logging_filter.filter.condition.label_name_condition` block of

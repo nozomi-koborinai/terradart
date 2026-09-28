@@ -7,6 +7,80 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_db_instance`.
 const Set<String> _awsDbInstanceSensitive = <String>{'password', 'password_wo'};
 
+/// Db Instance Backup enum for `backup_target`.
+enum DbInstanceBackupTarget implements TerraformEnum {
+  outposts('outposts'),
+  region('region');
+
+  const DbInstanceBackupTarget(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Db Instance Database Insights enum for `database_insights_mode`.
+enum DbInstanceDatabaseInsightsMode implements TerraformEnum {
+  standard('standard'),
+  advanced('advanced');
+
+  const DbInstanceDatabaseInsightsMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Db Instance Enabled Cloudwatch Logs enum for `enabled_cloudwatch_logs_exports`.
+enum DbInstanceEnabledCloudwatchLogsExports implements TerraformEnum {
+  agent('agent'),
+  alert('alert'),
+  audit('audit'),
+  diagLog('diag.log'),
+  error('error'),
+  general('general'),
+  iamDbAuthError('iam-db-auth-error'),
+  listener('listener'),
+  notifyLog('notify.log'),
+  oemagent('oemagent'),
+  postgresql('postgresql'),
+  slowquery('slowquery'),
+  trace('trace'),
+  upgrade('upgrade');
+
+  const DbInstanceEnabledCloudwatchLogsExports(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Db Instance Engine Lifecycle enum for `engine_lifecycle_support`.
+enum DbInstanceEngineLifecycleSupport implements TerraformEnum {
+  openSourceRdsExtendedSupport('open-source-rds-extended-support'),
+  openSourceRdsExtendedSupportDisabled(
+    'open-source-rds-extended-support-disabled',
+  );
+
+  const DbInstanceEngineLifecycleSupport(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Db Instance Network enum for `network_type`.
+enum DbInstanceNetworkType implements TerraformEnum {
+  dual('DUAL'),
+  ipv4('IPV4');
+
+  const DbInstanceNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Db Instance Replica enum for `replica_mode`.
+enum DbInstanceReplicaMode implements TerraformEnum {
+  openReadOnly('open-read-only'),
+  mounted('mounted');
+
+  const DbInstanceReplicaMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `blue_green_update` block of
 /// `aws_db_instance` (derived from provider schema).
 @immutable
@@ -99,14 +173,14 @@ final class AwsDbInstance extends Resource {
     TfArg<bool>? autoMinorVersionUpgrade,
     TfArg<String>? availabilityZone,
     TfArg<num>? backupRetentionPeriod,
-    TfArg<String>? backupTarget,
+    TfArg<DbInstanceBackupTarget>? backupTarget,
     TfArg<String>? backupWindow,
     TfArg<String>? caCertIdentifier,
     TfArg<String>? characterSetName,
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<String>? customIamInstanceProfile,
     TfArg<bool>? customerOwnedIpEnabled,
-    TfArg<String>? databaseInsightsMode,
+    TfArg<DbInstanceDatabaseInsightsMode>? databaseInsightsMode,
     TfArg<String>? dbName,
     TfArg<String>? dbSubnetGroupName,
     TfArg<bool>? dedicatedLogVolume,
@@ -118,9 +192,10 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? domainFqdn,
     TfArg<String>? domainIamRoleName,
     TfArg<String>? domainOu,
-    TfArg<List<String>>? enabledCloudwatchLogsExports,
+    List<TfArg<DbInstanceEnabledCloudwatchLogsExports>>?
+    enabledCloudwatchLogsExports,
     TfArg<String>? engine,
-    TfArg<String>? engineLifecycleSupport,
+    TfArg<DbInstanceEngineLifecycleSupport>? engineLifecycleSupport,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<bool>? iamDatabaseAuthenticationEnabled,
@@ -138,7 +213,7 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? monitoringRoleArn,
     TfArg<bool>? multiAz,
     TfArg<String>? ncharCharacterSetName,
-    TfArg<String>? networkType,
+    TfArg<DbInstanceNetworkType>? networkType,
     TfArg<String>? optionGroupName,
     TfArg<String>? parameterGroupName,
     TfArg<String>? password,
@@ -150,7 +225,7 @@ final class AwsDbInstance extends Resource {
     TfArg<num>? port,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
-    TfArg<String>? replicaMode,
+    TfArg<DbInstanceReplicaMode>? replicaMode,
     TfArg<String>? replicateSourceDb,
     TfArg<bool>? skipFinalSnapshot,
     TfArg<String>? snapshotIdentifier,
@@ -212,7 +287,9 @@ final class AwsDbInstance extends Resource {
              'domain_iam_role_name': domainIamRoleName,
            if (domainOu != null) 'domain_ou': domainOu,
            if (enabledCloudwatchLogsExports != null)
-             'enabled_cloudwatch_logs_exports': enabledCloudwatchLogsExports,
+             'enabled_cloudwatch_logs_exports': TfArg.literal([
+               for (final e in enabledCloudwatchLogsExports) e.toTfJson(),
+             ]),
            if (engine != null) 'engine': engine,
            if (engineLifecycleSupport != null)
              'engine_lifecycle_support': engineLifecycleSupport,

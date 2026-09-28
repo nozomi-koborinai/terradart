@@ -25,7 +25,7 @@ final class CodecommitTriggerTrigger {
 
   final TfArg<String> destinationArn;
 
-  final TfArg<List<Object?>> events;
+  final List<TfArg<CodecommitTriggerTriggerEvents>> events;
 
   final TfArg<String> name;
 
@@ -33,9 +33,21 @@ final class CodecommitTriggerTrigger {
     if (branches != null) 'branches': branches!.toTfJson(),
     if (customData != null) 'custom_data': customData!.toTfJson(),
     'destination_arn': destinationArn.toTfJson(),
-    'events': events.toTfJson(),
+    'events': [for (final e in events) e.toTfJson()],
     'name': name.toTfJson(),
   };
+}
+
+/// `events` — derived from the provider schema description.
+enum CodecommitTriggerTriggerEvents implements TerraformEnum {
+  all('all'),
+  updatereference('updateReference'),
+  createreference('createReference'),
+  deletereference('deleteReference');
+
+  const CodecommitTriggerTriggerEvents(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_codecommit_trigger`.

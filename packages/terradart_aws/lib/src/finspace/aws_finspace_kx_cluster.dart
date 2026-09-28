@@ -7,6 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_finspace_kx_cluster`.
 const Set<String> _awsFinspaceKxClusterSensitive = <String>{};
 
+/// Finspace Kx Cluster Az enum for `az_mode`.
+enum FinspaceKxClusterAzMode implements TerraformEnum {
+  single('SINGLE'),
+  multi('MULTI');
+
+  const FinspaceKxClusterAzMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Finspace Kx Cluster enum for `type`.
+enum FinspaceKxClusterType implements TerraformEnum {
+  hdb('HDB'),
+  rdb('RDB'),
+  gateway('GATEWAY'),
+  gp('GP'),
+  tickerplant('TICKERPLANT');
+
+  const FinspaceKxClusterType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `auto_scaling_configuration` block of
 /// `aws_finspace_kx_cluster` (derived from provider schema).
 @immutable
@@ -20,7 +43,8 @@ final class FinspaceKxClusterAutoScalingConfiguration {
     required this.scaleOutCooldownSeconds,
   });
 
-  final TfArg<String> autoScalingMetric;
+  final TfArg<FinspaceKxClusterAutoScalingConfigurationAutoScalingMetric>
+  autoScalingMetric;
 
   final TfArg<num> maxNodeCount;
 
@@ -40,6 +64,18 @@ final class FinspaceKxClusterAutoScalingConfiguration {
     'scale_in_cooldown_seconds': scaleInCooldownSeconds.toTfJson(),
     'scale_out_cooldown_seconds': scaleOutCooldownSeconds.toTfJson(),
   };
+}
+
+/// `auto_scaling_metric` — derived from the provider schema description.
+enum FinspaceKxClusterAutoScalingConfigurationAutoScalingMetric
+    implements TerraformEnum {
+  cpuUtilizationPercentage('CPU_UTILIZATION_PERCENTAGE');
+
+  const FinspaceKxClusterAutoScalingConfigurationAutoScalingMetric(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `cache_storage_configurations` block of
@@ -165,7 +201,7 @@ final class FinspaceKxClusterSavedownStorageConfiguration {
 
   final TfArg<num>? size;
 
-  final TfArg<String>? type;
+  final TfArg<FinspaceKxClusterSavedownStorageConfigurationType>? type;
 
   final TfArg<String>? volumeName;
 
@@ -174,6 +210,16 @@ final class FinspaceKxClusterSavedownStorageConfiguration {
     if (type != null) 'type': type!.toTfJson(),
     if (volumeName != null) 'volume_name': volumeName!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum FinspaceKxClusterSavedownStorageConfigurationType
+    implements TerraformEnum {
+  sds01('SDS01');
+
+  const FinspaceKxClusterSavedownStorageConfigurationType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `scaling_group_configuration` block of
@@ -233,7 +279,7 @@ final class FinspaceKxClusterVpcConfiguration {
     required this.vpcId,
   });
 
-  final TfArg<String> ipAddressType;
+  final TfArg<FinspaceKxClusterVpcConfigurationIpAddressType> ipAddressType;
 
   final TfArg<List<Object?>> securityGroupIds;
 
@@ -249,6 +295,15 @@ final class FinspaceKxClusterVpcConfiguration {
   };
 }
 
+/// `ip_address_type` — derived from the provider schema description.
+enum FinspaceKxClusterVpcConfigurationIpAddressType implements TerraformEnum {
+  ipV4('IP_V4');
+
+  const FinspaceKxClusterVpcConfigurationIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_finspace_kx_cluster`.
 final class AwsFinspaceKxCluster extends Resource {
   static const String tfType = 'aws_finspace_kx_cluster';
@@ -256,7 +311,7 @@ final class AwsFinspaceKxCluster extends Resource {
   AwsFinspaceKxCluster({
     required super.localName,
     TfArg<String>? availabilityZoneId,
-    required TfArg<String> azMode,
+    required TfArg<FinspaceKxClusterAzMode> azMode,
     TfArg<Map<String, String>>? commandLineArguments,
     TfArg<String>? description,
     required TfArg<String> environmentId,
@@ -266,7 +321,7 @@ final class AwsFinspaceKxCluster extends Resource {
     TfArg<String>? region,
     required TfArg<String> releaseLabel,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<FinspaceKxClusterType> type,
     FinspaceKxClusterAutoScalingConfiguration? autoScalingConfiguration,
     List<FinspaceKxClusterCacheStorageConfigurations>?
     cacheStorageConfigurations,

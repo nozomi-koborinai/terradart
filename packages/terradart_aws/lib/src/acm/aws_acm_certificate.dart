@@ -7,6 +7,32 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_acm_certificate`.
 const Set<String> _awsAcmCertificateSensitive = <String>{'private_key'};
 
+/// Acm Certificate Key enum for `key_algorithm`.
+enum AcmCertificateKeyAlgorithm implements TerraformEnum {
+  rsa1024('RSA_1024'),
+  rsa2048('RSA_2048'),
+  rsa3072('RSA_3072'),
+  rsa4096('RSA_4096'),
+  ecPrime256v1('EC_prime256v1'),
+  ecSecp384r1('EC_secp384r1'),
+  ecSecp521r1('EC_secp521r1');
+
+  const AcmCertificateKeyAlgorithm(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Acm Certificate Validation enum for `validation_method`.
+enum AcmCertificateValidationMethod implements TerraformEnum {
+  email('EMAIL'),
+  dns('DNS'),
+  http('HTTP');
+
+  const AcmCertificateValidationMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `options` block of
 /// `aws_acm_certificate` (derived from provider schema).
 @immutable
@@ -16,9 +42,10 @@ final class AcmCertificateOptions {
     this.export,
   });
 
-  final TfArg<String>? certificateTransparencyLoggingPreference;
+  final TfArg<AcmCertificateOptionsCertificateTransparencyLoggingPreference>?
+  certificateTransparencyLoggingPreference;
 
-  final TfArg<String>? export;
+  final TfArg<AcmCertificateOptionsExport>? export;
 
   Map<String, Object?> encode() => {
     if (certificateTransparencyLoggingPreference != null)
@@ -26,6 +53,29 @@ final class AcmCertificateOptions {
           certificateTransparencyLoggingPreference!.toTfJson(),
     if (export != null) 'export': export!.toTfJson(),
   };
+}
+
+/// `certificate_transparency_logging_preference` — derived from the provider schema description.
+enum AcmCertificateOptionsCertificateTransparencyLoggingPreference
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const AcmCertificateOptionsCertificateTransparencyLoggingPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `export` — derived from the provider schema description.
+enum AcmCertificateOptionsExport implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const AcmCertificateOptionsExport(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `validation_option` block of
@@ -58,14 +108,14 @@ final class AwsAcmCertificate extends Resource {
     TfArg<String>? certificateChain,
     TfArg<String>? domainName,
     TfArg<String>? earlyRenewalDuration,
-    TfArg<String>? keyAlgorithm,
+    TfArg<AcmCertificateKeyAlgorithm>? keyAlgorithm,
     TfArg<String>? privateKey,
     TfArg<String>? privateKeyWo,
     TfArg<num>? privateKeyWoVersion,
     TfArg<String>? region,
     TfArg<List<String>>? subjectAlternativeNames,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? validationMethod,
+    TfArg<AcmCertificateValidationMethod>? validationMethod,
     AcmCertificateOptions? options,
     List<AcmCertificateValidationOption>? validationOption,
     super.lifecycle,

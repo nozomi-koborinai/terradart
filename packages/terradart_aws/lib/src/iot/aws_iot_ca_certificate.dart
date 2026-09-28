@@ -10,6 +10,16 @@ const Set<String> _awsIotCaCertificateSensitive = <String>{
   'verification_certificate_pem',
 };
 
+/// Iot Ca Certificate Certificate enum for `certificate_mode`.
+enum IotCaCertificateCertificateMode implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  sniOnly('SNI_ONLY');
+
+  const IotCaCertificateCertificateMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `registration_config` block of
 /// `aws_iot_ca_certificate` (derived from provider schema).
 @immutable
@@ -42,7 +52,7 @@ final class AwsIotCaCertificate extends Resource {
     required TfArg<bool> active,
     required TfArg<bool> allowAutoRegistration,
     required TfArg<String> caCertificatePem,
-    TfArg<String>? certificateMode,
+    TfArg<IotCaCertificateCertificateMode>? certificateMode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? verificationCertificatePem,

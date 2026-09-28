@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rds_cluster_activity_stream`.
 const Set<String> _awsRdsClusterActivityStreamSensitive = <String>{};
 
+/// Rds Cluster Activity Stream enum for `mode`.
+enum RdsClusterActivityStreamMode implements TerraformEnum {
+  sync('sync'),
+  async('async');
+
+  const RdsClusterActivityStreamMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_rds_cluster_activity_stream`.
 final class AwsRdsClusterActivityStream extends Resource {
   static const String tfType = 'aws_rds_cluster_activity_stream';
@@ -14,7 +24,7 @@ final class AwsRdsClusterActivityStream extends Resource {
     required super.localName,
     TfArg<bool>? engineNativeAuditFieldsIncluded,
     required TfArg<String> kmsKeyId,
-    required TfArg<String> mode,
+    required TfArg<RdsClusterActivityStreamMode> mode,
     TfArg<String>? region,
     required TfArg<String> resourceArn,
     super.lifecycle,

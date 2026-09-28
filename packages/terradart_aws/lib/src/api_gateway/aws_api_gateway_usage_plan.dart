@@ -67,13 +67,24 @@ final class ApiGatewayUsagePlanQuotaSettings {
 
   final TfArg<num>? offset;
 
-  final TfArg<String> period;
+  final TfArg<ApiGatewayUsagePlanQuotaSettingsPeriod> period;
 
   Map<String, Object?> encode() => {
     'limit': limit.toTfJson(),
     if (offset != null) 'offset': offset!.toTfJson(),
     'period': period.toTfJson(),
   };
+}
+
+/// `period` — derived from the provider schema description.
+enum ApiGatewayUsagePlanQuotaSettingsPeriod implements TerraformEnum {
+  day('DAY'),
+  week('WEEK'),
+  month('MONTH');
+
+  const ApiGatewayUsagePlanQuotaSettingsPeriod(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `throttle_settings` block of

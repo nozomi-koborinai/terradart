@@ -8,6 +8,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsPrometheusScraperLoggingConfigurationSensitive =
     <String>{};
 
+/// Prometheus Scraper Logging Configuration Scraper enum for `scraper_components`.
+enum PrometheusScraperLoggingConfigurationScraperComponents
+    implements TerraformEnum {
+  serviceDiscovery('SERVICE_DISCOVERY'),
+  collector('COLLECTOR'),
+  exporter('EXPORTER');
+
+  const PrometheusScraperLoggingConfigurationScraperComponents(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `logging_destination` block of
 /// `aws_prometheus_scraper_logging_configuration` (derived from provider schema).
 @immutable
@@ -47,7 +61,8 @@ final class AwsPrometheusScraperLoggingConfiguration extends Resource {
   AwsPrometheusScraperLoggingConfiguration({
     required super.localName,
     TfArg<String>? region,
-    TfArg<List<String>>? scraperComponents,
+    List<TfArg<PrometheusScraperLoggingConfigurationScraperComponents>>?
+    scraperComponents,
     required TfArg<String> scraperId,
     List<PrometheusScraperLoggingConfigurationLoggingDestination>?
     loggingDestination,
@@ -60,7 +75,9 @@ final class AwsPrometheusScraperLoggingConfiguration extends Resource {
          argMap: {
            if (region != null) 'region': region,
            if (scraperComponents != null)
-             'scraper_components': scraperComponents,
+             'scraper_components': TfArg.literal([
+               for (final e in scraperComponents) e.toTfJson(),
+             ]),
            'scraper_id': scraperId,
            if (loggingDestination != null)
              'logging_destination': TfArg.literal([

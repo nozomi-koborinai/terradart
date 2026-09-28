@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_local_gateway_route_table`.
 const Set<String> _awsEc2LocalGatewayRouteTableSensitive = <String>{};
 
+/// Ec2 Local Gateway Route Table enum for `mode`.
+enum Ec2LocalGatewayRouteTableMode implements TerraformEnum {
+  directVpcRouting('direct-vpc-routing'),
+  coip('coip');
+
+  const Ec2LocalGatewayRouteTableMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ec2_local_gateway_route_table`.
 final class AwsEc2LocalGatewayRouteTable extends Resource {
   static const String tfType = 'aws_ec2_local_gateway_route_table';
@@ -13,7 +23,7 @@ final class AwsEc2LocalGatewayRouteTable extends Resource {
   AwsEc2LocalGatewayRouteTable({
     required super.localName,
     required TfArg<String> localGatewayId,
-    required TfArg<String> mode,
+    required TfArg<Ec2LocalGatewayRouteTableMode> mode,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
