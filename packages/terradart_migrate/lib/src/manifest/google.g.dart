@@ -160463,7 +160463,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.manual,
           required: false,
           reason:
-              'unknown type `Map<String, ComputeAutoscalerAutoscalerScalingSchedule>`',
+              '`Map<String, ComputeAutoscalerAutoscalerScalingSchedule>?` is not encoded as a keyed map of helpers',
         ),
       ],
     ),
@@ -165701,7 +165701,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.manual,
           required: false,
           reason:
-              'unknown type `Map<String, ComputeRegionAutoscalerRegionAutoscalerScalingSchedule>`',
+              '`Map<String, ComputeRegionAutoscalerRegionAutoscalerScalingSchedule>?` is not encoded as a keyed map of helpers',
         ),
       ],
     ),

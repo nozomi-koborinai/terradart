@@ -5985,11 +5985,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[
       'build_config.web_analytics_token',
       'canonical_deployment.build_config.web_analytics_token',
-      'canonical_deployment.env_vars.value',
-      'deployment_configs.preview.env_vars.value',
-      'deployment_configs.production.env_vars.value',
+      'canonical_deployment.env_vars.*.value',
+      'deployment_configs.preview.env_vars.*.value',
+      'deployment_configs.production.env_vars.*.value',
       'latest_deployment.build_config.web_analytics_token',
-      'latest_deployment.env_vars.value',
+      'latest_deployment.env_vars.*.value',
     ],
     docComment:
         'Factory wrapper for `cloudflare_pages_project`.\n\nAccepted Permissions\n\n- `Pages Read` - `Pages Write`',
@@ -6005,11 +6005,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[
       'build_config.web_analytics_token',
       'canonical_deployment.build_config.web_analytics_token',
-      'canonical_deployment.env_vars.value',
-      'deployment_configs.preview.env_vars.value',
-      'deployment_configs.production.env_vars.value',
+      'canonical_deployment.env_vars.*.value',
+      'deployment_configs.preview.env_vars.*.value',
+      'deployment_configs.production.env_vars.*.value',
       'latest_deployment.build_config.web_analytics_token',
-      'latest_deployment.env_vars.value',
+      'latest_deployment.env_vars.*.value',
     ],
     docComment:
         'Factory wrapper for `cloudflare_pages_project`.\n\nAccepted Permissions\n\n- `Pages Read` - `Pages Write`',
@@ -6025,11 +6025,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[
       'result.build_config.web_analytics_token',
       'result.canonical_deployment.build_config.web_analytics_token',
-      'result.canonical_deployment.env_vars.value',
-      'result.deployment_configs.preview.env_vars.value',
-      'result.deployment_configs.production.env_vars.value',
+      'result.canonical_deployment.env_vars.*.value',
+      'result.deployment_configs.preview.env_vars.*.value',
+      'result.deployment_configs.production.env_vars.*.value',
       'result.latest_deployment.build_config.web_analytics_token',
-      'result.latest_deployment.env_vars.value',
+      'result.latest_deployment.env_vars.*.value',
     ],
     docComment:
         'Factory wrapper for `cloudflare_pages_projects`.\n\nAccepted Permissions\n\n- `Pages Read` - `Pages Write`',

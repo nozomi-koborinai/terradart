@@ -649,7 +649,7 @@ final class AiGatewaySpendLimitsRules {
 
   final AiGatewaySpendLimitsRulesAiGatewayProvider? aiGatewayProvider;
 
-  final AiGatewaySpendLimitsRulesMetadata? metadata;
+  final Map<String, AiGatewaySpendLimitsRulesMetadata>? metadata;
 
   final AiGatewaySpendLimitsRulesModel? model;
 
@@ -662,7 +662,8 @@ final class AiGatewaySpendLimitsRules {
     'window': window.toTfJson(),
     if (aiGatewayProvider != null)
       'ai_gateway_provider': aiGatewayProvider!.encode(),
-    if (metadata != null) 'metadata': metadata!.encode(),
+    if (metadata != null)
+      'metadata': {for (final e in metadata!.entries) e.key: e.value.encode()},
     if (model != null) 'model': model!.encode(),
   };
 }
