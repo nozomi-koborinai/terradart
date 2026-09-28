@@ -380,6 +380,8 @@ jobs:
 
       - name: Skip if nothing changed
         id: skip_check
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           # Anything to ship if: any tracked file differs OR a new major.
           new_major=$(jq -r '.new_major_available' /tmp/state.json)
@@ -387,9 +389,22 @@ jobs:
           if [ "$changes" = "0" ] && [ "$new_major" != "true" ]; then
             echo "Nothing to report this week. Exiting."
             echo "skip=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "skip=false" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
+          if [ "$changes" = "0" ]; then
+            # A quiet new-major week: one open PR already carries the banner
+            # while the major stays unabsorbed, so don't stack an empty one
+            # every week.
+            open=$(gh pr list --state open --label schema-bump --limit 100 \
+              --json headRefName \
+              --jq "[.[] | select(.headRefName | startswith(\"chore/schema-bump-$LANE-\"))] | length")
+            if [ "$open" != "0" ]; then
+              echo "New major still unabsorbed; an open $LANE bump PR already reports it. Exiting."
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
 
       - name: Create branch + commit + PR
         if: steps.skip_check.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
