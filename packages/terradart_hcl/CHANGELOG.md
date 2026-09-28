@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.30.0 - 2026-09-28
+
+First release on pub.dev, published beside `terradart_migrate` (which reads Terraform through it). No `terradart_hcl` API changes.
+
 ## 0.29.0 - 2026-09-27
 
 Lockstep release. No `terradart_hcl` API changes.

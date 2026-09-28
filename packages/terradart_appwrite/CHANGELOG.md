@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.30.0 - 2026-09-28
 
 - **Breaking:** inputs with a fixed value set are enums — 23 string slots on 17 resources (e.g. `AppwriteMessagingProvider.type` → `MessagingProviderType`, `AppwriteStorageBucket.compression` → `StorageBucketCompression`). Synth output is unchanged. See `MIGRATING.md`.
 
