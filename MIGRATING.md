@@ -241,6 +241,31 @@ literal there as it does for any other sensitive field — pass a sensitive
 variable or reference. `terradart-migrate` translates these maps into the
 new shape.
 
+### `terradart_appwrite` inputs with a fixed value set are enums
+
+**Breaking (`terradart_appwrite`)** — 23 string slots across 17 resources
+take a generated `TerraformEnum` instead of a `String`: the 21 the
+provider's validators restrict (`stringvalidator.OneOf` at the pinned
+`2.0.0-beta.1`), plus `AppwriteMessagingProvider.type` and
+`AppwriteTablesdbColumn.type`, whose value sets the provider enforces when
+it creates the resource. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `AppwriteMessagingProvider(type: TfArg.literal('smtp'), ...)` | `AppwriteMessagingProvider(type: TfArg.literal(MessagingProviderType.smtp), ...)` |
+| `AppwriteTablesdbColumn(type: TfArg.literal('enum'), ...)` | `AppwriteTablesdbColumn(type: TfArg.literal(TablesdbColumnType.enumCase), ...)` |
+| `AppwriteStorageBucket(compression: TfArg.literal('gzip'), ...)` | `AppwriteStorageBucket(compression: TfArg.literal(StorageBucketCompression.gzip), ...)` |
+| `AppwritePostgresqlDatabase(syncMode: TfArg.literal('quorum'), ...)` | `AppwritePostgresqlDatabase(syncMode: TfArg.literal(PostgresqlDatabaseSyncMode.quorum), ...)` |
+| `AppwriteMysqlBackupStorage(storageProvider: TfArg.literal('s3'), ...)` | `AppwriteMysqlBackupStorage(storageProvider: TfArg.literal(MysqlBackupStorageStorageProvider.s3), ...)` |
+
+The other typed slots: `status` / `maintenanceWindowDay` on the three
+`Appwrite*Database` resources, `type` on the `Appwrite*BackupPolicy`
+resources, `mode` on `Appwrite*Pooler`, `sourceType` on
+`AppwriteFunctionDeployment` / `AppwriteSiteDeployment`, and
+`AppwriteProxyRule.type`. The analyzer names the enum at every call site.
+`terradart-migrate` maps existing values onto the members, as for
+Cloudflare.
+
 ### `terradart-coverage` retired
 
 **`terradart-coverage` is retired** — the `terradart_coverage` package, its

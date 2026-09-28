@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `appwrite_postgresql_backup_policy`.
 const Set<String> _appwritePostgresqlBackupPolicySensitive = <String>{};
 
+/// Postgresql Backup Policy enum for `type`.
+enum PostgresqlBackupPolicyType implements TerraformEnum {
+  full('full'),
+  incremental('incremental');
+
+  const PostgresqlBackupPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_postgresql_backup_policy`.
 ///
 /// Manages a scheduled backup policy for a dedicated Appwrite PostgreSQL
@@ -22,7 +32,7 @@ final class AppwritePostgresqlBackupPolicy extends Resource {
     TfArg<String>? projectId,
     required TfArg<num> retention,
     required TfArg<String> schedule,
-    TfArg<String>? type,
+    TfArg<PostgresqlBackupPolicyType>? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

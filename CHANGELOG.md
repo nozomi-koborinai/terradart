@@ -104,6 +104,15 @@ Per-package changelogs live alongside each package and are the system of record 
   segment for map entries, so synth checks `env_vars.*.value` per entry,
   and `terradart-migrate` translates these maps (`MigrateSlot.keyed`). No
   other lane has such attributes. See `MIGRATING.md`.
+- **`terradart_appwrite` enums** (**breaking**) — 23 string slots on 17
+  resources are generated enums: the value sets the provider's validators
+  enforce, extracted into `source_appwrite/hints/` (the appwrite lane sets
+  `providerEnums: true`), plus hand-written `MessagingProviderType` and
+  `TablesdbColumnType` for the two sets the provider enforces at create.
+  `tool/extract_provider_hints.dart` reads hand-written plugin-framework
+  resources (`resource.go` / `*_resource.go`, one Go type registered per
+  engine) besides Stainless's `schema.go`; the Cloudflare hints are
+  unchanged. Synth output is unchanged. See `MIGRATING.md`.
 - **Docs** — the agent skill and the *Migrating from HCL* guide describe one
   loop: `terradart-migrate --report`, then a migration, then porting the
   sidecar leftovers into the Stack, synth, and `terraform plan` with *No

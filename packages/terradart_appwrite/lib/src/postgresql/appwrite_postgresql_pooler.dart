@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `appwrite_postgresql_pooler`.
 const Set<String> _appwritePostgresqlPoolerSensitive = <String>{};
 
+/// Postgresql Pooler enum for `mode`.
+enum PostgresqlPoolerMode implements TerraformEnum {
+  transaction('transaction'),
+  session('session');
+
+  const PostgresqlPoolerMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_postgresql_pooler`.
 ///
 /// Configures the connection pooler of a dedicated Appwrite PostgreSQL
@@ -19,7 +29,7 @@ final class AppwritePostgresqlPooler extends Resource {
     required super.localName,
     required TfArg<String> databaseId,
     TfArg<num>? defaultPoolSize,
-    TfArg<String>? mode,
+    TfArg<PostgresqlPoolerMode>? mode,
     TfArg<String>? poolerCpuLimit,
     TfArg<String>? poolerCpuRequest,
     TfArg<String>? poolerMemoryLimit,

@@ -9,6 +9,43 @@ const Set<String> _appwriteMysqlDatabaseSensitive = <String>{
   'connection_string',
 };
 
+/// Mysql Database Maintenance Window enum for `maintenance_window_day`.
+enum MysqlDatabaseMaintenanceWindowDay implements TerraformEnum {
+  sun('sun'),
+  mon('mon'),
+  tue('tue'),
+  wed('wed'),
+  thu('thu'),
+  fri('fri'),
+  sat('sat');
+
+  const MysqlDatabaseMaintenanceWindowDay(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mysql Database enum for `status`.
+enum MysqlDatabaseStatus implements TerraformEnum {
+  ready('ready'),
+  paused('paused'),
+  inactive('inactive');
+
+  const MysqlDatabaseStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mysql Database Sync enum for `sync_mode`.
+enum MysqlDatabaseSyncMode implements TerraformEnum {
+  async('async'),
+  sync('sync'),
+  quorum('quorum');
+
+  const MysqlDatabaseSyncMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_mysql_database`.
 ///
 /// Manages a dedicated Appwrite MySQL database. A dedicated database runs on
@@ -24,7 +61,7 @@ final class AppwriteMysqlDatabase extends Resource {
   AppwriteMysqlDatabase({
     required super.localName,
     TfArg<num>? idleTimeoutMinutes,
-    TfArg<String>? maintenanceWindowDay,
+    TfArg<MysqlDatabaseMaintenanceWindowDay>? maintenanceWindowDay,
     TfArg<num>? maintenanceWindowHourUtc,
     required TfArg<String> name,
     TfArg<num>? networkIdleTimeoutSeconds,
@@ -39,11 +76,11 @@ final class AppwriteMysqlDatabase extends Resource {
     TfArg<num>? sqlApiMaxBytes,
     TfArg<num>? sqlApiMaxRows,
     TfArg<num>? sqlApiTimeoutSeconds,
-    TfArg<String>? status,
+    TfArg<MysqlDatabaseStatus>? status,
     TfArg<bool>? storageAutoscaling,
     TfArg<num>? storageAutoscalingMaxGb,
     TfArg<num>? storageAutoscalingThresholdPercent,
-    TfArg<String>? syncMode,
+    TfArg<MysqlDatabaseSyncMode>? syncMode,
     TfArg<String>? version,
     super.lifecycle,
     super.dependsOn,

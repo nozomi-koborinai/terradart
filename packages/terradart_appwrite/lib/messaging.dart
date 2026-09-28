@@ -4,7 +4,7 @@
 library;
 
 export 'src/messaging/appwrite_messaging_provider.dart'
-    show AppwriteMessagingProvider;
+    show AppwriteMessagingProvider, MessagingProviderType;
 export 'src/messaging/appwrite_messaging_subscriber.dart'
     show AppwriteMessagingSubscriber;
 export 'src/messaging/appwrite_messaging_topic.dart'

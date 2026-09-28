@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `appwrite_mysql_pooler`.
 const Set<String> _appwriteMysqlPoolerSensitive = <String>{};
 
+/// Mysql Pooler enum for `mode`.
+enum MysqlPoolerMode implements TerraformEnum {
+  transaction('transaction'),
+  session('session');
+
+  const MysqlPoolerMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_mysql_pooler`.
 ///
 /// Configures the connection pooler of a dedicated Appwrite MySQL database. The
@@ -20,7 +30,7 @@ final class AppwriteMysqlPooler extends Resource {
     required TfArg<String> databaseId,
     TfArg<num>? defaultPoolSize,
     TfArg<num>? maxConnections,
-    TfArg<String>? mode,
+    TfArg<MysqlPoolerMode>? mode,
     TfArg<String>? poolerCpuLimit,
     TfArg<String>? poolerCpuRequest,
     TfArg<String>? poolerMemoryLimit,
