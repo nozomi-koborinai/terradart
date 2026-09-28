@@ -276,7 +276,9 @@ func (r *gadgetResource) Schema(ctx context.Context, req resource.SchemaRequest,
       });
       expect(
         sdkEnumsFile(
-            sdkDir, 'github.com/aws/aws-sdk-go-v2/service/widget/types'),
+          sdkDir,
+          'github.com/aws/aws-sdk-go-v2/service/widget/types',
+        ),
         p.join(sdkDir, 'service', 'widget', 'types', 'enums.go'),
       );
     });
@@ -290,8 +292,10 @@ func (r *gadgetResource) Schema(ctx context.Context, req resource.SchemaRequest,
               h.path.join('.'):
                   '${h.values.join('|')}${h.caseInsensitive ? ' (ci)' : ''}',
           };
-      expect(scan.byType['aws_widget']!.sourcePath,
-          p.join('internal', 'service', 'widget', 'widget.go'));
+      expect(
+        scan.byType['aws_widget']!.sourcePath,
+        p.join('internal', 'service', 'widget', 'widget.go'),
+      );
       expect(hints('aws_widget'), {
         'type': 'FAST|SLOW',
         'color': 'red|blue (ci)',
