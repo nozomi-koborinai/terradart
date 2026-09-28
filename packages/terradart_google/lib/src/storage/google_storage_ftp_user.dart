@@ -7,6 +7,9 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleStorageFtpUserSensitive = <String>{};
 
 /// Factory wrapper for `google_storage_ftp_user`.
+///
+/// A Storage FTP User resource supporting directory mappings and user
+/// credentials for an SFTP Server.
 final class GoogleStorageFtpUser extends Resource {
   static const String tfType = 'google_storage_ftp_user';
 
