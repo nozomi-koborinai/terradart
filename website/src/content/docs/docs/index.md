@@ -15,8 +15,8 @@ TerraDart is organized as a multi-package monorepo:
 - **[`terradart_google`](https://pub.dev/packages/terradart_google)** — Curated factories for Google Cloud (`hashicorp/google`).
 - **[`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)** — Curated factories for beta-only Google Cloud resources (`hashicorp/google-beta`).
 - **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — Curated factories for Appwrite (`appwrite/appwrite`).
-- **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — Curated factories for Cloudflare edge infrastructure (`cloudflare/cloudflare`, filled at `5.23.0`: 257 resource factories + 446 data sources).
-- **[`terradart_aws`](https://pub.dev/packages/terradart_aws)** — Curated factories for AWS (`hashicorp/aws`, filled at `6.66.0`: 1725 resource factories + 683 data sources).
+- **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — Curated factories for Cloudflare edge infrastructure (`cloudflare/cloudflare`, filled at the current pin).
+- **[`terradart_aws`](https://pub.dev/packages/terradart_aws)** — Curated factories for AWS (`hashicorp/aws`, filled at the current pin).
 - **[`terradart_time`](https://pub.dev/packages/terradart_time)** — `TimeProvider` / `TimeSleep` (`hashicorp/time`), the propagation wait for stacks on any provider package.
 - **[`terradart_codegen`](https://pub.dev/packages/terradart_codegen)** — Maintainer generation CLI (`terradart wrap`).
 - **[`terradart_migrate`](https://pub.dev/packages/terradart_migrate)** — HCL → Dart migrator (`dart pub global activate terradart_migrate`), reading Terraform through **[`terradart_hcl`](https://pub.dev/packages/terradart_hcl)**.

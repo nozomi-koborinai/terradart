@@ -1,7 +1,7 @@
 # AWS leftover quickstart
 
-Coverage stack for leftover `terradart_aws` factories at pin `6.66.0` that are
-not in [`aws_lambda_quickstart`](../aws_lambda_quickstart). Dummy constructor
+Coverage stack for leftover `terradart_aws` factories at the current pin that
+are not in [`aws_lambda_quickstart`](../aws_lambda_quickstart). Dummy constructor
 values. Synth + `terraform validate` only. **Never apply.**
 
 ```bash

@@ -1,7 +1,7 @@
 // GENERATED — dart run tool/generate_aws_leftover_example.dart
 // ignore_for_file: unused_element
 
-/// Coverage stack for leftover AWS factories at pin 6.66.0.
+/// Coverage stack for leftover AWS factories at the current pin.
 /// Dummy constructor values; synth + terraform validate only.
 /// Never apply.
 library;

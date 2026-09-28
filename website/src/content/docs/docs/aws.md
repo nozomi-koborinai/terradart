@@ -3,7 +3,7 @@ title: Dart apps on AWS
 description: Run a Dart backend on Lambda or ECS Express Mode and a Flutter Web build on S3 + CloudFront, with terradart_aws.
 ---
 
-[`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) wraps the full `hashicorp/aws` `6.66.0` provider: **1725 resource factories + 683 data sources**, exact-pinned. This page covers the three shapes a Dart team usually needs on AWS: a Dart function on Lambda, a Dart server on ECS Express Mode, and a Flutter Web build on S3 behind CloudFront.
+[`terradart_aws`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_aws) wraps the full `hashicorp/aws` provider — every resource and data source at its exact pin. This page covers the three shapes a Dart team usually needs on AWS: a Dart function on Lambda, a Dart server on ECS Express Mode, and a Flutter Web build on S3 behind CloudFront.
 
 ## Install
 

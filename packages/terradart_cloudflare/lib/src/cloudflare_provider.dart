@@ -1,15 +1,16 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '_provider_version.g.dart';
+
 /// Provider source identifier — `cloudflare/cloudflare` (the official
 /// Cloudflare Terraform provider).
 const String kCloudflareProviderSource = 'cloudflare/cloudflare';
 
-/// Exact version pin. Cloudflare has no automated bump lane in this
-/// workspace (unlike GA google), so TerraDart pins the version its
-/// wrappers were generated against; bumps are deliberate maintainer
-/// changes together with a fixture re-extraction.
-const String kCloudflareProviderVersionConstraint = '5.23.0';
+/// Exact version pin: the provider release the wrappers were generated
+/// against. `terradart wrap` emits it from the schema fixture's
+/// `provider_version.txt`, so the pin and the wrapper surface move together.
+const String kCloudflareProviderVersionConstraint = terradartProviderVersion;
 
 /// Concrete `StackProvider` for `cloudflare/cloudflare`.
 ///
@@ -60,7 +61,7 @@ final class CloudflareProvider implements StackProvider {
   @override
   String get source => kCloudflareProviderSource;
 
-  /// Version constraint — exact `5.23.0` pin.
+  /// Version constraint — the exact [kCloudflareProviderVersionConstraint] pin.
   @override
   String get versionConstraint => kCloudflareProviderVersionConstraint;
 
