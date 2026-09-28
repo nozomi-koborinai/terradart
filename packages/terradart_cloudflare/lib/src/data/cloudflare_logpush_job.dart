@@ -56,6 +56,10 @@ final class DataCloudflareLogpushJob extends Data {
   TfRef<String> get errorMessage =>
       TfRef.attribute<String>(this, 'error_message');
 
+  /// Reference to `filter_attack_traffic` attribute.
+  TfRef<bool> get filterAttackTraffic =>
+      TfRef.attribute<bool>(this, 'filter_attack_traffic');
+
   /// Reference to `frequency` attribute.
   TfRef<String> get frequency => TfRef.attribute<String>(this, 'frequency');
 

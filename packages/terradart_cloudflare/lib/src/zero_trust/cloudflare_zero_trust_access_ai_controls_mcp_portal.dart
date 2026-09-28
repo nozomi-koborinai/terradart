@@ -111,6 +111,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<bool>? allowCodeMode,
+    TfArg<String>? codeMode,
     TfArg<String>? description,
     required TfArg<String> hostname,
     required TfArg<String> id,
@@ -126,6 +127,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpPortal extends Resource {
          argMap: {
            'account_id': accountId,
            if (allowCodeMode != null) 'allow_code_mode': allowCodeMode,
+           if (codeMode != null) 'code_mode': codeMode,
            if (description != null) 'description': description,
            'hostname': hostname,
            'id': id,

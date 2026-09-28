@@ -13,19 +13,27 @@ const Set<String> _cloudflareMagicWanGreTunnelSensitive = <String>{};
 final class MagicWanGreTunnelBgp {
   const MagicWanGreTunnelBgp({
     required this.customerAsn,
+    this.exportFilterId,
     this.extraPrefixes,
+    this.importFilterId,
     this.md5Key,
   });
 
   final TfArg<num> customerAsn;
 
+  final TfArg<String>? exportFilterId;
+
   final TfArg<List<Object?>>? extraPrefixes;
+
+  final TfArg<String>? importFilterId;
 
   final TfArg<String>? md5Key;
 
   Map<String, Object?> encode() => {
     'customer_asn': customerAsn.toTfJson(),
+    if (exportFilterId != null) 'export_filter_id': exportFilterId!.toTfJson(),
     if (extraPrefixes != null) 'extra_prefixes': extraPrefixes!.toTfJson(),
+    if (importFilterId != null) 'import_filter_id': importFilterId!.toTfJson(),
     if (md5Key != null) 'md5_key': md5Key!.toTfJson(),
   };
 }

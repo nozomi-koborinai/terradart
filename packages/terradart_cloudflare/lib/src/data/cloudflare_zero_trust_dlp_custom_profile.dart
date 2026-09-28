@@ -64,6 +64,10 @@ final class DataCloudflareZeroTrustDlpCustomProfile extends Data {
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
 
+  /// Reference to `integration_id` attribute.
+  TfRef<String> get integrationId =>
+      TfRef.attribute<String>(this, 'integration_id');
+
   /// Reference to `ocr_enabled` attribute.
   TfRef<bool> get ocrEnabled => TfRef.attribute<bool>(this, 'ocr_enabled');
 

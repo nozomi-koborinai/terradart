@@ -59,8 +59,16 @@ final class DataCloudflareWorkflow extends Data {
   /// Reference to `created_on` attribute.
   TfRef<String> get createdOn => TfRef.attribute<String>(this, 'created_on');
 
+  /// Reference to `instances` attribute.
+  TfRef<Map<String, num>> get instances =>
+      TfRef.attribute<Map<String, num>>(this, 'instances');
+
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `script_deleted` attribute.
+  TfRef<bool> get scriptDeleted =>
+      TfRef.attribute<bool>(this, 'script_deleted');
 
   /// Reference to `script_name` attribute.
   TfRef<String> get scriptName => TfRef.attribute<String>(this, 'script_name');

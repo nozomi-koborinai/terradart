@@ -145,6 +145,7 @@ export 'src/data/cloudflare_content_scanning.dart'
     show DataCloudflareContentScanning;
 export 'src/data/cloudflare_content_scanning_expressions.dart'
     show DataCloudflareContentScanningExpressions;
+export 'src/data/cloudflare_ct_alerting.dart' show DataCloudflareCtAlerting;
 export 'src/data/cloudflare_custom_csr.dart'
     show DataCloudflareCustomCsr, DataCustomCsrFilter;
 export 'src/data/cloudflare_custom_csrs.dart' show DataCloudflareCustomCsrs;
@@ -227,12 +228,22 @@ export 'src/data/cloudflare_email_routing_rules.dart'
     show DataCloudflareEmailRoutingRules;
 export 'src/data/cloudflare_email_routing_settings.dart'
     show DataCloudflareEmailRoutingSettings;
+export 'src/data/cloudflare_email_security_allow_policies.dart'
+    show DataCloudflareEmailSecurityAllowPolicies;
+export 'src/data/cloudflare_email_security_allow_policy.dart'
+    show
+        DataCloudflareEmailSecurityAllowPolicy,
+        DataEmailSecurityAllowPolicyFilter;
 export 'src/data/cloudflare_email_security_block_sender.dart'
     show
         DataCloudflareEmailSecurityBlockSender,
         DataEmailSecurityBlockSenderFilter;
 export 'src/data/cloudflare_email_security_block_senders.dart'
     show DataCloudflareEmailSecurityBlockSenders;
+export 'src/data/cloudflare_email_security_domain.dart'
+    show DataCloudflareEmailSecurityDomain, DataEmailSecurityDomainFilter;
+export 'src/data/cloudflare_email_security_domains.dart'
+    show DataCloudflareEmailSecurityDomains;
 export 'src/data/cloudflare_email_security_impersonation_registries.dart'
     show DataCloudflareEmailSecurityImpersonationRegistries;
 export 'src/data/cloudflare_email_security_impersonation_registry.dart'
@@ -245,6 +256,12 @@ export 'src/data/cloudflare_email_security_trusted_domains.dart'
         DataEmailSecurityTrustedDomainsFilter;
 export 'src/data/cloudflare_email_security_trusted_domains_list.dart'
     show DataCloudflareEmailSecurityTrustedDomainsList;
+export 'src/data/cloudflare_email_sending_subdomain.dart'
+    show DataCloudflareEmailSendingSubdomain;
+export 'src/data/cloudflare_email_sending_subdomains.dart'
+    show DataCloudflareEmailSendingSubdomains;
+export 'src/data/cloudflare_field_extractor.dart'
+    show DataCloudflareFieldExtractor;
 export 'src/data/cloudflare_filter.dart'
     show DataCloudflareFilter, DataFilterFilter;
 export 'src/data/cloudflare_filters.dart' show DataCloudflareFilters;
@@ -253,7 +270,8 @@ export 'src/data/cloudflare_firewall_rules.dart'
     show DataCloudflareFirewallRules;
 export 'src/data/cloudflare_flagship_app.dart' show DataCloudflareFlagshipApp;
 export 'src/data/cloudflare_flagship_apps.dart' show DataCloudflareFlagshipApps;
-export 'src/data/cloudflare_flagship_flag.dart' show DataCloudflareFlagshipFlag;
+export 'src/data/cloudflare_flagship_flag.dart'
+    show DataCloudflareFlagshipFlag, DataFlagshipFlagFilter;
 export 'src/data/cloudflare_flagship_flags.dart'
     show DataCloudflareFlagshipFlags;
 export 'src/data/cloudflare_google_tag_gateway.dart'
@@ -262,6 +280,8 @@ export 'src/data/cloudflare_healthcheck.dart' show DataCloudflareHealthcheck;
 export 'src/data/cloudflare_healthchecks.dart' show DataCloudflareHealthchecks;
 export 'src/data/cloudflare_hostname_tls_setting.dart'
     show DataCloudflareHostnameTlsSetting;
+export 'src/data/cloudflare_hostname_tls_settings.dart'
+    show DataCloudflareHostnameTlsSettings;
 export 'src/data/cloudflare_hyperdrive_config.dart'
     show DataCloudflareHyperdriveConfig;
 export 'src/data/cloudflare_hyperdrive_configs.dart'
@@ -337,6 +357,10 @@ export 'src/data/cloudflare_magic_transit_site_wans.dart'
     show DataCloudflareMagicTransitSiteWans;
 export 'src/data/cloudflare_magic_transit_sites.dart'
     show DataCloudflareMagicTransitSites;
+export 'src/data/cloudflare_magic_wan_bgp_filter_profile.dart'
+    show DataCloudflareMagicWanBgpFilterProfile;
+export 'src/data/cloudflare_magic_wan_bgp_filter_profiles.dart'
+    show DataCloudflareMagicWanBgpFilterProfiles;
 export 'src/data/cloudflare_magic_wan_gre_tunnel.dart'
     show DataCloudflareMagicWanGreTunnel;
 export 'src/data/cloudflare_magic_wan_ipsec_tunnel.dart'
@@ -354,6 +378,7 @@ export 'src/data/cloudflare_mtls_certificate_associations.dart'
     show DataCloudflareMtlsCertificateAssociations;
 export 'src/data/cloudflare_mtls_certificates.dart'
     show DataCloudflareMtlsCertificates;
+export 'src/data/cloudflare_nel_setting.dart' show DataCloudflareNelSetting;
 export 'src/data/cloudflare_notification_policies.dart'
     show DataCloudflareNotificationPolicies;
 export 'src/data/cloudflare_notification_policy.dart'
@@ -423,6 +448,7 @@ export 'src/data/cloudflare_pipeline_stream.dart'
     show DataCloudflarePipelineStream, DataPipelineStreamFilter;
 export 'src/data/cloudflare_pipeline_streams.dart'
     show DataCloudflarePipelineStreams;
+export 'src/data/cloudflare_precursor.dart' show DataCloudflarePrecursor;
 export 'src/data/cloudflare_queue.dart' show DataCloudflareQueue;
 export 'src/data/cloudflare_queue_consumer.dart'
     show DataCloudflareQueueConsumer;
@@ -445,7 +471,6 @@ export 'src/data/cloudflare_r2_custom_domain.dart'
 export 'src/data/cloudflare_r2_data_catalog.dart'
     show DataCloudflareR2DataCatalog;
 export 'src/data/cloudflare_rate_limit.dart' show DataCloudflareRateLimit;
-export 'src/data/cloudflare_rate_limits.dart' show DataCloudflareRateLimits;
 export 'src/data/cloudflare_regional_hostname.dart'
     show DataCloudflareRegionalHostname;
 export 'src/data/cloudflare_regional_hostnames.dart'
@@ -504,6 +529,8 @@ export 'src/data/cloudflare_spectrum_application.dart'
     show DataCloudflareSpectrumApplication, DataSpectrumApplicationFilter;
 export 'src/data/cloudflare_spectrum_applications.dart'
     show DataCloudflareSpectrumApplications;
+export 'src/data/cloudflare_spectrum_protocols.dart'
+    show DataCloudflareSpectrumProtocols;
 export 'src/data/cloudflare_sso_connector.dart' show DataCloudflareSsoConnector;
 export 'src/data/cloudflare_sso_connectors.dart'
     show DataCloudflareSsoConnectors;
@@ -596,6 +623,8 @@ export 'src/data/cloudflare_workers_custom_domains.dart'
     show DataCloudflareWorkersCustomDomains;
 export 'src/data/cloudflare_workers_deployment.dart'
     show DataCloudflareWorkersDeployment;
+export 'src/data/cloudflare_workers_deployments.dart'
+    show DataCloudflareWorkersDeployments;
 export 'src/data/cloudflare_workers_for_platforms_dispatch_namespace.dart'
     show DataCloudflareWorkersForPlatformsDispatchNamespace;
 export 'src/data/cloudflare_workers_for_platforms_dispatch_namespaces.dart'
@@ -681,8 +710,20 @@ export 'src/data/cloudflare_zero_trust_access_tag.dart'
     show DataCloudflareZeroTrustAccessTag;
 export 'src/data/cloudflare_zero_trust_access_tags.dart'
     show DataCloudflareZeroTrustAccessTags;
+export 'src/data/cloudflare_zero_trust_casb_policies.dart'
+    show DataCloudflareZeroTrustCasbPolicies;
+export 'src/data/cloudflare_zero_trust_casb_policy.dart'
+    show DataCloudflareZeroTrustCasbPolicy;
+export 'src/data/cloudflare_zero_trust_casb_webhook.dart'
+    show DataCloudflareZeroTrustCasbWebhook;
+export 'src/data/cloudflare_zero_trust_casb_webhooks.dart'
+    show DataCloudflareZeroTrustCasbWebhooks;
+export 'src/data/cloudflare_zero_trust_connectivity_settings.dart'
+    show DataCloudflareZeroTrustConnectivitySettings;
 export 'src/data/cloudflare_zero_trust_device_custom_profile.dart'
-    show DataCloudflareZeroTrustDeviceCustomProfile;
+    show
+        DataCloudflareZeroTrustDeviceCustomProfile,
+        DataZeroTrustDeviceCustomProfileFilter;
 export 'src/data/cloudflare_zero_trust_device_custom_profile_local_domain_fallback.dart'
     show DataCloudflareZeroTrustDeviceCustomProfileLocalDomainFallback;
 export 'src/data/cloudflare_zero_trust_device_custom_profiles.dart'
@@ -783,7 +824,7 @@ export 'src/data/cloudflare_zero_trust_dlp_sensitivity_levels.dart'
 export 'src/data/cloudflare_zero_trust_dlp_settings.dart'
     show DataCloudflareZeroTrustDlpSettings;
 export 'src/data/cloudflare_zero_trust_dns_location.dart'
-    show DataCloudflareZeroTrustDnsLocation;
+    show DataCloudflareZeroTrustDnsLocation, DataZeroTrustDnsLocationFilter;
 export 'src/data/cloudflare_zero_trust_dns_locations.dart'
     show DataCloudflareZeroTrustDnsLocations;
 export 'src/data/cloudflare_zero_trust_gateway_app_types_list.dart'
@@ -803,9 +844,11 @@ export 'src/data/cloudflare_zero_trust_gateway_pacfiles.dart'
 export 'src/data/cloudflare_zero_trust_gateway_policies.dart'
     show DataCloudflareZeroTrustGatewayPolicies;
 export 'src/data/cloudflare_zero_trust_gateway_policy.dart'
-    show DataCloudflareZeroTrustGatewayPolicy;
+    show DataCloudflareZeroTrustGatewayPolicy, DataZeroTrustGatewayPolicyFilter;
 export 'src/data/cloudflare_zero_trust_gateway_proxy_endpoint.dart'
-    show DataCloudflareZeroTrustGatewayProxyEndpoint;
+    show
+        DataCloudflareZeroTrustGatewayProxyEndpoint,
+        DataZeroTrustGatewayProxyEndpointFilter;
 export 'src/data/cloudflare_zero_trust_gateway_proxy_endpoints.dart'
     show DataCloudflareZeroTrustGatewayProxyEndpoints;
 export 'src/data/cloudflare_zero_trust_gateway_settings.dart'
@@ -823,7 +866,9 @@ export 'src/data/cloudflare_zero_trust_network_hostname_routes.dart'
 export 'src/data/cloudflare_zero_trust_organization.dart'
     show DataCloudflareZeroTrustOrganization;
 export 'src/data/cloudflare_zero_trust_resource_library_application.dart'
-    show DataCloudflareZeroTrustResourceLibraryApplication;
+    show
+        DataCloudflareZeroTrustResourceLibraryApplication,
+        DataZeroTrustResourceLibraryApplicationFilter;
 export 'src/data/cloudflare_zero_trust_resource_library_applications.dart'
     show DataCloudflareZeroTrustResourceLibraryApplications;
 export 'src/data/cloudflare_zero_trust_resource_library_categories.dart'
@@ -887,5 +932,8 @@ export 'src/data/cloudflare_zone_lockdowns.dart'
 export 'src/data/cloudflare_zone_setting.dart' show DataCloudflareZoneSetting;
 export 'src/data/cloudflare_zone_subscription.dart'
     show DataCloudflareZoneSubscription;
+export 'src/data/cloudflare_zone_tracing.dart' show DataCloudflareZoneTracing;
+export 'src/data/cloudflare_zone_tracing_rules.dart'
+    show DataCloudflareZoneTracingRules;
 export 'src/data/cloudflare_zones.dart'
     show DataCloudflareZones, DataZonesAccount;

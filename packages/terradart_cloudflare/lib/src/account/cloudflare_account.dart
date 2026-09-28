@@ -66,6 +66,7 @@ final class CloudflareAccount extends Resource {
   CloudflareAccount({
     required super.localName,
     required TfArg<String> name,
+    TfArg<bool>? standalone,
     TfArg<String>? type,
     AccountManagedBy? managedBy,
     AccountSettings? settings,
@@ -78,6 +79,7 @@ final class CloudflareAccount extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
+           if (standalone != null) 'standalone': standalone,
            if (type != null) 'type': type,
            if (managedBy != null)
              'managed_by': TfArg.literal(managedBy.encode()),

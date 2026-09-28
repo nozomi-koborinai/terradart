@@ -43,6 +43,7 @@ final class CloudflareQueue extends Resource {
   CloudflareQueue({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<String>? jurisdiction,
     required TfArg<String> queueName,
     QueueSettings? settings,
     super.lifecycle,
@@ -53,6 +54,7 @@ final class CloudflareQueue extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           if (jurisdiction != null) 'jurisdiction': jurisdiction,
            'queue_name': queueName,
            if (settings != null) 'settings': TfArg.literal(settings.encode()),
          },

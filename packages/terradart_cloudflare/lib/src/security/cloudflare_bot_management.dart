@@ -16,15 +16,21 @@ final class CloudflareBotManagement extends Resource {
 
   CloudflareBotManagement({
     required super.localName,
+    TfArg<bool>? aiBotsMigrationOptOut,
     TfArg<String>? aiBotsProtection,
+    TfArg<String>? aiTraining,
+    TfArg<String>? aiUser,
+    TfArg<String>? aisearch,
     TfArg<bool>? autoUpdateModel,
     TfArg<bool>? bmCookieEnabled,
+    TfArg<bool>? botPreferenceSyncEnabled,
     TfArg<String>? cfRobotsVariant,
     TfArg<String>? contentBotsProtection,
     TfArg<String>? crawlerProtection,
     TfArg<bool>? enableJs,
     TfArg<bool>? fightMode,
     TfArg<bool>? isRobotsTxtManaged,
+    TfArg<bool>? jsdApiResultsEnabled,
     TfArg<bool>? optimizeWordpress,
     TfArg<String>? sbfmDefinitelyAutomated,
     TfArg<String>? sbfmLikelyAutomated,
@@ -39,9 +45,16 @@ final class CloudflareBotManagement extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
+           if (aiBotsMigrationOptOut != null)
+             'ai_bots_migration_opt_out': aiBotsMigrationOptOut,
            if (aiBotsProtection != null) 'ai_bots_protection': aiBotsProtection,
+           if (aiTraining != null) 'ai_training': aiTraining,
+           if (aiUser != null) 'ai_user': aiUser,
+           if (aisearch != null) 'aisearch': aisearch,
            if (autoUpdateModel != null) 'auto_update_model': autoUpdateModel,
            if (bmCookieEnabled != null) 'bm_cookie_enabled': bmCookieEnabled,
+           if (botPreferenceSyncEnabled != null)
+             'bot_preference_sync_enabled': botPreferenceSyncEnabled,
            if (cfRobotsVariant != null) 'cf_robots_variant': cfRobotsVariant,
            if (contentBotsProtection != null)
              'content_bots_protection': contentBotsProtection,
@@ -51,6 +64,8 @@ final class CloudflareBotManagement extends Resource {
            if (fightMode != null) 'fight_mode': fightMode,
            if (isRobotsTxtManaged != null)
              'is_robots_txt_managed': isRobotsTxtManaged,
+           if (jsdApiResultsEnabled != null)
+             'jsd_api_results_enabled': jsdApiResultsEnabled,
            if (optimizeWordpress != null)
              'optimize_wordpress': optimizeWordpress,
            if (sbfmDefinitelyAutomated != null)

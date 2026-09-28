@@ -227,12 +227,16 @@ final class ZeroTrustAccessGroupExcludeCommonName {
 @immutable
 final class ZeroTrustAccessGroupExcludeDevicePosture {
   const ZeroTrustAccessGroupExcludeDevicePosture({
+    this.accountId,
     required this.integrationUid,
   });
+
+  final TfArg<String>? accountId;
 
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
+    if (accountId != null) 'account_id': accountId!.toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -715,12 +719,16 @@ final class ZeroTrustAccessGroupIncludeCommonName {
 @immutable
 final class ZeroTrustAccessGroupIncludeDevicePosture {
   const ZeroTrustAccessGroupIncludeDevicePosture({
+    this.accountId,
     required this.integrationUid,
   });
+
+  final TfArg<String>? accountId;
 
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
+    if (accountId != null) 'account_id': accountId!.toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -1203,12 +1211,16 @@ final class ZeroTrustAccessGroupRequireCommonName {
 @immutable
 final class ZeroTrustAccessGroupRequireDevicePosture {
   const ZeroTrustAccessGroupRequireDevicePosture({
+    this.accountId,
     required this.integrationUid,
   });
+
+  final TfArg<String>? accountId;
 
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
+    if (accountId != null) 'account_id': accountId!.toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }

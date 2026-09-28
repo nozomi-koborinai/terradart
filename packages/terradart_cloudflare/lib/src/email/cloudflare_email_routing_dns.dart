@@ -17,6 +17,7 @@ final class CloudflareEmailRoutingDns extends Resource {
   CloudflareEmailRoutingDns({
     required super.localName,
     TfArg<String>? name,
+    TfArg<String>? subdomain,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
@@ -24,7 +25,11 @@ final class CloudflareEmailRoutingDns extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (name != null) 'name': name, 'zone_id': zoneId},
+         argMap: {
+           if (name != null) 'name': name,
+           if (subdomain != null) 'subdomain': subdomain,
+           'zone_id': zoneId,
+         },
        );
 
   @override
@@ -51,8 +56,9 @@ final class CloudflareEmailRoutingDns extends Resource {
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 
-  /// Reference to `success` attribute.
-  TfRef<bool> get success => TfRef.attribute<bool>(this, 'success');
+  /// Reference to `support_subaddress` attribute.
+  TfRef<bool> get supportSubaddress =>
+      TfRef.attribute<bool>(this, 'support_subaddress');
 
   /// Reference to `tag` attribute.
   TfRef<String> get tag => TfRef.attribute<String>(this, 'tag');
