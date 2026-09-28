@@ -16,7 +16,7 @@ final class DataCloudflareEmailSecurityBlockSenders extends Data {
 
   DataCloudflareEmailSecurityBlockSenders({
     required super.localName,
-    TfArg<String>? accountId,
+    required TfArg<String> accountId,
     TfArg<String>? direction,
     TfArg<num>? maxItems,
     TfArg<String>? order,
@@ -28,7 +28,7 @@ final class DataCloudflareEmailSecurityBlockSenders extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': accountId,
            if (direction != null) 'direction': direction,
            if (maxItems != null) 'max_items': maxItems,
            if (order != null) 'order': order,

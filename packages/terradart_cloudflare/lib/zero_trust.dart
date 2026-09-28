@@ -318,9 +318,20 @@ export 'src/zero_trust/cloudflare_zero_trust_access_short_lived_certificate.dart
     show CloudflareZeroTrustAccessShortLivedCertificate;
 export 'src/zero_trust/cloudflare_zero_trust_access_tag.dart'
     show CloudflareZeroTrustAccessTag;
+export 'src/zero_trust/cloudflare_zero_trust_casb_policy.dart'
+    show
+        CloudflareZeroTrustCasbPolicy,
+        ZeroTrustCasbPolicyActions,
+        ZeroTrustCasbPolicyActionsRemediationTypes,
+        ZeroTrustCasbPolicyActionsWebhookConfigs;
+export 'src/zero_trust/cloudflare_zero_trust_casb_webhook.dart'
+    show CloudflareZeroTrustCasbWebhook, ZeroTrustCasbWebhookHeaders;
+export 'src/zero_trust/cloudflare_zero_trust_connectivity_settings.dart'
+    show CloudflareZeroTrustConnectivitySettings;
 export 'src/zero_trust/cloudflare_zero_trust_device_custom_profile.dart'
     show
         CloudflareZeroTrustDeviceCustomProfile,
+        ZeroTrustDeviceCustomProfileBrowserExtensionConfig,
         ZeroTrustDeviceCustomProfileDnsSearchSuffixes,
         ZeroTrustDeviceCustomProfileExclude,
         ZeroTrustDeviceCustomProfileGlobalAcceleration,
@@ -493,7 +504,10 @@ export 'src/zero_trust/cloudflare_zero_trust_organization.dart'
         ZeroTrustOrganizationCustomPages,
         ZeroTrustOrganizationLoginDesign,
         ZeroTrustOrganizationMfaConfig,
-        ZeroTrustOrganizationMfaSshPivKeyRequirements;
+        ZeroTrustOrganizationMfaSshPivKeyRequirements,
+        ZeroTrustOrganizationServiceTokenInactivity;
+export 'src/zero_trust/cloudflare_zero_trust_resource_library_application.dart'
+    show CloudflareZeroTrustResourceLibraryApplication;
 export 'src/zero_trust/cloudflare_zero_trust_risk_behavior.dart'
     show CloudflareZeroTrustRiskBehavior, ZeroTrustRiskBehaviorBehaviors;
 export 'src/zero_trust/cloudflare_zero_trust_risk_scoring_integration.dart'

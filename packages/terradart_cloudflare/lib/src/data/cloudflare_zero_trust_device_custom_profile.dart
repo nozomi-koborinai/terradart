@@ -1,10 +1,24 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_device_custom_profile`.
 const Set<String> _cloudflareZeroTrustDeviceCustomProfileSensitive = <String>{};
+
+/// Typed helper for the `filter` block of
+/// `cloudflare_zero_trust_device_custom_profile` (derived from provider schema).
+@immutable
+final class DataZeroTrustDeviceCustomProfileFilter {
+  const DataZeroTrustDeviceCustomProfileFilter({this.profileType});
+
+  final TfArg<String>? profileType;
+
+  Map<String, Object?> encode() => {
+    if (profileType != null) 'profile_type': profileType!.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `cloudflare_zero_trust_device_custom_profile`.
 final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
@@ -13,14 +27,16 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
   DataCloudflareZeroTrustDeviceCustomProfile({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<String> policyId,
+    TfArg<String>? policyId,
+    DataZeroTrustDeviceCustomProfileFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
            if (accountId != null) 'account_id': accountId,
-           'policy_id': policyId,
+           if (policyId != null) 'policy_id': policyId,
+           if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );
 
@@ -86,6 +102,10 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
   /// Reference to `precedence` attribute.
   TfRef<num> get precedence => TfRef.attribute<num>(this, 'precedence');
 
+  /// Reference to `profile_type` attribute.
+  TfRef<String> get profileType =>
+      TfRef.attribute<String>(this, 'profile_type');
+
   /// Reference to `register_interface_ip_with_dns` attribute.
   TfRef<bool> get registerInterfaceIpWithDns =>
       TfRef.attribute<bool>(this, 'register_interface_ip_with_dns');
@@ -103,4 +123,8 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
   /// Reference to `tunnel_protocol` attribute.
   TfRef<String> get tunnelProtocol =>
       TfRef.attribute<String>(this, 'tunnel_protocol');
+
+  /// Reference to `uninstall_protection` attribute.
+  TfRef<bool> get uninstallProtection =>
+      TfRef.attribute<bool>(this, 'uninstall_protection');
 }

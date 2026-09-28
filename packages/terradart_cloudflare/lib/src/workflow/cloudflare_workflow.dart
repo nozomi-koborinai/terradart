@@ -7,6 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_workflow`.
 const Set<String> _cloudflareWorkflowSensitive = <String>{};
 
+/// Typed helper for the `concurrency` block of
+/// `cloudflare_workflow` (derived from provider schema).
+@immutable
+final class WorkflowConcurrency {
+  const WorkflowConcurrency({this.limit});
+
+  final TfArg<num>? limit;
+
+  Map<String, Object?> encode() => {
+    if (limit != null) 'limit': limit!.toTfJson(),
+  };
+}
+
 /// Typed helper for the `default_retention` block of
 /// `cloudflare_workflow` (derived from provider schema).
 @immutable
@@ -62,6 +75,7 @@ final class CloudflareWorkflow extends Resource {
     required TfArg<String> className,
     required TfArg<String> scriptName,
     required TfArg<String> workflowName,
+    WorkflowConcurrency? concurrency,
     WorkflowDefaultRetention? defaultRetention,
     WorkflowLimits? limits,
     List<WorkflowSchedules>? schedules,
@@ -76,6 +90,8 @@ final class CloudflareWorkflow extends Resource {
            'class_name': className,
            'script_name': scriptName,
            'workflow_name': workflowName,
+           if (concurrency != null)
+             'concurrency': TfArg.literal(concurrency.encode()),
            if (defaultRetention != null)
              'default_retention': TfArg.literal(defaultRetention.encode()),
            if (limits != null) 'limits': TfArg.literal(limits.encode()),
@@ -98,11 +114,19 @@ final class CloudflareWorkflow extends Resource {
   /// Reference to `created_on` attribute.
   TfRef<String> get createdOn => TfRef.attribute<String>(this, 'created_on');
 
+  /// Reference to `instances` attribute.
+  TfRef<Map<String, num>> get instances =>
+      TfRef.attribute<Map<String, num>>(this, 'instances');
+
   /// Reference to `is_deleted` attribute.
   TfRef<num> get isDeleted => TfRef.attribute<num>(this, 'is_deleted');
 
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `script_deleted` attribute.
+  TfRef<bool> get scriptDeleted =>
+      TfRef.attribute<bool>(this, 'script_deleted');
 
   /// Reference to `terminator_running` attribute.
   TfRef<num> get terminatorRunning =>

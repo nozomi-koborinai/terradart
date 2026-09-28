@@ -28,8 +28,10 @@ final class ZeroTrustAccessIdentityProviderConfig {
     this.emailAttributeName,
     this.emailClaimName,
     this.enableEncryption,
+    this.forceAuthn,
     this.idpPublicCerts,
     this.issuerUrl,
+    this.maxSsoUrlLength,
     this.oktaAccount,
     this.oneloginAccount,
     this.pingEnvId,
@@ -41,6 +43,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
     this.ssoTargetUrl,
     this.supportGroups,
     this.tokenUrl,
+    this.useLoginHint,
     this.headerAttributes,
   });
 
@@ -74,9 +77,13 @@ final class ZeroTrustAccessIdentityProviderConfig {
 
   final TfArg<bool>? enableEncryption;
 
+  final TfArg<bool>? forceAuthn;
+
   final TfArg<List<Object?>>? idpPublicCerts;
 
   final TfArg<String>? issuerUrl;
+
+  final TfArg<num>? maxSsoUrlLength;
 
   final TfArg<String>? oktaAccount;
 
@@ -99,6 +106,8 @@ final class ZeroTrustAccessIdentityProviderConfig {
   final TfArg<bool>? supportGroups;
 
   final TfArg<String>? tokenUrl;
+
+  final TfArg<bool>? useLoginHint;
 
   final List<ZeroTrustAccessIdentityProviderConfigHeaderAttributes>?
   headerAttributes;
@@ -124,8 +133,11 @@ final class ZeroTrustAccessIdentityProviderConfig {
     if (emailClaimName != null) 'email_claim_name': emailClaimName!.toTfJson(),
     if (enableEncryption != null)
       'enable_encryption': enableEncryption!.toTfJson(),
+    if (forceAuthn != null) 'force_authn': forceAuthn!.toTfJson(),
     if (idpPublicCerts != null) 'idp_public_certs': idpPublicCerts!.toTfJson(),
     if (issuerUrl != null) 'issuer_url': issuerUrl!.toTfJson(),
+    if (maxSsoUrlLength != null)
+      'max_sso_url_length': maxSsoUrlLength!.toTfJson(),
     if (oktaAccount != null) 'okta_account': oktaAccount!.toTfJson(),
     if (oneloginAccount != null)
       'onelogin_account': oneloginAccount!.toTfJson(),
@@ -139,6 +151,7 @@ final class ZeroTrustAccessIdentityProviderConfig {
     if (ssoTargetUrl != null) 'sso_target_url': ssoTargetUrl!.toTfJson(),
     if (supportGroups != null) 'support_groups': supportGroups!.toTfJson(),
     if (tokenUrl != null) 'token_url': tokenUrl!.toTfJson(),
+    if (useLoginHint != null) 'use_login_hint': useLoginHint!.toTfJson(),
     if (headerAttributes != null)
       'header_attributes': [for (final e in headerAttributes!) e.encode()],
   };

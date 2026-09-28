@@ -6,6 +6,7 @@ library;
 export 'src/workflow/cloudflare_workflow.dart'
     show
         CloudflareWorkflow,
+        WorkflowConcurrency,
         WorkflowDefaultRetention,
         WorkflowLimits,
         WorkflowSchedules;

@@ -18,8 +18,10 @@ final class CloudflareApiShieldOperation extends Resource {
   CloudflareApiShieldOperation({
     required super.localName,
     required TfArg<String> endpoint,
+    TfArg<List<String>>? feature,
     required TfArg<String> host,
     required TfArg<String> method,
+    TfArg<bool>? withSchemas,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
@@ -29,8 +31,10 @@ final class CloudflareApiShieldOperation extends Resource {
          terraformType: tfType,
          argMap: {
            'endpoint': endpoint,
+           if (feature != null) 'feature': feature,
            'host': host,
            'method': method,
+           if (withSchemas != null) 'with_schemas': withSchemas,
            'zone_id': zoneId,
          },
        );

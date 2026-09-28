@@ -123,6 +123,7 @@ final class CloudflareRateLimit extends Resource {
   CloudflareRateLimit({
     required super.localName,
     required TfArg<num> period,
+    TfArg<String>? rateLimitId,
     required TfArg<num> threshold,
     required TfArg<String> zoneId,
     required RateLimitAction action,
@@ -135,6 +136,7 @@ final class CloudflareRateLimit extends Resource {
          terraformType: tfType,
          argMap: {
            'period': period,
+           if (rateLimitId != null) 'rate_limit_id': rateLimitId,
            'threshold': threshold,
            'zone_id': zoneId,
            'action': TfArg.literal(action.encode()),
@@ -144,13 +146,4 @@ final class CloudflareRateLimit extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareRateLimitSensitive;
-
-  /// Reference to `id` attribute.
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `description` attribute.
-  TfRef<String> get description => TfRef.attribute<String>(this, 'description');
-
-  /// Reference to `disabled` attribute.
-  TfRef<bool> get disabled => TfRef.attribute<bool>(this, 'disabled');
 }

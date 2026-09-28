@@ -1,11 +1,39 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_gateway_proxy_endpoint`.
 const Set<String> _cloudflareZeroTrustGatewayProxyEndpointSensitive =
     <String>{};
+
+/// Typed helper for the `filter` block of
+/// `cloudflare_zero_trust_gateway_proxy_endpoint` (derived from provider schema).
+@immutable
+final class DataZeroTrustGatewayProxyEndpointFilter {
+  const DataZeroTrustGatewayProxyEndpointFilter({
+    this.direction,
+    this.filter,
+    this.orderBy,
+    this.search,
+  });
+
+  final TfArg<String>? direction;
+
+  final TfArg<List<Object?>>? filter;
+
+  final TfArg<String>? orderBy;
+
+  final TfArg<String>? search;
+
+  Map<String, Object?> encode() => {
+    if (direction != null) 'direction': direction!.toTfJson(),
+    if (filter != null) 'filter': filter!.toTfJson(),
+    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
+    if (search != null) 'search': search!.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `cloudflare_zero_trust_gateway_proxy_endpoint`.
 final class DataCloudflareZeroTrustGatewayProxyEndpoint extends Data {
@@ -14,14 +42,16 @@ final class DataCloudflareZeroTrustGatewayProxyEndpoint extends Data {
   DataCloudflareZeroTrustGatewayProxyEndpoint({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<String> proxyEndpointId,
+    TfArg<String>? proxyEndpointId,
+    DataZeroTrustGatewayProxyEndpointFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
            if (accountId != null) 'account_id': accountId,
-           'proxy_endpoint_id': proxyEndpointId,
+           if (proxyEndpointId != null) 'proxy_endpoint_id': proxyEndpointId,
+           if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );
 

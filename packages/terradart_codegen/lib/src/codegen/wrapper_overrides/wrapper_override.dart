@@ -343,6 +343,33 @@ final class WrapperOverride {
     this.nestedTypeExcludes,
     this.dedupeNestedTypes = false,
   });
+
+  /// This override with [dartTypeOverrides] replaced.
+  WrapperOverride withDartTypeOverrides(
+          Map<String, String> dartTypeOverrides) =>
+      WrapperOverride(
+        outputDir: outputDir,
+        kind: kind,
+        schemaStubBodyMode: schemaStubBodyMode,
+        fileLeadingComment: fileLeadingComment,
+        paramOrder: paramOrder,
+        argMapOrder: argMapOrder,
+        extraGetters: extraGetters,
+        requiredParams: requiredParams,
+        dartTypeOverrides: dartTypeOverrides,
+        deprecatedParams: deprecatedParams,
+        extraImports: extraImports,
+        extraSensitiveFields: extraSensitiveFields,
+        prelude: prelude,
+        customSlots: customSlots,
+        deriveEnums: deriveEnums,
+        deriveOutputGetters: deriveOutputGetters,
+        deriveClassDoc: deriveClassDoc,
+        curatedDoc: curatedDoc,
+        deriveNestedTypes: deriveNestedTypes,
+        nestedTypeExcludes: nestedTypeExcludes,
+        dedupeNestedTypes: dedupeNestedTypes,
+      );
 }
 
 /// One slot's worth of verbatim constructor + argMap snippets.

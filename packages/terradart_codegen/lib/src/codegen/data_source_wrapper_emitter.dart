@@ -12,6 +12,7 @@ import 'getter_emitter.dart';
 import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
+import 'provider_enums.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
@@ -54,7 +55,11 @@ class DataSourceWrapperEmitter {
   DataSourceWrapperEmitter({
     required this.overrides,
     this.rawDataSourceSchemas = const {},
+    this.providerEnums = ProviderEnums.off,
   });
+
+  /// The `--provider-enums` gate; supplies the nested helpers' enum values.
+  final ProviderEnums providerEnums;
 
   /// `Map<terraformType, override>` for data source entries.
   /// Keys must match [ResourceDef.terraformType].
@@ -116,6 +121,7 @@ class DataSourceWrapperEmitter {
             excludedPaths:
                 (override.nestedTypeExcludes ?? const <String>[]).toSet(),
             shareIdenticalShapes: override.dedupeNestedTypes,
+            enumValues: providerEnums.resolver(null),
           )
         : const <NestedBlockSpec>[];
 

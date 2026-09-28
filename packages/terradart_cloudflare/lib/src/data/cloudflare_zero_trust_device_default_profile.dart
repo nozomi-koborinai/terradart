@@ -66,6 +66,10 @@ final class DataCloudflareZeroTrustDeviceDefaultProfile extends Data {
   /// Reference to `policy_id` attribute.
   TfRef<String> get policyId => TfRef.attribute<String>(this, 'policy_id');
 
+  /// Reference to `profile_type` attribute.
+  TfRef<String> get profileType =>
+      TfRef.attribute<String>(this, 'profile_type');
+
   /// Reference to `register_interface_ip_with_dns` attribute.
   TfRef<bool> get registerInterfaceIpWithDns =>
       TfRef.attribute<bool>(this, 'register_interface_ip_with_dns');
@@ -83,4 +87,8 @@ final class DataCloudflareZeroTrustDeviceDefaultProfile extends Data {
   /// Reference to `tunnel_protocol` attribute.
   TfRef<String> get tunnelProtocol =>
       TfRef.attribute<String>(this, 'tunnel_protocol');
+
+  /// Reference to `uninstall_protection` attribute.
+  TfRef<bool> get uninstallProtection =>
+      TfRef.attribute<bool>(this, 'uninstall_protection');
 }

@@ -14,6 +14,7 @@ final class WorkerObservability {
   const WorkerObservability({
     this.enabled,
     this.headSamplingRate,
+    this.issues,
     this.logs,
     this.traces,
   });
@@ -21,6 +22,8 @@ final class WorkerObservability {
   final TfArg<bool>? enabled;
 
   final TfArg<num>? headSamplingRate;
+
+  final WorkerObservabilityIssues? issues;
 
   final WorkerObservabilityLogs? logs;
 
@@ -30,8 +33,22 @@ final class WorkerObservability {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (headSamplingRate != null)
       'head_sampling_rate': headSamplingRate!.toTfJson(),
+    if (issues != null) 'issues': issues!.encode(),
     if (logs != null) 'logs': logs!.encode(),
     if (traces != null) 'traces': traces!.encode(),
+  };
+}
+
+/// Typed helper for the `observability.issues` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerObservabilityIssues {
+  const WorkerObservabilityIssues({this.enabled});
+
+  final TfArg<bool>? enabled;
+
+  Map<String, Object?> encode() => {
+    if (enabled != null) 'enabled': enabled!.toTfJson(),
   };
 }
 
@@ -100,6 +117,273 @@ final class WorkerObservabilityTraces {
   };
 }
 
+/// Typed helper for the `previews_base_config` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfig {
+  const WorkerPreviewsBaseConfig({
+    this.logpush,
+    this.cacheOptions,
+    this.env,
+    this.limits,
+    this.observability,
+    this.placement,
+    this.tailConsumers,
+  });
+
+  final TfArg<bool>? logpush;
+
+  final WorkerPreviewsBaseConfigCacheOptions? cacheOptions;
+
+  final WorkerPreviewsBaseConfigEnv? env;
+
+  final WorkerPreviewsBaseConfigLimits? limits;
+
+  final WorkerPreviewsBaseConfigObservability? observability;
+
+  final WorkerPreviewsBaseConfigPlacement? placement;
+
+  final List<WorkerPreviewsBaseConfigTailConsumers>? tailConsumers;
+
+  Map<String, Object?> encode() => {
+    if (logpush != null) 'logpush': logpush!.toTfJson(),
+    if (cacheOptions != null) 'cache_options': cacheOptions!.encode(),
+    if (env != null) 'env': env!.encode(),
+    if (limits != null) 'limits': limits!.encode(),
+    if (observability != null) 'observability': observability!.encode(),
+    if (placement != null) 'placement': placement!.encode(),
+    if (tailConsumers != null)
+      'tail_consumers': [for (final e in tailConsumers!) e.encode()],
+  };
+}
+
+/// Typed helper for the `previews_base_config.cache_options` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfigCacheOptions {
+  const WorkerPreviewsBaseConfigCacheOptions({
+    this.crossVersionCache,
+    this.enabled,
+  });
+
+  final TfArg<bool>? crossVersionCache;
+
+  final TfArg<bool>? enabled;
+
+  Map<String, Object?> encode() => {
+    if (crossVersionCache != null)
+      'cross_version_cache': crossVersionCache!.toTfJson(),
+    if (enabled != null) 'enabled': enabled!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `previews_base_config.env` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfigEnv {
+  const WorkerPreviewsBaseConfigEnv({required this.type});
+
+  final TfArg<String> type;
+
+  Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// Typed helper for the `previews_base_config.limits` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfigLimits {
+  const WorkerPreviewsBaseConfigLimits({this.cpuMs, this.subrequests});
+
+  final TfArg<num>? cpuMs;
+
+  final TfArg<num>? subrequests;
+
+  Map<String, Object?> encode() => {
+    if (cpuMs != null) 'cpu_ms': cpuMs!.toTfJson(),
+    if (subrequests != null) 'subrequests': subrequests!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `previews_base_config.observability` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfigObservability {
+  const WorkerPreviewsBaseConfigObservability({
+    this.enabled,
+    this.headSamplingRate,
+    this.redactQueryString,
+    this.issues,
+    this.logs,
+    this.traces,
+  });
+
+  final TfArg<bool>? enabled;
+
+  final TfArg<num>? headSamplingRate;
+
+  final TfArg<bool>? redactQueryString;
+
+  final WorkerPreviewsBaseConfigObservabilityIssues? issues;
+
+  final WorkerPreviewsBaseConfigObservabilityLogs? logs;
+
+  final WorkerPreviewsBaseConfigObservabilityTraces? traces;
+
+  Map<String, Object?> encode() => {
+    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    if (headSamplingRate != null)
+      'head_sampling_rate': headSamplingRate!.toTfJson(),
+    if (redactQueryString != null)
+      'redact_query_string': redactQueryString!.toTfJson(),
+    if (issues != null) 'issues': issues!.encode(),
+    if (logs != null) 'logs': logs!.encode(),
+    if (traces != null) 'traces': traces!.encode(),
+  };
+}
+
+/// Typed helper for the `previews_base_config.observability.issues` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfigObservabilityIssues {
+  const WorkerPreviewsBaseConfigObservabilityIssues({this.enabled});
+
+  final TfArg<bool>? enabled;
+
+  Map<String, Object?> encode() => {
+    if (enabled != null) 'enabled': enabled!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `previews_base_config.observability.logs` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfigObservabilityLogs {
+  const WorkerPreviewsBaseConfigObservabilityLogs({
+    this.destinations,
+    this.enabled,
+    this.headSamplingRate,
+    this.invocationLogs,
+    this.persist,
+  });
+
+  final TfArg<List<Object?>>? destinations;
+
+  final TfArg<bool>? enabled;
+
+  final TfArg<num>? headSamplingRate;
+
+  final TfArg<bool>? invocationLogs;
+
+  final TfArg<bool>? persist;
+
+  Map<String, Object?> encode() => {
+    if (destinations != null) 'destinations': destinations!.toTfJson(),
+    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    if (headSamplingRate != null)
+      'head_sampling_rate': headSamplingRate!.toTfJson(),
+    if (invocationLogs != null) 'invocation_logs': invocationLogs!.toTfJson(),
+    if (persist != null) 'persist': persist!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `previews_base_config.observability.traces` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfigObservabilityTraces {
+  const WorkerPreviewsBaseConfigObservabilityTraces({
+    this.destinations,
+    this.enabled,
+    this.headSamplingRate,
+    this.persist,
+    this.propagationPolicy,
+  });
+
+  final TfArg<List<Object?>>? destinations;
+
+  final TfArg<bool>? enabled;
+
+  final TfArg<num>? headSamplingRate;
+
+  final TfArg<bool>? persist;
+
+  final TfArg<String>? propagationPolicy;
+
+  Map<String, Object?> encode() => {
+    if (destinations != null) 'destinations': destinations!.toTfJson(),
+    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    if (headSamplingRate != null)
+      'head_sampling_rate': headSamplingRate!.toTfJson(),
+    if (persist != null) 'persist': persist!.toTfJson(),
+    if (propagationPolicy != null)
+      'propagation_policy': propagationPolicy!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `previews_base_config.placement` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfigPlacement {
+  const WorkerPreviewsBaseConfigPlacement({
+    this.host,
+    this.hostname,
+    this.mode,
+    this.region,
+    this.target,
+  });
+
+  final TfArg<String>? host;
+
+  final TfArg<String>? hostname;
+
+  final TfArg<String>? mode;
+
+  final TfArg<String>? region;
+
+  final List<WorkerPreviewsBaseConfigPlacementTarget>? target;
+
+  Map<String, Object?> encode() => {
+    if (host != null) 'host': host!.toTfJson(),
+    if (hostname != null) 'hostname': hostname!.toTfJson(),
+    if (mode != null) 'mode': mode!.toTfJson(),
+    if (region != null) 'region': region!.toTfJson(),
+    if (target != null) 'target': [for (final e in target!) e.encode()],
+  };
+}
+
+/// Typed helper for the `previews_base_config.placement.target` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfigPlacementTarget {
+  const WorkerPreviewsBaseConfigPlacementTarget({
+    this.host,
+    this.hostname,
+    this.region,
+  });
+
+  final TfArg<String>? host;
+
+  final TfArg<String>? hostname;
+
+  final TfArg<String>? region;
+
+  Map<String, Object?> encode() => {
+    if (host != null) 'host': host!.toTfJson(),
+    if (hostname != null) 'hostname': hostname!.toTfJson(),
+    if (region != null) 'region': region!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `previews_base_config.tail_consumers` block of
+/// `cloudflare_worker` (derived from provider schema).
+@immutable
+final class WorkerPreviewsBaseConfigTailConsumers {
+  const WorkerPreviewsBaseConfigTailConsumers({required this.name});
+
+  final TfArg<String> name;
+
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+}
+
 /// Typed helper for the `subdomain` block of
 /// `cloudflare_worker` (derived from provider schema).
 @immutable
@@ -139,10 +423,12 @@ final class CloudflareWorker extends Resource {
   CloudflareWorker({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<bool>? force,
     TfArg<bool>? logpush,
     required TfArg<String> name,
     TfArg<List<String>>? tags,
     WorkerObservability? observability,
+    WorkerPreviewsBaseConfig? previewsBaseConfig,
     WorkerSubdomain? subdomain,
     List<WorkerTailConsumers>? tailConsumers,
     super.lifecycle,
@@ -153,11 +439,14 @@ final class CloudflareWorker extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           if (force != null) 'force': force,
            if (logpush != null) 'logpush': logpush,
            'name': name,
            if (tags != null) 'tags': tags,
            if (observability != null)
              'observability': TfArg.literal(observability.encode()),
+           if (previewsBaseConfig != null)
+             'previews_base_config': TfArg.literal(previewsBaseConfig.encode()),
            if (subdomain != null)
              'subdomain': TfArg.literal(subdomain.encode()),
            if (tailConsumers != null)

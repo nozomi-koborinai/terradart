@@ -30,7 +30,7 @@ final class DataCloudflareMagicTransitConnector extends Data {
 
   DataCloudflareMagicTransitConnector({
     required super.localName,
-    TfArg<String>? accountId,
+    required TfArg<String> accountId,
     TfArg<String>? connectorId,
     DataMagicTransitConnectorFilter? filter,
     super.provider,
@@ -38,7 +38,7 @@ final class DataCloudflareMagicTransitConnector extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': accountId,
            if (connectorId != null) 'connector_id': connectorId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
