@@ -9,20 +9,11 @@ It reads files only. It never runs Terraform, never reads or writes state, never
 
 ## Install
 
-**Homebrew (macOS / Linux):**
-
 ```sh
-brew install nozomi-koborinai/tap/terradart-migrate
+dart pub global activate terradart_migrate
 ```
 
-**Direct binary:** grab the asset for your platform from the [GitHub releases page](https://github.com/nozomi-koborinai/terradart/releases) and place it on your `PATH`.
-
-| Platform              | Asset                                  |
-| --------------------- | -------------------------------------- |
-| macOS (Apple Silicon) | `terradart-migrate-darwin-arm64`       |
-| macOS (Intel)         | `terradart-migrate-darwin-amd64`       |
-| Linux (x86_64)        | `terradart-migrate-linux-amd64`        |
-| Windows (x86_64)      | `terradart-migrate-windows-amd64.exe`  |
+`terradart-migrate` lands in `~/.pub-cache/bin`; add that directory to your `PATH` if `dart pub global activate` asks you to. The only prerequisite is a Dart SDK, which the migrated package needs anyway.
 
 **From a checkout:** `cd packages/terradart_migrate && dart run bin/terradart_migrate.dart --help`.
 

@@ -84,13 +84,13 @@ Future<void> main() async {
     'website/src/components/PitchCode.astro',
     '(GA catalog, $catalogEntryCount entries)',
   );
-  // terradart-migrate distribution (#664): the install line and the guide.
+  // terradart-migrate distribution: the install line and the guide.
   for (final page in [
     'README.md',
     'packages/terradart_migrate/README.md',
     'website/src/content/docs/docs/migrate-from-hcl.md',
   ]) {
-    _checkPhrase(errors, page, migrateBrewPhrase);
+    _checkPhrase(errors, page, migrateInstallPhrase);
   }
   _checkPhrase(
     errors,
