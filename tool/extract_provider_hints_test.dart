@@ -223,6 +223,13 @@ func resourceWidget() *schema.Resource {
 				ValidateFunc: validation.StringInSlice(unknownValues(), false),
 				ExactlyOneOf: unknownKeys(),
 			},
+			"role_arn": {
+				Type: schema.TypeString,
+				ValidateFunc: validation.Any(
+					validation.StringInSlice([]string{""}, false),
+					verify.ValidARN,
+				),
+			},
 		},
 	}
 }
@@ -321,6 +328,7 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
       });
       expect(scan.validators, 6);
       expect(scan.unresolved, 1, reason: 'unknownValues() is not evaluable');
+      expect(scan.openSets, 1, reason: '"" is one alternative beside an ARN');
     });
 
     test('reads SDKv2 and framework exactly-one groups', () {

@@ -30,7 +30,9 @@
 // `@SDKResource` / `@FrameworkResource` annotations sit on, and a value set
 // may name an aws-sdk-go-v2 `types` enum, whose `enums.go` is read at the
 // module version the provider's go.mod requires. A map-typed attribute's
-// value set is skipped (enums cover string and string-list inputs only).
+// value set is skipped (enums cover string and string-list inputs only),
+// and so is one inside `validation.Any(...)` / `stringvalidator.Any(...)`,
+// where it is one alternative beside `""`, an ARN or a name pattern.
 // Its `ExactlyOneOf` groups (SDKv2 schema fields, framework
 // `*validator.ExactlyOneOf` and `resourcevalidator.ExactlyOneOf` in
 // `ConfigValidators`) are written as `exactly_one_of_groups`; a group whose
@@ -559,7 +561,8 @@ Future<void> main(List<String> args) async {
     final scan = scanAwsProvider(root, sdkDir: sdk);
     found.addAll(scan.byType);
     print('extract_provider_hints: ${scan.validators} value-set validator(s) '
-        'in resource schemas, ${scan.unresolved} not evaluable (dropped)');
+        'in resource schemas, ${scan.unresolved} not evaluable (dropped); '
+        '${scan.openSets} Any(...) alternative(s) skipped');
     print('extract_provider_hints: ${scan.groupValidators} exactly-one '
         'validator(s), ${scan.unresolvedGroups} not evaluable (dropped)');
   } else {

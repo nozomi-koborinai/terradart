@@ -205,8 +205,7 @@ final class CognitoUserPoolEmailConfiguration {
 
   final TfArg<String>? fromEmailAddress;
 
-  final TfArg<CognitoUserPoolEmailConfigurationReplyToEmailAddress>?
-  replyToEmailAddress;
+  final TfArg<String>? replyToEmailAddress;
 
   final TfArg<String>? sourceArn;
 
@@ -230,18 +229,6 @@ enum CognitoUserPoolEmailConfigurationEmailSendingAccount
   developer('DEVELOPER');
 
   const CognitoUserPoolEmailConfigurationEmailSendingAccount(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `reply_to_email_address` — derived from the provider schema description.
-enum CognitoUserPoolEmailConfigurationReplyToEmailAddress
-    implements TerraformEnum {
-  empty('');
-
-  const CognitoUserPoolEmailConfigurationReplyToEmailAddress(
     this.terraformValue,
   );
   @override

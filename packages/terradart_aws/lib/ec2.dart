@@ -72,7 +72,6 @@ export 'src/ec2/aws_ec2_allowed_images_settings.dart'
         Ec2AllowedImagesSettingsImageCriterion,
         Ec2AllowedImagesSettingsImageCriterionCreationDateCondition,
         Ec2AllowedImagesSettingsImageCriterionDeprecationTimeCondition,
-        Ec2AllowedImagesSettingsImageCriterionImageProviders,
         Ec2AllowedImagesSettingsState;
 export 'src/ec2/aws_ec2_availability_zone_group.dart'
     show AwsEc2AvailabilityZoneGroup, Ec2AvailabilityZoneGroupOptInStatus;
@@ -648,7 +647,6 @@ export 'src/ec2/aws_vpc_ipam_pool.dart'
         AwsVpcIpamPool,
         VpcIpamPoolAddressFamily,
         VpcIpamPoolAwsService,
-        VpcIpamPoolLocale,
         VpcIpamPoolPublicIpSource,
         VpcIpamPoolSourceResource,
         VpcIpamPoolSourceResourceResourceType;

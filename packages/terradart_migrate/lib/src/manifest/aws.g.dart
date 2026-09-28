@@ -4101,9 +4101,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'cloudwatch_role_arn',
           dartName: 'cloudwatchRoleArn',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          dartType: 'ApiGatewayAccountCloudwatchRoleArn',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -46925,9 +46925,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'kms_encryption_key',
           dartName: 'kmsEncryptionKey',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          dartType: 'DsqlClusterKmsEncryptionKey',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -114650,9 +114650,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'kms_key',
           dartName: 'kmsKey',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          dartType: 'QldbLedgerKmsKey',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -117714,9 +117714,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'engine',
           dartName: 'engine',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'RdsClusterEngine',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'engine_lifecycle_support',
@@ -118423,9 +118423,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'engine',
           dartName: 'engine',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'RdsClusterInstanceEngine',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'engine_version',
@@ -138226,9 +138226,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'policy_id',
           dartName: 'policyId',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'SecurityhubConfigurationPolicyAssociationPolicyId',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -155242,9 +155242,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'locale',
           dartName: 'locale',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          dartType: 'VpcIpamPoolLocale',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'public_ip_source',
@@ -184940,20 +184940,16 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'exclude_vaults',
           dartName: 'excludeVaults',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          repeated: true,
-          dartType:
-              'BackupRestoreTestingPlanRecoveryPointSelectionExcludeVaults',
+          dartType: 'List<Object?>',
         ),
         MigrateSlot(
           tfName: 'include_vaults',
           dartName: 'includeVaults',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: true,
-          repeated: true,
-          dartType:
-              'BackupRestoreTestingPlanRecoveryPointSelectionIncludeVaults',
+          dartType: 'List<Object?>',
         ),
         MigrateSlot(
           tfName: 'recovery_point_types',
@@ -184979,10 +184975,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'protected_resource_arns',
           dartName: 'protectedResourceArns',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: true,
-          repeated: true,
-          dartType: 'BackupRestoreTestingSelectionProtectedResourceArns',
+          dartType: 'List<String>',
         ),
       ],
     ),
@@ -216911,9 +216906,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'reply_to_email_address',
           dartName: 'replyToEmailAddress',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          dartType: 'CognitoUserPoolEmailConfigurationReplyToEmailAddress',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'source_arn',
@@ -230689,10 +230684,9 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'image_providers',
           dartName: 'imageProviders',
-          kind: MigrateSlotKind.enumValue,
+          kind: MigrateSlotKind.scalar,
           required: false,
-          repeated: true,
-          dartType: 'Ec2AllowedImagesSettingsImageCriterionImageProviders',
+          dartType: 'List<Object?>',
         ),
         MigrateSlot(
           tfName: 'marketplace_product_codes',
@@ -401637,10 +401631,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'CUSTOM': 'custom',
       },
     ),
-    'ApiGatewayAccountCloudwatchRoleArn': MigrateEnum(
-      name: 'ApiGatewayAccountCloudwatchRoleArn',
-      members: <String, String>{'': 'empty'},
-    ),
     'ApiGatewayAuthorizerType': MigrateEnum(
       name: 'ApiGatewayAuthorizerType',
       members: <String, String>{
@@ -404031,14 +404021,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'RANDOM_WITHIN_WINDOW': 'randomWithinWindow',
       },
     ),
-    'BackupRestoreTestingPlanRecoveryPointSelectionExcludeVaults': MigrateEnum(
-      name: 'BackupRestoreTestingPlanRecoveryPointSelectionExcludeVaults',
-      members: <String, String>{'*': 'value'},
-    ),
-    'BackupRestoreTestingPlanRecoveryPointSelectionIncludeVaults': MigrateEnum(
-      name: 'BackupRestoreTestingPlanRecoveryPointSelectionIncludeVaults',
-      members: <String, String>{'*': 'value'},
-    ),
     'BackupRestoreTestingPlanRecoveryPointSelectionRecoveryPointTypes':
         MigrateEnum(
           name:
@@ -404048,10 +404030,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             'SNAPSHOT': 'snapshot',
           },
         ),
-    'BackupRestoreTestingSelectionProtectedResourceArns': MigrateEnum(
-      name: 'BackupRestoreTestingSelectionProtectedResourceArns',
-      members: <String, String>{'*': 'value'},
-    ),
     'BackupSelectionSelectionTagType': MigrateEnum(
       name: 'BackupSelectionSelectionTagType',
       members: <String, String>{'STRINGEQUALS': 'stringequals'},
@@ -408331,10 +408309,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'DEVELOPER': 'developer',
       },
     ),
-    'CognitoUserPoolEmailConfigurationReplyToEmailAddress': MigrateEnum(
-      name: 'CognitoUserPoolEmailConfigurationReplyToEmailAddress',
-      members: <String, String>{'': 'empty'},
-    ),
     'CognitoUserPoolLambdaConfigCustomEmailSenderLambdaVersion': MigrateEnum(
       name: 'CognitoUserPoolLambdaConfigCustomEmailSenderLambdaVersion',
       members: <String, String>{'V1_0': 'v10'},
@@ -410492,10 +410466,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'DAY': 'day',
       },
     ),
-    'DsqlClusterKmsEncryptionKey': MigrateEnum(
-      name: 'DsqlClusterKmsEncryptionKey',
-      members: <String, String>{'AWS_OWNED_KMS_KEY': 'awsOwnedKmsKey'},
-    ),
     'DxBgpPeerAddressFamily': MigrateEnum(
       name: 'DxBgpPeerAddressFamily',
       members: <String, String>{'ipv4': 'ipv4', 'ipv6': 'ipv6'},
@@ -410681,15 +410651,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'sc1': 'sc1',
         'st1': 'st1',
         'gp3': 'gp3',
-      },
-    ),
-    'Ec2AllowedImagesSettingsImageCriterionImageProviders': MigrateEnum(
-      name: 'Ec2AllowedImagesSettingsImageCriterionImageProviders',
-      members: <String, String>{
-        'amazon': 'amazon',
-        'aws-marketplace': 'awsMarketplace',
-        'aws-backup-vault': 'awsBackupVault',
-        'none': 'none',
       },
     ),
     'Ec2AllowedImagesSettingsState': MigrateEnum(
@@ -419392,10 +419353,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             'DISABLED': 'disabled',
           },
         ),
-    'QldbLedgerKmsKey': MigrateEnum(
-      name: 'QldbLedgerKmsKey',
-      members: <String, String>{'AWS_OWNED_KMS_KEY': 'awsOwnedKmsKey'},
-    ),
     'QldbLedgerPermissionsMode': MigrateEnum(
       name: 'QldbLedgerPermissionsMode',
       members: <String, String>{
@@ -419626,15 +419583,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       name: 'RdsClusterEndpointCustomEndpointType',
       members: <String, String>{'READER': 'reader', 'ANY': 'any'},
     ),
-    'RdsClusterEngine': MigrateEnum(
-      name: 'RdsClusterEngine',
-      members: <String, String>{
-        'aurora-mysql': 'auroraMysql',
-        'aurora-postgresql': 'auroraPostgresql',
-        'mysql': 'mysql',
-        'postgres': 'postgres',
-      },
-    ),
     'RdsClusterEngineLifecycleSupport': MigrateEnum(
       name: 'RdsClusterEngineLifecycleSupport',
       members: <String, String>{
@@ -419652,15 +419600,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'provisioned': 'provisioned',
         'serverless': 'serverless',
         '': 'empty',
-      },
-    ),
-    'RdsClusterInstanceEngine': MigrateEnum(
-      name: 'RdsClusterInstanceEngine',
-      members: <String, String>{
-        'aurora-mysql': 'auroraMysql',
-        'aurora-postgresql': 'auroraPostgresql',
-        'mysql': 'mysql',
-        'postgres': 'postgres',
       },
     ),
     'RdsClusterNetworkType': MigrateEnum(
@@ -431922,12 +431861,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
       name: 'SecurityhubAutomationRuleV2RuleStatus',
       members: <String, String>{'ENABLED': 'enabled', 'DISABLED': 'disabled'},
     ),
-    'SecurityhubConfigurationPolicyAssociationPolicyId': MigrateEnum(
-      name: 'SecurityhubConfigurationPolicyAssociationPolicyId',
-      members: <String, String>{
-        'SELF_MANAGED_SECURITY_HUB': 'selfManagedSecurityHub',
-      },
-    ),
     'SecurityhubFeatureV2FeatureName': MigrateEnum(
       name: 'SecurityhubFeatureV2FeatureName',
       members: <String, String>{'NETWORK_SCANNING': 'networkScanning'},
@@ -433741,10 +433674,6 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         'ec2': 'ec2',
         'global-services': 'globalServices',
       },
-    ),
-    'VpcIpamPoolLocale': MigrateEnum(
-      name: 'VpcIpamPoolLocale',
-      members: <String, String>{'None': 'none'},
     ),
     'VpcIpamPoolPublicIpSource': MigrateEnum(
       name: 'VpcIpamPoolPublicIpSource',

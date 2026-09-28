@@ -130,9 +130,7 @@ export 'src/securityhub/aws_securityhub_configuration_policy.dart'
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterString,
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterStringList;
 export 'src/securityhub/aws_securityhub_configuration_policy_association.dart'
-    show
-        AwsSecurityhubConfigurationPolicyAssociation,
-        SecurityhubConfigurationPolicyAssociationPolicyId;
+    show AwsSecurityhubConfigurationPolicyAssociation;
 export 'src/securityhub/aws_securityhub_connector_v2.dart'
     show
         AwsSecurityhubConnectorV2,

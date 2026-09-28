@@ -389,6 +389,11 @@ const _enumTypeValidators = {
   'FrameworkValidate',
   'FrameworkValidateIgnoreCase',
 };
+const _anyValidators = {
+  'stringvalidator',
+  'listvalidator',
+  'setvalidator',
+};
 const _enumCustomTypes = {
   'StringEnumType',
   'SetOfStringEnumType',
@@ -411,6 +416,7 @@ final class _FuncScan {
   final groups = <List<_Member>>[];
   var unresolved = 0;
   var unresolvedGroups = 0;
+  var openSets = 0;
 }
 
 const _exactlyOneValidators = {
@@ -484,6 +490,19 @@ _FuncScan _scanFunc(
           continue;
         }
       }
+    }
+    // `validation.Any(...)` / `<kind>validator.Any(...)`: a value set
+    // there is one alternative among others (`""`, an ARN, a name
+    // pattern), so the input is not closed over it.
+    if (tok.kind == GoTok.ident &&
+        (tok.text == 'validation' || _anyValidators.contains(tok.text)) &&
+        _isPunct(t, i + 1, '.') &&
+        (_isIdent(t, i + 2, 'Any') ||
+            _isIdent(t, i + 2, 'AnyWithAllWarnings')) &&
+        _isPunct(t, i + 3, '(')) {
+      scan.openSets++;
+      i = _matching(t, i + 3) + 1;
+      continue;
     }
     if (_isIdent(t, i, 'enum') &&
         _isPunct(t, i + 1, '.') &&
@@ -776,6 +795,9 @@ final class AwsHintsScan {
   var unresolved = 0;
   var groupValidators = 0;
   var unresolvedGroups = 0;
+
+  /// `Any(...)` validators skipped: a value set among alternatives.
+  var openSets = 0;
 }
 
 /// What [scanAwsProvider] found for one Terraform type.
@@ -838,6 +860,7 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
           result.unresolved += s.unresolved;
           result.groupValidators += s.groups.length + s.unresolvedGroups;
           result.unresolvedGroups += s.unresolvedGroups;
+          result.openSets += s.openSets;
           return s;
         }();
     ({List<_LocalHint> hints, List<List<_Member>> groups}) expand(

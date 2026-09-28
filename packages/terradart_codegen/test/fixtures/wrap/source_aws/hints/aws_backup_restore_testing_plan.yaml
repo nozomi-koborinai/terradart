@@ -9,12 +9,6 @@ properties:
         enum_values:
           - "LATEST_WITHIN_WINDOW"
           - "RANDOM_WITHIN_WINDOW"
-      - api_name: exclude_vaults
-        enum_values:
-          - "*"
-      - api_name: include_vaults
-        enum_values:
-          - "*"
       - api_name: recovery_point_types
         enum_values:
           - "CONTINUOUS"

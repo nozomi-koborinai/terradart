@@ -7,16 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSecurityhubConfigurationPolicyAssociationSensitive =
     <String>{};
 
-/// Securityhub Configuration Policy Association Policy enum for `policy_id`.
-enum SecurityhubConfigurationPolicyAssociationPolicyId
-    implements TerraformEnum {
-  selfManagedSecurityHub('SELF_MANAGED_SECURITY_HUB');
-
-  const SecurityhubConfigurationPolicyAssociationPolicyId(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Factory wrapper for `aws_securityhub_configuration_policy_association`.
 final class AwsSecurityhubConfigurationPolicyAssociation extends Resource {
   static const String tfType =
@@ -24,7 +14,7 @@ final class AwsSecurityhubConfigurationPolicyAssociation extends Resource {
 
   AwsSecurityhubConfigurationPolicyAssociation({
     required super.localName,
-    required TfArg<SecurityhubConfigurationPolicyAssociationPolicyId> policyId,
+    required TfArg<String> policyId,
     TfArg<String>? region,
     required TfArg<String> targetId,
     super.lifecycle,

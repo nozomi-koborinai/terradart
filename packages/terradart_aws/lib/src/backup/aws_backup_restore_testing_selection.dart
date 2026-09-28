@@ -7,16 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_backup_restore_testing_selection`.
 const Set<String> _awsBackupRestoreTestingSelectionSensitive = <String>{};
 
-/// Backup Restore Testing Selection Protected Resource enum for `protected_resource_arns`.
-enum BackupRestoreTestingSelectionProtectedResourceArns
-    implements TerraformEnum {
-  value('*');
-
-  const BackupRestoreTestingSelectionProtectedResourceArns(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Exactly one of `protected_resource_arns`, `protected_resource_conditions` on `aws_backup_restore_testing_selection`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 sealed class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions {
@@ -40,24 +30,19 @@ final class BackupRestoreTestingSelectionProtectedResourceArnsOption
     required this.protectedResourceArns,
   });
 
-  final List<TfArg<BackupRestoreTestingSelectionProtectedResourceArns>>
-  protectedResourceArns;
+  final TfArg<List<String>> protectedResourceArns;
 
   @override
   String get blockKey => 'protected_resource_arns';
 
   @override
   Map<String, Object?> encode() => {
-    'protected_resource_arns': [
-      for (final e in protectedResourceArns) e.toTfJson(),
-    ],
+    'protected_resource_arns': protectedResourceArns.toTfJson(),
   };
 
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'protected_resource_arns': TfArg.literal([
-      for (final e in protectedResourceArns) e.toTfJson(),
-    ]),
+    'protected_resource_arns': protectedResourceArns,
   };
 }
 

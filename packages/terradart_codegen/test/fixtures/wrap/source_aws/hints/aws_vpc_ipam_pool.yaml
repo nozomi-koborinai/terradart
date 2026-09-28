@@ -11,9 +11,6 @@ properties:
     enum_values:
       - "ec2"
       - "global-services"
-  - api_name: locale
-    enum_values:
-      - "None"
   - api_name: public_ip_source
     enum_values:
       - "amazon"

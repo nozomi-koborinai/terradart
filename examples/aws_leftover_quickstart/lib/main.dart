@@ -1821,12 +1821,7 @@ final class AwsLeftoverStack extends Stack {
               BackupRestoreTestingPlanRecoveryPointSelectionAlgorithm
                   .latestWithinWindow,
             ),
-            includeVaults: [
-              TfArg.literal(
-                BackupRestoreTestingPlanRecoveryPointSelectionIncludeVaults
-                    .value,
-              ),
-            ],
+            includeVaults: TfArg.literal(['*']),
             recoveryPointTypes: [
               TfArg.literal(
                 BackupRestoreTestingPlanRecoveryPointSelectionRecoveryPointTypes
@@ -1845,11 +1840,7 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         protectedResourceArnsOrProtectedResourceConditions:
             BackupRestoreTestingSelectionProtectedResourceArnsOption(
-          protectedResourceArns: [
-            TfArg.literal(
-              BackupRestoreTestingSelectionProtectedResourceArns.value,
-            ),
-          ],
+          protectedResourceArns: TfArg.literal([arn]),
         ),
         protectedResourceType: TfArg.literal(leftover),
         restoreTestingPlanName: TfArg.literal(leftover),
@@ -12779,9 +12770,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsRdsCluster(
         localName: 'rds_cluster',
-        engine: TfArg.literal(
-          RdsClusterEngine.auroraMysql,
-        ),
+        engine: TfArg.literal('aurora-mysql'),
       ),
     );
 
@@ -12811,9 +12800,7 @@ final class AwsLeftoverStack extends Stack {
       AwsRdsClusterInstance(
         localName: 'rds_cluster_instance',
         clusterIdentifier: TfArg.literal(leftover),
-        engine: TfArg.literal(
-          RdsClusterInstanceEngine.auroraMysql,
-        ),
+        engine: TfArg.literal('aurora-mysql'),
         instanceClass: TfArg.literal(leftover),
       ),
     );
@@ -15117,10 +15104,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsSecurityhubConfigurationPolicyAssociation(
         localName: 'securityhub_configuration_policy_association',
-        policyId: TfArg.literal(
-          SecurityhubConfigurationPolicyAssociationPolicyId
-              .selfManagedSecurityHub,
-        ),
+        policyId: TfArg.literal('SELF_MANAGED_SECURITY_HUB'),
         targetId: TfArg.literal('123456789012'),
       ),
     );

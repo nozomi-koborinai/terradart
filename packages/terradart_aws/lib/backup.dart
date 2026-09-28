@@ -41,13 +41,10 @@ export 'src/backup/aws_backup_restore_testing_plan.dart'
         AwsBackupRestoreTestingPlan,
         BackupRestoreTestingPlanRecoveryPointSelection,
         BackupRestoreTestingPlanRecoveryPointSelectionAlgorithm,
-        BackupRestoreTestingPlanRecoveryPointSelectionExcludeVaults,
-        BackupRestoreTestingPlanRecoveryPointSelectionIncludeVaults,
         BackupRestoreTestingPlanRecoveryPointSelectionRecoveryPointTypes;
 export 'src/backup/aws_backup_restore_testing_selection.dart'
     show
         AwsBackupRestoreTestingSelection,
-        BackupRestoreTestingSelectionProtectedResourceArns,
         BackupRestoreTestingSelectionProtectedResourceArnsOption,
         BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions,
         BackupRestoreTestingSelectionProtectedResourceConditions,

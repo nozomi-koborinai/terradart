@@ -46,18 +46,6 @@ enum RdsClusterEnabledCloudwatchLogsExports implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Rds Cluster enum for `engine`.
-enum RdsClusterEngine implements TerraformEnum {
-  auroraMysql('aurora-mysql'),
-  auroraPostgresql('aurora-postgresql'),
-  mysql('mysql'),
-  postgres('postgres');
-
-  const RdsClusterEngine(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Rds Cluster Engine Lifecycle enum for `engine_lifecycle_support`.
 enum RdsClusterEngineLifecycleSupport implements TerraformEnum {
   openSourceRdsExtendedSupport('open-source-rds-extended-support'),
@@ -364,7 +352,7 @@ final class AwsRdsCluster extends Resource {
     TfArg<bool>? enableLocalWriteForwarding,
     List<TfArg<RdsClusterEnabledCloudwatchLogsExports>>?
     enabledCloudwatchLogsExports,
-    required TfArg<RdsClusterEngine> engine,
+    required TfArg<String> engine,
     TfArg<RdsClusterEngineLifecycleSupport>? engineLifecycleSupport,
     TfArg<RdsClusterEngineMode>? engineMode,
     TfArg<String>? engineVersion,

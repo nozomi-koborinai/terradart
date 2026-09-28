@@ -22,13 +22,9 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
   final TfArg<BackupRestoreTestingPlanRecoveryPointSelectionAlgorithm>
   algorithm;
 
-  final List<
-    TfArg<BackupRestoreTestingPlanRecoveryPointSelectionExcludeVaults>
-  >?
-  excludeVaults;
+  final TfArg<List<Object?>>? excludeVaults;
 
-  final List<TfArg<BackupRestoreTestingPlanRecoveryPointSelectionIncludeVaults>>
-  includeVaults;
+  final TfArg<List<Object?>> includeVaults;
 
   final List<
     TfArg<BackupRestoreTestingPlanRecoveryPointSelectionRecoveryPointTypes>
@@ -39,9 +35,8 @@ final class BackupRestoreTestingPlanRecoveryPointSelection {
 
   Map<String, Object?> encode() => {
     'algorithm': algorithm.toTfJson(),
-    if (excludeVaults != null)
-      'exclude_vaults': [for (final e in excludeVaults!) e.toTfJson()],
-    'include_vaults': [for (final e in includeVaults) e.toTfJson()],
+    if (excludeVaults != null) 'exclude_vaults': excludeVaults!.toTfJson(),
+    'include_vaults': includeVaults.toTfJson(),
     'recovery_point_types': [for (final e in recoveryPointTypes) e.toTfJson()],
     if (selectionWindowDays != null)
       'selection_window_days': selectionWindowDays!.toTfJson(),
@@ -55,30 +50,6 @@ enum BackupRestoreTestingPlanRecoveryPointSelectionAlgorithm
   randomWithinWindow('RANDOM_WITHIN_WINDOW');
 
   const BackupRestoreTestingPlanRecoveryPointSelectionAlgorithm(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `exclude_vaults` — derived from the provider schema description.
-enum BackupRestoreTestingPlanRecoveryPointSelectionExcludeVaults
-    implements TerraformEnum {
-  value('*');
-
-  const BackupRestoreTestingPlanRecoveryPointSelectionExcludeVaults(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `include_vaults` — derived from the provider schema description.
-enum BackupRestoreTestingPlanRecoveryPointSelectionIncludeVaults
-    implements TerraformEnum {
-  value('*');
-
-  const BackupRestoreTestingPlanRecoveryPointSelectionIncludeVaults(
     this.terraformValue,
   );
   @override

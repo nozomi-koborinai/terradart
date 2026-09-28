@@ -31,8 +31,7 @@ final class Ec2AllowedImagesSettingsImageCriterion {
 
   final TfArg<List<Object?>>? imageNames;
 
-  final List<TfArg<Ec2AllowedImagesSettingsImageCriterionImageProviders>>?
-  imageProviders;
+  final TfArg<List<Object?>>? imageProviders;
 
   final TfArg<List<Object?>>? marketplaceProductCodes;
 
@@ -44,8 +43,7 @@ final class Ec2AllowedImagesSettingsImageCriterion {
 
   Map<String, Object?> encode() => {
     if (imageNames != null) 'image_names': imageNames!.toTfJson(),
-    if (imageProviders != null)
-      'image_providers': [for (final e in imageProviders!) e.toTfJson()],
+    if (imageProviders != null) 'image_providers': imageProviders!.toTfJson(),
     if (marketplaceProductCodes != null)
       'marketplace_product_codes': marketplaceProductCodes!.toTfJson(),
     if (creationDateCondition != null)
@@ -57,21 +55,6 @@ final class Ec2AllowedImagesSettingsImageCriterion {
         for (final e in deprecationTimeCondition!) e.encode(),
       ],
   };
-}
-
-/// `image_providers` — derived from the provider schema description.
-enum Ec2AllowedImagesSettingsImageCriterionImageProviders
-    implements TerraformEnum {
-  amazon('amazon'),
-  awsMarketplace('aws-marketplace'),
-  awsBackupVault('aws-backup-vault'),
-  none('none');
-
-  const Ec2AllowedImagesSettingsImageCriterionImageProviders(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
 }
 
 /// Typed helper for the `image_criterion.creation_date_condition` block of

@@ -3,8 +3,7 @@
 /// AWS API Gateway (REST APIs).
 library;
 
-export 'src/api_gateway/aws_api_gateway_account.dart'
-    show ApiGatewayAccountCloudwatchRoleArn, AwsApiGatewayAccount;
+export 'src/api_gateway/aws_api_gateway_account.dart' show AwsApiGatewayAccount;
 export 'src/api_gateway/aws_api_gateway_api_key.dart' show AwsApiGatewayApiKey;
 export 'src/api_gateway/aws_api_gateway_authorizer.dart'
     show ApiGatewayAuthorizerType, AwsApiGatewayAuthorizer;

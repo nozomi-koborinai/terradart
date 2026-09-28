@@ -11195,6 +11195,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[],
     ),
     MigrateEntry(
+      tfType: 'google_biglake_hive_catalog_iam_policy',
+      className: 'DataGoogleBiglakeHiveCatalogIamPolicy',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyData',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'google_biglake_hive_database',
       className: 'GoogleBiglakeHiveDatabase',
       barrel: 'biglake',
@@ -11390,6 +11422,45 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'google_biglake_hive_database_iam_policy',
+      className: 'DataGoogleBiglakeHiveDatabaseIamPolicy',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'catalog',
+          dartName: 'catalog',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyData',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_hive_table',
@@ -11639,6 +11710,52 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'google_biglake_hive_table_iam_policy',
+      className: 'DataGoogleBiglakeHiveTableIamPolicy',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'catalog',
+          dartName: 'catalog',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'database',
+          dartName: 'database',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyData',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_biglake_iceberg_catalog',
@@ -26303,6 +26420,91 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           tfName: 'state',
           dartName: 'stateRef',
           dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'google_cloudbuild_worker_pool',
+      className: 'DataGoogleCloudbuildWorkerPool',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'annotations',
+          dartName: 'annotations',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'delete_time',
+          dartName: 'deleteTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'effective_annotations',
+          dartName: 'effectiveAnnotations',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'network_config',
+          dartName: 'networkConfig',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'private_service_connect',
+          dartName: 'privateServiceConnect',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'worker_config',
+          dartName: 'workerConfig',
+          dartType: 'List<Map<String, Object?>>',
         ),
       ],
     ),
@@ -48393,6 +48595,43 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
     ),
     MigrateEntry(
+      tfType: 'google_compute_service_attachments',
+      className: 'DataGoogleComputeServiceAttachments',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'region',
+          dartName: 'region',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'service_attachments',
+          dartName: 'serviceAttachments',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'google_compute_shared_vpc_host_project',
       className: 'GoogleComputeSharedVpcHostProject',
       barrel: 'compute',
@@ -57924,6 +58163,44 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'google_dataform_repository_iam_policy',
+      className: 'DataGoogleDataformRepositoryIamPolicy',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'region',
+          dartName: 'region',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'repository',
+          dartName: 'repository',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyData',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -71851,6 +72128,44 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[],
     ),
     MigrateEntry(
+      tfType: 'google_eventarc_pipeline_iam_policy',
+      className: 'DataGoogleEventarcPipelineIamPolicy',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pipeline_id',
+          dartName: 'pipelineId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyData',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'google_eventarc_trigger',
       className: 'GoogleEventarcTrigger',
       barrel: 'eventarc',
@@ -81977,6 +82292,55 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
     ),
     MigrateEntry(
+      tfType: 'google_iam_workload_identity_pool_openid_config',
+      className: 'DataGoogleIamWorkloadIdentityPoolOpenidConfig',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'resource_name',
+          dartName: 'resourceName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'authorization_endpoint',
+          dartName: 'authorizationEndpoint',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'id_token_signing_alg_values_supported',
+          dartName: 'idTokenSigningAlgValuesSupported',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'issuer', dartName: 'issuer', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'jwks_uri',
+          dartName: 'jwksUri',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'response_types_supported',
+          dartName: 'responseTypesSupported',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'subject_types_supported',
+          dartName: 'subjectTypesSupported',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'token_endpoint',
+          dartName: 'tokenEndpoint',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'google_iam_workload_identity_pool_provider',
       className: 'GoogleIamWorkloadIdentityPoolProvider',
       barrel: 'iam',
@@ -90827,6 +91191,51 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'zones',
           dartType: 'List<String>',
         ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'google_memorystore_acl_policy',
+      className: 'DataGoogleMemorystoreAclPolicy',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'acl_policy_id',
+          dartName: 'aclPolicyId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'rules',
+          dartName: 'rules',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -102382,6 +102791,47 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[],
     ),
     MigrateEntry(
+      tfType: 'google_observability_folder_settings',
+      className: 'DataGoogleObservabilityFolderSettings',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'folder',
+          dartName: 'folder',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'default_storage_location',
+          dartName: 'defaultStorageLocation',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'kms_key_name',
+          dartName: 'kmsKeyName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_account_id',
+          dartName: 'serviceAccountId',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'google_observability_link',
       className: 'GoogleObservabilityLink',
       barrel: 'observability',
@@ -102484,6 +102934,47 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[],
     ),
     MigrateEntry(
+      tfType: 'google_observability_organization_settings',
+      className: 'DataGoogleObservabilityOrganizationSettings',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'organization',
+          dartName: 'organization',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'default_storage_location',
+          dartName: 'defaultStorageLocation',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'kms_key_name',
+          dartName: 'kmsKeyName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_account_id',
+          dartName: 'serviceAccountId',
+          dartType: 'String',
+        ),
+      ],
+    ),
+    MigrateEntry(
       tfType: 'google_observability_project_settings',
       className: 'GoogleObservabilityProjectSettings',
       barrel: 'observability',
@@ -102519,6 +103010,47 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[],
+    ),
+    MigrateEntry(
+      tfType: 'google_observability_project_settings',
+      className: 'DataGoogleObservabilityProjectSettings',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'default_storage_location',
+          dartName: 'defaultStorageLocation',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'kms_key_name',
+          dartName: 'kmsKeyName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_account_id',
+          dartName: 'serviceAccountId',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_observability_trace_scope',
@@ -110291,6 +110823,51 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'zoneDistributionConfig',
           dartType: 'List<Map<String, Object?>>',
         ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'google_redis_cluster_acl_policy',
+      className: 'DataGoogleRedisClusterAclPolicy',
+      barrel: 'data',
+      kind: CatalogKind.dataSource,
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'acl_policy_id',
+          dartName: 'aclPolicyId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'rules',
+          dartName: 'rules',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
       ],
     ),
     MigrateEntry(
