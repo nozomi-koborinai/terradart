@@ -5,6 +5,7 @@ import '../constructor_params.dart';
 import '../dart_type_writer.dart';
 import '../naming.dart';
 import '../nested_types/nested_type_collector.dart';
+import '../provider_enums.dart';
 import '../universal_invariants/enum_extractor.dart';
 import '../wrapper_overrides/wrapper_override.dart';
 import 'helper_class_extractor.dart';
@@ -270,7 +271,10 @@ MigrateSlotData _attributeSlot(
 ) {
   final payload = dartTypeOverrides[attr.name] ?? writeDartType(attr.type);
   final shape = resolveEnumPayload(
-    classifyDartType('TfArg<$payload>', ctx),
+    classifyDartType(
+      isEnumListType(payload) ? payload : 'TfArg<$payload>',
+      ctx,
+    ),
     ctx,
   );
   return _fromShape(

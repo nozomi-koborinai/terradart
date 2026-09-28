@@ -93,8 +93,8 @@ final class ProviderEnums {
         parseAvailableValues(description);
   }
 
-  /// [ir] with `enumValues` filled on every top-level string input that
-  /// has none yet. Computed-only attributes stay untouched: they have no
+  /// [ir] with `enumValues` filled on every top-level string or
+  /// list-of-string input that has none yet. Computed-only attributes stay untouched: they have no
   /// constructor parameter to type.
   ProviderSchemaIR enrich(ProviderSchemaIR ir) {
     if (!enabled) return ir;
@@ -116,7 +116,9 @@ final class ProviderEnums {
   /// [overrides] with a `dartTypeOverrides` entry naming the derived enum
   /// for every `deriveEnums` top-level string attribute of [ir] that carries
   /// `enumValues` — so the constructor parameter takes the enum the wrapper
-  /// declares. An explicit `dartTypeOverrides` entry or a custom slot wins.
+  /// declares — and `List<TfArg<Enum>>` for a list or set of strings, the
+  /// element-wise shape nested helpers use ([isEnumListType]). An explicit
+  /// `dartTypeOverrides` entry or a custom slot wins.
   Map<String, WrapperOverride> typeDerivedEnums(
     Map<String, WrapperOverride> overrides,
     Map<String, ResourceDef> defs,
@@ -134,15 +136,18 @@ final class ProviderEnums {
     final slots = o.customSlots ?? const <String, CustomSlot>{};
     final derived = <String, String>{
       for (final attr in def.root.attributes)
-        if (attr.type is StringType &&
+        if (_isStringish(attr.type) &&
             attr.constraints.enumValues != null &&
             !explicit.containsKey(attr.name) &&
             !slots.containsKey(attr.name))
-          attr.name: enumName(
-            resourceType: def.terraformType,
-            fieldPath: attr.name,
-            members: attr.constraints.enumValues!,
-          ).dartName,
+          attr.name: _enumSlotType(
+            attr,
+            enumName(
+              resourceType: def.terraformType,
+              fieldPath: attr.name,
+              members: attr.constraints.enumValues!,
+            ).dartName,
+          ),
     };
     if (derived.isEmpty) return o;
     return o.withDartTypeOverrides({...derived, ...explicit});
@@ -165,8 +170,23 @@ ResourceDef _enrich(ResourceDef def, EnumValuesResolver resolve) {
   );
 }
 
+/// Whether a `dartTypeOverrides` value is the element-wise enum list shape
+/// (`List<TfArg<Enum>>`): the constructor takes it bare, not in a `TfArg`,
+/// and the argMap encodes it element by element.
+bool isEnumListType(String dartType) => dartType.startsWith('List<TfArg<');
+
+bool _isStringish(TypeDef t) => switch (t) {
+      StringType() => true,
+      ListType(:final element) || SetType(:final element) =>
+        element is StringType,
+      _ => false,
+    };
+
+String _enumSlotType(Attribute attr, String enumType) =>
+    attr.type is StringType ? enumType : 'List<TfArg<$enumType>>';
+
 Attribute _enrichAttr(Attribute a, EnumValuesResolver resolve) {
-  if (a.type is! StringType ||
+  if (!_isStringish(a.type) ||
       a.constraints.enumValues != null ||
       a.constraints.computedOnly) {
     return a;
