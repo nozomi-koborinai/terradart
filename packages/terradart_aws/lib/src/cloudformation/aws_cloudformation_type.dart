@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudformation_type`.
 const Set<String> _awsCloudformationTypeSensitive = <String>{};
 
+/// Cloudformation Type enum for `type`.
+enum CloudformationTypeType implements TerraformEnum {
+  resource('RESOURCE'),
+  module('MODULE'),
+  hook('HOOK');
+
+  const CloudformationTypeType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `logging_config` block of
 /// `aws_cloudformation_type` (derived from provider schema).
 @immutable
@@ -35,7 +46,7 @@ final class AwsCloudformationType extends Resource {
     TfArg<String>? executionRoleArn,
     TfArg<String>? region,
     required TfArg<String> schemaHandlerPackage,
-    TfArg<String>? type,
+    TfArg<CloudformationTypeType>? type,
     required TfArg<String> typeName,
     CloudformationTypeLoggingConfig? loggingConfig,
     super.lifecycle,

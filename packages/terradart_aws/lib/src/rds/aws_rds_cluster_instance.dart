@@ -6,6 +6,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rds_cluster_instance`.
 const Set<String> _awsRdsClusterInstanceSensitive = <String>{};
 
+/// Rds Cluster Instance enum for `engine`.
+enum RdsClusterInstanceEngine implements TerraformEnum {
+  auroraMysql('aurora-mysql'),
+  auroraPostgresql('aurora-postgresql'),
+  mysql('mysql'),
+  postgres('postgres');
+
+  const RdsClusterInstanceEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_rds_cluster_instance`.
 final class AwsRdsClusterInstance extends Resource {
   static const String tfType = 'aws_rds_cluster_instance';
@@ -21,7 +33,7 @@ final class AwsRdsClusterInstance extends Resource {
     TfArg<String>? customIamInstanceProfile,
     TfArg<String>? dbParameterGroupName,
     TfArg<String>? dbSubnetGroupName,
-    required TfArg<String> engine,
+    required TfArg<RdsClusterInstanceEngine> engine,
     TfArg<String>? engineVersion,
     TfArg<bool>? forceDestroy,
     TfArg<String>? identifier,

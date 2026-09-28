@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_resourceexplorer2_index`.
 const Set<String> _awsResourceexplorer2IndexSensitive = <String>{};
 
+/// Resourceexplorer2 Index enum for `type`.
+enum Resourceexplorer2IndexType implements TerraformEnum {
+  local('LOCAL'),
+  aggregator('AGGREGATOR');
+
+  const Resourceexplorer2IndexType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_resourceexplorer2_index`.
 final class AwsResourceexplorer2Index extends Resource {
   static const String tfType = 'aws_resourceexplorer2_index';
@@ -14,7 +24,7 @@ final class AwsResourceexplorer2Index extends Resource {
     required super.localName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<Resourceexplorer2IndexType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

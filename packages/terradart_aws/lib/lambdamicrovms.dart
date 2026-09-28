@@ -6,8 +6,10 @@ library;
 export 'src/lambdamicrovms/aws_lambdamicrovms_image.dart'
     show
         AwsLambdamicrovmsImage,
+        LambdamicrovmsImageAdditionalOsCapabilities,
         LambdamicrovmsImageCodeArtifact,
-        LambdamicrovmsImageCpuConfiguration;
+        LambdamicrovmsImageCpuConfiguration,
+        LambdamicrovmsImageCpuConfigurationArchitecture;
 export 'src/lambdamicrovms/aws_lambdamicrovms_microvm.dart'
     show
         AwsLambdamicrovmsMicrovm,

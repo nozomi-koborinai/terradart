@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_nat_gateway`.
 const Set<String> _awsNatGatewaySensitive = <String>{};
 
+/// Nat Gateway Availability enum for `availability_mode`.
+enum NatGatewayAvailabilityMode implements TerraformEnum {
+  zonal('zonal'),
+  regional('regional');
+
+  const NatGatewayAvailabilityMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Nat Gateway Connectivity enum for `connectivity_type`.
+enum NatGatewayConnectivityType implements TerraformEnum {
+  private('private'),
+  public('public');
+
+  const NatGatewayConnectivityType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `availability_zone_address` block of
 /// `aws_nat_gateway` (derived from provider schema).
 @immutable
@@ -39,8 +59,8 @@ final class AwsNatGateway extends Resource {
   AwsNatGateway({
     required super.localName,
     TfArg<String>? allocationId,
-    TfArg<String>? availabilityMode,
-    TfArg<String>? connectivityType,
+    TfArg<NatGatewayAvailabilityMode>? availabilityMode,
+    TfArg<NatGatewayConnectivityType>? connectivityType,
     TfArg<String>? privateIp,
     TfArg<String>? region,
     TfArg<List<String>>? secondaryAllocationIds,

@@ -6,6 +6,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_redshift_logging`.
 const Set<String> _awsRedshiftLoggingSensitive = <String>{};
 
+/// Redshift Logging Log Destination enum for `log_destination_type`.
+enum RedshiftLoggingLogDestinationType implements TerraformEnum {
+  s3('s3'),
+  cloudwatch('cloudwatch'),
+  s3table('s3table');
+
+  const RedshiftLoggingLogDestinationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Redshift Logging Log enum for `log_exports`.
+enum RedshiftLoggingLogExports implements TerraformEnum {
+  connectionlog('connectionlog'),
+  useractivitylog('useractivitylog'),
+  userlog('userlog');
+
+  const RedshiftLoggingLogExports(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_redshift_logging`.
 final class AwsRedshiftLogging extends Resource {
   static const String tfType = 'aws_redshift_logging';
@@ -14,8 +36,8 @@ final class AwsRedshiftLogging extends Resource {
     required super.localName,
     TfArg<String>? bucketName,
     required TfArg<String> clusterIdentifier,
-    TfArg<String>? logDestinationType,
-    TfArg<List<String>>? logExports,
+    TfArg<RedshiftLoggingLogDestinationType>? logDestinationType,
+    List<TfArg<RedshiftLoggingLogExports>>? logExports,
     TfArg<String>? region,
     TfArg<String>? s3KeyPrefix,
     super.lifecycle,
@@ -29,7 +51,10 @@ final class AwsRedshiftLogging extends Resource {
            'cluster_identifier': clusterIdentifier,
            if (logDestinationType != null)
              'log_destination_type': logDestinationType,
-           if (logExports != null) 'log_exports': logExports,
+           if (logExports != null)
+             'log_exports': TfArg.literal([
+               for (final e in logExports) e.toTfJson(),
+             ]),
            if (region != null) 'region': region,
            if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix,
          },

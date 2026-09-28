@@ -59,7 +59,10 @@ final class TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejecte
 
   final TfArg<String>? bucketName;
 
-  final TfArg<String>? encryptionOption;
+  final TfArg<
+    TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3ConfigurationEncryptionOption
+  >?
+  encryptionOption;
 
   final TfArg<String>? kmsKeyId;
 
@@ -73,6 +76,19 @@ final class TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejecte
     if (objectKeyPrefix != null)
       'object_key_prefix': objectKeyPrefix!.toTfJson(),
   };
+}
+
+/// `encryption_option` — derived from the provider schema description.
+enum TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3ConfigurationEncryptionOption
+    implements TerraformEnum {
+  sseS3('SSE_S3'),
+  sseKms('SSE_KMS');
+
+  const TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3ConfigurationEncryptionOption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `retention_properties` block of
@@ -120,11 +136,14 @@ final class TimestreamwriteTableSchemaCompositePartitionKey {
     required this.type,
   });
 
-  final TfArg<String>? enforcementInRecord;
+  final TfArg<
+    TimestreamwriteTableSchemaCompositePartitionKeyEnforcementInRecord
+  >?
+  enforcementInRecord;
 
   final TfArg<String>? name;
 
-  final TfArg<String> type;
+  final TfArg<TimestreamwriteTableSchemaCompositePartitionKeyType> type;
 
   Map<String, Object?> encode() => {
     if (enforcementInRecord != null)
@@ -132,6 +151,32 @@ final class TimestreamwriteTableSchemaCompositePartitionKey {
     if (name != null) 'name': name!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `enforcement_in_record` — derived from the provider schema description.
+enum TimestreamwriteTableSchemaCompositePartitionKeyEnforcementInRecord
+    implements TerraformEnum {
+  required('REQUIRED'),
+  optional('OPTIONAL');
+
+  const TimestreamwriteTableSchemaCompositePartitionKeyEnforcementInRecord(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum TimestreamwriteTableSchemaCompositePartitionKeyType
+    implements TerraformEnum {
+  dimension('DIMENSION'),
+  measure('MEASURE');
+
+  const TimestreamwriteTableSchemaCompositePartitionKeyType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_timestreamwrite_table`.

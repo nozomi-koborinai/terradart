@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ebs_snapshot_block_public_access`.
 const Set<String> _awsEbsSnapshotBlockPublicAccessSensitive = <String>{};
 
+/// Ebs Snapshot Block Public Access enum for `state`.
+enum EbsSnapshotBlockPublicAccessState implements TerraformEnum {
+  blockAllSharing('block-all-sharing'),
+  blockNewSharing('block-new-sharing'),
+  unblocked('unblocked');
+
+  const EbsSnapshotBlockPublicAccessState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ebs_snapshot_block_public_access`.
 final class AwsEbsSnapshotBlockPublicAccess extends Resource {
   static const String tfType = 'aws_ebs_snapshot_block_public_access';
@@ -13,7 +24,7 @@ final class AwsEbsSnapshotBlockPublicAccess extends Resource {
   AwsEbsSnapshotBlockPublicAccess({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> state,
+    required TfArg<EbsSnapshotBlockPublicAccessState> state,
     super.lifecycle,
     super.dependsOn,
     super.provider,

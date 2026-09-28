@@ -8,6 +8,26 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsCodestarnotificationsNotificationRuleSensitive =
     <String>{};
 
+/// Codestarnotifications Notification Rule Detail enum for `detail_type`.
+enum CodestarnotificationsNotificationRuleDetailType implements TerraformEnum {
+  basic('BASIC'),
+  full('FULL');
+
+  const CodestarnotificationsNotificationRuleDetailType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Codestarnotifications Notification Rule enum for `status`.
+enum CodestarnotificationsNotificationRuleStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const CodestarnotificationsNotificationRuleStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `target` block of
 /// `aws_codestarnotifications_notification_rule` (derived from provider schema).
 @immutable
@@ -33,12 +53,12 @@ final class AwsCodestarnotificationsNotificationRule extends Resource {
 
   AwsCodestarnotificationsNotificationRule({
     required super.localName,
-    required TfArg<String> detailType,
+    required TfArg<CodestarnotificationsNotificationRuleDetailType> detailType,
     required TfArg<List<String>> eventTypeIds,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> resource,
-    TfArg<String>? status,
+    TfArg<CodestarnotificationsNotificationRuleStatus>? status,
     TfArg<Map<String, String>>? tags,
     List<CodestarnotificationsNotificationRuleTarget>? target,
     super.lifecycle,

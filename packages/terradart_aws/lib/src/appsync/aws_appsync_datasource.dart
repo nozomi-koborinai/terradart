@@ -7,6 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appsync_datasource`.
 const Set<String> _awsAppsyncDatasourceSensitive = <String>{};
 
+/// Appsync Datasource enum for `type`.
+enum AppsyncDatasourceType implements TerraformEnum {
+  awsLambda('AWS_LAMBDA'),
+  amazonDynamodb('AMAZON_DYNAMODB'),
+  amazonElasticsearch('AMAZON_ELASTICSEARCH'),
+  none('NONE'),
+  http('HTTP'),
+  relationalDatabase('RELATIONAL_DATABASE'),
+  amazonOpensearchService('AMAZON_OPENSEARCH_SERVICE'),
+  amazonEventbridge('AMAZON_EVENTBRIDGE'),
+  amazonBedrockRuntime('AMAZON_BEDROCK_RUNTIME');
+
+  const AppsyncDatasourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `dynamodb_config` block of
 /// `aws_appsync_datasource` (derived from provider schema).
 @immutable
@@ -122,7 +139,8 @@ final class AppsyncDatasourceHttpConfigAuthorizationConfig {
     this.awsIamConfig,
   });
 
-  final TfArg<String>? authorizationType;
+  final TfArg<AppsyncDatasourceHttpConfigAuthorizationConfigAuthorizationType>?
+  authorizationType;
 
   final AppsyncDatasourceHttpConfigAuthorizationConfigAwsIamConfig?
   awsIamConfig;
@@ -132,6 +150,18 @@ final class AppsyncDatasourceHttpConfigAuthorizationConfig {
       'authorization_type': authorizationType!.toTfJson(),
     if (awsIamConfig != null) 'aws_iam_config': awsIamConfig!.encode(),
   };
+}
+
+/// `authorization_type` — derived from the provider schema description.
+enum AppsyncDatasourceHttpConfigAuthorizationConfigAuthorizationType
+    implements TerraformEnum {
+  awsIam('AWS_IAM');
+
+  const AppsyncDatasourceHttpConfigAuthorizationConfigAuthorizationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `http_config.authorization_config.aws_iam_config` block of
@@ -193,7 +223,7 @@ final class AppsyncDatasourceRelationalDatabaseConfig {
     this.httpEndpointConfig,
   });
 
-  final TfArg<String>? sourceType;
+  final TfArg<AppsyncDatasourceRelationalDatabaseConfigSourceType>? sourceType;
 
   final AppsyncDatasourceRelationalDatabaseConfigHttpEndpointConfig?
   httpEndpointConfig;
@@ -203,6 +233,18 @@ final class AppsyncDatasourceRelationalDatabaseConfig {
     if (httpEndpointConfig != null)
       'http_endpoint_config': httpEndpointConfig!.encode(),
   };
+}
+
+/// `source_type` — derived from the provider schema description.
+enum AppsyncDatasourceRelationalDatabaseConfigSourceType
+    implements TerraformEnum {
+  rdsHttpEndpoint('RDS_HTTP_ENDPOINT');
+
+  const AppsyncDatasourceRelationalDatabaseConfigSourceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `relational_database_config.http_endpoint_config` block of
@@ -247,7 +289,7 @@ final class AwsAppsyncDatasource extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? serviceRoleArn,
-    required TfArg<String> type,
+    required TfArg<AppsyncDatasourceType> type,
     AppsyncDatasourceDynamodbConfig? dynamodbConfig,
     AppsyncDatasourceElasticsearchConfig? elasticsearchConfig,
     AppsyncDatasourceEventBridgeConfig? eventBridgeConfig,

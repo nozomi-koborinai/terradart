@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_pinpointsmsvoicev2_pool`.
 const Set<String> _awsPinpointsmsvoicev2PoolSensitive = <String>{};
 
+/// Pinpointsmsvoicev2 Pool Message enum for `message_type`.
+enum Pinpointsmsvoicev2PoolMessageType implements TerraformEnum {
+  transactional('TRANSACTIONAL'),
+  promotional('PROMOTIONAL');
+
+  const Pinpointsmsvoicev2PoolMessageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_pinpointsmsvoicev2_pool`.
 final class AwsPinpointsmsvoicev2Pool extends Resource {
   static const String tfType = 'aws_pinpointsmsvoicev2_pool';
@@ -14,7 +24,7 @@ final class AwsPinpointsmsvoicev2Pool extends Resource {
     required super.localName,
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? isoCountryCode,
-    required TfArg<String> messageType,
+    required TfArg<Pinpointsmsvoicev2PoolMessageType> messageType,
     TfArg<String>? optOutListName,
     required TfArg<List<String>> originationIdentities,
     TfArg<String>? region,

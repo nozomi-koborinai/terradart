@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iam_user_ssh_key`.
 const Set<String> _awsIamUserSshKeySensitive = <String>{};
 
+/// Iam User Ssh Key enum for `encoding`.
+enum IamUserSshKeyEncoding implements TerraformEnum {
+  ssh('SSH'),
+  pem('PEM');
+
+  const IamUserSshKeyEncoding(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_iam_user_ssh_key`.
 final class AwsIamUserSshKey extends Resource {
   static const String tfType = 'aws_iam_user_ssh_key';
 
   AwsIamUserSshKey({
     required super.localName,
-    required TfArg<String> encoding,
+    required TfArg<IamUserSshKeyEncoding> encoding,
     required TfArg<String> publicKey,
     TfArg<String>? status,
     required TfArg<String> username,

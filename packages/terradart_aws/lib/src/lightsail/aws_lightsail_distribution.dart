@@ -108,13 +108,28 @@ final class LightsailDistributionCacheBehaviorSettingsForwardedHeaders {
 
   final TfArg<List<Object?>>? headersAllowList;
 
-  final TfArg<String>? option;
+  final TfArg<LightsailDistributionCacheBehaviorSettingsForwardedHeadersOption>?
+  option;
 
   Map<String, Object?> encode() => {
     if (headersAllowList != null)
       'headers_allow_list': headersAllowList!.toTfJson(),
     if (option != null) 'option': option!.toTfJson(),
   };
+}
+
+/// `option` — derived from the provider schema description.
+enum LightsailDistributionCacheBehaviorSettingsForwardedHeadersOption
+    implements TerraformEnum {
+  defaultCase('default'),
+  allowList('allow-list'),
+  all('all');
+
+  const LightsailDistributionCacheBehaviorSettingsForwardedHeadersOption(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `cache_behavior_settings.forwarded_query_strings` block of

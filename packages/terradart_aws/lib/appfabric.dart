@@ -5,6 +5,7 @@ library;
 
 export 'src/appfabric/aws_appfabric_app_authorization.dart'
     show
+        AppfabricAppAuthorizationAuthType,
         AppfabricAppAuthorizationCredential,
         AppfabricAppAuthorizationCredentialApiKeyCredential,
         AppfabricAppAuthorizationCredentialOauth2Credential,
@@ -15,7 +16,8 @@ export 'src/appfabric/aws_appfabric_app_authorization_connection.dart'
         AppfabricAppAuthorizationConnectionAuthRequest,
         AwsAppfabricAppAuthorizationConnection;
 export 'src/appfabric/aws_appfabric_app_bundle.dart' show AwsAppfabricAppBundle;
-export 'src/appfabric/aws_appfabric_ingestion.dart' show AwsAppfabricIngestion;
+export 'src/appfabric/aws_appfabric_ingestion.dart'
+    show AppfabricIngestionIngestionType, AwsAppfabricIngestion;
 export 'src/appfabric/aws_appfabric_ingestion_destination.dart'
     show
         AppfabricIngestionDestinationDestinationConfiguration,
@@ -25,4 +27,6 @@ export 'src/appfabric/aws_appfabric_ingestion_destination.dart'
         AppfabricIngestionDestinationDestinationConfigurationAuditLogDestinationS3Bucket,
         AppfabricIngestionDestinationProcessingConfiguration,
         AppfabricIngestionDestinationProcessingConfigurationAuditLog,
+        AppfabricIngestionDestinationProcessingConfigurationAuditLogFormat,
+        AppfabricIngestionDestinationProcessingConfigurationAuditLogSchema,
         AwsAppfabricIngestionDestination;

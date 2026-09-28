@@ -4,6 +4,9 @@
 library;
 
 export 'src/dsql/aws_dsql_cluster.dart'
-    show AwsDsqlCluster, DsqlClusterMultiRegionProperties;
+    show
+        AwsDsqlCluster,
+        DsqlClusterKmsEncryptionKey,
+        DsqlClusterMultiRegionProperties;
 export 'src/dsql/aws_dsql_cluster_peering.dart' show AwsDsqlClusterPeering;
 export 'src/dsql/aws_dsql_cluster_policy.dart' show AwsDsqlClusterPolicy;

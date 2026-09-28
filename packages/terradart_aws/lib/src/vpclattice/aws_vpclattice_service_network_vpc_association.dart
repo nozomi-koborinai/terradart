@@ -17,7 +17,10 @@ final class VpclatticeServiceNetworkVpcAssociationDnsOptions {
     this.privateDnsSpecifiedDomains,
   });
 
-  final TfArg<String>? privateDnsPreference;
+  final TfArg<
+    VpclatticeServiceNetworkVpcAssociationDnsOptionsPrivateDnsPreference
+  >?
+  privateDnsPreference;
 
   final TfArg<List<Object?>>? privateDnsSpecifiedDomains;
 
@@ -27,6 +30,21 @@ final class VpclatticeServiceNetworkVpcAssociationDnsOptions {
     if (privateDnsSpecifiedDomains != null)
       'private_dns_specified_domains': privateDnsSpecifiedDomains!.toTfJson(),
   };
+}
+
+/// `private_dns_preference` — derived from the provider schema description.
+enum VpclatticeServiceNetworkVpcAssociationDnsOptionsPrivateDnsPreference
+    implements TerraformEnum {
+  verifiedDomainsOnly('VERIFIED_DOMAINS_ONLY'),
+  allDomains('ALL_DOMAINS'),
+  verifiedDomainsAndSpecifiedDomains('VERIFIED_DOMAINS_AND_SPECIFIED_DOMAINS'),
+  specifiedDomainsOnly('SPECIFIED_DOMAINS_ONLY');
+
+  const VpclatticeServiceNetworkVpcAssociationDnsOptionsPrivateDnsPreference(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_vpclattice_service_network_vpc_association`.

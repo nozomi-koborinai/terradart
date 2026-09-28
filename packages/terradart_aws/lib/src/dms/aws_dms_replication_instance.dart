@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dms_replication_instance`.
 const Set<String> _awsDmsReplicationInstanceSensitive = <String>{};
 
+/// Dms Replication Instance Network enum for `network_type`.
+enum DmsReplicationInstanceNetworkType implements TerraformEnum {
+  dual('DUAL'),
+  ipv4('IPV4');
+
+  const DmsReplicationInstanceNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `kerberos_authentication_settings` block of
 /// `aws_dms_replication_instance` (derived from provider schema).
 @immutable
@@ -45,7 +55,7 @@ final class AwsDmsReplicationInstance extends Resource {
     TfArg<String>? engineVersion,
     TfArg<String>? kmsKeyArn,
     TfArg<bool>? multiAz,
-    TfArg<String>? networkType,
+    TfArg<DmsReplicationInstanceNetworkType>? networkType,
     TfArg<String>? preferredMaintenanceWindow,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,

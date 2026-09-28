@@ -8,13 +8,29 @@ const Set<String> _awsDirectoryServiceRadiusSettingsSensitive = <String>{
   'shared_secret',
 };
 
+/// Directory Service Radius Settings Authentication enum for `authentication_protocol`.
+enum DirectoryServiceRadiusSettingsAuthenticationProtocol
+    implements TerraformEnum {
+  pap('PAP'),
+  chap('CHAP'),
+  msChapv1('MS-CHAPv1'),
+  msChapv2('MS-CHAPv2');
+
+  const DirectoryServiceRadiusSettingsAuthenticationProtocol(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_directory_service_radius_settings`.
 final class AwsDirectoryServiceRadiusSettings extends Resource {
   static const String tfType = 'aws_directory_service_radius_settings';
 
   AwsDirectoryServiceRadiusSettings({
     required super.localName,
-    required TfArg<String> authenticationProtocol,
+    required TfArg<DirectoryServiceRadiusSettingsAuthenticationProtocol>
+    authenticationProtocol,
     required TfArg<String> directoryId,
     required TfArg<String> displayLabel,
     required TfArg<num> radiusPort,

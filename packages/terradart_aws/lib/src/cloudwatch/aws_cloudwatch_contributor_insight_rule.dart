@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_contributor_insight_rule`.
 const Set<String> _awsCloudwatchContributorInsightRuleSensitive = <String>{};
 
+/// Cloudwatch Contributor Insight Rule Rule enum for `rule_state`.
+enum CloudwatchContributorInsightRuleRuleState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const CloudwatchContributorInsightRuleRuleState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudwatch_contributor_insight_rule`.
 final class AwsCloudwatchContributorInsightRule extends Resource {
   static const String tfType = 'aws_cloudwatch_contributor_insight_rule';
@@ -15,7 +25,7 @@ final class AwsCloudwatchContributorInsightRule extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleDefinition,
     required TfArg<String> ruleName,
-    TfArg<String>? ruleState,
+    TfArg<CloudwatchContributorInsightRuleRuleState>? ruleState,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

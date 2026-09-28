@@ -18,12 +18,25 @@ final class NetworkflowmonitorMonitorLocalResource {
 
   final TfArg<String> identifier;
 
-  final TfArg<String> type;
+  final TfArg<NetworkflowmonitorMonitorLocalResourceType> type;
 
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum NetworkflowmonitorMonitorLocalResourceType implements TerraformEnum {
+  awsEc2Vpc('AWS::EC2::VPC'),
+  awsAvailabilityzone('AWS::AvailabilityZone'),
+  awsEc2Subnet('AWS::EC2::Subnet'),
+  awsRegion('AWS::Region'),
+  awsEksCluster('AWS::EKS::Cluster');
+
+  const NetworkflowmonitorMonitorLocalResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `remote_resource` block of
@@ -37,12 +50,25 @@ final class NetworkflowmonitorMonitorRemoteResource {
 
   final TfArg<String> identifier;
 
-  final TfArg<String> type;
+  final TfArg<NetworkflowmonitorMonitorRemoteResourceType> type;
 
   Map<String, Object?> encode() => {
     'identifier': identifier.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum NetworkflowmonitorMonitorRemoteResourceType implements TerraformEnum {
+  awsEc2Vpc('AWS::EC2::VPC'),
+  awsAvailabilityzone('AWS::AvailabilityZone'),
+  awsEc2Subnet('AWS::EC2::Subnet'),
+  awsAwsservice('AWS::AWSService'),
+  awsRegion('AWS::Region');
+
+  const NetworkflowmonitorMonitorRemoteResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_networkflowmonitor_monitor`.

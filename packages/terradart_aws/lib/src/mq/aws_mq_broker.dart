@@ -10,6 +10,58 @@ const Set<String> _awsMqBrokerSensitive = <String>{
   'user.password',
 };
 
+/// Mq Broker Authentication enum for `authentication_strategy`.
+enum MqBrokerAuthenticationStrategy implements TerraformEnum {
+  simple('SIMPLE'),
+  ldap('LDAP'),
+  configManaged('CONFIG_MANAGED');
+
+  const MqBrokerAuthenticationStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mq Broker Data Replication enum for `data_replication_mode`.
+enum MqBrokerDataReplicationMode implements TerraformEnum {
+  none('NONE'),
+  crdr('CRDR');
+
+  const MqBrokerDataReplicationMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mq Broker Deployment enum for `deployment_mode`.
+enum MqBrokerDeploymentMode implements TerraformEnum {
+  singleInstance('SINGLE_INSTANCE'),
+  activeStandbyMultiAz('ACTIVE_STANDBY_MULTI_AZ'),
+  clusterMultiAz('CLUSTER_MULTI_AZ');
+
+  const MqBrokerDeploymentMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mq Broker Engine enum for `engine_type`.
+enum MqBrokerEngineType implements TerraformEnum {
+  activemq('ACTIVEMQ'),
+  rabbitmq('RABBITMQ');
+
+  const MqBrokerEngineType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Mq Broker Storage enum for `storage_type`.
+enum MqBrokerStorageType implements TerraformEnum {
+  ebs('EBS'),
+  efs('EFS');
+
+  const MqBrokerStorageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `configuration` block of
 /// `aws_mq_broker` (derived from provider schema).
 @immutable
@@ -129,7 +181,7 @@ final class MqBrokerMaintenanceWindowStartTime {
     required this.timeZone,
   });
 
-  final TfArg<String> dayOfWeek;
+  final TfArg<MqBrokerMaintenanceWindowStartTimeDayOfWeek> dayOfWeek;
 
   final TfArg<String> timeOfDay;
 
@@ -140,6 +192,21 @@ final class MqBrokerMaintenanceWindowStartTime {
     'time_of_day': timeOfDay.toTfJson(),
     'time_zone': timeZone.toTfJson(),
   };
+}
+
+/// `day_of_week` — derived from the provider schema description.
+enum MqBrokerMaintenanceWindowStartTimeDayOfWeek implements TerraformEnum {
+  monday('MONDAY'),
+  tuesday('TUESDAY'),
+  wednesday('WEDNESDAY'),
+  thursday('THURSDAY'),
+  friday('FRIDAY'),
+  saturday('SATURDAY'),
+  sunday('SUNDAY');
+
+  const MqBrokerMaintenanceWindowStartTimeDayOfWeek(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `user` block of
@@ -181,20 +248,20 @@ final class AwsMqBroker extends Resource {
   AwsMqBroker({
     required super.localName,
     TfArg<bool>? applyImmediately,
-    TfArg<String>? authenticationStrategy,
+    TfArg<MqBrokerAuthenticationStrategy>? authenticationStrategy,
     TfArg<bool>? autoMinorVersionUpgrade,
     required TfArg<String> brokerName,
-    TfArg<String>? dataReplicationMode,
+    TfArg<MqBrokerDataReplicationMode>? dataReplicationMode,
     TfArg<String>? dataReplicationPrimaryBrokerArn,
-    TfArg<String>? deploymentMode,
-    required TfArg<String> engineType,
+    TfArg<MqBrokerDeploymentMode>? deploymentMode,
+    required TfArg<MqBrokerEngineType> engineType,
     required TfArg<String> engineVersion,
     required TfArg<String> hostInstanceType,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
     TfArg<List<String>>? resourceShareArns,
     TfArg<List<String>>? securityGroups,
-    TfArg<String>? storageType,
+    TfArg<MqBrokerStorageType>? storageType,
     TfArg<List<String>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     MqBrokerConfiguration? configuration,

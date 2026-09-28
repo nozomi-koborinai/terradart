@@ -6,6 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rds_global_cluster`.
 const Set<String> _awsRdsGlobalClusterSensitive = <String>{};
 
+/// Rds Global Cluster enum for `engine`.
+enum RdsGlobalClusterEngine implements TerraformEnum {
+  aurora('aurora'),
+  auroraMysql('aurora-mysql'),
+  auroraPostgresql('aurora-postgresql');
+
+  const RdsGlobalClusterEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Rds Global Cluster Engine Lifecycle enum for `engine_lifecycle_support`.
+enum RdsGlobalClusterEngineLifecycleSupport implements TerraformEnum {
+  openSourceRdsExtendedSupport('open-source-rds-extended-support'),
+  openSourceRdsExtendedSupportDisabled(
+    'open-source-rds-extended-support-disabled',
+  );
+
+  const RdsGlobalClusterEngineLifecycleSupport(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_rds_global_cluster`.
 final class AwsRdsGlobalCluster extends Resource {
   static const String tfType = 'aws_rds_global_cluster';
@@ -14,8 +37,8 @@ final class AwsRdsGlobalCluster extends Resource {
     required super.localName,
     TfArg<String>? databaseName,
     TfArg<bool>? deletionProtection,
-    TfArg<String>? engine,
-    TfArg<String>? engineLifecycleSupport,
+    TfArg<RdsGlobalClusterEngine>? engine,
+    TfArg<RdsGlobalClusterEngineLifecycleSupport>? engineLifecycleSupport,
     TfArg<String>? engineVersion,
     TfArg<bool>? forceDestroy,
     required TfArg<String> globalClusterIdentifier,

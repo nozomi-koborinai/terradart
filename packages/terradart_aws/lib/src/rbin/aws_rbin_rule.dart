@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rbin_rule`.
 const Set<String> _awsRbinRuleSensitive = <String>{};
 
+/// Rbin Rule Resource enum for `resource_type`.
+enum RbinRuleResourceType implements TerraformEnum {
+  ebsSnapshot('EBS_SNAPSHOT'),
+  ec2Image('EC2_IMAGE'),
+  ebsVolume('EBS_VOLUME');
+
+  const RbinRuleResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `exclude_resource_tags` block of
 /// `aws_rbin_rule` (derived from provider schema).
 @immutable
@@ -47,7 +58,8 @@ final class RbinRuleLockConfigurationUnlockDelay {
     required this.unlockDelayValue,
   });
 
-  final TfArg<String> unlockDelayUnit;
+  final TfArg<RbinRuleLockConfigurationUnlockDelayUnlockDelayUnit>
+  unlockDelayUnit;
 
   final TfArg<num> unlockDelayValue;
 
@@ -55,6 +67,18 @@ final class RbinRuleLockConfigurationUnlockDelay {
     'unlock_delay_unit': unlockDelayUnit.toTfJson(),
     'unlock_delay_value': unlockDelayValue.toTfJson(),
   };
+}
+
+/// `unlock_delay_unit` — derived from the provider schema description.
+enum RbinRuleLockConfigurationUnlockDelayUnlockDelayUnit
+    implements TerraformEnum {
+  days('DAYS');
+
+  const RbinRuleLockConfigurationUnlockDelayUnlockDelayUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `resource_tags` block of
@@ -86,7 +110,7 @@ final class RbinRuleRetentionPeriod {
     required this.retentionPeriodValue,
   });
 
-  final TfArg<String> retentionPeriodUnit;
+  final TfArg<RbinRuleRetentionPeriodRetentionPeriodUnit> retentionPeriodUnit;
 
   final TfArg<num> retentionPeriodValue;
 
@@ -94,6 +118,15 @@ final class RbinRuleRetentionPeriod {
     'retention_period_unit': retentionPeriodUnit.toTfJson(),
     'retention_period_value': retentionPeriodValue.toTfJson(),
   };
+}
+
+/// `retention_period_unit` — derived from the provider schema description.
+enum RbinRuleRetentionPeriodRetentionPeriodUnit implements TerraformEnum {
+  days('DAYS');
+
+  const RbinRuleRetentionPeriodRetentionPeriodUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_rbin_rule`.
@@ -104,7 +137,7 @@ final class AwsRbinRule extends Resource {
     required super.localName,
     TfArg<String>? description,
     TfArg<String>? region,
-    required TfArg<String> resourceType,
+    required TfArg<RbinRuleResourceType> resourceType,
     TfArg<Map<String, String>>? tags,
     List<RbinRuleExcludeResourceTags>? excludeResourceTags,
     RbinRuleLockConfiguration? lockConfiguration,

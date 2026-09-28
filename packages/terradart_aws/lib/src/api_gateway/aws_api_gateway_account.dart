@@ -6,13 +6,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_api_gateway_account`.
 const Set<String> _awsApiGatewayAccountSensitive = <String>{};
 
+/// Api Gateway Account Cloudwatch Role enum for `cloudwatch_role_arn`.
+enum ApiGatewayAccountCloudwatchRoleArn implements TerraformEnum {
+  empty('');
+
+  const ApiGatewayAccountCloudwatchRoleArn(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_api_gateway_account`.
 final class AwsApiGatewayAccount extends Resource {
   static const String tfType = 'aws_api_gateway_account';
 
   AwsApiGatewayAccount({
     required super.localName,
-    TfArg<String>? cloudwatchRoleArn,
+    TfArg<ApiGatewayAccountCloudwatchRoleArn>? cloudwatchRoleArn,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

@@ -116,7 +116,7 @@ final class IotTopicRuleDynamodb {
 
   final TfArg<String> hashKeyValue;
 
-  final TfArg<String>? operation;
+  final TfArg<IotTopicRuleDynamodbOperation>? operation;
 
   final TfArg<String>? payloadField;
 
@@ -142,6 +142,17 @@ final class IotTopicRuleDynamodb {
     'role_arn': roleArn.toTfJson(),
     'table_name': tableName.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum IotTopicRuleDynamodbOperation implements TerraformEnum {
+  delete('DELETE'),
+  insert('INSERT'),
+  update('UPDATE');
+
+  const IotTopicRuleDynamodbOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `dynamodbv2` block of
@@ -399,7 +410,7 @@ final class IotTopicRuleErrorActionDynamodb {
 
   final TfArg<String> hashKeyValue;
 
-  final TfArg<String>? operation;
+  final TfArg<IotTopicRuleErrorActionDynamodbOperation>? operation;
 
   final TfArg<String>? payloadField;
 
@@ -425,6 +436,17 @@ final class IotTopicRuleErrorActionDynamodb {
     'role_arn': roleArn.toTfJson(),
     'table_name': tableName.toTfJson(),
   };
+}
+
+/// `operation` — derived from the provider schema description.
+enum IotTopicRuleErrorActionDynamodbOperation implements TerraformEnum {
+  delete('DELETE'),
+  insert('INSERT'),
+  update('UPDATE');
+
+  const IotTopicRuleErrorActionDynamodbOperation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `error_action.dynamodbv2` block of
@@ -733,7 +755,7 @@ final class IotTopicRuleErrorActionS3 {
 
   final TfArg<String> bucketName;
 
-  final TfArg<String>? cannedAcl;
+  final TfArg<IotTopicRuleErrorActionS3CannedAcl>? cannedAcl;
 
   final TfArg<String> key;
 
@@ -745,6 +767,22 @@ final class IotTopicRuleErrorActionS3 {
     'key': key.toTfJson(),
     'role_arn': roleArn.toTfJson(),
   };
+}
+
+/// `canned_acl` — derived from the provider schema description.
+enum IotTopicRuleErrorActionS3CannedAcl implements TerraformEnum {
+  private('private'),
+  publicRead('public-read'),
+  publicReadWrite('public-read-write'),
+  awsExecRead('aws-exec-read'),
+  authenticatedRead('authenticated-read'),
+  bucketOwnerRead('bucket-owner-read'),
+  bucketOwnerFullControl('bucket-owner-full-control'),
+  logDeliveryWrite('log-delivery-write');
+
+  const IotTopicRuleErrorActionS3CannedAcl(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `error_action.sns` block of
@@ -876,7 +914,7 @@ final class IotTopicRuleErrorActionTimestreamTimestamp {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<IotTopicRuleErrorActionTimestreamTimestampUnit> unit;
 
   final TfArg<String> value;
 
@@ -884,6 +922,18 @@ final class IotTopicRuleErrorActionTimestreamTimestamp {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum IotTopicRuleErrorActionTimestreamTimestampUnit implements TerraformEnum {
+  seconds('SECONDS'),
+  milliseconds('MILLISECONDS'),
+  microseconds('MICROSECONDS'),
+  nanoseconds('NANOSECONDS');
+
+  const IotTopicRuleErrorActionTimestreamTimestampUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `firehose` block of
@@ -1125,7 +1175,7 @@ final class IotTopicRuleS3 {
 
   final TfArg<String> bucketName;
 
-  final TfArg<String>? cannedAcl;
+  final TfArg<IotTopicRuleS3CannedAcl>? cannedAcl;
 
   final TfArg<String> key;
 
@@ -1137,6 +1187,22 @@ final class IotTopicRuleS3 {
     'key': key.toTfJson(),
     'role_arn': roleArn.toTfJson(),
   };
+}
+
+/// `canned_acl` — derived from the provider schema description.
+enum IotTopicRuleS3CannedAcl implements TerraformEnum {
+  private('private'),
+  publicRead('public-read'),
+  publicReadWrite('public-read-write'),
+  awsExecRead('aws-exec-read'),
+  authenticatedRead('authenticated-read'),
+  bucketOwnerRead('bucket-owner-read'),
+  bucketOwnerFullControl('bucket-owner-full-control'),
+  logDeliveryWrite('log-delivery-write');
+
+  const IotTopicRuleS3CannedAcl(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `sns` block of
@@ -1268,7 +1334,7 @@ final class IotTopicRuleTimestreamTimestamp {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<IotTopicRuleTimestreamTimestampUnit> unit;
 
   final TfArg<String> value;
 
@@ -1276,6 +1342,18 @@ final class IotTopicRuleTimestreamTimestamp {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum IotTopicRuleTimestreamTimestampUnit implements TerraformEnum {
+  seconds('SECONDS'),
+  milliseconds('MILLISECONDS'),
+  microseconds('MICROSECONDS'),
+  nanoseconds('NANOSECONDS');
+
+  const IotTopicRuleTimestreamTimestampUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_iot_topic_rule`.

@@ -7,6 +7,39 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dynamodb_table`.
 const Set<String> _awsDynamodbTableSensitive = <String>{};
 
+/// Dynamodb Table Billing enum for `billing_mode`.
+enum DynamodbTableBillingMode implements TerraformEnum {
+  provisioned('PROVISIONED'),
+  payPerRequest('PAY_PER_REQUEST');
+
+  const DynamodbTableBillingMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dynamodb Table Stream View enum for `stream_view_type`.
+enum DynamodbTableStreamViewType implements TerraformEnum {
+  newImage('NEW_IMAGE'),
+  oldImage('OLD_IMAGE'),
+  newAndOldImages('NEW_AND_OLD_IMAGES'),
+  keysOnly('KEYS_ONLY'),
+  empty('');
+
+  const DynamodbTableStreamViewType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Dynamodb Table Table enum for `table_class`.
+enum DynamodbTableTableClass implements TerraformEnum {
+  standard('STANDARD'),
+  standardInfrequentAccess('STANDARD_INFREQUENT_ACCESS');
+
+  const DynamodbTableTableClass(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `attribute` block of
 /// `aws_dynamodb_table` (derived from provider schema).
 @immutable
@@ -15,12 +48,23 @@ final class DynamodbTableAttribute {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final TfArg<DynamodbTableAttributeType> type;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum DynamodbTableAttributeType implements TerraformEnum {
+  s('S'),
+  n('N'),
+  b('B');
+
+  const DynamodbTableAttributeType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `global_secondary_index` block of
@@ -46,7 +90,7 @@ final class DynamodbTableGlobalSecondaryIndex {
 
   final TfArg<List<Object?>>? nonKeyAttributes;
 
-  final TfArg<String> projectionType;
+  final TfArg<DynamodbTableGlobalSecondaryIndexProjectionType> projectionType;
 
   final TfArg<String>? rangeKey;
 
@@ -77,6 +121,17 @@ final class DynamodbTableGlobalSecondaryIndex {
   };
 }
 
+/// `projection_type` — derived from the provider schema description.
+enum DynamodbTableGlobalSecondaryIndexProjectionType implements TerraformEnum {
+  all('ALL'),
+  keysOnly('KEYS_ONLY'),
+  include('INCLUDE');
+
+  const DynamodbTableGlobalSecondaryIndexProjectionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `global_secondary_index.key_schema` block of
 /// `aws_dynamodb_table` (derived from provider schema).
 @immutable
@@ -88,12 +143,23 @@ final class DynamodbTableGlobalSecondaryIndexKeySchema {
 
   final TfArg<String> attributeName;
 
-  final TfArg<String> keyType;
+  final TfArg<DynamodbTableGlobalSecondaryIndexKeySchemaKeyType> keyType;
 
   Map<String, Object?> encode() => {
     'attribute_name': attributeName.toTfJson(),
     'key_type': keyType.toTfJson(),
   };
+}
+
+/// `key_type` — derived from the provider schema description.
+enum DynamodbTableGlobalSecondaryIndexKeySchemaKeyType
+    implements TerraformEnum {
+  hash('HASH'),
+  range('RANGE');
+
+  const DynamodbTableGlobalSecondaryIndexKeySchemaKeyType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `global_secondary_index.on_demand_throughput` block of
@@ -162,9 +228,10 @@ final class DynamodbTableImportTable {
     required this.s3BucketSource,
   });
 
-  final TfArg<String>? inputCompressionType;
+  final TfArg<DynamodbTableImportTableInputCompressionType>?
+  inputCompressionType;
 
-  final TfArg<String> inputFormat;
+  final TfArg<DynamodbTableImportTableInputFormat> inputFormat;
 
   final DynamodbTableImportTableInputFormatOptions? inputFormatOptions;
 
@@ -178,6 +245,28 @@ final class DynamodbTableImportTable {
       'input_format_options': inputFormatOptions!.encode(),
     's3_bucket_source': s3BucketSource.encode(),
   };
+}
+
+/// `input_compression_type` — derived from the provider schema description.
+enum DynamodbTableImportTableInputCompressionType implements TerraformEnum {
+  gzip('GZIP'),
+  zstd('ZSTD'),
+  none('NONE');
+
+  const DynamodbTableImportTableInputCompressionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `input_format` — derived from the provider schema description.
+enum DynamodbTableImportTableInputFormat implements TerraformEnum {
+  dynamodbJson('DYNAMODB_JSON'),
+  ion('ION'),
+  csv('CSV');
+
+  const DynamodbTableImportTableInputFormat(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `import_table.input_format_options` block of
@@ -248,7 +337,7 @@ final class DynamodbTableLocalSecondaryIndex {
 
   final TfArg<List<Object?>>? nonKeyAttributes;
 
-  final TfArg<String> projectionType;
+  final TfArg<DynamodbTableLocalSecondaryIndexProjectionType> projectionType;
 
   final TfArg<String> rangeKey;
 
@@ -259,6 +348,17 @@ final class DynamodbTableLocalSecondaryIndex {
     'projection_type': projectionType.toTfJson(),
     'range_key': rangeKey.toTfJson(),
   };
+}
+
+/// `projection_type` — derived from the provider schema description.
+enum DynamodbTableLocalSecondaryIndexProjectionType implements TerraformEnum {
+  all('ALL'),
+  keysOnly('KEYS_ONLY'),
+  include('INCLUDE');
+
+  const DynamodbTableLocalSecondaryIndexProjectionType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `on_demand_throughput` block of
@@ -315,7 +415,7 @@ final class DynamodbTableReplica {
     required this.regionName,
   });
 
-  final TfArg<String>? consistencyMode;
+  final TfArg<DynamodbTableReplicaConsistencyMode>? consistencyMode;
 
   final TfArg<bool>? deletionProtectionEnabled;
 
@@ -338,6 +438,16 @@ final class DynamodbTableReplica {
     if (propagateTags != null) 'propagate_tags': propagateTags!.toTfJson(),
     'region_name': regionName.toTfJson(),
   };
+}
+
+/// `consistency_mode` — derived from the provider schema description.
+enum DynamodbTableReplicaConsistencyMode implements TerraformEnum {
+  eventual('EVENTUAL'),
+  strong('STRONG');
+
+  const DynamodbTableReplicaConsistencyMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `server_side_encryption` block of
@@ -402,7 +512,7 @@ final class AwsDynamodbTable extends Resource {
 
   AwsDynamodbTable({
     required super.localName,
-    TfArg<String>? billingMode,
+    TfArg<DynamodbTableBillingMode>? billingMode,
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? hashKey,
     required TfArg<String> name,
@@ -415,8 +525,8 @@ final class AwsDynamodbTable extends Resource {
     TfArg<String>? restoreSourceTableArn,
     TfArg<bool>? restoreToLatestTime,
     TfArg<bool>? streamEnabled,
-    TfArg<String>? streamViewType,
-    TfArg<String>? tableClass,
+    TfArg<DynamodbTableStreamViewType>? streamViewType,
+    TfArg<DynamodbTableTableClass>? tableClass,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? writeCapacity,
     List<DynamodbTableAttribute>? attribute,

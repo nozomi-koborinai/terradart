@@ -140,6 +140,7 @@ providers:
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_aws.yaml
     resourceProvider: null # aws_ prefix collides with nothing
     migrateManifest: packages/terradart_migrate/lib/src/manifest/aws.g.dart
+    providerEnums: true
     bump:
       mode: auto
       repo: hashicorp/terraform-provider-aws

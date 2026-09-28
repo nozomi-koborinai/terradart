@@ -17,7 +17,7 @@ final class DbParameterGroupParameter {
     required this.value,
   });
 
-  final TfArg<String>? applyMethod;
+  final TfArg<DbParameterGroupParameterApplyMethod>? applyMethod;
 
   final TfArg<String> name;
 
@@ -28,6 +28,16 @@ final class DbParameterGroupParameter {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `apply_method` — derived from the provider schema description.
+enum DbParameterGroupParameterApplyMethod implements TerraformEnum {
+  immediate('immediate'),
+  pendingReboot('pending-reboot');
+
+  const DbParameterGroupParameterApplyMethod(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_db_parameter_group`.

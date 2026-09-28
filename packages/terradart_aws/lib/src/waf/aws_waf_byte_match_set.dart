@@ -45,12 +45,27 @@ final class WafByteMatchSetByteMatchTuplesFieldToMatch {
 
   final TfArg<String>? data;
 
-  final TfArg<String> type;
+  final TfArg<WafByteMatchSetByteMatchTuplesFieldToMatchType> type;
 
   Map<String, Object?> encode() => {
     if (data != null) 'data': data!.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum WafByteMatchSetByteMatchTuplesFieldToMatchType implements TerraformEnum {
+  uri('URI'),
+  queryString('QUERY_STRING'),
+  header('HEADER'),
+  method('METHOD'),
+  body('BODY'),
+  singleQueryArg('SINGLE_QUERY_ARG'),
+  allQueryArgs('ALL_QUERY_ARGS');
+
+  const WafByteMatchSetByteMatchTuplesFieldToMatchType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_waf_byte_match_set`.

@@ -7,6 +7,31 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsBedrockagentAgentKnowledgeBaseAssociationSensitive =
     <String>{};
 
+/// Bedrockagent Agent Knowledge Base Association Agent enum for `agent_version`.
+enum BedrockagentAgentKnowledgeBaseAssociationAgentVersion
+    implements TerraformEnum {
+  draft('DRAFT');
+
+  const BedrockagentAgentKnowledgeBaseAssociationAgentVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Bedrockagent Agent Knowledge Base Association Knowledge Base enum for `knowledge_base_state`.
+enum BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_bedrockagent_agent_knowledge_base_association`.
 final class AwsBedrockagentAgentKnowledgeBaseAssociation extends Resource {
   static const String tfType =
@@ -15,10 +40,11 @@ final class AwsBedrockagentAgentKnowledgeBaseAssociation extends Resource {
   AwsBedrockagentAgentKnowledgeBaseAssociation({
     required super.localName,
     required TfArg<String> agentId,
-    TfArg<String>? agentVersion,
+    TfArg<BedrockagentAgentKnowledgeBaseAssociationAgentVersion>? agentVersion,
     required TfArg<String> description,
     required TfArg<String> knowledgeBaseId,
-    required TfArg<String> knowledgeBaseState,
+    required TfArg<BedrockagentAgentKnowledgeBaseAssociationKnowledgeBaseState>
+    knowledgeBaseState,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

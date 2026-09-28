@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_mskconnect_custom_plugin`.
 const Set<String> _awsMskconnectCustomPluginSensitive = <String>{};
 
+/// Mskconnect Custom Plugin Content enum for `content_type`.
+enum MskconnectCustomPluginContentType implements TerraformEnum {
+  jar('JAR'),
+  zip('ZIP');
+
+  const MskconnectCustomPluginContentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `location` block of
 /// `aws_mskconnect_custom_plugin` (derived from provider schema).
 @immutable
@@ -47,7 +57,7 @@ final class AwsMskconnectCustomPlugin extends Resource {
 
   AwsMskconnectCustomPlugin({
     required super.localName,
-    required TfArg<String> contentType,
+    required TfArg<MskconnectCustomPluginContentType> contentType,
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,

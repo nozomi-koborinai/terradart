@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_imagebuilder_lifecycle_policy`.
 const Set<String> _awsImagebuilderLifecyclePolicySensitive = <String>{};
 
+/// Imagebuilder Lifecycle Policy Resource enum for `resource_type`.
+enum ImagebuilderLifecyclePolicyResourceType implements TerraformEnum {
+  amiImage('AMI_IMAGE'),
+  containerImage('CONTAINER_IMAGE');
+
+  const ImagebuilderLifecyclePolicyResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `policy_detail` block of
 /// `aws_imagebuilder_lifecycle_policy` (derived from provider schema).
 @immutable
@@ -41,7 +51,7 @@ final class ImagebuilderLifecyclePolicyPolicyDetailAction {
     this.includeResources,
   });
 
-  final TfArg<String> type;
+  final TfArg<ImagebuilderLifecyclePolicyPolicyDetailActionType> type;
 
   final List<ImagebuilderLifecyclePolicyPolicyDetailActionIncludeResources>?
   includeResources;
@@ -51,6 +61,18 @@ final class ImagebuilderLifecyclePolicyPolicyDetailAction {
     if (includeResources != null)
       'include_resources': [for (final e in includeResources!) e.encode()],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ImagebuilderLifecyclePolicyPolicyDetailActionType
+    implements TerraformEnum {
+  delete('DELETE'),
+  deprecate('DEPRECATE'),
+  disable('DISABLE');
+
+  const ImagebuilderLifecyclePolicyPolicyDetailActionType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_detail.action.include_resources` block of
@@ -139,7 +161,10 @@ final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunche
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<
+    ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunchedUnit
+  >
+  unit;
 
   final TfArg<num> value;
 
@@ -147,6 +172,21 @@ final class ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunche
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunchedUnit
+    implements TerraformEnum {
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const ImagebuilderLifecyclePolicyPolicyDetailExclusionRulesAmisLastLaunchedUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policy_detail.filter` block of
@@ -162,9 +202,9 @@ final class ImagebuilderLifecyclePolicyPolicyDetailFilter {
 
   final TfArg<num>? retainAtLeast;
 
-  final TfArg<String> type;
+  final TfArg<ImagebuilderLifecyclePolicyPolicyDetailFilterType> type;
 
-  final TfArg<String>? unit;
+  final TfArg<ImagebuilderLifecyclePolicyPolicyDetailFilterUnit>? unit;
 
   final TfArg<num> value;
 
@@ -174,6 +214,30 @@ final class ImagebuilderLifecyclePolicyPolicyDetailFilter {
     if (unit != null) 'unit': unit!.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ImagebuilderLifecyclePolicyPolicyDetailFilterType
+    implements TerraformEnum {
+  age('AGE'),
+  count('COUNT');
+
+  const ImagebuilderLifecyclePolicyPolicyDetailFilterType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `unit` — derived from the provider schema description.
+enum ImagebuilderLifecyclePolicyPolicyDetailFilterUnit
+    implements TerraformEnum {
+  days('DAYS'),
+  weeks('WEEKS'),
+  months('MONTHS'),
+  years('YEARS');
+
+  const ImagebuilderLifecyclePolicyPolicyDetailFilterUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `resource_selection` block of
@@ -224,7 +288,7 @@ final class AwsImagebuilderLifecyclePolicy extends Resource {
     required TfArg<String> executionRole,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> resourceType,
+    required TfArg<ImagebuilderLifecyclePolicyResourceType> resourceType,
     TfArg<String>? status,
     TfArg<Map<String, String>>? tags,
     List<ImagebuilderLifecyclePolicyPolicyDetail>? policyDetail,

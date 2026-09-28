@@ -4,13 +4,16 @@
 library;
 
 export 'src/networkmanager/aws_networkmanager_attachment_accepter.dart'
-    show AwsNetworkmanagerAttachmentAccepter;
+    show
+        AwsNetworkmanagerAttachmentAccepter,
+        NetworkmanagerAttachmentAccepterAttachmentType;
 export 'src/networkmanager/aws_networkmanager_attachment_routing_policy_label.dart'
     show AwsNetworkmanagerAttachmentRoutingPolicyLabel;
 export 'src/networkmanager/aws_networkmanager_connect_attachment.dart'
     show
         AwsNetworkmanagerConnectAttachment,
-        NetworkmanagerConnectAttachmentOptions;
+        NetworkmanagerConnectAttachmentOptions,
+        NetworkmanagerConnectAttachmentOptionsProtocol;
 export 'src/networkmanager/aws_networkmanager_connect_peer.dart'
     show AwsNetworkmanagerConnectPeer, NetworkmanagerConnectPeerBgpOptions;
 export 'src/networkmanager/aws_networkmanager_connection.dart'

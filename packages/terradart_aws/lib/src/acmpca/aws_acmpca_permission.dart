@@ -6,15 +6,35 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_acmpca_permission`.
 const Set<String> _awsAcmpcaPermissionSensitive = <String>{};
 
+/// Acmpca Permission enum for `actions`.
+enum AcmpcaPermissionActions implements TerraformEnum {
+  issuecertificate('IssueCertificate'),
+  getcertificate('GetCertificate'),
+  listpermissions('ListPermissions');
+
+  const AcmpcaPermissionActions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Acmpca Permission enum for `principal`.
+enum AcmpcaPermissionPrincipal implements TerraformEnum {
+  acmAmazonawsCom('acm.amazonaws.com');
+
+  const AcmpcaPermissionPrincipal(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_acmpca_permission`.
 final class AwsAcmpcaPermission extends Resource {
   static const String tfType = 'aws_acmpca_permission';
 
   AwsAcmpcaPermission({
     required super.localName,
-    required TfArg<List<String>> actions,
+    required List<TfArg<AcmpcaPermissionActions>> actions,
     required TfArg<String> certificateAuthorityArn,
-    required TfArg<String> principal,
+    required TfArg<AcmpcaPermissionPrincipal> principal,
     TfArg<String>? region,
     TfArg<String>? sourceAccount,
     super.lifecycle,
@@ -24,7 +44,7 @@ final class AwsAcmpcaPermission extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'actions': actions,
+           'actions': TfArg.literal([for (final e in actions) e.toTfJson()]),
            'certificate_authority_arn': certificateAuthorityArn,
            'principal': principal,
            if (region != null) 'region': region,

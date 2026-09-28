@@ -7,6 +7,36 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_fsx_openzfs_volume`.
 const Set<String> _awsFsxOpenzfsVolumeSensitive = <String>{};
 
+/// Fsx Openzfs Volume Data Compression enum for `data_compression_type`.
+enum FsxOpenzfsVolumeDataCompressionType implements TerraformEnum {
+  none('NONE'),
+  zstd('ZSTD'),
+  lz4('LZ4');
+
+  const FsxOpenzfsVolumeDataCompressionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Fsx Openzfs Volume Delete Volume enum for `delete_volume_options`.
+enum FsxOpenzfsVolumeDeleteVolumeOptions implements TerraformEnum {
+  deleteChildVolumesAndSnapshots('DELETE_CHILD_VOLUMES_AND_SNAPSHOTS');
+
+  const FsxOpenzfsVolumeDeleteVolumeOptions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Fsx Openzfs Volume Volume enum for `volume_type`.
+enum FsxOpenzfsVolumeVolumeType implements TerraformEnum {
+  ontap('ONTAP'),
+  openzfs('OPENZFS');
+
+  const FsxOpenzfsVolumeVolumeType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `nfs_exports` block of
 /// `aws_fsx_openzfs_volume` (derived from provider schema).
 @immutable
@@ -49,7 +79,7 @@ final class FsxOpenzfsVolumeOriginSnapshot {
     required this.snapshotArn,
   });
 
-  final TfArg<String> copyStrategy;
+  final TfArg<FsxOpenzfsVolumeOriginSnapshotCopyStrategy> copyStrategy;
 
   final TfArg<String> snapshotArn;
 
@@ -57,6 +87,17 @@ final class FsxOpenzfsVolumeOriginSnapshot {
     'copy_strategy': copyStrategy.toTfJson(),
     'snapshot_arn': snapshotArn.toTfJson(),
   };
+}
+
+/// `copy_strategy` — derived from the provider schema description.
+enum FsxOpenzfsVolumeOriginSnapshotCopyStrategy implements TerraformEnum {
+  clone('CLONE'),
+  fullCopy('FULL_COPY'),
+  incrementalCopy('INCREMENTAL_COPY');
+
+  const FsxOpenzfsVolumeOriginSnapshotCopyStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `user_and_group_quotas` block of
@@ -73,13 +114,23 @@ final class FsxOpenzfsVolumeUserAndGroupQuotas {
 
   final TfArg<num> storageCapacityQuotaGib;
 
-  final TfArg<String> type;
+  final TfArg<FsxOpenzfsVolumeUserAndGroupQuotasType> type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'storage_capacity_quota_gib': storageCapacityQuotaGib.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum FsxOpenzfsVolumeUserAndGroupQuotasType implements TerraformEnum {
+  user('USER'),
+  group('GROUP');
+
+  const FsxOpenzfsVolumeUserAndGroupQuotasType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_fsx_openzfs_volume`.
@@ -89,8 +140,8 @@ final class AwsFsxOpenzfsVolume extends Resource {
   AwsFsxOpenzfsVolume({
     required super.localName,
     TfArg<bool>? copyTagsToSnapshots,
-    TfArg<String>? dataCompressionType,
-    TfArg<List<String>>? deleteVolumeOptions,
+    TfArg<FsxOpenzfsVolumeDataCompressionType>? dataCompressionType,
+    List<TfArg<FsxOpenzfsVolumeDeleteVolumeOptions>>? deleteVolumeOptions,
     required TfArg<String> name,
     required TfArg<String> parentVolumeId,
     TfArg<bool>? readOnly,
@@ -99,7 +150,7 @@ final class AwsFsxOpenzfsVolume extends Resource {
     TfArg<num>? storageCapacityQuotaGib,
     TfArg<num>? storageCapacityReservationGib,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? volumeType,
+    TfArg<FsxOpenzfsVolumeVolumeType>? volumeType,
     FsxOpenzfsVolumeNfsExports? nfsExports,
     FsxOpenzfsVolumeOriginSnapshot? originSnapshot,
     List<FsxOpenzfsVolumeUserAndGroupQuotas>? userAndGroupQuotas,
@@ -115,7 +166,9 @@ final class AwsFsxOpenzfsVolume extends Resource {
            if (dataCompressionType != null)
              'data_compression_type': dataCompressionType,
            if (deleteVolumeOptions != null)
-             'delete_volume_options': deleteVolumeOptions,
+             'delete_volume_options': TfArg.literal([
+               for (final e in deleteVolumeOptions) e.toTfJson(),
+             ]),
            'name': name,
            'parent_volume_id': parentVolumeId,
            if (readOnly != null) 'read_only': readOnly,

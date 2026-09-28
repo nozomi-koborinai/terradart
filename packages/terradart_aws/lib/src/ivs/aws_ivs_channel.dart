@@ -6,6 +6,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ivs_channel`.
 const Set<String> _awsIvsChannelSensitive = <String>{};
 
+/// Ivs Channel Latency enum for `latency_mode`.
+enum IvsChannelLatencyMode implements TerraformEnum {
+  normal('NORMAL'),
+  low('LOW');
+
+  const IvsChannelLatencyMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Ivs Channel enum for `type`.
+enum IvsChannelType implements TerraformEnum {
+  basic('BASIC'),
+  standard('STANDARD'),
+  advancedSd('ADVANCED_SD'),
+  advancedHd('ADVANCED_HD');
+
+  const IvsChannelType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_ivs_channel`.
 final class AwsIvsChannel extends Resource {
   static const String tfType = 'aws_ivs_channel';
@@ -13,12 +35,12 @@ final class AwsIvsChannel extends Resource {
   AwsIvsChannel({
     required super.localName,
     TfArg<bool>? authorized,
-    TfArg<String>? latencyMode,
+    TfArg<IvsChannelLatencyMode>? latencyMode,
     TfArg<String>? name,
     TfArg<String>? recordingConfigurationArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? type,
+    TfArg<IvsChannelType>? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

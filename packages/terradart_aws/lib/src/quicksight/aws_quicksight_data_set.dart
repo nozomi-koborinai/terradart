@@ -7,6 +7,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_quicksight_data_set`.
 const Set<String> _awsQuicksightDataSetSensitive = <String>{};
 
+/// Quicksight Data Set Import enum for `import_mode`.
+enum QuicksightDataSetImportMode implements TerraformEnum {
+  spice('SPICE'),
+  directQuery('DIRECT_QUERY');
+
+  const QuicksightDataSetImportMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Quicksight Data Set Use enum for `use_as`.
+enum QuicksightDataSetUseAs implements TerraformEnum {
+  rlsRules('RLS_RULES');
+
+  const QuicksightDataSetUseAs(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `column_groups` block of
 /// `aws_quicksight_data_set` (derived from provider schema).
 @immutable
@@ -844,11 +863,11 @@ final class AwsQuicksightDataSet extends Resource {
     required super.localName,
     TfArg<String>? awsAccountId,
     required TfArg<String> dataSetId,
-    required TfArg<String> importMode,
+    required TfArg<QuicksightDataSetImportMode> importMode,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? useAs,
+    TfArg<QuicksightDataSetUseAs>? useAs,
     List<QuicksightDataSetColumnGroups>? columnGroups,
     List<QuicksightDataSetColumnLevelPermissionRules>?
     columnLevelPermissionRules,

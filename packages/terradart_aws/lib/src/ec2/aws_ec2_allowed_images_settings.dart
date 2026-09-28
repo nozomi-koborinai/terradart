@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_allowed_images_settings`.
 const Set<String> _awsEc2AllowedImagesSettingsSensitive = <String>{};
 
+/// Ec2 Allowed Images Settings enum for `state`.
+enum Ec2AllowedImagesSettingsState implements TerraformEnum {
+  enabled('enabled'),
+  auditMode('audit-mode');
+
+  const Ec2AllowedImagesSettingsState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `image_criterion` block of
 /// `aws_ec2_allowed_images_settings` (derived from provider schema).
 @immutable
@@ -21,7 +31,8 @@ final class Ec2AllowedImagesSettingsImageCriterion {
 
   final TfArg<List<Object?>>? imageNames;
 
-  final TfArg<List<Object?>>? imageProviders;
+  final List<TfArg<Ec2AllowedImagesSettingsImageCriterionImageProviders>>?
+  imageProviders;
 
   final TfArg<List<Object?>>? marketplaceProductCodes;
 
@@ -33,7 +44,8 @@ final class Ec2AllowedImagesSettingsImageCriterion {
 
   Map<String, Object?> encode() => {
     if (imageNames != null) 'image_names': imageNames!.toTfJson(),
-    if (imageProviders != null) 'image_providers': imageProviders!.toTfJson(),
+    if (imageProviders != null)
+      'image_providers': [for (final e in imageProviders!) e.toTfJson()],
     if (marketplaceProductCodes != null)
       'marketplace_product_codes': marketplaceProductCodes!.toTfJson(),
     if (creationDateCondition != null)
@@ -45,6 +57,21 @@ final class Ec2AllowedImagesSettingsImageCriterion {
         for (final e in deprecationTimeCondition!) e.encode(),
       ],
   };
+}
+
+/// `image_providers` — derived from the provider schema description.
+enum Ec2AllowedImagesSettingsImageCriterionImageProviders
+    implements TerraformEnum {
+  amazon('amazon'),
+  awsMarketplace('aws-marketplace'),
+  awsBackupVault('aws-backup-vault'),
+  none('none');
+
+  const Ec2AllowedImagesSettingsImageCriterionImageProviders(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `image_criterion.creation_date_condition` block of
@@ -86,7 +113,7 @@ final class AwsEc2AllowedImagesSettings extends Resource {
   AwsEc2AllowedImagesSettings({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> state,
+    required TfArg<Ec2AllowedImagesSettingsState> state,
     List<Ec2AllowedImagesSettingsImageCriterion>? imageCriterion,
     super.lifecycle,
     super.dependsOn,

@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_dsql_cluster`.
 const Set<String> _awsDsqlClusterSensitive = <String>{};
 
+/// Dsql Cluster Kms Encryption enum for `kms_encryption_key`.
+enum DsqlClusterKmsEncryptionKey implements TerraformEnum {
+  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
+
+  const DsqlClusterKmsEncryptionKey(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `multi_region_properties` block of
 /// `aws_dsql_cluster` (derived from provider schema).
 @immutable
@@ -31,7 +40,7 @@ final class AwsDsqlCluster extends Resource {
     required super.localName,
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<bool>? forceDestroy,
-    TfArg<String>? kmsEncryptionKey,
+    TfArg<DsqlClusterKmsEncryptionKey>? kmsEncryptionKey,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<DsqlClusterMultiRegionProperties>? multiRegionProperties,

@@ -9,6 +9,17 @@ const Set<String> _awsRedshiftClusterSensitive = <String>{
   'master_password_wo',
 };
 
+/// Redshift Cluster Aqua Configuration enum for `aqua_configuration_status`.
+enum RedshiftClusterAquaConfigurationStatus implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled'),
+  auto('auto');
+
+  const RedshiftClusterAquaConfigurationStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_redshift_cluster`.
 final class AwsRedshiftCluster extends Resource {
   static const String tfType = 'aws_redshift_cluster';
@@ -17,7 +28,7 @@ final class AwsRedshiftCluster extends Resource {
     required super.localName,
     TfArg<bool>? allowVersionUpgrade,
     TfArg<bool>? applyImmediately,
-    TfArg<String>? aquaConfigurationStatus,
+    TfArg<RedshiftClusterAquaConfigurationStatus>? aquaConfigurationStatus,
     TfArg<num>? automatedSnapshotRetentionPeriod,
     TfArg<String>? availabilityZone,
     TfArg<bool>? availabilityZoneRelocationEnabled,

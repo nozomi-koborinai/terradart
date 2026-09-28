@@ -7,6 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrockagent_agent_collaborator`.
 const Set<String> _awsBedrockagentAgentCollaboratorSensitive = <String>{};
 
+/// Bedrockagent Agent Collaborator Relay Conversation enum for `relay_conversation_history`.
+enum BedrockagentAgentCollaboratorRelayConversationHistory
+    implements TerraformEnum {
+  toCollaborator('TO_COLLABORATOR'),
+  disabled('DISABLED');
+
+  const BedrockagentAgentCollaboratorRelayConversationHistory(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `agent_descriptor` block of
 /// `aws_bedrockagent_agent_collaborator` (derived from provider schema).
 @immutable
@@ -30,7 +43,8 @@ final class AwsBedrockagentAgentCollaborator extends Resource {
     required TfArg<String> collaboratorName,
     TfArg<bool>? prepareAgent,
     TfArg<String>? region,
-    TfArg<String>? relayConversationHistory,
+    TfArg<BedrockagentAgentCollaboratorRelayConversationHistory>?
+    relayConversationHistory,
     List<BedrockagentAgentCollaboratorAgentDescriptor>? agentDescriptor,
     super.lifecycle,
     super.dependsOn,

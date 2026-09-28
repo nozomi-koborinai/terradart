@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_arcregionswitch_plan`.
 const Set<String> _awsArcregionswitchPlanSensitive = <String>{};
 
+/// Arcregionswitch Plan Recovery enum for `recovery_approach`.
+enum ArcregionswitchPlanRecoveryApproach implements TerraformEnum {
+  activeactive('activeActive'),
+  activepassive('activePassive');
+
+  const ArcregionswitchPlanRecoveryApproach(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `associated_alarms` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
@@ -19,7 +29,7 @@ final class ArcregionswitchPlanAssociatedAlarms {
     required this.resourceIdentifier,
   });
 
-  final TfArg<String> alarmType;
+  final TfArg<ArcregionswitchPlanAssociatedAlarmsAlarmType> alarmType;
 
   final TfArg<String>? crossAccountRole;
 
@@ -37,6 +47,16 @@ final class ArcregionswitchPlanAssociatedAlarms {
     'map_block_key': mapBlockKey.toTfJson(),
     'resource_identifier': resourceIdentifier.toTfJson(),
   };
+}
+
+/// `alarm_type` — derived from the provider schema description.
+enum ArcregionswitchPlanAssociatedAlarmsAlarmType implements TerraformEnum {
+  applicationhealth('applicationHealth'),
+  trigger('trigger');
+
+  const ArcregionswitchPlanAssociatedAlarmsAlarmType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `report_configuration` block of
@@ -101,7 +121,7 @@ final class ArcregionswitchPlanTriggers {
     this.conditions,
   });
 
-  final TfArg<String> action;
+  final TfArg<ArcregionswitchPlanTriggersAction> action;
 
   final TfArg<String>? description;
 
@@ -122,6 +142,17 @@ final class ArcregionswitchPlanTriggers {
   };
 }
 
+/// `action` — derived from the provider schema description.
+enum ArcregionswitchPlanTriggersAction implements TerraformEnum {
+  activate('activate'),
+  deactivate('deactivate'),
+  postrecovery('postRecovery');
+
+  const ArcregionswitchPlanTriggersAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `triggers.conditions` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
@@ -133,12 +164,22 @@ final class ArcregionswitchPlanTriggersConditions {
 
   final TfArg<String> associatedAlarmName;
 
-  final TfArg<String> condition;
+  final TfArg<ArcregionswitchPlanTriggersConditionsCondition> condition;
 
   Map<String, Object?> encode() => {
     'associated_alarm_name': associatedAlarmName.toTfJson(),
     'condition': condition.toTfJson(),
   };
+}
+
+/// `condition` — derived from the provider schema description.
+enum ArcregionswitchPlanTriggersConditionsCondition implements TerraformEnum {
+  red('red'),
+  green('green');
+
+  const ArcregionswitchPlanTriggersConditionsCondition(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow` block of
@@ -154,7 +195,8 @@ final class ArcregionswitchPlanWorkflow {
 
   final TfArg<String>? workflowDescription;
 
-  final TfArg<String> workflowTargetAction;
+  final TfArg<ArcregionswitchPlanWorkflowWorkflowTargetAction>
+  workflowTargetAction;
 
   final TfArg<String>? workflowTargetRegion;
 
@@ -168,6 +210,17 @@ final class ArcregionswitchPlanWorkflow {
       'workflow_target_region': workflowTargetRegion!.toTfJson(),
     if (step != null) 'step': [for (final e in step!) e.encode()],
   };
+}
+
+/// `workflow_target_action` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowWorkflowTargetAction implements TerraformEnum {
+  activate('activate'),
+  deactivate('deactivate'),
+  postrecovery('postRecovery');
+
+  const ArcregionswitchPlanWorkflowWorkflowTargetAction(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step` block of
@@ -199,7 +252,8 @@ final class ArcregionswitchPlanWorkflowStep {
 
   final TfArg<String>? description;
 
-  final TfArg<String> executionBlockType;
+  final TfArg<ArcregionswitchPlanWorkflowStepExecutionBlockType>
+  executionBlockType;
 
   final TfArg<String> name;
 
@@ -323,6 +377,33 @@ final class ArcregionswitchPlanWorkflowStep {
   };
 }
 
+/// `execution_block_type` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepExecutionBlockType
+    implements TerraformEnum {
+  customactionlambda('CustomActionLambda'),
+  manualapproval('ManualApproval'),
+  auroraglobaldatabase('AuroraGlobalDatabase'),
+  ec2autoscaling('EC2AutoScaling'),
+  arcroutingcontrol('ARCRoutingControl'),
+  arcregionswitchplan('ARCRegionSwitchPlan'),
+  parallel('Parallel'),
+  ecsservicescaling('ECSServiceScaling'),
+  eksresourcescaling('EKSResourceScaling'),
+  route53healthcheck('Route53HealthCheck'),
+  documentdb('DocumentDb'),
+  rdspromotereadreplica('RdsPromoteReadReplica'),
+  rdscreatecrossregionreplica('RdsCreateCrossRegionReplica'),
+  lambdaeventsourcemapping('LambdaEventSourceMapping'),
+  auroraserverlessscaling('AuroraServerlessScaling'),
+  auroraprovisionedscaling('AuroraProvisionedScaling'),
+  neptuneglobaldatabase('NeptuneGlobalDatabase'),
+  rdsswitchoverreadreplica('RdsSwitchoverReadReplica');
+
+  const ArcregionswitchPlanWorkflowStepExecutionBlockType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `workflow.step.arc_routing_control_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
@@ -391,12 +472,28 @@ final class ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRouti
 
   final TfArg<String> routingControlArn;
 
-  final TfArg<String> state;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState
+  >
+  state;
 
   Map<String, Object?> encode() => {
     'routing_control_arn': routingControlArn.toTfJson(),
     'state': state.toTfJson(),
   };
+}
+
+/// `state` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState
+    implements TerraformEnum {
+  on('On'),
+  off('Off');
+
+  const ArcregionswitchPlanWorkflowStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.aurora_provisioned_scaling_config` block of
@@ -483,7 +580,10 @@ final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfig {
     this.ungraceful,
   });
 
-  final TfArg<String> regionToRun;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigRegionToRun
+  >
+  regionToRun;
 
   final TfArg<num> retryIntervalMinutes;
 
@@ -503,6 +603,21 @@ final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfig {
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
+}
+
+/// `region_to_run` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigRegionToRun
+    implements TerraformEnum {
+  activatingregion('activatingRegion'),
+  deactivatingregion('deactivatingRegion'),
+  activeregion('activeRegion'),
+  inactiveregion('inactiveRegion');
+
+  const ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigRegionToRun(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.custom_action_lambda_config.lambda` block of
@@ -537,9 +652,24 @@ final class ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigUngraceful {
     required this.behavior,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigUngracefulBehavior
+  >
+  behavior;
 
   Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
+}
+
+/// `behavior` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigUngracefulBehavior
+    implements TerraformEnum {
+  skip('skip');
+
+  const ArcregionswitchPlanWorkflowStepCustomActionLambdaConfigUngracefulBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.document_db_config` block of
@@ -556,7 +686,7 @@ final class ArcregionswitchPlanWorkflowStepDocumentDbConfig {
     this.ungraceful,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<ArcregionswitchPlanWorkflowStepDocumentDbConfigBehavior> behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -584,6 +714,19 @@ final class ArcregionswitchPlanWorkflowStepDocumentDbConfig {
   };
 }
 
+/// `behavior` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepDocumentDbConfigBehavior
+    implements TerraformEnum {
+  switchoveronly('switchoverOnly'),
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepDocumentDbConfigBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `workflow.step.document_db_config.ungraceful` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
@@ -592,9 +735,24 @@ final class ArcregionswitchPlanWorkflowStepDocumentDbConfigUngraceful {
     required this.ungraceful,
   });
 
-  final TfArg<String> ungraceful;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepDocumentDbConfigUngracefulUngraceful
+  >
+  ungraceful;
 
   Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
+}
+
+/// `ungraceful` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepDocumentDbConfigUngracefulUngraceful
+    implements TerraformEnum {
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepDocumentDbConfigUngracefulUngraceful(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.ec2_asg_capacity_increase_config` block of
@@ -609,7 +767,10 @@ final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfig {
     this.ungraceful,
   });
 
-  final TfArg<String> capacityMonitoringApproach;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
+  >
+  capacityMonitoringApproach;
 
   final TfArg<num>? targetPercent;
 
@@ -631,6 +792,19 @@ final class ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfig {
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
+}
+
+/// `capacity_monitoring_approach` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
+    implements TerraformEnum {
+  sampledmaxinlast24hours('sampledMaxInLast24Hours'),
+  autoscalingmaxinlast24hours('autoscalingMaxInLast24Hours');
+
+  const ArcregionswitchPlanWorkflowStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.ec2_asg_capacity_increase_config.asg` block of
@@ -684,7 +858,10 @@ final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfig {
     this.ungraceful,
   });
 
-  final TfArg<String> capacityMonitoringApproach;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigCapacityMonitoringApproach
+  >
+  capacityMonitoringApproach;
 
   final TfArg<num>? targetPercent;
 
@@ -706,6 +883,19 @@ final class ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfig {
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
+}
+
+/// `capacity_monitoring_approach` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigCapacityMonitoringApproach
+    implements TerraformEnum {
+  sampledmaxinlast24hours('sampledMaxInLast24Hours'),
+  containerinsightsmaxinlast24hours('containerInsightsMaxInLast24Hours');
+
+  const ArcregionswitchPlanWorkflowStepEcsCapacityIncreaseConfigCapacityMonitoringApproach(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.ecs_capacity_increase_config.service` block of
@@ -765,7 +955,10 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfig {
     this.ungraceful,
   });
 
-  final TfArg<String> capacityMonitoringApproach;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepEksResourceScalingConfigCapacityMonitoringApproach
+  >
+  capacityMonitoringApproach;
 
   final TfArg<num> targetPercent;
 
@@ -804,6 +997,18 @@ final class ArcregionswitchPlanWorkflowStepEksResourceScalingConfig {
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
+}
+
+/// `capacity_monitoring_approach` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepEksResourceScalingConfigCapacityMonitoringApproach
+    implements TerraformEnum {
+  sampledmaxinlast24hours('sampledMaxInLast24Hours');
+
+  const ArcregionswitchPlanWorkflowStepEksResourceScalingConfigCapacityMonitoringApproach(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.eks_resource_scaling_config.eks_clusters` block of
@@ -947,7 +1152,8 @@ final class ArcregionswitchPlanWorkflowStepGlobalAuroraConfig {
     this.ungraceful,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<ArcregionswitchPlanWorkflowStepGlobalAuroraConfigBehavior>
+  behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -975,6 +1181,19 @@ final class ArcregionswitchPlanWorkflowStepGlobalAuroraConfig {
   };
 }
 
+/// `behavior` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepGlobalAuroraConfigBehavior
+    implements TerraformEnum {
+  switchoveronly('switchoverOnly'),
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepGlobalAuroraConfigBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `workflow.step.global_aurora_config.ungraceful` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
@@ -983,9 +1202,24 @@ final class ArcregionswitchPlanWorkflowStepGlobalAuroraConfigUngraceful {
     required this.ungraceful,
   });
 
-  final TfArg<String> ungraceful;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepGlobalAuroraConfigUngracefulUngraceful
+  >
+  ungraceful;
 
   Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
+}
+
+/// `ungraceful` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepGlobalAuroraConfigUngracefulUngraceful
+    implements TerraformEnum {
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepGlobalAuroraConfigUngracefulUngraceful(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.lambda_event_source_mapping_config` block of
@@ -999,7 +1233,10 @@ final class ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfig {
     this.ungraceful,
   });
 
-  final TfArg<String> action;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigAction
+  >
+  action;
 
   final TfArg<num>? timeoutMinutes;
 
@@ -1023,6 +1260,19 @@ final class ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfig {
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigAction
+    implements TerraformEnum {
+  enable('enable'),
+  disable('disable');
+
+  const ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.lambda_event_source_mapping_config.region_event_source_mapping` block of
@@ -1061,9 +1311,24 @@ final class ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigUngrace
     required this.behavior,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigUngracefulBehavior
+  >
+  behavior;
 
   Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
+}
+
+/// `behavior` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigUngracefulBehavior
+    implements TerraformEnum {
+  skip('skip');
+
+  const ArcregionswitchPlanWorkflowStepLambdaEventSourceMappingConfigUngracefulBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.neptune_global_database_config` block of
@@ -1080,7 +1345,10 @@ final class ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfig {
     this.ungraceful,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigBehavior
+  >
+  behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -1110,6 +1378,19 @@ final class ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfig {
   };
 }
 
+/// `behavior` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigBehavior
+    implements TerraformEnum {
+  switchoveronly('switchoverOnly'),
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `workflow.step.neptune_global_database_config.ungraceful` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
@@ -1118,9 +1399,24 @@ final class ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigUngraceful
     required this.ungraceful,
   });
 
-  final TfArg<String> ungraceful;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigUngracefulUngraceful
+  >
+  ungraceful;
 
   Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
+}
+
+/// `ungraceful` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigUngracefulUngraceful
+    implements TerraformEnum {
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepNeptuneGlobalDatabaseConfigUngracefulUngraceful(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config` block of
@@ -1164,7 +1460,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStep {
 
   final TfArg<String>? description;
 
-  final TfArg<String> executionBlockType;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepExecutionBlockType
+  >
+  executionBlockType;
 
   final TfArg<String> name;
 
@@ -1313,6 +1612,35 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStep {
   };
 }
 
+/// `execution_block_type` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepExecutionBlockType
+    implements TerraformEnum {
+  customactionlambda('CustomActionLambda'),
+  manualapproval('ManualApproval'),
+  auroraglobaldatabase('AuroraGlobalDatabase'),
+  ec2autoscaling('EC2AutoScaling'),
+  arcroutingcontrol('ARCRoutingControl'),
+  arcregionswitchplan('ARCRegionSwitchPlan'),
+  parallel('Parallel'),
+  ecsservicescaling('ECSServiceScaling'),
+  eksresourcescaling('EKSResourceScaling'),
+  route53healthcheck('Route53HealthCheck'),
+  documentdb('DocumentDb'),
+  rdspromotereadreplica('RdsPromoteReadReplica'),
+  rdscreatecrossregionreplica('RdsCreateCrossRegionReplica'),
+  lambdaeventsourcemapping('LambdaEventSourceMapping'),
+  auroraserverlessscaling('AuroraServerlessScaling'),
+  auroraprovisionedscaling('AuroraProvisionedScaling'),
+  neptuneglobaldatabase('NeptuneGlobalDatabase'),
+  rdsswitchoverreadreplica('RdsSwitchoverReadReplica');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepExecutionBlockType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `workflow.step.parallel_config.step.arc_routing_control_config` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
@@ -1381,12 +1709,28 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlCo
 
   final TfArg<String> routingControlArn;
 
-  final TfArg<String> state;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState
+  >
+  state;
 
   Map<String, Object?> encode() => {
     'routing_control_arn': routingControlArn.toTfJson(),
     'state': state.toTfJson(),
   };
+}
+
+/// `state` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState
+    implements TerraformEnum {
+  on('On'),
+  off('Off');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepArcRoutingControlConfigRegionAndRoutingControlsRoutingControlState(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.aurora_provisioned_scaling_config` block of
@@ -1473,7 +1817,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaC
     this.ungraceful,
   });
 
-  final TfArg<String> regionToRun;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigRegionToRun
+  >
+  regionToRun;
 
   final TfArg<num> retryIntervalMinutes;
 
@@ -1497,6 +1844,21 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaC
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
+}
+
+/// `region_to_run` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigRegionToRun
+    implements TerraformEnum {
+  activatingregion('activatingRegion'),
+  deactivatingregion('deactivatingRegion'),
+  activeregion('activeRegion'),
+  inactiveregion('inactiveRegion');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigRegionToRun(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.custom_action_lambda_config.lambda` block of
@@ -1531,9 +1893,24 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaC
     required this.behavior,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigUngracefulBehavior
+  >
+  behavior;
 
   Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
+}
+
+/// `behavior` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigUngracefulBehavior
+    implements TerraformEnum {
+  skip('skip');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepCustomActionLambdaConfigUngracefulBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.document_db_config` block of
@@ -1550,7 +1927,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfig {
     this.ungraceful,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigBehavior
+  >
+  behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -1580,6 +1960,19 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfig {
   };
 }
 
+/// `behavior` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigBehavior
+    implements TerraformEnum {
+  switchoveronly('switchoverOnly'),
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `workflow.step.parallel_config.step.document_db_config.ungraceful` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
@@ -1588,9 +1981,24 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigUng
     required this.ungraceful,
   });
 
-  final TfArg<String> ungraceful;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigUngracefulUngraceful
+  >
+  ungraceful;
 
   Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
+}
+
+/// `ungraceful` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigUngracefulUngraceful
+    implements TerraformEnum {
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepDocumentDbConfigUngracefulUngraceful(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.ec2_asg_capacity_increase_config` block of
@@ -1605,7 +2013,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncre
     this.ungraceful,
   });
 
-  final TfArg<String> capacityMonitoringApproach;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
+  >
+  capacityMonitoringApproach;
 
   final TfArg<num>? targetPercent;
 
@@ -1629,6 +2040,19 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncre
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
+}
+
+/// `capacity_monitoring_approach` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach
+    implements TerraformEnum {
+  sampledmaxinlast24hours('sampledMaxInLast24Hours'),
+  autoscalingmaxinlast24hours('autoscalingMaxInLast24Hours');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepEc2AsgCapacityIncreaseConfigCapacityMonitoringApproach(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.ec2_asg_capacity_increase_config.asg` block of
@@ -1682,7 +2106,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncrease
     this.ungraceful,
   });
 
-  final TfArg<String> capacityMonitoringApproach;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigCapacityMonitoringApproach
+  >
+  capacityMonitoringApproach;
 
   final TfArg<num>? targetPercent;
 
@@ -1706,6 +2133,19 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncrease
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
+}
+
+/// `capacity_monitoring_approach` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigCapacityMonitoringApproach
+    implements TerraformEnum {
+  sampledmaxinlast24hours('sampledMaxInLast24Hours'),
+  containerinsightsmaxinlast24hours('containerInsightsMaxInLast24Hours');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepEcsCapacityIncreaseConfigCapacityMonitoringApproach(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.ecs_capacity_increase_config.service` block of
@@ -1765,7 +2205,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingC
     this.ungraceful,
   });
 
-  final TfArg<String> capacityMonitoringApproach;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigCapacityMonitoringApproach
+  >
+  capacityMonitoringApproach;
 
   final TfArg<num> targetPercent;
 
@@ -1806,6 +2249,18 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingC
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
+}
+
+/// `capacity_monitoring_approach` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigCapacityMonitoringApproach
+    implements TerraformEnum {
+  sampledmaxinlast24hours('sampledMaxInLast24Hours');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepEksResourceScalingConfigCapacityMonitoringApproach(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.eks_resource_scaling_config.eks_clusters` block of
@@ -1949,7 +2404,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfig 
     this.ungraceful,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigBehavior
+  >
+  behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -1979,6 +2437,19 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfig 
   };
 }
 
+/// `behavior` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigBehavior
+    implements TerraformEnum {
+  switchoveronly('switchoverOnly'),
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `workflow.step.parallel_config.step.global_aurora_config.ungraceful` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
@@ -1987,9 +2458,24 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigU
     required this.ungraceful,
   });
 
-  final TfArg<String> ungraceful;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigUngracefulUngraceful
+  >
+  ungraceful;
 
   Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
+}
+
+/// `ungraceful` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigUngracefulUngraceful
+    implements TerraformEnum {
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepGlobalAuroraConfigUngracefulUngraceful(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.lambda_event_source_mapping_config` block of
@@ -2003,7 +2489,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMa
     this.ungraceful,
   });
 
-  final TfArg<String> action;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigAction
+  >
+  action;
 
   final TfArg<num>? timeoutMinutes;
 
@@ -2027,6 +2516,19 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMa
     if (ungraceful != null)
       'ungraceful': [for (final e in ungraceful!) e.encode()],
   };
+}
+
+/// `action` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigAction
+    implements TerraformEnum {
+  enable('enable'),
+  disable('disable');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.lambda_event_source_mapping_config.region_event_source_mapping` block of
@@ -2065,9 +2567,24 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMa
     required this.behavior,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigUngracefulBehavior
+  >
+  behavior;
 
   Map<String, Object?> encode() => {'behavior': behavior.toTfJson()};
+}
+
+/// `behavior` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigUngracefulBehavior
+    implements TerraformEnum {
+  skip('skip');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepLambdaEventSourceMappingConfigUngracefulBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.neptune_global_database_config` block of
@@ -2084,7 +2601,10 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDataba
     this.ungraceful,
   });
 
-  final TfArg<String> behavior;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigBehavior
+  >
+  behavior;
 
   final TfArg<String>? crossAccountRole;
 
@@ -2114,6 +2634,19 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDataba
   };
 }
 
+/// `behavior` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigBehavior
+    implements TerraformEnum {
+  switchoveronly('switchoverOnly'),
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `workflow.step.parallel_config.step.neptune_global_database_config.ungraceful` block of
 /// `aws_arcregionswitch_plan` (derived from provider schema).
 @immutable
@@ -2122,9 +2655,24 @@ final class ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDataba
     required this.ungraceful,
   });
 
-  final TfArg<String> ungraceful;
+  final TfArg<
+    ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigUngracefulUngraceful
+  >
+  ungraceful;
 
   Map<String, Object?> encode() => {'ungraceful': ungraceful.toTfJson()};
+}
+
+/// `ungraceful` — derived from the provider schema description.
+enum ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigUngracefulUngraceful
+    implements TerraformEnum {
+  failover('failover');
+
+  const ArcregionswitchPlanWorkflowStepParallelConfigStepNeptuneGlobalDatabaseConfigUngracefulUngraceful(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.step.parallel_config.step.rds_create_cross_region_read_replica_config` block of
@@ -2413,7 +2961,7 @@ final class AwsArcregionswitchPlan extends Resource {
     required TfArg<String> executionRole,
     required TfArg<String> name,
     TfArg<String>? primaryRegion,
-    required TfArg<String> recoveryApproach,
+    required TfArg<ArcregionswitchPlanRecoveryApproach> recoveryApproach,
     TfArg<num>? recoveryTimeObjectiveMinutes,
     TfArg<String>? region,
     required TfArg<List<String>> regions,

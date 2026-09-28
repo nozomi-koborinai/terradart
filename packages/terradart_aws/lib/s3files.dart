@@ -12,9 +12,11 @@ export 'src/s3files/aws_s3files_access_point.dart'
 export 'src/s3files/aws_s3files_file_system.dart' show AwsS3filesFileSystem;
 export 'src/s3files/aws_s3files_file_system_policy.dart'
     show AwsS3filesFileSystemPolicy;
-export 'src/s3files/aws_s3files_mount_target.dart' show AwsS3filesMountTarget;
+export 'src/s3files/aws_s3files_mount_target.dart'
+    show AwsS3filesMountTarget, S3filesMountTargetIpAddressType;
 export 'src/s3files/aws_s3files_synchronization_configuration.dart'
     show
         AwsS3filesSynchronizationConfiguration,
         S3filesSynchronizationConfigurationExpirationDataRule,
-        S3filesSynchronizationConfigurationImportDataRule;
+        S3filesSynchronizationConfigurationImportDataRule,
+        S3filesSynchronizationConfigurationImportDataRuleTrigger;

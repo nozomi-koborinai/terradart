@@ -29,7 +29,7 @@ final class AlbListenerRuleAction {
 
   final TfArg<String>? targetGroupArn;
 
-  final TfArg<String> type;
+  final TfArg<AlbListenerRuleActionType> type;
 
   final AlbListenerRuleActionAuthenticateCognito? authenticateCognito;
 
@@ -58,6 +58,20 @@ final class AlbListenerRuleAction {
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum AlbListenerRuleActionType implements TerraformEnum {
+  forward('forward'),
+  authenticateOidc('authenticate-oidc'),
+  authenticateCognito('authenticate-cognito'),
+  redirect('redirect'),
+  fixedResponse('fixed-response'),
+  jwtValidation('jwt-validation');
+
+  const AlbListenerRuleActionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `action.authenticate_cognito` block of
 /// `aws_alb_listener_rule` (derived from provider schema).
 @immutable
@@ -75,7 +89,8 @@ final class AlbListenerRuleActionAuthenticateCognito {
 
   final TfArg<Map<String, String>>? authenticationRequestExtraParams;
 
-  final TfArg<String>? onUnauthenticatedRequest;
+  final TfArg<AlbListenerRuleActionAuthenticateCognitoOnUnauthenticatedRequest>?
+  onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -103,6 +118,20 @@ final class AlbListenerRuleActionAuthenticateCognito {
     'user_pool_client_id': userPoolClientId.toTfJson(),
     'user_pool_domain': userPoolDomain.toTfJson(),
   };
+}
+
+/// `on_unauthenticated_request` — derived from the provider schema description.
+enum AlbListenerRuleActionAuthenticateCognitoOnUnauthenticatedRequest
+    implements TerraformEnum {
+  deny('deny'),
+  allow('allow'),
+  authenticate('authenticate');
+
+  const AlbListenerRuleActionAuthenticateCognitoOnUnauthenticatedRequest(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `action.authenticate_oidc` block of
@@ -133,7 +162,8 @@ final class AlbListenerRuleActionAuthenticateOidc {
 
   final TfArg<String> issuer;
 
-  final TfArg<String>? onUnauthenticatedRequest;
+  final TfArg<AlbListenerRuleActionAuthenticateOidcOnUnauthenticatedRequest>?
+  onUnauthenticatedRequest;
 
   final TfArg<String>? scope;
 
@@ -164,6 +194,20 @@ final class AlbListenerRuleActionAuthenticateOidc {
   };
 }
 
+/// `on_unauthenticated_request` — derived from the provider schema description.
+enum AlbListenerRuleActionAuthenticateOidcOnUnauthenticatedRequest
+    implements TerraformEnum {
+  deny('deny'),
+  allow('allow'),
+  authenticate('authenticate');
+
+  const AlbListenerRuleActionAuthenticateOidcOnUnauthenticatedRequest(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `action.fixed_response` block of
 /// `aws_alb_listener_rule` (derived from provider schema).
 @immutable
@@ -174,7 +218,7 @@ final class AlbListenerRuleActionFixedResponse {
     this.statusCode,
   });
 
-  final TfArg<String> contentType;
+  final TfArg<AlbListenerRuleActionFixedResponseContentType> contentType;
 
   final TfArg<String>? messageBody;
 
@@ -185,6 +229,19 @@ final class AlbListenerRuleActionFixedResponse {
     if (messageBody != null) 'message_body': messageBody!.toTfJson(),
     if (statusCode != null) 'status_code': statusCode!.toTfJson(),
   };
+}
+
+/// `content_type` — derived from the provider schema description.
+enum AlbListenerRuleActionFixedResponseContentType implements TerraformEnum {
+  textPlain('text/plain'),
+  textCss('text/css'),
+  textHtml('text/html'),
+  applicationJavascript('application/javascript'),
+  applicationJson('application/json');
+
+  const AlbListenerRuleActionFixedResponseContentType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `action.forward` block of
@@ -279,7 +336,7 @@ final class AlbListenerRuleActionJwtValidationAdditionalClaim {
     required this.values,
   });
 
-  final TfArg<String> format;
+  final TfArg<AlbListenerRuleActionJwtValidationAdditionalClaimFormat> format;
 
   final TfArg<String> name;
 
@@ -290,6 +347,20 @@ final class AlbListenerRuleActionJwtValidationAdditionalClaim {
     'name': name.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `format` — derived from the provider schema description.
+enum AlbListenerRuleActionJwtValidationAdditionalClaimFormat
+    implements TerraformEnum {
+  singleString('single-string'),
+  stringArray('string-array'),
+  spaceSeparatedValues('space-separated-values');
+
+  const AlbListenerRuleActionJwtValidationAdditionalClaimFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `action.redirect` block of
@@ -311,11 +382,11 @@ final class AlbListenerRuleActionRedirect {
 
   final TfArg<String>? port;
 
-  final TfArg<String>? protocol;
+  final TfArg<AlbListenerRuleActionRedirectProtocol>? protocol;
 
   final TfArg<String>? query;
 
-  final TfArg<String> statusCode;
+  final TfArg<AlbListenerRuleActionRedirectStatusCode> statusCode;
 
   Map<String, Object?> encode() => {
     if (host != null) 'host': host!.toTfJson(),
@@ -325,6 +396,27 @@ final class AlbListenerRuleActionRedirect {
     if (query != null) 'query': query!.toTfJson(),
     'status_code': statusCode.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+enum AlbListenerRuleActionRedirectProtocol implements TerraformEnum {
+  protocol('#{protocol}'),
+  http('HTTP'),
+  https('HTTPS');
+
+  const AlbListenerRuleActionRedirectProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `status_code` — derived from the provider schema description.
+enum AlbListenerRuleActionRedirectStatusCode implements TerraformEnum {
+  http301('HTTP_301'),
+  http302('HTTP_302');
+
+  const AlbListenerRuleActionRedirectStatusCode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `condition` block of
@@ -452,7 +544,7 @@ final class AlbListenerRuleConditionQueryString {
 final class AlbListenerRuleConditionSourceIp {
   const AlbListenerRuleConditionSourceIp({this.ipAddressType, this.values});
 
-  final TfArg<String>? ipAddressType;
+  final TfArg<AlbListenerRuleConditionSourceIpIpAddressType>? ipAddressType;
 
   final TfArg<List<Object?>>? values;
 
@@ -460,6 +552,16 @@ final class AlbListenerRuleConditionSourceIp {
     if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
     if (values != null) 'values': values!.toTfJson(),
   };
+}
+
+/// `ip_address_type` — derived from the provider schema description.
+enum AlbListenerRuleConditionSourceIpIpAddressType implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const AlbListenerRuleConditionSourceIpIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `transform` block of
@@ -472,7 +574,7 @@ final class AlbListenerRuleTransform {
     this.urlRewriteConfig,
   });
 
-  final TfArg<String> type;
+  final TfArg<AlbListenerRuleTransformType> type;
 
   final AlbListenerRuleTransformHostHeaderRewriteConfig?
   hostHeaderRewriteConfig;
@@ -486,6 +588,16 @@ final class AlbListenerRuleTransform {
     if (urlRewriteConfig != null)
       'url_rewrite_config': urlRewriteConfig!.encode(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum AlbListenerRuleTransformType implements TerraformEnum {
+  hostHeaderRewrite('host-header-rewrite'),
+  urlRewrite('url-rewrite');
+
+  const AlbListenerRuleTransformType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `transform.host_header_rewrite_config` block of

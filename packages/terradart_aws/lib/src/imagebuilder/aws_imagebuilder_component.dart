@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_imagebuilder_component`.
 const Set<String> _awsImagebuilderComponentSensitive = <String>{};
 
+/// Imagebuilder Component enum for `platform`.
+enum ImagebuilderComponentPlatform implements TerraformEnum {
+  windows('Windows'),
+  linux('Linux'),
+  macos('macOS');
+
+  const ImagebuilderComponentPlatform(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_imagebuilder_component`.
 final class AwsImagebuilderComponent extends Resource {
   static const String tfType = 'aws_imagebuilder_component';
@@ -17,7 +28,7 @@ final class AwsImagebuilderComponent extends Resource {
     TfArg<String>? description,
     TfArg<String>? kmsKeyId,
     required TfArg<String> name,
-    required TfArg<String> platform,
+    required TfArg<ImagebuilderComponentPlatform> platform,
     TfArg<String>? region,
     TfArg<bool>? skipDestroy,
     TfArg<List<String>>? supportedOsVersions,

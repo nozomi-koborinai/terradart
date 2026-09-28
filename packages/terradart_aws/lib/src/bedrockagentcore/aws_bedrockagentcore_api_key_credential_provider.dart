@@ -8,6 +8,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsBedrockagentcoreApiKeyCredentialProviderSensitive =
     <String>{'api_key', 'api_key_wo'};
 
+/// Bedrockagentcore Api Key Credential Provider Api Key Secret enum for `api_key_secret_source`.
+enum BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource
+    implements TerraformEnum {
+  managed('MANAGED'),
+  external('EXTERNAL');
+
+  const BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `api_key_secret_config` block of
 /// `aws_bedrockagentcore_api_key_credential_provider` (derived from provider schema).
 @immutable
@@ -35,7 +48,8 @@ final class AwsBedrockagentcoreApiKeyCredentialProvider extends Resource {
   AwsBedrockagentcoreApiKeyCredentialProvider({
     required super.localName,
     TfArg<String>? apiKey,
-    TfArg<String>? apiKeySecretSource,
+    TfArg<BedrockagentcoreApiKeyCredentialProviderApiKeySecretSource>?
+    apiKeySecretSource,
     TfArg<String>? apiKeyWo,
     TfArg<num>? apiKeyWoVersion,
     required TfArg<String> name,

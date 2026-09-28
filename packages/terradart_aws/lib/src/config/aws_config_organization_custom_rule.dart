@@ -6,6 +6,35 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_config_organization_custom_rule`.
 const Set<String> _awsConfigOrganizationCustomRuleSensitive = <String>{};
 
+/// Config Organization Custom Rule Maximum Execution enum for `maximum_execution_frequency`.
+enum ConfigOrganizationCustomRuleMaximumExecutionFrequency
+    implements TerraformEnum {
+  oneHour('One_Hour'),
+  threeHours('Three_Hours'),
+  sixHours('Six_Hours'),
+  twelveHours('Twelve_Hours'),
+  twentyfourHours('TwentyFour_Hours');
+
+  const ConfigOrganizationCustomRuleMaximumExecutionFrequency(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Config Organization Custom Rule Trigger enum for `trigger_types`.
+enum ConfigOrganizationCustomRuleTriggerTypes implements TerraformEnum {
+  configurationitemchangenotification('ConfigurationItemChangeNotification'),
+  oversizedconfigurationitemchangenotification(
+    'OversizedConfigurationItemChangeNotification',
+  ),
+  schedulednotification('ScheduledNotification');
+
+  const ConfigOrganizationCustomRuleTriggerTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_config_organization_custom_rule`.
 final class AwsConfigOrganizationCustomRule extends Resource {
   static const String tfType = 'aws_config_organization_custom_rule';
@@ -16,14 +45,15 @@ final class AwsConfigOrganizationCustomRule extends Resource {
     TfArg<List<String>>? excludedAccounts,
     TfArg<String>? inputParameters,
     required TfArg<String> lambdaFunctionArn,
-    TfArg<String>? maximumExecutionFrequency,
+    TfArg<ConfigOrganizationCustomRuleMaximumExecutionFrequency>?
+    maximumExecutionFrequency,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? resourceIdScope,
     TfArg<List<String>>? resourceTypesScope,
     TfArg<String>? tagKeyScope,
     TfArg<String>? tagValueScope,
-    required TfArg<List<String>> triggerTypes,
+    required List<TfArg<ConfigOrganizationCustomRuleTriggerTypes>> triggerTypes,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -44,7 +74,9 @@ final class AwsConfigOrganizationCustomRule extends Resource {
              'resource_types_scope': resourceTypesScope,
            if (tagKeyScope != null) 'tag_key_scope': tagKeyScope,
            if (tagValueScope != null) 'tag_value_scope': tagValueScope,
-           'trigger_types': triggerTypes,
+           'trigger_types': TfArg.literal([
+             for (final e in triggerTypes) e.toTfJson(),
+           ]),
          },
        );
 

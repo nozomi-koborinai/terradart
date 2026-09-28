@@ -6,13 +6,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_route53_resolver_firewall_config`.
 const Set<String> _awsRoute53ResolverFirewallConfigSensitive = <String>{};
 
+/// Route53 Resolver Firewall Config Firewall Fail enum for `firewall_fail_open`.
+enum Route53ResolverFirewallConfigFirewallFailOpen implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  useLocalResourceSetting('USE_LOCAL_RESOURCE_SETTING');
+
+  const Route53ResolverFirewallConfigFirewallFailOpen(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_route53_resolver_firewall_config`.
 final class AwsRoute53ResolverFirewallConfig extends Resource {
   static const String tfType = 'aws_route53_resolver_firewall_config';
 
   AwsRoute53ResolverFirewallConfig({
     required super.localName,
-    TfArg<String>? firewallFailOpen,
+    TfArg<Route53ResolverFirewallConfigFirewallFailOpen>? firewallFailOpen,
     TfArg<String>? region,
     required TfArg<String> resourceId,
     super.lifecycle,

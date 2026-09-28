@@ -129,13 +129,28 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlin
 
   final TfArg<String>? redactionPlaceHolderText;
 
-  final TfArg<String> redactionPlaceHolderType;
+  final TfArg<
+    WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolderRedactionPlaceHolderType
+  >
+  redactionPlaceHolderType;
 
   Map<String, Object?> encode() => {
     if (redactionPlaceHolderText != null)
       'redaction_place_holder_text': redactionPlaceHolderText!.toTfJson(),
     'redaction_place_holder_type': redactionPlaceHolderType.toTfJson(),
   };
+}
+
+/// `redaction_place_holder_type` — derived from the provider schema description.
+enum WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolderRedactionPlaceHolderType
+    implements TerraformEnum {
+  customtext('CustomText');
+
+  const WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolderRedactionPlaceHolderType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_workspacesweb_data_protection_settings`.

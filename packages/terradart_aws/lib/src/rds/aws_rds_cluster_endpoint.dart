@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rds_cluster_endpoint`.
 const Set<String> _awsRdsClusterEndpointSensitive = <String>{};
 
+/// Rds Cluster Endpoint Custom Endpoint enum for `custom_endpoint_type`.
+enum RdsClusterEndpointCustomEndpointType implements TerraformEnum {
+  reader('READER'),
+  any('ANY');
+
+  const RdsClusterEndpointCustomEndpointType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_rds_cluster_endpoint`.
 final class AwsRdsClusterEndpoint extends Resource {
   static const String tfType = 'aws_rds_cluster_endpoint';
@@ -14,7 +24,7 @@ final class AwsRdsClusterEndpoint extends Resource {
     required super.localName,
     required TfArg<String> clusterEndpointIdentifier,
     required TfArg<String> clusterIdentifier,
-    required TfArg<String> customEndpointType,
+    required TfArg<RdsClusterEndpointCustomEndpointType> customEndpointType,
     TfArg<List<String>>? excludedMembers,
     TfArg<String>? region,
     TfArg<List<String>>? staticMembers,

@@ -6,6 +6,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_athena_data_catalog`.
 const Set<String> _awsAthenaDataCatalogSensitive = <String>{};
 
+/// Athena Data Catalog enum for `type`.
+enum AthenaDataCatalogType implements TerraformEnum {
+  lambda('LAMBDA'),
+  glue('GLUE'),
+  hive('HIVE'),
+  federated('FEDERATED');
+
+  const AthenaDataCatalogType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_athena_data_catalog`.
 final class AwsAthenaDataCatalog extends Resource {
   static const String tfType = 'aws_athena_data_catalog';
@@ -17,7 +29,7 @@ final class AwsAthenaDataCatalog extends Resource {
     required TfArg<Map<String, String>> parameters,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<AthenaDataCatalogType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

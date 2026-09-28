@@ -7,6 +7,19 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_bedrock_custom_model`.
 const Set<String> _awsBedrockCustomModelSensitive = <String>{};
 
+/// Bedrock Custom Model Customization enum for `customization_type`.
+enum BedrockCustomModelCustomizationType implements TerraformEnum {
+  fineTuning('FINE_TUNING'),
+  continuedPreTraining('CONTINUED_PRE_TRAINING'),
+  distillation('DISTILLATION'),
+  reinforcementFineTuning('REINFORCEMENT_FINE_TUNING'),
+  imported('IMPORTED');
+
+  const BedrockCustomModelCustomizationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `output_data_config` block of
 /// `aws_bedrock_custom_model` (derived from provider schema).
 @immutable
@@ -82,7 +95,7 @@ final class AwsBedrockCustomModel extends Resource {
     required TfArg<String> baseModelIdentifier,
     TfArg<String>? customModelKmsKeyId,
     required TfArg<String> customModelName,
-    TfArg<String>? customizationType,
+    TfArg<BedrockCustomModelCustomizationType>? customizationType,
     required TfArg<Map<String, String>> hyperparameters,
     required TfArg<String> jobName,
     TfArg<String>? region,

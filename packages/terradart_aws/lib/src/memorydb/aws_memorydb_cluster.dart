@@ -6,6 +6,37 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_memorydb_cluster`.
 const Set<String> _awsMemorydbClusterSensitive = <String>{};
 
+/// Memorydb Cluster enum for `engine`.
+enum MemorydbClusterEngine implements TerraformEnum {
+  redis('redis'),
+  valkey('valkey');
+
+  const MemorydbClusterEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Memorydb Cluster Ip enum for `ip_discovery`.
+enum MemorydbClusterIpDiscovery implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const MemorydbClusterIpDiscovery(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Memorydb Cluster Network enum for `network_type`.
+enum MemorydbClusterNetworkType implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6'),
+  dualStack('dual_stack');
+
+  const MemorydbClusterNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_memorydb_cluster`.
 final class AwsMemorydbCluster extends Resource {
   static const String tfType = 'aws_memorydb_cluster';
@@ -16,16 +47,16 @@ final class AwsMemorydbCluster extends Resource {
     TfArg<bool>? autoMinorVersionUpgrade,
     TfArg<bool>? dataTiering,
     TfArg<String>? description,
-    TfArg<String>? engine,
+    TfArg<MemorydbClusterEngine>? engine,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotName,
-    TfArg<String>? ipDiscovery,
+    TfArg<MemorydbClusterIpDiscovery>? ipDiscovery,
     TfArg<String>? kmsKeyArn,
     TfArg<String>? maintenanceWindow,
     TfArg<String>? multiRegionClusterName,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
-    TfArg<String>? networkType,
+    TfArg<MemorydbClusterNetworkType>? networkType,
     required TfArg<String> nodeType,
     TfArg<num>? numReplicasPerShard,
     TfArg<num>? numShards,

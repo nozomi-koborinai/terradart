@@ -6,7 +6,11 @@ library;
 export 'src/datazone/aws_datazone_asset_type.dart'
     show AwsDatazoneAssetType, DatazoneAssetTypeFormsInput;
 export 'src/datazone/aws_datazone_domain.dart'
-    show AwsDatazoneDomain, DatazoneDomainSingleSignOn;
+    show
+        AwsDatazoneDomain,
+        DatazoneDomainDomainVersion,
+        DatazoneDomainSingleSignOn,
+        DatazoneDomainSingleSignOnUserAssignment;
 export 'src/datazone/aws_datazone_environment.dart'
     show AwsDatazoneEnvironment, DatazoneEnvironmentUserParameters;
 export 'src/datazone/aws_datazone_environment_blueprint_configuration.dart'
@@ -16,10 +20,14 @@ export 'src/datazone/aws_datazone_environment_profile.dart'
         AwsDatazoneEnvironmentProfile,
         DatazoneEnvironmentProfileUserParameters;
 export 'src/datazone/aws_datazone_form_type.dart'
-    show AwsDatazoneFormType, DatazoneFormTypeModel;
-export 'src/datazone/aws_datazone_glossary.dart' show AwsDatazoneGlossary;
+    show AwsDatazoneFormType, DatazoneFormTypeModel, DatazoneFormTypeStatus;
+export 'src/datazone/aws_datazone_glossary.dart'
+    show AwsDatazoneGlossary, DatazoneGlossaryStatus;
 export 'src/datazone/aws_datazone_glossary_term.dart'
-    show AwsDatazoneGlossaryTerm, DatazoneGlossaryTermTermRelations;
+    show
+        AwsDatazoneGlossaryTerm,
+        DatazoneGlossaryTermStatus,
+        DatazoneGlossaryTermTermRelations;
 export 'src/datazone/aws_datazone_policy_grant.dart'
     show
         AwsDatazonePolicyGrant,
@@ -38,14 +46,21 @@ export 'src/datazone/aws_datazone_policy_grant.dart'
         DatazonePolicyGrantDetailOverrideDomainUnitOwners,
         DatazonePolicyGrantDetailOverrideProjectOwners,
         DatazonePolicyGrantDetailUseAssetType,
+        DatazonePolicyGrantEntityType,
+        DatazonePolicyGrantPolicyType,
         DatazonePolicyGrantPrincipal,
         DatazonePolicyGrantPrincipalDomainUnit,
         DatazonePolicyGrantPrincipalDomainUnitAllDomainUnitsGrantFilter,
+        DatazonePolicyGrantPrincipalDomainUnitDomainUnitDesignation,
         DatazonePolicyGrantPrincipalGroup,
         DatazonePolicyGrantPrincipalProject,
         DatazonePolicyGrantPrincipalProjectDomainUnitFilter,
+        DatazonePolicyGrantPrincipalProjectProjectDesignation,
         DatazonePolicyGrantPrincipalUser,
         DatazonePolicyGrantPrincipalUserAllUsersGrantFilter;
 export 'src/datazone/aws_datazone_project.dart' show AwsDatazoneProject;
 export 'src/datazone/aws_datazone_user_profile.dart'
-    show AwsDatazoneUserProfile;
+    show
+        AwsDatazoneUserProfile,
+        DatazoneUserProfileStatus,
+        DatazoneUserProfileUserType;

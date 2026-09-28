@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_db_proxy_endpoint`.
 const Set<String> _awsDbProxyEndpointSensitive = <String>{};
 
+/// Db Proxy Endpoint Target enum for `target_role`.
+enum DbProxyEndpointTargetRole implements TerraformEnum {
+  readWrite('READ_WRITE'),
+  readOnly('READ_ONLY');
+
+  const DbProxyEndpointTargetRole(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_db_proxy_endpoint`.
 final class AwsDbProxyEndpoint extends Resource {
   static const String tfType = 'aws_db_proxy_endpoint';
@@ -16,7 +26,7 @@ final class AwsDbProxyEndpoint extends Resource {
     required TfArg<String> dbProxyName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? targetRole,
+    TfArg<DbProxyEndpointTargetRole>? targetRole,
     TfArg<List<String>>? vpcSecurityGroupIds,
     required TfArg<List<String>> vpcSubnetIds,
     super.lifecycle,

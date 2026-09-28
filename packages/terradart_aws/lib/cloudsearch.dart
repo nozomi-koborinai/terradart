@@ -7,7 +7,10 @@ export 'src/cloudsearch/aws_cloudsearch_domain.dart'
     show
         AwsCloudsearchDomain,
         CloudsearchDomainEndpointOptions,
+        CloudsearchDomainEndpointOptionsTlsSecurityPolicy,
         CloudsearchDomainIndexField,
-        CloudsearchDomainScalingParameters;
+        CloudsearchDomainIndexFieldType,
+        CloudsearchDomainScalingParameters,
+        CloudsearchDomainScalingParametersDesiredInstanceType;
 export 'src/cloudsearch/aws_cloudsearch_domain_service_access_policy.dart'
     show AwsCloudsearchDomainServiceAccessPolicy;

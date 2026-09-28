@@ -36,7 +36,7 @@ final class MskChannelIcebergDestination {
 
   final TfArg<bool> appendOnly;
 
-  final TfArg<String>? compressionType;
+  final TfArg<MskChannelIcebergDestinationCompressionType>? compressionType;
 
   final TfArg<num>? dataFreshnessInSeconds;
 
@@ -69,6 +69,16 @@ final class MskChannelIcebergDestination {
     if (tableCreation != null)
       'table_creation': [for (final e in tableCreation!) e.encode()],
   };
+}
+
+/// `compression_type` — derived from the provider schema description.
+enum MskChannelIcebergDestinationCompressionType implements TerraformEnum {
+  zstd('ZSTD'),
+  snappy('SNAPPY');
+
+  const MskChannelIcebergDestinationCompressionType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `iceberg_destination.catalog` block of
@@ -152,7 +162,10 @@ final class MskChannelIcebergDestinationDestinationTablePartitionSpec {
     this.source,
   });
 
-  final TfArg<String> partitionStrategy;
+  final TfArg<
+    MskChannelIcebergDestinationDestinationTablePartitionSpecPartitionStrategy
+  >
+  partitionStrategy;
 
   final List<MskChannelIcebergDestinationDestinationTablePartitionSpecSource>?
   source;
@@ -161,6 +174,18 @@ final class MskChannelIcebergDestinationDestinationTablePartitionSpec {
     'partition_strategy': partitionStrategy.toTfJson(),
     if (source != null) 'source': [for (final e in source!) e.encode()],
   };
+}
+
+/// `partition_strategy` — derived from the provider schema description.
+enum MskChannelIcebergDestinationDestinationTablePartitionSpecPartitionStrategy
+    implements TerraformEnum {
+  timeHour('TIME_HOUR');
+
+  const MskChannelIcebergDestinationDestinationTablePartitionSpecPartitionStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `iceberg_destination.destination_table.partition_spec.source` block of
@@ -358,7 +383,7 @@ final class MskChannelS3DestinationStorage {
 
   final TfArg<String> bucketArn;
 
-  final TfArg<String> compressionType;
+  final TfArg<MskChannelS3DestinationStorageCompressionType> compressionType;
 
   final TfArg<String>? expectedBucketOwner;
 
@@ -366,7 +391,7 @@ final class MskChannelS3DestinationStorage {
 
   final TfArg<String>? outputPrefix;
 
-  final TfArg<String> storageClass;
+  final TfArg<MskChannelS3DestinationStorageStorageClass> storageClass;
 
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.toTfJson(),
@@ -378,6 +403,28 @@ final class MskChannelS3DestinationStorage {
     if (outputPrefix != null) 'output_prefix': outputPrefix!.toTfJson(),
     'storage_class': storageClass.toTfJson(),
   };
+}
+
+/// `compression_type` — derived from the provider schema description.
+enum MskChannelS3DestinationStorageCompressionType implements TerraformEnum {
+  none('NONE'),
+  gzip('GZIP'),
+  zstd('ZSTD');
+
+  const MskChannelS3DestinationStorageCompressionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `storage_class` — derived from the provider schema description.
+enum MskChannelS3DestinationStorageStorageClass implements TerraformEnum {
+  standard('STANDARD'),
+  intelligentTiering('INTELLIGENT_TIERING'),
+  glacierIr('GLACIER_IR');
+
+  const MskChannelS3DestinationStorageStorageClass(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `topic_configuration` block of
@@ -413,11 +460,27 @@ final class MskChannelTopicConfigurationRecordConverter {
     required this.valueConverter,
   });
 
-  final TfArg<String> valueConverter;
+  final TfArg<MskChannelTopicConfigurationRecordConverterValueConverter>
+  valueConverter;
 
   Map<String, Object?> encode() => {
     'value_converter': valueConverter.toTfJson(),
   };
+}
+
+/// `value_converter` — derived from the provider schema description.
+enum MskChannelTopicConfigurationRecordConverterValueConverter
+    implements TerraformEnum {
+  byteArray('BYTE_ARRAY'),
+  json('JSON'),
+  jsonSchemaGsr('JSON_SCHEMA_GSR'),
+  string('STRING');
+
+  const MskChannelTopicConfigurationRecordConverterValueConverter(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `topic_configuration.record_schema` block of

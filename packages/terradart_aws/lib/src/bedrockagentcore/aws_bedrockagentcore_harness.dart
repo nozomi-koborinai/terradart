@@ -145,7 +145,10 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCus
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<String> inboundTokenClaimValueType;
+  final TfArg<
+    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+  >
+  inboundTokenClaimValueType;
 
   final List<
     BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue
@@ -162,6 +165,19 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCus
   };
 }
 
+/// `inbound_token_claim_value_type` — derived from the provider schema description.
+enum BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+    implements TerraformEnum {
+  string('STRING'),
+  stringArray('STRING_ARRAY');
+
+  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
 /// `aws_bedrockagentcore_harness` (derived from provider schema).
 @immutable
@@ -171,7 +187,10 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCus
     this.claimMatchValue,
   });
 
-  final TfArg<String> claimMatchOperator;
+  final TfArg<
+    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
+  >
+  claimMatchOperator;
 
   final List<
     BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue
@@ -183,6 +202,20 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCus
     if (claimMatchValue != null)
       'claim_match_value': [for (final e in claimMatchValue!) e.encode()],
   };
+}
+
+/// `claim_match_operator` — derived from the provider schema description.
+enum BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
+    implements TerraformEnum {
+  equals('EQUALS'),
+  contains('CONTAINS'),
+  containsAny('CONTAINS_ANY');
+
+  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
@@ -248,7 +281,10 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -269,6 +305,19 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of
@@ -353,7 +402,10 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -374,6 +426,19 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint.self_managed_lattice_resource` block of
@@ -543,7 +608,10 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetwork
     this.networkModeConfig,
   });
 
-  final TfArg<String> networkMode;
+  final TfArg<
+    BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkMode
+  >
+  networkMode;
 
   final List<
     BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkModeConfig
@@ -555,6 +623,19 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetwork
     if (networkModeConfig != null)
       'network_mode_config': [for (final e in networkModeConfig!) e.encode()],
   };
+}
+
+/// `network_mode` — derived from the provider schema description.
+enum BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkMode
+    implements TerraformEnum {
+  public('PUBLIC'),
+  vpc('VPC');
+
+  const BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetworkConfigurationNetworkMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `environment.agentcore_runtime_environment.network_configuration.network_mode_config` block of
@@ -720,15 +801,34 @@ final class BedrockagentcoreHarnessMemoryManagedMemoryConfiguration {
 
   final TfArg<num>? eventExpiryDuration;
 
-  final TfArg<List<Object?>>? strategies;
+  final List<
+    TfArg<BedrockagentcoreHarnessMemoryManagedMemoryConfigurationStrategies>
+  >?
+  strategies;
 
   Map<String, Object?> encode() => {
     if (encryptionKeyArn != null)
       'encryption_key_arn': encryptionKeyArn!.toTfJson(),
     if (eventExpiryDuration != null)
       'event_expiry_duration': eventExpiryDuration!.toTfJson(),
-    if (strategies != null) 'strategies': strategies!.toTfJson(),
+    if (strategies != null)
+      'strategies': [for (final e in strategies!) e.toTfJson()],
   };
+}
+
+/// `strategies` — derived from the provider schema description.
+enum BedrockagentcoreHarnessMemoryManagedMemoryConfigurationStrategies
+    implements TerraformEnum {
+  semantic('SEMANTIC'),
+  summarization('SUMMARIZATION'),
+  userPreference('USER_PREFERENCE'),
+  episodic('EPISODIC');
+
+  const BedrockagentcoreHarnessMemoryManagedMemoryConfigurationStrategies(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `model` block of
@@ -779,7 +879,8 @@ final class BedrockagentcoreHarnessModelBedrockModelConfig {
 
   final TfArg<String>? additionalParams;
 
-  final TfArg<String>? apiFormat;
+  final TfArg<BedrockagentcoreHarnessModelBedrockModelConfigApiFormat>?
+  apiFormat;
 
   final TfArg<num>? maxTokens;
 
@@ -798,6 +899,20 @@ final class BedrockagentcoreHarnessModelBedrockModelConfig {
     if (temperature != null) 'temperature': temperature!.toTfJson(),
     if (topP != null) 'top_p': topP!.toTfJson(),
   };
+}
+
+/// `api_format` — derived from the provider schema description.
+enum BedrockagentcoreHarnessModelBedrockModelConfigApiFormat
+    implements TerraformEnum {
+  converseStream('converse_stream'),
+  responses('responses'),
+  chatCompletions('chat_completions');
+
+  const BedrockagentcoreHarnessModelBedrockModelConfigApiFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `model.gemini_model_config` block of
@@ -896,7 +1011,8 @@ final class BedrockagentcoreHarnessModelOpenaiModelConfig {
 
   final TfArg<String>? additionalParams;
 
-  final TfArg<String>? apiFormat;
+  final TfArg<BedrockagentcoreHarnessModelOpenaiModelConfigApiFormat>?
+  apiFormat;
 
   final TfArg<String> apiKeyArn;
 
@@ -918,6 +1034,19 @@ final class BedrockagentcoreHarnessModelOpenaiModelConfig {
     if (temperature != null) 'temperature': temperature!.toTfJson(),
     if (topP != null) 'top_p': topP!.toTfJson(),
   };
+}
+
+/// `api_format` — derived from the provider schema description.
+enum BedrockagentcoreHarnessModelOpenaiModelConfigApiFormat
+    implements TerraformEnum {
+  chatCompletions('chat_completions'),
+  responses('responses');
+
+  const BedrockagentcoreHarnessModelOpenaiModelConfigApiFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `skill` block of
@@ -1037,7 +1166,7 @@ final class BedrockagentcoreHarnessTool {
 
   final TfArg<String>? name;
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentcoreHarnessToolType> type;
 
   final List<BedrockagentcoreHarnessToolConfig>? config;
 
@@ -1046,6 +1175,19 @@ final class BedrockagentcoreHarnessTool {
     'type': type.toTfJson(),
     if (config != null) 'config': [for (final e in config!) e.encode()],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentcoreHarnessToolType implements TerraformEnum {
+  remoteMcp('remote_mcp'),
+  agentcoreBrowser('agentcore_browser'),
+  agentcoreGateway('agentcore_gateway'),
+  inlineFunction('inline_function'),
+  agentcoreCodeInterpreter('agentcore_code_interpreter');
+
+  const BedrockagentcoreHarnessToolType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `tool.config` block of
@@ -1181,7 +1323,10 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauth {
 
   final TfArg<String>? defaultReturnUrl;
 
-  final TfArg<String>? grantType;
+  final TfArg<
+    BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauthGrantType
+  >?
+  grantType;
 
   final TfArg<String> providerArn;
 
@@ -1196,6 +1341,20 @@ final class BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauth {
     'provider_arn': providerArn.toTfJson(),
     'scopes': scopes.toTfJson(),
   };
+}
+
+/// `grant_type` — derived from the provider schema description.
+enum BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauthGrantType
+    implements TerraformEnum {
+  clientCredentials('CLIENT_CREDENTIALS'),
+  authorizationCode('AUTHORIZATION_CODE'),
+  tokenExchange('TOKEN_EXCHANGE');
+
+  const BedrockagentcoreHarnessToolConfigAgentcoreGatewayOutboundAuthOauthGrantType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `tool.config.inline_function` block of

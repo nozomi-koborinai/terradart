@@ -7,6 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_comprehend_entity_recognizer`.
 const Set<String> _awsComprehendEntityRecognizerSensitive = <String>{};
 
+/// Comprehend Entity Recognizer Language enum for `language_code`.
+enum ComprehendEntityRecognizerLanguageCode implements TerraformEnum {
+  en('en'),
+  es('es'),
+  fr('fr'),
+  de('de'),
+  it('it'),
+  pt('pt');
+
+  const ComprehendEntityRecognizerLanguageCode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `input_data_config` block of
 /// `aws_comprehend_entity_recognizer` (derived from provider schema).
 @immutable
@@ -20,7 +34,7 @@ final class ComprehendEntityRecognizerInputDataConfig {
     required this.entityTypes,
   });
 
-  final TfArg<String>? dataFormat;
+  final TfArg<ComprehendEntityRecognizerInputDataConfigDataFormat>? dataFormat;
 
   final ComprehendEntityRecognizerInputDataConfigAnnotations? annotations;
 
@@ -42,6 +56,19 @@ final class ComprehendEntityRecognizerInputDataConfig {
     if (entityList != null) 'entity_list': entityList!.encode(),
     'entity_types': [for (final e in entityTypes) e.encode()],
   };
+}
+
+/// `data_format` — derived from the provider schema description.
+enum ComprehendEntityRecognizerInputDataConfigDataFormat
+    implements TerraformEnum {
+  comprehendCsv('COMPREHEND_CSV'),
+  augmentedManifest('AUGMENTED_MANIFEST');
+
+  const ComprehendEntityRecognizerInputDataConfigDataFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_data_config.annotations` block of
@@ -80,13 +107,17 @@ final class ComprehendEntityRecognizerInputDataConfigAugmentedManifests {
 
   final TfArg<List<Object?>> attributeNames;
 
-  final TfArg<String>? documentType;
+  final TfArg<
+    ComprehendEntityRecognizerInputDataConfigAugmentedManifestsDocumentType
+  >?
+  documentType;
 
   final TfArg<String> s3Uri;
 
   final TfArg<String>? sourceDocumentsS3Uri;
 
-  final TfArg<String>? split;
+  final TfArg<ComprehendEntityRecognizerInputDataConfigAugmentedManifestsSplit>?
+  split;
 
   Map<String, Object?> encode() => {
     if (annotationDataS3Uri != null)
@@ -100,6 +131,32 @@ final class ComprehendEntityRecognizerInputDataConfigAugmentedManifests {
   };
 }
 
+/// `document_type` — derived from the provider schema description.
+enum ComprehendEntityRecognizerInputDataConfigAugmentedManifestsDocumentType
+    implements TerraformEnum {
+  plainTextDocument('PLAIN_TEXT_DOCUMENT'),
+  semiStructuredDocument('SEMI_STRUCTURED_DOCUMENT');
+
+  const ComprehendEntityRecognizerInputDataConfigAugmentedManifestsDocumentType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `split` — derived from the provider schema description.
+enum ComprehendEntityRecognizerInputDataConfigAugmentedManifestsSplit
+    implements TerraformEnum {
+  train('TRAIN'),
+  test('TEST');
+
+  const ComprehendEntityRecognizerInputDataConfigAugmentedManifestsSplit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `input_data_config.documents` block of
 /// `aws_comprehend_entity_recognizer` (derived from provider schema).
 @immutable
@@ -110,7 +167,8 @@ final class ComprehendEntityRecognizerInputDataConfigDocuments {
     this.testS3Uri,
   });
 
-  final TfArg<String>? inputFormat;
+  final TfArg<ComprehendEntityRecognizerInputDataConfigDocumentsInputFormat>?
+  inputFormat;
 
   final TfArg<String> s3Uri;
 
@@ -121,6 +179,19 @@ final class ComprehendEntityRecognizerInputDataConfigDocuments {
     's3_uri': s3Uri.toTfJson(),
     if (testS3Uri != null) 'test_s3_uri': testS3Uri!.toTfJson(),
   };
+}
+
+/// `input_format` — derived from the provider schema description.
+enum ComprehendEntityRecognizerInputDataConfigDocumentsInputFormat
+    implements TerraformEnum {
+  oneDocPerFile('ONE_DOC_PER_FILE'),
+  oneDocPerLine('ONE_DOC_PER_LINE');
+
+  const ComprehendEntityRecognizerInputDataConfigDocumentsInputFormat(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `input_data_config.entity_list` block of
@@ -175,7 +246,7 @@ final class AwsComprehendEntityRecognizer extends Resource {
   AwsComprehendEntityRecognizer({
     required super.localName,
     required TfArg<String> dataAccessRoleArn,
-    required TfArg<String> languageCode,
+    required TfArg<ComprehendEntityRecognizerLanguageCode> languageCode,
     TfArg<String>? modelKmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,

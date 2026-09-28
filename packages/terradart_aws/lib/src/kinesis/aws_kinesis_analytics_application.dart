@@ -281,12 +281,29 @@ final class KinesisAnalyticsApplicationInputsStartingPositionConfiguration {
     this.startingPosition,
   });
 
-  final TfArg<String>? startingPosition;
+  final TfArg<
+    KinesisAnalyticsApplicationInputsStartingPositionConfigurationStartingPosition
+  >?
+  startingPosition;
 
   Map<String, Object?> encode() => {
     if (startingPosition != null)
       'starting_position': startingPosition!.toTfJson(),
   };
+}
+
+/// `starting_position` — derived from the provider schema description.
+enum KinesisAnalyticsApplicationInputsStartingPositionConfigurationStartingPosition
+    implements TerraformEnum {
+  now('NOW'),
+  trimHorizon('TRIM_HORIZON'),
+  lastStoppedPoint('LAST_STOPPED_POINT');
+
+  const KinesisAnalyticsApplicationInputsStartingPositionConfigurationStartingPosition(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `outputs` block of
@@ -385,11 +402,25 @@ final class KinesisAnalyticsApplicationOutputsSchema {
     required this.recordFormatType,
   });
 
-  final TfArg<String> recordFormatType;
+  final TfArg<KinesisAnalyticsApplicationOutputsSchemaRecordFormatType>
+  recordFormatType;
 
   Map<String, Object?> encode() => {
     'record_format_type': recordFormatType.toTfJson(),
   };
+}
+
+/// `record_format_type` — derived from the provider schema description.
+enum KinesisAnalyticsApplicationOutputsSchemaRecordFormatType
+    implements TerraformEnum {
+  json('JSON'),
+  csv('CSV');
+
+  const KinesisAnalyticsApplicationOutputsSchemaRecordFormatType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `reference_data_sources` block of

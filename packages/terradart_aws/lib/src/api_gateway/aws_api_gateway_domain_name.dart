@@ -9,6 +9,49 @@ const Set<String> _awsApiGatewayDomainNameSensitive = <String>{
   'certificate_private_key',
 };
 
+/// Api Gateway Domain Name Endpoint Access enum for `endpoint_access_mode`.
+enum ApiGatewayDomainNameEndpointAccessMode implements TerraformEnum {
+  basic('BASIC'),
+  strict('STRICT');
+
+  const ApiGatewayDomainNameEndpointAccessMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Api Gateway Domain Name Routing enum for `routing_mode`.
+enum ApiGatewayDomainNameRoutingMode implements TerraformEnum {
+  basePathMappingOnly('BASE_PATH_MAPPING_ONLY'),
+  routingRuleOnly('ROUTING_RULE_ONLY'),
+  routingRuleThenBasePathMapping('ROUTING_RULE_THEN_BASE_PATH_MAPPING');
+
+  const ApiGatewayDomainNameRoutingMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Api Gateway Domain Name Security enum for `security_policy`.
+enum ApiGatewayDomainNameSecurityPolicy implements TerraformEnum {
+  tls10('TLS_1_0'),
+  tls12('TLS_1_2'),
+  securitypolicyTls1313202509('SecurityPolicy_TLS13_1_3_2025_09'),
+  securitypolicyTls1313Fips202509('SecurityPolicy_TLS13_1_3_FIPS_2025_09'),
+  securitypolicyTls1312PfsPq202509('SecurityPolicy_TLS13_1_2_PFS_PQ_2025_09'),
+  securitypolicyTls1312FipsPq202509('SecurityPolicy_TLS13_1_2_FIPS_PQ_2025_09'),
+  securitypolicyTls1312FipsPfsPq202509(
+    'SecurityPolicy_TLS13_1_2_FIPS_PFS_PQ_2025_09',
+  ),
+  securitypolicyTls1312Pq202509('SecurityPolicy_TLS13_1_2_PQ_2025_09'),
+  securitypolicyTls1312202106('SecurityPolicy_TLS13_1_2_2021_06'),
+  securitypolicyTls132025Edge('SecurityPolicy_TLS13_2025_EDGE'),
+  securitypolicyTls12Pfs2025Edge('SecurityPolicy_TLS12_PFS_2025_EDGE'),
+  securitypolicyTls122018Edge('SecurityPolicy_TLS12_2018_EDGE');
+
+  const ApiGatewayDomainNameSecurityPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `endpoint_configuration` block of
 /// `aws_api_gateway_domain_name` (derived from provider schema).
 @immutable
@@ -18,14 +61,39 @@ final class ApiGatewayDomainNameEndpointConfiguration {
     required this.types,
   });
 
-  final TfArg<String>? ipAddressType;
+  final TfArg<ApiGatewayDomainNameEndpointConfigurationIpAddressType>?
+  ipAddressType;
 
-  final TfArg<List<Object?>> types;
+  final List<TfArg<ApiGatewayDomainNameEndpointConfigurationTypes>> types;
 
   Map<String, Object?> encode() => {
     if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
-    'types': types.toTfJson(),
+    'types': [for (final e in types) e.toTfJson()],
   };
+}
+
+/// `ip_address_type` — derived from the provider schema description.
+enum ApiGatewayDomainNameEndpointConfigurationIpAddressType
+    implements TerraformEnum {
+  ipv4('ipv4'),
+  dualstack('dualstack');
+
+  const ApiGatewayDomainNameEndpointConfigurationIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `types` — derived from the provider schema description.
+enum ApiGatewayDomainNameEndpointConfigurationTypes implements TerraformEnum {
+  regional('REGIONAL'),
+  edge('EDGE'),
+  private('PRIVATE');
+
+  const ApiGatewayDomainNameEndpointConfigurationTypes(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `mutual_tls_authentication` block of
@@ -60,14 +128,14 @@ final class AwsApiGatewayDomainName extends Resource {
     TfArg<String>? certificateName,
     TfArg<String>? certificatePrivateKey,
     required TfArg<String> domainName,
-    TfArg<String>? endpointAccessMode,
+    TfArg<ApiGatewayDomainNameEndpointAccessMode>? endpointAccessMode,
     TfArg<String>? ownershipVerificationCertificateArn,
     TfArg<String>? policy,
     TfArg<String>? region,
     TfArg<String>? regionalCertificateArn,
     TfArg<String>? regionalCertificateName,
-    TfArg<String>? routingMode,
-    TfArg<String>? securityPolicy,
+    TfArg<ApiGatewayDomainNameRoutingMode>? routingMode,
+    TfArg<ApiGatewayDomainNameSecurityPolicy>? securityPolicy,
     TfArg<Map<String, String>>? tags,
     ApiGatewayDomainNameEndpointConfiguration? endpointConfiguration,
     ApiGatewayDomainNameMutualTlsAuthentication? mutualTlsAuthentication,

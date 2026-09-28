@@ -6,16 +6,36 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_sagemaker_mlflow_app`.
 const Set<String> _awsSagemakerMlflowAppSensitive = <String>{};
 
+/// Sagemaker Mlflow App Account Default enum for `account_default_status`.
+enum SagemakerMlflowAppAccountDefaultStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SagemakerMlflowAppAccountDefaultStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Sagemaker Mlflow App Model Registration enum for `model_registration_mode`.
+enum SagemakerMlflowAppModelRegistrationMode implements TerraformEnum {
+  automodelregistrationenabled('AutoModelRegistrationEnabled'),
+  automodelregistrationdisabled('AutoModelRegistrationDisabled');
+
+  const SagemakerMlflowAppModelRegistrationMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_sagemaker_mlflow_app`.
 final class AwsSagemakerMlflowApp extends Resource {
   static const String tfType = 'aws_sagemaker_mlflow_app';
 
   AwsSagemakerMlflowApp({
     required super.localName,
-    TfArg<String>? accountDefaultStatus,
+    TfArg<SagemakerMlflowAppAccountDefaultStatus>? accountDefaultStatus,
     required TfArg<String> artifactStoreUri,
     TfArg<List<String>>? defaultDomainIdList,
-    TfArg<String>? modelRegistrationMode,
+    TfArg<SagemakerMlflowAppModelRegistrationMode>? modelRegistrationMode,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> roleArn,

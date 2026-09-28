@@ -6,6 +6,43 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_kms_key`.
 const Set<String> _awsKmsKeySensitive = <String>{};
 
+/// Kms Key Customer Master Key enum for `customer_master_key_spec`.
+enum KmsKeyCustomerMasterKeySpec implements TerraformEnum {
+  rsa2048('RSA_2048'),
+  rsa3072('RSA_3072'),
+  rsa4096('RSA_4096'),
+  eccNistP256('ECC_NIST_P256'),
+  eccNistP384('ECC_NIST_P384'),
+  eccNistP521('ECC_NIST_P521'),
+  eccSecgP256k1('ECC_SECG_P256K1'),
+  symmetricDefault('SYMMETRIC_DEFAULT'),
+  hmac224('HMAC_224'),
+  hmac256('HMAC_256'),
+  hmac384('HMAC_384'),
+  hmac512('HMAC_512'),
+  sm2('SM2'),
+  mlDsa44('ML_DSA_44'),
+  mlDsa65('ML_DSA_65'),
+  mlDsa87('ML_DSA_87'),
+  eccNistEdwards25519('ECC_NIST_EDWARDS25519');
+
+  const KmsKeyCustomerMasterKeySpec(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Kms Key Key enum for `key_usage`.
+enum KmsKeyKeyUsage implements TerraformEnum {
+  signVerify('SIGN_VERIFY'),
+  encryptDecrypt('ENCRYPT_DECRYPT'),
+  generateVerifyMac('GENERATE_VERIFY_MAC'),
+  keyAgreement('KEY_AGREEMENT');
+
+  const KmsKeyKeyUsage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_kms_key`.
 final class AwsKmsKey extends Resource {
   static const String tfType = 'aws_kms_key';
@@ -14,12 +51,12 @@ final class AwsKmsKey extends Resource {
     required super.localName,
     TfArg<bool>? bypassPolicyLockoutSafetyCheck,
     TfArg<String>? customKeyStoreId,
-    TfArg<String>? customerMasterKeySpec,
+    TfArg<KmsKeyCustomerMasterKeySpec>? customerMasterKeySpec,
     TfArg<num>? deletionWindowInDays,
     TfArg<String>? description,
     TfArg<bool>? enableKeyRotation,
     TfArg<bool>? isEnabled,
-    TfArg<String>? keyUsage,
+    TfArg<KmsKeyKeyUsage>? keyUsage,
     TfArg<bool>? multiRegion,
     TfArg<String>? policy,
     TfArg<String>? region,

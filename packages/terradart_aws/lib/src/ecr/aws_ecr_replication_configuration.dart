@@ -76,12 +76,27 @@ final class EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFil
 
   final TfArg<String> filter;
 
-  final TfArg<String> filterType;
+  final TfArg<
+    EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilterFilterType
+  >
+  filterType;
 
   Map<String, Object?> encode() => {
     'filter': filter.toTfJson(),
     'filter_type': filterType.toTfJson(),
   };
+}
+
+/// `filter_type` — derived from the provider schema description.
+enum EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilterFilterType
+    implements TerraformEnum {
+  prefixMatch('PREFIX_MATCH');
+
+  const EcrReplicationConfigurationReplicationConfigurationRuleRepositoryFilterFilterType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ecr_replication_configuration`.

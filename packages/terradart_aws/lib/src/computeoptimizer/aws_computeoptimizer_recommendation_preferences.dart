@@ -8,6 +8,74 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsComputeoptimizerRecommendationPreferencesSensitive =
     <String>{};
 
+/// Computeoptimizer Recommendation Preferences Enhanced Infrastructure enum for `enhanced_infrastructure_metrics`.
+enum ComputeoptimizerRecommendationPreferencesEnhancedInfrastructureMetrics
+    implements TerraformEnum {
+  active('Active'),
+  inactive('Inactive');
+
+  const ComputeoptimizerRecommendationPreferencesEnhancedInfrastructureMetrics(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Computeoptimizer Recommendation Preferences Inferred Workload enum for `inferred_workload_types`.
+enum ComputeoptimizerRecommendationPreferencesInferredWorkloadTypes
+    implements TerraformEnum {
+  active('Active'),
+  inactive('Inactive');
+
+  const ComputeoptimizerRecommendationPreferencesInferredWorkloadTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Computeoptimizer Recommendation Preferences Look Back enum for `look_back_period`.
+enum ComputeoptimizerRecommendationPreferencesLookBackPeriod
+    implements TerraformEnum {
+  days14('DAYS_14'),
+  days32('DAYS_32'),
+  days93('DAYS_93');
+
+  const ComputeoptimizerRecommendationPreferencesLookBackPeriod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Computeoptimizer Recommendation Preferences Resource enum for `resource_type`.
+enum ComputeoptimizerRecommendationPreferencesResourceType
+    implements TerraformEnum {
+  autoscalinggroup('AutoScalingGroup'),
+  ec2instance('Ec2Instance'),
+  rdsdbinstance('RdsDBInstance'),
+  auroradbclusterstorage('AuroraDBClusterStorage');
+
+  const ComputeoptimizerRecommendationPreferencesResourceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Computeoptimizer Recommendation Preferences Savings Estimation enum for `savings_estimation_mode`.
+enum ComputeoptimizerRecommendationPreferencesSavingsEstimationMode
+    implements TerraformEnum {
+  afterdiscounts('AfterDiscounts'),
+  beforediscounts('BeforeDiscounts');
+
+  const ComputeoptimizerRecommendationPreferencesSavingsEstimationMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `external_metrics_preference` block of
 /// `aws_computeoptimizer_recommendation_preferences` (derived from provider schema).
 @immutable
@@ -16,9 +84,27 @@ final class ComputeoptimizerRecommendationPreferencesExternalMetricsPreference {
     required this.source,
   });
 
-  final TfArg<String> source;
+  final TfArg<
+    ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceSource
+  >
+  source;
 
   Map<String, Object?> encode() => {'source': source.toTfJson()};
+}
+
+/// `source` — derived from the provider schema description.
+enum ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceSource
+    implements TerraformEnum {
+  datadog('Datadog'),
+  dynatrace('Dynatrace'),
+  newrelic('NewRelic'),
+  instana('Instana');
+
+  const ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceSource(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `preferred_resource` block of
@@ -35,13 +121,26 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResource {
 
   final TfArg<List<Object?>>? includeList;
 
-  final TfArg<String> name;
+  final TfArg<ComputeoptimizerRecommendationPreferencesPreferredResourceName>
+  name;
 
   Map<String, Object?> encode() => {
     if (excludeList != null) 'exclude_list': excludeList!.toTfJson(),
     if (includeList != null) 'include_list': includeList!.toTfJson(),
     'name': name.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+enum ComputeoptimizerRecommendationPreferencesPreferredResourceName
+    implements TerraformEnum {
+  ec2instancetypes('Ec2InstanceTypes');
+
+  const ComputeoptimizerRecommendationPreferencesPreferredResourceName(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `scope` block of
@@ -53,7 +152,7 @@ final class ComputeoptimizerRecommendationPreferencesScope {
     required this.value,
   });
 
-  final TfArg<String> name;
+  final TfArg<ComputeoptimizerRecommendationPreferencesScopeName> name;
 
   final TfArg<String> value;
 
@@ -61,6 +160,18 @@ final class ComputeoptimizerRecommendationPreferencesScope {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+enum ComputeoptimizerRecommendationPreferencesScopeName
+    implements TerraformEnum {
+  organization('Organization'),
+  accountid('AccountId'),
+  resourcearn('ResourceArn');
+
+  const ComputeoptimizerRecommendationPreferencesScopeName(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `utilization_preference` block of
@@ -72,7 +183,10 @@ final class ComputeoptimizerRecommendationPreferencesUtilizationPreference {
     this.metricParameters,
   });
 
-  final TfArg<String> metricName;
+  final TfArg<
+    ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricName
+  >
+  metricName;
 
   final List<
     ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParameters
@@ -86,6 +200,19 @@ final class ComputeoptimizerRecommendationPreferencesUtilizationPreference {
   };
 }
 
+/// `metric_name` — derived from the provider schema description.
+enum ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricName
+    implements TerraformEnum {
+  cpuutilization('CpuUtilization'),
+  memoryutilization('MemoryUtilization');
+
+  const ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricName(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `utilization_preference.metric_parameters` block of
 /// `aws_computeoptimizer_recommendation_preferences` (derived from provider schema).
 @immutable
@@ -95,14 +222,49 @@ final class ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetric
     this.threshold,
   });
 
-  final TfArg<String> headroom;
+  final TfArg<
+    ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersHeadroom
+  >
+  headroom;
 
-  final TfArg<String>? threshold;
+  final TfArg<
+    ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersThreshold
+  >?
+  threshold;
 
   Map<String, Object?> encode() => {
     'headroom': headroom.toTfJson(),
     if (threshold != null) 'threshold': threshold!.toTfJson(),
   };
+}
+
+/// `headroom` — derived from the provider schema description.
+enum ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersHeadroom
+    implements TerraformEnum {
+  percent30('PERCENT_30'),
+  percent20('PERCENT_20'),
+  percent10('PERCENT_10'),
+  percent0('PERCENT_0');
+
+  const ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersHeadroom(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `threshold` — derived from the provider schema description.
+enum ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersThreshold
+    implements TerraformEnum {
+  p90('P90'),
+  p95('P95'),
+  p995('P99_5');
+
+  const ComputeoptimizerRecommendationPreferencesUtilizationPreferenceMetricParametersThreshold(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_computeoptimizer_recommendation_preferences`.
@@ -112,12 +274,19 @@ final class AwsComputeoptimizerRecommendationPreferences extends Resource {
 
   AwsComputeoptimizerRecommendationPreferences({
     required super.localName,
-    TfArg<String>? enhancedInfrastructureMetrics,
-    TfArg<String>? inferredWorkloadTypes,
-    TfArg<String>? lookBackPeriod,
+    TfArg<
+      ComputeoptimizerRecommendationPreferencesEnhancedInfrastructureMetrics
+    >?
+    enhancedInfrastructureMetrics,
+    TfArg<ComputeoptimizerRecommendationPreferencesInferredWorkloadTypes>?
+    inferredWorkloadTypes,
+    TfArg<ComputeoptimizerRecommendationPreferencesLookBackPeriod>?
+    lookBackPeriod,
     TfArg<String>? region,
-    required TfArg<String> resourceType,
-    TfArg<String>? savingsEstimationMode,
+    required TfArg<ComputeoptimizerRecommendationPreferencesResourceType>
+    resourceType,
+    TfArg<ComputeoptimizerRecommendationPreferencesSavingsEstimationMode>?
+    savingsEstimationMode,
     List<ComputeoptimizerRecommendationPreferencesExternalMetricsPreference>?
     externalMetricsPreference,
     List<ComputeoptimizerRecommendationPreferencesPreferredResource>?

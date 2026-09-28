@@ -41,7 +41,7 @@ final class BillingViewDataFilterExpressionDimensions {
     required this.values,
   });
 
-  final TfArg<String> key;
+  final TfArg<BillingViewDataFilterExpressionDimensionsKey> key;
 
   final TfArg<List<Object?>> values;
 
@@ -49,6 +49,15 @@ final class BillingViewDataFilterExpressionDimensions {
     'key': key.toTfJson(),
     'values': values.toTfJson(),
   };
+}
+
+/// `key` — derived from the provider schema description.
+enum BillingViewDataFilterExpressionDimensionsKey implements TerraformEnum {
+  linkedAccount('LINKED_ACCOUNT');
+
+  const BillingViewDataFilterExpressionDimensionsKey(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `data_filter_expression.tags` block of

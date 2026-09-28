@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lambda_invocation`.
 const Set<String> _awsLambdaInvocationSensitive = <String>{};
 
+/// Lambda Invocation Lifecycle enum for `lifecycle_scope`.
+enum LambdaInvocationLifecycleScope implements TerraformEnum {
+  createOnly('CREATE_ONLY'),
+  crud('CRUD');
+
+  const LambdaInvocationLifecycleScope(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_lambda_invocation`.
 final class AwsLambdaInvocation extends Resource {
   static const String tfType = 'aws_lambda_invocation';
@@ -14,7 +24,7 @@ final class AwsLambdaInvocation extends Resource {
     required super.localName,
     required TfArg<String> functionName,
     required TfArg<String> input,
-    TfArg<String>? lifecycleScope,
+    TfArg<LambdaInvocationLifecycleScope>? lifecycleScope,
     TfArg<String>? qualifier,
     TfArg<String>? region,
     TfArg<String>? tenantId,

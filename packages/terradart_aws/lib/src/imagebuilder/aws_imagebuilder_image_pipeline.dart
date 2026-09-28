@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_imagebuilder_image_pipeline`.
 const Set<String> _awsImagebuilderImagePipelineSensitive = <String>{};
 
+/// Imagebuilder Image Pipeline enum for `status`.
+enum ImagebuilderImagePipelineStatus implements TerraformEnum {
+  disabled('DISABLED'),
+  enabled('ENABLED');
+
+  const ImagebuilderImagePipelineStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `image_scanning_configuration` block of
 /// `aws_imagebuilder_image_pipeline` (derived from provider schema).
 @immutable
@@ -99,7 +109,8 @@ final class ImagebuilderImagePipelineSchedule {
     this.timezone,
   });
 
-  final TfArg<String>? pipelineExecutionStartCondition;
+  final TfArg<ImagebuilderImagePipelineSchedulePipelineExecutionStartCondition>?
+  pipelineExecutionStartCondition;
 
   final TfArg<String> scheduleExpression;
 
@@ -114,6 +125,21 @@ final class ImagebuilderImagePipelineSchedule {
   };
 }
 
+/// `pipeline_execution_start_condition` — derived from the provider schema description.
+enum ImagebuilderImagePipelineSchedulePipelineExecutionStartCondition
+    implements TerraformEnum {
+  expressionMatchOnly('EXPRESSION_MATCH_ONLY'),
+  expressionMatchAndDependencyUpdatesAvailable(
+    'EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE',
+  );
+
+  const ImagebuilderImagePipelineSchedulePipelineExecutionStartCondition(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `workflow` block of
 /// `aws_imagebuilder_image_pipeline` (derived from provider schema).
 @immutable
@@ -125,7 +151,7 @@ final class ImagebuilderImagePipelineWorkflow {
     this.parameter,
   });
 
-  final TfArg<String>? onFailure;
+  final TfArg<ImagebuilderImagePipelineWorkflowOnFailure>? onFailure;
 
   final TfArg<String>? parallelGroup;
 
@@ -140,6 +166,16 @@ final class ImagebuilderImagePipelineWorkflow {
     if (parameter != null)
       'parameter': [for (final e in parameter!) e.encode()],
   };
+}
+
+/// `on_failure` — derived from the provider schema description.
+enum ImagebuilderImagePipelineWorkflowOnFailure implements TerraformEnum {
+  continueCase('CONTINUE'),
+  abort('ABORT');
+
+  const ImagebuilderImagePipelineWorkflowOnFailure(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `workflow.parameter` block of
@@ -176,7 +212,7 @@ final class AwsImagebuilderImagePipeline extends Resource {
     required TfArg<String> infrastructureConfigurationArn,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? status,
+    TfArg<ImagebuilderImagePipelineStatus>? status,
     TfArg<Map<String, String>>? tags,
     ImagebuilderImagePipelineImageScanningConfiguration?
     imageScanningConfiguration,

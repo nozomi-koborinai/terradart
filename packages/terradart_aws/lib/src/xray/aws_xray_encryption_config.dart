@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_xray_encryption_config`.
 const Set<String> _awsXrayEncryptionConfigSensitive = <String>{};
 
+/// Xray Encryption Config enum for `type`.
+enum XrayEncryptionConfigType implements TerraformEnum {
+  none('NONE'),
+  kms('KMS');
+
+  const XrayEncryptionConfigType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_xray_encryption_config`.
 final class AwsXrayEncryptionConfig extends Resource {
   static const String tfType = 'aws_xray_encryption_config';
@@ -14,7 +24,7 @@ final class AwsXrayEncryptionConfig extends Resource {
     required super.localName,
     TfArg<String>? keyId,
     TfArg<String>? region,
-    required TfArg<String> type,
+    required TfArg<XrayEncryptionConfigType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

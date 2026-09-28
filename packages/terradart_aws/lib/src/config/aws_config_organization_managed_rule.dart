@@ -6,6 +6,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_config_organization_managed_rule`.
 const Set<String> _awsConfigOrganizationManagedRuleSensitive = <String>{};
 
+/// Config Organization Managed Rule Maximum Execution enum for `maximum_execution_frequency`.
+enum ConfigOrganizationManagedRuleMaximumExecutionFrequency
+    implements TerraformEnum {
+  oneHour('One_Hour'),
+  threeHours('Three_Hours'),
+  sixHours('Six_Hours'),
+  twelveHours('Twelve_Hours'),
+  twentyfourHours('TwentyFour_Hours');
+
+  const ConfigOrganizationManagedRuleMaximumExecutionFrequency(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_config_organization_managed_rule`.
 final class AwsConfigOrganizationManagedRule extends Resource {
   static const String tfType = 'aws_config_organization_managed_rule';
@@ -15,7 +31,8 @@ final class AwsConfigOrganizationManagedRule extends Resource {
     TfArg<String>? description,
     TfArg<List<String>>? excludedAccounts,
     TfArg<String>? inputParameters,
-    TfArg<String>? maximumExecutionFrequency,
+    TfArg<ConfigOrganizationManagedRuleMaximumExecutionFrequency>?
+    maximumExecutionFrequency,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? resourceIdScope,

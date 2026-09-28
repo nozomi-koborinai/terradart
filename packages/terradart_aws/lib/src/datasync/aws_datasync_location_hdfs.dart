@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_datasync_location_hdfs`.
 const Set<String> _awsDatasyncLocationHdfsSensitive = <String>{};
 
+/// Datasync Location Hdfs Authentication enum for `authentication_type`.
+enum DatasyncLocationHdfsAuthenticationType implements TerraformEnum {
+  simple('SIMPLE'),
+  kerberos('KERBEROS');
+
+  const DatasyncLocationHdfsAuthenticationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `name_node` block of
 /// `aws_datasync_location_hdfs` (derived from provider schema).
 @immutable
@@ -35,15 +45,44 @@ final class DatasyncLocationHdfsQopConfiguration {
     this.rpcProtection,
   });
 
-  final TfArg<String>? dataTransferProtection;
+  final TfArg<DatasyncLocationHdfsQopConfigurationDataTransferProtection>?
+  dataTransferProtection;
 
-  final TfArg<String>? rpcProtection;
+  final TfArg<DatasyncLocationHdfsQopConfigurationRpcProtection>? rpcProtection;
 
   Map<String, Object?> encode() => {
     if (dataTransferProtection != null)
       'data_transfer_protection': dataTransferProtection!.toTfJson(),
     if (rpcProtection != null) 'rpc_protection': rpcProtection!.toTfJson(),
   };
+}
+
+/// `data_transfer_protection` — derived from the provider schema description.
+enum DatasyncLocationHdfsQopConfigurationDataTransferProtection
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  authentication('AUTHENTICATION'),
+  integrity('INTEGRITY'),
+  privacy('PRIVACY');
+
+  const DatasyncLocationHdfsQopConfigurationDataTransferProtection(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `rpc_protection` — derived from the provider schema description.
+enum DatasyncLocationHdfsQopConfigurationRpcProtection
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  authentication('AUTHENTICATION'),
+  integrity('INTEGRITY'),
+  privacy('PRIVACY');
+
+  const DatasyncLocationHdfsQopConfigurationRpcProtection(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_datasync_location_hdfs`.
@@ -53,7 +92,7 @@ final class AwsDatasyncLocationHdfs extends Resource {
   AwsDatasyncLocationHdfs({
     required super.localName,
     required TfArg<List<String>> agentArns,
-    TfArg<String>? authenticationType,
+    TfArg<DatasyncLocationHdfsAuthenticationType>? authenticationType,
     TfArg<num>? blockSize,
     TfArg<String>? kerberosKeytab,
     TfArg<String>? kerberosKeytabBase64,

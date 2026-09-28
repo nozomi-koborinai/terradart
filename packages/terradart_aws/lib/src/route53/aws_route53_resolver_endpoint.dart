@@ -7,6 +7,39 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_route53_resolver_endpoint`.
 const Set<String> _awsRoute53ResolverEndpointSensitive = <String>{};
 
+/// Route53 Resolver Endpoint enum for `direction`.
+enum Route53ResolverEndpointDirection implements TerraformEnum {
+  inbound('INBOUND'),
+  outbound('OUTBOUND'),
+  inboundDelegation('INBOUND_DELEGATION');
+
+  const Route53ResolverEndpointDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Route53 Resolver Endpoint enum for `protocols`.
+enum Route53ResolverEndpointProtocols implements TerraformEnum {
+  doh('DoH'),
+  do53('Do53'),
+  dohFips('DoH-FIPS');
+
+  const Route53ResolverEndpointProtocols(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Route53 Resolver Endpoint Resolver Endpoint enum for `resolver_endpoint_type`.
+enum Route53ResolverEndpointResolverEndpointType implements TerraformEnum {
+  ipv6('IPV6'),
+  ipv4('IPV4'),
+  dualstack('DUALSTACK');
+
+  const Route53ResolverEndpointResolverEndpointType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `ip_address` block of
 /// `aws_route53_resolver_endpoint` (derived from provider schema).
 @immutable
@@ -36,11 +69,11 @@ final class AwsRoute53ResolverEndpoint extends Resource {
 
   AwsRoute53ResolverEndpoint({
     required super.localName,
-    required TfArg<String> direction,
+    required TfArg<Route53ResolverEndpointDirection> direction,
     TfArg<String>? name,
-    TfArg<List<String>>? protocols,
+    List<TfArg<Route53ResolverEndpointProtocols>>? protocols,
     TfArg<String>? region,
-    TfArg<String>? resolverEndpointType,
+    TfArg<Route53ResolverEndpointResolverEndpointType>? resolverEndpointType,
     TfArg<bool>? rniEnhancedMetricsEnabled,
     required TfArg<List<String>> securityGroupIds,
     TfArg<Map<String, String>>? tags,
@@ -55,7 +88,10 @@ final class AwsRoute53ResolverEndpoint extends Resource {
          argMap: {
            'direction': direction,
            if (name != null) 'name': name,
-           if (protocols != null) 'protocols': protocols,
+           if (protocols != null)
+             'protocols': TfArg.literal([
+               for (final e in protocols) e.toTfJson(),
+             ]),
            if (region != null) 'region': region,
            if (resolverEndpointType != null)
              'resolver_endpoint_type': resolverEndpointType,

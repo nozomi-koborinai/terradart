@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rum_metrics_destination`.
 const Set<String> _awsRumMetricsDestinationSensitive = <String>{};
 
+/// Rum Metrics Destination enum for `destination`.
+enum RumMetricsDestinationDestination implements TerraformEnum {
+  cloudwatch('CloudWatch'),
+  evidently('Evidently');
+
+  const RumMetricsDestinationDestination(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_rum_metrics_destination`.
 final class AwsRumMetricsDestination extends Resource {
   static const String tfType = 'aws_rum_metrics_destination';
@@ -13,7 +23,7 @@ final class AwsRumMetricsDestination extends Resource {
   AwsRumMetricsDestination({
     required super.localName,
     required TfArg<String> appMonitorName,
-    required TfArg<String> destination,
+    required TfArg<RumMetricsDestinationDestination> destination,
     TfArg<String>? destinationArn,
     TfArg<String>? iamRoleArn,
     TfArg<String>? region,

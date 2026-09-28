@@ -10,6 +10,38 @@ const Set<String> _awsVerifiedaccessTrustProviderSensitive = <String>{
   'oidc_options.client_secret',
 };
 
+/// Verifiedaccess Trust Provider Device Trust Provider enum for `device_trust_provider_type`.
+enum VerifiedaccessTrustProviderDeviceTrustProviderType
+    implements TerraformEnum {
+  jamf('jamf'),
+  crowdstrike('crowdstrike'),
+  jumpcloud('jumpcloud');
+
+  const VerifiedaccessTrustProviderDeviceTrustProviderType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Verifiedaccess Trust Provider Trust Provider enum for `trust_provider_type`.
+enum VerifiedaccessTrustProviderTrustProviderType implements TerraformEnum {
+  user('user'),
+  device('device');
+
+  const VerifiedaccessTrustProviderTrustProviderType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Verifiedaccess Trust Provider User Trust Provider enum for `user_trust_provider_type`.
+enum VerifiedaccessTrustProviderUserTrustProviderType implements TerraformEnum {
+  iamIdentityCenter('iam-identity-center'),
+  oidc('oidc');
+
+  const VerifiedaccessTrustProviderUserTrustProviderType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `device_options` block of
 /// `aws_verifiedaccess_trust_provider` (derived from provider schema).
 @immutable
@@ -137,12 +169,15 @@ final class AwsVerifiedaccessTrustProvider extends Resource {
   AwsVerifiedaccessTrustProvider({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? deviceTrustProviderType,
+    TfArg<VerifiedaccessTrustProviderDeviceTrustProviderType>?
+    deviceTrustProviderType,
     required TfArg<String> policyReferenceName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> trustProviderType,
-    TfArg<String>? userTrustProviderType,
+    required TfArg<VerifiedaccessTrustProviderTrustProviderType>
+    trustProviderType,
+    TfArg<VerifiedaccessTrustProviderUserTrustProviderType>?
+    userTrustProviderType,
     VerifiedaccessTrustProviderDeviceOptions? deviceOptions,
     VerifiedaccessTrustProviderNativeApplicationOidcOptions?
     nativeApplicationOidcOptions,

@@ -46,7 +46,10 @@ final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfiguration {
 
   final TfArg<List<Object?>> entryPoint;
 
-  final TfArg<String> runtime;
+  final TfArg<
+    BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationRuntime
+  >
+  runtime;
 
   final List<
     BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCode
@@ -58,6 +61,23 @@ final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfiguration {
     'runtime': runtime.toTfJson(),
     if (code != null) 'code': [for (final e in code!) e.encode()],
   };
+}
+
+/// `runtime` — derived from the provider schema description.
+enum BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationRuntime
+    implements TerraformEnum {
+  python310('PYTHON_3_10'),
+  python311('PYTHON_3_11'),
+  python312('PYTHON_3_12'),
+  python313('PYTHON_3_13'),
+  python314('PYTHON_3_14'),
+  node22('NODE_22');
+
+  const BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationRuntime(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `agent_runtime_artifact.code_configuration.code` block of
@@ -248,7 +268,10 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<String> inboundTokenClaimValueType;
+  final TfArg<
+    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+  >
+  inboundTokenClaimValueType;
 
   final List<
     BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue
@@ -265,6 +288,19 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
   };
 }
 
+/// `inbound_token_claim_value_type` — derived from the provider schema description.
+enum BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+    implements TerraformEnum {
+  string('STRING'),
+  stringArray('STRING_ARRAY');
+
+  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
 /// `aws_bedrockagentcore_agent_runtime` (derived from provider schema).
 @immutable
@@ -274,7 +310,10 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     this.claimMatchValue,
   });
 
-  final TfArg<String> claimMatchOperator;
+  final TfArg<
+    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
+  >
+  claimMatchOperator;
 
   final List<
     BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue
@@ -286,6 +325,20 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     if (claimMatchValue != null)
       'claim_match_value': [for (final e in claimMatchValue!) e.encode()],
   };
+}
+
+/// `claim_match_operator` — derived from the provider schema description.
+enum BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
+    implements TerraformEnum {
+  equals('EQUALS'),
+  contains('CONTAINS'),
+  containsAny('CONTAINS_ANY');
+
+  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
@@ -351,7 +404,10 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -372,6 +428,19 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of
@@ -456,7 +525,10 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -477,6 +549,19 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridesPrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `authorizer_configuration.custom_jwt_authorizer.private_endpoint_overrides.private_endpoint.self_managed_lattice_resource` block of
@@ -589,7 +674,8 @@ final class BedrockagentcoreAgentRuntimeNetworkConfiguration {
     this.networkModeConfig,
   });
 
-  final TfArg<String> networkMode;
+  final TfArg<BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkMode>
+  networkMode;
 
   final List<BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkModeConfig>?
   networkModeConfig;
@@ -599,6 +685,19 @@ final class BedrockagentcoreAgentRuntimeNetworkConfiguration {
     if (networkModeConfig != null)
       'network_mode_config': [for (final e in networkModeConfig!) e.encode()],
   };
+}
+
+/// `network_mode` — derived from the provider schema description.
+enum BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkMode
+    implements TerraformEnum {
+  public('PUBLIC'),
+  vpc('VPC');
+
+  const BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `network_configuration.network_mode_config` block of
@@ -628,11 +727,27 @@ final class BedrockagentcoreAgentRuntimeProtocolConfiguration {
     this.serverProtocol,
   });
 
-  final TfArg<String>? serverProtocol;
+  final TfArg<BedrockagentcoreAgentRuntimeProtocolConfigurationServerProtocol>?
+  serverProtocol;
 
   Map<String, Object?> encode() => {
     if (serverProtocol != null) 'server_protocol': serverProtocol!.toTfJson(),
   };
+}
+
+/// `server_protocol` — derived from the provider schema description.
+enum BedrockagentcoreAgentRuntimeProtocolConfigurationServerProtocol
+    implements TerraformEnum {
+  mcp('MCP'),
+  http('HTTP'),
+  a2a('A2A'),
+  agui('AGUI');
+
+  const BedrockagentcoreAgentRuntimeProtocolConfigurationServerProtocol(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `request_header_configuration` block of

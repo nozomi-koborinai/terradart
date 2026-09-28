@@ -323,7 +323,10 @@ final class CloudwatchLogTransformerTransformerConfigListToMap {
 
   final TfArg<bool>? flatten;
 
-  final TfArg<String>? flattenedElement;
+  final TfArg<
+    CloudwatchLogTransformerTransformerConfigListToMapFlattenedElement
+  >?
+  flattenedElement;
 
   final TfArg<String> key;
 
@@ -342,6 +345,19 @@ final class CloudwatchLogTransformerTransformerConfigListToMap {
     if (target != null) 'target': target!.toTfJson(),
     if (valueKey != null) 'value_key': valueKey!.toTfJson(),
   };
+}
+
+/// `flattened_element` — derived from the provider schema description.
+enum CloudwatchLogTransformerTransformerConfigListToMapFlattenedElement
+    implements TerraformEnum {
+  first('first'),
+  last('last');
+
+  const CloudwatchLogTransformerTransformerConfigListToMapFlattenedElement(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `transformer_config.lower_case_string` block of
@@ -503,9 +519,11 @@ final class CloudwatchLogTransformerTransformerConfigParseToOcsf {
     this.source,
   });
 
-  final TfArg<String> eventSource;
+  final TfArg<CloudwatchLogTransformerTransformerConfigParseToOcsfEventSource>
+  eventSource;
 
-  final TfArg<String> ocsfVersion;
+  final TfArg<CloudwatchLogTransformerTransformerConfigParseToOcsfOcsfVersion>
+  ocsfVersion;
 
   final TfArg<String>? source;
 
@@ -514,6 +532,35 @@ final class CloudwatchLogTransformerTransformerConfigParseToOcsf {
     'ocsf_version': ocsfVersion.toTfJson(),
     if (source != null) 'source': source!.toTfJson(),
   };
+}
+
+/// `event_source` — derived from the provider schema description.
+enum CloudwatchLogTransformerTransformerConfigParseToOcsfEventSource
+    implements TerraformEnum {
+  cloudtrail('CloudTrail'),
+  route53resolver('Route53Resolver'),
+  vpcflow('VPCFlow'),
+  eksaudit('EKSAudit'),
+  awswaf('AWSWAF');
+
+  const CloudwatchLogTransformerTransformerConfigParseToOcsfEventSource(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `ocsf_version` — derived from the provider schema description.
+enum CloudwatchLogTransformerTransformerConfigParseToOcsfOcsfVersion
+    implements TerraformEnum {
+  v1p1('V1.1'),
+  v1p5('V1.5');
+
+  const CloudwatchLogTransformerTransformerConfigParseToOcsfOcsfVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `transformer_config.parse_vpc` block of
@@ -686,12 +733,28 @@ final class CloudwatchLogTransformerTransformerConfigTypeConverterEntry {
 
   final TfArg<String> key;
 
-  final TfArg<String> type;
+  final TfArg<CloudwatchLogTransformerTransformerConfigTypeConverterEntryType>
+  type;
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CloudwatchLogTransformerTransformerConfigTypeConverterEntryType
+    implements TerraformEnum {
+  boolean('boolean'),
+  integer('integer'),
+  double('double'),
+  string('string');
+
+  const CloudwatchLogTransformerTransformerConfigTypeConverterEntryType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `transformer_config.upper_case_string` block of

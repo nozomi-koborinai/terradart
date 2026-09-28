@@ -17,15 +17,20 @@ export 'src/resiliencehubv2/aws_resiliencehubv2_policy.dart'
         Resiliencehubv2PolicyAvailabilitySlo,
         Resiliencehubv2PolicyDataRecovery,
         Resiliencehubv2PolicyMultiAz,
-        Resiliencehubv2PolicyMultiRegion;
+        Resiliencehubv2PolicyMultiAzDisasterRecoveryApproach,
+        Resiliencehubv2PolicyMultiRegion,
+        Resiliencehubv2PolicyMultiRegionDisasterRecoveryApproach;
 export 'src/resiliencehubv2/aws_resiliencehubv2_service.dart'
     show
         AwsResiliencehubv2Service,
         Resiliencehubv2ServiceAssociatedSystem,
+        Resiliencehubv2ServiceDependencyDiscovery,
         Resiliencehubv2ServicePermissionModel,
         Resiliencehubv2ServicePermissionModelCrossAccountRole;
 export 'src/resiliencehubv2/aws_resiliencehubv2_service_function.dart'
-    show AwsResiliencehubv2ServiceFunction;
+    show
+        AwsResiliencehubv2ServiceFunction,
+        Resiliencehubv2ServiceFunctionCriticality;
 export 'src/resiliencehubv2/aws_resiliencehubv2_system.dart'
     show AwsResiliencehubv2System;
 export 'src/resiliencehubv2/aws_resiliencehubv2_user_journey.dart'

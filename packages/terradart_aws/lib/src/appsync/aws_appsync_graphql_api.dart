@@ -7,6 +7,49 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_appsync_graphql_api`.
 const Set<String> _awsAppsyncGraphqlApiSensitive = <String>{};
 
+/// Appsync Graphql Api Api enum for `api_type`.
+enum AppsyncGraphqlApiApiType implements TerraformEnum {
+  graphql('GRAPHQL'),
+  merged('MERGED');
+
+  const AppsyncGraphqlApiApiType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Appsync Graphql Api Authentication enum for `authentication_type`.
+enum AppsyncGraphqlApiAuthenticationType implements TerraformEnum {
+  apiKey('API_KEY'),
+  awsIam('AWS_IAM'),
+  amazonCognitoUserPools('AMAZON_COGNITO_USER_POOLS'),
+  openidConnect('OPENID_CONNECT'),
+  awsLambda('AWS_LAMBDA');
+
+  const AppsyncGraphqlApiAuthenticationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Appsync Graphql Api Introspection enum for `introspection_config`.
+enum AppsyncGraphqlApiIntrospectionConfig implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const AppsyncGraphqlApiIntrospectionConfig(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Appsync Graphql Api enum for `visibility`.
+enum AppsyncGraphqlApiVisibility implements TerraformEnum {
+  global('GLOBAL'),
+  private('PRIVATE');
+
+  const AppsyncGraphqlApiVisibility(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `additional_authentication_provider` block of
 /// `aws_appsync_graphql_api` (derived from provider schema).
 @immutable
@@ -18,7 +61,10 @@ final class AppsyncGraphqlApiAdditionalAuthenticationProvider {
     this.userPoolConfig,
   });
 
-  final TfArg<String> authenticationType;
+  final TfArg<
+    AppsyncGraphqlApiAdditionalAuthenticationProviderAuthenticationType
+  >
+  authenticationType;
 
   final AppsyncGraphqlApiAdditionalAuthenticationProviderLambdaAuthorizerConfig?
   lambdaAuthorizerConfig;
@@ -37,6 +83,22 @@ final class AppsyncGraphqlApiAdditionalAuthenticationProvider {
       'openid_connect_config': openidConnectConfig!.encode(),
     if (userPoolConfig != null) 'user_pool_config': userPoolConfig!.encode(),
   };
+}
+
+/// `authentication_type` — derived from the provider schema description.
+enum AppsyncGraphqlApiAdditionalAuthenticationProviderAuthenticationType
+    implements TerraformEnum {
+  apiKey('API_KEY'),
+  awsIam('AWS_IAM'),
+  amazonCognitoUserPools('AMAZON_COGNITO_USER_POOLS'),
+  openidConnect('OPENID_CONNECT'),
+  awsLambda('AWS_LAMBDA');
+
+  const AppsyncGraphqlApiAdditionalAuthenticationProviderAuthenticationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `additional_authentication_provider.lambda_authorizer_config` block of
@@ -127,11 +189,18 @@ final class AppsyncGraphqlApiEnhancedMetricsConfig {
     required this.resolverLevelMetricsBehavior,
   });
 
-  final TfArg<String> dataSourceLevelMetricsBehavior;
+  final TfArg<
+    AppsyncGraphqlApiEnhancedMetricsConfigDataSourceLevelMetricsBehavior
+  >
+  dataSourceLevelMetricsBehavior;
 
-  final TfArg<String> operationLevelMetricsConfig;
+  final TfArg<AppsyncGraphqlApiEnhancedMetricsConfigOperationLevelMetricsConfig>
+  operationLevelMetricsConfig;
 
-  final TfArg<String> resolverLevelMetricsBehavior;
+  final TfArg<
+    AppsyncGraphqlApiEnhancedMetricsConfigResolverLevelMetricsBehavior
+  >
+  resolverLevelMetricsBehavior;
 
   Map<String, Object?> encode() => {
     'data_source_level_metrics_behavior': dataSourceLevelMetricsBehavior
@@ -139,6 +208,45 @@ final class AppsyncGraphqlApiEnhancedMetricsConfig {
     'operation_level_metrics_config': operationLevelMetricsConfig.toTfJson(),
     'resolver_level_metrics_behavior': resolverLevelMetricsBehavior.toTfJson(),
   };
+}
+
+/// `data_source_level_metrics_behavior` — derived from the provider schema description.
+enum AppsyncGraphqlApiEnhancedMetricsConfigDataSourceLevelMetricsBehavior
+    implements TerraformEnum {
+  fullRequestDataSourceMetrics('FULL_REQUEST_DATA_SOURCE_METRICS'),
+  perDataSourceMetrics('PER_DATA_SOURCE_METRICS');
+
+  const AppsyncGraphqlApiEnhancedMetricsConfigDataSourceLevelMetricsBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `operation_level_metrics_config` — derived from the provider schema description.
+enum AppsyncGraphqlApiEnhancedMetricsConfigOperationLevelMetricsConfig
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const AppsyncGraphqlApiEnhancedMetricsConfigOperationLevelMetricsConfig(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `resolver_level_metrics_behavior` — derived from the provider schema description.
+enum AppsyncGraphqlApiEnhancedMetricsConfigResolverLevelMetricsBehavior
+    implements TerraformEnum {
+  fullRequestResolverMetrics('FULL_REQUEST_RESOLVER_METRICS'),
+  perResolverMetrics('PER_RESOLVER_METRICS');
+
+  const AppsyncGraphqlApiEnhancedMetricsConfigResolverLevelMetricsBehavior(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `lambda_authorizer_config` block of
@@ -182,7 +290,7 @@ final class AppsyncGraphqlApiLogConfig {
 
   final TfArg<bool>? excludeVerboseContent;
 
-  final TfArg<String> fieldLogLevel;
+  final TfArg<AppsyncGraphqlApiLogConfigFieldLogLevel> fieldLogLevel;
 
   Map<String, Object?> encode() => {
     'cloudwatch_logs_role_arn': cloudwatchLogsRoleArn.toTfJson(),
@@ -190,6 +298,19 @@ final class AppsyncGraphqlApiLogConfig {
       'exclude_verbose_content': excludeVerboseContent!.toTfJson(),
     'field_log_level': fieldLogLevel.toTfJson(),
   };
+}
+
+/// `field_log_level` — derived from the provider schema description.
+enum AppsyncGraphqlApiLogConfigFieldLogLevel implements TerraformEnum {
+  none('NONE'),
+  error('ERROR'),
+  all('ALL'),
+  info('INFO'),
+  debug('DEBUG');
+
+  const AppsyncGraphqlApiLogConfigFieldLogLevel(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `openid_connect_config` block of
@@ -234,7 +355,7 @@ final class AppsyncGraphqlApiUserPoolConfig {
 
   final TfArg<String>? awsRegion;
 
-  final TfArg<String> defaultAction;
+  final TfArg<AppsyncGraphqlApiUserPoolConfigDefaultAction> defaultAction;
 
   final TfArg<String> userPoolId;
 
@@ -247,15 +368,25 @@ final class AppsyncGraphqlApiUserPoolConfig {
   };
 }
 
+/// `default_action` — derived from the provider schema description.
+enum AppsyncGraphqlApiUserPoolConfigDefaultAction implements TerraformEnum {
+  allow('ALLOW'),
+  deny('DENY');
+
+  const AppsyncGraphqlApiUserPoolConfigDefaultAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_appsync_graphql_api`.
 final class AwsAppsyncGraphqlApi extends Resource {
   static const String tfType = 'aws_appsync_graphql_api';
 
   AwsAppsyncGraphqlApi({
     required super.localName,
-    TfArg<String>? apiType,
-    required TfArg<String> authenticationType,
-    TfArg<String>? introspectionConfig,
+    TfArg<AppsyncGraphqlApiApiType>? apiType,
+    required TfArg<AppsyncGraphqlApiAuthenticationType> authenticationType,
+    TfArg<AppsyncGraphqlApiIntrospectionConfig>? introspectionConfig,
     TfArg<String>? mergedApiExecutionRoleArn,
     required TfArg<String> name,
     TfArg<num>? queryDepthLimit,
@@ -263,7 +394,7 @@ final class AwsAppsyncGraphqlApi extends Resource {
     TfArg<num>? resolverCountLimit,
     TfArg<String>? schema,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? visibility,
+    TfArg<AppsyncGraphqlApiVisibility>? visibility,
     TfArg<bool>? xrayEnabled,
     List<AppsyncGraphqlApiAdditionalAuthenticationProvider>?
     additionalAuthenticationProvider,

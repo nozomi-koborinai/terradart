@@ -7,6 +7,33 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_kendra_data_source`.
 const Set<String> _awsKendraDataSourceSensitive = <String>{};
 
+/// Kendra Data Source enum for `type`.
+enum KendraDataSourceType implements TerraformEnum {
+  s3('S3'),
+  sharepoint('SHAREPOINT'),
+  database('DATABASE'),
+  salesforce('SALESFORCE'),
+  onedrive('ONEDRIVE'),
+  servicenow('SERVICENOW'),
+  custom('CUSTOM'),
+  confluence('CONFLUENCE'),
+  googledrive('GOOGLEDRIVE'),
+  webcrawler('WEBCRAWLER'),
+  workdocs('WORKDOCS'),
+  fsx('FSX'),
+  slack('SLACK'),
+  box('BOX'),
+  quip('QUIP'),
+  jira('JIRA'),
+  github('GITHUB'),
+  alfresco('ALFRESCO'),
+  template('TEMPLATE');
+
+  const KendraDataSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `configuration` block of
 /// `aws_kendra_data_source` (derived from provider schema).
 @immutable
@@ -279,12 +306,29 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfi
 
   final TfArg<List<Object?>> seedUrls;
 
-  final TfArg<String>? webCrawlerMode;
+  final TfArg<
+    KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfigurationWebCrawlerMode
+  >?
+  webCrawlerMode;
 
   Map<String, Object?> encode() => {
     'seed_urls': seedUrls.toTfJson(),
     if (webCrawlerMode != null) 'web_crawler_mode': webCrawlerMode!.toTfJson(),
   };
+}
+
+/// `web_crawler_mode` — derived from the provider schema description.
+enum KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfigurationWebCrawlerMode
+    implements TerraformEnum {
+  hostOnly('HOST_ONLY'),
+  subdomains('SUBDOMAINS'),
+  everything('EVERYTHING');
+
+  const KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfigurationWebCrawlerMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.web_crawler_configuration.urls.site_maps_configuration` block of
@@ -647,7 +691,7 @@ final class AwsKendraDataSource extends Resource {
     TfArg<String>? roleArn,
     TfArg<String>? schedule,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<KendraDataSourceType> type,
     KendraDataSourceConfiguration? configuration,
     KendraDataSourceCustomDocumentEnrichmentConfiguration?
     customDocumentEnrichmentConfiguration,

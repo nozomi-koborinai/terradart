@@ -13,12 +13,27 @@ const Set<String> _awsAgentregistryRegistrySensitive = <String>{};
 final class AgentregistryRegistryApprovalConfiguration {
   const AgentregistryRegistryApprovalConfiguration({this.autoApprovalRules});
 
-  final TfArg<List<Object?>>? autoApprovalRules;
+  final List<
+    TfArg<AgentregistryRegistryApprovalConfigurationAutoApprovalRules>
+  >?
+  autoApprovalRules;
 
   Map<String, Object?> encode() => {
     if (autoApprovalRules != null)
-      'auto_approval_rules': autoApprovalRules!.toTfJson(),
+      'auto_approval_rules': [for (final e in autoApprovalRules!) e.toTfJson()],
   };
+}
+
+/// `auto_approval_rules` — derived from the provider schema description.
+enum AgentregistryRegistryApprovalConfigurationAutoApprovalRules
+    implements TerraformEnum {
+  approveAll('APPROVE_ALL');
+
+  const AgentregistryRegistryApprovalConfigurationAutoApprovalRules(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `auto_detection_configuration` block of
@@ -32,12 +47,24 @@ final class AgentregistryRegistryAutoDetectionConfiguration {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String> scope;
+  final TfArg<AgentregistryRegistryAutoDetectionConfigurationScope> scope;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'scope': scope.toTfJson(),
   };
+}
+
+/// `scope` — derived from the provider schema description.
+enum AgentregistryRegistryAutoDetectionConfigurationScope
+    implements TerraformEnum {
+  organization('ORGANIZATION');
+
+  const AgentregistryRegistryAutoDetectionConfigurationScope(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `discovery_configuration` block of
@@ -49,7 +76,8 @@ final class AgentregistryRegistryDiscoveryConfiguration {
     this.authorizerConfiguration,
   });
 
-  final TfArg<String> authorizerType;
+  final TfArg<AgentregistryRegistryDiscoveryConfigurationAuthorizerType>
+  authorizerType;
 
   final List<
     AgentregistryRegistryDiscoveryConfigurationAuthorizerConfiguration
@@ -63,6 +91,19 @@ final class AgentregistryRegistryDiscoveryConfiguration {
         for (final e in authorizerConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `authorizer_type` — derived from the provider schema description.
+enum AgentregistryRegistryDiscoveryConfigurationAuthorizerType
+    implements TerraformEnum {
+  customJwt('CUSTOM_JWT'),
+  awsIam('AWS_IAM');
+
+  const AgentregistryRegistryDiscoveryConfigurationAuthorizerType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration` block of
@@ -152,7 +193,10 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 
   final TfArg<String> inboundTokenClaimName;
 
-  final TfArg<String> inboundTokenClaimValueType;
+  final TfArg<
+    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+  >
+  inboundTokenClaimValueType;
 
   final List<
     AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValue
@@ -169,6 +213,19 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
   };
 }
 
+/// `inbound_token_claim_value_type` — derived from the provider schema description.
+enum AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType
+    implements TerraformEnum {
+  string('STRING'),
+  stringArray('STRING_ARRAY');
+
+  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimInboundTokenClaimValueType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value` block of
 /// `aws_agentregistry_registry` (derived from provider schema).
 @immutable
@@ -178,7 +235,10 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
     this.claimMatchValue,
   });
 
-  final TfArg<String> claimMatchOperator;
+  final TfArg<
+    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
+  >
+  claimMatchOperator;
 
   final List<
     AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchValue
@@ -190,6 +250,20 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
     if (claimMatchValue != null)
       'claim_match_value': [for (final e in claimMatchValue!) e.encode()],
   };
+}
+
+/// `claim_match_operator` — derived from the provider schema description.
+enum AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator
+    implements TerraformEnum {
+  equals('EQUALS'),
+  contains('CONTAINS'),
+  containsAny('CONTAINS_ANY');
+
+  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerCustomClaimAuthorizingClaimMatchValueClaimMatchOperator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.custom_claim.authorizing_claim_match_value.claim_match_value` block of
@@ -255,7 +329,10 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -276,6 +353,19 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.private_endpoint.self_managed_lattice_resource` block of
@@ -360,7 +450,10 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
     required this.vpcIdentifier,
   });
 
-  final TfArg<String> endpointIpAddressType;
+  final TfArg<
+    AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType
+  >
+  endpointIpAddressType;
 
   final TfArg<String>? routingDomain;
 
@@ -381,6 +474,19 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
+}
+
+/// `endpoint_ip_address_type` — derived from the provider schema description.
+enum AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCustomJwtAuthorizerPrivateEndpointOverridePrivateEndpointManagedVpcResourceEndpointIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `discovery_configuration.authorizer_configuration.custom_jwt_authorizer.private_endpoint_override.private_endpoint.self_managed_lattice_resource` block of

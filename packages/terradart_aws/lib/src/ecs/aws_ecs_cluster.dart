@@ -42,7 +42,8 @@ final class EcsClusterConfigurationExecuteCommandConfiguration {
 
   final TfArg<String>? kmsKeyId;
 
-  final TfArg<String>? logging;
+  final TfArg<EcsClusterConfigurationExecuteCommandConfigurationLogging>?
+  logging;
 
   final EcsClusterConfigurationExecuteCommandConfigurationLogConfiguration?
   logConfiguration;
@@ -53,6 +54,20 @@ final class EcsClusterConfigurationExecuteCommandConfiguration {
     if (logConfiguration != null)
       'log_configuration': logConfiguration!.encode(),
   };
+}
+
+/// `logging` — derived from the provider schema description.
+enum EcsClusterConfigurationExecuteCommandConfigurationLogging
+    implements TerraformEnum {
+  none('NONE'),
+  defaultCase('DEFAULT'),
+  overrideCase('OVERRIDE');
+
+  const EcsClusterConfigurationExecuteCommandConfigurationLogging(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.execute_command_configuration.log_configuration` block of
@@ -127,7 +142,7 @@ final class EcsClusterServiceConnectDefaults {
 final class EcsClusterSetting {
   const EcsClusterSetting({required this.name, required this.value});
 
-  final TfArg<String> name;
+  final TfArg<EcsClusterSettingName> name;
 
   final TfArg<String> value;
 
@@ -135,6 +150,15 @@ final class EcsClusterSetting {
     'name': name.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `name` — derived from the provider schema description.
+enum EcsClusterSettingName implements TerraformEnum {
+  containerinsights('containerInsights');
+
+  const EcsClusterSettingName(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_ecs_cluster`.

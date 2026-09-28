@@ -42,12 +42,27 @@ final class AppmeshVirtualRouterSpecListenerPortMapping {
 
   final TfArg<num> port;
 
-  final TfArg<String> protocol;
+  final TfArg<AppmeshVirtualRouterSpecListenerPortMappingProtocol> protocol;
 
   Map<String, Object?> encode() => {
     'port': port.toTfJson(),
     'protocol': protocol.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+enum AppmeshVirtualRouterSpecListenerPortMappingProtocol
+    implements TerraformEnum {
+  http('http'),
+  tcp('tcp'),
+  http2('http2'),
+  grpc('grpc');
+
+  const AppmeshVirtualRouterSpecListenerPortMappingProtocol(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_appmesh_virtual_router`.

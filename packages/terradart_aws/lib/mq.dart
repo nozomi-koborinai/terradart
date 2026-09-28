@@ -6,10 +6,20 @@ library;
 export 'src/mq/aws_mq_broker.dart'
     show
         AwsMqBroker,
+        MqBrokerAuthenticationStrategy,
         MqBrokerConfiguration,
+        MqBrokerDataReplicationMode,
+        MqBrokerDeploymentMode,
         MqBrokerEncryptionOptions,
+        MqBrokerEngineType,
         MqBrokerLdapServerMetadata,
         MqBrokerLogs,
         MqBrokerMaintenanceWindowStartTime,
+        MqBrokerMaintenanceWindowStartTimeDayOfWeek,
+        MqBrokerStorageType,
         MqBrokerUser;
-export 'src/mq/aws_mq_configuration.dart' show AwsMqConfiguration;
+export 'src/mq/aws_mq_configuration.dart'
+    show
+        AwsMqConfiguration,
+        MqConfigurationAuthenticationStrategy,
+        MqConfigurationEngineType;

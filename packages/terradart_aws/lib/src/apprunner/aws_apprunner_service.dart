@@ -37,7 +37,7 @@ final class ApprunnerServiceHealthCheckConfiguration {
 
   final TfArg<String>? path;
 
-  final TfArg<String>? protocol;
+  final TfArg<ApprunnerServiceHealthCheckConfigurationProtocol>? protocol;
 
   final TfArg<num>? timeout;
 
@@ -53,6 +53,16 @@ final class ApprunnerServiceHealthCheckConfiguration {
     if (unhealthyThreshold != null)
       'unhealthy_threshold': unhealthyThreshold!.toTfJson(),
   };
+}
+
+/// `protocol` — derived from the provider schema description.
+enum ApprunnerServiceHealthCheckConfigurationProtocol implements TerraformEnum {
+  tcp('TCP'),
+  http('HTTP');
+
+  const ApprunnerServiceHealthCheckConfigurationProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `instance_configuration` block of
@@ -89,7 +99,7 @@ final class ApprunnerServiceNetworkConfiguration {
     this.ingressConfiguration,
   });
 
-  final TfArg<String>? ipAddressType;
+  final TfArg<ApprunnerServiceNetworkConfigurationIpAddressType>? ipAddressType;
 
   final ApprunnerServiceNetworkConfigurationEgressConfiguration?
   egressConfiguration;
@@ -106,6 +116,17 @@ final class ApprunnerServiceNetworkConfiguration {
   };
 }
 
+/// `ip_address_type` — derived from the provider schema description.
+enum ApprunnerServiceNetworkConfigurationIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  dualStack('DUAL_STACK');
+
+  const ApprunnerServiceNetworkConfigurationIpAddressType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `network_configuration.egress_configuration` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
@@ -115,7 +136,10 @@ final class ApprunnerServiceNetworkConfigurationEgressConfiguration {
     this.vpcConnectorArn,
   });
 
-  final TfArg<String>? egressType;
+  final TfArg<
+    ApprunnerServiceNetworkConfigurationEgressConfigurationEgressType
+  >?
+  egressType;
 
   final TfArg<String>? vpcConnectorArn;
 
@@ -124,6 +148,19 @@ final class ApprunnerServiceNetworkConfigurationEgressConfiguration {
     if (vpcConnectorArn != null)
       'vpc_connector_arn': vpcConnectorArn!.toTfJson(),
   };
+}
+
+/// `egress_type` — derived from the provider schema description.
+enum ApprunnerServiceNetworkConfigurationEgressConfigurationEgressType
+    implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  vpc('VPC');
+
+  const ApprunnerServiceNetworkConfigurationEgressConfigurationEgressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `network_configuration.ingress_configuration` block of
@@ -252,7 +289,10 @@ final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfiguration {
     this.codeConfigurationValues,
   });
 
-  final TfArg<String> configurationSource;
+  final TfArg<
+    ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationConfigurationSource
+  >
+  configurationSource;
 
   final ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValues?
   codeConfigurationValues;
@@ -262,6 +302,19 @@ final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfiguration {
     if (codeConfigurationValues != null)
       'code_configuration_values': codeConfigurationValues!.encode(),
   };
+}
+
+/// `configuration_source` — derived from the provider schema description.
+enum ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationConfigurationSource
+    implements TerraformEnum {
+  repository('REPOSITORY'),
+  api('API');
+
+  const ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationConfigurationSource(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_configuration.code_repository.code_configuration.code_configuration_values` block of
@@ -281,7 +334,10 @@ final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCo
 
   final TfArg<String>? port;
 
-  final TfArg<String> runtime;
+  final TfArg<
+    ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValuesRuntime
+  >
+  runtime;
 
   final TfArg<Map<String, String>>? runtimeEnvironmentSecrets;
 
@@ -301,6 +357,30 @@ final class ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCo
   };
 }
 
+/// `runtime` — derived from the provider schema description.
+enum ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValuesRuntime
+    implements TerraformEnum {
+  python3('PYTHON_3'),
+  nodejs12('NODEJS_12'),
+  nodejs14('NODEJS_14'),
+  corretto8('CORRETTO_8'),
+  corretto11('CORRETTO_11'),
+  nodejs16('NODEJS_16'),
+  go1('GO_1'),
+  dotnet6('DOTNET_6'),
+  php81('PHP_81'),
+  ruby31('RUBY_31'),
+  python311('PYTHON_311'),
+  nodejs18('NODEJS_18'),
+  nodejs22('NODEJS_22');
+
+  const ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValuesRuntime(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `source_configuration.code_repository.source_code_version` block of
 /// `aws_apprunner_service` (derived from provider schema).
 @immutable
@@ -310,7 +390,10 @@ final class ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersion {
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersionType
+  >
+  type;
 
   final TfArg<String> value;
 
@@ -318,6 +401,18 @@ final class ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersion {
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersionType
+    implements TerraformEnum {
+  branch('BRANCH');
+
+  const ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_configuration.image_repository` block of
@@ -332,7 +427,10 @@ final class ApprunnerServiceSourceConfigurationImageRepository {
 
   final TfArg<String> imageIdentifier;
 
-  final TfArg<String> imageRepositoryType;
+  final TfArg<
+    ApprunnerServiceSourceConfigurationImageRepositoryImageRepositoryType
+  >
+  imageRepositoryType;
 
   final ApprunnerServiceSourceConfigurationImageRepositoryImageConfiguration?
   imageConfiguration;
@@ -343,6 +441,19 @@ final class ApprunnerServiceSourceConfigurationImageRepository {
     if (imageConfiguration != null)
       'image_configuration': imageConfiguration!.encode(),
   };
+}
+
+/// `image_repository_type` — derived from the provider schema description.
+enum ApprunnerServiceSourceConfigurationImageRepositoryImageRepositoryType
+    implements TerraformEnum {
+  ecr('ECR'),
+  ecrPublic('ECR_PUBLIC');
+
+  const ApprunnerServiceSourceConfigurationImageRepositoryImageRepositoryType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source_configuration.image_repository.image_configuration` block of

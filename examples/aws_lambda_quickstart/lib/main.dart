@@ -89,14 +89,14 @@ final class AwsLambdaStack extends Stack {
       localName: 'hello',
       functionName: TfArg.literal(_functionName),
       role: TfArg.ref(role.arn),
-      runtime: TfArg.literal('provided.al2023'),
+      runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023),
       handler: TfArg.literal('bootstrap'),
-      architectures: TfArg.literal(['x86_64']),
+      architectures: [TfArg.literal(LambdaFunctionArchitectures.x8664)],
       filename: TfArg.literal('../build/bootstrap.zip'),
       memorySize: TfArg.literal(128),
       timeout: TfArg.literal(10),
       loggingConfig: LambdaFunctionLoggingConfig(
-        logFormat: TfArg.literal('Text'),
+        logFormat: TfArg.literal(LambdaFunctionLoggingConfigLogFormat.text),
         logGroup: TfArg.ref(logs.nameRef),
       ),
     );
@@ -105,7 +105,8 @@ final class AwsLambdaStack extends Stack {
       AwsLambdaFunctionUrl(
         localName: 'hello',
         functionName: TfArg.ref(fn.arn),
-        authorizationType: TfArg.literal('NONE'),
+        authorizationType:
+            TfArg.literal(LambdaFunctionUrlAuthorizationType.none),
       ),
     );
   }

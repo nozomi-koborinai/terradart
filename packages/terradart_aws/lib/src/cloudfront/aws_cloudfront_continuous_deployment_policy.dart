@@ -37,7 +37,7 @@ final class CloudfrontContinuousDeploymentPolicyTrafficConfig {
     this.singleWeightConfig,
   });
 
-  final TfArg<String> type;
+  final TfArg<CloudfrontContinuousDeploymentPolicyTrafficConfigType> type;
 
   final List<
     CloudfrontContinuousDeploymentPolicyTrafficConfigSingleHeaderConfig
@@ -56,6 +56,19 @@ final class CloudfrontContinuousDeploymentPolicyTrafficConfig {
     if (singleWeightConfig != null)
       'single_weight_config': [for (final e in singleWeightConfig!) e.encode()],
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CloudfrontContinuousDeploymentPolicyTrafficConfigType
+    implements TerraformEnum {
+  singleweight('SingleWeight'),
+  singleheader('SingleHeader');
+
+  const CloudfrontContinuousDeploymentPolicyTrafficConfigType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `traffic_config.single_header_config` block of

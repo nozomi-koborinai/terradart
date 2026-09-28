@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_redshift_idc_application`.
 const Set<String> _awsRedshiftIdcApplicationSensitive = <String>{};
 
+/// Redshift Idc Application Application enum for `application_type`.
+enum RedshiftIdcApplicationApplicationType implements TerraformEnum {
+  none('None'),
+  lakehouse('Lakehouse');
+
+  const RedshiftIdcApplicationApplicationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `authorized_token_issuer` block of
 /// `aws_redshift_idc_application` (derived from provider schema).
 @immutable
@@ -82,9 +92,25 @@ final class RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQu
     required this.authorization,
   });
 
-  final TfArg<String> authorization;
+  final TfArg<
+    RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQueryAuthorization
+  >
+  authorization;
 
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
+}
+
+/// `authorization` — derived from the provider schema description.
+enum RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQueryAuthorization
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const RedshiftIdcApplicationServiceIntegrationLakeFormationLakeFormationQueryAuthorization(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `service_integration.redshift` block of
@@ -108,9 +134,25 @@ final class RedshiftIdcApplicationServiceIntegrationRedshiftConnect {
     required this.authorization,
   });
 
-  final TfArg<String> authorization;
+  final TfArg<
+    RedshiftIdcApplicationServiceIntegrationRedshiftConnectAuthorization
+  >
+  authorization;
 
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
+}
+
+/// `authorization` — derived from the provider schema description.
+enum RedshiftIdcApplicationServiceIntegrationRedshiftConnectAuthorization
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const RedshiftIdcApplicationServiceIntegrationRedshiftConnectAuthorization(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `service_integration.s3_access_grants` block of
@@ -140,9 +182,25 @@ final class RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAcces
     required this.authorization,
   });
 
-  final TfArg<String> authorization;
+  final TfArg<
+    RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccessAuthorization
+  >
+  authorization;
 
   Map<String, Object?> encode() => {'authorization': authorization.toTfJson()};
+}
+
+/// `authorization` — derived from the provider schema description.
+enum RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccessAuthorization
+    implements TerraformEnum {
+  enabled('Enabled'),
+  disabled('Disabled');
+
+  const RedshiftIdcApplicationServiceIntegrationS3AccessGrantsReadWriteAccessAuthorization(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_redshift_idc_application`.
@@ -151,7 +209,7 @@ final class AwsRedshiftIdcApplication extends Resource {
 
   AwsRedshiftIdcApplication({
     required super.localName,
-    TfArg<String>? applicationType,
+    TfArg<RedshiftIdcApplicationApplicationType>? applicationType,
     required TfArg<String> iamRoleArn,
     required TfArg<String> idcDisplayName,
     required TfArg<String> idcInstanceArn,

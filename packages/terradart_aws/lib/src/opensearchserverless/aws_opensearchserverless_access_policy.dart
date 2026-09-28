@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_opensearchserverless_access_policy`.
 const Set<String> _awsOpensearchserverlessAccessPolicySensitive = <String>{};
 
+/// Opensearchserverless Access Policy enum for `type`.
+enum OpensearchserverlessAccessPolicyType implements TerraformEnum {
+  data('data');
+
+  const OpensearchserverlessAccessPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_opensearchserverless_access_policy`.
 final class AwsOpensearchserverlessAccessPolicy extends Resource {
   static const String tfType = 'aws_opensearchserverless_access_policy';
@@ -16,7 +25,7 @@ final class AwsOpensearchserverlessAccessPolicy extends Resource {
     required TfArg<String> name,
     required TfArg<String> policy,
     TfArg<String>? region,
-    required TfArg<String> type,
+    required TfArg<OpensearchserverlessAccessPolicyType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

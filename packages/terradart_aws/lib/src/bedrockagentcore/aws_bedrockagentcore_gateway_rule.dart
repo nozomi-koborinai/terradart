@@ -314,12 +314,28 @@ final class BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipal
 
   final TfArg<String> arn;
 
-  final TfArg<String>? operator;
+  final TfArg<
+    BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipalOperator
+  >?
+  operator;
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     if (operator != null) 'operator': operator!.toTfJson(),
   };
+}
+
+/// `operator` — derived from the provider schema description.
+enum BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipalOperator
+    implements TerraformEnum {
+  stringequals('StringEquals'),
+  stringlike('StringLike');
+
+  const BedrockagentcoreGatewayRuleConditionMatchPrincipalsAnyOfIamPrincipalOperator(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_bedrockagentcore_gateway_rule`.

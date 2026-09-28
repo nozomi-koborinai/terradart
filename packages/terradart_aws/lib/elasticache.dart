@@ -4,16 +4,38 @@
 library;
 
 export 'src/elasticache/aws_elasticache_cluster.dart'
-    show AwsElasticacheCluster, ElasticacheClusterLogDeliveryConfiguration;
+    show
+        AwsElasticacheCluster,
+        ElasticacheClusterAzMode,
+        ElasticacheClusterEngine,
+        ElasticacheClusterIpDiscovery,
+        ElasticacheClusterLogDeliveryConfiguration,
+        ElasticacheClusterLogDeliveryConfigurationDestinationType,
+        ElasticacheClusterLogDeliveryConfigurationLogFormat,
+        ElasticacheClusterLogDeliveryConfigurationLogType,
+        ElasticacheClusterNetworkType,
+        ElasticacheClusterOutpostMode;
 export 'src/elasticache/aws_elasticache_global_replication_group.dart'
-    show AwsElasticacheGlobalReplicationGroup;
+    show
+        AwsElasticacheGlobalReplicationGroup,
+        ElasticacheGlobalReplicationGroupEngine;
 export 'src/elasticache/aws_elasticache_parameter_group.dart'
     show AwsElasticacheParameterGroup, ElasticacheParameterGroupParameter;
 export 'src/elasticache/aws_elasticache_replication_group.dart'
     show
         AwsElasticacheReplicationGroup,
+        ElasticacheReplicationGroupAuthTokenUpdateStrategy,
+        ElasticacheReplicationGroupClusterMode,
+        ElasticacheReplicationGroupDurability,
+        ElasticacheReplicationGroupEngine,
+        ElasticacheReplicationGroupIpDiscovery,
         ElasticacheReplicationGroupLogDeliveryConfiguration,
-        ElasticacheReplicationGroupNodeGroupConfiguration;
+        ElasticacheReplicationGroupLogDeliveryConfigurationDestinationType,
+        ElasticacheReplicationGroupLogDeliveryConfigurationLogFormat,
+        ElasticacheReplicationGroupLogDeliveryConfigurationLogType,
+        ElasticacheReplicationGroupNetworkType,
+        ElasticacheReplicationGroupNodeGroupConfiguration,
+        ElasticacheReplicationGroupTransitEncryptionMode;
 export 'src/elasticache/aws_elasticache_reserved_cache_node.dart'
     show AwsElasticacheReservedCacheNode;
 export 'src/elasticache/aws_elasticache_serverless_cache.dart'
@@ -21,12 +43,18 @@ export 'src/elasticache/aws_elasticache_serverless_cache.dart'
         AwsElasticacheServerlessCache,
         ElasticacheServerlessCacheCacheUsageLimits,
         ElasticacheServerlessCacheCacheUsageLimitsDataStorage,
-        ElasticacheServerlessCacheCacheUsageLimitsEcpuPerSecond;
+        ElasticacheServerlessCacheCacheUsageLimitsDataStorageUnit,
+        ElasticacheServerlessCacheCacheUsageLimitsEcpuPerSecond,
+        ElasticacheServerlessCacheNetworkType;
 export 'src/elasticache/aws_elasticache_subnet_group.dart'
     show AwsElasticacheSubnetGroup;
 export 'src/elasticache/aws_elasticache_user.dart'
-    show AwsElasticacheUser, ElasticacheUserAuthenticationMode;
+    show
+        AwsElasticacheUser,
+        ElasticacheUserAuthenticationMode,
+        ElasticacheUserAuthenticationModeType,
+        ElasticacheUserEngine;
 export 'src/elasticache/aws_elasticache_user_group.dart'
-    show AwsElasticacheUserGroup;
+    show AwsElasticacheUserGroup, ElasticacheUserGroupEngine;
 export 'src/elasticache/aws_elasticache_user_group_association.dart'
     show AwsElasticacheUserGroupAssociation;

@@ -36,13 +36,26 @@ final class S3filesSynchronizationConfigurationImportDataRule {
 
   final TfArg<num> sizeLessThan;
 
-  final TfArg<String> trigger;
+  final TfArg<S3filesSynchronizationConfigurationImportDataRuleTrigger> trigger;
 
   Map<String, Object?> encode() => {
     'prefix': prefix.toTfJson(),
     'size_less_than': sizeLessThan.toTfJson(),
     'trigger': trigger.toTfJson(),
   };
+}
+
+/// `trigger` — derived from the provider schema description.
+enum S3filesSynchronizationConfigurationImportDataRuleTrigger
+    implements TerraformEnum {
+  onDirectoryFirstAccess('ON_DIRECTORY_FIRST_ACCESS'),
+  onFileAccess('ON_FILE_ACCESS');
+
+  const S3filesSynchronizationConfigurationImportDataRuleTrigger(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_s3files_synchronization_configuration`.

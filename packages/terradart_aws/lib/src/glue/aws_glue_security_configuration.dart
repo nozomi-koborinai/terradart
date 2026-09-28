@@ -42,7 +42,10 @@ final class GlueSecurityConfigurationEncryptionConfigurationCloudwatchEncryption
     this.kmsKeyArn,
   });
 
-  final TfArg<String>? cloudwatchEncryptionMode;
+  final TfArg<
+    GlueSecurityConfigurationEncryptionConfigurationCloudwatchEncryptionCloudwatchEncryptionMode
+  >?
+  cloudwatchEncryptionMode;
 
   final TfArg<String>? kmsKeyArn;
 
@@ -51,6 +54,19 @@ final class GlueSecurityConfigurationEncryptionConfigurationCloudwatchEncryption
       'cloudwatch_encryption_mode': cloudwatchEncryptionMode!.toTfJson(),
     if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
   };
+}
+
+/// `cloudwatch_encryption_mode` — derived from the provider schema description.
+enum GlueSecurityConfigurationEncryptionConfigurationCloudwatchEncryptionCloudwatchEncryptionMode
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  sseKms('SSE-KMS');
+
+  const GlueSecurityConfigurationEncryptionConfigurationCloudwatchEncryptionCloudwatchEncryptionMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `encryption_configuration.job_bookmarks_encryption` block of
@@ -62,7 +78,10 @@ final class GlueSecurityConfigurationEncryptionConfigurationJobBookmarksEncrypti
     this.kmsKeyArn,
   });
 
-  final TfArg<String>? jobBookmarksEncryptionMode;
+  final TfArg<
+    GlueSecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionJobBookmarksEncryptionMode
+  >?
+  jobBookmarksEncryptionMode;
 
   final TfArg<String>? kmsKeyArn;
 
@@ -71,6 +90,19 @@ final class GlueSecurityConfigurationEncryptionConfigurationJobBookmarksEncrypti
       'job_bookmarks_encryption_mode': jobBookmarksEncryptionMode!.toTfJson(),
     if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
   };
+}
+
+/// `job_bookmarks_encryption_mode` — derived from the provider schema description.
+enum GlueSecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionJobBookmarksEncryptionMode
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  cseKms('CSE-KMS');
+
+  const GlueSecurityConfigurationEncryptionConfigurationJobBookmarksEncryptionJobBookmarksEncryptionMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `encryption_configuration.s3_encryption` block of
@@ -84,13 +116,30 @@ final class GlueSecurityConfigurationEncryptionConfigurationS3Encryption {
 
   final TfArg<String>? kmsKeyArn;
 
-  final TfArg<String>? s3EncryptionMode;
+  final TfArg<
+    GlueSecurityConfigurationEncryptionConfigurationS3EncryptionS3EncryptionMode
+  >?
+  s3EncryptionMode;
 
   Map<String, Object?> encode() => {
     if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
     if (s3EncryptionMode != null)
       's3_encryption_mode': s3EncryptionMode!.toTfJson(),
   };
+}
+
+/// `s3_encryption_mode` — derived from the provider schema description.
+enum GlueSecurityConfigurationEncryptionConfigurationS3EncryptionS3EncryptionMode
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  sseKms('SSE-KMS'),
+  sseS3('SSE-S3');
+
+  const GlueSecurityConfigurationEncryptionConfigurationS3EncryptionS3EncryptionMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_glue_security_configuration`.

@@ -24,7 +24,12 @@ final class Sesv2ConfigurationSetEventDestinationEventDestination {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<List<Object?>> matchingEventTypes;
+  final List<
+    TfArg<
+      Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes
+    >
+  >
+  matchingEventTypes;
 
   final Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination?
   cloudWatchDestination;
@@ -43,7 +48,7 @@ final class Sesv2ConfigurationSetEventDestinationEventDestination {
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    'matching_event_types': matchingEventTypes.toTfJson(),
+    'matching_event_types': [for (final e in matchingEventTypes) e.toTfJson()],
     if (cloudWatchDestination != null)
       'cloud_watch_destination': cloudWatchDestination!.encode(),
     if (eventBridgeDestination != null)
@@ -54,6 +59,27 @@ final class Sesv2ConfigurationSetEventDestinationEventDestination {
       'pinpoint_destination': pinpointDestination!.encode(),
     if (snsDestination != null) 'sns_destination': snsDestination!.encode(),
   };
+}
+
+/// `matching_event_types` — derived from the provider schema description.
+enum Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes
+    implements TerraformEnum {
+  send('SEND'),
+  reject('REJECT'),
+  bounce('BOUNCE'),
+  complaint('COMPLAINT'),
+  delivery('DELIVERY'),
+  open('OPEN'),
+  click('CLICK'),
+  renderingFailure('RENDERING_FAILURE'),
+  deliveryDelay('DELIVERY_DELAY'),
+  subscription('SUBSCRIPTION');
+
+  const Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `event_destination.cloud_watch_destination` block of
@@ -90,13 +116,30 @@ final class Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDesti
 
   final TfArg<String> dimensionName;
 
-  final TfArg<String> dimensionValueSource;
+  final TfArg<
+    Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource
+  >
+  dimensionValueSource;
 
   Map<String, Object?> encode() => {
     'default_dimension_value': defaultDimensionValue.toTfJson(),
     'dimension_name': dimensionName.toTfJson(),
     'dimension_value_source': dimensionValueSource.toTfJson(),
   };
+}
+
+/// `dimension_value_source` — derived from the provider schema description.
+enum Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource
+    implements TerraformEnum {
+  messageTag('MESSAGE_TAG'),
+  emailHeader('EMAIL_HEADER'),
+  linkTag('LINK_TAG');
+
+  const Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `event_destination.event_bridge_destination` block of

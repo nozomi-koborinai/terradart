@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_applicationinsights_application`.
 const Set<String> _awsApplicationinsightsApplicationSensitive = <String>{};
 
+/// Applicationinsights Application Grouping enum for `grouping_type`.
+enum ApplicationinsightsApplicationGroupingType implements TerraformEnum {
+  accountBased('ACCOUNT_BASED');
+
+  const ApplicationinsightsApplicationGroupingType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_applicationinsights_application`.
 final class AwsApplicationinsightsApplication extends Resource {
   static const String tfType = 'aws_applicationinsights_application';
@@ -15,7 +24,7 @@ final class AwsApplicationinsightsApplication extends Resource {
     TfArg<bool>? autoConfigEnabled,
     TfArg<bool>? autoCreate,
     TfArg<bool>? cweMonitorEnabled,
-    TfArg<String>? groupingType,
+    TfArg<ApplicationinsightsApplicationGroupingType>? groupingType,
     TfArg<bool>? opsCenterEnabled,
     TfArg<String>? opsItemSnsTopicArn,
     TfArg<String>? region,

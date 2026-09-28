@@ -10,6 +10,20 @@ const Set<String> _awsFsxOntapStorageVirtualMachineSensitive = <String>{
   'svm_admin_password',
 };
 
+/// Fsx Ontap Storage Virtual Machine Root Volume Security enum for `root_volume_security_style`.
+enum FsxOntapStorageVirtualMachineRootVolumeSecurityStyle
+    implements TerraformEnum {
+  unix('UNIX'),
+  ntfs('NTFS'),
+  mixed('MIXED');
+
+  const FsxOntapStorageVirtualMachineRootVolumeSecurityStyle(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `active_directory_configuration` block of
 /// `aws_fsx_ontap_storage_virtual_machine` (derived from provider schema).
 @immutable
@@ -80,7 +94,8 @@ final class AwsFsxOntapStorageVirtualMachine extends Resource {
     required TfArg<String> fileSystemId,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? rootVolumeSecurityStyle,
+    TfArg<FsxOntapStorageVirtualMachineRootVolumeSecurityStyle>?
+    rootVolumeSecurityStyle,
     TfArg<String>? svmAdminPassword,
     TfArg<Map<String, String>>? tags,
     FsxOntapStorageVirtualMachineActiveDirectoryConfiguration?

@@ -103,7 +103,10 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRouting
     this.linearStepSize,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationType
+  >
+  type;
 
   final TfArg<num> waitIntervalInSeconds;
 
@@ -121,6 +124,20 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRouting
   };
 }
 
+/// `type` — derived from the provider schema description.
+enum SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationType
+    implements TerraformEnum {
+  allAtOnce('ALL_AT_ONCE'),
+  canary('CANARY'),
+  linear('LINEAR');
+
+  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `deployment_config.blue_green_update_policy.traffic_routing_configuration.canary_size` block of
 /// `aws_sagemaker_endpoint` (derived from provider schema).
 @immutable
@@ -130,7 +147,10 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRouting
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySizeType
+  >
+  type;
 
   final TfArg<num> value;
 
@@ -138,6 +158,19 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRouting
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySizeType
+    implements TerraformEnum {
+  instanceCount('INSTANCE_COUNT'),
+  capacityPercent('CAPACITY_PERCENT');
+
+  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySizeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `deployment_config.blue_green_update_policy.traffic_routing_configuration.linear_step_size` block of
@@ -149,7 +182,10 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRouting
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationLinearStepSizeType
+  >
+  type;
 
   final TfArg<num> value;
 
@@ -157,6 +193,19 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRouting
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationLinearStepSizeType
+    implements TerraformEnum {
+  instanceCount('INSTANCE_COUNT'),
+  capacityPercent('CAPACITY_PERCENT');
+
+  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationLinearStepSizeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `deployment_config.rolling_update_policy` block of
@@ -200,7 +249,10 @@ final class SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSize
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSizeType
+  >
+  type;
 
   final TfArg<num> value;
 
@@ -208,6 +260,19 @@ final class SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSize
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSizeType
+    implements TerraformEnum {
+  instanceCount('INSTANCE_COUNT'),
+  capacityPercent('CAPACITY_PERCENT');
+
+  const SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSizeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `deployment_config.rolling_update_policy.rollback_maximum_batch_size` block of
@@ -219,7 +284,10 @@ final class SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumB
     required this.value,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSizeType
+  >
+  type;
 
   final TfArg<num> value;
 
@@ -227,6 +295,19 @@ final class SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumB
     'type': type.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSizeType
+    implements TerraformEnum {
+  instanceCount('INSTANCE_COUNT'),
+  capacityPercent('CAPACITY_PERCENT');
+
+  const SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSizeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_sagemaker_endpoint`.

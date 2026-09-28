@@ -6,6 +6,34 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_config_organization_custom_policy_rule`.
 const Set<String> _awsConfigOrganizationCustomPolicyRuleSensitive = <String>{};
 
+/// Config Organization Custom Policy Rule Maximum Execution enum for `maximum_execution_frequency`.
+enum ConfigOrganizationCustomPolicyRuleMaximumExecutionFrequency
+    implements TerraformEnum {
+  oneHour('One_Hour'),
+  threeHours('Three_Hours'),
+  sixHours('Six_Hours'),
+  twelveHours('Twelve_Hours'),
+  twentyfourHours('TwentyFour_Hours');
+
+  const ConfigOrganizationCustomPolicyRuleMaximumExecutionFrequency(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Config Organization Custom Policy Rule Trigger enum for `trigger_types`.
+enum ConfigOrganizationCustomPolicyRuleTriggerTypes implements TerraformEnum {
+  configurationitemchangenotification('ConfigurationItemChangeNotification'),
+  oversizedconfigurationitemchangenotification(
+    'OversizedConfigurationItemChangeNotification',
+  );
+
+  const ConfigOrganizationCustomPolicyRuleTriggerTypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_config_organization_custom_policy_rule`.
 final class AwsConfigOrganizationCustomPolicyRule extends Resource {
   static const String tfType = 'aws_config_organization_custom_policy_rule';
@@ -16,7 +44,8 @@ final class AwsConfigOrganizationCustomPolicyRule extends Resource {
     TfArg<String>? description,
     TfArg<List<String>>? excludedAccounts,
     TfArg<String>? inputParameters,
-    TfArg<String>? maximumExecutionFrequency,
+    TfArg<ConfigOrganizationCustomPolicyRuleMaximumExecutionFrequency>?
+    maximumExecutionFrequency,
     required TfArg<String> name,
     required TfArg<String> policyRuntime,
     required TfArg<String> policyText,
@@ -25,7 +54,8 @@ final class AwsConfigOrganizationCustomPolicyRule extends Resource {
     TfArg<List<String>>? resourceTypesScope,
     TfArg<String>? tagKeyScope,
     TfArg<String>? tagValueScope,
-    required TfArg<List<String>> triggerTypes,
+    required List<TfArg<ConfigOrganizationCustomPolicyRuleTriggerTypes>>
+    triggerTypes,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -49,7 +79,9 @@ final class AwsConfigOrganizationCustomPolicyRule extends Resource {
              'resource_types_scope': resourceTypesScope,
            if (tagKeyScope != null) 'tag_key_scope': tagKeyScope,
            if (tagValueScope != null) 'tag_value_scope': tagValueScope,
-           'trigger_types': triggerTypes,
+           'trigger_types': TfArg.literal([
+             for (final e in triggerTypes) e.toTfJson(),
+           ]),
          },
        );
 

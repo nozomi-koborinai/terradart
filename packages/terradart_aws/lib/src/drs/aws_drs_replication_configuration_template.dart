@@ -7,6 +7,45 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_drs_replication_configuration_template`.
 const Set<String> _awsDrsReplicationConfigurationTemplateSensitive = <String>{};
 
+/// Drs Replication Configuration Template Data Plane enum for `data_plane_routing`.
+enum DrsReplicationConfigurationTemplateDataPlaneRouting
+    implements TerraformEnum {
+  privateIp('PRIVATE_IP'),
+  publicIp('PUBLIC_IP');
+
+  const DrsReplicationConfigurationTemplateDataPlaneRouting(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Drs Replication Configuration Template Default Large Staging Disk enum for `default_large_staging_disk_type`.
+enum DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType
+    implements TerraformEnum {
+  gp2('GP2'),
+  gp3('GP3'),
+  st1('ST1'),
+  auto('AUTO');
+
+  const DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Drs Replication Configuration Template Ebs enum for `ebs_encryption`.
+enum DrsReplicationConfigurationTemplateEbsEncryption implements TerraformEnum {
+  defaultCase('DEFAULT'),
+  custom('CUSTOM'),
+  none('NONE');
+
+  const DrsReplicationConfigurationTemplateEbsEncryption(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `pit_policy` block of
 /// `aws_drs_replication_configuration_template` (derived from provider schema).
 @immutable
@@ -27,7 +66,7 @@ final class DrsReplicationConfigurationTemplatePitPolicy {
 
   final TfArg<num>? ruleId;
 
-  final TfArg<String> units;
+  final TfArg<DrsReplicationConfigurationTemplatePitPolicyUnits> units;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
@@ -36,6 +75,18 @@ final class DrsReplicationConfigurationTemplatePitPolicy {
     if (ruleId != null) 'rule_id': ruleId!.toTfJson(),
     'units': units.toTfJson(),
   };
+}
+
+/// `units` — derived from the provider schema description.
+enum DrsReplicationConfigurationTemplatePitPolicyUnits
+    implements TerraformEnum {
+  minute('MINUTE'),
+  hour('HOUR'),
+  day('DAY');
+
+  const DrsReplicationConfigurationTemplatePitPolicyUnits(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_drs_replication_configuration_template`.
@@ -48,9 +99,14 @@ final class AwsDrsReplicationConfigurationTemplate extends Resource {
     TfArg<bool>? autoReplicateNewDisks,
     required TfArg<num> bandwidthThrottling,
     required TfArg<bool> createPublicIp,
-    required TfArg<String> dataPlaneRouting,
-    required TfArg<String> defaultLargeStagingDiskType,
-    required TfArg<String> ebsEncryption,
+    required TfArg<DrsReplicationConfigurationTemplateDataPlaneRouting>
+    dataPlaneRouting,
+    required TfArg<
+      DrsReplicationConfigurationTemplateDefaultLargeStagingDiskType
+    >
+    defaultLargeStagingDiskType,
+    required TfArg<DrsReplicationConfigurationTemplateEbsEncryption>
+    ebsEncryption,
     TfArg<String>? ebsEncryptionKeyArn,
     TfArg<String>? region,
     required TfArg<String> replicationServerInstanceType,

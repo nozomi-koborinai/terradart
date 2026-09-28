@@ -69,9 +69,10 @@ final class ElasticsearchDomainAutoTuneOptions {
     this.maintenanceSchedule,
   });
 
-  final TfArg<String> desiredState;
+  final TfArg<ElasticsearchDomainAutoTuneOptionsDesiredState> desiredState;
 
-  final TfArg<String>? rollbackOnDisable;
+  final TfArg<ElasticsearchDomainAutoTuneOptionsRollbackOnDisable>?
+  rollbackOnDisable;
 
   final List<ElasticsearchDomainAutoTuneOptionsMaintenanceSchedule>?
   maintenanceSchedule;
@@ -85,6 +86,29 @@ final class ElasticsearchDomainAutoTuneOptions {
         for (final e in maintenanceSchedule!) e.encode(),
       ],
   };
+}
+
+/// `desired_state` — derived from the provider schema description.
+enum ElasticsearchDomainAutoTuneOptionsDesiredState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const ElasticsearchDomainAutoTuneOptionsDesiredState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `rollback_on_disable` — derived from the provider schema description.
+enum ElasticsearchDomainAutoTuneOptionsRollbackOnDisable
+    implements TerraformEnum {
+  noRollback('NO_ROLLBACK'),
+  defaultRollback('DEFAULT_ROLLBACK');
+
+  const ElasticsearchDomainAutoTuneOptionsRollbackOnDisable(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `auto_tune_options.maintenance_schedule` block of
@@ -119,7 +143,8 @@ final class ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDuration {
     required this.value,
   });
 
-  final TfArg<String> unit;
+  final TfArg<ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit>
+  unit;
 
   final TfArg<num> value;
 
@@ -127,6 +152,18 @@ final class ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDuration {
     'unit': unit.toTfJson(),
     'value': value.toTfJson(),
   };
+}
+
+/// `unit` — derived from the provider schema description.
+enum ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit
+    implements TerraformEnum {
+  hours('HOURS');
+
+  const ElasticsearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `cluster_config` block of
@@ -267,7 +304,8 @@ final class ElasticsearchDomainDomainEndpointOptions {
 
   final TfArg<bool>? enforceHttps;
 
-  final TfArg<String>? tlsSecurityPolicy;
+  final TfArg<ElasticsearchDomainDomainEndpointOptionsTlsSecurityPolicy>?
+  tlsSecurityPolicy;
 
   Map<String, Object?> encode() => {
     if (customEndpoint != null) 'custom_endpoint': customEndpoint!.toTfJson(),
@@ -280,6 +318,21 @@ final class ElasticsearchDomainDomainEndpointOptions {
     if (tlsSecurityPolicy != null)
       'tls_security_policy': tlsSecurityPolicy!.toTfJson(),
   };
+}
+
+/// `tls_security_policy` — derived from the provider schema description.
+enum ElasticsearchDomainDomainEndpointOptionsTlsSecurityPolicy
+    implements TerraformEnum {
+  policyMinTls10201907('Policy-Min-TLS-1-0-2019-07'),
+  policyMinTls12201907('Policy-Min-TLS-1-2-2019-07'),
+  policyMinTls12Pfs202310('Policy-Min-TLS-1-2-PFS-2023-10'),
+  policyMinTls12Rfc9151Fips202408('Policy-Min-TLS-1-2-RFC9151-FIPS-2024-08');
+
+  const ElasticsearchDomainDomainEndpointOptionsTlsSecurityPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `ebs_options` block of
@@ -302,7 +355,7 @@ final class ElasticsearchDomainEbsOptions {
 
   final TfArg<num>? volumeSize;
 
-  final TfArg<String>? volumeType;
+  final TfArg<ElasticsearchDomainEbsOptionsVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
     'ebs_enabled': ebsEnabled.toTfJson(),
@@ -311,6 +364,18 @@ final class ElasticsearchDomainEbsOptions {
     if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
     if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
   };
+}
+
+/// `volume_type` — derived from the provider schema description.
+enum ElasticsearchDomainEbsOptionsVolumeType implements TerraformEnum {
+  standard('standard'),
+  gp2('gp2'),
+  io1('io1'),
+  gp3('gp3');
+
+  const ElasticsearchDomainEbsOptionsVolumeType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `encrypt_at_rest` block of
@@ -346,13 +411,25 @@ final class ElasticsearchDomainLogPublishingOptions {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String> logType;
+  final TfArg<ElasticsearchDomainLogPublishingOptionsLogType> logType;
 
   Map<String, Object?> encode() => {
     'cloudwatch_log_group_arn': cloudwatchLogGroupArn.toTfJson(),
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     'log_type': logType.toTfJson(),
   };
+}
+
+/// `log_type` — derived from the provider schema description.
+enum ElasticsearchDomainLogPublishingOptionsLogType implements TerraformEnum {
+  indexSlowLogs('INDEX_SLOW_LOGS'),
+  searchSlowLogs('SEARCH_SLOW_LOGS'),
+  esApplicationLogs('ES_APPLICATION_LOGS'),
+  auditLogs('AUDIT_LOGS');
+
+  const ElasticsearchDomainLogPublishingOptionsLogType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `node_to_node_encryption` block of

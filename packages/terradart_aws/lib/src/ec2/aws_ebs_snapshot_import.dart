@@ -47,7 +47,7 @@ final class EbsSnapshotImportDiskContainer {
 
   final TfArg<String>? description;
 
-  final TfArg<String> format;
+  final TfArg<EbsSnapshotImportDiskContainerFormat> format;
 
   final TfArg<String>? url;
 
@@ -59,6 +59,17 @@ final class EbsSnapshotImportDiskContainer {
     if (url != null) 'url': url!.toTfJson(),
     if (userBucket != null) 'user_bucket': userBucket!.encode(),
   };
+}
+
+/// `format` — derived from the provider schema description.
+enum EbsSnapshotImportDiskContainerFormat implements TerraformEnum {
+  vmdk('VMDK'),
+  raw('RAW'),
+  vhd('VHD');
+
+  const EbsSnapshotImportDiskContainerFormat(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `disk_container.user_bucket` block of

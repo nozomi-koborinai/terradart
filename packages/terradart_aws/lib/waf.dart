@@ -7,19 +7,25 @@ export 'src/waf/aws_waf_byte_match_set.dart'
     show
         AwsWafByteMatchSet,
         WafByteMatchSetByteMatchTuples,
-        WafByteMatchSetByteMatchTuplesFieldToMatch;
+        WafByteMatchSetByteMatchTuplesFieldToMatch,
+        WafByteMatchSetByteMatchTuplesFieldToMatchType;
 export 'src/waf/aws_waf_geo_match_set.dart'
     show AwsWafGeoMatchSet, WafGeoMatchSetGeoMatchConstraint;
-export 'src/waf/aws_waf_ipset.dart' show AwsWafIpset, WafIpsetIpSetDescriptors;
+export 'src/waf/aws_waf_ipset.dart'
+    show AwsWafIpset, WafIpsetIpSetDescriptors, WafIpsetIpSetDescriptorsType;
 export 'src/waf/aws_waf_rate_based_rule.dart'
-    show AwsWafRateBasedRule, WafRateBasedRulePredicates;
+    show
+        AwsWafRateBasedRule,
+        WafRateBasedRulePredicates,
+        WafRateBasedRulePredicatesType;
 export 'src/waf/aws_waf_regex_match_set.dart'
     show
         AwsWafRegexMatchSet,
         WafRegexMatchSetRegexMatchTuple,
         WafRegexMatchSetRegexMatchTupleFieldToMatch;
 export 'src/waf/aws_waf_regex_pattern_set.dart' show AwsWafRegexPatternSet;
-export 'src/waf/aws_waf_rule.dart' show AwsWafRule, WafRulePredicates;
+export 'src/waf/aws_waf_rule.dart'
+    show AwsWafRule, WafRulePredicates, WafRulePredicatesType;
 export 'src/waf/aws_waf_rule_group.dart'
     show
         AwsWafRuleGroup,
@@ -44,9 +50,12 @@ export 'src/waf/aws_waf_web_acl.dart'
         WafWebAclLoggingConfigurationRedactedFieldsFieldToMatch,
         WafWebAclRules,
         WafWebAclRulesAction,
-        WafWebAclRulesOverrideAction;
+        WafWebAclRulesOverrideAction,
+        WafWebAclRulesType;
 export 'src/waf/aws_waf_xss_match_set.dart'
     show
         AwsWafXssMatchSet,
         WafXssMatchSetXssMatchTuples,
-        WafXssMatchSetXssMatchTuplesFieldToMatch;
+        WafXssMatchSetXssMatchTuplesFieldToMatch,
+        WafXssMatchSetXssMatchTuplesFieldToMatchType,
+        WafXssMatchSetXssMatchTuplesTextTransformation;

@@ -28,7 +28,7 @@ final class BedrockagentPromptVariant {
 
   final TfArg<String> name;
 
-  final TfArg<String> templateType;
+  final TfArg<BedrockagentPromptVariantTemplateType> templateType;
 
   final List<BedrockagentPromptVariantGenAiResource>? genAiResource;
 
@@ -59,6 +59,16 @@ final class BedrockagentPromptVariant {
         for (final e in templateConfiguration!) e.encode(),
       ],
   };
+}
+
+/// `template_type` — derived from the provider schema description.
+enum BedrockagentPromptVariantTemplateType implements TerraformEnum {
+  text('TEXT'),
+  chat('CHAT');
+
+  const BedrockagentPromptVariantTemplateType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `variant.gen_ai_resource` block of
@@ -220,7 +230,8 @@ final class BedrockagentPromptVariantTemplateConfigurationChatMessage {
     this.content,
   });
 
-  final TfArg<String> role;
+  final TfArg<BedrockagentPromptVariantTemplateConfigurationChatMessageRole>
+  role;
 
   final List<BedrockagentPromptVariantTemplateConfigurationChatMessageContent>?
   content;
@@ -229,6 +240,19 @@ final class BedrockagentPromptVariantTemplateConfigurationChatMessage {
     'role': role.toTfJson(),
     if (content != null) 'content': [for (final e in content!) e.encode()],
   };
+}
+
+/// `role` — derived from the provider schema description.
+enum BedrockagentPromptVariantTemplateConfigurationChatMessageRole
+    implements TerraformEnum {
+  user('user'),
+  assistant('assistant');
+
+  const BedrockagentPromptVariantTemplateConfigurationChatMessageRole(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `variant.template_configuration.chat.message.content` block of
@@ -262,9 +286,24 @@ final class BedrockagentPromptVariantTemplateConfigurationChatMessageContentCach
     required this.type,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointType
+  >
+  type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointType
+    implements TerraformEnum {
+  defaultCase('default');
+
+  const BedrockagentPromptVariantTemplateConfigurationChatMessageContentCachePointType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `variant.template_configuration.chat.system` block of
@@ -298,9 +337,24 @@ final class BedrockagentPromptVariantTemplateConfigurationChatSystemCachePoint {
     required this.type,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointType
+  >
+  type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointType
+    implements TerraformEnum {
+  defaultCase('default');
+
+  const BedrockagentPromptVariantTemplateConfigurationChatSystemCachePointType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `variant.template_configuration.chat.tool_configuration` block of
@@ -363,9 +417,24 @@ final class BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationT
     required this.type,
   });
 
-  final TfArg<String> type;
+  final TfArg<
+    BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePointType
+  >
+  type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePointType
+    implements TerraformEnum {
+  defaultCase('default');
+
+  const BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolCachePointType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `variant.template_configuration.chat.tool_configuration.tool.tool_spec` block of
@@ -506,9 +575,22 @@ final class BedrockagentPromptVariantTemplateConfigurationTextCachePoint {
     required this.type,
   });
 
-  final TfArg<String> type;
+  final TfArg<BedrockagentPromptVariantTemplateConfigurationTextCachePointType>
+  type;
 
   Map<String, Object?> encode() => {'type': type.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum BedrockagentPromptVariantTemplateConfigurationTextCachePointType
+    implements TerraformEnum {
+  defaultCase('default');
+
+  const BedrockagentPromptVariantTemplateConfigurationTextCachePointType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `variant.template_configuration.text.input_variable` block of

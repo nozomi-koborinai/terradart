@@ -43,7 +43,8 @@ final class Resiliencehubv2PolicyMultiAz {
     this.rtoInMinutes,
   });
 
-  final TfArg<String> disasterRecoveryApproach;
+  final TfArg<Resiliencehubv2PolicyMultiAzDisasterRecoveryApproach>
+  disasterRecoveryApproach;
 
   final TfArg<num>? rpoInMinutes;
 
@@ -56,6 +57,22 @@ final class Resiliencehubv2PolicyMultiAz {
   };
 }
 
+/// `disaster_recovery_approach` — derived from the provider schema description.
+enum Resiliencehubv2PolicyMultiAzDisasterRecoveryApproach
+    implements TerraformEnum {
+  activeActive('ACTIVE_ACTIVE'),
+  hotStandby('HOT_STANDBY'),
+  warmStandby('WARM_STANDBY'),
+  pilotLight('PILOT_LIGHT'),
+  backupAndRestore('BACKUP_AND_RESTORE');
+
+  const Resiliencehubv2PolicyMultiAzDisasterRecoveryApproach(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `multi_region` block of
 /// `aws_resiliencehubv2_policy` (derived from provider schema).
 @immutable
@@ -66,7 +83,8 @@ final class Resiliencehubv2PolicyMultiRegion {
     this.rtoInMinutes,
   });
 
-  final TfArg<String> disasterRecoveryApproach;
+  final TfArg<Resiliencehubv2PolicyMultiRegionDisasterRecoveryApproach>
+  disasterRecoveryApproach;
 
   final TfArg<num>? rpoInMinutes;
 
@@ -77,6 +95,22 @@ final class Resiliencehubv2PolicyMultiRegion {
     if (rpoInMinutes != null) 'rpo_in_minutes': rpoInMinutes!.toTfJson(),
     if (rtoInMinutes != null) 'rto_in_minutes': rtoInMinutes!.toTfJson(),
   };
+}
+
+/// `disaster_recovery_approach` — derived from the provider schema description.
+enum Resiliencehubv2PolicyMultiRegionDisasterRecoveryApproach
+    implements TerraformEnum {
+  activeActive('ACTIVE_ACTIVE'),
+  hotStandby('HOT_STANDBY'),
+  warmStandby('WARM_STANDBY'),
+  pilotLight('PILOT_LIGHT'),
+  backupAndRestore('BACKUP_AND_RESTORE');
+
+  const Resiliencehubv2PolicyMultiRegionDisasterRecoveryApproach(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_resiliencehubv2_policy`.

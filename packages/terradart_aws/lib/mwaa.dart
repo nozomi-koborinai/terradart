@@ -6,10 +6,18 @@ library;
 export 'src/mwaa/aws_mwaa_environment.dart'
     show
         AwsMwaaEnvironment,
+        MwaaEnvironmentEndpointManagement,
         MwaaEnvironmentLoggingConfiguration,
         MwaaEnvironmentLoggingConfigurationDagProcessingLogs,
+        MwaaEnvironmentLoggingConfigurationDagProcessingLogsLogLevel,
         MwaaEnvironmentLoggingConfigurationSchedulerLogs,
+        MwaaEnvironmentLoggingConfigurationSchedulerLogsLogLevel,
         MwaaEnvironmentLoggingConfigurationTaskLogs,
+        MwaaEnvironmentLoggingConfigurationTaskLogsLogLevel,
         MwaaEnvironmentLoggingConfigurationWebserverLogs,
+        MwaaEnvironmentLoggingConfigurationWebserverLogsLogLevel,
         MwaaEnvironmentLoggingConfigurationWorkerLogs,
-        MwaaEnvironmentNetworkConfiguration;
+        MwaaEnvironmentLoggingConfigurationWorkerLogsLogLevel,
+        MwaaEnvironmentNetworkConfiguration,
+        MwaaEnvironmentWebserverAccessMode,
+        MwaaEnvironmentWorkerReplacementStrategy;

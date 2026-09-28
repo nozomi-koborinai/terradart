@@ -2,3 +2,4 @@ outputDir: memorydb
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true

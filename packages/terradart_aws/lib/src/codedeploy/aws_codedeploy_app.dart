@@ -6,13 +6,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_codedeploy_app`.
 const Set<String> _awsCodedeployAppSensitive = <String>{};
 
+/// Codedeploy App Compute enum for `compute_platform`.
+enum CodedeployAppComputePlatform implements TerraformEnum {
+  server('Server'),
+  lambda('Lambda'),
+  ecs('ECS');
+
+  const CodedeployAppComputePlatform(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_codedeploy_app`.
 final class AwsCodedeployApp extends Resource {
   static const String tfType = 'aws_codedeploy_app';
 
   AwsCodedeployApp({
     required super.localName,
-    TfArg<String>? computePlatform,
+    TfArg<CodedeployAppComputePlatform>? computePlatform,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,

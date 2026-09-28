@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_elb`.
 const Set<String> _awsElbSensitive = <String>{};
 
+/// Elb Desync Mitigation enum for `desync_mitigation_mode`.
+enum ElbDesyncMitigationMode implements TerraformEnum {
+  monitor('monitor'),
+  defensive('defensive'),
+  strictest('strictest');
+
+  const ElbDesyncMitigationMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `access_logs` block of
 /// `aws_elb` (derived from provider schema).
 @immutable
@@ -107,7 +118,7 @@ final class AwsElb extends Resource {
     TfArg<bool>? connectionDraining,
     TfArg<num>? connectionDrainingTimeout,
     TfArg<bool>? crossZoneLoadBalancing,
-    TfArg<String>? desyncMitigationMode,
+    TfArg<ElbDesyncMitigationMode>? desyncMitigationMode,
     TfArg<num>? idleTimeout,
     TfArg<List<String>>? instances,
     TfArg<bool>? internal,

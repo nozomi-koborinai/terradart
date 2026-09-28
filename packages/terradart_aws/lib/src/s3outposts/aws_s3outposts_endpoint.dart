@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_s3outposts_endpoint`.
 const Set<String> _awsS3outpostsEndpointSensitive = <String>{};
 
+/// S3outposts Endpoint Access enum for `access_type`.
+enum S3outpostsEndpointAccessType implements TerraformEnum {
+  private('Private'),
+  customerownedip('CustomerOwnedIp');
+
+  const S3outpostsEndpointAccessType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_s3outposts_endpoint`.
 final class AwsS3outpostsEndpoint extends Resource {
   static const String tfType = 'aws_s3outposts_endpoint';
 
   AwsS3outpostsEndpoint({
     required super.localName,
-    TfArg<String>? accessType,
+    TfArg<S3outpostsEndpointAccessType>? accessType,
     TfArg<String>? customerOwnedIpv4Pool,
     required TfArg<String> outpostId,
     TfArg<String>? region,

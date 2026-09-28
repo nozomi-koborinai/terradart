@@ -9,6 +9,63 @@ const Set<String> _awsTimestreaminfluxdbDbClusterSensitive = <String>{
   'password',
 };
 
+/// Timestreaminfluxdb Db Cluster Db Instance enum for `db_instance_type`.
+enum TimestreaminfluxdbDbClusterDbInstanceType implements TerraformEnum {
+  dbInfluxMedium('db.influx.medium'),
+  dbInfluxLarge('db.influx.large'),
+  dbInfluxXlarge('db.influx.xlarge'),
+  dbInflux2xlarge('db.influx.2xlarge'),
+  dbInflux4xlarge('db.influx.4xlarge'),
+  dbInflux8xlarge('db.influx.8xlarge'),
+  dbInflux12xlarge('db.influx.12xlarge'),
+  dbInflux16xlarge('db.influx.16xlarge'),
+  dbInflux24xlarge('db.influx.24xlarge');
+
+  const TimestreaminfluxdbDbClusterDbInstanceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Timestreaminfluxdb Db Cluster Db Storage enum for `db_storage_type`.
+enum TimestreaminfluxdbDbClusterDbStorageType implements TerraformEnum {
+  influxioincludedt1('InfluxIOIncludedT1'),
+  influxioincludedt2('InfluxIOIncludedT2'),
+  influxioincludedt3('InfluxIOIncludedT3');
+
+  const TimestreaminfluxdbDbClusterDbStorageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Timestreaminfluxdb Db Cluster Deployment enum for `deployment_type`.
+enum TimestreaminfluxdbDbClusterDeploymentType implements TerraformEnum {
+  multiNodeReadReplicas('MULTI_NODE_READ_REPLICAS');
+
+  const TimestreaminfluxdbDbClusterDeploymentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Timestreaminfluxdb Db Cluster Failover enum for `failover_mode`.
+enum TimestreaminfluxdbDbClusterFailoverMode implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  noFailover('NO_FAILOVER');
+
+  const TimestreaminfluxdbDbClusterFailoverMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Timestreaminfluxdb Db Cluster Network enum for `network_type`.
+enum TimestreaminfluxdbDbClusterNetworkType implements TerraformEnum {
+  ipv4('IPV4'),
+  dual('DUAL');
+
+  const TimestreaminfluxdbDbClusterNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `log_delivery_configuration` block of
 /// `aws_timestreaminfluxdb_db_cluster` (derived from provider schema).
 @immutable
@@ -74,13 +131,13 @@ final class AwsTimestreaminfluxdbDbCluster extends Resource {
     required super.localName,
     TfArg<num>? allocatedStorage,
     TfArg<String>? bucket,
-    required TfArg<String> dbInstanceType,
+    required TfArg<TimestreaminfluxdbDbClusterDbInstanceType> dbInstanceType,
     TfArg<String>? dbParameterGroupIdentifier,
-    TfArg<String>? dbStorageType,
-    TfArg<String>? deploymentType,
-    TfArg<String>? failoverMode,
+    TfArg<TimestreaminfluxdbDbClusterDbStorageType>? dbStorageType,
+    TfArg<TimestreaminfluxdbDbClusterDeploymentType>? deploymentType,
+    TfArg<TimestreaminfluxdbDbClusterFailoverMode>? failoverMode,
     required TfArg<String> name,
-    TfArg<String>? networkType,
+    TfArg<TimestreaminfluxdbDbClusterNetworkType>? networkType,
     TfArg<String>? organization,
     TfArg<String>? password,
     TfArg<num>? port,

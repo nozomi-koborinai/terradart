@@ -29,7 +29,8 @@ final class SyntheticsCanaryArtifactConfigS3Encryption {
     this.kmsKeyArn,
   });
 
-  final TfArg<String>? encryptionMode;
+  final TfArg<SyntheticsCanaryArtifactConfigS3EncryptionEncryptionMode>?
+  encryptionMode;
 
   final TfArg<String>? kmsKeyArn;
 
@@ -37,6 +38,19 @@ final class SyntheticsCanaryArtifactConfigS3Encryption {
     if (encryptionMode != null) 'encryption_mode': encryptionMode!.toTfJson(),
     if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
   };
+}
+
+/// `encryption_mode` — derived from the provider schema description.
+enum SyntheticsCanaryArtifactConfigS3EncryptionEncryptionMode
+    implements TerraformEnum {
+  sseS3('SSE_S3'),
+  sseKms('SSE_KMS');
+
+  const SyntheticsCanaryArtifactConfigS3EncryptionEncryptionMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `run_config` block of

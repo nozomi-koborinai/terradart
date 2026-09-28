@@ -16,7 +16,7 @@ final class S3BucketLoggingTargetGrant {
     required this.grantee,
   });
 
-  final TfArg<String> permission;
+  final TfArg<S3BucketLoggingTargetGrantPermission> permission;
 
   final S3BucketLoggingTargetGrantGrantee grantee;
 
@@ -24,6 +24,17 @@ final class S3BucketLoggingTargetGrant {
     'permission': permission.toTfJson(),
     'grantee': grantee.encode(),
   };
+}
+
+/// `permission` — derived from the provider schema description.
+enum S3BucketLoggingTargetGrantPermission implements TerraformEnum {
+  fullControl('FULL_CONTROL'),
+  read('READ'),
+  write('WRITE');
+
+  const S3BucketLoggingTargetGrantPermission(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_grant.grantee` block of
@@ -41,7 +52,7 @@ final class S3BucketLoggingTargetGrantGrantee {
 
   final TfArg<String>? id;
 
-  final TfArg<String> type;
+  final TfArg<S3BucketLoggingTargetGrantGranteeType> type;
 
   final TfArg<String>? uri;
 
@@ -51,6 +62,17 @@ final class S3BucketLoggingTargetGrantGrantee {
     'type': type.toTfJson(),
     if (uri != null) 'uri': uri!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum S3BucketLoggingTargetGrantGranteeType implements TerraformEnum {
+  canonicaluser('CanonicalUser'),
+  amazoncustomerbyemail('AmazonCustomerByEmail'),
+  group('Group');
+
+  const S3BucketLoggingTargetGrantGranteeType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_object_key_format` block of
@@ -82,11 +104,27 @@ final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix {
     required this.partitionDateSource,
   });
 
-  final TfArg<String> partitionDateSource;
+  final TfArg<
+    S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixPartitionDateSource
+  >
+  partitionDateSource;
 
   Map<String, Object?> encode() => {
     'partition_date_source': partitionDateSource.toTfJson(),
   };
+}
+
+/// `partition_date_source` — derived from the provider schema description.
+enum S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixPartitionDateSource
+    implements TerraformEnum {
+  eventtime('EventTime'),
+  deliverytime('DeliveryTime');
+
+  const S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixPartitionDateSource(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_object_key_format.simple_prefix` block of

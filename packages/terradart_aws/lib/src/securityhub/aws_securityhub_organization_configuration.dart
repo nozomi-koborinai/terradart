@@ -8,6 +8,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsSecurityhubOrganizationConfigurationSensitive =
     <String>{};
 
+/// Securityhub Organization Configuration Auto Enable enum for `auto_enable_standards`.
+enum SecurityhubOrganizationConfigurationAutoEnableStandards
+    implements TerraformEnum {
+  none('NONE'),
+  defaultCase('DEFAULT');
+
+  const SecurityhubOrganizationConfigurationAutoEnableStandards(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `organization_configuration` block of
 /// `aws_securityhub_organization_configuration` (derived from provider schema).
 @immutable
@@ -16,11 +29,27 @@ final class SecurityhubOrganizationConfigurationOrganizationConfiguration {
     required this.configurationType,
   });
 
-  final TfArg<String> configurationType;
+  final TfArg<
+    SecurityhubOrganizationConfigurationOrganizationConfigurationConfigurationType
+  >
+  configurationType;
 
   Map<String, Object?> encode() => {
     'configuration_type': configurationType.toTfJson(),
   };
+}
+
+/// `configuration_type` — derived from the provider schema description.
+enum SecurityhubOrganizationConfigurationOrganizationConfigurationConfigurationType
+    implements TerraformEnum {
+  central('CENTRAL'),
+  local('LOCAL');
+
+  const SecurityhubOrganizationConfigurationOrganizationConfigurationConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_securityhub_organization_configuration`.
@@ -30,7 +59,8 @@ final class AwsSecurityhubOrganizationConfiguration extends Resource {
   AwsSecurityhubOrganizationConfiguration({
     required super.localName,
     required TfArg<bool> autoEnable,
-    TfArg<String>? autoEnableStandards,
+    TfArg<SecurityhubOrganizationConfigurationAutoEnableStandards>?
+    autoEnableStandards,
     TfArg<String>? region,
     SecurityhubOrganizationConfigurationOrganizationConfiguration?
     organizationConfiguration,

@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudfront_multitenant_distribution`.
 const Set<String> _awsCloudfrontMultitenantDistributionSensitive = <String>{};
 
+/// Cloudfront Multitenant Distribution Http enum for `http_version`.
+enum CloudfrontMultitenantDistributionHttpVersion implements TerraformEnum {
+  http1p1('http1.1'),
+  http2('http2'),
+  http3('http3'),
+  http2and3('http2and3');
+
+  const CloudfrontMultitenantDistributionHttpVersion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `active_trusted_key_groups` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
@@ -66,7 +78,10 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
 
   final TfArg<String> targetOriginId;
 
-  final TfArg<String> viewerProtocolPolicy;
+  final TfArg<
+    CloudfrontMultitenantDistributionCacheBehaviorViewerProtocolPolicy
+  >
+  viewerProtocolPolicy;
 
   final List<CloudfrontMultitenantDistributionCacheBehaviorAllowedMethods>?
   allowedMethods;
@@ -111,6 +126,20 @@ final class CloudfrontMultitenantDistributionCacheBehavior {
   };
 }
 
+/// `viewer_protocol_policy` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionCacheBehaviorViewerProtocolPolicy
+    implements TerraformEnum {
+  allowAll('allow-all'),
+  httpsOnly('https-only'),
+  redirectToHttps('redirect-to-https');
+
+  const CloudfrontMultitenantDistributionCacheBehaviorViewerProtocolPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `cache_behavior.allowed_methods` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
@@ -120,14 +149,37 @@ final class CloudfrontMultitenantDistributionCacheBehaviorAllowedMethods {
     required this.items,
   });
 
-  final TfArg<List<Object?>> cachedMethods;
+  final List<
+    TfArg<
+      CloudfrontMultitenantDistributionCacheBehaviorAllowedMethodsCachedMethods
+    >
+  >
+  cachedMethods;
 
   final TfArg<List<Object?>> items;
 
   Map<String, Object?> encode() => {
-    'cached_methods': cachedMethods.toTfJson(),
+    'cached_methods': [for (final e in cachedMethods) e.toTfJson()],
     'items': items.toTfJson(),
   };
+}
+
+/// `cached_methods` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionCacheBehaviorAllowedMethodsCachedMethods
+    implements TerraformEnum {
+  get('GET'),
+  head('HEAD'),
+  post('POST'),
+  put('PUT'),
+  patch('PATCH'),
+  options('OPTIONS'),
+  delete('DELETE');
+
+  const CloudfrontMultitenantDistributionCacheBehaviorAllowedMethodsCachedMethods(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `cache_behavior.function_association` block of
@@ -139,7 +191,10 @@ final class CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociation {
     required this.functionArn,
   });
 
-  final TfArg<String> eventType;
+  final TfArg<
+    CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociationEventType
+  >
+  eventType;
 
   final TfArg<String> functionArn;
 
@@ -147,6 +202,21 @@ final class CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociation {
     'event_type': eventType.toTfJson(),
     'function_arn': functionArn.toTfJson(),
   };
+}
+
+/// `event_type` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociationEventType
+    implements TerraformEnum {
+  viewerRequest('viewer-request'),
+  viewerResponse('viewer-response'),
+  originRequest('origin-request'),
+  originResponse('origin-response');
+
+  const CloudfrontMultitenantDistributionCacheBehaviorFunctionAssociationEventType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `cache_behavior.lambda_function_association` block of
@@ -159,7 +229,10 @@ final class CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociat
     required this.lambdaFunctionArn,
   });
 
-  final TfArg<String> eventType;
+  final TfArg<
+    CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociationEventType
+  >
+  eventType;
 
   final TfArg<bool>? includeBody;
 
@@ -170,6 +243,21 @@ final class CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociat
     if (includeBody != null) 'include_body': includeBody!.toTfJson(),
     'lambda_function_arn': lambdaFunctionArn.toTfJson(),
   };
+}
+
+/// `event_type` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociationEventType
+    implements TerraformEnum {
+  viewerRequest('viewer-request'),
+  viewerResponse('viewer-response'),
+  originRequest('origin-request'),
+  originResponse('origin-response');
+
+  const CloudfrontMultitenantDistributionCacheBehaviorLambdaFunctionAssociationEventType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `cache_behavior.trusted_key_groups` block of
@@ -253,7 +341,10 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehavior {
 
   final TfArg<String> targetOriginId;
 
-  final TfArg<String> viewerProtocolPolicy;
+  final TfArg<
+    CloudfrontMultitenantDistributionDefaultCacheBehaviorViewerProtocolPolicy
+  >
+  viewerProtocolPolicy;
 
   final List<
     CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethods
@@ -303,6 +394,20 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehavior {
   };
 }
 
+/// `viewer_protocol_policy` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionDefaultCacheBehaviorViewerProtocolPolicy
+    implements TerraformEnum {
+  allowAll('allow-all'),
+  httpsOnly('https-only'),
+  redirectToHttps('redirect-to-https');
+
+  const CloudfrontMultitenantDistributionDefaultCacheBehaviorViewerProtocolPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `default_cache_behavior.allowed_methods` block of
 /// `aws_cloudfront_multitenant_distribution` (derived from provider schema).
 @immutable
@@ -312,14 +417,37 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethods 
     required this.items,
   });
 
-  final TfArg<List<Object?>> cachedMethods;
+  final List<
+    TfArg<
+      CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethodsCachedMethods
+    >
+  >
+  cachedMethods;
 
   final TfArg<List<Object?>> items;
 
   Map<String, Object?> encode() => {
-    'cached_methods': cachedMethods.toTfJson(),
+    'cached_methods': [for (final e in cachedMethods) e.toTfJson()],
     'items': items.toTfJson(),
   };
+}
+
+/// `cached_methods` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethodsCachedMethods
+    implements TerraformEnum {
+  get('GET'),
+  head('HEAD'),
+  post('POST'),
+  put('PUT'),
+  patch('PATCH'),
+  options('OPTIONS'),
+  delete('DELETE');
+
+  const CloudfrontMultitenantDistributionDefaultCacheBehaviorAllowedMethodsCachedMethods(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `default_cache_behavior.function_association` block of
@@ -331,7 +459,10 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssocia
     required this.functionArn,
   });
 
-  final TfArg<String> eventType;
+  final TfArg<
+    CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociationEventType
+  >
+  eventType;
 
   final TfArg<String> functionArn;
 
@@ -339,6 +470,21 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssocia
     'event_type': eventType.toTfJson(),
     'function_arn': functionArn.toTfJson(),
   };
+}
+
+/// `event_type` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociationEventType
+    implements TerraformEnum {
+  viewerRequest('viewer-request'),
+  viewerResponse('viewer-response'),
+  originRequest('origin-request'),
+  originResponse('origin-response');
+
+  const CloudfrontMultitenantDistributionDefaultCacheBehaviorFunctionAssociationEventType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `default_cache_behavior.lambda_function_association` block of
@@ -351,7 +497,10 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionA
     required this.lambdaFunctionArn,
   });
 
-  final TfArg<String> eventType;
+  final TfArg<
+    CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType
+  >
+  eventType;
 
   final TfArg<bool>? includeBody;
 
@@ -362,6 +511,21 @@ final class CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionA
     if (includeBody != null) 'include_body': includeBody!.toTfJson(),
     'lambda_function_arn': lambdaFunctionArn.toTfJson(),
   };
+}
+
+/// `event_type` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType
+    implements TerraformEnum {
+  viewerRequest('viewer-request'),
+  viewerResponse('viewer-response'),
+  originRequest('origin-request'),
+  originResponse('origin-response');
+
+  const CloudfrontMultitenantDistributionDefaultCacheBehaviorLambdaFunctionAssociationEventType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `default_cache_behavior.trusted_key_groups` block of
@@ -486,15 +650,26 @@ final class CloudfrontMultitenantDistributionOriginCustomOriginConfig {
 
   final TfArg<num> httpsPort;
 
-  final TfArg<String>? ipAddressType;
+  final TfArg<
+    CloudfrontMultitenantDistributionOriginCustomOriginConfigIpAddressType
+  >?
+  ipAddressType;
 
   final TfArg<num>? originKeepaliveTimeout;
 
-  final TfArg<String> originProtocolPolicy;
+  final TfArg<
+    CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginProtocolPolicy
+  >
+  originProtocolPolicy;
 
   final TfArg<num>? originReadTimeout;
 
-  final TfArg<List<Object?>> originSslProtocols;
+  final List<
+    TfArg<
+      CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginSslProtocols
+    >
+  >
+  originSslProtocols;
 
   final List<
     CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginMtlsConfig
@@ -510,10 +685,53 @@ final class CloudfrontMultitenantDistributionOriginCustomOriginConfig {
     'origin_protocol_policy': originProtocolPolicy.toTfJson(),
     if (originReadTimeout != null)
       'origin_read_timeout': originReadTimeout!.toTfJson(),
-    'origin_ssl_protocols': originSslProtocols.toTfJson(),
+    'origin_ssl_protocols': [for (final e in originSslProtocols) e.toTfJson()],
     if (originMtlsConfig != null)
       'origin_mtls_config': [for (final e in originMtlsConfig!) e.encode()],
   };
+}
+
+/// `ip_address_type` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionOriginCustomOriginConfigIpAddressType
+    implements TerraformEnum {
+  ipv4('ipv4'),
+  ipv6('ipv6'),
+  dualstack('dualstack');
+
+  const CloudfrontMultitenantDistributionOriginCustomOriginConfigIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `origin_protocol_policy` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginProtocolPolicy
+    implements TerraformEnum {
+  httpOnly('http-only'),
+  matchViewer('match-viewer'),
+  httpsOnly('https-only');
+
+  const CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginProtocolPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `origin_ssl_protocols` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginSslProtocols
+    implements TerraformEnum {
+  sslv3('SSLv3'),
+  tlsv1('TLSv1'),
+  tlsv1p1('TLSv1.1'),
+  tlsv1p2('TLSv1.2');
+
+  const CloudfrontMultitenantDistributionOriginCustomOriginConfigOriginSslProtocols(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `origin.custom_origin_config.origin_mtls_config` block of
@@ -653,12 +871,29 @@ final class CloudfrontMultitenantDistributionRestrictionsGeoRestriction {
 
   final TfArg<List<Object?>>? items;
 
-  final TfArg<String> restrictionType;
+  final TfArg<
+    CloudfrontMultitenantDistributionRestrictionsGeoRestrictionRestrictionType
+  >
+  restrictionType;
 
   Map<String, Object?> encode() => {
     if (items != null) 'items': items!.toTfJson(),
     'restriction_type': restrictionType.toTfJson(),
   };
+}
+
+/// `restriction_type` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionRestrictionsGeoRestrictionRestrictionType
+    implements TerraformEnum {
+  blacklist('blacklist'),
+  whitelist('whitelist'),
+  none('none');
+
+  const CloudfrontMultitenantDistributionRestrictionsGeoRestrictionRestrictionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `tenant_config` block of
@@ -760,9 +995,15 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
 
   final TfArg<bool>? cloudfrontDefaultCertificate;
 
-  final TfArg<String>? minimumProtocolVersion;
+  final TfArg<
+    CloudfrontMultitenantDistributionViewerCertificateMinimumProtocolVersion
+  >?
+  minimumProtocolVersion;
 
-  final TfArg<String>? sslSupportMethod;
+  final TfArg<
+    CloudfrontMultitenantDistributionViewerCertificateSslSupportMethod
+  >?
+  sslSupportMethod;
 
   Map<String, Object?> encode() => {
     if (acmCertificateArn != null)
@@ -777,6 +1018,40 @@ final class CloudfrontMultitenantDistributionViewerCertificate {
   };
 }
 
+/// `minimum_protocol_version` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionViewerCertificateMinimumProtocolVersion
+    implements TerraformEnum {
+  sslv3('SSLv3'),
+  tlsv1('TLSv1'),
+  tlsv12016('TLSv1_2016'),
+  tlsv1p1x2016('TLSv1.1_2016'),
+  tlsv1p2x2018('TLSv1.2_2018'),
+  tlsv1p2x2019('TLSv1.2_2019'),
+  tlsv1p2x2021('TLSv1.2_2021'),
+  tlsv1p3x2025('TLSv1.3_2025'),
+  tlsv1p2x2025('TLSv1.2_2025');
+
+  const CloudfrontMultitenantDistributionViewerCertificateMinimumProtocolVersion(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `ssl_support_method` — derived from the provider schema description.
+enum CloudfrontMultitenantDistributionViewerCertificateSslSupportMethod
+    implements TerraformEnum {
+  sniOnly('sni-only'),
+  vip('vip'),
+  staticIp('static-ip');
+
+  const CloudfrontMultitenantDistributionViewerCertificateSslSupportMethod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudfront_multitenant_distribution`.
 final class AwsCloudfrontMultitenantDistribution extends Resource {
   static const String tfType = 'aws_cloudfront_multitenant_distribution';
@@ -786,7 +1061,7 @@ final class AwsCloudfrontMultitenantDistribution extends Resource {
     required TfArg<String> comment,
     TfArg<String>? defaultRootObject,
     required TfArg<bool> enabled,
-    TfArg<String>? httpVersion,
+    TfArg<CloudfrontMultitenantDistributionHttpVersion>? httpVersion,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? webAclId,
     List<CloudfrontMultitenantDistributionActiveTrustedKeyGroups>?

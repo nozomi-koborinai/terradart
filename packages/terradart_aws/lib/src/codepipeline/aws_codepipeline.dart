@@ -7,6 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_codepipeline`.
 const Set<String> _awsCodepipelineSensitive = <String>{};
 
+/// Codepipeline Execution enum for `execution_mode`.
+enum CodepipelineExecutionMode implements TerraformEnum {
+  queued('QUEUED'),
+  superseded('SUPERSEDED'),
+  parallel('PARALLEL');
+
+  const CodepipelineExecutionMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Codepipeline Pipeline enum for `pipeline_type`.
+enum CodepipelinePipelineType implements TerraformEnum {
+  v1('V1'),
+  v2('V2');
+
+  const CodepipelinePipelineType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `artifact_store` block of
 /// `aws_codepipeline` (derived from provider schema).
 @immutable
@@ -22,7 +43,7 @@ final class CodepipelineArtifactStore {
 
   final TfArg<String>? region;
 
-  final TfArg<String> type;
+  final TfArg<CodepipelineArtifactStoreType> type;
 
   final CodepipelineArtifactStoreEncryptionKey? encryptionKey;
 
@@ -32,6 +53,15 @@ final class CodepipelineArtifactStore {
     'type': type.toTfJson(),
     if (encryptionKey != null) 'encryption_key': encryptionKey!.encode(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CodepipelineArtifactStoreType implements TerraformEnum {
+  s3('S3');
+
+  const CodepipelineArtifactStoreType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `artifact_store.encryption_key` block of
@@ -45,12 +75,21 @@ final class CodepipelineArtifactStoreEncryptionKey {
 
   final TfArg<String> id;
 
-  final TfArg<String> type;
+  final TfArg<CodepipelineArtifactStoreEncryptionKeyType> type;
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum CodepipelineArtifactStoreEncryptionKeyType implements TerraformEnum {
+  kms('KMS');
+
+  const CodepipelineArtifactStoreEncryptionKeyType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `stage` block of
@@ -107,7 +146,7 @@ final class CodepipelineStageAction {
     this.outputArtifactsForComputeAction,
   });
 
-  final TfArg<String> category;
+  final TfArg<CodepipelineStageActionCategory> category;
 
   final TfArg<List<Object?>>? commands;
 
@@ -123,7 +162,7 @@ final class CodepipelineStageAction {
 
   final TfArg<List<Object?>>? outputVariables;
 
-  final TfArg<String> owner;
+  final TfArg<CodepipelineStageActionOwner> owner;
 
   final TfArg<String> provider;
 
@@ -164,6 +203,32 @@ final class CodepipelineStageAction {
         for (final e in outputArtifactsForComputeAction!) e.encode(),
       ],
   };
+}
+
+/// `category` — derived from the provider schema description.
+enum CodepipelineStageActionCategory implements TerraformEnum {
+  source('Source'),
+  build('Build'),
+  deploy('Deploy'),
+  test('Test'),
+  invoke('Invoke'),
+  approval('Approval'),
+  compute('Compute');
+
+  const CodepipelineStageActionCategory(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `owner` — derived from the provider schema description.
+enum CodepipelineStageActionOwner implements TerraformEnum {
+  aws('AWS'),
+  thirdparty('ThirdParty'),
+  custom('Custom');
+
+  const CodepipelineStageActionOwner(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `stage.action.output_artifacts_for_compute_action` block of
@@ -296,7 +361,7 @@ final class CodepipelineStageOnFailure {
     this.retryConfiguration,
   });
 
-  final TfArg<String>? result;
+  final TfArg<CodepipelineStageOnFailureResult>? result;
 
   final CodepipelineStageOnFailureCondition? condition;
 
@@ -308,6 +373,18 @@ final class CodepipelineStageOnFailure {
     if (retryConfiguration != null)
       'retry_configuration': retryConfiguration!.encode(),
   };
+}
+
+/// `result` — derived from the provider schema description.
+enum CodepipelineStageOnFailureResult implements TerraformEnum {
+  rollback('ROLLBACK'),
+  fail('FAIL'),
+  retry('RETRY'),
+  skip('SKIP');
+
+  const CodepipelineStageOnFailureResult(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `stage.on_failure.condition` block of
@@ -403,11 +480,24 @@ final class CodepipelineStageOnFailureConditionRuleRuleTypeId {
 final class CodepipelineStageOnFailureRetryConfiguration {
   const CodepipelineStageOnFailureRetryConfiguration({this.retryMode});
 
-  final TfArg<String>? retryMode;
+  final TfArg<CodepipelineStageOnFailureRetryConfigurationRetryMode>? retryMode;
 
   Map<String, Object?> encode() => {
     if (retryMode != null) 'retry_mode': retryMode!.toTfJson(),
   };
+}
+
+/// `retry_mode` — derived from the provider schema description.
+enum CodepipelineStageOnFailureRetryConfigurationRetryMode
+    implements TerraformEnum {
+  failedActions('FAILED_ACTIONS'),
+  allActions('ALL_ACTIONS');
+
+  const CodepipelineStageOnFailureRetryConfigurationRetryMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `stage.on_success` block of
@@ -721,9 +811,9 @@ final class AwsCodepipeline extends Resource {
 
   AwsCodepipeline({
     required super.localName,
-    TfArg<String>? executionMode,
+    TfArg<CodepipelineExecutionMode>? executionMode,
     required TfArg<String> name,
-    TfArg<String>? pipelineType,
+    TfArg<CodepipelinePipelineType>? pipelineType,
     TfArg<String>? region,
     required TfArg<String> roleArn,
     TfArg<Map<String, String>>? tags,

@@ -8,6 +8,19 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsGlobalacceleratorCustomRoutingAcceleratorSensitive =
     <String>{};
 
+/// Globalaccelerator Custom Routing Accelerator Ip Address enum for `ip_address_type`.
+enum GlobalacceleratorCustomRoutingAcceleratorIpAddressType
+    implements TerraformEnum {
+  ipv4('IPV4'),
+  dualStack('DUAL_STACK');
+
+  const GlobalacceleratorCustomRoutingAcceleratorIpAddressType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `attributes` block of
 /// `aws_globalaccelerator_custom_routing_accelerator` (derived from provider schema).
 @immutable
@@ -42,7 +55,8 @@ final class AwsGlobalacceleratorCustomRoutingAccelerator extends Resource {
   AwsGlobalacceleratorCustomRoutingAccelerator({
     required super.localName,
     TfArg<bool>? enabled,
-    TfArg<String>? ipAddressType,
+    TfArg<GlobalacceleratorCustomRoutingAcceleratorIpAddressType>?
+    ipAddressType,
     TfArg<List<String>>? ipAddresses,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,

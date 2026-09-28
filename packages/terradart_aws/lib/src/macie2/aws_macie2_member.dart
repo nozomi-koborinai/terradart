@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_macie2_member`.
 const Set<String> _awsMacie2MemberSensitive = <String>{};
 
+/// Macie2 Member enum for `status`.
+enum Macie2MemberStatus implements TerraformEnum {
+  paused('PAUSED'),
+  enabled('ENABLED');
+
+  const Macie2MemberStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_macie2_member`.
 final class AwsMacie2Member extends Resource {
   static const String tfType = 'aws_macie2_member';
@@ -18,7 +28,7 @@ final class AwsMacie2Member extends Resource {
     TfArg<String>? invitationMessage,
     TfArg<bool>? invite,
     TfArg<String>? region,
-    TfArg<String>? status,
+    TfArg<Macie2MemberStatus>? status,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,

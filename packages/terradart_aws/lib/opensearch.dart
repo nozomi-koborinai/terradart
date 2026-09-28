@@ -7,6 +7,7 @@ export 'src/opensearch/aws_opensearch_application.dart'
     show
         AwsOpensearchApplication,
         OpensearchApplicationAppConfig,
+        OpensearchApplicationAppConfigKey,
         OpensearchApplicationDataSource,
         OpensearchApplicationIamIdentityCenterOptions;
 export 'src/opensearch/aws_opensearch_authorize_vpc_endpoint_access.dart'
@@ -19,23 +20,36 @@ export 'src/opensearch/aws_opensearch_domain.dart'
         OpensearchDomainAdvancedSecurityOptionsMasterUserOptions,
         OpensearchDomainAimlOptions,
         OpensearchDomainAimlOptionsNaturalLanguageQueryGenerationOptions,
+        OpensearchDomainAimlOptionsNaturalLanguageQueryGenerationOptionsDesiredState,
         OpensearchDomainAimlOptionsS3VectorsEngine,
         OpensearchDomainAimlOptionsServerlessVectorAcceleration,
         OpensearchDomainAutoTuneOptions,
+        OpensearchDomainAutoTuneOptionsDesiredState,
         OpensearchDomainAutoTuneOptionsMaintenanceSchedule,
         OpensearchDomainAutoTuneOptionsMaintenanceScheduleDuration,
+        OpensearchDomainAutoTuneOptionsMaintenanceScheduleDurationUnit,
+        OpensearchDomainAutoTuneOptionsRollbackOnDisable,
         OpensearchDomainClusterConfig,
         OpensearchDomainClusterConfigColdStorageOptions,
         OpensearchDomainClusterConfigNodeOptions,
         OpensearchDomainClusterConfigNodeOptionsNodeConfig,
+        OpensearchDomainClusterConfigNodeOptionsNodeType,
+        OpensearchDomainClusterConfigWarmType,
         OpensearchDomainClusterConfigZoneAwarenessConfig,
         OpensearchDomainCognitoOptions,
         OpensearchDomainDeploymentStrategyOptions,
+        OpensearchDomainDeploymentStrategyOptionsDeploymentStrategy,
         OpensearchDomainDomainEndpointOptions,
+        OpensearchDomainDomainEndpointOptionsTlsSecurityPolicy,
         OpensearchDomainEbsOptions,
+        OpensearchDomainEbsOptionsVolumeType,
         OpensearchDomainEncryptAtRest,
         OpensearchDomainIdentityCenterOptions,
+        OpensearchDomainIdentityCenterOptionsRolesKey,
+        OpensearchDomainIdentityCenterOptionsSubjectKey,
+        OpensearchDomainIpAddressType,
         OpensearchDomainLogPublishingOptions,
+        OpensearchDomainLogPublishingOptionsLogType,
         OpensearchDomainNodeToNodeEncryption,
         OpensearchDomainOffPeakWindowOptions,
         OpensearchDomainOffPeakWindowOptionsOffPeakWindow,
@@ -55,12 +69,16 @@ export 'src/opensearch/aws_opensearch_inbound_connection_accepter.dart'
 export 'src/opensearch/aws_opensearch_outbound_connection.dart'
     show
         AwsOpensearchOutboundConnection,
+        OpensearchOutboundConnectionConnectionMode,
         OpensearchOutboundConnectionConnectionProperties,
         OpensearchOutboundConnectionConnectionPropertiesCrossClusterSearch,
         OpensearchOutboundConnectionLocalDomainInfo,
         OpensearchOutboundConnectionRemoteDomainInfo;
 export 'src/opensearch/aws_opensearch_package.dart'
-    show AwsOpensearchPackage, OpensearchPackagePackageSource;
+    show
+        AwsOpensearchPackage,
+        OpensearchPackagePackageSource,
+        OpensearchPackagePackageType;
 export 'src/opensearch/aws_opensearch_package_association.dart'
     show AwsOpensearchPackageAssociation;
 export 'src/opensearch/aws_opensearch_vpc_endpoint.dart'

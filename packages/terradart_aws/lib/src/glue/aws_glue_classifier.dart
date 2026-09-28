@@ -25,11 +25,12 @@ final class GlueClassifierCsvClassifier {
 
   final TfArg<bool>? allowSingleColumn;
 
-  final TfArg<String>? containsHeader;
+  final TfArg<GlueClassifierCsvClassifierContainsHeader>? containsHeader;
 
   final TfArg<bool>? customDatatypeConfigured;
 
-  final TfArg<List<Object?>>? customDatatypes;
+  final List<TfArg<GlueClassifierCsvClassifierCustomDatatypes>>?
+  customDatatypes;
 
   final TfArg<String>? delimiter;
 
@@ -39,7 +40,7 @@ final class GlueClassifierCsvClassifier {
 
   final TfArg<String>? quoteSymbol;
 
-  final TfArg<String>? serde;
+  final TfArg<GlueClassifierCsvClassifierSerde>? serde;
 
   Map<String, Object?> encode() => {
     if (allowSingleColumn != null)
@@ -48,7 +49,7 @@ final class GlueClassifierCsvClassifier {
     if (customDatatypeConfigured != null)
       'custom_datatype_configured': customDatatypeConfigured!.toTfJson(),
     if (customDatatypes != null)
-      'custom_datatypes': customDatatypes!.toTfJson(),
+      'custom_datatypes': [for (final e in customDatatypes!) e.toTfJson()],
     if (delimiter != null) 'delimiter': delimiter!.toTfJson(),
     if (disableValueTrimming != null)
       'disable_value_trimming': disableValueTrimming!.toTfJson(),
@@ -56,6 +57,47 @@ final class GlueClassifierCsvClassifier {
     if (quoteSymbol != null) 'quote_symbol': quoteSymbol!.toTfJson(),
     if (serde != null) 'serde': serde!.toTfJson(),
   };
+}
+
+/// `contains_header` — derived from the provider schema description.
+enum GlueClassifierCsvClassifierContainsHeader implements TerraformEnum {
+  unknown('UNKNOWN'),
+  present('PRESENT'),
+  absent('ABSENT');
+
+  const GlueClassifierCsvClassifierContainsHeader(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `custom_datatypes` — derived from the provider schema description.
+enum GlueClassifierCsvClassifierCustomDatatypes implements TerraformEnum {
+  binary('BINARY'),
+  boolean('BOOLEAN'),
+  date('DATE'),
+  decimal('DECIMAL'),
+  double('DOUBLE'),
+  float('FLOAT'),
+  int('INT'),
+  long('LONG'),
+  short('SHORT'),
+  string('STRING'),
+  timestamp('TIMESTAMP');
+
+  const GlueClassifierCsvClassifierCustomDatatypes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `serde` — derived from the provider schema description.
+enum GlueClassifierCsvClassifierSerde implements TerraformEnum {
+  opencsvserde('OpenCSVSerDe'),
+  lazysimpleserde('LazySimpleSerDe'),
+  none('None');
+
+  const GlueClassifierCsvClassifierSerde(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `grok_classifier` block of

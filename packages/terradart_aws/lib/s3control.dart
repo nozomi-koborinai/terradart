@@ -7,7 +7,10 @@ export 'src/s3control/aws_s3control_access_grant.dart'
     show
         AwsS3controlAccessGrant,
         S3controlAccessGrantAccessGrantsLocationConfiguration,
-        S3controlAccessGrantGrantee;
+        S3controlAccessGrantGrantee,
+        S3controlAccessGrantGranteeGranteeType,
+        S3controlAccessGrantPermission,
+        S3controlAccessGrantS3PrefixType;
 export 'src/s3control/aws_s3control_access_grants_instance.dart'
     show AwsS3controlAccessGrantsInstance;
 export 'src/s3control/aws_s3control_access_grants_instance_resource_policy.dart'
@@ -29,7 +32,8 @@ export 'src/s3control/aws_s3control_bucket_policy.dart'
 export 'src/s3control/aws_s3control_directory_bucket_access_point_scope.dart'
     show
         AwsS3controlDirectoryBucketAccessPointScope,
-        S3controlDirectoryBucketAccessPointScopeScope;
+        S3controlDirectoryBucketAccessPointScopeScope,
+        S3controlDirectoryBucketAccessPointScopeScopePermissions;
 export 'src/s3control/aws_s3control_multi_region_access_point.dart'
     show
         AwsS3controlMultiRegionAccessPoint,
@@ -48,7 +52,9 @@ export 'src/s3control/aws_s3control_object_lambda_access_point.dart'
     show
         AwsS3controlObjectLambdaAccessPoint,
         S3controlObjectLambdaAccessPointConfiguration,
+        S3controlObjectLambdaAccessPointConfigurationAllowedFeatures,
         S3controlObjectLambdaAccessPointConfigurationTransformationConfiguration,
+        S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationActions,
         S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformation,
         S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformationAwsLambda;
 export 'src/s3control/aws_s3control_object_lambda_access_point_policy.dart'

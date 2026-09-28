@@ -2,6 +2,7 @@ outputDir: lambda
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true
 
 curatedDoc: |-
   /// A dedicated HTTPS endpoint for an [AwsLambdaFunction], without API

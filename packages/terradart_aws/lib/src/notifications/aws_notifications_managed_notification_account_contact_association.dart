@@ -8,6 +8,21 @@ const Set<String>
 _awsNotificationsManagedNotificationAccountContactAssociationSensitive =
     <String>{};
 
+/// Notifications Managed Notification Account Contact Association Contact enum for `contact_identifier`.
+enum NotificationsManagedNotificationAccountContactAssociationContactIdentifier
+    implements TerraformEnum {
+  accountPrimary('ACCOUNT_PRIMARY'),
+  accountAlternateBilling('ACCOUNT_ALTERNATE_BILLING'),
+  accountAlternateOperations('ACCOUNT_ALTERNATE_OPERATIONS'),
+  accountAlternateSecurity('ACCOUNT_ALTERNATE_SECURITY');
+
+  const NotificationsManagedNotificationAccountContactAssociationContactIdentifier(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_notifications_managed_notification_account_contact_association`.
 final class AwsNotificationsManagedNotificationAccountContactAssociation
     extends Resource {
@@ -16,7 +31,10 @@ final class AwsNotificationsManagedNotificationAccountContactAssociation
 
   AwsNotificationsManagedNotificationAccountContactAssociation({
     required super.localName,
-    required TfArg<String> contactIdentifier,
+    required TfArg<
+      NotificationsManagedNotificationAccountContactAssociationContactIdentifier
+    >
+    contactIdentifier,
     required TfArg<String> managedNotificationConfigurationArn,
     super.lifecycle,
     super.dependsOn,

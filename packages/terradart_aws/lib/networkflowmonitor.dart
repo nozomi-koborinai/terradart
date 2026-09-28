@@ -7,10 +7,13 @@ export 'src/networkflowmonitor/aws_networkflowmonitor_monitor.dart'
     show
         AwsNetworkflowmonitorMonitor,
         NetworkflowmonitorMonitorLocalResource,
-        NetworkflowmonitorMonitorRemoteResource;
+        NetworkflowmonitorMonitorLocalResourceType,
+        NetworkflowmonitorMonitorRemoteResource,
+        NetworkflowmonitorMonitorRemoteResourceType;
 export 'src/networkflowmonitor/aws_networkflowmonitor_scope.dart'
     show
         AwsNetworkflowmonitorScope,
         NetworkflowmonitorScopeTarget,
         NetworkflowmonitorScopeTargetTargetIdentifier,
-        NetworkflowmonitorScopeTargetTargetIdentifierTargetId;
+        NetworkflowmonitorScopeTargetTargetIdentifierTargetId,
+        NetworkflowmonitorScopeTargetTargetIdentifierTargetType;

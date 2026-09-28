@@ -68,6 +68,7 @@ void main() {
   final parsedFiles = <String, _ParsedFile>{};
   for (final file in files) {
     parsedFiles[file.path] = _parseFile(file);
+    _collectEnums(file.readAsStringSync());
   }
 
   final helpers = <String, _ClassInfo>{};
@@ -952,6 +953,13 @@ String _dummy(
   final n = p.name;
   final value = _lookup('$owner.$n');
   if (value != null) {
+    final enumType = _enumSlotType(p.type);
+    if (enumType != null) {
+      final member = _enumFor(enumType, value);
+      return p.type.startsWith('TfArg')
+          ? 'TfArg.literal($member,)'
+          : '[TfArg.literal($member,),]';
+    }
     return p.type.startsWith('TfArg') ? 'TfArg.literal($value)' : value;
   }
   if (_isSensitive(n, sensitive) && p.type.startsWith('TfArg')) {
@@ -1044,7 +1052,19 @@ String _dummyForType(
       return _secretVarRef;
     }
     final inner = t.substring(6, t.length - 1);
-    return 'TfArg.literal(${_literalInner(inner, helpers, depth: depth, name: name, sensitive: sensitive, owner: owner)})';
+    final value = _literalInner(
+      inner,
+      helpers,
+      depth: depth,
+      name: name,
+      sensitive: sensitive,
+      owner: owner,
+    );
+    // An enum member's long name makes the formatter wrap the call; the
+    // trailing comma keeps the wrapped shape `require_trailing_commas` wants.
+    return _enums.containsKey(inner.trim())
+        ? 'TfArg.literal($value,)'
+        : 'TfArg.literal($value)';
   }
   if (t.startsWith('List<') && t.endsWith('>')) {
     final inner = t.substring(5, t.length - 1);
@@ -1056,6 +1076,7 @@ String _dummyForType(
   if (helpers.containsKey(t)) {
     return _constructHelper(t, helpers, depth: depth + 1, sensitive: sensitive);
   }
+  if (_enums.containsKey(t)) return _enumMember(t, name, owner: owner);
   if (_primitives.contains(_headType(t))) {
     return _literalInner(
       t,
@@ -1080,6 +1101,7 @@ String _literalInner(
   var t = inner.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
   if (t == 'String') return _stringLiteral(name, owner: owner);
+  if (_enums.containsKey(t)) return _enumMember(t, name, owner: owner);
   if (t == 'num' || t == 'int' || t == 'double') return '200';
   if (t == 'bool') return 'true';
   if (t.startsWith('List<') && t.endsWith('>')) {
@@ -1108,6 +1130,52 @@ String _literalInner(
 }
 
 const _accountId = '123456789012';
+
+/// Every `TerraformEnum` the package declares: name → (member, raw value)
+/// in declaration order.
+final _enums = <String, List<(String, String)>>{};
+
+final _enumDecl = RegExp(
+  r'enum\s+(\w+)\s+implements\s+TerraformEnum\s*\{([^;]*);',
+);
+final _enumEntry = RegExp(r"(\w+)\(\s*'((?:[^'\\]|\\.)*)'\s*,?\s*\)");
+
+void _collectEnums(String source) {
+  for (final m in _enumDecl.allMatches(source)) {
+    _enums[m.group(1)!] = [
+      for (final e in _enumEntry.allMatches(m.group(2)!))
+        (e.group(1)!, e.group(2)!.replaceAll(r'\', '')),
+    ];
+  }
+}
+
+/// The enum a `TfArg<E>?` / `List<TfArg<E>>?` slot takes, if any.
+String? _enumSlotType(String type) {
+  final m = RegExp(
+    r'^(?:List<)?TfArg<(\w+)>>?\??$',
+  ).firstMatch(type.replaceAll(RegExp(r'\s+'), ''));
+  final name = m?.group(1);
+  return name != null && _enums.containsKey(name) ? name : null;
+}
+
+/// The member of [enumName] whose value is the Dart string literal
+/// [literal], else the first member.
+String _enumFor(String enumName, String literal) {
+  final members = _enums[enumName]!;
+  final preferred = literal.startsWith("'") && literal.endsWith("'")
+      ? literal.substring(1, literal.length - 1)
+      : null;
+  final pick = members.firstWhere(
+    (m) => m.$2 == preferred,
+    orElse: () => members.first,
+  );
+  return '$enumName.${pick.$1}';
+}
+
+/// The member whose value [_stringLiteral] would have written for the slot
+/// (the value its provider validator accepts), else the first member.
+String _enumMember(String enumName, String name, {required String owner}) =>
+    _enumFor(enumName, _stringLiteral(name, owner: owner));
 
 /// Deeper than any typed helper chain in the catalog; the heavy
 /// resources take their nested blocks as maps.
@@ -1416,7 +1484,7 @@ const _literalByKey = <String, String>{
   'AwsGameliftBuild.operatingSystem': '\'WINDOWS_2012\'',
   'AwsGameliftFleet.ec2InstanceType': '\'t2.micro\'',
   'AwsGameliftGameServerGroup.instanceDefinition':
-      '[GameliftGameServerGroupInstanceDefinition(instanceType: TfArg.literal(\'c5.large\')), GameliftGameServerGroupInstanceDefinition(instanceType: TfArg.literal(\'c5.xlarge\')),]',
+      '[GameliftGameServerGroupInstanceDefinition(instanceType: TfArg.literal(GameliftGameServerGroupInstanceDefinitionInstanceType.c5Large,),), GameliftGameServerGroupInstanceDefinition(instanceType: TfArg.literal(GameliftGameServerGroupInstanceDefinitionInstanceType.c5Xlarge,),),]',
   'AwsGlobalacceleratorListener.protocol': '\'TCP\'',
   'AwsGlueCatalogTableOptimizer.type': '\'compaction\'',
   'AwsGlueSchema.compatibility': '\'NONE\'',

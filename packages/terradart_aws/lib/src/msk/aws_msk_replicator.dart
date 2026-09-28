@@ -117,7 +117,8 @@ final class MskReplicatorKafkaClusterClientAuthenticationSaslScram {
     required this.secretArn,
   });
 
-  final TfArg<String> mechanism;
+  final TfArg<MskReplicatorKafkaClusterClientAuthenticationSaslScramMechanism>
+  mechanism;
 
   final TfArg<String> secretArn;
 
@@ -125,6 +126,19 @@ final class MskReplicatorKafkaClusterClientAuthenticationSaslScram {
     'mechanism': mechanism.toTfJson(),
     'secret_arn': secretArn.toTfJson(),
   };
+}
+
+/// `mechanism` — derived from the provider schema description.
+enum MskReplicatorKafkaClusterClientAuthenticationSaslScramMechanism
+    implements TerraformEnum {
+  sha256('SHA256'),
+  sha512('SHA512');
+
+  const MskReplicatorKafkaClusterClientAuthenticationSaslScramMechanism(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `kafka_cluster.encryption_in_transit` block of
@@ -319,7 +333,10 @@ final class MskReplicatorReplicationInfoListConsumerGroupReplication {
     this.synchroniseConsumerGroupOffsets,
   });
 
-  final TfArg<String>? consumerGroupOffsetSyncMode;
+  final TfArg<
+    MskReplicatorReplicationInfoListConsumerGroupReplicationConsumerGroupOffsetSyncMode
+  >?
+  consumerGroupOffsetSyncMode;
 
   final TfArg<List<Object?>>? consumerGroupsToExclude;
 
@@ -343,6 +360,19 @@ final class MskReplicatorReplicationInfoListConsumerGroupReplication {
       'synchronise_consumer_group_offsets': synchroniseConsumerGroupOffsets!
           .toTfJson(),
   };
+}
+
+/// `consumer_group_offset_sync_mode` — derived from the provider schema description.
+enum MskReplicatorReplicationInfoListConsumerGroupReplicationConsumerGroupOffsetSyncMode
+    implements TerraformEnum {
+  legacy('LEGACY'),
+  enhanced('ENHANCED');
+
+  const MskReplicatorReplicationInfoListConsumerGroupReplicationConsumerGroupOffsetSyncMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `replication_info_list.topic_replication` block of
@@ -401,9 +431,25 @@ final class MskReplicatorReplicationInfoListTopicReplicationStartingPosition {
     this.type,
   });
 
-  final TfArg<String>? type;
+  final TfArg<
+    MskReplicatorReplicationInfoListTopicReplicationStartingPositionType
+  >?
+  type;
 
   Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum MskReplicatorReplicationInfoListTopicReplicationStartingPositionType
+    implements TerraformEnum {
+  latest('LATEST'),
+  earliest('EARLIEST');
+
+  const MskReplicatorReplicationInfoListTopicReplicationStartingPositionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `replication_info_list.topic_replication.topic_name_configuration` block of
@@ -414,9 +460,25 @@ final class MskReplicatorReplicationInfoListTopicReplicationTopicNameConfigurati
     this.type,
   });
 
-  final TfArg<String>? type;
+  final TfArg<
+    MskReplicatorReplicationInfoListTopicReplicationTopicNameConfigurationType
+  >?
+  type;
 
   Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum MskReplicatorReplicationInfoListTopicReplicationTopicNameConfigurationType
+    implements TerraformEnum {
+  prefixedWithSourceClusterAlias('PREFIXED_WITH_SOURCE_CLUSTER_ALIAS'),
+  identical('IDENTICAL');
+
+  const MskReplicatorReplicationInfoListTopicReplicationTopicNameConfigurationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_msk_replicator`.

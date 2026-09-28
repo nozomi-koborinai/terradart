@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ssm_maintenance_window_target`.
 const Set<String> _awsSsmMaintenanceWindowTargetSensitive = <String>{};
 
+/// Ssm Maintenance Window Target Resource enum for `resource_type`.
+enum SsmMaintenanceWindowTargetResourceType implements TerraformEnum {
+  instance('INSTANCE'),
+  resourceGroup('RESOURCE_GROUP');
+
+  const SsmMaintenanceWindowTargetResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `targets` block of
 /// `aws_ssm_maintenance_window_target` (derived from provider schema).
 @immutable
@@ -36,7 +46,7 @@ final class AwsSsmMaintenanceWindowTarget extends Resource {
     TfArg<String>? name,
     TfArg<String>? ownerInformation,
     TfArg<String>? region,
-    required TfArg<String> resourceType,
+    required TfArg<SsmMaintenanceWindowTargetResourceType> resourceType,
     required TfArg<String> windowId,
     required List<SsmMaintenanceWindowTargetTargets> targets,
     super.lifecycle,

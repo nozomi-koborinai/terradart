@@ -6,13 +6,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iot_logging_options`.
 const Set<String> _awsIotLoggingOptionsSensitive = <String>{};
 
+/// Iot Logging Options Default Log enum for `default_log_level`.
+enum IotLoggingOptionsDefaultLogLevel implements TerraformEnum {
+  debug('DEBUG'),
+  info('INFO'),
+  error('ERROR'),
+  warn('WARN'),
+  disabled('DISABLED');
+
+  const IotLoggingOptionsDefaultLogLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_iot_logging_options`.
 final class AwsIotLoggingOptions extends Resource {
   static const String tfType = 'aws_iot_logging_options';
 
   AwsIotLoggingOptions({
     required super.localName,
-    required TfArg<String> defaultLogLevel,
+    required TfArg<IotLoggingOptionsDefaultLogLevel> defaultLogLevel,
     TfArg<bool>? disableAllLogs,
     TfArg<String>? region,
     required TfArg<String> roleArn,

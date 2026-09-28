@@ -6,8 +6,10 @@ library;
 export 'src/licensemanager/aws_licensemanager_association.dart'
     show AwsLicensemanagerAssociation;
 export 'src/licensemanager/aws_licensemanager_grant.dart'
-    show AwsLicensemanagerGrant;
+    show AwsLicensemanagerGrant, LicensemanagerGrantAllowedOperations;
 export 'src/licensemanager/aws_licensemanager_grant_accepter.dart'
     show AwsLicensemanagerGrantAccepter;
 export 'src/licensemanager/aws_licensemanager_license_configuration.dart'
-    show AwsLicensemanagerLicenseConfiguration;
+    show
+        AwsLicensemanagerLicenseConfiguration,
+        LicensemanagerLicenseConfigurationLicenseCountingType;

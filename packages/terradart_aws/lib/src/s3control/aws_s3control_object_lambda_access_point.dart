@@ -18,7 +18,10 @@ final class S3controlObjectLambdaAccessPointConfiguration {
     required this.transformationConfiguration,
   });
 
-  final TfArg<List<Object?>>? allowedFeatures;
+  final List<
+    TfArg<S3controlObjectLambdaAccessPointConfigurationAllowedFeatures>
+  >?
+  allowedFeatures;
 
   final TfArg<bool>? cloudWatchMetricsEnabled;
 
@@ -31,7 +34,7 @@ final class S3controlObjectLambdaAccessPointConfiguration {
 
   Map<String, Object?> encode() => {
     if (allowedFeatures != null)
-      'allowed_features': allowedFeatures!.toTfJson(),
+      'allowed_features': [for (final e in allowedFeatures!) e.toTfJson()],
     if (cloudWatchMetricsEnabled != null)
       'cloud_watch_metrics_enabled': cloudWatchMetricsEnabled!.toTfJson(),
     'supporting_access_point': supportingAccessPoint.toTfJson(),
@@ -39,6 +42,21 @@ final class S3controlObjectLambdaAccessPointConfiguration {
       for (final e in transformationConfiguration) e.encode(),
     ],
   };
+}
+
+/// `allowed_features` — derived from the provider schema description.
+enum S3controlObjectLambdaAccessPointConfigurationAllowedFeatures
+    implements TerraformEnum {
+  getobjectRange('GetObject-Range'),
+  getobjectPartnumber('GetObject-PartNumber'),
+  headobjectRange('HeadObject-Range'),
+  headobjectPartnumber('HeadObject-PartNumber');
+
+  const S3controlObjectLambdaAccessPointConfigurationAllowedFeatures(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.transformation_configuration` block of
@@ -50,15 +68,35 @@ final class S3controlObjectLambdaAccessPointConfigurationTransformationConfigura
     required this.contentTransformation,
   });
 
-  final TfArg<List<Object?>> actions;
+  final List<
+    TfArg<
+      S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationActions
+    >
+  >
+  actions;
 
   final S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationContentTransformation
   contentTransformation;
 
   Map<String, Object?> encode() => {
-    'actions': actions.toTfJson(),
+    'actions': [for (final e in actions) e.toTfJson()],
     'content_transformation': contentTransformation.encode(),
   };
+}
+
+/// `actions` — derived from the provider schema description.
+enum S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationActions
+    implements TerraformEnum {
+  getobject('GetObject'),
+  headobject('HeadObject'),
+  listobjects('ListObjects'),
+  listobjectsv2('ListObjectsV2');
+
+  const S3controlObjectLambdaAccessPointConfigurationTransformationConfigurationActions(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `configuration.transformation_configuration.content_transformation` block of

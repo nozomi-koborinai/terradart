@@ -21,13 +21,28 @@ final class WafRateBasedRulePredicates {
 
   final TfArg<bool> negated;
 
-  final TfArg<String> type;
+  final TfArg<WafRateBasedRulePredicatesType> type;
 
   Map<String, Object?> encode() => {
     'data_id': dataId.toTfJson(),
     'negated': negated.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum WafRateBasedRulePredicatesType implements TerraformEnum {
+  ipmatch('IPMatch'),
+  bytematch('ByteMatch'),
+  sqlinjectionmatch('SqlInjectionMatch'),
+  geomatch('GeoMatch'),
+  sizeconstraint('SizeConstraint'),
+  xssmatch('XssMatch'),
+  regexmatch('RegexMatch');
+
+  const WafRateBasedRulePredicatesType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_waf_rate_based_rule`.

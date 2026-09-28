@@ -6,14 +6,33 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_securityhub_feature_v2`.
 const Set<String> _awsSecurityhubFeatureV2Sensitive = <String>{};
 
+/// Securityhub Feature V2 Feature enum for `feature_name`.
+enum SecurityhubFeatureV2FeatureName implements TerraformEnum {
+  networkScanning('NETWORK_SCANNING');
+
+  const SecurityhubFeatureV2FeatureName(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Securityhub Feature V2 Feature enum for `feature_status`.
+enum SecurityhubFeatureV2FeatureStatus implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SecurityhubFeatureV2FeatureStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_securityhub_feature_v2`.
 final class AwsSecurityhubFeatureV2 extends Resource {
   static const String tfType = 'aws_securityhub_feature_v2';
 
   AwsSecurityhubFeatureV2({
     required super.localName,
-    required TfArg<String> featureName,
-    required TfArg<String> featureStatus,
+    required TfArg<SecurityhubFeatureV2FeatureName> featureName,
+    required TfArg<SecurityhubFeatureV2FeatureStatus> featureStatus,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

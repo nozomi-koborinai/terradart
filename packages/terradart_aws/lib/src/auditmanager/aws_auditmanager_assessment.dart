@@ -18,12 +18,25 @@ final class AuditmanagerAssessmentAssessmentReportsDestination {
 
   final TfArg<String> destination;
 
-  final TfArg<String> destinationType;
+  final TfArg<AuditmanagerAssessmentAssessmentReportsDestinationDestinationType>
+  destinationType;
 
   Map<String, Object?> encode() => {
     'destination': destination.toTfJson(),
     'destination_type': destinationType.toTfJson(),
   };
+}
+
+/// `destination_type` — derived from the provider schema description.
+enum AuditmanagerAssessmentAssessmentReportsDestinationDestinationType
+    implements TerraformEnum {
+  s3('S3');
+
+  const AuditmanagerAssessmentAssessmentReportsDestinationDestinationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `roles` block of
@@ -37,12 +50,22 @@ final class AuditmanagerAssessmentRoles {
 
   final TfArg<String> roleArn;
 
-  final TfArg<String> roleType;
+  final TfArg<AuditmanagerAssessmentRolesRoleType> roleType;
 
   Map<String, Object?> encode() => {
     'role_arn': roleArn.toTfJson(),
     'role_type': roleType.toTfJson(),
   };
+}
+
+/// `role_type` — derived from the provider schema description.
+enum AuditmanagerAssessmentRolesRoleType implements TerraformEnum {
+  processOwner('PROCESS_OWNER'),
+  resourceOwner('RESOURCE_OWNER');
+
+  const AuditmanagerAssessmentRolesRoleType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `scope` block of

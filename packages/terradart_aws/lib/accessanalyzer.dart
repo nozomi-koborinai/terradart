@@ -9,9 +9,11 @@ export 'src/accessanalyzer/aws_accessanalyzer_analyzer.dart'
         AccessanalyzerAnalyzerConfigurationInternalAccess,
         AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRule,
         AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusion,
+        AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResourceTypes,
         AccessanalyzerAnalyzerConfigurationUnusedAccess,
         AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRule,
         AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRuleExclusion,
+        AccessanalyzerAnalyzerType,
         AwsAccessanalyzerAnalyzer;
 export 'src/accessanalyzer/aws_accessanalyzer_archive_rule.dart'
     show AccessanalyzerArchiveRuleFilter, AwsAccessanalyzerArchiveRule;

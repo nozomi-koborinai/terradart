@@ -7,6 +7,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_batch_compute_environment`.
 const Set<String> _awsBatchComputeEnvironmentSensitive = <String>{};
 
+/// Batch Compute Environment enum for `state`.
+enum BatchComputeEnvironmentState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const BatchComputeEnvironmentState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Batch Compute Environment enum for `type`.
+enum BatchComputeEnvironmentType implements TerraformEnum {
+  managed('MANAGED'),
+  unmanaged('UNMANAGED');
+
+  const BatchComputeEnvironmentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `compute_resources` block of
 /// `aws_batch_compute_environment` (derived from provider schema).
 @immutable
@@ -31,7 +51,8 @@ final class BatchComputeEnvironmentComputeResources {
     this.launchTemplate,
   });
 
-  final TfArg<String>? allocationStrategy;
+  final TfArg<BatchComputeEnvironmentComputeResourcesAllocationStrategy>?
+  allocationStrategy;
 
   final TfArg<num>? bidPercentage;
 
@@ -59,7 +80,7 @@ final class BatchComputeEnvironmentComputeResources {
 
   final TfArg<Map<String, String>>? tags;
 
-  final TfArg<String> type;
+  final TfArg<BatchComputeEnvironmentComputeResourcesType> type;
 
   final List<BatchComputeEnvironmentComputeResourcesEc2Configuration>?
   ec2Configuration;
@@ -89,6 +110,36 @@ final class BatchComputeEnvironmentComputeResources {
       'ec2_configuration': [for (final e in ec2Configuration!) e.encode()],
     if (launchTemplate != null) 'launch_template': launchTemplate!.encode(),
   };
+}
+
+/// `allocation_strategy` — derived from the provider schema description.
+enum BatchComputeEnvironmentComputeResourcesAllocationStrategy
+    implements TerraformEnum {
+  bestFit('BEST_FIT'),
+  bestFitProgressive('BEST_FIT_PROGRESSIVE'),
+  bestFitProgressiveOrdered('BEST_FIT_PROGRESSIVE_ORDERED'),
+  spotCapacityOptimized('SPOT_CAPACITY_OPTIMIZED'),
+  spotPriceCapacityOptimized('SPOT_PRICE_CAPACITY_OPTIMIZED'),
+  spotCapacityOptimizedPrioritized('SPOT_CAPACITY_OPTIMIZED_PRIORITIZED');
+
+  const BatchComputeEnvironmentComputeResourcesAllocationStrategy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum BatchComputeEnvironmentComputeResourcesType implements TerraformEnum {
+  ec2('EC2'),
+  spot('SPOT'),
+  fargate('FARGATE'),
+  fargateSpot('FARGATE_SPOT'),
+  ecsManagedInstances('ECS_MANAGED_INSTANCES');
+
+  const BatchComputeEnvironmentComputeResourcesType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `compute_resources.ec2_configuration` block of
@@ -191,9 +242,9 @@ final class AwsBatchComputeEnvironment extends Resource {
     TfArg<String>? namePrefix,
     TfArg<String>? region,
     TfArg<String>? serviceRole,
-    TfArg<String>? state,
+    TfArg<BatchComputeEnvironmentState>? state,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> type,
+    required TfArg<BatchComputeEnvironmentType> type,
     BatchComputeEnvironmentComputeResources? computeResources,
     BatchComputeEnvironmentEksConfiguration? eksConfiguration,
     BatchComputeEnvironmentUpdatePolicy? updatePolicy,

@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_guardduty_ipset`.
 const Set<String> _awsGuarddutyIpsetSensitive = <String>{};
 
+/// Guardduty Ipset enum for `format`.
+enum GuarddutyIpsetFormat implements TerraformEnum {
+  txt('TXT'),
+  stix('STIX'),
+  otxCsv('OTX_CSV'),
+  alienVault('ALIEN_VAULT'),
+  proofPoint('PROOF_POINT'),
+  fireEye('FIRE_EYE');
+
+  const GuarddutyIpsetFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_guardduty_ipset`.
 final class AwsGuarddutyIpset extends Resource {
   static const String tfType = 'aws_guardduty_ipset';
@@ -14,7 +28,7 @@ final class AwsGuarddutyIpset extends Resource {
     required super.localName,
     required TfArg<bool> activate,
     required TfArg<String> detectorId,
-    required TfArg<String> format,
+    required TfArg<GuarddutyIpsetFormat> format,
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? region,

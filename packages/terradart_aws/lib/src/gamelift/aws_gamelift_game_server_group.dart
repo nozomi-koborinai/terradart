@@ -7,6 +7,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_gamelift_game_server_group`.
 const Set<String> _awsGameliftGameServerGroupSensitive = <String>{};
 
+/// Gamelift Game Server Group Balancing enum for `balancing_strategy`.
+enum GameliftGameServerGroupBalancingStrategy implements TerraformEnum {
+  spotOnly('SPOT_ONLY'),
+  spotPreferred('SPOT_PREFERRED'),
+  onDemandOnly('ON_DEMAND_ONLY');
+
+  const GameliftGameServerGroupBalancingStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Gamelift Game Server Group Game Server Protection enum for `game_server_protection_policy`.
+enum GameliftGameServerGroupGameServerProtectionPolicy
+    implements TerraformEnum {
+  noProtection('NO_PROTECTION'),
+  fullProtection('FULL_PROTECTION');
+
+  const GameliftGameServerGroupGameServerProtectionPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `auto_scaling_policy` block of
 /// `aws_gamelift_game_server_group` (derived from provider schema).
 @immutable
@@ -50,7 +72,8 @@ final class GameliftGameServerGroupInstanceDefinition {
     this.weightedCapacity,
   });
 
-  final TfArg<String> instanceType;
+  final TfArg<GameliftGameServerGroupInstanceDefinitionInstanceType>
+  instanceType;
 
   final TfArg<String>? weightedCapacity;
 
@@ -59,6 +82,105 @@ final class GameliftGameServerGroupInstanceDefinition {
     if (weightedCapacity != null)
       'weighted_capacity': weightedCapacity!.toTfJson(),
   };
+}
+
+/// `instance_type` — derived from the provider schema description.
+enum GameliftGameServerGroupInstanceDefinitionInstanceType
+    implements TerraformEnum {
+  c4Large('c4.large'),
+  c4Xlarge('c4.xlarge'),
+  c4p2xlarge('c4.2xlarge'),
+  c4p4xlarge('c4.4xlarge'),
+  c4p8xlarge('c4.8xlarge'),
+  c5Large('c5.large'),
+  c5Xlarge('c5.xlarge'),
+  c5p2xlarge('c5.2xlarge'),
+  c5p4xlarge('c5.4xlarge'),
+  c5p9xlarge('c5.9xlarge'),
+  c5p12xlarge('c5.12xlarge'),
+  c5p18xlarge('c5.18xlarge'),
+  c5p24xlarge('c5.24xlarge'),
+  c5aLarge('c5a.large'),
+  c5aXlarge('c5a.xlarge'),
+  c5a2xlarge('c5a.2xlarge'),
+  c5a4xlarge('c5a.4xlarge'),
+  c5a8xlarge('c5a.8xlarge'),
+  c5a12xlarge('c5a.12xlarge'),
+  c5a16xlarge('c5a.16xlarge'),
+  c5a24xlarge('c5a.24xlarge'),
+  c6gMedium('c6g.medium'),
+  c6gLarge('c6g.large'),
+  c6gXlarge('c6g.xlarge'),
+  c6g2xlarge('c6g.2xlarge'),
+  c6g4xlarge('c6g.4xlarge'),
+  c6g8xlarge('c6g.8xlarge'),
+  c6g12xlarge('c6g.12xlarge'),
+  c6g16xlarge('c6g.16xlarge'),
+  r4Large('r4.large'),
+  r4Xlarge('r4.xlarge'),
+  r4p2xlarge('r4.2xlarge'),
+  r4p4xlarge('r4.4xlarge'),
+  r4p8xlarge('r4.8xlarge'),
+  r4p16xlarge('r4.16xlarge'),
+  r5Large('r5.large'),
+  r5Xlarge('r5.xlarge'),
+  r5p2xlarge('r5.2xlarge'),
+  r5p4xlarge('r5.4xlarge'),
+  r5p8xlarge('r5.8xlarge'),
+  r5p12xlarge('r5.12xlarge'),
+  r5p16xlarge('r5.16xlarge'),
+  r5p24xlarge('r5.24xlarge'),
+  r5aLarge('r5a.large'),
+  r5aXlarge('r5a.xlarge'),
+  r5a2xlarge('r5a.2xlarge'),
+  r5a4xlarge('r5a.4xlarge'),
+  r5a8xlarge('r5a.8xlarge'),
+  r5a12xlarge('r5a.12xlarge'),
+  r5a16xlarge('r5a.16xlarge'),
+  r5a24xlarge('r5a.24xlarge'),
+  r6gMedium('r6g.medium'),
+  r6gLarge('r6g.large'),
+  r6gXlarge('r6g.xlarge'),
+  r6g2xlarge('r6g.2xlarge'),
+  r6g4xlarge('r6g.4xlarge'),
+  r6g8xlarge('r6g.8xlarge'),
+  r6g12xlarge('r6g.12xlarge'),
+  r6g16xlarge('r6g.16xlarge'),
+  m4Large('m4.large'),
+  m4Xlarge('m4.xlarge'),
+  m4p2xlarge('m4.2xlarge'),
+  m4p4xlarge('m4.4xlarge'),
+  m4p10xlarge('m4.10xlarge'),
+  m5Large('m5.large'),
+  m5Xlarge('m5.xlarge'),
+  m5p2xlarge('m5.2xlarge'),
+  m5p4xlarge('m5.4xlarge'),
+  m5p8xlarge('m5.8xlarge'),
+  m5p12xlarge('m5.12xlarge'),
+  m5p16xlarge('m5.16xlarge'),
+  m5p24xlarge('m5.24xlarge'),
+  m5aLarge('m5a.large'),
+  m5aXlarge('m5a.xlarge'),
+  m5a2xlarge('m5a.2xlarge'),
+  m5a4xlarge('m5a.4xlarge'),
+  m5a8xlarge('m5a.8xlarge'),
+  m5a12xlarge('m5a.12xlarge'),
+  m5a16xlarge('m5a.16xlarge'),
+  m5a24xlarge('m5a.24xlarge'),
+  m6gMedium('m6g.medium'),
+  m6gLarge('m6g.large'),
+  m6gXlarge('m6g.xlarge'),
+  m6g2xlarge('m6g.2xlarge'),
+  m6g4xlarge('m6g.4xlarge'),
+  m6g8xlarge('m6g.8xlarge'),
+  m6g12xlarge('m6g.12xlarge'),
+  m6g16xlarge('m6g.16xlarge');
+
+  const GameliftGameServerGroupInstanceDefinitionInstanceType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `launch_template` block of
@@ -90,9 +212,10 @@ final class AwsGameliftGameServerGroup extends Resource {
 
   AwsGameliftGameServerGroup({
     required super.localName,
-    TfArg<String>? balancingStrategy,
+    TfArg<GameliftGameServerGroupBalancingStrategy>? balancingStrategy,
     required TfArg<String> gameServerGroupName,
-    TfArg<String>? gameServerProtectionPolicy,
+    TfArg<GameliftGameServerGroupGameServerProtectionPolicy>?
+    gameServerProtectionPolicy,
     required TfArg<num> maxSize,
     required TfArg<num> minSize,
     TfArg<String>? region,

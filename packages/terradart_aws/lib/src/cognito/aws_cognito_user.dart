@@ -9,6 +9,26 @@ const Set<String> _awsCognitoUserSensitive = <String>{
   'temporary_password',
 };
 
+/// Cognito User Desired Delivery enum for `desired_delivery_mediums`.
+enum CognitoUserDesiredDeliveryMediums implements TerraformEnum {
+  sms('SMS'),
+  email('EMAIL');
+
+  const CognitoUserDesiredDeliveryMediums(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Cognito User Message enum for `message_action`.
+enum CognitoUserMessageAction implements TerraformEnum {
+  resend('RESEND'),
+  suppress('SUPPRESS');
+
+  const CognitoUserMessageAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cognito_user`.
 final class AwsCognitoUser extends Resource {
   static const String tfType = 'aws_cognito_user';
@@ -17,10 +37,10 @@ final class AwsCognitoUser extends Resource {
     required super.localName,
     TfArg<Map<String, String>>? attributes,
     TfArg<Map<String, String>>? clientMetadata,
-    TfArg<List<String>>? desiredDeliveryMediums,
+    List<TfArg<CognitoUserDesiredDeliveryMediums>>? desiredDeliveryMediums,
     TfArg<bool>? enabled,
     TfArg<bool>? forceAliasCreation,
-    TfArg<String>? messageAction,
+    TfArg<CognitoUserMessageAction>? messageAction,
     TfArg<String>? password,
     TfArg<String>? region,
     TfArg<String>? temporaryPassword,
@@ -37,7 +57,9 @@ final class AwsCognitoUser extends Resource {
            if (attributes != null) 'attributes': attributes,
            if (clientMetadata != null) 'client_metadata': clientMetadata,
            if (desiredDeliveryMediums != null)
-             'desired_delivery_mediums': desiredDeliveryMediums,
+             'desired_delivery_mediums': TfArg.literal([
+               for (final e in desiredDeliveryMediums) e.toTfJson(),
+             ]),
            if (enabled != null) 'enabled': enabled,
            if (forceAliasCreation != null)
              'force_alias_creation': forceAliasCreation,

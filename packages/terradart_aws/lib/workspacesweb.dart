@@ -13,11 +13,14 @@ export 'src/workspacesweb/aws_workspacesweb_data_protection_settings.dart'
         WorkspaceswebDataProtectionSettingsInlineRedactionConfiguration,
         WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPattern,
         WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternCustomPattern,
-        WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolder;
+        WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolder,
+        WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlineRedactionPatternRedactionPlaceHolderRedactionPlaceHolderType;
 export 'src/workspacesweb/aws_workspacesweb_data_protection_settings_association.dart'
     show AwsWorkspaceswebDataProtectionSettingsAssociation;
 export 'src/workspacesweb/aws_workspacesweb_identity_provider.dart'
-    show AwsWorkspaceswebIdentityProvider;
+    show
+        AwsWorkspaceswebIdentityProvider,
+        WorkspaceswebIdentityProviderIdentityProviderType;
 export 'src/workspacesweb/aws_workspacesweb_ip_access_settings.dart'
     show AwsWorkspaceswebIpAccessSettings, WorkspaceswebIpAccessSettingsIpRule;
 export 'src/workspacesweb/aws_workspacesweb_ip_access_settings_association.dart'
@@ -27,14 +30,20 @@ export 'src/workspacesweb/aws_workspacesweb_network_settings.dart'
 export 'src/workspacesweb/aws_workspacesweb_network_settings_association.dart'
     show AwsWorkspaceswebNetworkSettingsAssociation;
 export 'src/workspacesweb/aws_workspacesweb_portal.dart'
-    show AwsWorkspaceswebPortal;
+    show
+        AwsWorkspaceswebPortal,
+        WorkspaceswebPortalAuthenticationType,
+        WorkspaceswebPortalInstanceType;
 export 'src/workspacesweb/aws_workspacesweb_session_logger.dart'
     show
         AwsWorkspaceswebSessionLogger,
         WorkspaceswebSessionLoggerEventFilter,
         WorkspaceswebSessionLoggerEventFilterAll,
+        WorkspaceswebSessionLoggerEventFilterInclude,
         WorkspaceswebSessionLoggerLogConfiguration,
-        WorkspaceswebSessionLoggerLogConfigurationS3;
+        WorkspaceswebSessionLoggerLogConfigurationS3,
+        WorkspaceswebSessionLoggerLogConfigurationS3FolderStructure,
+        WorkspaceswebSessionLoggerLogConfigurationS3LogFileFormat;
 export 'src/workspacesweb/aws_workspacesweb_session_logger_association.dart'
     show AwsWorkspaceswebSessionLoggerAssociation;
 export 'src/workspacesweb/aws_workspacesweb_trust_store.dart'
@@ -51,6 +60,16 @@ export 'src/workspacesweb/aws_workspacesweb_user_settings.dart'
         WorkspaceswebUserSettingsCookieSynchronizationConfiguration,
         WorkspaceswebUserSettingsCookieSynchronizationConfigurationAllowlist,
         WorkspaceswebUserSettingsCookieSynchronizationConfigurationBlocklist,
-        WorkspaceswebUserSettingsToolbarConfiguration;
+        WorkspaceswebUserSettingsCopyAllowed,
+        WorkspaceswebUserSettingsDeepLinkAllowed,
+        WorkspaceswebUserSettingsDownloadAllowed,
+        WorkspaceswebUserSettingsPasteAllowed,
+        WorkspaceswebUserSettingsPrintAllowed,
+        WorkspaceswebUserSettingsToolbarConfiguration,
+        WorkspaceswebUserSettingsToolbarConfigurationHiddenToolbarItems,
+        WorkspaceswebUserSettingsToolbarConfigurationMaxDisplayResolution,
+        WorkspaceswebUserSettingsToolbarConfigurationToolbarType,
+        WorkspaceswebUserSettingsToolbarConfigurationVisualMode,
+        WorkspaceswebUserSettingsUploadAllowed;
 export 'src/workspacesweb/aws_workspacesweb_user_settings_association.dart'
     show AwsWorkspaceswebUserSettingsAssociation;

@@ -17,6 +17,17 @@ const Set<String> _awsCloudwatchEventConnectionSensitive = <String>{
   'auth_parameters.oauth.oauth_http_parameters.query_string.value',
 };
 
+/// Cloudwatch Event Connection Authorization enum for `authorization_type`.
+enum CloudwatchEventConnectionAuthorizationType implements TerraformEnum {
+  basic('BASIC'),
+  oauthClientCredentials('OAUTH_CLIENT_CREDENTIALS'),
+  apiKey('API_KEY');
+
+  const CloudwatchEventConnectionAuthorizationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `auth_parameters` block of
 /// `aws_cloudwatch_event_connection` (derived from provider schema).
 @immutable
@@ -236,7 +247,8 @@ final class CloudwatchEventConnectionAuthParametersOauth {
 
   final TfArg<String> authorizationEndpoint;
 
-  final TfArg<String> httpMethod;
+  final TfArg<CloudwatchEventConnectionAuthParametersOauthHttpMethod>
+  httpMethod;
 
   final CloudwatchEventConnectionAuthParametersOauthClientParameters?
   clientParameters;
@@ -251,6 +263,20 @@ final class CloudwatchEventConnectionAuthParametersOauth {
       'client_parameters': clientParameters!.encode(),
     'oauth_http_parameters': oauthHttpParameters.encode(),
   };
+}
+
+/// `http_method` — derived from the provider schema description.
+enum CloudwatchEventConnectionAuthParametersOauthHttpMethod
+    implements TerraformEnum {
+  get('GET'),
+  post('POST'),
+  put('PUT');
+
+  const CloudwatchEventConnectionAuthParametersOauthHttpMethod(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `auth_parameters.oauth.client_parameters` block of
@@ -411,7 +437,8 @@ final class AwsCloudwatchEventConnection extends Resource {
 
   AwsCloudwatchEventConnection({
     required super.localName,
-    required TfArg<String> authorizationType,
+    required TfArg<CloudwatchEventConnectionAuthorizationType>
+    authorizationType,
     TfArg<String>? description,
     TfArg<String>? kmsKeyIdentifier,
     required TfArg<String> name,

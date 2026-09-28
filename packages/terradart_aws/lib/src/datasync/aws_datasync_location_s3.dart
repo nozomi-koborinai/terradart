@@ -7,6 +7,22 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_datasync_location_s3`.
 const Set<String> _awsDatasyncLocationS3Sensitive = <String>{};
 
+/// Datasync Location S3 S3 Storage enum for `s3_storage_class`.
+enum DatasyncLocationS3S3StorageClass implements TerraformEnum {
+  standard('STANDARD'),
+  standardIa('STANDARD_IA'),
+  onezoneIa('ONEZONE_IA'),
+  intelligentTiering('INTELLIGENT_TIERING'),
+  glacier('GLACIER'),
+  deepArchive('DEEP_ARCHIVE'),
+  outposts('OUTPOSTS'),
+  glacierInstantRetrieval('GLACIER_INSTANT_RETRIEVAL');
+
+  const DatasyncLocationS3S3StorageClass(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `s3_config` block of
 /// `aws_datasync_location_s3` (derived from provider schema).
 @immutable
@@ -29,7 +45,7 @@ final class AwsDatasyncLocationS3 extends Resource {
     TfArg<List<String>>? agentArns,
     TfArg<String>? region,
     required TfArg<String> s3BucketArn,
-    TfArg<String>? s3StorageClass,
+    TfArg<DatasyncLocationS3S3StorageClass>? s3StorageClass,
     required TfArg<String> subdirectory,
     TfArg<Map<String, String>>? tags,
     required DatasyncLocationS3S3Config s3Config,

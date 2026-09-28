@@ -81,7 +81,7 @@ final class _TestStack extends Stack {
         localName: 'hello',
         functionName: TfArg.literal('hello-dart'),
         role: TfArg.ref(role.arn),
-        runtime: TfArg.literal('provided.al2023'),
+        runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023),
         handler: TfArg.literal('bootstrap'),
         filename: TfArg.literal('build/bootstrap.zip'),
       ),

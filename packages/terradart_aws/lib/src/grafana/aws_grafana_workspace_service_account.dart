@@ -6,13 +6,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_grafana_workspace_service_account`.
 const Set<String> _awsGrafanaWorkspaceServiceAccountSensitive = <String>{};
 
+/// Grafana Workspace Service Account Grafana enum for `grafana_role`.
+enum GrafanaWorkspaceServiceAccountGrafanaRole implements TerraformEnum {
+  admin('ADMIN'),
+  editor('EDITOR'),
+  viewer('VIEWER');
+
+  const GrafanaWorkspaceServiceAccountGrafanaRole(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_grafana_workspace_service_account`.
 final class AwsGrafanaWorkspaceServiceAccount extends Resource {
   static const String tfType = 'aws_grafana_workspace_service_account';
 
   AwsGrafanaWorkspaceServiceAccount({
     required super.localName,
-    required TfArg<String> grafanaRole,
+    required TfArg<GrafanaWorkspaceServiceAccountGrafanaRole> grafanaRole,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> workspaceId,

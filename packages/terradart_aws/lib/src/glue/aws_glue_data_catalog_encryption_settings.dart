@@ -58,7 +58,10 @@ final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryp
     this.sseAwsKmsKeyId,
   });
 
-  final TfArg<String> catalogEncryptionMode;
+  final TfArg<
+    GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRestCatalogEncryptionMode
+  >
+  catalogEncryptionMode;
 
   final TfArg<String>? catalogEncryptionServiceRole;
 
@@ -72,6 +75,20 @@ final class GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryp
     if (sseAwsKmsKeyId != null)
       'sse_aws_kms_key_id': sseAwsKmsKeyId!.toTfJson(),
   };
+}
+
+/// `catalog_encryption_mode` — derived from the provider schema description.
+enum GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRestCatalogEncryptionMode
+    implements TerraformEnum {
+  disabled('DISABLED'),
+  sseKms('SSE-KMS'),
+  sseKmsWithServiceRole('SSE-KMS-WITH-SERVICE-ROLE');
+
+  const GlueDataCatalogEncryptionSettingsDataCatalogEncryptionSettingsEncryptionAtRestCatalogEncryptionMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_glue_data_catalog_encryption_settings`.

@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_log_group`.
 const Set<String> _awsCloudwatchLogGroupSensitive = <String>{};
 
+/// Cloudwatch Log Group Log Group enum for `log_group_class`.
+enum CloudwatchLogGroupLogGroupClass implements TerraformEnum {
+  standard('STANDARD'),
+  infrequentAccess('INFREQUENT_ACCESS'),
+  delivery('DELIVERY');
+
+  const CloudwatchLogGroupLogGroupClass(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_cloudwatch_log_group`.
 ///
 /// AWS **CloudWatch Logs log group**. Declare a Lambda function's group
@@ -19,7 +30,7 @@ final class AwsCloudwatchLogGroup extends Resource {
     required super.localName,
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? kmsKeyId,
-    TfArg<String>? logGroupClass,
+    TfArg<CloudwatchLogGroupLogGroupClass>? logGroupClass,
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     TfArg<String>? region,

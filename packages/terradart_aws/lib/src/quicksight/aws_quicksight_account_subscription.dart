@@ -6,6 +6,30 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_quicksight_account_subscription`.
 const Set<String> _awsQuicksightAccountSubscriptionSensitive = <String>{};
 
+/// Quicksight Account Subscription Authentication enum for `authentication_method`.
+enum QuicksightAccountSubscriptionAuthenticationMethod
+    implements TerraformEnum {
+  iamAndQuicksight('IAM_AND_QUICKSIGHT'),
+  iamOnly('IAM_ONLY'),
+  activeDirectory('ACTIVE_DIRECTORY'),
+  iamIdentityCenter('IAM_IDENTITY_CENTER');
+
+  const QuicksightAccountSubscriptionAuthenticationMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Quicksight Account Subscription enum for `edition`.
+enum QuicksightAccountSubscriptionEdition implements TerraformEnum {
+  standard('STANDARD'),
+  enterprise('ENTERPRISE'),
+  enterpriseAndQ('ENTERPRISE_AND_Q');
+
+  const QuicksightAccountSubscriptionEdition(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `aws_quicksight_account_subscription`.
 final class AwsQuicksightAccountSubscription extends Resource {
   static const String tfType = 'aws_quicksight_account_subscription';
@@ -16,13 +40,14 @@ final class AwsQuicksightAccountSubscription extends Resource {
     TfArg<String>? activeDirectoryName,
     TfArg<List<String>>? adminGroup,
     TfArg<List<String>>? adminProGroup,
-    required TfArg<String> authenticationMethod,
+    required TfArg<QuicksightAccountSubscriptionAuthenticationMethod>
+    authenticationMethod,
     TfArg<List<String>>? authorGroup,
     TfArg<List<String>>? authorProGroup,
     TfArg<String>? awsAccountId,
     TfArg<String>? contactNumber,
     TfArg<String>? directoryId,
-    required TfArg<String> edition,
+    required TfArg<QuicksightAccountSubscriptionEdition> edition,
     TfArg<String>? emailAddress,
     TfArg<String>? firstName,
     TfArg<String>? iamIdentityCenterInstanceArn,

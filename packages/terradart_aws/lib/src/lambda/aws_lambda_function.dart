@@ -7,6 +7,94 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lambda_function`.
 const Set<String> _awsLambdaFunctionSensitive = <String>{};
 
+/// Lambda Function enum for `architectures`.
+enum LambdaFunctionArchitectures implements TerraformEnum {
+  x8664('x86_64'),
+  arm64('arm64');
+
+  const LambdaFunctionArchitectures(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lambda Function Package enum for `package_type`.
+enum LambdaFunctionPackageType implements TerraformEnum {
+  zip('Zip'),
+  image('Image');
+
+  const LambdaFunctionPackageType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lambda Function Publish enum for `publish_to`.
+enum LambdaFunctionPublishTo implements TerraformEnum {
+  latestPublished('LATEST_PUBLISHED');
+
+  const LambdaFunctionPublishTo(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Lambda Function enum for `runtime`.
+enum LambdaFunctionRuntime implements TerraformEnum {
+  nodejs('nodejs'),
+  nodejs4p3('nodejs4.3'),
+  nodejs6p10('nodejs6.10'),
+  nodejs8p10('nodejs8.10'),
+  nodejs10X('nodejs10.x'),
+  nodejs12X('nodejs12.x'),
+  nodejs14X('nodejs14.x'),
+  nodejs16X('nodejs16.x'),
+  nodejs18X('nodejs18.x'),
+  nodejs20X('nodejs20.x'),
+  nodejs22X('nodejs22.x'),
+  nodejs24X('nodejs24.x'),
+  java8('java8'),
+  java8Al2('java8.al2'),
+  java11('java11'),
+  java17('java17'),
+  java21('java21'),
+  java25('java25'),
+  python2p7('python2.7'),
+  python3p6('python3.6'),
+  python3p7('python3.7'),
+  python3p8('python3.8'),
+  python3p9('python3.9'),
+  python3p10('python3.10'),
+  python3p11('python3.11'),
+  python3p12('python3.12'),
+  python3p13('python3.13'),
+  python3p14('python3.14'),
+  dotnetcore1p0('dotnetcore1.0'),
+  dotnetcore2p0('dotnetcore2.0'),
+  dotnetcore2p1('dotnetcore2.1'),
+  dotnetcore3p1('dotnetcore3.1'),
+  dotnet6('dotnet6'),
+  dotnet8('dotnet8'),
+  dotnet10('dotnet10'),
+  nodejs4p3Edge('nodejs4.3-edge'),
+  go1X('go1.x'),
+  ruby2p5('ruby2.5'),
+  ruby2p7('ruby2.7'),
+  ruby3p2('ruby3.2'),
+  ruby3p3('ruby3.3'),
+  ruby3p4('ruby3.4'),
+  ruby4p0('ruby4.0'),
+  provided('provided'),
+  providedAl2('provided.al2'),
+  providedAl2023('provided.al2023'),
+  nodejs26X('nodejs26.x'),
+  python3p15('python3.15'),
+  java8Al2023('java8.al2023'),
+  java11Al2023('java11.al2023'),
+  java17Al2023('java17.al2023');
+
+  const LambdaFunctionRuntime(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `capacity_provider_config` block of
 /// `aws_lambda_function` (derived from provider schema).
 @immutable
@@ -160,13 +248,14 @@ final class LambdaFunctionLoggingConfig {
     this.systemLogLevel,
   });
 
-  final TfArg<String>? applicationLogLevel;
+  final TfArg<LambdaFunctionLoggingConfigApplicationLogLevel>?
+  applicationLogLevel;
 
-  final TfArg<String> logFormat;
+  final TfArg<LambdaFunctionLoggingConfigLogFormat> logFormat;
 
   final TfArg<String>? logGroup;
 
-  final TfArg<String>? systemLogLevel;
+  final TfArg<LambdaFunctionLoggingConfigSystemLogLevel>? systemLogLevel;
 
   Map<String, Object?> encode() => {
     if (applicationLogLevel != null)
@@ -177,15 +266,60 @@ final class LambdaFunctionLoggingConfig {
   };
 }
 
+/// `application_log_level` — derived from the provider schema description.
+enum LambdaFunctionLoggingConfigApplicationLogLevel implements TerraformEnum {
+  trace('TRACE'),
+  debug('DEBUG'),
+  info('INFO'),
+  warn('WARN'),
+  error('ERROR'),
+  fatal('FATAL');
+
+  const LambdaFunctionLoggingConfigApplicationLogLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `log_format` — derived from the provider schema description.
+enum LambdaFunctionLoggingConfigLogFormat implements TerraformEnum {
+  json('JSON'),
+  text('Text');
+
+  const LambdaFunctionLoggingConfigLogFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `system_log_level` — derived from the provider schema description.
+enum LambdaFunctionLoggingConfigSystemLogLevel implements TerraformEnum {
+  debug('DEBUG'),
+  info('INFO'),
+  warn('WARN');
+
+  const LambdaFunctionLoggingConfigSystemLogLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `snap_start` block of
 /// `aws_lambda_function` (derived from provider schema).
 @immutable
 final class LambdaFunctionSnapStart {
   const LambdaFunctionSnapStart({required this.applyOn});
 
-  final TfArg<String> applyOn;
+  final TfArg<LambdaFunctionSnapStartApplyOn> applyOn;
 
   Map<String, Object?> encode() => {'apply_on': applyOn.toTfJson()};
+}
+
+/// `apply_on` — derived from the provider schema description.
+enum LambdaFunctionSnapStartApplyOn implements TerraformEnum {
+  publishedversions('PublishedVersions'),
+  none('None');
+
+  const LambdaFunctionSnapStartApplyOn(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `tenancy_config` block of
@@ -194,11 +328,21 @@ final class LambdaFunctionSnapStart {
 final class LambdaFunctionTenancyConfig {
   const LambdaFunctionTenancyConfig({required this.tenantIsolationMode});
 
-  final TfArg<String> tenantIsolationMode;
+  final TfArg<LambdaFunctionTenancyConfigTenantIsolationMode>
+  tenantIsolationMode;
 
   Map<String, Object?> encode() => {
     'tenant_isolation_mode': tenantIsolationMode.toTfJson(),
   };
+}
+
+/// `tenant_isolation_mode` — derived from the provider schema description.
+enum LambdaFunctionTenancyConfigTenantIsolationMode implements TerraformEnum {
+  perTenant('PER_TENANT');
+
+  const LambdaFunctionTenancyConfigTenantIsolationMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `tracing_config` block of
@@ -207,9 +351,19 @@ final class LambdaFunctionTenancyConfig {
 final class LambdaFunctionTracingConfig {
   const LambdaFunctionTracingConfig({required this.mode});
 
-  final TfArg<String> mode;
+  final TfArg<LambdaFunctionTracingConfigMode> mode;
 
   Map<String, Object?> encode() => {'mode': mode.toTfJson()};
+}
+
+/// `mode` — derived from the provider schema description.
+enum LambdaFunctionTracingConfigMode implements TerraformEnum {
+  active('Active'),
+  passthrough('PassThrough');
+
+  const LambdaFunctionTracingConfigMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `vpc_config` block of
@@ -253,7 +407,7 @@ final class AwsLambdaFunction extends Resource {
 
   AwsLambdaFunction({
     required super.localName,
-    TfArg<List<String>>? architectures,
+    List<TfArg<LambdaFunctionArchitectures>>? architectures,
     TfArg<String>? codeSha256,
     TfArg<String>? codeSigningConfigArn,
     TfArg<String>? description,
@@ -264,15 +418,15 @@ final class AwsLambdaFunction extends Resource {
     TfArg<String>? kmsKeyArn,
     TfArg<List<String>>? layers,
     TfArg<num>? memorySize,
-    TfArg<String>? packageType,
+    TfArg<LambdaFunctionPackageType>? packageType,
     TfArg<bool>? publish,
-    TfArg<String>? publishTo,
+    TfArg<LambdaFunctionPublishTo>? publishTo,
     TfArg<String>? region,
     TfArg<bool>? replaceSecurityGroupsOnDestroy,
     TfArg<List<String>>? replacementSecurityGroupIds,
     TfArg<num>? reservedConcurrentExecutions,
     required TfArg<String> role,
-    TfArg<String>? runtime,
+    TfArg<LambdaFunctionRuntime>? runtime,
     TfArg<String>? s3Bucket,
     TfArg<String>? s3Key,
     TfArg<String>? s3ObjectVersion,
@@ -301,7 +455,10 @@ final class AwsLambdaFunction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (architectures != null) 'architectures': architectures,
+           if (architectures != null)
+             'architectures': TfArg.literal([
+               for (final e in architectures) e.toTfJson(),
+             ]),
            if (codeSha256 != null) 'code_sha256': codeSha256,
            if (codeSigningConfigArn != null)
              'code_signing_config_arn': codeSigningConfigArn,

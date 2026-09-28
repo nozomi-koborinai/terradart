@@ -10,13 +10,23 @@ export 'src/efs/aws_efs_access_point.dart'
         EfsAccessPointRootDirectory,
         EfsAccessPointRootDirectoryCreationInfo;
 export 'src/efs/aws_efs_backup_policy.dart'
-    show AwsEfsBackupPolicy, EfsBackupPolicyBackupPolicy;
+    show
+        AwsEfsBackupPolicy,
+        EfsBackupPolicyBackupPolicy,
+        EfsBackupPolicyBackupPolicyStatus;
 export 'src/efs/aws_efs_file_system.dart'
     show
         AwsEfsFileSystem,
         EfsFileSystemLifecyclePolicy,
-        EfsFileSystemProtection;
+        EfsFileSystemLifecyclePolicyTransitionToArchive,
+        EfsFileSystemLifecyclePolicyTransitionToIa,
+        EfsFileSystemLifecyclePolicyTransitionToPrimaryStorageClass,
+        EfsFileSystemPerformanceMode,
+        EfsFileSystemProtection,
+        EfsFileSystemProtectionReplicationOverwrite,
+        EfsFileSystemThroughputMode;
 export 'src/efs/aws_efs_file_system_policy.dart' show AwsEfsFileSystemPolicy;
-export 'src/efs/aws_efs_mount_target.dart' show AwsEfsMountTarget;
+export 'src/efs/aws_efs_mount_target.dart'
+    show AwsEfsMountTarget, EfsMountTargetIpAddressType;
 export 'src/efs/aws_efs_replication_configuration.dart'
     show AwsEfsReplicationConfiguration, EfsReplicationConfigurationDestination;

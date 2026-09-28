@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_fms_policy`.
 const Set<String> _awsFmsPolicySensitive = <String>{};
 
+/// Fms Policy Resource Tag Logical enum for `resource_tag_logical_operator`.
+enum FmsPolicyResourceTagLogicalOperator implements TerraformEnum {
+  and('AND'),
+  or('OR');
+
+  const FmsPolicyResourceTagLogicalOperator(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `exclude_map` block of
 /// `aws_fms_policy` (derived from provider schema).
 @immutable
@@ -323,12 +333,28 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicy 
     this.firewallDeploymentModel,
   });
 
-  final TfArg<String>? firewallDeploymentModel;
+  final TfArg<
+    FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicyFirewallDeploymentModel
+  >?
+  firewallDeploymentModel;
 
   Map<String, Object?> encode() => {
     if (firewallDeploymentModel != null)
       'firewall_deployment_model': firewallDeploymentModel!.toTfJson(),
   };
+}
+
+/// `firewall_deployment_model` — derived from the provider schema description.
+enum FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicyFirewallDeploymentModel
+    implements TerraformEnum {
+  centralized('CENTRALIZED'),
+  distributed('DISTRIBUTED');
+
+  const FmsPolicySecurityServicePolicyDataPolicyOptionNetworkFirewallPolicyFirewallDeploymentModel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `security_service_policy_data.policy_option.third_party_firewall_policy` block of
@@ -339,12 +365,28 @@ final class FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPoli
     this.firewallDeploymentModel,
   });
 
-  final TfArg<String>? firewallDeploymentModel;
+  final TfArg<
+    FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicyFirewallDeploymentModel
+  >?
+  firewallDeploymentModel;
 
   Map<String, Object?> encode() => {
     if (firewallDeploymentModel != null)
       'firewall_deployment_model': firewallDeploymentModel!.toTfJson(),
   };
+}
+
+/// `firewall_deployment_model` — derived from the provider schema description.
+enum FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicyFirewallDeploymentModel
+    implements TerraformEnum {
+  centralized('CENTRALIZED'),
+  distributed('DISTRIBUTED');
+
+  const FmsPolicySecurityServicePolicyDataPolicyOptionThirdPartyFirewallPolicyFirewallDeploymentModel(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `aws_fms_policy`.
@@ -361,7 +403,7 @@ final class AwsFmsPolicy extends Resource {
     TfArg<String>? region,
     TfArg<bool>? remediationEnabled,
     TfArg<List<String>>? resourceSetIds,
-    TfArg<String>? resourceTagLogicalOperator,
+    TfArg<FmsPolicyResourceTagLogicalOperator>? resourceTagLogicalOperator,
     TfArg<Map<String, String>>? resourceTags,
     TfArg<String>? resourceType,
     TfArg<List<String>>? resourceTypeList,

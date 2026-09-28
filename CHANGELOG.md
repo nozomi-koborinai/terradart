@@ -104,6 +104,17 @@ Per-package changelogs live alongside each package and are the system of record 
   resources (`resource.go` / `*_resource.go`, one Go type registered per
   engine) besides Stainless's `schema.go`; the Cloudflare hints are
   unchanged. Synth output is unchanged. See `MIGRATING.md`.
+- **`terradart_aws` enums** (**breaking**) — 2915 string inputs on 816
+  resources are generated enums: the value sets the provider's validators
+  enforce, extracted into `source_aws/hints/` (the aws lane sets
+  `providerEnums: true`, and the weekly bump re-extracts them when the pin
+  moves). `tool/extract_provider_hints.dart` scans hashicorp/aws through
+  the new `tool/provider_hints_aws.dart`: annotated SDKv2 and framework
+  resources, package helper schemas, and aws-sdk-go-v2 `types` enums read
+  at the module versions the provider's `go.mod` requires (downloaded at
+  extraction time only; the fixture is checked in).
+  `tool/generate_aws_leftover_example.dart` writes enum members. Synth
+  output is unchanged. See `MIGRATING.md`.
 - **Docs** — the agent skill and the *Migrating from HCL* guide describe one
   loop: `terradart-migrate --report`, then a migration, then porting the
   sidecar leftovers into the Stack, synth, and `terraform plan` with *No

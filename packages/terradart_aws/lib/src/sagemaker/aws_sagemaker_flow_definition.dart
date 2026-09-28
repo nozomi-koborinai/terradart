@@ -141,12 +141,30 @@ final class SagemakerFlowDefinitionHumanLoopRequestSource {
     required this.awsManagedHumanLoopRequestSource,
   });
 
-  final TfArg<String> awsManagedHumanLoopRequestSource;
+  final TfArg<
+    SagemakerFlowDefinitionHumanLoopRequestSourceAwsManagedHumanLoopRequestSource
+  >
+  awsManagedHumanLoopRequestSource;
 
   Map<String, Object?> encode() => {
     'aws_managed_human_loop_request_source': awsManagedHumanLoopRequestSource
         .toTfJson(),
   };
+}
+
+/// `aws_managed_human_loop_request_source` — derived from the provider schema description.
+enum SagemakerFlowDefinitionHumanLoopRequestSourceAwsManagedHumanLoopRequestSource
+    implements TerraformEnum {
+  awsRekognitionDetectmoderationlabelsImageV3(
+    'AWS/Rekognition/DetectModerationLabels/Image/V3',
+  ),
+  awsTextractAnalyzedocumentFormsV1('AWS/Textract/AnalyzeDocument/Forms/V1');
+
+  const SagemakerFlowDefinitionHumanLoopRequestSourceAwsManagedHumanLoopRequestSource(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `output_config` block of

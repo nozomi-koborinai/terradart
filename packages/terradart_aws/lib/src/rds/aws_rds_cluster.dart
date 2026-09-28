@@ -10,6 +10,90 @@ const Set<String> _awsRdsClusterSensitive = <String>{
   'master_password_wo',
 };
 
+/// Rds Cluster Cluster Scalability enum for `cluster_scalability_type`.
+enum RdsClusterClusterScalabilityType implements TerraformEnum {
+  standard('standard'),
+  limitless('limitless');
+
+  const RdsClusterClusterScalabilityType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Rds Cluster Database Insights enum for `database_insights_mode`.
+enum RdsClusterDatabaseInsightsMode implements TerraformEnum {
+  standard('standard'),
+  advanced('advanced');
+
+  const RdsClusterDatabaseInsightsMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Rds Cluster Enabled Cloudwatch Logs enum for `enabled_cloudwatch_logs_exports`.
+enum RdsClusterEnabledCloudwatchLogsExports implements TerraformEnum {
+  audit('audit'),
+  error('error'),
+  general('general'),
+  iamDbAuthError('iam-db-auth-error'),
+  instance('instance'),
+  postgresql('postgresql'),
+  slowquery('slowquery'),
+  upgrade('upgrade');
+
+  const RdsClusterEnabledCloudwatchLogsExports(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Rds Cluster enum for `engine`.
+enum RdsClusterEngine implements TerraformEnum {
+  auroraMysql('aurora-mysql'),
+  auroraPostgresql('aurora-postgresql'),
+  mysql('mysql'),
+  postgres('postgres');
+
+  const RdsClusterEngine(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Rds Cluster Engine Lifecycle enum for `engine_lifecycle_support`.
+enum RdsClusterEngineLifecycleSupport implements TerraformEnum {
+  openSourceRdsExtendedSupport('open-source-rds-extended-support'),
+  openSourceRdsExtendedSupportDisabled(
+    'open-source-rds-extended-support-disabled',
+  );
+
+  const RdsClusterEngineLifecycleSupport(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Rds Cluster Engine enum for `engine_mode`.
+enum RdsClusterEngineMode implements TerraformEnum {
+  global('global'),
+  multimaster('multimaster'),
+  parallelquery('parallelquery'),
+  provisioned('provisioned'),
+  serverless('serverless'),
+  empty('');
+
+  const RdsClusterEngineMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Rds Cluster Network enum for `network_type`.
+enum RdsClusterNetworkType implements TerraformEnum {
+  dual('DUAL'),
+  ipv4('IPV4');
+
+  const RdsClusterNetworkType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `restore_to_point_in_time` block of
 /// `aws_rds_cluster` (derived from provider schema).
 @immutable
@@ -24,7 +108,7 @@ final class RdsClusterRestoreToPointInTime {
 
   final TfArg<String>? restoreToTime;
 
-  final TfArg<String>? restoreType;
+  final TfArg<RdsClusterRestoreToPointInTimeRestoreType>? restoreType;
 
   final TfArg<String>? sourceClusterIdentifier;
 
@@ -42,6 +126,16 @@ final class RdsClusterRestoreToPointInTime {
     if (useLatestRestorableTime != null)
       'use_latest_restorable_time': useLatestRestorableTime!.toTfJson(),
   };
+}
+
+/// `restore_type` — derived from the provider schema description.
+enum RdsClusterRestoreToPointInTimeRestoreType implements TerraformEnum {
+  copyOnWrite('copy-on-write'),
+  fullCopy('full-copy');
+
+  const RdsClusterRestoreToPointInTimeRestoreType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `s3_import` block of
@@ -98,7 +192,7 @@ final class RdsClusterScalingConfiguration {
 
   final TfArg<num>? secondsUntilAutoPause;
 
-  final TfArg<String>? timeoutAction;
+  final TfArg<RdsClusterScalingConfigurationTimeoutAction>? timeoutAction;
 
   Map<String, Object?> encode() => {
     if (autoPause != null) 'auto_pause': autoPause!.toTfJson(),
@@ -110,6 +204,16 @@ final class RdsClusterScalingConfiguration {
       'seconds_until_auto_pause': secondsUntilAutoPause!.toTfJson(),
     if (timeoutAction != null) 'timeout_action': timeoutAction!.toTfJson(),
   };
+}
+
+/// `timeout_action` — derived from the provider schema description.
+enum RdsClusterScalingConfigurationTimeoutAction implements TerraformEnum {
+  forceapplycapacitychange('ForceApplyCapacityChange'),
+  rollbackcapacitychange('RollbackCapacityChange');
+
+  const RdsClusterScalingConfigurationTimeoutAction(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `serverlessv2_scaling_configuration` block of
@@ -153,9 +257,9 @@ final class AwsRdsCluster extends Resource {
     TfArg<String>? clusterIdentifier,
     TfArg<String>? clusterIdentifierPrefix,
     TfArg<List<String>>? clusterMembers,
-    TfArg<String>? clusterScalabilityType,
+    TfArg<RdsClusterClusterScalabilityType>? clusterScalabilityType,
     TfArg<bool>? copyTagsToSnapshot,
-    TfArg<String>? databaseInsightsMode,
+    TfArg<RdsClusterDatabaseInsightsMode>? databaseInsightsMode,
     TfArg<String>? databaseName,
     TfArg<String>? dbClusterInstanceClass,
     TfArg<String>? dbClusterParameterGroupName,
@@ -169,10 +273,11 @@ final class AwsRdsCluster extends Resource {
     TfArg<bool>? enableGlobalWriteForwarding,
     TfArg<bool>? enableHttpEndpoint,
     TfArg<bool>? enableLocalWriteForwarding,
-    TfArg<List<String>>? enabledCloudwatchLogsExports,
-    required TfArg<String> engine,
-    TfArg<String>? engineLifecycleSupport,
-    TfArg<String>? engineMode,
+    List<TfArg<RdsClusterEnabledCloudwatchLogsExports>>?
+    enabledCloudwatchLogsExports,
+    required TfArg<RdsClusterEngine> engine,
+    TfArg<RdsClusterEngineLifecycleSupport>? engineLifecycleSupport,
+    TfArg<RdsClusterEngineMode>? engineMode,
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalClusterIdentifier,
@@ -188,7 +293,7 @@ final class AwsRdsCluster extends Resource {
     TfArg<String>? masterUsername,
     TfArg<num>? monitoringInterval,
     TfArg<String>? monitoringRoleArn,
-    TfArg<String>? networkType,
+    TfArg<RdsClusterNetworkType>? networkType,
     TfArg<bool>? performanceInsightsEnabled,
     TfArg<String>? performanceInsightsKmsKeyId,
     TfArg<num>? performanceInsightsRetentionPeriod,
@@ -265,7 +370,9 @@ final class AwsRdsCluster extends Resource {
            if (enableLocalWriteForwarding != null)
              'enable_local_write_forwarding': enableLocalWriteForwarding,
            if (enabledCloudwatchLogsExports != null)
-             'enabled_cloudwatch_logs_exports': enabledCloudwatchLogsExports,
+             'enabled_cloudwatch_logs_exports': TfArg.literal([
+               for (final e in enabledCloudwatchLogsExports) e.toTfJson(),
+             ]),
            'engine': engine,
            if (engineLifecycleSupport != null)
              'engine_lifecycle_support': engineLifecycleSupport,

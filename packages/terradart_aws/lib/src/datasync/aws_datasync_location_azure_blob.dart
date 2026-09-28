@@ -7,6 +7,36 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_datasync_location_azure_blob`.
 const Set<String> _awsDatasyncLocationAzureBlobSensitive = <String>{};
 
+/// Datasync Location Azure Blob Access enum for `access_tier`.
+enum DatasyncLocationAzureBlobAccessTier implements TerraformEnum {
+  hot('HOT'),
+  cool('COOL'),
+  archive('ARCHIVE');
+
+  const DatasyncLocationAzureBlobAccessTier(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Datasync Location Azure Blob Authentication enum for `authentication_type`.
+enum DatasyncLocationAzureBlobAuthenticationType implements TerraformEnum {
+  sas('SAS'),
+  none('NONE');
+
+  const DatasyncLocationAzureBlobAuthenticationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Datasync Location Azure Blob Blob enum for `blob_type`.
+enum DatasyncLocationAzureBlobBlobType implements TerraformEnum {
+  block('BLOCK');
+
+  const DatasyncLocationAzureBlobBlobType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `sas_configuration` block of
 /// `aws_datasync_location_azure_blob` (derived from provider schema).
 @immutable
@@ -24,10 +54,11 @@ final class AwsDatasyncLocationAzureBlob extends Resource {
 
   AwsDatasyncLocationAzureBlob({
     required super.localName,
-    TfArg<String>? accessTier,
+    TfArg<DatasyncLocationAzureBlobAccessTier>? accessTier,
     required TfArg<List<String>> agentArns,
-    required TfArg<String> authenticationType,
-    TfArg<String>? blobType,
+    required TfArg<DatasyncLocationAzureBlobAuthenticationType>
+    authenticationType,
+    TfArg<DatasyncLocationAzureBlobBlobType>? blobType,
     required TfArg<String> containerUrl,
     TfArg<String>? region,
     TfArg<String>? subdirectory,

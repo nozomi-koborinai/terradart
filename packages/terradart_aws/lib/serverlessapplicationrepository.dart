@@ -4,4 +4,6 @@
 library;
 
 export 'src/serverlessapplicationrepository/aws_serverlessapplicationrepository_cloudformation_stack.dart'
-    show AwsServerlessapplicationrepositoryCloudformationStack;
+    show
+        AwsServerlessapplicationrepositoryCloudformationStack,
+        ServerlessapplicationrepositoryCloudformationStackCapabilities;

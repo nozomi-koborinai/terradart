@@ -4,7 +4,7 @@
 library;
 
 export 'src/securityhub/aws_securityhub_account.dart'
-    show AwsSecurityhubAccount;
+    show AwsSecurityhubAccount, SecurityhubAccountControlFindingGenerator;
 export 'src/securityhub/aws_securityhub_account_v2.dart'
     show AwsSecurityhubAccountV2;
 export 'src/securityhub/aws_securityhub_action_target.dart'
@@ -19,58 +19,101 @@ export 'src/securityhub/aws_securityhub_automation_rule.dart'
         SecurityhubAutomationRuleActionsFindingFieldsUpdateNote,
         SecurityhubAutomationRuleActionsFindingFieldsUpdateRelatedFindings,
         SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverity,
+        SecurityhubAutomationRuleActionsFindingFieldsUpdateSeverityLabel,
+        SecurityhubAutomationRuleActionsFindingFieldsUpdateVerificationState,
         SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflow,
+        SecurityhubAutomationRuleActionsFindingFieldsUpdateWorkflowStatus,
+        SecurityhubAutomationRuleActionsType,
         SecurityhubAutomationRuleCriteria,
         SecurityhubAutomationRuleCriteriaAwsAccountId,
+        SecurityhubAutomationRuleCriteriaAwsAccountIdComparison,
         SecurityhubAutomationRuleCriteriaAwsAccountName,
+        SecurityhubAutomationRuleCriteriaAwsAccountNameComparison,
         SecurityhubAutomationRuleCriteriaCompanyName,
+        SecurityhubAutomationRuleCriteriaCompanyNameComparison,
         SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsId,
+        SecurityhubAutomationRuleCriteriaComplianceAssociatedStandardsIdComparison,
         SecurityhubAutomationRuleCriteriaComplianceSecurityControlId,
+        SecurityhubAutomationRuleCriteriaComplianceSecurityControlIdComparison,
         SecurityhubAutomationRuleCriteriaComplianceStatus,
+        SecurityhubAutomationRuleCriteriaComplianceStatusComparison,
         SecurityhubAutomationRuleCriteriaConfidence,
         SecurityhubAutomationRuleCriteriaCreatedAt,
         SecurityhubAutomationRuleCriteriaCreatedAtDateRange,
+        SecurityhubAutomationRuleCriteriaCreatedAtDateRangeUnit,
         SecurityhubAutomationRuleCriteriaCriticality,
         SecurityhubAutomationRuleCriteriaDescription,
+        SecurityhubAutomationRuleCriteriaDescriptionComparison,
         SecurityhubAutomationRuleCriteriaFirstObservedAt,
         SecurityhubAutomationRuleCriteriaFirstObservedAtDateRange,
+        SecurityhubAutomationRuleCriteriaFirstObservedAtDateRangeUnit,
         SecurityhubAutomationRuleCriteriaGeneratorId,
+        SecurityhubAutomationRuleCriteriaGeneratorIdComparison,
         SecurityhubAutomationRuleCriteriaId,
+        SecurityhubAutomationRuleCriteriaIdComparison,
         SecurityhubAutomationRuleCriteriaLastObservedAt,
         SecurityhubAutomationRuleCriteriaLastObservedAtDateRange,
+        SecurityhubAutomationRuleCriteriaLastObservedAtDateRangeUnit,
         SecurityhubAutomationRuleCriteriaNoteText,
+        SecurityhubAutomationRuleCriteriaNoteTextComparison,
         SecurityhubAutomationRuleCriteriaNoteUpdatedAt,
         SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRange,
+        SecurityhubAutomationRuleCriteriaNoteUpdatedAtDateRangeUnit,
         SecurityhubAutomationRuleCriteriaNoteUpdatedBy,
+        SecurityhubAutomationRuleCriteriaNoteUpdatedByComparison,
         SecurityhubAutomationRuleCriteriaProductArn,
+        SecurityhubAutomationRuleCriteriaProductArnComparison,
         SecurityhubAutomationRuleCriteriaProductName,
+        SecurityhubAutomationRuleCriteriaProductNameComparison,
         SecurityhubAutomationRuleCriteriaRecordState,
+        SecurityhubAutomationRuleCriteriaRecordStateComparison,
         SecurityhubAutomationRuleCriteriaRelatedFindingsId,
+        SecurityhubAutomationRuleCriteriaRelatedFindingsIdComparison,
         SecurityhubAutomationRuleCriteriaRelatedFindingsProductArn,
+        SecurityhubAutomationRuleCriteriaRelatedFindingsProductArnComparison,
         SecurityhubAutomationRuleCriteriaResourceApplicationArn,
+        SecurityhubAutomationRuleCriteriaResourceApplicationArnComparison,
         SecurityhubAutomationRuleCriteriaResourceApplicationName,
+        SecurityhubAutomationRuleCriteriaResourceApplicationNameComparison,
         SecurityhubAutomationRuleCriteriaResourceDetailsOther,
+        SecurityhubAutomationRuleCriteriaResourceDetailsOtherComparison,
         SecurityhubAutomationRuleCriteriaResourceId,
+        SecurityhubAutomationRuleCriteriaResourceIdComparison,
         SecurityhubAutomationRuleCriteriaResourcePartition,
+        SecurityhubAutomationRuleCriteriaResourcePartitionComparison,
         SecurityhubAutomationRuleCriteriaResourceRegion,
+        SecurityhubAutomationRuleCriteriaResourceRegionComparison,
         SecurityhubAutomationRuleCriteriaResourceTags,
+        SecurityhubAutomationRuleCriteriaResourceTagsComparison,
         SecurityhubAutomationRuleCriteriaResourceType,
+        SecurityhubAutomationRuleCriteriaResourceTypeComparison,
         SecurityhubAutomationRuleCriteriaSeverityLabel,
+        SecurityhubAutomationRuleCriteriaSeverityLabelComparison,
         SecurityhubAutomationRuleCriteriaSourceUrl,
+        SecurityhubAutomationRuleCriteriaSourceUrlComparison,
         SecurityhubAutomationRuleCriteriaTitle,
+        SecurityhubAutomationRuleCriteriaTitleComparison,
         SecurityhubAutomationRuleCriteriaType,
+        SecurityhubAutomationRuleCriteriaTypeComparison,
         SecurityhubAutomationRuleCriteriaUpdatedAt,
         SecurityhubAutomationRuleCriteriaUpdatedAtDateRange,
+        SecurityhubAutomationRuleCriteriaUpdatedAtDateRangeUnit,
         SecurityhubAutomationRuleCriteriaUserDefinedFields,
+        SecurityhubAutomationRuleCriteriaUserDefinedFieldsComparison,
         SecurityhubAutomationRuleCriteriaVerificationState,
-        SecurityhubAutomationRuleCriteriaWorkflowStatus;
+        SecurityhubAutomationRuleCriteriaVerificationStateComparison,
+        SecurityhubAutomationRuleCriteriaWorkflowStatus,
+        SecurityhubAutomationRuleCriteriaWorkflowStatusComparison,
+        SecurityhubAutomationRuleRuleStatus;
 export 'src/securityhub/aws_securityhub_automation_rule_v2.dart'
     show
         AwsSecurityhubAutomationRuleV2,
         SecurityhubAutomationRuleV2Action,
         SecurityhubAutomationRuleV2ActionExternalIntegrationConfiguration,
         SecurityhubAutomationRuleV2ActionFindingFieldsUpdate,
-        SecurityhubAutomationRuleV2Criteria;
+        SecurityhubAutomationRuleV2ActionType,
+        SecurityhubAutomationRuleV2Criteria,
+        SecurityhubAutomationRuleV2RuleStatus;
 export 'src/securityhub/aws_securityhub_configuration_policy.dart'
     show
         AwsSecurityhubConfigurationPolicy,
@@ -87,7 +130,9 @@ export 'src/securityhub/aws_securityhub_configuration_policy.dart'
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterString,
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterStringList;
 export 'src/securityhub/aws_securityhub_configuration_policy_association.dart'
-    show AwsSecurityhubConfigurationPolicyAssociation;
+    show
+        AwsSecurityhubConfigurationPolicyAssociation,
+        SecurityhubConfigurationPolicyAssociationPolicyId;
 export 'src/securityhub/aws_securityhub_connector_v2.dart'
     show
         AwsSecurityhubConnectorV2,
@@ -95,9 +140,14 @@ export 'src/securityhub/aws_securityhub_connector_v2.dart'
         SecurityhubConnectorV2ConnectorProviderJiraCloud,
         SecurityhubConnectorV2ConnectorProviderServiceNow;
 export 'src/securityhub/aws_securityhub_feature_v2.dart'
-    show AwsSecurityhubFeatureV2;
+    show
+        AwsSecurityhubFeatureV2,
+        SecurityhubFeatureV2FeatureName,
+        SecurityhubFeatureV2FeatureStatus;
 export 'src/securityhub/aws_securityhub_finding_aggregator.dart'
-    show AwsSecurityhubFindingAggregator;
+    show
+        AwsSecurityhubFindingAggregator,
+        SecurityhubFindingAggregatorLinkingMode;
 export 'src/securityhub/aws_securityhub_insight.dart'
     show
         AwsSecurityhubInsight,
@@ -214,12 +264,18 @@ export 'src/securityhub/aws_securityhub_organization_admin_account.dart'
 export 'src/securityhub/aws_securityhub_organization_configuration.dart'
     show
         AwsSecurityhubOrganizationConfiguration,
-        SecurityhubOrganizationConfigurationOrganizationConfiguration;
+        SecurityhubOrganizationConfigurationAutoEnableStandards,
+        SecurityhubOrganizationConfigurationOrganizationConfiguration,
+        SecurityhubOrganizationConfigurationOrganizationConfigurationConfigurationType;
 export 'src/securityhub/aws_securityhub_product_subscription.dart'
     show AwsSecurityhubProductSubscription;
 export 'src/securityhub/aws_securityhub_standards_control.dart'
-    show AwsSecurityhubStandardsControl;
+    show
+        AwsSecurityhubStandardsControl,
+        SecurityhubStandardsControlControlStatus;
 export 'src/securityhub/aws_securityhub_standards_control_association.dart'
-    show AwsSecurityhubStandardsControlAssociation;
+    show
+        AwsSecurityhubStandardsControlAssociation,
+        SecurityhubStandardsControlAssociationAssociationStatus;
 export 'src/securityhub/aws_securityhub_standards_subscription.dart'
     show AwsSecurityhubStandardsSubscription;
