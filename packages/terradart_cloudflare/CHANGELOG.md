@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.30.0 - 2026-09-28
 
 - **Breaking:** an attribute the schema declares as a map of objects
   (`nesting_mode: "map"`) takes `Map<String, Helper>` instead of one helper,

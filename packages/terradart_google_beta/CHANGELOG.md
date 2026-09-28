@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.30.0 - 2026-09-28
+
+- **Breaking** — targets `hashicorp/google-beta` 8.x (`GoogleBetaProvider` pins `~> 8.0`; the filtered fixture moves to `8.4.0`), so an existing root module needs `terraform init -upgrade`. See [MIGRATING.md](../../MIGRATING.md).
+- **Breaking** — the 16 types 8.2 / 8.3 promoted to GA leave this package for `terradart_google` (`GoogleBiglakeHive*` + IAM, `GoogleObservability*Settings`, `GoogleComputeNetworkEdgeSecurityService`); `package:terradart_google_beta/biglake.dart` and `observability.dart` are gone. The catalog is 112 resource factories.
+
 ## 0.29.0 - 2026-09-27
 
 Lockstep release. No `terradart_google_beta` API changes.

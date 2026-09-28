@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.30.0 - 2026-09-28
 
 - `MigrateSlot.keyed`: a helper slot typed `Map<String, Helper>` (a `nesting_mode: "map"` block) migrates from an object of blocks, one helper per key. A `*` segment in a sensitive path matches every key.
 - Fix: a list-of-enum argument set to a reference to a whole list (`selected_regions = var.regions`) migrated to a `TfArg.variable` / `TfArg.ref` the constructor's `List<...>` parameter does not accept, so the Stack did not compile. It now stays in Terraform with the reason; a list literal still migrates one member per element.
