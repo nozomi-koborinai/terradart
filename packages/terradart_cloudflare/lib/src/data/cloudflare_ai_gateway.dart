@@ -52,6 +52,9 @@ final class DataCloudflareAiGateway extends Data {
   TfRef<bool> get authentication =>
       TfRef.attribute<bool>(this, 'authentication');
 
+  /// Reference to `byok_only` attribute.
+  TfRef<bool> get byokOnly => TfRef.attribute<bool>(this, 'byok_only');
+
   /// Reference to `cache_invalidate_on_update` attribute.
   TfRef<bool> get cacheInvalidateOnUpdate =>
       TfRef.attribute<bool>(this, 'cache_invalidate_on_update');
@@ -67,6 +70,10 @@ final class DataCloudflareAiGateway extends Data {
 
   /// Reference to `is_default` attribute.
   TfRef<bool> get isDefault => TfRef.attribute<bool>(this, 'is_default');
+
+  /// Reference to `log_classification` attribute.
+  TfRef<bool> get logClassification =>
+      TfRef.attribute<bool>(this, 'log_classification');
 
   /// Reference to `log_management` attribute.
   TfRef<num> get logManagement => TfRef.attribute<num>(this, 'log_management');

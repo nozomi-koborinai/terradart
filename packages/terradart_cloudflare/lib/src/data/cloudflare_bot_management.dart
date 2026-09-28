@@ -30,9 +30,22 @@ final class DataCloudflareBotManagement extends Data {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `ai_bots_migration_opt_out` attribute.
+  TfRef<bool> get aiBotsMigrationOptOut =>
+      TfRef.attribute<bool>(this, 'ai_bots_migration_opt_out');
+
   /// Reference to `ai_bots_protection` attribute.
   TfRef<String> get aiBotsProtection =>
       TfRef.attribute<String>(this, 'ai_bots_protection');
+
+  /// Reference to `ai_training` attribute.
+  TfRef<String> get aiTraining => TfRef.attribute<String>(this, 'ai_training');
+
+  /// Reference to `ai_user` attribute.
+  TfRef<String> get aiUser => TfRef.attribute<String>(this, 'ai_user');
+
+  /// Reference to `aisearch` attribute.
+  TfRef<String> get aisearch => TfRef.attribute<String>(this, 'aisearch');
 
   /// Reference to `auto_update_model` attribute.
   TfRef<bool> get autoUpdateModel =>
@@ -41,6 +54,10 @@ final class DataCloudflareBotManagement extends Data {
   /// Reference to `bm_cookie_enabled` attribute.
   TfRef<bool> get bmCookieEnabled =>
       TfRef.attribute<bool>(this, 'bm_cookie_enabled');
+
+  /// Reference to `bot_preference_sync_enabled` attribute.
+  TfRef<bool> get botPreferenceSyncEnabled =>
+      TfRef.attribute<bool>(this, 'bot_preference_sync_enabled');
 
   /// Reference to `cf_robots_variant` attribute.
   TfRef<String> get cfRobotsVariant =>
@@ -63,6 +80,10 @@ final class DataCloudflareBotManagement extends Data {
   /// Reference to `is_robots_txt_managed` attribute.
   TfRef<bool> get isRobotsTxtManaged =>
       TfRef.attribute<bool>(this, 'is_robots_txt_managed');
+
+  /// Reference to `jsd_api_results_enabled` attribute.
+  TfRef<bool> get jsdApiResultsEnabled =>
+      TfRef.attribute<bool>(this, 'jsd_api_results_enabled');
 
   /// Reference to `optimize_wordpress` attribute.
   TfRef<bool> get optimizeWordpress =>

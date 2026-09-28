@@ -50,6 +50,7 @@ final class CloudflareWorkersDeployment extends Resource {
   CloudflareWorkersDeployment({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<bool>? force,
     required TfArg<String> scriptName,
     required TfArg<String> strategy,
     WorkersDeploymentAnnotations? annotations,
@@ -62,6 +63,7 @@ final class CloudflareWorkersDeployment extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           if (force != null) 'force': force,
            'script_name': scriptName,
            'strategy': strategy,
            if (annotations != null)

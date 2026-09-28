@@ -23,3 +23,9 @@ export 'src/zone/cloudflare_zone_lockdown.dart'
 export 'src/zone/cloudflare_zone_setting.dart' show CloudflareZoneSetting;
 export 'src/zone/cloudflare_zone_subscription.dart'
     show CloudflareZoneSubscription, ZoneSubscriptionRatePlan;
+export 'src/zone/cloudflare_zone_tracing.dart' show CloudflareZoneTracing;
+export 'src/zone/cloudflare_zone_tracing_rules.dart'
+    show
+        CloudflareZoneTracingRules,
+        ZoneTracingRulesRules,
+        ZoneTracingRulesRulesActionParameters;

@@ -1,11 +1,47 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_resource_library_application`.
 const Set<String> _cloudflareZeroTrustResourceLibraryApplicationSensitive =
     <String>{};
+
+/// Typed helper for the `filter` block of
+/// `cloudflare_zero_trust_resource_library_application` (derived from provider schema).
+@immutable
+final class DataZeroTrustResourceLibraryApplicationFilter {
+  const DataZeroTrustResourceLibraryApplicationFilter({
+    this.fields,
+    this.filter,
+    this.limit,
+    this.offset,
+    this.orderBy,
+    this.search,
+  });
+
+  final TfArg<String>? fields;
+
+  final TfArg<String>? filter;
+
+  final TfArg<num>? limit;
+
+  final TfArg<num>? offset;
+
+  final TfArg<String>? orderBy;
+
+  final TfArg<String>? search;
+
+  Map<String, Object?> encode() => {
+    if (fields != null) 'fields': fields!.toTfJson(),
+    if (filter != null) 'filter': filter!.toTfJson(),
+    if (limit != null) 'limit': limit!.toTfJson(),
+    if (offset != null) 'offset': offset!.toTfJson(),
+    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
+    if (search != null) 'search': search!.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `cloudflare_zero_trust_resource_library_application`.
 final class DataCloudflareZeroTrustResourceLibraryApplication extends Data {
@@ -15,12 +51,15 @@ final class DataCloudflareZeroTrustResourceLibraryApplication extends Data {
   DataCloudflareZeroTrustResourceLibraryApplication({
     required super.localName,
     required TfArg<String> accountId,
-    required TfArg<String> id,
+    DataZeroTrustResourceLibraryApplicationFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'id': id},
+         argMap: {
+           'account_id': accountId,
+           if (filter != null) 'filter': TfArg.literal(filter.encode()),
+         },
        );
 
   @override
@@ -53,6 +92,9 @@ final class DataCloudflareZeroTrustResourceLibraryApplication extends Data {
   TfRef<String> get applicationTypeDescription =>
       TfRef.attribute<String>(this, 'application_type_description');
 
+  /// Reference to `category_id` attribute.
+  TfRef<num> get categoryId => TfRef.attribute<num>(this, 'category_id');
+
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 
@@ -65,9 +107,6 @@ final class DataCloudflareZeroTrustResourceLibraryApplication extends Data {
 
   /// Reference to `human_id` attribute.
   TfRef<String> get humanId => TfRef.attribute<String>(this, 'human_id');
-
-  /// Reference to `intel_id` attribute.
-  TfRef<num> get intelId => TfRef.attribute<num>(this, 'intel_id');
 
   /// Reference to `ip_subnets` attribute.
   TfRef<List<String>> get ipSubnets =>

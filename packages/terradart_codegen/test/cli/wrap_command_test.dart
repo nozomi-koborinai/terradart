@@ -1118,6 +1118,160 @@ barrels:
       }
     });
   });
+
+  group('WrapCommand --provider-enums', () {
+    late Directory tmp;
+    late String source;
+    late String overrides;
+
+    setUp(() {
+      tmp = Directory.systemTemp.createTempSync('wrap_provider_enums_');
+      source = p.join(tmp.path, 'source');
+      overrides = p.join(tmp.path, 'overrides');
+      Directory(p.join(source, 'hints')).createSync(recursive: true);
+      Directory(overrides).createSync();
+      File(p.join(source, 'provider_version.txt')).writeAsStringSync('1.0.0\n');
+      File(p.join(source, 'schema.json')).writeAsStringSync(jsonEncode({
+        'format_version': '1.0',
+        'provider_schemas': {
+          'registry.terraform.io/example/x': {
+            'resource_schemas': {
+              'x_thing': {
+                'version': 0,
+                'block': {
+                  'attributes': {
+                    'id': {'type': 'string', 'computed': true},
+                    'name': {'type': 'string', 'required': true},
+                    'mode': {
+                      'type': 'string',
+                      'optional': true,
+                      'description': 'Mode.\nAvailable values: "fast", "slow".',
+                    },
+                    'kind': {'type': 'string', 'optional': true},
+                    'regions': {
+                      'type': ['list', 'string'],
+                      'optional': true,
+                    },
+                    'grants': {
+                      'type': ['set', 'string'],
+                      'required': true,
+                    },
+                    'settings': {
+                      'optional': true,
+                      'nested_type': {
+                        'nesting_mode': 'single',
+                        'attributes': {
+                          'level': {
+                            'type': 'string',
+                            'optional': true,
+                            'description': 'Available values: "low", "high".',
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      }));
+      File(p.join(source, 'hints', 'x_thing.yaml')).writeAsStringSync('''
+provider_version: "1.0.0"
+properties:
+  - api_name: kind
+    enum_values: ["k1", "k2"]
+  - api_name: regions
+    enum_values: ["WNAM", "ENAM"]
+  - api_name: grants
+    enum_values: ["code"]
+''');
+      File(p.join(overrides, 'x_thing.yaml')).writeAsStringSync('''
+outputDir: thing
+deriveEnums: true
+deriveNestedTypes: true
+paramOrder: [name, mode, kind, regions, grants, settings]
+''');
+    });
+    tearDown(() => tmp.deleteSync(recursive: true));
+
+    Future<(int, String)> wrap({required bool providerEnums}) async {
+      final err = StringBuffer();
+      final code = await IOOverrides.runZoned(
+        () => buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'example/x',
+          '--source',
+          source,
+          '--output',
+          _libSrcOut(tmp),
+          '--overrides-root',
+          overrides,
+          '--only',
+          'x_thing',
+          if (providerEnums) '--provider-enums',
+        ]),
+        stderr: () => _BufferSink(err),
+      );
+      return (code!, err.toString());
+    }
+
+    String emitted() => File(p.join(_libSrcOut(tmp), 'thing', 'x_thing.dart'))
+        .readAsStringSync();
+
+    test('off: the dialect and the hints are ignored', () async {
+      final (code, _) = await wrap(providerEnums: false);
+      expect(code, CliExitCodes.success);
+      final src = emitted();
+      expect(src, contains('TfArg<String>? mode'));
+      expect(src, contains('TfArg<String>? kind'));
+      expect(src, contains('TfArg<String>? level'));
+      expect(src, contains('TfArg<List<String>>? regions'));
+      expect(src, isNot(contains('implements TerraformEnum')));
+    });
+
+    test('on: descriptions and hints type top-level and nested inputs',
+        () async {
+      final (code, _) = await wrap(providerEnums: true);
+      expect(code, CliExitCodes.success);
+      final src = emitted();
+      expect(src, contains('TfArg<XThingMode>? mode'));
+      expect(src, contains('TfArg<XThingKind>? kind'));
+      expect(src, contains('TfArg<XThingSettingsLevel>? level'));
+      expect(src, contains("fast('fast')"));
+      expect(src, contains("k1('k1')"));
+      expect(src, contains("high('high')"));
+      expect(src, contains('TfArg<String> name'));
+    });
+
+    test('on: a list of strings takes one enum TfArg per element', () async {
+      final (code, _) = await wrap(providerEnums: true);
+      expect(code, CliExitCodes.success);
+      final src = emitted();
+      expect(src, contains('List<TfArg<XThingRegions>>? regions'));
+      expect(src, contains('required List<TfArg<XThingGrants>> grants'));
+      expect(src, contains("wnam('WNAM')"));
+      expect(
+        src,
+        matches(RegExp(r"if \(regions != null\)\s+'regions': "
+            r'TfArg\.literal\(\[for \(final e in regions\) e\.toTfJson\(\)\]\)')),
+      );
+      expect(
+        src,
+        contains("'grants': "
+            'TfArg.literal([for (final e in grants) e.toTfJson()])'),
+      );
+    });
+
+    test('a hint file at another release fails closed (E405)', () async {
+      File(p.join(source, 'provider_version.txt')).writeAsStringSync('1.1.0\n');
+      final (code, err) = await wrap(providerEnums: true);
+      expect(code, CliExitCodes.dataError);
+      expect(err, contains('[E405]'));
+      expect(err, contains('provider_version "1.0.0"'));
+    });
+  });
 }
 
 /// Loads `resource_schemas[terraformType].block` straight from an

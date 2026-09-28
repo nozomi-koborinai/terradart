@@ -17,6 +17,7 @@ final class CloudflareZeroTrustAccessCustomPage extends Resource {
   CloudflareZeroTrustAccessCustomPage({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<num>? contractVersion,
     required TfArg<String> customHtml,
     required TfArg<String> name,
     required TfArg<String> type,
@@ -28,6 +29,7 @@ final class CloudflareZeroTrustAccessCustomPage extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           if (contractVersion != null) 'contract_version': contractVersion,
            'custom_html': customHtml,
            'name': name,
            'type': type,

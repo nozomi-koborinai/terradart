@@ -13,7 +13,11 @@ final class DataCloudflareZeroTrustLists extends Data {
   DataCloudflareZeroTrustLists({
     required super.localName,
     TfArg<String>? accountId,
+    TfArg<String>? direction,
+    TfArg<List<String>>? filter,
     TfArg<num>? maxItems,
+    TfArg<String>? orderBy,
+    TfArg<String>? search,
     TfArg<String>? type,
     super.provider,
     super.timeouts,
@@ -21,7 +25,11 @@ final class DataCloudflareZeroTrustLists extends Data {
          terraformType: tfType,
          argMap: {
            if (accountId != null) 'account_id': accountId,
+           if (direction != null) 'direction': direction,
+           if (filter != null) 'filter': filter,
            if (maxItems != null) 'max_items': maxItems,
+           if (orderBy != null) 'order_by': orderBy,
+           if (search != null) 'search': search,
            if (type != null) 'type': type,
          },
        );

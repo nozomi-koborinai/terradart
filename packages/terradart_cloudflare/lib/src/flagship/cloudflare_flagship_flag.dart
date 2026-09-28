@@ -258,7 +258,6 @@ final class CloudflareFlagshipFlag extends Resource {
     required TfArg<String> defaultVariation,
     TfArg<String>? description,
     required TfArg<bool> enabled,
-    TfArg<String>? flagKey,
     required TfArg<String> key,
     TfArg<String>? type,
     required TfArg<Map<String, String>> variations,
@@ -275,7 +274,6 @@ final class CloudflareFlagshipFlag extends Resource {
            'default_variation': defaultVariation,
            if (description != null) 'description': description,
            'enabled': enabled,
-           if (flagKey != null) 'flag_key': flagKey,
            'key': key,
            if (type != null) 'type': type,
            'variations': variations,
@@ -285,6 +283,9 @@ final class CloudflareFlagshipFlag extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareFlagshipFlagSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');

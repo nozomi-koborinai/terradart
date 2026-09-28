@@ -21,6 +21,7 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
     TfArg<String>? accountId,
     TfArg<num>? clientSecretVersion,
     TfArg<String>? duration,
+    TfArg<bool>? enabled,
     required TfArg<String> name,
     TfArg<String>? previousClientSecretExpiresAt,
     TfArg<String>? zoneId,
@@ -35,6 +36,7 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
            if (clientSecretVersion != null)
              'client_secret_version': clientSecretVersion,
            if (duration != null) 'duration': duration,
+           if (enabled != null) 'enabled': enabled,
            'name': name,
            if (previousClientSecretExpiresAt != null)
              'previous_client_secret_expires_at': previousClientSecretExpiresAt,
