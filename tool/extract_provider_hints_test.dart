@@ -344,8 +344,11 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
       });
       expect(groups('aws_widget_gadget'), {'mode,name', 'left,right'});
       expect(scan.groupValidators, 6);
-      expect(scan.unresolvedGroups, 1,
-          reason: 'unknownKeys() is not evaluable');
+      expect(
+        scan.unresolvedGroups,
+        1,
+        reason: 'unknownKeys() is not evaluable',
+      );
     });
   });
 
