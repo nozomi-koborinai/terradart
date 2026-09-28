@@ -100,8 +100,10 @@ void main() {
         GoogleSecretManagerSecretVersion(
           localName: 'api_key_v1',
           secret: TfArg.ref(secret.id),
-          secretDataWo: TfArg.literal('REPLACE_ME'),
-          secretDataWoVersion: TfArg.literal('1'),
+          payload: SecretManagerSecretVersionWriteOnlyPayload(
+            secretDataWo: TfArg.literal('REPLACE_ME'),
+            secretDataWoVersion: TfArg.literal('1'),
+          ),
         ),
       );
 

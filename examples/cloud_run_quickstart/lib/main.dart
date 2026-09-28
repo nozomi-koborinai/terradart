@@ -95,8 +95,10 @@ final class ApiServiceStack extends Stack {
       GoogleSecretManagerSecretVersion(
         localName: 'db_password_v1',
         secret: TfArg.ref(dbPassword.id),
-        secretDataWo: TfArg.literal('placeholder-secret-value'),
-        secretDataWoVersion: TfArg.literal('1'),
+        payload: SecretManagerSecretVersionWriteOnlyPayload(
+          secretDataWo: TfArg.literal('placeholder-secret-value'),
+          secretDataWoVersion: TfArg.literal('1'),
+        ),
         dependsOn: [ResourceDependency(dbPassword)],
       ),
     );

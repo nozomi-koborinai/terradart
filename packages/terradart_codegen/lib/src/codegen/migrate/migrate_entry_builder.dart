@@ -238,19 +238,19 @@ MigrateEntryBuild buildMigrateEntry({
   );
 }
 
-/// A custom slot with a `<slot>.blockKey:` argMap entry is a *virtual*
-/// slot: the chosen variant's key lands directly in the resource's
-/// arguments, which is what [MigrateSlotData.merged] means (no Terraform
-/// key of its own, so `tfName` is empty).
+/// A custom slot with a `<slot>.blockKey:` or `...<slot>.argMap` argMap
+/// entry is a *virtual* slot: the chosen variant's keys land directly in the
+/// resource's arguments, which is what [MigrateSlotData.merged] means (no
+/// Terraform key of its own, so `tfName` is empty).
 MigrateSlotData _customSlot(String name, CustomSlot custom, ShapeContext ctx) {
   final parsed = parseCustomSlot(custom);
   final shape = customSlotShape(custom, parsed, ctx);
   return _fromShape(
     shape,
-    tfName: parsed.dynamicKey ? '' : (parsed.tfKey ?? name),
+    tfName: parsed.merged ? '' : (parsed.tfKey ?? name),
     dartName: parsed.dartName,
     required: parsed.required,
-    merged: parsed.dynamicKey && !shape.isManual,
+    merged: parsed.merged && !shape.isManual,
   );
 }
 

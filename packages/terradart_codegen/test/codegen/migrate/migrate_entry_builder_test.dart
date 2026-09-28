@@ -377,6 +377,27 @@ final class GoogleThing extends Resource {
       expect(pubsub.slots.map((s) => s.tfName), contains('topic_name'));
     });
 
+    test('google_secret_manager_secret_version: spread sealed payload slot',
+        () {
+      final b = fixture.build('google_secret_manager_secret_version');
+      final payload = _slot(b, 'payload');
+      expect(payload.kind, MigrateSlotKind.sealed);
+      expect(payload.merged, isTrue);
+      expect(payload.tfName, isEmpty);
+      expect(payload.required, isTrue);
+      expect(payload.variants, {
+        'secret_data_wo': 'SecretManagerSecretVersionWriteOnlyPayload',
+        'secret_data': 'SecretManagerSecretVersionPlaintextPayload',
+      });
+      final writeOnly =
+          _helper(b, 'SecretManagerSecretVersionWriteOnlyPayload');
+      expect(writeOnly.reason, isNull);
+      expect(
+        writeOnly.slots.map((s) => (s.tfName, s.required)),
+        [('secret_data_wo', true), ('secret_data_wo_version', true)],
+      );
+    });
+
     test('google_cloud_run_v2_service: custom slots and merged sealed fields',
         () {
       final b = fixture.build('google_cloud_run_v2_service');

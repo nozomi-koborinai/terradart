@@ -60,6 +60,8 @@ GoogleSecretManagerSecretVersion buildDbPasswordSecretVersion(
     GoogleSecretManagerSecretVersion(
       localName: 'db_password_v1',
       secret: TfArg.ref(secret.id),
-      secretDataWo: TfArg.literal(dbPassword),
-      secretDataWoVersion: TfArg.literal('1'),
+      payload: SecretManagerSecretVersionWriteOnlyPayload(
+        secretDataWo: TfArg.literal(dbPassword),
+        secretDataWoVersion: TfArg.literal('1'),
+      ),
     );

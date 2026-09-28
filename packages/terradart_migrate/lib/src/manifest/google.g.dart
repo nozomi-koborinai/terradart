@@ -114057,25 +114057,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'secret_data_wo',
-          dartName: 'secretDataWo',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'secret_data_wo_version',
-          dartName: 'secretDataWoVersion',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'secret_data',
-          dartName: 'secretData',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'payload',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'secret_data_wo': 'SecretManagerSecretVersionWriteOnlyPayload',
+            'secret_data': 'SecretManagerSecretVersionPlaintextPayload',
+          },
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -140202,6 +140193,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BigqueryDataTransferConfigPlaintextSecretAccessKey': MigrateHelper(
+      className: 'BigqueryDataTransferConfigPlaintextSecretAccessKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'secret_access_key',
+          dartName: 'secretAccessKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'BigqueryDataTransferConfigScheduleOptions': MigrateHelper(
       className: 'BigqueryDataTransferConfigScheduleOptions',
       slots: <MigrateSlot>[
@@ -140232,17 +140235,29 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'BigqueryDataTransferConfigSensitiveParams',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'secret_access_key',
+          tfName: '',
           dartName: 'secretAccessKey',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'secret_access_key_wo':
+                'BigqueryDataTransferConfigWriteOnlySecretAccessKey',
+            'secret_access_key':
+                'BigqueryDataTransferConfigPlaintextSecretAccessKey',
+          },
         ),
+      ],
+    ),
+    'BigqueryDataTransferConfigWriteOnlySecretAccessKey': MigrateHelper(
+      className: 'BigqueryDataTransferConfigWriteOnlySecretAccessKey',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'secret_access_key_wo',
           dartName: 'secretAccessKeyWo',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -209641,17 +209656,40 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'password',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'password_wo':
+                'MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword',
+            'password': 'MonitoringUptimeCheckConfigHttpAuthPlaintextPassword',
+          },
+        ),
+      ],
+    ),
+    'MonitoringUptimeCheckConfigHttpAuthPlaintextPassword': MigrateHelper(
+      className: 'MonitoringUptimeCheckConfigHttpAuthPlaintextPassword',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'password',
           dartName: 'password',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
+      ],
+    ),
+    'MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword': MigrateHelper(
+      className: 'MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'password_wo',
           dartName: 'passwordWo',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -223367,6 +223405,37 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           wrapped: false,
           positional: true,
           helper: 'SecretManagerSecretReplica',
+        ),
+      ],
+    ),
+    'SecretManagerSecretVersionPlaintextPayload': MigrateHelper(
+      className: 'SecretManagerSecretVersionPlaintextPayload',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'secret_data',
+          dartName: 'secretData',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'SecretManagerSecretVersionWriteOnlyPayload': MigrateHelper(
+      className: 'SecretManagerSecretVersionWriteOnlyPayload',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'secret_data_wo',
+          dartName: 'secretDataWo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'secret_data_wo_version',
+          dartName: 'secretDataWoVersion',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
       ],
     ),

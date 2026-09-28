@@ -37,6 +37,17 @@ Per-package changelogs live alongside each package and are the system of record 
   `tool/example_debt.yaml` like any weekly bump. The weekly bump tracks major 8.
   See `MIGRATING.md` for the upgrade steps and the behaviour changes a plan
   shows.
+- **Write-only secret choices are sealed** (breaking) — provider 8.0 makes
+  `secret_data` / `secret_data_wo` (with a required `secret_data_wo_version`),
+  the BigQuery Data Transfer `secret_access_key` / `secret_access_key_wo`, and
+  the uptime check `password` / `password_wo` exactly-one-of. The Dart API
+  enforces it: `GoogleSecretManagerSecretVersion(payload:)`,
+  `BigqueryDataTransferConfigSensitiveParams(secretAccessKey:)` and
+  `MonitoringUptimeCheckConfigHttpAuthInfo(password:)` take a required sealed
+  value with a write-only and a plaintext variant. `terradart wrap`'s
+  migration manifest derives a custom slot whose argMap entry is
+  `...<slot>.argMap` as a merged sealed slot, so the migrator translates the
+  new shape. See `MIGRATING.md`.
 - **16 beta-only types move to `terradart_google`; the fixtures move to
   `hashicorp/google` 8.4.0** (breaking) — provider 8.2 / 8.3 promoted
   `google_biglake_hive_{catalog,database,table}` (+ their IAM member /
