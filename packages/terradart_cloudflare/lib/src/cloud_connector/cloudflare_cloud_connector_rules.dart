@@ -19,7 +19,8 @@ final class CloudConnectorRulesRules {
     this.parameters,
   });
 
-  final TfArg<String>? cloudConnectorRulesProvider;
+  final TfArg<CloudConnectorRulesRulesCloudConnectorRulesProvider>?
+  cloudConnectorRulesProvider;
 
   final TfArg<String>? description;
 
@@ -37,6 +38,22 @@ final class CloudConnectorRulesRules {
     if (expression != null) 'expression': expression!.toTfJson(),
     if (parameters != null) 'parameters': parameters!.encode(),
   };
+}
+
+/// `cloud_connector_rules_provider` — derived from the provider schema description.
+enum CloudConnectorRulesRulesCloudConnectorRulesProvider
+    implements TerraformEnum {
+  awsS3('aws_s3'),
+  cloudflareR2('cloudflare_r2'),
+  gcpStorage('gcp_storage'),
+  azureStorage('azure_storage'),
+  ociStorage('oci_storage');
+
+  const CloudConnectorRulesRulesCloudConnectorRulesProvider(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `rules.parameters` block of

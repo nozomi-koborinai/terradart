@@ -18,11 +18,11 @@ final class DataZeroTrustDnsLocationFilter {
     this.search,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataZeroTrustDnsLocationFilterDirection>? direction;
 
   final TfArg<List<Object?>>? filter;
 
-  final TfArg<String>? orderBy;
+  final TfArg<DataZeroTrustDnsLocationFilterOrderBy>? orderBy;
 
   final TfArg<String>? search;
 
@@ -32,6 +32,27 @@ final class DataZeroTrustDnsLocationFilter {
     if (orderBy != null) 'order_by': orderBy!.toTfJson(),
     if (search != null) 'search': search!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataZeroTrustDnsLocationFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataZeroTrustDnsLocationFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order_by` — derived from the provider schema description.
+enum DataZeroTrustDnsLocationFilterOrderBy implements TerraformEnum {
+  name('name'),
+  createdAt('created_at'),
+  updatedAt('updated_at');
+
+  const DataZeroTrustDnsLocationFilterOrderBy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dns_location`.

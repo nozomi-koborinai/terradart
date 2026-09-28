@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_keyless_certificate`.
 const Set<String> _cloudflareKeylessCertificateSensitive = <String>{};
 
+/// Keyless Certificate Bundle enum for `bundle_method`.
+enum KeylessCertificateBundleMethod implements TerraformEnum {
+  ubiquitous('ubiquitous'),
+  optimal('optimal'),
+  force('force');
+
+  const KeylessCertificateBundleMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `tunnel` block of
 /// `cloudflare_keyless_certificate` (derived from provider schema).
 @immutable
@@ -47,7 +58,7 @@ final class CloudflareKeylessCertificate extends Resource {
 
   CloudflareKeylessCertificate({
     required super.localName,
-    TfArg<String>? bundleMethod,
+    TfArg<KeylessCertificateBundleMethod>? bundleMethod,
     required TfArg<String> certificate,
     TfArg<bool>? enabled,
     required TfArg<String> host,

@@ -7,6 +7,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareApiShieldSchemaValidationSettingsSensitive =
     <String>{};
 
+/// Api Shield Schema Validation Settings Validation Default Mitigation enum for `validation_default_mitigation_action`.
+enum ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction
+    implements TerraformEnum {
+  none('none'),
+  log('log'),
+  block('block');
+
+  const ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Api Shield Schema Validation Settings Validation Override Mitigation enum for `validation_override_mitigation_action`.
+enum ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction
+    implements TerraformEnum {
+  none('none'),
+  disableOverride('disable_override');
+
+  const ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_api_shield_schema_validation_settings`.
 ///
 /// Accepted Permissions
@@ -19,8 +46,12 @@ final class CloudflareApiShieldSchemaValidationSettings extends Resource {
 
   CloudflareApiShieldSchemaValidationSettings({
     required super.localName,
-    required TfArg<String> validationDefaultMitigationAction,
-    TfArg<String>? validationOverrideMitigationAction,
+    required TfArg<
+      ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction
+    >
+    validationDefaultMitigationAction,
+    TfArg<ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction>?
+    validationOverrideMitigationAction,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

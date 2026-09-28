@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_load_balancer_monitor`.
 const Set<String> _cloudflareLoadBalancerMonitorSensitive = <String>{};
 
+/// Load Balancer Monitor enum for `type`.
+enum LoadBalancerMonitorType implements TerraformEnum {
+  http('http'),
+  https('https'),
+  tcp('tcp'),
+  udpIcmp('udp_icmp'),
+  icmpPing('icmp_ping'),
+  smtp('smtp');
+
+  const LoadBalancerMonitorType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_load_balancer_monitor`.
 ///
 /// Accepted Permissions
@@ -33,7 +47,7 @@ final class CloudflareLoadBalancerMonitor extends Resource {
     TfArg<String>? probeZone,
     TfArg<num>? retries,
     TfArg<num>? timeout,
-    TfArg<String>? type,
+    TfArg<LoadBalancerMonitorType>? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

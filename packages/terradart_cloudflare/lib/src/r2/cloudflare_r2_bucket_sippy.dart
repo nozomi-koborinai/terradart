@@ -13,6 +13,17 @@ const Set<String> _cloudflareR2BucketSippySensitive = <String>{
   'source.secret_access_key',
 };
 
+/// R2 Bucket Sippy enum for `jurisdiction`.
+enum R2BucketSippyJurisdiction implements TerraformEnum {
+  defaultCase('default'),
+  eu('eu'),
+  fedramp('fedramp');
+
+  const R2BucketSippyJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `destination` block of
 /// `cloudflare_r2_bucket_sippy` (derived from provider schema).
 @immutable
@@ -25,7 +36,7 @@ final class R2BucketSippyDestination {
 
   final TfArg<String>? accessKeyId;
 
-  final TfArg<String>? cloudProvider;
+  final TfArg<R2BucketSippyDestinationCloudProvider>? cloudProvider;
 
   final TfArg<String>? secretAccessKey;
 
@@ -35,6 +46,15 @@ final class R2BucketSippyDestination {
     if (secretAccessKey != null)
       'secret_access_key': secretAccessKey!.toTfJson(),
   };
+}
+
+/// `cloud_provider` — derived from the provider schema description.
+enum R2BucketSippyDestinationCloudProvider implements TerraformEnum {
+  r2('r2');
+
+  const R2BucketSippyDestinationCloudProvider(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `source` block of
@@ -68,7 +88,7 @@ final class R2BucketSippySource {
 
   final TfArg<String>? clientEmail;
 
-  final TfArg<String>? cloudProvider;
+  final TfArg<R2BucketSippySourceCloudProvider>? cloudProvider;
 
   final TfArg<String>? container;
 
@@ -97,6 +117,18 @@ final class R2BucketSippySource {
   };
 }
 
+/// `cloud_provider` — derived from the provider schema description.
+enum R2BucketSippySourceCloudProvider implements TerraformEnum {
+  aws('aws'),
+  gcs('gcs'),
+  s3('s3'),
+  azure('azure');
+
+  const R2BucketSippySourceCloudProvider(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_r2_bucket_sippy`.
 ///
 /// Accepted Permissions
@@ -109,7 +141,7 @@ final class CloudflareR2BucketSippy extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> bucketName,
-    TfArg<String>? jurisdiction,
+    TfArg<R2BucketSippyJurisdiction>? jurisdiction,
     R2BucketSippyDestination? destination,
     R2BucketSippySource? source,
     super.lifecycle,

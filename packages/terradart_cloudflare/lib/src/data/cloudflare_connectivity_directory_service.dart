@@ -13,9 +13,19 @@ const Set<String> _cloudflareConnectivityDirectoryServiceSensitive = <String>{};
 final class DataConnectivityDirectoryServiceFilter {
   const DataConnectivityDirectoryServiceFilter({this.type});
 
-  final TfArg<String>? type;
+  final TfArg<DataConnectivityDirectoryServiceFilterType>? type;
 
   Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+}
+
+/// `type` — derived from the provider schema description.
+enum DataConnectivityDirectoryServiceFilterType implements TerraformEnum {
+  tcp('tcp'),
+  http('http');
+
+  const DataConnectivityDirectoryServiceFilterType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_connectivity_directory_service`.

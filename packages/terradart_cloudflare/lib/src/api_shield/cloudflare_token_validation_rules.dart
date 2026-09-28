@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_token_validation_rules`.
 const Set<String> _cloudflareTokenValidationRulesSensitive = <String>{};
 
+/// Token Validation Rules enum for `action`.
+enum TokenValidationRulesAction implements TerraformEnum {
+  log('log'),
+  block('block');
+
+  const TokenValidationRulesAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `position` block of
 /// `cloudflare_token_validation_rules` (derived from provider schema).
 @immutable
@@ -77,7 +87,7 @@ final class CloudflareTokenValidationRules extends Resource {
 
   CloudflareTokenValidationRules({
     required super.localName,
-    required TfArg<String> action,
+    required TfArg<TokenValidationRulesAction> action,
     required TfArg<String> description,
     required TfArg<bool> enabled,
     required TfArg<String> expression,

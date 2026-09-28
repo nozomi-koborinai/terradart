@@ -36,4 +36,9 @@ abstract class ProviderRules {
   /// `deriveOutputGetters: true` so plugin-framework object attributes
   /// become typed helper classes instead of `TfArg<Map<String, dynamic>>`.
   bool get typedNestedDefaults => false;
+
+  /// When true, `wrap-init` and the lane scaffold fill `deriveEnums: true`
+  /// on resources, for a lane whose `wrap --provider-enums` supplies the
+  /// enum value sets.
+  bool get derivedEnumDefaults => false;
 }

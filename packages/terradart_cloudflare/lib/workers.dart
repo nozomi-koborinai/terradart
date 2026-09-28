@@ -10,6 +10,7 @@ export 'src/workers/cloudflare_worker.dart'
         WorkerObservabilityIssues,
         WorkerObservabilityLogs,
         WorkerObservabilityTraces,
+        WorkerObservabilityTracesPropagationPolicy,
         WorkerPreviewsBaseConfig,
         WorkerPreviewsBaseConfigCacheOptions,
         WorkerPreviewsBaseConfigEnv,
@@ -18,7 +19,9 @@ export 'src/workers/cloudflare_worker.dart'
         WorkerPreviewsBaseConfigObservabilityIssues,
         WorkerPreviewsBaseConfigObservabilityLogs,
         WorkerPreviewsBaseConfigObservabilityTraces,
+        WorkerPreviewsBaseConfigObservabilityTracesPropagationPolicy,
         WorkerPreviewsBaseConfigPlacement,
+        WorkerPreviewsBaseConfigPlacementMode,
         WorkerPreviewsBaseConfigPlacementTarget,
         WorkerPreviewsBaseConfigTailConsumers,
         WorkerSubdomain,
@@ -29,15 +32,25 @@ export 'src/workers/cloudflare_worker_version.dart'
         WorkerVersionAnnotations,
         WorkerVersionAssets,
         WorkerVersionAssetsConfig,
+        WorkerVersionAssetsConfigHtmlHandling,
+        WorkerVersionAssetsConfigNotFoundHandling,
         WorkerVersionBindings,
+        WorkerVersionBindingsFormat,
+        WorkerVersionBindingsIdentity,
+        WorkerVersionBindingsJurisdiction,
         WorkerVersionBindingsOutbound,
         WorkerVersionBindingsOutboundParams,
         WorkerVersionBindingsOutboundWorker,
         WorkerVersionBindingsSimple,
+        WorkerVersionBindingsType,
         WorkerVersionCacheOptions,
         WorkerVersionContainers,
         WorkerVersionExports,
         WorkerVersionExportsCache,
+        WorkerVersionExportsState,
+        WorkerVersionExportsStorage,
+        WorkerVersionExportsType,
+        WorkerVersionInclude,
         WorkerVersionLimits,
         WorkerVersionMigrations,
         WorkerVersionMigrationsRenamedClasses,
@@ -48,7 +61,9 @@ export 'src/workers/cloudflare_worker_version.dart'
         WorkerVersionModules,
         WorkerVersionPackageDependencies,
         WorkerVersionPlacement,
-        WorkerVersionPlacementTarget;
+        WorkerVersionPlacementMode,
+        WorkerVersionPlacementTarget,
+        WorkerVersionUsageModel;
 export 'src/workers/cloudflare_workers_cron_trigger.dart'
     show CloudflareWorkersCronTrigger, WorkersCronTriggerSchedules;
 export 'src/workers/cloudflare_workers_custom_domain.dart'
@@ -57,12 +72,13 @@ export 'src/workers/cloudflare_workers_deployment.dart'
     show
         CloudflareWorkersDeployment,
         WorkersDeploymentAnnotations,
+        WorkersDeploymentStrategy,
         WorkersDeploymentVersions;
 export 'src/workers/cloudflare_workers_for_platforms_dispatch_namespace.dart'
     show CloudflareWorkersForPlatformsDispatchNamespace;
 export 'src/workers/cloudflare_workers_kv.dart' show CloudflareWorkersKv;
 export 'src/workers/cloudflare_workers_kv_namespace.dart'
-    show CloudflareWorkersKvNamespace;
+    show CloudflareWorkersKvNamespace, WorkersKvNamespaceJurisdiction;
 export 'src/workers/cloudflare_workers_route.dart' show CloudflareWorkersRoute;
 export 'src/workers/cloudflare_workers_script.dart'
     show
@@ -70,11 +86,18 @@ export 'src/workers/cloudflare_workers_script.dart'
         WorkersScriptAnnotations,
         WorkersScriptAssets,
         WorkersScriptAssetsConfig,
+        WorkersScriptAssetsConfigHtmlHandling,
+        WorkersScriptAssetsConfigNotFoundHandling,
         WorkersScriptBindings,
+        WorkersScriptBindingsFormat,
+        WorkersScriptBindingsJurisdiction,
         WorkersScriptBindingsOutbound,
         WorkersScriptBindingsOutboundWorker,
         WorkersScriptBindingsSimple,
+        WorkersScriptBindingsType,
+        WorkersScriptBindingsUsages,
         WorkersScriptCacheOptions,
+        WorkersScriptContentType,
         WorkersScriptExports,
         WorkersScriptExportsCache,
         WorkersScriptFiles,
@@ -89,8 +112,11 @@ export 'src/workers/cloudflare_workers_script.dart'
         WorkersScriptObservabilityIssues,
         WorkersScriptObservabilityLogs,
         WorkersScriptObservabilityTraces,
+        WorkersScriptObservabilityTracesPropagationPolicy,
         WorkersScriptPackageDependencies,
         WorkersScriptPlacement,
-        WorkersScriptTailConsumers;
+        WorkersScriptPlacementMode,
+        WorkersScriptTailConsumers,
+        WorkersScriptUsageModel;
 export 'src/workers/cloudflare_workers_script_subdomain.dart'
     show CloudflareWorkersScriptSubdomain;

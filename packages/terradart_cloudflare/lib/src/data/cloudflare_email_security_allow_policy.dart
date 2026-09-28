@@ -23,7 +23,7 @@ final class DataEmailSecurityAllowPolicyFilter {
     this.verifySender,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataEmailSecurityAllowPolicyFilterDirection>? direction;
 
   final TfArg<bool>? isAcceptableSender;
 
@@ -31,11 +31,11 @@ final class DataEmailSecurityAllowPolicyFilter {
 
   final TfArg<bool>? isTrustedSender;
 
-  final TfArg<String>? order;
+  final TfArg<DataEmailSecurityAllowPolicyFilterOrder>? order;
 
   final TfArg<String>? pattern;
 
-  final TfArg<String>? patternType;
+  final TfArg<DataEmailSecurityAllowPolicyFilterPatternType>? patternType;
 
   final TfArg<String>? search;
 
@@ -55,6 +55,38 @@ final class DataEmailSecurityAllowPolicyFilter {
     if (search != null) 'search': search!.toTfJson(),
     if (verifySender != null) 'verify_sender': verifySender!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataEmailSecurityAllowPolicyFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataEmailSecurityAllowPolicyFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataEmailSecurityAllowPolicyFilterOrder implements TerraformEnum {
+  pattern('pattern'),
+  createdAt('created_at');
+
+  const DataEmailSecurityAllowPolicyFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `pattern_type` — derived from the provider schema description.
+enum DataEmailSecurityAllowPolicyFilterPatternType implements TerraformEnum {
+  email('EMAIL'),
+  domain('DOMAIN'),
+  ip('IP'),
+  unknown('UNKNOWN');
+
+  const DataEmailSecurityAllowPolicyFilterPatternType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_email_security_allow_policy`.

@@ -8,6 +8,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareZeroTrustAccessAiControlsMcpServerSensitive =
     <String>{'auth_credentials', 'client_secret'};
 
+/// Zero Trust Access Ai Controls Mcp Server Auth enum for `auth_type`.
+enum ZeroTrustAccessAiControlsMcpServerAuthType implements TerraformEnum {
+  oauth('oauth'),
+  bearer('bearer'),
+  unauthenticated('unauthenticated');
+
+  const ZeroTrustAccessAiControlsMcpServerAuthType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `updated_prompts` block of
 /// `cloudflare_zero_trust_access_ai_controls_mcp_server` (derived from provider schema).
 @immutable
@@ -75,7 +86,7 @@ final class CloudflareZeroTrustAccessAiControlsMcpServer extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<String>? authCredentials,
-    required TfArg<String> authType,
+    required TfArg<ZeroTrustAccessAiControlsMcpServerAuthType> authType,
     TfArg<String>? clientSecret,
     TfArg<String>? description,
     required TfArg<String> hostname,

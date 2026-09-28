@@ -8,7 +8,11 @@ export 'src/user/cloudflare_user_group.dart'
     show
         CloudflareUserGroup,
         UserGroupPolicies,
+        UserGroupPoliciesAccess,
         UserGroupPoliciesPermissionGroups,
         UserGroupPoliciesResourceGroups;
 export 'src/user/cloudflare_user_group_members.dart'
-    show CloudflareUserGroupMembers, UserGroupMembersMembers;
+    show
+        CloudflareUserGroupMembers,
+        UserGroupMembersDirection,
+        UserGroupMembersMembers;

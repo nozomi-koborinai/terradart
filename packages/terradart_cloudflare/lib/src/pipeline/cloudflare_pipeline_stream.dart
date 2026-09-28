@@ -20,15 +20,15 @@ final class PipelineStreamFormat {
     this.unstructured,
   });
 
-  final TfArg<String>? compression;
+  final TfArg<PipelineStreamFormatCompression>? compression;
 
-  final TfArg<String>? decimalEncoding;
+  final TfArg<PipelineStreamFormatDecimalEncoding>? decimalEncoding;
 
   final TfArg<num>? rowGroupBytes;
 
-  final TfArg<String>? timestampFormat;
+  final TfArg<PipelineStreamFormatTimestampFormat>? timestampFormat;
 
-  final TfArg<String> type;
+  final TfArg<PipelineStreamFormatType> type;
 
   final TfArg<bool>? unstructured;
 
@@ -42,6 +42,50 @@ final class PipelineStreamFormat {
     'type': type.toTfJson(),
     if (unstructured != null) 'unstructured': unstructured!.toTfJson(),
   };
+}
+
+/// `compression` — derived from the provider schema description.
+enum PipelineStreamFormatCompression implements TerraformEnum {
+  uncompressed('uncompressed'),
+  snappy('snappy'),
+  gzip('gzip'),
+  zstd('zstd'),
+  lz4('lz4');
+
+  const PipelineStreamFormatCompression(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `decimal_encoding` — derived from the provider schema description.
+enum PipelineStreamFormatDecimalEncoding implements TerraformEnum {
+  number('number'),
+  string('string'),
+  bytes('bytes');
+
+  const PipelineStreamFormatDecimalEncoding(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `timestamp_format` — derived from the provider schema description.
+enum PipelineStreamFormatTimestampFormat implements TerraformEnum {
+  rfc3339('rfc3339'),
+  unixMillis('unix_millis');
+
+  const PipelineStreamFormatTimestampFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum PipelineStreamFormatType implements TerraformEnum {
+  json('json'),
+  parquet('parquet');
+
+  const PipelineStreamFormatType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `http` block of
@@ -117,9 +161,9 @@ final class PipelineStreamSchemaFields {
 
   final TfArg<String>? sqlName;
 
-  final TfArg<String> type;
+  final TfArg<PipelineStreamSchemaFieldsType> type;
 
-  final TfArg<String>? unit;
+  final TfArg<PipelineStreamSchemaFieldsUnit>? unit;
 
   Map<String, Object?> encode() => {
     if (metadataKey != null) 'metadata_key': metadataKey!.toTfJson(),
@@ -129,6 +173,35 @@ final class PipelineStreamSchemaFields {
     'type': type.toTfJson(),
     if (unit != null) 'unit': unit!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum PipelineStreamSchemaFieldsType implements TerraformEnum {
+  int32('int32'),
+  int64('int64'),
+  float32('float32'),
+  float64('float64'),
+  bool('bool'),
+  string('string'),
+  binary('binary'),
+  timestamp('timestamp'),
+  json('json');
+
+  const PipelineStreamSchemaFieldsType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `unit` — derived from the provider schema description.
+enum PipelineStreamSchemaFieldsUnit implements TerraformEnum {
+  second('second'),
+  millisecond('millisecond'),
+  microsecond('microsecond'),
+  nanosecond('nanosecond');
+
+  const PipelineStreamSchemaFieldsUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `worker_binding` block of

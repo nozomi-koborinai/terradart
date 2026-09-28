@@ -12,6 +12,26 @@ const Set<String> _cloudflareWorkerVersionSensitive = <String>{
   'bindings.text',
 };
 
+/// Worker Version enum for `include`.
+enum WorkerVersionInclude implements TerraformEnum {
+  modules('modules');
+
+  const WorkerVersionInclude(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Worker Version Usage enum for `usage_model`.
+enum WorkerVersionUsageModel implements TerraformEnum {
+  standard('standard'),
+  bundled('bundled'),
+  unbound('unbound');
+
+  const WorkerVersionUsageModel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `annotations` block of
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
@@ -60,9 +80,9 @@ final class WorkerVersionAssetsConfig {
 
   final TfArg<String>? basePath;
 
-  final TfArg<String>? htmlHandling;
+  final TfArg<WorkerVersionAssetsConfigHtmlHandling>? htmlHandling;
 
-  final TfArg<String>? notFoundHandling;
+  final TfArg<WorkerVersionAssetsConfigNotFoundHandling>? notFoundHandling;
 
   final TfArg<Object?>? runWorkerFirst;
 
@@ -73,6 +93,29 @@ final class WorkerVersionAssetsConfig {
       'not_found_handling': notFoundHandling!.toTfJson(),
     if (runWorkerFirst != null) 'run_worker_first': runWorkerFirst!.toTfJson(),
   };
+}
+
+/// `html_handling` — derived from the provider schema description.
+enum WorkerVersionAssetsConfigHtmlHandling implements TerraformEnum {
+  autoTrailingSlash('auto-trailing-slash'),
+  forceTrailingSlash('force-trailing-slash'),
+  dropTrailingSlash('drop-trailing-slash'),
+  none('none');
+
+  const WorkerVersionAssetsConfigHtmlHandling(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `not_found_handling` — derived from the provider schema description.
+enum WorkerVersionAssetsConfigNotFoundHandling implements TerraformEnum {
+  none('none'),
+  v404Page('404-page'),
+  singlePageApplication('single-page-application');
+
+  const WorkerVersionAssetsConfigNotFoundHandling(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `bindings` block of
@@ -152,11 +195,11 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? environment;
 
-  final TfArg<String>? format;
+  final TfArg<WorkerVersionBindingsFormat>? format;
 
   final TfArg<String>? id;
 
-  final TfArg<String>? identity;
+  final TfArg<WorkerVersionBindingsIdentity>? identity;
 
   final TfArg<String>? indexName;
 
@@ -164,7 +207,7 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? json;
 
-  final TfArg<String>? jurisdiction;
+  final TfArg<WorkerVersionBindingsJurisdiction>? jurisdiction;
 
   final TfArg<String>? keyBase64;
 
@@ -202,7 +245,7 @@ final class WorkerVersionBindings {
 
   final TfArg<String>? tunnelId;
 
-  final TfArg<String> type;
+  final TfArg<WorkerVersionBindingsType> type;
 
   final TfArg<List<Object?>>? usages;
 
@@ -264,6 +307,84 @@ final class WorkerVersionBindings {
     if (outbound != null) 'outbound': outbound!.encode(),
     if (simple != null) 'simple': simple!.encode(),
   };
+}
+
+/// `format` — derived from the provider schema description.
+enum WorkerVersionBindingsFormat implements TerraformEnum {
+  raw('raw'),
+  pkcs8('pkcs8'),
+  spki('spki'),
+  jwk('jwk');
+
+  const WorkerVersionBindingsFormat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `identity` — derived from the provider schema description.
+enum WorkerVersionBindingsIdentity implements TerraformEnum {
+  runtimeEmailAlpha('runtime-email-alpha');
+
+  const WorkerVersionBindingsIdentity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `jurisdiction` — derived from the provider schema description.
+enum WorkerVersionBindingsJurisdiction implements TerraformEnum {
+  eu('eu'),
+  fedramp('fedramp'),
+  fedrampHigh('fedramp-high'),
+  us('us');
+
+  const WorkerVersionBindingsJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum WorkerVersionBindingsType implements TerraformEnum {
+  ai('ai'),
+  aiSearch('ai_search'),
+  aiSearchNamespace('ai_search_namespace'),
+  messaging('messaging'),
+  analyticsEngine('analytics_engine'),
+  assets('assets'),
+  browser('browser'),
+  d1('d1'),
+  dataBlob('data_blob'),
+  dispatchNamespace('dispatch_namespace'),
+  durableObjectNamespace('durable_object_namespace'),
+  hyperdrive('hyperdrive'),
+  inherit('inherit'),
+  images('images'),
+  json('json'),
+  kvNamespace('kv_namespace'),
+  media('media'),
+  mtlsCertificate('mtls_certificate'),
+  plainText('plain_text'),
+  pipelines('pipelines'),
+  k2('k2'),
+  queue('queue'),
+  ratelimit('ratelimit'),
+  r2Bucket('r2_bucket'),
+  secretText('secret_text'),
+  sendEmail('send_email'),
+  service('service'),
+  textBlob('text_blob'),
+  vectorize('vectorize'),
+  versionMetadata('version_metadata'),
+  secretsStoreSecret('secrets_store_secret'),
+  flagship('flagship'),
+  secretKey('secret_key'),
+  workflow('workflow'),
+  wasmModule('wasm_module'),
+  vpcService('vpc_service'),
+  vpcNetwork('vpc_network');
+
+  const WorkerVersionBindingsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `bindings.outbound` block of
@@ -384,15 +505,15 @@ final class WorkerVersionExports {
 
   final TfArg<String>? renamedTo;
 
-  final TfArg<String>? state;
+  final TfArg<WorkerVersionExportsState>? state;
 
-  final TfArg<String>? storage;
+  final TfArg<WorkerVersionExportsStorage>? storage;
 
   final TfArg<String>? transferFrom;
 
   final TfArg<String>? transferredTo;
 
-  final TfArg<String> type;
+  final TfArg<WorkerVersionExportsType> type;
 
   final WorkerVersionExportsCache? cache;
 
@@ -405,6 +526,39 @@ final class WorkerVersionExports {
     'type': type.toTfJson(),
     if (cache != null) 'cache': cache!.encode(),
   };
+}
+
+/// `state` — derived from the provider schema description.
+enum WorkerVersionExportsState implements TerraformEnum {
+  created('created'),
+  deleted('deleted'),
+  renamed('renamed'),
+  transferred('transferred'),
+  expectingTransfer('expecting-transfer');
+
+  const WorkerVersionExportsState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `storage` — derived from the provider schema description.
+enum WorkerVersionExportsStorage implements TerraformEnum {
+  sqlite('sqlite'),
+  legacyKv('legacy-kv');
+
+  const WorkerVersionExportsStorage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum WorkerVersionExportsType implements TerraformEnum {
+  worker('worker'),
+  durableObject('durable-object');
+
+  const WorkerVersionExportsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `exports.cache` block of
@@ -659,7 +813,7 @@ final class WorkerVersionPlacement {
 
   final TfArg<String>? hostname;
 
-  final TfArg<String>? mode;
+  final TfArg<WorkerVersionPlacementMode>? mode;
 
   final TfArg<String>? region;
 
@@ -672,6 +826,16 @@ final class WorkerVersionPlacement {
     if (region != null) 'region': region!.toTfJson(),
     if (target != null) 'target': [for (final e in target!) e.encode()],
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum WorkerVersionPlacementMode implements TerraformEnum {
+  smart('smart'),
+  targeted('targeted');
+
+  const WorkerVersionPlacementMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `placement.target` block of
@@ -707,9 +871,9 @@ final class CloudflareWorkerVersion extends Resource {
     TfArg<String>? compatibilityDate,
     TfArg<List<String>>? compatibilityFlags,
     TfArg<bool>? deploy,
-    TfArg<String>? include,
+    TfArg<WorkerVersionInclude>? include,
     TfArg<String>? mainModule,
-    TfArg<String>? usageModel,
+    TfArg<WorkerVersionUsageModel>? usageModel,
     required TfArg<String> workerId,
     WorkerVersionAnnotations? annotations,
     WorkerVersionAssets? assets,

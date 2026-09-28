@@ -7,6 +7,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zero_trust_list`.
 const Set<String> _cloudflareZeroTrustListSensitive = <String>{};
 
+/// Zero Trust List enum for `type`.
+enum ZeroTrustListType implements TerraformEnum {
+  serial('SERIAL'),
+  url('URL'),
+  domain('DOMAIN'),
+  email('EMAIL'),
+  ip('IP'),
+  category('CATEGORY'),
+  location('LOCATION'),
+  device('DEVICE'),
+  aaguid('AAGUID');
+
+  const ZeroTrustListType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `items` block of
 /// `cloudflare_zero_trust_list` (derived from provider schema).
 @immutable
@@ -32,7 +49,7 @@ final class CloudflareZeroTrustList extends Resource {
     required TfArg<String> accountId,
     TfArg<String>? description,
     required TfArg<String> name,
-    required TfArg<String> type,
+    required TfArg<ZeroTrustListType> type,
     List<ZeroTrustListItems>? items,
     super.lifecycle,
     super.dependsOn,

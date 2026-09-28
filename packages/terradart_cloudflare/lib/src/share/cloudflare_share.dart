@@ -41,7 +41,7 @@ final class ShareResources {
 
   final TfArg<String> resourceId;
 
-  final TfArg<String> resourceType;
+  final TfArg<ShareResourcesResourceType> resourceType;
 
   Map<String, Object?> encode() => {
     'meta': meta.toTfJson(),
@@ -49,6 +49,21 @@ final class ShareResources {
     'resource_id': resourceId.toTfJson(),
     'resource_type': resourceType.toTfJson(),
   };
+}
+
+/// `resource_type` — derived from the provider schema description.
+enum ShareResourcesResourceType implements TerraformEnum {
+  customRuleset('custom-ruleset'),
+  gatewayPolicy('gateway-policy'),
+  gatewayDestinationIp('gateway-destination-ip'),
+  gatewayBlockPageSettings('gateway-block-page-settings'),
+  gatewayExtendedEmailMatching('gateway-extended-email-matching'),
+  idpFederationGrant('idp-federation-grant'),
+  trustGrant('trust-grant');
+
+  const ShareResourcesResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_share`.
