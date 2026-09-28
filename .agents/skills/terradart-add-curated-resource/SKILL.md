@@ -55,7 +55,7 @@ When the synced MM fixture (`test/fixtures/wrap/source/mm/<type>.yaml`) declares
 
 1. **Do not** model each member as a separate optional `customSlot` (doc-only “pick exactly one” is not enough — compile time must enforce it).
 2. **Do** add a `sealed class` hierarchy in `prelude` (one `final class` per member, each with `blockKey` + `encode()`).
-3. **Do** add one **required** virtual `customSlot` (e.g. `trust_source`, `target`, `recurrence`) whose `argMapEntry` uses `slot.blockKey: TfArg.literal(slot.encode())`.
+3. **Do** add one **required** virtual `customSlot` (e.g. `trust_source`, `target`, `recurrence`) whose `argMapEntry` uses `slot.blockKey: TfArg.literal(slot.encode())`. When the members are top-level attributes and a variant writes several of them (`secret_data_wo` + `secret_data_wo_version`), give the sealed base an `argMap` getter over `encode()` and use `...slot.argMap,` (`google_secret_manager_secret_version.yaml`); inside a helper, spread `...field.encode()` (`google_monitoring_uptime_check_config.yaml` → `password`).
 4. **Do** list only the virtual slot in `paramOrder` — omit the IR nested-block names the virtual slot replaces.
 5. Run `terradart lint-override` — rule `exactly-one-optional-fanout` catches the anti-pattern.
 

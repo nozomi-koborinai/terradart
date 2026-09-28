@@ -480,8 +480,10 @@ bool _hasSealedVirtualSlot(List<String> group, Map<String, CustomSlot> slots) {
     // Sealed dispatch is signalled by a dynamic `<slot>.blockKey:` argMap key
     // — used by both nested-block groups (scheduler `target`) and scalar
     // groups where each variant emits one `{blockKey: value}` pair (cert map
-    // entry `match`).
-    return slot.argMapEntry.contains('.blockKey');
+    // entry `match`) — or by a `...<slot>.argMap` spread, where a variant
+    // writes several keys (secret version `secret_data_wo` + its version).
+    return slot.argMapEntry.contains('.blockKey') ||
+        parseCustomSlot(slot).spread;
   });
 }
 
