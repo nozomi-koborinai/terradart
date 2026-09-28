@@ -177,7 +177,8 @@ bool isEnumListType(String dartType) => dartType.startsWith('List<TfArg<');
 
 bool _isStringish(TypeDef t) => switch (t) {
       StringType() => true,
-      ListType(:final element) || SetType(:final element) =>
+      ListType(:final element) ||
+      SetType(:final element) =>
         element is StringType,
       _ => false,
     };
