@@ -164,19 +164,20 @@ String _renderClass(NestedBlockSpec spec, String resourceTerraformType) {
 }
 
 /// Renders the free-standing `TerraformEnum` declaration for one
-/// enum-carrying attribute. Member names reuse [screamingToCamel] (shared
+/// enum-carrying attribute. Member names reuse [enumMemberNames] (shared
 /// with the top-level `deriveEnums` path via `naming.dart`'s `enumName`) —
 /// never re-implemented here, including its reserved-word fallback.
 String _renderEnum(NestedAttrSpec attr) {
   final values = attr.enumValues!;
+  final members = enumMemberNames(values);
   final buf = StringBuffer()
     ..writeln(
         '/// `${attr.tfName}` — derived from the provider schema description.')
     ..writeln('enum ${attr.dartType} implements TerraformEnum {');
   for (var i = 0; i < values.length; i++) {
     final isLast = i == values.length - 1;
-    final member = screamingToCamel(values[i]);
-    buf.writeln("  $member('${values[i]}')${isLast ? ';' : ','}");
+    buf.writeln("  ${members[i]}('${dartSingleQuotedBody(values[i])}')"
+        "${isLast ? ';' : ','}");
   }
   buf
     ..writeln()

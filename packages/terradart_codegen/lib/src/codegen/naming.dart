@@ -95,7 +95,7 @@ EnumName enumName({
   // schema_settings.encoding) — short and distinctive.
   final leaf = fieldPath.split('.').last;
   final leafPascal = snakeToPascal(leaf);
-  final dartMembers = [for (final m in members) screamingToCamel(m)];
+  final dartMembers = enumMemberNames(members);
   return EnumName(
     dartName: '${shortResourcePascal(resourceType)}$leafPascal',
     dartMembers: dartMembers,
@@ -125,6 +125,115 @@ String screamingToCamel(String screaming) {
   final camel = snakeToCamel(parts.join('_'));
   return safeDartIdentifier(camel);
 }
+
+/// Dart enum member names for [values], index-aligned.
+///
+/// Each member is [screamingToCamel] of its value whenever that is a legal,
+/// lint-clean (`constant_identifier_names`) member unique within the enum —
+/// every SCREAMING_SNAKE / snake / kebab value set. Values it cannot name
+/// (`1.2`, `@cf/meta/llama-3-8b`, `<=`, `thresholds.$key`, ...) fall back
+/// to [_fallbackMemberName]; a name still taken gets a numeric suffix.
+List<String> enumMemberNames(List<String> values) {
+  final taken = <String>{};
+  final out = <String>[];
+  for (final value in values) {
+    final legacy = screamingToCamel(value);
+    var name = _isUsableMember(legacy) ? legacy : _fallbackMemberName(value);
+    if (taken.contains(name)) {
+      final base = name;
+      var n = 2;
+      while (taken.contains('$base$n')) {
+        n++;
+      }
+      name = '$base$n';
+    }
+    taken.add(name);
+    out.add(name);
+  }
+  return out;
+}
+
+final RegExp _memberPattern = RegExp(r'^[a-z][a-zA-Z0-9]*$');
+
+bool _isUsableMember(String name) =>
+    _memberPattern.hasMatch(name) && !_enumReservedMembers.contains(name);
+
+/// Members an enum cannot declare: [Enum]'s own API, `Object`'s, the
+/// `TerraformEnum` field every emitted enum carries, and `override`, which
+/// would shadow the `@override` annotation on that field.
+const Set<String> _enumReservedMembers = {
+  'override',
+  'values',
+  'index',
+  'hashCode',
+  'runtimeType',
+  'toString',
+  'noSuchMethod',
+  'terraformValue',
+};
+
+const Map<String, String> _operatorMembers = {
+  '<': 'lt',
+  '<=': 'lte',
+  '=': 'eq',
+  '==': 'eq',
+  '>': 'gt',
+  '>=': 'gte',
+  '!=': 'ne',
+};
+
+/// Alphanumeric runs camel-cased, a separator between two digits spelled
+/// out (`.` → `p`, anything else → `x`) so `1.2` / `12` stay distinct, and a
+/// leading digit prefixed with `v`.
+String _fallbackMemberName(String value) {
+  if (value.isEmpty) return 'empty';
+  final op = _operatorMembers[value.trim()];
+  if (op != null) return op;
+
+  final words = <String>[];
+  final run = RegExp(r'[A-Za-z0-9]+');
+  var previousEnd = -1;
+  for (final m in run.allMatches(value)) {
+    final word = m.group(0)!.toLowerCase();
+    if (words.isNotEmpty &&
+        _isDigit(value[previousEnd - 1]) &&
+        _isDigit(word[0])) {
+      final separator = value.substring(previousEnd, m.start);
+      words[words.length - 1] += separator == '.' ? 'p' : 'x';
+      words[words.length - 1] += word;
+    } else {
+      words.add(word);
+    }
+    previousEnd = m.end;
+  }
+  if (words.isEmpty) return 'value';
+
+  final buf = StringBuffer(words.first);
+  for (final w in words.skip(1)) {
+    buf
+      ..write(w[0].toUpperCase())
+      ..write(w.substring(1));
+  }
+  var name = buf.toString();
+  if (_isDigit(name[0])) name = 'v$name';
+  if (_dartReservedWords.contains(name) ||
+      _enumReservedMembers.contains(name)) {
+    name = '${name}Case';
+  }
+  return name;
+}
+
+bool _isDigit(String ch) {
+  final c = ch.codeUnitAt(0);
+  return c >= 0x30 && c <= 0x39;
+}
+
+/// [raw] as the body of a single-quoted Dart string literal.
+String dartSingleQuotedBody(String raw) => raw
+    .replaceAll(r'\', r'\\')
+    .replaceAll("'", r"\'")
+    .replaceAll(r'$', r'\$')
+    .replaceAll('\n', r'\n');
 
 /// Terraform snake_case attribute / block name → a legal Dart identifier.
 ///

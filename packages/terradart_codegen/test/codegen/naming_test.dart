@@ -100,4 +100,55 @@ void main() {
       expect(e.dartMembers, ['defaultCase', 'custom']);
     });
   });
+
+  group('enumMemberNames', () {
+    test('keeps screamingToCamel for every legal value set', () {
+      expect(
+        enumMemberNames(['ENCODING_UNSPECIFIED', 'connect-failure', 'default']),
+        ['encodingUnspecified', 'connectFailure', 'defaultCase'],
+      );
+    });
+    test('names values screamingToCamel cannot', () {
+      expect(
+        enumMemberNames([
+          '1.2',
+          '12',
+          '404-page',
+          '@cf/meta/llama-3-8b',
+          'thresholds.\$key',
+          '<=',
+          '>',
+          '',
+          '*',
+        ]),
+        [
+          'v1p2',
+          'v12',
+          'v404Page',
+          'cfMetaLlama3x8b',
+          'thresholdsKey',
+          'lte',
+          'gt',
+          'empty',
+          'value',
+        ],
+      );
+    });
+    test('suffixes enum-reserved members', () {
+      expect(
+        enumMemberNames(['values', 'index', 'override', 'name']),
+        ['valuesCase', 'indexCase', 'overrideCase', 'name'],
+      );
+    });
+    test('dedupes collisions in value order', () {
+      expect(
+        enumMemberNames(['a b', 'a.b', 'a/b']),
+        ['aB', 'aB2', 'aB3'],
+      );
+    });
+  });
+
+  test('dartSingleQuotedBody escapes what a literal would interpolate', () {
+    expect(dartSingleQuotedBody(r"it's $x \ y"), r"it\'s \$x \\ y");
+  });
 }
