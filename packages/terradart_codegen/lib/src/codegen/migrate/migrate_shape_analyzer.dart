@@ -12,6 +12,7 @@ final class SlotShape {
     this.helper,
     this.variants,
     this.repeated = false,
+    this.keyed = false,
     this.wrapped = true,
     this.reason,
   });
@@ -24,6 +25,7 @@ final class SlotShape {
   final String? helper;
   final Map<String, String>? variants;
   final bool repeated;
+  final bool keyed;
   final bool wrapped;
   final String? reason;
 
@@ -69,7 +71,8 @@ bool _isPlainValueType(DartTypeShape type) {
 ///
 /// - `TfArg<T>` → scalar / enum / passthrough on `T`.
 /// - `List<TfArg<T>>` → the same, `repeated`.
-/// - `Helper` / `List<Helper>` → helper (the class must exist in [ctx]).
+/// - `Helper` / `List<Helper>` / `Map<String, Helper>` → helper (the class
+///   must exist in [ctx]), `repeated` / `keyed` for the collections.
 /// - `Sealed` → sealed with its block-key variants, or manual when a variant
 ///   has no `blockKey` (a curator hint is needed to describe it).
 /// - a bare enum / primitive / plain collection → unwrapped scalar or enum
@@ -98,6 +101,22 @@ SlotShape _classify(
       return SlotShape.manual('nested list type `${type.render()}`');
     }
     return _classify(type.args.single.nonNullable, ctx, repeated: true);
+  }
+  if (type.name == 'Map' &&
+      type.args.length == 2 &&
+      type.args.first.render() == 'String') {
+    final value = type.args.last.nonNullable;
+    if (value.args.isEmpty && ctx.helpers.helpers.containsKey(value.name)) {
+      if (repeated) {
+        return SlotShape.manual('list of helper maps `${type.render()}`');
+      }
+      return SlotShape(
+        kind: MigrateSlotKind.helper,
+        helper: value.name,
+        keyed: true,
+        wrapped: false,
+      );
+    }
   }
   if (type.args.isEmpty) {
     final name = type.name;
@@ -203,6 +222,14 @@ SlotShape mergedShape(SlotShape shape) {
   }
 }
 
+/// The shape of a `Map<String, Helper>` field or slot whose encoding is not
+/// the keyed map [isKeyedHelperEncoding] recognises: the helpers land on the
+/// wire some other way (a list with the key moved into a block field), which
+/// no manifest slot describes.
+SlotShape unkeyedMapShape(String typeSource) => SlotShape.manual(
+      '`$typeSource` is not encoded as a keyed map of helpers',
+    );
+
 /// The parts of a [CustomSlot] the manifest needs, read from its verbatim
 /// `paramDeclaration` / `argMapEntry` snippets.
 final class CustomSlotShape {
@@ -213,6 +240,7 @@ final class CustomSlotShape {
     required this.dynamicKey,
     this.spread = false,
     this.tfKey,
+    this.keyedEncoding = false,
   });
 
   final String dartName;
@@ -235,6 +263,10 @@ final class CustomSlotShape {
 
   /// The static `'tf_key'` the argMap entry writes, when it has one.
   final String? tfKey;
+
+  /// Whether the argMap entry encodes a keyed helper map
+  /// ([isKeyedHelperEncoding]).
+  final bool keyedEncoding;
 }
 
 /// Parses a custom slot's constructor declaration and argMap entry.
@@ -261,6 +293,7 @@ CustomSlotShape parseCustomSlot(CustomSlot slot) {
     dynamicKey: dynamicKey,
     spread: spread,
     tfKey: tfKey,
+    keyedEncoding: isKeyedHelperEncoding(entry),
   );
 }
 
@@ -297,6 +330,9 @@ SlotShape deriveCustomSlotShape(CustomSlotShape parsed, ShapeContext ctx) {
   }
   if (!parsed.merged && parsed.tfKey == null) {
     return const SlotShape.manual('argMap entry has no static key');
+  }
+  if (shape.keyed && !parsed.keyedEncoding) {
+    return unkeyedMapShape(parsed.typeSource);
   }
   return shape;
 }

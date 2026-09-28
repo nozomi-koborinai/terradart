@@ -10,7 +10,8 @@ import 'package:terradart_core/terradart_core.dart';
 /// - Top-level scalar path → `'name': TfArg.literal(value)`.
 /// - Depth ≥ 2 path → `'block': TfArg.literal([{nested: ...}])`, with
 ///   `[{...}]` wrapping at every block segment (matches the
-///   `max_items=1` nested-block convention).
+///   `max_items=1` nested-block convention). A `*` segment (a map of
+///   blocks) becomes one entry named `entry`.
 class SyntheticArgMapBuilder {
   const SyntheticArgMapBuilder();
 
@@ -41,7 +42,8 @@ class SyntheticArgMapBuilder {
     if (remainingSegments.length == 1) {
       return <String, dynamic>{remainingSegments.first: leafValue};
     }
-    final head = remainingSegments.first;
+    final head =
+        remainingSegments.first == '*' ? 'entry' : remainingSegments.first;
     final rest = _buildNested(remainingSegments.sublist(1), leafValue);
     return <String, dynamic>{
       head: <dynamic>[rest],

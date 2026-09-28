@@ -48,8 +48,11 @@ String renderNestedTypes(
 /// type only, with nullability layered on by whoever renders the field.
 String nestedParamType(NestedBlockSpec s) => '${_bareNestedType(s)}?';
 
-String _bareNestedType(NestedBlockSpec s) =>
-    s.repeated ? 'List<${s.className}>' : s.className;
+String _bareNestedType(NestedBlockSpec s) => s.repeated
+    ? 'List<${s.className}>'
+    : s.keyed
+        ? 'Map<String, ${s.className}>'
+        : s.className;
 
 /// Constructor-param + argMap-entry snippets for a TOP-LEVEL derived nested
 /// slot on a resource or data-source wrapper.
@@ -69,7 +72,9 @@ String _bareNestedType(NestedBlockSpec s) =>
       isRequired ? 'required $bareType $dartName' : '$nullableType $dartName';
   final encodeExpr = spec.repeated
       ? '[for (final e in $dartName) e.encode()]'
-      : '$dartName.encode()';
+      : spec.keyed
+          ? '{for (final e in $dartName.entries) e.key: e.value.encode()}'
+          : '$dartName.encode()';
   final entry = "'${spec.tfName}': TfArg.literal($encodeExpr),";
   final argMapEntry = isRequired ? entry : 'if ($dartName != null) $entry';
   return (param: param, argMapEntry: argMapEntry);
@@ -220,6 +225,7 @@ _FieldPlan _planAttr(NestedAttrSpec attr) => _plan(
       elementType: attr.dartType,
       required: attr.required,
       repeated: attr.repeated,
+      keyed: false,
       wrapInTfArg: true,
     );
 
@@ -231,6 +237,7 @@ _FieldPlan _planChild(NestedBlockSpec child) => _plan(
       elementType: child.className,
       required: child.required,
       repeated: child.repeated,
+      keyed: child.keyed,
       wrapInTfArg: false,
     );
 
@@ -238,7 +245,8 @@ _FieldPlan _planChild(NestedBlockSpec child) => _plan(
 /// [NestedBlockSpec.excludedChildren]) renders as an opaque `TfArg`
 /// passthrough that still matches the schema's real cardinality: a single
 /// `TfArg<Map<String, dynamic>>` normally, or `TfArg<List<Map<String,
-/// dynamic>>>` when [ExcludedNestedBlock.repeated] — required-ness follows
+/// dynamic>>>` when [ExcludedNestedBlock.repeated] (a keyed map of blocks is
+/// one `Map<String, dynamic>` JSON object) — required-ness follows
 /// [ExcludedNestedBlock.required] the same way every other field here does.
 /// Only the excluded block's OWN inner shape (its attrs / further children)
 /// is discarded; its shape as seen by its parent is preserved, matching the
@@ -269,6 +277,8 @@ _FieldPlan _planExcludedChild(ExcludedNestedBlock excluded) {
 
 /// The one place the required/optional and repeated/scalar axes resolve
 /// into a constructor parameter, field declaration, and `encode()` entry.
+/// [keyed] (a `nesting_mode: map` child) holds a `Map<String, elementType>`
+/// and encodes each value under its own key.
 ///
 /// [wrapInTfArg] selects between the two attribute shapes this emitter
 /// ever produces: a leaf attribute (`TfArg<elementType>`, encoded via
@@ -280,12 +290,17 @@ _FieldPlan _plan({
   required String elementType,
   required bool required,
   required bool repeated,
+  required bool keyed,
   required bool wrapInTfArg,
 }) {
   final ident = safeDartIdentifier(dartName);
   final accessor = wrapInTfArg ? '.toTfJson()' : '.encode()';
   final elementDartType = wrapInTfArg ? 'TfArg<$elementType>' : elementType;
-  final bareFieldType = repeated ? 'List<$elementDartType>' : elementDartType;
+  final bareFieldType = repeated
+      ? 'List<$elementDartType>'
+      : keyed
+          ? 'Map<String, $elementDartType>'
+          : elementDartType;
   final fieldType = required ? bareFieldType : '$bareFieldType?';
 
   final ctorParam = required ? 'required this.$ident,' : 'this.$ident,';
@@ -295,6 +310,9 @@ _FieldPlan _plan({
   if (repeated) {
     final source = required ? ident : '$ident!';
     valueExpr = '[for (final e in $source) e$accessor]';
+  } else if (keyed) {
+    final source = required ? ident : '$ident!';
+    valueExpr = '{for (final e in $source.entries) e.key: e.value$accessor}';
   } else {
     final target = required ? ident : '$ident!';
     valueExpr = '$target$accessor';

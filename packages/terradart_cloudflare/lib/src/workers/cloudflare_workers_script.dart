@@ -919,8 +919,8 @@ final class CloudflareWorkersScript extends Resource {
     WorkersScriptAssets? assets,
     List<WorkersScriptBindings>? bindings,
     WorkersScriptCacheOptions? cacheOptions,
-    WorkersScriptExports? exports,
-    WorkersScriptFiles? files,
+    Map<String, WorkersScriptExports>? exports,
+    Map<String, WorkersScriptFiles>? files,
     WorkersScriptLimits? limits,
     WorkersScriptMigrations? migrations,
     WorkersScriptObservability? observability,
@@ -958,8 +958,14 @@ final class CloudflareWorkersScript extends Resource {
              'bindings': TfArg.literal([for (final e in bindings) e.encode()]),
            if (cacheOptions != null)
              'cache_options': TfArg.literal(cacheOptions.encode()),
-           if (exports != null) 'exports': TfArg.literal(exports.encode()),
-           if (files != null) 'files': TfArg.literal(files.encode()),
+           if (exports != null)
+             'exports': TfArg.literal({
+               for (final e in exports.entries) e.key: e.value.encode(),
+             }),
+           if (files != null)
+             'files': TfArg.literal({
+               for (final e in files.entries) e.key: e.value.encode(),
+             }),
            if (limits != null) 'limits': TfArg.literal(limits.encode()),
            if (migrations != null)
              'migrations': TfArg.literal(migrations.encode()),

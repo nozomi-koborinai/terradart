@@ -323,7 +323,7 @@ final class RulesetRulesActionParameters {
 
   final RulesetRulesActionParametersFromValue? fromValue;
 
-  final RulesetRulesActionParametersHeaders? headers;
+  final Map<String, RulesetRulesActionParametersHeaders>? headers;
 
   final RulesetRulesActionParametersImmutable? immutable;
 
@@ -448,7 +448,8 @@ final class RulesetRulesActionParameters {
     if (edgeTtl != null) 'edge_ttl': edgeTtl!.encode(),
     if (fromList != null) 'from_list': fromList!.encode(),
     if (fromValue != null) 'from_value': fromValue!.encode(),
-    if (headers != null) 'headers': headers!.encode(),
+    if (headers != null)
+      'headers': {for (final e in headers!.entries) e.key: e.value.encode()},
     if (immutable != null) 'immutable': immutable!.encode(),
     if (matchedData != null) 'matched_data': matchedData!.encode(),
     if (maxAge != null) 'max_age': maxAge!.encode(),
@@ -1889,11 +1890,12 @@ final class RulesetRulesActionParametersVary {
 
   final RulesetRulesActionParametersVaryDefault defaultCase;
 
-  final RulesetRulesActionParametersVaryHeaders? headers;
+  final Map<String, RulesetRulesActionParametersVaryHeaders>? headers;
 
   Map<String, Object?> encode() => {
     'default': defaultCase.encode(),
-    if (headers != null) 'headers': headers!.encode(),
+    if (headers != null)
+      'headers': {for (final e in headers!.entries) e.key: e.value.encode()},
   };
 }
 

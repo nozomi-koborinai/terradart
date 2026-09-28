@@ -51,6 +51,7 @@ final class MigrateSlot {
     required this.kind,
     required this.required,
     this.repeated = false,
+    this.keyed = false,
     this.wrapped = true,
     this.positional = false,
     this.merged = false,
@@ -78,6 +79,11 @@ final class MigrateSlot {
   /// Whether the Dart parameter is a `List<...>` of the element described by
   /// [kind] (a repeated nested block, or a list of enum members).
   final bool repeated;
+
+  /// Whether the Dart parameter is a `Map<String, ...>` of the helper
+  /// described by [kind] — a `nesting_mode: map` block whose Terraform value
+  /// is an object of blocks keyed by name. Never combined with [repeated].
+  final bool keyed;
 
   /// Whether a [MigrateSlotKind.scalar] / [MigrateSlotKind.enumValue] element
   /// is `TfArg`-wrapped (the norm) or a bare Dart value (a curator-flagged

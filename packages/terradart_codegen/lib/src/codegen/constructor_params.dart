@@ -122,3 +122,12 @@ List<String> orderedDataSourceConstructorParams(
 bool skipNestedBlock(NestedBlockDef block) {
   return block.name == 'timeouts' || block.constraints.computedOnly;
 }
+
+/// Whether [block]'s untyped passthrough takes one JSON object
+/// (`Map<String, dynamic>`) rather than a list of them: a `single` / `group`
+/// block, a `list` capped at one item, or a `map` of blocks keyed by name.
+bool nestedBlockIsObject(NestedBlockDef block) => switch (block.nesting) {
+      NestingMode.single || NestingMode.group || NestingMode.map => true,
+      NestingMode.list => block.maxItems == 1,
+      NestingMode.set => false,
+    };

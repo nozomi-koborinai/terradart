@@ -196,6 +196,7 @@ MigrateEntryBuild buildMigrateEntry({
         kind: MigrateSlotKind.helper,
         required: spec.required || requiredOverrides.contains(name),
         repeated: spec.repeated,
+        keyed: spec.keyed,
         wrapped: false,
         helper: spec.className,
       ));
@@ -286,22 +287,22 @@ MigrateSlotData _attributeSlot(
   );
 }
 
-/// Mirrors `WrapperEmitter._nestedBlockParam`: single-valued nestings
-/// collapse to `Map<String, dynamic>`, the rest to
+/// Mirrors `WrapperEmitter._nestedBlockParam`: object-valued nestings
+/// ([nestedBlockIsObject]) collapse to `Map<String, dynamic>`, the rest to
 /// `List<Map<String, dynamic>>`.
 MigrateSlotData _passthroughSlot(
   NestedBlockDef block,
   Set<String> requiredOverrides,
 ) {
-  final isSingle = block.nesting == NestingMode.single ||
-      (block.nesting == NestingMode.list && block.maxItems == 1);
   return MigrateSlotData(
     tfName: block.name,
     dartName: snakeToDartIdent(block.name),
     kind: MigrateSlotKind.passthrough,
     required:
         block.constraints.required || requiredOverrides.contains(block.name),
-    dartType: isSingle ? 'Map<String, dynamic>' : 'List<Map<String, dynamic>>',
+    dartType: nestedBlockIsObject(block)
+        ? 'Map<String, dynamic>'
+        : 'List<Map<String, dynamic>>',
   );
 }
 
@@ -310,6 +311,7 @@ MigrateHelperData _helper(ExtractedHelper h, ShapeContext ctx) {
   for (final f in h.fields) {
     var shape = resolveEnumPayload(classifyDartType(f.typeSource, ctx), ctx);
     if (f.merged) shape = mergedShape(shape);
+    if (shape.keyed && !f.keyedEncoding) shape = unkeyedMapShape(f.typeSource);
     slots.add(_fromShape(
       shape,
       tfName: f.tfKey ?? '',
@@ -340,6 +342,7 @@ MigrateSlotData _fromShape(
     kind: shape.kind,
     required: required,
     repeated: shape.repeated,
+    keyed: shape.keyed,
     wrapped: shape.wrapped,
     positional: positional,
     merged: merged,

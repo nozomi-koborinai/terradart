@@ -12,7 +12,7 @@
 # entry that names an override in no lane.
 
 google_chronicle_dashboard_chart: ChronicleDashboardChartVisualization spreads a `...axisType.encode()` enum into the block; the manifest has no merged-enum shape
-google_compute_autoscaler: AutoscalingPolicy.scalingSchedules is a `Map<String, ScalingSchedule>` keyed nested block; the manifest has no map-of-helper shape
+google_compute_autoscaler: AutoscalingPolicy.scalingSchedules is a `Map<String, ScalingSchedule>` encoded as a set of blocks with the key moved into `name`; the manifest's keyed shape is an object of blocks
 google_compute_firewall: Allow/DenyPolicy.encode() fans one Dart value out into several `allow {}` / `deny {}` blocks via additionalRules
-google_compute_region_autoscaler: AutoscalingPolicy.scalingSchedules is a `Map<String, ScalingSchedule>` keyed nested block; the manifest has no map-of-helper shape
+google_compute_region_autoscaler: AutoscalingPolicy.scalingSchedules is a `Map<String, ScalingSchedule>` encoded as a set of blocks with the key moved into `name`; the manifest's keyed shape is an object of blocks
 google_firestore_field: SingleFieldIndex.arrayContains is a Dart-side bool discriminant that encodes as `array_config: CONTAINS`

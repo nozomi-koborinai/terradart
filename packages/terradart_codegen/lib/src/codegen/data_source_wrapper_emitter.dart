@@ -3,6 +3,7 @@ import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
 import 'constructor_params.dart'
     show
+        nestedBlockIsObject,
         orderedDataSourceConstructorParams,
         skipDataSourceAttribute,
         skipNestedBlock;
@@ -359,10 +360,9 @@ class DataSourceWrapperEmitter {
     required bool isRequired,
   }) {
     final dartName = snakeToDartIdent(nested.name);
-    final isSingle = nested.nesting == NestingMode.single ||
-        (nested.nesting == NestingMode.list && nested.maxItems == 1);
-    final innerType =
-        isSingle ? 'Map<String, dynamic>' : 'List<Map<String, dynamic>>';
+    final innerType = nestedBlockIsObject(nested)
+        ? 'Map<String, dynamic>'
+        : 'List<Map<String, dynamic>>';
     final modifier = isRequired ? 'required ' : '';
     final nullSuffix = isRequired ? '' : '?';
     return '${modifier}TfArg<$innerType>$nullSuffix $dartName';

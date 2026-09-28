@@ -2633,6 +2633,21 @@ final class CloudflareLeftoverStack extends Stack {
     );
 
     add(
+      CloudflareZeroTrustRiskBehavior(
+        localName: 'zero_trust_risk_behavior',
+        accountId: TfArg.literal(accountId),
+        behaviors: {
+          'k': ZeroTrustRiskBehaviorBehaviors(
+            enabled: TfArg.literal(true),
+            riskLevel: TfArg.literal(
+              ZeroTrustRiskBehaviorBehaviorsRiskLevel.low,
+            ),
+          ),
+        },
+      ),
+    );
+
+    add(
       CloudflareZeroTrustRiskScoringIntegration(
         localName: 'zero_trust_risk_scoring_integration',
         accountId: TfArg.literal(accountId),
