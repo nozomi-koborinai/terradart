@@ -4433,7 +4433,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['BigqueryAnalyticsHubQueryTemplateRoutine'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_bigquery_analytics_hub_query_template`.\n\nRepresents a BigQuery Query Template within a Data Exchange. This resource\ndefines a reusable SQL routine (e.g., a TVF) that can be shared or executed\nvia the Data Exchange. ~> **Note:** Approving a Query Template is not\nsupported by Terraform. The approve flow includes steps that can only be\nperformed through the Google Cloud console UI. You can still create a Query\nTemplate (e.g. a TVF) and add it as a listing to a Data Clean Room via\nTerraform, but the final approval must be done manually.\n\nAnalytics Hub **query template** — reusable SQL routine (typically a\ntable-valued function) defined on a data exchange for sharing /\nsubscription workflows.\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP\nlookup (`list_services` name=Analytics → no Analytics Hub service;\nBigQuery `24E6-581D-38E5` `list_skus` keywords analytics hub /\ntemplate / sharing / exchange → 0). billing-behavior: exchange\nmetadata only — no existence or hourly charge for the template\nitself (query jobs that *run* the TVF bill normal BigQuery\nanalysis). Sibling Analytics Hub resources already live under\nskip-listed `bigquery_quickstart` ("datapolicy + analyticshub\nresources require an organization"); extending that example would\nfail the wave skiplist gate. Ships via `tool/example_debt.yaml`.\n\nRequires [dataExchangeId], [displayName], [location], and\n[queryTemplateId]. Optional [routine] holds `definition_body` +\n`routine_type` (`TABLE_VALUED_FUNCTION`). Enable\n`analyticshub.googleapis.com` via [GoogleProjectService] before\napply.',
+        'Factory wrapper for `google_bigquery_analytics_hub_query_template`.\n\nRepresents a BigQuery Query Template within a Data Exchange. This resource\ndefines a reusable SQL routine (e.g., a TVF) that can be shared or executed\nvia the Data Exchange.\n\nAnalytics Hub **query template** — reusable SQL routine (typically a\ntable-valued function) defined on a data exchange for sharing /\nsubscription workflows.\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP\nlookup (`list_services` name=Analytics → no Analytics Hub service;\nBigQuery `24E6-581D-38E5` `list_skus` keywords analytics hub /\ntemplate / sharing / exchange → 0). billing-behavior: exchange\nmetadata only — no existence or hourly charge for the template\nitself (query jobs that *run* the TVF bill normal BigQuery\nanalysis). Sibling Analytics Hub resources already live under\nskip-listed `bigquery_quickstart` ("datapolicy + analyticshub\nresources require an organization"); extending that example would\nfail the wave skiplist gate. Ships via `tool/example_debt.yaml`.\n\nRequires [dataExchangeId], [displayName], [location], and\n[queryTemplateId]. Optional [routine] holds `definition_body` +\n`routine_type` (`TABLE_VALUED_FUNCTION`). Enable\n`analyticshub.googleapis.com` via [GoogleProjectService] before\napply.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_bi_reservation',
@@ -24123,7 +24123,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_gke_hub_namespace`.',
+    docComment:
+        'Factory wrapper for `google_gke_hub_namespace`.\n\nNamespace represents a namespace across the Fleet.',
   ),
   CatalogEntry(
     tfType: 'google_gke_hub_rollout_sequence',
@@ -24162,7 +24163,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_gke_hub_scope`.',
+    docComment:
+        'Factory wrapper for `google_gke_hub_scope`.\n\nScope represents a Scope in a Fleet.',
   ),
   CatalogEntry(
     tfType: 'google_gke_hub_scope_iam_binding',
@@ -31213,7 +31215,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_network_security_url_lists`.',
+    docComment:
+        'Factory wrapper for `google_network_security_url_lists`.\n\nUrlList proto helps users to set reusable, independently manageable lists of\nhosts, host patterns, URLs, URL patterns.',
   ),
   CatalogEntry(
     tfType: 'google_network_services_agent_gateway',
@@ -33146,7 +33149,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['ParameterManagerParameterFormat'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_parameter_manager_parameter`.\n\nA Parameter is a configuration value that can be stored and managed\ncentrally through Parameter Manager. Parameters support labels, encryption\nvia Cloud KMS, and resource manager tags for fine-grained access control and\norganization.',
+        'Factory wrapper for `google_parameter_manager_parameter`.\n\nA Parameter resource is a logical parameter.',
   ),
   CatalogEntry(
     tfType: 'google_parameter_manager_parameter',
@@ -33248,7 +33251,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['ParameterManagerRegionalParameterFormat'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_parameter_manager_regional_parameter`.\n\nA Regional Parameter is a configuration value stored in a specific region\nthrough Parameter Manager. Regional parameters support labels, encryption\nvia Cloud KMS, and resource manager tags for fine-grained access control,\norganization, and regional compliance.',
+        'Factory wrapper for `google_parameter_manager_regional_parameter`.\n\nA Regional Parameter is a logical regional parameter.',
   ),
   CatalogEntry(
     tfType: 'google_parameter_manager_regional_parameter',

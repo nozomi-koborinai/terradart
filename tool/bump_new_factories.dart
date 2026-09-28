@@ -43,6 +43,7 @@ import 'package:yaml/yaml.dart';
 
 import 'append_curation_backlog.dart';
 import 'bump_plan.dart';
+import 'sync_mm_yaml.dart' show Manifest, parseManifest, recordedUpstreamRef;
 import 'wrap_lanes.dart';
 
 const exampleDebtPath = 'tool/example_debt.yaml';
@@ -137,22 +138,20 @@ String addMmSourceRows(String mmSources, Map<String, String?> upstreams) {
   return mmSources.replaceRange(at, at, '$rows');
 }
 
-/// Fetches [upstreamPath] from magic-modules main; null unless HTTP 200.
+/// Fetches [upstreamPath] from magic-modules; null unless HTTP 200.
 typedef MmFetch = Future<String?> Function(String upstreamPath);
 
-Future<String?> _fetchMm(String upstreamPath) async {
-  try {
-    final r = await http.get(
-      Uri.parse(
-        'https://raw.githubusercontent.com/GoogleCloudPlatform/'
-        'magic-modules/main/$upstreamPath',
-      ),
-    );
-    return r.statusCode == 200 ? r.body : null;
-  } on Exception {
-    return null;
-  }
-}
+/// An [MmFetch] reading [manifest]'s upstream at [ref].
+MmFetch mmFetchAt(Manifest manifest, String ref) => (upstreamPath) async {
+      try {
+        final r = await http.get(
+          Uri.parse(manifest.urlFor(upstreamPath, ref: ref)),
+        );
+        return r.statusCode == 200 ? r.body : null;
+      } on Exception {
+        return null;
+      }
+    };
 
 /// Gives every type of [resources] a tool/mm_yaml_sources.yaml row (every
 /// curated override needs one) and, when a guessed path resolves, its MM
@@ -162,7 +161,7 @@ Future<Map<String, String?>> resolveMmUpstreams(
   List<String> resources, {
   required String mmSources,
   required String mmDir,
-  MmFetch fetch = _fetchMm,
+  required MmFetch fetch,
 }) async {
   final out = <String, String?>{};
   for (final type in resources) {
@@ -357,10 +356,14 @@ Future<int> _scaffold(
     }
     if (lane.mm) {
       final sources = File(mmSourcesPath);
+      // The MM fixtures were just synced at the pinned release's commit;
+      // a new type's fixture comes from the same one.
+      final manifest = parseManifest(sources.readAsStringSync());
       final upstreams = await resolveMmUpstreams(
         resources,
         mmSources: sources.readAsStringSync(),
         mmDir: p.join(lane.lane.schemaDir, 'mm'),
+        fetch: mmFetchAt(manifest, recordedUpstreamRef(manifest)),
       );
       print('MM upstreams: $upstreams');
       sources.writeAsStringSync(

@@ -19,10 +19,7 @@ enum ParameterManagerParameterFormat implements TerraformEnum {
 
 /// Factory wrapper for `google_parameter_manager_parameter`.
 ///
-/// A Parameter is a configuration value that can be stored and managed
-/// centrally through Parameter Manager. Parameters support labels, encryption
-/// via Cloud KMS, and resource manager tags for fine-grained access control and
-/// organization.
+/// A Parameter resource is a logical parameter.
 final class GoogleParameterManagerParameter extends Resource {
   static const String tfType = 'google_parameter_manager_parameter';
 
