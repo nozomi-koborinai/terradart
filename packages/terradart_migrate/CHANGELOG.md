@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Fix: a list-of-enum argument set to a reference to a whole list (`selected_regions = var.regions`) migrated to a `TfArg.variable` / `TfArg.ref` the constructor's `List<...>` parameter does not accept, so the Stack did not compile. It now stays in Terraform with the reason; a list literal still migrates one member per element.
 - `MigrateManifest.caseInsensitiveEnums`: for a provider whose validators accept enum values in any case, a raw value that differs from exactly one member only in case (`"AVRO"` written `"avro"`) migrates to that member instead of staying in Terraform, and the report warns that it synthesizes in the member's canonical case. The cloudflare manifest sets it, next to the lane's 581 new enums.
 - `--report` runs the migration in memory and prints, per `resource` / `data` type, how many blocks translate and how many stay in Terraform (each with its reason), the factory each type maps to and the `module` calls whose source is outside the tree; `--json` prints it as JSON. It writes nothing. `MigrationCoverage.of(project)` is the library side. It replaces `terradart-coverage`.
 - Removed `--update`, `--in-place`, `--allow-todo` and `--inline-locals` (each now exits 64), with `rerunProject`, `planInPlace` / `writeInPlace` and the `allowTodo` / `inlineLocals` parameters of `migrateModule` / `migrateTree`. Everything that stays in Terraform lands in the sidecar, so `MigrationResult.sidecar` and `MigratedModule.sidecar` are never null; the report JSON drops `allowTodo`, `planDiffers` and `todos`.
