@@ -1,14 +1,15 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '_provider_version.g.dart';
+
 /// Provider source identifier: `hashicorp/aws`.
 const String kAwsProviderSource = 'hashicorp/aws';
 
-/// Exact version pin. The AWS provider releases almost weekly and has no
-/// automated bump lane in this workspace, so TerraDart pins the version
-/// its wrappers were generated against; bumps are deliberate maintainer
-/// changes together with a fixture re-extraction.
-const String kAwsProviderVersionConstraint = '6.66.0';
+/// Exact version pin: the provider release the wrappers were generated
+/// against. `terradart wrap` emits it from the schema fixture's
+/// `provider_version.txt`, so the pin and the wrapper surface move together.
+const String kAwsProviderVersionConstraint = terradartProviderVersion;
 
 /// Concrete `StackProvider` for `hashicorp/aws`.
 ///
@@ -119,7 +120,7 @@ final class AwsProvider implements StackProvider {
   @override
   String get source => kAwsProviderSource;
 
-  /// Version constraint: the exact `6.66.0` pin.
+  /// Version constraint: the exact [kAwsProviderVersionConstraint] pin.
   @override
   String get versionConstraint => kAwsProviderVersionConstraint;
 
