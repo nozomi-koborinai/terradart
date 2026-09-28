@@ -2943,6 +2943,12 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_beyondcorp_security_gateway_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_biglake_hive_catalog_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
+  data_google_biglake_hive_database_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
+  data_google_biglake_hive_table_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_biglake_iceberg_catalog_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_biglake_iceberg_namespace_iam_policy:
@@ -3035,6 +3041,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_cloudbuild_trigger:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloudbuild_worker_pool:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_cloudbuildv2_connection_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_clouddeploy_custom_target_type_iam_policy:
@@ -3189,6 +3197,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_compute_service_attachment:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_service_attachments:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_compute_snapshot:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_compute_snapshot_iam_policy:
@@ -3249,6 +3259,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_data_lineage_config:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataform_repository_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_dataplex_aspect_type_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_dataplex_asset_iam_policy:
@@ -3311,6 +3323,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_endpoints_service_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_eventarc_pipeline_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_filestore_instance:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_firestore_document:
@@ -3363,6 +3377,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_iam_workload_identity_pool_iam_policy:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iam_workload_identity_pool_openid_config:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_iam_workload_identity_pool_provider:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_iap_agent_registry_agent_iam_policy:
@@ -3451,6 +3467,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_memcache_instance:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_memorystore_acl_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_memorystore_instance:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_monitoring_app_engine_service:
@@ -3477,6 +3495,12 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_network_security_address_groups:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_observability_folder_settings:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
+  data_google_observability_organization_settings:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
+  data_google_observability_project_settings:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_oracle_database_autonomous_database:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_oracle_database_autonomous_databases:
@@ -3569,6 +3593,8 @@ files:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_redis_cluster:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_redis_cluster_acl_policy:
+    upstream: null  # data source; no mmv1 YAML (schema bump)
   data_google_redis_instance:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_scc_source_iam_policy:

@@ -27,7 +27,10 @@ const _leftoverDoc = '''
   /// Read-only data source on the apply-excluded leftover path
   /// (synth + `terraform validate` only). Do not apply.''';
 
-String _yamlBody(List<String> paramOrder) {
+/// The leftover-thin override of a data source whose constructor order is
+/// [paramOrder]; tool/bump_new_factories.dart writes the same shape for a
+/// data source a schema bump adds.
+String dataSourceOverrideYaml(List<String> paramOrder) {
   final buf = StringBuffer()
     ..writeln('kind: data_source')
     ..writeln('outputDir: data')
@@ -49,7 +52,7 @@ String _yamlBody(List<String> paramOrder) {
 
 /// Same skip rules as [DataSourceWrapperEmitter._skipAttribute] /
 /// `_skipNestedBlock` so Gate 1 `paramOrder` matches the constructor.
-List<String> _naturalOrder(ResourceDef def) {
+List<String> dataSourceParamOrder(ResourceDef def) {
   final out = <String>[];
   for (final attr in def.root.attributes) {
     if (_skipAttribute(attr)) continue;
@@ -95,7 +98,9 @@ void main() {
     }
     final stem = 'data_$tfType';
     final file = File('$_overrideDir/$stem.yaml');
-    final body = _yamlBody(_naturalOrder(ir.dataSources[tfType]!));
+    final body = dataSourceOverrideYaml(
+      dataSourceParamOrder(ir.dataSources[tfType]!),
+    );
     if (file.existsSync()) {
       final existing = file.readAsStringSync();
       if (_isLeftoverThin(existing)) {
