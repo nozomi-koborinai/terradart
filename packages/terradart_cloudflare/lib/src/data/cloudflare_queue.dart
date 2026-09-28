@@ -42,6 +42,10 @@ final class DataCloudflareQueue extends Data {
   /// Reference to `created_on` attribute.
   TfRef<String> get createdOn => TfRef.attribute<String>(this, 'created_on');
 
+  /// Reference to `jurisdiction` attribute.
+  TfRef<String> get jurisdiction =>
+      TfRef.attribute<String>(this, 'jurisdiction');
+
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
 

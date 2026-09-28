@@ -11,11 +11,31 @@ const Set<String> _cloudflareZeroTrustListSensitive = <String>{};
 /// `cloudflare_zero_trust_list` (derived from provider schema).
 @immutable
 final class DataZeroTrustListFilter {
-  const DataZeroTrustListFilter({this.type});
+  const DataZeroTrustListFilter({
+    this.direction,
+    this.filter,
+    this.orderBy,
+    this.search,
+    this.type,
+  });
+
+  final TfArg<String>? direction;
+
+  final TfArg<List<Object?>>? filter;
+
+  final TfArg<String>? orderBy;
+
+  final TfArg<String>? search;
 
   final TfArg<String>? type;
 
-  Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+  Map<String, Object?> encode() => {
+    if (direction != null) 'direction': direction!.toTfJson(),
+    if (filter != null) 'filter': filter!.toTfJson(),
+    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
+    if (search != null) 'search': search!.toTfJson(),
+    if (type != null) 'type': type!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_list`.

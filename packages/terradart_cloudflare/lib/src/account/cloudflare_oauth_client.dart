@@ -23,6 +23,7 @@ final class CloudflareOauthClient extends Resource {
     required TfArg<List<String>> grantTypes,
     TfArg<String>? logoUri,
     TfArg<String>? oauthClientId,
+    TfArg<List<String>>? optionalScopes,
     TfArg<String>? policyUri,
     TfArg<List<String>>? postLogoutRedirectUris,
     required TfArg<List<String>> redirectUris,
@@ -46,6 +47,7 @@ final class CloudflareOauthClient extends Resource {
            'grant_types': grantTypes,
            if (logoUri != null) 'logo_uri': logoUri,
            if (oauthClientId != null) 'oauth_client_id': oauthClientId,
+           if (optionalScopes != null) 'optional_scopes': optionalScopes,
            if (policyUri != null) 'policy_uri': policyUri,
            if (postLogoutRedirectUris != null)
              'post_logout_redirect_uris': postLogoutRedirectUris,

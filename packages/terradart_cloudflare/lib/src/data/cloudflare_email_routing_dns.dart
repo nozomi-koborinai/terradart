@@ -17,14 +17,14 @@ final class DataCloudflareEmailRoutingDns extends Data {
   DataCloudflareEmailRoutingDns({
     required super.localName,
     TfArg<String>? subdomain,
-    TfArg<String>? zoneId,
+    required TfArg<String> zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
            if (subdomain != null) 'subdomain': subdomain,
-           if (zoneId != null) 'zone_id': zoneId,
+           'zone_id': zoneId,
          },
        );
 
@@ -33,7 +33,4 @@ final class DataCloudflareEmailRoutingDns extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `success` attribute.
-  TfRef<bool> get success => TfRef.attribute<bool>(this, 'success');
 }

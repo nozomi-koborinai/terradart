@@ -49,13 +49,16 @@ final class AiSearchInstanceIndexMethod {
 /// `cloudflare_ai_search_instance` (derived from provider schema).
 @immutable
 final class AiSearchInstanceIndexingOptions {
-  const AiSearchInstanceIndexingOptions({this.keywordTokenizer});
+  const AiSearchInstanceIndexingOptions({this.keywordTokenizer, this.useOcr});
 
   final TfArg<String>? keywordTokenizer;
+
+  final TfArg<bool>? useOcr;
 
   Map<String, Object?> encode() => {
     if (keywordTokenizer != null)
       'keyword_tokenizer': keywordTokenizer!.toTfJson(),
+    if (useOcr != null) 'use_ocr': useOcr!.toTfJson(),
   };
 }
 
@@ -269,20 +272,57 @@ final class AiSearchInstanceSourceParams {
 final class AiSearchInstanceSourceParamsWebCrawler {
   const AiSearchInstanceSourceParamsWebCrawler({
     this.parseType,
+    this.discoverOptions,
     this.parseOptions,
-    this.storeOptions,
   });
 
   final TfArg<String>? parseType;
 
-  final AiSearchInstanceSourceParamsWebCrawlerParseOptions? parseOptions;
+  final AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions? discoverOptions;
 
-  final AiSearchInstanceSourceParamsWebCrawlerStoreOptions? storeOptions;
+  final AiSearchInstanceSourceParamsWebCrawlerParseOptions? parseOptions;
 
   Map<String, Object?> encode() => {
     if (parseType != null) 'parse_type': parseType!.toTfJson(),
+    if (discoverOptions != null) 'discover_options': discoverOptions!.encode(),
     if (parseOptions != null) 'parse_options': parseOptions!.encode(),
-    if (storeOptions != null) 'store_options': storeOptions!.encode(),
+  };
+}
+
+/// Typed helper for the `source_params.web_crawler.discover_options` block of
+/// `cloudflare_ai_search_instance` (derived from provider schema).
+@immutable
+final class AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions {
+  const AiSearchInstanceSourceParamsWebCrawlerDiscoverOptions({
+    this.depth,
+    this.includeExternalLinks,
+    this.includeSubdomains,
+    this.limit,
+    this.maxAge,
+    this.source,
+  });
+
+  final TfArg<num>? depth;
+
+  final TfArg<bool>? includeExternalLinks;
+
+  final TfArg<bool>? includeSubdomains;
+
+  final TfArg<num>? limit;
+
+  final TfArg<num>? maxAge;
+
+  final TfArg<String>? source;
+
+  Map<String, Object?> encode() => {
+    if (depth != null) 'depth': depth!.toTfJson(),
+    if (includeExternalLinks != null)
+      'include_external_links': includeExternalLinks!.toTfJson(),
+    if (includeSubdomains != null)
+      'include_subdomains': includeSubdomains!.toTfJson(),
+    if (limit != null) 'limit': limit!.toTfJson(),
+    if (maxAge != null) 'max_age': maxAge!.toTfJson(),
+    if (source != null) 'source': source!.toTfJson(),
   };
 }
 
@@ -337,29 +377,6 @@ final class AiSearchInstanceSourceParamsWebCrawlerParseOptionsContentSelector {
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'selector': selector.toTfJson(),
-  };
-}
-
-/// Typed helper for the `source_params.web_crawler.store_options` block of
-/// `cloudflare_ai_search_instance` (derived from provider schema).
-@immutable
-final class AiSearchInstanceSourceParamsWebCrawlerStoreOptions {
-  const AiSearchInstanceSourceParamsWebCrawlerStoreOptions({
-    this.r2Jurisdiction,
-    required this.storageId,
-    this.storageType,
-  });
-
-  final TfArg<String>? r2Jurisdiction;
-
-  final TfArg<String> storageId;
-
-  final TfArg<String>? storageType;
-
-  Map<String, Object?> encode() => {
-    if (r2Jurisdiction != null) 'r2_jurisdiction': r2Jurisdiction!.toTfJson(),
-    'storage_id': storageId.toTfJson(),
-    if (storageType != null) 'storage_type': storageType!.toTfJson(),
   };
 }
 
@@ -504,8 +521,4 @@ final class CloudflareAiSearchInstance extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
-
-  /// Reference to `vectorize_name` attribute.
-  TfRef<String> get vectorizeName =>
-      TfRef.attribute<String>(this, 'vectorize_name');
 }

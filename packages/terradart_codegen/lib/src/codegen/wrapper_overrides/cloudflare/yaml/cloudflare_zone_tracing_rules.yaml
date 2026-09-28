@@ -1,0 +1,4 @@
+outputDir: zone
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
