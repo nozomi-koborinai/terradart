@@ -11,32 +11,13 @@ import 'dart:io';
 const _skipResourceTypes = {
   'cloudflare_zone',
   'cloudflare_dns_record',
-  // Leftover dummy values cannot satisfy these provider enums / nested
-  // schemas; listed in tool/example_debt.yaml with a reason.
-  'cloudflare_snippet',
-  'cloudflare_access_rule',
-  'cloudflare_certificate_pack',
-  'cloudflare_firewall_rule',
-  'cloudflare_oauth_client',
-  'cloudflare_r2_bucket_event_notification',
-  'cloudflare_rate_limit',
-  'cloudflare_schema_validation_schemas',
-  'cloudflare_share',
-  'cloudflare_share_resource',
-  'cloudflare_user_agent_blocking_rule',
-  'cloudflare_vulnerability_scanner_credential',
-  'cloudflare_waiting_room_rules',
-  'cloudflare_workers_deployment',
-  'cloudflare_workers_script',
-  'cloudflare_zero_trust_access_identity_provider',
+  // No constructor value validates; listed in tool/example_debt.yaml with
+  // the terraform validate error.
   'cloudflare_zero_trust_risk_behavior',
-  'cloudflare_zone_lockdown',
 };
 
 const _skipDataTypes = {
-  'cloudflare_account',
   'cloudflare_firewall_rule',
-  'cloudflare_zone',
 };
 
 const _srcRoot = 'packages/terradart_cloudflare/lib/src';
@@ -358,6 +339,13 @@ const _preferZoneId = {
   'DataCloudflareRulesets',
 };
 
+/// Data sources whose scope id is itself the lookup: the provider takes
+/// exactly one of it and `filter`.
+const _scopeIsLookup = {
+  'DataCloudflareAccount',
+  'DataCloudflareZone',
+};
+
 List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
   final requiredNames = {for (final p in f.requiredParams) p.name};
   final optional = {for (final p in f.optionalParams) p.name: p};
@@ -407,7 +395,7 @@ List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
       }
     }
   }
-  if (!addedLookupId) add('filter');
+  if (!addedLookupId && !_scopeIsLookup.contains(f.className)) add('filter');
   if (optional.containsKey('roles') && !requiredNames.contains('roles')) {
     add('roles');
   }
@@ -600,6 +588,8 @@ String _literalInner(
 }) {
   var t = inner.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
+  final keyed = _valueByKey['$owner.$name'];
+  if (keyed != null) return keyed;
   if (t == 'String') return _stringLiteral(name, owner: owner);
   if (_enums.containsKey(t)) return _enumMember(t, name, owner: owner);
   if (t == 'num' || t == 'int' || t == 'double') {
@@ -713,7 +703,8 @@ const _literalByKey = <String, String>{
   'CloudflareZeroTrustGatewayPolicy.action': "'allow'",
   'CloudflareZeroTrustDevicePostureRule.type': "'file'",
   'CloudflareZeroTrustDevicePostureIntegration.type': "'workspace_one'",
-  'CloudflareZeroTrustAccessIdentityProvider.type': "'onetimepin'",
+  // The dummy config sets apps_domain, which only google-apps accepts.
+  'CloudflareZeroTrustAccessIdentityProvider.type': "'google-apps'",
   'CloudflareMagicNetworkMonitoringRule.type': "'threshold'",
   'CloudflarePipelineSink.type': "'r2'",
   'CloudflareConnectivityDirectoryService.type': "'tcp'",
@@ -750,12 +741,25 @@ const _literalByKey = <String, String>{
 /// below the default `200`.
 const _numberByKey = <String, String>{
   'ZoneTracingRulesRulesActionParameters.samplingRatio': '1',
+  'CloudflareCertificatePack.validityDays': '90',
+  'WorkersDeploymentVersions.percentage': '100',
+};
+
+/// Whole literal values for untyped slots (JSON strings, lists of maps)
+/// whose provider schema rejects the generic dummy.
+const _valueByKey = <String, String>{
+  'CloudflareSnippet.files':
+      "[{'name': 'main.js', 'content': 'export default {};'},]",
+  'SnippetMetadata.mainModule': "'main.js'",
+  'ShareResources.meta': "'{}'",
+  'CloudflareShareResource.meta': "'{}'",
 };
 
 /// Optional slots a factory needs anyway: the provider requires at least
 /// one of a group the generated constructor leaves optional.
 const _optionalExtras = <String, List<String>>{
   'CloudflareCustomSsl': ['customCsrId'],
+  'CloudflareWorkersScript': ['content'],
 };
 
 String _stringLiteral(String name, {String owner = ''}) {
