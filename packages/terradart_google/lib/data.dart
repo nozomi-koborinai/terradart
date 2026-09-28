@@ -107,6 +107,12 @@ export 'src/data/google_beyondcorp_security_gateway_application_iam_policy.dart'
     show DataGoogleBeyondcorpSecurityGatewayApplicationIamPolicy;
 export 'src/data/google_beyondcorp_security_gateway_iam_policy.dart'
     show DataGoogleBeyondcorpSecurityGatewayIamPolicy;
+export 'src/data/google_biglake_hive_catalog_iam_policy.dart'
+    show DataGoogleBiglakeHiveCatalogIamPolicy;
+export 'src/data/google_biglake_hive_database_iam_policy.dart'
+    show DataGoogleBiglakeHiveDatabaseIamPolicy;
+export 'src/data/google_biglake_hive_table_iam_policy.dart'
+    show DataGoogleBiglakeHiveTableIamPolicy;
 export 'src/data/google_biglake_iceberg_catalog_iam_policy.dart'
     show DataGoogleBiglakeIcebergCatalogIamPolicy;
 export 'src/data/google_biglake_iceberg_namespace_iam_policy.dart'
@@ -191,6 +197,8 @@ export 'src/data/google_cloud_tasks_queue_iam_policy.dart'
     show DataGoogleCloudTasksQueueIamPolicy;
 export 'src/data/google_cloudbuild_trigger.dart'
     show DataGoogleCloudbuildTrigger;
+export 'src/data/google_cloudbuild_worker_pool.dart'
+    show DataGoogleCloudbuildWorkerPool;
 export 'src/data/google_cloudbuildv2_connection_iam_policy.dart'
     show DataGoogleCloudbuildv2ConnectionIamPolicy;
 export 'src/data/google_clouddeploy_custom_target_type_iam_policy.dart'
@@ -334,6 +342,8 @@ export 'src/data/google_compute_security_policy.dart'
     show DataGoogleComputeSecurityPolicy;
 export 'src/data/google_compute_service_attachment.dart'
     show DataGoogleComputeServiceAttachment;
+export 'src/data/google_compute_service_attachments.dart'
+    show DataGoogleComputeServiceAttachments;
 export 'src/data/google_compute_snapshot.dart' show DataGoogleComputeSnapshot;
 export 'src/data/google_compute_snapshot_iam_policy.dart'
     show DataGoogleComputeSnapshotIamPolicy;
@@ -391,6 +401,8 @@ export 'src/data/google_data_fusion_instance_iam_policy.dart'
     show DataGoogleDataFusionInstanceIamPolicy;
 export 'src/data/google_data_lineage_config.dart'
     show DataGoogleDataLineageConfig;
+export 'src/data/google_dataform_repository_iam_policy.dart'
+    show DataGoogleDataformRepositoryIamPolicy;
 export 'src/data/google_dataplex_aspect_type_iam_policy.dart'
     show DataGoogleDataplexAspectTypeIamPolicy;
 export 'src/data/google_dataplex_asset_iam_policy.dart'
@@ -448,6 +460,8 @@ export 'src/data/google_endpoints_service_consumers_iam_policy.dart'
     show DataGoogleEndpointsServiceConsumersIamPolicy;
 export 'src/data/google_endpoints_service_iam_policy.dart'
     show DataGoogleEndpointsServiceIamPolicy;
+export 'src/data/google_eventarc_pipeline_iam_policy.dart'
+    show DataGoogleEventarcPipelineIamPolicy;
 export 'src/data/google_filestore_instance.dart'
     show DataGoogleFilestoreInstance;
 export 'src/data/google_firestore_document.dart'
@@ -494,6 +508,8 @@ export 'src/data/google_iam_workload_identity_pool.dart'
     show DataGoogleIamWorkloadIdentityPool;
 export 'src/data/google_iam_workload_identity_pool_iam_policy.dart'
     show DataGoogleIamWorkloadIdentityPoolIamPolicy;
+export 'src/data/google_iam_workload_identity_pool_openid_config.dart'
+    show DataGoogleIamWorkloadIdentityPoolOpenidConfig;
 export 'src/data/google_iam_workload_identity_pool_provider.dart'
     show DataGoogleIamWorkloadIdentityPoolProvider;
 export 'src/data/google_iap_agent_registry_agent_iam_policy.dart'
@@ -570,6 +586,8 @@ export 'src/data/google_logging_project_settings.dart'
 export 'src/data/google_logging_sink.dart' show DataGoogleLoggingSink;
 export 'src/data/google_lustre_instance.dart' show DataGoogleLustreInstance;
 export 'src/data/google_memcache_instance.dart' show DataGoogleMemcacheInstance;
+export 'src/data/google_memorystore_acl_policy.dart'
+    show DataGoogleMemorystoreAclPolicy;
 export 'src/data/google_memorystore_instance.dart'
     show DataGoogleMemorystoreInstance;
 export 'src/data/google_monitoring_app_engine_service.dart'
@@ -596,6 +614,12 @@ export 'src/data/google_network_security_address_group_iam_policy.dart'
     show DataGoogleNetworkSecurityAddressGroupIamPolicy;
 export 'src/data/google_network_security_address_groups.dart'
     show DataGoogleNetworkSecurityAddressGroups;
+export 'src/data/google_observability_folder_settings.dart'
+    show DataGoogleObservabilityFolderSettings;
+export 'src/data/google_observability_organization_settings.dart'
+    show DataGoogleObservabilityOrganizationSettings;
+export 'src/data/google_observability_project_settings.dart'
+    show DataGoogleObservabilityProjectSettings;
 export 'src/data/google_oracle_database_autonomous_database.dart'
     show DataGoogleOracleDatabaseAutonomousDatabase;
 export 'src/data/google_oracle_database_autonomous_databases.dart'
@@ -682,6 +706,8 @@ export 'src/data/google_pubsub_topic.dart' show DataGooglePubsubTopic;
 export 'src/data/google_pubsub_topic_iam_policy.dart'
     show DataGooglePubsubTopicIamPolicy;
 export 'src/data/google_redis_cluster.dart' show DataGoogleRedisCluster;
+export 'src/data/google_redis_cluster_acl_policy.dart'
+    show DataGoogleRedisClusterAclPolicy;
 export 'src/data/google_redis_instance.dart' show DataGoogleRedisInstance;
 export 'src/data/google_scc_source_iam_policy.dart'
     show DataGoogleSccSourceIamPolicy;
