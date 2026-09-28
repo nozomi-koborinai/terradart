@@ -1060,6 +1060,14 @@ barrels:
                       'description': 'Mode.\nAvailable values: "fast", "slow".',
                     },
                     'kind': {'type': 'string', 'optional': true},
+                    'regions': {
+                      'type': ['list', 'string'],
+                      'optional': true,
+                    },
+                    'grants': {
+                      'type': ['set', 'string'],
+                      'required': true,
+                    },
                     'settings': {
                       'optional': true,
                       'nested_type': {
@@ -1085,12 +1093,16 @@ provider_version: "1.0.0"
 properties:
   - api_name: kind
     enum_values: ["k1", "k2"]
+  - api_name: regions
+    enum_values: ["WNAM", "ENAM"]
+  - api_name: grants
+    enum_values: ["code"]
 ''');
       File(p.join(overrides, 'x_thing.yaml')).writeAsStringSync('''
 outputDir: thing
 deriveEnums: true
 deriveNestedTypes: true
-paramOrder: [name, mode, kind, settings]
+paramOrder: [name, mode, kind, regions, grants, settings]
 ''');
     });
     tearDown(() => tmp.deleteSync(recursive: true));
@@ -1127,6 +1139,7 @@ paramOrder: [name, mode, kind, settings]
       expect(src, contains('TfArg<String>? mode'));
       expect(src, contains('TfArg<String>? kind'));
       expect(src, contains('TfArg<String>? level'));
+      expect(src, contains('TfArg<List<String>>? regions'));
       expect(src, isNot(contains('implements TerraformEnum')));
     });
 
@@ -1142,6 +1155,25 @@ paramOrder: [name, mode, kind, settings]
       expect(src, contains("k1('k1')"));
       expect(src, contains("high('high')"));
       expect(src, contains('TfArg<String> name'));
+    });
+
+    test('on: a list of strings takes one enum TfArg per element', () async {
+      final (code, _) = await wrap(providerEnums: true);
+      expect(code, CliExitCodes.success);
+      final src = emitted();
+      expect(src, contains('List<TfArg<XThingRegions>>? regions'));
+      expect(src, contains('required List<TfArg<XThingGrants>> grants'));
+      expect(src, contains("wnam('WNAM')"));
+      expect(
+        src,
+        matches(RegExp(r"if \(regions != null\)\s+'regions': "
+            r'TfArg\.literal\(\[for \(final e in regions\) e\.toTfJson\(\)\]\)')),
+      );
+      expect(
+        src,
+        contains("'grants': "
+            'TfArg.literal([for (final e in grants) e.toTfJson()])'),
+      );
     });
 
     test('a hint file at another release fails closed (E405)', () async {
