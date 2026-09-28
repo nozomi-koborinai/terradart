@@ -414,7 +414,9 @@ jobs:
           fi
           if [ -n "$EXAMPLE_GENERATOR" ]; then paths+=(examples); fi
           git add -A -- "${paths[@]}"
-          git commit -m "chore(schema): weekly $LANE bump $today"
+          # --allow-empty: a new-major week with nothing to regenerate still
+          # opens a PR so the drift report's new-major banner reaches a human.
+          git commit --allow-empty -m "chore(schema): weekly $LANE bump $today"
           git push -u origin "$branch"
           # Ensure the PR labels exist (idempotent) so a missing label can't fail
           # the bump the way it did on 2026-06-14. Best-effort: ignore "already exists".
