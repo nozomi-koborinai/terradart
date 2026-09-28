@@ -511,6 +511,7 @@ class WrapCommand extends Command<int> {
             },
           ),
           package: migratePackage!,
+          caseInsensitiveEnums: providerEnums.enabled,
         );
         buffer[p.relative(migrateManifestPath, from: output)] =
             formatter.format(manifestRaw);
