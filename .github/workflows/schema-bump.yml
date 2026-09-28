@@ -450,12 +450,15 @@ jobs:
             exit 0
           fi
           if [ "$changes" = "0" ]; then
-            # A quiet new-major week: one open PR already carries the banner
-            # while the major stays unabsorbed, so don't stack an empty one
+            # A quiet new-major week: when an open PR of this lane already
+            # carries the banner for this major, don't stack an empty one
             # every week.
+            banner="v$(jq -r '.max_major_version' /tmp/state.json) exists."
             open=$(gh pr list --state open --label schema-bump --limit 100 \
-              --json headRefName \
-              --jq "[.[] | select(.headRefName | startswith(\"chore/schema-bump-$LANE-\"))] | length")
+              --json headRefName,body \
+              --jq "[.[] | select((.headRefName | startswith(\"chore/schema-bump-$LANE-\"))
+                and (.body | contains(\"NEW MAJOR AVAILABLE\"))
+                and (.body | contains(\"$banner\")))] | length")
             if [ "$open" != "0" ]; then
               echo "New major still unabsorbed; an open $LANE bump PR already reports it. Exiting."
               echo "skip=true" >> "$GITHUB_OUTPUT"
