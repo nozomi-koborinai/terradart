@@ -34,6 +34,16 @@
 #   migrateManifest: the migration manifest wrap emits for the lane
 #                    (wrap --migrate-manifest), generated into
 #                    terradart_migrate and verified by the same --check.
+#   bump:            (optional) the weekly schema bump's coordinates for
+#                    the lane; a lane without it is never bumped by the
+#                    workflow (google-beta rides the google bump at the
+#                    same version; appwrite stays pinned by hand).
+#     mode:          auto    — open a PR and enable auto-merge when the
+#                              drift report finds nothing for a human
+#                    pr-only — open a PR, never auto-merge
+#     repo:          GitHub repo whose releases tool/fetch_schema.dart reads
+#     major:         the major the lane tracks; releases of any other major
+#                    are ignored, a newer one is only reported
 
 providers:
   google:
@@ -46,6 +56,10 @@ providers:
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml
     resourceProvider: null
     migrateManifest: packages/terradart_migrate/lib/src/manifest/google.g.dart
+    bump:
+      mode: auto
+      repo: hashicorp/terraform-provider-google
+      major: 7
   google-beta:
     source: hashicorp/google-beta
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_beta
@@ -76,6 +90,10 @@ providers:
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_cloudflare.yaml
     resourceProvider: null # cloudflare_ prefix collides with nothing
     migrateManifest: packages/terradart_migrate/lib/src/manifest/cloudflare.g.dart
+    bump:
+      mode: pr-only # minor releases ship breaking changes
+      repo: cloudflare/terraform-provider-cloudflare
+      major: 5
   aws:
     source: hashicorp/aws
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_aws
@@ -86,3 +104,7 @@ providers:
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_aws.yaml
     resourceProvider: null # aws_ prefix collides with nothing
     migrateManifest: packages/terradart_migrate/lib/src/manifest/aws.g.dart
+    bump:
+      mode: auto
+      repo: hashicorp/terraform-provider-aws
+      major: 6

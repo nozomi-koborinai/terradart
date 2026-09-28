@@ -22,6 +22,31 @@ void main() {
           ['google_bar', 'google_foo']);
       expect(result.first['provider_version'], '7.2.0');
     });
+
+    test('data sources get their own kind key and sort with resources', () {
+      final result = appendCurationEntries(
+        existing: const [
+          {
+            'resource': 'aws_b',
+            'detected_at': '2026-01-01',
+            'provider_version': '6.0.0',
+          },
+        ],
+        resources: ['aws_c'],
+        dataSources: ['aws_b', 'aws_a', 'aws_a'],
+        detectedAt: '2026-06-12',
+        providerVersion: '6.1.0',
+      );
+      expect(
+        result.map((e) => e.entries.first.key == 'resource'
+            ? 'r:${e['resource']}'
+            : 'd:${e['data_source']}'),
+        ['d:aws_a', 'd:aws_b', 'r:aws_b', 'r:aws_c'],
+      );
+      final yaml = formatBacklogYaml(header: '# h', entries: result);
+      expect(yaml, contains('  - data_source: aws_a\n'));
+      expect(readBacklogEntries(yaml), result);
+    });
   });
 
   group('formatBacklogYaml', () {

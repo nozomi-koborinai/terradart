@@ -1,20 +1,22 @@
 // tool/bump_api_surface.dart
 //
-// Snapshots and diffs the public Dart API of the packages the weekly schema
-// bump regenerates (terradart_google, terradart_google_beta), read from
-// their migration manifests: every factory class and its barrel, every
-// constructor slot and helper field, every sealed variant, getter and enum
-// member. schema-bump.yml dumps the surface before and after regenerating,
+// Snapshots and diffs the public Dart API of the packages a weekly schema
+// bump lane regenerates, read from their migration manifests: every factory
+// class and its barrel, every constructor slot and helper field, every
+// sealed variant, getter and enum member. schema-bump.yml dumps the surface before and after regenerating,
 // and the drift report refuses auto-merge on any breaking entry.
 //
 // Usage:
-//   dart tool/bump_api_surface.dart dump --out=/tmp/api_before.json
+//   dart tool/bump_api_surface.dart dump [--lanes=google,google-beta] \
+//     --out=/tmp/api_before.json
 //   dart tool/bump_api_surface.dart diff \
 //     --before=/tmp/api_before.json --after=/tmp/api_after.json \
 //     --out=/tmp/api_diff.json
 //
-// The manifests are const Dart values compiled into this tool, so a dump
-// after `terradart wrap` sees the regenerated manifests.
+// --lanes names tool/providers.yaml lanes (default: google,google-beta, the
+// GA bump and its beta ride-along); each lane's outputPackage selects its
+// manifest. The manifests are const Dart values compiled into this tool, so
+// a dump after `terradart wrap` sees the regenerated manifests.
 //
 // Exit codes: 0 success (breaking changes are reported, not failed on),
 // 64 usage error.
@@ -24,6 +26,7 @@ import 'dart:io';
 
 import 'package:meta/meta.dart';
 import 'package:terradart_migrate/terradart_migrate.dart';
+import 'package:yaml/yaml.dart';
 
 const _exitUsage = 64;
 
@@ -35,10 +38,17 @@ void main(List<String> args) {
   };
   final command = args.isEmpty ? null : args.first;
   if (command == 'dump' && flags['out'] != null) {
-    final surface = apiSurface([
-      googleMigrateManifest,
-      googleBetaMigrateManifest,
-    ]);
+    final List<MigrateManifest> manifests;
+    try {
+      manifests = laneManifests(
+        File('tool/providers.yaml').readAsStringSync(),
+        (flags['lanes'] ?? 'google,google-beta').split(','),
+      );
+    } on FormatException catch (e) {
+      stderr.writeln('bump_api_surface: ${e.message}');
+      exit(_exitUsage);
+    }
+    final surface = apiSurface(manifests);
     File(flags['out']!)
       ..createSync(recursive: true)
       ..writeAsStringSync(const JsonEncoder.withIndent('  ').convert(surface));
@@ -63,7 +73,8 @@ void main(List<String> args) {
     return;
   }
   stderr.writeln(
-    'Usage: dart tool/bump_api_surface.dart dump --out=<json>\n'
+    'Usage: dart tool/bump_api_surface.dart dump [--lanes=<a,b>] '
+    '--out=<json>\n'
     '       dart tool/bump_api_surface.dart diff --before=<json> '
     '--after=<json> --out=<json>',
   );
@@ -76,6 +87,25 @@ Map<String, Map<String, Object?>> _readSurface(String path) {
     for (final e in raw.entries)
       e.key: Map<String, Object?>.from(e.value as Map),
   };
+}
+
+/// The generated manifests of [lanes] (tool/providers.yaml names), found by
+/// each lane's `outputPackage`.
+@visibleForTesting
+List<MigrateManifest> laneManifests(String providersYaml, List<String> lanes) {
+  final providers =
+      (loadYaml(providersYaml) as YamlMap)['providers'] as YamlMap;
+  MigrateManifest manifest(String lane) {
+    final entry = providers[lane];
+    final outputPackage = entry is YamlMap ? entry['outputPackage'] : null;
+    if (outputPackage is! String) {
+      throw FormatException('unknown lane "$lane"');
+    }
+    return manifestForPackage(outputPackage.split('/').last) ??
+        (throw FormatException('lane "$lane" has no migration manifest'));
+  }
+
+  return [for (final lane in lanes) manifest(lane)];
 }
 
 /// Surface key → `{sig, required?, owner?}`.

@@ -51,6 +51,15 @@ void main() {
       );
     });
 
+    test('regen is the same wrap without --check', () {
+      for (final lane in lanes.keys) {
+        expect(
+          '${WrapGate.regen.args(lanes[lane]!).join(' ')} --check',
+          wrap(lane),
+        );
+      }
+    });
+
     test('cloudflare wrap omits --resource-provider', () {
       expect(
         wrap('cloudflare'),
