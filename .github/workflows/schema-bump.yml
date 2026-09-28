@@ -251,6 +251,17 @@ jobs:
             echo "wrap failed; bump PR will carry inputs only (see drift report)."
             exit 0
           fi
+          example_ok=true
+          if [ -n "$EXAMPLE_GENERATOR" ]; then
+            # The leftover example covers every factory no other example
+            # does; a regenerate can add, drop or reshape them.
+            if ! dart "$EXAMPLE_GENERATOR"; then
+              git checkout -- examples
+              git clean -fdq -- examples
+              example_ok=false
+              echo "::warning::$EXAMPLE_GENERATOR failed; the example is unchanged and the new factories are recorded as awaiting an example."
+            fi
+          fi
           # Every new type the catalog now wraps goes into the curation
           # backlog (API polish) and, when no leftover example covers it,
           # into tool/example_debt.yaml as awaiting an example.
@@ -258,15 +269,8 @@ jobs:
             --diff=/tmp/schema_diff.json \
             --detected-at="$(date -u +%Y-%m-%d)" \
             --provider-version="$(jq -r '.latest' /tmp/state.json)" \
+            --example-generator-ok="$example_ok" \
             --out=/tmp/new_factories.json
-          if [ -n "$EXAMPLE_GENERATOR" ]; then
-            # The leftover example covers every factory no other example
-            # does; a regenerate can add, drop or reshape them.
-            if ! dart "$EXAMPLE_GENERATOR"; then
-              git checkout -- examples
-              echo "::warning::$EXAMPLE_GENERATOR failed; the example is unchanged (the lane gates analyze it)."
-            fi
-          fi
 
       - name: Run `terradart wrap --check`
         run: |

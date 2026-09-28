@@ -26,7 +26,8 @@
 // note asking for API polish and — unless the lane's `bump.exampleGenerator`
 // covers every factory — a `ClassName: awaiting-example: ...` line in
 // tool/example_debt.yaml (tool/example_synth_gates.dart requires the
-// backlog entry). --out receives `{factories: [{tf_type, class_name,
+// backlog entry). `--example-generator-ok=false` (the generator failed and
+// the example was reverted) writes the debt lines anyway. --out receives `{factories: [{tf_type, class_name,
 // kind}]}` for the drift report.
 //
 // exit: 0 success; 1 scaffolding failed; 64 usage error.
@@ -293,7 +294,8 @@ Never _usage() {
     'usage: dart tool/bump_new_factories.dart scaffold --lane=<name> '
     '--diff=<json> --out=<json>\n'
     '       dart tool/bump_new_factories.dart record --lane=<name> '
-    '--diff=<json> --detected-at=<date> --provider-version=<v> --out=<json>',
+    '--diff=<json> --detected-at=<date> --provider-version=<v> --out=<json> '
+    '[--example-generator-ok=false]',
   );
   exit(64);
 }
@@ -321,7 +323,15 @@ Future<void> main(List<String> args) async {
       final detectedAt = flags['detected-at'];
       final version = flags['provider-version'];
       if (detectedAt == null || version == null) _usage();
-      _record(lane, diff, outPath, detectedAt, version);
+      _record(
+        lane,
+        diff,
+        outPath,
+        detectedAt,
+        version,
+        exampleCovered: lane.exampleGenerator != null &&
+            flags['example-generator-ok'] != 'false',
+      );
     default:
       _usage();
   }
@@ -410,8 +420,9 @@ void _record(
   Map<String, dynamic> diff,
   String outPath,
   String detectedAt,
-  String version,
-) {
+  String version, {
+  required bool exampleCovered,
+}) {
   final catalog = readCatalog(
     File(p.join(lane.lane.outputPackage, 'lib', 'src', '_catalog.g.dart'))
         .readAsStringSync(),
@@ -439,7 +450,7 @@ void _record(
         ),
       ),
     );
-    if (lane.exampleGenerator == null) {
+    if (!exampleCovered) {
       final debt = File(exampleDebtPath);
       debt.writeAsStringSync(
         appendAwaitingExampleDebt(
@@ -458,7 +469,7 @@ void _record(
     ..createSync(recursive: true)
     ..writeAsStringSync(
       jsonEncode({
-        'example_generator': lane.exampleGenerator,
+        'example_generator': exampleCovered ? lane.exampleGenerator : null,
         'factories': [
           for (final f in factories)
             {'tf_type': f.tfType, 'class_name': f.className, 'kind': f.kind},
