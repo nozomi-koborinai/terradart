@@ -140,12 +140,11 @@ jobs:
     needs: test
     # Pre-merge dry-run catches what previously broke publish AFTER merge:
     # MM/cert fixtures tripping pub.dev's secret scanner (fixed reactively in
-    # 0.12.5 and 0.12.11 by adding false_secrets). The publish_to: none
-    # packages are excluded — they ship as brew binaries, not pub.dev packages.
+    # 0.12.5 and 0.12.11 by adding false_secrets).
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_codegen, terradart_google]
+        package: [terradart_core, terradart_codegen, terradart_google, terradart_hcl, terradart_migrate]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1

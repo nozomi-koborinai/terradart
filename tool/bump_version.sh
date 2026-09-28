@@ -130,8 +130,8 @@ echo "    - terradart_aws.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_time/pubspec.yaml
 echo "    - terradart_time.dependencies.terradart_core: ^${NEW}"
 
-# 2b. terradart_migrate binary version const (lockstep with its pubspec).
-echo "  Binary version const:"
+# 2b. terradart_migrate --version const (lockstep with its pubspec).
+echo "  terradart-migrate version const:"
 sed_inplace "s#^const String packageVersion = '${OLD_RE}';\$#const String packageVersion = '${NEW}';#" packages/terradart_migrate/lib/src/version.dart
 echo "    - packages/terradart_migrate/lib/src/version.dart -> $NEW"
 

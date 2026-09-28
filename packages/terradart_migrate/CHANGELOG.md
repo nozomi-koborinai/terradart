@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- `--report` runs the migration in memory and prints, per `resource` / `data` type, how many blocks translate and how many stay in Terraform (each with its reason), the factory each type maps to and the `module` calls whose source is outside the tree; `--json` prints it as JSON. It writes nothing. `MigrationCoverage.of(project)` is the library side. It replaces `terradart-coverage`.
+- Removed `--update`, `--in-place`, `--allow-todo` and `--inline-locals` (each now exits 64), with `rerunProject`, `planInPlace` / `writeInPlace` and the `allowTodo` / `inlineLocals` parameters of `migrateModule` / `migrateTree`. Everything that stays in Terraform lands in the sidecar, so `MigrationResult.sidecar` and `MigratedModule.sidecar` are never null; the report JSON drops `allowTodo`, `planDiffers` and `todos`.
+- Published on pub.dev: `dart pub global activate terradart_migrate` installs `terradart-migrate`. The release binaries and the Homebrew formula are gone, and so are `release-binary.yml`, `tool/render_formula.dart` and `tool/render_to_file.dart`.
+
 ## 0.29.0 - 2026-09-27
 
 - `aws_*` resources and data sources migrate to `terradart_aws` through its generated manifest (`lib/src/manifest/aws.g.dart`). The `provider "aws"` block translates to `AwsProvider`, nested settings included (`default_tags`, `assume_role`, `ignore_tags`, `endpoints`); credential arguments (`access_key`, `secret_key`, `token`, `assume_role_with_web_identity`) are dropped with a warning, never written into Dart.

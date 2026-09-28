@@ -7,17 +7,15 @@ The HCL → Dart migrator for existing Terraform users (`terradart-migrate`, [#8
 
 ## Status
 
-**Alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The library and the `terradart-migrate` CLI migrate a Terraform source tree (`*.tf` and `*.tf.json`, through `terradart_hcl`) into a Dart package with a leftover sidecar per directory. The CLI reads files only: no Terraform run, no state access, nothing written into the source tree or outside `--out`. `publish_to: none`; ships as a single binary.
+**Alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The library and the `terradart-migrate` CLI migrate a Terraform source tree (`*.tf` and `*.tf.json`, through `terradart_hcl`) into a Dart package with a leftover sidecar per directory. The CLI reads files only: no Terraform run, no state access, nothing written into the source tree or outside `--out`. Published on pub.dev; the CLI installs with `dart pub global activate`.
 
 ## Install
 
-**Homebrew (macOS / Linux):**
-
 ```sh
-brew install nozomi-koborinai/tap/terradart-migrate
+dart pub global activate terradart_migrate
 ```
 
-**Direct binary:** see [GitHub releases](https://github.com/nozomi-koborinai/terradart/releases) (`terradart-migrate-darwin-arm64`, `terradart-migrate-darwin-amd64`, `terradart-migrate-linux-amd64`, `terradart-migrate-windows-amd64.exe`).
+This puts `terradart-migrate` in `~/.pub-cache/bin` (add it to your `PATH` if `dart pub global activate` says so). It needs a Dart SDK — the one the migrated package needs anyway.
 
 **From a checkout:** `dart run bin/terradart_migrate.dart` in this directory.
 
@@ -152,7 +150,7 @@ for (final slot in hit.entry.slots) {
 
 ## Development
 
-Source lives under `packages/terradart_migrate/`; release binaries are built by `.github/workflows/release-binary.yml`, which also renders the Homebrew formula (`tool/render_to_file.dart`). Regenerate a manifest with the matching wrap lane, e.g. for GA google:
+Source lives under `packages/terradart_migrate/`; `publish.yml` publishes it to pub.dev with the rest of the workspace. Regenerate a manifest with the matching wrap lane, e.g. for GA google:
 
 ```sh
 cd packages/terradart_codegen && dart run bin/terradart.dart wrap \

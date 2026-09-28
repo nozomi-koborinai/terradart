@@ -61,4 +61,4 @@ offline.
 
 ## Status
 
-Alpha, like the rest of TerraDart. Not published to pub.dev yet.
+Alpha, like the rest of TerraDart. Published to pub.dev in lockstep with the other packages.
