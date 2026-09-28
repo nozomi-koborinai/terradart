@@ -4,6 +4,11 @@
 outputDir: chronicle
 
 deriveClassDoc: true
+deriveEnums: true
+
+dartTypeOverrides:
+  comparison_type: ChronicleCaseTagDefinitionComparisonType
+  match_criteria: ChronicleCaseTagDefinitionMatchCriteria
 
 # TODO(wrap-init): the class doc derives from the IR (lead line + MM description); uncomment curatedDoc only for artisanal notes the IR cannot derive (worked example, variant guidance, ForceNew callouts) — otherwise delete this placeholder.
 # curatedDoc:

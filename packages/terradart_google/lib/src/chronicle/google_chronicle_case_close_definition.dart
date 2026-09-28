@@ -6,6 +6,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_chronicle_case_close_definition`.
 const Set<String> _googleChronicleCaseCloseDefinitionSensitive = <String>{};
 
+/// Chronicle Case Close Definition Close enum for `close_reason`.
+enum ChronicleCaseCloseDefinitionCloseReason implements TerraformEnum {
+  malicious('MALICIOUS'),
+  notMalicious('NOT_MALICIOUS'),
+  maintenance('MAINTENANCE'),
+  inconclusive('INCONCLUSIVE');
+
+  const ChronicleCaseCloseDefinitionCloseReason(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_chronicle_case_close_definition`.
 ///
 /// CaseCloseDefinition provides predefined root cause options for closing
@@ -16,7 +28,7 @@ final class GoogleChronicleCaseCloseDefinition extends Resource {
 
   GoogleChronicleCaseCloseDefinition({
     required super.localName,
-    required TfArg<String> closeReason,
+    required TfArg<ChronicleCaseCloseDefinitionCloseReason> closeReason,
     TfArg<String>? deletionPolicy,
     required TfArg<String> instance,
     required TfArg<String> location,

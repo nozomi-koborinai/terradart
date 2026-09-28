@@ -265,7 +265,9 @@ export 'src/network/google_network_security_ull_mirroring_engine.dart'
 export 'src/network/google_network_security_url_lists.dart'
     show GoogleNetworkSecurityUrlLists;
 export 'src/network/google_network_services_agent_connectivity_template.dart'
-    show GoogleNetworkServicesAgentConnectivityTemplate;
+    show
+        GoogleNetworkServicesAgentConnectivityTemplate,
+        NetworkServicesAgentConnectivityTemplateAccessPath;
 export 'src/network/google_network_services_agent_gateway.dart'
     show
         GoogleNetworkServicesAgentGateway,

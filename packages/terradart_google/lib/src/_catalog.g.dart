@@ -6934,7 +6934,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'rootCause',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ChronicleCaseCloseDefinitionCloseReason'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_chronicle_case_close_definition`.\n\nCaseCloseDefinition provides predefined root cause options for closing\nsecurity cases in SecOps. These definitions ensure consistent documentation\nand reporting across case investigations upon closure.',
@@ -6979,7 +6979,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'propertyName',
       'value',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ChronicleCaseTagDefinitionComparisonType',
+      'ChronicleCaseTagDefinitionMatchCriteria',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_chronicle_case_tag_definition`.\n\nA CaseTagDefinition is used to classify and tag cases based on criteria.',
@@ -31847,7 +31850,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'egressNetworkConfig',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['NetworkServicesAgentConnectivityTemplateAccessPath'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_services_agent_connectivity_template`.\n\nAgentConnectivityTemplate represents a reusable network configuration.',
@@ -38565,18 +38568,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>[
       'localName',
       'accessType',
+      'config',
       'deletionPolicy',
       'displayName',
       'labels',
       'location',
       'project',
       'serverId',
-      'externalConfig',
-      'internalConfig',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'StorageFtpServerAccessType',
+      'StorageFtpServerConfig',
+      'StorageFtpServerInternalConfig',
+      'StorageFtpServerExternalConfig',
+      'StorageFtpServerConsumerAccept',
+      'StorageFtpServerConsumerReject',
+    ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_storage_ftp_server`.',
+    docComment:
+        'Factory wrapper for `google_storage_ftp_server`.\n\nAn SFTP Server resource supporting internal and external connectivity\nconfigurations.\n\n`config` is the MM `exactly_one_of` group (`internal_config` |\n`external_config`), sealed: pass [StorageFtpServerInternalConfig] with\n`accessType: StorageFtpServerAccessType.internal` or\n[StorageFtpServerExternalConfig] with\n`accessType: StorageFtpServerAccessType.external`.',
   ),
   CatalogEntry(
     tfType: 'google_storage_ftp_user',
@@ -38598,7 +38608,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_storage_ftp_user`.',
+    docComment:
+        'Factory wrapper for `google_storage_ftp_user`.\n\nA Storage FTP User resource supporting directory mappings and user\ncredentials for an SFTP Server.',
   ),
   CatalogEntry(
     tfType: 'google_storage_hmac_key',

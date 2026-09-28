@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkServicesAgentConnectivityTemplateSensitive =
     <String>{};
 
+/// Network Services Agent Connectivity Template Access enum for `access_path`.
+enum NetworkServicesAgentConnectivityTemplateAccessPath
+    implements TerraformEnum {
+  clientToAgent('CLIENT_TO_AGENT'),
+  agentToAnywhere('AGENT_TO_ANYWHERE');
+
+  const NetworkServicesAgentConnectivityTemplateAccessPath(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_network_services_agent_connectivity_template`.
 ///
 /// AgentConnectivityTemplate represents a reusable network configuration.
@@ -16,7 +27,8 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
 
   GoogleNetworkServicesAgentConnectivityTemplate({
     required super.localName,
-    required TfArg<String> accessPath,
+    required TfArg<NetworkServicesAgentConnectivityTemplateAccessPath>
+    accessPath,
     TfArg<List<String>>? accessTypes,
     required TfArg<String> agentConnectivityTemplateId,
     TfArg<String>? deletionPolicy,

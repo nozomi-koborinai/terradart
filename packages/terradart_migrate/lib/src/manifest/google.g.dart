@@ -19743,9 +19743,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'close_reason',
           dartName: 'closeReason',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ChronicleCaseCloseDefinitionCloseReason',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -19852,9 +19852,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'comparison_type',
           dartName: 'comparisonType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ChronicleCaseTagDefinitionComparisonType',
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -19887,9 +19887,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'match_criteria',
           dartName: 'matchCriteria',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ChronicleCaseTagDefinitionMatchCriteria',
         ),
         MigrateSlot(
           tfName: 'priority',
@@ -99449,9 +99449,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'access_path',
           dartName: 'accessPath',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'NetworkServicesAgentConnectivityTemplateAccessPath',
         ),
         MigrateSlot(
           tfName: 'access_types',
@@ -120826,9 +120826,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'access_type',
           dartName: 'accessType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'StorageFtpServerAccessType',
+        ),
+        MigrateSlot(
+          tfName: '',
+          dartName: 'config',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'internal_config': 'StorageFtpServerInternalConfig',
+            'external_config': 'StorageFtpServerExternalConfig',
+          },
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -120871,20 +120883,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'external_config',
-          dartName: 'externalConfig',
-          kind: MigrateSlotKind.passthrough,
-          required: false,
-          dartType: 'Map<String, dynamic>',
-        ),
-        MigrateSlot(
-          tfName: 'internal_config',
-          dartName: 'internalConfig',
-          kind: MigrateSlotKind.passthrough,
-          required: false,
-          dartType: 'Map<String, dynamic>',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -225836,6 +225834,72 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'StorageFtpServerConsumerAccept': MigrateHelper(
+      className: 'StorageFtpServerConsumerAccept',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'connection_limit',
+          dartName: 'connectionLimit',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'int',
+        ),
+      ],
+    ),
+    'StorageFtpServerConsumerReject': MigrateHelper(
+      className: 'StorageFtpServerConsumerReject',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'StorageFtpServerExternalConfig': MigrateHelper(
+      className: 'StorageFtpServerExternalConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'allowed_cidr_blocks',
+          dartName: 'allowedCidrBlocks',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<String>',
+        ),
+      ],
+    ),
+    'StorageFtpServerInternalConfig': MigrateHelper(
+      className: 'StorageFtpServerInternalConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consumer_accept_list',
+          dartName: 'consumerAcceptList',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'StorageFtpServerConsumerAccept',
+        ),
+        MigrateSlot(
+          tfName: 'consumer_reject_list',
+          dartName: 'consumerRejectList',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'StorageFtpServerConsumerReject',
+        ),
+      ],
+    ),
     'StorageInsightsDatasetConfigExcludeCloudStorageBuckets': MigrateHelper(
       className: 'StorageInsightsDatasetConfigExcludeCloudStorageBuckets',
       slots: <MigrateSlot>[
@@ -236149,6 +236213,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'BIG_QUERY_EXPORT_PACKAGE_ADVANCED': 'bigQueryExportPackageAdvanced',
       },
     ),
+    'ChronicleCaseCloseDefinitionCloseReason': MigrateEnum(
+      name: 'ChronicleCaseCloseDefinitionCloseReason',
+      members: <String, String>{
+        'MALICIOUS': 'malicious',
+        'NOT_MALICIOUS': 'notMalicious',
+        'MAINTENANCE': 'maintenance',
+        'INCONCLUSIVE': 'inconclusive',
+      },
+    ),
+    'ChronicleCaseTagDefinitionComparisonType': MigrateEnum(
+      name: 'ChronicleCaseTagDefinitionComparisonType',
+      members: <String, String>{
+        'EXACT': 'exact',
+        'START_WITH': 'startWith',
+        'CONTAIN': 'contain',
+        'ENDS_WITH': 'endsWith',
+      },
+    ),
+    'ChronicleCaseTagDefinitionMatchCriteria': MigrateEnum(
+      name: 'ChronicleCaseTagDefinitionMatchCriteria',
+      members: <String, String>{
+        'BY_VENDOR': 'byVendor',
+        'BY_PRODUCT': 'byProduct',
+        'BY_RULE_GENERATOR': 'byRuleGenerator',
+        'BY_ENTITY_PROPERTY_NAME': 'byEntityPropertyName',
+        'DATA_DRIVEN': 'dataDriven',
+        'SYSTEM': 'system',
+      },
+    ),
     'ChronicleCustomListDeletionPolicy': MigrateEnum(
       name: 'ChronicleCustomListDeletionPolicy',
       members: <String, String>{
@@ -240800,6 +240893,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'ABANDON': 'abandon',
       },
     ),
+    'NetworkServicesAgentConnectivityTemplateAccessPath': MigrateEnum(
+      name: 'NetworkServicesAgentConnectivityTemplateAccessPath',
+      members: <String, String>{
+        'CLIENT_TO_AGENT': 'clientToAgent',
+        'AGENT_TO_ANYWHERE': 'agentToAnywhere',
+      },
+    ),
     'NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath': MigrateEnum(
       name: 'NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath',
       members: <String, String>{
@@ -242459,6 +242559,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'StorageDefaultObjectAccessControlRole': MigrateEnum(
       name: 'StorageDefaultObjectAccessControlRole',
       members: <String, String>{'OWNER': 'owner', 'READER': 'reader'},
+    ),
+    'StorageFtpServerAccessType': MigrateEnum(
+      name: 'StorageFtpServerAccessType',
+      members: <String, String>{'INTERNAL': 'internal', 'EXTERNAL': 'external'},
     ),
     'StorageHmacKeyState': MigrateEnum(
       name: 'StorageHmacKeyState',
