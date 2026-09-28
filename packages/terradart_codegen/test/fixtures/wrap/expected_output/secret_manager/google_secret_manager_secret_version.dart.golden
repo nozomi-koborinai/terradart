@@ -22,10 +22,9 @@ sealed class SecretManagerSecretVersionPayload {
   /// Wire-format arguments this payload writes on the resource.
   Map<String, Object?> encode();
 
-  /// [encode] as resource arguments.
-  Map<String, TfArg<Object?>> get argMap => {
-    for (final e in encode().entries) e.key: TfArg.literal(e.value),
-  };
+  /// The resource arguments behind [encode], kept as the caller's [TfArg]s
+  /// so synth still checks sensitive literals and variable references.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
 /// Write-only secret data (Terraform 1.11+): the provider sends
@@ -52,6 +51,12 @@ final class SecretManagerSecretVersionWriteOnlyPayload
     'secret_data_wo': secretDataWo.toTfJson(),
     'secret_data_wo_version': secretDataWoVersion.toTfJson(),
   };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'secret_data_wo': secretDataWo,
+    'secret_data_wo_version': secretDataWoVersion,
+  };
 }
 
 /// Plaintext secret data. The provider marks it sensitive, so plans
@@ -72,6 +77,9 @@ final class SecretManagerSecretVersionPlaintextPayload
 
   @override
   Map<String, Object?> encode() => {'secret_data': secretData.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'secret_data': secretData};
 }
 
 /// Destroy behaviour for `google_secret_manager_secret_version`.

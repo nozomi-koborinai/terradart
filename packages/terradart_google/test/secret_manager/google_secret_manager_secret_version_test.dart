@@ -11,6 +11,8 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
 import 'package:test/test.dart';
 
+import '../_helpers.dart';
+
 void main() {
   test('write-only payload: secret_data_wo + secret_data_wo_version', () {
     final secret = GoogleSecretManagerSecret(
@@ -65,6 +67,48 @@ void main() {
     );
     expect(v.argMap.keys, isNot(contains('secret_data_wo')));
     expect(v.argMap['secret_data']!.toTfJson(), equals('legacy-value'));
+  });
+
+  group('payload sensitivity at synth time', () {
+    GoogleSecretManagerSecretVersion plaintext(TfArg<String> data) =>
+        GoogleSecretManagerSecretVersion(
+          localName: 'v',
+          secret: TfArg.literal('projects/p/secrets/s'),
+          payload: SecretManagerSecretVersionPlaintextPayload(secretData: data),
+        );
+
+    test('a literal secret_data fails synth with SensitiveLiteralError', () {
+      final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
+      stack.add(plaintext(TfArg.literal('legacy-value')));
+      expect(() => stack.synth(), throwsA(isA<SensitiveLiteralError>()));
+    });
+
+    test('a variable secret_data synths to a var reference', () {
+      final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
+      stack.addVariable(
+        'secret_value',
+        const TfVariable(type: 'string', sensitive: true),
+      );
+      stack.add(plaintext(TfArg.variable('secret_value')));
+      final resource = ((stack.synth().tfJson['resource']
+          as Map)['google_secret_manager_secret_version'] as Map)['v'] as Map;
+      expect(resource['secret_data'], equals(r'${var.secret_value}'));
+    });
+
+    test('an undeclared variable in the write-only payload fails synth', () {
+      final stack = TestStack(providers: [const GoogleProvider(project: 'p')]);
+      stack.add(
+        GoogleSecretManagerSecretVersion(
+          localName: 'v',
+          secret: TfArg.literal('projects/p/secrets/s'),
+          payload: SecretManagerSecretVersionWriteOnlyPayload(
+            secretDataWo: TfArg.variable('missing'),
+            secretDataWoVersion: TfArg.literal('1'),
+          ),
+        ),
+      );
+      expect(() => stack.synth(), throwsA(anything));
+    });
   });
 
   test('the payload is exhaustive over the two variants', () {
