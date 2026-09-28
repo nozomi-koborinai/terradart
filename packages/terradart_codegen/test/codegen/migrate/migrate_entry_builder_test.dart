@@ -224,6 +224,63 @@ final class GoogleThing extends Resource {
       expect(b.entry.getters.single.dartName, 'nameRef');
     });
 
+    test('helper maps: keyed encoding derives, anything else is manual', () {
+      const src = '''
+class Item {
+  const Item({this.x});
+  final TfArg<int>? x;
+  Map<String, Object?> encode() => {if (x != null) 'x': x!.toTfJson()};
+}
+
+class Holder {
+  const Holder({this.keyed, this.named});
+  final Map<String, Item>? keyed;
+  final Map<String, Item>? named;
+  Map<String, Object?> encode() => {
+    if (keyed != null)
+      'keyed': {for (final e in keyed!.entries) e.key: e.value.encode()},
+    if (named != null)
+      'named': named!.entries
+          .map((e) => {'name': e.key, ...e.value.encode()})
+          .toList(),
+  };
+}
+''';
+      const mapDef = ResourceDef(
+        terraformType: 'google_thing',
+        root: BlockDef(
+          nestedBlocks: [
+            NestedBlockDef(
+              name: 'by_name',
+              nesting: NestingMode.map,
+              block: BlockDef(),
+              constraints: Constraints(optional: true),
+            ),
+          ],
+        ),
+      );
+      final b = buildMigrateEntry(
+        tfType: 'google_thing',
+        override: const WrapperOverride(outputDir: 'thing'),
+        def: mapDef,
+        kind: 'resource',
+        emittedSource: src,
+      );
+      final holder = _helper(b, 'Holder');
+      final keyed = holder.slots.singleWhere((s) => s.dartName == 'keyed');
+      expect(keyed.kind, MigrateSlotKind.helper);
+      expect(keyed.keyed, isTrue);
+      expect(keyed.helper, 'Item');
+      expect(keyed.tfName, 'keyed');
+      final named = holder.slots.singleWhere((s) => s.dartName == 'named');
+      expect(named.kind, MigrateSlotKind.manual);
+      expect(named.reason, contains('not encoded as a keyed map'));
+
+      final byName = _slot(b, 'byName');
+      expect(byName.kind, MigrateSlotKind.passthrough);
+      expect(byName.dartType, 'Map<String, dynamic>');
+    });
+
     test('a migrate hint pins a custom slot to manual', () {
       const override = WrapperOverride(
         outputDir: 'thing',

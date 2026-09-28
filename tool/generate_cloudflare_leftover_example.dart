@@ -11,9 +11,6 @@ import 'dart:io';
 const _skipResourceTypes = {
   'cloudflare_zone',
   'cloudflare_dns_record',
-  // No constructor value validates; listed in tool/example_debt.yaml with
-  // the terraform validate error.
-  'cloudflare_zero_trust_risk_behavior',
 };
 
 const _skipDataTypes = {
@@ -557,6 +554,12 @@ String _dummyForType(
   if (t.startsWith('List<') && t.endsWith('>')) {
     final inner = t.substring(5, t.length - 1);
     return '[${_dummyForType(inner, helpers, depth: depth + 1, name: name, sensitive: sensitive, owner: owner)},]';
+  }
+  if (t.startsWith('Map<String, ') && t.endsWith('>')) {
+    final value = t.substring(12, t.length - 1).trim();
+    if (helpers.containsKey(value)) {
+      return "{'k': ${_constructHelper(value, helpers, depth: depth + 1, sensitive: sensitive)},}";
+    }
   }
   if (t.startsWith('Map<') || t == 'Map') {
     return "{'k': leftover}";

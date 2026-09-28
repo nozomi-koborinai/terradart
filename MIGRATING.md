@@ -218,6 +218,29 @@ synthesizes `"CNAME"`, and the report warns about each value it
 normalized, because `terraform plan` shows the new spelling as a change
 wherever the provider compares the value case-sensitively.
 
+### `terradart_cloudflare` map-of-object attributes take a `Map` of helpers
+
+**Breaking (`terradart_cloudflare`)** — an attribute the provider schema
+declares as a map of objects (`nested_type` with `nesting_mode: "map"`) used
+to take a single helper object, so no value passed `terraform validate`.
+Those slots and helper fields now take `Map<String, Helper>`, keyed by the
+map key: 34 inputs across 7 resources (`CloudflareZeroTrustRiskBehavior`,
+`CloudflarePagesProject`, `CloudflareRuleset`, `CloudflareWorker`,
+`CloudflareWorkerVersion`, `CloudflareWorkersScript`, `CloudflareAiGateway`).
+
+| Before | After |
+|--------|-------|
+| `CloudflareZeroTrustRiskBehavior(behaviors: ZeroTrustRiskBehaviorBehaviors(...), ...)` | `CloudflareZeroTrustRiskBehavior(behaviors: {'imp_travel': ZeroTrustRiskBehaviorBehaviors(...)}, ...)` |
+| `PagesProjectDeploymentConfigsPreview(envVars: PagesProjectDeploymentConfigsPreviewEnvVars(...))` | `PagesProjectDeploymentConfigsPreview(envVars: {'API_KEY': PagesProjectDeploymentConfigsPreviewEnvVars(...)})` |
+| `CloudflareWorkersScript(files: WorkersScriptFiles(...), ...)` | `CloudflareWorkersScript(files: {'index.js': WorkersScriptFiles(...)}, ...)` |
+
+Wrap the old helper in a map literal under the key Terraform expects. A
+sensitive field inside such a map (`env_vars.*.value` on the Pages project
+deployment configs) is now checked per entry, so synth rejects a plain
+literal there as it does for any other sensitive field — pass a sensitive
+variable or reference. `terradart-migrate` translates these maps into the
+new shape.
+
 ### `terradart_appwrite` inputs with a fixed value set are enums
 
 **Breaking (`terradart_appwrite`)** — 23 string slots across 17 resources

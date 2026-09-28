@@ -41,6 +41,27 @@ void main() {
       );
     });
 
+    test('a map of blocks contributes a * segment', () {
+      final res = const ResourceDef(
+        terraformType: 'cloudflare_pages_project',
+        root: BlockDef(nestedBlocks: [
+          NestedBlockDef(
+            name: 'env_vars',
+            nesting: NestingMode.map,
+            constraints: Constraints(optional: true),
+            block: BlockDef(attributes: [
+              Attribute(
+                name: 'value',
+                type: StringType(),
+                constraints: Constraints(required: true, sensitive: true),
+              ),
+            ]),
+          ),
+        ]),
+      );
+      expect(sensitiveFieldPaths(res), ['env_vars.*.value']);
+    });
+
     test('zero sensitive fields produces an empty top-level const', () {
       final res = const ResourceDef(
         terraformType: 'google_pubsub_topic',

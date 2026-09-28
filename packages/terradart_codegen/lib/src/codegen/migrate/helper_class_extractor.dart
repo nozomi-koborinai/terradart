@@ -49,6 +49,7 @@ final class ExtractedField {
     required this.positional,
     this.tfKey,
     this.merged = false,
+    this.keyedEncoding = false,
   });
 
   /// Dart constructor parameter name.
@@ -70,7 +71,23 @@ final class ExtractedField {
   /// (`...source.encode()`): its own keys — a helper's slot keys, a sealed
   /// variant's block key, or a raw map's entries — appear at this level.
   final bool merged;
+
+  /// True when the field encodes as a keyed map of helper values
+  /// ([isKeyedHelperEncoding]) — the only encoding a `Map<String, Helper>`
+  /// field's manifest slot can describe.
+  final bool keyedEncoding;
 }
+
+/// Whether [expr] is the keyed-map encoding of a `Map<String, Helper>`:
+/// `{for (final e in x.entries) e.key: e.value.encode()}`, each helper under
+/// its own key. Anything else (`x.entries.map(...).toList()`, a key moved
+/// into the block) is not a keyed map on the wire.
+bool isKeyedHelperEncoding(String expr) => _keyedHelperEncoding.hasMatch(expr);
+
+final RegExp _keyedHelperEncoding = RegExp(
+  r'\{\s*for\s*\(\s*final\s+(\w+)\s+in\s+\w+!?\.entries\s*\)\s*'
+  r'\1\.key\s*:\s*\1\.value\.encode\(\)\s*,?\s*\}',
+);
 
 /// One extracted helper class.
 final class ExtractedHelper {
@@ -204,6 +221,8 @@ class HelperClassExtractor {
     r'^(?:const\s+)?(\[\s*)?(?:<[^{]*?>\s*)?\{',
   );
 
+  static final RegExp _mapComprehension = RegExp(r'^\{\s*for\s*\(');
+
   HelperExtraction extract(String source) {
     final src = source.replaceAll(_lineComment, '');
     final decls = <String, _ClassDecl>{};
@@ -311,6 +330,7 @@ class HelperClassExtractor {
       }
       final key = encoding.keys[p.field];
       final merged = encoding.merged.contains(p.field);
+      final keyedEncoding = encoding.keyed.contains(p.field);
       if (key == null && !merged && hasEncoding) {
         reasons.add('field `${p.field}` has no encode entry');
       }
@@ -321,6 +341,7 @@ class HelperClassExtractor {
         positional: p.positional,
         tfKey: key,
         merged: merged,
+        keyedEncoding: keyedEncoding,
       ));
     }
 
@@ -517,6 +538,7 @@ class HelperClassExtractor {
   }) {
     final keys = <String, String>{};
     final merged = <String>{};
+    final keyedFields = <String>{};
     final topLevelKeys = <String>[];
     for (final raw in _splitTopLevel(literal, ',')) {
       if (raw.trim().isEmpty) continue;
@@ -555,8 +577,11 @@ class HelperClassExtractor {
       final value = keyed.$2.trim();
 
       // Nested map literal (`'k': { ... }`, `'k': [ { ... } ]`): the inner
-      // entries encode under `k.`.
-      final nested = _nestedLiteralStart.firstMatch(value);
+      // entries encode under `k.`. A map comprehension (`{for (final e in
+      // x.entries) e.key: ...}`, a keyed helper map) encodes one field.
+      final nested = _mapComprehension.hasMatch(value)
+          ? null
+          : _nestedLiteralStart.firstMatch(value);
       if (nested != null) {
         final inner = _balancedBody(value, nested.end);
         if (nested.group(1) != null &&
@@ -574,6 +599,7 @@ class HelperClassExtractor {
         for (final e in innerKeys.keys.entries) {
           _recordKey(keys, e.key, e.value, reasons);
         }
+        keyedFields.addAll(innerKeys.keyed);
         continue;
       }
 
@@ -584,8 +610,14 @@ class HelperClassExtractor {
         continue;
       }
       _recordKey(keys, refs.single, path, reasons);
+      if (isKeyedHelperEncoding(value)) keyedFields.add(refs.single);
     }
-    return _Encoding(keys: keys, merged: merged, topLevelKeys: topLevelKeys);
+    return _Encoding(
+      keys: keys,
+      merged: merged,
+      keyed: keyedFields,
+      topLevelKeys: topLevelKeys,
+    );
   }
 
   /// A field maps to exactly one Terraform key. The same key written twice
@@ -812,12 +844,14 @@ final class _Encoding {
   const _Encoding({
     required this.keys,
     required this.merged,
+    this.keyed = const {},
     this.topLevelKeys = const [],
   });
 
   const _Encoding.empty()
       : keys = const {},
         merged = const {},
+        keyed = const {},
         topLevelKeys = const [];
 
   /// Field → Terraform key path.
@@ -825,6 +859,9 @@ final class _Encoding {
 
   /// Fields spread into the enclosing map.
   final Set<String> merged;
+
+  /// Fields encoded as a keyed helper map ([isKeyedHelperEncoding]).
+  final Set<String> keyed;
 
   /// Every resolved key of the outermost map literal, constant entries
   /// included, in source order.

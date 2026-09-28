@@ -48,7 +48,7 @@ final class CloudflareZeroTrustRiskBehavior extends Resource {
   CloudflareZeroTrustRiskBehavior({
     required super.localName,
     required TfArg<String> accountId,
-    required ZeroTrustRiskBehaviorBehaviors behaviors,
+    required Map<String, ZeroTrustRiskBehaviorBehaviors> behaviors,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -57,7 +57,9 @@ final class CloudflareZeroTrustRiskBehavior extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           'behaviors': TfArg.literal(behaviors.encode()),
+           'behaviors': TfArg.literal({
+             for (final e in behaviors.entries) e.key: e.value.encode(),
+           }),
          },
        );
 

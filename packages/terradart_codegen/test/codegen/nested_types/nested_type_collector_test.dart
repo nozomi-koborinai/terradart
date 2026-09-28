@@ -399,6 +399,60 @@ void main() {
         dnsSpecs.map((s) => s.tfName).toList()..sort(), ['data', 'settings']);
   });
 
+  test('a nesting_mode map nested_type is keyed, never repeated', () {
+    const block = {
+      'attributes': {
+        'behaviors': {
+          'nested_type': {
+            'attributes': {
+              'enabled': {'type': 'bool', 'required': true},
+            },
+            'nesting_mode': 'map',
+          },
+          'required': true,
+        },
+        'tags': {
+          'nested_type': {
+            'attributes': {
+              'value': {'type': 'string', 'optional': true},
+            },
+            'nesting_mode': 'set',
+          },
+          'optional': true,
+        },
+      },
+    };
+    final specs = {
+      for (final s in collectNestedTypes(
+        resourceBlock: block,
+        resourcePrefix: 'RiskBehavior',
+        customSlotKeys: const {},
+        excludedPaths: const {'tags'},
+      ))
+        s.tfName: s,
+    };
+    final behaviors = specs['behaviors']!;
+    expect(behaviors.keyed, isTrue);
+    expect(behaviors.repeated, isFalse);
+    expect(behaviors.required, isTrue);
+
+    final excluded = collectNestedTypes(
+      resourceBlock: const {
+        'block_types': {
+          'outer': {
+            'nesting_mode': 'single',
+            'block': block,
+          },
+        },
+      },
+      resourcePrefix: 'X',
+      customSlotKeys: const {},
+      excludedPaths: const {'outer.behaviors'},
+    ).single.excludedChildren.single;
+    expect(excluded.keyed, isTrue);
+    expect(excluded.repeated, isFalse);
+  });
+
   group('shareIdenticalShapes', () {
     const leaf = {
       'nesting_mode': 'list',

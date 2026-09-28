@@ -708,6 +708,79 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
       );
       expect(nestedParamType(spec), 'List<AccessLevelBasicConditions>?');
     });
+
+    test('keyed block -> "Map<String, ClassName>?"', () {
+      final spec = const NestedBlockSpec(
+        tfName: 'behaviors',
+        path: ['behaviors'],
+        className: 'RiskBehaviorBehaviors',
+        repeated: false,
+        keyed: true,
+        required: true,
+        attrs: [],
+        children: [],
+        excludedChildren: [],
+      );
+      expect(nestedParamType(spec), 'Map<String, RiskBehaviorBehaviors>?');
+      final slot = nestedTypeConstructorSlot(spec, isRequired: true);
+      expect(
+          slot.param, 'required Map<String, RiskBehaviorBehaviors> behaviors');
+      expect(
+        slot.argMapEntry,
+        "'behaviors': TfArg.literal({for (final e in behaviors.entries) "
+        'e.key: e.value.encode()}),',
+      );
+    });
+  });
+
+  group('keyed children', () {
+    test('a map child encodes each helper under its own key', () {
+      final spec = const NestedBlockSpec(
+        tfName: 'preview',
+        path: ['preview'],
+        className: 'PagesPreview',
+        repeated: false,
+        required: false,
+        attrs: [],
+        children: [
+          NestedBlockSpec(
+            tfName: 'env_vars',
+            path: ['preview', 'env_vars'],
+            className: 'PagesPreviewEnvVars',
+            repeated: false,
+            keyed: true,
+            required: false,
+            attrs: [],
+            children: [],
+            excludedChildren: [],
+          ),
+        ],
+        excludedChildren: [
+          ExcludedNestedBlock(
+            tfName: 'services',
+            repeated: false,
+            keyed: true,
+            required: false,
+          ),
+        ],
+      );
+      final actual = renderNestedTypes(
+        [spec],
+        resourceTerraformType: 'cloudflare_pages_project',
+      );
+      expect(
+        actual,
+        contains('final Map<String, PagesPreviewEnvVars>? envVars;'),
+      );
+      expect(
+        actual,
+        contains(
+          "if (envVars != null) 'env_vars': "
+          '{for (final e in envVars!.entries) e.key: e.value.encode()},',
+        ),
+      );
+      expect(actual, contains('final TfArg<Map<String, dynamic>>? services;'));
+    });
   });
 
   group('reserved Dart identifiers', () {

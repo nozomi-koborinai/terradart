@@ -8,11 +8,11 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflarePagesProjectSensitive = <String>{
   'build_config.web_analytics_token',
   'canonical_deployment.build_config.web_analytics_token',
-  'canonical_deployment.env_vars.value',
-  'deployment_configs.preview.env_vars.value',
-  'deployment_configs.production.env_vars.value',
+  'canonical_deployment.env_vars.*.value',
+  'deployment_configs.preview.env_vars.*.value',
+  'deployment_configs.production.env_vars.*.value',
   'latest_deployment.build_config.web_analytics_token',
-  'latest_deployment.env_vars.value',
+  'latest_deployment.env_vars.*.value',
 };
 
 /// Typed helper for the `build_config` block of
@@ -111,38 +111,48 @@ final class PagesProjectDeploymentConfigsPreview {
 
   final TfArg<String>? wranglerConfigHash;
 
-  final PagesProjectDeploymentConfigsPreviewAiBindings? aiBindings;
+  final Map<String, PagesProjectDeploymentConfigsPreviewAiBindings>? aiBindings;
 
-  final PagesProjectDeploymentConfigsPreviewAnalyticsEngineDatasets?
+  final Map<
+    String,
+    PagesProjectDeploymentConfigsPreviewAnalyticsEngineDatasets
+  >?
   analyticsEngineDatasets;
 
-  final PagesProjectDeploymentConfigsPreviewBrowsers? browsers;
+  final Map<String, PagesProjectDeploymentConfigsPreviewBrowsers>? browsers;
 
-  final PagesProjectDeploymentConfigsPreviewD1Databases? d1Databases;
+  final Map<String, PagesProjectDeploymentConfigsPreviewD1Databases>?
+  d1Databases;
 
-  final PagesProjectDeploymentConfigsPreviewDurableObjectNamespaces?
+  final Map<
+    String,
+    PagesProjectDeploymentConfigsPreviewDurableObjectNamespaces
+  >?
   durableObjectNamespaces;
 
-  final PagesProjectDeploymentConfigsPreviewEnvVars? envVars;
+  final Map<String, PagesProjectDeploymentConfigsPreviewEnvVars>? envVars;
 
-  final PagesProjectDeploymentConfigsPreviewHyperdriveBindings?
+  final Map<String, PagesProjectDeploymentConfigsPreviewHyperdriveBindings>?
   hyperdriveBindings;
 
-  final PagesProjectDeploymentConfigsPreviewKvNamespaces? kvNamespaces;
+  final Map<String, PagesProjectDeploymentConfigsPreviewKvNamespaces>?
+  kvNamespaces;
 
   final PagesProjectDeploymentConfigsPreviewLimits? limits;
 
-  final PagesProjectDeploymentConfigsPreviewMtlsCertificates? mtlsCertificates;
+  final Map<String, PagesProjectDeploymentConfigsPreviewMtlsCertificates>?
+  mtlsCertificates;
 
   final PagesProjectDeploymentConfigsPreviewPlacement? placement;
 
-  final PagesProjectDeploymentConfigsPreviewQueueProducers? queueProducers;
+  final Map<String, PagesProjectDeploymentConfigsPreviewQueueProducers>?
+  queueProducers;
 
-  final PagesProjectDeploymentConfigsPreviewR2Buckets? r2Buckets;
+  final Map<String, PagesProjectDeploymentConfigsPreviewR2Buckets>? r2Buckets;
 
-  final PagesProjectDeploymentConfigsPreviewServices? services;
+  final Map<String, PagesProjectDeploymentConfigsPreviewServices>? services;
 
-  final PagesProjectDeploymentConfigsPreviewVectorizeBindings?
+  final Map<String, PagesProjectDeploymentConfigsPreviewVectorizeBindings>?
   vectorizeBindings;
 
   Map<String, Object?> encode() => {
@@ -159,26 +169,56 @@ final class PagesProjectDeploymentConfigsPreview {
     if (usageModel != null) 'usage_model': usageModel!.toTfJson(),
     if (wranglerConfigHash != null)
       'wrangler_config_hash': wranglerConfigHash!.toTfJson(),
-    if (aiBindings != null) 'ai_bindings': aiBindings!.encode(),
+    if (aiBindings != null)
+      'ai_bindings': {
+        for (final e in aiBindings!.entries) e.key: e.value.encode(),
+      },
     if (analyticsEngineDatasets != null)
-      'analytics_engine_datasets': analyticsEngineDatasets!.encode(),
-    if (browsers != null) 'browsers': browsers!.encode(),
-    if (d1Databases != null) 'd1_databases': d1Databases!.encode(),
+      'analytics_engine_datasets': {
+        for (final e in analyticsEngineDatasets!.entries)
+          e.key: e.value.encode(),
+      },
+    if (browsers != null)
+      'browsers': {for (final e in browsers!.entries) e.key: e.value.encode()},
+    if (d1Databases != null)
+      'd1_databases': {
+        for (final e in d1Databases!.entries) e.key: e.value.encode(),
+      },
     if (durableObjectNamespaces != null)
-      'durable_object_namespaces': durableObjectNamespaces!.encode(),
-    if (envVars != null) 'env_vars': envVars!.encode(),
+      'durable_object_namespaces': {
+        for (final e in durableObjectNamespaces!.entries)
+          e.key: e.value.encode(),
+      },
+    if (envVars != null)
+      'env_vars': {for (final e in envVars!.entries) e.key: e.value.encode()},
     if (hyperdriveBindings != null)
-      'hyperdrive_bindings': hyperdriveBindings!.encode(),
-    if (kvNamespaces != null) 'kv_namespaces': kvNamespaces!.encode(),
+      'hyperdrive_bindings': {
+        for (final e in hyperdriveBindings!.entries) e.key: e.value.encode(),
+      },
+    if (kvNamespaces != null)
+      'kv_namespaces': {
+        for (final e in kvNamespaces!.entries) e.key: e.value.encode(),
+      },
     if (limits != null) 'limits': limits!.encode(),
     if (mtlsCertificates != null)
-      'mtls_certificates': mtlsCertificates!.encode(),
+      'mtls_certificates': {
+        for (final e in mtlsCertificates!.entries) e.key: e.value.encode(),
+      },
     if (placement != null) 'placement': placement!.encode(),
-    if (queueProducers != null) 'queue_producers': queueProducers!.encode(),
-    if (r2Buckets != null) 'r2_buckets': r2Buckets!.encode(),
-    if (services != null) 'services': services!.encode(),
+    if (queueProducers != null)
+      'queue_producers': {
+        for (final e in queueProducers!.entries) e.key: e.value.encode(),
+      },
+    if (r2Buckets != null)
+      'r2_buckets': {
+        for (final e in r2Buckets!.entries) e.key: e.value.encode(),
+      },
+    if (services != null)
+      'services': {for (final e in services!.entries) e.key: e.value.encode()},
     if (vectorizeBindings != null)
-      'vectorize_bindings': vectorizeBindings!.encode(),
+      'vectorize_bindings': {
+        for (final e in vectorizeBindings!.entries) e.key: e.value.encode(),
+      },
   };
 }
 
@@ -453,39 +493,50 @@ final class PagesProjectDeploymentConfigsProduction {
 
   final TfArg<String>? wranglerConfigHash;
 
-  final PagesProjectDeploymentConfigsProductionAiBindings? aiBindings;
+  final Map<String, PagesProjectDeploymentConfigsProductionAiBindings>?
+  aiBindings;
 
-  final PagesProjectDeploymentConfigsProductionAnalyticsEngineDatasets?
+  final Map<
+    String,
+    PagesProjectDeploymentConfigsProductionAnalyticsEngineDatasets
+  >?
   analyticsEngineDatasets;
 
-  final PagesProjectDeploymentConfigsProductionBrowsers? browsers;
+  final Map<String, PagesProjectDeploymentConfigsProductionBrowsers>? browsers;
 
-  final PagesProjectDeploymentConfigsProductionD1Databases? d1Databases;
+  final Map<String, PagesProjectDeploymentConfigsProductionD1Databases>?
+  d1Databases;
 
-  final PagesProjectDeploymentConfigsProductionDurableObjectNamespaces?
+  final Map<
+    String,
+    PagesProjectDeploymentConfigsProductionDurableObjectNamespaces
+  >?
   durableObjectNamespaces;
 
-  final PagesProjectDeploymentConfigsProductionEnvVars? envVars;
+  final Map<String, PagesProjectDeploymentConfigsProductionEnvVars>? envVars;
 
-  final PagesProjectDeploymentConfigsProductionHyperdriveBindings?
+  final Map<String, PagesProjectDeploymentConfigsProductionHyperdriveBindings>?
   hyperdriveBindings;
 
-  final PagesProjectDeploymentConfigsProductionKvNamespaces? kvNamespaces;
+  final Map<String, PagesProjectDeploymentConfigsProductionKvNamespaces>?
+  kvNamespaces;
 
   final PagesProjectDeploymentConfigsProductionLimits? limits;
 
-  final PagesProjectDeploymentConfigsProductionMtlsCertificates?
+  final Map<String, PagesProjectDeploymentConfigsProductionMtlsCertificates>?
   mtlsCertificates;
 
   final PagesProjectDeploymentConfigsProductionPlacement? placement;
 
-  final PagesProjectDeploymentConfigsProductionQueueProducers? queueProducers;
+  final Map<String, PagesProjectDeploymentConfigsProductionQueueProducers>?
+  queueProducers;
 
-  final PagesProjectDeploymentConfigsProductionR2Buckets? r2Buckets;
+  final Map<String, PagesProjectDeploymentConfigsProductionR2Buckets>?
+  r2Buckets;
 
-  final PagesProjectDeploymentConfigsProductionServices? services;
+  final Map<String, PagesProjectDeploymentConfigsProductionServices>? services;
 
-  final PagesProjectDeploymentConfigsProductionVectorizeBindings?
+  final Map<String, PagesProjectDeploymentConfigsProductionVectorizeBindings>?
   vectorizeBindings;
 
   Map<String, Object?> encode() => {
@@ -502,26 +553,56 @@ final class PagesProjectDeploymentConfigsProduction {
     if (usageModel != null) 'usage_model': usageModel!.toTfJson(),
     if (wranglerConfigHash != null)
       'wrangler_config_hash': wranglerConfigHash!.toTfJson(),
-    if (aiBindings != null) 'ai_bindings': aiBindings!.encode(),
+    if (aiBindings != null)
+      'ai_bindings': {
+        for (final e in aiBindings!.entries) e.key: e.value.encode(),
+      },
     if (analyticsEngineDatasets != null)
-      'analytics_engine_datasets': analyticsEngineDatasets!.encode(),
-    if (browsers != null) 'browsers': browsers!.encode(),
-    if (d1Databases != null) 'd1_databases': d1Databases!.encode(),
+      'analytics_engine_datasets': {
+        for (final e in analyticsEngineDatasets!.entries)
+          e.key: e.value.encode(),
+      },
+    if (browsers != null)
+      'browsers': {for (final e in browsers!.entries) e.key: e.value.encode()},
+    if (d1Databases != null)
+      'd1_databases': {
+        for (final e in d1Databases!.entries) e.key: e.value.encode(),
+      },
     if (durableObjectNamespaces != null)
-      'durable_object_namespaces': durableObjectNamespaces!.encode(),
-    if (envVars != null) 'env_vars': envVars!.encode(),
+      'durable_object_namespaces': {
+        for (final e in durableObjectNamespaces!.entries)
+          e.key: e.value.encode(),
+      },
+    if (envVars != null)
+      'env_vars': {for (final e in envVars!.entries) e.key: e.value.encode()},
     if (hyperdriveBindings != null)
-      'hyperdrive_bindings': hyperdriveBindings!.encode(),
-    if (kvNamespaces != null) 'kv_namespaces': kvNamespaces!.encode(),
+      'hyperdrive_bindings': {
+        for (final e in hyperdriveBindings!.entries) e.key: e.value.encode(),
+      },
+    if (kvNamespaces != null)
+      'kv_namespaces': {
+        for (final e in kvNamespaces!.entries) e.key: e.value.encode(),
+      },
     if (limits != null) 'limits': limits!.encode(),
     if (mtlsCertificates != null)
-      'mtls_certificates': mtlsCertificates!.encode(),
+      'mtls_certificates': {
+        for (final e in mtlsCertificates!.entries) e.key: e.value.encode(),
+      },
     if (placement != null) 'placement': placement!.encode(),
-    if (queueProducers != null) 'queue_producers': queueProducers!.encode(),
-    if (r2Buckets != null) 'r2_buckets': r2Buckets!.encode(),
-    if (services != null) 'services': services!.encode(),
+    if (queueProducers != null)
+      'queue_producers': {
+        for (final e in queueProducers!.entries) e.key: e.value.encode(),
+      },
+    if (r2Buckets != null)
+      'r2_buckets': {
+        for (final e in r2Buckets!.entries) e.key: e.value.encode(),
+      },
+    if (services != null)
+      'services': {for (final e in services!.entries) e.key: e.value.encode()},
     if (vectorizeBindings != null)
-      'vectorize_bindings': vectorizeBindings!.encode(),
+      'vectorize_bindings': {
+        for (final e in vectorizeBindings!.entries) e.key: e.value.encode(),
+      },
   };
 }
 

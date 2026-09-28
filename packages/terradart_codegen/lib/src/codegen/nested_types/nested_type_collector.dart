@@ -42,6 +42,11 @@ final class NestedBlockSpec {
   final List<String> path;
   final String className;
   final bool repeated;
+
+  /// Whether the block is a map of [className] values keyed by an arbitrary
+  /// string (`nesting_mode: map`) rather than one value or a list. Never
+  /// combined with [repeated].
+  final bool keyed;
   final bool required;
   final List<NestedAttrSpec> attrs;
   final List<NestedBlockSpec> children;
@@ -64,6 +69,7 @@ final class NestedBlockSpec {
     required this.attrs,
     required this.children,
     required this.excludedChildren,
+    this.keyed = false,
     this.shared = false,
     this.exactlyOne = const [],
   });
@@ -81,12 +87,14 @@ final class NestedBlockSpec {
 final class ExcludedNestedBlock {
   final String tfName;
   final bool repeated;
+  final bool keyed;
   final bool required;
 
   const ExcludedNestedBlock({
     required this.tfName,
     required this.repeated,
     required this.required,
+    this.keyed = false,
   });
 }
 
@@ -185,9 +193,9 @@ List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
     ]..sort();
     final childKeys = [
       for (final c in spec.children)
-        [c.tfName, c.repeated, c.required, visit(c)].join('|'),
+        [c.tfName, c.repeated, c.keyed, c.required, visit(c)].join('|'),
       for (final e in spec.excludedChildren)
-        [e.tfName, e.repeated, e.required, 'excluded'].join('|'),
+        [e.tfName, e.repeated, e.keyed, e.required, 'excluded'].join('|'),
     ]..sort();
     final key = '${attrKeys.join(';')}#${childKeys.join(';')}'
         '#${jsonEncode(spec.exactlyOne)}';
@@ -213,6 +221,7 @@ List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
       path: shape.path,
       className: shape.className,
       repeated: spec.repeated,
+      keyed: spec.keyed,
       required: spec.required,
       attrs: shape.attrs,
       children: [for (final c in spec.children) rebuild(c)],
@@ -271,6 +280,7 @@ _ChildScan _scanChildren(
       excludedChildren.add(ExcludedNestedBlock(
         tfName: tfName,
         repeated: cardinality.repeated,
+        keyed: cardinality.keyed,
         required: cardinality.required,
       ));
       return;
@@ -342,12 +352,13 @@ Map<String, dynamic> _nestedTypeAsBlockBody(
 
 const _knownNestingModes = {'single', 'list', 'set', 'map', 'group'};
 
-/// Computes [NestedBlockSpec.repeated] / [NestedBlockSpec.required] from a
+/// Computes [NestedBlockSpec.repeated] / [NestedBlockSpec.keyed] /
+/// [NestedBlockSpec.required] from a
 /// nested block's raw `nesting_mode` / `max_items` / `min_items` — shared by
 /// [_buildSpec] (a fully-derived child) and [_scanChildren]'s excluded-child
 /// branch ([ExcludedNestedBlock]), so both paths agree on what the schema
 /// actually declares instead of the excluded path silently assuming scalar.
-({bool repeated, bool required}) _blockCardinality(
+({bool repeated, bool keyed, bool required}) _blockCardinality(
   Map<String, dynamic> nestedBlockBody, {
   required String tfName,
 }) {
@@ -361,6 +372,7 @@ const _knownNestingModes = {'single', 'list', 'set', 'map', 'group'};
   final minItems = (nestedBlockBody['min_items'] as num?)?.toInt();
   return (
     repeated: (nestingMode == 'list' || nestingMode == 'set') && maxItems != 1,
+    keyed: nestingMode == 'map',
     required: (minItems ?? 0) >= 1,
   );
 }
@@ -397,6 +409,7 @@ NestedBlockSpec _buildSpec(
     path: path,
     className: className,
     repeated: cardinality.repeated,
+    keyed: cardinality.keyed,
     required: cardinality.required,
     attrs: _collectAttrs(
       block,

@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- **Breaking:** an attribute the schema declares as a map of objects
+  (`nesting_mode: "map"`) takes `Map<String, Helper>` instead of one helper,
+  which no value could make pass `terraform validate` — 34 inputs across 7
+  resources (for example `CloudflareZeroTrustRiskBehavior.behaviors`,
+  `PagesProjectDeploymentConfigsPreview.envVars`,
+  `CloudflareWorkersScript.files`). A plain literal in the Pages project's
+  sensitive `env_vars.*.value` now fails synth. See
+  [MIGRATING.md](../../MIGRATING.md).
 - **Breaking:** the `cloudflare/cloudflare` pin moves from `5.23.0` to
   `5.26.0`, and the factories follow the provider's schema changes:
   `DataCloudflareRateLimits` is removed, and 45 constructor slots, getters
