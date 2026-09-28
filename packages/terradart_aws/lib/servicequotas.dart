@@ -11,6 +11,10 @@ export 'src/servicequotas/aws_servicequotas_auto_management.dart'
 export 'src/servicequotas/aws_servicequotas_service_quota.dart'
     show AwsServicequotasServiceQuota;
 export 'src/servicequotas/aws_servicequotas_template.dart'
-    show AwsServicequotasTemplate;
+    show
+        AwsServicequotasTemplate,
+        ServicequotasTemplateAwsRegionOption,
+        ServicequotasTemplateAwsRegionOrRegion,
+        ServicequotasTemplateRegionOption;
 export 'src/servicequotas/aws_servicequotas_template_association.dart'
     show AwsServicequotasTemplateAssociation;

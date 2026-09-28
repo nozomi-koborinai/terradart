@@ -19,3 +19,5 @@ properties:
         enum_values:
           - "CONTINUE"
           - "ABORT"
+exactly_one_of_groups:
+  - ["container_recipe_arn", "image_recipe_arn"]

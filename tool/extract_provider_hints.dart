@@ -33,6 +33,10 @@
 // value set is skipped (enums cover string and string-list inputs only),
 // and so is one inside `validation.Any(...)` / `stringvalidator.Any(...)`,
 // where it is one alternative beside `""`, an ARN or a name pattern.
+// Its `ExactlyOneOf` groups (SDKv2 schema fields, framework
+// `*validator.ExactlyOneOf` and `resourcevalidator.ExactlyOneOf` in
+// `ConfigValidators`) are written as `exactly_one_of_groups`; a group whose
+// members are not sibling inputs in schema.json is skipped and listed.
 //
 // schema.json at the same version is authoritative: a hint whose path is
 // absent there (a service's custom code reshapes the served schema) is
@@ -348,6 +352,7 @@ String renderHintsYaml({
   required String version,
   required String sourcePath,
   required List<GoEnumHint> hints,
+  List<List<List<String>>> groups = const [],
 }) {
   final tree = <String, Object?>{};
   for (final h in [...hints]..sort((a, b) => a.dotted.compareTo(b.dotted))) {
@@ -386,8 +391,52 @@ String renderHintsYaml({
     }
   }
 
-  writeProps(tree, '');
+  if (tree.isNotEmpty) writeProps(tree, '');
+  if (groups.isNotEmpty) {
+    buf.writeln('exactly_one_of_groups:');
+    final sorted = [
+      for (final g in groups) [for (final m in g) m.join('.')],
+    ]..sort((a, b) => a.join(',').compareTo(b.join(',')));
+    for (final g in sorted) {
+      buf.writeln('  - [${g.map(jsonEncode).join(', ')}]');
+    }
+  }
   return buf.toString();
+}
+
+/// Why an exactly-one group of the schema.json resource [block] cannot be
+/// typed, or null: every member must be an input of the same block.
+String? groupSkipReason(Map<String, dynamic> block, List<List<String>> group) {
+  final parent = group.first.sublist(0, group.first.length - 1).join('.');
+  for (final m in group) {
+    if (m.sublist(0, m.length - 1).join('.') != parent) {
+      return 'members in different blocks';
+    }
+    var current = block;
+    for (final key in m.sublist(0, m.length - 1)) {
+      final attrs = (current['attributes'] as Map?)?.cast<String, dynamic>();
+      final blocks = (current['block_types'] as Map?)?.cast<String, dynamic>();
+      final nested = ((attrs?[key] as Map?)?['nested_type'] as Map?)
+          ?.cast<String, dynamic>();
+      final body =
+          ((blocks?[key] as Map?)?['block'] as Map?)?.cast<String, dynamic>();
+      final next = nested ?? body;
+      if (next == null) return '${m.join('.')} is not in schema.json';
+      current = next;
+    }
+    final attr = ((current['attributes'] as Map?)?[m.last] as Map?);
+    final blk = (current['block_types'] as Map?)?[m.last];
+    if (attr == null && blk == null) {
+      return '${m.join('.')} is not in schema.json';
+    }
+    if (attr != null &&
+        attr['computed'] == true &&
+        attr['optional'] != true &&
+        attr['required'] != true) {
+      return '${m.join('.')} is computed-only';
+    }
+  }
+  return null;
 }
 
 String _readme({
@@ -403,7 +452,7 @@ enforces (${aws ? _awsSources : _frameworkSources}), as a Magic Modules YAML sub
 (`properties[].api_name` / `enum_values`). `terradart wrap
 --provider-enums` merges them into the schema IR (top-level attributes)
 and the nested helper types. `provider_version` must match
-`../provider_version.txt`; `wrap` fails otherwise.
+`../provider_version.txt`; `wrap` fails otherwise.${aws ? _awsGroups : ''}
 
 Never hand-edit. Re-extract at the fixture's pin with:
 
@@ -418,6 +467,11 @@ dart tool/extract_provider_hints.dart \\
 const _frameworkSources =
     '`stringvalidator.OneOf` / `OneOfCaseInsensitive` in the resource\n'
     'schemas under `internal/services/`';
+const _awsGroups =
+    '\n\n`exactly_one_of_groups` lists the input sets the provider requires\n'
+    'exactly one of (`ExactlyOneOf` in SDKv2 schemas, `*validator.ExactlyOneOf`\n'
+    'in framework schemas and `ConfigValidators`), as dotted paths that share\n'
+    'one parent block; `wrap` turns each into a sealed type.';
 const _awsSources = '`enum.Validate[T]`, `fwtypes.StringEnumType[T]`,\n'
     '`validation.StringInSlice` and `stringvalidator.OneOf` in the resource\n'
     'schemas under `internal/service/`, with `T`\'s members read from the\n'
@@ -493,7 +547,7 @@ Future<void> main(List<String> args) async {
   final root =
       sourceDir != null ? Directory(sourceDir) : await _download(repo, version);
   final aws = isAwsProviderSource(root);
-  final found = <String, ({String sourcePath, List<GoEnumHint> hints})>{};
+  final found = <String, AwsTypeHints>{};
   if (aws) {
     var sdk = sdkDir;
     if (sdk == null) {
@@ -509,6 +563,8 @@ Future<void> main(List<String> args) async {
     print('extract_provider_hints: ${scan.validators} value-set validator(s) '
         'in resource schemas, ${scan.unresolved} not evaluable (dropped); '
         '${scan.openSets} Any(...) alternative(s) skipped');
+    print('extract_provider_hints: ${scan.groupValidators} exactly-one '
+        'validator(s), ${scan.unresolvedGroups} not evaluable (dropped)');
   } else {
     final services = Directory(p.join(root.path, 'internal', 'services'));
     if (!services.existsSync()) {
@@ -532,7 +588,8 @@ Future<void> main(List<String> args) async {
           _fail(_exitData, '$sourcePath: ${e.message}');
         }
         for (final type in types) {
-          found[type] = (sourcePath: sourcePath, hints: hints);
+          found[type] =
+              (sourcePath: sourcePath, hints: hints, groups: const []);
         }
       }
     }
@@ -546,34 +603,49 @@ Future<void> main(List<String> args) async {
   final skipped = <String>[];
   var files = 0;
   var hintCount = 0;
+  var groupCount = 0;
   for (final type in found.keys.toList()..sort()) {
     final block = resources[type];
     if (block == null) continue;
-    final (:sourcePath, :hints) = found[type]!;
+    final (:sourcePath, :hints, :groups) = found[type]!;
+    final keptGroups = <List<List<String>>>[];
+    for (final g in groups) {
+      final reason = groupSkipReason(block, g);
+      if (reason == null) {
+        keptGroups.add(g);
+      } else {
+        skipped.add(
+          '$type exactly_one_of [${g.map((m) => m.join('.')).join(', ')}] '
+          '($reason)',
+        );
+      }
+    }
     final kept = <GoEnumHint>[];
     for (final h in hints) {
       switch (resolveHint(block, h.path)) {
         case HintResolution.string:
           kept.add(h);
         case HintResolution.missing:
-          skipped.add('$type.${h.dotted}');
+          skipped.add('$type.${h.dotted} (not in schema.json)');
         case HintResolution.map:
           skipped.add('$type.${h.dotted} (a map: the set constrains keys)');
         case HintResolution.notString:
           notString.add('$type.${h.dotted}');
       }
     }
-    if (kept.isEmpty) continue;
+    if (kept.isEmpty && keptGroups.isEmpty) continue;
     File(p.join(out.path, '$type.yaml')).writeAsStringSync(
       renderHintsYaml(
         repo: repo,
         version: version,
         sourcePath: sourcePath,
         hints: kept,
+        groups: keptGroups,
       ),
     );
     files++;
     hintCount += kept.length;
+    groupCount += keptGroups.length;
   }
   if (notString.isNotEmpty) {
     out.deleteSync(recursive: true);
@@ -584,11 +656,12 @@ Future<void> main(List<String> args) async {
     );
   }
   for (final s in skipped) {
-    print('skipped (not in schema.json): $s');
+    print('skipped: $s');
   }
   File(p.join(out.path, 'README.md')).writeAsStringSync(
     _readme(repo: repo, schemaDir: schemaDir, aws: aws),
   );
-  print('extract_provider_hints: wrote $hintCount enum hint(s) for $files '
+  print('extract_provider_hints: wrote $hintCount enum hint(s)'
+      '${aws ? ' and $groupCount exactly-one group(s)' : ''} for $files '
       'resource(s) to ${out.path}');
 }

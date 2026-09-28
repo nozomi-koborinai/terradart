@@ -32,6 +32,55 @@ enum Route53RecordType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `alias`, `records` on `aws_route53_record`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class Route53RecordAliasOrRecords {
+  const Route53RecordAliasOrRecords();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `alias` (one of the [Route53RecordAliasOrRecords] choices).
+final class Route53RecordAliasOption extends Route53RecordAliasOrRecords {
+  const Route53RecordAliasOption({required this.alias});
+
+  final Route53RecordAlias alias;
+
+  @override
+  String get blockKey => 'alias';
+
+  @override
+  Map<String, Object?> encode() => {'alias': alias.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'alias': TfArg.literal(alias.encode()),
+  };
+}
+
+/// Sets `records` (one of the [Route53RecordAliasOrRecords] choices).
+final class Route53RecordRecordsOption extends Route53RecordAliasOrRecords {
+  const Route53RecordRecordsOption({required this.records});
+
+  final TfArg<List<String>> records;
+
+  @override
+  String get blockKey => 'records';
+
+  @override
+  Map<String, Object?> encode() => {'records': records.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'records': records};
+}
+
 /// Typed helper for the `alias` block of
 /// `aws_route53_record` (derived from provider schema).
 @immutable
@@ -244,12 +293,11 @@ final class AwsRoute53Record extends Resource {
     TfArg<String>? healthCheckId,
     TfArg<bool>? multivalueAnswerRoutingPolicy,
     required TfArg<String> name,
-    TfArg<List<String>>? records,
+    required Route53RecordAliasOrRecords aliasOrRecords,
     TfArg<String>? setIdentifier,
     TfArg<num>? ttl,
     required TfArg<Route53RecordType> type,
     required TfArg<String> zoneId,
-    Route53RecordAlias? alias,
     Route53RecordCidrRoutingPolicy? cidrRoutingPolicy,
     Route53RecordFailoverRoutingPolicy? failoverRoutingPolicy,
     Route53RecordGeolocationRoutingPolicy? geolocationRoutingPolicy,
@@ -268,12 +316,11 @@ final class AwsRoute53Record extends Resource {
            if (multivalueAnswerRoutingPolicy != null)
              'multivalue_answer_routing_policy': multivalueAnswerRoutingPolicy,
            'name': name,
-           if (records != null) 'records': records,
+           ...aliasOrRecords.argMap,
            if (setIdentifier != null) 'set_identifier': setIdentifier,
            if (ttl != null) 'ttl': ttl,
            'type': type,
            'zone_id': zoneId,
-           if (alias != null) 'alias': TfArg.literal(alias.encode()),
            if (cidrRoutingPolicy != null)
              'cidr_routing_policy': TfArg.literal(cidrRoutingPolicy.encode()),
            if (failoverRoutingPolicy != null)

@@ -82,7 +82,10 @@ export 'src/sagemaker/aws_sagemaker_app.dart'
         AwsSagemakerApp,
         SagemakerAppAppType,
         SagemakerAppResourceSpec,
-        SagemakerAppResourceSpecInstanceType;
+        SagemakerAppResourceSpecInstanceType,
+        SagemakerAppSpaceNameOption,
+        SagemakerAppSpaceNameOrUserProfileName,
+        SagemakerAppUserProfileNameOption;
 export 'src/sagemaker/aws_sagemaker_app_image_config.dart'
     show
         AwsSagemakerAppImageConfig,
@@ -240,6 +243,8 @@ export 'src/sagemaker/aws_sagemaker_endpoint.dart'
         SagemakerEndpointDeploymentConfigAutoRollbackConfiguration,
         SagemakerEndpointDeploymentConfigAutoRollbackConfigurationAlarms,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy,
+        SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOption,
+        SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfiguration,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySize,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySizeType,
@@ -249,6 +254,7 @@ export 'src/sagemaker/aws_sagemaker_endpoint.dart'
         SagemakerEndpointDeploymentConfigRollingUpdatePolicy,
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSize,
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSizeType,
+        SagemakerEndpointDeploymentConfigRollingUpdatePolicyOption,
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSize,
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSizeType;
 export 'src/sagemaker/aws_sagemaker_endpoint_configuration.dart'
@@ -567,7 +573,10 @@ export 'src/sagemaker/aws_sagemaker_pipeline.dart'
     show
         AwsSagemakerPipeline,
         SagemakerPipelineParallelismConfiguration,
-        SagemakerPipelinePipelineDefinitionS3Location;
+        SagemakerPipelinePipelineDefinitionOption,
+        SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location,
+        SagemakerPipelinePipelineDefinitionS3Location,
+        SagemakerPipelinePipelineDefinitionS3LocationOption;
 export 'src/sagemaker/aws_sagemaker_project.dart'
     show
         AwsSagemakerProject,
@@ -736,7 +745,10 @@ export 'src/sagemaker/aws_sagemaker_workforce.dart'
     show
         AwsSagemakerWorkforce,
         SagemakerWorkforceCognitoConfig,
+        SagemakerWorkforceCognitoConfigOption,
+        SagemakerWorkforceCognitoConfigOrOidcConfig,
         SagemakerWorkforceOidcConfig,
+        SagemakerWorkforceOidcConfigOption,
         SagemakerWorkforceSourceIpConfig,
         SagemakerWorkforceWorkforceVpcConfig;
 export 'src/sagemaker/aws_sagemaker_workteam.dart'
@@ -750,4 +762,7 @@ export 'src/sagemaker/aws_sagemaker_workteam.dart'
         SagemakerWorkteamWorkerAccessConfigurationS3Presign,
         SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints,
         SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp;
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOption,
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIp,
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp,
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIpOption;

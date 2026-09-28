@@ -29,6 +29,9 @@ export 'src/servicecatalog/aws_servicecatalog_product.dart'
         AwsServicecatalogProduct,
         ServicecatalogProductAcceptLanguage,
         ServicecatalogProductProvisioningArtifactParameters,
+        ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOption,
+        ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrl,
+        ServicecatalogProductProvisioningArtifactParametersTemplateUrlOption,
         ServicecatalogProductProvisioningArtifactParametersType,
         ServicecatalogProductType;
 export 'src/servicecatalog/aws_servicecatalog_product_portfolio_association.dart'
@@ -39,13 +42,28 @@ export 'src/servicecatalog/aws_servicecatalog_provisioned_product.dart'
     show
         AwsServicecatalogProvisionedProduct,
         ServicecatalogProvisionedProductAcceptLanguage,
+        ServicecatalogProvisionedProductProductIdOption,
+        ServicecatalogProvisionedProductProductIdOrProductName,
+        ServicecatalogProvisionedProductProductNameOption,
+        ServicecatalogProvisionedProductProvisioningArtifactIdOption,
+        ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactName,
+        ServicecatalogProvisionedProductProvisioningArtifactNameOption,
         ServicecatalogProvisionedProductProvisioningParameters,
-        ServicecatalogProvisionedProductStackSetProvisioningPreferences;
+        ServicecatalogProvisionedProductStackSetProvisioningPreferences,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOption,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentage,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentageOption,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOption,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentage,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentageOption;
 export 'src/servicecatalog/aws_servicecatalog_provisioning_artifact.dart'
     show
         AwsServicecatalogProvisioningArtifact,
         ServicecatalogProvisioningArtifactAcceptLanguage,
         ServicecatalogProvisioningArtifactGuidance,
+        ServicecatalogProvisioningArtifactTemplatePhysicalIdOption,
+        ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl,
+        ServicecatalogProvisioningArtifactTemplateUrlOption,
         ServicecatalogProvisioningArtifactType;
 export 'src/servicecatalog/aws_servicecatalog_service_action.dart'
     show

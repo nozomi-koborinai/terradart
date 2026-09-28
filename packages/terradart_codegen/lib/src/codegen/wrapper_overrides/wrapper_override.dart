@@ -259,6 +259,13 @@ final class WrapperOverride {
   /// it otherwise.
   final bool dedupeNestedTypes;
 
+  /// Gate for the `--provider-enums` hints' `exactly_one_of_groups`: each
+  /// set of inputs the provider requires exactly one of becomes one
+  /// required sealed slot (a top-level group) or sealed helper field (a
+  /// group inside a [deriveNestedTypes] block) whose variants each carry
+  /// one member (`exactly_one_derivation.dart`). Defaults to `false`.
+  final bool deriveExactlyOne;
+
   /// Snake-case slot name → custom constructor / argMap snippets.
   ///
   /// Two use cases:
@@ -342,26 +349,49 @@ final class WrapperOverride {
     this.deriveNestedTypes = false,
     this.nestedTypeExcludes,
     this.dedupeNestedTypes = false,
+    this.deriveExactlyOne = false,
   });
 
   /// This override with [dartTypeOverrides] replaced.
   WrapperOverride withDartTypeOverrides(
           Map<String, String> dartTypeOverrides) =>
+      _copy(dartTypeOverrides: dartTypeOverrides);
+
+  /// This override with the slots `deriveExactlyOne` synthesizes: the
+  /// constructor order without the group members, the sealed slots, and
+  /// their declarations appended to [prelude].
+  WrapperOverride withExactlyOneSlots({
+    required List<String> paramOrder,
+    required Map<String, CustomSlot> customSlots,
+    required String prelude,
+  }) =>
+      _copy(
+        paramOrder: paramOrder,
+        customSlots: customSlots,
+        prelude: prelude,
+      );
+
+  WrapperOverride _copy({
+    List<String>? paramOrder,
+    Map<String, String>? dartTypeOverrides,
+    Map<String, CustomSlot>? customSlots,
+    String? prelude,
+  }) =>
       WrapperOverride(
         outputDir: outputDir,
         kind: kind,
         schemaStubBodyMode: schemaStubBodyMode,
         fileLeadingComment: fileLeadingComment,
-        paramOrder: paramOrder,
+        paramOrder: paramOrder ?? this.paramOrder,
         argMapOrder: argMapOrder,
         extraGetters: extraGetters,
         requiredParams: requiredParams,
-        dartTypeOverrides: dartTypeOverrides,
+        dartTypeOverrides: dartTypeOverrides ?? this.dartTypeOverrides,
         deprecatedParams: deprecatedParams,
         extraImports: extraImports,
         extraSensitiveFields: extraSensitiveFields,
-        prelude: prelude,
-        customSlots: customSlots,
+        prelude: prelude ?? this.prelude,
+        customSlots: customSlots ?? this.customSlots,
         deriveEnums: deriveEnums,
         deriveOutputGetters: deriveOutputGetters,
         deriveClassDoc: deriveClassDoc,
@@ -369,6 +399,7 @@ final class WrapperOverride {
         deriveNestedTypes: deriveNestedTypes,
         nestedTypeExcludes: nestedTypeExcludes,
         dedupeNestedTypes: dedupeNestedTypes,
+        deriveExactlyOne: deriveExactlyOne,
       );
 }
 

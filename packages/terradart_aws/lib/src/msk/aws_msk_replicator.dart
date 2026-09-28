@@ -280,24 +280,20 @@ final class MskReplicatorLogDeliveryReplicatorLogDeliveryS3 {
 @immutable
 final class MskReplicatorReplicationInfoList {
   const MskReplicatorReplicationInfoList({
-    this.sourceKafkaClusterArn,
-    this.sourceKafkaClusterId,
+    required this.sourceKafkaClusterArnOrSourceKafkaClusterId,
     required this.targetCompressionType,
-    this.targetKafkaClusterArn,
-    this.targetKafkaClusterId,
+    required this.targetKafkaClusterArnOrTargetKafkaClusterId,
     required this.consumerGroupReplication,
     required this.topicReplication,
   });
 
-  final TfArg<String>? sourceKafkaClusterArn;
-
-  final TfArg<String>? sourceKafkaClusterId;
+  final MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId
+  sourceKafkaClusterArnOrSourceKafkaClusterId;
 
   final TfArg<String> targetCompressionType;
 
-  final TfArg<String>? targetKafkaClusterArn;
-
-  final TfArg<String>? targetKafkaClusterId;
+  final MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId
+  targetKafkaClusterArnOrTargetKafkaClusterId;
 
   final List<MskReplicatorReplicationInfoListConsumerGroupReplication>
   consumerGroupReplication;
@@ -305,19 +301,111 @@ final class MskReplicatorReplicationInfoList {
   final List<MskReplicatorReplicationInfoListTopicReplication> topicReplication;
 
   Map<String, Object?> encode() => {
-    if (sourceKafkaClusterArn != null)
-      'source_kafka_cluster_arn': sourceKafkaClusterArn!.toTfJson(),
-    if (sourceKafkaClusterId != null)
-      'source_kafka_cluster_id': sourceKafkaClusterId!.toTfJson(),
+    ...sourceKafkaClusterArnOrSourceKafkaClusterId.encode(),
     'target_compression_type': targetCompressionType.toTfJson(),
-    if (targetKafkaClusterArn != null)
-      'target_kafka_cluster_arn': targetKafkaClusterArn!.toTfJson(),
-    if (targetKafkaClusterId != null)
-      'target_kafka_cluster_id': targetKafkaClusterId!.toTfJson(),
+    ...targetKafkaClusterArnOrTargetKafkaClusterId.encode(),
     'consumer_group_replication': [
       for (final e in consumerGroupReplication) e.encode(),
     ],
     'topic_replication': [for (final e in topicReplication) e.encode()],
+  };
+}
+
+/// Exactly one of `source_kafka_cluster_arn`, `source_kafka_cluster_id` on the `replication_info_list` block of `aws_msk_replicator`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId {
+  const MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `source_kafka_cluster_arn` (one of the [MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId] choices).
+final class MskReplicatorReplicationInfoListSourceKafkaClusterArnOption
+    extends
+        MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId {
+  const MskReplicatorReplicationInfoListSourceKafkaClusterArnOption({
+    required this.sourceKafkaClusterArn,
+  });
+
+  final TfArg<String> sourceKafkaClusterArn;
+
+  @override
+  String get blockKey => 'source_kafka_cluster_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'source_kafka_cluster_arn': sourceKafkaClusterArn.toTfJson(),
+  };
+}
+
+/// Sets `source_kafka_cluster_id` (one of the [MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId] choices).
+final class MskReplicatorReplicationInfoListSourceKafkaClusterIdOption
+    extends
+        MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId {
+  const MskReplicatorReplicationInfoListSourceKafkaClusterIdOption({
+    required this.sourceKafkaClusterId,
+  });
+
+  final TfArg<String> sourceKafkaClusterId;
+
+  @override
+  String get blockKey => 'source_kafka_cluster_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'source_kafka_cluster_id': sourceKafkaClusterId.toTfJson(),
+  };
+}
+
+/// Exactly one of `target_kafka_cluster_arn`, `target_kafka_cluster_id` on the `replication_info_list` block of `aws_msk_replicator`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId {
+  const MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `target_kafka_cluster_arn` (one of the [MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId] choices).
+final class MskReplicatorReplicationInfoListTargetKafkaClusterArnOption
+    extends
+        MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId {
+  const MskReplicatorReplicationInfoListTargetKafkaClusterArnOption({
+    required this.targetKafkaClusterArn,
+  });
+
+  final TfArg<String> targetKafkaClusterArn;
+
+  @override
+  String get blockKey => 'target_kafka_cluster_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'target_kafka_cluster_arn': targetKafkaClusterArn.toTfJson(),
+  };
+}
+
+/// Sets `target_kafka_cluster_id` (one of the [MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId] choices).
+final class MskReplicatorReplicationInfoListTargetKafkaClusterIdOption
+    extends
+        MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId {
+  const MskReplicatorReplicationInfoListTargetKafkaClusterIdOption({
+    required this.targetKafkaClusterId,
+  });
+
+  final TfArg<String> targetKafkaClusterId;
+
+  @override
+  String get blockKey => 'target_kafka_cluster_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'target_kafka_cluster_id': targetKafkaClusterId.toTfJson(),
   };
 }
 

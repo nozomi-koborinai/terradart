@@ -11,9 +11,13 @@ export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_event_destination.dart'
     show
         AwsPinpointsmsvoicev2EventDestination,
         Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestination,
+        Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOption,
+        Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination,
         Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestination,
+        Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestinationOption,
         Pinpointsmsvoicev2EventDestinationMatchingEventTypes,
-        Pinpointsmsvoicev2EventDestinationSnsDestination;
+        Pinpointsmsvoicev2EventDestinationSnsDestination,
+        Pinpointsmsvoicev2EventDestinationSnsDestinationOption;
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_keyword.dart'
     show AwsPinpointsmsvoicev2Keyword, Pinpointsmsvoicev2KeywordKeywordAction;
 export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_opt_out_list.dart'

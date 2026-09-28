@@ -18,6 +18,103 @@ enum OpensearchserverlessSecurityConfigType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `iam_federation_options`, `iam_identity_center_options`, `saml_options` on `aws_opensearchserverless_security_config`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions {
+  const OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `iam_federation_options` (one of the [OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions] choices).
+final class OpensearchserverlessSecurityConfigIamFederationOptionsOption
+    extends
+        OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions {
+  const OpensearchserverlessSecurityConfigIamFederationOptionsOption({
+    required this.iamFederationOptions,
+  });
+
+  final List<OpensearchserverlessSecurityConfigIamFederationOptions>
+  iamFederationOptions;
+
+  @override
+  String get blockKey => 'iam_federation_options';
+
+  @override
+  Map<String, Object?> encode() => {
+    'iam_federation_options': [
+      for (final e in iamFederationOptions) e.encode(),
+    ],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'iam_federation_options': TfArg.literal([
+      for (final e in iamFederationOptions) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `iam_identity_center_options` (one of the [OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions] choices).
+final class OpensearchserverlessSecurityConfigIamIdentityCenterOptionsOption
+    extends
+        OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions {
+  const OpensearchserverlessSecurityConfigIamIdentityCenterOptionsOption({
+    required this.iamIdentityCenterOptions,
+  });
+
+  final List<OpensearchserverlessSecurityConfigIamIdentityCenterOptions>
+  iamIdentityCenterOptions;
+
+  @override
+  String get blockKey => 'iam_identity_center_options';
+
+  @override
+  Map<String, Object?> encode() => {
+    'iam_identity_center_options': [
+      for (final e in iamIdentityCenterOptions) e.encode(),
+    ],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'iam_identity_center_options': TfArg.literal([
+      for (final e in iamIdentityCenterOptions) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `saml_options` (one of the [OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions] choices).
+final class OpensearchserverlessSecurityConfigSamlOptionsOption
+    extends
+        OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions {
+  const OpensearchserverlessSecurityConfigSamlOptionsOption({
+    required this.samlOptions,
+  });
+
+  final List<OpensearchserverlessSecurityConfigSamlOptions> samlOptions;
+
+  @override
+  String get blockKey => 'saml_options';
+
+  @override
+  Map<String, Object?> encode() => {
+    'saml_options': [for (final e in samlOptions) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'saml_options': TfArg.literal([for (final e in samlOptions) e.encode()]),
+  };
+}
+
 /// Typed helper for the `iam_federation_options` block of
 /// `aws_opensearchserverless_security_config` (derived from provider schema).
 @immutable
@@ -130,11 +227,8 @@ final class AwsOpensearchserverlessSecurityConfig extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<OpensearchserverlessSecurityConfigType> type,
-    List<OpensearchserverlessSecurityConfigIamFederationOptions>?
-    iamFederationOptions,
-    List<OpensearchserverlessSecurityConfigIamIdentityCenterOptions>?
-    iamIdentityCenterOptions,
-    List<OpensearchserverlessSecurityConfigSamlOptions>? samlOptions,
+    required OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions
+    iamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -146,18 +240,8 @@ final class AwsOpensearchserverlessSecurityConfig extends Resource {
            'name': name,
            if (region != null) 'region': region,
            'type': type,
-           if (iamFederationOptions != null)
-             'iam_federation_options': TfArg.literal([
-               for (final e in iamFederationOptions) e.encode(),
-             ]),
-           if (iamIdentityCenterOptions != null)
-             'iam_identity_center_options': TfArg.literal([
-               for (final e in iamIdentityCenterOptions) e.encode(),
-             ]),
-           if (samlOptions != null)
-             'saml_options': TfArg.literal([
-               for (final e in samlOptions) e.encode(),
-             ]),
+           ...iamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions
+               .argMap,
          },
        );
 

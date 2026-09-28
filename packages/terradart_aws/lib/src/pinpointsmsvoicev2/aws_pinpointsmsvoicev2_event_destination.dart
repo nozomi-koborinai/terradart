@@ -70,6 +70,105 @@ enum Pinpointsmsvoicev2EventDestinationMatchingEventTypes
   final String terraformValue;
 }
 
+/// Exactly one of `cloudwatch_logs_destination`, `kinesis_firehose_destination`, `sns_destination` on `aws_pinpointsmsvoicev2_event_destination`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination {
+  const Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cloudwatch_logs_destination` (one of the [Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination] choices).
+final class Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOption
+    extends
+        Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination {
+  const Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOption({
+    required this.cloudwatchLogsDestination,
+  });
+
+  final List<Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestination>
+  cloudwatchLogsDestination;
+
+  @override
+  String get blockKey => 'cloudwatch_logs_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cloudwatch_logs_destination': [
+      for (final e in cloudwatchLogsDestination) e.encode(),
+    ],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cloudwatch_logs_destination': TfArg.literal([
+      for (final e in cloudwatchLogsDestination) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `kinesis_firehose_destination` (one of the [Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination] choices).
+final class Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestinationOption
+    extends
+        Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination {
+  const Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestinationOption({
+    required this.kinesisFirehoseDestination,
+  });
+
+  final List<Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestination>
+  kinesisFirehoseDestination;
+
+  @override
+  String get blockKey => 'kinesis_firehose_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'kinesis_firehose_destination': [
+      for (final e in kinesisFirehoseDestination) e.encode(),
+    ],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'kinesis_firehose_destination': TfArg.literal([
+      for (final e in kinesisFirehoseDestination) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `sns_destination` (one of the [Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination] choices).
+final class Pinpointsmsvoicev2EventDestinationSnsDestinationOption
+    extends
+        Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination {
+  const Pinpointsmsvoicev2EventDestinationSnsDestinationOption({
+    required this.snsDestination,
+  });
+
+  final List<Pinpointsmsvoicev2EventDestinationSnsDestination> snsDestination;
+
+  @override
+  String get blockKey => 'sns_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'sns_destination': [for (final e in snsDestination) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'sns_destination': TfArg.literal([
+      for (final e in snsDestination) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `cloudwatch_logs_destination` block of
 /// `aws_pinpointsmsvoicev2_event_destination` (derived from provider schema).
 @immutable
@@ -133,11 +232,8 @@ final class AwsPinpointsmsvoicev2EventDestination extends Resource {
     required List<TfArg<Pinpointsmsvoicev2EventDestinationMatchingEventTypes>>
     matchingEventTypes,
     TfArg<String>? region,
-    List<Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestination>?
-    cloudwatchLogsDestination,
-    List<Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestination>?
-    kinesisFirehoseDestination,
-    List<Pinpointsmsvoicev2EventDestinationSnsDestination>? snsDestination,
+    required Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination
+    cloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -152,18 +248,8 @@ final class AwsPinpointsmsvoicev2EventDestination extends Resource {
              for (final e in matchingEventTypes) e.toTfJson(),
            ]),
            if (region != null) 'region': region,
-           if (cloudwatchLogsDestination != null)
-             'cloudwatch_logs_destination': TfArg.literal([
-               for (final e in cloudwatchLogsDestination) e.encode(),
-             ]),
-           if (kinesisFirehoseDestination != null)
-             'kinesis_firehose_destination': TfArg.literal([
-               for (final e in kinesisFirehoseDestination) e.encode(),
-             ]),
-           if (snsDestination != null)
-             'sns_destination': TfArg.literal([
-               for (final e in snsDestination) e.encode(),
-             ]),
+           ...cloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination
+               .argMap,
          },
        );
 

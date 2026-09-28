@@ -32,6 +32,7 @@ void main() {
         expect(override.prelude, isNull);
         expect(override.customSlots, isNull);
         expect(override.deriveEnums, isFalse);
+        expect(override.deriveExactlyOne, isFalse);
         expect(override.deriveOutputGetters, isFalse);
         expect(override.deriveClassDoc, isFalse);
         expect(override.curatedDoc, isNull);
@@ -47,6 +48,15 @@ void main() {
         final o = result['derive_enums_on']!;
         expect(o.deriveEnums, isTrue);
         expect(o.outputDir, 'test_out');
+      });
+
+      test('derive_exactly_one_on -> deriveExactlyOne true', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/happy',
+        );
+        final o = loader.load().resources['derive_exactly_one_on']!;
+        expect(o.deriveExactlyOne, isTrue);
+        expect(o.deriveEnums, isFalse);
       });
 
       test('derive_getters_on -> deriveOutputGetters true', () {

@@ -7,6 +7,74 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_backup_restore_testing_selection`.
 const Set<String> _awsBackupRestoreTestingSelectionSensitive = <String>{};
 
+/// Exactly one of `protected_resource_arns`, `protected_resource_conditions` on `aws_backup_restore_testing_selection`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions {
+  const BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `protected_resource_arns` (one of the [BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions] choices).
+final class BackupRestoreTestingSelectionProtectedResourceArnsOption
+    extends
+        BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions {
+  const BackupRestoreTestingSelectionProtectedResourceArnsOption({
+    required this.protectedResourceArns,
+  });
+
+  final TfArg<List<String>> protectedResourceArns;
+
+  @override
+  String get blockKey => 'protected_resource_arns';
+
+  @override
+  Map<String, Object?> encode() => {
+    'protected_resource_arns': protectedResourceArns.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'protected_resource_arns': protectedResourceArns,
+  };
+}
+
+/// Sets `protected_resource_conditions` (one of the [BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions] choices).
+final class BackupRestoreTestingSelectionProtectedResourceConditionsOption
+    extends
+        BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions {
+  const BackupRestoreTestingSelectionProtectedResourceConditionsOption({
+    required this.protectedResourceConditions,
+  });
+
+  final List<BackupRestoreTestingSelectionProtectedResourceConditions>
+  protectedResourceConditions;
+
+  @override
+  String get blockKey => 'protected_resource_conditions';
+
+  @override
+  Map<String, Object?> encode() => {
+    'protected_resource_conditions': [
+      for (final e in protectedResourceConditions) e.encode(),
+    ],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'protected_resource_conditions': TfArg.literal([
+      for (final e in protectedResourceConditions) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `protected_resource_conditions` block of
 /// `aws_backup_restore_testing_selection` (derived from provider schema).
 @immutable
@@ -80,14 +148,13 @@ final class AwsBackupRestoreTestingSelection extends Resource {
     required super.localName,
     required TfArg<String> iamRoleArn,
     required TfArg<String> name,
-    TfArg<List<String>>? protectedResourceArns,
+    required BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions
+    protectedResourceArnsOrProtectedResourceConditions,
     required TfArg<String> protectedResourceType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? restoreMetadataOverrides,
     required TfArg<String> restoreTestingPlanName,
     TfArg<num>? validationWindowHours,
-    List<BackupRestoreTestingSelectionProtectedResourceConditions>?
-    protectedResourceConditions,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -97,8 +164,7 @@ final class AwsBackupRestoreTestingSelection extends Resource {
          argMap: {
            'iam_role_arn': iamRoleArn,
            'name': name,
-           if (protectedResourceArns != null)
-             'protected_resource_arns': protectedResourceArns,
+           ...protectedResourceArnsOrProtectedResourceConditions.argMap,
            'protected_resource_type': protectedResourceType,
            if (region != null) 'region': region,
            if (restoreMetadataOverrides != null)
@@ -106,10 +172,6 @@ final class AwsBackupRestoreTestingSelection extends Resource {
            'restore_testing_plan_name': restoreTestingPlanName,
            if (validationWindowHours != null)
              'validation_window_hours': validationWindowHours,
-           if (protectedResourceConditions != null)
-             'protected_resource_conditions': TfArg.literal([
-               for (final e in protectedResourceConditions) e.encode(),
-             ]),
          },
        );
 

@@ -15,11 +15,7 @@ final class Sesv2ConfigurationSetEventDestinationEventDestination {
   const Sesv2ConfigurationSetEventDestinationEventDestination({
     this.enabled,
     required this.matchingEventTypes,
-    this.cloudWatchDestination,
-    this.eventBridgeDestination,
-    this.kinesisFirehoseDestination,
-    this.pinpointDestination,
-    this.snsDestination,
+    required this.cloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination,
   });
 
   final TfArg<bool>? enabled;
@@ -31,34 +27,124 @@ final class Sesv2ConfigurationSetEventDestinationEventDestination {
   >
   matchingEventTypes;
 
-  final Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination?
-  cloudWatchDestination;
-
-  final Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestination?
-  eventBridgeDestination;
-
-  final Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestination?
-  kinesisFirehoseDestination;
-
-  final Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestination?
-  pinpointDestination;
-
-  final Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination?
-  snsDestination;
+  final Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination
+  cloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     'matching_event_types': [for (final e in matchingEventTypes) e.toTfJson()],
-    if (cloudWatchDestination != null)
-      'cloud_watch_destination': cloudWatchDestination!.encode(),
-    if (eventBridgeDestination != null)
-      'event_bridge_destination': eventBridgeDestination!.encode(),
-    if (kinesisFirehoseDestination != null)
-      'kinesis_firehose_destination': kinesisFirehoseDestination!.encode(),
-    if (pinpointDestination != null)
-      'pinpoint_destination': pinpointDestination!.encode(),
-    if (snsDestination != null) 'sns_destination': snsDestination!.encode(),
+    ...cloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination
+        .encode(),
   };
+}
+
+/// Exactly one of `cloud_watch_destination`, `event_bridge_destination`, `kinesis_firehose_destination`, `pinpoint_destination`, `sns_destination` on the `event_destination` block of `aws_sesv2_configuration_set_event_destination`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination {
+  const Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `cloud_watch_destination` (one of the [Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination] choices).
+final class Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOption
+    extends
+        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination {
+  const Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOption({
+    required this.cloudWatchDestination,
+  });
+
+  final Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination
+  cloudWatchDestination;
+
+  @override
+  String get blockKey => 'cloud_watch_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cloud_watch_destination': cloudWatchDestination.encode(),
+  };
+}
+
+/// Sets `event_bridge_destination` (one of the [Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination] choices).
+final class Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestinationOption
+    extends
+        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination {
+  const Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestinationOption({
+    required this.eventBridgeDestination,
+  });
+
+  final Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestination
+  eventBridgeDestination;
+
+  @override
+  String get blockKey => 'event_bridge_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'event_bridge_destination': eventBridgeDestination.encode(),
+  };
+}
+
+/// Sets `kinesis_firehose_destination` (one of the [Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination] choices).
+final class Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestinationOption
+    extends
+        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination {
+  const Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestinationOption({
+    required this.kinesisFirehoseDestination,
+  });
+
+  final Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestination
+  kinesisFirehoseDestination;
+
+  @override
+  String get blockKey => 'kinesis_firehose_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'kinesis_firehose_destination': kinesisFirehoseDestination.encode(),
+  };
+}
+
+/// Sets `pinpoint_destination` (one of the [Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination] choices).
+final class Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestinationOption
+    extends
+        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination {
+  const Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestinationOption({
+    required this.pinpointDestination,
+  });
+
+  final Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestination
+  pinpointDestination;
+
+  @override
+  String get blockKey => 'pinpoint_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'pinpoint_destination': pinpointDestination.encode(),
+  };
+}
+
+/// Sets `sns_destination` (one of the [Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination] choices).
+final class Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestinationOption
+    extends
+        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination {
+  const Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestinationOption({
+    required this.snsDestination,
+  });
+
+  final Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination
+  snsDestination;
+
+  @override
+  String get blockKey => 'sns_destination';
+
+  @override
+  Map<String, Object?> encode() => {'sns_destination': snsDestination.encode()};
 }
 
 /// `matching_event_types` — derived from the provider schema description.

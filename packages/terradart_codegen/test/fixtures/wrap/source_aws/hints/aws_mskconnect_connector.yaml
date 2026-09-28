@@ -15,3 +15,5 @@ properties:
         enum_values:
           - "PLAINTEXT"
           - "TLS"
+exactly_one_of_groups:
+  - ["capacity.autoscaling", "capacity.provisioned_capacity"]

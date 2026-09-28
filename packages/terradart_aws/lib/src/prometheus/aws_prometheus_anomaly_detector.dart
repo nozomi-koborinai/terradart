@@ -108,18 +108,58 @@ final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpec
 @immutable
 final class PrometheusAnomalyDetectorMissingDataAction {
   const PrometheusAnomalyDetectorMissingDataAction({
-    this.markAsAnomaly,
-    this.skip,
+    required this.markAsAnomalyOrSkip,
   });
 
-  final TfArg<bool>? markAsAnomaly;
+  final PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip
+  markAsAnomalyOrSkip;
 
-  final TfArg<bool>? skip;
+  Map<String, Object?> encode() => {...markAsAnomalyOrSkip.encode()};
+}
 
+/// Exactly one of `mark_as_anomaly`, `skip` on the `missing_data_action` block of `aws_prometheus_anomaly_detector`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip {
+  const PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `mark_as_anomaly` (one of the [PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip] choices).
+final class PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOption
+    extends PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip {
+  const PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOption({
+    required this.markAsAnomaly,
+  });
+
+  final TfArg<bool> markAsAnomaly;
+
+  @override
+  String get blockKey => 'mark_as_anomaly';
+
+  @override
   Map<String, Object?> encode() => {
-    if (markAsAnomaly != null) 'mark_as_anomaly': markAsAnomaly!.toTfJson(),
-    if (skip != null) 'skip': skip!.toTfJson(),
+    'mark_as_anomaly': markAsAnomaly.toTfJson(),
   };
+}
+
+/// Sets `skip` (one of the [PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip] choices).
+final class PrometheusAnomalyDetectorMissingDataActionSkipOption
+    extends PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip {
+  const PrometheusAnomalyDetectorMissingDataActionSkipOption({
+    required this.skip,
+  });
+
+  final TfArg<bool> skip;
+
+  @override
+  String get blockKey => 'skip';
+
+  @override
+  Map<String, Object?> encode() => {'skip': skip.toTfJson()};
 }
 
 /// Factory wrapper for `aws_prometheus_anomaly_detector`.

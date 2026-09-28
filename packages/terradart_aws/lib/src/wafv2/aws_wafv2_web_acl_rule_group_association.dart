@@ -17,6 +17,74 @@ enum Wafv2WebAclRuleGroupAssociationOverrideAction implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `managed_rule_group`, `rule_group_reference` on `aws_wafv2_web_acl_rule_group_association`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference {
+  const Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `managed_rule_group` (one of the [Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference] choices).
+final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOption
+    extends
+        Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference {
+  const Wafv2WebAclRuleGroupAssociationManagedRuleGroupOption({
+    required this.managedRuleGroup,
+  });
+
+  final List<Wafv2WebAclRuleGroupAssociationManagedRuleGroup> managedRuleGroup;
+
+  @override
+  String get blockKey => 'managed_rule_group';
+
+  @override
+  Map<String, Object?> encode() => {
+    'managed_rule_group': [for (final e in managedRuleGroup) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'managed_rule_group': TfArg.literal([
+      for (final e in managedRuleGroup) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `rule_group_reference` (one of the [Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference] choices).
+final class Wafv2WebAclRuleGroupAssociationRuleGroupReferenceOption
+    extends
+        Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference {
+  const Wafv2WebAclRuleGroupAssociationRuleGroupReferenceOption({
+    required this.ruleGroupReference,
+  });
+
+  final List<Wafv2WebAclRuleGroupAssociationRuleGroupReference>
+  ruleGroupReference;
+
+  @override
+  String get blockKey => 'rule_group_reference';
+
+  @override
+  Map<String, Object?> encode() => {
+    'rule_group_reference': [for (final e in ruleGroupReference) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'rule_group_reference': TfArg.literal([
+      for (final e in ruleGroupReference) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `managed_rule_group` block of
 /// `aws_wafv2_web_acl_rule_group_association` (derived from provider schema).
 @immutable
@@ -1523,8 +1591,8 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
     TfArg<String>? region,
     required TfArg<String> ruleName,
     required TfArg<String> webAclArn,
-    List<Wafv2WebAclRuleGroupAssociationManagedRuleGroup>? managedRuleGroup,
-    List<Wafv2WebAclRuleGroupAssociationRuleGroupReference>? ruleGroupReference,
+    required Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference
+    managedRuleGroupOrRuleGroupReference,
     List<Wafv2WebAclRuleGroupAssociationVisibilityConfig>? visibilityConfig,
     super.lifecycle,
     super.dependsOn,
@@ -1538,14 +1606,7 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
            if (region != null) 'region': region,
            'rule_name': ruleName,
            'web_acl_arn': webAclArn,
-           if (managedRuleGroup != null)
-             'managed_rule_group': TfArg.literal([
-               for (final e in managedRuleGroup) e.encode(),
-             ]),
-           if (ruleGroupReference != null)
-             'rule_group_reference': TfArg.literal([
-               for (final e in ruleGroupReference) e.encode(),
-             ]),
+           ...managedRuleGroupOrRuleGroupReference.argMap,
            if (visibilityConfig != null)
              'visibility_config': TfArg.literal([
                for (final e in visibilityConfig) e.encode(),

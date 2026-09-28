@@ -21,16 +21,50 @@ enum M2ApplicationEngineType implements TerraformEnum {
 /// `aws_m2_application` (derived from provider schema).
 @immutable
 final class M2ApplicationDefinition {
-  const M2ApplicationDefinition({this.content, this.s3Location});
+  const M2ApplicationDefinition({required this.contentOrS3Location});
 
-  final TfArg<String>? content;
+  final M2ApplicationDefinitionContentOrS3Location contentOrS3Location;
 
-  final TfArg<String>? s3Location;
+  Map<String, Object?> encode() => {...contentOrS3Location.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (content != null) 'content': content!.toTfJson(),
-    if (s3Location != null) 's3_location': s3Location!.toTfJson(),
-  };
+/// Exactly one of `content`, `s3_location` on the `definition` block of `aws_m2_application`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class M2ApplicationDefinitionContentOrS3Location {
+  const M2ApplicationDefinitionContentOrS3Location();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `content` (one of the [M2ApplicationDefinitionContentOrS3Location] choices).
+final class M2ApplicationDefinitionContentOption
+    extends M2ApplicationDefinitionContentOrS3Location {
+  const M2ApplicationDefinitionContentOption({required this.content});
+
+  final TfArg<String> content;
+
+  @override
+  String get blockKey => 'content';
+
+  @override
+  Map<String, Object?> encode() => {'content': content.toTfJson()};
+}
+
+/// Sets `s3_location` (one of the [M2ApplicationDefinitionContentOrS3Location] choices).
+final class M2ApplicationDefinitionS3LocationOption
+    extends M2ApplicationDefinitionContentOrS3Location {
+  const M2ApplicationDefinitionS3LocationOption({required this.s3Location});
+
+  final TfArg<String> s3Location;
+
+  @override
+  String get blockKey => 's3_location';
+
+  @override
+  Map<String, Object?> encode() => {'s3_location': s3Location.toTfJson()};
 }
 
 /// Factory wrapper for `aws_m2_application`.

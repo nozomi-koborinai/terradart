@@ -35,9 +35,10 @@ void main() {
       ]);
     });
 
-    test('scaffolds typed nested blocks and provider enums', () {
+    test('scaffolds typed nested blocks, provider enums and sealed groups', () {
       expect(rules.typedNestedDefaults, isTrue);
       expect(rules.derivedEnumDefaults, isTrue);
+      expect(rules.exactlyOneDefaults, isTrue);
     });
   });
 

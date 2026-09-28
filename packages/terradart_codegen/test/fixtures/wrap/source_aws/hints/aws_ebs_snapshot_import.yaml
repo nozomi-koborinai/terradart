@@ -10,3 +10,5 @@ properties:
           - "VMDK"
           - "RAW"
           - "VHD"
+exactly_one_of_groups:
+  - ["disk_container.url", "disk_container.user_bucket"]

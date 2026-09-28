@@ -95,7 +95,8 @@ void main(List<String> args) {
     write(
       '$type.yaml',
       'outputDir: $outputDir\n$derive'
-          '${rules.derivedEnumDefaults ? 'deriveEnums: true\n' : ''}',
+          '${rules.derivedEnumDefaults ? 'deriveEnums: true\n' : ''}'
+          '${rules.exactlyOneDefaults ? 'deriveExactlyOne: true\n' : ''}',
     );
   }
   for (final type in dataSources) {

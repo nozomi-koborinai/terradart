@@ -6,6 +6,67 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpc_endpoint_connection_notification`.
 const Set<String> _awsVpcEndpointConnectionNotificationSensitive = <String>{};
 
+/// Exactly one of `vpc_endpoint_id`, `vpc_endpoint_service_id` on `aws_vpc_endpoint_connection_notification`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId {
+  const VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `vpc_endpoint_id` (one of the [VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId] choices).
+final class VpcEndpointConnectionNotificationVpcEndpointIdOption
+    extends
+        VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId {
+  const VpcEndpointConnectionNotificationVpcEndpointIdOption({
+    required this.vpcEndpointId,
+  });
+
+  final TfArg<String> vpcEndpointId;
+
+  @override
+  String get blockKey => 'vpc_endpoint_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'vpc_endpoint_id': vpcEndpointId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'vpc_endpoint_id': vpcEndpointId};
+}
+
+/// Sets `vpc_endpoint_service_id` (one of the [VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId] choices).
+final class VpcEndpointConnectionNotificationVpcEndpointServiceIdOption
+    extends
+        VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId {
+  const VpcEndpointConnectionNotificationVpcEndpointServiceIdOption({
+    required this.vpcEndpointServiceId,
+  });
+
+  final TfArg<String> vpcEndpointServiceId;
+
+  @override
+  String get blockKey => 'vpc_endpoint_service_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'vpc_endpoint_service_id': vpcEndpointServiceId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc_endpoint_service_id': vpcEndpointServiceId,
+  };
+}
+
 /// Factory wrapper for `aws_vpc_endpoint_connection_notification`.
 final class AwsVpcEndpointConnectionNotification extends Resource {
   static const String tfType = 'aws_vpc_endpoint_connection_notification';
@@ -15,8 +76,8 @@ final class AwsVpcEndpointConnectionNotification extends Resource {
     required TfArg<List<String>> connectionEvents,
     required TfArg<String> connectionNotificationArn,
     TfArg<String>? region,
-    TfArg<String>? vpcEndpointId,
-    TfArg<String>? vpcEndpointServiceId,
+    required VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId
+    vpcEndpointIdOrVpcEndpointServiceId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -27,9 +88,7 @@ final class AwsVpcEndpointConnectionNotification extends Resource {
            'connection_events': connectionEvents,
            'connection_notification_arn': connectionNotificationArn,
            if (region != null) 'region': region,
-           if (vpcEndpointId != null) 'vpc_endpoint_id': vpcEndpointId,
-           if (vpcEndpointServiceId != null)
-             'vpc_endpoint_service_id': vpcEndpointServiceId,
+           ...vpcEndpointIdOrVpcEndpointServiceId.argMap,
          },
        );
 

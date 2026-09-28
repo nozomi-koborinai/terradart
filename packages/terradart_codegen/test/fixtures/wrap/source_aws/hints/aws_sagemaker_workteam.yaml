@@ -17,3 +17,5 @@ properties:
                 enum_values:
                   - "Enabled"
                   - "Disabled"
+exactly_one_of_groups:
+  - ["worker_access_configuration.s3_presign.iam_policy_constraints.source_ip", "worker_access_configuration.s3_presign.iam_policy_constraints.vpc_source_ip"]

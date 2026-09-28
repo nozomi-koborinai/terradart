@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "allow"
       - "deny"
+exactly_one_of_groups:
+  - ["cidr_block", "ipv6_cidr_block"]

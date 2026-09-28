@@ -27,6 +27,67 @@ enum LambdaEventSourceMappingStartingPosition implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `event_source_arn`, `self_managed_event_source` on `aws_lambda_event_source_mapping`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource {
+  const LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `event_source_arn` (one of the [LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource] choices).
+final class LambdaEventSourceMappingEventSourceArnOption
+    extends LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource {
+  const LambdaEventSourceMappingEventSourceArnOption({
+    required this.eventSourceArn,
+  });
+
+  final TfArg<String> eventSourceArn;
+
+  @override
+  String get blockKey => 'event_source_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'event_source_arn': eventSourceArn.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'event_source_arn': eventSourceArn,
+  };
+}
+
+/// Sets `self_managed_event_source` (one of the [LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource] choices).
+final class LambdaEventSourceMappingSelfManagedEventSourceOption
+    extends LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource {
+  const LambdaEventSourceMappingSelfManagedEventSourceOption({
+    required this.selfManagedEventSource,
+  });
+
+  final LambdaEventSourceMappingSelfManagedEventSource selfManagedEventSource;
+
+  @override
+  String get blockKey => 'self_managed_event_source';
+
+  @override
+  Map<String, Object?> encode() => {
+    'self_managed_event_source': selfManagedEventSource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'self_managed_event_source': TfArg.literal(selfManagedEventSource.encode()),
+  };
+}
+
 /// Typed helper for the `amazon_managed_kafka_event_source_config` block of
 /// `aws_lambda_event_source_mapping` (derived from provider schema).
 @immutable
@@ -528,7 +589,8 @@ final class AwsLambdaEventSourceMapping extends Resource {
     TfArg<num>? batchSize,
     TfArg<bool>? bisectBatchOnFunctionError,
     TfArg<bool>? enabled,
-    TfArg<String>? eventSourceArn,
+    required LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource
+    eventSourceArnOrSelfManagedEventSource,
     required TfArg<String> functionName,
     List<TfArg<LambdaEventSourceMappingFunctionResponseTypes>>?
     functionResponseTypes,
@@ -554,7 +616,6 @@ final class AwsLambdaEventSourceMapping extends Resource {
     LambdaEventSourceMappingMetricsConfig? metricsConfig,
     LambdaEventSourceMappingProvisionedPollerConfig? provisionedPollerConfig,
     LambdaEventSourceMappingScalingConfig? scalingConfig,
-    LambdaEventSourceMappingSelfManagedEventSource? selfManagedEventSource,
     LambdaEventSourceMappingSelfManagedKafkaEventSourceConfig?
     selfManagedKafkaEventSourceConfig,
     List<LambdaEventSourceMappingSourceAccessConfiguration>?
@@ -570,7 +631,7 @@ final class AwsLambdaEventSourceMapping extends Resource {
            if (bisectBatchOnFunctionError != null)
              'bisect_batch_on_function_error': bisectBatchOnFunctionError,
            if (enabled != null) 'enabled': enabled,
-           if (eventSourceArn != null) 'event_source_arn': eventSourceArn,
+           ...eventSourceArnOrSelfManagedEventSource.argMap,
            'function_name': functionName,
            if (functionResponseTypes != null)
              'function_response_types': TfArg.literal([
@@ -618,10 +679,6 @@ final class AwsLambdaEventSourceMapping extends Resource {
              ),
            if (scalingConfig != null)
              'scaling_config': TfArg.literal(scalingConfig.encode()),
-           if (selfManagedEventSource != null)
-             'self_managed_event_source': TfArg.literal(
-               selfManagedEventSource.encode(),
-             ),
            if (selfManagedKafkaEventSourceConfig != null)
              'self_managed_kafka_event_source_config': TfArg.literal(
                selfManagedKafkaEventSourceConfig.encode(),

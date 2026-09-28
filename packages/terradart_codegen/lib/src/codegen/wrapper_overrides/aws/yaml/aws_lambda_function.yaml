@@ -3,6 +3,7 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// AWS **Lambda function**. A Dart backend runs on the `provided.al2023`

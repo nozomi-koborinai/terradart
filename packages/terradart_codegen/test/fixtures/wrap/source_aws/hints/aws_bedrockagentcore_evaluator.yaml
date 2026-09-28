@@ -16,3 +16,6 @@ properties:
       - "UPDATING"
       - "UPDATE_FAILED"
       - "DELETING"
+exactly_one_of_groups:
+  - ["evaluator_config.code_based", "evaluator_config.llm_as_a_judge"]
+  - ["evaluator_config.llm_as_a_judge.rating_scale.categorical", "evaluator_config.llm_as_a_judge.rating_scale.numerical"]

@@ -3,6 +3,7 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Attaches one managed IAM policy to an [AwsIamRole]. Additive: other

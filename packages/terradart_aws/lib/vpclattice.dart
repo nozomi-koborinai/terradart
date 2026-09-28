@@ -24,7 +24,10 @@ export 'src/vpclattice/aws_vpclattice_listener_rule.dart'
         AwsVpclatticeListenerRule,
         VpclatticeListenerRuleAction,
         VpclatticeListenerRuleActionFixedResponse,
+        VpclatticeListenerRuleActionFixedResponseOption,
+        VpclatticeListenerRuleActionFixedResponseOrForward,
         VpclatticeListenerRuleActionForward,
+        VpclatticeListenerRuleActionForwardOption,
         VpclatticeListenerRuleActionForwardTargetGroups,
         VpclatticeListenerRuleMatch,
         VpclatticeListenerRuleMatchHttpMatch,
@@ -38,9 +41,16 @@ export 'src/vpclattice/aws_vpclattice_resource_configuration.dart'
         VpclatticeResourceConfigurationProtocol,
         VpclatticeResourceConfigurationResourceConfigurationDefinition,
         VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResource,
+        VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResourceOption,
+        VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResourceOrDnsResourceOrIpResource,
         VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResource,
         VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceIpAddressType,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResource;
+        VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceOption,
+        VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResource,
+        VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResourceOption,
+        VpclatticeResourceConfigurationResourceConfigurationGroupIdOption,
+        VpclatticeResourceConfigurationResourceConfigurationGroupIdOrResourceGatewayIdentifier,
+        VpclatticeResourceConfigurationResourceGatewayIdentifierOption;
 export 'src/vpclattice/aws_vpclattice_resource_gateway.dart'
     show
         AwsVpclatticeResourceGateway,

@@ -8,7 +8,11 @@ export 'src/ivschat/aws_ivschat_logging_configuration.dart'
         AwsIvschatLoggingConfiguration,
         IvschatLoggingConfigurationDestinationConfiguration,
         IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogs,
+        IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOption,
+        IvschatLoggingConfigurationDestinationConfigurationCloudwatchLogsOrFirehoseOrS3,
         IvschatLoggingConfigurationDestinationConfigurationFirehose,
-        IvschatLoggingConfigurationDestinationConfigurationS3;
+        IvschatLoggingConfigurationDestinationConfigurationFirehoseOption,
+        IvschatLoggingConfigurationDestinationConfigurationS3,
+        IvschatLoggingConfigurationDestinationConfigurationS3Option;
 export 'src/ivschat/aws_ivschat_room.dart'
     show AwsIvschatRoom, IvschatRoomMessageReviewHandler;

@@ -9,6 +9,59 @@ const Set<String> _awsSagemakerWorkforceSensitive = <String>{
   'oidc_config.client_secret',
 };
 
+/// Exactly one of `cognito_config`, `oidc_config` on `aws_sagemaker_workforce`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class SagemakerWorkforceCognitoConfigOrOidcConfig {
+  const SagemakerWorkforceCognitoConfigOrOidcConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cognito_config` (one of the [SagemakerWorkforceCognitoConfigOrOidcConfig] choices).
+final class SagemakerWorkforceCognitoConfigOption
+    extends SagemakerWorkforceCognitoConfigOrOidcConfig {
+  const SagemakerWorkforceCognitoConfigOption({required this.cognitoConfig});
+
+  final SagemakerWorkforceCognitoConfig cognitoConfig;
+
+  @override
+  String get blockKey => 'cognito_config';
+
+  @override
+  Map<String, Object?> encode() => {'cognito_config': cognitoConfig.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cognito_config': TfArg.literal(cognitoConfig.encode()),
+  };
+}
+
+/// Sets `oidc_config` (one of the [SagemakerWorkforceCognitoConfigOrOidcConfig] choices).
+final class SagemakerWorkforceOidcConfigOption
+    extends SagemakerWorkforceCognitoConfigOrOidcConfig {
+  const SagemakerWorkforceOidcConfigOption({required this.oidcConfig});
+
+  final SagemakerWorkforceOidcConfig oidcConfig;
+
+  @override
+  String get blockKey => 'oidc_config';
+
+  @override
+  Map<String, Object?> encode() => {'oidc_config': oidcConfig.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'oidc_config': TfArg.literal(oidcConfig.encode()),
+  };
+}
+
 /// Typed helper for the `cognito_config` block of
 /// `aws_sagemaker_workforce` (derived from provider schema).
 @immutable
@@ -124,8 +177,8 @@ final class AwsSagemakerWorkforce extends Resource {
     required super.localName,
     TfArg<String>? region,
     required TfArg<String> workforceName,
-    SagemakerWorkforceCognitoConfig? cognitoConfig,
-    SagemakerWorkforceOidcConfig? oidcConfig,
+    required SagemakerWorkforceCognitoConfigOrOidcConfig
+    cognitoConfigOrOidcConfig,
     SagemakerWorkforceSourceIpConfig? sourceIpConfig,
     SagemakerWorkforceWorkforceVpcConfig? workforceVpcConfig,
     super.lifecycle,
@@ -137,10 +190,7 @@ final class AwsSagemakerWorkforce extends Resource {
          argMap: {
            if (region != null) 'region': region,
            'workforce_name': workforceName,
-           if (cognitoConfig != null)
-             'cognito_config': TfArg.literal(cognitoConfig.encode()),
-           if (oidcConfig != null)
-             'oidc_config': TfArg.literal(oidcConfig.encode()),
+           ...cognitoConfigOrOidcConfig.argMap,
            if (sourceIpConfig != null)
              'source_ip_config': TfArg.literal(sourceIpConfig.encode()),
            if (workforceVpcConfig != null)

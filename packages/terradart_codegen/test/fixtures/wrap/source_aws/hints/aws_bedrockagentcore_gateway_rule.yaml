@@ -15,3 +15,8 @@ properties:
                     enum_values:
                       - "StringEquals"
                       - "StringLike"
+exactly_one_of_groups:
+  - ["action.configuration_bundle", "action.route_to_target"]
+  - ["action.configuration_bundle.static_override", "action.configuration_bundle.weighted_override"]
+  - ["action.route_to_target.static_route", "action.route_to_target.weighted_route"]
+  - ["condition.match_paths", "condition.match_principals"]

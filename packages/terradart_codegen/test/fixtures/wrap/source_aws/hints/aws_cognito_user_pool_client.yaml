@@ -29,3 +29,5 @@ properties:
         enum_values:
           - "ENABLED"
           - "DISABLED"
+exactly_one_of_groups:
+  - ["analytics_configuration.application_arn", "analytics_configuration.application_id"]

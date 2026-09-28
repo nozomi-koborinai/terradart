@@ -454,22 +454,65 @@ final class GlueCatalogTableStorageDescriptorColumns {
 @immutable
 final class GlueCatalogTableStorageDescriptorSchemaReference {
   const GlueCatalogTableStorageDescriptorSchemaReference({
-    this.schemaVersionId,
+    required this.schemaIdOrSchemaVersionId,
     required this.schemaVersionNumber,
-    this.schemaId,
   });
 
-  final TfArg<String>? schemaVersionId;
+  final GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId
+  schemaIdOrSchemaVersionId;
 
   final TfArg<num> schemaVersionNumber;
 
-  final GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId? schemaId;
-
   Map<String, Object?> encode() => {
-    if (schemaVersionId != null)
-      'schema_version_id': schemaVersionId!.toTfJson(),
+    ...schemaIdOrSchemaVersionId.encode(),
     'schema_version_number': schemaVersionNumber.toTfJson(),
-    if (schemaId != null) 'schema_id': schemaId!.encode(),
+  };
+}
+
+/// Exactly one of `schema_id`, `schema_version_id` on the `storage_descriptor.schema_reference` block of `aws_glue_catalog_table`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId {
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `schema_id` (one of the [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId] choices).
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOption
+    extends
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId {
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOption({
+    required this.schemaId,
+  });
+
+  final GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId schemaId;
+
+  @override
+  String get blockKey => 'schema_id';
+
+  @override
+  Map<String, Object?> encode() => {'schema_id': schemaId.encode()};
+}
+
+/// Sets `schema_version_id` (one of the [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId] choices).
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionIdOption
+    extends
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId {
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionIdOption({
+    required this.schemaVersionId,
+  });
+
+  final TfArg<String> schemaVersionId;
+
+  @override
+  String get blockKey => 'schema_version_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'schema_version_id': schemaVersionId.toTfJson(),
   };
 }
 
@@ -479,21 +522,63 @@ final class GlueCatalogTableStorageDescriptorSchemaReference {
 final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId {
   const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId({
     this.registryName,
-    this.schemaArn,
-    this.schemaName,
+    required this.schemaArnOrSchemaName,
   });
 
   final TfArg<String>? registryName;
 
-  final TfArg<String>? schemaArn;
-
-  final TfArg<String>? schemaName;
+  final GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName
+  schemaArnOrSchemaName;
 
   Map<String, Object?> encode() => {
     if (registryName != null) 'registry_name': registryName!.toTfJson(),
-    if (schemaArn != null) 'schema_arn': schemaArn!.toTfJson(),
-    if (schemaName != null) 'schema_name': schemaName!.toTfJson(),
+    ...schemaArnOrSchemaName.encode(),
   };
+}
+
+/// Exactly one of `schema_arn`, `schema_name` on the `storage_descriptor.schema_reference.schema_id` block of `aws_glue_catalog_table`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName {
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `schema_arn` (one of the [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName] choices).
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOption
+    extends
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName {
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOption({
+    required this.schemaArn,
+  });
+
+  final TfArg<String> schemaArn;
+
+  @override
+  String get blockKey => 'schema_arn';
+
+  @override
+  Map<String, Object?> encode() => {'schema_arn': schemaArn.toTfJson()};
+}
+
+/// Sets `schema_name` (one of the [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName] choices).
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaNameOption
+    extends
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName {
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaNameOption({
+    required this.schemaName,
+  });
+
+  final TfArg<String> schemaName;
+
+  @override
+  String get blockKey => 'schema_name';
+
+  @override
+  Map<String, Object?> encode() => {'schema_name': schemaName.toTfJson()};
 }
 
 /// Typed helper for the `storage_descriptor.ser_de_info` block of

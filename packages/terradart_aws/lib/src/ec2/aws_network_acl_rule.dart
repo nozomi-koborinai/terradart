@@ -16,18 +16,68 @@ enum NetworkAclRuleRuleAction implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `cidr_block`, `ipv6_cidr_block` on `aws_network_acl_rule`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class NetworkAclRuleCidrBlockOrIpv6CidrBlock {
+  const NetworkAclRuleCidrBlockOrIpv6CidrBlock();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cidr_block` (one of the [NetworkAclRuleCidrBlockOrIpv6CidrBlock] choices).
+final class NetworkAclRuleCidrBlockOption
+    extends NetworkAclRuleCidrBlockOrIpv6CidrBlock {
+  const NetworkAclRuleCidrBlockOption({required this.cidrBlock});
+
+  final TfArg<String> cidrBlock;
+
+  @override
+  String get blockKey => 'cidr_block';
+
+  @override
+  Map<String, Object?> encode() => {'cidr_block': cidrBlock.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'cidr_block': cidrBlock};
+}
+
+/// Sets `ipv6_cidr_block` (one of the [NetworkAclRuleCidrBlockOrIpv6CidrBlock] choices).
+final class NetworkAclRuleIpv6CidrBlockOption
+    extends NetworkAclRuleCidrBlockOrIpv6CidrBlock {
+  const NetworkAclRuleIpv6CidrBlockOption({required this.ipv6CidrBlock});
+
+  final TfArg<String> ipv6CidrBlock;
+
+  @override
+  String get blockKey => 'ipv6_cidr_block';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ipv6_cidr_block': ipv6CidrBlock.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'ipv6_cidr_block': ipv6CidrBlock};
+}
+
 /// Factory wrapper for `aws_network_acl_rule`.
 final class AwsNetworkAclRule extends Resource {
   static const String tfType = 'aws_network_acl_rule';
 
   AwsNetworkAclRule({
     required super.localName,
-    TfArg<String>? cidrBlock,
+    required NetworkAclRuleCidrBlockOrIpv6CidrBlock cidrBlockOrIpv6CidrBlock,
     TfArg<bool>? egress,
     TfArg<num>? fromPort,
     TfArg<num>? icmpCode,
     TfArg<num>? icmpType,
-    TfArg<String>? ipv6CidrBlock,
     required TfArg<String> networkAclId,
     required TfArg<String> protocol,
     TfArg<String>? region,
@@ -41,12 +91,11 @@ final class AwsNetworkAclRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cidrBlock != null) 'cidr_block': cidrBlock,
+           ...cidrBlockOrIpv6CidrBlock.argMap,
            if (egress != null) 'egress': egress,
            if (fromPort != null) 'from_port': fromPort,
            if (icmpCode != null) 'icmp_code': icmpCode,
            if (icmpType != null) 'icmp_type': icmpType,
-           if (ipv6CidrBlock != null) 'ipv6_cidr_block': ipv6CidrBlock,
            'network_acl_id': networkAclId,
            'protocol': protocol,
            if (region != null) 'region': region,

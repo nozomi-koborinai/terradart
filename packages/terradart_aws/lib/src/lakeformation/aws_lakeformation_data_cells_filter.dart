@@ -12,17 +12,17 @@ const Set<String> _awsLakeformationDataCellsFilterSensitive = <String>{};
 @immutable
 final class LakeformationDataCellsFilterTableData {
   const LakeformationDataCellsFilterTableData({
-    this.columnNames,
+    required this.columnNamesOrColumnWildcard,
     required this.databaseName,
     required this.name,
     required this.tableCatalogId,
     required this.tableName,
     this.versionId,
-    this.columnWildcard,
     this.rowFilter,
   });
 
-  final TfArg<List<Object?>>? columnNames;
+  final LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard
+  columnNamesOrColumnWildcard;
 
   final TfArg<String> databaseName;
 
@@ -34,22 +34,63 @@ final class LakeformationDataCellsFilterTableData {
 
   final TfArg<String>? versionId;
 
-  final List<LakeformationDataCellsFilterTableDataColumnWildcard>?
-  columnWildcard;
-
   final List<LakeformationDataCellsFilterTableDataRowFilter>? rowFilter;
 
   Map<String, Object?> encode() => {
-    if (columnNames != null) 'column_names': columnNames!.toTfJson(),
+    ...columnNamesOrColumnWildcard.encode(),
     'database_name': databaseName.toTfJson(),
     'name': name.toTfJson(),
     'table_catalog_id': tableCatalogId.toTfJson(),
     'table_name': tableName.toTfJson(),
     if (versionId != null) 'version_id': versionId!.toTfJson(),
-    if (columnWildcard != null)
-      'column_wildcard': [for (final e in columnWildcard!) e.encode()],
     if (rowFilter != null)
       'row_filter': [for (final e in rowFilter!) e.encode()],
+  };
+}
+
+/// Exactly one of `column_names`, `column_wildcard` on the `table_data` block of `aws_lakeformation_data_cells_filter`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard {
+  const LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `column_names` (one of the [LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard] choices).
+final class LakeformationDataCellsFilterTableDataColumnNamesOption
+    extends LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard {
+  const LakeformationDataCellsFilterTableDataColumnNamesOption({
+    required this.columnNames,
+  });
+
+  final TfArg<List<Object?>> columnNames;
+
+  @override
+  String get blockKey => 'column_names';
+
+  @override
+  Map<String, Object?> encode() => {'column_names': columnNames.toTfJson()};
+}
+
+/// Sets `column_wildcard` (one of the [LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard] choices).
+final class LakeformationDataCellsFilterTableDataColumnWildcardOption
+    extends LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard {
+  const LakeformationDataCellsFilterTableDataColumnWildcardOption({
+    required this.columnWildcard,
+  });
+
+  final List<LakeformationDataCellsFilterTableDataColumnWildcard>
+  columnWildcard;
+
+  @override
+  String get blockKey => 'column_wildcard';
+
+  @override
+  Map<String, Object?> encode() => {
+    'column_wildcard': [for (final e in columnWildcard) e.encode()],
   };
 }
 
@@ -74,20 +115,64 @@ final class LakeformationDataCellsFilterTableDataColumnWildcard {
 @immutable
 final class LakeformationDataCellsFilterTableDataRowFilter {
   const LakeformationDataCellsFilterTableDataRowFilter({
-    this.filterExpression,
-    this.allRowsWildcard,
+    required this.allRowsWildcardOrFilterExpression,
   });
 
-  final TfArg<String>? filterExpression;
-
-  final List<LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcard>?
-  allRowsWildcard;
+  final LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression
+  allRowsWildcardOrFilterExpression;
 
   Map<String, Object?> encode() => {
-    if (filterExpression != null)
-      'filter_expression': filterExpression!.toTfJson(),
-    if (allRowsWildcard != null)
-      'all_rows_wildcard': [for (final e in allRowsWildcard!) e.encode()],
+    ...allRowsWildcardOrFilterExpression.encode(),
+  };
+}
+
+/// Exactly one of `all_rows_wildcard`, `filter_expression` on the `table_data.row_filter` block of `aws_lakeformation_data_cells_filter`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression {
+  const LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `all_rows_wildcard` (one of the [LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression] choices).
+final class LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOption
+    extends
+        LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression {
+  const LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOption({
+    required this.allRowsWildcard,
+  });
+
+  final List<LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcard>
+  allRowsWildcard;
+
+  @override
+  String get blockKey => 'all_rows_wildcard';
+
+  @override
+  Map<String, Object?> encode() => {
+    'all_rows_wildcard': [for (final e in allRowsWildcard) e.encode()],
+  };
+}
+
+/// Sets `filter_expression` (one of the [LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression] choices).
+final class LakeformationDataCellsFilterTableDataRowFilterFilterExpressionOption
+    extends
+        LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression {
+  const LakeformationDataCellsFilterTableDataRowFilterFilterExpressionOption({
+    required this.filterExpression,
+  });
+
+  final TfArg<String> filterExpression;
+
+  @override
+  String get blockKey => 'filter_expression';
+
+  @override
+  Map<String, Object?> encode() => {
+    'filter_expression': filterExpression.toTfJson(),
   };
 }
 

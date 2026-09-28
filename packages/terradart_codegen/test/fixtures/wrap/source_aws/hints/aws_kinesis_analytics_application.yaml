@@ -20,3 +20,6 @@ properties:
             enum_values:
               - "JSON"
               - "CSV"
+exactly_one_of_groups:
+  - ["inputs.schema.record_format.mapping_parameters.csv", "inputs.schema.record_format.mapping_parameters.json"]
+  - ["reference_data_sources.schema.record_format.mapping_parameters.csv", "reference_data_sources.schema.record_format.mapping_parameters.json"]

@@ -26,6 +26,69 @@ enum ImagebuilderContainerRecipePlatformOverride implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `dockerfile_template_data`, `dockerfile_template_uri` on `aws_imagebuilder_container_recipe`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri {
+  const ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `dockerfile_template_data` (one of the [ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri] choices).
+final class ImagebuilderContainerRecipeDockerfileTemplateDataOption
+    extends
+        ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri {
+  const ImagebuilderContainerRecipeDockerfileTemplateDataOption({
+    required this.dockerfileTemplateData,
+  });
+
+  final TfArg<String> dockerfileTemplateData;
+
+  @override
+  String get blockKey => 'dockerfile_template_data';
+
+  @override
+  Map<String, Object?> encode() => {
+    'dockerfile_template_data': dockerfileTemplateData.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'dockerfile_template_data': dockerfileTemplateData,
+  };
+}
+
+/// Sets `dockerfile_template_uri` (one of the [ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri] choices).
+final class ImagebuilderContainerRecipeDockerfileTemplateUriOption
+    extends
+        ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri {
+  const ImagebuilderContainerRecipeDockerfileTemplateUriOption({
+    required this.dockerfileTemplateUri,
+  });
+
+  final TfArg<String> dockerfileTemplateUri;
+
+  @override
+  String get blockKey => 'dockerfile_template_uri';
+
+  @override
+  Map<String, Object?> encode() => {
+    'dockerfile_template_uri': dockerfileTemplateUri.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'dockerfile_template_uri': dockerfileTemplateUri,
+  };
+}
+
 /// Typed helper for the `component` block of
 /// `aws_imagebuilder_container_recipe` (derived from provider schema).
 @immutable
@@ -218,8 +281,8 @@ final class AwsImagebuilderContainerRecipe extends Resource {
     required super.localName,
     required TfArg<ImagebuilderContainerRecipeContainerType> containerType,
     TfArg<String>? description,
-    TfArg<String>? dockerfileTemplateData,
-    TfArg<String>? dockerfileTemplateUri,
+    required ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri
+    dockerfileTemplateDataOrDockerfileTemplateUri,
     TfArg<String>? kmsKeyId,
     required TfArg<String> name,
     required TfArg<String> parentImage,
@@ -240,10 +303,7 @@ final class AwsImagebuilderContainerRecipe extends Resource {
          argMap: {
            'container_type': containerType,
            if (description != null) 'description': description,
-           if (dockerfileTemplateData != null)
-             'dockerfile_template_data': dockerfileTemplateData,
-           if (dockerfileTemplateUri != null)
-             'dockerfile_template_uri': dockerfileTemplateUri,
+           ...dockerfileTemplateDataOrDockerfileTemplateUri.argMap,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            'name': name,
            'parent_image': parentImage,

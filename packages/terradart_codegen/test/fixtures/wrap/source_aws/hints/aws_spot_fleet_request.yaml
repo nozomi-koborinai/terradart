@@ -139,3 +139,5 @@ properties:
       - "vcpu"
       - "memory-mib"
       - "units"
+exactly_one_of_groups:
+  - ["launch_specification", "launch_template_config"]

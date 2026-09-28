@@ -31,23 +31,67 @@ final class SecretsmanagerSecretRotationExternalSecretRotationMetadata {
 @immutable
 final class SecretsmanagerSecretRotationRotationRules {
   const SecretsmanagerSecretRotationRotationRules({
-    this.automaticallyAfterDays,
+    required this.automaticallyAfterDaysOrScheduleExpression,
     this.duration,
-    this.scheduleExpression,
   });
 
-  final TfArg<num>? automaticallyAfterDays;
+  final SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression
+  automaticallyAfterDaysOrScheduleExpression;
 
   final TfArg<String>? duration;
 
-  final TfArg<String>? scheduleExpression;
-
   Map<String, Object?> encode() => {
-    if (automaticallyAfterDays != null)
-      'automatically_after_days': automaticallyAfterDays!.toTfJson(),
+    ...automaticallyAfterDaysOrScheduleExpression.encode(),
     if (duration != null) 'duration': duration!.toTfJson(),
-    if (scheduleExpression != null)
-      'schedule_expression': scheduleExpression!.toTfJson(),
+  };
+}
+
+/// Exactly one of `automatically_after_days`, `schedule_expression` on the `rotation_rules` block of `aws_secretsmanager_secret_rotation`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression {
+  const SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `automatically_after_days` (one of the [SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression] choices).
+final class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOption
+    extends
+        SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression {
+  const SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOption({
+    required this.automaticallyAfterDays,
+  });
+
+  final TfArg<num> automaticallyAfterDays;
+
+  @override
+  String get blockKey => 'automatically_after_days';
+
+  @override
+  Map<String, Object?> encode() => {
+    'automatically_after_days': automaticallyAfterDays.toTfJson(),
+  };
+}
+
+/// Sets `schedule_expression` (one of the [SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression] choices).
+final class SecretsmanagerSecretRotationRotationRulesScheduleExpressionOption
+    extends
+        SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression {
+  const SecretsmanagerSecretRotationRotationRulesScheduleExpressionOption({
+    required this.scheduleExpression,
+  });
+
+  final TfArg<String> scheduleExpression;
+
+  @override
+  String get blockKey => 'schedule_expression';
+
+  @override
+  Map<String, Object?> encode() => {
+    'schedule_expression': scheduleExpression.toTfJson(),
   };
 }
 

@@ -8,3 +8,5 @@ properties:
       - "Windows"
       - "Linux"
       - "macOS"
+exactly_one_of_groups:
+  - ["data", "uri"]

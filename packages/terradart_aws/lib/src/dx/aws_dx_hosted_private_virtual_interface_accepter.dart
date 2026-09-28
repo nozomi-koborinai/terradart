@@ -7,6 +7,59 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _awsDxHostedPrivateVirtualInterfaceAccepterSensitive =
     <String>{};
 
+/// Exactly one of `dx_gateway_id`, `vpn_gateway_id` on `aws_dx_hosted_private_virtual_interface_accepter`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId {
+  const DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `dx_gateway_id` (one of the [DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId] choices).
+final class DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOption
+    extends DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId {
+  const DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOption({
+    required this.dxGatewayId,
+  });
+
+  final TfArg<String> dxGatewayId;
+
+  @override
+  String get blockKey => 'dx_gateway_id';
+
+  @override
+  Map<String, Object?> encode() => {'dx_gateway_id': dxGatewayId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'dx_gateway_id': dxGatewayId};
+}
+
+/// Sets `vpn_gateway_id` (one of the [DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId] choices).
+final class DxHostedPrivateVirtualInterfaceAccepterVpnGatewayIdOption
+    extends DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId {
+  const DxHostedPrivateVirtualInterfaceAccepterVpnGatewayIdOption({
+    required this.vpnGatewayId,
+  });
+
+  final TfArg<String> vpnGatewayId;
+
+  @override
+  String get blockKey => 'vpn_gateway_id';
+
+  @override
+  Map<String, Object?> encode() => {'vpn_gateway_id': vpnGatewayId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'vpn_gateway_id': vpnGatewayId};
+}
+
 /// Factory wrapper for `aws_dx_hosted_private_virtual_interface_accepter`.
 final class AwsDxHostedPrivateVirtualInterfaceAccepter extends Resource {
   static const String tfType =
@@ -14,13 +67,13 @@ final class AwsDxHostedPrivateVirtualInterfaceAccepter extends Resource {
 
   AwsDxHostedPrivateVirtualInterfaceAccepter({
     required super.localName,
-    TfArg<String>? dxGatewayId,
+    required DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId
+    dxGatewayIdOrVpnGatewayId,
     TfArg<num>? prefixPoolAllocatedCountIpv4,
     TfArg<num>? prefixPoolAllocatedCountIpv6,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> virtualInterfaceId,
-    TfArg<String>? vpnGatewayId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,7 +81,7 @@ final class AwsDxHostedPrivateVirtualInterfaceAccepter extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dxGatewayId != null) 'dx_gateway_id': dxGatewayId,
+           ...dxGatewayIdOrVpnGatewayId.argMap,
            if (prefixPoolAllocatedCountIpv4 != null)
              'prefix_pool_allocated_count_ipv4': prefixPoolAllocatedCountIpv4,
            if (prefixPoolAllocatedCountIpv6 != null)
@@ -36,7 +89,6 @@ final class AwsDxHostedPrivateVirtualInterfaceAccepter extends Resource {
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            'virtual_interface_id': virtualInterfaceId,
-           if (vpnGatewayId != null) 'vpn_gateway_id': vpnGatewayId,
          },
        );
 

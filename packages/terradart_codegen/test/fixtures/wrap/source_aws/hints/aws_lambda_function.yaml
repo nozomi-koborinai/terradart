@@ -103,3 +103,5 @@ properties:
         enum_values:
           - "Active"
           - "PassThrough"
+exactly_one_of_groups:
+  - ["filename", "image_uri", "s3_bucket"]

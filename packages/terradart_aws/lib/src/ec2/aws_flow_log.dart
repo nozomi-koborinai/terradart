@@ -29,6 +29,143 @@ enum FlowLogTrafficType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `eni_id`, `regional_nat_gateway_id`, `subnet_id`, `transit_gateway_attachment_id`, `transit_gateway_id`, `vpc_id` on `aws_flow_log`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
+  const FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `eni_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
+final class FlowLogEniIdOption
+    extends
+        FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
+  const FlowLogEniIdOption({required this.eniId});
+
+  final TfArg<String> eniId;
+
+  @override
+  String get blockKey => 'eni_id';
+
+  @override
+  Map<String, Object?> encode() => {'eni_id': eniId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'eni_id': eniId};
+}
+
+/// Sets `regional_nat_gateway_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
+final class FlowLogRegionalNatGatewayIdOption
+    extends
+        FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
+  const FlowLogRegionalNatGatewayIdOption({required this.regionalNatGatewayId});
+
+  final TfArg<String> regionalNatGatewayId;
+
+  @override
+  String get blockKey => 'regional_nat_gateway_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'regional_nat_gateway_id': regionalNatGatewayId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'regional_nat_gateway_id': regionalNatGatewayId,
+  };
+}
+
+/// Sets `subnet_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
+final class FlowLogSubnetIdOption
+    extends
+        FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
+  const FlowLogSubnetIdOption({required this.subnetId});
+
+  final TfArg<String> subnetId;
+
+  @override
+  String get blockKey => 'subnet_id';
+
+  @override
+  Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'subnet_id': subnetId};
+}
+
+/// Sets `transit_gateway_attachment_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
+final class FlowLogTransitGatewayAttachmentIdOption
+    extends
+        FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
+  const FlowLogTransitGatewayAttachmentIdOption({
+    required this.transitGatewayAttachmentId,
+  });
+
+  final TfArg<String> transitGatewayAttachmentId;
+
+  @override
+  String get blockKey => 'transit_gateway_attachment_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'transit_gateway_attachment_id': transitGatewayAttachmentId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'transit_gateway_attachment_id': transitGatewayAttachmentId,
+  };
+}
+
+/// Sets `transit_gateway_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
+final class FlowLogTransitGatewayIdOption
+    extends
+        FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
+  const FlowLogTransitGatewayIdOption({required this.transitGatewayId});
+
+  final TfArg<String> transitGatewayId;
+
+  @override
+  String get blockKey => 'transit_gateway_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'transit_gateway_id': transitGatewayId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'transit_gateway_id': transitGatewayId,
+  };
+}
+
+/// Sets `vpc_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
+final class FlowLogVpcIdOption
+    extends
+        FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
+  const FlowLogVpcIdOption({required this.vpcId});
+
+  final TfArg<String> vpcId;
+
+  @override
+  String get blockKey => 'vpc_id';
+
+  @override
+  Map<String, Object?> encode() => {'vpc_id': vpcId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId};
+}
+
 /// Typed helper for the `destination_options` block of
 /// `aws_flow_log` (derived from provider schema).
 @immutable
@@ -101,20 +238,16 @@ final class AwsFlowLog extends Resource {
   AwsFlowLog({
     required super.localName,
     TfArg<String>? deliverCrossAccountRole,
-    TfArg<String>? eniId,
+    required FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId
+    eniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId,
     TfArg<String>? iamRoleArn,
     TfArg<String>? logDestination,
     TfArg<FlowLogLogDestinationType>? logDestinationType,
     TfArg<String>? logFormat,
     TfArg<num>? maxAggregationInterval,
     TfArg<String>? region,
-    TfArg<String>? regionalNatGatewayId,
-    TfArg<String>? subnetId,
     TfArg<Map<String, String>>? tags,
     TfArg<FlowLogTrafficType>? trafficType,
-    TfArg<String>? transitGatewayAttachmentId,
-    TfArg<String>? transitGatewayId,
-    TfArg<String>? vpcId,
     FlowLogDestinationOptions? destinationOptions,
     List<FlowLogTagFieldSpecification>? tagFieldSpecification,
     super.lifecycle,
@@ -126,7 +259,8 @@ final class AwsFlowLog extends Resource {
          argMap: {
            if (deliverCrossAccountRole != null)
              'deliver_cross_account_role': deliverCrossAccountRole,
-           if (eniId != null) 'eni_id': eniId,
+           ...eniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId
+               .argMap,
            if (iamRoleArn != null) 'iam_role_arn': iamRoleArn,
            if (logDestination != null) 'log_destination': logDestination,
            if (logDestinationType != null)
@@ -135,15 +269,8 @@ final class AwsFlowLog extends Resource {
            if (maxAggregationInterval != null)
              'max_aggregation_interval': maxAggregationInterval,
            if (region != null) 'region': region,
-           if (regionalNatGatewayId != null)
-             'regional_nat_gateway_id': regionalNatGatewayId,
-           if (subnetId != null) 'subnet_id': subnetId,
            if (tags != null) 'tags': tags,
            if (trafficType != null) 'traffic_type': trafficType,
-           if (transitGatewayAttachmentId != null)
-             'transit_gateway_attachment_id': transitGatewayAttachmentId,
-           if (transitGatewayId != null) 'transit_gateway_id': transitGatewayId,
-           if (vpcId != null) 'vpc_id': vpcId,
            if (destinationOptions != null)
              'destination_options': TfArg.literal(destinationOptions.encode()),
            if (tagFieldSpecification != null)

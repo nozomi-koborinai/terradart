@@ -6,3 +6,5 @@ properties:
   - api_name: engine
     enum_values:
       - "neptune"
+exactly_one_of_groups:
+  - ["engine", "source_db_cluster_identifier"]

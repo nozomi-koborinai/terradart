@@ -87,32 +87,121 @@ enum RdsClusterNetworkType implements TerraformEnum {
 @immutable
 final class RdsClusterRestoreToPointInTime {
   const RdsClusterRestoreToPointInTime({
-    this.restoreToTime,
+    required this.restoreToTimeOrUseLatestRestorableTime,
     this.restoreType,
-    this.sourceClusterIdentifier,
-    this.sourceClusterResourceId,
-    this.useLatestRestorableTime,
+    required this.sourceClusterIdentifierOrSourceClusterResourceId,
   });
 
-  final TfArg<String>? restoreToTime;
+  final RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime
+  restoreToTimeOrUseLatestRestorableTime;
 
   final TfArg<RdsClusterRestoreToPointInTimeRestoreType>? restoreType;
 
-  final TfArg<String>? sourceClusterIdentifier;
-
-  final TfArg<String>? sourceClusterResourceId;
-
-  final TfArg<bool>? useLatestRestorableTime;
+  final RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId
+  sourceClusterIdentifierOrSourceClusterResourceId;
 
   Map<String, Object?> encode() => {
-    if (restoreToTime != null) 'restore_to_time': restoreToTime!.toTfJson(),
+    ...restoreToTimeOrUseLatestRestorableTime.encode(),
     if (restoreType != null) 'restore_type': restoreType!.toTfJson(),
-    if (sourceClusterIdentifier != null)
-      'source_cluster_identifier': sourceClusterIdentifier!.toTfJson(),
-    if (sourceClusterResourceId != null)
-      'source_cluster_resource_id': sourceClusterResourceId!.toTfJson(),
-    if (useLatestRestorableTime != null)
-      'use_latest_restorable_time': useLatestRestorableTime!.toTfJson(),
+    ...sourceClusterIdentifierOrSourceClusterResourceId.encode(),
+  };
+}
+
+/// Exactly one of `restore_to_time`, `use_latest_restorable_time` on the `restore_to_point_in_time` block of `aws_rds_cluster`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
+  const RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `restore_to_time` (one of the [RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime] choices).
+final class RdsClusterRestoreToPointInTimeRestoreToTimeOption
+    extends
+        RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
+  const RdsClusterRestoreToPointInTimeRestoreToTimeOption({
+    required this.restoreToTime,
+  });
+
+  final TfArg<String> restoreToTime;
+
+  @override
+  String get blockKey => 'restore_to_time';
+
+  @override
+  Map<String, Object?> encode() => {
+    'restore_to_time': restoreToTime.toTfJson(),
+  };
+}
+
+/// Sets `use_latest_restorable_time` (one of the [RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime] choices).
+final class RdsClusterRestoreToPointInTimeUseLatestRestorableTimeOption
+    extends
+        RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
+  const RdsClusterRestoreToPointInTimeUseLatestRestorableTimeOption({
+    required this.useLatestRestorableTime,
+  });
+
+  final TfArg<bool> useLatestRestorableTime;
+
+  @override
+  String get blockKey => 'use_latest_restorable_time';
+
+  @override
+  Map<String, Object?> encode() => {
+    'use_latest_restorable_time': useLatestRestorableTime.toTfJson(),
+  };
+}
+
+/// Exactly one of `source_cluster_identifier`, `source_cluster_resource_id` on the `restore_to_point_in_time` block of `aws_rds_cluster`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId {
+  const RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `source_cluster_identifier` (one of the [RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId] choices).
+final class RdsClusterRestoreToPointInTimeSourceClusterIdentifierOption
+    extends
+        RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId {
+  const RdsClusterRestoreToPointInTimeSourceClusterIdentifierOption({
+    required this.sourceClusterIdentifier,
+  });
+
+  final TfArg<String> sourceClusterIdentifier;
+
+  @override
+  String get blockKey => 'source_cluster_identifier';
+
+  @override
+  Map<String, Object?> encode() => {
+    'source_cluster_identifier': sourceClusterIdentifier.toTfJson(),
+  };
+}
+
+/// Sets `source_cluster_resource_id` (one of the [RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId] choices).
+final class RdsClusterRestoreToPointInTimeSourceClusterResourceIdOption
+    extends
+        RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId {
+  const RdsClusterRestoreToPointInTimeSourceClusterResourceIdOption({
+    required this.sourceClusterResourceId,
+  });
+
+  final TfArg<String> sourceClusterResourceId;
+
+  @override
+  String get blockKey => 'source_cluster_resource_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'source_cluster_resource_id': sourceClusterResourceId.toTfJson(),
   };
 }
 

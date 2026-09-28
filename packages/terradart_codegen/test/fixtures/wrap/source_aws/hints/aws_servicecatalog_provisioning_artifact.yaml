@@ -20,3 +20,5 @@ properties:
       - "TERRAFORM_OPEN_SOURCE"
       - "TERRAFORM_CLOUD"
       - "EXTERNAL"
+exactly_one_of_groups:
+  - ["template_physical_id", "template_url"]

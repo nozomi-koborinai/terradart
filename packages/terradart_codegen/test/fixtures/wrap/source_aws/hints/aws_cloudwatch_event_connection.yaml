@@ -17,3 +17,5 @@ properties:
       - "BASIC"
       - "OAUTH_CLIENT_CREDENTIALS"
       - "API_KEY"
+exactly_one_of_groups:
+  - ["auth_parameters.api_key", "auth_parameters.basic", "auth_parameters.oauth"]

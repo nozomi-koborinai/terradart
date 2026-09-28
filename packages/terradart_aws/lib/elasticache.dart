@@ -8,13 +8,16 @@ export 'src/elasticache/aws_elasticache_cluster.dart'
         AwsElasticacheCluster,
         ElasticacheClusterAzMode,
         ElasticacheClusterEngine,
+        ElasticacheClusterEngineOption,
+        ElasticacheClusterEngineOrReplicationGroupId,
         ElasticacheClusterIpDiscovery,
         ElasticacheClusterLogDeliveryConfiguration,
         ElasticacheClusterLogDeliveryConfigurationDestinationType,
         ElasticacheClusterLogDeliveryConfigurationLogFormat,
         ElasticacheClusterLogDeliveryConfigurationLogType,
         ElasticacheClusterNetworkType,
-        ElasticacheClusterOutpostMode;
+        ElasticacheClusterOutpostMode,
+        ElasticacheClusterReplicationGroupIdOption;
 export 'src/elasticache/aws_elasticache_global_replication_group.dart'
     show
         AwsElasticacheGlobalReplicationGroup,

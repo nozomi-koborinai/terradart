@@ -7,6 +7,65 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_imagebuilder_image`.
 const Set<String> _awsImagebuilderImageSensitive = <String>{};
 
+/// Exactly one of `container_recipe_arn`, `image_recipe_arn` on `aws_imagebuilder_image`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ImagebuilderImageContainerRecipeArnOrImageRecipeArn {
+  const ImagebuilderImageContainerRecipeArnOrImageRecipeArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `container_recipe_arn` (one of the [ImagebuilderImageContainerRecipeArnOrImageRecipeArn] choices).
+final class ImagebuilderImageContainerRecipeArnOption
+    extends ImagebuilderImageContainerRecipeArnOrImageRecipeArn {
+  const ImagebuilderImageContainerRecipeArnOption({
+    required this.containerRecipeArn,
+  });
+
+  final TfArg<String> containerRecipeArn;
+
+  @override
+  String get blockKey => 'container_recipe_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'container_recipe_arn': containerRecipeArn.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'container_recipe_arn': containerRecipeArn,
+  };
+}
+
+/// Sets `image_recipe_arn` (one of the [ImagebuilderImageContainerRecipeArnOrImageRecipeArn] choices).
+final class ImagebuilderImageImageRecipeArnOption
+    extends ImagebuilderImageContainerRecipeArnOrImageRecipeArn {
+  const ImagebuilderImageImageRecipeArnOption({required this.imageRecipeArn});
+
+  final TfArg<String> imageRecipeArn;
+
+  @override
+  String get blockKey => 'image_recipe_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'image_recipe_arn': imageRecipeArn.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'image_recipe_arn': imageRecipeArn,
+  };
+}
+
 /// Typed helper for the `image_scanning_configuration` block of
 /// `aws_imagebuilder_image` (derived from provider schema).
 @immutable
@@ -142,11 +201,11 @@ final class AwsImagebuilderImage extends Resource {
 
   AwsImagebuilderImage({
     required super.localName,
-    TfArg<String>? containerRecipeArn,
+    required ImagebuilderImageContainerRecipeArnOrImageRecipeArn
+    containerRecipeArnOrImageRecipeArn,
     TfArg<String>? distributionConfigurationArn,
     TfArg<bool>? enhancedImageMetadataEnabled,
     TfArg<String>? executionRole,
-    TfArg<String>? imageRecipeArn,
     required TfArg<String> infrastructureConfigurationArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -161,14 +220,12 @@ final class AwsImagebuilderImage extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (containerRecipeArn != null)
-             'container_recipe_arn': containerRecipeArn,
+           ...containerRecipeArnOrImageRecipeArn.argMap,
            if (distributionConfigurationArn != null)
              'distribution_configuration_arn': distributionConfigurationArn,
            if (enhancedImageMetadataEnabled != null)
              'enhanced_image_metadata_enabled': enhancedImageMetadataEnabled,
            if (executionRole != null) 'execution_role': executionRole,
-           if (imageRecipeArn != null) 'image_recipe_arn': imageRecipeArn,
            'infrastructure_configuration_arn': infrastructureConfigurationArn,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

@@ -39,7 +39,10 @@ export 'src/cloudwatch/aws_cloudwatch_event_connection.dart'
         AwsCloudwatchEventConnection,
         CloudwatchEventConnectionAuthParameters,
         CloudwatchEventConnectionAuthParametersApiKey,
+        CloudwatchEventConnectionAuthParametersApiKeyOption,
+        CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth,
         CloudwatchEventConnectionAuthParametersBasic,
+        CloudwatchEventConnectionAuthParametersBasicOption,
         CloudwatchEventConnectionAuthParametersConnectivityParameters,
         CloudwatchEventConnectionAuthParametersConnectivityParametersResourceParameters,
         CloudwatchEventConnectionAuthParametersInvocationHttpParameters,
@@ -53,6 +56,7 @@ export 'src/cloudwatch/aws_cloudwatch_event_connection.dart'
         CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersBody,
         CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersHeader,
         CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersQueryString,
+        CloudwatchEventConnectionAuthParametersOauthOption,
         CloudwatchEventConnectionAuthorizationType,
         CloudwatchEventConnectionInvocationConnectivityParameters,
         CloudwatchEventConnectionInvocationConnectivityParametersResourceParameters;
@@ -135,7 +139,11 @@ export 'src/cloudwatch/aws_cloudwatch_log_metric_filter.dart'
         CloudwatchLogMetricFilterMetricTransformation,
         CloudwatchLogMetricFilterMetricTransformationUnit;
 export 'src/cloudwatch/aws_cloudwatch_log_resource_policy.dart'
-    show AwsCloudwatchLogResourcePolicy;
+    show
+        AwsCloudwatchLogResourcePolicy,
+        CloudwatchLogResourcePolicyPolicyNameOption,
+        CloudwatchLogResourcePolicyPolicyNameOrResourceArn,
+        CloudwatchLogResourcePolicyResourceArnOption;
 export 'src/cloudwatch/aws_cloudwatch_log_s3_table_integration_source.dart'
     show
         AwsCloudwatchLogS3TableIntegrationSource,
@@ -195,11 +203,15 @@ export 'src/cloudwatch/aws_cloudwatch_metric_alarm.dart'
         CloudwatchMetricAlarmComparisonOperator,
         CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles,
         CloudwatchMetricAlarmEvaluationCriteria,
+        CloudwatchMetricAlarmEvaluationCriteriaOption,
+        CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery,
         CloudwatchMetricAlarmEvaluationCriteriaPromqlCriteria,
+        CloudwatchMetricAlarmMetricNameOption,
         CloudwatchMetricAlarmMetricQuery,
         CloudwatchMetricAlarmMetricQueryMetric,
         CloudwatchMetricAlarmMetricQueryMetricStat,
         CloudwatchMetricAlarmMetricQueryMetricUnit,
+        CloudwatchMetricAlarmMetricQueryOption,
         CloudwatchMetricAlarmStatistic,
         CloudwatchMetricAlarmTreatMissingData,
         CloudwatchMetricAlarmUnit,

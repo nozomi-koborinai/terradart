@@ -32,13 +32,22 @@ export 'src/cognito/aws_cognito_managed_login_branding.dart'
         CognitoManagedLoginBrandingAsset,
         CognitoManagedLoginBrandingAssetCategory,
         CognitoManagedLoginBrandingAssetColorMode,
-        CognitoManagedLoginBrandingAssetExtension;
+        CognitoManagedLoginBrandingAssetExtension,
+        CognitoManagedLoginBrandingSettingsOption,
+        CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues,
+        CognitoManagedLoginBrandingUseCognitoProvidedValuesOption;
 export 'src/cognito/aws_cognito_managed_user_pool_client.dart'
     show
         AwsCognitoManagedUserPoolClient,
         CognitoManagedUserPoolClientAllowedOauthFlows,
         CognitoManagedUserPoolClientAnalyticsConfiguration,
+        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOption,
+        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId,
+        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationIdOption,
         CognitoManagedUserPoolClientExplicitAuthFlows,
+        CognitoManagedUserPoolClientNamePatternOption,
+        CognitoManagedUserPoolClientNamePatternOrNamePrefix,
+        CognitoManagedUserPoolClientNamePrefixOption,
         CognitoManagedUserPoolClientPreventUserExistenceErrors,
         CognitoManagedUserPoolClientRefreshTokenRotation,
         CognitoManagedUserPoolClientRefreshTokenRotationFeature,
@@ -122,6 +131,9 @@ export 'src/cognito/aws_cognito_user_pool_client.dart'
         AwsCognitoUserPoolClient,
         CognitoUserPoolClientAllowedOauthFlows,
         CognitoUserPoolClientAnalyticsConfiguration,
+        CognitoUserPoolClientAnalyticsConfigurationApplicationArnOption,
+        CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId,
+        CognitoUserPoolClientAnalyticsConfigurationApplicationIdOption,
         CognitoUserPoolClientExplicitAuthFlows,
         CognitoUserPoolClientPreventUserExistenceErrors,
         CognitoUserPoolClientRefreshTokenRotation,

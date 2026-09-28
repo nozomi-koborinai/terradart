@@ -44,3 +44,5 @@ properties:
               - "JSON"
               - "JSON_SCHEMA_GSR"
               - "STRING"
+exactly_one_of_groups:
+  - ["iceberg_destination", "s3_destination"]

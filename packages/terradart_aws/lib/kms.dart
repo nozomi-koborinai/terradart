@@ -4,7 +4,12 @@
 library;
 
 export 'src/kms/aws_kms_alias.dart' show AwsKmsAlias;
-export 'src/kms/aws_kms_ciphertext.dart' show AwsKmsCiphertext;
+export 'src/kms/aws_kms_ciphertext.dart'
+    show
+        AwsKmsCiphertext,
+        KmsCiphertextPlaintextOption,
+        KmsCiphertextPlaintextOrPlaintextWo,
+        KmsCiphertextPlaintextWoOption;
 export 'src/kms/aws_kms_custom_key_store.dart'
     show
         AwsKmsCustomKeyStore,

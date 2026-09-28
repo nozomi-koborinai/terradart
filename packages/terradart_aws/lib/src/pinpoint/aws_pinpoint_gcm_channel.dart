@@ -19,19 +19,67 @@ enum PinpointGcmChannelDefaultAuthenticationMethod implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `api_key`, `service_json` on `aws_pinpoint_gcm_channel`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class PinpointGcmChannelApiKeyOrServiceJson {
+  const PinpointGcmChannelApiKeyOrServiceJson();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `api_key` (one of the [PinpointGcmChannelApiKeyOrServiceJson] choices).
+final class PinpointGcmChannelApiKeyOption
+    extends PinpointGcmChannelApiKeyOrServiceJson {
+  const PinpointGcmChannelApiKeyOption({required this.apiKey});
+
+  final TfArg<String> apiKey;
+
+  @override
+  String get blockKey => 'api_key';
+
+  @override
+  Map<String, Object?> encode() => {'api_key': apiKey.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'api_key': apiKey};
+}
+
+/// Sets `service_json` (one of the [PinpointGcmChannelApiKeyOrServiceJson] choices).
+final class PinpointGcmChannelServiceJsonOption
+    extends PinpointGcmChannelApiKeyOrServiceJson {
+  const PinpointGcmChannelServiceJsonOption({required this.serviceJson});
+
+  final TfArg<String> serviceJson;
+
+  @override
+  String get blockKey => 'service_json';
+
+  @override
+  Map<String, Object?> encode() => {'service_json': serviceJson.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'service_json': serviceJson};
+}
+
 /// Factory wrapper for `aws_pinpoint_gcm_channel`.
 final class AwsPinpointGcmChannel extends Resource {
   static const String tfType = 'aws_pinpoint_gcm_channel';
 
   AwsPinpointGcmChannel({
     required super.localName,
-    TfArg<String>? apiKey,
+    required PinpointGcmChannelApiKeyOrServiceJson apiKeyOrServiceJson,
     required TfArg<String> applicationId,
     TfArg<PinpointGcmChannelDefaultAuthenticationMethod>?
     defaultAuthenticationMethod,
     TfArg<bool>? enabled,
     TfArg<String>? region,
-    TfArg<String>? serviceJson,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -39,13 +87,12 @@ final class AwsPinpointGcmChannel extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (apiKey != null) 'api_key': apiKey,
+           ...apiKeyOrServiceJson.argMap,
            'application_id': applicationId,
            if (defaultAuthenticationMethod != null)
              'default_authentication_method': defaultAuthenticationMethod,
            if (enabled != null) 'enabled': enabled,
            if (region != null) 'region': region,
-           if (serviceJson != null) 'service_json': serviceJson,
          },
        );
 

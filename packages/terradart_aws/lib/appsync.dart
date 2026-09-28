@@ -109,6 +109,13 @@ export 'src/appsync/aws_appsync_resolver.dart'
         AppsyncResolverSyncConfigLambdaConflictHandlerConfig,
         AwsAppsyncResolver;
 export 'src/appsync/aws_appsync_source_api_association.dart'
-    show AwsAppsyncSourceApiAssociation;
+    show
+        AppsyncSourceApiAssociationMergedApiArnOption,
+        AppsyncSourceApiAssociationMergedApiArnOrMergedApiId,
+        AppsyncSourceApiAssociationMergedApiIdOption,
+        AppsyncSourceApiAssociationSourceApiArnOption,
+        AppsyncSourceApiAssociationSourceApiArnOrSourceApiId,
+        AppsyncSourceApiAssociationSourceApiIdOption,
+        AwsAppsyncSourceApiAssociation;
 export 'src/appsync/aws_appsync_type.dart'
     show AppsyncTypeFormat, AwsAppsyncType;

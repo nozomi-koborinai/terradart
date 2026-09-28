@@ -21,3 +21,5 @@ properties:
               - "WRITE_ACP"
               - "READ"
               - "READ_ACP"
+exactly_one_of_groups:
+  - ["access_control_policy", "acl"]

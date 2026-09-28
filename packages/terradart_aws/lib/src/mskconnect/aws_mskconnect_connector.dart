@@ -12,18 +12,59 @@ const Set<String> _awsMskconnectConnectorSensitive = <String>{};
 @immutable
 final class MskconnectConnectorCapacity {
   const MskconnectConnectorCapacity({
-    this.autoscaling,
-    this.provisionedCapacity,
+    required this.autoscalingOrProvisionedCapacity,
   });
 
-  final MskconnectConnectorCapacityAutoscaling? autoscaling;
-
-  final MskconnectConnectorCapacityProvisionedCapacity? provisionedCapacity;
+  final MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity
+  autoscalingOrProvisionedCapacity;
 
   Map<String, Object?> encode() => {
-    if (autoscaling != null) 'autoscaling': autoscaling!.encode(),
-    if (provisionedCapacity != null)
-      'provisioned_capacity': provisionedCapacity!.encode(),
+    ...autoscalingOrProvisionedCapacity.encode(),
+  };
+}
+
+/// Exactly one of `autoscaling`, `provisioned_capacity` on the `capacity` block of `aws_mskconnect_connector`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
+  const MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `autoscaling` (one of the [MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity] choices).
+final class MskconnectConnectorCapacityAutoscalingOption
+    extends MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
+  const MskconnectConnectorCapacityAutoscalingOption({
+    required this.autoscaling,
+  });
+
+  final MskconnectConnectorCapacityAutoscaling autoscaling;
+
+  @override
+  String get blockKey => 'autoscaling';
+
+  @override
+  Map<String, Object?> encode() => {'autoscaling': autoscaling.encode()};
+}
+
+/// Sets `provisioned_capacity` (one of the [MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity] choices).
+final class MskconnectConnectorCapacityProvisionedCapacityOption
+    extends MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
+  const MskconnectConnectorCapacityProvisionedCapacityOption({
+    required this.provisionedCapacity,
+  });
+
+  final MskconnectConnectorCapacityProvisionedCapacity provisionedCapacity;
+
+  @override
+  String get blockKey => 'provisioned_capacity';
+
+  @override
+  Map<String, Object?> encode() => {
+    'provisioned_capacity': provisionedCapacity.encode(),
   };
 }
 

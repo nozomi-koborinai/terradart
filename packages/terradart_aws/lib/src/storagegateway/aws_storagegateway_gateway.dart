@@ -56,6 +56,61 @@ enum StoragegatewayGatewayTapeDriveType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `activation_key`, `gateway_ip_address` on `aws_storagegateway_gateway`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
+  const StoragegatewayGatewayActivationKeyOrGatewayIpAddress();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `activation_key` (one of the [StoragegatewayGatewayActivationKeyOrGatewayIpAddress] choices).
+final class StoragegatewayGatewayActivationKeyOption
+    extends StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
+  const StoragegatewayGatewayActivationKeyOption({required this.activationKey});
+
+  final TfArg<String> activationKey;
+
+  @override
+  String get blockKey => 'activation_key';
+
+  @override
+  Map<String, Object?> encode() => {'activation_key': activationKey.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'activation_key': activationKey};
+}
+
+/// Sets `gateway_ip_address` (one of the [StoragegatewayGatewayActivationKeyOrGatewayIpAddress] choices).
+final class StoragegatewayGatewayGatewayIpAddressOption
+    extends StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
+  const StoragegatewayGatewayGatewayIpAddressOption({
+    required this.gatewayIpAddress,
+  });
+
+  final TfArg<String> gatewayIpAddress;
+
+  @override
+  String get blockKey => 'gateway_ip_address';
+
+  @override
+  Map<String, Object?> encode() => {
+    'gateway_ip_address': gatewayIpAddress.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'gateway_ip_address': gatewayIpAddress,
+  };
+}
+
 /// Typed helper for the `maintenance_start_time` block of
 /// `aws_storagegateway_gateway` (derived from provider schema).
 @immutable
@@ -127,11 +182,11 @@ final class AwsStoragegatewayGateway extends Resource {
 
   AwsStoragegatewayGateway({
     required super.localName,
-    TfArg<String>? activationKey,
+    required StoragegatewayGatewayActivationKeyOrGatewayIpAddress
+    activationKeyOrGatewayIpAddress,
     TfArg<num>? averageDownloadRateLimitInBitsPerSec,
     TfArg<num>? averageUploadRateLimitInBitsPerSec,
     TfArg<String>? cloudwatchLogGroupArn,
-    TfArg<String>? gatewayIpAddress,
     required TfArg<String> gatewayName,
     required TfArg<String> gatewayTimezone,
     TfArg<StoragegatewayGatewayGatewayType>? gatewayType,
@@ -152,7 +207,7 @@ final class AwsStoragegatewayGateway extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (activationKey != null) 'activation_key': activationKey,
+           ...activationKeyOrGatewayIpAddress.argMap,
            if (averageDownloadRateLimitInBitsPerSec != null)
              'average_download_rate_limit_in_bits_per_sec':
                  averageDownloadRateLimitInBitsPerSec,
@@ -161,7 +216,6 @@ final class AwsStoragegatewayGateway extends Resource {
                  averageUploadRateLimitInBitsPerSec,
            if (cloudwatchLogGroupArn != null)
              'cloudwatch_log_group_arn': cloudwatchLogGroupArn,
-           if (gatewayIpAddress != null) 'gateway_ip_address': gatewayIpAddress,
            'gateway_name': gatewayName,
            'gateway_timezone': gatewayTimezone,
            if (gatewayType != null) 'gateway_type': gatewayType,

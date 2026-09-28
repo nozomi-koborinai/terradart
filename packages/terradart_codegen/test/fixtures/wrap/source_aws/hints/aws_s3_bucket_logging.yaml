@@ -25,3 +25,5 @@ properties:
             enum_values:
               - "EventTime"
               - "DeliveryTime"
+exactly_one_of_groups:
+  - ["target_object_key_format.partitioned_prefix", "target_object_key_format.simple_prefix"]

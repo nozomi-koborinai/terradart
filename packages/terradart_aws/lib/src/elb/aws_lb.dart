@@ -85,6 +85,59 @@ enum LbXffHeaderProcessingMode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `subnet_mapping`, `subnets` on `aws_lb`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class LbSubnetMappingOrSubnets {
+  const LbSubnetMappingOrSubnets();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `subnet_mapping` (one of the [LbSubnetMappingOrSubnets] choices).
+final class LbSubnetMappingOption extends LbSubnetMappingOrSubnets {
+  const LbSubnetMappingOption({required this.subnetMapping});
+
+  final List<LbSubnetMapping> subnetMapping;
+
+  @override
+  String get blockKey => 'subnet_mapping';
+
+  @override
+  Map<String, Object?> encode() => {
+    'subnet_mapping': [for (final e in subnetMapping) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'subnet_mapping': TfArg.literal([
+      for (final e in subnetMapping) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `subnets` (one of the [LbSubnetMappingOrSubnets] choices).
+final class LbSubnetsOption extends LbSubnetMappingOrSubnets {
+  const LbSubnetsOption({required this.subnets});
+
+  final TfArg<List<String>> subnets;
+
+  @override
+  String get blockKey => 'subnets';
+
+  @override
+  Map<String, Object?> encode() => {'subnets': subnets.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'subnets': subnets};
+}
+
 /// Typed helper for the `access_logs` block of
 /// `aws_lb` (derived from provider schema).
 @immutable
@@ -225,7 +278,7 @@ final class AwsLb extends Resource {
     TfArg<String>? region,
     TfArg<num>? secondaryIpsAutoAssignedPerSubnet,
     TfArg<List<String>>? securityGroups,
-    TfArg<List<String>>? subnets,
+    required LbSubnetMappingOrSubnets subnetMappingOrSubnets,
     TfArg<Map<String, String>>? tags,
     TfArg<LbXffHeaderProcessingMode>? xffHeaderProcessingMode,
     LbAccessLogs? accessLogs,
@@ -233,7 +286,6 @@ final class AwsLb extends Resource {
     LbHealthCheckLogs? healthCheckLogs,
     LbIpamPools? ipamPools,
     LbMinimumLoadBalancerCapacity? minimumLoadBalancerCapacity,
-    List<LbSubnetMapping>? subnetMapping,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -281,7 +333,7 @@ final class AwsLb extends Resource {
              'secondary_ips_auto_assigned_per_subnet':
                  secondaryIpsAutoAssignedPerSubnet,
            if (securityGroups != null) 'security_groups': securityGroups,
-           if (subnets != null) 'subnets': subnets,
+           ...subnetMappingOrSubnets.argMap,
            if (tags != null) 'tags': tags,
            if (xffHeaderProcessingMode != null)
              'xff_header_processing_mode': xffHeaderProcessingMode,
@@ -297,10 +349,6 @@ final class AwsLb extends Resource {
              'minimum_load_balancer_capacity': TfArg.literal(
                minimumLoadBalancerCapacity.encode(),
              ),
-           if (subnetMapping != null)
-             'subnet_mapping': TfArg.literal([
-               for (final e in subnetMapping) e.encode(),
-             ]),
          },
        );
 

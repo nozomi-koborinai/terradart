@@ -12,7 +12,10 @@ export 'src/prometheus/aws_prometheus_anomaly_detector.dart'
         PrometheusAnomalyDetectorConfigurationRandomCutForest,
         PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAbove,
         PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelow,
-        PrometheusAnomalyDetectorMissingDataAction;
+        PrometheusAnomalyDetectorMissingDataAction,
+        PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOption,
+        PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip,
+        PrometheusAnomalyDetectorMissingDataActionSkipOption;
 export 'src/prometheus/aws_prometheus_query_logging_configuration.dart'
     show
         AwsPrometheusQueryLoggingConfiguration,

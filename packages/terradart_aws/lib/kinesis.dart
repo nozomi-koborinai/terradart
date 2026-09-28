@@ -23,7 +23,10 @@ export 'src/kinesis/aws_kinesis_analytics_application.dart'
         KinesisAnalyticsApplicationInputsSchemaRecordFormat,
         KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters,
         KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsv,
+        KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOption,
+        KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson,
         KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJson,
+        KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJsonOption,
         KinesisAnalyticsApplicationInputsStartingPositionConfiguration,
         KinesisAnalyticsApplicationInputsStartingPositionConfigurationStartingPosition,
         KinesisAnalyticsApplicationOutputs,
@@ -39,7 +42,10 @@ export 'src/kinesis/aws_kinesis_analytics_application.dart'
         KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormat,
         KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters,
         KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsv,
-        KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJson;
+        KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOption,
+        KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson,
+        KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJson,
+        KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJsonOption;
 export 'src/kinesis/aws_kinesis_firehose_delivery_stream.dart'
     show
         AwsKinesisFirehoseDeliveryStream,

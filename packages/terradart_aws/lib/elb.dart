@@ -17,6 +17,9 @@ export 'src/elb/aws_alb.dart'
         AlbLoadBalancerType,
         AlbMinimumLoadBalancerCapacity,
         AlbSubnetMapping,
+        AlbSubnetMappingOption,
+        AlbSubnetMappingOrSubnets,
+        AlbSubnetsOption,
         AlbXffHeaderProcessingMode,
         AwsAlb;
 export 'src/elb/aws_alb_listener.dart'
@@ -127,6 +130,9 @@ export 'src/elb/aws_lb.dart'
         LbLoadBalancerType,
         LbMinimumLoadBalancerCapacity,
         LbSubnetMapping,
+        LbSubnetMappingOption,
+        LbSubnetMappingOrSubnets,
+        LbSubnetsOption,
         LbXffHeaderProcessingMode;
 export 'src/elb/aws_lb_cookie_stickiness_policy.dart'
     show AwsLbCookieStickinessPolicy;

@@ -41,4 +41,9 @@ abstract class ProviderRules {
   /// on resources, for a lane whose `wrap --provider-enums` supplies the
   /// enum value sets.
   bool get derivedEnumDefaults => false;
+
+  /// When true, `wrap-init` and the lane scaffold fill
+  /// `deriveExactlyOne: true` on resources, for a lane whose hints carry
+  /// `exactly_one_of_groups`.
+  bool get exactlyOneDefaults => false;
 }

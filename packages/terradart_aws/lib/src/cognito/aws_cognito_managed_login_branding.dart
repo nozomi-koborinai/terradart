@@ -7,6 +7,61 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cognito_managed_login_branding`.
 const Set<String> _awsCognitoManagedLoginBrandingSensitive = <String>{};
 
+/// Exactly one of `settings`, `use_cognito_provided_values` on `aws_cognito_managed_login_branding`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
+  const CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `settings` (one of the [CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues] choices).
+final class CognitoManagedLoginBrandingSettingsOption
+    extends CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
+  const CognitoManagedLoginBrandingSettingsOption({required this.settings});
+
+  final TfArg<String> settings;
+
+  @override
+  String get blockKey => 'settings';
+
+  @override
+  Map<String, Object?> encode() => {'settings': settings.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'settings': settings};
+}
+
+/// Sets `use_cognito_provided_values` (one of the [CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues] choices).
+final class CognitoManagedLoginBrandingUseCognitoProvidedValuesOption
+    extends CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
+  const CognitoManagedLoginBrandingUseCognitoProvidedValuesOption({
+    required this.useCognitoProvidedValues,
+  });
+
+  final TfArg<bool> useCognitoProvidedValues;
+
+  @override
+  String get blockKey => 'use_cognito_provided_values';
+
+  @override
+  Map<String, Object?> encode() => {
+    'use_cognito_provided_values': useCognitoProvidedValues.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'use_cognito_provided_values': useCognitoProvidedValues,
+  };
+}
+
 /// Typed helper for the `asset` block of
 /// `aws_cognito_managed_login_branding` (derived from provider schema).
 @immutable
@@ -93,8 +148,8 @@ final class AwsCognitoManagedLoginBranding extends Resource {
     required super.localName,
     required TfArg<String> clientId,
     TfArg<String>? region,
-    TfArg<String>? settings,
-    TfArg<bool>? useCognitoProvidedValues,
+    required CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues
+    settingsOrUseCognitoProvidedValues,
     required TfArg<String> userPoolId,
     List<CognitoManagedLoginBrandingAsset>? asset,
     super.lifecycle,
@@ -106,9 +161,7 @@ final class AwsCognitoManagedLoginBranding extends Resource {
          argMap: {
            'client_id': clientId,
            if (region != null) 'region': region,
-           if (settings != null) 'settings': settings,
-           if (useCognitoProvidedValues != null)
-             'use_cognito_provided_values': useCognitoProvidedValues,
+           ...settingsOrUseCognitoProvidedValues.argMap,
            'user_pool_id': userPoolId,
            if (asset != null)
              'asset': TfArg.literal([for (final e in asset) e.encode()]),

@@ -115,6 +115,10 @@ class WrapperEmitter {
                 (override?.nestedTypeExcludes ?? const <String>[]).toSet(),
             shareIdenticalShapes: override?.dedupeNestedTypes ?? false,
             enumValues: providerEnums.resolver(def.terraformType),
+            exactlyOneGroups: providerEnums.nestedExactlyOneGroups(
+              def.terraformType,
+              override,
+            ),
           )
         : const <NestedBlockSpec>[];
 

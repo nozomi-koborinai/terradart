@@ -7,6 +7,59 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_gamelift_script`.
 const Set<String> _awsGameliftScriptSensitive = <String>{};
 
+/// Exactly one of `storage_location`, `zip_file` on `aws_gamelift_script`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class GameliftScriptStorageLocationOrZipFile {
+  const GameliftScriptStorageLocationOrZipFile();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `storage_location` (one of the [GameliftScriptStorageLocationOrZipFile] choices).
+final class GameliftScriptStorageLocationOption
+    extends GameliftScriptStorageLocationOrZipFile {
+  const GameliftScriptStorageLocationOption({required this.storageLocation});
+
+  final GameliftScriptStorageLocation storageLocation;
+
+  @override
+  String get blockKey => 'storage_location';
+
+  @override
+  Map<String, Object?> encode() => {
+    'storage_location': storageLocation.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'storage_location': TfArg.literal(storageLocation.encode()),
+  };
+}
+
+/// Sets `zip_file` (one of the [GameliftScriptStorageLocationOrZipFile] choices).
+final class GameliftScriptZipFileOption
+    extends GameliftScriptStorageLocationOrZipFile {
+  const GameliftScriptZipFileOption({required this.zipFile});
+
+  final TfArg<String> zipFile;
+
+  @override
+  String get blockKey => 'zip_file';
+
+  @override
+  Map<String, Object?> encode() => {'zip_file': zipFile.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'zip_file': zipFile};
+}
+
 /// Typed helper for the `storage_location` block of
 /// `aws_gamelift_script` (derived from provider schema).
 @immutable
@@ -44,8 +97,7 @@ final class AwsGameliftScript extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? version,
-    TfArg<String>? zipFile,
-    GameliftScriptStorageLocation? storageLocation,
+    required GameliftScriptStorageLocationOrZipFile storageLocationOrZipFile,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -57,9 +109,7 @@ final class AwsGameliftScript extends Resource {
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (version != null) 'version': version,
-           if (zipFile != null) 'zip_file': zipFile,
-           if (storageLocation != null)
-             'storage_location': TfArg.literal(storageLocation.encode()),
+           ...storageLocationOrZipFile.argMap,
          },
        );
 

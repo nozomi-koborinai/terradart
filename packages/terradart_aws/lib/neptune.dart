@@ -24,7 +24,12 @@ export 'src/neptune/aws_neptune_cluster_snapshot.dart'
 export 'src/neptune/aws_neptune_event_subscription.dart'
     show AwsNeptuneEventSubscription;
 export 'src/neptune/aws_neptune_global_cluster.dart'
-    show AwsNeptuneGlobalCluster, NeptuneGlobalClusterEngine;
+    show
+        AwsNeptuneGlobalCluster,
+        NeptuneGlobalClusterEngine,
+        NeptuneGlobalClusterEngineOption,
+        NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier,
+        NeptuneGlobalClusterSourceDbClusterIdentifierOption;
 export 'src/neptune/aws_neptune_parameter_group.dart'
     show
         AwsNeptuneParameterGroup,

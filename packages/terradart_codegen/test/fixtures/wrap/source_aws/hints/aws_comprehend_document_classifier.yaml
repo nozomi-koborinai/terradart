@@ -54,3 +54,5 @@ properties:
     enum_values:
       - "MULTI_CLASS"
       - "MULTI_LABEL"
+exactly_one_of_groups:
+  - ["input_data_config.augmented_manifests", "input_data_config.s3_uri"]
