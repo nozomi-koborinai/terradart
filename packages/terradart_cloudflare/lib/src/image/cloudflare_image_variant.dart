@@ -18,11 +18,11 @@ final class ImageVariantOptions {
     required this.width,
   });
 
-  final TfArg<String> fit;
+  final TfArg<ImageVariantOptionsFit> fit;
 
   final TfArg<num> height;
 
-  final TfArg<String> metadata;
+  final TfArg<ImageVariantOptionsMetadata> metadata;
 
   final TfArg<num> width;
 
@@ -32,6 +32,30 @@ final class ImageVariantOptions {
     'metadata': metadata.toTfJson(),
     'width': width.toTfJson(),
   };
+}
+
+/// `fit` — derived from the provider schema description.
+enum ImageVariantOptionsFit implements TerraformEnum {
+  scaleDown('scale-down'),
+  contain('contain'),
+  cover('cover'),
+  crop('crop'),
+  pad('pad');
+
+  const ImageVariantOptionsFit(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `metadata` — derived from the provider schema description.
+enum ImageVariantOptionsMetadata implements TerraformEnum {
+  keep('keep'),
+  copyright('copyright'),
+  none('none');
+
+  const ImageVariantOptionsMetadata(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_image_variant`.

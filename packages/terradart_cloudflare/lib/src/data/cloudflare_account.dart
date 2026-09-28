@@ -13,7 +13,7 @@ const Set<String> _cloudflareAccountSensitive = <String>{};
 final class DataAccountFilter {
   const DataAccountFilter({this.direction, this.name});
 
-  final TfArg<String>? direction;
+  final TfArg<DataAccountFilterDirection>? direction;
 
   final TfArg<String>? name;
 
@@ -21,6 +21,16 @@ final class DataAccountFilter {
     if (direction != null) 'direction': direction!.toTfJson(),
     if (name != null) 'name': name!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataAccountFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataAccountFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_account`.

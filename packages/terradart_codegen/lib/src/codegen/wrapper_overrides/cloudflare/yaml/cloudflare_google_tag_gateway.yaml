@@ -2,3 +2,4 @@ outputDir: google_tag
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
+deriveEnums: true

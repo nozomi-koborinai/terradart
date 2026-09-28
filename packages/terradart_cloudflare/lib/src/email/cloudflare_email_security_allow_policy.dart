@@ -6,6 +6,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_email_security_allow_policy`.
 const Set<String> _cloudflareEmailSecurityAllowPolicySensitive = <String>{};
 
+/// Email Security Allow Policy Pattern enum for `pattern_type`.
+enum EmailSecurityAllowPolicyPatternType implements TerraformEnum {
+  email('EMAIL'),
+  domain('DOMAIN'),
+  ip('IP'),
+  unknown('UNKNOWN');
+
+  const EmailSecurityAllowPolicyPatternType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_email_security_allow_policy`.
 ///
 /// Accepted Permissions
@@ -26,7 +38,7 @@ final class CloudflareEmailSecurityAllowPolicy extends Resource {
     TfArg<bool>? isSpoof,
     required TfArg<bool> isTrustedSender,
     required TfArg<String> pattern,
-    required TfArg<String> patternType,
+    required TfArg<EmailSecurityAllowPolicyPatternType> patternType,
     required TfArg<bool> verifySender,
     super.lifecycle,
     super.dependsOn,

@@ -6,6 +6,37 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_certificate_pack`.
 const Set<String> _cloudflareCertificatePackSensitive = <String>{};
 
+/// Certificate Pack Certificate enum for `certificate_authority`.
+enum CertificatePackCertificateAuthority implements TerraformEnum {
+  google('google'),
+  letsEncrypt('lets_encrypt'),
+  sslCom('ssl_com');
+
+  const CertificatePackCertificateAuthority(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Certificate Pack enum for `type`.
+enum CertificatePackType implements TerraformEnum {
+  advanced('advanced');
+
+  const CertificatePackType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Certificate Pack Validation enum for `validation_method`.
+enum CertificatePackValidationMethod implements TerraformEnum {
+  txt('txt'),
+  http('http'),
+  email('email');
+
+  const CertificatePackValidationMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_certificate_pack`.
 ///
 /// Accepted Permissions
@@ -16,11 +47,11 @@ final class CloudflareCertificatePack extends Resource {
 
   CloudflareCertificatePack({
     required super.localName,
-    required TfArg<String> certificateAuthority,
+    required TfArg<CertificatePackCertificateAuthority> certificateAuthority,
     TfArg<bool>? cloudflareBranding,
     TfArg<List<String>>? hosts,
-    required TfArg<String> type,
-    required TfArg<String> validationMethod,
+    required TfArg<CertificatePackType> type,
+    required TfArg<CertificatePackValidationMethod> validationMethod,
     required TfArg<num> validityDays,
     required TfArg<String> zoneId,
     super.lifecycle,

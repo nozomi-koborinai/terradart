@@ -6,6 +6,13 @@ library;
 export 'src/logs/cloudflare_logpull_retention.dart'
     show CloudflareLogpullRetention;
 export 'src/logs/cloudflare_logpush_job.dart'
-    show CloudflareLogpushJob, LogpushJobOutputOptions;
+    show
+        CloudflareLogpushJob,
+        LogpushJobDataset,
+        LogpushJobFrequency,
+        LogpushJobKind,
+        LogpushJobOutputOptions,
+        LogpushJobOutputOptionsOutputType,
+        LogpushJobOutputOptionsTimestampFormat;
 export 'src/logs/cloudflare_logpush_ownership_challenge.dart'
     show CloudflareLogpushOwnershipChallenge;

@@ -7,6 +7,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String>
 _cloudflareApiShieldOperationSchemaValidationSettingsSensitive = <String>{};
 
+/// Api Shield Operation Schema Validation Settings Mitigation enum for `mitigation_action`.
+enum ApiShieldOperationSchemaValidationSettingsMitigationAction
+    implements TerraformEnum {
+  log('log'),
+  block('block'),
+  none('none');
+
+  const ApiShieldOperationSchemaValidationSettingsMitigationAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_api_shield_operation_schema_validation_settings`.
 ///
 /// Accepted Permissions
@@ -20,7 +34,8 @@ final class CloudflareApiShieldOperationSchemaValidationSettings
 
   CloudflareApiShieldOperationSchemaValidationSettings({
     required super.localName,
-    TfArg<String>? mitigationAction,
+    TfArg<ApiShieldOperationSchemaValidationSettingsMitigationAction>?
+    mitigationAction,
     required TfArg<String> operationId,
     required TfArg<String> zoneId,
     super.lifecycle,

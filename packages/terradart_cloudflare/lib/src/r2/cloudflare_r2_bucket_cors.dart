@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_r2_bucket_cors`.
 const Set<String> _cloudflareR2BucketCorsSensitive = <String>{};
 
+/// R2 Bucket Cors enum for `jurisdiction`.
+enum R2BucketCorsJurisdiction implements TerraformEnum {
+  defaultCase('default'),
+  eu('eu'),
+  fedramp('fedramp');
+
+  const R2BucketCorsJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `rules` block of
 /// `cloudflare_r2_bucket_cors` (derived from provider schema).
 @immutable
@@ -46,15 +57,28 @@ final class R2BucketCorsRulesAllowed {
 
   final TfArg<List<Object?>>? headers;
 
-  final TfArg<List<Object?>> methods;
+  final List<TfArg<R2BucketCorsRulesAllowedMethods>> methods;
 
   final TfArg<List<Object?>> origins;
 
   Map<String, Object?> encode() => {
     if (headers != null) 'headers': headers!.toTfJson(),
-    'methods': methods.toTfJson(),
+    'methods': [for (final e in methods) e.toTfJson()],
     'origins': origins.toTfJson(),
   };
+}
+
+/// `methods` — derived from the provider schema description.
+enum R2BucketCorsRulesAllowedMethods implements TerraformEnum {
+  get('GET'),
+  put('PUT'),
+  post('POST'),
+  delete('DELETE'),
+  head('HEAD');
+
+  const R2BucketCorsRulesAllowedMethods(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_r2_bucket_cors`.
@@ -65,7 +89,7 @@ final class CloudflareR2BucketCors extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> bucketName,
-    TfArg<String>? jurisdiction,
+    TfArg<R2BucketCorsJurisdiction>? jurisdiction,
     List<R2BucketCorsRules>? rules,
     super.lifecycle,
     super.dependsOn,

@@ -6,6 +6,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_email_security_block_sender`.
 const Set<String> _cloudflareEmailSecurityBlockSenderSensitive = <String>{};
 
+/// Email Security Block Sender Pattern enum for `pattern_type`.
+enum EmailSecurityBlockSenderPatternType implements TerraformEnum {
+  email('EMAIL'),
+  domain('DOMAIN'),
+  ip('IP'),
+  unknown('UNKNOWN');
+
+  const EmailSecurityBlockSenderPatternType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_email_security_block_sender`.
 ///
 /// Accepted Permissions
@@ -20,7 +32,7 @@ final class CloudflareEmailSecurityBlockSender extends Resource {
     TfArg<String>? comments,
     required TfArg<bool> isRegex,
     required TfArg<String> pattern,
-    required TfArg<String> patternType,
+    required TfArg<EmailSecurityBlockSenderPatternType> patternType,
     super.lifecycle,
     super.dependsOn,
     super.provider,

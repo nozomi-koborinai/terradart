@@ -7,7 +7,15 @@ export 'src/custom_hostname/cloudflare_custom_hostname.dart'
     show
         CloudflareCustomHostname,
         CustomHostnameSsl,
+        CustomHostnameSslBundleMethod,
+        CustomHostnameSslCertificateAuthority,
         CustomHostnameSslCustomCertBundle,
-        CustomHostnameSslSettings;
+        CustomHostnameSslMethod,
+        CustomHostnameSslSettings,
+        CustomHostnameSslSettingsEarlyHints,
+        CustomHostnameSslSettingsHttp2,
+        CustomHostnameSslSettingsMinTlsVersion,
+        CustomHostnameSslSettingsTls13,
+        CustomHostnameSslType;
 export 'src/custom_hostname/cloudflare_custom_hostname_fallback_origin.dart'
     show CloudflareCustomHostnameFallbackOrigin;

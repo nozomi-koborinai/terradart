@@ -6,6 +6,43 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_r2_bucket`.
 const Set<String> _cloudflareR2BucketSensitive = <String>{};
 
+/// R2 Bucket enum for `jurisdiction`.
+enum R2BucketJurisdiction implements TerraformEnum {
+  defaultCase('default'),
+  eu('eu'),
+  fedramp('fedramp'),
+  us('us'),
+  fedrampHigh('fedramp-high');
+
+  const R2BucketJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// R2 Bucket enum for `location`.
+enum R2BucketLocation implements TerraformEnum {
+  apac('apac'),
+  eeur('eeur'),
+  enam('enam'),
+  weur('weur'),
+  wnam('wnam'),
+  oc('oc');
+
+  const R2BucketLocation(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// R2 Bucket Storage enum for `storage_class`.
+enum R2BucketStorageClass implements TerraformEnum {
+  standard('Standard'),
+  infrequentaccess('InfrequentAccess');
+
+  const R2BucketStorageClass(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_r2_bucket`.
 ///
 /// Accepted Permissions
@@ -17,10 +54,10 @@ final class CloudflareR2Bucket extends Resource {
   CloudflareR2Bucket({
     required super.localName,
     required TfArg<String> accountId,
-    TfArg<String>? jurisdiction,
-    TfArg<String>? location,
+    TfArg<R2BucketJurisdiction>? jurisdiction,
+    TfArg<R2BucketLocation>? location,
     required TfArg<String> name,
-    TfArg<String>? storageClass,
+    TfArg<R2BucketStorageClass>? storageClass,
     super.lifecycle,
     super.dependsOn,
     super.provider,

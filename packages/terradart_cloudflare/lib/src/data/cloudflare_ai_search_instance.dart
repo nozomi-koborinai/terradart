@@ -20,9 +20,9 @@ final class DataAiSearchInstanceFilter {
 
   final TfArg<String>? namespace;
 
-  final TfArg<String>? orderBy;
+  final TfArg<DataAiSearchInstanceFilterOrderBy>? orderBy;
 
-  final TfArg<String>? orderByDirection;
+  final TfArg<DataAiSearchInstanceFilterOrderByDirection>? orderByDirection;
 
   final TfArg<String>? search;
 
@@ -33,6 +33,25 @@ final class DataAiSearchInstanceFilter {
       'order_by_direction': orderByDirection!.toTfJson(),
     if (search != null) 'search': search!.toTfJson(),
   };
+}
+
+/// `order_by` — derived from the provider schema description.
+enum DataAiSearchInstanceFilterOrderBy implements TerraformEnum {
+  createdAt('created_at');
+
+  const DataAiSearchInstanceFilterOrderBy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order_by_direction` — derived from the provider schema description.
+enum DataAiSearchInstanceFilterOrderByDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataAiSearchInstanceFilterOrderByDirection(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_ai_search_instance`.

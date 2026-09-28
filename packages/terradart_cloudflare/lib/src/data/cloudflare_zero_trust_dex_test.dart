@@ -13,7 +13,7 @@ const Set<String> _cloudflareZeroTrustDexTestSensitive = <String>{};
 final class DataZeroTrustDexTestFilter {
   const DataZeroTrustDexTestFilter({this.kind, this.testName});
 
-  final TfArg<String>? kind;
+  final TfArg<DataZeroTrustDexTestFilterKind>? kind;
 
   final TfArg<String>? testName;
 
@@ -21,6 +21,16 @@ final class DataZeroTrustDexTestFilter {
     if (kind != null) 'kind': kind!.toTfJson(),
     if (testName != null) 'test_name': testName!.toTfJson(),
   };
+}
+
+/// `kind` — derived from the provider schema description.
+enum DataZeroTrustDexTestFilterKind implements TerraformEnum {
+  http('http'),
+  traceroute('traceroute');
+
+  const DataZeroTrustDexTestFilterKind(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `target_policies` block of

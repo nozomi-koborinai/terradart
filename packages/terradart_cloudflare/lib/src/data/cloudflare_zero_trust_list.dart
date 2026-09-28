@@ -19,15 +19,15 @@ final class DataZeroTrustListFilter {
     this.type,
   });
 
-  final TfArg<String>? direction;
+  final TfArg<DataZeroTrustListFilterDirection>? direction;
 
   final TfArg<List<Object?>>? filter;
 
-  final TfArg<String>? orderBy;
+  final TfArg<DataZeroTrustListFilterOrderBy>? orderBy;
 
   final TfArg<String>? search;
 
-  final TfArg<String>? type;
+  final TfArg<DataZeroTrustListFilterType>? type;
 
   Map<String, Object?> encode() => {
     if (direction != null) 'direction': direction!.toTfJson(),
@@ -36,6 +36,45 @@ final class DataZeroTrustListFilter {
     if (search != null) 'search': search!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataZeroTrustListFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataZeroTrustListFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order_by` — derived from the provider schema description.
+enum DataZeroTrustListFilterOrderBy implements TerraformEnum {
+  name('name'),
+  createdAt('created_at'),
+  updatedAt('updated_at'),
+  itemCount('item_count');
+
+  const DataZeroTrustListFilterOrderBy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum DataZeroTrustListFilterType implements TerraformEnum {
+  serial('SERIAL'),
+  url('URL'),
+  domain('DOMAIN'),
+  email('EMAIL'),
+  ip('IP'),
+  category('CATEGORY'),
+  location('LOCATION'),
+  device('DEVICE'),
+  aaguid('AAGUID');
+
+  const DataZeroTrustListFilterType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_list`.

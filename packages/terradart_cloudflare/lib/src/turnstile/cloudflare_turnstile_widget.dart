@@ -6,6 +6,62 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_turnstile_widget`.
 const Set<String> _cloudflareTurnstileWidgetSensitive = <String>{'secret'};
 
+/// Turnstile Widget Clearance enum for `clearance_level`.
+enum TurnstileWidgetClearanceLevel implements TerraformEnum {
+  noClearance('no_clearance'),
+  jschallenge('jschallenge'),
+  managed('managed'),
+  interactive('interactive');
+
+  const TurnstileWidgetClearanceLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Turnstile Widget enum for `direction`.
+enum TurnstileWidgetDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const TurnstileWidgetDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Turnstile Widget enum for `mode`.
+enum TurnstileWidgetMode implements TerraformEnum {
+  nonInteractive('non-interactive'),
+  invisible('invisible'),
+  managed('managed');
+
+  const TurnstileWidgetMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Turnstile Widget enum for `order`.
+enum TurnstileWidgetOrder implements TerraformEnum {
+  id('id'),
+  sitekey('sitekey'),
+  name('name'),
+  createdOn('created_on'),
+  modifiedOn('modified_on');
+
+  const TurnstileWidgetOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Turnstile Widget enum for `region`.
+enum TurnstileWidgetRegion implements TerraformEnum {
+  world('world'),
+  china('china');
+
+  const TurnstileWidgetRegion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_turnstile_widget`.
 ///
 /// Accepted Permissions
@@ -19,18 +75,18 @@ final class CloudflareTurnstileWidget extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<bool>? botFightMode,
-    TfArg<String>? clearanceLevel,
-    TfArg<String>? direction,
+    TfArg<TurnstileWidgetClearanceLevel>? clearanceLevel,
+    TfArg<TurnstileWidgetDirection>? direction,
     required TfArg<List<String>> domains,
     TfArg<bool>? ephemeralId,
     TfArg<String>? filter,
-    required TfArg<String> mode,
+    required TfArg<TurnstileWidgetMode> mode,
     required TfArg<String> name,
     TfArg<bool>? offlabel,
-    TfArg<String>? order,
+    TfArg<TurnstileWidgetOrder>? order,
     TfArg<num>? page,
     TfArg<num>? perPage,
-    TfArg<String>? region,
+    TfArg<TurnstileWidgetRegion>? region,
     super.lifecycle,
     super.dependsOn,
     super.provider,

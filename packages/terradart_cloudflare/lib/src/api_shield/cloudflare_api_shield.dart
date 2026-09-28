@@ -18,12 +18,23 @@ final class ApiShieldAuthIdCharacteristics {
 
   final TfArg<String> name;
 
-  final TfArg<String> type;
+  final TfArg<ApiShieldAuthIdCharacteristicsType> type;
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'type': type.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum ApiShieldAuthIdCharacteristicsType implements TerraformEnum {
+  header('header'),
+  cookie('cookie'),
+  jwt('jwt');
+
+  const ApiShieldAuthIdCharacteristicsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_api_shield`.

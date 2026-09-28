@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_magic_transit_site_acl`.
 const Set<String> _cloudflareMagicTransitSiteAclSensitive = <String>{};
 
+/// Magic Transit Site Acl enum for `protocols`.
+enum MagicTransitSiteAclProtocols implements TerraformEnum {
+  tcp('tcp'),
+  udp('udp'),
+  icmp('icmp');
+
+  const MagicTransitSiteAclProtocols(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `lan_1` block of
 /// `cloudflare_magic_transit_site_acl` (derived from provider schema).
 @immutable
@@ -84,7 +95,7 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
     TfArg<String>? description,
     TfArg<bool>? forwardLocally,
     required TfArg<String> name,
-    TfArg<List<String>>? protocols,
+    List<TfArg<MagicTransitSiteAclProtocols>>? protocols,
     required TfArg<String> siteId,
     TfArg<bool>? unidirectional,
     required MagicTransitSiteAclLan1 lan1,
@@ -100,7 +111,10 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
            if (description != null) 'description': description,
            if (forwardLocally != null) 'forward_locally': forwardLocally,
            'name': name,
-           if (protocols != null) 'protocols': protocols,
+           if (protocols != null)
+             'protocols': TfArg.literal([
+               for (final e in protocols) e.toTfJson(),
+             ]),
            'site_id': siteId,
            if (unidirectional != null) 'unidirectional': unidirectional,
            'lan_1': TfArg.literal(lan1.encode()),

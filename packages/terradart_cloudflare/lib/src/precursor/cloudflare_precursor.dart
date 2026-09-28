@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_precursor`.
 const Set<String> _cloudflarePrecursorSensitive = <String>{};
 
+/// Precursor Default enum for `default_mode`.
+enum PrecursorDefaultMode implements TerraformEnum {
+  off('off'),
+  minFriction('min-friction'),
+  maxSecurity('max-security');
+
+  const PrecursorDefaultMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `enforcement_rules` block of
 /// `cloudflare_precursor` (derived from provider schema).
 @immutable
@@ -24,7 +35,7 @@ final class PrecursorEnforcementRules {
 
   final TfArg<String> expression;
 
-  final TfArg<String> mode;
+  final TfArg<PrecursorEnforcementRulesMode> mode;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
@@ -34,13 +45,23 @@ final class PrecursorEnforcementRules {
   };
 }
 
+/// `mode` — derived from the provider schema description.
+enum PrecursorEnforcementRulesMode implements TerraformEnum {
+  minFriction('min-friction'),
+  maxSecurity('max-security');
+
+  const PrecursorEnforcementRulesMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_precursor`.
 final class CloudflarePrecursor extends Resource {
   static const String tfType = 'cloudflare_precursor';
 
   CloudflarePrecursor({
     required super.localName,
-    TfArg<String>? defaultMode,
+    TfArg<PrecursorDefaultMode>? defaultMode,
     required TfArg<String> zoneId,
     List<PrecursorEnforcementRules>? enforcementRules,
     super.lifecycle,

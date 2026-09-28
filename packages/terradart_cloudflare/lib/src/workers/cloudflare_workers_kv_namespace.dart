@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_workers_kv_namespace`.
 const Set<String> _cloudflareWorkersKvNamespaceSensitive = <String>{};
 
+/// Workers Kv Namespace enum for `jurisdiction`.
+enum WorkersKvNamespaceJurisdiction implements TerraformEnum {
+  eu('eu'),
+  fedramp('fedramp'),
+  us('us');
+
+  const WorkersKvNamespaceJurisdiction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_workers_kv_namespace`.
 ///
 /// Accepted Permissions
@@ -17,7 +28,7 @@ final class CloudflareWorkersKvNamespace extends Resource {
   CloudflareWorkersKvNamespace({
     required super.localName,
     required TfArg<String> accountId,
-    TfArg<String>? jurisdiction,
+    TfArg<WorkersKvNamespaceJurisdiction>? jurisdiction,
     required TfArg<String> title,
     super.lifecycle,
     super.dependsOn,

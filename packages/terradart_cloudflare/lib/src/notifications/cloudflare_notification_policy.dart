@@ -7,6 +7,101 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_notification_policy`.
 const Set<String> _cloudflareNotificationPolicySensitive = <String>{};
 
+/// Notification Policy Alert enum for `alert_type`.
+enum NotificationPolicyAlertType implements TerraformEnum {
+  abuseReportAlert('abuse_report_alert'),
+  accessCustomCertificateExpirationType(
+    'access_custom_certificate_expiration_type',
+  ),
+  advancedDdosAttackL4Alert('advanced_ddos_attack_l4_alert'),
+  advancedDdosAttackL7Alert('advanced_ddos_attack_l7_alert'),
+  advancedHttpAlertError('advanced_http_alert_error'),
+  bgpHijackNotification('bgp_hijack_notification'),
+  billingUsageAlert('billing_usage_alert'),
+  blockNotificationBlockRemoved('block_notification_block_removed'),
+  blockNotificationNewBlock('block_notification_new_block'),
+  blockNotificationReviewRejected('block_notification_review_rejected'),
+  botTrafficBasicAlert('bot_traffic_basic_alert'),
+  brandProtectionAlert('brand_protection_alert'),
+  brandProtectionDigest('brand_protection_digest'),
+  clickhouseAlertFwAnomaly('clickhouse_alert_fw_anomaly'),
+  clickhouseAlertFwEntAnomaly('clickhouse_alert_fw_ent_anomaly'),
+  cloudforceOneRequestNotification('cloudforce_one_request_notification'),
+  cniMaintenanceNotification('cni_maintenance_notification'),
+  customAnalytics('custom_analytics'),
+  customBotDetectionAlert('custom_bot_detection_alert'),
+  customSslCertificateEventType('custom_ssl_certificate_event_type'),
+  dedicatedSslCertificateEventType('dedicated_ssl_certificate_event_type'),
+  deviceConnectivityAnomalyAlert('device_connectivity_anomaly_alert'),
+  dosAttackL4('dos_attack_l4'),
+  dosAttackL7('dos_attack_l7'),
+  expiringServiceTokenAlert('expiring_service_token_alert'),
+  failingLogpushJobDisabledAlert('failing_logpush_job_disabled_alert'),
+  fbmAutoAdvertisement('fbm_auto_advertisement'),
+  fbmDosdAttack('fbm_dosd_attack'),
+  fbmVolumetricAttack('fbm_volumetric_attack'),
+  healthCheckStatusNotification('health_check_status_notification'),
+  hostnameAopCustomCertificateExpirationType(
+    'hostname_aop_custom_certificate_expiration_type',
+  ),
+  httpAlertEdgeError('http_alert_edge_error'),
+  httpAlertOriginError('http_alert_origin_error'),
+  imageNotification('image_notification'),
+  imageResizingNotification('image_resizing_notification'),
+  incidentAlert('incident_alert'),
+  loadBalancingHealthAlert('load_balancing_health_alert'),
+  loadBalancingPoolEnablementAlert('load_balancing_pool_enablement_alert'),
+  logoMatchAlert('logo_match_alert'),
+  magicTunnelHealthCheckEvent('magic_tunnel_health_check_event'),
+  magicWanTunnelHealth('magic_wan_tunnel_health'),
+  maintenanceEventNotification('maintenance_event_notification'),
+  mtlsCertificateStoreCertificateExpirationType(
+    'mtls_certificate_store_certificate_expiration_type',
+  ),
+  pagesEventAlert('pages_event_alert'),
+  radarNotification('radar_notification'),
+  realOriginMonitoring('real_origin_monitoring'),
+  scriptmonitorAlertNewCodeChangeDetections(
+    'scriptmonitor_alert_new_code_change_detections',
+  ),
+  scriptmonitorAlertNewHosts('scriptmonitor_alert_new_hosts'),
+  scriptmonitorAlertNewMaliciousHosts(
+    'scriptmonitor_alert_new_malicious_hosts',
+  ),
+  scriptmonitorAlertNewMaliciousScripts(
+    'scriptmonitor_alert_new_malicious_scripts',
+  ),
+  scriptmonitorAlertNewMaliciousUrl('scriptmonitor_alert_new_malicious_url'),
+  scriptmonitorAlertNewMaxLengthResourceUrl(
+    'scriptmonitor_alert_new_max_length_resource_url',
+  ),
+  scriptmonitorAlertNewResources('scriptmonitor_alert_new_resources'),
+  secondaryDnsAllPrimariesFailing('secondary_dns_all_primaries_failing'),
+  secondaryDnsPrimariesFailing('secondary_dns_primaries_failing'),
+  secondaryDnsWarning('secondary_dns_warning'),
+  secondaryDnsZoneSuccessfullyUpdated(
+    'secondary_dns_zone_successfully_updated',
+  ),
+  secondaryDnsZoneValidationWarning('secondary_dns_zone_validation_warning'),
+  securityInsightsAlert('security_insights_alert'),
+  sentinelAlert('sentinel_alert'),
+  streamLiveNotifications('stream_live_notifications'),
+  syntheticTestLatencyAlert('synthetic_test_latency_alert'),
+  syntheticTestLowAvailabilityAlert('synthetic_test_low_availability_alert'),
+  trafficAnomaliesAlert('traffic_anomalies_alert'),
+  tunnelHealthEvent('tunnel_health_event'),
+  tunnelUpdateEvent('tunnel_update_event'),
+  universalSslEventType('universal_ssl_event_type'),
+  webAnalyticsMetricsUpdate('web_analytics_metrics_update'),
+  zoneAopCustomCertificateExpirationType(
+    'zone_aop_custom_certificate_expiration_type',
+  );
+
+  const NotificationPolicyAlertType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `filters` block of
 /// `cloudflare_notification_policy` (derived from provider schema).
 @immutable
@@ -86,7 +181,7 @@ final class NotificationPolicyFilters {
 
   final TfArg<List<Object?>>? healthCheckId;
 
-  final TfArg<List<Object?>>? incidentImpact;
+  final List<TfArg<NotificationPolicyFiltersIncidentImpact>>? incidentImpact;
 
   final TfArg<List<Object?>>? inputId;
 
@@ -134,7 +229,8 @@ final class NotificationPolicyFilters {
 
   final TfArg<List<Object?>>? tokenId;
 
-  final TfArg<List<Object?>>? trafficExclusions;
+  final List<TfArg<NotificationPolicyFiltersTrafficExclusions>>?
+  trafficExclusions;
 
   final TfArg<List<Object?>>? tunnelId;
 
@@ -166,7 +262,8 @@ final class NotificationPolicyFilters {
     if (eventType != null) 'event_type': eventType!.toTfJson(),
     if (groupBy != null) 'group_by': groupBy!.toTfJson(),
     if (healthCheckId != null) 'health_check_id': healthCheckId!.toTfJson(),
-    if (incidentImpact != null) 'incident_impact': incidentImpact!.toTfJson(),
+    if (incidentImpact != null)
+      'incident_impact': [for (final e in incidentImpact!) e.toTfJson()],
     if (inputId != null) 'input_id': inputId!.toTfJson(),
     if (insightClass != null) 'insight_class': insightClass!.toTfJson(),
     if (limit != null) 'limit': limit!.toTfJson(),
@@ -194,13 +291,34 @@ final class NotificationPolicyFilters {
     if (targetZoneName != null) 'target_zone_name': targetZoneName!.toTfJson(),
     if (tokenId != null) 'token_id': tokenId!.toTfJson(),
     if (trafficExclusions != null)
-      'traffic_exclusions': trafficExclusions!.toTfJson(),
+      'traffic_exclusions': [for (final e in trafficExclusions!) e.toTfJson()],
     if (tunnelId != null) 'tunnel_id': tunnelId!.toTfJson(),
     if (tunnelName != null) 'tunnel_name': tunnelName!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
     if (where != null) 'where': where!.toTfJson(),
     if (zones != null) 'zones': zones!.toTfJson(),
   };
+}
+
+/// `incident_impact` — derived from the provider schema description.
+enum NotificationPolicyFiltersIncidentImpact implements TerraformEnum {
+  incidentImpactNone('INCIDENT_IMPACT_NONE'),
+  incidentImpactMinor('INCIDENT_IMPACT_MINOR'),
+  incidentImpactMajor('INCIDENT_IMPACT_MAJOR'),
+  incidentImpactCritical('INCIDENT_IMPACT_CRITICAL');
+
+  const NotificationPolicyFiltersIncidentImpact(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `traffic_exclusions` — derived from the provider schema description.
+enum NotificationPolicyFiltersTrafficExclusions implements TerraformEnum {
+  securityEvents('security_events');
+
+  const NotificationPolicyFiltersTrafficExclusions(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `mechanisms` block of
@@ -273,7 +391,7 @@ final class CloudflareNotificationPolicy extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     TfArg<String>? alertInterval,
-    required TfArg<String> alertType,
+    required TfArg<NotificationPolicyAlertType> alertType,
     TfArg<String>? description,
     TfArg<bool>? enabled,
     required TfArg<String> name,
