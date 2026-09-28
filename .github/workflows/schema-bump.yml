@@ -62,12 +62,12 @@ jobs:
           echo "version=$v" >> "$GITHUB_OUTPUT"
           echo "Current provider version: $v"
 
-      - name: Detect latest v7 + max major
+      - name: Detect latest release in the tracked major + max major
         id: fetch_state
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          state_json=$(dart tool/fetch_schema.dart \
+          state_json=$(dart tool/fetch_schema.dart --lane=google \
             --current-version=${{ steps.current_version.outputs.version }})
           echo "$state_json" > /tmp/state.json
           echo "state_json=$state_json" >> "$GITHUB_OUTPUT"
@@ -76,10 +76,10 @@ jobs:
       - name: Refresh provider schema (terraform init + schema)
         id: refresh_schema
         run: |
-          v7_latest=$(jq -r '.v7_latest' /tmp/state.json)
+          latest=$(jq -r '.latest' /tmp/state.json)
           bump_needed=$(jq -r '.bump_needed' /tmp/state.json)
           if [ "$bump_needed" != "true" ]; then
-            echo "No v7 bump needed; skipping schema refresh."
+            echo "No bump needed; skipping schema refresh."
             echo "refreshed=false" >> "$GITHUB_OUTPUT"
             cp packages/terradart_codegen/test/fixtures/wrap/source/schema.json /tmp/old_schema.json
             cp packages/terradart_codegen/test/fixtures/wrap/source/schema.json /tmp/new_schema.json
@@ -95,7 +95,7 @@ jobs:
             required_providers {
               google = {
                 source  = "hashicorp/google"
-                version = "= $v7_latest"
+                version = "= $latest"
               }
             }
           }
@@ -105,7 +105,7 @@ jobs:
             terraform providers schema -json > /tmp/new_schema.json)
 
           cp /tmp/new_schema.json packages/terradart_codegen/test/fixtures/wrap/source/schema.json
-          printf '%s\n' "$v7_latest" > packages/terradart_codegen/test/fixtures/wrap/source/provider_version.txt
+          printf '%s\n' "$latest" > packages/terradart_codegen/test/fixtures/wrap/source/provider_version.txt
           echo "refreshed=true" >> "$GITHUB_OUTPUT"
 
       - name: Sync MM YAML overlays
@@ -118,28 +118,11 @@ jobs:
 
       - name: Compute schema resource diff
         run: |
-          jq -r '.provider_schemas["registry.terraform.io/hashicorp/google"].resource_schemas | keys[]' \
-            /tmp/old_schema.json | sort > /tmp/old_resources.txt
-          jq -r '.provider_schemas["registry.terraform.io/hashicorp/google"].resource_schemas | keys[]' \
-            /tmp/new_schema.json | sort > /tmp/new_resources.txt
-
-          added=$(comm -13 /tmp/old_resources.txt /tmp/new_resources.txt | jq -R . | jq -s .)
-
-          # Removed-from-schema: only those removed AND currently curated.
-          all_removed=$(comm -23 /tmp/old_resources.txt /tmp/new_resources.txt)
-          curated=$(find packages/terradart_google/lib/src -mindepth 2 \
-            -name 'google_*.dart' -not -path '*/generated/*' \
-            -exec basename {} .dart \; | sort)
-          removed_curated="[]"
-          for r in $all_removed; do
-            if echo "$curated" | grep -qx "$r"; then
-              removed_curated=$(echo "$removed_curated" | jq --arg r "$r" '. + [$r]')
-            fi
-          done
-
-          jq -n --argjson added "$added" --argjson removed "$removed_curated" \
-            '{added_resources: $added, removed_resources: $removed}' \
-            > /tmp/schema_diff.json
+          # Removed types count only when the catalog still wraps them.
+          dart tool/schema_resource_diff.dart \
+            --old=/tmp/old_schema.json --new=/tmp/new_schema.json \
+            --catalog=packages/terradart_google/lib/src/_catalog.g.dart \
+            --out=/tmp/schema_diff.json
           cat /tmp/schema_diff.json
 
       - name: Regenerate wrappers (`terradart wrap`)
@@ -189,17 +172,17 @@ jobs:
           # blocks the GA bump — it lands in beta_bump.json for the report.
           bump_needed=$(jq -r '.bump_needed' /tmp/state.json)
           if [ "$bump_needed" != "true" ]; then
-            echo "No v7 bump; google-beta lane skipped."
+            echo "No GA bump; google-beta lane skipped."
             exit 0
           fi
-          v7_latest=$(jq -r '.v7_latest' /tmp/state.json)
+          latest=$(jq -r '.latest' /tmp/state.json)
           beta_dir=packages/terradart_codegen/test/fixtures/wrap/source_beta
           prev=$(cat "$beta_dir/provider_version.txt")
 
           set +e
           dart tool/extract_schema_subset.dart \
             --provider=hashicorp/google-beta \
-            --version="$v7_latest" \
+            --version="$latest" \
             --resources-from="$beta_dir/schema.json" \
             --out="$beta_dir" > /tmp/beta_extract.txt 2>&1
           extract_rc=$?
@@ -208,7 +191,7 @@ jobs:
 
           wrap_check_rc=null
           if [ "$extract_rc" = "0" ]; then
-            printf '%s\n' "$v7_latest" > "$beta_dir/provider_version.txt"
+            printf '%s\n' "$latest" > "$beta_dir/provider_version.txt"
             set +e
             (cd packages/terradart_codegen && dart run bin/terradart.dart wrap \
               --provider hashicorp/google-beta \
@@ -253,7 +236,7 @@ jobs:
           fi
           jq -n \
             --arg prev "$prev" \
-            --arg version "$v7_latest" \
+            --arg version "$latest" \
             --argjson extract_exit "$extract_rc" \
             --argjson wrap_check_exit "$wrap_check_rc" \
             --arg log_excerpt "$excerpt" \
@@ -278,9 +261,7 @@ jobs:
         id: gates
         run: |
           set +e
-          (cd packages/terradart_codegen && dart test \
-            test/codegen/universal_invariants_test.dart -r expanded) \
-            > /tmp/gates.txt 2>&1
+          dart tool/bump_lane_gates.dart --lane google > /tmp/gates.txt 2>&1
           rc=$?
           echo "$rc" > /tmp/gates_exit
           echo "Exit: $rc"
@@ -313,6 +294,7 @@ jobs:
         run: |
           mkdir -p .schema-bump
           dart tool/generate_drift_report.dart \
+            --lane=google \
             --inputs-dir=/tmp/inputs \
             --out=.schema-bump/drift_report.md \
             --decision-out=/tmp/auto_merge.json
@@ -325,20 +307,20 @@ jobs:
             exit 0
           fi
           today=$(date -u +%Y-%m-%d)
-          v7_latest=$(jq -r '.v7_latest' /tmp/state.json)
+          latest=$(jq -r '.latest' /tmp/state.json)
           dart tool/append_curation_backlog.dart \
             --backlog=tool/curation_backlog.yaml \
             --diff=/tmp/schema_diff.json \
             --detected-at="$today" \
-            --provider-version="$v7_latest"
+            --provider-version="$latest"
 
       - name: Skip if nothing changed
         id: skip_check
         run: |
-          # Anything to ship if: any tracked file differs OR v8 banner.
-          v8=$(jq -r '.v8_available' /tmp/state.json)
+          # Anything to ship if: any tracked file differs OR a new major.
+          new_major=$(jq -r '.new_major_available' /tmp/state.json)
           changes=$(git status --porcelain | wc -l)
-          if [ "$changes" = "0" ] && [ "$v8" != "true" ]; then
+          if [ "$changes" = "0" ] && [ "$new_major" != "true" ]; then
             echo "Nothing to report this week. Exiting."
             echo "skip=true" >> "$GITHUB_OUTPUT"
           else

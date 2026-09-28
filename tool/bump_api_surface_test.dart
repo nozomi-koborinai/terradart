@@ -2,6 +2,8 @@
 // does not recognize it as a test for @visibleForTesting purposes.
 // ignore_for_file: invalid_use_of_visible_for_testing_member
 
+import 'dart:io';
+
 import 'package:terradart_migrate/terradart_migrate.dart';
 import 'package:test/test.dart';
 
@@ -174,5 +176,15 @@ void main() {
       surface.keys.where((k) => k.startsWith('class:terradart_google_beta:')),
       isNotEmpty,
     );
+  });
+
+  test('lanes select their manifest through outputPackage', () {
+    final yaml = File('tool/providers.yaml').readAsStringSync();
+    final manifests = laneManifests(yaml, ['aws', 'cloudflare']);
+    expect(
+      [for (final m in manifests) m.package],
+      ['terradart_aws', 'terradart_cloudflare'],
+    );
+    expect(() => laneManifests(yaml, ['nope']), throwsFormatException);
   });
 }
