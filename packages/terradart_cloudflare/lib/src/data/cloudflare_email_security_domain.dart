@@ -22,21 +22,23 @@ final class DataEmailSecurityDomainFilter {
     this.status,
   });
 
-  final TfArg<String>? activeDeliveryMode;
+  final TfArg<DataEmailSecurityDomainFilterActiveDeliveryMode>?
+  activeDeliveryMode;
 
-  final TfArg<String>? allowedDeliveryMode;
+  final TfArg<DataEmailSecurityDomainFilterAllowedDeliveryMode>?
+  allowedDeliveryMode;
 
-  final TfArg<String>? direction;
+  final TfArg<DataEmailSecurityDomainFilterDirection>? direction;
 
   final TfArg<List<Object?>>? domain;
 
   final TfArg<String>? integrationId;
 
-  final TfArg<String>? order;
+  final TfArg<DataEmailSecurityDomainFilterOrder>? order;
 
   final TfArg<String>? search;
 
-  final TfArg<String>? status;
+  final TfArg<DataEmailSecurityDomainFilterStatus>? status;
 
   Map<String, Object?> encode() => {
     if (activeDeliveryMode != null)
@@ -50,6 +52,64 @@ final class DataEmailSecurityDomainFilter {
     if (search != null) 'search': search!.toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `active_delivery_mode` — derived from the provider schema description.
+enum DataEmailSecurityDomainFilterActiveDeliveryMode implements TerraformEnum {
+  direct('DIRECT'),
+  bcc('BCC'),
+  journal('JOURNAL'),
+  api('API'),
+  retroScan('RETRO_SCAN');
+
+  const DataEmailSecurityDomainFilterActiveDeliveryMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `allowed_delivery_mode` — derived from the provider schema description.
+enum DataEmailSecurityDomainFilterAllowedDeliveryMode implements TerraformEnum {
+  direct('DIRECT'),
+  bcc('BCC'),
+  journal('JOURNAL'),
+  api('API'),
+  retroScan('RETRO_SCAN');
+
+  const DataEmailSecurityDomainFilterAllowedDeliveryMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `direction` — derived from the provider schema description.
+enum DataEmailSecurityDomainFilterDirection implements TerraformEnum {
+  asc('asc'),
+  desc('desc');
+
+  const DataEmailSecurityDomainFilterDirection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `order` — derived from the provider schema description.
+enum DataEmailSecurityDomainFilterOrder implements TerraformEnum {
+  domain('domain'),
+  createdAt('created_at');
+
+  const DataEmailSecurityDomainFilterOrder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `status` — derived from the provider schema description.
+enum DataEmailSecurityDomainFilterStatus implements TerraformEnum {
+  pending('PENDING'),
+  active('ACTIVE'),
+  failed('FAILED'),
+  timeout('TIMEOUT');
+
+  const DataEmailSecurityDomainFilterStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_email_security_domain`.

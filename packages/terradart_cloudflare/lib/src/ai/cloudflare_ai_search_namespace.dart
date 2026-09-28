@@ -107,13 +107,27 @@ final class AiSearchNamespacePublicEndpointParamsRateLimit {
 
   final TfArg<num>? requests;
 
-  final TfArg<String>? technique;
+  final TfArg<AiSearchNamespacePublicEndpointParamsRateLimitTechnique>?
+  technique;
 
   Map<String, Object?> encode() => {
     if (periodMs != null) 'period_ms': periodMs!.toTfJson(),
     if (requests != null) 'requests': requests!.toTfJson(),
     if (technique != null) 'technique': technique!.toTfJson(),
   };
+}
+
+/// `technique` — derived from the provider schema description.
+enum AiSearchNamespacePublicEndpointParamsRateLimitTechnique
+    implements TerraformEnum {
+  fixed('fixed'),
+  sliding('sliding');
+
+  const AiSearchNamespacePublicEndpointParamsRateLimitTechnique(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `public_endpoint_params.search_endpoint` block of

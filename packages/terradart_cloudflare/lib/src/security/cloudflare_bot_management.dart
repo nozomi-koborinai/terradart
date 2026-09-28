@@ -6,6 +6,113 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_bot_management`.
 const Set<String> _cloudflareBotManagementSensitive = <String>{};
 
+/// Bot Management Ai Bots enum for `ai_bots_protection`.
+enum BotManagementAiBotsProtection implements TerraformEnum {
+  block('block'),
+  disabled('disabled'),
+  onlyOnAdPages('only_on_ad_pages');
+
+  const BotManagementAiBotsProtection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Bot Management Ai enum for `ai_training`.
+enum BotManagementAiTraining implements TerraformEnum {
+  disabled('disabled'),
+  disallow('disallow'),
+  block('block'),
+  onlyOnAdPages('only_on_ad_pages');
+
+  const BotManagementAiTraining(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Bot Management Ai enum for `ai_user`.
+enum BotManagementAiUser implements TerraformEnum {
+  disabled('disabled'),
+  block('block'),
+  onlyOnAdPages('only_on_ad_pages');
+
+  const BotManagementAiUser(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Bot Management enum for `aisearch`.
+enum BotManagementAisearch implements TerraformEnum {
+  disabled('disabled'),
+  block('block'),
+  onlyOnAdPages('only_on_ad_pages');
+
+  const BotManagementAisearch(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Bot Management Cf Robots enum for `cf_robots_variant`.
+enum BotManagementCfRobotsVariant implements TerraformEnum {
+  off('off'),
+  policyOnly('policy_only');
+
+  const BotManagementCfRobotsVariant(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Bot Management Content Bots enum for `content_bots_protection`.
+enum BotManagementContentBotsProtection implements TerraformEnum {
+  block('block'),
+  disabled('disabled');
+
+  const BotManagementContentBotsProtection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Bot Management Crawler enum for `crawler_protection`.
+enum BotManagementCrawlerProtection implements TerraformEnum {
+  enabled('enabled'),
+  disabled('disabled');
+
+  const BotManagementCrawlerProtection(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Bot Management Sbfm Definitely enum for `sbfm_definitely_automated`.
+enum BotManagementSbfmDefinitelyAutomated implements TerraformEnum {
+  allow('allow'),
+  block('block'),
+  managedChallenge('managed_challenge');
+
+  const BotManagementSbfmDefinitelyAutomated(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Bot Management Sbfm Likely enum for `sbfm_likely_automated`.
+enum BotManagementSbfmLikelyAutomated implements TerraformEnum {
+  allow('allow'),
+  block('block'),
+  managedChallenge('managed_challenge');
+
+  const BotManagementSbfmLikelyAutomated(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Bot Management Sbfm Verified enum for `sbfm_verified_bots`.
+enum BotManagementSbfmVerifiedBots implements TerraformEnum {
+  allow('allow'),
+  block('block');
+
+  const BotManagementSbfmVerifiedBots(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_bot_management`.
 ///
 /// Accepted Permissions
@@ -17,25 +124,25 @@ final class CloudflareBotManagement extends Resource {
   CloudflareBotManagement({
     required super.localName,
     TfArg<bool>? aiBotsMigrationOptOut,
-    TfArg<String>? aiBotsProtection,
-    TfArg<String>? aiTraining,
-    TfArg<String>? aiUser,
-    TfArg<String>? aisearch,
+    TfArg<BotManagementAiBotsProtection>? aiBotsProtection,
+    TfArg<BotManagementAiTraining>? aiTraining,
+    TfArg<BotManagementAiUser>? aiUser,
+    TfArg<BotManagementAisearch>? aisearch,
     TfArg<bool>? autoUpdateModel,
     TfArg<bool>? bmCookieEnabled,
     TfArg<bool>? botPreferenceSyncEnabled,
-    TfArg<String>? cfRobotsVariant,
-    TfArg<String>? contentBotsProtection,
-    TfArg<String>? crawlerProtection,
+    TfArg<BotManagementCfRobotsVariant>? cfRobotsVariant,
+    TfArg<BotManagementContentBotsProtection>? contentBotsProtection,
+    TfArg<BotManagementCrawlerProtection>? crawlerProtection,
     TfArg<bool>? enableJs,
     TfArg<bool>? fightMode,
     TfArg<bool>? isRobotsTxtManaged,
     TfArg<bool>? jsdApiResultsEnabled,
     TfArg<bool>? optimizeWordpress,
-    TfArg<String>? sbfmDefinitelyAutomated,
-    TfArg<String>? sbfmLikelyAutomated,
+    TfArg<BotManagementSbfmDefinitelyAutomated>? sbfmDefinitelyAutomated,
+    TfArg<BotManagementSbfmLikelyAutomated>? sbfmLikelyAutomated,
     TfArg<bool>? sbfmStaticResourceProtection,
-    TfArg<String>? sbfmVerifiedBots,
+    TfArg<BotManagementSbfmVerifiedBots>? sbfmVerifiedBots,
     TfArg<bool>? suppressSessionScore,
     required TfArg<String> zoneId,
     super.lifecycle,

@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_entry`.
 const Set<String> _cloudflareZeroTrustDlpEntrySensitive = <String>{};
 
+/// Zero Trust Dlp Entry enum for `type`.
+enum ZeroTrustDlpEntryType implements TerraformEnum {
+  custom('custom'),
+  predefined('predefined'),
+  integration('integration');
+
+  const ZeroTrustDlpEntryType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `pattern` block of
 /// `cloudflare_zero_trust_dlp_entry` (derived from provider schema).
 @immutable
@@ -15,12 +26,21 @@ final class ZeroTrustDlpEntryPattern {
 
   final TfArg<String> regex;
 
-  final TfArg<String>? validation;
+  final TfArg<ZeroTrustDlpEntryPatternValidation>? validation;
 
   Map<String, Object?> encode() => {
     'regex': regex.toTfJson(),
     if (validation != null) 'validation': validation!.toTfJson(),
   };
+}
+
+/// `validation` — derived from the provider schema description.
+enum ZeroTrustDlpEntryPatternValidation implements TerraformEnum {
+  luhn('luhn');
+
+  const ZeroTrustDlpEntryPatternValidation(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_dlp_entry`.
@@ -38,7 +58,7 @@ final class CloudflareZeroTrustDlpEntry extends Resource {
     required TfArg<bool> enabled,
     required TfArg<String> name,
     TfArg<String>? profileId,
-    TfArg<String>? type,
+    TfArg<ZeroTrustDlpEntryType>? type,
     required ZeroTrustDlpEntryPattern pattern,
     super.lifecycle,
     super.dependsOn,

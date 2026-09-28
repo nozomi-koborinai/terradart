@@ -6,6 +6,25 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_api_shield_schema`.
 const Set<String> _cloudflareApiShieldSchemaSensitive = <String>{};
 
+/// Api Shield Schema enum for `kind`.
+enum ApiShieldSchemaKind implements TerraformEnum {
+  openapiV3('openapi_v3');
+
+  const ApiShieldSchemaKind(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Api Shield Schema Validation enum for `validation_enabled`.
+enum ApiShieldSchemaValidationEnabled implements TerraformEnum {
+  trueCase('true'),
+  falseCase('false');
+
+  const ApiShieldSchemaValidationEnabled(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_api_shield_schema`.
 ///
 /// Accepted Permissions
@@ -18,11 +37,11 @@ final class CloudflareApiShieldSchema extends Resource {
   CloudflareApiShieldSchema({
     required super.localName,
     required TfArg<String> file,
-    required TfArg<String> kind,
+    required TfArg<ApiShieldSchemaKind> kind,
     TfArg<String>? name,
     TfArg<bool>? omitSource,
     TfArg<String>? schemaId,
-    TfArg<String>? validationEnabled,
+    TfArg<ApiShieldSchemaValidationEnabled>? validationEnabled,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

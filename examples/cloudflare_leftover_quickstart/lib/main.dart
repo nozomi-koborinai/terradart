@@ -66,7 +66,9 @@ final class CloudflareLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         policies: [
           AccountTokenPolicies(
-            effect: TfArg.literal('allow'),
+            effect: TfArg.literal(
+              AccountTokenPoliciesEffect.allow,
+            ),
             resources: TfArg.literal(leftover),
             permissionGroups: [
               AccountTokenPoliciesPermissionGroups(
@@ -107,7 +109,9 @@ final class CloudflareLeftoverStack extends Stack {
         elements: [
           AiGatewayDynamicRoutingElements(
             id: TfArg.literal('00000000000000000000000000000001'),
-            type: TfArg.literal('start'),
+            type: TfArg.literal(
+              AiGatewayDynamicRoutingElementsType.start,
+            ),
             outputs: AiGatewayDynamicRoutingElementsOutputs(
               elementId: TfArg.literal('00000000000000000000000000000001'),
             ),
@@ -149,7 +153,9 @@ final class CloudflareLeftoverStack extends Stack {
         authIdCharacteristics: [
           ApiShieldAuthIdCharacteristics(
             name: TfArg.literal(leftover),
-            type: TfArg.literal('header'),
+            type: TfArg.literal(
+              ApiShieldAuthIdCharacteristicsType.header,
+            ),
           ),
         ],
       ),
@@ -168,7 +174,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'api_shield_operation',
         endpoint: TfArg.literal(leftover),
         host: TfArg.literal(leftover),
-        method: TfArg.literal('GET'),
+        method: TfArg.literal(
+          ApiShieldOperationMethod.get,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -185,7 +193,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareApiShieldSchema(
         localName: 'api_shield_schema',
         file: TfArg.literal(leftover),
-        kind: TfArg.literal('openapi_v3'),
+        kind: TfArg.literal(
+          ApiShieldSchemaKind.openapiV3,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -193,7 +203,10 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareApiShieldSchemaValidationSettings(
         localName: 'api_shield_schema_validation_settings',
-        validationDefaultMitigationAction: TfArg.literal('none'),
+        validationDefaultMitigationAction: TfArg.literal(
+          ApiShieldSchemaValidationSettingsValidationDefaultMitigationAction
+              .none,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -204,7 +217,9 @@ final class CloudflareLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         policies: [
           ApiTokenPolicies(
-            effect: TfArg.literal('allow'),
+            effect: TfArg.literal(
+              ApiTokenPoliciesEffect.allow,
+            ),
             resources: TfArg.literal(leftover),
             permissionGroups: [
               ApiTokenPoliciesPermissionGroups(
@@ -219,7 +234,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareArgoSmartRouting(
         localName: 'argo_smart_routing',
-        value: TfArg.literal('on'),
+        value: TfArg.literal(
+          ArgoSmartRoutingValue.on,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -227,7 +244,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareArgoTieredCaching(
         localName: 'argo_tiered_caching',
-        value: TfArg.literal('on'),
+        value: TfArg.literal(
+          ArgoTieredCachingValue.on,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -355,7 +374,9 @@ final class CloudflareLeftoverStack extends Stack {
         labels: TfArg.literal([leftover]),
         priority: TfArg.literal(200),
         requirement: TfArg.literal(leftover),
-        tlp: TfArg.literal('clear'),
+        tlp: TfArg.literal(
+          CloudforceOneRequestPriorityTlp.clear,
+        ),
       ),
     );
 
@@ -364,7 +385,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'connectivity_directory_service',
         accountId: TfArg.literal(accountId),
         name: TfArg.literal(leftover),
-        type: TfArg.literal('tcp'),
+        type: TfArg.literal(
+          ConnectivityDirectoryServiceType.tcp,
+        ),
         host: ConnectivityDirectoryServiceHost(
           hostname: TfArg.literal(leftover),
         ),
@@ -374,7 +397,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareContentScanning(
         localName: 'content_scanning',
-        value: TfArg.literal('enabled'),
+        value: TfArg.literal(
+          ContentScanningValue.enabled,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -449,8 +474,12 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareCustomPages(
         localName: 'custom_pages',
-        identifier: TfArg.literal('1000_errors'),
-        state: TfArg.literal('default'),
+        identifier: TfArg.literal(
+          CustomPagesIdentifier.v1000Errors,
+        ),
+        state: TfArg.literal(
+          CustomPagesState.defaultCase,
+        ),
         accountId: TfArg.literal(accountId),
       ),
     );
@@ -550,12 +579,16 @@ final class CloudflareLeftoverStack extends Stack {
         zoneId: TfArg.literal(zoneId),
         actions: [
           EmailRoutingCatchAllActions(
-            type: TfArg.literal('drop'),
+            type: TfArg.literal(
+              EmailRoutingCatchAllActionsType.drop,
+            ),
           ),
         ],
         matchers: [
           EmailRoutingCatchAllMatchers(
-            type: TfArg.literal('all'),
+            type: TfArg.literal(
+              EmailRoutingCatchAllMatchersType.all,
+            ),
           ),
         ],
       ),
@@ -574,12 +607,16 @@ final class CloudflareLeftoverStack extends Stack {
         zoneId: TfArg.literal(zoneId),
         actions: [
           EmailRoutingRuleActions(
-            type: TfArg.literal('drop'),
+            type: TfArg.literal(
+              EmailRoutingRuleActionsType.drop,
+            ),
           ),
         ],
         matchers: [
           EmailRoutingRuleMatchers(
-            type: TfArg.literal('all'),
+            type: TfArg.literal(
+              EmailRoutingRuleMatchersType.all,
+            ),
           ),
         ],
       ),
@@ -601,7 +638,9 @@ final class CloudflareLeftoverStack extends Stack {
         isRegex: TfArg.literal(true),
         isTrustedSender: TfArg.literal(true),
         pattern: TfArg.literal(leftover),
-        patternType: TfArg.literal('EMAIL'),
+        patternType: TfArg.literal(
+          EmailSecurityAllowPolicyPatternType.email,
+        ),
         verifySender: TfArg.literal(true),
       ),
     );
@@ -612,7 +651,9 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: TfArg.literal(accountId),
         isRegex: TfArg.literal(true),
         pattern: TfArg.literal(leftover),
-        patternType: TfArg.literal('EMAIL'),
+        patternType: TfArg.literal(
+          EmailSecurityBlockSenderPatternType.email,
+        ),
       ),
     );
 
@@ -740,7 +781,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareHostnameTlsSetting(
         localName: 'hostname_tls_setting',
         hostname: TfArg.literal(leftover),
-        settingId: TfArg.literal('ciphers'),
+        settingId: TfArg.literal(
+          HostnameTlsSettingSettingId.ciphers,
+        ),
         value: TfArg.literal(leftover),
         zoneId: TfArg.literal(zoneId),
       ),
@@ -769,9 +812,13 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: TfArg.literal(accountId),
         id: TfArg.literal('00000000000000000000000000000001'),
         options: ImageVariantOptions(
-          fit: TfArg.literal('scale-down'),
+          fit: TfArg.literal(
+            ImageVariantOptionsFit.scaleDown,
+          ),
           height: TfArg.literal(200),
-          metadata: TfArg.literal('none'),
+          metadata: TfArg.literal(
+            ImageVariantOptionsMetadata.none,
+          ),
           width: TfArg.literal(200),
         ),
       ),
@@ -804,7 +851,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareList(
         localName: 'list',
         accountId: TfArg.literal(accountId),
-        kind: TfArg.literal('ip'),
+        kind: TfArg.literal(
+          ListKind.ip,
+        ),
         name: TfArg.literal(leftover),
       ),
     );
@@ -902,7 +951,9 @@ final class CloudflareLeftoverStack extends Stack {
         automaticAdvertisement: TfArg.literal(true),
         name: TfArg.literal(leftover),
         prefixes: TfArg.literal([leftover]),
-        type: TfArg.literal('threshold'),
+        type: TfArg.literal(
+          MagicNetworkMonitoringRuleType.threshold,
+        ),
       ),
     );
 
@@ -972,7 +1023,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareMagicWanBgpFilterProfile(
         localName: 'magic_wan_bgp_filter_profile',
         accountId: TfArg.literal(accountId),
-        matchAction: TfArg.literal('allow'),
+        matchAction: TfArg.literal(
+          MagicWanBgpFilterProfileMatchAction.allow,
+        ),
         name: TfArg.literal(leftover),
         targets: TfArg.literal([leftover]),
       ),
@@ -1047,7 +1100,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareNotificationPolicy(
         localName: 'notification_policy',
         accountId: TfArg.literal(accountId),
-        alertType: TfArg.literal('abuse_report_alert'),
+        alertType: TfArg.literal(
+          NotificationPolicyAlertType.abuseReportAlert,
+        ),
         name: TfArg.literal(leftover),
         mechanisms: NotificationPolicyMechanisms(
           email: [
@@ -1100,7 +1155,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'origin_ca_certificate',
         csr: TfArg.literal(leftover),
         hostnames: TfArg.literal([leftover]),
-        requestType: TfArg.literal('origin-rsa'),
+        requestType: TfArg.literal(
+          OriginCaCertificateRequestType.originRsa,
+        ),
       ),
     );
 
@@ -1109,7 +1166,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'origin_cloud_region',
         originIp: TfArg.literal('192.0.2.1'),
         region: TfArg.literal(leftover),
-        vendor: TfArg.literal('aws'),
+        vendor: TfArg.literal(
+          OriginCloudRegionVendor.aws,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -1136,7 +1195,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflarePageShieldPolicy(
         localName: 'page_shield_policy',
-        action: TfArg.literal('allow'),
+        action: TfArg.literal(
+          PageShieldPolicyAction.allow,
+        ),
         description: TfArg.literal(leftover),
         enabled: TfArg.literal(true),
         expression: TfArg.literal(leftover),
@@ -1177,7 +1238,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'pipeline_sink',
         accountId: TfArg.literal(accountId),
         name: TfArg.literal(leftover),
-        type: TfArg.literal('r2'),
+        type: TfArg.literal(
+          PipelineSinkType.r2,
+        ),
       ),
     );
 
@@ -1209,7 +1272,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'queue_consumer',
         accountId: TfArg.literal(accountId),
         queueId: TfArg.literal('00000000000000000000000000000001'),
-        type: TfArg.literal('worker'),
+        type: TfArg.literal(
+          QueueConsumerType.worker,
+        ),
       ),
     );
 
@@ -1308,9 +1373,13 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareRuleset(
         localName: 'ruleset',
-        kind: TfArg.literal('zone'),
+        kind: TfArg.literal(
+          RulesetKind.zone,
+        ),
         name: TfArg.literal(leftover),
-        phase: TfArg.literal('http_request_firewall_custom'),
+        phase: TfArg.literal(
+          RulesetPhase.httpRequestFirewallCustom,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -1318,7 +1387,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareSchemaValidationOperationSettings(
         localName: 'schema_validation_operation_settings',
-        mitigationAction: TfArg.literal('none'),
+        mitigationAction: TfArg.literal(
+          SchemaValidationOperationSettingsMitigationAction.none,
+        ),
         operationId: TfArg.literal('00000000000000000000000000000001'),
         zoneId: TfArg.literal(zoneId),
       ),
@@ -1327,7 +1398,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareSchemaValidationSettings(
         localName: 'schema_validation_settings',
-        validationDefaultMitigationAction: TfArg.literal('none'),
+        validationDefaultMitigationAction: TfArg.literal(
+          SchemaValidationSettingsValidationDefaultMitigationAction.none,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -1466,7 +1539,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareTieredCache(
         localName: 'tiered_cache',
-        value: TfArg.literal('on'),
+        value: TfArg.literal(
+          TieredCacheValue.on,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -1477,14 +1552,20 @@ final class CloudflareLeftoverStack extends Stack {
         description: TfArg.literal(leftover),
         title: TfArg.literal(leftover),
         tokenSources: TfArg.literal([leftover]),
-        tokenType: TfArg.literal('JWT'),
+        tokenType: TfArg.literal(
+          TokenValidationConfigTokenType.jwt,
+        ),
         zoneId: TfArg.literal(zoneId),
         credentials: TokenValidationConfigCredentials(
           keys: [
             TokenValidationConfigCredentialsKeys(
-              alg: TfArg.literal('RS256'),
+              alg: TfArg.literal(
+                TokenValidationConfigCredentialsKeysAlg.rs256,
+              ),
               kid: TfArg.literal(leftover),
-              kty: TfArg.literal('RSA'),
+              kty: TfArg.literal(
+                TokenValidationConfigCredentialsKeysKty.rsa,
+              ),
             ),
           ],
         ),
@@ -1494,7 +1575,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareTokenValidationRules(
         localName: 'token_validation_rules',
-        action: TfArg.literal('log'),
+        action: TfArg.literal(
+          TokenValidationRulesAction.log,
+        ),
         description: TfArg.literal(leftover),
         enabled: TfArg.literal(true),
         expression: TfArg.literal(leftover),
@@ -1523,7 +1606,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'turnstile_widget',
         accountId: TfArg.literal(accountId),
         domains: TfArg.literal([leftover]),
-        mode: TfArg.literal('non-interactive'),
+        mode: TfArg.literal(
+          TurnstileWidgetMode.nonInteractive,
+        ),
         name: TfArg.literal(leftover),
         filter: TfArg.literal(leftover),
       ),
@@ -1539,8 +1624,12 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareUrlNormalizationSettings(
         localName: 'url_normalization_settings',
-        scope: TfArg.literal('incoming'),
-        type: TfArg.literal('cloudflare'),
+        scope: TfArg.literal(
+          UrlNormalizationSettingsScope.incoming,
+        ),
+        type: TfArg.literal(
+          UrlNormalizationSettingsType.cloudflare,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -1586,7 +1675,9 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: TfArg.literal(accountId),
         name: TfArg.literal(leftover),
         target: VulnerabilityScannerTargetEnvironmentTarget(
-          type: TfArg.literal('zone'),
+          type: TfArg.literal(
+            VulnerabilityScannerTargetEnvironmentTargetType.zone,
+          ),
           zoneTag: TfArg.literal(leftover),
         ),
       ),
@@ -1625,7 +1716,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareWeb3Hostname(
         localName: 'web3_hostname',
         name: TfArg.literal(leftover),
-        target: TfArg.literal('ethereum'),
+        target: TfArg.literal(
+          Web3HostnameTarget.ethereum,
+        ),
         zoneId: TfArg.literal(zoneId),
       ),
     );
@@ -1750,7 +1843,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustAccessAiControlsMcpServer(
         localName: 'zero_trust_access_ai_controls_mcp_server',
         accountId: TfArg.literal(accountId),
-        authType: TfArg.literal('unauthenticated'),
+        authType: TfArg.literal(
+          ZeroTrustAccessAiControlsMcpServerAuthType.unauthenticated,
+        ),
         hostname: TfArg.literal(leftover),
         id: TfArg.literal('00000000000000000000000000000001'),
         name: TfArg.literal(leftover),
@@ -1770,7 +1865,9 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: TfArg.literal(accountId),
         customHtml: TfArg.literal(leftover),
         name: TfArg.literal(leftover),
-        type: TfArg.literal('forbidden'),
+        type: TfArg.literal(
+          ZeroTrustAccessCustomPageType.forbidden,
+        ),
       ),
     );
 
@@ -1836,7 +1933,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustAccessPolicy(
         localName: 'zero_trust_access_policy',
         accountId: TfArg.literal(accountId),
-        decision: TfArg.literal('allow'),
+        decision: TfArg.literal(
+          ZeroTrustAccessPolicyDecision.allow,
+        ),
         name: TfArg.literal(leftover),
       ),
     );
@@ -1888,7 +1987,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustCasbWebhook(
         localName: 'zero_trust_casb_webhook',
         accountId: TfArg.literal(accountId),
-        authenticationType: TfArg.literal('None'),
+        authenticationType: TfArg.literal(
+          ZeroTrustCasbWebhookAuthenticationType.none,
+        ),
         destinationUrl: TfArg.literal('https://example.com'),
         label: TfArg.literal(leftover),
       ),
@@ -1979,7 +2080,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'zero_trust_device_managed_networks',
         accountId: TfArg.literal(accountId),
         name: TfArg.literal(leftover),
-        type: TfArg.literal('tls'),
+        type: TfArg.literal(
+          ZeroTrustDeviceManagedNetworksType.tls,
+        ),
         config: ZeroTrustDeviceManagedNetworksConfig(
           tlsSockaddr: TfArg.literal(leftover),
         ),
@@ -1992,7 +2095,9 @@ final class CloudflareLeftoverStack extends Stack {
         accountId: TfArg.literal(accountId),
         interval: TfArg.literal(leftover),
         name: TfArg.literal(leftover),
-        type: TfArg.literal('workspace_one'),
+        type: TfArg.literal(
+          ZeroTrustDevicePostureIntegrationType.workspaceOne,
+        ),
         config: ZeroTrustDevicePostureIntegrationConfig(
           accessClientId: TfArg.literal('00000000000000000000000000000001'),
         ),
@@ -2003,7 +2108,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustDevicePostureRule(
         localName: 'zero_trust_device_posture_rule',
         accountId: TfArg.literal(accountId),
-        type: TfArg.literal('file'),
+        type: TfArg.literal(
+          ZeroTrustDevicePostureRuleType.file,
+        ),
       ),
     );
 
@@ -2212,7 +2319,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustGatewayPolicy(
         localName: 'zero_trust_gateway_policy',
         accountId: TfArg.literal(accountId),
-        action: TfArg.literal('allow'),
+        action: TfArg.literal(
+          ZeroTrustGatewayPolicyAction.allow,
+        ),
         name: TfArg.literal(leftover),
       ),
     );
@@ -2237,7 +2346,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'zero_trust_list',
         accountId: TfArg.literal(accountId),
         name: TfArg.literal(leftover),
-        type: TfArg.literal('SERIAL'),
+        type: TfArg.literal(
+          ZeroTrustListType.serial,
+        ),
       ),
     );
 
@@ -2266,7 +2377,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustRiskScoringIntegration(
         localName: 'zero_trust_risk_scoring_integration',
         accountId: TfArg.literal(accountId),
-        integrationType: TfArg.literal('Okta'),
+        integrationType: TfArg.literal(
+          ZeroTrustRiskScoringIntegrationIntegrationType.okta,
+        ),
         tenantUrl: TfArg.literal('https://example.com'),
       ),
     );
@@ -2316,7 +2429,9 @@ final class CloudflareLeftoverStack extends Stack {
       CloudflareZeroTrustTunnelWarpConnectorConfig(
         localName: 'zero_trust_tunnel_warp_connector_config',
         accountId: TfArg.literal(accountId),
-        haMode: TfArg.literal('none'),
+        haMode: TfArg.literal(
+          ZeroTrustTunnelWarpConnectorConfigHaMode.none,
+        ),
         tunnelId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -2396,7 +2511,9 @@ final class CloudflareLeftoverStack extends Stack {
         zoneId: TfArg.literal(zoneId),
         rules: [
           ZoneTracingRulesRules(
-            action: TfArg.literal('set_trace_settings'),
+            action: TfArg.literal(
+              ZoneTracingRulesRulesAction.setTraceSettings,
+            ),
             description: TfArg.literal(leftover),
             enabled: TfArg.literal(true),
             expression: TfArg.literal(leftover),

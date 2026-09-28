@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_regional_tiered_cache`.
 const Set<String> _cloudflareRegionalTieredCacheSensitive = <String>{};
 
+/// Regional Tiered Cache enum for `value`.
+enum RegionalTieredCacheValue implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const RegionalTieredCacheValue(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_regional_tiered_cache`.
 ///
 /// Accepted Permissions
@@ -16,7 +26,7 @@ final class CloudflareRegionalTieredCache extends Resource {
 
   CloudflareRegionalTieredCache({
     required super.localName,
-    TfArg<String>? value,
+    TfArg<RegionalTieredCacheValue>? value,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

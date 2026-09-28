@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_page_rule`.
 const Set<String> _cloudflarePageRuleSensitive = <String>{};
 
+/// Page Rule enum for `status`.
+enum PageRuleStatus implements TerraformEnum {
+  active('active'),
+  disabled('disabled');
+
+  const PageRuleStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `actions` block of
 /// `cloudflare_page_rule` (derived from provider schema).
 @immutable
@@ -50,19 +60,19 @@ final class PageRuleActions {
 
   final TfArg<bool>? alwaysUseHttps;
 
-  final TfArg<String>? automaticHttpsRewrites;
+  final TfArg<PageRuleActionsAutomaticHttpsRewrites>? automaticHttpsRewrites;
 
   final TfArg<num>? browserCacheTtl;
 
-  final TfArg<String>? browserCheck;
+  final TfArg<PageRuleActionsBrowserCheck>? browserCheck;
 
   final TfArg<String>? bypassCacheOnCookie;
 
-  final TfArg<String>? cacheByDeviceType;
+  final TfArg<PageRuleActionsCacheByDeviceType>? cacheByDeviceType;
 
-  final TfArg<String>? cacheDeceptionArmor;
+  final TfArg<PageRuleActionsCacheDeceptionArmor>? cacheDeceptionArmor;
 
-  final TfArg<String>? cacheLevel;
+  final TfArg<PageRuleActionsCacheLevel>? cacheLevel;
 
   final TfArg<String>? cacheOnCookie;
 
@@ -78,39 +88,39 @@ final class PageRuleActions {
 
   final TfArg<num>? edgeCacheTtl;
 
-  final TfArg<String>? emailObfuscation;
+  final TfArg<PageRuleActionsEmailObfuscation>? emailObfuscation;
 
-  final TfArg<String>? explicitCacheControl;
+  final TfArg<PageRuleActionsExplicitCacheControl>? explicitCacheControl;
 
   final TfArg<String>? hostHeaderOverride;
 
-  final TfArg<String>? ipGeolocation;
+  final TfArg<PageRuleActionsIpGeolocation>? ipGeolocation;
 
-  final TfArg<String>? mirage;
+  final TfArg<PageRuleActionsMirage>? mirage;
 
-  final TfArg<String>? opportunisticEncryption;
+  final TfArg<PageRuleActionsOpportunisticEncryption>? opportunisticEncryption;
 
-  final TfArg<String>? originErrorPagePassThru;
+  final TfArg<PageRuleActionsOriginErrorPagePassThru>? originErrorPagePassThru;
 
-  final TfArg<String>? polish;
+  final TfArg<PageRuleActionsPolish>? polish;
 
   final TfArg<String>? resolveOverride;
 
-  final TfArg<String>? respectStrongEtag;
+  final TfArg<PageRuleActionsRespectStrongEtag>? respectStrongEtag;
 
-  final TfArg<String>? responseBuffering;
+  final TfArg<PageRuleActionsResponseBuffering>? responseBuffering;
 
-  final TfArg<String>? rocketLoader;
+  final TfArg<PageRuleActionsRocketLoader>? rocketLoader;
 
-  final TfArg<String>? securityLevel;
+  final TfArg<PageRuleActionsSecurityLevel>? securityLevel;
 
-  final TfArg<String>? sortQueryStringForCache;
+  final TfArg<PageRuleActionsSortQueryStringForCache>? sortQueryStringForCache;
 
-  final TfArg<String>? ssl;
+  final TfArg<PageRuleActionsSsl>? ssl;
 
-  final TfArg<String>? trueClientIpHeader;
+  final TfArg<PageRuleActionsTrueClientIpHeader>? trueClientIpHeader;
 
-  final TfArg<String>? waf;
+  final TfArg<PageRuleActionsWaf>? waf;
 
   final PageRuleActionsCacheKeyFields? cacheKeyFields;
 
@@ -170,6 +180,217 @@ final class PageRuleActions {
     if (cacheKeyFields != null) 'cache_key_fields': cacheKeyFields!.encode(),
     if (forwardingUrl != null) 'forwarding_url': forwardingUrl!.encode(),
   };
+}
+
+/// `automatic_https_rewrites` — derived from the provider schema description.
+enum PageRuleActionsAutomaticHttpsRewrites implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsAutomaticHttpsRewrites(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `browser_check` — derived from the provider schema description.
+enum PageRuleActionsBrowserCheck implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsBrowserCheck(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `cache_by_device_type` — derived from the provider schema description.
+enum PageRuleActionsCacheByDeviceType implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsCacheByDeviceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `cache_deception_armor` — derived from the provider schema description.
+enum PageRuleActionsCacheDeceptionArmor implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsCacheDeceptionArmor(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `cache_level` — derived from the provider schema description.
+enum PageRuleActionsCacheLevel implements TerraformEnum {
+  bypass('bypass'),
+  basic('basic'),
+  simplified('simplified'),
+  aggressive('aggressive'),
+  cacheEverything('cache_everything');
+
+  const PageRuleActionsCacheLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `email_obfuscation` — derived from the provider schema description.
+enum PageRuleActionsEmailObfuscation implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsEmailObfuscation(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `explicit_cache_control` — derived from the provider schema description.
+enum PageRuleActionsExplicitCacheControl implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsExplicitCacheControl(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `ip_geolocation` — derived from the provider schema description.
+enum PageRuleActionsIpGeolocation implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsIpGeolocation(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `mirage` — derived from the provider schema description.
+enum PageRuleActionsMirage implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsMirage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `opportunistic_encryption` — derived from the provider schema description.
+enum PageRuleActionsOpportunisticEncryption implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsOpportunisticEncryption(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `origin_error_page_pass_thru` — derived from the provider schema description.
+enum PageRuleActionsOriginErrorPagePassThru implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsOriginErrorPagePassThru(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `polish` — derived from the provider schema description.
+enum PageRuleActionsPolish implements TerraformEnum {
+  off('off'),
+  lossless('lossless'),
+  lossy('lossy');
+
+  const PageRuleActionsPolish(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `respect_strong_etag` — derived from the provider schema description.
+enum PageRuleActionsRespectStrongEtag implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsRespectStrongEtag(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `response_buffering` — derived from the provider schema description.
+enum PageRuleActionsResponseBuffering implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsResponseBuffering(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `rocket_loader` — derived from the provider schema description.
+enum PageRuleActionsRocketLoader implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsRocketLoader(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `security_level` — derived from the provider schema description.
+enum PageRuleActionsSecurityLevel implements TerraformEnum {
+  off('off'),
+  essentiallyOff('essentially_off'),
+  low('low'),
+  medium('medium'),
+  high('high'),
+  underAttack('under_attack');
+
+  const PageRuleActionsSecurityLevel(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `sort_query_string_for_cache` — derived from the provider schema description.
+enum PageRuleActionsSortQueryStringForCache implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsSortQueryStringForCache(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `ssl` — derived from the provider schema description.
+enum PageRuleActionsSsl implements TerraformEnum {
+  off('off'),
+  flexible('flexible'),
+  full('full'),
+  strict('strict'),
+  originPull('origin_pull');
+
+  const PageRuleActionsSsl(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `true_client_ip_header` — derived from the provider schema description.
+enum PageRuleActionsTrueClientIpHeader implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsTrueClientIpHeader(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `waf` — derived from the provider schema description.
+enum PageRuleActionsWaf implements TerraformEnum {
+  on('on'),
+  off('off');
+
+  const PageRuleActionsWaf(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `actions.cache_key_fields` block of
@@ -335,7 +556,7 @@ final class CloudflarePageRule extends Resource {
   CloudflarePageRule({
     required super.localName,
     TfArg<num>? priority,
-    TfArg<String>? status,
+    TfArg<PageRuleStatus>? status,
     required TfArg<String> target,
     required TfArg<String> zoneId,
     required PageRuleActions actions,

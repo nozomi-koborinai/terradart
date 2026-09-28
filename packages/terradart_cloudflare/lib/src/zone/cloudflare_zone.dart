@@ -7,6 +7,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zone`.
 const Set<String> _cloudflareZoneSensitive = <String>{};
 
+/// Zone enum for `type`.
+enum ZoneType implements TerraformEnum {
+  full('full'),
+  partial('partial'),
+  secondary('secondary'),
+  internal('internal');
+
+  const ZoneType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `account` block of
 /// `cloudflare_zone` (derived from provider schema).
 @immutable
@@ -50,7 +62,7 @@ final class CloudflareZone extends Resource {
     required super.localName,
     required TfArg<String> name,
     required ZoneAccount account,
-    TfArg<String>? type,
+    TfArg<ZoneType>? type,
     TfArg<bool>? paused,
     TfArg<List<String>>? vanityNameServers,
     super.lifecycle,

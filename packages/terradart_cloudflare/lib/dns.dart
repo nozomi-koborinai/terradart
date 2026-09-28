@@ -6,7 +6,13 @@ library;
 export 'src/dns/cloudflare_dns_firewall.dart'
     show CloudflareDnsFirewall, DnsFirewallAttackMitigation;
 export 'src/dns/cloudflare_dns_record.dart'
-    show CloudflareDnsRecord, DnsRecordData, DnsRecordSettings;
+    show
+        CloudflareDnsRecord,
+        DnsRecordData,
+        DnsRecordDataLatDirection,
+        DnsRecordDataLongDirection,
+        DnsRecordSettings,
+        DnsRecordType;
 export 'src/dns/cloudflare_dns_zone_transfers_acl.dart'
     show CloudflareDnsZoneTransfersAcl;
 export 'src/dns/cloudflare_dns_zone_transfers_incoming.dart'

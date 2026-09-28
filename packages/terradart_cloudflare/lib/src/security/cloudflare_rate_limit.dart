@@ -13,7 +13,7 @@ const Set<String> _cloudflareRateLimitSensitive = <String>{};
 final class RateLimitAction {
   const RateLimitAction({this.mode, this.timeout, this.response});
 
-  final TfArg<String>? mode;
+  final TfArg<RateLimitActionMode>? mode;
 
   final TfArg<num>? timeout;
 
@@ -24,6 +24,19 @@ final class RateLimitAction {
     if (timeout != null) 'timeout': timeout!.toTfJson(),
     if (response != null) 'response': response!.encode(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum RateLimitActionMode implements TerraformEnum {
+  simulate('simulate'),
+  ban('ban'),
+  challenge('challenge'),
+  jsChallenge('js_challenge'),
+  managedChallenge('managed_challenge');
+
+  const RateLimitActionMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `action.response` block of
@@ -69,7 +82,7 @@ final class RateLimitMatchHeaders {
 
   final TfArg<String>? name;
 
-  final TfArg<String>? op;
+  final TfArg<RateLimitMatchHeadersOp>? op;
 
   final TfArg<String>? value;
 
@@ -80,23 +93,48 @@ final class RateLimitMatchHeaders {
   };
 }
 
+/// `op` — derived from the provider schema description.
+enum RateLimitMatchHeadersOp implements TerraformEnum {
+  eq('eq'),
+  ne('ne');
+
+  const RateLimitMatchHeadersOp(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `match.request` block of
 /// `cloudflare_rate_limit` (derived from provider schema).
 @immutable
 final class RateLimitMatchRequest {
   const RateLimitMatchRequest({this.methods, this.schemes, this.url});
 
-  final TfArg<List<Object?>>? methods;
+  final List<TfArg<RateLimitMatchRequestMethods>>? methods;
 
   final TfArg<List<Object?>>? schemes;
 
   final TfArg<String>? url;
 
   Map<String, Object?> encode() => {
-    if (methods != null) 'methods': methods!.toTfJson(),
+    if (methods != null) 'methods': [for (final e in methods!) e.toTfJson()],
     if (schemes != null) 'schemes': schemes!.toTfJson(),
     if (url != null) 'url': url!.toTfJson(),
   };
+}
+
+/// `methods` — derived from the provider schema description.
+enum RateLimitMatchRequestMethods implements TerraformEnum {
+  get('GET'),
+  post('POST'),
+  put('PUT'),
+  delete('DELETE'),
+  patch('PATCH'),
+  head('HEAD'),
+  all('_ALL_');
+
+  const RateLimitMatchRequestMethods(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `match.response` block of

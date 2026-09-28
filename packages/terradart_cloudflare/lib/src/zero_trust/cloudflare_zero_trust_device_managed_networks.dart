@@ -8,6 +8,15 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareZeroTrustDeviceManagedNetworksSensitive =
     <String>{};
 
+/// Zero Trust Device Managed Networks enum for `type`.
+enum ZeroTrustDeviceManagedNetworksType implements TerraformEnum {
+  tls('tls');
+
+  const ZeroTrustDeviceManagedNetworksType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `config` block of
 /// `cloudflare_zero_trust_device_managed_networks` (derived from provider schema).
 @immutable
@@ -39,7 +48,7 @@ final class CloudflareZeroTrustDeviceManagedNetworks extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> name,
-    required TfArg<String> type,
+    required TfArg<ZeroTrustDeviceManagedNetworksType> type,
     required ZeroTrustDeviceManagedNetworksConfig config,
     super.lifecycle,
     super.dependsOn,

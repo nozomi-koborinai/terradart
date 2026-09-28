@@ -8,6 +8,16 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareZeroTrustTunnelCloudflaredConfigSensitive =
     <String>{};
 
+/// Zero Trust Tunnel Cloudflared Config enum for `source`.
+enum ZeroTrustTunnelCloudflaredConfigSource implements TerraformEnum {
+  local('local'),
+  cloudflare('cloudflare');
+
+  const ZeroTrustTunnelCloudflaredConfigSource(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `config` block of
 /// `cloudflare_zero_trust_tunnel_cloudflared_config` (derived from provider schema).
 @immutable
@@ -268,7 +278,7 @@ final class CloudflareZeroTrustTunnelCloudflaredConfig extends Resource {
   CloudflareZeroTrustTunnelCloudflaredConfig({
     required super.localName,
     required TfArg<String> accountId,
-    TfArg<String>? source,
+    TfArg<ZeroTrustTunnelCloudflaredConfigSource>? source,
     required TfArg<String> tunnelId,
     ZeroTrustTunnelCloudflaredConfigConfig? config,
     super.lifecycle,

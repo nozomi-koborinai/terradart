@@ -104,7 +104,7 @@ final class WorkerObservabilityTraces {
 
   final TfArg<bool>? persist;
 
-  final TfArg<String>? propagationPolicy;
+  final TfArg<WorkerObservabilityTracesPropagationPolicy>? propagationPolicy;
 
   Map<String, Object?> encode() => {
     if (destinations != null) 'destinations': destinations!.toTfJson(),
@@ -115,6 +115,16 @@ final class WorkerObservabilityTraces {
     if (propagationPolicy != null)
       'propagation_policy': propagationPolicy!.toTfJson(),
   };
+}
+
+/// `propagation_policy` — derived from the provider schema description.
+enum WorkerObservabilityTracesPropagationPolicy implements TerraformEnum {
+  authenticated('authenticated'),
+  accept('accept');
+
+  const WorkerObservabilityTracesPropagationPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `previews_base_config` block of
@@ -306,7 +316,8 @@ final class WorkerPreviewsBaseConfigObservabilityTraces {
 
   final TfArg<bool>? persist;
 
-  final TfArg<String>? propagationPolicy;
+  final TfArg<WorkerPreviewsBaseConfigObservabilityTracesPropagationPolicy>?
+  propagationPolicy;
 
   Map<String, Object?> encode() => {
     if (destinations != null) 'destinations': destinations!.toTfJson(),
@@ -317,6 +328,19 @@ final class WorkerPreviewsBaseConfigObservabilityTraces {
     if (propagationPolicy != null)
       'propagation_policy': propagationPolicy!.toTfJson(),
   };
+}
+
+/// `propagation_policy` — derived from the provider schema description.
+enum WorkerPreviewsBaseConfigObservabilityTracesPropagationPolicy
+    implements TerraformEnum {
+  authenticated('authenticated'),
+  accept('accept');
+
+  const WorkerPreviewsBaseConfigObservabilityTracesPropagationPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `previews_base_config.placement` block of
@@ -335,7 +359,7 @@ final class WorkerPreviewsBaseConfigPlacement {
 
   final TfArg<String>? hostname;
 
-  final TfArg<String>? mode;
+  final TfArg<WorkerPreviewsBaseConfigPlacementMode>? mode;
 
   final TfArg<String>? region;
 
@@ -348,6 +372,16 @@ final class WorkerPreviewsBaseConfigPlacement {
     if (region != null) 'region': region!.toTfJson(),
     if (target != null) 'target': [for (final e in target!) e.encode()],
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum WorkerPreviewsBaseConfigPlacementMode implements TerraformEnum {
+  smart('smart'),
+  targeted('targeted');
+
+  const WorkerPreviewsBaseConfigPlacementMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `previews_base_config.placement.target` block of

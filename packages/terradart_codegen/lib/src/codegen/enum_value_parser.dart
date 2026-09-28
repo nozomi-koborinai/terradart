@@ -51,15 +51,27 @@ final RegExp _availableValues = RegExp(
 );
 final RegExp _quoted = RegExp(r'"((?:[^"\\]|\\.)*)"');
 
+/// A description that opens by naming the attribute an expression
+/// (`The wirefilter expression to match devices. Available values: ...`):
+/// the list names the fields an expression may use, not the values the
+/// attribute takes.
+final RegExp _expressionLead = RegExp(
+  r'^\s*(?:the |an? )?(?:wirefilter )?expression\b',
+  caseSensitive: false,
+);
+
 /// Parses the Stainless-generated dialect the Cloudflare v5 provider
 /// appends to every enum-validated attribute:
 /// `Available values: "ip", "ip6", "asn".`
 ///
 /// Only the quoted form counts — `Available values: 301, 302.` documents a
 /// number attribute. One value is enough: the provider's validator enforces
-/// it all the same.
+/// it all the same. An expression attribute is not an enum
+/// ([_expressionLead]).
 List<String>? parseAvailableValues(String? description) {
-  if (description == null) return null;
+  if (description == null || _expressionLead.hasMatch(description)) {
+    return null;
+  }
   final m = _availableValues.firstMatch(description);
   if (m == null) return null;
   return [

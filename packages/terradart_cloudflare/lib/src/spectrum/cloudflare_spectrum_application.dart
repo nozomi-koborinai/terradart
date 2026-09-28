@@ -7,6 +7,42 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_spectrum_application`.
 const Set<String> _cloudflareSpectrumApplicationSensitive = <String>{};
 
+/// Spectrum Application Proxy enum for `proxy_protocol`.
+enum SpectrumApplicationProxyProtocol implements TerraformEnum {
+  off('off'),
+  v1('v1'),
+  v2('v2'),
+  simple('simple');
+
+  const SpectrumApplicationProxyProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Spectrum Application enum for `tls`.
+enum SpectrumApplicationTls implements TerraformEnum {
+  off('off'),
+  flexible('flexible'),
+  full('full'),
+  strict('strict');
+
+  const SpectrumApplicationTls(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Spectrum Application Traffic enum for `traffic_type`.
+enum SpectrumApplicationTrafficType implements TerraformEnum {
+  direct('direct'),
+  http('http'),
+  https('https'),
+  worker('worker');
+
+  const SpectrumApplicationTrafficType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `dns` block of
 /// `cloudflare_spectrum_application` (derived from provider schema).
 @immutable
@@ -15,12 +51,22 @@ final class SpectrumApplicationDns {
 
   final TfArg<String>? name;
 
-  final TfArg<String>? type;
+  final TfArg<SpectrumApplicationDnsType>? type;
 
   Map<String, Object?> encode() => {
     if (name != null) 'name': name!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SpectrumApplicationDnsType implements TerraformEnum {
+  cname('CNAME'),
+  address('ADDRESS');
+
+  const SpectrumApplicationDnsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `edge_ips` block of
@@ -29,17 +75,38 @@ final class SpectrumApplicationDns {
 final class SpectrumApplicationEdgeIps {
   const SpectrumApplicationEdgeIps({this.connectivity, this.ips, this.type});
 
-  final TfArg<String>? connectivity;
+  final TfArg<SpectrumApplicationEdgeIpsConnectivity>? connectivity;
 
   final TfArg<List<Object?>>? ips;
 
-  final TfArg<String>? type;
+  final TfArg<SpectrumApplicationEdgeIpsType>? type;
 
   Map<String, Object?> encode() => {
     if (connectivity != null) 'connectivity': connectivity!.toTfJson(),
     if (ips != null) 'ips': ips!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `connectivity` — derived from the provider schema description.
+enum SpectrumApplicationEdgeIpsConnectivity implements TerraformEnum {
+  all('all'),
+  ipv4('ipv4'),
+  ipv6('ipv6');
+
+  const SpectrumApplicationEdgeIpsConnectivity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum SpectrumApplicationEdgeIpsType implements TerraformEnum {
+  dynamic('dynamic'),
+  static('static');
+
+  const SpectrumApplicationEdgeIpsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `origin_dns` block of
@@ -52,13 +119,25 @@ final class SpectrumApplicationOriginDns {
 
   final TfArg<num>? ttl;
 
-  final TfArg<String>? type;
+  final TfArg<SpectrumApplicationOriginDnsType>? type;
 
   Map<String, Object?> encode() => {
     if (name != null) 'name': name!.toTfJson(),
     if (ttl != null) 'ttl': ttl!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
+}
+
+/// `type` — derived from the provider schema description.
+enum SpectrumApplicationOriginDnsType implements TerraformEnum {
+  empty(''),
+  a('A'),
+  aaaa('AAAA'),
+  srv('SRV');
+
+  const SpectrumApplicationOriginDnsType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_spectrum_application`.
@@ -77,9 +156,9 @@ final class CloudflareSpectrumApplication extends Resource {
     TfArg<Object?>? originPort,
     TfArg<String>? originWorkerId,
     required TfArg<String> protocol,
-    TfArg<String>? proxyProtocol,
-    TfArg<String>? tls,
-    TfArg<String>? trafficType,
+    TfArg<SpectrumApplicationProxyProtocol>? proxyProtocol,
+    TfArg<SpectrumApplicationTls>? tls,
+    TfArg<SpectrumApplicationTrafficType>? trafficType,
     TfArg<String>? virtualNetworkId,
     required TfArg<String> zoneId,
     required SpectrumApplicationDns dns,

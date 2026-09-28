@@ -17,7 +17,7 @@ final class UserGroupPolicies {
     required this.resourceGroups,
   });
 
-  final TfArg<String> access;
+  final TfArg<UserGroupPoliciesAccess> access;
 
   final List<UserGroupPoliciesPermissionGroups> permissionGroups;
 
@@ -28,6 +28,16 @@ final class UserGroupPolicies {
     'permission_groups': [for (final e in permissionGroups) e.encode()],
     'resource_groups': [for (final e in resourceGroups) e.encode()],
   };
+}
+
+/// `access` — derived from the provider schema description.
+enum UserGroupPoliciesAccess implements TerraformEnum {
+  allow('allow'),
+  deny('deny');
+
+  const UserGroupPoliciesAccess(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `policies.permission_groups` block of

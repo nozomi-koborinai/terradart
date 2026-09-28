@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_email_security_domain`.
 const Set<String> _cloudflareEmailSecurityDomainSensitive = <String>{};
 
+/// Email Security Domain enum for `folder`.
+enum EmailSecurityDomainFolder implements TerraformEnum {
+  allitems('AllItems'),
+  inbox('Inbox');
+
+  const EmailSecurityDomainFolder(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_email_security_domain`.
 ///
 /// Accepted Permissions
@@ -20,7 +30,7 @@ final class CloudflareEmailSecurityDomain extends Resource {
     required TfArg<List<String>> allowedDeliveryModes,
     required TfArg<String> domain,
     required TfArg<List<String>> dropDispositions,
-    TfArg<String>? folder,
+    TfArg<EmailSecurityDomainFolder>? folder,
     TfArg<String>? integrationId,
     required TfArg<List<String>> ipRestrictions,
     TfArg<num>? lookbackHops,
