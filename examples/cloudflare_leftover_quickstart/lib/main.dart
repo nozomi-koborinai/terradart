@@ -1,7 +1,7 @@
 // GENERATED — dart run tool/generate_cloudflare_leftover_example.dart
 // ignore_for_file: unused_element
 
-/// Coverage stack for leftover Cloudflare factories at pin 5.23.0.
+/// Coverage stack for leftover Cloudflare factories at the current pin.
 /// Dummy constructor values; synth + terraform validate only.
 /// Never apply.
 library;

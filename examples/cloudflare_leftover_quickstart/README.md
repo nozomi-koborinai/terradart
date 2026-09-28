@@ -1,7 +1,7 @@
 # Cloudflare leftover quickstart
 
-Coverage stack for leftover `terradart_cloudflare` factories at pin
-`5.23.0` that are not in [`cloudflare_dns_quickstart`](../cloudflare_dns_quickstart).
+Coverage stack for leftover `terradart_cloudflare` factories at the current
+pin that are not in [`cloudflare_dns_quickstart`](../cloudflare_dns_quickstart).
 Dummy constructor values. Synth + `terraform validate` only. **Never apply.**
 
 ```bash
