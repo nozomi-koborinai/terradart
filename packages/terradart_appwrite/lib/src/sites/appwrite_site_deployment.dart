@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `appwrite_site_deployment`.
 const Set<String> _appwriteSiteDeploymentSensitive = <String>{};
 
+/// Site Deployment Source enum for `source_type`.
+enum SiteDeploymentSourceType implements TerraformEnum {
+  code('code'),
+  template('template');
+
+  const SiteDeploymentSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_site_deployment`.
 ///
 /// Manages an Appwrite site deployment.
@@ -26,7 +36,7 @@ final class AppwriteSiteDeployment extends Resource {
     TfArg<String>? repository,
     TfArg<String>? rootDirectory,
     required TfArg<String> siteId,
-    required TfArg<String> sourceType,
+    required TfArg<SiteDeploymentSourceType> sourceType,
     TfArg<String>? type,
     TfArg<bool>? waitForReady,
     super.lifecycle,

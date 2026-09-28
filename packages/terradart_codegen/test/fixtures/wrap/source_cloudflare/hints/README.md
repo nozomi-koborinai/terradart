@@ -1,8 +1,8 @@
 # Provider enum hints — cloudflare/terraform-provider-cloudflare
 
 One file per resource type: the enum value sets the provider's Go source
-enforces (`stringvalidator.OneOf` / `OneOfCaseInsensitive` in
-`internal/services/<service>/schema.go`), as a Magic Modules YAML subset
+enforces (`stringvalidator.OneOf` / `OneOfCaseInsensitive` in the resource
+schemas under `internal/services/`), as a Magic Modules YAML subset
 (`properties[].api_name` / `enum_values`). `terradart wrap
 --provider-enums` merges them into the schema IR (top-level attributes)
 and the nested helper types. `provider_version` must match

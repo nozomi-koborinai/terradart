@@ -1,7 +1,7 @@
 // tool/extract_provider_hints.dart
 //
-// Extracts enum hints for a Stainless-generated provider (cloudflare) from
-// the provider's Go source at the pinned tag, into a Magic Modules YAML
+// Extracts enum hints for a plugin-framework provider (cloudflare, appwrite)
+// from the provider's Go source at the pinned tag, into a Magic Modules YAML
 // subset the wrap pipeline already reads (MmYamlParser → IrMerger):
 //
 //   <schemaDir>/hints/<resource_type>.yaml
@@ -14,13 +14,16 @@
 //           - api_name: flatten_cname
 //             ...
 //
-// Source: every `internal/services/<svc>/schema.go` (the resource schema;
-// data sources are not read). A hint is a `stringvalidator.OneOf(...)` or
+// Source: every `internal/services/<svc>/schema.go` (Stainless, paired with
+// the `resource.go` that names the type) or, in a service without one, every
+// hand-written `resource.go` / `*_resource.go` (appwrite); data sources are
+// not read. A hint is a `stringvalidator.OneOf(...)` or
 // `stringvalidator.OneOfCaseInsensitive(...)` validator under an attribute
 // key — the value set the provider itself enforces, including list
 // elements (`listvalidator.ValueStringsAre(...)`) whose description does
-// not spell the values out. The Terraform type name comes from the
-// service's `resource.go` (`resp.TypeName = ... + "_<name>"`).
+// not spell the values out. The Terraform type name comes from
+// `resp.TypeName = ... + "_<name>"`, or a `fmt.Sprintf` pattern matched
+// against schema.json when one Go type serves several variants.
 //
 // schema.json at the same version is authoritative: a hint whose path is
 // absent there (a service's custom code reshapes the served schema) is
@@ -116,6 +119,12 @@ List<_Token> _tokenize(String src) {
       }
       i++;
       out.add((kind: _Tok.string, text: buf.toString()));
+    } else if (c == 0x27) {
+      i++;
+      while (i < src.length && src[i] != "'") {
+        i += src[i] == r'\' ? 2 : 1;
+      }
+      i++;
     } else if (c == 0x60) {
       final end = src.indexOf('`', i + 1);
       out.add((kind: _Tok.string, text: src.substring(i + 1, end)));
@@ -226,11 +235,60 @@ final _typeNameRe = RegExp(
   r'resp\.TypeName\s*=\s*req\.ProviderTypeName\s*\+\s*"(_[a-z0-9_]+)"',
 );
 
+/// `resp.TypeName = fmt.Sprintf("%s_%s_database", req.ProviderTypeName,
+/// r.engine)`: one Go type registered once per variant (appwrite's
+/// dedicated database engines).
+final _typeNameFormatRe = RegExp(
+  r'resp\.TypeName\s*=\s*fmt\.Sprintf\(\s*"%s((?:_[a-z0-9]+|_%s)+)"\s*,'
+  r'\s*req\.ProviderTypeName\s*,',
+);
+
 /// The resource's Terraform type from `resource.go`, or null when the
 /// service registers no resource.
 String? resourceTypeName(String resourceGo, {required String provider}) {
   final m = _typeNameRe.firstMatch(resourceGo);
   return m == null ? null : '$provider${m.group(1)}';
+}
+
+/// Every Terraform type in [knownTypes] a resource file registers: the
+/// literal `TypeName` suffix, or each type a `fmt.Sprintf` variant pattern
+/// matches.
+List<String> resourceTypeNames(
+  String resourceGo, {
+  required String provider,
+  required Iterable<String> knownTypes,
+}) {
+  final literal = resourceTypeName(resourceGo, provider: provider);
+  if (literal != null) return [literal];
+  final m = _typeNameFormatRe.firstMatch(resourceGo);
+  if (m == null) return const [];
+  final pattern = RegExp(
+    '^${RegExp.escape('$provider${m.group(1)}').replaceAll('%s', '[a-z0-9]+')}\$',
+  );
+  return [
+    for (final t in knownTypes)
+      if (pattern.hasMatch(t)) t,
+  ]..sort();
+}
+
+/// The files of one `internal/services/<svc>` directory that declare a
+/// resource schema: Stainless's `schema.go` (paired with the `resource.go`
+/// that names the type), or else every hand-written `resource.go` /
+/// `*_resource.go`, which carries its type name and schema together.
+List<({File schema, File typeName})> resourceSources(Directory dir) {
+  final schemaGo = File(p.join(dir.path, 'schema.go'));
+  final resourceGo = File(p.join(dir.path, 'resource.go'));
+  if (schemaGo.existsSync()) {
+    return resourceGo.existsSync()
+        ? [(schema: schemaGo, typeName: resourceGo)]
+        : const [];
+  }
+  final files = dir.listSync().whereType<File>().where((f) {
+    final name = p.basename(f.path);
+    return name == 'resource.go' || name.endsWith('_resource.go');
+  }).toList()
+    ..sort((a, b) => a.path.compareTo(b.path));
+  return [for (final f in files) (schema: f, typeName: f)];
 }
 
 enum HintResolution { string, missing, notString }
@@ -270,7 +328,7 @@ HintResolution resolveHint(Map<String, dynamic> block, List<String> path) {
 String renderHintsYaml({
   required String repo,
   required String version,
-  required String service,
+  required String sourcePath,
   required List<GoEnumHint> hints,
 }) {
   final tree = <String, Object?>{};
@@ -286,7 +344,7 @@ String renderHintsYaml({
   final buf = StringBuffer()
     ..writeln('# Generated by tool/extract_provider_hints.dart from $repo')
     ..writeln(
-      '# v$version internal/services/$service/schema.go. Never hand-edit;',
+      '# v$version $sourcePath. Never hand-edit;',
     )
     ..writeln('# re-extract with the command in README.md.')
     ..writeln('provider_version: ${jsonEncode(version)}');
@@ -318,8 +376,8 @@ String _readme({required String repo, required String schemaDir}) => '''
 # Provider enum hints — $repo
 
 One file per resource type: the enum value sets the provider's Go source
-enforces (`stringvalidator.OneOf` / `OneOfCaseInsensitive` in
-`internal/services/<service>/schema.go`), as a Magic Modules YAML subset
+enforces (`stringvalidator.OneOf` / `OneOfCaseInsensitive` in the resource
+schemas under `internal/services/`), as a Magic Modules YAML subset
 (`properties[].api_name` / `enum_values`). `terradart wrap
 --provider-enums` merges them into the schema IR (top-level attributes)
 and the nested helper types. `provider_version` must match
@@ -416,44 +474,46 @@ Future<void> main(List<String> args) async {
   final dirs = services.listSync().whereType<Directory>().toList()
     ..sort((a, b) => a.path.compareTo(b.path));
   for (final dir in dirs) {
-    final schemaGo = File(p.join(dir.path, 'schema.go'));
-    final resourceGo = File(p.join(dir.path, 'resource.go'));
-    if (!schemaGo.existsSync() || !resourceGo.existsSync()) continue;
-    final type = resourceTypeName(
-      resourceGo.readAsStringSync(),
-      provider: provider,
-    );
-    final block = type == null ? null : resources[type];
-    if (type == null || block == null) continue;
-    final service = p.basename(dir.path);
-    final List<GoEnumHint> hints;
-    try {
-      hints = scanSchemaGo(schemaGo.readAsStringSync());
-    } on FormatException catch (e) {
-      _fail(_exitData, '$service/schema.go: ${e.message}');
-    }
-    final kept = <GoEnumHint>[];
-    for (final h in hints) {
-      switch (resolveHint(block, h.path)) {
-        case HintResolution.string:
-          kept.add(h);
-        case HintResolution.missing:
-          skipped.add('$type.${h.dotted}');
-        case HintResolution.notString:
-          notString.add('$type.${h.dotted}');
+    for (final source in resourceSources(dir)) {
+      final types = resourceTypeNames(
+        source.typeName.readAsStringSync(),
+        provider: provider,
+        knownTypes: resources.keys,
+      ).where(resources.containsKey);
+      if (types.isEmpty) continue;
+      final sourcePath = p.relative(source.schema.path, from: root.path);
+      final List<GoEnumHint> hints;
+      try {
+        hints = scanSchemaGo(source.schema.readAsStringSync());
+      } on FormatException catch (e) {
+        _fail(_exitData, '$sourcePath: ${e.message}');
+      }
+      for (final type in types) {
+        final block = resources[type]!;
+        final kept = <GoEnumHint>[];
+        for (final h in hints) {
+          switch (resolveHint(block, h.path)) {
+            case HintResolution.string:
+              kept.add(h);
+            case HintResolution.missing:
+              skipped.add('$type.${h.dotted}');
+            case HintResolution.notString:
+              notString.add('$type.${h.dotted}');
+          }
+        }
+        if (kept.isEmpty) continue;
+        File(p.join(out.path, '$type.yaml')).writeAsStringSync(
+          renderHintsYaml(
+            repo: repo,
+            version: version,
+            sourcePath: sourcePath,
+            hints: kept,
+          ),
+        );
+        files++;
+        hintCount += kept.length;
       }
     }
-    if (kept.isEmpty) continue;
-    File(p.join(out.path, '$type.yaml')).writeAsStringSync(
-      renderHintsYaml(
-        repo: repo,
-        version: version,
-        service: service,
-        hints: kept,
-      ),
-    );
-    files++;
-    hintCount += kept.length;
   }
   if (notString.isNotEmpty) {
     out.deleteSync(recursive: true);

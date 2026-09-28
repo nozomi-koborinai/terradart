@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `appwrite_function_deployment`.
 const Set<String> _appwriteFunctionDeploymentSensitive = <String>{};
 
+/// Function Deployment Source enum for `source_type`.
+enum FunctionDeploymentSourceType implements TerraformEnum {
+  code('code'),
+  template('template');
+
+  const FunctionDeploymentSourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_function_deployment`.
 ///
 /// Manages an Appwrite function deployment.
@@ -25,7 +35,7 @@ final class AppwriteFunctionDeployment extends Resource {
     TfArg<String>? reference,
     TfArg<String>? repository,
     TfArg<String>? rootDirectory,
-    required TfArg<String> sourceType,
+    required TfArg<FunctionDeploymentSourceType> sourceType,
     TfArg<String>? type,
     TfArg<bool>? waitForReady,
     super.lifecycle,

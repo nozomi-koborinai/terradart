@@ -1,6 +1,7 @@
 outputDir: sites
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 curatedDoc: |-
   /// Site environment variable. [value] is sensitive — pass

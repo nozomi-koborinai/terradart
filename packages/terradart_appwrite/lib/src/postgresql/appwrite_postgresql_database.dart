@@ -9,6 +9,43 @@ const Set<String> _appwritePostgresqlDatabaseSensitive = <String>{
   'connection_string',
 };
 
+/// Postgresql Database Maintenance Window enum for `maintenance_window_day`.
+enum PostgresqlDatabaseMaintenanceWindowDay implements TerraformEnum {
+  sun('sun'),
+  mon('mon'),
+  tue('tue'),
+  wed('wed'),
+  thu('thu'),
+  fri('fri'),
+  sat('sat');
+
+  const PostgresqlDatabaseMaintenanceWindowDay(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Postgresql Database enum for `status`.
+enum PostgresqlDatabaseStatus implements TerraformEnum {
+  ready('ready'),
+  paused('paused'),
+  inactive('inactive');
+
+  const PostgresqlDatabaseStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Postgresql Database Sync enum for `sync_mode`.
+enum PostgresqlDatabaseSyncMode implements TerraformEnum {
+  async('async'),
+  sync('sync'),
+  quorum('quorum');
+
+  const PostgresqlDatabaseSyncMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_postgresql_database`.
 ///
 /// Manages a dedicated Appwrite PostgreSQL database. A dedicated database runs
@@ -24,7 +61,7 @@ final class AppwritePostgresqlDatabase extends Resource {
   AppwritePostgresqlDatabase({
     required super.localName,
     TfArg<num>? idleTimeoutMinutes,
-    TfArg<String>? maintenanceWindowDay,
+    TfArg<PostgresqlDatabaseMaintenanceWindowDay>? maintenanceWindowDay,
     TfArg<num>? maintenanceWindowHourUtc,
     required TfArg<String> name,
     TfArg<num>? networkIdleTimeoutSeconds,
@@ -39,11 +76,11 @@ final class AppwritePostgresqlDatabase extends Resource {
     TfArg<num>? sqlApiMaxBytes,
     TfArg<num>? sqlApiMaxRows,
     TfArg<num>? sqlApiTimeoutSeconds,
-    TfArg<String>? status,
+    TfArg<PostgresqlDatabaseStatus>? status,
     TfArg<bool>? storageAutoscaling,
     TfArg<num>? storageAutoscalingMaxGb,
     TfArg<num>? storageAutoscalingThresholdPercent,
-    TfArg<String>? syncMode,
+    TfArg<PostgresqlDatabaseSyncMode>? syncMode,
     TfArg<String>? version,
     super.lifecycle,
     super.dependsOn,

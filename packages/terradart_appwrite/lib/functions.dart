@@ -5,6 +5,6 @@ library;
 
 export 'src/functions/appwrite_function.dart' show AppwriteFunction;
 export 'src/functions/appwrite_function_deployment.dart'
-    show AppwriteFunctionDeployment;
+    show AppwriteFunctionDeployment, FunctionDeploymentSourceType;
 export 'src/functions/appwrite_function_variable.dart'
     show AppwriteFunctionVariable;

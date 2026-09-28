@@ -13,6 +13,25 @@ const Set<String> _appwriteMessagingProviderSensitive = <String>{
   'service_account_json',
 };
 
+/// Messaging Provider enum for `type`.
+enum MessagingProviderType implements TerraformEnum {
+  sendgrid('sendgrid'),
+  mailgun('mailgun'),
+  smtp('smtp'),
+  resend('resend'),
+  twilio('twilio'),
+  vonage('vonage'),
+  msg91('msg91'),
+  telesign('telesign'),
+  textmagic('textmagic'),
+  apns('apns'),
+  fcm('fcm');
+
+  const MessagingProviderType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_messaging_provider`.
 ///
 /// Manages an Appwrite messaging provider.
@@ -49,7 +68,7 @@ final class AppwriteMessagingProvider extends Resource {
     TfArg<String>? serviceAccountJson,
     TfArg<String>? teamId,
     TfArg<String>? templateId,
-    required TfArg<String> type,
+    required TfArg<MessagingProviderType> type,
     TfArg<String>? username,
     super.lifecycle,
     super.dependsOn,

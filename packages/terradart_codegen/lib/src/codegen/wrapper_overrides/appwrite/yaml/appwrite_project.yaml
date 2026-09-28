@@ -1,6 +1,7 @@
 outputDir: project
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 curatedDoc: |-
   /// Appwrite **project** — the top-level container for auth, databases,

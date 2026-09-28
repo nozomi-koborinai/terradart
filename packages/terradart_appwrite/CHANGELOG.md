@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** inputs with a fixed value set are enums — 23 string slots on 17 resources (e.g. `AppwriteMessagingProvider.type` → `MessagingProviderType`, `AppwriteStorageBucket.compression` → `StorageBucketCompression`). Synth output is unchanged. See `MIGRATING.md`.
+
 ## 0.29.0 - 2026-09-27
 
 Lockstep release. No `terradart_appwrite` API changes.

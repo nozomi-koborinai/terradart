@@ -1,6 +1,7 @@
 outputDir: postgresql
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 curatedDoc: |-
   /// Custom PostgreSQL backup destination. The API has no read route, so
