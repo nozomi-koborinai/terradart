@@ -62,7 +62,9 @@
 #                    lane wraps every data source at the pin
 #     scaffold:      how a new upstream type gets its default override
 #                    (tool/bump_new_factories.dart scaffold):
-#                    wrap-init — `terradart wrap-init` per new resource
+#                    wrap-init — `terradart wrap-init` per new resource,
+#                                a leftover-thin override per new data
+#                                source (tool/batch_data_source_overrides.dart)
 #                    lane      — scaffold_lane_overrides.dart, which fills
 #                                every schema type that lacks one
 #     rideAlong:     (optional) a lane re-extracted and regenerated at the
@@ -87,6 +89,7 @@ providers:
       major: 8
       cron: '0 22 * * 0' # Sunday 22:00 UTC (Monday 07:00 JST)
       refresh: dump
+      dataSources: true
       scaffold: wrap-init
       rideAlong: google-beta
   google-beta:

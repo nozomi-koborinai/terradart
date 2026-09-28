@@ -12,7 +12,10 @@
 // scaffold writes a default override for every added type, the way the
 // lane's `bump.scaffold` says: `wrap-init` runs tool/batch_wrap_init.dart
 // for the added resources (with --fill-param-order, so the override passes
-// the universal invariants unedited); `lane` runs scaffold_lane_overrides.dart, which
+// the universal invariants unedited) and writes the leftover-thin override of
+// tool/batch_data_source_overrides.dart for each added data source (a
+// `data_<type>` row in tool/mm_yaml_sources.yaml with it on an `mm: true`
+// lane); `lane` runs scaffold_lane_overrides.dart, which
 // fills every schema type that has no override yet. Existing overrides are
 // never touched. A lane with Magic Modules YAML (`mm: true`) first gives
 // each added resource its tool/mm_yaml_sources.yaml row, fetching the MM
@@ -39,9 +42,12 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:yaml/yaml.dart';
 
 import 'append_curation_backlog.dart';
+import 'batch_data_source_overrides.dart'
+    show dataSourceOverrideYaml, dataSourceParamOrder;
 import 'bump_plan.dart';
 import 'sync_mm_yaml.dart' show Manifest, parseManifest, recordedUpstreamRef;
 import 'wrap_lanes.dart';
@@ -136,6 +142,58 @@ String addMmSourceRows(String mmSources, Map<String, String?> upstreams) {
   final at = mmSources.indexOf(RegExp(r'^  data_', multiLine: true));
   if (at < 0) return '${mmSources.trimRight()}\n$rows';
   return mmSources.replaceRange(at, at, '$rows');
+}
+
+/// [mmSources] with a `data_<type>` row (no mmv1 YAML: Magic Modules
+/// describes resources only) for every type of [dataSources] it lacks, each
+/// placed in key order among the data-source rows at the end.
+@visibleForTesting
+String addMmDataSourceRows(String mmSources, List<String> dataSources) {
+  final listed = ((loadYaml(mmSources) as YamlMap)['files'] as YamlMap).keys;
+  final lines = mmSources.trimRight().split('\n');
+  final key = RegExp(r'^  (data_[a-z0-9_]+):$');
+  for (final stem in [
+    for (final type in dataSources)
+      if (!listed.contains('data_$type')) 'data_$type',
+  ]..sort()) {
+    var at = lines.length;
+    for (var i = 0; i < lines.length; i++) {
+      final m = key.firstMatch(lines[i]);
+      if (m != null && m[1]!.compareTo(stem) > 0) {
+        at = i;
+        break;
+      }
+    }
+    lines.insertAll(at, [
+      '  $stem:',
+      '    upstream: null  # data source; no mmv1 YAML (schema bump)',
+    ]);
+  }
+  return '${lines.join('\n')}\n';
+}
+
+/// Writes the leftover-thin `data_<type>.yaml` override
+/// (tool/batch_data_source_overrides.dart) under [overridesRoot] for every
+/// type of [dataSources] that has none, its `paramOrder` read from the
+/// lane's [schema]; returns the types written. `wrap-init` scaffolds
+/// resources only.
+@visibleForTesting
+List<String> scaffoldDataSourceOverrides(
+  List<String> dataSources, {
+  required String schema,
+  required String overridesRoot,
+}) {
+  final defs = const SchemaJsonParser().parseString(schema).dataSources;
+  final written = <String>[];
+  for (final type in dataSources) {
+    final file = File(p.join(overridesRoot, 'data_$type.yaml'));
+    if (file.existsSync()) continue;
+    final def = defs[type] ??
+        (throw StateError('$type is not a data source of the lane schema'));
+    file.writeAsStringSync(dataSourceOverrideYaml(dataSourceParamOrder(def)));
+    written.add(type);
+  }
+  return written;
 }
 
 /// Fetches [upstreamPath] from magic-modules; null unless HTTP 200.
@@ -350,33 +408,7 @@ Future<int> _scaffold(
   if (resources.isEmpty && dataSources.isEmpty) {
     result = null;
   } else if (lane.scaffold == 'wrap-init') {
-    if (dataSources.isNotEmpty) {
-      stderr.writeln('bump_new_factories: wrap-init scaffolds resources only');
-      return 64;
-    }
-    if (lane.mm) {
-      final sources = File(mmSourcesPath);
-      // The MM fixtures were just synced at the pinned release's commit;
-      // a new type's fixture comes from the same one.
-      final manifest = parseManifest(sources.readAsStringSync());
-      final upstreams = await resolveMmUpstreams(
-        resources,
-        mmSources: sources.readAsStringSync(),
-        mmDir: p.join(lane.lane.schemaDir, 'mm'),
-        fetch: mmFetchAt(manifest, recordedUpstreamRef(manifest)),
-      );
-      print('MM upstreams: $upstreams');
-      sources.writeAsStringSync(
-        addMmSourceRows(sources.readAsStringSync(), upstreams),
-      );
-    }
-    result = await Process.run(Platform.resolvedExecutable, [
-      'tool/batch_wrap_init.dart',
-      '--resources=${resources.join(',')}',
-      '--source=${lane.lane.schemaDir}',
-      '--output=${lane.lane.overridesRoot}',
-      '--fill-param-order',
-    ]);
+    result = await _wrapInit(lane, resources, dataSources);
   } else {
     result = await Process.run(
       Platform.resolvedExecutable,
@@ -416,6 +448,60 @@ Future<int> _scaffold(
       }),
     );
   return code == 0 ? 0 : 1;
+}
+
+/// `wrap-init` for the added [resources], then a leftover-thin override for
+/// every added data source ([scaffoldDataSourceOverrides]).
+Future<ProcessResult> _wrapInit(
+  BumpLane lane,
+  List<String> resources,
+  List<String> dataSources,
+) async {
+  final sources = File(mmSourcesPath);
+  var out = '';
+  if (resources.isNotEmpty) {
+    if (lane.mm) {
+      // The MM fixtures were just synced at the pinned release's commit;
+      // a new type's fixture comes from the same one.
+      final manifest = parseManifest(sources.readAsStringSync());
+      final upstreams = await resolveMmUpstreams(
+        resources,
+        mmSources: sources.readAsStringSync(),
+        mmDir: p.join(lane.lane.schemaDir, 'mm'),
+        fetch: mmFetchAt(manifest, recordedUpstreamRef(manifest)),
+      );
+      print('MM upstreams: $upstreams');
+      sources.writeAsStringSync(
+        addMmSourceRows(sources.readAsStringSync(), upstreams),
+      );
+    }
+    final result = await Process.run(Platform.resolvedExecutable, [
+      'tool/batch_wrap_init.dart',
+      '--resources=${resources.join(',')}',
+      '--source=${lane.lane.schemaDir}',
+      '--output=${lane.lane.overridesRoot}',
+      '--fill-param-order',
+    ]);
+    if (result.exitCode != 0 || dataSources.isEmpty) return result;
+    out = '${result.stdout}';
+  }
+  try {
+    final written = scaffoldDataSourceOverrides(
+      dataSources,
+      schema:
+          File(p.join(lane.lane.schemaDir, 'schema.json')).readAsStringSync(),
+      overridesRoot: lane.lane.overridesRoot,
+    );
+    if (lane.mm) {
+      sources.writeAsStringSync(
+        addMmDataSourceRows(sources.readAsStringSync(), dataSources),
+      );
+    }
+    out += 'data-source overrides: ${written.join(', ')}\n';
+    return ProcessResult(pid, 0, out, '');
+  } on Object catch (e) {
+    return ProcessResult(pid, 1, out, '$e\n');
+  }
 }
 
 void _record(

@@ -41,7 +41,7 @@ Gitignored working notes, historical design drafts, raw transcripts, and private
 _Avoid_: Agent guide, public docs
 
 **Wave**:
-A user-visible release batch of related curated factories. With the GA catalog filled, Waves originate from the curation backlog: new resources the weekly schema bump already shipped as default-override factories, awaiting API polish and an example.
+A user-visible release batch of related curated factories. With the GA catalog filled, Waves originate from the curation backlog: new resources and data sources the weekly schema bump already shipped as default-override factories, awaiting API polish and an example.
 _Avoid_: Sprint, milestone
 
 **Migration manifest**:
