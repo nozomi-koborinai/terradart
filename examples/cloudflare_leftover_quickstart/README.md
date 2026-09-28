@@ -9,8 +9,8 @@ dart run bin/infra.dart
 cd tf-out && terraform init -backend=false && terraform validate
 ```
 
-Factories the leftover dummy cannot satisfy (provider enums or nested JSON)
-are listed in [`tool/example_debt.yaml`](../../tool/example_debt.yaml).
+Factories no constructor value can take through `terraform validate`
+(a wrapper shape mismatch or a provider bug) are listed with the error in [`tool/example_debt.yaml`](../../tool/example_debt.yaml).
 
 ## Before you apply
 
