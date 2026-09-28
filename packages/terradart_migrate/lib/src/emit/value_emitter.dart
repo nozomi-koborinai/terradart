@@ -657,10 +657,13 @@ final class ValueEmitter {
     }
 
     if (slot.repeated) {
-      final ref = singleReference(value);
-      if (ref != null) {
-        final r = _refArg(ref, type: 'List<$enumName>');
-        if (r != null) return r;
+      // The parameter is a Dart list (`List<TfArg<E>>` or `List<E>`), so a
+      // reference to a whole list has no slot to go in.
+      if (value is! TupleExpr && isExpression(value)) {
+        throw MigrateBlocker(
+          'argument "$path" takes a list of $enumName values, not a '
+          'reference to a whole list',
+        );
       }
       if (value is! TupleExpr) {
         throw MigrateBlocker('argument "$path" expects a list of $enumName');
