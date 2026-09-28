@@ -6,6 +6,7 @@ void main() {
   _testRequiredApi();
   _testApiEnablementGraph();
   _testIamAdjunctDebt();
+  _testAwaitingExampleDebt();
   print('example_synth_gates_test: OK');
 }
 
@@ -185,4 +186,47 @@ void _testIamAdjunctDebt() {
     errors: notInSynth,
   );
   assert(notInSynth.any((e) => e.contains('not in any quickstart synth')));
+}
+
+void _testAwaitingExampleDebt() {
+  final backlog = backlogKeys('''
+entries:
+  - resource: google_new
+    detected_at: 2026-10-04
+    provider_version: 7.47.0
+  - data_source: aws_new
+    detected_at: 2026-10-05
+    provider_version: 6.67.0
+''');
+  assert(backlog.containsAll({'resource:google_new', 'dataSource:aws_new'}));
+
+  final ok = <String>[];
+  checkAwaitingExampleEntry(
+    className: 'GoogleNew',
+    reason: 'awaiting-example: google_new added in hashicorp/google 7.47.0',
+    catalogKey: 'resource:google_new',
+    backlogTypes: backlog,
+    errors: ok,
+  );
+  // Other reasons are not tied to the backlog.
+  checkAwaitingExampleEntry(
+    className: 'GoogleOld',
+    reason: 'org-only; needs folder',
+    catalogKey: 'resource:google_old',
+    backlogTypes: backlog,
+    errors: ok,
+  );
+  assert(ok.isEmpty);
+
+  // The kind must match: a resource line does not borrow a data source's
+  // backlog entry.
+  final missing = <String>[];
+  checkAwaitingExampleEntry(
+    className: 'AwsNew',
+    reason: 'awaiting-example: aws_new added in hashicorp/aws 6.67.0',
+    catalogKey: 'resource:aws_new',
+    backlogTypes: backlog,
+    errors: missing,
+  );
+  assert(missing.single.contains('aws_new has no tool/curation_backlog.yaml'));
 }

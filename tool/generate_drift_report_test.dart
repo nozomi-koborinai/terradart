@@ -13,6 +13,8 @@ ReportInputs inputs({
   Map<String, dynamic>? apiDiff = _noBreaks,
   List<String> added = const [],
   int wrapCheckExitCode = 0,
+  Map<String, dynamic>? newFactories,
+  Map<String, dynamic>? scaffold,
 }) =>
     ReportInputs(
       state: {
@@ -34,6 +36,8 @@ ReportInputs inputs({
       },
       betaBump: betaBump,
       apiDiff: apiDiff,
+      newFactories: newFactories,
+      scaffold: scaffold,
     );
 
 void main() {
@@ -104,12 +108,39 @@ void main() {
     );
   });
 
-  test('new resources block auto-merge', () {
-    final i = inputs(added: ['google_foo']);
+  test('new resources do not block auto-merge', () {
+    final i = inputs(
+      added: ['google_foo'],
+      newFactories: {
+        'example_generator': null,
+        'factories': [
+          {
+            'tf_type': 'google_foo',
+            'class_name': 'GoogleFoo',
+            'kind': 'resource',
+          },
+        ],
+      },
+      scaffold: {'exit': 0, 'log_excerpt': ''},
+    );
+    expect(autoMergeBlockers(i), isEmpty);
+    final section = buildNewResourceSection(i);
+    expect(section, contains('- `google_foo` → `GoogleFoo`'));
+    expect(section, contains('`awaiting-example:`'));
+    expect(buildReport(i), contains('## ✅ Auto-merge enabled'));
+  });
+
+  test('a failed scaffold blocks auto-merge and shows its log', () {
+    final i = inputs(
+      added: ['google_foo'],
+      scaffold: {'exit': 66, 'log_excerpt': 'wrap-init failed'},
+    );
     expect(autoMergeBlockers(i), [
-      '1 new resource(s) for the curation backlog',
+      'scaffolding default overrides for the new types failed',
     ]);
-    expect(buildReport(i), contains('## ✋ Needs a maintainer'));
+    final section = buildNewResourceSection(i);
+    expect(section, contains('no factory generated'));
+    expect(section, contains('wrap-init failed'));
   });
 
   test('a breaking API change blocks auto-merge and is listed', () {

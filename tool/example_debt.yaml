@@ -21,6 +21,15 @@
 # gate enforces sibling presence — no example change needed.
 # Example:
 #   GoogleFooIamBinding: iam-adjunct-debt: sibling GoogleFooIamMember already in bar_quickstart; authoritative binding not needed in smoke
+#
+# Awaiting an example (the one unreviewed reason): the weekly schema bump
+# generates a default-override factory for every new upstream type and, when
+# no leftover example generator covers it, lists it at the end of this file
+# as `ClassName: awaiting-example: <type> added in <source> <version> ...`
+# (tool/bump_new_factories.dart). The synth gate accepts such a line only
+# while the type still has its tool/curation_backlog.yaml entry; the Wave
+# that polishes the factory replaces the line with an example or a reasoned
+# entry.
 
 # Monitoring factories that cannot `terraform apply` against a standalone
 # apply-smoke project, so monitoring_quickstart uses the applyable variants

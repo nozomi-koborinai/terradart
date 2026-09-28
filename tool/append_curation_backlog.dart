@@ -38,10 +38,10 @@ Future<void> main(List<String> args) async {
     exit(_exitIo);
   }
   final diff = jsonDecode(diffFile.readAsStringSync()) as Map<String, dynamic>;
-  final added = (diff['added_resources'] as List<dynamic>? ?? const [])
-      .cast<String>();
-  final addedData = (diff['added_data_sources'] as List<dynamic>? ?? const [])
-      .cast<String>();
+  final added =
+      (diff['added_resources'] as List<dynamic>? ?? const []).cast<String>();
+  final addedData =
+      (diff['added_data_sources'] as List<dynamic>? ?? const []).cast<String>();
 
   if (added.isEmpty && addedData.isEmpty) {
     print('No added types; backlog unchanged.');
@@ -54,7 +54,7 @@ Future<void> main(List<String> args) async {
     exit(_exitIo);
   }
 
-  final header = _readHeader(backlogFile.readAsStringSync());
+  final header = readBacklogHeader(backlogFile.readAsStringSync());
   final entries = readBacklogEntries(backlogFile.readAsStringSync());
   final appended = appendCurationEntries(
     existing: entries,
@@ -64,7 +64,8 @@ Future<void> main(List<String> args) async {
     providerVersion: parsed.providerVersion,
   );
 
-  backlogFile.writeAsStringSync(formatBacklogYaml(header: header, entries: appended));
+  backlogFile
+      .writeAsStringSync(formatBacklogYaml(header: header, entries: appended));
   print(
     'curation_backlog: ${appended.length} entries '
     '(${added.length + addedData.length} candidate type(s) from diff)',
@@ -125,8 +126,7 @@ List<Map<String, String>> readBacklogEntries(String yamlSource) {
     for (final item in raw)
       if (item is YamlMap)
         {
-          for (final key in item.keys)
-            key.toString(): item[key].toString(),
+          for (final key in item.keys) key.toString(): item[key].toString(),
         },
   ];
 }
@@ -134,10 +134,12 @@ List<Map<String, String>> readBacklogEntries(String yamlSource) {
 /// The entry keys naming a type, by kind.
 const backlogKindKeys = ['resource', 'data_source'];
 
-String _entryKey(Map<String, String> e) => [
+String _entryKey(Map<String, String> e) =>
+    [
       for (final kind in backlogKindKeys)
         if (e[kind] case final name?) '$kind:$name',
-    ].firstOrNull ?? '';
+    ].firstOrNull ??
+    '';
 
 String _entryName(Map<String, String> e) =>
     e['resource'] ?? e['data_source'] ?? '';
@@ -150,6 +152,7 @@ List<Map<String, String>> appendCurationEntries({
   List<String> dataSources = const [],
   required String detectedAt,
   required String providerVersion,
+  String? note,
 }) {
   final seen = existing.map(_entryKey).toSet();
   final out = [...existing];
@@ -163,6 +166,7 @@ List<Map<String, String>> appendCurationEntries({
         kind: name,
         'detected_at': detectedAt,
         'provider_version': providerVersion,
+        if (note != null && note.isNotEmpty) 'note': note,
       });
     }
   }
@@ -173,7 +177,8 @@ List<Map<String, String>> appendCurationEntries({
   return out;
 }
 
-String _readHeader(String yamlSource) {
+/// The comment block above `entries:`.
+String readBacklogHeader(String yamlSource) {
   final lines = yamlSource.split('\n');
   final headerLines = <String>[];
   for (final line in lines) {
