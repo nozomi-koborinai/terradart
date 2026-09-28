@@ -4,4 +4,7 @@
 library;
 
 export 'src/observatory/cloudflare_observatory_scheduled_test.dart'
-    show CloudflareObservatoryScheduledTest;
+    show
+        CloudflareObservatoryScheduledTest,
+        ObservatoryScheduledTestFrequency,
+        ObservatoryScheduledTestRegion;

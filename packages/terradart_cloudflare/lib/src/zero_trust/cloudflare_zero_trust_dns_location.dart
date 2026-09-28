@@ -141,7 +141,7 @@ final class ZeroTrustDnsLocationEndpointsIpv6Networks {
 final class ZeroTrustDnsLocationMaxTtl {
   const ZeroTrustDnsLocationMaxTtl({required this.mode, this.ttlSecs});
 
-  final TfArg<String> mode;
+  final TfArg<ZeroTrustDnsLocationMaxTtlMode> mode;
 
   final TfArg<num>? ttlSecs;
 
@@ -149,6 +149,17 @@ final class ZeroTrustDnsLocationMaxTtl {
     'mode': mode.toTfJson(),
     if (ttlSecs != null) 'ttl_secs': ttlSecs!.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum ZeroTrustDnsLocationMaxTtlMode implements TerraformEnum {
+  inherit('inherit'),
+  overrideCase('override'),
+  disabled('disabled');
+
+  const ZeroTrustDnsLocationMaxTtlMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `networks` block of

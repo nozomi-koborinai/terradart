@@ -6,6 +6,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_share_resource`.
 const Set<String> _cloudflareShareResourceSensitive = <String>{};
 
+/// Share Resource Resource enum for `resource_type`.
+enum ShareResourceResourceType implements TerraformEnum {
+  customRuleset('custom-ruleset'),
+  gatewayPolicy('gateway-policy'),
+  gatewayDestinationIp('gateway-destination-ip'),
+  gatewayBlockPageSettings('gateway-block-page-settings'),
+  gatewayExtendedEmailMatching('gateway-extended-email-matching'),
+  idpFederationGrant('idp-federation-grant'),
+  trustGrant('trust-grant');
+
+  const ShareResourceResourceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_share_resource`.
 final class CloudflareShareResource extends Resource {
   static const String tfType = 'cloudflare_share_resource';
@@ -16,7 +31,7 @@ final class CloudflareShareResource extends Resource {
     required TfArg<String> meta,
     required TfArg<String> resourceAccountId,
     required TfArg<String> resourceId,
-    required TfArg<String> resourceType,
+    required TfArg<ShareResourceResourceType> resourceType,
     required TfArg<String> shareId,
     super.lifecycle,
     super.dependsOn,

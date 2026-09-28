@@ -10,17 +10,31 @@ export 'src/pipeline/cloudflare_pipeline_sink.dart'
         PipelineSinkConfig,
         PipelineSinkConfigCredentials,
         PipelineSinkConfigFileNaming,
+        PipelineSinkConfigFileNamingStrategy,
         PipelineSinkConfigPartitioning,
         PipelineSinkConfigRollingPolicy,
         PipelineSinkFormat,
+        PipelineSinkFormatCompression,
+        PipelineSinkFormatDecimalEncoding,
+        PipelineSinkFormatTimestampFormat,
+        PipelineSinkFormatType,
         PipelineSinkSchema,
-        PipelineSinkSchemaFields;
+        PipelineSinkSchemaFields,
+        PipelineSinkSchemaFieldsType,
+        PipelineSinkSchemaFieldsUnit,
+        PipelineSinkType;
 export 'src/pipeline/cloudflare_pipeline_stream.dart'
     show
         CloudflarePipelineStream,
         PipelineStreamFormat,
+        PipelineStreamFormatCompression,
+        PipelineStreamFormatDecimalEncoding,
+        PipelineStreamFormatTimestampFormat,
+        PipelineStreamFormatType,
         PipelineStreamHttp,
         PipelineStreamHttpCors,
         PipelineStreamSchema,
         PipelineStreamSchemaFields,
+        PipelineStreamSchemaFieldsType,
+        PipelineStreamSchemaFieldsUnit,
         PipelineStreamWorkerBinding;

@@ -12,6 +12,22 @@ const Set<String> _cloudflareZeroTrustDevicePostureIntegrationSensitive =
       'config.client_secret',
     };
 
+/// Zero Trust Device Posture Integration enum for `type`.
+enum ZeroTrustDevicePostureIntegrationType implements TerraformEnum {
+  workspaceOne('workspace_one'),
+  crowdstrikeS2s('crowdstrike_s2s'),
+  uptycs('uptycs'),
+  intune('intune'),
+  kolide('kolide'),
+  taniumS2s('tanium_s2s'),
+  sentineloneS2s('sentinelone_s2s'),
+  customS2s('custom_s2s');
+
+  const ZeroTrustDevicePostureIntegrationType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `config` block of
 /// `cloudflare_zero_trust_device_posture_integration` (derived from provider schema).
 @immutable
@@ -70,7 +86,7 @@ final class CloudflareZeroTrustDevicePostureIntegration extends Resource {
     required TfArg<String> accountId,
     required TfArg<String> interval,
     required TfArg<String> name,
-    required TfArg<String> type,
+    required TfArg<ZeroTrustDevicePostureIntegrationType> type,
     required ZeroTrustDevicePostureIntegrationConfig config,
     super.lifecycle,
     super.dependsOn,

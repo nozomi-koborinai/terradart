@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_token_validation_config`.
 const Set<String> _cloudflareTokenValidationConfigSensitive = <String>{};
 
+/// Token Validation Config Token enum for `token_type`.
+enum TokenValidationConfigTokenType implements TerraformEnum {
+  jwt('JWT');
+
+  const TokenValidationConfigTokenType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `credentials` block of
 /// `cloudflare_token_validation_config` (derived from provider schema).
 @immutable
@@ -36,9 +45,9 @@ final class TokenValidationConfigCredentialsKeys {
     this.y,
   });
 
-  final TfArg<String> alg;
+  final TfArg<TokenValidationConfigCredentialsKeysAlg> alg;
 
-  final TfArg<String>? crv;
+  final TfArg<TokenValidationConfigCredentialsKeysCrv>? crv;
 
   final TfArg<String>? e;
 
@@ -46,7 +55,7 @@ final class TokenValidationConfigCredentialsKeys {
 
   final TfArg<String> kid;
 
-  final TfArg<String> kty;
+  final TfArg<TokenValidationConfigCredentialsKeysKty> kty;
 
   final TfArg<String>? n;
 
@@ -67,6 +76,46 @@ final class TokenValidationConfigCredentialsKeys {
   };
 }
 
+/// `alg` — derived from the provider schema description.
+enum TokenValidationConfigCredentialsKeysAlg implements TerraformEnum {
+  rs256('RS256'),
+  rs384('RS384'),
+  rs512('RS512'),
+  ps256('PS256'),
+  ps384('PS384'),
+  ps512('PS512'),
+  es256('ES256'),
+  es384('ES384'),
+  hs256('HS256'),
+  hs384('HS384'),
+  hs512('HS512');
+
+  const TokenValidationConfigCredentialsKeysAlg(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `crv` — derived from the provider schema description.
+enum TokenValidationConfigCredentialsKeysCrv implements TerraformEnum {
+  p256('P-256'),
+  p384('P-384');
+
+  const TokenValidationConfigCredentialsKeysCrv(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `kty` — derived from the provider schema description.
+enum TokenValidationConfigCredentialsKeysKty implements TerraformEnum {
+  rsa('RSA'),
+  ec('EC'),
+  oct('oct');
+
+  const TokenValidationConfigCredentialsKeysKty(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_token_validation_config`.
 ///
 /// Accepted Permissions
@@ -81,7 +130,7 @@ final class CloudflareTokenValidationConfig extends Resource {
     required TfArg<String> description,
     required TfArg<String> title,
     required TfArg<List<String>> tokenSources,
-    required TfArg<String> tokenType,
+    required TfArg<TokenValidationConfigTokenType> tokenType,
     required TfArg<String> zoneId,
     required TokenValidationConfigCredentials credentials,
     super.lifecycle,

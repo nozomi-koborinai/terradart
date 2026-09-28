@@ -192,7 +192,7 @@ final class ZeroTrustGatewaySettingsSettingsBlockPage {
 
   final TfArg<String>? mailtoSubject;
 
-  final TfArg<String>? mode;
+  final TfArg<ZeroTrustGatewaySettingsSettingsBlockPageMode>? mode;
 
   final TfArg<String>? name;
 
@@ -226,17 +226,42 @@ final class ZeroTrustGatewaySettingsSettingsBlockPage {
   };
 }
 
+/// `mode` — derived from the provider schema description.
+enum ZeroTrustGatewaySettingsSettingsBlockPageMode implements TerraformEnum {
+  empty(''),
+  customizedBlockPage('customized_block_page'),
+  redirectUri('redirect_uri');
+
+  const ZeroTrustGatewaySettingsSettingsBlockPageMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `settings.body_scanning` block of
 /// `cloudflare_zero_trust_gateway_settings` (derived from provider schema).
 @immutable
 final class ZeroTrustGatewaySettingsSettingsBodyScanning {
   const ZeroTrustGatewaySettingsSettingsBodyScanning({this.inspectionMode});
 
-  final TfArg<String>? inspectionMode;
+  final TfArg<ZeroTrustGatewaySettingsSettingsBodyScanningInspectionMode>?
+  inspectionMode;
 
   Map<String, Object?> encode() => {
     if (inspectionMode != null) 'inspection_mode': inspectionMode!.toTfJson(),
   };
+}
+
+/// `inspection_mode` — derived from the provider schema description.
+enum ZeroTrustGatewaySettingsSettingsBodyScanningInspectionMode
+    implements TerraformEnum {
+  deep('deep'),
+  shallow('shallow');
+
+  const ZeroTrustGatewaySettingsSettingsBodyScanningInspectionMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `settings.browser_isolation` block of
@@ -341,9 +366,19 @@ final class ZeroTrustGatewaySettingsSettingsHostSelector {
 final class ZeroTrustGatewaySettingsSettingsInspection {
   const ZeroTrustGatewaySettingsSettingsInspection({this.mode});
 
-  final TfArg<String>? mode;
+  final TfArg<ZeroTrustGatewaySettingsSettingsInspectionMode>? mode;
 
   Map<String, Object?> encode() => {if (mode != null) 'mode': mode!.toTfJson()};
+}
+
+/// `mode` — derived from the provider schema description.
+enum ZeroTrustGatewaySettingsSettingsInspectionMode implements TerraformEnum {
+  static('static'),
+  dynamic('dynamic');
+
+  const ZeroTrustGatewaySettingsSettingsInspectionMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `settings.protocol_detection` block of
@@ -370,12 +405,26 @@ final class ZeroTrustGatewaySettingsSettingsSandbox {
 
   final TfArg<bool>? enabled;
 
-  final TfArg<String>? fallbackAction;
+  final TfArg<ZeroTrustGatewaySettingsSettingsSandboxFallbackAction>?
+  fallbackAction;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (fallbackAction != null) 'fallback_action': fallbackAction!.toTfJson(),
   };
+}
+
+/// `fallback_action` — derived from the provider schema description.
+enum ZeroTrustGatewaySettingsSettingsSandboxFallbackAction
+    implements TerraformEnum {
+  allow('allow'),
+  block('block');
+
+  const ZeroTrustGatewaySettingsSettingsSandboxFallbackAction(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `settings.tls_decrypt` block of

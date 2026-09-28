@@ -13,11 +13,21 @@ const Set<String> _cloudflareMagicTransitConnectorSensitive = <String>{};
 final class DataMagicTransitConnectorFilter {
   const DataMagicTransitConnectorFilter({this.deviceType});
 
-  final TfArg<String>? deviceType;
+  final TfArg<DataMagicTransitConnectorFilterDeviceType>? deviceType;
 
   Map<String, Object?> encode() => {
     if (deviceType != null) 'device_type': deviceType!.toTfJson(),
   };
+}
+
+/// `device_type` — derived from the provider schema description.
+enum DataMagicTransitConnectorFilterDeviceType implements TerraformEnum {
+  managed('MANAGED'),
+  licensed('LICENSED');
+
+  const DataMagicTransitConnectorFilterDeviceType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_magic_transit_connector`.

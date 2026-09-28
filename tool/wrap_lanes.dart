@@ -9,7 +9,10 @@
 //   dart tool/wrap_lanes.dart --gate regen --lane aws  # terradart wrap (writes)
 //   dart tool/wrap_lanes.dart --lane cloudflare  # one lane
 // `regen` rewrites the lane's generated files (the schema bump runs it after
-// refreshing a fixture), so it only runs when named.
+// refreshing a fixture), so it only runs when named. On a `providerEnums`
+// lane whose hints were extracted at another provider version than
+// `<schemaDir>/provider_version.txt`, regen first re-extracts them from the
+// `bump.repo` source (tool/extract_provider_hints.dart, network).
 // exit: 0 every selected gate passed; 1 a gate failed, a lane path is
 //       missing, or the arguments / providers.yaml are invalid.
 // ignore_for_file: avoid_print
@@ -39,6 +42,7 @@ class WrapLane {
     required this.resourceProvider,
     required this.migrateManifest,
     this.providerEnums = false,
+    this.hintsRepo,
   });
 
   final String name;
@@ -53,6 +57,9 @@ class WrapLane {
   /// `wrap --provider-enums`: type enum-valued inputs from `<schemaDir>/hints`
   /// and the `Available values:` description dialect.
   final bool providerEnums;
+
+  /// `bump.repo`: the GitHub repo regen re-extracts stale hints from.
+  final String? hintsRepo;
 
   /// Paths that must exist before any gate can say something meaningful.
   /// The migration manifest is absent until the lane's first wrap, so it is
@@ -143,6 +150,8 @@ WrapLane _parseLane(String name, Object? entry) {
   if (providerEnums is! bool) {
     throw FormatException('lane $name: providerEnums must be a bool');
   }
+  final bump = entry['bump'];
+  final hintsRepo = bump is YamlMap ? bump['repo'] : null;
   return WrapLane(
     name: name,
     source: field('source'),
@@ -153,7 +162,26 @@ WrapLane _parseLane(String name, Object? entry) {
     resourceProvider: resourceProvider as String?,
     migrateManifest: field('migrateManifest'),
     providerEnums: providerEnums,
+    hintsRepo: hintsRepo is String ? hintsRepo : null,
   );
+}
+
+/// The `provider_version` of every `<schemaDir>/hints/*.yaml` that differs
+/// from `<schemaDir>/provider_version.txt`, as `file: version`. Empty when
+/// the hints match the fixture or the lane has none yet.
+List<String> staleHints(String schemaDir) {
+  final hints = Directory(p.join(schemaDir, 'hints'));
+  final versionFile = File(p.join(schemaDir, 'provider_version.txt'));
+  if (!hints.existsSync() || !versionFile.existsSync()) return const [];
+  final version = versionFile.readAsStringSync().trim();
+  return [
+    for (final file in hints.listSync().whereType<File>())
+      if (file.path.endsWith('.yaml'))
+        if (loadYaml(file.readAsStringSync()) case final doc
+            when doc is! YamlMap || '${doc['provider_version']}' != version)
+          '${p.basename(file.path)}: '
+              '${doc is YamlMap ? doc['provider_version'] : null}',
+  ]..sort();
 }
 
 /// `lane <name>: missing <field> <path>` for every required path that does
@@ -210,6 +238,32 @@ List<String> ledgerOwnershipFailures(List<WrapLane> lanes, String repoRoot) {
       names,
     ),
   ];
+}
+
+Future<int> _reextractHints(WrapLane lane, String repoRoot) async {
+  final repo = lane.hintsRepo;
+  if (repo == null) {
+    print('wrap_lanes: lane ${lane.name}: stale hints and no bump.repo to '
+        're-extract them from');
+    return 1;
+  }
+  final schemaDir = p.join(repoRoot, lane.schemaDir);
+  final version =
+      File(p.join(schemaDir, 'provider_version.txt')).readAsStringSync().trim();
+  print('>> extract_provider_hints ($repo $version)');
+  final process = await Process.start(
+    Platform.resolvedExecutable,
+    [
+      'run',
+      'tool/extract_provider_hints.dart',
+      '--repo=$repo',
+      '--version=$version',
+      '--schema-dir=${lane.schemaDir}',
+    ],
+    workingDirectory: repoRoot,
+    mode: ProcessStartMode.inheritStdio,
+  );
+  return process.exitCode;
 }
 
 Never _usage(String message) {
@@ -274,6 +328,15 @@ Future<void> main(List<String> args) async {
   final failed = <String>[];
   for (final gate in gates) {
     for (final lane in lanes) {
+      if (gate == WrapGate.regen &&
+          lane.providerEnums &&
+          staleHints(p.join(repoRoot, lane.schemaDir)).isNotEmpty) {
+        final code = await _reextractHints(lane, repoRoot);
+        if (code != 0) {
+          failed.add('${lane.name} (hints, exit $code)');
+          continue;
+        }
+      }
       print('>> ${gate.label} (${lane.name})');
       final process = await Process.start(
         Platform.resolvedExecutable,

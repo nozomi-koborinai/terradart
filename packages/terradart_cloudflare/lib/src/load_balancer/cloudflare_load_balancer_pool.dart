@@ -7,6 +7,40 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_load_balancer_pool`.
 const Set<String> _cloudflareLoadBalancerPoolSensitive = <String>{};
 
+/// Load Balancer Pool Check enum for `check_regions`.
+enum LoadBalancerPoolCheckRegions implements TerraformEnum {
+  wnam('WNAM'),
+  enam('ENAM'),
+  weu('WEU'),
+  eeu('EEU'),
+  nsam('NSAM'),
+  ssam('SSAM'),
+  oc('OC'),
+  me('ME'),
+  naf('NAF'),
+  saf('SAF'),
+  sas('SAS'),
+  seas('SEAS'),
+  neas('NEAS'),
+  china('CHINA'),
+  allRegions('ALL_REGIONS');
+
+  const LoadBalancerPoolCheckRegions(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Load Balancer Pool Health enum for `health_sources`.
+enum LoadBalancerPoolHealthSources implements TerraformEnum {
+  local('local'),
+  regional('regional'),
+  global('global');
+
+  const LoadBalancerPoolHealthSources(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `load_shedding` block of
 /// `cloudflare_load_balancer_pool` (derived from provider schema).
 @immutable
@@ -20,11 +54,11 @@ final class LoadBalancerPoolLoadShedding {
 
   final TfArg<num>? defaultPercent;
 
-  final TfArg<String>? defaultPolicy;
+  final TfArg<LoadBalancerPoolLoadSheddingDefaultPolicy>? defaultPolicy;
 
   final TfArg<num>? sessionPercent;
 
-  final TfArg<String>? sessionPolicy;
+  final TfArg<LoadBalancerPoolLoadSheddingSessionPolicy>? sessionPolicy;
 
   Map<String, Object?> encode() => {
     if (defaultPercent != null) 'default_percent': defaultPercent!.toTfJson(),
@@ -32,6 +66,25 @@ final class LoadBalancerPoolLoadShedding {
     if (sessionPercent != null) 'session_percent': sessionPercent!.toTfJson(),
     if (sessionPolicy != null) 'session_policy': sessionPolicy!.toTfJson(),
   };
+}
+
+/// `default_policy` — derived from the provider schema description.
+enum LoadBalancerPoolLoadSheddingDefaultPolicy implements TerraformEnum {
+  random('random'),
+  hash('hash');
+
+  const LoadBalancerPoolLoadSheddingDefaultPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `session_policy` — derived from the provider schema description.
+enum LoadBalancerPoolLoadSheddingSessionPolicy implements TerraformEnum {
+  hash('hash');
+
+  const LoadBalancerPoolLoadSheddingSessionPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `notification_filter` block of
@@ -88,11 +141,23 @@ final class LoadBalancerPoolNotificationFilterPool {
 final class LoadBalancerPoolOriginSteering {
   const LoadBalancerPoolOriginSteering({this.policy});
 
-  final TfArg<String>? policy;
+  final TfArg<LoadBalancerPoolOriginSteeringPolicy>? policy;
 
   Map<String, Object?> encode() => {
     if (policy != null) 'policy': policy!.toTfJson(),
   };
+}
+
+/// `policy` — derived from the provider schema description.
+enum LoadBalancerPoolOriginSteeringPolicy implements TerraformEnum {
+  random('random'),
+  hash('hash'),
+  leastOutstandingRequests('least_outstanding_requests'),
+  leastConnections('least_connections');
+
+  const LoadBalancerPoolOriginSteeringPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `origins` block of
@@ -162,10 +227,10 @@ final class CloudflareLoadBalancerPool extends Resource {
   CloudflareLoadBalancerPool({
     required super.localName,
     required TfArg<String> accountId,
-    TfArg<List<String>>? checkRegions,
+    List<TfArg<LoadBalancerPoolCheckRegions>>? checkRegions,
     TfArg<String>? description,
     TfArg<bool>? enabled,
-    TfArg<List<String>>? healthSources,
+    List<TfArg<LoadBalancerPoolHealthSources>>? healthSources,
     TfArg<num>? latitude,
     TfArg<num>? longitude,
     TfArg<num>? minimumOrigins,
@@ -185,10 +250,16 @@ final class CloudflareLoadBalancerPool extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (checkRegions != null) 'check_regions': checkRegions,
+           if (checkRegions != null)
+             'check_regions': TfArg.literal([
+               for (final e in checkRegions) e.toTfJson(),
+             ]),
            if (description != null) 'description': description,
            if (enabled != null) 'enabled': enabled,
-           if (healthSources != null) 'health_sources': healthSources,
+           if (healthSources != null)
+             'health_sources': TfArg.literal([
+               for (final e in healthSources) e.toTfJson(),
+             ]),
            if (latitude != null) 'latitude': latitude,
            if (longitude != null) 'longitude': longitude,
            if (minimumOrigins != null) 'minimum_origins': minimumOrigins,

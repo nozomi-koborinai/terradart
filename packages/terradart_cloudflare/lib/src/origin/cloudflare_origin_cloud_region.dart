@@ -6,6 +6,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_origin_cloud_region`.
 const Set<String> _cloudflareOriginCloudRegionSensitive = <String>{};
 
+/// Origin Cloud Region enum for `vendor`.
+enum OriginCloudRegionVendor implements TerraformEnum {
+  aws('aws'),
+  azure('azure'),
+  gcp('gcp'),
+  oci('oci');
+
+  const OriginCloudRegionVendor(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_origin_cloud_region`.
 final class CloudflareOriginCloudRegion extends Resource {
   static const String tfType = 'cloudflare_origin_cloud_region';
@@ -14,7 +26,7 @@ final class CloudflareOriginCloudRegion extends Resource {
     required super.localName,
     required TfArg<String> originIp,
     required TfArg<String> region,
-    required TfArg<String> vendor,
+    required TfArg<OriginCloudRegionVendor> vendor,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

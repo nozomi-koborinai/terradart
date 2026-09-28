@@ -18,12 +18,23 @@ final class ZeroTrustRiskBehaviorBehaviors {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String> riskLevel;
+  final TfArg<ZeroTrustRiskBehaviorBehaviorsRiskLevel> riskLevel;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'risk_level': riskLevel.toTfJson(),
   };
+}
+
+/// `risk_level` — derived from the provider schema description.
+enum ZeroTrustRiskBehaviorBehaviorsRiskLevel implements TerraformEnum {
+  low('low'),
+  medium('medium'),
+  high('high');
+
+  const ZeroTrustRiskBehaviorBehaviorsRiskLevel(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_zero_trust_risk_behavior`.

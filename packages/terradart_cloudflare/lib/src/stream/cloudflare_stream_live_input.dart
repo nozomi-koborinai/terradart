@@ -34,7 +34,7 @@ final class StreamLiveInputRecording {
 
   final TfArg<bool>? hideLiveViewerCount;
 
-  final TfArg<String>? mode;
+  final TfArg<StreamLiveInputRecordingMode>? mode;
 
   final TfArg<bool>? requireSignedUrls;
 
@@ -49,6 +49,16 @@ final class StreamLiveInputRecording {
       'require_signed_urls': requireSignedUrls!.toTfJson(),
     if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
   };
+}
+
+/// `mode` — derived from the provider schema description.
+enum StreamLiveInputRecordingMode implements TerraformEnum {
+  off('off'),
+  automatic('automatic');
+
+  const StreamLiveInputRecordingMode(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_stream_live_input`.

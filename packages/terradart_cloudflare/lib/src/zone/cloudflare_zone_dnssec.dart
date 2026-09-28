@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_zone_dnssec`.
 const Set<String> _cloudflareZoneDnssecSensitive = <String>{};
 
+/// Zone Dnssec enum for `status`.
+enum ZoneDnssecStatus implements TerraformEnum {
+  active('active'),
+  disabled('disabled');
+
+  const ZoneDnssecStatus(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_zone_dnssec`.
 ///
 /// Accepted Permissions
@@ -19,7 +29,7 @@ final class CloudflareZoneDnssec extends Resource {
     TfArg<bool>? dnssecMultiSigner,
     TfArg<bool>? dnssecPresigned,
     TfArg<bool>? dnssecUseNsec3,
-    TfArg<String>? status,
+    TfArg<ZoneDnssecStatus>? status,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,

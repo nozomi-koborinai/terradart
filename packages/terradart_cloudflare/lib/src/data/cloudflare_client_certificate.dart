@@ -17,13 +17,26 @@ final class DataClientCertificateFilter {
 
   final TfArg<num>? offset;
 
-  final TfArg<String>? status;
+  final TfArg<DataClientCertificateFilterStatus>? status;
 
   Map<String, Object?> encode() => {
     if (limit != null) 'limit': limit!.toTfJson(),
     if (offset != null) 'offset': offset!.toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
+}
+
+/// `status` — derived from the provider schema description.
+enum DataClientCertificateFilterStatus implements TerraformEnum {
+  all('all'),
+  active('active'),
+  pendingReactivation('pending_reactivation'),
+  pendingRevocation('pending_revocation'),
+  revoked('revoked');
+
+  const DataClientCertificateFilterStatus(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `cloudflare_client_certificate`.

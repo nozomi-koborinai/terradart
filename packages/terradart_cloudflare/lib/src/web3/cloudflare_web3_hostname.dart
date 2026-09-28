@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `cloudflare_web3_hostname`.
 const Set<String> _cloudflareWeb3HostnameSensitive = <String>{};
 
+/// Web3 Hostname enum for `target`.
+enum Web3HostnameTarget implements TerraformEnum {
+  ethereum('ethereum'),
+  ipfs('ipfs'),
+  ipfsUniversalPath('ipfs_universal_path');
+
+  const Web3HostnameTarget(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `cloudflare_web3_hostname`.
 ///
 /// Accepted Permissions
@@ -19,7 +30,7 @@ final class CloudflareWeb3Hostname extends Resource {
     TfArg<String>? description,
     TfArg<String>? dnslink,
     required TfArg<String> name,
-    required TfArg<String> target,
+    required TfArg<Web3HostnameTarget> target,
     required TfArg<String> zoneId,
     super.lifecycle,
     super.dependsOn,
