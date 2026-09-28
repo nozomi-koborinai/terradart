@@ -30,12 +30,12 @@ samples:
     primary_resource_id: 'ops_agent_policy'
     steps:
       - name: 'compute_global_vm_extension_policy_basic'
-        resource_id_vars:
+        vars:
           policy_name: 'global-ops-agent-policy'
         ignore_read_extra:
           - 'rollout_operation'
       - name: 'compute_global_vm_extension_policy_update'
-        resource_id_vars:
+        vars:
           policy_name: 'global-ops-agent-policy'
         ignore_read_extra:
           - 'rollout_operation'
@@ -43,12 +43,12 @@ samples:
     primary_resource_id: 'ops_agent_policy'
     steps:
       - name: 'compute_global_vm_extension_policy_basic'
-        resource_id_vars:
+        vars:
           policy_name: 'global-ops-agent-policy'
         ignore_read_extra:
           - 'rollout_operation'
       - name: 'compute_global_vm_extension_policy_update_rollout'
-        resource_id_vars:
+        vars:
           policy_name: 'global-ops-agent-policy'
         ignore_read_extra:
           - 'rollout_operation'
@@ -56,9 +56,8 @@ samples:
     primary_resource_id: 'ops_agent_policy'
     steps:
       - name: 'compute_global_vm_extension_policy_custom_rollout'
-        resource_id_vars:
+        vars:
           policy_name: 'global-ops-agent-policy'
-          rollout_plan_name: 'custom-rollout-plan'
         ignore_read_extra:
           - 'rollout_operation'
 

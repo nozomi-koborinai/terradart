@@ -40,7 +40,6 @@ custom_code:
 generate_list_resource: true
 custom_diff:
   - 'validateAuthHeaders'
-  - 'resumeJobWhenPausedUnset'
 samples:
   - name: 'scheduler_job_pubsub'
     primary_resource_id: 'job'

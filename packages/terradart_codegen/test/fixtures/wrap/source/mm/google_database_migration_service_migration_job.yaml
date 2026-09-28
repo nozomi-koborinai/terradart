@@ -55,6 +55,13 @@ samples:
           source_sqldb_cert: cert
           source_sqldb_pass: password
           source_sqldb_user: username
+        test_vars_overrides:
+          # for backward compatible
+          source_sqldb_cert: '"cert" + randomSuffix'
+          # for backward compatible
+          source_sqldb_pass: '"password" + randomSuffix'
+          # for backward compatible
+          source_sqldb_user: '"username" + randomSuffix'
   - name: database_migration_service_migration_job_postgres_to_postgres
     primary_resource_id: psqltopsql
     steps:
@@ -68,6 +75,13 @@ samples:
           source_sqldb_cert: cert
           source_sqldb_pass: password
           source_sqldb_user: username
+        test_vars_overrides:
+          # for backward compatible
+          source_sqldb_cert: '"cert" + randomSuffix'
+          # for backward compatible
+          source_sqldb_pass: '"password" + randomSuffix'
+          # for backward compatible
+          source_sqldb_user: '"username" + randomSuffix'
   - name: database_migration_service_migration_job_postgres_to_postgres_objects
     primary_resource_id: psqltopsqlobjects
     steps:
@@ -81,6 +95,13 @@ samples:
           source_sqldb_cert: cert
           source_sqldb_pass: password
           source_sqldb_user: username
+        test_vars_overrides:
+          # for backward compatible
+          source_sqldb_cert: '"cert" + randomSuffix'
+          # for backward compatible
+          source_sqldb_pass: '"password" + randomSuffix'
+          # for backward compatible
+          source_sqldb_user: '"username" + randomSuffix'
   - name: database_migration_service_migration_job_postgres_to_alloydb
     primary_resource_id: psqltoalloydb
     steps:
@@ -94,6 +115,13 @@ samples:
           source_sqldb_cert: cert
           source_sqldb_pass: password
           source_sqldb_user: username
+        test_vars_overrides:
+          # for backward compatible
+          source_sqldb_cert: '"cert" + randomSuffix'
+          # for backward compatible
+          source_sqldb_pass: '"password" + randomSuffix'
+          # for backward compatible
+          source_sqldb_user: '"username" + randomSuffix'
 parameters:
   - name: migrationJobId
     type: String

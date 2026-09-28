@@ -51,6 +51,13 @@ samples:
           login_region_backend_service_name: 'login'
           home_region_backend_service_name: 'home'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          login_region_backend_service_name: '"login" + randomSuffix'
+          # for backward compatible
+          home_region_backend_service_name: '"home" + randomSuffix'
   - name: 'region_url_map_default_route_action'
     primary_resource_id: 'regionurlmap'
     steps:
@@ -60,6 +67,13 @@ samples:
           login_region_backend_service_name: 'login'
           home_region_backend_service_name: 'home'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          login_region_backend_service_name: '"login" + randomSuffix'
+          # for backward compatible
+          home_region_backend_service_name: '"home" + randomSuffix'
   - name: 'region_url_map_l7_ilb_path'
     primary_resource_id: 'regionurlmap'
     steps:
@@ -68,6 +82,11 @@ samples:
           region_url_map_name: 'regionurlmap'
           home_region_backend_service_name: 'home'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          home_region_backend_service_name: '"home" + randomSuffix'
   - name: 'region_url_map_l7_ilb_path_partial'
     primary_resource_id: 'regionurlmap'
     steps:
@@ -76,6 +95,11 @@ samples:
           region_url_map_name: 'regionurlmap'
           home_region_backend_service_name: 'home'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          home_region_backend_service_name: '"home" + randomSuffix'
   - name: 'region_url_map_l7_ilb_route'
     primary_resource_id: 'regionurlmap'
     steps:
@@ -84,6 +108,11 @@ samples:
           region_url_map_name: 'regionurlmap'
           home_region_backend_service_name: 'home'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          home_region_backend_service_name: '"home" + randomSuffix'
   - name: 'region_url_map_l7_ilb_route_partial'
     primary_resource_id: 'regionurlmap'
     steps:
@@ -92,6 +121,11 @@ samples:
           region_url_map_name: 'regionurlmap'
           home_region_backend_service_name: 'home'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          home_region_backend_service_name: '"home" + randomSuffix'
   - name: 'int_https_lb_https_redirect'
     primary_resource_id: 'redirect'
     min_version: 'beta'
@@ -153,6 +187,9 @@ samples:
           cart_backend_service_name: 'cart-service'
           user_backend_service_name: 'user-service'
           health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          url_map_name: '"urlmap" + randomSuffix'
   - name: 'region_url_map_path_matcher_default_route_action'
     primary_resource_id: 'regionurlmap'
     steps:
@@ -162,6 +199,13 @@ samples:
           login_region_backend_service_name: 'login'
           home_region_backend_service_name: 'home'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          login_region_backend_service_name: '"login" + randomSuffix'
+          # for backward compatible
+          home_region_backend_service_name: '"home" + randomSuffix'
   - name: 'region_url_map_default_mirror_percent'
     primary_resource_id: 'regionurlmap'
     min_version: 'beta'
@@ -173,6 +217,13 @@ samples:
           home_backend_service_name: 'home'
           mirror_backend_service_name: 'mirror'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          home_backend_service_name: '"home" + randomSuffix'
+          # for backward compatible
+          mirror_backend_service_name: '"mirror" + randomSuffix'
   - name: 'region_url_map_path_matcher_default_mirror_percent'
     primary_resource_id: 'regionurlmap'
     min_version: 'beta'
@@ -184,6 +235,13 @@ samples:
           home_backend_service_name: 'home'
           mirror_backend_service_name: 'mirror'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          home_backend_service_name: '"home" + randomSuffix'
+          # for backward compatible
+          mirror_backend_service_name: '"mirror" + randomSuffix'
   - name: 'region_url_map_path_rule_mirror_percent'
     primary_resource_id: 'regionurlmap'
     min_version: 'beta'
@@ -195,6 +253,13 @@ samples:
           home_backend_service_name: 'home'
           mirror_backend_service_name: 'mirror'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          home_backend_service_name: '"home" + randomSuffix'
+          # for backward compatible
+          mirror_backend_service_name: '"mirror" + randomSuffix'
   - name: 'region_url_map_route_rule_mirror_percent'
     primary_resource_id: 'regionurlmap'
     min_version: 'beta'
@@ -206,6 +271,13 @@ samples:
           home_backend_service_name: 'home'
           mirror_backend_service_name: 'mirror'
           region_health_check_name: 'health-check'
+        test_vars_overrides:
+          # for backward compatible
+          region_url_map_name: '"regionurlmap" + randomSuffix'
+          # for backward compatible
+          home_backend_service_name: '"home" + randomSuffix'
+          # for backward compatible
+          mirror_backend_service_name: '"mirror" + randomSuffix'
 parameters:
   - name: 'region'
     type: ResourceRef

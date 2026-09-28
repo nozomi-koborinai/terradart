@@ -19,6 +19,17 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **MM YAML sync pinned to the provider release** — `tool/sync_mm_yaml.dart`
+  reads the magic-modules commit the fixture's `hashicorp/google` release
+  was generated from (the `[upstream:<sha>]` stamp nearest the release tag,
+  declared by `upstream_ref` in `tool/mm_yaml_sources.yaml` and recorded in
+  `source/mm_upstream_ref.txt`) instead of `main`, which had run ahead of
+  the schema with provider 8.0 content. `--ref` overrides the pin. The new
+  type scaffold fetches from the same commit, and the drift report names
+  it. The three remaining 404 paths (`gkehub2/Scope.yaml`,
+  `gkehub2/Namespace.yaml`, `networksecurity/UrlLists.yaml`) are fixed, so
+  the weekly sync reports no failures. Generated doc comments follow the
+  7.46.1 MM text.
 - **`terradart wrap` removes orphaned generated files** — a full `wrap`
   deletes every generated wrapper or barrel no override emits any more (a
   deleted override used to leave its file behind, still compiling), and

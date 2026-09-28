@@ -14,7 +14,14 @@
 # upstream paths into packages/terradart_codegen/test/fixtures/wrap/source/mm/.
 
 upstream_repo: GoogleCloudPlatform/magic-modules
-upstream_branch: main
+# Read MM YAML at the magic-modules commit the fixture's provider release was
+# generated from (the `[upstream:<sha>]` stamp nearest the release tag), so
+# the MM hints match schema.json instead of running ahead of it on main.
+# `dart tool/sync_mm_yaml.dart` records the resolved commit in `ref_file`.
+upstream_ref:
+  provider_repo: hashicorp/terraform-provider-google
+  provider_version_file: packages/terradart_codegen/test/fixtures/wrap/source/provider_version.txt
+  ref_file: packages/terradart_codegen/test/fixtures/wrap/source/mm_upstream_ref.txt
 
 # Each entry's key is the local fixture basename (without .yaml).
 # `upstream` is the path relative to the upstream repo root.
@@ -1191,9 +1198,9 @@ files:
   google_gemini_data_sharing_with_google_setting_binding:
     upstream: mmv1/products/gemini/DataSharingWithGoogleSettingBinding.yaml
   google_gke_hub_scope:
-    upstream: mmv1/products/gkehub/Scope.yaml
+    upstream: mmv1/products/gkehub2/Scope.yaml
   google_gke_hub_namespace:
-    upstream: mmv1/products/gkehub/Namespace.yaml
+    upstream: mmv1/products/gkehub2/Namespace.yaml
   google_gke_hub_feature:
     upstream: mmv1/products/gkehub2/Feature.yaml
   google_gke_hub_membership:
@@ -1951,7 +1958,7 @@ files:
   google_network_security_address_group:
     upstream: mmv1/products/networksecurity/AddressGroup.yaml
   google_network_security_url_lists:
-    upstream: mmv1/products/networksecurity/UrlList.yaml
+    upstream: mmv1/products/networksecurity/UrlLists.yaml
   google_network_security_client_tls_policy:
     upstream: mmv1/products/networksecurity/ClientTlsPolicy.yaml
   google_network_security_server_tls_policy:
