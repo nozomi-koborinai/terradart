@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `appwrite_mysql_backup_policy`.
 const Set<String> _appwriteMysqlBackupPolicySensitive = <String>{};
 
+/// Mysql Backup Policy enum for `type`.
+enum MysqlBackupPolicyType implements TerraformEnum {
+  full('full'),
+  incremental('incremental');
+
+  const MysqlBackupPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_mysql_backup_policy`.
 ///
 /// Manages a scheduled backup policy for a dedicated Appwrite MySQL database.
@@ -22,7 +32,7 @@ final class AppwriteMysqlBackupPolicy extends Resource {
     TfArg<String>? projectId,
     required TfArg<num> retention,
     required TfArg<String> schedule,
-    TfArg<String>? type,
+    TfArg<MysqlBackupPolicyType>? type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

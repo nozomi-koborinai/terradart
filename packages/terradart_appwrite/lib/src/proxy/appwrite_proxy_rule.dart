@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `appwrite_proxy_rule`.
 const Set<String> _appwriteProxyRuleSensitive = <String>{};
 
+/// Proxy Rule enum for `type`.
+enum ProxyRuleType implements TerraformEnum {
+  site('site'),
+  function('function');
+
+  const ProxyRuleType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_proxy_rule`.
 ///
 /// Manages a custom domain proxy rule for an Appwrite site or function.
@@ -18,7 +28,7 @@ final class AppwriteProxyRule extends Resource {
     required TfArg<String> domain,
     TfArg<String>? projectId,
     required TfArg<String> resourceId,
-    required TfArg<String> type,
+    required TfArg<ProxyRuleType> type,
     super.lifecycle,
     super.dependsOn,
     super.provider,

@@ -1,3 +1,4 @@
 outputDir: backups
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true

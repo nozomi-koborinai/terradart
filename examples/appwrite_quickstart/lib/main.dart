@@ -105,7 +105,7 @@ final class AppwriteDemoStack extends Stack {
         localName: 'name',
         databaseId: TfArg.ref(db.id),
         tableId: TfArg.ref(table.id),
-        type: TfArg.literal('varchar'),
+        type: TfArg.literal(TablesdbColumnType.varchar),
         key: TfArg.literal('name'),
         size: TfArg.literal(255),
         columnRequired: TfArg.literal(true),
@@ -150,7 +150,8 @@ final class AppwriteDemoStack extends Stack {
         localName: 'pg_offsite',
         databaseId: TfArg.ref(pg.id),
         bucket: TfArg.literal('terradart-pg-backups'),
-        storageProvider: TfArg.literal('s3'),
+        storageProvider:
+            TfArg.literal(PostgresqlBackupStorageStorageProvider.s3),
         accessKey: TfArg.variable('backup_access_key'),
         secretKey: TfArg.variable('backup_secret_key'),
       ),
@@ -195,7 +196,7 @@ final class AppwriteDemoStack extends Stack {
         localName: 'mysql_offsite',
         databaseId: TfArg.ref(mysql.id),
         bucket: TfArg.literal('terradart-mysql-backups'),
-        storageProvider: TfArg.literal('s3'),
+        storageProvider: TfArg.literal(MysqlBackupStorageStorageProvider.s3),
         accessKey: TfArg.variable('backup_access_key'),
         secretKey: TfArg.variable('backup_secret_key'),
       ),
@@ -233,7 +234,7 @@ final class AppwriteDemoStack extends Stack {
         localName: 'mongo_offsite',
         databaseId: TfArg.ref(mongo.id),
         bucket: TfArg.literal('terradart-mongo-backups'),
-        storageProvider: TfArg.literal('s3'),
+        storageProvider: TfArg.literal(MongoBackupStorageStorageProvider.s3),
         accessKey: TfArg.variable('backup_access_key'),
         secretKey: TfArg.variable('backup_secret_key'),
       ),
@@ -280,7 +281,7 @@ final class AppwriteDemoStack extends Stack {
       AppwriteFunctionDeployment(
         localName: 'on_signup_src',
         functionId: TfArg.ref(fn.id),
-        sourceType: TfArg.literal('template'),
+        sourceType: TfArg.literal(FunctionDeploymentSourceType.template),
         owner: TfArg.literal('appwrite'),
         repository: TfArg.literal('templates-for-sites'),
         type: TfArg.literal('branch'),
@@ -311,7 +312,7 @@ final class AppwriteDemoStack extends Stack {
       AppwriteSiteDeployment(
         localName: 'dashboard_src',
         siteId: TfArg.ref(site.id),
-        sourceType: TfArg.literal('template'),
+        sourceType: TfArg.literal(SiteDeploymentSourceType.template),
         owner: TfArg.literal('appwrite'),
         repository: TfArg.literal('templates-for-sites'),
         rootDirectory: TfArg.literal('nextjs/starter'),
@@ -326,7 +327,7 @@ final class AppwriteDemoStack extends Stack {
         localName: 'dash_domain',
         domain: TfArg.literal('dash.terradart-demo.example'),
         resourceId: TfArg.ref(site.id),
-        type: TfArg.literal('site'),
+        type: TfArg.literal(ProxyRuleType.site),
       ),
     );
 
@@ -334,7 +335,7 @@ final class AppwriteDemoStack extends Stack {
       AppwriteMessagingProvider(
         localName: 'smtp',
         name: TfArg.literal('smtp'),
-        type: TfArg.literal('smtp'),
+        type: TfArg.literal(MessagingProviderType.smtp),
         host: TfArg.literal('smtp.example.com'),
         port: TfArg.literal(587),
       ),

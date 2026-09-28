@@ -626,9 +626,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_type',
           dartName: 'sourceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'FunctionDeploymentSourceType',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -946,9 +946,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'MessagingProviderType',
         ),
         MigrateSlot(
           tfName: 'username',
@@ -1150,9 +1150,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MongoBackupPolicyType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -1255,9 +1255,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'storage_provider',
           dartName: 'storageProvider',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'MongoBackupStorageStorageProvider',
         ),
       ],
       getters: <MigrateGetter>[
@@ -1390,9 +1390,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'maintenance_window_day',
           dartName: 'maintenanceWindowDay',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MongoDatabaseMaintenanceWindowDay',
         ),
         MigrateSlot(
           tfName: 'maintenance_window_hour_utc',
@@ -1495,9 +1495,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MongoDatabaseStatus',
         ),
         MigrateSlot(
           tfName: 'storage_autoscaling',
@@ -1523,9 +1523,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sync_mode',
           dartName: 'syncMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MongoDatabaseSyncMode',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -2017,9 +2017,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MysqlBackupPolicyType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -2122,9 +2122,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'storage_provider',
           dartName: 'storageProvider',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'MysqlBackupStorageStorageProvider',
         ),
       ],
       getters: <MigrateGetter>[
@@ -2257,9 +2257,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'maintenance_window_day',
           dartName: 'maintenanceWindowDay',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MysqlDatabaseMaintenanceWindowDay',
         ),
         MigrateSlot(
           tfName: 'maintenance_window_hour_utc',
@@ -2362,9 +2362,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MysqlDatabaseStatus',
         ),
         MigrateSlot(
           tfName: 'storage_autoscaling',
@@ -2390,9 +2390,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sync_mode',
           dartName: 'syncMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MysqlDatabaseSyncMode',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -2847,9 +2847,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'MysqlPoolerMode',
         ),
         MigrateSlot(
           tfName: 'pooler_cpu_limit',
@@ -2967,9 +2967,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'PostgresqlBackupPolicyType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3072,9 +3072,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'storage_provider',
           dartName: 'storageProvider',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'PostgresqlBackupStorageStorageProvider',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3207,9 +3207,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'maintenance_window_day',
           dartName: 'maintenanceWindowDay',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'PostgresqlDatabaseMaintenanceWindowDay',
         ),
         MigrateSlot(
           tfName: 'maintenance_window_hour_utc',
@@ -3312,9 +3312,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'status',
           dartName: 'status',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'PostgresqlDatabaseStatus',
         ),
         MigrateSlot(
           tfName: 'storage_autoscaling',
@@ -3340,9 +3340,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sync_mode',
           dartName: 'syncMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'PostgresqlDatabaseSyncMode',
         ),
         MigrateSlot(
           tfName: 'version',
@@ -3857,9 +3857,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'mode',
           dartName: 'mode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'PostgresqlPoolerMode',
         ),
         MigrateSlot(
           tfName: 'pooler_cpu_limit',
@@ -4085,9 +4085,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'ProxyRuleType',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4447,9 +4447,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_type',
           dartName: 'sourceType',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'SiteDeploymentSourceType',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -4606,9 +4606,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'compression',
           dartName: 'compression',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'StorageBucketCompression',
         ),
         MigrateSlot(
           tfName: 'encryption',
@@ -4877,9 +4877,9 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'type',
           dartName: 'type',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: true,
-          dartType: 'String',
+          dartType: 'TablesdbColumnType',
         ),
         MigrateSlot(
           tfName: 'key',
@@ -5328,5 +5328,184 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
     ),
   ],
   helpers: <String, MigrateHelper>{},
-  enums: <String, MigrateEnum>{},
+  enums: <String, MigrateEnum>{
+    'FunctionDeploymentSourceType': MigrateEnum(
+      name: 'FunctionDeploymentSourceType',
+      members: <String, String>{'code': 'code', 'template': 'template'},
+    ),
+    'MessagingProviderType': MigrateEnum(
+      name: 'MessagingProviderType',
+      members: <String, String>{
+        'sendgrid': 'sendgrid',
+        'mailgun': 'mailgun',
+        'smtp': 'smtp',
+        'resend': 'resend',
+        'twilio': 'twilio',
+        'vonage': 'vonage',
+        'msg91': 'msg91',
+        'telesign': 'telesign',
+        'textmagic': 'textmagic',
+        'apns': 'apns',
+        'fcm': 'fcm',
+      },
+    ),
+    'MongoBackupPolicyType': MigrateEnum(
+      name: 'MongoBackupPolicyType',
+      members: <String, String>{'full': 'full', 'incremental': 'incremental'},
+    ),
+    'MongoBackupStorageStorageProvider': MigrateEnum(
+      name: 'MongoBackupStorageStorageProvider',
+      members: <String, String>{'s3': 's3', 'gcs': 'gcs', 'azure': 'azure'},
+    ),
+    'MongoDatabaseMaintenanceWindowDay': MigrateEnum(
+      name: 'MongoDatabaseMaintenanceWindowDay',
+      members: <String, String>{
+        'sun': 'sun',
+        'mon': 'mon',
+        'tue': 'tue',
+        'wed': 'wed',
+        'thu': 'thu',
+        'fri': 'fri',
+        'sat': 'sat',
+      },
+    ),
+    'MongoDatabaseStatus': MigrateEnum(
+      name: 'MongoDatabaseStatus',
+      members: <String, String>{
+        'ready': 'ready',
+        'paused': 'paused',
+        'inactive': 'inactive',
+      },
+    ),
+    'MongoDatabaseSyncMode': MigrateEnum(
+      name: 'MongoDatabaseSyncMode',
+      members: <String, String>{
+        'async': 'async',
+        'sync': 'sync',
+        'quorum': 'quorum',
+      },
+    ),
+    'MysqlBackupPolicyType': MigrateEnum(
+      name: 'MysqlBackupPolicyType',
+      members: <String, String>{'full': 'full', 'incremental': 'incremental'},
+    ),
+    'MysqlBackupStorageStorageProvider': MigrateEnum(
+      name: 'MysqlBackupStorageStorageProvider',
+      members: <String, String>{'s3': 's3', 'gcs': 'gcs', 'azure': 'azure'},
+    ),
+    'MysqlDatabaseMaintenanceWindowDay': MigrateEnum(
+      name: 'MysqlDatabaseMaintenanceWindowDay',
+      members: <String, String>{
+        'sun': 'sun',
+        'mon': 'mon',
+        'tue': 'tue',
+        'wed': 'wed',
+        'thu': 'thu',
+        'fri': 'fri',
+        'sat': 'sat',
+      },
+    ),
+    'MysqlDatabaseStatus': MigrateEnum(
+      name: 'MysqlDatabaseStatus',
+      members: <String, String>{
+        'ready': 'ready',
+        'paused': 'paused',
+        'inactive': 'inactive',
+      },
+    ),
+    'MysqlDatabaseSyncMode': MigrateEnum(
+      name: 'MysqlDatabaseSyncMode',
+      members: <String, String>{
+        'async': 'async',
+        'sync': 'sync',
+        'quorum': 'quorum',
+      },
+    ),
+    'MysqlPoolerMode': MigrateEnum(
+      name: 'MysqlPoolerMode',
+      members: <String, String>{
+        'transaction': 'transaction',
+        'session': 'session',
+      },
+    ),
+    'PostgresqlBackupPolicyType': MigrateEnum(
+      name: 'PostgresqlBackupPolicyType',
+      members: <String, String>{'full': 'full', 'incremental': 'incremental'},
+    ),
+    'PostgresqlBackupStorageStorageProvider': MigrateEnum(
+      name: 'PostgresqlBackupStorageStorageProvider',
+      members: <String, String>{'s3': 's3', 'gcs': 'gcs', 'azure': 'azure'},
+    ),
+    'PostgresqlDatabaseMaintenanceWindowDay': MigrateEnum(
+      name: 'PostgresqlDatabaseMaintenanceWindowDay',
+      members: <String, String>{
+        'sun': 'sun',
+        'mon': 'mon',
+        'tue': 'tue',
+        'wed': 'wed',
+        'thu': 'thu',
+        'fri': 'fri',
+        'sat': 'sat',
+      },
+    ),
+    'PostgresqlDatabaseStatus': MigrateEnum(
+      name: 'PostgresqlDatabaseStatus',
+      members: <String, String>{
+        'ready': 'ready',
+        'paused': 'paused',
+        'inactive': 'inactive',
+      },
+    ),
+    'PostgresqlDatabaseSyncMode': MigrateEnum(
+      name: 'PostgresqlDatabaseSyncMode',
+      members: <String, String>{
+        'async': 'async',
+        'sync': 'sync',
+        'quorum': 'quorum',
+      },
+    ),
+    'PostgresqlPoolerMode': MigrateEnum(
+      name: 'PostgresqlPoolerMode',
+      members: <String, String>{
+        'transaction': 'transaction',
+        'session': 'session',
+      },
+    ),
+    'ProxyRuleType': MigrateEnum(
+      name: 'ProxyRuleType',
+      members: <String, String>{'site': 'site', 'function': 'function'},
+    ),
+    'SiteDeploymentSourceType': MigrateEnum(
+      name: 'SiteDeploymentSourceType',
+      members: <String, String>{'code': 'code', 'template': 'template'},
+    ),
+    'StorageBucketCompression': MigrateEnum(
+      name: 'StorageBucketCompression',
+      members: <String, String>{'none': 'none', 'gzip': 'gzip', 'zstd': 'zstd'},
+    ),
+    'TablesdbColumnType': MigrateEnum(
+      name: 'TablesdbColumnType',
+      members: <String, String>{
+        'varchar': 'varchar',
+        'text': 'text',
+        'longtext': 'longtext',
+        'mediumtext': 'mediumtext',
+        'integer': 'integer',
+        'bigint': 'bigint',
+        'float': 'float',
+        'boolean': 'boolean',
+        'enum': 'enumCase',
+        'email': 'email',
+        'datetime': 'datetime',
+        'url': 'url',
+        'ip': 'ip',
+        'point': 'point',
+        'line': 'line',
+        'polygon': 'polygon',
+        'relationship': 'relationship',
+        'string': 'string',
+      },
+    ),
+  },
+  caseInsensitiveEnums: true,
 );

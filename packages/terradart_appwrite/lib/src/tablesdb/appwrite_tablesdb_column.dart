@@ -6,6 +6,32 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `appwrite_tablesdb_column`.
 const Set<String> _appwriteTablesdbColumnSensitive = <String>{};
 
+/// Tablesdb Column enum for `type`.
+enum TablesdbColumnType implements TerraformEnum {
+  varchar('varchar'),
+  text('text'),
+  longtext('longtext'),
+  mediumtext('mediumtext'),
+  integer('integer'),
+  bigint('bigint'),
+  float('float'),
+  boolean('boolean'),
+  enumCase('enum'),
+  email('email'),
+  datetime('datetime'),
+  url('url'),
+  ip('ip'),
+  point('point'),
+  line('line'),
+  polygon('polygon'),
+  relationship('relationship'),
+  string('string');
+
+  const TablesdbColumnType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_tablesdb_column`.
 ///
 /// Manages a column in an Appwrite table.
@@ -16,7 +42,7 @@ final class AppwriteTablesdbColumn extends Resource {
     required super.localName,
     required TfArg<String> databaseId,
     required TfArg<String> tableId,
-    required TfArg<String> type,
+    required TfArg<TablesdbColumnType> type,
     TfArg<String>? key,
     TfArg<bool>? columnRequired,
     TfArg<String>? defaultValue,

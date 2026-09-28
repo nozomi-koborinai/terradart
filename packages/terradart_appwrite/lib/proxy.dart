@@ -3,4 +3,5 @@
 /// Appwrite proxy rules (custom domains for sites and functions).
 library;
 
-export 'src/proxy/appwrite_proxy_rule.dart' show AppwriteProxyRule;
+export 'src/proxy/appwrite_proxy_rule.dart'
+    show AppwriteProxyRule, ProxyRuleType;

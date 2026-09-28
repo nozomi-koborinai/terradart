@@ -9,6 +9,17 @@ const Set<String> _appwriteMysqlBackupStorageSensitive = <String>{
   'secret_key',
 };
 
+/// Mysql Backup Storage Storage enum for `storage_provider`.
+enum MysqlBackupStorageStorageProvider implements TerraformEnum {
+  s3('s3'),
+  gcs('gcs'),
+  azure('azure');
+
+  const MysqlBackupStorageStorageProvider(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `appwrite_mysql_backup_storage`.
 ///
 /// Sends the backups of a dedicated Appwrite MySQL database to a bucket you own
@@ -36,7 +47,7 @@ final class AppwriteMysqlBackupStorage extends Resource {
     TfArg<String>? projectId,
     TfArg<String>? region,
     required TfArg<String> secretKey,
-    required TfArg<String> storageProvider,
+    required TfArg<MysqlBackupStorageStorageProvider> storageProvider,
     super.lifecycle,
     super.dependsOn,
     super.provider,

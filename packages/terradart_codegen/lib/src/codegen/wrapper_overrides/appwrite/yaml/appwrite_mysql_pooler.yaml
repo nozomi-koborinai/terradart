@@ -1,3 +1,4 @@
 outputDir: mysql
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
