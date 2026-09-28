@@ -22,6 +22,7 @@ final class CesDeploymentChannelProfile {
     this.profileId,
     this.personaProperty,
     this.webWidgetConfig,
+    this.whatsappConfig,
   });
 
   final TfArg<String>? channelType;
@@ -36,6 +37,8 @@ final class CesDeploymentChannelProfile {
 
   final CesDeploymentChannelProfileWebWidgetConfig? webWidgetConfig;
 
+  final CesDeploymentChannelProfileWhatsappConfig? whatsappConfig;
+
   Map<String, Object?> encode() => {
     if (channelType != null) 'channel_type': channelType!.toTfJson(),
     if (disableBargeInControl != null)
@@ -44,6 +47,7 @@ final class CesDeploymentChannelProfile {
     if (profileId != null) 'profile_id': profileId!.toTfJson(),
     if (personaProperty != null) 'persona_property': personaProperty!.encode(),
     if (webWidgetConfig != null) 'web_widget_config': webWidgetConfig!.encode(),
+    if (whatsappConfig != null) 'whatsapp_config': whatsappConfig!.encode(),
   };
 }
 
@@ -116,6 +120,29 @@ final class CesDeploymentChannelProfileWebWidgetConfigSecuritySettings {
       'enable_public_access': enablePublicAccess!.toTfJson(),
     if (enableRecaptcha != null)
       'enable_recaptcha': enableRecaptcha!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `channel_profile.whatsapp_config` block of
+/// `google_ces_deployment` (derived from provider schema).
+@immutable
+final class CesDeploymentChannelProfileWhatsappConfig {
+  const CesDeploymentChannelProfileWhatsappConfig({
+    this.phoneNumber,
+    required this.phoneNumberId,
+    required this.wabaId,
+  });
+
+  final TfArg<String>? phoneNumber;
+
+  final TfArg<String> phoneNumberId;
+
+  final TfArg<String> wabaId;
+
+  Map<String, Object?> encode() => {
+    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
+    'phone_number_id': phoneNumberId.toTfJson(),
+    'waba_id': wabaId.toTfJson(),
   };
 }
 

@@ -2776,6 +2776,67 @@ files:
     upstream: mmv1/products/observability/Bucket.yaml
   google_scc_notification_service_account:
     upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+  # Promoted from google-beta in hashicorp/google 8.2.0 / 8.3.0
+  google_biglake_hive_catalog:
+    upstream: mmv1/products/biglakehive/HiveCatalog.yaml
+  google_biglake_hive_database:
+    upstream: mmv1/products/biglakehive/HiveDatabase.yaml
+  google_biglake_hive_table:
+    upstream: mmv1/products/biglakehive/HiveTable.yaml
+  google_biglake_hive_catalog_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_biglake_hive_catalog_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_biglake_hive_catalog_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_biglake_hive_database_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_biglake_hive_database_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_biglake_hive_database_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_biglake_hive_table_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_biglake_hive_table_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_biglake_hive_table_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_observability_folder_settings:
+    upstream: mmv1/products/observability/FolderSettings.yaml
+  google_observability_organization_settings:
+    upstream: mmv1/products/observability/OrganizationSettings.yaml
+  google_observability_project_settings:
+    upstream: mmv1/products/observability/ProjectSettings.yaml
+  google_compute_network_edge_security_service:
+    upstream: mmv1/products/compute/NetworkEdgeSecurityService.yaml
+  google_bigquery_data_transfer_data_source_enrollment:
+    upstream: mmv1/products/bigquerydatatransfer/DataSourceEnrollment.yaml
+  google_chronicle_case_close_definition:
+    upstream: mmv1/products/chronicle/CaseCloseDefinition.yaml
+  google_chronicle_case_stage_definition:
+    upstream: mmv1/products/chronicle/CaseStageDefinition.yaml
+  google_chronicle_case_tag_definition:
+    upstream: mmv1/products/chronicle/CaseTagDefinition.yaml
+  google_data_loss_prevention_content_policy:
+    upstream: mmv1/products/dlp/ContentPolicy.yaml
+  google_gemini_gda_observability_setting:
+    upstream: mmv1/products/gemini/GdaObservabilitySetting.yaml
+  google_gemini_gda_observability_setting_binding:
+    upstream: mmv1/products/gemini/GdaObservabilitySettingBinding.yaml
+  google_gemini_gibq_observability_setting:
+    upstream: mmv1/products/gemini/GibqObservabilitySetting.yaml
+  google_gemini_gibq_observability_setting_binding:
+    upstream: mmv1/products/gemini/GibqObservabilitySettingBinding.yaml
+  google_network_services_agent_connectivity_template:
+    upstream: mmv1/products/networkservices/AgentConnectivityTemplate.yaml
+  google_observability_link:
+    upstream: mmv1/products/observability/Link.yaml
+  google_storage_ftp_server:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+  google_storage_ftp_user:
+    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+  google_vertex_ai_rag_corpus:
+    upstream: mmv1/products/vertexai/RagCorpus.yaml
   data_google_access_approval_folder_service_account:
     upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
   data_google_access_approval_organization_service_account:

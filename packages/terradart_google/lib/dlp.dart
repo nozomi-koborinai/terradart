@@ -4,6 +4,8 @@
 /// stored info types, and job triggers.
 library;
 
+export 'src/dlp/google_data_loss_prevention_content_policy.dart'
+    show GoogleDataLossPreventionContentPolicy;
 export 'src/dlp/google_data_loss_prevention_deidentify_template.dart'
     show GoogleDataLossPreventionDeidentifyTemplate;
 export 'src/dlp/google_data_loss_prevention_discovery_config.dart'
@@ -40,6 +42,7 @@ export 'src/dlp/google_data_loss_prevention_discovery_config.dart'
         DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadence,
         DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspectTemplateModifiedCadence,
         DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspectTemplateModifiedCadenceFrequency,
+        DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceRefreshFrequency,
         DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadence,
         DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadenceFrequency,
         DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaModifiedCadenceTypes,

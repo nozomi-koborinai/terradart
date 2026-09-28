@@ -1,10 +1,30 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_chronicle_environment`.
 const Set<String> _googleChronicleEnvironmentSensitive = <String>{};
+
+/// Typed helper for the `dynamic_parameters` block of
+/// `google_chronicle_environment` (derived from provider schema).
+@immutable
+final class ChronicleEnvironmentDynamicParameters {
+  const ChronicleEnvironmentDynamicParameters({
+    required this.dynamicParameterId,
+    required this.value,
+  });
+
+  final TfArg<num> dynamicParameterId;
+
+  final TfArg<String> value;
+
+  Map<String, Object?> encode() => {
+    'dynamic_parameter_id': dynamicParameterId.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_chronicle_environment`.
 ///

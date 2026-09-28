@@ -37,6 +37,18 @@ Per-package changelogs live alongside each package and are the system of record 
   `tool/example_debt.yaml` like any weekly bump. The weekly bump tracks major 8.
   See `MIGRATING.md` for the upgrade steps and the behaviour changes a plan
   shows.
+- **16 beta-only types move to `terradart_google`; the fixtures move to
+  `hashicorp/google` 8.4.0** (breaking) — provider 8.2 / 8.3 promoted
+  `google_biglake_hive_{catalog,database,table}` (+ their IAM member /
+  binding / policy), `google_observability_{folder,organization,project}_settings`
+  and `google_compute_network_edge_security_service` to GA. Their factories
+  leave `terradart_google_beta` (128 → 112 resource factories) and ship
+  unchanged from `terradart_google`, without the `google-beta` provider pin;
+  coverage moves from `beta_leftover_quickstart` to
+  `deferred_leftover_quickstart`. 8.2–8.4's 14 new GA types get scaffolded
+  factories, recorded in the curation backlog and example debt.
+  `DataGoogleContainerCluster.skipNodePoolRefresh` is gone. See
+  `MIGRATING.md`.
 - **MM YAML sync pinned to the provider release** — `tool/sync_mm_yaml.dart`
   reads the magic-modules commit the fixture's `hashicorp/google` release
   was generated from (the `[upstream:<sha>]` stamp nearest the release tag,

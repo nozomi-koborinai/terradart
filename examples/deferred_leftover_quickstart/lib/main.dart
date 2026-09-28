@@ -9,13 +9,16 @@ import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/active_directory.dart';
 import 'package:terradart_google/apigee.dart';
 import 'package:terradart_google/assured_workloads.dart';
+import 'package:terradart_google/biglake.dart';
 import 'package:terradart_google/billing.dart';
 import 'package:terradart_google/cloud_asset.dart';
 import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/cloud_security_compliance.dart';
+import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/clouddomains.dart';
 import 'package:terradart_google/cloudfunctions.dart';
+import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/container.dart';
 import 'package:terradart_google/database_migration.dart';
 import 'package:terradart_google/dataflow.dart';
@@ -34,13 +37,13 @@ import 'package:terradart_google/identity.dart';
 import 'package:terradart_google/logging.dart';
 import 'package:terradart_google/model_armor.dart';
 import 'package:terradart_google/network.dart';
+import 'package:terradart_google/observability.dart';
 import 'package:terradart_google/organization.dart';
 import 'package:terradart_google/os_config.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/securityposture.dart';
 import 'package:terradart_google/service_networking.dart';
 import 'package:terradart_google/site_verification.dart';
-import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/transcoder.dart';
 
 final class DeferredLeftoverStack extends Stack {
@@ -1088,6 +1091,139 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'transcoderjob',
         deletionPolicy: TfArg.literal('DELETE'),
         location: TfArg.literal('us-central1'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveCatalog(
+        localName: 'biglake_hive_catalog',
+        locationUri: TfArg.literal('terradart-leftover'),
+        name: TfArg.literal('terradart-leftover'),
+        primaryLocation: TfArg.literal('terradart-leftover'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveCatalogIamBinding(
+        localName: 'biglake_hive_catalog_iam_binding',
+        members: TfArg.literal(['user:terradart-leftover@example.com']),
+        name: TfArg.literal('terradart-leftover'),
+        role: TfArg.literal('roles/viewer'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveCatalogIamMember(
+        localName: 'biglake_hive_catalog_iam_member',
+        member: TfArg.literal('user:terradart-leftover@example.com'),
+        name: TfArg.literal('terradart-leftover'),
+        role: TfArg.literal('roles/viewer'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveCatalogIamPolicy(
+        localName: 'biglake_hive_catalog_iam_policy',
+        name: TfArg.literal('terradart-leftover'),
+        policyData: TfArg.literal('{"bindings":[]}'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveDatabase(
+        localName: 'biglake_hive_database',
+        catalog: TfArg.literal('terradart-leftover'),
+        name: TfArg.literal('terradart-leftover'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveDatabaseIamBinding(
+        localName: 'biglake_hive_database_iam_binding',
+        catalog: TfArg.literal('terradart-leftover'),
+        members: TfArg.literal(['user:terradart-leftover@example.com']),
+        name: TfArg.literal('terradart-leftover'),
+        role: TfArg.literal('roles/viewer'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveDatabaseIamMember(
+        localName: 'biglake_hive_database_iam_member',
+        catalog: TfArg.literal('terradart-leftover'),
+        member: TfArg.literal('user:terradart-leftover@example.com'),
+        name: TfArg.literal('terradart-leftover'),
+        role: TfArg.literal('roles/viewer'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveDatabaseIamPolicy(
+        localName: 'biglake_hive_database_iam_policy',
+        catalog: TfArg.literal('terradart-leftover'),
+        name: TfArg.literal('terradart-leftover'),
+        policyData: TfArg.literal('{"bindings":[]}'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveTable(
+        localName: 'biglake_hive_table',
+        catalog: TfArg.literal('terradart-leftover'),
+        database: TfArg.literal('terradart-leftover'),
+        name: TfArg.literal('terradart-leftover'),
+        storageDescriptor: TfArg.literal({
+          'location_uri': 'gs://terradart-leftover',
+          'columns': [
+            {'name': 'id', 'type': 'string'},
+          ],
+        }),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveTableIamBinding(
+        localName: 'biglake_hive_table_iam_binding',
+        catalog: TfArg.literal('terradart-leftover'),
+        database: TfArg.literal('terradart-leftover'),
+        members: TfArg.literal(['user:terradart-leftover@example.com']),
+        name: TfArg.literal('terradart-leftover'),
+        role: TfArg.literal('roles/viewer'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveTableIamMember(
+        localName: 'biglake_hive_table_iam_member',
+        catalog: TfArg.literal('terradart-leftover'),
+        database: TfArg.literal('terradart-leftover'),
+        member: TfArg.literal('user:terradart-leftover@example.com'),
+        name: TfArg.literal('terradart-leftover'),
+        role: TfArg.literal('roles/viewer'),
+      ),
+    );
+    add(
+      GoogleBiglakeHiveTableIamPolicy(
+        localName: 'biglake_hive_table_iam_policy',
+        catalog: TfArg.literal('terradart-leftover'),
+        database: TfArg.literal('terradart-leftover'),
+        name: TfArg.literal('terradart-leftover'),
+        policyData: TfArg.literal('{"bindings":[]}'),
+      ),
+    );
+    add(
+      GoogleComputeNetworkEdgeSecurityService(
+        localName: 'compute_network_edge_security_service',
+        name: TfArg.literal('terradart-leftover'),
+      ),
+    );
+    add(
+      GoogleObservabilityFolderSettings(
+        localName: 'observability_folder_settings',
+        folder: TfArg.literal('terradart-leftover'),
+        location: TfArg.literal('terradart-leftover'),
+      ),
+    );
+    add(
+      GoogleObservabilityOrganizationSettings(
+        localName: 'observability_organization_settings',
+        location: TfArg.literal('terradart-leftover'),
+        organization: TfArg.literal('terradart-leftover'),
+      ),
+    );
+    add(
+      GoogleObservabilityProjectSettings(
+        localName: 'observability_project_settings',
+        location: TfArg.literal('terradart-leftover'),
       ),
     );
   }

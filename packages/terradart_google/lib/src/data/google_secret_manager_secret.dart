@@ -74,6 +74,9 @@ final class DataGoogleSecretManagerSecret extends Data {
   TfRef<List<Map<String, Object?>>> get rotation =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'rotation');
 
+  /// Reference to `secret_type` attribute.
+  TfRef<String> get secretType => TfRef.attribute<String>(this, 'secret_type');
+
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');

@@ -9,7 +9,6 @@ import 'package:terradart_google_beta/provider.dart';
 import 'package:terradart_google_beta/active_directory.dart';
 import 'package:terradart_google_beta/api_gateway.dart';
 import 'package:terradart_google_beta/artifact_registry.dart';
-import 'package:terradart_google_beta/biglake.dart';
 import 'package:terradart_google_beta/bigquery.dart';
 import 'package:terradart_google_beta/ces.dart';
 import 'package:terradart_google_beta/chronicle.dart';
@@ -23,7 +22,6 @@ import 'package:terradart_google_beta/folder.dart';
 import 'package:terradart_google_beta/identity.dart';
 import 'package:terradart_google_beta/kms.dart';
 import 'package:terradart_google_beta/network.dart';
-import 'package:terradart_google_beta/observability.dart';
 import 'package:terradart_google_beta/organization.dart';
 import 'package:terradart_google_beta/os_config.dart';
 import 'package:terradart_google_beta/privileged_access_manager.dart';
@@ -163,113 +161,6 @@ final class BetaLeftoverStack extends Stack {
       ),
     );
     add(
-      GoogleBiglakeHiveCatalog(
-        localName: 'biglake_hive_catalog',
-        locationUri: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-        primaryLocation: TfArg.literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveCatalogIamBinding(
-        localName: 'biglake_hive_catalog_iam_binding',
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveCatalogIamMember(
-        localName: 'biglake_hive_catalog_iam_member',
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveCatalogIamPolicy(
-        localName: 'biglake_hive_catalog_iam_policy',
-        name: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveDatabase(
-        localName: 'biglake_hive_database',
-        catalog: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveDatabaseIamBinding(
-        localName: 'biglake_hive_database_iam_binding',
-        catalog: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveDatabaseIamMember(
-        localName: 'biglake_hive_database_iam_member',
-        catalog: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveDatabaseIamPolicy(
-        localName: 'biglake_hive_database_iam_policy',
-        catalog: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveTable(
-        localName: 'biglake_hive_table',
-        catalog: TfArg.literal('terradart-leftover'),
-        database: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-        storageDescriptor: TfArg.literal({
-          'location_uri': 'gs://terradart-leftover',
-          'columns': [
-            {'name': 'id', 'type': 'string'},
-          ],
-        }),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveTableIamBinding(
-        localName: 'biglake_hive_table_iam_binding',
-        catalog: TfArg.literal('terradart-leftover'),
-        database: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveTableIamMember(
-        localName: 'biglake_hive_table_iam_member',
-        catalog: TfArg.literal('terradart-leftover'),
-        database: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
-      ),
-    );
-    add(
-      GoogleBiglakeHiveTableIamPolicy(
-        localName: 'biglake_hive_table_iam_policy',
-        catalog: TfArg.literal('terradart-leftover'),
-        database: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
-      ),
-    );
-    add(
       GoogleBigqueryAnalyticsHubDataExchangeSubscription(
         localName: 'bigquery_analytics_hub_data_exchange_subscription',
         dataExchangeId: TfArg.literal('terradart-leftover'),
@@ -394,12 +285,6 @@ final class BetaLeftoverStack extends Stack {
         localName: 'compute_machine_image_iam_policy',
         machineImage: TfArg.literal('terradart-leftover'),
         policyData: TfArg.literal('{"bindings":[]}'),
-      ),
-    );
-    add(
-      GoogleComputeNetworkEdgeSecurityService(
-        localName: 'compute_network_edge_security_service',
-        name: TfArg.literal('terradart-leftover'),
       ),
     );
     add(
@@ -703,26 +588,6 @@ final class BetaLeftoverStack extends Stack {
         localName: 'network_services_service_lb_policies',
         location: TfArg.literal('terradart-leftover'),
         name: TfArg.literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleObservabilityFolderSettings(
-        localName: 'observability_folder_settings',
-        folder: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleObservabilityOrganizationSettings(
-        localName: 'observability_organization_settings',
-        location: TfArg.literal('terradart-leftover'),
-        organization: TfArg.literal('terradart-leftover'),
-      ),
-    );
-    add(
-      GoogleObservabilityProjectSettings(
-        localName: 'observability_project_settings',
-        location: TfArg.literal('terradart-leftover'),
       ),
     );
     add(

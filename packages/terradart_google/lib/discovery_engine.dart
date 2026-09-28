@@ -52,6 +52,7 @@ export 'src/discovery_engine/google_discovery_engine_data_connector.dart'
         DiscoveryEngineDataConnectorDestinationConfigs,
         DiscoveryEngineDataConnectorDestinationConfigsDestinations,
         DiscoveryEngineDataConnectorEntities,
+        DiscoveryEngineDataConnectorMetadata,
         GoogleDiscoveryEngineDataConnector;
 export 'src/discovery_engine/google_discovery_engine_data_store.dart'
     show
@@ -118,4 +119,5 @@ export 'src/discovery_engine/google_discovery_engine_widget_config.dart'
         DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfigImageSource,
         DiscoveryEngineWidgetConfigUiSettingsInteractionType,
         DiscoveryEngineWidgetConfigUiSettingsResultDescriptionType,
+        DiscoveryEngineWidgetConfigUiSettingsSearchAddonSpec,
         GoogleDiscoveryEngineWidgetConfig;

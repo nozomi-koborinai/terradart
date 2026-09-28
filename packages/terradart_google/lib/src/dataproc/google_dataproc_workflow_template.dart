@@ -1055,6 +1055,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfig {
     this.preemptibility,
     this.accelerators,
     this.diskConfig,
+    this.instanceFlexibilityPolicy,
   });
 
   final TfArg<String>? image;
@@ -1078,6 +1079,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfig {
   final DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfig?
   diskConfig;
 
+  final DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicy?
+  instanceFlexibilityPolicy;
+
   Map<String, Object?> encode() => {
     if (image != null) 'image': image!.toTfJson(),
     if (machineType != null) 'machine_type': machineType!.toTfJson(),
@@ -1087,6 +1091,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfig {
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
     if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+    if (instanceFlexibilityPolicy != null)
+      'instance_flexibility_policy': instanceFlexibilityPolicy!.encode(),
   };
 }
 
@@ -1130,21 +1136,195 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigAcc
 @immutable
 final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfig {
   const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfig({
+    this.bootDiskProvisionedIops,
+    this.bootDiskProvisionedThroughput,
     this.bootDiskSizeGb,
     this.bootDiskType,
+    this.localSsdInterface,
     this.numLocalSsds,
+    this.attachedDiskConfig,
   });
+
+  final TfArg<num>? bootDiskProvisionedIops;
+
+  final TfArg<num>? bootDiskProvisionedThroughput;
 
   final TfArg<num>? bootDiskSizeGb;
 
   final TfArg<String>? bootDiskType;
 
+  final TfArg<String>? localSsdInterface;
+
   final TfArg<num>? numLocalSsds;
 
+  final List<
+    DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
   Map<String, Object?> encode() => {
+    if (bootDiskProvisionedIops != null)
+      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
+    if (bootDiskProvisionedThroughput != null)
+      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
+          .toTfJson(),
     if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
     if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
+    if (localSsdInterface != null)
+      'local_ssd_interface': localSsdInterface!.toTfJson(),
     if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.master_config.disk_config.attached_disk_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfigAttachedDiskConfig {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.master_config.instance_flexibility_policy` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicy {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicy({
+    this.instanceSelectionList,
+  });
+
+  final List<
+    DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList
+  >?
+  instanceSelectionList;
+
+  Map<String, Object?> encode() => {
+    if (instanceSelectionList != null)
+      'instance_selection_list': [
+        for (final e in instanceSelectionList!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.master_config.instance_flexibility_policy.instance_selection_list` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList({
+    this.machineTypes,
+    this.rank,
+    this.diskConfig,
+  });
+
+  final TfArg<List<Object?>>? machineTypes;
+
+  final TfArg<num>? rank;
+
+  final DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
+  diskConfig;
+
+  Map<String, Object?> encode() => {
+    if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
+    if (rank != null) 'rank': rank!.toTfJson(),
+    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.master_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
+    this.bootDiskProvisionedIops,
+    this.bootDiskProvisionedThroughput,
+    this.bootDiskSizeGb,
+    this.bootDiskType,
+    this.localSsdInterface,
+    this.numLocalSsds,
+    this.attachedDiskConfig,
+  });
+
+  final TfArg<num>? bootDiskProvisionedIops;
+
+  final TfArg<num>? bootDiskProvisionedThroughput;
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<String>? bootDiskType;
+
+  final TfArg<String>? localSsdInterface;
+
+  final TfArg<num>? numLocalSsds;
+
+  final List<
+    DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
+  Map<String, Object?> encode() => {
+    if (bootDiskProvisionedIops != null)
+      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
+    if (bootDiskProvisionedThroughput != null)
+      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
+          .toTfJson(),
+    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
+    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
+    if (localSsdInterface != null)
+      'local_ssd_interface': localSsdInterface!.toTfJson(),
+    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.master_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
   };
 }
 
@@ -1160,6 +1340,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
     this.preemptibility,
     this.accelerators,
     this.diskConfig,
+    this.instanceFlexibilityPolicy,
   });
 
   final TfArg<String>? image;
@@ -1183,6 +1364,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   final DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfig?
   diskConfig;
 
+  final DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicy?
+  instanceFlexibilityPolicy;
+
   Map<String, Object?> encode() => {
     if (image != null) 'image': image!.toTfJson(),
     if (machineType != null) 'machine_type': machineType!.toTfJson(),
@@ -1192,6 +1376,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
     if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+    if (instanceFlexibilityPolicy != null)
+      'instance_flexibility_policy': instanceFlexibilityPolicy!.encode(),
   };
 }
 
@@ -1235,21 +1421,223 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
 @immutable
 final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfig {
   const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfig({
+    this.bootDiskProvisionedIops,
+    this.bootDiskProvisionedThroughput,
     this.bootDiskSizeGb,
     this.bootDiskType,
+    this.localSsdInterface,
     this.numLocalSsds,
+    this.attachedDiskConfig,
   });
+
+  final TfArg<num>? bootDiskProvisionedIops;
+
+  final TfArg<num>? bootDiskProvisionedThroughput;
 
   final TfArg<num>? bootDiskSizeGb;
 
   final TfArg<String>? bootDiskType;
 
+  final TfArg<String>? localSsdInterface;
+
   final TfArg<num>? numLocalSsds;
 
+  final List<
+    DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
   Map<String, Object?> encode() => {
+    if (bootDiskProvisionedIops != null)
+      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
+    if (bootDiskProvisionedThroughput != null)
+      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
+          .toTfJson(),
     if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
     if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
+    if (localSsdInterface != null)
+      'local_ssd_interface': localSsdInterface!.toTfJson(),
     if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.disk_config.attached_disk_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfigAttachedDiskConfig {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicy {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicy({
+    this.instanceSelectionList,
+    this.provisioningModelMix,
+  });
+
+  final List<
+    DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList
+  >?
+  instanceSelectionList;
+
+  final DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyProvisioningModelMix?
+  provisioningModelMix;
+
+  Map<String, Object?> encode() => {
+    if (instanceSelectionList != null)
+      'instance_selection_list': [
+        for (final e in instanceSelectionList!) e.encode(),
+      ],
+    if (provisioningModelMix != null)
+      'provisioning_model_mix': provisioningModelMix!.encode(),
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy.instance_selection_list` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList({
+    this.machineTypes,
+    this.rank,
+    this.diskConfig,
+  });
+
+  final TfArg<List<Object?>>? machineTypes;
+
+  final TfArg<num>? rank;
+
+  final DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
+  diskConfig;
+
+  Map<String, Object?> encode() => {
+    if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
+    if (rank != null) 'rank': rank!.toTfJson(),
+    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
+    this.bootDiskProvisionedIops,
+    this.bootDiskProvisionedThroughput,
+    this.bootDiskSizeGb,
+    this.bootDiskType,
+    this.localSsdInterface,
+    this.numLocalSsds,
+    this.attachedDiskConfig,
+  });
+
+  final TfArg<num>? bootDiskProvisionedIops;
+
+  final TfArg<num>? bootDiskProvisionedThroughput;
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<String>? bootDiskType;
+
+  final TfArg<String>? localSsdInterface;
+
+  final TfArg<num>? numLocalSsds;
+
+  final List<
+    DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
+  Map<String, Object?> encode() => {
+    if (bootDiskProvisionedIops != null)
+      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
+    if (bootDiskProvisionedThroughput != null)
+      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
+          .toTfJson(),
+    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
+    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
+    if (localSsdInterface != null)
+      'local_ssd_interface': localSsdInterface!.toTfJson(),
+    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.secondary_worker_config.instance_flexibility_policy.provisioning_model_mix` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyProvisioningModelMix {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigInstanceFlexibilityPolicyProvisioningModelMix({
+    this.standardCapacityBase,
+    this.standardCapacityPercentAboveBase,
+  });
+
+  final TfArg<num>? standardCapacityBase;
+
+  final TfArg<num>? standardCapacityPercentAboveBase;
+
+  Map<String, Object?> encode() => {
+    if (standardCapacityBase != null)
+      'standard_capacity_base': standardCapacityBase!.toTfJson(),
+    if (standardCapacityPercentAboveBase != null)
+      'standard_capacity_percent_above_base': standardCapacityPercentAboveBase!
+          .toTfJson(),
   };
 }
 
@@ -1385,6 +1773,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfig {
     this.preemptibility,
     this.accelerators,
     this.diskConfig,
+    this.instanceFlexibilityPolicy,
   });
 
   final TfArg<String>? image;
@@ -1408,6 +1797,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfig {
   final DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfig?
   diskConfig;
 
+  final DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicy?
+  instanceFlexibilityPolicy;
+
   Map<String, Object?> encode() => {
     if (image != null) 'image': image!.toTfJson(),
     if (machineType != null) 'machine_type': machineType!.toTfJson(),
@@ -1417,6 +1809,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfig {
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
     if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+    if (instanceFlexibilityPolicy != null)
+      'instance_flexibility_policy': instanceFlexibilityPolicy!.encode(),
   };
 }
 
@@ -1460,21 +1854,195 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigAcc
 @immutable
 final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfig {
   const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfig({
+    this.bootDiskProvisionedIops,
+    this.bootDiskProvisionedThroughput,
     this.bootDiskSizeGb,
     this.bootDiskType,
+    this.localSsdInterface,
     this.numLocalSsds,
+    this.attachedDiskConfig,
   });
+
+  final TfArg<num>? bootDiskProvisionedIops;
+
+  final TfArg<num>? bootDiskProvisionedThroughput;
 
   final TfArg<num>? bootDiskSizeGb;
 
   final TfArg<String>? bootDiskType;
 
+  final TfArg<String>? localSsdInterface;
+
   final TfArg<num>? numLocalSsds;
 
+  final List<
+    DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
   Map<String, Object?> encode() => {
+    if (bootDiskProvisionedIops != null)
+      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
+    if (bootDiskProvisionedThroughput != null)
+      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
+          .toTfJson(),
     if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
     if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
+    if (localSsdInterface != null)
+      'local_ssd_interface': localSsdInterface!.toTfJson(),
     if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.worker_config.disk_config.attached_disk_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfigAttachedDiskConfig {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.worker_config.instance_flexibility_policy` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicy {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicy({
+    this.instanceSelectionList,
+  });
+
+  final List<
+    DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList
+  >?
+  instanceSelectionList;
+
+  Map<String, Object?> encode() => {
+    if (instanceSelectionList != null)
+      'instance_selection_list': [
+        for (final e in instanceSelectionList!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.worker_config.instance_flexibility_policy.instance_selection_list` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList({
+    this.machineTypes,
+    this.rank,
+    this.diskConfig,
+  });
+
+  final TfArg<List<Object?>>? machineTypes;
+
+  final TfArg<num>? rank;
+
+  final DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
+  diskConfig;
+
+  Map<String, Object?> encode() => {
+    if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
+    if (rank != null) 'rank': rank!.toTfJson(),
+    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
+    this.bootDiskProvisionedIops,
+    this.bootDiskProvisionedThroughput,
+    this.bootDiskSizeGb,
+    this.bootDiskType,
+    this.localSsdInterface,
+    this.numLocalSsds,
+    this.attachedDiskConfig,
+  });
+
+  final TfArg<num>? bootDiskProvisionedIops;
+
+  final TfArg<num>? bootDiskProvisionedThroughput;
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<String>? bootDiskType;
+
+  final TfArg<String>? localSsdInterface;
+
+  final TfArg<num>? numLocalSsds;
+
+  final List<
+    DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
+  Map<String, Object?> encode() => {
+    if (bootDiskProvisionedIops != null)
+      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
+    if (bootDiskProvisionedThroughput != null)
+      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
+          .toTfJson(),
+    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
+    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
+    if (localSsdInterface != null)
+      'local_ssd_interface': localSsdInterface!.toTfJson(),
+    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `placement.managed_cluster.config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
+/// `google_dataproc_workflow_template` (derived from provider schema).
+@immutable
+final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
+  const DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
   };
 }
 

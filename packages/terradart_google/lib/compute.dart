@@ -379,6 +379,8 @@ export 'src/compute/google_compute_network_attachment.dart'
     show
         ComputeNetworkAttachmentConnectionPreference,
         GoogleComputeNetworkAttachment;
+export 'src/compute/google_compute_network_edge_security_service.dart'
+    show GoogleComputeNetworkEdgeSecurityService;
 export 'src/compute/google_compute_network_endpoint.dart'
     show GoogleComputeNetworkEndpoint;
 export 'src/compute/google_compute_network_endpoint_group.dart'

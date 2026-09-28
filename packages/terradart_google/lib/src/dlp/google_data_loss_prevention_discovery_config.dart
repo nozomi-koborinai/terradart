@@ -583,10 +583,16 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTarget {
 @immutable
 final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadence {
   const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadence({
+    this.refreshFrequency,
     this.inspectTemplateModifiedCadence,
     this.schemaModifiedCadence,
     this.tableModifiedCadence,
   });
+
+  final TfArg<
+    DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceRefreshFrequency
+  >?
+  refreshFrequency;
 
   final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspectTemplateModifiedCadence?
   inspectTemplateModifiedCadence;
@@ -598,6 +604,8 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadence {
   tableModifiedCadence;
 
   Map<String, Object?> encode() => {
+    if (refreshFrequency != null)
+      'refresh_frequency': refreshFrequency!.toTfJson(),
     if (inspectTemplateModifiedCadence != null)
       'inspect_template_modified_cadence': inspectTemplateModifiedCadence!
           .encode(),
@@ -606,6 +614,20 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadence {
     if (tableModifiedCadence != null)
       'table_modified_cadence': tableModifiedCadence!.encode(),
   };
+}
+
+/// `refresh_frequency` — derived from the provider schema description.
+enum DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceRefreshFrequency
+    implements TerraformEnum {
+  updateFrequencyNever('UPDATE_FREQUENCY_NEVER'),
+  updateFrequencyDaily('UPDATE_FREQUENCY_DAILY'),
+  updateFrequencyMonthly('UPDATE_FREQUENCY_MONTHLY');
+
+  const DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceRefreshFrequency(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `targets.big_query_target.cadence.inspect_template_modified_cadence` block of

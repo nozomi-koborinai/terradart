@@ -61,6 +61,10 @@ final class DataGoogleParameterManagerParameter extends Data {
   TfRef<List<Map<String, Object?>>> get policyMember =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'policy_member');
 
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tags =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');

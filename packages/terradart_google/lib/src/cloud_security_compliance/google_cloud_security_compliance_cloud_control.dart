@@ -121,6 +121,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofVal
     this.boolValue,
     this.numberValue,
     this.stringValue,
+    this.oneofValue,
     this.stringListValue,
   });
 
@@ -130,7 +131,59 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofVal
 
   final TfArg<String>? stringValue;
 
+  final CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofValueParameterValueOneofValue?
+  oneofValue;
+
   final CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofValueParameterValueStringListValue?
+  stringListValue;
+
+  Map<String, Object?> encode() => {
+    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
+    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
+    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
+    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.default_value.oneof_value.parameter_value.oneof_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofValueParameterValueOneofValue {
+  const CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofValueParameterValueOneofValue({
+    this.name,
+    this.parameterValue,
+  });
+
+  final TfArg<String>? name;
+
+  final CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofValueParameterValueOneofValueParameterValue?
+  parameterValue;
+
+  Map<String, Object?> encode() => {
+    if (name != null) 'name': name!.toTfJson(),
+    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.default_value.oneof_value.parameter_value.oneof_value.parameter_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofValueParameterValueOneofValueParameterValue {
+  const CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofValueParameterValueOneofValueParameterValue({
+    this.boolValue,
+    this.numberValue,
+    this.stringValue,
+    this.stringListValue,
+  });
+
+  final TfArg<bool>? boolValue;
+
+  final TfArg<num>? numberValue;
+
+  final TfArg<String>? stringValue;
+
+  final CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofValueParameterValueOneofValueParameterValueStringListValue?
   stringListValue;
 
   Map<String, Object?> encode() => {
@@ -139,6 +192,19 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofVal
     if (stringValue != null) 'string_value': stringValue!.toTfJson(),
     if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
   };
+}
+
+/// Typed helper for the `parameter_spec.default_value.oneof_value.parameter_value.oneof_value.parameter_value.string_list_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofValueParameterValueOneofValueParameterValueStringListValue {
+  const CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofValueParameterValueOneofValueParameterValueStringListValue({
+    required this.values,
+  });
+
+  final TfArg<List<Object?>> values;
+
+  Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.default_value.oneof_value.parameter_value.string_list_value` block of
@@ -178,6 +244,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParameters {
     required this.name,
     required this.valueType,
     this.defaultValue,
+    this.subParameters,
     this.substitutionRules,
     this.validation,
   });
@@ -196,6 +263,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParameters {
   defaultValue;
 
   final List<
+    CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParameters
+  >?
+  subParameters;
+
+  final List<
     CloudSecurityComplianceCloudControlParameterSpecSubParametersSubstitutionRules
   >?
   substitutionRules;
@@ -210,6 +282,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParameters {
     'name': name.toTfJson(),
     'value_type': valueType.toTfJson(),
     if (defaultValue != null) 'default_value': defaultValue!.encode(),
+    if (subParameters != null)
+      'sub_parameters': [for (final e in subParameters!) e.encode()],
     if (substitutionRules != null)
       'substitution_rules': [for (final e in substitutionRules!) e.encode()],
     if (validation != null) 'validation': validation!.encode(),
@@ -277,6 +351,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
     this.boolValue,
     this.numberValue,
     this.stringValue,
+    this.oneofValue,
     this.stringListValue,
   });
 
@@ -286,7 +361,59 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
 
   final TfArg<String>? stringValue;
 
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersDefaultValueOneofValueParameterValueOneofValue?
+  oneofValue;
+
   final CloudSecurityComplianceCloudControlParameterSpecSubParametersDefaultValueOneofValueParameterValueStringListValue?
+  stringListValue;
+
+  Map<String, Object?> encode() => {
+    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
+    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
+    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
+    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.default_value.oneof_value.parameter_value.oneof_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefaultValueOneofValueParameterValueOneofValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersDefaultValueOneofValueParameterValueOneofValue({
+    this.name,
+    this.parameterValue,
+  });
+
+  final TfArg<String>? name;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersDefaultValueOneofValueParameterValueOneofValueParameterValue?
+  parameterValue;
+
+  Map<String, Object?> encode() => {
+    if (name != null) 'name': name!.toTfJson(),
+    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.default_value.oneof_value.parameter_value.oneof_value.parameter_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefaultValueOneofValueParameterValueOneofValueParameterValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersDefaultValueOneofValueParameterValueOneofValueParameterValue({
+    this.boolValue,
+    this.numberValue,
+    this.stringValue,
+    this.stringListValue,
+  });
+
+  final TfArg<bool>? boolValue;
+
+  final TfArg<num>? numberValue;
+
+  final TfArg<String>? stringValue;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersDefaultValueOneofValueParameterValueOneofValueParameterValueStringListValue?
   stringListValue;
 
   Map<String, Object?> encode() => {
@@ -295,6 +422,19 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
     if (stringValue != null) 'string_value': stringValue!.toTfJson(),
     if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
   };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.default_value.oneof_value.parameter_value.oneof_value.parameter_value.string_list_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefaultValueOneofValueParameterValueOneofValueParameterValueStringListValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersDefaultValueOneofValueParameterValueOneofValueParameterValueStringListValue({
+    required this.values,
+  });
+
+  final TfArg<List<Object?>> values;
+
+  Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.sub_parameters.default_value.oneof_value.parameter_value.string_list_value` block of
@@ -321,6 +461,398 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
   final TfArg<List<Object?>> values;
 
   Map<String, Object?> encode() => {'values': values.toTfJson()};
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParameters {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParameters({
+    this.description,
+    this.displayName,
+    required this.isRequired,
+    required this.name,
+    required this.valueType,
+    this.defaultValue,
+    this.substitutionRules,
+    this.validation,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String>? displayName;
+
+  final TfArg<bool> isRequired;
+
+  final TfArg<String> name;
+
+  final TfArg<String> valueType;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValue?
+  defaultValue;
+
+  final List<
+    CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersSubstitutionRules
+  >?
+  substitutionRules;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidation?
+  validation;
+
+  Map<String, Object?> encode() => {
+    if (description != null) 'description': description!.toTfJson(),
+    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'is_required': isRequired.toTfJson(),
+    'name': name.toTfJson(),
+    'value_type': valueType.toTfJson(),
+    if (defaultValue != null) 'default_value': defaultValue!.encode(),
+    if (substitutionRules != null)
+      'substitution_rules': [for (final e in substitutionRules!) e.encode()],
+    if (validation != null) 'validation': validation!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.default_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValue({
+    this.boolValue,
+    this.numberValue,
+    this.stringValue,
+    this.oneofValue,
+    this.stringListValue,
+  });
+
+  final TfArg<bool>? boolValue;
+
+  final TfArg<num>? numberValue;
+
+  final TfArg<String>? stringValue;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueOneofValue?
+  oneofValue;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueStringListValue?
+  stringListValue;
+
+  Map<String, Object?> encode() => {
+    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
+    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
+    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
+    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.default_value.oneof_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueOneofValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueOneofValue({
+    this.name,
+    this.parameterValue,
+  });
+
+  final TfArg<String>? name;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueOneofValueParameterValue?
+  parameterValue;
+
+  Map<String, Object?> encode() => {
+    if (name != null) 'name': name!.toTfJson(),
+    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.default_value.oneof_value.parameter_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueOneofValueParameterValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueOneofValueParameterValue({
+    this.boolValue,
+    this.numberValue,
+    this.stringValue,
+    this.stringListValue,
+  });
+
+  final TfArg<bool>? boolValue;
+
+  final TfArg<num>? numberValue;
+
+  final TfArg<String>? stringValue;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueOneofValueParameterValueStringListValue?
+  stringListValue;
+
+  Map<String, Object?> encode() => {
+    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
+    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
+    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.default_value.oneof_value.parameter_value.string_list_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueOneofValueParameterValueStringListValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueOneofValueParameterValueStringListValue({
+    required this.values,
+  });
+
+  final TfArg<List<Object?>> values;
+
+  Map<String, Object?> encode() => {'values': values.toTfJson()};
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.default_value.string_list_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueStringListValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersDefaultValueStringListValue({
+    required this.values,
+  });
+
+  final TfArg<List<Object?>> values;
+
+  Map<String, Object?> encode() => {'values': values.toTfJson()};
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.substitution_rules` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersSubstitutionRules {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersSubstitutionRules({
+    this.attributeSubstitutionRule,
+    this.placeholderSubstitutionRule,
+  });
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersSubstitutionRulesAttributeSubstitutionRule?
+  attributeSubstitutionRule;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersSubstitutionRulesPlaceholderSubstitutionRule?
+  placeholderSubstitutionRule;
+
+  Map<String, Object?> encode() => {
+    if (attributeSubstitutionRule != null)
+      'attribute_substitution_rule': attributeSubstitutionRule!.encode(),
+    if (placeholderSubstitutionRule != null)
+      'placeholder_substitution_rule': placeholderSubstitutionRule!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.substitution_rules.attribute_substitution_rule` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersSubstitutionRulesAttributeSubstitutionRule {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersSubstitutionRulesAttributeSubstitutionRule({
+    this.attribute,
+  });
+
+  final TfArg<String>? attribute;
+
+  Map<String, Object?> encode() => {
+    if (attribute != null) 'attribute': attribute!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.substitution_rules.placeholder_substitution_rule` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersSubstitutionRulesPlaceholderSubstitutionRule {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersSubstitutionRulesPlaceholderSubstitutionRule({
+    this.attribute,
+  });
+
+  final TfArg<String>? attribute;
+
+  Map<String, Object?> encode() => {
+    if (attribute != null) 'attribute': attribute!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.validation` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidation {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidation({
+    this.allowedValues,
+    this.intRange,
+    this.regexpPattern,
+  });
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValues?
+  allowedValues;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationIntRange?
+  intRange;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationRegexpPattern?
+  regexpPattern;
+
+  Map<String, Object?> encode() => {
+    if (allowedValues != null) 'allowed_values': allowedValues!.encode(),
+    if (intRange != null) 'int_range': intRange!.encode(),
+    if (regexpPattern != null) 'regexp_pattern': regexpPattern!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.validation.allowed_values` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValues {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValues({
+    required this.values,
+  });
+
+  final List<
+    CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValues
+  >
+  values;
+
+  Map<String, Object?> encode() => {
+    'values': [for (final e in values) e.encode()],
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.validation.allowed_values.values` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValues {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValues({
+    this.boolValue,
+    this.numberValue,
+    this.stringValue,
+    this.oneofValue,
+    this.stringListValue,
+  });
+
+  final TfArg<bool>? boolValue;
+
+  final TfArg<num>? numberValue;
+
+  final TfArg<String>? stringValue;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesOneofValue?
+  oneofValue;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesStringListValue?
+  stringListValue;
+
+  Map<String, Object?> encode() => {
+    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
+    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
+    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
+    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.validation.allowed_values.values.oneof_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesOneofValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesOneofValue({
+    this.name,
+    this.parameterValue,
+  });
+
+  final TfArg<String>? name;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesOneofValueParameterValue?
+  parameterValue;
+
+  Map<String, Object?> encode() => {
+    if (name != null) 'name': name!.toTfJson(),
+    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.validation.allowed_values.values.oneof_value.parameter_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesOneofValueParameterValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesOneofValueParameterValue({
+    this.boolValue,
+    this.numberValue,
+    this.stringValue,
+    this.stringListValue,
+  });
+
+  final TfArg<bool>? boolValue;
+
+  final TfArg<num>? numberValue;
+
+  final TfArg<String>? stringValue;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesOneofValueParameterValueStringListValue?
+  stringListValue;
+
+  Map<String, Object?> encode() => {
+    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
+    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
+    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.validation.allowed_values.values.oneof_value.parameter_value.string_list_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesOneofValueParameterValueStringListValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesOneofValueParameterValueStringListValue({
+    required this.values,
+  });
+
+  final TfArg<List<Object?>> values;
+
+  Map<String, Object?> encode() => {'values': values.toTfJson()};
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.validation.allowed_values.values.string_list_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesStringListValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationAllowedValuesValuesStringListValue({
+    required this.values,
+  });
+
+  final TfArg<List<Object?>> values;
+
+  Map<String, Object?> encode() => {'values': values.toTfJson()};
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.validation.int_range` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationIntRange {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationIntRange({
+    required this.max,
+    required this.min,
+  });
+
+  final TfArg<String> max;
+
+  final TfArg<String> min;
+
+  Map<String, Object?> encode() => {
+    'max': max.toTfJson(),
+    'min': min.toTfJson(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.validation.regexp_pattern` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationRegexpPattern {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersSubParametersValidationRegexpPattern({
+    required this.pattern,
+  });
+
+  final TfArg<String> pattern;
+
+  Map<String, Object?> encode() => {'pattern': pattern.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.sub_parameters.substitution_rules` block of
@@ -481,6 +1013,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
     this.boolValue,
     this.numberValue,
     this.stringValue,
+    this.oneofValue,
     this.stringListValue,
   });
 
@@ -490,7 +1023,59 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
 
   final TfArg<String>? stringValue;
 
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersValidationAllowedValuesValuesOneofValueParameterValueOneofValue?
+  oneofValue;
+
   final CloudSecurityComplianceCloudControlParameterSpecSubParametersValidationAllowedValuesValuesOneofValueParameterValueStringListValue?
+  stringListValue;
+
+  Map<String, Object?> encode() => {
+    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
+    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
+    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
+    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.validation.allowed_values.values.oneof_value.parameter_value.oneof_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidationAllowedValuesValuesOneofValueParameterValueOneofValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersValidationAllowedValuesValuesOneofValueParameterValueOneofValue({
+    this.name,
+    this.parameterValue,
+  });
+
+  final TfArg<String>? name;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValue?
+  parameterValue;
+
+  Map<String, Object?> encode() => {
+    if (name != null) 'name': name!.toTfJson(),
+    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.validation.allowed_values.values.oneof_value.parameter_value.oneof_value.parameter_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValue({
+    this.boolValue,
+    this.numberValue,
+    this.stringValue,
+    this.stringListValue,
+  });
+
+  final TfArg<bool>? boolValue;
+
+  final TfArg<num>? numberValue;
+
+  final TfArg<String>? stringValue;
+
+  final CloudSecurityComplianceCloudControlParameterSpecSubParametersValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValueStringListValue?
   stringListValue;
 
   Map<String, Object?> encode() => {
@@ -499,6 +1084,19 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
     if (stringValue != null) 'string_value': stringValue!.toTfJson(),
     if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
   };
+}
+
+/// Typed helper for the `parameter_spec.sub_parameters.validation.allowed_values.values.oneof_value.parameter_value.oneof_value.parameter_value.string_list_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValueStringListValue {
+  const CloudSecurityComplianceCloudControlParameterSpecSubParametersValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValueStringListValue({
+    required this.values,
+  });
+
+  final TfArg<List<Object?>> values;
+
+  Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.sub_parameters.validation.allowed_values.values.oneof_value.parameter_value.string_list_value` block of
@@ -717,6 +1315,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
     this.boolValue,
     this.numberValue,
     this.stringValue,
+    this.oneofValue,
     this.stringListValue,
   });
 
@@ -726,7 +1325,59 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
 
   final TfArg<String>? stringValue;
 
+  final CloudSecurityComplianceCloudControlParameterSpecValidationAllowedValuesValuesOneofValueParameterValueOneofValue?
+  oneofValue;
+
   final CloudSecurityComplianceCloudControlParameterSpecValidationAllowedValuesValuesOneofValueParameterValueStringListValue?
+  stringListValue;
+
+  Map<String, Object?> encode() => {
+    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
+    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
+    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
+    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.validation.allowed_values.values.oneof_value.parameter_value.oneof_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedValuesValuesOneofValueParameterValueOneofValue {
+  const CloudSecurityComplianceCloudControlParameterSpecValidationAllowedValuesValuesOneofValueParameterValueOneofValue({
+    this.name,
+    this.parameterValue,
+  });
+
+  final TfArg<String>? name;
+
+  final CloudSecurityComplianceCloudControlParameterSpecValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValue?
+  parameterValue;
+
+  Map<String, Object?> encode() => {
+    if (name != null) 'name': name!.toTfJson(),
+    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+  };
+}
+
+/// Typed helper for the `parameter_spec.validation.allowed_values.values.oneof_value.parameter_value.oneof_value.parameter_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValue {
+  const CloudSecurityComplianceCloudControlParameterSpecValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValue({
+    this.boolValue,
+    this.numberValue,
+    this.stringValue,
+    this.stringListValue,
+  });
+
+  final TfArg<bool>? boolValue;
+
+  final TfArg<num>? numberValue;
+
+  final TfArg<String>? stringValue;
+
+  final CloudSecurityComplianceCloudControlParameterSpecValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValueStringListValue?
   stringListValue;
 
   Map<String, Object?> encode() => {
@@ -735,6 +1386,19 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
     if (stringValue != null) 'string_value': stringValue!.toTfJson(),
     if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
   };
+}
+
+/// Typed helper for the `parameter_spec.validation.allowed_values.values.oneof_value.parameter_value.oneof_value.parameter_value.string_list_value` block of
+/// `google_cloud_security_compliance_cloud_control` (derived from provider schema).
+@immutable
+final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValueStringListValue {
+  const CloudSecurityComplianceCloudControlParameterSpecValidationAllowedValuesValuesOneofValueParameterValueOneofValueParameterValueStringListValue({
+    required this.values,
+  });
+
+  final TfArg<List<Object?>> values;
+
+  Map<String, Object?> encode() => {'values': values.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.validation.allowed_values.values.oneof_value.parameter_value.string_list_value` block of
