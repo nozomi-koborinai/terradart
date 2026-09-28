@@ -31,6 +31,16 @@ void main() {
     ]);
   });
 
+  test('aws analyzes the examples that depend on terradart_aws', () {
+    final examples = dependentExamples('.', 'terradart_aws');
+    expect(examples, contains('examples/aws_leftover_quickstart'));
+    expect(examples, isNot(contains('examples/cloudflare_dns_quickstart')));
+    expect(
+      laneGates(lanes['aws']!, examples: examples).last.args,
+      ['analyze', ...examples],
+    );
+  });
+
   test('every gate directory exists', () {
     for (final lane in lanes.values) {
       for (final gate in laneGates(lane)) {

@@ -117,9 +117,11 @@ class ReportLane {
     required this.name,
     required this.source,
     required this.schemaDir,
+    this.prOnly = false,
   });
 
-  /// Reads [name]'s `source` and `schemaDir` from tool/providers.yaml.
+  /// Reads [name]'s `source`, `schemaDir` and `bump.mode` from
+  /// tool/providers.yaml.
   factory ReportLane.fromProviders(String providersYaml, String name) {
     final providers =
         (loadYaml(providersYaml) as YamlMap)['providers'] as YamlMap;
@@ -129,10 +131,12 @@ class ReportLane {
         entry['schemaDir'] is! String) {
       throw FormatException('unknown lane "$name" in tool/providers.yaml');
     }
+    final bump = entry['bump'];
     return ReportLane(
       name: name,
       source: entry['source'] as String,
       schemaDir: entry['schemaDir'] as String,
+      prOnly: bump is YamlMap && bump['mode'] == 'pr-only',
     );
   }
 
@@ -145,6 +149,10 @@ class ReportLane {
   final String name;
   final String source;
   final String schemaDir;
+
+  /// `bump.mode: pr-only`: the workflow opens the PR but never enables
+  /// auto-merge on it.
+  final bool prOnly;
 
   /// `google_`, `aws_`, `cloudflare_`: the source's provider name.
   String get typePrefix => '${source.split('/').last}_';
@@ -285,7 +293,11 @@ String buildReport(ReportInputs i) {
 /// generated Dart API. CI's required checks still gate the merge itself.
 @visibleForTesting
 List<String> autoMergeBlockers(ReportInputs i) {
-  final blockers = <String>[];
+  final blockers = <String>[
+    if (i.lane.prOnly)
+      '${i.lane.name} is a pr-only lane (bump.mode in tool/providers.yaml): '
+          'its bumps never auto-merge',
+  ];
   if (i.state['new_major_available'] == true) {
     blockers.add('a new provider major is available');
   }
