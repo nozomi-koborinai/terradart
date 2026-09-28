@@ -3,8 +3,9 @@
 /// Curated **Cloudflare** surface for TerraDart (official
 /// `cloudflare/cloudflare` Terraform provider).
 ///
-/// The catalog at the current provider pin (`5.23.0`) is filled —
-/// every resource and data source in that schema has a typed factory.
+/// The catalog at the current provider pin
+/// (`kCloudflareProviderVersionConstraint`) is filled — every resource
+/// and data source in that schema has a typed factory.
 /// Nested plugin-framework objects are Dart helper classes, not
 /// `TfArg<Map<String, dynamic>>`. A later pin that adds names lands
 /// on request. Credentials never appear in synth output:
