@@ -253,17 +253,43 @@ void main() {
       expect(out, contains('6.66.0 → **6.67.0**'));
     });
 
-    test('data-source additions and removals block auto-merge', () {
-      expect(
-        autoMergeBlockers(awsInputs(
-          addedData: ['aws_a'],
-          removedData: ['aws_b'],
-        )),
-        containsAll([
-          '1 new data source(s) for the curation backlog',
-          '1 curated data source(s) removed upstream',
-        ]),
+    test('data-source removals block auto-merge, additions do not', () {
+      final blockers = autoMergeBlockers(awsInputs(
+        addedData: ['aws_a'],
+        removedData: ['aws_b'],
+      ));
+      expect(blockers, contains('1 curated data source(s) removed upstream'));
+      expect(blockers.where((b) => b.contains('new')), isEmpty);
+    });
+
+    test('a leftover-generator lane covers new factories in its example', () {
+      final i = ReportInputs(
+        state: const {'bump_date': '2026-10-05'},
+        wrapCheckStdout: '',
+        wrapCheckExitCode: 0,
+        gatesStdout: '',
+        gatesExitCode: 0,
+        schemaDiff: const {
+          'added_resources': ['aws_x'],
+          'removed_resources': <String>[],
+          'added_data_sources': ['aws_x'],
+          'removed_data_sources': <String>[],
+        },
+        newFactories: const {
+          'example_generator': 'tool/generate_aws_leftover_example.dart',
+          'factories': [
+            {'tf_type': 'aws_x', 'class_name': 'AwsX', 'kind': 'resource'},
+          ],
+        },
+        lane: aws,
       );
+      final out = buildNewResourceSection(i);
+      expect(out, contains('- `aws_x` → `AwsX`'));
+      expect(
+        out,
+        contains('- `aws_x` (data source) — no factory generated'),
+      );
+      expect(out, contains('leftover example generator'));
     });
 
     test('a pr-only lane never auto-merges', () {

@@ -54,7 +54,7 @@ Future<void> main(List<String> args) async {
     exit(_exitIo);
   }
 
-  final header = _readHeader(backlogFile.readAsStringSync());
+  final header = readBacklogHeader(backlogFile.readAsStringSync());
   final entries = readBacklogEntries(backlogFile.readAsStringSync());
   final appended = appendCurationEntries(
     existing: entries,
@@ -150,6 +150,7 @@ List<Map<String, String>> appendCurationEntries({
   List<String> dataSources = const [],
   required String detectedAt,
   required String providerVersion,
+  String? note,
 }) {
   final seen = existing.map(_entryKey).toSet();
   final out = [...existing];
@@ -163,6 +164,7 @@ List<Map<String, String>> appendCurationEntries({
         kind: name,
         'detected_at': detectedAt,
         'provider_version': providerVersion,
+        if (note != null && note.isNotEmpty) 'note': note,
       });
     }
   }
@@ -173,7 +175,8 @@ List<Map<String, String>> appendCurationEntries({
   return out;
 }
 
-String _readHeader(String yamlSource) {
+/// The comment block above `entries:`.
+String readBacklogHeader(String yamlSource) {
   final lines = yamlSource.split('\n');
   final headerLines = <String>[];
   for (final line in lines) {
