@@ -76,6 +76,7 @@ Future<void> main() async {
     'website/src/content/docs/docs/getting-started.md',
     'website/src/content/docs/docs/why-terradart.md',
     'website/src/content/docs/docs/how-its-built.mdx',
+    'website/src/content/docs/docs/aws.md',
   ]) {
     _checkNoStaleVersionLine(errors, minor, page);
   }

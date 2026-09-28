@@ -121,7 +121,15 @@ Nothing the Stack owns is repeated (its `required_providers`, its provider confi
 
 A block's own leading comments come across with it: the `#`, `//` or `/* */` lines above a `resource`, `data` or `module` block are written as `//` lines above the `add(...)` it became, so the documentation lives where the code now does. A `count` / `for_each` block documents its unrolled instances once, above the first. The migrator's own `# terradart-migrate:` reasons are not carried — they are annotations, not prose, and a sidecar migrated again is full of them. A merged Stack (`--merge-envs`) carries none: its bodies are lined up statement by statement across environments that may document the same block differently.
 
-To finish a block by hand: write it in the Stack, delete it from the sidecar, synthesize and plan again — the plan tells you whether the two agree.
+## Finishing the migration
+
+The migrator does the mechanical part once; what it kept is yours to port, by hand or with a coding agent (the [agent skill](/docs/agents/) describes the same loop):
+
+1. Pick a block from `MIGRATION.md` whose reason you can resolve — an argument the migrator had no typed slot for, a `depends_on` on a block you have since ported, a literal `locals` entry that could be a Dart `final`.
+2. Write it in the Stack with the same `localName`, so its address does not change, and delete it from the sidecar. A local leaves `locals.tf` only once nothing still in the sidecar reads it.
+3. `dart run bin/infra.dart`, then `terraform plan` in that root. *No changes* means the port is faithful; anything else is the diff to fix in Dart.
+
+A later catalog release may cover a type that is `not in any catalog` today: `terradart-migrate --report` over a copy of the sidecar files lists what translates now.
 
 ## Modules and environments
 

@@ -23,7 +23,7 @@ dependencies:
   # terradart_google_beta: ^0.29.x # for Google Cloud beta-only resources
   # terradart_appwrite: ^0.29.x    # for Appwrite
   # terradart_cloudflare: ^0.29.x  # for Cloudflare edge infrastructure
-  # terradart_aws: for AWS, from Git until its first pub.dev release (see /docs/aws/)
+  # terradart_aws: ^0.29.x        # for AWS
 ```
 
 Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, then run:
