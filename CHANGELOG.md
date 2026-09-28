@@ -26,7 +26,7 @@ Per-package changelogs live alongside each package and are the system of record 
   added since get factories. See `MIGRATING.md`.
 - **`terradart_cloudflare` enums** (**breaking**) — every input with a fixed
   value set is a generated enum instead of a `String` (540 string slots and
-  31 list slots, 571 enums), typed from the provider's Go validators and
+  41 list slots, 581 enums), typed from the provider's Go validators and
   `Available values:` descriptions (`wrap --provider-enums`, the cloudflare
   lane's `providerEnums: true`). `terradart-migrate` matches cloudflare enum
   values case-insensitively and warns when it normalizes one. Synth output

@@ -33,9 +33,9 @@ too (`CloudflareCtAlerting`, `CloudflareFieldExtractor`,
 
 **Breaking (`terradart_cloudflare`)** — every constructor slot and helper
 field whose provider attribute takes one of a fixed set of values is now a
-generated `TerraformEnum` instead of a `String`: 540 string slots and 31
+generated `TerraformEnum` instead of a `String`: 540 string slots and 41
 list slots across resources, data sources and their nested helpers, with
-571 new enums. The value sets come from the provider's own validators
+581 new enums. The value sets come from the provider's own validators
 (`stringvalidator.OneOf`) and its `Available values:` descriptions at the
 pinned version. Synth output is unchanged: each member synthesizes its
 Terraform value.
@@ -44,6 +44,7 @@ Terraform value.
 |--------|-------|
 | `CloudflareDnsRecord(type: TfArg.literal('CNAME'), ...)` | `CloudflareDnsRecord(type: TfArg.literal(DnsRecordType.cname), ...)` |
 | `AccessRuleConfiguration(target: TfArg.literal('ip'), ...)` | `AccessRuleConfiguration(target: TfArg.literal(AccessRuleConfigurationTarget.ip), ...)` |
+| `CloudflareHealthcheck(checkRegions: TfArg.literal(['WNAM']), ...)` | `CloudflareHealthcheck(checkRegions: [TfArg.literal(HealthcheckCheckRegions.wnam)], ...)` |
 | `R2BucketCorsRulesAllowed(methods: TfArg.literal(['GET']), ...)` | `R2BucketCorsRulesAllowed(methods: [TfArg.literal(R2BucketCorsRulesAllowedMethods.get)], ...)` |
 
 Replace each string with the enum member named after it; the analyzer
