@@ -7,10 +7,9 @@
 # an entry here plus its directories: tool/wrap_lanes.dart reads every
 # entry and runs `terradart wrap --check` and `terradart lint-override`
 # for it, and both tool/agent_verify.sh and the CI wrap_check /
-# override_gates jobs run that script. The regeneration invocations in
-# .github/workflows/schema-bump.yml (GA google + the google-beta
-# ride-along) still spell their coordinates out and must move in step with
-# an entry here.
+# override_gates jobs run that script. .github/workflows/schema-bump.yml
+# reads the `bump:` entries through tool/bump_plan.dart, so a lane's weekly
+# bump is declared here too.
 #
 # Fields:
 #   source:          terraform registry source (NAMESPACE/NAME)
@@ -44,6 +43,22 @@
 #     repo:          GitHub repo whose releases tool/fetch_schema.dart reads
 #     major:         the major the lane tracks; releases of any other major
 #                    are ignored, a newer one is only reported
+#     cron:          the schedule that bumps this lane — one of the crons in
+#                    schema-bump.yml's `on.schedule` (tool/bump_plan_test.dart
+#                    keeps the two in step). Lanes get different days so one
+#                    lane's PR merges before the next opens instead of
+#                    leaving it behind main.
+#     refresh:       dump    — overwrite schema.json with the raw
+#                              `terraform providers schema -json`
+#                    extract — re-extract the full catalog with
+#                              tool/extract_schema_subset.dart
+#                              --all-resources --all-data-sources
+#     dataSources:   (optional, default false) diff data sources too: the
+#                    lane wraps every data source at the pin
+#     rideAlong:     (optional) a lane re-extracted and regenerated at the
+#                    same version inside this lane's bump (google-beta)
+#     exampleGenerator: (optional) a tool/ script the bump reruns after a
+#                    regenerate (the lane's leftover example)
 
 providers:
   google:
@@ -60,6 +75,9 @@ providers:
       mode: auto
       repo: hashicorp/terraform-provider-google
       major: 7
+      cron: '0 22 * * 0' # Sunday 22:00 UTC (Monday 07:00 JST)
+      refresh: dump
+      rideAlong: google-beta
   google-beta:
     source: hashicorp/google-beta
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_beta
@@ -94,6 +112,10 @@ providers:
       mode: pr-only # minor releases ship breaking changes
       repo: cloudflare/terraform-provider-cloudflare
       major: 5
+      cron: '0 22 * * 2' # Tuesday 22:00 UTC
+      refresh: extract
+      dataSources: true
+      exampleGenerator: tool/generate_cloudflare_leftover_example.dart
   aws:
     source: hashicorp/aws
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_aws
@@ -108,3 +130,7 @@ providers:
       mode: auto
       repo: hashicorp/terraform-provider-aws
       major: 6
+      cron: '0 22 * * 1' # Monday 22:00 UTC
+      refresh: extract
+      dataSources: true
+      exampleGenerator: tool/generate_aws_leftover_example.dart

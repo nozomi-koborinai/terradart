@@ -266,14 +266,37 @@ void main() {
       );
     });
 
+    test('a pr-only lane never auto-merges', () {
+      const cf = ReportLane(
+        name: 'cloudflare',
+        source: 'cloudflare/cloudflare',
+        schemaDir: 's',
+        prOnly: true,
+      );
+      final i = _baseInputs(withMm: false, lane: cf);
+      expect(
+        autoMergeBlockers(i).first,
+        'cloudflare is a pr-only lane (bump.mode in tool/providers.yaml): '
+        'its bumps never auto-merge',
+      );
+      expect(buildReport(i), contains('## ✋ Needs a maintainer'));
+    });
+
     test('lane coordinates come from tool/providers.yaml', () {
       const yaml = '''
 providers:
   aws:
     source: hashicorp/aws
     schemaDir: packages/x/source_aws
+    bump: {mode: auto}
+  cloudflare:
+    source: cloudflare/cloudflare
+    schemaDir: packages/x/source_cloudflare
+    bump: {mode: pr-only}
 ''';
       final lane = ReportLane.fromProviders(yaml, 'aws');
+      expect(lane.prOnly, isFalse);
+      expect(ReportLane.fromProviders(yaml, 'cloudflare').prOnly, isTrue);
       expect(lane.typePrefix, 'aws_');
       expect(lane.gatesLabel, 'lane QA gates (aws)');
       expect(
