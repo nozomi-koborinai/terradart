@@ -1,14 +1,19 @@
 # tool/curation_backlog.yaml
 #
 # Append-only log of types detected in an upstream provider schema that
-# are NOT yet curated in their lane's package (google_* in terradart_google;
-# aws_* / cloudflare_* resources and data sources once those lanes bump).
+# still need a human's curation in their lane's package (google_* in
+# terradart_google; aws_* / cloudflare_* resources and data sources).
 # Maintained by the weekly schema-bump workflow
 # (.github/workflows/schema-bump.yml) — each cron run appends any
-# newly-detected types here.
+# newly-detected types here. The bump already generates a factory from a
+# default override for each one (tool/bump_new_factories.dart); those
+# entries carry a `note:` saying so, and what is left is API polish and an
+# example (a google factory also has an `awaiting-example:` line in
+# tool/example_debt.yaml, which needs this entry). An entry without that
+# note predates this, or is a type the bump could not scaffold or wrap.
 #
 # Maintainers: when curating a resource (via Wave N), remove its entry from
-# this file in the same PR that introduces the curated wrapper. This file
+# this file in the same PR that polishes (or introduces) the curated wrapper. This file
 # is the single source of truth for "what's left to look at".
 #
 # Schema:
