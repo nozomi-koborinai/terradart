@@ -249,7 +249,7 @@ jobs:
           echo "Exit: $rc"
           cat /tmp/wrap_check.txt
 
-      - name: Refresh ${{ matrix.ride_along }} fixture + regenerate (rides the bump)
+      - name: Refresh the ride-along lane's fixture + regenerate
         if: matrix.ride_along != ''
         run: |
           # Runs BEFORE the lane gates so Gate 9 (beta/GA overlap) sees the
