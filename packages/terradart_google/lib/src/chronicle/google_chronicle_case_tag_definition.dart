@@ -6,6 +6,32 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_chronicle_case_tag_definition`.
 const Set<String> _googleChronicleCaseTagDefinitionSensitive = <String>{};
 
+/// Chronicle Case Tag Definition Comparison enum for `comparison_type`.
+enum ChronicleCaseTagDefinitionComparisonType implements TerraformEnum {
+  exact('EXACT'),
+  startWith('START_WITH'),
+  contain('CONTAIN'),
+  endsWith('ENDS_WITH');
+
+  const ChronicleCaseTagDefinitionComparisonType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Chronicle Case Tag Definition Match enum for `match_criteria`.
+enum ChronicleCaseTagDefinitionMatchCriteria implements TerraformEnum {
+  byVendor('BY_VENDOR'),
+  byProduct('BY_PRODUCT'),
+  byRuleGenerator('BY_RULE_GENERATOR'),
+  byEntityPropertyName('BY_ENTITY_PROPERTY_NAME'),
+  dataDriven('DATA_DRIVEN'),
+  system('SYSTEM');
+
+  const ChronicleCaseTagDefinitionMatchCriteria(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_chronicle_case_tag_definition`.
 ///
 /// A CaseTagDefinition is used to classify and tag cases based on criteria.
@@ -15,12 +41,12 @@ final class GoogleChronicleCaseTagDefinition extends Resource {
   GoogleChronicleCaseTagDefinition({
     required super.localName,
     required TfArg<bool> canBeCaseTitle,
-    required TfArg<String> comparisonType,
+    required TfArg<ChronicleCaseTagDefinitionComparisonType> comparisonType,
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
     required TfArg<String> instance,
     required TfArg<String> location,
-    required TfArg<String> matchCriteria,
+    required TfArg<ChronicleCaseTagDefinitionMatchCriteria> matchCriteria,
     required TfArg<num> priority,
     TfArg<String>? project,
     TfArg<String>? propertyName,

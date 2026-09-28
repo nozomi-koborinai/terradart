@@ -1163,12 +1163,15 @@ final class DeferredLeftoverStack extends Stack {
         catalog: TfArg.literal('terradart-leftover'),
         database: TfArg.literal('terradart-leftover'),
         name: TfArg.literal('terradart-leftover'),
-        storageDescriptor: TfArg.literal({
-          'location_uri': 'gs://terradart-leftover',
-          'columns': [
-            {'name': 'id', 'type': 'string'},
+        storageDescriptor: BiglakeHiveTableStorageDescriptor(
+          locationUri: TfArg.literal('gs://terradart-leftover'),
+          columns: [
+            BiglakeHiveTableStorageDescriptorColumns(
+              name: TfArg.literal('id'),
+              type: TfArg.literal('string'),
+            ),
           ],
-        }),
+        ),
       ),
     );
     add(

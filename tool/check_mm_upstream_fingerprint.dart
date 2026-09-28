@@ -78,6 +78,9 @@ const _fingerprintFalsePositives = <String>{
   // Handwritten third_party Go template only (no MM YAML under products/).
   // Probed: no RegionInstanceTemplate.yaml; region_instance_template.go.tmpl.
   'google_compute_region_instance_template',
+  // DCL→handwritten third_party resource_apikeys_key.go; mmv1/products/apikeys
+  // has product.yaml only (probed at the 8.4.0 upstream commit 067aeb86).
+  'google_apikeys_key',
 };
 
 bool _isIamAdjunct(String tfType) =>

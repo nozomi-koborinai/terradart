@@ -2832,9 +2832,9 @@ files:
   google_observability_link:
     upstream: mmv1/products/observability/Link.yaml
   google_storage_ftp_server:
-    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+    upstream: mmv1/products/storageftp/Server.yaml
   google_storage_ftp_user:
-    upstream: null  # schema bump: no mmv1 YAML at the guessed paths; probe upstream by hand
+    upstream: mmv1/products/storageftp/User.yaml
   google_vertex_ai_rag_corpus:
     upstream: mmv1/products/vertexai/RagCorpus.yaml
   data_google_access_approval_folder_service_account:

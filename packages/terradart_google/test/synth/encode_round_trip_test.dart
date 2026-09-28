@@ -888,6 +888,24 @@ final Map<String, Object Function()> _syntheticInstances = {
   'VertexAiRagEngineConfigUnprovisioned': () =>
       const VertexAiRagEngineConfigUnprovisioned(),
 
+  // --- StorageFtpServerConfig (2) — storage_ftp_server --------------------
+  'StorageFtpServerInternalConfig': () => StorageFtpServerInternalConfig(
+        consumerAcceptList: [
+          StorageFtpServerConsumerAccept(
+            project: TfArg.literal('projects/consumer'),
+            connectionLimit: TfArg.literal(10),
+          ),
+        ],
+        consumerRejectList: [
+          StorageFtpServerConsumerReject(
+            project: TfArg.literal('projects/blocked'),
+          ),
+        ],
+      ),
+  'StorageFtpServerExternalConfig': () => StorageFtpServerExternalConfig(
+        allowedCidrBlocks: TfArg.literal(const ['203.0.113.0/24']),
+      ),
+
   // --- VertexAiEndpointWithModelGardenDeploymentModel (2) — model garden ---
   'VertexAiEndpointWithModelGardenDeploymentPublisherModel': () =>
       VertexAiEndpointWithModelGardenDeploymentPublisherModel(

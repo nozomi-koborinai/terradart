@@ -14,11 +14,16 @@ export 'src/chronicle/google_chronicle_big_query_export.dart'
         ChronicleBigQueryExportUdmEventsSettings,
         GoogleChronicleBigQueryExport;
 export 'src/chronicle/google_chronicle_case_close_definition.dart'
-    show GoogleChronicleCaseCloseDefinition;
+    show
+        ChronicleCaseCloseDefinitionCloseReason,
+        GoogleChronicleCaseCloseDefinition;
 export 'src/chronicle/google_chronicle_case_stage_definition.dart'
     show GoogleChronicleCaseStageDefinition;
 export 'src/chronicle/google_chronicle_case_tag_definition.dart'
-    show GoogleChronicleCaseTagDefinition;
+    show
+        ChronicleCaseTagDefinitionComparisonType,
+        ChronicleCaseTagDefinitionMatchCriteria,
+        GoogleChronicleCaseTagDefinition;
 export 'src/chronicle/google_chronicle_custom_list.dart'
     show ChronicleCustomListDeletionPolicy, GoogleChronicleCustomList;
 export 'src/chronicle/google_chronicle_dashboard_chart.dart'
