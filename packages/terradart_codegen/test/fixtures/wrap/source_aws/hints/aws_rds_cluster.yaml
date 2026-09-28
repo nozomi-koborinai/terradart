@@ -21,12 +21,6 @@ properties:
       - "postgresql"
       - "slowquery"
       - "upgrade"
-  - api_name: engine
-    enum_values:
-      - "aurora-mysql"
-      - "aurora-postgresql"
-      - "mysql"
-      - "postgres"
   - api_name: engine_lifecycle_support
     enum_values:
       - "open-source-rds-extended-support"

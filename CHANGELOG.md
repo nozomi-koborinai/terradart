@@ -104,9 +104,9 @@ Per-package changelogs live alongside each package and are the system of record 
   resources (`resource.go` / `*_resource.go`, one Go type registered per
   engine) besides Stainless's `schema.go`; the Cloudflare hints are
   unchanged. Synth output is unchanged. See `MIGRATING.md`.
-- **`terradart_aws` enums** (**breaking**) — 2915 string inputs on 816
-  resources are generated enums: the value sets the provider's validators
-  enforce, extracted into `source_aws/hints/` (the aws lane sets
+- **`terradart_aws` enums** (**breaking**) — 2903 string inputs on 811
+  resources are generated enums: the closed value sets the provider's
+  validators enforce (not a set inside `validation.Any`), extracted into `source_aws/hints/` (the aws lane sets
   `providerEnums: true`, and the weekly bump re-extracts them when the pin
   moves). `tool/extract_provider_hints.dart` scans hashicorp/aws through
   the new `tool/provider_hints_aws.dart`: annotated SDKv2 and framework

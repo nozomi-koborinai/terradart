@@ -4,6 +4,6 @@
 library;
 
 export 'src/qldb/aws_qldb_ledger.dart'
-    show AwsQldbLedger, QldbLedgerKmsKey, QldbLedgerPermissionsMode;
+    show AwsQldbLedger, QldbLedgerPermissionsMode;
 export 'src/qldb/aws_qldb_stream.dart'
     show AwsQldbStream, QldbStreamKinesisConfiguration;

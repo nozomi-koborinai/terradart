@@ -389,6 +389,11 @@ const _enumTypeValidators = {
   'FrameworkValidate',
   'FrameworkValidateIgnoreCase',
 };
+const _anyValidators = {
+  'stringvalidator',
+  'listvalidator',
+  'setvalidator',
+};
 const _enumCustomTypes = {
   'StringEnumType',
   'SetOfStringEnumType',
@@ -405,6 +410,7 @@ final class _FuncScan {
   final hints = <_LocalHint>[];
   final calls = <_Call>[];
   var unresolved = 0;
+  var openSets = 0;
 }
 
 /// Scans one function body: value sets under attribute keys and calls to
@@ -469,6 +475,19 @@ _FuncScan _scanFunc(
           continue;
         }
       }
+    }
+    // `validation.Any(...)` / `<kind>validator.Any(...)`: a value set
+    // there is one alternative among others (`""`, an ARN, a name
+    // pattern), so the input is not closed over it.
+    if (tok.kind == GoTok.ident &&
+        (tok.text == 'validation' || _anyValidators.contains(tok.text)) &&
+        _isPunct(t, i + 1, '.') &&
+        (_isIdent(t, i + 2, 'Any') ||
+            _isIdent(t, i + 2, 'AnyWithAllWarnings')) &&
+        _isPunct(t, i + 3, '(')) {
+      scan.openSets++;
+      i = _matching(t, i + 3) + 1;
+      continue;
     }
     if (_isIdent(t, i, 'enum') &&
         _isPunct(t, i + 1, '.') &&
@@ -630,6 +649,9 @@ final class AwsHintsScan {
   final Map<String, ({String sourcePath, List<GoEnumHint> hints})> byType;
   var validators = 0;
   var unresolved = 0;
+
+  /// `Any(...)` validators skipped: a value set among alternatives.
+  var openSets = 0;
 }
 
 /// Scans hashicorp/aws at [root], with SDK enums read from [sdkDir].
@@ -683,6 +705,7 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
           final s = _scanFunc(pkg.funcs[key]!, pkg, names, eval);
           result.validators += s.hints.length + s.unresolved;
           result.unresolved += s.unresolved;
+          result.openSets += s.openSets;
           return s;
         }();
     List<_LocalHint> expand(String key, Set<String> seen) {

@@ -27,15 +27,6 @@ enum VpcIpamPoolAwsService implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Vpc Ipam Pool enum for `locale`.
-enum VpcIpamPoolLocale implements TerraformEnum {
-  none('None');
-
-  const VpcIpamPoolLocale(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Vpc Ipam Pool Public Ip enum for `public_ip_source`.
 enum VpcIpamPoolPublicIpSource implements TerraformEnum {
   amazon('amazon'),
@@ -98,7 +89,7 @@ final class AwsVpcIpamPool extends Resource {
     TfArg<bool>? cascade,
     TfArg<String>? description,
     required TfArg<String> ipamScopeId,
-    TfArg<VpcIpamPoolLocale>? locale,
+    TfArg<String>? locale,
     TfArg<VpcIpamPoolPublicIpSource>? publicIpSource,
     TfArg<bool>? publiclyAdvertisable,
     TfArg<String>? region,

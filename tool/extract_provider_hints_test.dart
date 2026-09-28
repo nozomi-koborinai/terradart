@@ -220,6 +220,13 @@ func resourceWidget() *schema.Resource {
 				Type:         schema.TypeString,
 				ValidateFunc: validation.StringInSlice(unknownValues(), false),
 			},
+			"role_arn": {
+				Type: schema.TypeString,
+				ValidateFunc: validation.Any(
+					validation.StringInSlice([]string{""}, false),
+					verify.ValidARN,
+				),
+			},
 		},
 	}
 }
@@ -307,6 +314,7 @@ func (r *gadgetResource) Schema(ctx context.Context, req resource.SchemaRequest,
       });
       expect(scan.validators, 6);
       expect(scan.unresolved, 1, reason: 'unknownValues() is not evaluable');
+      expect(scan.openSets, 1, reason: '"" is one alternative beside an ARN');
     });
   });
 

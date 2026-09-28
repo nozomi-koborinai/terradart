@@ -31,9 +31,6 @@ properties:
         enum_values:
           - "COGNITO_DEFAULT"
           - "DEVELOPER"
-      - api_name: reply_to_email_address
-        enum_values:
-          - ""
   - api_name: lambda_config
     properties:
       - api_name: custom_email_sender

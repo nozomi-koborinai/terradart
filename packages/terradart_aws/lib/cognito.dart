@@ -86,7 +86,6 @@ export 'src/cognito/aws_cognito_user_pool.dart'
         CognitoUserPoolDeviceConfiguration,
         CognitoUserPoolEmailConfiguration,
         CognitoUserPoolEmailConfigurationEmailSendingAccount,
-        CognitoUserPoolEmailConfigurationReplyToEmailAddress,
         CognitoUserPoolEmailMfaConfiguration,
         CognitoUserPoolLambdaConfig,
         CognitoUserPoolLambdaConfigCustomEmailSender,

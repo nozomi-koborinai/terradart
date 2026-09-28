@@ -7,16 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_backup_restore_testing_selection`.
 const Set<String> _awsBackupRestoreTestingSelectionSensitive = <String>{};
 
-/// Backup Restore Testing Selection Protected Resource enum for `protected_resource_arns`.
-enum BackupRestoreTestingSelectionProtectedResourceArns
-    implements TerraformEnum {
-  value('*');
-
-  const BackupRestoreTestingSelectionProtectedResourceArns(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Typed helper for the `protected_resource_conditions` block of
 /// `aws_backup_restore_testing_selection` (derived from provider schema).
 @immutable
@@ -90,8 +80,7 @@ final class AwsBackupRestoreTestingSelection extends Resource {
     required super.localName,
     required TfArg<String> iamRoleArn,
     required TfArg<String> name,
-    List<TfArg<BackupRestoreTestingSelectionProtectedResourceArns>>?
-    protectedResourceArns,
+    TfArg<List<String>>? protectedResourceArns,
     required TfArg<String> protectedResourceType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? restoreMetadataOverrides,
@@ -109,9 +98,7 @@ final class AwsBackupRestoreTestingSelection extends Resource {
            'iam_role_arn': iamRoleArn,
            'name': name,
            if (protectedResourceArns != null)
-             'protected_resource_arns': TfArg.literal([
-               for (final e in protectedResourceArns) e.toTfJson(),
-             ]),
+             'protected_resource_arns': protectedResourceArns,
            'protected_resource_type': protectedResourceType,
            if (region != null) 'region': region,
            if (restoreMetadataOverrides != null)

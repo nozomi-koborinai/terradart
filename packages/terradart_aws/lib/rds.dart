@@ -10,7 +10,6 @@ export 'src/rds/aws_rds_cluster.dart'
         RdsClusterClusterScalabilityType,
         RdsClusterDatabaseInsightsMode,
         RdsClusterEnabledCloudwatchLogsExports,
-        RdsClusterEngine,
         RdsClusterEngineLifecycleSupport,
         RdsClusterEngineMode,
         RdsClusterNetworkType,
@@ -24,8 +23,7 @@ export 'src/rds/aws_rds_cluster_activity_stream.dart'
     show AwsRdsClusterActivityStream, RdsClusterActivityStreamMode;
 export 'src/rds/aws_rds_cluster_endpoint.dart'
     show AwsRdsClusterEndpoint, RdsClusterEndpointCustomEndpointType;
-export 'src/rds/aws_rds_cluster_instance.dart'
-    show AwsRdsClusterInstance, RdsClusterInstanceEngine;
+export 'src/rds/aws_rds_cluster_instance.dart' show AwsRdsClusterInstance;
 export 'src/rds/aws_rds_cluster_parameter_group.dart'
     show
         AwsRdsClusterParameterGroup,

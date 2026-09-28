@@ -6,15 +6,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_qldb_ledger`.
 const Set<String> _awsQldbLedgerSensitive = <String>{};
 
-/// Qldb Ledger Kms enum for `kms_key`.
-enum QldbLedgerKmsKey implements TerraformEnum {
-  awsOwnedKmsKey('AWS_OWNED_KMS_KEY');
-
-  const QldbLedgerKmsKey(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Qldb Ledger Permissions enum for `permissions_mode`.
 enum QldbLedgerPermissionsMode implements TerraformEnum {
   allowAll('ALLOW_ALL'),
@@ -32,7 +23,7 @@ final class AwsQldbLedger extends Resource {
   AwsQldbLedger({
     required super.localName,
     TfArg<bool>? deletionProtection,
-    TfArg<QldbLedgerKmsKey>? kmsKey,
+    TfArg<String>? kmsKey,
     TfArg<String>? name,
     required TfArg<QldbLedgerPermissionsMode> permissionsMode,
     TfArg<String>? region,

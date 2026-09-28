@@ -245,12 +245,14 @@ Cloudflare.
 
 ### `terradart_aws` inputs with a fixed value set are enums
 
-**Breaking (`terradart_aws`)** — 2915 string inputs across 816 resources
+**Breaking (`terradart_aws`)** — 2903 string inputs across 811 resources
 take a generated `TerraformEnum` instead of a `String`. These are the value
 sets the provider's validators enforce at the pinned `6.66.0`:
 `enum.Validate[T]` / `fwtypes.StringEnumType[T]` over an aws-sdk-go-v2
-`types` enum, `validation.StringInSlice` and `stringvalidator.OneOf`.
-Synth output is unchanged.
+`types` enum, `validation.StringInSlice` and `stringvalidator.OneOf`. A set
+the provider only offers as one alternative (`validation.Any` beside an ARN
+or `""`, as on `cloudwatch_role_arn`) stays a `String`. Synth output is
+unchanged.
 
 | Before | After |
 |--------|-------|

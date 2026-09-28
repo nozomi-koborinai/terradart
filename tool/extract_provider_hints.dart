@@ -30,7 +30,9 @@
 // `@SDKResource` / `@FrameworkResource` annotations sit on, and a value set
 // may name an aws-sdk-go-v2 `types` enum, whose `enums.go` is read at the
 // module version the provider's go.mod requires. A map-typed attribute's
-// value set is skipped (enums cover string and string-list inputs only).
+// value set is skipped (enums cover string and string-list inputs only),
+// and so is one inside `validation.Any(...)` / `stringvalidator.Any(...)`,
+// where it is one alternative beside `""`, an ARN or a name pattern.
 //
 // schema.json at the same version is authoritative: a hint whose path is
 // absent there (a service's custom code reshapes the served schema) is
@@ -505,7 +507,8 @@ Future<void> main(List<String> args) async {
     final scan = scanAwsProvider(root, sdkDir: sdk);
     found.addAll(scan.byType);
     print('extract_provider_hints: ${scan.validators} value-set validator(s) '
-        'in resource schemas, ${scan.unresolved} not evaluable (dropped)');
+        'in resource schemas, ${scan.unresolved} not evaluable (dropped); '
+        '${scan.openSets} Any(...) alternative(s) skipped');
   } else {
     final services = Directory(p.join(root.path, 'internal', 'services'));
     if (!services.existsSync()) {

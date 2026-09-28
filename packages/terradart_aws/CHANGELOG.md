@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- **Breaking:** inputs with a fixed value set are enums — 2915 string inputs on 816 resources (e.g. `AwsLambdaFunction.runtime` → `LambdaFunctionRuntime`, `AwsRoute53Record.type` → `Route53RecordType`). Synth output is unchanged. See `MIGRATING.md`.
+- **Breaking:** inputs with a fixed value set are enums — 2903 string inputs on 811 resources (e.g. `AwsLambdaFunction.runtime` → `LambdaFunctionRuntime`, `AwsRoute53Record.type` → `Route53RecordType`). Synth output is unchanged. See `MIGRATING.md`.
 
 ## 0.29.0 - 2026-09-27
 
