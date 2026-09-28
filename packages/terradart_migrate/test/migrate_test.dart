@@ -650,6 +650,89 @@ resource "google_pubsub_topic" "x" {
     });
   });
 
+  group('a map of blocks (nesting_mode map)', () {
+    const cloudflare = {
+      'required_version': '>= 1.11.0',
+      'required_providers': {
+        'cloudflare': {
+          'source': 'cloudflare/cloudflare',
+          'version': kCloudflareProviderVersionConstraint,
+        },
+      },
+    };
+
+    test('becomes a Dart map of helpers, one per key', () {
+      final r = _migrateJson({
+        'terraform': cloudflare,
+        'resource': {
+          'cloudflare_zero_trust_risk_behavior': {
+            'rb': {
+              'account_id': 'acct',
+              'behaviors': {
+                'imp_travel': {'enabled': true, 'risk_level': 'high'},
+                'high_dlp': {'enabled': false, 'risk_level': 'low'},
+              },
+            },
+          },
+        },
+      });
+      expect(
+        r.report.migratedAddresses,
+        contains('cloudflare_zero_trust_risk_behavior.rb'),
+      );
+      expect(
+        r.stackSource,
+        contains(
+          "behaviors: {r'imp_travel': ZeroTrustRiskBehaviorBehaviors("
+          'enabled: TfArg.literal(true), riskLevel: '
+          'TfArg.literal(ZeroTrustRiskBehaviorBehaviorsRiskLevel.high)), '
+          "r'high_dlp': ZeroTrustRiskBehaviorBehaviors(",
+        ),
+      );
+    });
+
+    MigrationResult pages(Object secret) => _migrateJson({
+      'terraform': cloudflare,
+      'resource': {
+        'cloudflare_pages_project': {
+          'site': {
+            'account_id': 'acct',
+            'name': 'site',
+            'production_branch': 'main',
+            'deployment_configs': {
+              'preview': {
+                'env_vars': {
+                  'API_KEY': {'type': 'secret_text', 'value': secret},
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+
+    test('a sensitive field under a key stays out of Dart', () {
+      final r = pages('hunter2');
+      expect(
+        r.report.kept
+            .singleWhere((k) => k.address == 'cloudflare_pages_project.site')
+            .reason,
+        contains('sensitive'),
+      );
+      expect(r.stackSource, isNot(contains('hunter2')));
+    });
+
+    test('a sensitive field under a key takes a variable', () {
+      final r = pages(r'${var.api_key}');
+      expect(
+        r.report.migratedAddresses,
+        contains('cloudflare_pages_project.site'),
+      );
+      expect(r.stackSource, contains("envVars: {r'API_KEY': "));
+      expect(r.stackSource, contains("value: TfArg.variable(r'api_key')"));
+    });
+  });
+
   group('module-level blocks', () {
     test(
       'providers come from required_providers, configured from provider blocks',
