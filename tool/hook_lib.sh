@@ -30,8 +30,9 @@ hook_is_handwritten_dart() {
 hook_is_protected_write_path() {
   local rel="$1"
   # Only the GENERATED surface is protected: per-service wrappers
-  # (lib/src/<service>/google_*.dart), the catalog and the migration
-  # manifests (terradart_migrate/lib/src/manifest/*.g.dart). Hand-written files
+  # (lib/src/<service>/google_*.dart), the catalog, the provider pin
+  # (_provider_version.g.dart) and the migration manifests
+  # (terradart_migrate/lib/src/manifest/*.g.dart). Hand-written files
   # under lib/src (google_provider.dart, _provider_meta.dart,
   # firestore_fields.dart, project/apis.dart, ...) stay editable — the
   # earlier lib/src/* blanket wrongly blocked them.
@@ -46,6 +47,7 @@ hook_is_protected_write_path() {
     packages/terradart_cloudflare/lib/src/_catalog.g.dart) return 0 ;;
     packages/terradart_aws/lib/src/*/aws_*.dart) return 0 ;;
     packages/terradart_aws/lib/src/_catalog.g.dart) return 0 ;;
+    packages/*/lib/src/_provider_version.g.dart) return 0 ;;
     packages/terradart_migrate/lib/src/manifest/*.g.dart) return 0 ;;
     packages/terradart_codegen/test/fixtures/wrap/expected_output/*) return 0 ;;
     .github/workflows/*) return 0 ;;
