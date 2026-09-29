@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_memorydb_cluster`.
 const Set<String> _awsMemorydbClusterSensitive = <String>{};
 
@@ -171,7 +175,7 @@ final class AwsMemorydbCluster extends Resource {
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotName,
     TfArg<MemorydbClusterIpDiscovery>? ipDiscovery,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<String>? maintenanceWindow,
     TfArg<String>? multiRegionClusterName,
     MemorydbClusterName? name,
@@ -182,11 +186,11 @@ final class AwsMemorydbCluster extends Resource {
     TfArg<String>? parameterGroupName,
     TfArg<num>? port,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     MemorydbClusterSnapshot? snapshot,
     TfArg<num>? snapshotRetentionLimit,
     TfArg<String>? snapshotWindow,
-    TfArg<String>? snsTopicArn,
+    RefTo<AwsSnsTopic>? snsTopicArn,
     TfArg<String>? subnetGroupName,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? tlsEnabled,
@@ -207,7 +211,7 @@ final class AwsMemorydbCluster extends Resource {
            if (finalSnapshotName != null)
              'final_snapshot_name': finalSnapshotName,
            if (ipDiscovery != null) 'ip_discovery': ipDiscovery,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (maintenanceWindow != null)
              'maintenance_window': maintenanceWindow,
            if (multiRegionClusterName != null)
@@ -222,12 +226,14 @@ final class AwsMemorydbCluster extends Resource {
              'parameter_group_name': parameterGroupName,
            if (port != null) 'port': port,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            ...?snapshot?.argMap,
            if (snapshotRetentionLimit != null)
              'snapshot_retention_limit': snapshotRetentionLimit,
            if (snapshotWindow != null) 'snapshot_window': snapshotWindow,
-           if (snsTopicArn != null) 'sns_topic_arn': snsTopicArn,
+           if (snsTopicArn != null)
+             'sns_topic_arn': snsTopicArn.encodeAs('arn'),
            if (subnetGroupName != null) 'subnet_group_name': subnetGroupName,
            if (tags != null) 'tags': tags,
            if (tlsEnabled != null) 'tls_enabled': tlsEnabled,

@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_s3_bucket_notification`.
 const Set<String> _awsS3BucketNotificationSensitive = <String>{};
 
@@ -27,7 +31,7 @@ final class S3BucketNotificationLambdaFunction {
 
   final TfArg<String>? id;
 
-  final TfArg<String>? lambdaFunctionArn;
+  final RefTo<AwsLambdaFunction>? lambdaFunctionArn;
 
   Map<String, Object?> encode() => {
     'events': events.toTfJson(),
@@ -35,7 +39,7 @@ final class S3BucketNotificationLambdaFunction {
     if (filterSuffix != null) 'filter_suffix': filterSuffix!.toTfJson(),
     if (id != null) 'id': id!.toTfJson(),
     if (lambdaFunctionArn != null)
-      'lambda_function_arn': lambdaFunctionArn!.toTfJson(),
+      'lambda_function_arn': lambdaFunctionArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -90,14 +94,14 @@ final class S3BucketNotificationTopic {
 
   final TfArg<String>? id;
 
-  final TfArg<String> topicArn;
+  final RefTo<AwsSnsTopic> topicArn;
 
   Map<String, Object?> encode() => {
     'events': events.toTfJson(),
     if (filterPrefix != null) 'filter_prefix': filterPrefix!.toTfJson(),
     if (filterSuffix != null) 'filter_suffix': filterSuffix!.toTfJson(),
     if (id != null) 'id': id!.toTfJson(),
-    'topic_arn': topicArn.toTfJson(),
+    'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -107,7 +111,7 @@ final class AwsS3BucketNotification extends Resource {
 
   AwsS3BucketNotification({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? eventbridge,
     TfArg<String>? region,
     List<S3BucketNotificationLambdaFunction>? lambdaFunction,
@@ -120,7 +124,7 @@ final class AwsS3BucketNotification extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (eventbridge != null) 'eventbridge': eventbridge,
            if (region != null) 'region': region,
            if (lambdaFunction != null)

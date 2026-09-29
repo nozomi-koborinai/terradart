@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_iot_ca_certificate`.
 const Set<String> _awsIotCaCertificateSensitive = <String>{
   'ca_certificate_pem',
@@ -30,14 +32,14 @@ final class IotCaCertificateRegistrationConfig {
     this.templateName,
   });
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<String>? templateBody;
 
   final TfArg<String>? templateName;
 
   Map<String, Object?> encode() => {
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (templateBody != null) 'template_body': templateBody!.toTfJson(),
     if (templateName != null) 'template_name': templateName!.toTfJson(),
   };

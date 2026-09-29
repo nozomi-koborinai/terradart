@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_s3outposts_endpoint`.
 const Set<String> _awsS3outpostsEndpointSensitive = <String>{};
 
@@ -26,8 +29,8 @@ final class AwsS3outpostsEndpoint extends Resource {
     TfArg<String>? customerOwnedIpv4Pool,
     required TfArg<String> outpostId,
     TfArg<String>? region,
-    required TfArg<String> securityGroupId,
-    required TfArg<String> subnetId,
+    required RefTo<AwsSecurityGroup> securityGroupId,
+    required RefTo<AwsSubnet> subnetId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -40,8 +43,8 @@ final class AwsS3outpostsEndpoint extends Resource {
              'customer_owned_ipv4_pool': customerOwnedIpv4Pool,
            'outpost_id': outpostId,
            if (region != null) 'region': region,
-           'security_group_id': securityGroupId,
-           'subnet_id': subnetId,
+           'security_group_id': securityGroupId.encodeAs('id'),
+           'subnet_id': subnetId.encodeAs('id'),
          },
        );
 

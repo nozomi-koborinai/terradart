@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_policy`.
 const Set<String> _cloudflareZeroTrustAccessPolicySensitive = <String>{};
 
@@ -309,10 +311,10 @@ final class ZeroTrustAccessPolicyExcludeCertificate {
 final class ZeroTrustAccessPolicyExcludeCloudflareAccountMember {
   const ZeroTrustAccessPolicyExcludeCloudflareAccountMember({this.accountId});
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -336,12 +338,12 @@ final class ZeroTrustAccessPolicyExcludeDevicePosture {
     required this.integrationUid,
   });
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -819,10 +821,10 @@ final class ZeroTrustAccessPolicyIncludeCertificate {
 final class ZeroTrustAccessPolicyIncludeCloudflareAccountMember {
   const ZeroTrustAccessPolicyIncludeCloudflareAccountMember({this.accountId});
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -846,12 +848,12 @@ final class ZeroTrustAccessPolicyIncludeDevicePosture {
     required this.integrationUid,
   });
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -1371,10 +1373,10 @@ final class ZeroTrustAccessPolicyRequireCertificate {
 final class ZeroTrustAccessPolicyRequireCloudflareAccountMember {
   const ZeroTrustAccessPolicyRequireCloudflareAccountMember({this.accountId});
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -1398,12 +1400,12 @@ final class ZeroTrustAccessPolicyRequireDevicePosture {
     required this.integrationUid,
   });
 
-  final TfArg<String>? accountId;
+  final RefTo<CloudflareAccount>? accountId;
 
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
+    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -1694,7 +1696,7 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
 
   CloudflareZeroTrustAccessPolicy({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? approvalRequired,
     required TfArg<ZeroTrustAccessPolicyDecision> decision,
     TfArg<bool>? isolationRequired,
@@ -1715,7 +1717,7 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (approvalRequired != null) 'approval_required': approvalRequired,
            'decision': decision,
            if (isolationRequired != null)

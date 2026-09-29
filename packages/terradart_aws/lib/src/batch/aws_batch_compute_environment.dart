@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_batch_compute_environment`.
 const Set<String> _awsBatchComputeEnvironmentSensitive = <String>{};
 
@@ -133,11 +137,11 @@ final class BatchComputeEnvironmentComputeResources {
 
   final TfArg<String>? placementGroup;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
   final TfArg<String>? spotIamFleetRole;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -161,10 +165,10 @@ final class BatchComputeEnvironmentComputeResources {
     if (minVcpus != null) 'min_vcpus': minVcpus!.toTfJson(),
     if (placementGroup != null) 'placement_group': placementGroup!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
     if (spotIamFleetRole != null)
       'spot_iam_fleet_role': spotIamFleetRole!.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'type': type.toTfJson(),
     if (ec2Configuration != null)
@@ -358,7 +362,7 @@ final class AwsBatchComputeEnvironment extends Resource {
     required super.localName,
     BatchComputeEnvironmentName? name,
     TfArg<String>? region,
-    TfArg<String>? serviceRole,
+    RefTo<AwsIamRole>? serviceRole,
     TfArg<BatchComputeEnvironmentState>? state,
     TfArg<Map<String, String>>? tags,
     required TfArg<BatchComputeEnvironmentType> type,
@@ -374,7 +378,7 @@ final class AwsBatchComputeEnvironment extends Resource {
          argMap: {
            ...?name?.argMap,
            if (region != null) 'region': region,
-           if (serviceRole != null) 'service_role': serviceRole,
+           if (serviceRole != null) 'service_role': serviceRole.encodeAs('arn'),
            if (state != null) 'state': state,
            if (tags != null) 'tags': tags,
            'type': type,

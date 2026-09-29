@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_compute_firewall`.
 const Set<String> _googleComputeFirewallSensitive = <String>{};
 
@@ -185,7 +187,7 @@ final class GoogleComputeFirewall extends Resource {
   GoogleComputeFirewall({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<FirewallDirection>? direction,
     TfArg<num>? priority,
     required ComputeFirewallRulePolicy rulePolicy,
@@ -208,7 +210,7 @@ final class GoogleComputeFirewall extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'network': network,
+           'network': network.encodeAs('id'),
            if (direction != null) 'direction': direction,
            if (priority != null) 'priority': priority,
            if (sourceRanges != null) 'source_ranges': sourceRanges,

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_ec2_transit_gateway_multicast_domain_association`.
 const Set<String> _awsEc2TransitGatewayMulticastDomainAssociationSensitive =
     <String>{};
@@ -15,7 +17,7 @@ final class AwsEc2TransitGatewayMulticastDomainAssociation extends Resource {
   AwsEc2TransitGatewayMulticastDomainAssociation({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> subnetId,
+    required RefTo<AwsSubnet> subnetId,
     required TfArg<String> transitGatewayAttachmentId,
     required TfArg<String> transitGatewayMulticastDomainId,
     super.lifecycle,
@@ -26,7 +28,7 @@ final class AwsEc2TransitGatewayMulticastDomainAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            if (region != null) 'region': region,
-           'subnet_id': subnetId,
+           'subnet_id': subnetId.encodeAs('id'),
            'transit_gateway_attachment_id': transitGatewayAttachmentId,
            'transit_gateway_multicast_domain_id':
                transitGatewayMulticastDomainId,

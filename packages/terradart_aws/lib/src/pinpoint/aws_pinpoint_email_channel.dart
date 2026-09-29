@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_pinpoint_email_channel`.
 const Set<String> _awsPinpointEmailChannelSensitive = <String>{};
 
@@ -19,7 +21,7 @@ final class AwsPinpointEmailChannel extends Resource {
     required TfArg<String> identity,
     TfArg<String>? orchestrationSendingRoleArn,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -35,7 +37,7 @@ final class AwsPinpointEmailChannel extends Resource {
            if (orchestrationSendingRoleArn != null)
              'orchestration_sending_role_arn': orchestrationSendingRoleArn,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
          },
        );
 

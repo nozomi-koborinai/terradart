@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_ai_gateway_dynamic_routing`.
 const Set<String> _cloudflareAiGatewayDynamicRoutingSensitive = <String>{};
 
@@ -212,7 +214,7 @@ final class CloudflareAiGatewayDynamicRouting extends Resource {
 
   CloudflareAiGatewayDynamicRouting({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> gatewayId,
     required TfArg<String> name,
     required List<AiGatewayDynamicRoutingElements> elements,
@@ -223,7 +225,7 @@ final class CloudflareAiGatewayDynamicRouting extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'gateway_id': gatewayId,
            'name': name,
            'elements': TfArg.literal([for (final e in elements) e.encode()]),

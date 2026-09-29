@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_s3tables_table_bucket_replication`.
 const Set<String> _awsS3tablesTableBucketReplicationSensitive = <String>{};
 
@@ -43,7 +45,7 @@ final class AwsS3tablesTableBucketReplication extends Resource {
   AwsS3tablesTableBucketReplication({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> role,
+    required RefTo<AwsIamRole> role,
     required TfArg<String> tableBucketArn,
     List<S3tablesTableBucketReplicationRule>? rule,
     super.lifecycle,
@@ -54,7 +56,7 @@ final class AwsS3tablesTableBucketReplication extends Resource {
          terraformType: tfType,
          argMap: {
            if (region != null) 'region': region,
-           'role': role,
+           'role': role.encodeAs('arn'),
            'table_bucket_arn': tableBucketArn,
            if (rule != null)
              'rule': TfArg.literal([for (final e in rule) e.encode()]),

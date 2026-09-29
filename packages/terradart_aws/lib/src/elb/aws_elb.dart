@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_elb`.
 const Set<String> _awsElbSensitive = <String>{};
 
@@ -86,7 +90,7 @@ final class ElbAccessLogs {
     this.interval,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String>? bucketPrefix;
 
@@ -95,7 +99,7 @@ final class ElbAccessLogs {
   final TfArg<num>? interval;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (interval != null) 'interval': interval!.toTfJson(),
@@ -181,9 +185,9 @@ final class AwsElb extends Resource {
     TfArg<bool>? internal,
     ElbName? name,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroups,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
     TfArg<String>? sourceSecurityGroup,
-    TfArg<List<String>>? subnets,
+    TfArg<List<RefTo<AwsSubnet>>>? subnets,
     TfArg<Map<String, String>>? tags,
     ElbAccessLogs? accessLogs,
     ElbHealthCheck? healthCheck,
@@ -210,10 +214,11 @@ final class AwsElb extends Resource {
            if (internal != null) 'internal': internal,
            ...?name?.argMap,
            if (region != null) 'region': region,
-           if (securityGroups != null) 'security_groups': securityGroups,
+           if (securityGroups != null)
+             'security_groups': securityGroups.encodeAs('id'),
            if (sourceSecurityGroup != null)
              'source_security_group': sourceSecurityGroup,
-           if (subnets != null) 'subnets': subnets,
+           if (subnets != null) 'subnets': subnets.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (accessLogs != null)
              'access_logs': TfArg.literal(accessLogs.encode()),

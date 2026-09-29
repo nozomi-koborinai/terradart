@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_codebuild_project`.
 const Set<String> _awsCodebuildProjectSensitive = <String>{};
 
@@ -127,7 +132,7 @@ final class CodebuildProjectBuildBatchConfig {
 
   final TfArg<bool>? combineArtifacts;
 
-  final TfArg<String> serviceRole;
+  final RefTo<AwsIamRole> serviceRole;
 
   final TfArg<num>? timeoutInMins;
 
@@ -136,7 +141,7 @@ final class CodebuildProjectBuildBatchConfig {
   Map<String, Object?> encode() => {
     if (combineArtifacts != null)
       'combine_artifacts': combineArtifacts!.toTfJson(),
-    'service_role': serviceRole.toTfJson(),
+    'service_role': serviceRole.encodeAs('arn').toTfJson(),
     if (timeoutInMins != null) 'timeout_in_mins': timeoutInMins!.toTfJson(),
     if (restrictions != null) 'restrictions': restrictions!.encode(),
   };
@@ -377,12 +382,12 @@ final class CodebuildProjectEnvironmentDockerServer {
 
   final TfArg<CodebuildProjectEnvironmentDockerServerComputeType> computeType;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
   Map<String, Object?> encode() => {
     'compute_type': computeType.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -1025,16 +1030,16 @@ final class CodebuildProjectVpcConfig {
     required this.vpcId,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
-  final TfArg<String> vpcId;
+  final RefTo<AwsVpc> vpcId;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnets': subnets.toTfJson(),
-    'vpc_id': vpcId.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
+    'vpc_id': vpcId.encodeAs('id').toTfJson(),
   };
 }
 
@@ -1055,7 +1060,7 @@ final class AwsCodebuildProject extends Resource {
     TfArg<num>? queuedTimeout,
     TfArg<String>? region,
     TfArg<String>? resourceAccessRole,
-    required TfArg<String> serviceRole,
+    required RefTo<AwsIamRole> serviceRole,
     TfArg<String>? sourceVersion,
     TfArg<Map<String, String>>? tags,
     required CodebuildProjectArtifacts artifacts,
@@ -1090,7 +1095,7 @@ final class AwsCodebuildProject extends Resource {
            if (region != null) 'region': region,
            if (resourceAccessRole != null)
              'resource_access_role': resourceAccessRole,
-           'service_role': serviceRole,
+           'service_role': serviceRole.encodeAs('arn'),
            if (sourceVersion != null) 'source_version': sourceVersion,
            if (tags != null) 'tags': tags,
            'artifacts': TfArg.literal(artifacts.encode()),

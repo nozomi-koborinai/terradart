@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_memorystore_instance`.
 const Set<String> _googleMemorystoreInstanceSensitive = <String>{};
 
@@ -227,12 +230,12 @@ final class MemorystoreInstanceDesiredAutoCreatedEndpoints {
     required this.projectId,
   });
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
   final TfArg<String> projectId;
 
   Map<String, Object?> encode() => {
-    'network': network.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
     'project_id': projectId.toTfJson(),
   };
 }
@@ -246,12 +249,12 @@ final class MemorystoreInstanceDesiredPscAutoConnections {
     required this.projectId,
   });
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
   final TfArg<String> projectId;
 
   Map<String, Object?> encode() => {
-    'network': network.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
     'project_id': projectId.toTfJson(),
   };
 }
@@ -519,7 +522,7 @@ final class GoogleMemorystoreInstance extends Resource {
     MemorystoreInstanceCrossInstanceReplicationConfig?
     crossInstanceReplicationConfig,
     MemorystoreInstanceSource? source,
-    TfArg<String>? kmsKey,
+    RefTo<GoogleKmsCryptoKey>? kmsKey,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? deletionPolicy,
@@ -567,7 +570,7 @@ final class GoogleMemorystoreInstance extends Resource {
                crossInstanceReplicationConfig.encode(),
              ),
            ...?source?.argMap,
-           if (kmsKey != null) 'kms_key': kmsKey,
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
            if (labels != null) 'labels': labels,
            if (deletionProtectionEnabled != null)
              'deletion_protection_enabled': deletionProtectionEnabled,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_dynamodb_table_export`.
 const Set<String> _awsDynamodbTableExportSensitive = <String>{};
 
@@ -84,7 +86,7 @@ final class AwsDynamodbTableExport extends Resource {
     TfArg<String>? exportTime,
     TfArg<DynamodbTableExportExportType>? exportType,
     TfArg<String>? region,
-    required TfArg<String> s3Bucket,
+    required RefTo<AwsS3Bucket> s3Bucket,
     TfArg<String>? s3BucketOwner,
     TfArg<String>? s3Prefix,
     TfArg<DynamodbTableExportS3SseAlgorithm>? s3SseAlgorithm,
@@ -103,7 +105,7 @@ final class AwsDynamodbTableExport extends Resource {
            if (exportTime != null) 'export_time': exportTime,
            if (exportType != null) 'export_type': exportType,
            if (region != null) 'region': region,
-           's3_bucket': s3Bucket,
+           's3_bucket': s3Bucket.encodeAs('id'),
            if (s3BucketOwner != null) 's3_bucket_owner': s3BucketOwner,
            if (s3Prefix != null) 's3_prefix': s3Prefix,
            if (s3SseAlgorithm != null) 's3_sse_algorithm': s3SseAlgorithm,

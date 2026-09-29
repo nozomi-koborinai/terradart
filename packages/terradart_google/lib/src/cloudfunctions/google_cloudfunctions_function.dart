@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_cloudfunctions_function`.
 const Set<String> _googleCloudfunctionsFunctionSensitive = <String>{};
 
@@ -172,7 +175,7 @@ final class GoogleCloudfunctionsFunction extends Resource {
     TfArg<String>? httpsTriggerSecurityLevel,
     TfArg<String>? httpsTriggerUrl,
     TfArg<String>? ingressSettings,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<Map<String, String>>? labels,
     TfArg<num>? maxInstances,
     TfArg<num>? minInstances,
@@ -180,7 +183,7 @@ final class GoogleCloudfunctionsFunction extends Resource {
     TfArg<String>? project,
     TfArg<String>? region,
     required TfArg<String> runtime,
-    TfArg<String>? serviceAccountEmail,
+    RefTo<GoogleServiceAccount>? serviceAccountEmail,
     TfArg<String>? sourceArchiveBucket,
     TfArg<String>? sourceArchiveObject,
     TfArg<num>? timeout,
@@ -218,7 +221,7 @@ final class GoogleCloudfunctionsFunction extends Resource {
              'https_trigger_security_level': httpsTriggerSecurityLevel,
            if (httpsTriggerUrl != null) 'https_trigger_url': httpsTriggerUrl,
            if (ingressSettings != null) 'ingress_settings': ingressSettings,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            if (labels != null) 'labels': labels,
            if (maxInstances != null) 'max_instances': maxInstances,
            if (minInstances != null) 'min_instances': minInstances,
@@ -227,7 +230,7 @@ final class GoogleCloudfunctionsFunction extends Resource {
            if (region != null) 'region': region,
            'runtime': runtime,
            if (serviceAccountEmail != null)
-             'service_account_email': serviceAccountEmail,
+             'service_account_email': serviceAccountEmail.encodeAs('email'),
            if (sourceArchiveBucket != null)
              'source_archive_bucket': sourceArchiveBucket,
            if (sourceArchiveObject != null)

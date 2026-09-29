@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_s3control_access_grants_location`.
 const Set<String> _awsS3controlAccessGrantsLocationSensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsS3controlAccessGrantsLocation extends Resource {
   AwsS3controlAccessGrantsLocation({
     required super.localName,
     TfArg<String>? accountId,
-    required TfArg<String> iamRoleArn,
+    required RefTo<AwsIamRole> iamRoleArn,
     required TfArg<String> locationScope,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -25,7 +27,7 @@ final class AwsS3controlAccessGrantsLocation extends Resource {
          terraformType: tfType,
          argMap: {
            if (accountId != null) 'account_id': accountId,
-           'iam_role_arn': iamRoleArn,
+           'iam_role_arn': iamRoleArn.encodeAs('arn'),
            'location_scope': locationScope,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_dataproc_session_template`.
 const Set<String> _googleDataprocSessionTemplateSensitive = <String>{};
 
@@ -46,15 +50,15 @@ final class DataprocSessionTemplateEnvironmentConfigExecutionConfig {
 
   final TfArg<String>? idleTtl;
 
-  final TfArg<String>? kmsKey;
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   final TfArg<List<Object?>>? networkTags;
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final TfArg<String>? stagingBucket;
 
-  final TfArg<String>? subnetworkUri;
+  final RefTo<GoogleComputeSubnetwork>? subnetworkUri;
 
   final TfArg<String>? ttl;
 
@@ -63,11 +67,13 @@ final class DataprocSessionTemplateEnvironmentConfigExecutionConfig {
 
   Map<String, Object?> encode() => {
     if (idleTtl != null) 'idle_ttl': idleTtl!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
     if (networkTags != null) 'network_tags': networkTags!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
     if (stagingBucket != null) 'staging_bucket': stagingBucket!.toTfJson(),
-    if (subnetworkUri != null) 'subnetwork_uri': subnetworkUri!.toTfJson(),
+    if (subnetworkUri != null)
+      'subnetwork_uri': subnetworkUri!.encodeAs('id').toTfJson(),
     if (ttl != null) 'ttl': ttl!.toTfJson(),
     if (authenticationConfig != null)
       'authentication_config': authenticationConfig!.encode(),

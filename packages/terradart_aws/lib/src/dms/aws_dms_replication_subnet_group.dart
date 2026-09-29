@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_dms_replication_subnet_group`.
 const Set<String> _awsDmsReplicationSubnetGroupSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsDmsReplicationSubnetGroup extends Resource {
     TfArg<String>? region,
     required TfArg<String> replicationSubnetGroupDescription,
     required TfArg<String> replicationSubnetGroupId,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -28,7 +30,7 @@ final class AwsDmsReplicationSubnetGroup extends Resource {
            'replication_subnet_group_description':
                replicationSubnetGroupDescription,
            'replication_subnet_group_id': replicationSubnetGroupId,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
          },
        );

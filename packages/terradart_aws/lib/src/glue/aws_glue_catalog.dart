@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_glue_catalog`.
 const Set<String> _awsGlueCatalogSensitive = <String>{};
 
@@ -79,14 +82,14 @@ final class GlueCatalogCatalogPropertiesDataLakeAccessProperties {
 
   final TfArg<String>? dataTransferRole;
 
-  final TfArg<String>? kmsKey;
+  final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
     if (catalogType != null) 'catalog_type': catalogType!.toTfJson(),
     if (dataLakeAccess != null) 'data_lake_access': dataLakeAccess!.toTfJson(),
     if (dataTransferRole != null)
       'data_transfer_role': dataTransferRole!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -107,14 +110,14 @@ final class GlueCatalogCatalogPropertiesIcebergOptimizationProperties {
 
   final TfArg<Map<String, String>>? retention;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   Map<String, Object?> encode() => {
     if (compaction != null) 'compaction': compaction!.toTfJson(),
     if (orphanFileDeletion != null)
       'orphan_file_deletion': orphanFileDeletion!.toTfJson(),
     if (retention != null) 'retention': retention!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
   };
 }
 

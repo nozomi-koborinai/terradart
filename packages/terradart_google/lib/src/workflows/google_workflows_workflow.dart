@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_workflows_workflow`.
 const Set<String> _googleWorkflowsWorkflowSensitive = <String>{};
 
@@ -54,10 +57,10 @@ final class GoogleWorkflowsWorkflow extends Resource {
     TfArg<String>? region,
     TfArg<String>? description,
     required TfArg<String> sourceContents,
-    TfArg<String>? serviceAccount,
+    RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<WorkflowsWorkflowCallLogLevel>? callLogLevel,
     TfArg<WorkflowsWorkflowExecutionHistoryLevel>? executionHistoryLevel,
-    TfArg<String>? cryptoKeyName,
+    RefTo<GoogleKmsCryptoKey>? cryptoKeyName,
     TfArg<Map<String, String>>? userEnvVars,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtection,
@@ -73,11 +76,13 @@ final class GoogleWorkflowsWorkflow extends Resource {
            if (region != null) 'region': region,
            if (description != null) 'description': description,
            'source_contents': sourceContents,
-           if (serviceAccount != null) 'service_account': serviceAccount,
+           if (serviceAccount != null)
+             'service_account': serviceAccount.encodeAs('email'),
            if (callLogLevel != null) 'call_log_level': callLogLevel,
            if (executionHistoryLevel != null)
              'execution_history_level': executionHistoryLevel,
-           if (cryptoKeyName != null) 'crypto_key_name': cryptoKeyName,
+           if (cryptoKeyName != null)
+             'crypto_key_name': cryptoKeyName.encodeAs('id'),
            if (userEnvVars != null) 'user_env_vars': userEnvVars,
            if (labels != null) 'labels': labels,
            if (deletionProtection != null)

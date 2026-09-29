@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_ct_alerting`.
 const Set<String> _cloudflareCtAlertingSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class CloudflareCtAlerting extends Resource {
     required super.localName,
     TfArg<List<String>>? emails,
     required TfArg<bool> enabled,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,7 +30,7 @@ final class CloudflareCtAlerting extends Resource {
          argMap: {
            if (emails != null) 'emails': emails,
            'enabled': enabled,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

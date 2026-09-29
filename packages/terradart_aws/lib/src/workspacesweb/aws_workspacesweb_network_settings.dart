@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_workspacesweb_network_settings`.
 const Set<String> _awsWorkspaceswebNetworkSettingsSensitive = <String>{};
 
@@ -13,10 +17,10 @@ final class AwsWorkspaceswebNetworkSettings extends Resource {
   AwsWorkspaceswebNetworkSettings({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<List<String>> securityGroupIds,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -25,10 +29,10 @@ final class AwsWorkspaceswebNetworkSettings extends Resource {
          terraformType: tfType,
          argMap: {
            if (region != null) 'region': region,
-           'security_group_ids': securityGroupIds,
-           'subnet_ids': subnetIds,
+           'security_group_ids': securityGroupIds.encodeAs('id'),
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

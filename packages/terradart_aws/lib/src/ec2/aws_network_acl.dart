@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_network_acl`.
 const Set<String> _awsNetworkAclSensitive = <String>{};
 
@@ -15,9 +18,9 @@ final class AwsNetworkAcl extends Resource {
     TfArg<List<Map<String, Object?>>>? egress,
     TfArg<List<Map<String, Object?>>>? ingress,
     TfArg<String>? region,
-    TfArg<List<String>>? subnetIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,9 +31,9 @@ final class AwsNetworkAcl extends Resource {
            if (egress != null) 'egress': egress,
            if (ingress != null) 'ingress': ingress,
            if (region != null) 'region': region,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

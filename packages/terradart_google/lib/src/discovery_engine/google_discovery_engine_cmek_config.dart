@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_discovery_engine_cmek_config`.
 const Set<String> _googleDiscoveryEngineCmekConfigSensitive = <String>{};
 
@@ -13,9 +15,11 @@ const Set<String> _googleDiscoveryEngineCmekConfigSensitive = <String>{};
 final class DiscoveryEngineCmekConfigSingleRegionKeys {
   const DiscoveryEngineCmekConfigSingleRegionKeys({required this.kmsKey});
 
-  final TfArg<String> kmsKey;
+  final RefTo<GoogleKmsCryptoKey> kmsKey;
 
-  Map<String, Object?> encode() => {'kms_key': kmsKey.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key': kmsKey.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_discovery_engine_cmek_config`.
@@ -35,7 +39,7 @@ final class GoogleDiscoveryEngineCmekConfig extends Resource {
     required super.localName,
     required TfArg<String> cmekConfigId,
     TfArg<String>? deletionPolicy,
-    required TfArg<String> kmsKey,
+    required RefTo<GoogleKmsCryptoKey> kmsKey,
     required TfArg<String> location,
     TfArg<String>? project,
     TfArg<bool>? setDefault,
@@ -49,7 +53,7 @@ final class GoogleDiscoveryEngineCmekConfig extends Resource {
          argMap: {
            'cmek_config_id': cmekConfigId,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           'kms_key': kmsKey,
+           'kms_key': kmsKey.encodeAs('id'),
            'location': location,
            if (project != null) 'project': project,
            if (setDefault != null) 'set_default': setDefault,

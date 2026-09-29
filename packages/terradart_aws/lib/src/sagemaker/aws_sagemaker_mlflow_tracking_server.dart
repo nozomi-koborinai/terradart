@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_sagemaker_mlflow_tracking_server`.
 const Set<String> _awsSagemakerMlflowTrackingServerSensitive = <String>{};
 
@@ -27,7 +29,7 @@ final class AwsSagemakerMlflowTrackingServer extends Resource {
     TfArg<bool>? automaticModelRegistration,
     TfArg<String>? mlflowVersion,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> trackingServerName,
     TfArg<SagemakerMlflowTrackingServerTrackingServerSize>? trackingServerSize,
@@ -44,7 +46,7 @@ final class AwsSagemakerMlflowTrackingServer extends Resource {
              'automatic_model_registration': automaticModelRegistration,
            if (mlflowVersion != null) 'mlflow_version': mlflowVersion,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            'tracking_server_name': trackingServerName,
            if (trackingServerSize != null)

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_edgecontainer_cluster`.
 const Set<String> _googleEdgecontainerClusterSensitive = <String>{
   'cluster_ca_certificate',
@@ -156,10 +158,10 @@ final class EdgecontainerClusterAuthorizationAdminUsers {
 final class EdgecontainerClusterControlPlaneEncryption {
   const EdgecontainerClusterControlPlaneEncryption({this.kmsKey});
 
-  final TfArg<String>? kmsKey;
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
   };
 }
 

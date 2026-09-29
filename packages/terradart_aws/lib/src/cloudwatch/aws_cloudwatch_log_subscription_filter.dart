@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cloudwatch_log_subscription_filter`.
 const Set<String> _awsCloudwatchLogSubscriptionFilterSensitive = <String>{};
 
@@ -39,10 +42,10 @@ final class AwsCloudwatchLogSubscriptionFilter extends Resource {
     List<TfArg<CloudwatchLogSubscriptionFilterEmitSystemFields>>?
     emitSystemFields,
     required TfArg<String> filterPattern,
-    required TfArg<String> logGroupName,
+    required RefTo<AwsCloudwatchLogGroup> logGroupName,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -59,10 +62,10 @@ final class AwsCloudwatchLogSubscriptionFilter extends Resource {
                for (final e in emitSystemFields) e.toTfJson(),
              ]),
            'filter_pattern': filterPattern,
-           'log_group_name': logGroupName,
+           'log_group_name': logGroupName.encodeAs('name'),
            'name': name,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
          },
        );
 

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_notification_policy_webhooks`.
 const Set<String> _cloudflareNotificationPolicyWebhooksSensitive = <String>{
   'secret',
@@ -19,7 +21,7 @@ final class CloudflareNotificationPolicyWebhooks extends Resource {
 
   CloudflareNotificationPolicyWebhooks({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     TfArg<String>? secret,
     required TfArg<String> url,
@@ -30,7 +32,7 @@ final class CloudflareNotificationPolicyWebhooks extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'name': name,
            if (secret != null) 'secret': secret,
            'url': url,

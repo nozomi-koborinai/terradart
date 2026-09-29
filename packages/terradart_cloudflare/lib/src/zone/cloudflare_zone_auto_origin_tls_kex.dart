@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_auto_origin_tls_kex`.
 const Set<String> _cloudflareZoneAutoOriginTlsKexSensitive = <String>{};
 
@@ -13,14 +15,14 @@ final class CloudflareZoneAutoOriginTlsKex extends Resource {
   CloudflareZoneAutoOriginTlsKex({
     required super.localName,
     required TfArg<bool> enabled,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'enabled': enabled, 'zone_id': zoneId},
+         argMap: {'enabled': enabled, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

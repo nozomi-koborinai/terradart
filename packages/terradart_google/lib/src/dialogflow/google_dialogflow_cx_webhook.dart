@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_dialogflow_cx_webhook`.
 const Set<String> _googleDialogflowCxWebhookSensitive = <String>{};
 
@@ -178,10 +180,10 @@ final class DialogflowCxWebhookGenericWebServiceServiceAccountAuthConfig {
     required this.serviceAccount,
   });
 
-  final TfArg<String> serviceAccount;
+  final RefTo<GoogleServiceAccount> serviceAccount;
 
   Map<String, Object?> encode() => {
-    'service_account': serviceAccount.toTfJson(),
+    'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
 
@@ -387,10 +389,10 @@ final class DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAccountAu
     required this.serviceAccount,
   });
 
-  final TfArg<String> serviceAccount;
+  final RefTo<GoogleServiceAccount> serviceAccount;
 
   Map<String, Object?> encode() => {
-    'service_account': serviceAccount.toTfJson(),
+    'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
 

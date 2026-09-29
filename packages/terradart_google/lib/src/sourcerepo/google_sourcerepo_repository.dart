@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_sourcerepo_repository`.
 const Set<String> _googleSourcerepoRepositorySensitive = <String>{};
 
@@ -19,15 +22,17 @@ final class SourcerepoRepositoryPubsubConfigs {
 
   final TfArg<SourcerepoRepositoryPubsubConfigsMessageFormat> messageFormat;
 
-  final TfArg<String>? serviceAccountEmail;
+  final RefTo<GoogleServiceAccount>? serviceAccountEmail;
 
-  final TfArg<String> topic;
+  final RefTo<GooglePubsubTopic> topic;
 
   Map<String, Object?> encode() => {
     'message_format': messageFormat.toTfJson(),
     if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!.toTfJson(),
-    'topic': topic.toTfJson(),
+      'service_account_email': serviceAccountEmail!
+          .encodeAs('email')
+          .toTfJson(),
+    'topic': topic.encodeAs('id').toTfJson(),
   };
 }
 

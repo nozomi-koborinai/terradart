@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_eventarc_trigger`.
 const Set<String> _googleEventarcTriggerSensitive = <String>{};
 
@@ -388,7 +390,7 @@ final class GoogleEventarcTrigger extends Resource {
     required List<EventarcTriggerMatchingCriteria> matchingCriteria,
     required EventarcTriggerDestination destination,
     EventarcTriggerTransport? transport,
-    TfArg<String>? serviceAccount,
+    RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<String>? channel,
     TfArg<String>? eventDataContentType,
     EventarcTriggerRetryPolicy? retryPolicy,
@@ -409,7 +411,8 @@ final class GoogleEventarcTrigger extends Resource {
            'destination': TfArg.literal([destination.toArgMap()]),
            if (transport != null)
              'transport': TfArg.literal([transport.toArgMap()]),
-           if (serviceAccount != null) 'service_account': serviceAccount,
+           if (serviceAccount != null)
+             'service_account': serviceAccount.encodeAs('email'),
            if (channel != null) 'channel': channel,
            if (eventDataContentType != null)
              'event_data_content_type': eventDataContentType,

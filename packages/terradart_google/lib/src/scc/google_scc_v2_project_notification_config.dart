@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_scc_v2_project_notification_config`.
 const Set<String> _googleSccV2ProjectNotificationConfigSensitive = <String>{};
 
@@ -63,7 +65,7 @@ final class GoogleSccV2ProjectNotificationConfig extends Resource {
   GoogleSccV2ProjectNotificationConfig({
     required super.localName,
     required TfArg<String> configId,
-    TfArg<String>? pubsubTopic,
+    RefTo<GooglePubsubTopic>? pubsubTopic,
     required SccV2ProjectNotificationConfigStreamingConfig streamingConfig,
     TfArg<String>? description,
     TfArg<String>? location,
@@ -77,7 +79,7 @@ final class GoogleSccV2ProjectNotificationConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'config_id': configId,
-           if (pubsubTopic != null) 'pubsub_topic': pubsubTopic,
+           if (pubsubTopic != null) 'pubsub_topic': pubsubTopic.encodeAs('id'),
            'streaming_config': TfArg.literal(streamingConfig.encode()),
            if (description != null) 'description': description,
            if (location != null) 'location': location,

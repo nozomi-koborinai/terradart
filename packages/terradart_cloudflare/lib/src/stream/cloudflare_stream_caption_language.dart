@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_stream_caption_language`.
 const Set<String> _cloudflareStreamCaptionLanguageSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareStreamCaptionLanguage extends Resource {
 
   CloudflareStreamCaptionLanguage({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? file,
     required TfArg<String> identifier,
     required TfArg<String> language,
@@ -27,7 +29,7 @@ final class CloudflareStreamCaptionLanguage extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (file != null) 'file': file,
            'identifier': identifier,
            'language': language,

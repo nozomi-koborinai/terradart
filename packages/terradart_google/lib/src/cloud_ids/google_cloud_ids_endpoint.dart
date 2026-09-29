@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_cloud_ids_endpoint`.
 const Set<String> _googleCloudIdsEndpointSensitive = <String>{};
 
@@ -44,7 +46,7 @@ final class GoogleCloudIdsEndpoint extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     required TfArg<CloudIdsEndpointSeverity> severity,
     TfArg<String>? description,
     TfArg<List<String>>? threatExceptions,
@@ -59,7 +61,7 @@ final class GoogleCloudIdsEndpoint extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'network': network,
+           'network': network.encodeAs('id'),
            'severity': severity,
            if (description != null) 'description': description,
            if (threatExceptions != null) 'threat_exceptions': threatExceptions,

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_compute_global_address`.
 const Set<String> _googleComputeGlobalAddressSensitive = <String>{};
 
@@ -101,7 +103,7 @@ final class GoogleComputeGlobalAddress extends Resource {
     TfArg<GlobalAddressIpVersion>? ipVersion,
     TfArg<String>? address,
     TfArg<num>? prefixLength,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? description,
     TfArg<String>? project,
@@ -118,7 +120,7 @@ final class GoogleComputeGlobalAddress extends Resource {
            if (ipVersion != null) 'ip_version': ipVersion,
            if (address != null) 'address': address,
            if (prefixLength != null) 'prefix_length': prefixLength,
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            if (labels != null) 'labels': labels,
            if (description != null) 'description': description,
            if (project != null) 'project': project,

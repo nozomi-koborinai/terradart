@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_spot_datafeed_subscription`.
 const Set<String> _awsSpotDatafeedSubscriptionSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsSpotDatafeedSubscription extends Resource {
 
   AwsSpotDatafeedSubscription({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? prefix,
     TfArg<String>? region,
     super.lifecycle,
@@ -22,7 +24,7 @@ final class AwsSpotDatafeedSubscription extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (prefix != null) 'prefix': prefix,
            if (region != null) 'region': region,
          },

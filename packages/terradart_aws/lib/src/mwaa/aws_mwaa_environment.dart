@@ -4,6 +4,12 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_mwaa_environment`.
 const Set<String> _awsMwaaEnvironmentSensitive = <String>{
   'airflow_configuration_options',
@@ -259,13 +265,13 @@ final class MwaaEnvironmentNetworkConfiguration {
     required this.subnetIds,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -280,8 +286,8 @@ final class AwsMwaaEnvironment extends Resource {
     required TfArg<String> dagS3Path,
     TfArg<MwaaEnvironmentEndpointManagement>? endpointManagement,
     TfArg<String>? environmentClass,
-    required TfArg<String> executionRoleArn,
-    TfArg<String>? kmsKey,
+    required RefTo<AwsIamRole> executionRoleArn,
+    RefTo<AwsKmsKey>? kmsKey,
     TfArg<num>? maxWebservers,
     TfArg<num>? maxWorkers,
     TfArg<num>? minWebservers,
@@ -293,7 +299,7 @@ final class AwsMwaaEnvironment extends Resource {
     TfArg<String>? requirementsS3ObjectVersion,
     TfArg<String>? requirementsS3Path,
     TfArg<num>? schedulers,
-    required TfArg<String> sourceBucketArn,
+    required RefTo<AwsS3Bucket> sourceBucketArn,
     TfArg<String>? startupScriptS3ObjectVersion,
     TfArg<String>? startupScriptS3Path,
     TfArg<Map<String, String>>? tags,
@@ -316,8 +322,8 @@ final class AwsMwaaEnvironment extends Resource {
            if (endpointManagement != null)
              'endpoint_management': endpointManagement,
            if (environmentClass != null) 'environment_class': environmentClass,
-           'execution_role_arn': executionRoleArn,
-           if (kmsKey != null) 'kms_key': kmsKey,
+           'execution_role_arn': executionRoleArn.encodeAs('arn'),
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('arn'),
            if (maxWebservers != null) 'max_webservers': maxWebservers,
            if (maxWorkers != null) 'max_workers': maxWorkers,
            if (minWebservers != null) 'min_webservers': minWebservers,
@@ -332,7 +338,7 @@ final class AwsMwaaEnvironment extends Resource {
            if (requirementsS3Path != null)
              'requirements_s3_path': requirementsS3Path,
            if (schedulers != null) 'schedulers': schedulers,
-           'source_bucket_arn': sourceBucketArn,
+           'source_bucket_arn': sourceBucketArn.encodeAs('arn'),
            if (startupScriptS3ObjectVersion != null)
              'startup_script_s3_object_version': startupScriptS3ObjectVersion,
            if (startupScriptS3Path != null)

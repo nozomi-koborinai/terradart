@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_risk_scoring_integration`.
 const Set<String> _cloudflareZeroTrustRiskScoringIntegrationSensitive =
     <String>{};
@@ -26,7 +28,7 @@ final class CloudflareZeroTrustRiskScoringIntegration extends Resource {
 
   CloudflareZeroTrustRiskScoringIntegration({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? active,
     required TfArg<ZeroTrustRiskScoringIntegrationIntegrationType>
     integrationType,
@@ -39,7 +41,7 @@ final class CloudflareZeroTrustRiskScoringIntegration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (active != null) 'active': active,
            'integration_type': integrationType,
            if (referenceId != null) 'reference_id': referenceId,

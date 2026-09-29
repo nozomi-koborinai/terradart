@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_transfer_access`.
 const Set<String> _awsTransferAccessSensitive = <String>{};
 
@@ -70,7 +72,7 @@ final class AwsTransferAccess extends Resource {
     TfArg<TransferAccessHomeDirectoryType>? homeDirectoryType,
     TfArg<String>? policy,
     TfArg<String>? region,
-    TfArg<String>? role,
+    RefTo<AwsIamRole>? role,
     required TfArg<String> serverId,
     List<TransferAccessHomeDirectoryMappings>? homeDirectoryMappings,
     TransferAccessPosixProfile? posixProfile,
@@ -87,7 +89,7 @@ final class AwsTransferAccess extends Resource {
              'home_directory_type': homeDirectoryType,
            if (policy != null) 'policy': policy,
            if (region != null) 'region': region,
-           if (role != null) 'role': role,
+           if (role != null) 'role': role.encodeAs('arn'),
            'server_id': serverId,
            if (homeDirectoryMappings != null)
              'home_directory_mappings': TfArg.literal([

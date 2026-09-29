@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_magic_transit_site_lan`.
 const Set<String> _cloudflareMagicTransitSiteLanSensitive = <String>{};
 
@@ -191,7 +193,7 @@ final class CloudflareMagicTransitSiteLan extends Resource {
 
   CloudflareMagicTransitSiteLan({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<num>? bondId,
     TfArg<bool>? haLink,
     TfArg<bool>? isBreakout,
@@ -210,7 +212,7 @@ final class CloudflareMagicTransitSiteLan extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (bondId != null) 'bond_id': bondId,
            if (haLink != null) 'ha_link': haLink,
            if (isBreakout != null) 'is_breakout': isBreakout,

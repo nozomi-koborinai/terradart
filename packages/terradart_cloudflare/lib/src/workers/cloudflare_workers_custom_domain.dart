@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_workers_custom_domain`.
 const Set<String> _cloudflareWorkersCustomDomainSensitive = <String>{};
 
@@ -16,11 +19,11 @@ final class CloudflareWorkersCustomDomain extends Resource {
 
   CloudflareWorkersCustomDomain({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? environment,
     required TfArg<String> hostname,
     required TfArg<String> service,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     TfArg<String>? zoneName,
     super.lifecycle,
     super.dependsOn,
@@ -29,11 +32,11 @@ final class CloudflareWorkersCustomDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (environment != null) 'environment': environment,
            'hostname': hostname,
            'service': service,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
            if (zoneName != null) 'zone_name': zoneName,
          },
        );

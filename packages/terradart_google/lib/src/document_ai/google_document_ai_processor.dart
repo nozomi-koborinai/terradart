@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_document_ai_processor`.
 const Set<String> _googleDocumentAiProcessorSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class GoogleDocumentAiProcessor extends Resource {
     required TfArg<String> type,
     required TfArg<String> displayName,
     required TfArg<String> location,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -31,7 +33,7 @@ final class GoogleDocumentAiProcessor extends Resource {
            'type': type,
            'display_name': displayName,
            'location': location,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,
          },

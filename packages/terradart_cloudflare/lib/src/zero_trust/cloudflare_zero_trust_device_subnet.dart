@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_device_subnet`.
 const Set<String> _cloudflareZeroTrustDeviceSubnetSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareZeroTrustDeviceSubnet extends Resource {
 
   CloudflareZeroTrustDeviceSubnet({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comment,
     TfArg<bool>? isDefaultNetwork,
     required TfArg<String> name,
@@ -28,7 +30,7 @@ final class CloudflareZeroTrustDeviceSubnet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (comment != null) 'comment': comment,
            if (isDefaultNetwork != null) 'is_default_network': isDefaultNetwork,
            'name': name,

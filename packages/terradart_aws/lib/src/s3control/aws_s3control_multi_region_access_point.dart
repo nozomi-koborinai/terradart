@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3control_multi_region_access_point`.
 const Set<String> _awsS3controlMultiRegionAccessPointSensitive = <String>{};
 
@@ -72,12 +74,12 @@ final class S3controlMultiRegionAccessPointDetailsRegion {
     this.bucketAccountId,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String>? bucketAccountId;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (bucketAccountId != null)
       'bucket_account_id': bucketAccountId!.toTfJson(),
   };

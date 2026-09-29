@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_ssmincidents_replication_set`.
 const Set<String> _awsSsmincidentsReplicationSetSensitive = <String>{};
 
@@ -13,12 +15,12 @@ const Set<String> _awsSsmincidentsReplicationSetSensitive = <String>{};
 final class SsmincidentsReplicationSetRegion {
   const SsmincidentsReplicationSetRegion({this.kmsKeyArn, required this.name});
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -29,12 +31,12 @@ final class SsmincidentsReplicationSetRegion {
 final class SsmincidentsReplicationSetRegions {
   const SsmincidentsReplicationSetRegions({this.kmsKeyArn, required this.name});
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     'name': name.toTfJson(),
   };
 }

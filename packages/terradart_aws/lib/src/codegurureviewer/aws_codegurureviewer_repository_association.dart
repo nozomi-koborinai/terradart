@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_codegurureviewer_repository_association`.
 const Set<String> _awsCodegurureviewerRepositoryAssociationSensitive =
     <String>{};
@@ -22,12 +25,12 @@ final class CodegurureviewerRepositoryAssociationKmsKeyDetails {
   >?
   encryptionOption;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   Map<String, Object?> encode() => {
     if (encryptionOption != null)
       'encryption_option': encryptionOption!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -141,12 +144,12 @@ final class CodegurureviewerRepositoryAssociationRepositoryS3Bucket {
     required this.name,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'name': name.toTfJson(),
   };
 }

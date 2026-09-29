@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_server_side_encryption_configuration`.
 const Set<String> _awsS3BucketServerSideEncryptionConfigurationSensitive =
     <String>{};
@@ -63,7 +66,7 @@ final class S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncrypti
     required this.sseAlgorithm,
   });
 
-  final TfArg<String>? kmsMasterKeyId;
+  final RefTo<AwsKmsKey>? kmsMasterKeyId;
 
   final TfArg<
     S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultSseAlgorithm
@@ -71,7 +74,8 @@ final class S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncrypti
   sseAlgorithm;
 
   Map<String, Object?> encode() => {
-    if (kmsMasterKeyId != null) 'kms_master_key_id': kmsMasterKeyId!.toTfJson(),
+    if (kmsMasterKeyId != null)
+      'kms_master_key_id': kmsMasterKeyId!.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),
   };
 }
@@ -99,7 +103,7 @@ final class AwsS3BucketServerSideEncryptionConfiguration extends Resource {
 
   AwsS3BucketServerSideEncryptionConfiguration({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
     required List<S3BucketServerSideEncryptionConfigurationRule> rule,
@@ -110,7 +114,7 @@ final class AwsS3BucketServerSideEncryptionConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (expectedBucketOwner != null)
              'expected_bucket_owner': expectedBucketOwner,
            if (region != null) 'region': region,

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_network_interface`.
 const Set<String> _awsNetworkInterfaceSensitive = <String>{};
 
@@ -323,9 +326,9 @@ final class AwsNetworkInterface extends Resource {
     TfArg<List<String>>? privateIps,
     TfArg<num>? privateIpsCount,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroups,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
     TfArg<bool>? sourceDestCheck,
-    required TfArg<String> subnetId,
+    required RefTo<AwsSubnet> subnetId,
     TfArg<Map<String, String>>? tags,
     List<NetworkInterfaceAttachment>? attachment,
     NetworkInterfaceEnaSrdSpecification? enaSrdSpecification,
@@ -352,9 +355,10 @@ final class AwsNetworkInterface extends Resource {
            if (privateIps != null) 'private_ips': privateIps,
            if (privateIpsCount != null) 'private_ips_count': privateIpsCount,
            if (region != null) 'region': region,
-           if (securityGroups != null) 'security_groups': securityGroups,
+           if (securityGroups != null)
+             'security_groups': securityGroups.encodeAs('id'),
            if (sourceDestCheck != null) 'source_dest_check': sourceDestCheck,
-           'subnet_id': subnetId,
+           'subnet_id': subnetId.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (attachment != null)
              'attachment': TfArg.literal([

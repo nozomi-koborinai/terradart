@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_access_context_manager_gcp_user_access_binding`.
 const Set<String> _googleAccessContextManagerGcpUserAccessBindingSensitive =
     <String>{};
@@ -17,12 +19,13 @@ final class AccessContextManagerGcpUserAccessBindingPrincipal {
     this.serviceAccountProjectNumber,
   });
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final TfArg<String>? serviceAccountProjectNumber;
 
   Map<String, Object?> encode() => {
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
     if (serviceAccountProjectNumber != null)
       'service_account_project_number': serviceAccountProjectNumber!.toTfJson(),
   };

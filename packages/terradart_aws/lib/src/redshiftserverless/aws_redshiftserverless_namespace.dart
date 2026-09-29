@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_redshiftserverless_namespace`.
 const Set<String> _awsRedshiftserverlessNamespaceSensitive = <String>{
   'admin_user_password',
@@ -135,7 +137,7 @@ final class AwsRedshiftserverlessNamespace extends Resource {
     TfArg<String>? dbName,
     TfArg<String>? defaultIamRoleArn,
     TfArg<List<String>>? iamRoles,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     List<TfArg<RedshiftserverlessNamespaceLogExports>>? logExports,
     required TfArg<String> namespaceName,
     TfArg<String>? region,
@@ -157,7 +159,7 @@ final class AwsRedshiftserverlessNamespace extends Resource {
            if (defaultIamRoleArn != null)
              'default_iam_role_arn': defaultIamRoleArn,
            if (iamRoles != null) 'iam_roles': iamRoles,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (logExports != null)
              'log_exports': TfArg.literal([
                for (final e in logExports) e.toTfJson(),

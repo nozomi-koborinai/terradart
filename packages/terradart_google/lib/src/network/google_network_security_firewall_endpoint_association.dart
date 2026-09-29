@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_network_security_firewall_endpoint_association`.
 const Set<String> _googleNetworkSecurityFirewallEndpointAssociationSensitive =
     <String>{};
@@ -47,7 +49,7 @@ final class GoogleNetworkSecurityFirewallEndpointAssociation extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> firewallEndpoint,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? parent,
     TfArg<String>? tlsInspectionPolicy,
     TfArg<bool>? disabled,
@@ -63,7 +65,7 @@ final class GoogleNetworkSecurityFirewallEndpointAssociation extends Resource {
            'name': name,
            'location': location,
            'firewall_endpoint': firewallEndpoint,
-           'network': network,
+           'network': network.encodeAs('id'),
            if (parent != null) 'parent': parent,
            if (tlsInspectionPolicy != null)
              'tls_inspection_policy': tlsInspectionPolicy,

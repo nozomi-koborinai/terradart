@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_vpc_access_connector`.
 const Set<String> _googleVpcAccessConnectorSensitive = <String>{};
 
@@ -192,7 +194,7 @@ final class GoogleVpcAccessConnector extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? ipCidrRange,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     VpcAccessConnectorSubnet? subnet,
     TfArg<String>? machineType,
     VpcAccessConnectorMinCapacity? minCapacity,
@@ -208,7 +210,7 @@ final class GoogleVpcAccessConnector extends Resource {
            'name': name,
            if (region != null) 'region': region,
            if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange,
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            if (subnet != null) 'subnet': TfArg.literal([subnet.encode()]),
            if (machineType != null) 'machine_type': machineType,
            ...?minCapacity?.argMap,

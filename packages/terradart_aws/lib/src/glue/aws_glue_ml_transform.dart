@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_glue_ml_transform`.
 const Set<String> _awsGlueMlTransformSensitive = <String>{};
 
@@ -121,7 +123,7 @@ final class AwsGlueMlTransform extends Resource {
     required TfArg<String> name,
     TfArg<num>? numberOfWorkers,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? timeout,
     TfArg<GlueMlTransformWorkerType>? workerType,
@@ -141,7 +143,7 @@ final class AwsGlueMlTransform extends Resource {
            'name': name,
            if (numberOfWorkers != null) 'number_of_workers': numberOfWorkers,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (timeout != null) 'timeout': timeout,
            if (workerType != null) 'worker_type': workerType,

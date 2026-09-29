@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_magic_transit_site_acl`.
 const Set<String> _cloudflareMagicTransitSiteAclSensitive = <String>{};
 
@@ -91,7 +93,7 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
 
   CloudflareMagicTransitSiteAcl({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     TfArg<bool>? forwardLocally,
     required TfArg<String> name,
@@ -107,7 +109,7 @@ final class CloudflareMagicTransitSiteAcl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (description != null) 'description': description,
            if (forwardLocally != null) 'forward_locally': forwardLocally,
            'name': name,

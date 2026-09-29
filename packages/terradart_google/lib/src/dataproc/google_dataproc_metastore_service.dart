@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_dataproc_metastore_service`.
 const Set<String> _googleDataprocMetastoreServiceSensitive = <String>{};
 
@@ -100,7 +102,7 @@ final class GoogleDataprocMetastoreService extends Resource {
     TfArg<DataprocMetastoreServiceDatabaseType>? databaseType,
     TfArg<DataprocMetastoreServiceReleaseChannel>? releaseChannel,
     DataprocMetastoreServiceHiveMetastoreConfig? hiveMetastoreConfig,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     TfArg<num>? port,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtection,
@@ -122,7 +124,7 @@ final class GoogleDataprocMetastoreService extends Resource {
              'hive_metastore_config': TfArg.literal([
                hiveMetastoreConfig.toArgMap(),
              ]),
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            if (port != null) 'port': port,
            if (labels != null) 'labels': labels,
            if (deletionProtection != null)

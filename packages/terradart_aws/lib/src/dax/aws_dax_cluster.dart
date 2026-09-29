@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_dax_cluster`.
 const Set<String> _awsDaxClusterSensitive = <String>{};
 
@@ -41,14 +44,14 @@ final class AwsDaxCluster extends Resource {
     clusterEndpointEncryptionType,
     required TfArg<String> clusterName,
     TfArg<String>? description,
-    required TfArg<String> iamRoleArn,
+    required RefTo<AwsIamRole> iamRoleArn,
     TfArg<String>? maintenanceWindow,
     required TfArg<String> nodeType,
     TfArg<String>? notificationTopicArn,
     TfArg<String>? parameterGroupName,
     TfArg<String>? region,
     required TfArg<num> replicationFactor,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<String>? subnetGroupName,
     TfArg<Map<String, String>>? tags,
     DaxClusterServerSideEncryption? serverSideEncryption,
@@ -65,7 +68,7 @@ final class AwsDaxCluster extends Resource {
              'cluster_endpoint_encryption_type': clusterEndpointEncryptionType,
            'cluster_name': clusterName,
            if (description != null) 'description': description,
-           'iam_role_arn': iamRoleArn,
+           'iam_role_arn': iamRoleArn.encodeAs('arn'),
            if (maintenanceWindow != null)
              'maintenance_window': maintenanceWindow,
            'node_type': nodeType,
@@ -75,7 +78,8 @@ final class AwsDaxCluster extends Resource {
              'parameter_group_name': parameterGroupName,
            if (region != null) 'region': region,
            'replication_factor': replicationFactor,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            if (subnetGroupName != null) 'subnet_group_name': subnetGroupName,
            if (tags != null) 'tags': tags,
            if (serverSideEncryption != null)

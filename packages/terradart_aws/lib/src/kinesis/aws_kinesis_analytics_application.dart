@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_kinesis_analytics_application`.
 const Set<String> _awsKinesisAnalyticsApplicationSensitive = <String>{};
 
@@ -18,11 +21,11 @@ final class KinesisAnalyticsApplicationCloudwatchLoggingOptions {
 
   final TfArg<String> logStreamArn;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'log_stream_arn': logStreamArn.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -82,11 +85,11 @@ final class KinesisAnalyticsApplicationInputsKinesisFirehose {
 
   final TfArg<String> resourceArn;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'resource_arn': resourceArn.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -101,11 +104,11 @@ final class KinesisAnalyticsApplicationInputsKinesisStream {
 
   final TfArg<String> resourceArn;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'resource_arn': resourceArn.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -146,11 +149,11 @@ final class KinesisAnalyticsApplicationInputsProcessingConfigurationLambda {
 
   final TfArg<String> resourceArn;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'resource_arn': resourceArn.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -401,11 +404,11 @@ final class KinesisAnalyticsApplicationOutputsKinesisFirehose {
 
   final TfArg<String> resourceArn;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'resource_arn': resourceArn.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -420,11 +423,11 @@ final class KinesisAnalyticsApplicationOutputsKinesisStream {
 
   final TfArg<String> resourceArn;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'resource_arn': resourceArn.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -439,11 +442,11 @@ final class KinesisAnalyticsApplicationOutputsLambda {
 
   final TfArg<String> resourceArn;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
     'resource_arn': resourceArn.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -509,16 +512,16 @@ final class KinesisAnalyticsApplicationReferenceDataSourcesS3 {
     required this.roleArn,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<String> fileKey;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'file_key': fileKey.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
 

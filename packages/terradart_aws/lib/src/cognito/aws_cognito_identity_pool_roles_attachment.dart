@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cognito_identity_pool_roles_attachment`.
 const Set<String> _awsCognitoIdentityPoolRolesAttachmentSensitive = <String>{};
 
@@ -80,14 +82,14 @@ final class CognitoIdentityPoolRolesAttachmentRoleMappingMappingRule {
   final TfArg<CognitoIdentityPoolRolesAttachmentRoleMappingMappingRuleMatchType>
   matchType;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> value;
 
   Map<String, Object?> encode() => {
     'claim': claim.toTfJson(),
     'match_type': matchType.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'value': value.toTfJson(),
   };
 }

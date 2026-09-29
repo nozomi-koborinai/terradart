@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_certificate_pack`.
 const Set<String> _cloudflareCertificatePackSensitive = <String>{};
 
@@ -53,7 +55,7 @@ final class CloudflareCertificatePack extends Resource {
     required TfArg<CertificatePackType> type,
     required TfArg<CertificatePackValidationMethod> validationMethod,
     required TfArg<num> validityDays,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -68,7 +70,7 @@ final class CloudflareCertificatePack extends Resource {
            'type': type,
            'validation_method': validationMethod,
            'validity_days': validityDays,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

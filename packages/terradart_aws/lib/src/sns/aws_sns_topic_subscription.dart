@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_sns_topic_subscription`.
 const Set<String> _awsSnsTopicSubscriptionSensitive = <String>{};
 
@@ -24,7 +26,7 @@ final class AwsSnsTopicSubscription extends Resource {
     TfArg<String>? region,
     TfArg<String>? replayPolicy,
     TfArg<String>? subscriptionRoleArn,
-    required TfArg<String> topicArn,
+    required RefTo<AwsSnsTopic> topicArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -49,7 +51,7 @@ final class AwsSnsTopicSubscription extends Resource {
            if (replayPolicy != null) 'replay_policy': replayPolicy,
            if (subscriptionRoleArn != null)
              'subscription_role_arn': subscriptionRoleArn,
-           'topic_arn': topicArn,
+           'topic_arn': topicArn.encodeAs('arn'),
          },
        );
 

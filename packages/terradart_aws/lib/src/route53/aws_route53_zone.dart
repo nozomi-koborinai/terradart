@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_route53_zone`.
 const Set<String> _awsRoute53ZoneSensitive = <String>{};
 
@@ -80,12 +82,12 @@ final class Route53ZoneVisibilityVpc extends Route53ZoneVisibility {
 final class Route53ZoneVpc {
   const Route53ZoneVpc({required this.vpcId, this.vpcRegion});
 
-  final TfArg<String> vpcId;
+  final RefTo<AwsVpc> vpcId;
 
   final TfArg<String>? vpcRegion;
 
   Map<String, Object?> encode() => {
-    'vpc_id': vpcId.toTfJson(),
+    'vpc_id': vpcId.encodeAs('id').toTfJson(),
     if (vpcRegion != null) 'vpc_region': vpcRegion!.toTfJson(),
   };
 }

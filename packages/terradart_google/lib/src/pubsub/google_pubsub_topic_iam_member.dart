@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_pubsub_topic_iam_member`.
 const Set<String> _googlePubsubTopicIamMemberSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class GooglePubsubTopicIamMember extends Resource {
 
   GooglePubsubTopicIamMember({
     required super.localName,
-    required TfArg<String> topic,
+    required RefTo<GooglePubsubTopic> topic,
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<Map<String, dynamic>>? condition,
@@ -28,7 +30,7 @@ final class GooglePubsubTopicIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'topic': topic,
+           'topic': topic.encodeAs('id'),
            'role': role,
            'member': member,
            if (condition != null) 'condition': condition,

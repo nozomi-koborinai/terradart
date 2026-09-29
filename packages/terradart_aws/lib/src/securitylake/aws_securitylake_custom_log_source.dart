@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_securitylake_custom_log_source`.
 const Set<String> _awsSecuritylakeCustomLogSourceSensitive = <String>{};
 
@@ -40,9 +42,11 @@ final class SecuritylakeCustomLogSourceConfigurationCrawlerConfiguration {
     required this.roleArn,
   });
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
-  Map<String, Object?> encode() => {'role_arn': roleArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `configuration.provider_identity` block of

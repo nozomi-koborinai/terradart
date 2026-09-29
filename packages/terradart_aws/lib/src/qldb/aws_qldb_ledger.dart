@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_qldb_ledger`.
 const Set<String> _awsQldbLedgerSensitive = <String>{};
 
@@ -23,7 +25,7 @@ final class AwsQldbLedger extends Resource {
   AwsQldbLedger({
     required super.localName,
     TfArg<bool>? deletionProtection,
-    TfArg<String>? kmsKey,
+    RefTo<AwsKmsKey>? kmsKey,
     TfArg<String>? name,
     required TfArg<QldbLedgerPermissionsMode> permissionsMode,
     TfArg<String>? region,
@@ -37,7 +39,7 @@ final class AwsQldbLedger extends Resource {
          argMap: {
            if (deletionProtection != null)
              'deletion_protection': deletionProtection,
-           if (kmsKey != null) 'kms_key': kmsKey,
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('arn'),
            if (name != null) 'name': name,
            'permissions_mode': permissionsMode,
            if (region != null) 'region': region,

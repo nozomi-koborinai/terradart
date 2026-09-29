@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_security_group`.
 const Set<String> _awsSecurityGroupSensitive = <String>{};
 
@@ -77,7 +79,7 @@ final class AwsSecurityGroup extends Resource {
     TfArg<String>? region,
     TfArg<bool>? revokeRulesOnDelete,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -93,7 +95,7 @@ final class AwsSecurityGroup extends Resource {
            if (revokeRulesOnDelete != null)
              'revoke_rules_on_delete': revokeRulesOnDelete,
            if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
+           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_bedrock_guardrail`.
 const Set<String> _awsBedrockGuardrailSensitive = <String>{};
 
@@ -719,7 +721,7 @@ final class AwsBedrockGuardrail extends Resource {
     required TfArg<String> blockedInputMessaging,
     required TfArg<String> blockedOutputsMessaging,
     TfArg<String>? description,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -741,7 +743,7 @@ final class AwsBedrockGuardrail extends Resource {
            'blocked_input_messaging': blockedInputMessaging,
            'blocked_outputs_messaging': blockedOutputsMessaging,
            if (description != null) 'description': description,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

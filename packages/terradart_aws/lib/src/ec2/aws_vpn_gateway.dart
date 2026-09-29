@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_vpn_gateway`.
 const Set<String> _awsVpnGatewaySensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class AwsVpnGateway extends Resource {
     TfArg<String>? availabilityZone,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,7 +30,7 @@ final class AwsVpnGateway extends Resource {
            if (availabilityZone != null) 'availability_zone': availabilityZone,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
+           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

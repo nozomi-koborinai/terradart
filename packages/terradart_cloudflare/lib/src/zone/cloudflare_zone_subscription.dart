@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_subscription`.
 const Set<String> _cloudflareZoneSubscriptionSensitive = <String>{};
 
@@ -66,7 +68,7 @@ final class CloudflareZoneSubscription extends Resource {
   CloudflareZoneSubscription({
     required super.localName,
     TfArg<ZoneSubscriptionFrequency>? frequency,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     ZoneSubscriptionRatePlan? ratePlan,
     super.lifecycle,
     super.dependsOn,
@@ -76,7 +78,7 @@ final class CloudflareZoneSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            if (frequency != null) 'frequency': frequency,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (ratePlan != null) 'rate_plan': TfArg.literal(ratePlan.encode()),
          },
        );

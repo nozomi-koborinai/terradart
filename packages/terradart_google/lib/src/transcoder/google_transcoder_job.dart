@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_transcoder_job`.
 const Set<String> _googleTranscoderJobSensitive = <String>{};
 
@@ -617,10 +619,10 @@ final class TranscoderJobConfigOverlaysImage {
 final class TranscoderJobConfigPubsubDestination {
   const TranscoderJobConfigPubsubDestination({this.topic});
 
-  final TfArg<String>? topic;
+  final RefTo<GooglePubsubTopic>? topic;
 
   Map<String, Object?> encode() => {
-    if (topic != null) 'topic': topic!.toTfJson(),
+    if (topic != null) 'topic': topic!.encodeAs('id').toTfJson(),
   };
 }
 

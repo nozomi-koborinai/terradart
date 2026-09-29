@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_appconfig_extension`.
 const Set<String> _awsAppconfigExtensionSensitive = <String>{};
 
@@ -59,14 +61,14 @@ final class AppconfigExtensionActionPointAction {
 
   final TfArg<String> name;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<String> uri;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
     'name': name.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     'uri': uri.toTfJson(),
   };
 }

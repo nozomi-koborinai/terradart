@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_s3files_mount_target`.
 const Set<String> _awsS3filesMountTargetSensitive = <String>{};
 
@@ -28,8 +31,8 @@ final class AwsS3filesMountTarget extends Resource {
     TfArg<String>? ipv4Address,
     TfArg<String>? ipv6Address,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroups,
-    required TfArg<String> subnetId,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
+    required RefTo<AwsSubnet> subnetId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -42,8 +45,9 @@ final class AwsS3filesMountTarget extends Resource {
            if (ipv4Address != null) 'ipv4_address': ipv4Address,
            if (ipv6Address != null) 'ipv6_address': ipv6Address,
            if (region != null) 'region': region,
-           if (securityGroups != null) 'security_groups': securityGroups,
-           'subnet_id': subnetId,
+           if (securityGroups != null)
+             'security_groups': securityGroups.encodeAs('id'),
+           'subnet_id': subnetId.encodeAs('id'),
          },
        );
 

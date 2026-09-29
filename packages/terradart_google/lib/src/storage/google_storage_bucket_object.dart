@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_bucket_object`.
 const Set<String> _googleStorageBucketObjectSensitive = <String>{
   'content',
@@ -215,7 +218,7 @@ final class GoogleStorageBucketObject extends Resource {
 
   GoogleStorageBucketObject({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> name,
     required StorageBucketObjectBucketObjectContent body,
     TfArg<String>? contentType,
@@ -224,7 +227,7 @@ final class GoogleStorageBucketObject extends Resource {
     TfArg<String>? contentEncoding,
     TfArg<String>? contentLanguage,
     TfArg<BucketObjectStorageClass>? storageClass,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<Map<String, String>>? metadata,
     TfArg<bool>? eventBasedHold,
     TfArg<bool>? temporaryHold,
@@ -241,7 +244,7 @@ final class GoogleStorageBucketObject extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('name'),
            'name': name,
            if (contentType != null) 'content_type': contentType,
            if (cacheControl != null) 'cache_control': cacheControl,
@@ -250,7 +253,7 @@ final class GoogleStorageBucketObject extends Resource {
            if (contentEncoding != null) 'content_encoding': contentEncoding,
            if (contentLanguage != null) 'content_language': contentLanguage,
            if (storageClass != null) 'storage_class': storageClass,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            if (metadata != null) 'metadata': metadata,
            if (eventBasedHold != null) 'event_based_hold': eventBasedHold,
            if (temporaryHold != null) 'temporary_hold': temporaryHold,

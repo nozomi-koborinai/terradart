@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_user_group_members`.
 const Set<String> _cloudflareUserGroupMembersSensitive = <String>{};
 
@@ -38,7 +40,7 @@ final class CloudflareUserGroupMembers extends Resource {
 
   CloudflareUserGroupMembers({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<UserGroupMembersDirection>? direction,
     TfArg<String>? fuzzyEmail,
     TfArg<num>? page,
@@ -52,7 +54,7 @@ final class CloudflareUserGroupMembers extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (direction != null) 'direction': direction,
            if (fuzzyEmail != null) 'fuzzy_email': fuzzyEmail,
            if (page != null) 'page': page,

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_connectivity_settings`.
 const Set<String> _cloudflareZeroTrustConnectivitySettingsSensitive =
     <String>{};
@@ -17,7 +19,7 @@ final class CloudflareZeroTrustConnectivitySettings extends Resource {
 
   CloudflareZeroTrustConnectivitySettings({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? icmpProxyEnabled,
     TfArg<bool>? offrampWarpEnabled,
     super.lifecycle,
@@ -27,7 +29,7 @@ final class CloudflareZeroTrustConnectivitySettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (icmpProxyEnabled != null) 'icmp_proxy_enabled': icmpProxyEnabled,
            if (offrampWarpEnabled != null)
              'offramp_warp_enabled': offrampWarpEnabled,

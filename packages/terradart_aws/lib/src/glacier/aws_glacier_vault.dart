@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_glacier_vault`.
 const Set<String> _awsGlacierVaultSensitive = <String>{};
 
@@ -18,11 +20,11 @@ final class GlacierVaultNotification {
 
   final List<TfArg<GlacierVaultNotificationEvents>> events;
 
-  final TfArg<String> snsTopic;
+  final RefTo<AwsSnsTopic> snsTopic;
 
   Map<String, Object?> encode() => {
     'events': [for (final e in events) e.toTfJson()],
-    'sns_topic': snsTopic.toTfJson(),
+    'sns_topic': snsTopic.encodeAs('arn').toTfJson(),
   };
 }
 

@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_launch_template`.
 const Set<String> _awsLaunchTemplateSensitive = <String>{};
 
@@ -331,7 +335,7 @@ final class LaunchTemplateBlockDeviceMappingsEbs {
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? snapshotId;
 
@@ -348,7 +352,7 @@ final class LaunchTemplateBlockDeviceMappingsEbs {
       'delete_on_termination': deleteOnTermination!.toTfJson(),
     if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
     if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
     if (throughput != null) 'throughput': throughput!.toTfJson(),
     if (volumeInitializationRate != null)
@@ -1499,9 +1503,9 @@ final class LaunchTemplateNetworkInterfaces {
 
   final TfArg<String>? privateIpAddress;
 
-  final TfArg<List<Object?>>? securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
-  final TfArg<String>? subnetId;
+  final RefTo<AwsSubnet>? subnetId;
 
   final LaunchTemplateNetworkInterfacesConnectionTrackingSpecification?
   connectionTrackingSpecification;
@@ -1538,8 +1542,9 @@ final class LaunchTemplateNetworkInterfaces {
     if (primaryIpv6 != null) 'primary_ipv6': primaryIpv6!.toTfJson(),
     if (privateIpAddress != null)
       'private_ip_address': privateIpAddress!.toTfJson(),
-    if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.toTfJson(),
+    if (securityGroups != null)
+      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
     if (connectionTrackingSpecification != null)
       'connection_tracking_specification': connectionTrackingSpecification!
           .encode(),

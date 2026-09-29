@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_network_acl_association`.
 const Set<String> _awsNetworkAclAssociationSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsNetworkAclAssociation extends Resource {
     required super.localName,
     required TfArg<String> networkAclId,
     TfArg<String>? region,
-    required TfArg<String> subnetId,
+    required RefTo<AwsSubnet> subnetId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -24,7 +26,7 @@ final class AwsNetworkAclAssociation extends Resource {
          argMap: {
            'network_acl_id': networkAclId,
            if (region != null) 'region': region,
-           'subnet_id': subnetId,
+           'subnet_id': subnetId.encodeAs('id'),
          },
        );
 

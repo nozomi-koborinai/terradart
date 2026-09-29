@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_redshift_cluster`.
 const Set<String> _awsRedshiftClusterSensitive = <String>{
   'master_password',
@@ -204,7 +207,7 @@ final class AwsRedshiftCluster extends Resource {
     TfArg<bool>? enhancedVpcRouting,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<List<String>>? iamRoles,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? maintenanceTrackName,
     RedshiftClusterMasterPassword? masterPassword,
     TfArg<num>? manualSnapshotRetentionPeriod,
@@ -223,7 +226,7 @@ final class AwsRedshiftCluster extends Resource {
     RedshiftClusterSnapshot? snapshot,
     TfArg<String>? snapshotClusterIdentifier,
     TfArg<Map<String, String>>? tags,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -260,7 +263,7 @@ final class AwsRedshiftCluster extends Resource {
            if (finalSnapshotIdentifier != null)
              'final_snapshot_identifier': finalSnapshotIdentifier,
            if (iamRoles != null) 'iam_roles': iamRoles,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (maintenanceTrackName != null)
              'maintenance_track_name': maintenanceTrackName,
            ...?masterPassword?.argMap,
@@ -288,7 +291,7 @@ final class AwsRedshiftCluster extends Resource {
              'snapshot_cluster_identifier': snapshotClusterIdentifier,
            if (tags != null) 'tags': tags,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
          },
        );
 

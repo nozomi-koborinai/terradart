@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_network_connectivity_internal_range`.
 const Set<String> _googleNetworkConnectivityInternalRangeSensitive = <String>{};
 
@@ -88,7 +90,7 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
   GoogleNetworkConnectivityInternalRange({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     required TfArg<NetworkConnectivityInternalRangeUsage> usage,
     required TfArg<NetworkConnectivityInternalRangePeering> peering,
     TfArg<String>? ipCidrRange,
@@ -107,7 +109,7 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'network': network,
+           'network': network.encodeAs('id'),
            'usage': usage,
            'peering': peering,
            if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange,

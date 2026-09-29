@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_cache_reserve`.
 const Set<String> _cloudflareZoneCacheReserveSensitive = <String>{};
 
@@ -27,14 +29,17 @@ final class CloudflareZoneCacheReserve extends Resource {
   CloudflareZoneCacheReserve({
     required super.localName,
     TfArg<ZoneCacheReserveValue>? value,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (value != null) 'value': value, 'zone_id': zoneId},
+         argMap: {
+           if (value != null) 'value': value,
+           'zone_id': zoneId.encodeAs('id'),
+         },
        );
 
   @override

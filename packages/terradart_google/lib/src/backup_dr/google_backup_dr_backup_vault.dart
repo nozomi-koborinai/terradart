@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_backup_dr_backup_vault`.
 const Set<String> _googleBackupDrBackupVaultSensitive = <String>{};
 
@@ -39,10 +41,11 @@ enum BackupDrBackupVaultBackupRetentionInheritance implements TerraformEnum {
 final class BackupDrBackupVaultEncryptionConfig {
   const BackupDrBackupVaultEncryptionConfig({this.kmsKeyName});
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
   };
 }
 

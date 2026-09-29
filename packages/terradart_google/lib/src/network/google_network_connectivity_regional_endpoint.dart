@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_network_connectivity_regional_endpoint`.
 const Set<String> _googleNetworkConnectivityRegionalEndpointSensitive =
     <String>{};
@@ -47,8 +50,8 @@ final class GoogleNetworkConnectivityRegionalEndpoint extends Resource {
     required TfArg<String> location,
     required TfArg<String> targetGoogleApi,
     required TfArg<NetworkConnectivityRegionalEndpointAccessType> accessType,
-    TfArg<String>? network,
-    TfArg<String>? subnetwork,
+    RefTo<GoogleComputeNetwork>? network,
+    RefTo<GoogleComputeSubnetwork>? subnetwork,
     TfArg<String>? address,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
@@ -64,8 +67,8 @@ final class GoogleNetworkConnectivityRegionalEndpoint extends Resource {
            'location': location,
            'target_google_api': targetGoogleApi,
            'access_type': accessType,
-           if (network != null) 'network': network,
-           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (network != null) 'network': network.encodeAs('id'),
+           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
            if (address != null) 'address': address,
            if (description != null) 'description': description,
            if (labels != null) 'labels': labels,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_object`.
 const Set<String> _awsS3ObjectSensitive = <String>{};
 
@@ -262,7 +264,7 @@ final class AwsS3Object extends Resource {
   AwsS3Object({
     required super.localName,
     TfArg<S3ObjectAcl>? acl,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<bool>? bucketKeyEnabled,
     TfArg<String>? cacheControl,
     TfArg<S3ObjectChecksumAlgorithm>? checksumAlgorithm,
@@ -293,7 +295,7 @@ final class AwsS3Object extends Resource {
          terraformType: tfType,
          argMap: {
            if (acl != null) 'acl': acl,
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (bucketKeyEnabled != null) 'bucket_key_enabled': bucketKeyEnabled,
            if (cacheControl != null) 'cache_control': cacheControl,
            if (checksumAlgorithm != null)

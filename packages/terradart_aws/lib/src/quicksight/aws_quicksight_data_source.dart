@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_quicksight_data_source`.
 const Set<String> _awsQuicksightDataSourceSensitive = <String>{
   'credentials.credential_pair.password',
@@ -214,12 +217,12 @@ final class QuicksightDataSourceParametersAmazonElasticsearch {
 final class QuicksightDataSourceParametersAthena {
   const QuicksightDataSourceParametersAthena({this.roleArn, this.workGroup});
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<String>? workGroup;
 
   Map<String, Object?> encode() => {
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (workGroup != null) 'work_group': workGroup!.toTfJson(),
   };
 }
@@ -487,13 +490,13 @@ final class QuicksightDataSourceParametersS3 {
     required this.manifestFileLocation,
   });
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final QuicksightDataSourceParametersS3ManifestFileLocation
   manifestFileLocation;
 
   Map<String, Object?> encode() => {
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     'manifest_file_location': manifestFileLocation.encode(),
   };
 }
@@ -507,12 +510,12 @@ final class QuicksightDataSourceParametersS3ManifestFileLocation {
     required this.key,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> key;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),
   };
 }

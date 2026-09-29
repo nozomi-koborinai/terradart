@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_r2_data_catalog`.
 const Set<String> _cloudflareR2DataCatalogSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareR2DataCatalog extends Resource {
 
   CloudflareR2DataCatalog({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     super.lifecycle,
     super.dependsOn,
@@ -24,7 +26,10 @@ final class CloudflareR2DataCatalog extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'bucket_name': bucketName},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'bucket_name': bucketName,
+         },
        );
 
   @override

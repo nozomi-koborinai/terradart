@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sqs_queue`.
 const Set<String> _awsSqsQueueSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class AwsSqsQueue extends Resource {
     TfArg<bool>? fifoQueue,
     TfArg<String>? fifoThroughputLimit,
     TfArg<num>? kmsDataKeyReusePeriodSeconds,
-    TfArg<String>? kmsMasterKeyId,
+    RefTo<AwsKmsKey>? kmsMasterKeyId,
     TfArg<num>? maxMessageSize,
     TfArg<num>? messageRetentionSeconds,
     TfArg<String>? name,
@@ -48,7 +50,8 @@ final class AwsSqsQueue extends Resource {
              'fifo_throughput_limit': fifoThroughputLimit,
            if (kmsDataKeyReusePeriodSeconds != null)
              'kms_data_key_reuse_period_seconds': kmsDataKeyReusePeriodSeconds,
-           if (kmsMasterKeyId != null) 'kms_master_key_id': kmsMasterKeyId,
+           if (kmsMasterKeyId != null)
+             'kms_master_key_id': kmsMasterKeyId.encodeAs('arn'),
            if (maxMessageSize != null) 'max_message_size': maxMessageSize,
            if (messageRetentionSeconds != null)
              'message_retention_seconds': messageRetentionSeconds,

@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_data_quality_job_definition`.
 const Set<String> _awsSagemakerDataQualityJobDefinitionSensitive = <String>{};
 
@@ -295,13 +300,13 @@ final class SagemakerDataQualityJobDefinitionDataQualityJobOutputConfig {
     required this.monitoringOutputs,
   });
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigMonitoringOutputs
   monitoringOutputs;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     'monitoring_outputs': monitoringOutputs.encode(),
   };
 }
@@ -582,13 +587,13 @@ final class SagemakerDataQualityJobDefinitionNetworkConfigVpcConfig {
     required this.subnets,
   });
 
-  final TfArg<List<Object?>> securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    'security_group_ids': securityGroupIds.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'security_group_ids': securityGroupIds.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
@@ -616,7 +621,7 @@ final class AwsSagemakerDataQualityJobDefinition extends Resource {
     required super.localName,
     TfArg<String>? name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required SagemakerDataQualityJobDefinitionDataQualityAppSpecification
     dataQualityAppSpecification,
@@ -638,7 +643,7 @@ final class AwsSagemakerDataQualityJobDefinition extends Resource {
          argMap: {
            if (name != null) 'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            'data_quality_app_specification': TfArg.literal(
              dataQualityAppSpecification.encode(),

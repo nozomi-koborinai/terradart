@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_certificate_authorities_hostname_associations`.
 const Set<String>
 _cloudflareCertificateAuthoritiesHostnameAssociationsSensitive = <String>{};
@@ -21,7 +23,7 @@ final class CloudflareCertificateAuthoritiesHostnameAssociations
     required super.localName,
     TfArg<List<String>>? hostnames,
     TfArg<String>? mtlsCertificateId,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -32,7 +34,7 @@ final class CloudflareCertificateAuthoritiesHostnameAssociations
            if (hostnames != null) 'hostnames': hostnames,
            if (mtlsCertificateId != null)
              'mtls_certificate_id': mtlsCertificateId,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

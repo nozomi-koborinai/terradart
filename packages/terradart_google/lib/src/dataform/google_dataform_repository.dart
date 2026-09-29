@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_dataform_repository`.
 const Set<String> _googleDataformRepositorySensitive = <String>{};
 
@@ -49,8 +52,8 @@ final class GoogleDataformRepository extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<String>? displayName,
-    TfArg<String>? serviceAccount,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleServiceAccount>? serviceAccount,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<String>? npmrcEnvironmentVariablesSecretVersion,
     TfArg<Map<String, dynamic>>? workspaceCompilationOverrides,
     TfArg<Map<String, String>>? labels,
@@ -66,8 +69,9 @@ final class GoogleDataformRepository extends Resource {
            'name': name,
            if (region != null) 'region': region,
            if (displayName != null) 'display_name': displayName,
-           if (serviceAccount != null) 'service_account': serviceAccount,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (serviceAccount != null)
+             'service_account': serviceAccount.encodeAs('email'),
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            if (npmrcEnvironmentVariablesSecretVersion != null)
              'npmrc_environment_variables_secret_version':
                  npmrcEnvironmentVariablesSecretVersion,

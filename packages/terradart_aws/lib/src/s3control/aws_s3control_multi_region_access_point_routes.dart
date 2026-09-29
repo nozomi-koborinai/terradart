@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3control_multi_region_access_point_routes`.
 const Set<String> _awsS3controlMultiRegionAccessPointRoutesSensitive =
     <String>{};
@@ -18,14 +20,14 @@ final class S3controlMultiRegionAccessPointRoutesRoute {
     required this.trafficDialPercentage,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> region;
 
   final TfArg<num> trafficDialPercentage;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'region': region.toTfJson(),
     'traffic_dial_percentage': trafficDialPercentage.toTfJson(),
   };

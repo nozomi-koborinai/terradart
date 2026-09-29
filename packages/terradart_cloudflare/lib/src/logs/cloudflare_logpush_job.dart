@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_logpush_job`.
 const Set<String> _cloudflareLogpushJobSensitive = <String>{
   'destination_conf',
@@ -174,7 +177,7 @@ final class CloudflareLogpushJob extends Resource {
 
   CloudflareLogpushJob({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<LogpushJobDataset>? dataset,
     required TfArg<String> destinationConf,
     TfArg<bool>? enabled,
@@ -188,7 +191,7 @@ final class CloudflareLogpushJob extends Resource {
     TfArg<num>? maxUploadRecords,
     TfArg<String>? name,
     TfArg<String>? ownershipChallenge,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     LogpushJobOutputOptions? outputOptions,
     super.lifecycle,
     super.dependsOn,
@@ -197,7 +200,7 @@ final class CloudflareLogpushJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
            if (dataset != null) 'dataset': dataset,
            'destination_conf': destinationConf,
            if (enabled != null) 'enabled': enabled,
@@ -214,7 +217,7 @@ final class CloudflareLogpushJob extends Resource {
            if (name != null) 'name': name,
            if (ownershipChallenge != null)
              'ownership_challenge': ownershipChallenge,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
            if (outputOptions != null)
              'output_options': TfArg.literal(outputOptions.encode()),
          },

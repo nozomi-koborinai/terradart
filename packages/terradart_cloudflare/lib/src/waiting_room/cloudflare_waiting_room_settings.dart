@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_waiting_room_settings`.
 const Set<String> _cloudflareWaitingRoomSettingsSensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class CloudflareWaitingRoomSettings extends Resource {
   CloudflareWaitingRoomSettings({
     required super.localName,
     TfArg<bool>? searchEngineCrawlerBypass,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -27,7 +29,7 @@ final class CloudflareWaitingRoomSettings extends Resource {
          argMap: {
            if (searchEngineCrawlerBypass != null)
              'search_engine_crawler_bypass': searchEngineCrawlerBypass,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

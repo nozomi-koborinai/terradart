@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_dms_endpoint`.
 const Set<String> _awsDmsEndpointSensitive = <String>{
   'kafka_settings.sasl_password',
@@ -888,7 +891,7 @@ final class DmsEndpointRedshiftSettings {
 
   final TfArg<String>? bucketFolder;
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<DmsEndpointRedshiftSettingsEncryptionMode>? encryptionMode;
 
@@ -898,7 +901,8 @@ final class DmsEndpointRedshiftSettings {
 
   Map<String, Object?> encode() => {
     if (bucketFolder != null) 'bucket_folder': bucketFolder!.toTfJson(),
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (encryptionMode != null) 'encryption_mode': encryptionMode!.toTfJson(),
     if (serverSideEncryptionKmsKeyId != null)
       'server_side_encryption_kms_key_id': serverSideEncryptionKmsKeyId!
@@ -930,7 +934,7 @@ final class AwsDmsEndpoint extends Resource {
     required TfArg<DmsEndpointEndpointType> endpointType,
     required TfArg<DmsEndpointEngineName> engineName,
     TfArg<String>? extraConnectionAttributes,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<String>? password,
     TfArg<bool>? pauseReplicationTasks,
     TfArg<num>? port,
@@ -965,7 +969,7 @@ final class AwsDmsEndpoint extends Resource {
            'engine_name': engineName,
            if (extraConnectionAttributes != null)
              'extra_connection_attributes': extraConnectionAttributes,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (password != null) 'password': password,
            if (pauseReplicationTasks != null)
              'pause_replication_tasks': pauseReplicationTasks,

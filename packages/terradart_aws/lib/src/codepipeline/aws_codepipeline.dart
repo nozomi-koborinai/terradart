@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_codepipeline`.
 const Set<String> _awsCodepipelineSensitive = <String>{};
 
@@ -168,7 +170,7 @@ final class CodepipelineStageAction {
 
   final TfArg<String>? region;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<num>? runOrder;
 
@@ -193,7 +195,7 @@ final class CodepipelineStageAction {
     'owner': owner.toTfJson(),
     'provider': provider.toTfJson(),
     if (region != null) 'region': region!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (runOrder != null) 'run_order': runOrder!.toTfJson(),
     if (timeoutInMinutes != null)
       'timeout_in_minutes': timeoutInMinutes!.toTfJson(),
@@ -305,7 +307,7 @@ final class CodepipelineStageBeforeEntryConditionRule {
 
   final TfArg<String>? region;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<num>? timeoutInMinutes;
 
@@ -317,7 +319,7 @@ final class CodepipelineStageBeforeEntryConditionRule {
     if (inputArtifacts != null) 'input_artifacts': inputArtifacts!.toTfJson(),
     'name': name.toTfJson(),
     if (region != null) 'region': region!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (timeoutInMinutes != null)
       'timeout_in_minutes': timeoutInMinutes!.toTfJson(),
     'rule_type_id': ruleTypeId.encode(),
@@ -428,7 +430,7 @@ final class CodepipelineStageOnFailureConditionRule {
 
   final TfArg<String>? region;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<num>? timeoutInMinutes;
 
@@ -440,7 +442,7 @@ final class CodepipelineStageOnFailureConditionRule {
     if (inputArtifacts != null) 'input_artifacts': inputArtifacts!.toTfJson(),
     'name': name.toTfJson(),
     if (region != null) 'region': region!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (timeoutInMinutes != null)
       'timeout_in_minutes': timeoutInMinutes!.toTfJson(),
     'rule_type_id': ruleTypeId.encode(),
@@ -552,7 +554,7 @@ final class CodepipelineStageOnSuccessConditionRule {
 
   final TfArg<String>? region;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<num>? timeoutInMinutes;
 
@@ -564,7 +566,7 @@ final class CodepipelineStageOnSuccessConditionRule {
     if (inputArtifacts != null) 'input_artifacts': inputArtifacts!.toTfJson(),
     'name': name.toTfJson(),
     if (region != null) 'region': region!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (timeoutInMinutes != null)
       'timeout_in_minutes': timeoutInMinutes!.toTfJson(),
     'rule_type_id': ruleTypeId.encode(),
@@ -815,7 +817,7 @@ final class AwsCodepipeline extends Resource {
     required TfArg<String> name,
     TfArg<CodepipelinePipelineType>? pipelineType,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required List<CodepipelineArtifactStore> artifactStore,
     required List<CodepipelineStage> stage,
@@ -832,7 +834,7 @@ final class AwsCodepipeline extends Resource {
            'name': name,
            if (pipelineType != null) 'pipeline_type': pipelineType,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            'artifact_store': TfArg.literal([
              for (final e in artifactStore) e.encode(),

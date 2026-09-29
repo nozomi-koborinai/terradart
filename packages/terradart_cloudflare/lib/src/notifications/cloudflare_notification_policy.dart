@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_notification_policy`.
 const Set<String> _cloudflareNotificationPolicySensitive = <String>{};
 
@@ -389,7 +391,7 @@ final class CloudflareNotificationPolicy extends Resource {
 
   CloudflareNotificationPolicy({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? alertInterval,
     required TfArg<NotificationPolicyAlertType> alertType,
     TfArg<String>? description,
@@ -404,7 +406,7 @@ final class CloudflareNotificationPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (alertInterval != null) 'alert_interval': alertInterval,
            'alert_type': alertType,
            if (description != null) 'description': description,

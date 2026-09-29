@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+
 /// Sensitive field paths for `aws_vpclattice_service_network_vpc_association`.
 const Set<String> _awsVpclatticeServiceNetworkVpcAssociationSensitive =
     <String>{};
@@ -55,7 +57,7 @@ final class AwsVpclatticeServiceNetworkVpcAssociation extends Resource {
     required super.localName,
     TfArg<bool>? privateDnsEnabled,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     required TfArg<String> serviceNetworkIdentifier,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> vpcIdentifier,
@@ -70,7 +72,8 @@ final class AwsVpclatticeServiceNetworkVpcAssociation extends Resource {
            if (privateDnsEnabled != null)
              'private_dns_enabled': privateDnsEnabled,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            'service_network_identifier': serviceNetworkIdentifier,
            if (tags != null) 'tags': tags,
            'vpc_identifier': vpcIdentifier,

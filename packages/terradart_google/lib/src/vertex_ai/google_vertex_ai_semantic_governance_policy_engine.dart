@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_vertex_ai_semantic_governance_policy_engine`.
 const Set<String> _googleVertexAiSemanticGovernancePolicyEngineSensitive =
     <String>{};
@@ -26,17 +29,17 @@ final class VertexAiSemanticGovernancePolicyEngineGatewayConfigs {
 
   final TfArg<String> name;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   Map<String, Object?> encode() => {
     if (allowedProjects != null)
       'allowed_projects': allowedProjects!.toTfJson(),
     if (dnsZoneName != null) 'dns_zone_name': dnsZoneName!.toTfJson(),
     'name': name.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
+    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
   };
 }
 

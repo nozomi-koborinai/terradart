@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_gateway_logging`.
 const Set<String> _cloudflareZeroTrustGatewayLoggingSensitive = <String>{};
 
@@ -93,7 +95,7 @@ final class CloudflareZeroTrustGatewayLogging extends Resource {
 
   CloudflareZeroTrustGatewayLogging({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? redactPii,
     ZeroTrustGatewayLoggingSettingsByRuleType? settingsByRuleType,
     super.lifecycle,
@@ -103,7 +105,7 @@ final class CloudflareZeroTrustGatewayLogging extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (redactPii != null) 'redact_pii': redactPii,
            if (settingsByRuleType != null)
              'settings_by_rule_type': TfArg.literal(

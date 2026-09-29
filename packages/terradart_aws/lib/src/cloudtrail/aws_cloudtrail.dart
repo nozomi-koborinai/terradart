@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_cloudtrail`.
 const Set<String> _awsCloudtrailSensitive = <String>{};
 
@@ -266,10 +269,10 @@ final class AwsCloudtrail extends Resource {
     TfArg<bool>? includeGlobalServiceEvents,
     TfArg<bool>? isMultiRegionTrail,
     TfArg<bool>? isOrganizationTrail,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> s3BucketName,
+    required RefTo<AwsS3Bucket> s3BucketName,
     TfArg<String>? s3KeyPrefix,
     TfArg<String>? snsTopicName,
     TfArg<Map<String, String>>? tags,
@@ -295,10 +298,10 @@ final class AwsCloudtrail extends Resource {
              'is_multi_region_trail': isMultiRegionTrail,
            if (isOrganizationTrail != null)
              'is_organization_trail': isOrganizationTrail,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
-           's3_bucket_name': s3BucketName,
+           's3_bucket_name': s3BucketName.encodeAs('id'),
            if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix,
            if (snsTopicName != null) 'sns_topic_name': snsTopicName,
            if (tags != null) 'tags': tags,

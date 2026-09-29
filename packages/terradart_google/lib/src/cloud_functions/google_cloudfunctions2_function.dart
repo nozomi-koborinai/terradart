@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_cloudfunctions2_function`.
 const Set<String> _googleCloudfunctions2FunctionSensitive = <String>{};
 
@@ -678,7 +680,7 @@ final class GoogleCloudfunctions2Function extends Resource {
     Cloudfunctions2FunctionServiceConfig? serviceConfig,
     Cloudfunctions2FunctionEventTrigger? eventTrigger,
     TfArg<Map<String, String>>? labels,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -697,7 +699,7 @@ final class GoogleCloudfunctions2Function extends Resource {
            if (eventTrigger != null)
              'event_trigger': TfArg.literal([eventTrigger.encode()]),
            if (labels != null) 'labels': labels,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            if (project != null) 'project': project,
          },
        );

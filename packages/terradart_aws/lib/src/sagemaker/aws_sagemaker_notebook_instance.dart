@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_notebook_instance`.
 const Set<String> _awsSagemakerNotebookInstanceSensitive = <String>{};
 
@@ -267,15 +272,15 @@ final class AwsSagemakerNotebookInstance extends Resource {
     TfArg<String>? defaultCodeRepository,
     TfArg<SagemakerNotebookInstanceDirectInternetAccess>? directInternetAccess,
     required TfArg<SagemakerNotebookInstanceInstanceType> instanceType,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? lifecycleConfigName,
     required TfArg<String> name,
     TfArg<String>? platformIdentifier,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<SagemakerNotebookInstanceRootAccess>? rootAccess,
-    TfArg<List<String>>? securityGroups,
-    TfArg<String>? subnetId,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
+    RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
     TfArg<num>? volumeSize,
     SagemakerNotebookInstanceInstanceMetadataServiceConfiguration?
@@ -294,17 +299,18 @@ final class AwsSagemakerNotebookInstance extends Resource {
            if (directInternetAccess != null)
              'direct_internet_access': directInternetAccess,
            'instance_type': instanceType,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (lifecycleConfigName != null)
              'lifecycle_config_name': lifecycleConfigName,
            'name': name,
            if (platformIdentifier != null)
              'platform_identifier': platformIdentifier,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (rootAccess != null) 'root_access': rootAccess,
-           if (securityGroups != null) 'security_groups': securityGroups,
-           if (subnetId != null) 'subnet_id': subnetId,
+           if (securityGroups != null)
+             'security_groups': securityGroups.encodeAs('id'),
+           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (volumeSize != null) 'volume_size': volumeSize,
            if (instanceMetadataServiceConfiguration != null)

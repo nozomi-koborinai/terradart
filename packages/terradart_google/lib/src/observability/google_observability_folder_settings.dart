@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_observability_folder_settings`.
 const Set<String> _googleObservabilityFolderSettingsSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class GoogleObservabilityFolderSettings extends Resource {
     required super.localName,
     TfArg<String>? defaultStorageLocation,
     required TfArg<String> folder,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required TfArg<String> location,
     super.lifecycle,
     super.dependsOn,
@@ -28,7 +30,7 @@ final class GoogleObservabilityFolderSettings extends Resource {
            if (defaultStorageLocation != null)
              'default_storage_location': defaultStorageLocation,
            'folder': folder,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
            'location': location,
          },
        );

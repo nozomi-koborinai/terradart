@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_mskconnect_custom_plugin`.
 const Set<String> _awsMskconnectCustomPluginSensitive = <String>{};
 
@@ -38,14 +40,14 @@ final class MskconnectCustomPluginLocationS3 {
     this.objectVersion,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<String> fileKey;
 
   final TfArg<String>? objectVersion;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'file_key': fileKey.toTfJson(),
     if (objectVersion != null) 'object_version': objectVersion!.toTfJson(),
   };

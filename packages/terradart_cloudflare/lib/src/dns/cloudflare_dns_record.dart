@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_dns_record`.
 const Set<String> _cloudflareDnsRecordSensitive = <String>{};
 
@@ -311,7 +313,7 @@ final class CloudflareDnsRecord extends Resource {
 
   CloudflareDnsRecord({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required TfArg<String> name,
     required TfArg<DnsRecordType> type,
     required TfArg<num> ttl,
@@ -329,7 +331,7 @@ final class CloudflareDnsRecord extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'name': name,
            'type': type,
            'ttl': ttl,

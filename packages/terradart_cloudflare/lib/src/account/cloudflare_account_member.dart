@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_account_member`.
 const Set<String> _cloudflareAccountMemberSensitive = <String>{};
 
@@ -144,7 +146,7 @@ final class CloudflareAccountMember extends Resource {
 
   CloudflareAccountMember({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> email,
     required AccountMemberAccess access,
     TfArg<AccountMemberStatus>? status,
@@ -155,7 +157,7 @@ final class CloudflareAccountMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'email': email,
            ...access.argMap,
            if (status != null) 'status': status,

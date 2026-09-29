@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_magic_transit_connector`.
 const Set<String> _cloudflareMagicTransitConnectorSensitive = <String>{
   'license_key',
@@ -39,7 +41,7 @@ final class CloudflareMagicTransitConnector extends Resource {
 
   CloudflareMagicTransitConnector({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? activated,
     TfArg<num>? interruptWindowDurationHours,
     TfArg<num>? interruptWindowHourOfDay,
@@ -53,7 +55,7 @@ final class CloudflareMagicTransitConnector extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (activated != null) 'activated': activated,
            if (interruptWindowDurationHours != null)
              'interrupt_window_duration_hours': interruptWindowDurationHours,

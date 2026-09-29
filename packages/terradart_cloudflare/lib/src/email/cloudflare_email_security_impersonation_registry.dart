@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_email_security_impersonation_registry`.
 const Set<String> _cloudflareEmailSecurityImpersonationRegistrySensitive =
     <String>{};
@@ -30,7 +32,7 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
 
   CloudflareEmailSecurityImpersonationRegistry({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comments,
     TfArg<num>? directoryId,
     TfArg<num>? directoryNodeId,
@@ -46,7 +48,7 @@ final class CloudflareEmailSecurityImpersonationRegistry extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (comments != null) 'comments': comments,
            if (directoryId != null) 'directory_id': directoryId,
            if (directoryNodeId != null) 'directory_node_id': directoryNodeId,

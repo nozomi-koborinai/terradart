@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_datastream_stream`.
 const Set<String> _googleDatastreamStreamSensitive = <String>{};
 
@@ -880,7 +884,7 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig
     required this.tableFormat,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
   final TfArg<String> connectionName;
 
@@ -891,7 +895,7 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig
   final TfArg<String> tableFormat;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('name').toTfJson(),
     'connection_name': connectionName.toTfJson(),
     'file_format': fileFormat.toTfJson(),
     if (rootPath != null) 'root_path': rootPath!.toTfJson(),
@@ -916,9 +920,11 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTarg
     required this.datasetId,
   });
 
-  final TfArg<String> datasetId;
+  final RefTo<GoogleBigqueryDataset> datasetId;
 
-  Map<String, Object?> encode() => {'dataset_id': datasetId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'dataset_id': datasetId.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `destination_config.bigquery_destination_config.source_hierarchy_datasets` block of
@@ -953,14 +959,15 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHier
 
   final TfArg<String>? datasetIdPrefix;
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<String> location;
 
   Map<String, Object?> encode() => {
     if (datasetIdPrefix != null)
       'dataset_id_prefix': datasetIdPrefix!.toTfJson(),
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     'location': location.toTfJson(),
   };
 }

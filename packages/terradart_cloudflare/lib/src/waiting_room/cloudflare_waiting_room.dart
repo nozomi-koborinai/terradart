@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_waiting_room`.
 const Set<String> _cloudflareWaitingRoomSensitive = <String>{};
 
@@ -181,7 +183,7 @@ final class CloudflareWaitingRoom extends Resource {
     required TfArg<num> totalActiveUsers,
     TfArg<WaitingRoomTurnstileAction>? turnstileAction,
     TfArg<WaitingRoomTurnstileMode>? turnstileMode,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     List<WaitingRoomAdditionalRoutes>? additionalRoutes,
     WaitingRoomCookieAttributes? cookieAttributes,
     super.lifecycle,
@@ -217,7 +219,7 @@ final class CloudflareWaitingRoom extends Resource {
            'total_active_users': totalActiveUsers,
            if (turnstileAction != null) 'turnstile_action': turnstileAction,
            if (turnstileMode != null) 'turnstile_mode': turnstileMode,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (additionalRoutes != null)
              'additional_routes': TfArg.literal([
                for (final e in additionalRoutes) e.encode(),

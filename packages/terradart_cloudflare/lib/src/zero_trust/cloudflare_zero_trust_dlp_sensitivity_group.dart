@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_sensitivity_group`.
 const Set<String> _cloudflareZeroTrustDlpSensitivityGroupSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareZeroTrustDlpSensitivityGroup extends Resource {
 
   CloudflareZeroTrustDlpSensitivityGroup({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<String> name,
     super.lifecycle,
@@ -26,7 +28,7 @@ final class CloudflareZeroTrustDlpSensitivityGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (description != null) 'description': description,
            'name': name,
          },

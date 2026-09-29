@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_tag`.
 const Set<String> _cloudflareZeroTrustAccessTagSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class CloudflareZeroTrustAccessTag extends Resource {
 
   CloudflareZeroTrustAccessTag({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     super.lifecycle,
     super.dependsOn,
@@ -20,7 +22,7 @@ final class CloudflareZeroTrustAccessTag extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'name': name},
+         argMap: {'account_id': accountId.encodeAs('id'), 'name': name},
        );
 
   @override

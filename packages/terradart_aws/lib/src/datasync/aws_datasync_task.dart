@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_datasync_task`.
 const Set<String> _awsDatasyncTaskSensitive = <String>{};
 
@@ -478,13 +481,13 @@ final class DatasyncTaskTaskReportConfigS3Destination {
 
   final TfArg<String> bucketAccessRoleArn;
 
-  final TfArg<String> s3BucketArn;
+  final RefTo<AwsS3Bucket> s3BucketArn;
 
   final TfArg<String>? subdirectory;
 
   Map<String, Object?> encode() => {
     'bucket_access_role_arn': bucketAccessRoleArn.toTfJson(),
-    's3_bucket_arn': s3BucketArn.toTfJson(),
+    's3_bucket_arn': s3BucketArn.encodeAs('arn').toTfJson(),
     if (subdirectory != null) 'subdirectory': subdirectory!.toTfJson(),
   };
 }
@@ -495,7 +498,7 @@ final class AwsDatasyncTask extends Resource {
 
   AwsDatasyncTask({
     required super.localName,
-    TfArg<String>? cloudwatchLogGroupArn,
+    RefTo<AwsCloudwatchLogGroup>? cloudwatchLogGroupArn,
     required TfArg<String> destinationLocationArn,
     TfArg<String>? name,
     TfArg<String>? region,
@@ -515,7 +518,7 @@ final class AwsDatasyncTask extends Resource {
          terraformType: tfType,
          argMap: {
            if (cloudwatchLogGroupArn != null)
-             'cloudwatch_log_group_arn': cloudwatchLogGroupArn,
+             'cloudwatch_log_group_arn': cloudwatchLogGroupArn.encodeAs('arn'),
            'destination_location_arn': destinationLocationArn,
            if (name != null) 'name': name,
            if (region != null) 'region': region,

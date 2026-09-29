@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_msk_vpc_connection`.
 const Set<String> _awsMskVpcConnectionSensitive = <String>{};
 
@@ -15,10 +18,10 @@ final class AwsMskVpcConnection extends Resource {
     required TfArg<String> authentication,
     required TfArg<List<String>> clientSubnets,
     TfArg<String>? region,
-    required TfArg<List<String>> securityGroups,
+    required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroups,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> targetClusterArn,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -29,10 +32,10 @@ final class AwsMskVpcConnection extends Resource {
            'authentication': authentication,
            'client_subnets': clientSubnets,
            if (region != null) 'region': region,
-           'security_groups': securityGroups,
+           'security_groups': securityGroups.encodeAs('id'),
            if (tags != null) 'tags': tags,
            'target_cluster_arn': targetClusterArn,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

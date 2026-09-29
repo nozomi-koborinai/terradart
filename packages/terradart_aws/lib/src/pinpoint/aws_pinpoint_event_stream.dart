@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_pinpoint_event_stream`.
 const Set<String> _awsPinpointEventStreamSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsPinpointEventStream extends Resource {
     required TfArg<String> applicationId,
     required TfArg<String> destinationStreamArn,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,7 +28,7 @@ final class AwsPinpointEventStream extends Resource {
            'application_id': applicationId,
            'destination_stream_arn': destinationStreamArn,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
          },
        );
 

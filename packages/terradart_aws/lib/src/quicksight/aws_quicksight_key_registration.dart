@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_quicksight_key_registration`.
 const Set<String> _awsQuicksightKeyRegistrationSensitive = <String>{};
 
@@ -18,11 +20,11 @@ final class QuicksightKeyRegistrationKeyRegistration {
 
   final TfArg<bool>? defaultKey;
 
-  final TfArg<String> keyArn;
+  final RefTo<AwsKmsKey> keyArn;
 
   Map<String, Object?> encode() => {
     if (defaultKey != null) 'default_key': defaultKey!.toTfJson(),
-    'key_arn': keyArn.toTfJson(),
+    'key_arn': keyArn.encodeAs('arn').toTfJson(),
   };
 }
 

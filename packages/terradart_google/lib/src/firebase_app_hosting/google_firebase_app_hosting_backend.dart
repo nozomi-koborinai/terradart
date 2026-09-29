@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_firebase_app_hosting_backend`.
 const Set<String> _googleFirebaseAppHostingBackendSensitive = <String>{};
 
@@ -107,7 +109,7 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
     required TfArg<String> backendId,
     required TfArg<String> location,
     required TfArg<String> appId,
-    required TfArg<String> serviceAccount,
+    required RefTo<GoogleServiceAccount> serviceAccount,
     required TfArg<AppHostingServingLocality> servingLocality,
     FirebaseAppHostingBackendAppHostingBackendCodebase? codebase,
     TfArg<String>? environment,
@@ -125,7 +127,7 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
            'backend_id': backendId,
            'location': location,
            'app_id': appId,
-           'service_account': serviceAccount,
+           'service_account': serviceAccount.encodeAs('email'),
            'serving_locality': servingLocality,
            if (codebase != null)
              'codebase': TfArg.literal([codebase.toArgMap()]),

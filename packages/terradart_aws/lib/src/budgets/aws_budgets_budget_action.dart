@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_budgets_budget_action`.
 const Set<String> _awsBudgetsBudgetActionSensitive = <String>{};
 
@@ -112,14 +114,14 @@ final class BudgetsBudgetActionDefinitionIamActionDefinition {
 
   final TfArg<String> policyArn;
 
-  final TfArg<List<Object?>>? roles;
+  final TfArg<List<RefTo<AwsIamRole>>>? roles;
 
   final TfArg<List<Object?>>? users;
 
   Map<String, Object?> encode() => {
     if (groups != null) 'groups': groups!.toTfJson(),
     'policy_arn': policyArn.toTfJson(),
-    if (roles != null) 'roles': roles!.toTfJson(),
+    if (roles != null) 'roles': roles!.encodeAs('name').toTfJson(),
     if (users != null) 'users': users!.toTfJson(),
   };
 }
@@ -219,7 +221,7 @@ final class AwsBudgetsBudgetAction extends Resource {
     required TfArg<BudgetsBudgetActionActionType> actionType,
     required TfArg<BudgetsBudgetActionApprovalModel> approvalModel,
     required TfArg<String> budgetName,
-    required TfArg<String> executionRoleArn,
+    required RefTo<AwsIamRole> executionRoleArn,
     required TfArg<BudgetsBudgetActionNotificationType> notificationType,
     TfArg<Map<String, String>>? tags,
     required BudgetsBudgetActionActionThreshold actionThreshold,
@@ -236,7 +238,7 @@ final class AwsBudgetsBudgetAction extends Resource {
            'action_type': actionType,
            'approval_model': approvalModel,
            'budget_name': budgetName,
-           'execution_role_arn': executionRoleArn,
+           'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'notification_type': notificationType,
            if (tags != null) 'tags': tags,
            'action_threshold': TfArg.literal(actionThreshold.encode()),

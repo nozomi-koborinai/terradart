@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_content_scanning`.
 const Set<String> _cloudflareContentScanningSensitive = <String>{};
 
@@ -28,14 +30,14 @@ final class CloudflareContentScanning extends Resource {
   CloudflareContentScanning({
     required super.localName,
     required TfArg<ContentScanningValue> value,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'value': value, 'zone_id': zoneId},
+         argMap: {'value': value, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

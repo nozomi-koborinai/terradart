@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_imagebuilder_workflow`.
 const Set<String> _awsImagebuilderWorkflowSensitive = <String>{};
 
@@ -85,7 +87,7 @@ final class AwsImagebuilderWorkflow extends Resource {
     TfArg<String>? changeDescription,
     required ImagebuilderWorkflowDocument document,
     TfArg<String>? description,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -102,7 +104,7 @@ final class AwsImagebuilderWorkflow extends Resource {
              'change_description': changeDescription,
            ...document.argMap,
            if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

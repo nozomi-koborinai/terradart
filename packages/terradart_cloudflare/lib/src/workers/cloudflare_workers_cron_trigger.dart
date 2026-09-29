@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_workers_cron_trigger`.
 const Set<String> _cloudflareWorkersCronTriggerSensitive = <String>{};
 
@@ -28,7 +30,7 @@ final class CloudflareWorkersCronTrigger extends Resource {
 
   CloudflareWorkersCronTrigger({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> scriptName,
     required List<WorkersCronTriggerSchedules> schedules,
     super.lifecycle,
@@ -38,7 +40,7 @@ final class CloudflareWorkersCronTrigger extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'script_name': scriptName,
            'schedules': TfArg.literal([for (final e in schedules) e.encode()]),
          },

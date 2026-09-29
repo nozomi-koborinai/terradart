@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_ebs_volume`.
 const Set<String> _awsEbsVolumeSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class AwsEbsVolume extends Resource {
     TfArg<bool>? encrypted,
     TfArg<bool>? finalSnapshot,
     TfArg<num>? iops,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<bool>? multiAttachEnabled,
     TfArg<String>? outpostArn,
     TfArg<String>? region,
@@ -37,7 +39,7 @@ final class AwsEbsVolume extends Resource {
            if (encrypted != null) 'encrypted': encrypted,
            if (finalSnapshot != null) 'final_snapshot': finalSnapshot,
            if (iops != null) 'iops': iops,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (multiAttachEnabled != null)
              'multi_attach_enabled': multiAttachEnabled,
            if (outpostArn != null) 'outpost_arn': outpostArn,

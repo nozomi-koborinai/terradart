@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cloudformation_type`.
 const Set<String> _awsCloudformationTypeSensitive = <String>{};
 
@@ -27,12 +30,12 @@ final class CloudformationTypeLoggingConfig {
     required this.logRoleArn,
   });
 
-  final TfArg<String> logGroupName;
+  final RefTo<AwsCloudwatchLogGroup> logGroupName;
 
   final TfArg<String> logRoleArn;
 
   Map<String, Object?> encode() => {
-    'log_group_name': logGroupName.toTfJson(),
+    'log_group_name': logGroupName.encodeAs('name').toTfJson(),
     'log_role_arn': logRoleArn.toTfJson(),
   };
 }
@@ -43,7 +46,7 @@ final class AwsCloudformationType extends Resource {
 
   AwsCloudformationType({
     required super.localName,
-    TfArg<String>? executionRoleArn,
+    RefTo<AwsIamRole>? executionRoleArn,
     TfArg<String>? region,
     required TfArg<String> schemaHandlerPackage,
     TfArg<CloudformationTypeType>? type,
@@ -56,7 +59,8 @@ final class AwsCloudformationType extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (executionRoleArn != null) 'execution_role_arn': executionRoleArn,
+           if (executionRoleArn != null)
+             'execution_role_arn': executionRoleArn.encodeAs('arn'),
            if (region != null) 'region': region,
            'schema_handler_package': schemaHandlerPackage,
            if (type != null) 'type': type,

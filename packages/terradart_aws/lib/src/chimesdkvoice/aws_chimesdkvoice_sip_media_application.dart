@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_chimesdkvoice_sip_media_application`.
 const Set<String> _awsChimesdkvoiceSipMediaApplicationSensitive = <String>{};
 
@@ -13,9 +15,11 @@ const Set<String> _awsChimesdkvoiceSipMediaApplicationSensitive = <String>{};
 final class ChimesdkvoiceSipMediaApplicationEndpoints {
   const ChimesdkvoiceSipMediaApplicationEndpoints({required this.lambdaArn});
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
-  Map<String, Object?> encode() => {'lambda_arn': lambdaArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_chimesdkvoice_sip_media_application`.

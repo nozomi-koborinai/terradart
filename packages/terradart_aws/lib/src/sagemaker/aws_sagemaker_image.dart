@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_sagemaker_image`.
 const Set<String> _awsSagemakerImageSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class AwsSagemakerImage extends Resource {
     TfArg<String>? displayName,
     required TfArg<String> imageName,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -29,7 +31,7 @@ final class AwsSagemakerImage extends Resource {
            if (displayName != null) 'display_name': displayName,
            'image_name': imageName,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
          },
        );

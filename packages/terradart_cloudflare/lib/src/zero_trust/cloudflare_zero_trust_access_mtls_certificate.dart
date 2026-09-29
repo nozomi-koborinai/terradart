@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_mtls_certificate`.
 const Set<String> _cloudflareZeroTrustAccessMtlsCertificateSensitive =
     <String>{};
@@ -18,11 +21,11 @@ final class CloudflareZeroTrustAccessMtlsCertificate extends Resource {
 
   CloudflareZeroTrustAccessMtlsCertificate({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<List<String>>? associatedHostnames,
     required TfArg<String> certificate,
     required TfArg<String> name,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -30,12 +33,12 @@ final class CloudflareZeroTrustAccessMtlsCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
            if (associatedHostnames != null)
              'associated_hostnames': associatedHostnames,
            'certificate': certificate,
            'name': name,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
          },
        );
 

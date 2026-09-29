@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_subnetwork_iam_binding`.
 const Set<String> _googleComputeSubnetworkIamBindingSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class GoogleComputeSubnetworkIamBinding extends Resource {
 
   GoogleComputeSubnetworkIamBinding({
     required super.localName,
-    required TfArg<String> subnetwork,
+    required RefTo<GoogleComputeSubnetwork> subnetwork,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<Map<String, dynamic>>? condition,
@@ -31,7 +33,7 @@ final class GoogleComputeSubnetworkIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'subnetwork': subnetwork,
+           'subnetwork': subnetwork.encodeAs('id'),
            'role': role,
            'members': members,
            if (condition != null) 'condition': condition,

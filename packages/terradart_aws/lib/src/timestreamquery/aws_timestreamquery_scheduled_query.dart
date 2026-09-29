@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_timestreamquery_scheduled_query`.
 const Set<String> _awsTimestreamqueryScheduledQuerySensitive = <String>{};
 
@@ -36,7 +41,7 @@ final class TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration
     this.objectKeyPrefix,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<
     TimestreamqueryScheduledQueryErrorReportConfigurationS3ConfigurationEncryptionOption
@@ -46,7 +51,7 @@ final class TimestreamqueryScheduledQueryErrorReportConfigurationS3Configuration
   final TfArg<String>? objectKeyPrefix;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (encryptionOption != null)
       'encryption_option': encryptionOption!.toTfJson(),
     if (objectKeyPrefix != null)
@@ -247,9 +252,11 @@ final class TimestreamqueryScheduledQueryNotificationConfigurationSnsConfigurati
     required this.topicArn,
   });
 
-  final TfArg<String> topicArn;
+  final RefTo<AwsSnsTopic> topicArn;
 
-  Map<String, Object?> encode() => {'topic_arn': topicArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'topic_arn': topicArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `recently_failed_runs` block of
@@ -712,8 +719,8 @@ final class AwsTimestreamqueryScheduledQuery extends Resource {
 
   AwsTimestreamqueryScheduledQuery({
     required super.localName,
-    required TfArg<String> executionRoleArn,
-    TfArg<String>? kmsKeyId,
+    required RefTo<AwsIamRole> executionRoleArn,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     required TfArg<String> queryString,
     TfArg<String>? region,
@@ -734,8 +741,8 @@ final class AwsTimestreamqueryScheduledQuery extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'execution_role_arn': executionRoleArn,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           'execution_role_arn': executionRoleArn.encodeAs('arn'),
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            'query_string': queryString,
            if (region != null) 'region': region,

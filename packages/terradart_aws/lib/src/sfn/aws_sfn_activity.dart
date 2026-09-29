@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sfn_activity`.
 const Set<String> _awsSfnActivitySensitive = <String>{};
 
@@ -19,7 +21,7 @@ final class SfnActivityEncryptionConfiguration {
 
   final TfArg<num>? kmsDataKeyReusePeriodSeconds;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<SfnActivityEncryptionConfigurationType>? type;
 
@@ -27,7 +29,7 @@ final class SfnActivityEncryptionConfiguration {
     if (kmsDataKeyReusePeriodSeconds != null)
       'kms_data_key_reuse_period_seconds': kmsDataKeyReusePeriodSeconds!
           .toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
 }

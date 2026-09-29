@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_dms_s3_endpoint`.
 const Set<String> _awsDmsS3EndpointSensitive = <String>{};
 
@@ -129,7 +132,7 @@ final class AwsDmsS3Endpoint extends Resource {
     TfArg<bool>? addColumnName,
     TfArg<bool>? addTrailingPaddingCharacter,
     TfArg<String>? bucketFolder,
-    required TfArg<String> bucketName,
+    required RefTo<AwsS3Bucket> bucketName,
     TfArg<DmsS3EndpointCannedAclForObjects>? cannedAclForObjects,
     TfArg<bool>? cdcInsertsAndUpdates,
     TfArg<bool>? cdcInsertsOnly,
@@ -160,7 +163,7 @@ final class AwsDmsS3Endpoint extends Resource {
     TfArg<bool>? glueCatalogGeneration,
     TfArg<num>? ignoreHeaderRows,
     TfArg<bool>? includeOpForFullLoad,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     TfArg<num>? maxFileSize,
     TfArg<bool>? parquetTimestampInMillisecond,
     TfArg<DmsS3EndpointParquetVersion>? parquetVersion,
@@ -186,7 +189,7 @@ final class AwsDmsS3Endpoint extends Resource {
            if (addTrailingPaddingCharacter != null)
              'add_trailing_padding_character': addTrailingPaddingCharacter,
            if (bucketFolder != null) 'bucket_folder': bucketFolder,
-           'bucket_name': bucketName,
+           'bucket_name': bucketName.encodeAs('id'),
            if (cannedAclForObjects != null)
              'canned_acl_for_objects': cannedAclForObjects,
            if (cdcInsertsAndUpdates != null)
@@ -231,7 +234,7 @@ final class AwsDmsS3Endpoint extends Resource {
            if (ignoreHeaderRows != null) 'ignore_header_rows': ignoreHeaderRows,
            if (includeOpForFullLoad != null)
              'include_op_for_full_load': includeOpForFullLoad,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            if (maxFileSize != null) 'max_file_size': maxFileSize,
            if (parquetTimestampInMillisecond != null)
              'parquet_timestamp_in_millisecond': parquetTimestampInMillisecond,

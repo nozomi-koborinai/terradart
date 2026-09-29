@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_compute_instance_group`.
 const Set<String> _googleComputeInstanceGroupSensitive = <String>{};
 
@@ -29,7 +31,7 @@ final class GoogleComputeInstanceGroup extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? zone,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     TfArg<List<String>>? instances,
     TfArg<List<Map<String, dynamic>>>? namedPort,
     TfArg<String>? description,
@@ -44,7 +46,7 @@ final class GoogleComputeInstanceGroup extends Resource {
          argMap: {
            'name': name,
            if (zone != null) 'zone': zone,
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            if (instances != null) 'instances': instances,
            if (namedPort != null) 'named_port': namedPort,
            if (description != null) 'description': description,

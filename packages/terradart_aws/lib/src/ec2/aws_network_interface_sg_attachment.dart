@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+
 /// Sensitive field paths for `aws_network_interface_sg_attachment`.
 const Set<String> _awsNetworkInterfaceSgAttachmentSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsNetworkInterfaceSgAttachment extends Resource {
     required super.localName,
     required TfArg<String> networkInterfaceId,
     TfArg<String>? region,
-    required TfArg<String> securityGroupId,
+    required RefTo<AwsSecurityGroup> securityGroupId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -24,7 +26,7 @@ final class AwsNetworkInterfaceSgAttachment extends Resource {
          argMap: {
            'network_interface_id': networkInterfaceId,
            if (region != null) 'region': region,
-           'security_group_id': securityGroupId,
+           'security_group_id': securityGroupId.encodeAs('id'),
          },
        );
 

@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_ecs_service`.
 const Set<String> _awsEcsServiceSensitive = <String>{};
 
@@ -206,7 +211,7 @@ final class EcsServiceDeploymentConfigurationLifecycleHook {
   >
   lifecycleStages;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final TfArg<EcsServiceDeploymentConfigurationLifecycleHookTargetType>?
   targetType;
@@ -218,7 +223,7 @@ final class EcsServiceDeploymentConfigurationLifecycleHook {
     if (hookDetails != null) 'hook_details': hookDetails!.toTfJson(),
     if (hookTargetArn != null) 'hook_target_arn': hookTargetArn!.toTfJson(),
     'lifecycle_stages': [for (final e in lifecycleStages) e.toTfJson()],
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     if (targetType != null) 'target_type': targetType!.toTfJson(),
     if (timeoutConfiguration != null)
       'timeout_configuration': timeoutConfiguration!.encode(),
@@ -382,14 +387,14 @@ final class EcsServiceLoadBalancerAdvancedConfiguration {
 
   final TfArg<String> productionListenerRule;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String>? testListenerRule;
 
   Map<String, Object?> encode() => {
     'alternate_target_group_arn': alternateTargetGroupArn.toTfJson(),
     'production_listener_rule': productionListenerRule.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (testListenerRule != null)
       'test_listener_rule': testListenerRule!.toTfJson(),
   };
@@ -407,14 +412,15 @@ final class EcsServiceNetworkConfiguration {
 
   final TfArg<bool>? assignPublicIp;
 
-  final TfArg<List<Object?>>? securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
     if (assignPublicIp != null) 'assign_public_ip': assignPublicIp!.toTfJson(),
-    if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    if (securityGroups != null)
+      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
@@ -762,16 +768,16 @@ final class EcsServiceServiceConnectConfigurationServiceTls {
     required this.issuerCertAuthority,
   });
 
-  final TfArg<String>? kmsKey;
+  final RefTo<AwsKmsKey>? kmsKey;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final EcsServiceServiceConnectConfigurationServiceTlsIssuerCertAuthority
   issuerCertAuthority;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
+    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
     'issuer_cert_authority': issuerCertAuthority.encode(),
   };
 }
@@ -862,9 +868,9 @@ final class EcsServiceVolumeConfigurationManagedEbsVolume {
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<num>? sizeInGb;
 
@@ -883,8 +889,8 @@ final class EcsServiceVolumeConfigurationManagedEbsVolume {
     if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
     if (fileSystemType != null) 'file_system_type': fileSystemType!.toTfJson(),
     if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (sizeInGb != null) 'size_in_gb': sizeInGb!.toTfJson(),
     if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
     if (throughput != null) 'throughput': throughput!.toTfJson(),
@@ -978,13 +984,13 @@ final class EcsServiceVpcLatticeConfigurations {
 
   final TfArg<String> portName;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> targetGroupArn;
 
   Map<String, Object?> encode() => {
     'port_name': portName.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'target_group_arn': targetGroupArn.toTfJson(),
   };
 }

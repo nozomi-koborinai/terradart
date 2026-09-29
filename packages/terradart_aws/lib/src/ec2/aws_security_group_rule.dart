@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+
 /// Sensitive field paths for `aws_security_group_rule`.
 const Set<String> _awsSecurityGroupRuleSensitive = <String>{};
 
@@ -29,9 +31,9 @@ final class AwsSecurityGroupRule extends Resource {
     TfArg<List<String>>? prefixListIds,
     required TfArg<String> protocol,
     TfArg<String>? region,
-    required TfArg<String> securityGroupId,
+    required RefTo<AwsSecurityGroup> securityGroupId,
     TfArg<bool>? self,
-    TfArg<String>? sourceSecurityGroupId,
+    RefTo<AwsSecurityGroup>? sourceSecurityGroupId,
     required TfArg<num> toPort,
     required TfArg<SecurityGroupRuleType> type,
     super.lifecycle,
@@ -48,10 +50,10 @@ final class AwsSecurityGroupRule extends Resource {
            if (prefixListIds != null) 'prefix_list_ids': prefixListIds,
            'protocol': protocol,
            if (region != null) 'region': region,
-           'security_group_id': securityGroupId,
+           'security_group_id': securityGroupId.encodeAs('id'),
            if (self != null) 'self': self,
            if (sourceSecurityGroupId != null)
-             'source_security_group_id': sourceSecurityGroupId,
+             'source_security_group_id': sourceSecurityGroupId.encodeAs('id'),
            'to_port': toPort,
            'type': type,
          },

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_memorydb_subnet_group`.
 const Set<String> _awsMemorydbSubnetGroupSensitive = <String>{};
 
@@ -73,7 +75,7 @@ final class AwsMemorydbSubnetGroup extends Resource {
     TfArg<String>? description,
     MemorydbSubnetGroupName? name,
     TfArg<String>? region,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -85,7 +87,7 @@ final class AwsMemorydbSubnetGroup extends Resource {
            if (description != null) 'description': description,
            ...?name?.argMap,
            if (region != null) 'region': region,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
          },
        );

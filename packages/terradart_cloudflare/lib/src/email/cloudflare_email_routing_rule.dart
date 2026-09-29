@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_email_routing_rule`.
 const Set<String> _cloudflareEmailRoutingRuleSensitive = <String>{};
 
@@ -97,7 +99,7 @@ final class CloudflareEmailRoutingRule extends Resource {
     TfArg<String>? ownerWorkerTag,
     TfArg<num>? priority,
     TfArg<EmailRoutingRuleSource>? source,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required List<EmailRoutingRuleActions> actions,
     required List<EmailRoutingRuleMatchers> matchers,
     super.lifecycle,
@@ -112,7 +114,7 @@ final class CloudflareEmailRoutingRule extends Resource {
            if (ownerWorkerTag != null) 'owner_worker_tag': ownerWorkerTag,
            if (priority != null) 'priority': priority,
            if (source != null) 'source': source,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'actions': TfArg.literal([for (final e in actions) e.encode()]),
            'matchers': TfArg.literal([for (final e in matchers) e.encode()]),
          },

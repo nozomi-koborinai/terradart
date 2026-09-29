@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_lambda_permission`.
 const Set<String> _awsLambdaPermissionSensitive = <String>{};
 
@@ -90,7 +92,7 @@ final class AwsLambdaPermission extends Resource {
     required super.localName,
     required TfArg<String> action,
     TfArg<String>? eventSourceToken,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     TfArg<LambdaPermissionFunctionUrlAuthType>? functionUrlAuthType,
     TfArg<bool>? invokedViaFunctionUrl,
     required TfArg<String> principal,
@@ -109,7 +111,7 @@ final class AwsLambdaPermission extends Resource {
          argMap: {
            'action': action,
            if (eventSourceToken != null) 'event_source_token': eventSourceToken,
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            if (functionUrlAuthType != null)
              'function_url_auth_type': functionUrlAuthType,
            if (invokedViaFunctionUrl != null)

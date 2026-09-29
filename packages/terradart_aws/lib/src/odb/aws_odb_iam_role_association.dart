@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_odb_iam_role_association`.
 const Set<String> _awsOdbIamRoleAssociationSensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsOdbIamRoleAssociation extends Resource {
   AwsOdbIamRoleAssociation({
     required super.localName,
     required TfArg<String> awsIntegration,
-    required TfArg<String> iamRoleArn,
+    required RefTo<AwsIamRole> iamRoleArn,
     TfArg<String>? region,
     required TfArg<String> resourceArn,
     super.lifecycle,
@@ -24,7 +26,7 @@ final class AwsOdbIamRoleAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'aws_integration': awsIntegration,
-           'iam_role_arn': iamRoleArn,
+           'iam_role_arn': iamRoleArn.encodeAs('arn'),
            if (region != null) 'region': region,
            'resource_arn': resourceArn,
          },

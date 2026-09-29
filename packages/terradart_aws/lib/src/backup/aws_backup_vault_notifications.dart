@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_backup_vault_notifications`.
 const Set<String> _awsBackupVaultNotificationsSensitive = <String>{};
 
@@ -54,7 +56,7 @@ final class AwsBackupVaultNotifications extends Resource {
     backupVaultEvents,
     required TfArg<String> backupVaultName,
     TfArg<String>? region,
-    required TfArg<String> snsTopicArn,
+    required RefTo<AwsSnsTopic> snsTopicArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -67,7 +69,7 @@ final class AwsBackupVaultNotifications extends Resource {
            ]),
            'backup_vault_name': backupVaultName,
            if (region != null) 'region': region,
-           'sns_topic_arn': snsTopicArn,
+           'sns_topic_arn': snsTopicArn.encodeAs('arn'),
          },
        );
 

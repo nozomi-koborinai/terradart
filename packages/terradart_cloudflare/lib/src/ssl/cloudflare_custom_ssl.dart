@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_custom_ssl`.
 const Set<String> _cloudflareCustomSslSensitive = <String>{'private_key'};
 
@@ -80,7 +82,7 @@ final class CloudflareCustomSsl extends Resource {
     TfArg<String>? policy,
     TfArg<String>? privateKey,
     TfArg<CustomSslType>? type,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     CustomSslGeoRestrictions? geoRestrictions,
     super.lifecycle,
     super.dependsOn,
@@ -96,7 +98,7 @@ final class CloudflareCustomSsl extends Resource {
            if (policy != null) 'policy': policy,
            if (privateKey != null) 'private_key': privateKey,
            if (type != null) 'type': type,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (geoRestrictions != null)
              'geo_restrictions': TfArg.literal(geoRestrictions.encode()),
          },

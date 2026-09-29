@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_spectrum_application`.
 const Set<String> _cloudflareSpectrumApplicationSensitive = <String>{};
 
@@ -160,7 +162,7 @@ final class CloudflareSpectrumApplication extends Resource {
     TfArg<SpectrumApplicationTls>? tls,
     TfArg<SpectrumApplicationTrafficType>? trafficType,
     TfArg<String>? virtualNetworkId,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required SpectrumApplicationDns dns,
     SpectrumApplicationEdgeIps? edgeIps,
     SpectrumApplicationOriginDns? originDns,
@@ -181,7 +183,7 @@ final class CloudflareSpectrumApplication extends Resource {
            if (tls != null) 'tls': tls,
            if (trafficType != null) 'traffic_type': trafficType,
            if (virtualNetworkId != null) 'virtual_network_id': virtualNetworkId,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'dns': TfArg.literal(dns.encode()),
            if (edgeIps != null) 'edge_ips': TfArg.literal(edgeIps.encode()),
            if (originDns != null)

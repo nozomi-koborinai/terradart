@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_opensearch_package`.
 const Set<String> _awsOpensearchPackageSensitive = <String>{};
 
@@ -28,12 +30,12 @@ final class OpensearchPackagePackageSource {
     required this.s3Key,
   });
 
-  final TfArg<String> s3BucketName;
+  final RefTo<AwsS3Bucket> s3BucketName;
 
   final TfArg<String> s3Key;
 
   Map<String, Object?> encode() => {
-    's3_bucket_name': s3BucketName.toTfJson(),
+    's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     's3_key': s3Key.toTfJson(),
   };
 }

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_storagegateway_smb_file_share`.
 const Set<String> _awsStoragegatewaySmbFileShareSensitive = <String>{};
 
@@ -88,7 +91,7 @@ final class AwsStoragegatewaySmbFileShare extends Resource {
     TfArg<bool>? guessMimeTypeEnabled,
     TfArg<List<String>>? invalidUserList,
     TfArg<bool>? kmsEncrypted,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> locationArn,
     TfArg<String>? notificationPolicy,
     TfArg<StoragegatewaySmbFileShareObjectAcl>? objectAcl,
@@ -96,7 +99,7 @@ final class AwsStoragegatewaySmbFileShare extends Resource {
     TfArg<bool>? readOnly,
     TfArg<String>? region,
     TfArg<bool>? requesterPays,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<bool>? smbAclEnabled,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? validUserList,
@@ -125,7 +128,7 @@ final class AwsStoragegatewaySmbFileShare extends Resource {
              'guess_mime_type_enabled': guessMimeTypeEnabled,
            if (invalidUserList != null) 'invalid_user_list': invalidUserList,
            if (kmsEncrypted != null) 'kms_encrypted': kmsEncrypted,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'location_arn': locationArn,
            if (notificationPolicy != null)
              'notification_policy': notificationPolicy,
@@ -134,7 +137,7 @@ final class AwsStoragegatewaySmbFileShare extends Resource {
            if (readOnly != null) 'read_only': readOnly,
            if (region != null) 'region': region,
            if (requesterPays != null) 'requester_pays': requesterPays,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (smbAclEnabled != null) 'smb_acl_enabled': smbAclEnabled,
            if (tags != null) 'tags': tags,
            if (validUserList != null) 'valid_user_list': validUserList,

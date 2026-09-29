@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_appfabric_ingestion_destination`.
 const Set<String> _awsAppfabricIngestionDestinationSensitive = <String>{};
 
@@ -88,12 +90,12 @@ final class AppfabricIngestionDestinationDestinationConfigurationAuditLogDestina
     this.prefix,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
 }

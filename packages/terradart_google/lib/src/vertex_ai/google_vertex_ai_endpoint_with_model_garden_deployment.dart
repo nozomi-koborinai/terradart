@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_vertex_ai_endpoint_with_model_garden_deployment`.
 const Set<String> _googleVertexAiEndpointWithModelGardenDeploymentSensitive =
     <String>{};
@@ -287,12 +289,12 @@ final class VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServic
     required this.projectId,
   });
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
   final TfArg<String> projectId;
 
   Map<String, Object?> encode() => {
-    'network': network.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
     'project_id': projectId.toTfJson(),
   };
 }

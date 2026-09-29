@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_resiliencehubv2_system`.
 const Set<String> _awsResiliencehubv2SystemSensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsResiliencehubv2System extends Resource {
   AwsResiliencehubv2System({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<bool>? sharingEnabled,
@@ -26,7 +28,7 @@ final class AwsResiliencehubv2System extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (sharingEnabled != null) 'sharing_enabled': sharingEnabled,

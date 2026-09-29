@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_ec2_carrier_gateway`.
 const Set<String> _awsEc2CarrierGatewaySensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsEc2CarrierGateway extends Resource {
     required super.localName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -24,7 +26,7 @@ final class AwsEc2CarrierGateway extends Resource {
          argMap: {
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_bedrockagent_knowledge_base`.
 const Set<String> _awsBedrockagentKnowledgeBaseSensitive = <String>{};
 
@@ -300,10 +303,10 @@ final class BedrockagentKnowledgeBaseKnowledgeBaseConfigurationManagedKnowledgeB
     this.kmsKeyArn,
   });
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1570,7 +1573,7 @@ final class AwsBedrockagentKnowledgeBase extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     List<BedrockagentKnowledgeBaseKnowledgeBaseConfiguration>?
     knowledgeBaseConfiguration,
@@ -1585,7 +1588,7 @@ final class AwsBedrockagentKnowledgeBase extends Resource {
            if (description != null) 'description': description,
            'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (knowledgeBaseConfiguration != null)
              'knowledge_base_configuration': TfArg.literal([

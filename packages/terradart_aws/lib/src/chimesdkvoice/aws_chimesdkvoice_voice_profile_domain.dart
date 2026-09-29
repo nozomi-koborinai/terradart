@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_chimesdkvoice_voice_profile_domain`.
 const Set<String> _awsChimesdkvoiceVoiceProfileDomainSensitive = <String>{};
 
@@ -15,9 +17,11 @@ final class ChimesdkvoiceVoiceProfileDomainServerSideEncryptionConfiguration {
     required this.kmsKeyArn,
   });
 
-  final TfArg<String> kmsKeyArn;
+  final RefTo<AwsKmsKey> kmsKeyArn;
 
-  Map<String, Object?> encode() => {'kms_key_arn': kmsKeyArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_chimesdkvoice_voice_profile_domain`.

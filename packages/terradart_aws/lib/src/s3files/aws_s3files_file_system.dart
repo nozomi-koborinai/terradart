@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3files_file_system`.
 const Set<String> _awsS3filesFileSystemSensitive = <String>{};
 
@@ -13,11 +17,11 @@ final class AwsS3filesFileSystem extends Resource {
   AwsS3filesFileSystem({
     required super.localName,
     TfArg<bool>? acceptBucketWarning,
-    required TfArg<String> bucket,
-    TfArg<String>? kmsKeyId,
+    required RefTo<AwsS3Bucket> bucket,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? prefix,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -28,11 +32,11 @@ final class AwsS3filesFileSystem extends Resource {
          argMap: {
            if (acceptBucketWarning != null)
              'accept_bucket_warning': acceptBucketWarning,
-           'bucket': bucket,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           'bucket': bucket.encodeAs('id'),
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (prefix != null) 'prefix': prefix,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
          },
        );

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_feature_group`.
 const Set<String> _awsSagemakerFeatureGroupSensitive = <String>{};
 
@@ -169,14 +172,14 @@ final class SagemakerFeatureGroupOfflineStoreConfigS3StorageConfig {
     required this.s3Uri,
   });
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? resolvedOutputS3Uri;
 
   final TfArg<String> s3Uri;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (resolvedOutputS3Uri != null)
       'resolved_output_s3_uri': resolvedOutputS3Uri!.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
@@ -229,10 +232,10 @@ enum SagemakerFeatureGroupOnlineStoreConfigStorageType
 final class SagemakerFeatureGroupOnlineStoreConfigSecurityConfig {
   const SagemakerFeatureGroupOnlineStoreConfigSecurityConfig({this.kmsKeyId});
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -323,7 +326,7 @@ final class AwsSagemakerFeatureGroup extends Resource {
     required TfArg<String> featureGroupName,
     required TfArg<String> recordIdentifierFeatureName,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     required List<SagemakerFeatureGroupFeatureDefinition> featureDefinition,
     SagemakerFeatureGroupOfflineStoreConfig? offlineStoreConfig,
@@ -341,7 +344,7 @@ final class AwsSagemakerFeatureGroup extends Resource {
            'feature_group_name': featureGroupName,
            'record_identifier_feature_name': recordIdentifierFeatureName,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            'feature_definition': TfArg.literal([
              for (final e in featureDefinition) e.encode(),

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_app_engine_flexible_app_version`.
 const Set<String> _googleAppEngineFlexibleAppVersionSensitive = <String>{};
 
@@ -518,7 +521,7 @@ final class AppEngineFlexibleAppVersionNetwork {
 
   final TfArg<bool>? sessionAffinity;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   Map<String, Object?> encode() => {
     if (forwardedPorts != null) 'forwarded_ports': forwardedPorts!.toTfJson(),
@@ -526,7 +529,7 @@ final class AppEngineFlexibleAppVersionNetwork {
     'name': name.toTfJson(),
     if (sessionAffinity != null)
       'session_affinity': sessionAffinity!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -670,7 +673,7 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
     TfArg<String>? nobuildFilesRegex,
     TfArg<String>? runtimeChannel,
     TfArg<String>? runtimeMainExecutablePath,
-    TfArg<String>? serviceAccount,
+    RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<AppEngineFlexibleAppVersionServingStatus>? servingStatus,
     TfArg<List<String>>? inboundServices,
     TfArg<String>? project,
@@ -705,7 +708,8 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
            if (runtimeChannel != null) 'runtime_channel': runtimeChannel,
            if (runtimeMainExecutablePath != null)
              'runtime_main_executable_path': runtimeMainExecutablePath,
-           if (serviceAccount != null) 'service_account': serviceAccount,
+           if (serviceAccount != null)
+             'service_account': serviceAccount.encodeAs('email'),
            if (servingStatus != null) 'serving_status': servingStatus,
            if (inboundServices != null) 'inbound_services': inboundServices,
            if (project != null) 'project': project,

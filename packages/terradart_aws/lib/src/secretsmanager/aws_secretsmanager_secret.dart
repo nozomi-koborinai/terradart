@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_secretsmanager_secret`.
 const Set<String> _awsSecretsmanagerSecretSensitive = <String>{};
 
@@ -72,12 +74,12 @@ final class SecretsmanagerSecretNameNamePrefix
 final class SecretsmanagerSecretReplica {
   const SecretsmanagerSecretReplica({this.kmsKeyId, required this.region});
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String> region;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     'region': region.toTfJson(),
   };
 }
@@ -90,7 +92,7 @@ final class AwsSecretsmanagerSecret extends Resource {
     required super.localName,
     TfArg<String>? description,
     TfArg<bool>? forceOverwriteReplicaSecret,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     SecretsmanagerSecretName? name,
     TfArg<String>? policy,
     TfArg<num>? recoveryWindowInDays,
@@ -108,7 +110,7 @@ final class AwsSecretsmanagerSecret extends Resource {
            if (description != null) 'description': description,
            if (forceOverwriteReplicaSecret != null)
              'force_overwrite_replica_secret': forceOverwriteReplicaSecret,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            ...?name?.argMap,
            if (policy != null) 'policy': policy,
            if (recoveryWindowInDays != null)

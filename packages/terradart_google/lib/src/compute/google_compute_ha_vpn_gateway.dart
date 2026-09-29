@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_compute_ha_vpn_gateway`.
 const Set<String> _googleComputeHaVpnGatewaySensitive = <String>{};
 
@@ -39,7 +41,7 @@ final class GoogleComputeHaVpnGateway extends Resource {
   GoogleComputeHaVpnGateway({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? region,
     TfArg<String>? description,
     TfArg<ComputeHaVpnGatewayGatewayIpVersion>? gatewayIpVersion,
@@ -55,7 +57,7 @@ final class GoogleComputeHaVpnGateway extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'network': network,
+           'network': network.encodeAs('id'),
            if (region != null) 'region': region,
            if (description != null) 'description': description,
            if (gatewayIpVersion != null) 'gateway_ip_version': gatewayIpVersion,

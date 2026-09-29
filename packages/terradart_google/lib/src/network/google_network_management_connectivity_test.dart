@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_network_management_connectivity_test`.
 const Set<String> _googleNetworkManagementConnectivityTestSensitive =
     <String>{};
@@ -42,7 +44,7 @@ final class NetworkManagementConnectivityTestDestination {
 
   final TfArg<String>? ipAddress;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<NetworkManagementConnectivityTestDestinationNetworkType>?
   networkType;
@@ -65,7 +67,7 @@ final class NetworkManagementConnectivityTestDestination {
     if (gkePod != null) 'gke_pod': gkePod!.toTfJson(),
     if (instance != null) 'instance': instance!.toTfJson(),
     if (ipAddress != null) 'ip_address': ipAddress!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
     if (networkType != null) 'network_type': networkType!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
     if (projectId != null) 'project_id': projectId!.toTfJson(),
@@ -114,7 +116,7 @@ final class NetworkManagementConnectivityTestSource {
 
   final TfArg<String>? ipAddress;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<NetworkManagementConnectivityTestSourceNetworkType>? networkType;
 
@@ -137,7 +139,7 @@ final class NetworkManagementConnectivityTestSource {
       'gke_master_cluster': gkeMasterCluster!.toTfJson(),
     if (instance != null) 'instance': instance!.toTfJson(),
     if (ipAddress != null) 'ip_address': ipAddress!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
     if (networkType != null) 'network_type': networkType!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
     if (projectId != null) 'project_id': projectId!.toTfJson(),

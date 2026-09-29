@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_bedrockagentcore_memory_strategy`.
 const Set<String> _awsBedrockagentcoreMemoryStrategySensitive = <String>{};
 
@@ -180,11 +182,11 @@ final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfigurationI
 
   final TfArg<String> payloadDeliveryBucketName;
 
-  final TfArg<String> topicArn;
+  final RefTo<AwsSnsTopic> topicArn;
 
   Map<String, Object?> encode() => {
     'payload_delivery_bucket_name': payloadDeliveryBucketName.toTfJson(),
-    'topic_arn': topicArn.toTfJson(),
+    'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };
 }
 

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_apigatewayv2_vpc_link`.
 const Set<String> _awsApigatewayv2VpcLinkSensitive = <String>{};
 
@@ -14,8 +17,8 @@ final class AwsApigatewayv2VpcLink extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<List<String>> securityGroupIds,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -26,8 +29,8 @@ final class AwsApigatewayv2VpcLink extends Resource {
          argMap: {
            'name': name,
            if (region != null) 'region': region,
-           'security_group_ids': securityGroupIds,
-           'subnet_ids': subnetIds,
+           'security_group_ids': securityGroupIds.encodeAs('id'),
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
          },
        );

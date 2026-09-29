@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_logging_billing_account_bucket_config`.
 const Set<String> _googleLoggingBillingAccountBucketConfigSensitive =
     <String>{};
@@ -16,9 +18,11 @@ final class LoggingBillingAccountBucketConfigCmekSettings {
     required this.kmsKeyName,
   });
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `index_configs` block of

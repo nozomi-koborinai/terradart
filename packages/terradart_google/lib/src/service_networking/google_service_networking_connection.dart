@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_service_networking_connection`.
 const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 
@@ -61,7 +63,7 @@ final class GoogleServiceNetworkingConnection extends Resource {
 
   GoogleServiceNetworkingConnection({
     required super.localName,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     required TfArg<String> service,
     required TfArg<List<String>> reservedPeeringRanges,
     TfArg<String>? deletionPolicy,
@@ -73,7 +75,7 @@ final class GoogleServiceNetworkingConnection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'network': network,
+           'network': network.encodeAs('id'),
            'service': service,
            'reserved_peering_ranges': reservedPeeringRanges,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

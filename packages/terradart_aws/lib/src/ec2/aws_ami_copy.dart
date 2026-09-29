@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_ami_copy`.
 const Set<String> _awsAmiCopySensitive = <String>{};
 
@@ -35,7 +37,7 @@ final class AwsAmiCopy extends Resource {
     TfArg<String>? description,
     TfArg<String>? destinationOutpostArn,
     TfArg<bool>? encrypted,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? region,
     required TfArg<String> sourceAmiId,
@@ -55,7 +57,7 @@ final class AwsAmiCopy extends Resource {
            if (destinationOutpostArn != null)
              'destination_outpost_arn': destinationOutpostArn,
            if (encrypted != null) 'encrypted': encrypted,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            'source_ami_id': sourceAmiId,

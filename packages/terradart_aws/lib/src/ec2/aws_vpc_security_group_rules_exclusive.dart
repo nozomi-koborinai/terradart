@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+
 /// Sensitive field paths for `aws_vpc_security_group_rules_exclusive`.
 const Set<String> _awsVpcSecurityGroupRulesExclusiveSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsVpcSecurityGroupRulesExclusive extends Resource {
     required TfArg<List<String>> egressRuleIds,
     required TfArg<List<String>> ingressRuleIds,
     TfArg<String>? region,
-    required TfArg<String> securityGroupId,
+    required RefTo<AwsSecurityGroup> securityGroupId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,7 +28,7 @@ final class AwsVpcSecurityGroupRulesExclusive extends Resource {
            'egress_rule_ids': egressRuleIds,
            'ingress_rule_ids': ingressRuleIds,
            if (region != null) 'region': region,
-           'security_group_id': securityGroupId,
+           'security_group_id': securityGroupId.encodeAs('id'),
          },
        );
 

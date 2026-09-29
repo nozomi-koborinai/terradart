@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_cloudwatch_event_archive`.
 const Set<String> _awsCloudwatchEventArchiveSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsCloudwatchEventArchive extends Resource {
     TfArg<String>? description,
     TfArg<String>? eventPattern,
     required TfArg<String> eventSourceArn,
-    TfArg<String>? kmsKeyIdentifier,
+    RefTo<AwsKmsKey>? kmsKeyIdentifier,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<num>? retentionDays,
@@ -29,7 +31,8 @@ final class AwsCloudwatchEventArchive extends Resource {
            if (description != null) 'description': description,
            if (eventPattern != null) 'event_pattern': eventPattern,
            'event_source_arn': eventSourceArn,
-           if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
+           if (kmsKeyIdentifier != null)
+             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (retentionDays != null) 'retention_days': retentionDays,

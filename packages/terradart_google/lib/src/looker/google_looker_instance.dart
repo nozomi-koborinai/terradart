@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_looker_instance`.
 const Set<String> _googleLookerInstanceSensitive = <String>{};
 
@@ -175,10 +178,11 @@ final class LookerInstanceDenyMaintenancePeriodTime {
 final class LookerInstanceEncryptionConfig {
   const LookerInstanceEncryptionConfig({this.kmsKeyName});
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -274,13 +278,13 @@ final class LookerInstancePeriodicExportConfig {
 
   final TfArg<String> gcsUri;
 
-  final TfArg<String> kmsKey;
+  final RefTo<GoogleKmsCryptoKey> kmsKey;
 
   final LookerInstancePeriodicExportConfigStartTime startTime;
 
   Map<String, Object?> encode() => {
     'gcs_uri': gcsUri.toTfJson(),
-    'kms_key': kmsKey.toTfJson(),
+    'kms_key': kmsKey.encodeAs('id').toTfJson(),
     'start_time': startTime.encode(),
   };
 }
@@ -417,7 +421,7 @@ final class GoogleLookerInstance extends Resource {
     TfArg<String>? region,
     TfArg<LookerInstancePlatformEdition>? platformEdition,
     required LookerInstanceOauthConfig oauthConfig,
-    TfArg<String>? consumerNetwork,
+    RefTo<GoogleComputeNetwork>? consumerNetwork,
     LookerInstanceAdminSettings? adminSettings,
     LookerInstanceMaintenanceWindow? maintenanceWindow,
     LookerInstanceEncryptionConfig? encryptionConfig,
@@ -438,7 +442,8 @@ final class GoogleLookerInstance extends Resource {
            if (region != null) 'region': region,
            if (platformEdition != null) 'platform_edition': platformEdition,
            'oauth_config': TfArg.literal(oauthConfig.encode()),
-           if (consumerNetwork != null) 'consumer_network': consumerNetwork,
+           if (consumerNetwork != null)
+             'consumer_network': consumerNetwork.encodeAs('id'),
            if (adminSettings != null)
              'admin_settings': TfArg.literal(adminSettings.encode()),
            if (maintenanceWindow != null)

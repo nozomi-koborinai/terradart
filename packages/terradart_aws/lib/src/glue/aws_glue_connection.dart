@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_glue_connection`.
 const Set<String> _awsGlueConnectionSensitive = <String>{
   'athena_properties',
@@ -35,7 +38,7 @@ final class GlueConnectionAuthenticationConfiguration {
 
   final TfArg<Map<String, String>>? customAuthenticationCredentials;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? secretArn;
 
@@ -50,7 +53,7 @@ final class GlueConnectionAuthenticationConfiguration {
     if (customAuthenticationCredentials != null)
       'custom_authentication_credentials': customAuthenticationCredentials!
           .toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
     if (basicAuthenticationCredentials != null)
       'basic_authentication_credentials': basicAuthenticationCredentials!
@@ -207,14 +210,14 @@ final class GlueConnectionPhysicalConnectionRequirements {
 
   final TfArg<List<Object?>>? securityGroupIdList;
 
-  final TfArg<String>? subnetId;
+  final RefTo<AwsSubnet>? subnetId;
 
   Map<String, Object?> encode() => {
     if (availabilityZone != null)
       'availability_zone': availabilityZone!.toTfJson(),
     if (securityGroupIdList != null)
       'security_group_id_list': securityGroupIdList!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.toTfJson(),
+    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
   };
 }
 

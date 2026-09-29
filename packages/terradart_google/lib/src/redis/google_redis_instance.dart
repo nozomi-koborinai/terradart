@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_redis_instance`.
 const Set<String> _googleRedisInstanceSensitive = <String>{'auth_string'};
 
@@ -218,7 +220,7 @@ final class GoogleRedisInstance extends Resource {
     required TfArg<num> memorySizeGb,
     TfArg<String>? region,
     TfArg<RedisInstanceTier>? tier,
-    TfArg<String>? authorizedNetwork,
+    RefTo<GoogleComputeNetwork>? authorizedNetwork,
     TfArg<RedisInstanceConnectMode>? connectMode,
     TfArg<bool>? authEnabled,
     TfArg<RedisInstanceTransitEncryptionMode>? transitEncryptionMode,
@@ -242,7 +244,7 @@ final class GoogleRedisInstance extends Resource {
            if (region != null) 'region': region,
            if (tier != null) 'tier': tier,
            if (authorizedNetwork != null)
-             'authorized_network': authorizedNetwork,
+             'authorized_network': authorizedNetwork.encodeAs('id'),
            if (connectMode != null) 'connect_mode': connectMode,
            if (authEnabled != null) 'auth_enabled': authEnabled,
            if (transitEncryptionMode != null)

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_chatbot_teams_channel_configuration`.
 const Set<String> _awsChatbotTeamsChannelConfigurationSensitive = <String>{};
 
@@ -27,10 +30,10 @@ final class AwsChatbotTeamsChannelConfiguration extends Resource {
     TfArg<String>? channelName,
     required TfArg<String> configurationName,
     TfArg<List<String>>? guardrailPolicyArns,
-    required TfArg<String> iamRoleArn,
+    required RefTo<AwsIamRole> iamRoleArn,
     TfArg<ChatbotTeamsChannelConfigurationLoggingLevel>? loggingLevel,
     TfArg<String>? region,
-    TfArg<List<String>>? snsTopicArns,
+    TfArg<List<RefTo<AwsSnsTopic>>>? snsTopicArns,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> teamId,
     TfArg<String>? teamName,
@@ -48,10 +51,11 @@ final class AwsChatbotTeamsChannelConfiguration extends Resource {
            'configuration_name': configurationName,
            if (guardrailPolicyArns != null)
              'guardrail_policy_arns': guardrailPolicyArns,
-           'iam_role_arn': iamRoleArn,
+           'iam_role_arn': iamRoleArn.encodeAs('arn'),
            if (loggingLevel != null) 'logging_level': loggingLevel,
            if (region != null) 'region': region,
-           if (snsTopicArns != null) 'sns_topic_arns': snsTopicArns,
+           if (snsTopicArns != null)
+             'sns_topic_arns': snsTopicArns.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            'team_id': teamId,
            if (teamName != null) 'team_name': teamName,

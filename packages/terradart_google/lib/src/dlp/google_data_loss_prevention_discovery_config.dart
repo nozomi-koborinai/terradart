@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_data_loss_prevention_discovery_config`.
 const Set<String> _googleDataLossPreventionDiscoveryConfigSensitive =
     <String>{};
@@ -91,14 +95,15 @@ final class DataLossPreventionDiscoveryConfigActionsExportDataProfileTable {
     this.tableId,
   });
 
-  final TfArg<String>? datasetId;
+  final RefTo<GoogleBigqueryDataset>? datasetId;
 
   final TfArg<String>? projectId;
 
   final TfArg<String>? tableId;
 
   Map<String, Object?> encode() => {
-    if (datasetId != null) 'dataset_id': datasetId!.toTfJson(),
+    if (datasetId != null)
+      'dataset_id': datasetId!.encodeAs('dataset_id').toTfJson(),
     if (projectId != null) 'project_id': projectId!.toTfJson(),
     if (tableId != null) 'table_id': tableId!.toTfJson(),
   };
@@ -114,14 +119,15 @@ final class DataLossPreventionDiscoveryConfigActionsExportDataSampleFindingsTabl
     this.tableId,
   });
 
-  final TfArg<String>? datasetId;
+  final RefTo<GoogleBigqueryDataset>? datasetId;
 
   final TfArg<String>? projectId;
 
   final TfArg<String>? tableId;
 
   Map<String, Object?> encode() => {
-    if (datasetId != null) 'dataset_id': datasetId!.toTfJson(),
+    if (datasetId != null)
+      'dataset_id': datasetId!.encodeAs('dataset_id').toTfJson(),
     if (projectId != null) 'project_id': projectId!.toTfJson(),
     if (tableId != null) 'table_id': tableId!.toTfJson(),
   };
@@ -146,7 +152,7 @@ final class DataLossPreventionDiscoveryConfigActionsPubSubNotification {
   final TfArg<DataLossPreventionDiscoveryConfigActionsPubSubNotificationEvent>?
   event;
 
-  final TfArg<String>? topic;
+  final RefTo<GooglePubsubTopic>? topic;
 
   final DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubCondition?
   pubsubCondition;
@@ -155,7 +161,7 @@ final class DataLossPreventionDiscoveryConfigActionsPubSubNotification {
     if (detailOfMessage != null)
       'detail_of_message': detailOfMessage!.toTfJson(),
     if (event != null) 'event': event!.toTfJson(),
-    if (topic != null) 'topic': topic!.toTfJson(),
+    if (topic != null) 'topic': topic!.encodeAs('id').toTfJson(),
     if (pubsubCondition != null) 'pubsub_condition': pubsubCondition!.encode(),
   };
 }
@@ -905,14 +911,14 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTableRef
     required this.tableId,
   });
 
-  final TfArg<String> datasetId;
+  final RefTo<GoogleBigqueryDataset> datasetId;
 
   final TfArg<String>? projectId;
 
   final TfArg<String> tableId;
 
   Map<String, Object?> encode() => {
-    'dataset_id': datasetId.toTfJson(),
+    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     if (projectId != null) 'project_id': projectId!.toTfJson(),
     'table_id': tableId.toTfJson(),
   };
@@ -1497,12 +1503,13 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterClou
     this.projectId,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<GoogleStorageBucket>? bucketName;
 
   final TfArg<String>? projectId;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('name').toTfJson(),
     if (projectId != null) 'project_id': projectId!.toTfJson(),
   };
 }

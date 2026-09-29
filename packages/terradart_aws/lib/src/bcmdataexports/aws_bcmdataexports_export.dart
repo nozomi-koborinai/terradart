@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_bcmdataexports_export`.
 const Set<String> _awsBcmdataexportsExportSensitive = <String>{};
 
@@ -92,7 +94,7 @@ final class BcmdataexportsExportExportDestinationConfigurationsS3Destination {
     this.s3OutputConfigurations,
   });
 
-  final TfArg<String> s3Bucket;
+  final RefTo<AwsS3Bucket> s3Bucket;
 
   final TfArg<String> s3Prefix;
 
@@ -104,7 +106,7 @@ final class BcmdataexportsExportExportDestinationConfigurationsS3Destination {
   s3OutputConfigurations;
 
   Map<String, Object?> encode() => {
-    's3_bucket': s3Bucket.toTfJson(),
+    's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
     's3_prefix': s3Prefix.toTfJson(),
     's3_region': s3Region.toTfJson(),
     if (s3OutputConfigurations != null)

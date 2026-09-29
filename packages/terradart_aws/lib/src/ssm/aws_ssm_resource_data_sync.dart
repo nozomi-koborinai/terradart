@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_ssm_resource_data_sync`.
 const Set<String> _awsSsmResourceDataSyncSensitive = <String>{};
 
@@ -20,9 +23,9 @@ final class SsmResourceDataSyncS3Destination {
     this.destinationDataSharing,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<String>? prefix;
 
@@ -34,8 +37,8 @@ final class SsmResourceDataSyncS3Destination {
   destinationDataSharing;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
     'region': region.toTfJson(),
     if (syncFormat != null) 'sync_format': syncFormat!.toTfJson(),

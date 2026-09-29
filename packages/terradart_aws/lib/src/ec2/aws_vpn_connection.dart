@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+
 /// Sensitive field paths for `aws_vpn_connection`.
 const Set<String> _awsVpnConnectionSensitive = <String>{
   'customer_gateway_configuration',
@@ -255,7 +257,7 @@ final class VpnConnectionTunnel1LogOptionsCloudwatchLogOptions {
 
   final TfArg<bool>? logEnabled;
 
-  final TfArg<String>? logGroupArn;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupArn;
 
   final TfArg<String>? logOutputFormat;
 
@@ -265,7 +267,8 @@ final class VpnConnectionTunnel1LogOptionsCloudwatchLogOptions {
     if (bgpLogOutputFormat != null)
       'bgp_log_output_format': bgpLogOutputFormat!.toTfJson(),
     if (logEnabled != null) 'log_enabled': logEnabled!.toTfJson(),
-    if (logGroupArn != null) 'log_group_arn': logGroupArn!.toTfJson(),
+    if (logGroupArn != null)
+      'log_group_arn': logGroupArn!.encodeAs('arn').toTfJson(),
     if (logOutputFormat != null)
       'log_output_format': logOutputFormat!.toTfJson(),
   };
@@ -307,7 +310,7 @@ final class VpnConnectionTunnel2LogOptionsCloudwatchLogOptions {
 
   final TfArg<bool>? logEnabled;
 
-  final TfArg<String>? logGroupArn;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupArn;
 
   final TfArg<String>? logOutputFormat;
 
@@ -317,7 +320,8 @@ final class VpnConnectionTunnel2LogOptionsCloudwatchLogOptions {
     if (bgpLogOutputFormat != null)
       'bgp_log_output_format': bgpLogOutputFormat!.toTfJson(),
     if (logEnabled != null) 'log_enabled': logEnabled!.toTfJson(),
-    if (logGroupArn != null) 'log_group_arn': logGroupArn!.toTfJson(),
+    if (logGroupArn != null)
+      'log_group_arn': logGroupArn!.encodeAs('arn').toTfJson(),
     if (logOutputFormat != null)
       'log_output_format': logOutputFormat!.toTfJson(),
   };

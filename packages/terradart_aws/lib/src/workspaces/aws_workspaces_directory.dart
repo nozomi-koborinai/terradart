@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_workspaces_directory`.
 const Set<String> _awsWorkspacesDirectorySensitive = <String>{};
 
@@ -448,7 +450,7 @@ final class AwsWorkspacesDirectory extends Resource {
     TfArg<String>? directoryId,
     TfArg<List<String>>? ipGroupIds,
     TfArg<String>? region,
-    TfArg<List<String>>? subnetIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<WorkspacesDirectoryTenancy>? tenancy,
     TfArg<WorkspacesDirectoryUserIdentityType>? userIdentityType,
@@ -472,7 +474,7 @@ final class AwsWorkspacesDirectory extends Resource {
            if (directoryId != null) 'directory_id': directoryId,
            if (ipGroupIds != null) 'ip_group_ids': ipGroupIds,
            if (region != null) 'region': region,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (tenancy != null) 'tenancy': tenancy,
            if (userIdentityType != null) 'user_identity_type': userIdentityType,

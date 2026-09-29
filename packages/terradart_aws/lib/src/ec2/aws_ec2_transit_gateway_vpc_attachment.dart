@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_ec2_transit_gateway_vpc_attachment`.
 const Set<String> _awsEc2TransitGatewayVpcAttachmentSensitive = <String>{};
 
@@ -63,12 +66,12 @@ final class AwsEc2TransitGatewayVpcAttachment extends Resource {
     TfArg<String>? region,
     TfArg<Ec2TransitGatewayVpcAttachmentSecurityGroupReferencingSupport>?
     securityGroupReferencingSupport,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? transitGatewayDefaultRouteTableAssociation,
     TfArg<bool>? transitGatewayDefaultRouteTablePropagation,
     required TfArg<String> transitGatewayId,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -84,7 +87,7 @@ final class AwsEc2TransitGatewayVpcAttachment extends Resource {
            if (securityGroupReferencingSupport != null)
              'security_group_referencing_support':
                  securityGroupReferencingSupport,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (transitGatewayDefaultRouteTableAssociation != null)
              'transit_gateway_default_route_table_association':
@@ -93,7 +96,7 @@ final class AwsEc2TransitGatewayVpcAttachment extends Resource {
              'transit_gateway_default_route_table_propagation':
                  transitGatewayDefaultRouteTablePropagation,
            'transit_gateway_id': transitGatewayId,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

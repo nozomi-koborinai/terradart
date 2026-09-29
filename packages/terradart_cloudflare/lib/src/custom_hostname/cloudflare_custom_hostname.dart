@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_custom_hostname`.
 const Set<String> _cloudflareCustomHostnameSensitive = <String>{
   'ssl.custom_cert_bundle.custom_key',
@@ -218,7 +220,7 @@ final class CloudflareCustomHostname extends Resource {
     TfArg<String>? customOriginServer,
     TfArg<String>? customOriginSni,
     required TfArg<String> hostname,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     CustomHostnameSsl? ssl,
     super.lifecycle,
     super.dependsOn,
@@ -232,7 +234,7 @@ final class CloudflareCustomHostname extends Resource {
              'custom_origin_server': customOriginServer,
            if (customOriginSni != null) 'custom_origin_sni': customOriginSni,
            'hostname': hostname,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (ssl != null) 'ssl': TfArg.literal(ssl.encode()),
          },
        );

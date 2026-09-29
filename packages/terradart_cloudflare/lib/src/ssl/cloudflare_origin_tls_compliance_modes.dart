@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_origin_tls_compliance_modes`.
 const Set<String> _cloudflareOriginTlsComplianceModesSensitive = <String>{};
 
@@ -13,14 +15,14 @@ final class CloudflareOriginTlsComplianceModes extends Resource {
   CloudflareOriginTlsComplianceModes({
     required super.localName,
     required TfArg<List<String>> value,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'value': value, 'zone_id': zoneId},
+         argMap: {'value': value, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

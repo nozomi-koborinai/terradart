@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_resiliencehubv2_service`.
 const Set<String> _awsResiliencehubv2ServiceSensitive = <String>{};
 
@@ -84,7 +86,7 @@ final class AwsResiliencehubv2Service extends Resource {
     required super.localName,
     TfArg<Resiliencehubv2ServiceDependencyDiscovery>? dependencyDiscovery,
     TfArg<String>? description,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     required TfArg<String> name,
     TfArg<String>? policyArn,
     TfArg<String>? region,
@@ -102,7 +104,7 @@ final class AwsResiliencehubv2Service extends Resource {
            if (dependencyDiscovery != null)
              'dependency_discovery': dependencyDiscovery,
            if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            'name': name,
            if (policyArn != null) 'policy_arn': policyArn,
            if (region != null) 'region': region,
