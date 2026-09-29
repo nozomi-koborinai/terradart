@@ -285,29 +285,17 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- ComputeRegionHealthCheckProtocol (6) — region_health_check -----------
   'ComputeRegionHealthCheckHttpHealthCheckConfig': () =>
-      ComputeRegionHealthCheckHttpHealthCheckConfig(
-        port: TfArg.literal(80),
-      ),
+      ComputeRegionHealthCheckHttpHealthCheckConfig(port: TfArg.literal(80)),
   'ComputeRegionHealthCheckHttpsHealthCheckConfig': () =>
-      ComputeRegionHealthCheckHttpsHealthCheckConfig(
-        port: TfArg.literal(443),
-      ),
+      ComputeRegionHealthCheckHttpsHealthCheckConfig(port: TfArg.literal(443)),
   'ComputeRegionHealthCheckHttp2HealthCheckConfig': () =>
-      ComputeRegionHealthCheckHttp2HealthCheckConfig(
-        port: TfArg.literal(443),
-      ),
+      ComputeRegionHealthCheckHttp2HealthCheckConfig(port: TfArg.literal(443)),
   'ComputeRegionHealthCheckTcpHealthCheckConfig': () =>
-      ComputeRegionHealthCheckTcpHealthCheckConfig(
-        port: TfArg.literal(443),
-      ),
+      ComputeRegionHealthCheckTcpHealthCheckConfig(port: TfArg.literal(443)),
   'ComputeRegionHealthCheckSslHealthCheckConfig': () =>
-      ComputeRegionHealthCheckSslHealthCheckConfig(
-        port: TfArg.literal(443),
-      ),
+      ComputeRegionHealthCheckSslHealthCheckConfig(port: TfArg.literal(443)),
   'ComputeRegionHealthCheckGrpcHealthCheckConfig': () =>
-      ComputeRegionHealthCheckGrpcHealthCheckConfig(
-        port: TfArg.literal(50051),
-      ),
+      ComputeRegionHealthCheckGrpcHealthCheckConfig(port: TfArg.literal(50051)),
 
   // --- ComputeFirewallRulePolicy (2) — compute_firewall --------------------
   'ComputeFirewallAllowPolicy': () => ComputeFirewallAllowPolicy(
@@ -513,7 +501,9 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- ColabNotebookExecutionIdentity (2) ----------------------------------
   'ColabNotebookExecutionIdentityExecutionUser': () =>
-      ColabNotebookExecutionIdentityExecutionUser(TfArg.literal('user@example.com')),
+      ColabNotebookExecutionIdentityExecutionUser(
+        TfArg.literal('user@example.com'),
+      ),
   'ColabNotebookExecutionIdentityServiceAccount': () =>
       ColabNotebookExecutionIdentityServiceAccount(
         TfArg.literal('sa@p.iam.gserviceaccount.com'),
@@ -689,13 +679,10 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- BucketObjectContent (2) — storage_bucket_object ---------------------
   'StorageBucketObjectBodySource': () =>
-      StorageBucketObjectBodySource(
-        source: TfArg.literal('./mock/path.bin'),
-      ),
-  'StorageBucketObjectBodyContent': () =>
-      StorageBucketObjectBodyContent(
-        content: TfArg.literal('mock-inline-payload'),
-      ),
+      StorageBucketObjectBodySource(source: TfArg.literal('./mock/path.bin')),
+  'StorageBucketObjectBodyContent': () => StorageBucketObjectBodyContent(
+    content: TfArg.literal('mock-inline-payload'),
+  ),
 
   // --- StorageBatchOperationsJobOperation (4) — batch_operations_job -------
   'StorageBatchOperationsJobPutMetadata': () =>
