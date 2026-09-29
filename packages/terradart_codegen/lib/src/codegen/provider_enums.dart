@@ -48,8 +48,9 @@ final class ProviderEnums {
   }) : enabled = true;
 
   /// `wrap --mm-hints`: the same gate with Magic Modules YAML as the hint
-  /// source — each resource's `enum_values` by path and its
-  /// `exactly_one_of` groups ([MmResourceOverrides.exactlyOneOfPaths]).
+  /// source — each resource's `enum_values` by path, its `exactly_one_of`
+  /// groups ([MmResourceOverrides.exactlyOneOfPaths]) and its `conflicts`
+  /// sets ([MmResourceOverrides.atMostOneOfPaths]).
   /// Magic Modules validators match case-sensitively, and the google
   /// schema's `Available values:` prose has no validator behind it, so the
   /// description dialects stay the ones every lane reads.
@@ -63,6 +64,10 @@ final class ProviderEnums {
           for (final MapEntry(:key, :value) in mm.entries)
             if (value.exactlyOneOfPaths.isNotEmpty)
               key: value.exactlyOneOfPaths,
+        },
+        atMostOneGroups: {
+          for (final MapEntry(:key, :value) in mm.entries)
+            if (value.atMostOneOfPaths.isNotEmpty) key: value.atMostOneOfPaths,
         },
         caseInsensitive: false,
         availableValuesDialect: false,

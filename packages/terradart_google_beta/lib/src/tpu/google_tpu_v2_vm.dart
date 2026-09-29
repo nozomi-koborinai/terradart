@@ -7,6 +7,122 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_tpu_v2_vm`.
 const Set<String> _googleTpuV2VmSensitive = <String>{};
 
+/// At most one of `accelerator_type`, `accelerator_config` on `google_tpu_v2_vm`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class TpuV2VmAcceleratorTypeOrAcceleratorConfig {
+  const TpuV2VmAcceleratorTypeOrAcceleratorConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `accelerator_type` (one of the [TpuV2VmAcceleratorTypeOrAcceleratorConfig] choices).
+final class TpuV2VmAcceleratorTypeOption
+    extends TpuV2VmAcceleratorTypeOrAcceleratorConfig {
+  const TpuV2VmAcceleratorTypeOption({required this.acceleratorType});
+
+  final TfArg<String> acceleratorType;
+
+  @override
+  String get blockKey => 'accelerator_type';
+
+  @override
+  Map<String, Object?> encode() => {
+    'accelerator_type': acceleratorType.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'accelerator_type': acceleratorType,
+  };
+}
+
+/// Sets `accelerator_config` (one of the [TpuV2VmAcceleratorTypeOrAcceleratorConfig] choices).
+final class TpuV2VmAcceleratorConfigOption
+    extends TpuV2VmAcceleratorTypeOrAcceleratorConfig {
+  const TpuV2VmAcceleratorConfigOption({required this.acceleratorConfig});
+
+  final TpuV2VmAcceleratorConfig acceleratorConfig;
+
+  @override
+  String get blockKey => 'accelerator_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'accelerator_config': acceleratorConfig.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'accelerator_config': TfArg.literal(acceleratorConfig.encode()),
+  };
+}
+
+/// At most one of `network_config`, `network_configs` on `google_tpu_v2_vm`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class TpuV2VmNetworkConfigOrNetworkConfigs {
+  const TpuV2VmNetworkConfigOrNetworkConfigs();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `network_config` (one of the [TpuV2VmNetworkConfigOrNetworkConfigs] choices).
+final class TpuV2VmNetworkConfigOption
+    extends TpuV2VmNetworkConfigOrNetworkConfigs {
+  const TpuV2VmNetworkConfigOption({required this.networkConfig});
+
+  final TpuV2VmNetworkConfig networkConfig;
+
+  @override
+  String get blockKey => 'network_config';
+
+  @override
+  Map<String, Object?> encode() => {'network_config': networkConfig.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'network_config': TfArg.literal(networkConfig.encode()),
+  };
+}
+
+/// Sets `network_configs` (one of the [TpuV2VmNetworkConfigOrNetworkConfigs] choices).
+final class TpuV2VmNetworkConfigsOption
+    extends TpuV2VmNetworkConfigOrNetworkConfigs {
+  const TpuV2VmNetworkConfigsOption({required this.networkConfigs});
+
+  final List<TpuV2VmNetworkConfigs> networkConfigs;
+
+  @override
+  String get blockKey => 'network_configs';
+
+  @override
+  Map<String, Object?> encode() => {
+    'network_configs': [for (final e in networkConfigs) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'network_configs': TfArg.literal([
+      for (final e in networkConfigs) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `accelerator_config` block of
 /// `google_tpu_v2_vm` (derived from provider schema).
 @immutable
@@ -169,7 +285,8 @@ final class GoogleTpuV2Vm extends Resource {
 
   GoogleTpuV2Vm({
     required super.localName,
-    TfArg<String>? acceleratorType,
+    TpuV2VmAcceleratorTypeOrAcceleratorConfig?
+    acceleratorTypeOrAcceleratorConfig,
     TfArg<String>? cidrBlock,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
@@ -180,10 +297,8 @@ final class GoogleTpuV2Vm extends Resource {
     required TfArg<String> runtimeVersion,
     TfArg<List<String>>? tags,
     TfArg<String>? zone,
-    TpuV2VmAcceleratorConfig? acceleratorConfig,
     List<TpuV2VmDataDisks>? dataDisks,
-    TpuV2VmNetworkConfig? networkConfig,
-    List<TpuV2VmNetworkConfigs>? networkConfigs,
+    TpuV2VmNetworkConfigOrNetworkConfigs? networkConfigOrNetworkConfigs,
     TpuV2VmSchedulingConfig? schedulingConfig,
     TpuV2VmServiceAccount? serviceAccount,
     TpuV2VmShieldedInstanceConfig? shieldedInstanceConfig,
@@ -195,7 +310,7 @@ final class GoogleTpuV2Vm extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (acceleratorType != null) 'accelerator_type': acceleratorType,
+           ...?acceleratorTypeOrAcceleratorConfig?.argMap,
            if (cidrBlock != null) 'cidr_block': cidrBlock,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (description != null) 'description': description,
@@ -206,18 +321,11 @@ final class GoogleTpuV2Vm extends Resource {
            'runtime_version': runtimeVersion,
            if (tags != null) 'tags': tags,
            if (zone != null) 'zone': zone,
-           if (acceleratorConfig != null)
-             'accelerator_config': TfArg.literal(acceleratorConfig.encode()),
            if (dataDisks != null)
              'data_disks': TfArg.literal([
                for (final e in dataDisks) e.encode(),
              ]),
-           if (networkConfig != null)
-             'network_config': TfArg.literal(networkConfig.encode()),
-           if (networkConfigs != null)
-             'network_configs': TfArg.literal([
-               for (final e in networkConfigs) e.encode(),
-             ]),
+           ...?networkConfigOrNetworkConfigs?.argMap,
            if (schedulingConfig != null)
              'scheduling_config': TfArg.literal(schedulingConfig.encode()),
            if (serviceAccount != null)
