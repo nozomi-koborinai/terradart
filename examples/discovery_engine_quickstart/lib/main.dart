@@ -39,24 +39,20 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final reader = add(
       GoogleServiceAccount(
         localName: 'search_reader',
-        accountId: TfArg.literal('vertex-search-reader'),
-        displayName: TfArg.literal('Vertex AI Search reader'),
+        accountId: .literal('vertex-search-reader'),
+        displayName: .literal('Vertex AI Search reader'),
       ),
     );
 
     final dataStore = add(
       GoogleDiscoveryEngineDataStore(
         localName: 'docs_store',
-        location: TfArg.literal('global'),
-        dataStoreId: TfArg.literal('terradart-search-docs'),
-        displayName: TfArg.literal('Quickstart documents'),
-        industryVertical: TfArg.literal(
-          DiscoveryEngineDataStoreIndustryVertical.generic,
-        ),
-        contentConfig: TfArg.literal(
-          DiscoveryEngineDataStoreContentConfig.noContent,
-        ),
-        solutionTypes: TfArg.literal(['SOLUTION_TYPE_SEARCH']),
+        location: .literal('global'),
+        dataStoreId: .literal('terradart-search-docs'),
+        displayName: .literal('Quickstart documents'),
+        industryVertical: .literal(.generic),
+        contentConfig: .literal(.noContent),
+        solutionTypes: .literal(['SOLUTION_TYPE_SEARCH']),
         dependsOn: apiDeps,
       ),
     );
@@ -64,15 +60,13 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final searchEngine = add(
       GoogleDiscoveryEngineSearchEngine(
         localName: 'site_search',
-        location: TfArg.literal('global'),
-        collectionId: TfArg.literal('default_collection'),
-        engineId: TfArg.literal('quickstart-search'),
-        displayName: TfArg.literal('Quickstart site search'),
-        dataStoreIds: TfArg.literal([dataStore.dataStoreIdRef.interpolation]),
+        location: .literal('global'),
+        collectionId: .literal('default_collection'),
+        engineId: .literal('quickstart-search'),
+        displayName: .literal('Quickstart site search'),
+        dataStoreIds: .literal([dataStore.dataStoreIdRef.interpolation]),
         searchEngineConfig: DiscoveryEngineSearchEngineSearchEngineConfig(
-          searchTier: TfArg.literal(
-            DiscoveryEngineSearchEngineSearchTier.searchTierStandard,
-          ),
+          searchTier: .literal(.searchTierStandard),
         ),
         dependsOn: [ResourceDependency(dataStore)],
       ),
@@ -81,11 +75,11 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final searchReaderMember = add(
       GoogleDiscoveryEngineSearchEngineIamMember(
         localName: 'search_reader_viewer',
-        location: TfArg.literal('global'),
-        collectionId: TfArg.literal('default_collection'),
-        engineId: TfArg.ref(searchEngine.engineIdRef),
-        role: TfArg.literal('roles/discoveryengine.viewer'),
-        member: TfArg.ref(reader.iamMember),
+        location: .literal('global'),
+        collectionId: .literal('default_collection'),
+        engineId: .ref(searchEngine.engineIdRef),
+        role: .literal('roles/discoveryengine.viewer'),
+        member: .ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(searchEngine),
           ResourceDependency(reader),
@@ -96,11 +90,11 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final searchReaderBinding = add(
       GoogleDiscoveryEngineSearchEngineIamBinding(
         localName: 'search_reader_binding',
-        location: TfArg.literal('global'),
-        collectionId: TfArg.literal('default_collection'),
-        engineId: TfArg.ref(searchEngine.engineIdRef),
-        role: TfArg.literal('roles/discoveryengine.viewer'),
-        members: TfArg.literal([reader.iamMember.interpolation]),
+        location: .literal('global'),
+        collectionId: .literal('default_collection'),
+        engineId: .ref(searchEngine.engineIdRef),
+        role: .literal('roles/discoveryengine.viewer'),
+        members: .literal([reader.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(searchEngine),
           ResourceDependency(reader),
@@ -112,10 +106,10 @@ final class DiscoveryEngineCatalogStack extends Stack {
     add(
       GoogleDiscoveryEngineSearchEngineIamPolicy(
         localName: 'search_reader_policy',
-        location: TfArg.literal('global'),
-        collectionId: TfArg.literal('default_collection'),
-        engineId: TfArg.ref(searchEngine.engineIdRef),
-        policyData: TfArg.literal(
+        location: .literal('global'),
+        collectionId: .literal('default_collection'),
+        engineId: .ref(searchEngine.engineIdRef),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/discoveryengine.viewer',
             member:
@@ -132,17 +126,13 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final schemaStore = add(
       GoogleDiscoveryEngineDataStore(
         localName: 'schema_store',
-        location: TfArg.literal('global'),
-        dataStoreId: TfArg.literal('terradart-search-schema'),
-        displayName: TfArg.literal('Quickstart schema store'),
-        industryVertical: TfArg.literal(
-          DiscoveryEngineDataStoreIndustryVertical.generic,
-        ),
-        contentConfig: TfArg.literal(
-          DiscoveryEngineDataStoreContentConfig.noContent,
-        ),
-        solutionTypes: TfArg.literal(['SOLUTION_TYPE_SEARCH']),
-        skipDefaultSchemaCreation: TfArg.literal(true),
+        location: .literal('global'),
+        dataStoreId: .literal('terradart-search-schema'),
+        displayName: .literal('Quickstart schema store'),
+        industryVertical: .literal(.generic),
+        contentConfig: .literal(.noContent),
+        solutionTypes: .literal(['SOLUTION_TYPE_SEARCH']),
+        skipDefaultSchemaCreation: .literal(true),
         dependsOn: apiDeps,
       ),
     );
@@ -150,10 +140,10 @@ final class DiscoveryEngineCatalogStack extends Stack {
     add(
       GoogleDiscoveryEngineSchema(
         localName: 'docs_schema',
-        location: TfArg.literal('global'),
-        dataStoreId: TfArg.ref(schemaStore.dataStoreIdRef),
-        schemaId: TfArg.literal('terradart-docs'),
-        jsonSchema: TfArg.literal(
+        location: .literal('global'),
+        dataStoreId: .ref(schemaStore.dataStoreIdRef),
+        schemaId: .literal('terradart-docs'),
+        jsonSchema: .literal(
           r'{"$schema":"https://json-schema.org/draft/2020-12/schema","datetime_detection":true,"type":"object","geolocation_detection":true}',
         ),
         dependsOn: [ResourceDependency(schemaStore)],
@@ -163,18 +153,14 @@ final class DiscoveryEngineCatalogStack extends Stack {
     final synonyms = add(
       GoogleDiscoveryEngineControl(
         localName: 'synonyms',
-        location: TfArg.literal('global'),
-        collectionId: TfArg.literal('default_collection'),
-        engineId: TfArg.ref(searchEngine.engineIdRef),
-        controlId: TfArg.literal('terradart-synonyms'),
-        displayName: TfArg.literal('terradart synonyms'),
-        solutionType: TfArg.literal(
-          DiscoveryEngineControlSolutionType.solutionTypeSearch,
-        ),
-        useCases: TfArg.literal(['SEARCH_USE_CASE_SEARCH']),
-        action: .synonymsAction(
-          synonyms: TfArg.literal(['quickstart', 'demo']),
-        ),
+        location: .literal('global'),
+        collectionId: .literal('default_collection'),
+        engineId: .ref(searchEngine.engineIdRef),
+        controlId: .literal('terradart-synonyms'),
+        displayName: .literal('terradart synonyms'),
+        solutionType: .literal(.solutionTypeSearch),
+        useCases: .literal(['SEARCH_USE_CASE_SEARCH']),
+        action: .synonymsAction(synonyms: .literal(['quickstart', 'demo'])),
         dependsOn: [ResourceDependency(searchEngine)],
       ),
     );
@@ -182,13 +168,11 @@ final class DiscoveryEngineCatalogStack extends Stack {
     add(
       GoogleDiscoveryEngineServingConfig(
         localName: 'default_search',
-        location: TfArg.literal('global'),
-        collectionId: TfArg.literal('default_collection'),
-        engineId: TfArg.ref(searchEngine.engineIdRef),
-        servingConfigId: TfArg.literal('default_search'),
-        synonymsControlIds: TfArg.literal([
-          synonyms.controlIdRef.interpolation,
-        ]),
+        location: .literal('global'),
+        collectionId: .literal('default_collection'),
+        engineId: .ref(searchEngine.engineIdRef),
+        servingConfigId: .literal('default_search'),
+        synonymsControlIds: .literal([synonyms.controlIdRef.interpolation]),
         dependsOn: [
           ResourceDependency(searchEngine),
           ResourceDependency(synonyms),
@@ -201,13 +185,13 @@ final class DiscoveryEngineCatalogStack extends Stack {
     add(
       GoogleDiscoveryEngineCmekConfig(
         localName: 'cmek',
-        location: TfArg.literal('us'),
-        cmekConfigId: TfArg.literal('terradart-cmek'),
-        kmsKey: TfArg.literal(
+        location: .literal('us'),
+        cmekConfigId: .literal('terradart-cmek'),
+        kmsKey: .literal(
           'projects/$projectId/locations/us/keyRings/terradart/cryptoKeys/discovery',
         ),
-        setDefault: TfArg.literal(false),
-        deletionPolicy: TfArg.literal('DELETE'),
+        setDefault: .literal(false),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );
@@ -215,15 +199,15 @@ final class DiscoveryEngineCatalogStack extends Stack {
     add(
       GoogleDiscoveryEngineDataConnector(
         localName: 'jira',
-        location: TfArg.literal('global'),
-        collectionId: TfArg.literal('terradart-jira'),
-        collectionDisplayName: TfArg.literal('terradart jira'),
-        dataSource: TfArg.literal('jira'),
-        refreshInterval: TfArg.literal('1800s'),
-        jsonParams: TfArg.literal(
+        location: .literal('global'),
+        collectionId: .literal('terradart-jira'),
+        collectionDisplayName: .literal('terradart jira'),
+        dataSource: .literal('jira'),
+        refreshInterval: .literal('1800s'),
+        jsonParams: .literal(
           '{"instance_uri":"https://example.atlassian.net"}',
         ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );

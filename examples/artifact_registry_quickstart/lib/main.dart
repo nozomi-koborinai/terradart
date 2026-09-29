@@ -32,15 +32,15 @@ final class ArtifactRegistryStack extends Stack {
     final apiAr = add(
       GoogleProjectService(
         localName: 'api_artifactregistry',
-        service: TfArg.literal('artifactregistry.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('artifactregistry.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final projectConfig = add(
       GoogleArtifactRegistryProjectConfig(
         localName: 'ar_project_config',
-        location: TfArg.literal(location),
+        location: .literal(location),
         platformLogsConfig:
             const ArtifactRegistryProjectConfigPlatformLogsConfig(
               loggingState: ArtifactRegistryPlatformLogsLoggingState.enabled,
@@ -53,10 +53,10 @@ final class ArtifactRegistryStack extends Stack {
     final repo = add(
       GoogleArtifactRegistryRepository(
         localName: 'docker',
-        repositoryId: TfArg.literal(repositoryId),
-        location: TfArg.literal(location),
-        format: TfArg.literal('DOCKER'),
-        description: TfArg.literal('TerraDart smoke Docker repository'),
+        repositoryId: .literal(repositoryId),
+        location: .literal(location),
+        format: .literal('DOCKER'),
+        description: .literal('TerraDart smoke Docker repository'),
         dependsOn: [ResourceDependency(apiAr)],
       ),
     );
@@ -64,11 +64,11 @@ final class ArtifactRegistryStack extends Stack {
     add(
       GoogleArtifactRegistryRule(
         localName: 'deny_download',
-        repositoryId: TfArg.ref(repo.repositoryIdRef),
-        location: TfArg.literal(location),
-        ruleId: TfArg.literal('deny-all-downloads'),
-        action: TfArg.literal(ArtifactRegistryRuleAction.deny),
-        operation: TfArg.literal(ArtifactRegistryRuleOperation.download),
+        repositoryId: .ref(repo.repositoryIdRef),
+        location: .literal(location),
+        ruleId: .literal('deny-all-downloads'),
+        action: .literal(.deny),
+        operation: .literal(.download),
         dependsOn: [ResourceDependency(repo)],
       ),
     );
@@ -78,31 +78,31 @@ final class ArtifactRegistryStack extends Stack {
     final envKey = add(
       GoogleTagsTagKey(
         localName: 'ar_env',
-        shortName: TfArg.literal('terradart-ar-env'),
-        parent: TfArg.literal('projects/${current.number.interpolation}'),
-        description: TfArg.literal('Artifact Registry environment tag'),
+        shortName: .literal('terradart-ar-env'),
+        parent: .literal('projects/${current.number.interpolation}'),
+        description: .literal('Artifact Registry environment tag'),
       ),
     );
 
     final smoke = add(
       GoogleTagsTagValue(
         localName: 'ar_smoke',
-        shortName: TfArg.literal('smoke'),
-        parent: TfArg.ref(envKey.id),
-        description: TfArg.literal('Smoke-test environment'),
+        shortName: .literal('smoke'),
+        parent: .ref(envKey.id),
+        description: .literal('Smoke-test environment'),
       ),
     );
 
     add(
       GoogleTagsLocationTagBinding(
         localName: 'repo_env',
-        parent: TfArg.literal(
+        parent: .literal(
           '//artifactregistry.googleapis.com/projects/'
           '${current.number.interpolation}/locations/$location/repositories/'
           '${repo.repositoryIdRef.interpolation}',
         ),
-        tagValue: TfArg.ref(smoke.id),
-        location: TfArg.literal(location),
+        tagValue: .ref(smoke.id),
+        location: .literal(location),
         dependsOn: [ResourceDependency(repo), ResourceDependency(smoke)],
       ),
     );

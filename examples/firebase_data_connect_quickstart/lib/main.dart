@@ -45,13 +45,13 @@ final class DataConnectStack extends Stack {
     add(
       GoogleFirebaseDataConnectService(
         localName: 'web',
-        serviceId: TfArg.literal('web-svc'),
-        location: TfArg.literal('us-central1'),
-        displayName: TfArg.literal('Web app Data Connect service'),
+        serviceId: .literal('web-svc'),
+        location: .literal('us-central1'),
+        displayName: .literal('Web app Data Connect service'),
         // FORCE lets terraform destroy remove the service even when downstream
         // schemas or connectors still exist. Omit (or use DEFAULT) in
         // production to guard against accidental teardown.
-        deletionPolicy: TfArg.literal(DataConnectDeletionPolicy.force),
+        deletionPolicy: .literal(.force),
         dependsOn: apiDeps,
       ),
     );

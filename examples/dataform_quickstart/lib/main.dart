@@ -36,8 +36,8 @@ final class DataformStack extends Stack {
     final team = add(
       GoogleDataformTeamFolder(
         localName: 'team',
-        displayName: TfArg.literal('terradart-team'),
-        region: TfArg.literal('us-central1'),
+        displayName: .literal('terradart-team'),
+        region: .literal('us-central1'),
         dependsOn: apiDeps,
       ),
     );
@@ -45,9 +45,9 @@ final class DataformStack extends Stack {
     add(
       GoogleDataformFolder(
         localName: 'apps',
-        displayName: TfArg.literal('terradart-apps'),
-        region: TfArg.literal('us-central1'),
-        containingFolder: TfArg.ref(team.nameRef),
+        displayName: .literal('terradart-apps'),
+        region: .literal('us-central1'),
+        containingFolder: .ref(team.nameRef),
         dependsOn: [ResourceDependency(team)],
       ),
     );
@@ -58,25 +58,25 @@ final class DataformStack extends Stack {
     final runner = add(
       GoogleServiceAccount(
         localName: 'workflow_runner',
-        accountId: TfArg.literal('terradart-dataform-runner'),
-        displayName: TfArg.literal('TerraDart Dataform workflow runner'),
+        accountId: .literal('terradart-dataform-runner'),
+        displayName: .literal('TerraDart Dataform workflow runner'),
       ),
     );
 
     final repository = add(
       GoogleDataformRepository(
         localName: 'analytics',
-        name: TfArg.literal('terradart-analytics'),
-        region: TfArg.literal('us-central1'),
-        displayName: TfArg.literal('TerraDart analytics'),
-        serviceAccount: TfArg.ref(runner.email),
-        workspaceCompilationOverrides: TfArg.literal(<String, Object?>{
+        name: .literal('terradart-analytics'),
+        region: .literal('us-central1'),
+        displayName: .literal('TerraDart analytics'),
+        serviceAccount: .ref(runner.email),
+        workspaceCompilationOverrides: .literal(<String, Object?>{
           'schema_suffix': 'terradart',
           'table_prefix': 'terradart_',
         }),
-        labels: TfArg.literal({'managed-by': 'terradart'}),
+        labels: .literal({'managed-by': 'terradart'}),
         // FORCE also removes workspaces created inside the repository.
-        deletionPolicy: TfArg.literal('FORCE'),
+        deletionPolicy: .literal('FORCE'),
         dependsOn: [...apiDeps, ResourceDependency(runner)],
       ),
     );
@@ -84,10 +84,10 @@ final class DataformStack extends Stack {
     add(
       GoogleDataformRepositoryIamMember(
         localName: 'repository_editor',
-        repository: TfArg.ref(repository.nameRef),
-        role: TfArg.literal('roles/dataform.editor'),
-        member: TfArg.ref(runner.iamMember),
-        region: TfArg.literal('us-central1'),
+        repository: .ref(repository.nameRef),
+        role: .literal('roles/dataform.editor'),
+        member: .ref(runner.iamMember),
+        region: .literal('us-central1'),
         dependsOn: [ResourceDependency(repository), ResourceDependency(runner)],
       ),
     );

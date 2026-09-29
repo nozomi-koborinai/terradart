@@ -12,15 +12,15 @@ GoogleSqlDatabaseInstance buildSqlInstance({
   required GoogleServiceNetworkingConnection psaConnection,
 }) => GoogleSqlDatabaseInstance(
   localName: 'coffee_sql',
-  name: TfArg.literal('coffee-shop-sql'),
-  databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
-  region: TfArg.literal('asia-northeast1'),
-  deletionProtection: TfArg.literal(false),
+  name: .literal('coffee-shop-sql'),
+  databaseVersion: .literal(.postgres15),
+  region: .literal('asia-northeast1'),
+  deletionProtection: .literal(false),
   settings: SqlDatabaseInstanceSettings(
-    tier: TfArg.literal('db-f1-micro'),
+    tier: .literal('db-f1-micro'),
     ipConfiguration: SqlDatabaseInstanceIpConfiguration(
-      ipv4Enabled: TfArg.literal(false),
-      privateNetwork: TfArg.ref(vpc.selfLink),
+      ipv4Enabled: .literal(false),
+      privateNetwork: .ref(vpc.selfLink),
     ),
   ),
   // SQL instance requires PSA peering active; declared via the typed
@@ -32,8 +32,8 @@ GoogleSqlDatabaseInstance buildSqlInstance({
 GoogleSqlDatabase buildSqlDatabase(GoogleSqlDatabaseInstance sqlInstance) =>
     GoogleSqlDatabase(
       localName: 'coffee_db',
-      name: TfArg.literal('coffee_orders'),
-      instance: TfArg.ref(sqlInstance.nameRef),
+      name: .literal('coffee_orders'),
+      instance: .ref(sqlInstance.nameRef),
     );
 
 GoogleSqlUser buildSqlUser(
@@ -41,15 +41,15 @@ GoogleSqlUser buildSqlUser(
   String dbPassword,
 ) => GoogleSqlUser(
   localName: 'coffee_user',
-  name: TfArg.literal('coffee_app'),
-  instance: TfArg.ref(sqlInstance.nameRef),
-  passwordWo: TfArg.literal(dbPassword),
-  passwordWoVersion: TfArg.literal(1),
+  name: .literal('coffee_app'),
+  instance: .ref(sqlInstance.nameRef),
+  passwordWo: .literal(dbPassword),
+  passwordWoVersion: .literal(1),
 );
 
 GoogleSecretManagerSecret buildDbPasswordSecret() => GoogleSecretManagerSecret(
   localName: 'db_password',
-  secretId: TfArg.literal('coffee-shop-db-password'),
+  secretId: .literal('coffee-shop-db-password'),
   replication: SecretManagerSecretReplication.auto(),
 );
 
@@ -58,9 +58,9 @@ GoogleSecretManagerSecretVersion buildDbPasswordSecretVersion(
   String dbPassword,
 ) => GoogleSecretManagerSecretVersion(
   localName: 'db_password_v1',
-  secret: TfArg.ref(secret.id),
+  secret: .ref(secret.id),
   payload: .writeOnly(
-    secretDataWo: TfArg.literal(dbPassword),
-    secretDataWoVersion: TfArg.literal('1'),
+    secretDataWo: .literal(dbPassword),
+    secretDataWoVersion: .literal('1'),
   ),
 );

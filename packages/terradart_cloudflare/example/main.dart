@@ -11,19 +11,19 @@ final class HelloStack extends Stack {
   HelloStack() : super(providers: [const CloudflareProvider()]) {
     final zone = CloudflareZone(
       localName: 'main',
-      name: TfArg.literal('example.com'),
-      account: ZoneAccount(id: TfArg.literal('your-account-id')),
+      name: .literal('example.com'),
+      account: ZoneAccount(id: .literal('your-account-id')),
     );
     add(zone);
     add(
       CloudflareDnsRecord(
         localName: 'api',
-        zoneId: TfArg.ref(zone.id),
-        name: TfArg.literal('api.example.com'),
-        type: TfArg.literal(DnsRecordType.cname),
-        ttl: TfArg.literal(1),
-        content: .content(TfArg.literal('ghs.googlehosted.com')),
-        proxied: TfArg.literal(true),
+        zoneId: .ref(zone.id),
+        name: .literal('api.example.com'),
+        type: .literal(.cname),
+        ttl: .literal(1),
+        content: .content(.literal('ghs.googlehosted.com')),
+        proxied: .literal(true),
       ),
     );
   }

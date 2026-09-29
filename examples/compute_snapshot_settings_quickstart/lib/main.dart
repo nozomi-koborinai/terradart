@@ -21,8 +21,8 @@ final class ComputeSnapshotSettingsStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
-        service: TfArg.literal('compute.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('compute.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -30,9 +30,7 @@ final class ComputeSnapshotSettingsStack extends Stack {
       GoogleComputeSnapshotSettings(
         localName: 'defaults',
         storageLocation: ComputeSnapshotSettingsStorageLocation(
-          policy: TfArg.literal(
-            ComputeSnapshotSettingsStorageLocationPolicy.localRegion,
-          ),
+          policy: .literal(.localRegion),
         ),
         dependsOn: [ResourceDependency(apiCompute)],
       ),

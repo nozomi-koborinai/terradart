@@ -36,7 +36,7 @@ final class NightlyCleanupStack extends Stack {
     final topic = add(
       GooglePubsubTopic(
         localName: 'nightly_cleanup',
-        name: TfArg.literal('nightly-cleanup'),
+        name: .literal('nightly-cleanup'),
         dependsOn: apiDeps,
       ),
     );
@@ -44,20 +44,20 @@ final class NightlyCleanupStack extends Stack {
     add(
       GoogleCloudSchedulerJob(
         localName: 'nightly_job',
-        name: TfArg.literal('nightly-cleanup-job'),
-        region: TfArg.literal('us-central1'),
-        schedule: TfArg.literal('0 3 * * *'),
-        timeZone: TfArg.literal('Asia/Tokyo'),
+        name: .literal('nightly-cleanup-job'),
+        region: .literal('us-central1'),
+        schedule: .literal('0 3 * * *'),
+        timeZone: .literal('Asia/Tokyo'),
         // IMPORTANT: Cloud Scheduler requires the full topic path
         // (projects/.../topics/nightly-cleanup), which is `topic.id`.
         // Using `topic.nameRef` would emit only the bare name and fail
         // at apply time. The PubsubTarget's class doc spells this out.
         target: .pubsubTarget(
-          topicName: TfArg.ref(topic.id),
+          topicName: .ref(topic.id),
           // Pub/Sub Scheduler accepts base64-encoded data here. The
           // provider expects pre-encoded text; "Y2xlYW51cA==" is base64
           // for "cleanup".
-          data: TfArg.literal('Y2xlYW51cA=='),
+          data: .literal('Y2xlYW51cA=='),
         ),
         retryConfig: CloudSchedulerJobSchedulerRetryConfig(
           retryCount: TfArgLiteral<int>(3),

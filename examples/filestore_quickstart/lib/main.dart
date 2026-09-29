@@ -30,9 +30,9 @@ final class FilestoreSnapshotStack extends Stack {
     final nfsVpc = add(
       GoogleComputeNetwork(
         localName: 'nfs_vpc',
-        name: TfArg.literal('nfs-vpc'),
-        autoCreateSubnetworks: TfArg.literal(false),
-        routingMode: TfArg.literal(RoutingMode.regional),
+        name: .literal('nfs-vpc'),
+        autoCreateSubnetworks: .literal(false),
+        routingMode: .literal(.regional),
         dependsOn: apiDeps,
       ),
     );
@@ -40,10 +40,10 @@ final class FilestoreSnapshotStack extends Stack {
     add(
       GoogleComputeSubnetwork(
         localName: 'nfs_subnet',
-        name: TfArg.literal('nfs-subnet'),
-        region: TfArg.literal('us-central1'),
-        network: TfArg.ref(nfsVpc.id),
-        ipCidrRange: TfArg.literal('10.20.0.0/24'),
+        name: .literal('nfs-subnet'),
+        region: .literal('us-central1'),
+        network: .ref(nfsVpc.id),
+        ipCidrRange: .literal('10.20.0.0/24'),
         dependsOn: apiDeps,
       ),
     );
@@ -51,16 +51,16 @@ final class FilestoreSnapshotStack extends Stack {
     final snapshotNfs = add(
       GoogleFilestoreInstance(
         localName: 'snapshot_nfs',
-        name: TfArg.literal('snapshot-nfs'),
-        tier: TfArg.literal(FilestoreInstanceTier.highScaleSsd),
-        location: TfArg.literal('us-central1-a'),
+        name: .literal('snapshot-nfs'),
+        tier: .literal(.highScaleSsd),
+        location: .literal('us-central1-a'),
         fileShares: FilestoreInstanceFileShare(
-          name: TfArg.literal('snapshot_share'),
-          capacityGb: TfArg.literal(10240),
+          name: .literal('snapshot_share'),
+          capacityGb: .literal(10240),
         ),
         networks: [
           FilestoreInstanceNetwork(
-            network: TfArg.ref(nfsVpc.id),
+            network: .ref(nfsVpc.id),
             modes: const [FilestoreInstanceNetworkMode.modeIpv4],
           ),
         ],
@@ -71,9 +71,9 @@ final class FilestoreSnapshotStack extends Stack {
     add(
       GoogleFilestoreSnapshot(
         localName: 'snapshot_share_snap',
-        name: TfArg.literal('snapshot-share-snap-1'),
-        location: TfArg.literal('us-central1'),
-        instance: TfArg.ref(snapshotNfs.id),
+        name: .literal('snapshot-share-snap-1'),
+        location: .literal('us-central1'),
+        instance: .ref(snapshotNfs.id),
       ),
     );
   }

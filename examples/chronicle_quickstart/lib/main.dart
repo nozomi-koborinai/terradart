@@ -27,11 +27,11 @@ final class ChronicleCustomListStack extends Stack {
     add(
       GoogleChronicleCustomList(
         localName: 'approved_files',
-        location: TfArg.literal('us'),
-        instance: TfArg.literal(instanceId),
-        entityIdentifier: TfArg.literal('filename.bin'),
-        category: TfArg.literal('Approved Files'),
-        environments: TfArg.literal('["Default Environment"]'),
+        location: .literal('us'),
+        instance: .literal(instanceId),
+        entityIdentifier: .literal('filename.bin'),
+        category: .literal('Approved Files'),
+        environments: .literal('["Default Environment"]'),
         dependsOn: apiDeps,
       ),
     );
@@ -39,23 +39,23 @@ final class ChronicleCustomListStack extends Stack {
     add(
       GoogleChronicleSoarNetwork(
         localName: 'corp_internal',
-        location: TfArg.literal('us'),
-        instance: TfArg.literal(instanceId),
-        displayName: TfArg.literal('Corp internal'),
-        address: TfArg.literal('10.0.0.0/8'),
-        environmentsJson: TfArg.literal('["Default Environment"]'),
-        priority: TfArg.literal(1),
+        location: .literal('us'),
+        instance: .literal(instanceId),
+        displayName: .literal('Corp internal'),
+        address: .literal('10.0.0.0/8'),
+        environmentsJson: .literal('["Default Environment"]'),
+        priority: .literal(1),
         dependsOn: apiDeps,
       ),
     );
 
     final dashboard = GoogleChronicleNativeDashboard(
       localName: 'ops_overview',
-      location: TfArg.literal('us'),
-      instance: TfArg.literal(instanceId),
-      displayName: TfArg.literal('Ops overview'),
-      access: TfArg.literal(ChronicleNativeDashboardAccess.dashboardPrivate),
-      type: TfArg.literal(ChronicleNativeDashboardType.custom),
+      location: .literal('us'),
+      instance: .literal(instanceId),
+      displayName: .literal('Ops overview'),
+      access: .literal(.dashboardPrivate),
+      type: .literal(.custom),
       dependsOn: apiDeps,
     );
     add(dashboard);
@@ -63,15 +63,15 @@ final class ChronicleCustomListStack extends Stack {
     add(
       GoogleChronicleDashboardChart(
         localName: 'dns_events',
-        location: TfArg.literal('us'),
-        instance: TfArg.literal(instanceId),
-        nativeDashboard: TfArg.ref(dashboard.nameRef),
+        location: .literal('us'),
+        instance: .literal(instanceId),
+        nativeDashboard: .ref(dashboard.nameRef),
         chartLayout: ChronicleDashboardChartChartLayout(
-          spanX: TfArg.literal(42),
-          spanY: TfArg.literal(27),
+          spanX: .literal(42),
+          spanY: .literal(27),
         ),
         dashboardChart: ChronicleDashboardChartSpec(
-          displayName: TfArg.literal('DNS events'),
+          displayName: .literal('DNS events'),
           tileType: ChronicleDashboardChartTileType.tileTypeVisualization,
           visualization: [
             ChronicleDashboardChartVisualization(
@@ -84,10 +84,10 @@ final class ChronicleCustomListStack extends Stack {
           ],
         ),
         dashboardQuery: ChronicleDashboardChartQuery(
-          query: TfArg.literal('metadata.event_type = "NETWORK_DNS"'),
+          query: .literal('metadata.event_type = "NETWORK_DNS"'),
           input: ChronicleDashboardChartQueryInput(
             relativeTime: ChronicleDashboardChartRelativeTime(
-              startTimeVal: TfArg.literal('1'),
+              startTimeVal: .literal('1'),
               timeUnit: ChronicleDashboardChartTimeUnit.hour,
             ),
           ),

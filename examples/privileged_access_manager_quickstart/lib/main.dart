@@ -28,41 +28,41 @@ final class PrivilegedAccessManagerStack extends Stack {
     final apiPam = add(
       GoogleProjectService(
         localName: 'api_pam',
-        service: TfArg.literal('privilegedaccessmanager.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('privilegedaccessmanager.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final requester = add(
       GoogleServiceAccount(
         localName: 'requester',
-        accountId: TfArg.literal('pam-requester'),
-        displayName: TfArg.literal('PAM entitlement requester'),
+        accountId: .literal('pam-requester'),
+        displayName: .literal('PAM entitlement requester'),
       ),
     );
 
     add(
       GooglePrivilegedAccessManagerEntitlement(
         localName: 'browser',
-        location: TfArg.literal('global'),
-        entitlementId: TfArg.literal('terradart-pam'),
-        parent: TfArg.literal(parent),
-        maxRequestDuration: TfArg.literal('1800s'),
+        location: .literal('global'),
+        entitlementId: .literal('terradart-pam'),
+        parent: .literal(parent),
+        maxRequestDuration: .literal('1800s'),
         eligibleUsers: [
           PrivilegedAccessManagerEntitlementEligibleUsers(
-            principals: TfArg.literal([requester.iamMember.interpolation]),
+            principals: .literal([requester.iamMember.interpolation]),
           ),
         ],
         privilegedAccess: PrivilegedAccessManagerEntitlementPrivilegedAccess(
           gcpIamAccess:
               PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccess(
-                resourceType: TfArg.literal(
+                resourceType: .literal(
                   'cloudresourcemanager.googleapis.com/Project',
                 ),
-                resource: TfArg.literal(projectResource),
+                resource: .literal(projectResource),
                 roleBindings: [
                   PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBindings(
-                    role: TfArg.literal('roles/browser'),
+                    role: .literal('roles/browser'),
                   ),
                 ],
               ),
@@ -73,7 +73,7 @@ final class PrivilegedAccessManagerStack extends Stack {
                 PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
               ),
             ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(apiPam), ResourceDependency(requester)],
       ),
     );

@@ -37,22 +37,22 @@ final class IntegrationsStack extends Stack {
     final apiIntegrations = add(
       GoogleProjectService(
         localName: 'api_integrations',
-        service: TfArg.literal('integrations.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('integrations.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
     final apiSecretManager = add(
       GoogleProjectService(
         localName: 'api_secretmanager',
-        service: TfArg.literal('secretmanager.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('secretmanager.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
     final apiConnectors = add(
       GoogleProjectService(
         localName: 'api_connectors',
-        service: TfArg.literal('connectors.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('connectors.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -71,7 +71,7 @@ final class IntegrationsStack extends Stack {
     final client = add(
       GoogleIntegrationsClient(
         localName: 'client',
-        location: TfArg.literal('us-east1'),
+        location: .literal('us-east1'),
         dependsOn: [ResourceDependency(apiWait)],
       ),
     );
@@ -79,22 +79,21 @@ final class IntegrationsStack extends Stack {
     add(
       GoogleIntegrationsAuthConfig(
         localName: 'auth_config',
-        displayName: TfArg.literal('terradart-dummy-basic'),
-        location: TfArg.literal('us-east1'),
-        description: TfArg.literal(
+        displayName: .literal('terradart-dummy-basic'),
+        location: .literal('us-east1'),
+        description: .literal(
           'Dummy USERNAME_AND_PASSWORD credential metadata — not used by a flow',
         ),
         decryptedCredential: IntegrationsAuthConfigDecryptedCredential(
-          credentialType: TfArg.literal('USERNAME_AND_PASSWORD'),
-          credential:
-              .usernameAndPassword(
-                IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword(
-                  username: TfArg.literal('terradart-dummy'),
-                  password: TfArg.literal('terradart-dummy-password'),
-                ),
-              ),
+          credentialType: .literal('USERNAME_AND_PASSWORD'),
+          credential: .usernameAndPassword(
+            IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword(
+              username: .literal('terradart-dummy'),
+              password: .literal('terradart-dummy-password'),
+            ),
+          ),
         ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(client), ResourceDependency(apiWait)],
       ),
     );

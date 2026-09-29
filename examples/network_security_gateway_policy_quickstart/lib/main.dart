@@ -21,17 +21,17 @@ final class NetworkSecurityGatewayPolicyStack extends Stack {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         localName: 'api_networksecurity',
-        service: TfArg.literal('networksecurity.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('networksecurity.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final policy = add(
       GoogleNetworkSecurityGatewaySecurityPolicy(
         localName: 'swp',
-        name: TfArg.literal('terradart-gateway-policy'),
-        location: TfArg.literal('us-central1'),
-        description: TfArg.literal('TerraDart smoke gateway security policy'),
+        name: .literal('terradart-gateway-policy'),
+        location: .literal('us-central1'),
+        description: .literal('TerraDart smoke gateway security policy'),
         dependsOn: [ResourceDependency(apiNetworkSecurity)],
       ),
     );
@@ -39,15 +39,13 @@ final class NetworkSecurityGatewayPolicyStack extends Stack {
     add(
       GoogleNetworkSecurityGatewaySecurityPolicyRule(
         localName: 'allow_example',
-        name: TfArg.literal('terradart-allow-example'),
-        location: TfArg.literal('us-central1'),
-        gatewaySecurityPolicy: TfArg.ref(policy.nameRef),
-        enabled: TfArg.literal(true),
-        priority: TfArg.literal(1),
-        sessionMatcher: TfArg.literal("host() == 'example.com'"),
-        basicProfile: TfArg.literal(
-          NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.allow,
-        ),
+        name: .literal('terradart-allow-example'),
+        location: .literal('us-central1'),
+        gatewaySecurityPolicy: .ref(policy.nameRef),
+        enabled: .literal(true),
+        priority: .literal(1),
+        sessionMatcher: .literal("host() == 'example.com'"),
+        basicProfile: .literal(.allow),
         dependsOn: [ResourceDependency(policy)],
       ),
     );

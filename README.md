@@ -64,43 +64,43 @@ final class AppInfraStack extends Stack {
         ]) {
     add(GoogleSqlDatabaseInstance(
       localName: 'app_sql',
-      name: TfArg.literal('app-sql'),
-      databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
-      region: TfArg.literal('asia-northeast1'),
+      name: .literal('app-sql'),
+      databaseVersion: .literal(.postgres15),
+      region: .literal('asia-northeast1'),
       settings: SqlDatabaseInstanceSettings(
-        tier: TfArg.literal('db-f1-micro'),
+        tier: .literal('db-f1-micro'),
       ),
     ));
 
     final runSa = add(GoogleServiceAccount(
       localName: 'run_sa',
-      accountId: TfArg.literal('app-run-sa'),
+      accountId: .literal('app-run-sa'),
     ));
     add(GoogleProjectIamMember(
       localName: 'run_sa_sql_client',
-      project: TfArg.literal(projectId),
-      role: TfArg.literal('roles/cloudsql.client'),
-      member: TfArg.ref(runSa.iamMember),
+      project: .literal(projectId),
+      role: .literal('roles/cloudsql.client'),
+      member: .ref(runSa.iamMember),
     ));
 
     add(GoogleCloudRunV2Service(
       localName: 'app',
-      name: TfArg.literal('app'),
-      location: TfArg.literal('asia-northeast1'),
+      name: .literal('app'),
+      location: .literal('asia-northeast1'),
       template: CloudRunV2ServiceTemplate(
-        serviceAccount: TfArg.ref(runSa.email),
+        serviceAccount: .ref(runSa.email),
         containers: [
           CloudRunV2ServiceServiceContainer(
-            name: TfArg.literal('app'),
-            image: TfArg.literal('gcr.io/cloudrun/hello'),
+            name: .literal('app'),
+            image: .literal('gcr.io/cloudrun/hello'),
             ports: CloudRunV2ServiceContainerPort(
-              containerPort: TfArg.literal(8080),
+              containerPort: .literal(8080),
             ),
             env: [
               CloudRunV2ServiceEnvVar(
-                name: TfArg.literal('DATABASE_URL'),
+                name: .literal('DATABASE_URL'),
                 source: .value(
-                  TfArg.literal(
+                  .literal(
                     'postgresql://app-client@${projectId}.iam@localhost:5432/app',
                   ),
                 ),
@@ -108,11 +108,11 @@ final class AppInfraStack extends Stack {
             ],
           ),
           CloudRunV2ServiceServiceContainer(
-            name: TfArg.literal('cloud-sql-proxy'),
-            image: TfArg.literal(
+            name: .literal('cloud-sql-proxy'),
+            image: .literal(
               'gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.18.1',
             ),
-            args: TfArg.literal([
+            args: .literal([
               '--port=5432',
               '--auto-iam-authn',
               '${projectId}:asia-northeast1:app-sql',
@@ -132,7 +132,7 @@ dart run bin/infra.dart                                  # synth → tf-out/
 cd tf-out && terraform init && terraform apply
 ```
 
-`TfArg.literal(...)` wraps known values at synth time, while `TfArg.ref(...)` (e.g. `runSa.iamMember` or `runSa.email`) passes typed references between resources that Terraform resolves during plan/apply. `TfArg.variable('name')` reads a Terraform input variable declared with `addVariable`, and `TfArg.expression(r'${...}')` passes a raw Terraform expression through verbatim — accepted on sensitive fields, checked for undeclared variables at synth time.
+`.literal(...)` wraps known values at synth time, while `.ref(...)` (e.g. `runSa.iamMember` or `runSa.email`) passes typed references between resources that Terraform resolves during plan/apply. Both are Dart 3.10 dot shorthands for `TfArg.literal` / `TfArg.ref`: every constructor argument is typed `TfArg<T>`, so the class name (and an enum's type name, as in `.literal(.postgres15)`) can be left out; spell it out where there is no context type, such as `final x = TfArg.literal('a');`. `TfArg.variable('name')` reads a Terraform input variable declared with `addVariable`, and `TfArg.expression(r'${...}')` passes a raw Terraform expression through verbatim — accepted on sensitive fields, checked for undeclared variables at synth time.
 
 Per-service imports (`cloud_run.dart`, `cloud_sql.dart`, …) keep IDE completion scoped; the legacy `package:terradart_google/terradart_google.dart` barrel re-export remains supported.
 
@@ -163,8 +163,8 @@ final class OrdersStack extends Stack {
       : super(providers: [GoogleProvider(project: projectId)]) {
     final orders = GooglePubsubTopic(
       localName: 'orders',
-      name: TfArg.literal('orders-prod'),
-      messageRetentionDuration: TfArg.literal('604800s'),
+      name: .literal('orders-prod'),
+      messageRetentionDuration: .literal('604800s'),
     );
     add(orders);
     addExport('ORDERS_TOPIC', ResourceIdExport(orders.nameRef));
@@ -191,10 +191,10 @@ Rename `orders-prod` in the Stack and the handler will not compile until the ref
 ```dart
 GoogleStorageBucket(
   localName: 'assets',
-  name: TfArg.literal('my-app-assets-prod'),
-  storageClass: TfArg.literal(BucketStorageClass.standard),  // not 'STANDARD'
+  name: .literal('my-app-assets-prod'),
+  storageClass: .literal(.standard),  // not 'STANDARD'
 );
-// BucketStorageClass.standerd ← typo: compile error
+// .standerd ← typo: compile error
 ```
 
 The `.terraformValue` getter convention encodes `BucketStorageClass.standard` as `"STANDARD"` at synth time. `ArgumentError` (not silent wrong JSON) on missing convention.
@@ -205,12 +205,12 @@ The `.terraformValue` getter convention encodes `BucketStorageClass.standard` as
 GoogleCloudRunV2Service(
   template: Template(
     containers: [ServiceContainer(
-      image: TfArg.literal('gcr.io/cloudrun/hello'),
+      image: .literal('gcr.io/cloudrun/hello'),
       env: [
         EnvVar(name: 'LOG_LEVEL',
-               source: EnvVarFromLiteral(TfArg.literal('info'))),
+               source: EnvVarFromLiteral(.literal('info'))),
         EnvVar(name: 'DB_PASSWORD',
-               source: EnvVarFromSecret(secret: TfArg.literal('db-pwd'))),
+               source: EnvVarFromSecret(secret: .literal('db-pwd'))),
       ],
     )],
   ),

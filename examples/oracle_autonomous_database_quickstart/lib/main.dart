@@ -28,28 +28,28 @@ final class OracleAutonomousDatabaseStack extends Stack {
 
     final vpc = GoogleComputeNetwork(
       localName: 'ora_vpc',
-      name: TfArg.literal('terradart-adb-vpc'),
-      autoCreateSubnetworks: TfArg.literal(false),
+      name: .literal('terradart-adb-vpc'),
+      autoCreateSubnetworks: .literal(false),
       dependsOn: apiDeps,
     );
     add(vpc);
 
     final odbNetwork = GoogleOracleDatabaseOdbNetwork(
       localName: 'odb_net',
-      location: TfArg.literal(location),
-      odbNetworkId: TfArg.literal(odbNetworkId),
-      network: TfArg.ref(vpc.selfLink),
+      location: .literal(location),
+      odbNetworkId: .literal(odbNetworkId),
+      network: .ref(vpc.selfLink),
       dependsOn: [...apiDeps, ResourceDependency(vpc)],
     );
     add(odbNetwork);
 
     final odbSubnet = GoogleOracleDatabaseOdbSubnet(
       localName: 'odb_sub',
-      location: TfArg.literal(location),
-      odbnetwork: TfArg.literal(odbNetworkId),
-      odbSubnetId: TfArg.literal(odbSubnetId),
-      cidrRange: TfArg.literal('10.30.0.0/24'),
-      purpose: TfArg.literal(OracleDatabaseOdbSubnetPurpose.clientSubnet),
+      location: .literal(location),
+      odbnetwork: .literal(odbNetworkId),
+      odbSubnetId: .literal(odbSubnetId),
+      cidrRange: .literal('10.30.0.0/24'),
+      purpose: .literal(.clientSubnet),
       dependsOn: [...apiDeps, ResourceDependency(odbNetwork)],
     );
     add(odbSubnet);
@@ -57,14 +57,14 @@ final class OracleAutonomousDatabaseStack extends Stack {
     add(
       GoogleOracleDatabaseAutonomousDatabase(
         localName: 'oltp',
-        location: TfArg.literal(location),
-        autonomousDatabaseId: TfArg.literal('terradart-adb'),
-        database: TfArg.literal('terradartdb'),
-        displayName: TfArg.literal('TerraDart Autonomous Database'),
-        adminPassword: TfArg.literal('Placeholder-Pass1'),
-        odbSubnet: TfArg.ref(odbSubnet.nameRef),
-        odbNetwork: TfArg.ref(odbNetwork.nameRef),
-        properties: TfArg.literal({
+        location: .literal(location),
+        autonomousDatabaseId: .literal('terradart-adb'),
+        database: .literal('terradartdb'),
+        displayName: .literal('TerraDart Autonomous Database'),
+        adminPassword: .literal('Placeholder-Pass1'),
+        odbSubnet: .ref(odbSubnet.nameRef),
+        odbNetwork: .ref(odbNetwork.nameRef),
+        properties: .literal({
           'db_workload':
               OracleDatabaseAutonomousDatabaseDbWorkload.oltp.terraformValue,
           'license_type': OracleDatabaseAutonomousDatabaseLicenseType

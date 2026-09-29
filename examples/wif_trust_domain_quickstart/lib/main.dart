@@ -30,21 +30,21 @@ final class WifTrustDomainStack extends Stack {
     final pool = add(
       GoogleIamWorkloadIdentityPool(
         localName: 'trust',
-        workloadIdentityPoolId: TfArg.literal(poolId),
-        displayName: TfArg.literal('TerraDart trust-domain pool'),
-        description: TfArg.literal(
+        workloadIdentityPoolId: .literal(poolId),
+        displayName: .literal('TerraDart trust-domain pool'),
+        description: .literal(
           'Smoke pool for namespace + managed identity factories.',
         ),
-        mode: TfArg.literal(WorkloadIdentityPoolMode.trustDomain),
+        mode: .literal(.trustDomain),
       ),
     );
 
     final namespace = add(
       GoogleIamWorkloadIdentityPoolNamespace(
         localName: 'apps',
-        workloadIdentityPoolId: TfArg.literal(poolId),
-        workloadIdentityPoolNamespaceId: TfArg.literal(namespaceId),
-        description: TfArg.literal('TerraDart apps namespace'),
+        workloadIdentityPoolId: .literal(poolId),
+        workloadIdentityPoolNamespaceId: .literal(namespaceId),
+        description: .literal('TerraDart apps namespace'),
         dependsOn: [ResourceDependency(pool)],
       ),
     );
@@ -52,10 +52,10 @@ final class WifTrustDomainStack extends Stack {
     add(
       GoogleIamWorkloadIdentityPoolManagedIdentity(
         localName: 'runner',
-        workloadIdentityPoolId: TfArg.literal(poolId),
-        workloadIdentityPoolNamespaceId: TfArg.literal(namespaceId),
-        workloadIdentityPoolManagedIdentityId: TfArg.literal(identityId),
-        description: TfArg.literal('TerraDart runner managed identity'),
+        workloadIdentityPoolId: .literal(poolId),
+        workloadIdentityPoolNamespaceId: .literal(namespaceId),
+        workloadIdentityPoolManagedIdentityId: .literal(identityId),
+        description: .literal('TerraDart runner managed identity'),
         dependsOn: [ResourceDependency(namespace)],
       ),
     );

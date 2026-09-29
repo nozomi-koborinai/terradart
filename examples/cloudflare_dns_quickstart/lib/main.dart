@@ -24,19 +24,19 @@ final class CloudflareDnsStack extends Stack {
   CloudflareDnsStack() : super(providers: [const CloudflareProvider()]) {
     final zone = CloudflareZone(
       localName: 'main',
-      name: TfArg.literal('terradart-demo.example'),
-      account: ZoneAccount(id: TfArg.literal('terradart-demo-account')),
+      name: .literal('terradart-demo.example'),
+      account: ZoneAccount(id: .literal('terradart-demo-account')),
     );
     add(zone);
     add(
       CloudflareDnsRecord(
         localName: 'api',
-        zoneId: TfArg.ref(zone.id),
-        name: TfArg.literal('api.terradart-demo.example'),
-        type: TfArg.literal(DnsRecordType.cname),
-        ttl: TfArg.literal(1),
-        content: .content(TfArg.literal('ghs.googlehosted.com')),
-        proxied: TfArg.literal(true),
+        zoneId: .ref(zone.id),
+        name: .literal('api.terradart-demo.example'),
+        type: .literal(.cname),
+        ttl: .literal(1),
+        content: .content(.literal('ghs.googlehosted.com')),
+        proxied: .literal(true),
       ),
     );
   }

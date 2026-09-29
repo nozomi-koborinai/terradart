@@ -22,19 +22,17 @@ final class NetworkSecurityDnsThreatStack extends Stack {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         localName: 'api_networksecurity',
-        service: TfArg.literal('networksecurity.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('networksecurity.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleNetworkSecurityDnsThreatDetector(
         localName: 'dns_threat',
-        name: TfArg.literal('terradart-dns-threat'),
-        location: TfArg.literal('global'),
-        threatDetectorProvider: TfArg.literal(
-          NetworkSecurityDnsThreatDetectorThreatDetectorProvider.infoblox,
-        ),
+        name: .literal('terradart-dns-threat'),
+        location: .literal('global'),
+        threatDetectorProvider: .literal(.infoblox),
         dependsOn: [ResourceDependency(apiNetworkSecurity)],
       ),
     );

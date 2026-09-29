@@ -22,17 +22,15 @@ final class KmsAutokeyStack extends Stack {
     final apiKms = add(
       GoogleProjectService(
         localName: 'api_cloudkms',
-        service: TfArg.literal('cloudkms.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('cloudkms.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleKmsProjectAutokeyConfig(
         localName: 'autokey',
-        keyProjectResolutionMode: TfArg.literal(
-          KmsProjectAutokeyConfigKeyProjectResolutionMode.disabled,
-        ),
+        keyProjectResolutionMode: .literal(.disabled),
         dependsOn: [ResourceDependency(apiKms)],
       ),
     );

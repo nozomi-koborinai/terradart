@@ -41,49 +41,49 @@ final class OracleExadataStack extends Stack {
 
     final vpc = GoogleComputeNetwork(
       localName: 'ora_vpc',
-      name: TfArg.literal('terradart-exa-vpc'),
-      autoCreateSubnetworks: TfArg.literal(false),
+      name: .literal('terradart-exa-vpc'),
+      autoCreateSubnetworks: .literal(false),
       dependsOn: apiDeps,
     );
     add(vpc);
 
     final odbNetwork = GoogleOracleDatabaseOdbNetwork(
       localName: 'odb_net',
-      location: TfArg.literal(location),
-      odbNetworkId: TfArg.literal(odbNetworkId),
-      network: TfArg.ref(vpc.selfLink),
+      location: .literal(location),
+      odbNetworkId: .literal(odbNetworkId),
+      network: .ref(vpc.selfLink),
       dependsOn: [...apiDeps, ResourceDependency(vpc)],
     );
     add(odbNetwork);
 
     final clientSubnet = GoogleOracleDatabaseOdbSubnet(
       localName: 'client_sub',
-      location: TfArg.literal(location),
-      odbnetwork: TfArg.literal(odbNetworkId),
-      odbSubnetId: TfArg.literal(clientSubnetId),
-      cidrRange: TfArg.literal('10.50.0.0/24'),
-      purpose: TfArg.literal(OracleDatabaseOdbSubnetPurpose.clientSubnet),
+      location: .literal(location),
+      odbnetwork: .literal(odbNetworkId),
+      odbSubnetId: .literal(clientSubnetId),
+      cidrRange: .literal('10.50.0.0/24'),
+      purpose: .literal(.clientSubnet),
       dependsOn: [...apiDeps, ResourceDependency(odbNetwork)],
     );
     add(clientSubnet);
 
     final backupSubnet = GoogleOracleDatabaseOdbSubnet(
       localName: 'backup_sub',
-      location: TfArg.literal(location),
-      odbnetwork: TfArg.literal(odbNetworkId),
-      odbSubnetId: TfArg.literal(backupSubnetId),
-      cidrRange: TfArg.literal('10.51.0.0/24'),
-      purpose: TfArg.literal(OracleDatabaseOdbSubnetPurpose.backupSubnet),
+      location: .literal(location),
+      odbnetwork: .literal(odbNetworkId),
+      odbSubnetId: .literal(backupSubnetId),
+      cidrRange: .literal('10.51.0.0/24'),
+      purpose: .literal(.backupSubnet),
       dependsOn: [...apiDeps, ResourceDependency(odbNetwork)],
     );
     add(backupSubnet);
 
     final storageVault = GoogleOracleDatabaseExascaleDbStorageVault(
       localName: 'exascale_vault',
-      location: TfArg.literal(location),
-      exascaleDbStorageVaultId: TfArg.literal(vaultId),
-      displayName: TfArg.literal('TerraDart Exascale vault'),
-      properties: TfArg.literal({
+      location: .literal(location),
+      exascaleDbStorageVaultId: .literal(vaultId),
+      displayName: .literal('TerraDart Exascale vault'),
+      properties: .literal({
         'exascale_db_storage_details': {'total_size_gbs': 512},
       }),
       dependsOn: apiDeps,
@@ -92,13 +92,13 @@ final class OracleExadataStack extends Stack {
 
     final exadbVmCluster = GoogleOracleDatabaseExadbVmCluster(
       localName: 'exadb_cluster',
-      location: TfArg.literal(location),
-      exadbVmClusterId: TfArg.literal(exadbClusterId),
-      displayName: TfArg.literal('TerraDart ExaDB cluster'),
-      odbSubnet: TfArg.ref(clientSubnet.nameRef),
-      backupOdbSubnet: TfArg.ref(backupSubnet.nameRef),
-      odbNetwork: TfArg.ref(odbNetwork.nameRef),
-      properties: TfArg.literal({
+      location: .literal(location),
+      exadbVmClusterId: .literal(exadbClusterId),
+      displayName: .literal('TerraDart ExaDB cluster'),
+      odbSubnet: .ref(clientSubnet.nameRef),
+      backupOdbSubnet: .ref(backupSubnet.nameRef),
+      odbNetwork: .ref(odbNetwork.nameRef),
+      properties: .literal({
         'enabled_ecpu_count_per_node': 8,
         'exascale_db_storage_vault': TfArg.ref(storageVault.id),
         'grid_image_id': _placeholderGridImageId,
@@ -119,10 +119,10 @@ final class OracleExadataStack extends Stack {
 
     final exadata = GoogleOracleDatabaseCloudExadataInfrastructure(
       localName: 'exadata',
-      location: TfArg.literal(location),
-      cloudExadataInfrastructureId: TfArg.literal(exadataId),
-      displayName: TfArg.literal('TerraDart Exadata infrastructure'),
-      properties: TfArg.literal({
+      location: .literal(location),
+      cloudExadataInfrastructureId: .literal(exadataId),
+      displayName: .literal('TerraDart Exadata infrastructure'),
+      properties: .literal({
         'shape': 'Exadata.X9M',
         'compute_count': 2,
         'storage_count': 3,
@@ -134,14 +134,14 @@ final class OracleExadataStack extends Stack {
     add(
       GoogleOracleDatabaseCloudVmCluster(
         localName: 'vm_cluster',
-        location: TfArg.literal(location),
-        cloudVmClusterId: TfArg.literal(vmClusterId),
-        displayName: TfArg.literal('TerraDart Exadata VM cluster'),
-        exadataInfrastructure: TfArg.ref(exadata.id),
-        odbNetwork: TfArg.ref(odbNetwork.nameRef),
-        odbSubnet: TfArg.ref(clientSubnet.nameRef),
-        backupOdbSubnet: TfArg.ref(backupSubnet.nameRef),
-        properties: TfArg.literal({
+        location: .literal(location),
+        cloudVmClusterId: .literal(vmClusterId),
+        displayName: .literal('TerraDart Exadata VM cluster'),
+        exadataInfrastructure: .ref(exadata.id),
+        odbNetwork: .ref(odbNetwork.nameRef),
+        odbSubnet: .ref(clientSubnet.nameRef),
+        backupOdbSubnet: .ref(backupSubnet.nameRef),
+        properties: .literal({
           'license_type': 'LICENSE_INCLUDED',
           'cpu_core_count': 4,
           'gi_version': '19.0.0.0',

@@ -30,19 +30,17 @@ final class NetappMetadataStack extends Stack {
     final apiNetapp = add(
       GoogleProjectService(
         localName: 'api_netapp',
-        service: TfArg.literal('netapp.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('netapp.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleNetappBackupVault(
         localName: 'vault',
-        name: TfArg.literal('terradart-smoke-vault'),
-        location: TfArg.literal(location),
-        description: TfArg.literal(
-          'Empty vault for TerraDart smoke (no backups)',
-        ),
+        name: .literal('terradart-smoke-vault'),
+        location: .literal(location),
+        description: .literal('Empty vault for TerraDart smoke (no backups)'),
         dependsOn: [ResourceDependency(apiNetapp)],
       ),
     );
@@ -50,14 +48,14 @@ final class NetappMetadataStack extends Stack {
     add(
       GoogleNetappBackupPolicy(
         localName: 'policy',
-        name: TfArg.literal('terradart-smoke-policy'),
-        location: TfArg.literal(location),
-        dailyBackupLimit: TfArg.literal(2),
-        weeklyBackupLimit: TfArg.literal(1),
-        monthlyBackupLimit: TfArg.literal(1),
+        name: .literal('terradart-smoke-policy'),
+        location: .literal(location),
+        dailyBackupLimit: .literal(2),
+        weeklyBackupLimit: .literal(1),
+        monthlyBackupLimit: .literal(1),
         // Keep disabled and unattached so no schedules can fire.
-        enabled: TfArg.literal(false),
-        description: TfArg.literal('Disabled schedule metadata (no volumes)'),
+        enabled: .literal(false),
+        description: .literal('Disabled schedule metadata (no volumes)'),
         dependsOn: [ResourceDependency(apiNetapp)],
       ),
     );
@@ -65,14 +63,12 @@ final class NetappMetadataStack extends Stack {
     add(
       GoogleNetappHostGroup(
         localName: 'hosts',
-        name: TfArg.literal('terradart-smoke-hosts'),
-        location: TfArg.literal(location),
-        type: TfArg.literal(NetappHostGroupType.iscsiInitiator),
-        osType: TfArg.literal(NetappHostGroupOsType.linux),
-        hosts: TfArg.literal(['iqn.1994-05.com.redhat:terradart-smoke-never']),
-        description: TfArg.literal(
-          'Smoke initiator list (not wired to volumes)',
-        ),
+        name: .literal('terradart-smoke-hosts'),
+        location: .literal(location),
+        type: .literal(.iscsiInitiator),
+        osType: .literal(.linux),
+        hosts: .literal(['iqn.1994-05.com.redhat:terradart-smoke-never']),
+        description: .literal('Smoke initiator list (not wired to volumes)'),
         dependsOn: [ResourceDependency(apiNetapp)],
       ),
     );

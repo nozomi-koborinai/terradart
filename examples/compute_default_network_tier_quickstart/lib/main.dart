@@ -21,15 +21,15 @@ final class ComputeDefaultNetworkTierStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
-        service: TfArg.literal('compute.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('compute.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleComputeProjectDefaultNetworkTier(
         localName: 'defaults',
-        networkTier: TfArg.literal(ComputeProjectDefaultNetworkTier.standard),
+        networkTier: .literal(.standard),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );

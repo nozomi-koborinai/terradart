@@ -23,20 +23,20 @@ final class ObservabilityStack extends Stack {
     final apiObservability = add(
       GoogleProjectService(
         localName: 'api_observability',
-        service: TfArg.literal('observability.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('observability.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final traceScope = add(
       GoogleObservabilityTraceScope(
         localName: 'app_traces',
-        traceScopeId: TfArg.literal('terradart-traces'),
-        location: TfArg.literal('global'),
+        traceScopeId: .literal('terradart-traces'),
+        location: .literal('global'),
         // A trace scope groups the trace data of one or more projects; here it
         // covers just the current project.
-        resourceNames: TfArg.literal(['projects/$projectId']),
-        description: TfArg.literal('Trace scope for the current project'),
+        resourceNames: .literal(['projects/$projectId']),
+        description: .literal('Trace scope for the current project'),
         dependsOn: [ResourceDependency(apiObservability)],
       ),
     );

@@ -36,17 +36,17 @@ final class EmailJobsStack extends Stack {
     final queue = add(
       GoogleCloudTasksQueue(
         localName: 'email_jobs',
-        name: TfArg.literal('email-jobs'),
-        location: TfArg.literal('us-central1'),
+        name: .literal('email-jobs'),
+        location: .literal('us-central1'),
         rateLimits: CloudTasksQueueRateLimits(
-          maxConcurrentDispatches: TfArg.literal(10),
-          maxDispatchesPerSecond: TfArg.literal(5),
+          maxConcurrentDispatches: .literal(10),
+          maxDispatchesPerSecond: .literal(5),
         ),
         retryConfig: CloudTasksQueueRetryConfig(
-          maxAttempts: TfArg.literal(5),
-          minBackoff: TfArg.literal('5s'),
-          maxBackoff: TfArg.literal('300s'),
-          maxDoublings: TfArg.literal(3),
+          maxAttempts: .literal(5),
+          minBackoff: .literal('5s'),
+          maxBackoff: .literal('300s'),
+          maxDoublings: .literal(3),
         ),
         dependsOn: apiDeps,
       ),
@@ -59,8 +59,8 @@ final class EmailJobsStack extends Stack {
     final enqueuerSa = add(
       GoogleServiceAccount(
         localName: 'enqueuer',
-        accountId: TfArg.literal('enqueuer'),
-        displayName: TfArg.literal('Cloud Tasks enqueuer'),
+        accountId: .literal('enqueuer'),
+        displayName: .literal('Cloud Tasks enqueuer'),
       ),
     );
 
@@ -71,10 +71,10 @@ final class EmailJobsStack extends Stack {
       GoogleCloudTasksQueueIamMember(
         localName: 'email_jobs_enqueuer',
         // Cloud Tasks queue IAM identity = name + location pair (NOT id).
-        name: TfArg.ref(queue.nameRef),
-        location: TfArg.ref(queue.locationRef),
-        role: TfArg.literal('roles/cloudtasks.enqueuer'),
-        member: TfArg.ref(enqueuerSa.iamMember),
+        name: .ref(queue.nameRef),
+        location: .ref(queue.locationRef),
+        role: .literal('roles/cloudtasks.enqueuer'),
+        member: .ref(enqueuerSa.iamMember),
         dependsOn: [ResourceDependency(enqueuerSa)],
       ),
     );

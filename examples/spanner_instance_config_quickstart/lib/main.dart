@@ -22,25 +22,25 @@ final class SpannerInstanceConfigStack extends Stack {
     final apiSpanner = add(
       GoogleProjectService(
         localName: 'api_spanner',
-        service: TfArg.literal('spanner.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('spanner.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleSpannerInstanceConfig(
         localName: 'custom_nam11',
-        name: TfArg.literal('custom-td-nam11-ro'),
-        displayName: TfArg.literal('TerraDart nam11 + us-west1 RO'),
-        baseConfig: TfArg.literal('nam11'),
+        name: .literal('custom-td-nam11-ro'),
+        displayName: .literal('TerraDart nam11 + us-west1 RO'),
+        baseConfig: .literal('nam11'),
         replicas: [
           SpannerInstanceConfigReplicas(
-            location: TfArg.literal('us-west1'),
-            type: TfArg.literal(SpannerInstanceConfigReplicasType.readOnly),
-            defaultLeaderLocation: TfArg.literal(false),
+            location: .literal('us-west1'),
+            type: .literal(.readOnly),
+            defaultLeaderLocation: .literal(false),
           ),
         ],
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(apiSpanner)],
       ),
     );

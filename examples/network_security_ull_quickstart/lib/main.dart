@@ -25,18 +25,18 @@ final class NetworkSecurityUllStack extends Stack {
 
     final engine = GoogleNetworkSecurityUllMirroringEngine(
       localName: 'mirror',
-      location: TfArg.literal(zone),
-      ullMirroringEngineId: TfArg.literal('terradart-ull-engine'),
+      location: .literal(zone),
+      ullMirroringEngineId: .literal('terradart-ull-engine'),
       dependsOn: apiDeps,
     );
     add(engine);
 
     final collector = GoogleNetworkSecurityUllMirroringCollector(
       localName: 'appliance',
-      location: TfArg.literal(zone),
-      ullMirroringCollectorId: TfArg.literal('terradart-ull-collector'),
-      engine: TfArg.ref(engine.nameRef),
-      forwardingRule: TfArg.literal(
+      location: .literal(zone),
+      ullMirroringCollectorId: .literal('terradart-ull-collector'),
+      engine: .ref(engine.nameRef),
+      forwardingRule: .literal(
         'projects/$projectId/regions/us-south1/forwardingRules/terradart-ull-fr',
       ),
       dependsOn: [...apiDeps, ResourceDependency(engine)],
@@ -46,13 +46,13 @@ final class NetworkSecurityUllStack extends Stack {
     add(
       GoogleNetworkSecurityUllMirroringCollectorRule(
         localName: 'mirror_tcp',
-        location: TfArg.literal(zone),
-        ullMirroringCollector: TfArg.ref(collector.nameRef),
-        ullMirroringCollectorRuleId: TfArg.literal('terradart-ull-rule'),
+        location: .literal(zone),
+        ullMirroringCollector: .ref(collector.nameRef),
+        ullMirroringCollectorRuleId: .literal('terradart-ull-rule'),
         match: NetworkSecurityUllMirroringCollectorRuleMatch(
           direction: NetworkSecurityUllMirroringCollectorRuleDirection.ingress,
-          ipProtocols: [TfArg.literal('tcp')],
-          srcIpRanges: [TfArg.literal('10.0.0.0/8')],
+          ipProtocols: [.literal('tcp')],
+          srcIpRanges: [.literal('10.0.0.0/8')],
         ),
         dependsOn: [...apiDeps, ResourceDependency(collector)],
       ),

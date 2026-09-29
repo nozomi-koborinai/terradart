@@ -32,13 +32,13 @@ final class DialogflowEsStack extends Stack {
     final agent = add(
       GoogleDialogflowAgent(
         localName: 'agent',
-        displayName: TfArg.literal('terradart-es-agent'),
-        defaultLanguageCode: TfArg.literal('en'),
-        timeZone: TfArg.literal('America/New_York'),
-        description: TfArg.literal('TerraDart Dialogflow ES smoke agent'),
-        matchMode: TfArg.literal(DialogflowAgentMatchMode.hybrid),
-        apiVersion: TfArg.literal(DialogflowAgentApiVersion.v2),
-        tier: TfArg.literal(DialogflowAgentTier.standard),
+        displayName: .literal('terradart-es-agent'),
+        defaultLanguageCode: .literal('en'),
+        timeZone: .literal('America/New_York'),
+        description: .literal('TerraDart Dialogflow ES smoke agent'),
+        matchMode: .literal(.hybrid),
+        apiVersion: .literal(.v2),
+        tier: .literal(.standard),
         dependsOn: apiDeps,
       ),
     );
@@ -49,7 +49,7 @@ final class DialogflowEsStack extends Stack {
       TimeSleep(
         localName: 'agent_ready',
         createDuration: TfArg.duration(const Duration(seconds: 20)),
-        triggers: TfArg.literal({'agent': agent.id.interpolation}),
+        triggers: .literal({'agent': agent.id.interpolation}),
         dependsOn: [...apiDeps, ResourceDependency(agent)],
       ),
     );
@@ -58,7 +58,7 @@ final class DialogflowEsStack extends Stack {
     add(
       GoogleDialogflowIntent(
         localName: 'hello',
-        displayName: TfArg.literal('terradart.hello'),
+        displayName: .literal('terradart.hello'),
         dependsOn: onAgent,
       ),
     );
@@ -66,12 +66,12 @@ final class DialogflowEsStack extends Stack {
     add(
       GoogleDialogflowEntityType(
         localName: 'color',
-        displayName: TfArg.literal('terradart-color'),
-        kind: TfArg.literal(DialogflowEntityTypeKind.kindMap),
+        displayName: .literal('terradart-color'),
+        kind: .literal(.kindMap),
         entities: [
           DialogflowEntityTypeEntities(
-            value: TfArg.literal('red'),
-            synonyms: TfArg.literal(['crimson', 'scarlet']),
+            value: .literal('red'),
+            synonyms: .literal(['crimson', 'scarlet']),
           ),
         ],
         dependsOn: onAgent,
@@ -81,8 +81,8 @@ final class DialogflowEsStack extends Stack {
     add(
       GoogleDialogflowFulfillment(
         localName: 'fulfillment',
-        displayName: TfArg.literal('terradart-fulfillment'),
-        enabled: TfArg.literal(false),
+        displayName: .literal('terradart-fulfillment'),
+        enabled: .literal(false),
         dependsOn: onAgent,
       ),
     );
@@ -90,8 +90,8 @@ final class DialogflowEsStack extends Stack {
     final version = add(
       GoogleDialogflowVersion(
         localName: 'v1',
-        parent: TfArg.literal('projects/$projectId/agent'),
-        description: TfArg.literal('terradart es snapshot'),
+        parent: .literal('projects/$projectId/agent'),
+        description: .literal('terradart es snapshot'),
         dependsOn: onAgent,
       ),
     );
@@ -99,10 +99,10 @@ final class DialogflowEsStack extends Stack {
     add(
       GoogleDialogflowEnvironment(
         localName: 'dev',
-        environmentid: TfArg.literal('terradartes'),
-        location: TfArg.literal('global'),
-        agentVersion: TfArg.ref(version.id),
-        description: TfArg.literal('terradart es env'),
+        environmentid: .literal('terradartes'),
+        location: .literal('global'),
+        agentVersion: .ref(version.id),
+        description: .literal('terradart es env'),
         dependsOn: [...onAgent, ResourceDependency(version)],
       ),
     );

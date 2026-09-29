@@ -32,28 +32,28 @@ final class OracleDbSystemStack extends Stack {
 
     final vpc = GoogleComputeNetwork(
       localName: 'ora_vpc',
-      name: TfArg.literal('terradart-dbs-vpc'),
-      autoCreateSubnetworks: TfArg.literal(false),
+      name: .literal('terradart-dbs-vpc'),
+      autoCreateSubnetworks: .literal(false),
       dependsOn: apiDeps,
     );
     add(vpc);
 
     final odbNetwork = GoogleOracleDatabaseOdbNetwork(
       localName: 'odb_net',
-      location: TfArg.literal(location),
-      odbNetworkId: TfArg.literal(odbNetworkId),
-      network: TfArg.ref(vpc.selfLink),
+      location: .literal(location),
+      odbNetworkId: .literal(odbNetworkId),
+      network: .ref(vpc.selfLink),
       dependsOn: [...apiDeps, ResourceDependency(vpc)],
     );
     add(odbNetwork);
 
     final odbSubnet = GoogleOracleDatabaseOdbSubnet(
       localName: 'odb_sub',
-      location: TfArg.literal(location),
-      odbnetwork: TfArg.literal(odbNetworkId),
-      odbSubnetId: TfArg.literal(odbSubnetId),
-      cidrRange: TfArg.literal('10.40.0.0/24'),
-      purpose: TfArg.literal(OracleDatabaseOdbSubnetPurpose.clientSubnet),
+      location: .literal(location),
+      odbnetwork: .literal(odbNetworkId),
+      odbSubnetId: .literal(odbSubnetId),
+      cidrRange: .literal('10.40.0.0/24'),
+      purpose: .literal(.clientSubnet),
       dependsOn: [...apiDeps, ResourceDependency(odbNetwork)],
     );
     add(odbSubnet);
@@ -61,12 +61,12 @@ final class OracleDbSystemStack extends Stack {
     add(
       GoogleOracleDatabaseDbSystem(
         localName: 'base_db',
-        location: TfArg.literal(location),
-        dbSystemId: TfArg.literal('terradart-dbs'),
-        displayName: TfArg.literal('TerraDart DB System'),
-        odbSubnet: TfArg.ref(odbSubnet.nameRef),
-        odbNetwork: TfArg.ref(odbNetwork.nameRef),
-        properties: TfArg.literal({
+        location: .literal(location),
+        dbSystemId: .literal('terradart-dbs'),
+        displayName: .literal('TerraDart DB System'),
+        odbSubnet: .ref(odbSubnet.nameRef),
+        odbNetwork: .ref(odbNetwork.nameRef),
+        properties: .literal({
           'shape': 'VM.Standard2.1',
           'compute_count': 2,
           'database_edition': OracleDatabaseDbSystemDatabaseEdition

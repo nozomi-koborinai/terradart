@@ -32,26 +32,26 @@ LunchDatabase addDatabase({
   final sql = stack.add(
     GoogleSqlDatabaseInstance(
       localName: 'lunch_sql',
-      name: TfArg.literal(sqlInstanceName),
-      databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
-      region: TfArg.literal(region),
-      deletionProtection: TfArg.literal(false),
+      name: .literal(sqlInstanceName),
+      databaseVersion: .literal(.postgres15),
+      region: .literal(region),
+      deletionProtection: .literal(false),
       settings: SqlDatabaseInstanceSettings(
-        tier: TfArg.literal('db-f1-micro'),
-        availabilityType: TfArg.literal(SqlAvailabilityType.zonal),
-        edition: TfArg.literal(SqlEdition.enterprise),
-        diskSize: TfArg.literal(10),
-        diskType: TfArg.literal(SqlDiskType.pdSsd),
+        tier: .literal('db-f1-micro'),
+        availabilityType: .literal(.zonal),
+        edition: .literal(.enterprise),
+        diskSize: .literal(10),
+        diskType: .literal(.pdSsd),
         databaseFlags: [
           SqlDatabaseInstanceDatabaseFlag(
-            name: TfArg.literal('cloudsql.iam_authentication'),
-            value: TfArg.literal('on'),
+            name: .literal('cloudsql.iam_authentication'),
+            value: .literal('on'),
           ),
         ],
         ipConfiguration: SqlDatabaseInstanceIpConfiguration(
-          ipv4Enabled: TfArg.literal(false),
-          privateNetwork: TfArg.ref(network.vpc.selfLink),
-          allocatedIpRange: TfArg.ref(network.psaRange.nameRef),
+          ipv4Enabled: .literal(false),
+          privateNetwork: .ref(network.vpc.selfLink),
+          allocatedIpRange: .ref(network.psaRange.nameRef),
         ),
       ),
       dependsOn: [ResourceDependency(network.psaConnection)],
@@ -61,8 +61,8 @@ LunchDatabase addDatabase({
   final database = stack.add(
     GoogleSqlDatabase(
       localName: 'lunch',
-      instance: TfArg.ref(sql.nameRef),
-      name: TfArg.literal(databaseName),
+      instance: .ref(sql.nameRef),
+      name: .literal(databaseName),
       dependsOn: [ResourceDependency(sql)],
     ),
   );
@@ -71,9 +71,9 @@ LunchDatabase addDatabase({
   final sqlUser = stack.add(
     GoogleSqlUser(
       localName: 'sql_client',
-      instance: TfArg.ref(sql.nameRef),
-      name: TfArg.literal(databaseUser),
-      type: TfArg.literal(SqlUserType.cloudIamServiceAccount),
+      instance: .ref(sql.nameRef),
+      name: .literal(databaseUser),
+      type: .literal(.cloudIamServiceAccount),
       dependsOn: [
         ResourceDependency(sql),
         ResourceDependency(identity.serviceAccount),

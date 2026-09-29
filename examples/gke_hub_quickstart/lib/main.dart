@@ -31,15 +31,15 @@ final class FleetStack extends Stack {
     final apiGkeHub = add(
       GoogleProjectService(
         localName: 'api_gkehub',
-        service: TfArg.literal('gkehub.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('gkehub.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final scope = add(
       GoogleGkeHubScope(
         localName: 'team_scope',
-        scopeId: TfArg.literal('terradart-scope'),
+        scopeId: .literal('terradart-scope'),
         dependsOn: [ResourceDependency(apiGkeHub)],
       ),
     );
@@ -47,9 +47,9 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubNamespace(
         localName: 'team_namespace',
-        scopeNamespaceId: TfArg.literal('terradart-team'),
-        scopeId: TfArg.literal('terradart-scope'),
-        scope: TfArg.ref(scope.id),
+        scopeNamespaceId: .literal('terradart-team'),
+        scopeId: .literal('terradart-scope'),
+        scope: .ref(scope.id),
         dependsOn: [ResourceDependency(scope)],
       ),
     );
@@ -61,13 +61,11 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubScopeRbacRoleBinding(
         localName: 'team_view',
-        scopeId: TfArg.literal('terradart-scope'),
-        scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
-        user: TfArg.literal('terradart-fleet-rbac@example.com'),
+        scopeId: .literal('terradart-scope'),
+        scopeRbacRoleBindingId: .literal('terradart-scope-rbac'),
+        user: .literal('terradart-fleet-rbac@example.com'),
         role: GkeHubScopeRbacRoleBindingRole(
-          role: .predefinedRole(
-            TfArg.literal(GkeHubScopeRbacRoleBindingRolePredefinedRole.view),
-          ),
+          role: .predefinedRole(.literal(.view)),
         ),
         dependsOn: [ResourceDependency(scope)],
       ),
@@ -76,8 +74,8 @@ final class FleetStack extends Stack {
     add(
       GoogleGkeHubRolloutSequence(
         localName: 'upgrade_sequence',
-        rolloutSequenceId: TfArg.literal('terradart-rollout'),
-        stages: TfArg.literal([
+        rolloutSequenceId: .literal('terradart-rollout'),
+        stages: .literal([
           {
             'fleet_projects': ['projects/$projectId'],
             // The API requires a soak duration per stage even though the
@@ -86,7 +84,7 @@ final class FleetStack extends Stack {
             'soak_duration': '60s',
           },
         ]),
-        displayName: TfArg.literal('TerraDart upgrade sequence'),
+        displayName: .literal('TerraDart upgrade sequence'),
         dependsOn: [ResourceDependency(apiGkeHub)],
       ),
     );
@@ -96,17 +94,17 @@ final class FleetStack extends Stack {
     final teamReader = add(
       GoogleServiceAccount(
         localName: 'team_reader',
-        accountId: TfArg.literal('terradart-team-reader'),
-        displayName: TfArg.literal('Fleet scope reader'),
+        accountId: .literal('terradart-team-reader'),
+        displayName: .literal('Fleet scope reader'),
       ),
     );
 
     add(
       GoogleGkeHubScopeIamMember(
         localName: 'team_scope_viewer',
-        scopeId: TfArg.literal('terradart-scope'),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(teamReader.iamMember),
+        scopeId: .literal('terradart-scope'),
+        role: .literal('roles/viewer'),
+        member: .ref(teamReader.iamMember),
         dependsOn: [ResourceDependency(scope), ResourceDependency(teamReader)],
       ),
     );

@@ -29,24 +29,24 @@ final class ColabStack extends Stack {
     final apiAi = add(
       GoogleProjectService(
         localName: 'api_aiplatform',
-        service: TfArg.literal('aiplatform.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('aiplatform.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
-        service: TfArg.literal('compute.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('compute.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiStorage = add(
       GoogleProjectService(
         localName: 'api_storage',
-        service: TfArg.literal('storage.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('storage.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -55,8 +55,8 @@ final class ColabStack extends Stack {
     final network = add(
       GoogleComputeNetwork(
         localName: 'colab_vpc',
-        name: TfArg.literal('terradart-colab-vpc'),
-        autoCreateSubnetworks: TfArg.literal(false),
+        name: .literal('terradart-colab-vpc'),
+        autoCreateSubnetworks: .literal(false),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );
@@ -64,11 +64,11 @@ final class ColabStack extends Stack {
     final subnet = add(
       GoogleComputeSubnetwork(
         localName: 'colab_subnet',
-        name: TfArg.literal('terradart-colab-subnet'),
-        region: TfArg.literal(location),
-        network: TfArg.ref(network.id),
-        ipCidrRange: TfArg.literal('10.40.0.0/24'),
-        privateIpGoogleAccess: TfArg.literal(true),
+        name: .literal('terradart-colab-subnet'),
+        region: .literal(location),
+        network: .ref(network.id),
+        ipCidrRange: .literal('10.40.0.0/24'),
+        privateIpGoogleAccess: .literal(true),
         dependsOn: [ResourceDependency(network)],
       ),
     );
@@ -76,8 +76,8 @@ final class ColabStack extends Stack {
     final runner = add(
       GoogleServiceAccount(
         localName: 'colab_runner',
-        accountId: TfArg.literal('terradart-colab-runner'),
-        displayName: TfArg.literal('Colab schedule runner'),
+        accountId: .literal('terradart-colab-runner'),
+        displayName: .literal('Colab schedule runner'),
       ),
     );
 
@@ -87,13 +87,13 @@ final class ColabStack extends Stack {
     final template = add(
       GoogleColabRuntimeTemplate(
         localName: 'basic',
-        name: TfArg.literal('terradart-colab-rt'),
-        displayName: TfArg.literal('TerraDart Colab runtime template'),
-        location: TfArg.literal(location),
-        machineSpec: TfArg.literal(<String, Object?>{
+        name: .literal('terradart-colab-rt'),
+        displayName: .literal('TerraDart Colab runtime template'),
+        location: .literal(location),
+        machineSpec: .literal(<String, Object?>{
           'machine_type': 'e2-standard-4',
         }),
-        networkSpec: TfArg.literal(<String, Object?>{
+        networkSpec: .literal(<String, Object?>{
           'enable_internet_access': true,
           'network': network.id.interpolation,
           'subnetwork': subnet.id.interpolation,
@@ -105,10 +105,10 @@ final class ColabStack extends Stack {
     add(
       GoogleColabRuntimeTemplateIamMember(
         localName: 'runner_viewer',
-        runtimeTemplate: TfArg.ref(template.nameRef),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(runner.iamMember),
-        location: TfArg.literal(location),
+        runtimeTemplate: .ref(template.nameRef),
+        role: .literal('roles/viewer'),
+        member: .ref(runner.iamMember),
+        location: .literal(location),
         dependsOn: [ResourceDependency(template), ResourceDependency(runner)],
       ),
     );
@@ -116,10 +116,10 @@ final class ColabStack extends Stack {
     final bucket = add(
       GoogleStorageBucket(
         localName: 'colab_io',
-        name: TfArg.literal(bucketName),
-        location: TfArg.literal('US-CENTRAL1'),
-        forceDestroy: TfArg.literal(true),
-        uniformBucketLevelAccess: TfArg.literal(true),
+        name: .literal(bucketName),
+        location: .literal('US-CENTRAL1'),
+        forceDestroy: .literal(true),
+        uniformBucketLevelAccess: .literal(true),
         dependsOn: [ResourceDependency(apiStorage)],
       ),
     );
@@ -127,10 +127,10 @@ final class ColabStack extends Stack {
     final notebook = add(
       GoogleStorageBucketObject(
         localName: 'hello_ipynb',
-        bucket: TfArg.ref(bucket.nameRef),
-        name: TfArg.literal('hello_world.ipynb'),
-        body: .source(source: TfArg.literal('../hello_world.ipynb')),
-        contentType: TfArg.literal('application/json'),
+        bucket: .ref(bucket.nameRef),
+        name: .literal('hello_world.ipynb'),
+        body: .source(source: .literal('../hello_world.ipynb')),
+        contentType: .literal('application/json'),
         dependsOn: [ResourceDependency(bucket)],
       ),
     );
@@ -142,12 +142,12 @@ final class ColabStack extends Stack {
     add(
       GoogleColabSchedule(
         localName: 'paused_hello',
-        displayName: TfArg.literal('terradart-paused-hello'),
-        location: TfArg.literal(location),
-        cron: TfArg.literal('0 0 1 1 *'),
-        maxConcurrentRunCount: TfArg.literal('1'),
-        desiredState: TfArg.literal(ColabScheduleDesiredState.paused),
-        createNotebookExecutionJobRequest: TfArg.literal(<String, Object?>{
+        displayName: .literal('terradart-paused-hello'),
+        location: .literal(location),
+        cron: .literal('0 0 1 1 *'),
+        maxConcurrentRunCount: .literal('1'),
+        desiredState: .literal(.paused),
+        createNotebookExecutionJobRequest: .literal(<String, Object?>{
           'notebook_execution_job': {
             'display_name': 'TerraDart hello notebook',
             'gcs_notebook_source': {
