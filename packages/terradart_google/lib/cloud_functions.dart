@@ -6,7 +6,6 @@ library;
 
 export 'src/cloud_functions/google_cloudfunctions2_function.dart'
     show
-        AutomaticUpdatePolicy,
         Cloudfunctions2FunctionBuildConfig,
         Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy,
         Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy,
@@ -32,15 +31,10 @@ export 'src/cloud_functions/google_cloudfunctions2_function.dart'
         Cloudfunctions2FunctionServiceConfigSecretEnvironmentVariables,
         Cloudfunctions2FunctionServiceConfigSecretVolumes,
         Cloudfunctions2FunctionServiceConfigSecretVolumesVersions,
-        Cloudfunctions2FunctionSourceConfig,
-        Cloudfunctions2FunctionUpdatePolicy,
         DirectVpcEgress,
         EventTriggerRetryPolicy,
         GoogleCloudfunctions2Function,
         IngressSettings,
-        OnDeployUpdatePolicy,
-        RepoSource,
-        StorageSource,
         VpcConnectorEgressSettings;
 export 'src/cloud_functions/google_cloudfunctions2_function_iam_binding.dart'
     show GoogleCloudfunctions2FunctionIamBinding;

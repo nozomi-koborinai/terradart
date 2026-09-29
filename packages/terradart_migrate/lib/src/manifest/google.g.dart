@@ -141802,11 +141802,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'AutomaticUpdatePolicy': MigrateHelper(
-      className: 'AutomaticUpdatePolicy',
-      slots: <MigrateSlot>[],
-      shorthand: 'automaticUpdatePolicy',
-    ),
     'BackupDrBackupPlanBackupRules': MigrateHelper(
       className: 'BackupDrBackupPlanBackupRules',
       slots: <MigrateSlot>[
@@ -252997,11 +252992,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'OnDeployUpdatePolicy': MigrateHelper(
-      className: 'OnDeployUpdatePolicy',
-      slots: <MigrateSlot>[],
-      shorthand: 'onDeployUpdatePolicy',
-    ),
     'OracleDatabaseCloudVmClusterProperties': MigrateHelper(
       className: 'OracleDatabaseCloudVmClusterProperties',
       slots: <MigrateSlot>[
@@ -266139,61 +266129,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'RepoSource': MigrateHelper(
-      className: 'RepoSource',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'repo_source.repo_name',
-          dartName: 'repoName',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'repo_source.project_id',
-          dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'repo_source.dir',
-          dartName: 'dir',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'repo_source.branch_name',
-          dartName: 'branchName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'repo_source.tag_name',
-          dartName: 'tagName',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'repo_source.commit_sha',
-          dartName: 'commitSha',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'repo_source.invert_regex',
-          dartName: 'invertRegex',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-      ],
-      shorthand: 'repoSource',
-    ),
     'SccFolderCustomModuleCustomConfig': MigrateHelper(
       className: 'SccFolderCustomModuleCustomConfig',
       slots: <MigrateSlot>[
@@ -272081,33 +272016,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'StorageInsightsReportConfigParquetFormat',
       slots: <MigrateSlot>[],
       shorthand: 'parquet',
-    ),
-    'StorageSource': MigrateHelper(
-      className: 'StorageSource',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'storage_source.bucket',
-          dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'storage_source.object',
-          dartName: 'object',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'storage_source.generation',
-          dartName: 'generation',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'int',
-        ),
-      ],
-      shorthand: 'storageSource',
     ),
     'StorageTransferAgentPoolBandwidthLimit': MigrateHelper(
       className: 'StorageTransferAgentPoolBandwidthLimit',

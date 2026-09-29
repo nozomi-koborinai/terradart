@@ -30,7 +30,6 @@ import 'package:terradart_google/agent.dart';
 import 'package:terradart_google/app.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/bigtable.dart';
-import 'package:terradart_google/cloud_functions.dart';
 import 'package:terradart_google/config.dart';
 import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/dataproc.dart';
@@ -168,17 +167,6 @@ final Map<String, Object Function()> _syntheticInstances = {
       const StorageInsightsReportConfigCsvFormat(),
   'StorageInsightsReportConfigParquetFormat': () =>
       const StorageInsightsReportConfigParquetFormat(),
-
-  // --- SourceConfig (2) — cloudfunctions2_function -------------------------
-  'StorageSource': () => StorageSource(
-    bucket: TfArg.literal('mock-bucket'),
-    object: TfArg.literal('mock-object.zip'),
-  ),
-  'RepoSource': () => RepoSource(repoName: TfArg.literal('mock-repo')),
-
-  // --- UpdatePolicy (2) — cloudfunctions2_function -------------------------
-  'AutomaticUpdatePolicy': () => const AutomaticUpdatePolicy(),
-  'OnDeployUpdatePolicy': () => const OnDeployUpdatePolicy(),
 
   // --- ComputeHealthCheckProtocol (6) — compute_health_check ----------------
   'ComputeHealthCheckHttpHealthCheckConfig': () =>
