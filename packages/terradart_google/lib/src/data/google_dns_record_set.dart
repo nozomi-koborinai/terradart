@@ -37,8 +37,8 @@ final class DataGoogleDnsRecordSet extends Data {
 
   /// A reference to the `google_dns_record_set` this data source reads, for
   /// arguments typed `RefTo<GoogleDnsRecordSet>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDnsRecordSet> get ref => RefTo.read(this);
+  RefTo<GoogleDnsRecordSet> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

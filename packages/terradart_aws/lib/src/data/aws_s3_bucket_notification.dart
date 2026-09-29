@@ -27,8 +27,8 @@ final class DataAwsS3BucketNotification extends Data {
 
   /// A reference to the `aws_s3_bucket_notification` this data source reads, for
   /// arguments typed `RefTo<AwsS3BucketNotification>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsS3BucketNotification> get ref => RefTo.read(this);
+  RefTo<AwsS3BucketNotification> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `eventbridge` attribute.
   TfRef<bool> get eventbridge => TfRef.attribute<bool>(this, 'eventbridge');

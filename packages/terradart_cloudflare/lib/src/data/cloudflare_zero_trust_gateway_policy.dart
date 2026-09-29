@@ -82,8 +82,8 @@ final class DataCloudflareZeroTrustGatewayPolicy extends Data {
 
   /// A reference to the `cloudflare_zero_trust_gateway_policy` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustGatewayPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustGatewayPolicy> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustGatewayPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -26,8 +26,8 @@ final class DataGoogleKmsAutokeyConfig extends Data {
 
   /// A reference to the `google_kms_autokey_config` this data source reads, for
   /// arguments typed `RefTo<GoogleKmsAutokeyConfig>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleKmsAutokeyConfig> get ref => RefTo.read(this);
+  RefTo<GoogleKmsAutokeyConfig> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

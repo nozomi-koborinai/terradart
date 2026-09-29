@@ -36,8 +36,8 @@ final class DataCloudflareR2CustomDomain extends Data {
 
   /// A reference to the `cloudflare_r2_custom_domain` this data source reads, for
   /// arguments typed `RefTo<CloudflareR2CustomDomain>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareR2CustomDomain> get ref => RefTo.read(this);
+  RefTo<CloudflareR2CustomDomain> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `ciphers` attribute.
   TfRef<List<String>> get ciphers =>

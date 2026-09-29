@@ -40,8 +40,8 @@ final class DataGoogleMonitoringNotificationChannel extends Data {
 
   /// A reference to the `google_monitoring_notification_channel` this data source reads, for
   /// arguments typed `RefTo<GoogleMonitoringNotificationChannel>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleMonitoringNotificationChannel> get ref => RefTo.read(this);
+  RefTo<GoogleMonitoringNotificationChannel> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

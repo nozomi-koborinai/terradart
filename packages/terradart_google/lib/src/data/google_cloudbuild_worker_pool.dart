@@ -35,8 +35,8 @@ final class DataGoogleCloudbuildWorkerPool extends Data {
 
   /// A reference to the `google_cloudbuild_worker_pool` this data source reads, for
   /// arguments typed `RefTo<GoogleCloudbuildWorkerPool>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleCloudbuildWorkerPool> get ref => RefTo.read(this);
+  RefTo<GoogleCloudbuildWorkerPool> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

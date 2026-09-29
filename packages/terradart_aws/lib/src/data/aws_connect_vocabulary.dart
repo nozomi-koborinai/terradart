@@ -36,8 +36,8 @@ final class DataAwsConnectVocabulary extends Data {
 
   /// A reference to the `aws_connect_vocabulary` this data source reads, for
   /// arguments typed `RefTo<AwsConnectVocabulary>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsConnectVocabulary> get ref => RefTo.read(this);
+  RefTo<AwsConnectVocabulary> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

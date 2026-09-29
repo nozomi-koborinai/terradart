@@ -30,8 +30,8 @@ final class DataCloudflareTotalTls extends Data {
 
   /// A reference to the `cloudflare_total_tls` this data source reads, for
   /// arguments typed `RefTo<CloudflareTotalTls>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareTotalTls> get ref => RefTo.read(this);
+  RefTo<CloudflareTotalTls> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

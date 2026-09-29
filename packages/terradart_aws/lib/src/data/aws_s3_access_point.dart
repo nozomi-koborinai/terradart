@@ -32,8 +32,8 @@ final class DataAwsS3AccessPoint extends Data {
 
   /// A reference to the `aws_s3_access_point` this data source reads, for
   /// arguments typed `RefTo<AwsS3AccessPoint>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsS3AccessPoint> get ref => RefTo.read(this);
+  RefTo<AwsS3AccessPoint> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

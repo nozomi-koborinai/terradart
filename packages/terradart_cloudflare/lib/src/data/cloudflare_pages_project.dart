@@ -42,8 +42,8 @@ final class DataCloudflarePagesProject extends Data {
 
   /// A reference to the `cloudflare_pages_project` this data source reads, for
   /// arguments typed `RefTo<CloudflarePagesProject>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflarePagesProject> get ref => RefTo.read(this);
+  RefTo<CloudflarePagesProject> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

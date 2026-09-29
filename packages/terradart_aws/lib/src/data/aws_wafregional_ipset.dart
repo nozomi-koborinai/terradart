@@ -27,8 +27,8 @@ final class DataAwsWafregionalIpset extends Data {
 
   /// A reference to the `aws_wafregional_ipset` this data source reads, for
   /// arguments typed `RefTo<AwsWafregionalIpset>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsWafregionalIpset> get ref => RefTo.read(this);
+  RefTo<AwsWafregionalIpset> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

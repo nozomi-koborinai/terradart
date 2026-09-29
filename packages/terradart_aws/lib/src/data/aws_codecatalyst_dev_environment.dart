@@ -55,8 +55,8 @@ final class DataAwsCodecatalystDevEnvironment extends Data {
 
   /// A reference to the `aws_codecatalyst_dev_environment` this data source reads, for
   /// arguments typed `RefTo<AwsCodecatalystDevEnvironment>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCodecatalystDevEnvironment> get ref => RefTo.read(this);
+  RefTo<AwsCodecatalystDevEnvironment> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

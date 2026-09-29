@@ -32,8 +32,8 @@ final class DataAwsVpclatticeServiceNetwork extends Data {
 
   /// A reference to the `aws_vpclattice_service_network` this data source reads, for
   /// arguments typed `RefTo<AwsVpclatticeServiceNetwork>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsVpclatticeServiceNetwork> get ref => RefTo.read(this);
+  RefTo<AwsVpclatticeServiceNetwork> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

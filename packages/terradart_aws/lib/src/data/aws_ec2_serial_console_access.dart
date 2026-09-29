@@ -26,8 +26,8 @@ final class DataAwsEc2SerialConsoleAccess extends Data {
 
   /// A reference to the `aws_ec2_serial_console_access` this data source reads, for
   /// arguments typed `RefTo<AwsEc2SerialConsoleAccess>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEc2SerialConsoleAccess> get ref => RefTo.read(this);
+  RefTo<AwsEc2SerialConsoleAccess> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

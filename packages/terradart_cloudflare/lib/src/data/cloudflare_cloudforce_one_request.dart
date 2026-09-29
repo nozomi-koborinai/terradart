@@ -113,8 +113,8 @@ final class DataCloudflareCloudforceOneRequest extends Data {
 
   /// A reference to the `cloudflare_cloudforce_one_request` this data source reads, for
   /// arguments typed `RefTo<CloudflareCloudforceOneRequest>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCloudforceOneRequest> get ref => RefTo.read(this);
+  RefTo<CloudflareCloudforceOneRequest> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -26,8 +26,8 @@ final class DataGoogleKmsCryptoKeyIamPolicy extends Data {
 
   /// A reference to the `google_kms_crypto_key_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleKmsCryptoKeyIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleKmsCryptoKeyIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleKmsCryptoKeyIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

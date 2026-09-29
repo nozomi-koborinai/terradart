@@ -35,8 +35,8 @@ final class DataGoogleSpannerDatabaseIamPolicy extends Data {
 
   /// A reference to the `google_spanner_database_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleSpannerDatabaseIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleSpannerDatabaseIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleSpannerDatabaseIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

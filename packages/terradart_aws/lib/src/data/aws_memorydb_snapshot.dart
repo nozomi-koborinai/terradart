@@ -32,8 +32,8 @@ final class DataAwsMemorydbSnapshot extends Data {
 
   /// A reference to the `aws_memorydb_snapshot` this data source reads, for
   /// arguments typed `RefTo<AwsMemorydbSnapshot>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsMemorydbSnapshot> get ref => RefTo.read(this);
+  RefTo<AwsMemorydbSnapshot> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

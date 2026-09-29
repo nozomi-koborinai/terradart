@@ -30,8 +30,8 @@ final class DataGoogleOrganizationIamCustomRole extends Data {
 
   /// A reference to the `google_organization_iam_custom_role` this data source reads, for
   /// arguments typed `RefTo<GoogleOrganizationIamCustomRole>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleOrganizationIamCustomRole> get ref => RefTo.read(this);
+  RefTo<GoogleOrganizationIamCustomRole> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

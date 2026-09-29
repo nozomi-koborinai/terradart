@@ -35,8 +35,8 @@ final class DataGoogleCloudbuildTrigger extends Data {
 
   /// A reference to the `google_cloudbuild_trigger` this data source reads, for
   /// arguments typed `RefTo<GoogleCloudbuildTrigger>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleCloudbuildTrigger> get ref => RefTo.read(this);
+  RefTo<GoogleCloudbuildTrigger> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

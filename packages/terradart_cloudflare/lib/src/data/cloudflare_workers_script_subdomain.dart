@@ -31,8 +31,8 @@ final class DataCloudflareWorkersScriptSubdomain extends Data {
 
   /// A reference to the `cloudflare_workers_script_subdomain` this data source reads, for
   /// arguments typed `RefTo<CloudflareWorkersScriptSubdomain>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareWorkersScriptSubdomain> get ref => RefTo.read(this);
+  RefTo<CloudflareWorkersScriptSubdomain> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');

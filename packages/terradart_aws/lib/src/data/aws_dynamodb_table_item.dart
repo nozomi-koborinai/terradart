@@ -38,8 +38,8 @@ final class DataAwsDynamodbTableItem extends Data {
 
   /// A reference to the `aws_dynamodb_table_item` this data source reads, for
   /// arguments typed `RefTo<AwsDynamodbTableItem>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsDynamodbTableItem> get ref => RefTo.read(this);
+  RefTo<AwsDynamodbTableItem> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

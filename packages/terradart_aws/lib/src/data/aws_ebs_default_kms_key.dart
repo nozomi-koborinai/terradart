@@ -26,8 +26,8 @@ final class DataAwsEbsDefaultKmsKey extends Data {
 
   /// A reference to the `aws_ebs_default_kms_key` this data source reads, for
   /// arguments typed `RefTo<AwsEbsDefaultKmsKey>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEbsDefaultKmsKey> get ref => RefTo.read(this);
+  RefTo<AwsEbsDefaultKmsKey> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

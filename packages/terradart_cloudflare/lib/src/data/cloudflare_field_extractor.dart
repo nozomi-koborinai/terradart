@@ -27,6 +27,6 @@ final class DataCloudflareFieldExtractor extends Data {
 
   /// A reference to the `cloudflare_field_extractor` this data source reads, for
   /// arguments typed `RefTo<CloudflareFieldExtractor>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareFieldExtractor> get ref => RefTo.read(this);
+  RefTo<CloudflareFieldExtractor> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 }

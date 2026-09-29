@@ -22,8 +22,8 @@ final class DataAwsBedrockUseCaseForModelAccess extends Data {
 
   /// A reference to the `aws_bedrock_use_case_for_model_access` this data source reads, for
   /// arguments typed `RefTo<AwsBedrockUseCaseForModelAccess>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsBedrockUseCaseForModelAccess> get ref => RefTo.read(this);
+  RefTo<AwsBedrockUseCaseForModelAccess> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `form_data` attribute.
   TfRef<String> get formData => TfRef.attribute<String>(this, 'form_data');

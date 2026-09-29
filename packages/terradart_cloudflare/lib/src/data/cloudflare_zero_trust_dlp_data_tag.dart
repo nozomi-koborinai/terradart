@@ -36,8 +36,8 @@ final class DataCloudflareZeroTrustDlpDataTag extends Data {
 
   /// A reference to the `cloudflare_zero_trust_dlp_data_tag` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustDlpDataTag>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustDlpDataTag> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustDlpDataTag> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

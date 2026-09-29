@@ -27,8 +27,8 @@ final class DataAwsSsmcontactsContactChannel extends Data {
 
   /// A reference to the `aws_ssmcontacts_contact_channel` this data source reads, for
   /// arguments typed `RefTo<AwsSsmcontactsContactChannel>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSsmcontactsContactChannel> get ref => RefTo.read(this);
+  RefTo<AwsSsmcontactsContactChannel> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

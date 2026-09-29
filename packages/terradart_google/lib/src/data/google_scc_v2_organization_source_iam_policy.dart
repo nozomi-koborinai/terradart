@@ -31,8 +31,8 @@ final class DataGoogleSccV2OrganizationSourceIamPolicy extends Data {
 
   /// A reference to the `google_scc_v2_organization_source_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleSccV2OrganizationSourceIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleSccV2OrganizationSourceIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleSccV2OrganizationSourceIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

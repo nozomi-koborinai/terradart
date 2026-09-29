@@ -27,8 +27,8 @@ final class DataAwsS3BucketPolicy extends Data {
 
   /// A reference to the `aws_s3_bucket_policy` this data source reads, for
   /// arguments typed `RefTo<AwsS3BucketPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsS3BucketPolicy> get ref => RefTo.read(this);
+  RefTo<AwsS3BucketPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

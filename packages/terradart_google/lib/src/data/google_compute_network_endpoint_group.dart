@@ -38,8 +38,8 @@ final class DataGoogleComputeNetworkEndpointGroup extends Data {
 
   /// A reference to the `google_compute_network_endpoint_group` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeNetworkEndpointGroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeNetworkEndpointGroup> get ref => RefTo.read(this);
+  RefTo<GoogleComputeNetworkEndpointGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

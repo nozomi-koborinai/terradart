@@ -38,8 +38,8 @@ final class DataGoogleClouddeployDeliveryPipelineIamPolicy extends Data {
 
   /// A reference to the `google_clouddeploy_delivery_pipeline_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleClouddeployDeliveryPipelineIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleClouddeployDeliveryPipelineIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleClouddeployDeliveryPipelineIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

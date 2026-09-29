@@ -65,8 +65,8 @@ final class DataAwsVpcPeeringConnection extends Data {
 
   /// A reference to the `aws_vpc_peering_connection` this data source reads, for
   /// arguments typed `RefTo<AwsVpcPeeringConnection>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsVpcPeeringConnection> get ref => RefTo.read(this);
+  RefTo<AwsVpcPeeringConnection> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -37,8 +37,8 @@ final class DataGoogleFirestoreDocument extends Data {
 
   /// A reference to the `google_firestore_document` this data source reads, for
   /// arguments typed `RefTo<GoogleFirestoreDocument>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleFirestoreDocument> get ref => RefTo.read(this);
+  RefTo<GoogleFirestoreDocument> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

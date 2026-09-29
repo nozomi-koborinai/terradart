@@ -36,8 +36,8 @@ final class DataGoogleDataCatalogTagTemplateIamPolicy extends Data {
 
   /// A reference to the `google_data_catalog_tag_template_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleDataCatalogTagTemplateIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDataCatalogTagTemplateIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleDataCatalogTagTemplateIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

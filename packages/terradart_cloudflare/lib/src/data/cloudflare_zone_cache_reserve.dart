@@ -30,8 +30,8 @@ final class DataCloudflareZoneCacheReserve extends Data {
 
   /// A reference to the `cloudflare_zone_cache_reserve` this data source reads, for
   /// arguments typed `RefTo<CloudflareZoneCacheReserve>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZoneCacheReserve> get ref => RefTo.read(this);
+  RefTo<CloudflareZoneCacheReserve> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -32,8 +32,8 @@ final class DataAwsOamSink extends Data {
 
   /// A reference to the `aws_oam_sink` this data source reads, for
   /// arguments typed `RefTo<AwsOamSink>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsOamSink> get ref => RefTo.read(this);
+  RefTo<AwsOamSink> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

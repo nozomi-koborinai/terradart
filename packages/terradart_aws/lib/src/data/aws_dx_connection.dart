@@ -32,8 +32,8 @@ final class DataAwsDxConnection extends Data {
 
   /// A reference to the `aws_dx_connection` this data source reads, for
   /// arguments typed `RefTo<AwsDxConnection>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsDxConnection> get ref => RefTo.read(this);
+  RefTo<AwsDxConnection> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -33,8 +33,8 @@ final class DataGoogleIamWorkloadIdentityPool extends Data {
 
   /// A reference to the `google_iam_workload_identity_pool` this data source reads, for
   /// arguments typed `RefTo<GoogleIamWorkloadIdentityPool>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleIamWorkloadIdentityPool> get ref => RefTo.read(this);
+  RefTo<GoogleIamWorkloadIdentityPool> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

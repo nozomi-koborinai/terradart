@@ -35,8 +35,8 @@ final class DataGoogleBigtableTableIamPolicy extends Data {
 
   /// A reference to the `google_bigtable_table_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleBigtableTableIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleBigtableTableIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleBigtableTableIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

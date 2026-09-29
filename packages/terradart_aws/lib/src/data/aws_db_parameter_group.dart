@@ -27,8 +27,8 @@ final class DataAwsDbParameterGroup extends Data {
 
   /// A reference to the `aws_db_parameter_group` this data source reads, for
   /// arguments typed `RefTo<AwsDbParameterGroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsDbParameterGroup> get ref => RefTo.read(this);
+  RefTo<AwsDbParameterGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

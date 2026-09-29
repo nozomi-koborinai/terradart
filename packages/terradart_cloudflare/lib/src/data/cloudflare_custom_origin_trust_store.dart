@@ -54,8 +54,8 @@ final class DataCloudflareCustomOriginTrustStore extends Data {
 
   /// A reference to the `cloudflare_custom_origin_trust_store` this data source reads, for
   /// arguments typed `RefTo<CloudflareCustomOriginTrustStore>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCustomOriginTrustStore> get ref => RefTo.read(this);
+  RefTo<CloudflareCustomOriginTrustStore> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

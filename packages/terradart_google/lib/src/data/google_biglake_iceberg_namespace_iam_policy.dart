@@ -36,8 +36,8 @@ final class DataGoogleBiglakeIcebergNamespaceIamPolicy extends Data {
 
   /// A reference to the `google_biglake_iceberg_namespace_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleBiglakeIcebergNamespaceIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleBiglakeIcebergNamespaceIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleBiglakeIcebergNamespaceIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

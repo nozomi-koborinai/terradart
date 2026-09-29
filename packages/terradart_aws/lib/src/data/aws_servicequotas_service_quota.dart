@@ -34,8 +34,8 @@ final class DataAwsServicequotasServiceQuota extends Data {
 
   /// A reference to the `aws_servicequotas_service_quota` this data source reads, for
   /// arguments typed `RefTo<AwsServicequotasServiceQuota>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsServicequotasServiceQuota> get ref => RefTo.read(this);
+  RefTo<AwsServicequotasServiceQuota> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

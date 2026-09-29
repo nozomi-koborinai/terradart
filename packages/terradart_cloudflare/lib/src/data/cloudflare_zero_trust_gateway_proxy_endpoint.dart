@@ -83,8 +83,8 @@ final class DataCloudflareZeroTrustGatewayProxyEndpoint extends Data {
 
   /// A reference to the `cloudflare_zero_trust_gateway_proxy_endpoint` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustGatewayProxyEndpoint>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustGatewayProxyEndpoint> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustGatewayProxyEndpoint> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

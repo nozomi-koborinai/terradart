@@ -34,8 +34,8 @@ final class DataAwsIamServerCertificate extends Data {
 
   /// A reference to the `aws_iam_server_certificate` this data source reads, for
   /// arguments typed `RefTo<AwsIamServerCertificate>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsIamServerCertificate> get ref => RefTo.read(this);
+  RefTo<AwsIamServerCertificate> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

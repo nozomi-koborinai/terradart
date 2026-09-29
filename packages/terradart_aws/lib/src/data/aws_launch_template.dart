@@ -52,8 +52,8 @@ final class DataAwsLaunchTemplate extends Data {
 
   /// A reference to the `aws_launch_template` this data source reads, for
   /// arguments typed `RefTo<AwsLaunchTemplate>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLaunchTemplate> get ref => RefTo.read(this);
+  RefTo<AwsLaunchTemplate> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -28,8 +28,8 @@ final class DataCloudflareMagicWanBgpFilterProfile extends Data {
 
   /// A reference to the `cloudflare_magic_wan_bgp_filter_profile` this data source reads, for
   /// arguments typed `RefTo<CloudflareMagicWanBgpFilterProfile>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareMagicWanBgpFilterProfile> get ref => RefTo.read(this);
+  RefTo<CloudflareMagicWanBgpFilterProfile> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

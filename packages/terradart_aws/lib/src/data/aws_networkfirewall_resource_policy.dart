@@ -30,8 +30,8 @@ final class DataAwsNetworkfirewallResourcePolicy extends Data {
 
   /// A reference to the `aws_networkfirewall_resource_policy` this data source reads, for
   /// arguments typed `RefTo<AwsNetworkfirewallResourcePolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsNetworkfirewallResourcePolicy> get ref => RefTo.read(this);
+  RefTo<AwsNetworkfirewallResourcePolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -27,8 +27,8 @@ final class DataCloudflareGoogleTagGateway extends Data {
 
   /// A reference to the `cloudflare_google_tag_gateway` this data source reads, for
   /// arguments typed `RefTo<CloudflareGoogleTagGateway>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareGoogleTagGateway> get ref => RefTo.read(this);
+  RefTo<CloudflareGoogleTagGateway> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

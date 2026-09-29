@@ -32,8 +32,8 @@ final class DataAppwriteMysqlDatabase extends Data {
 
   /// A reference to the `appwrite_mysql_database` this data source reads, for
   /// arguments typed `RefTo<AppwriteMysqlDatabase>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AppwriteMysqlDatabase> get ref => RefTo.read(this);
+  RefTo<AppwriteMysqlDatabase> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -63,8 +63,8 @@ final class DataAwsElasticacheUser extends Data {
 
   /// A reference to the `aws_elasticache_user` this data source reads, for
   /// arguments typed `RefTo<AwsElasticacheUser>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsElasticacheUser> get ref => RefTo.read(this);
+  RefTo<AwsElasticacheUser> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

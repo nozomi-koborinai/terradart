@@ -44,8 +44,8 @@ final class DataCloudflareUrlNormalizationSettings extends Data {
 
   /// A reference to the `cloudflare_url_normalization_settings` this data source reads, for
   /// arguments typed `RefTo<CloudflareUrlNormalizationSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareUrlNormalizationSettings> get ref => RefTo.read(this);
+  RefTo<CloudflareUrlNormalizationSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -39,8 +39,8 @@ final class DataGoogleComputeRegionInstanceGroupManager extends Data {
 
   /// A reference to the `google_compute_region_instance_group_manager` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeRegionInstanceGroupManager>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeRegionInstanceGroupManager> get ref => RefTo.read(this);
+  RefTo<GoogleComputeRegionInstanceGroupManager> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

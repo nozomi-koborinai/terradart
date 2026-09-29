@@ -120,8 +120,8 @@ final class DataCloudflareEmailSecurityAllowPolicy extends Data {
 
   /// A reference to the `cloudflare_email_security_allow_policy` this data source reads, for
   /// arguments typed `RefTo<CloudflareEmailSecurityAllowPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareEmailSecurityAllowPolicy> get ref => RefTo.read(this);
+  RefTo<CloudflareEmailSecurityAllowPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

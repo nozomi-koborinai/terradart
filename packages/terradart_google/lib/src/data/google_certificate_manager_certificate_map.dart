@@ -31,8 +31,8 @@ final class DataGoogleCertificateManagerCertificateMap extends Data {
 
   /// A reference to the `google_certificate_manager_certificate_map` this data source reads, for
   /// arguments typed `RefTo<GoogleCertificateManagerCertificateMap>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleCertificateManagerCertificateMap> get ref => RefTo.read(this);
+  RefTo<GoogleCertificateManagerCertificateMap> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -32,8 +32,8 @@ final class DataAwsSesv2DedicatedIpPool extends Data {
 
   /// A reference to the `aws_sesv2_dedicated_ip_pool` this data source reads, for
   /// arguments typed `RefTo<AwsSesv2DedicatedIpPool>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSesv2DedicatedIpPool> get ref => RefTo.read(this);
+  RefTo<AwsSesv2DedicatedIpPool> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

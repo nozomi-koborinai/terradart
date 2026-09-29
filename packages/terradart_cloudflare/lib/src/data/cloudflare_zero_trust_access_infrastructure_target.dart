@@ -150,9 +150,8 @@ final class DataCloudflareZeroTrustAccessInfrastructureTarget extends Data {
 
   /// A reference to the `cloudflare_zero_trust_access_infrastructure_target` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustAccessInfrastructureTarget>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareZeroTrustAccessInfrastructureTarget> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

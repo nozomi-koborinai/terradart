@@ -34,8 +34,8 @@ final class DataAwsAlb extends Data {
 
   /// A reference to the `aws_alb` this data source reads, for
   /// arguments typed `RefTo<AwsAlb>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAlb> get ref => RefTo.read(this);
+  RefTo<AwsAlb> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

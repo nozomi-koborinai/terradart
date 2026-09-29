@@ -32,8 +32,8 @@ final class DataAwsSesv2ConfigurationSet extends Data {
 
   /// A reference to the `aws_sesv2_configuration_set` this data source reads, for
   /// arguments typed `RefTo<AwsSesv2ConfigurationSet>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSesv2ConfigurationSet> get ref => RefTo.read(this);
+  RefTo<AwsSesv2ConfigurationSet> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

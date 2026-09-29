@@ -32,8 +32,8 @@ final class DataAwsBatchComputeEnvironment extends Data {
 
   /// A reference to the `aws_batch_compute_environment` this data source reads, for
   /// arguments typed `RefTo<AwsBatchComputeEnvironment>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsBatchComputeEnvironment> get ref => RefTo.read(this);
+  RefTo<AwsBatchComputeEnvironment> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

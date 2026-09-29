@@ -32,8 +32,8 @@ final class DataAwsBackupSelection extends Data {
 
   /// A reference to the `aws_backup_selection` this data source reads, for
   /// arguments typed `RefTo<AwsBackupSelection>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsBackupSelection> get ref => RefTo.read(this);
+  RefTo<AwsBackupSelection> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

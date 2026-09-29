@@ -30,8 +30,8 @@ final class DataCloudflareStreamWebhook extends Data {
 
   /// A reference to the `cloudflare_stream_webhook` this data source reads, for
   /// arguments typed `RefTo<CloudflareStreamWebhook>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareStreamWebhook> get ref => RefTo.read(this);
+  RefTo<CloudflareStreamWebhook> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `modified` attribute.
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');

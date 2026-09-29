@@ -26,8 +26,8 @@ final class DataGoogleLoggingFolderSettings extends Data {
 
   /// A reference to the `google_logging_folder_settings` this data source reads, for
   /// arguments typed `RefTo<GoogleLoggingFolderSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleLoggingFolderSettings> get ref => RefTo.read(this);
+  RefTo<GoogleLoggingFolderSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

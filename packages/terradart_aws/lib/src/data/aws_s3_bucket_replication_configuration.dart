@@ -28,8 +28,8 @@ final class DataAwsS3BucketReplicationConfiguration extends Data {
 
   /// A reference to the `aws_s3_bucket_replication_configuration` this data source reads, for
   /// arguments typed `RefTo<AwsS3BucketReplicationConfiguration>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsS3BucketReplicationConfiguration> get ref => RefTo.read(this);
+  RefTo<AwsS3BucketReplicationConfiguration> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `role` attribute.
   TfRef<String> get role => TfRef.attribute<String>(this, 'role');

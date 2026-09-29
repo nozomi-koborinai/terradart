@@ -32,8 +32,8 @@ final class DataAwsSsmParameter extends Data {
 
   /// A reference to the `aws_ssm_parameter` this data source reads, for
   /// arguments typed `RefTo<AwsSsmParameter>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSsmParameter> get ref => RefTo.read(this);
+  RefTo<AwsSsmParameter> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

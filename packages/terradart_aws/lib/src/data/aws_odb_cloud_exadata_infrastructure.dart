@@ -27,8 +27,8 @@ final class DataAwsOdbCloudExadataInfrastructure extends Data {
 
   /// A reference to the `aws_odb_cloud_exadata_infrastructure` this data source reads, for
   /// arguments typed `RefTo<AwsOdbCloudExadataInfrastructure>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsOdbCloudExadataInfrastructure> get ref => RefTo.read(this);
+  RefTo<AwsOdbCloudExadataInfrastructure> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

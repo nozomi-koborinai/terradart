@@ -27,6 +27,6 @@ final class DataCloudflareR2BucketCors extends Data {
 
   /// A reference to the `cloudflare_r2_bucket_cors` this data source reads, for
   /// arguments typed `RefTo<CloudflareR2BucketCors>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareR2BucketCors> get ref => RefTo.read(this);
+  RefTo<CloudflareR2BucketCors> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 }

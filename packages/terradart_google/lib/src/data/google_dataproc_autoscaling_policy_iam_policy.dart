@@ -37,8 +37,8 @@ final class DataGoogleDataprocAutoscalingPolicyIamPolicy extends Data {
 
   /// A reference to the `google_dataproc_autoscaling_policy_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleDataprocAutoscalingPolicyIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDataprocAutoscalingPolicyIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleDataprocAutoscalingPolicyIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

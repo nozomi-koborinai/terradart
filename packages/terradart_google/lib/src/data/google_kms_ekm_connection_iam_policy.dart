@@ -35,8 +35,8 @@ final class DataGoogleKmsEkmConnectionIamPolicy extends Data {
 
   /// A reference to the `google_kms_ekm_connection_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleKmsEkmConnectionIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleKmsEkmConnectionIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleKmsEkmConnectionIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

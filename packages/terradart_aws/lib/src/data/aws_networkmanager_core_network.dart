@@ -23,8 +23,8 @@ final class DataAwsNetworkmanagerCoreNetwork extends Data {
 
   /// A reference to the `aws_networkmanager_core_network` this data source reads, for
   /// arguments typed `RefTo<AwsNetworkmanagerCoreNetwork>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsNetworkmanagerCoreNetwork> get ref => RefTo.read(this);
+  RefTo<AwsNetworkmanagerCoreNetwork> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');

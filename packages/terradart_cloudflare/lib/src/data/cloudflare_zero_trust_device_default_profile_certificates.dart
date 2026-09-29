@@ -34,9 +34,8 @@ final class DataCloudflareZeroTrustDeviceDefaultProfileCertificates
 
   /// A reference to the `cloudflare_zero_trust_device_default_profile_certificates` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustDeviceDefaultProfileCertificates>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareZeroTrustDeviceDefaultProfileCertificates> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');

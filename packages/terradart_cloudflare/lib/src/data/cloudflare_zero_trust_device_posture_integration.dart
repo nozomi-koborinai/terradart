@@ -33,9 +33,8 @@ final class DataCloudflareZeroTrustDevicePostureIntegration extends Data {
 
   /// A reference to the `cloudflare_zero_trust_device_posture_integration` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustDevicePostureIntegration>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareZeroTrustDevicePostureIntegration> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

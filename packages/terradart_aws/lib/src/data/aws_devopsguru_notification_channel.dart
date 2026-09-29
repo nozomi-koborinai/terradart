@@ -55,8 +55,8 @@ final class DataAwsDevopsguruNotificationChannel extends Data {
 
   /// A reference to the `aws_devopsguru_notification_channel` this data source reads, for
   /// arguments typed `RefTo<AwsDevopsguruNotificationChannel>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsDevopsguruNotificationChannel> get ref => RefTo.read(this);
+  RefTo<AwsDevopsguruNotificationChannel> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

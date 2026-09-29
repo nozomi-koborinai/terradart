@@ -31,8 +31,8 @@ final class DataCloudflareStream extends Data {
 
   /// A reference to the `cloudflare_stream` this data source reads, for
   /// arguments typed `RefTo<CloudflareStream>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareStream> get ref => RefTo.read(this);
+  RefTo<CloudflareStream> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `allowed_origins` attribute.
   TfRef<List<String>> get allowedOrigins =>

@@ -27,8 +27,8 @@ final class DataAwsOrganizationsAccount extends Data {
 
   /// A reference to the `aws_organizations_account` this data source reads, for
   /// arguments typed `RefTo<AwsOrganizationsAccount>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsOrganizationsAccount> get ref => RefTo.read(this);
+  RefTo<AwsOrganizationsAccount> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

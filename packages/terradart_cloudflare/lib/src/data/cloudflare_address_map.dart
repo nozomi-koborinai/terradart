@@ -34,8 +34,8 @@ final class DataCloudflareAddressMap extends Data {
 
   /// A reference to the `cloudflare_address_map` this data source reads, for
   /// arguments typed `RefTo<CloudflareAddressMap>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareAddressMap> get ref => RefTo.read(this);
+  RefTo<CloudflareAddressMap> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

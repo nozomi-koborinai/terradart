@@ -78,8 +78,8 @@ final class DataCloudflareZeroTrustDexTest extends Data {
 
   /// A reference to the `cloudflare_zero_trust_dex_test` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustDexTest>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustDexTest> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustDexTest> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

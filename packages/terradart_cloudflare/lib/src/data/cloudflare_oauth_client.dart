@@ -31,8 +31,8 @@ final class DataCloudflareOauthClient extends Data {
 
   /// A reference to the `cloudflare_oauth_client` this data source reads, for
   /// arguments typed `RefTo<CloudflareOauthClient>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareOauthClient> get ref => RefTo.read(this);
+  RefTo<CloudflareOauthClient> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `allowed_cors_origins` attribute.
   TfRef<List<String>> get allowedCorsOrigins =>

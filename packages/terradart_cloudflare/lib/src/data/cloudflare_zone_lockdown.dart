@@ -85,8 +85,8 @@ final class DataCloudflareZoneLockdown extends Data {
 
   /// A reference to the `cloudflare_zone_lockdown` this data source reads, for
   /// arguments typed `RefTo<CloudflareZoneLockdown>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZoneLockdown> get ref => RefTo.read(this);
+  RefTo<CloudflareZoneLockdown> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

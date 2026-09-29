@@ -46,8 +46,8 @@ final class DataAwsDatapipelinePipelineDefinition extends Data {
 
   /// A reference to the `aws_datapipeline_pipeline_definition` this data source reads, for
   /// arguments typed `RefTo<AwsDatapipelinePipelineDefinition>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsDatapipelinePipelineDefinition> get ref => RefTo.read(this);
+  RefTo<AwsDatapipelinePipelineDefinition> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

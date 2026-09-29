@@ -151,9 +151,10 @@ void main() {
         twin,
         contains("import '../resourcemanager/google_project.dart';"),
       );
+      expect(twin, contains('RefTo<GoogleProject> get ref =>'));
       expect(
         twin,
-        contains('RefTo<GoogleProject> get ref => RefTo.read(this);'),
+        contains('RefTo.read(this); // ignore: invalid_use_of_internal_member'),
       );
 
       final orphan = emit(resourceDirs: const {});

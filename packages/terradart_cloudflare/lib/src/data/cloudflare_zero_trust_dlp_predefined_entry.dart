@@ -35,8 +35,8 @@ final class DataCloudflareZeroTrustDlpPredefinedEntry extends Data {
 
   /// A reference to the `cloudflare_zero_trust_dlp_predefined_entry` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustDlpPredefinedEntry>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustDlpPredefinedEntry> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustDlpPredefinedEntry> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -38,8 +38,8 @@ final class DataCloudflareUserGroupMembers extends Data {
 
   /// A reference to the `cloudflare_user_group_members` this data source reads, for
   /// arguments typed `RefTo<CloudflareUserGroupMembers>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareUserGroupMembers> get ref => RefTo.read(this);
+  RefTo<CloudflareUserGroupMembers> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -35,8 +35,8 @@ final class DataCloudflareZeroTrustDlpCustomProfile extends Data {
 
   /// A reference to the `cloudflare_zero_trust_dlp_custom_profile` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustDlpCustomProfile>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustDlpCustomProfile> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustDlpCustomProfile> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

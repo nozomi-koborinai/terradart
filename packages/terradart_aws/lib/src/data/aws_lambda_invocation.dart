@@ -36,8 +36,8 @@ final class DataAwsLambdaInvocation extends Data {
 
   /// A reference to the `aws_lambda_invocation` this data source reads, for
   /// arguments typed `RefTo<AwsLambdaInvocation>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLambdaInvocation> get ref => RefTo.read(this);
+  RefTo<AwsLambdaInvocation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

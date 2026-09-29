@@ -30,8 +30,8 @@ final class DataAwsEcrPullThroughCacheRule extends Data {
 
   /// A reference to the `aws_ecr_pull_through_cache_rule` this data source reads, for
   /// arguments typed `RefTo<AwsEcrPullThroughCacheRule>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEcrPullThroughCacheRule> get ref => RefTo.read(this);
+  RefTo<AwsEcrPullThroughCacheRule> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

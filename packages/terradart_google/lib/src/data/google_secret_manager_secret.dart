@@ -33,8 +33,8 @@ final class DataGoogleSecretManagerSecret extends Data {
 
   /// A reference to the `google_secret_manager_secret` this data source reads, for
   /// arguments typed `RefTo<GoogleSecretManagerSecret>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleSecretManagerSecret> get ref => RefTo.read(this);
+  RefTo<GoogleSecretManagerSecret> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

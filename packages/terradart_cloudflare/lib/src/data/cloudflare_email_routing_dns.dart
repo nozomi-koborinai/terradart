@@ -34,8 +34,8 @@ final class DataCloudflareEmailRoutingDns extends Data {
 
   /// A reference to the `cloudflare_email_routing_dns` this data source reads, for
   /// arguments typed `RefTo<CloudflareEmailRoutingDns>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareEmailRoutingDns> get ref => RefTo.read(this);
+  RefTo<CloudflareEmailRoutingDns> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

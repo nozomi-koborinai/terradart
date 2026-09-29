@@ -32,8 +32,8 @@ final class DataAwsWafv2IpSet extends Data {
 
   /// A reference to the `aws_wafv2_ip_set` this data source reads, for
   /// arguments typed `RefTo<AwsWafv2IpSet>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsWafv2IpSet> get ref => RefTo.read(this);
+  RefTo<AwsWafv2IpSet> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

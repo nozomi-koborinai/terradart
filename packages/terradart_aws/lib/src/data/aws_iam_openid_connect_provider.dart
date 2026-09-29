@@ -32,8 +32,8 @@ final class DataAwsIamOpenidConnectProvider extends Data {
 
   /// A reference to the `aws_iam_openid_connect_provider` this data source reads, for
   /// arguments typed `RefTo<AwsIamOpenidConnectProvider>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsIamOpenidConnectProvider> get ref => RefTo.read(this);
+  RefTo<AwsIamOpenidConnectProvider> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

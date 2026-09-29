@@ -32,8 +32,8 @@ final class DataAwsNetworkmanagerConnection extends Data {
 
   /// A reference to the `aws_networkmanager_connection` this data source reads, for
   /// arguments typed `RefTo<AwsNetworkmanagerConnection>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsNetworkmanagerConnection> get ref => RefTo.read(this);
+  RefTo<AwsNetworkmanagerConnection> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

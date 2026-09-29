@@ -27,8 +27,8 @@ final class DataAwsRdsClusterParameterGroup extends Data {
 
   /// A reference to the `aws_rds_cluster_parameter_group` this data source reads, for
   /// arguments typed `RefTo<AwsRdsClusterParameterGroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsRdsClusterParameterGroup> get ref => RefTo.read(this);
+  RefTo<AwsRdsClusterParameterGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

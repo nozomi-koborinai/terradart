@@ -34,8 +34,8 @@ final class DataAwsEksAccessEntry extends Data {
 
   /// A reference to the `aws_eks_access_entry` this data source reads, for
   /// arguments typed `RefTo<AwsEksAccessEntry>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEksAccessEntry> get ref => RefTo.read(this);
+  RefTo<AwsEksAccessEntry> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

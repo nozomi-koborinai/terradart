@@ -26,8 +26,8 @@ final class DataGoogleBackupDrManagementServer extends Data {
 
   /// A reference to the `google_backup_dr_management_server` this data source reads, for
   /// arguments typed `RefTo<GoogleBackupDrManagementServer>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleBackupDrManagementServer> get ref => RefTo.read(this);
+  RefTo<GoogleBackupDrManagementServer> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

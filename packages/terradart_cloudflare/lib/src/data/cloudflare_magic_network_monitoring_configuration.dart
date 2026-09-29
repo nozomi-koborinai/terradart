@@ -34,9 +34,8 @@ final class DataCloudflareMagicNetworkMonitoringConfiguration extends Data {
 
   /// A reference to the `cloudflare_magic_network_monitoring_configuration` this data source reads, for
   /// arguments typed `RefTo<CloudflareMagicNetworkMonitoringConfiguration>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareMagicNetworkMonitoringConfiguration> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

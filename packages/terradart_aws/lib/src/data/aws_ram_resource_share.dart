@@ -57,8 +57,8 @@ final class DataAwsRamResourceShare extends Data {
 
   /// A reference to the `aws_ram_resource_share` this data source reads, for
   /// arguments typed `RefTo<AwsRamResourceShare>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsRamResourceShare> get ref => RefTo.read(this);
+  RefTo<AwsRamResourceShare> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

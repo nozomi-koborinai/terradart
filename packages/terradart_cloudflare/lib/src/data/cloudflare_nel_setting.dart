@@ -27,8 +27,8 @@ final class DataCloudflareNelSetting extends Data {
 
   /// A reference to the `cloudflare_nel_setting` this data source reads, for
   /// arguments typed `RefTo<CloudflareNelSetting>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareNelSetting> get ref => RefTo.read(this);
+  RefTo<CloudflareNelSetting> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

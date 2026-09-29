@@ -37,9 +37,8 @@ final class DataCloudflareZeroTrustDlpSensitivityLevelOrder extends Data {
 
   /// A reference to the `cloudflare_zero_trust_dlp_sensitivity_level_order` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustDlpSensitivityLevelOrder>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareZeroTrustDlpSensitivityLevelOrder> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

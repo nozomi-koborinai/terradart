@@ -41,8 +41,8 @@ final class DataAwsRoute53ResolverRule extends Data {
 
   /// A reference to the `aws_route53_resolver_rule` this data source reads, for
   /// arguments typed `RefTo<AwsRoute53ResolverRule>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsRoute53ResolverRule> get ref => RefTo.read(this);
+  RefTo<AwsRoute53ResolverRule> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

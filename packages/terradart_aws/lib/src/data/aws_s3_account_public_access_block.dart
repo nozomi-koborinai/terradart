@@ -26,8 +26,8 @@ final class DataAwsS3AccountPublicAccessBlock extends Data {
 
   /// A reference to the `aws_s3_account_public_access_block` this data source reads, for
   /// arguments typed `RefTo<AwsS3AccountPublicAccessBlock>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsS3AccountPublicAccessBlock> get ref => RefTo.read(this);
+  RefTo<AwsS3AccountPublicAccessBlock> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

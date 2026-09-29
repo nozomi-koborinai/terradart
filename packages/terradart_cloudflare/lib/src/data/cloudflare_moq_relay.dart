@@ -60,8 +60,8 @@ final class DataCloudflareMoqRelay extends Data {
 
   /// A reference to the `cloudflare_moq_relay` this data source reads, for
   /// arguments typed `RefTo<CloudflareMoqRelay>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareMoqRelay> get ref => RefTo.read(this);
+  RefTo<CloudflareMoqRelay> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

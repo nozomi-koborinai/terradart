@@ -27,8 +27,8 @@ final class DataAwsDbSubnetGroup extends Data {
 
   /// A reference to the `aws_db_subnet_group` this data source reads, for
   /// arguments typed `RefTo<AwsDbSubnetGroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsDbSubnetGroup> get ref => RefTo.read(this);
+  RefTo<AwsDbSubnetGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

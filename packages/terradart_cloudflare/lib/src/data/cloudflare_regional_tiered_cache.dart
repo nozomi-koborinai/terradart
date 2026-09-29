@@ -30,8 +30,8 @@ final class DataCloudflareRegionalTieredCache extends Data {
 
   /// A reference to the `cloudflare_regional_tiered_cache` this data source reads, for
   /// arguments typed `RefTo<CloudflareRegionalTieredCache>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareRegionalTieredCache> get ref => RefTo.read(this);
+  RefTo<CloudflareRegionalTieredCache> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

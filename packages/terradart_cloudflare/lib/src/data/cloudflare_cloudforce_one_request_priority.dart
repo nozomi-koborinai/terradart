@@ -35,8 +35,8 @@ final class DataCloudflareCloudforceOneRequestPriority extends Data {
 
   /// A reference to the `cloudflare_cloudforce_one_request_priority` this data source reads, for
   /// arguments typed `RefTo<CloudflareCloudforceOneRequestPriority>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCloudforceOneRequestPriority> get ref => RefTo.read(this);
+  RefTo<CloudflareCloudforceOneRequestPriority> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

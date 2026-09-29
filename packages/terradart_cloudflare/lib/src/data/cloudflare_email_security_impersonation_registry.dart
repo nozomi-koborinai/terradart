@@ -109,9 +109,8 @@ final class DataCloudflareEmailSecurityImpersonationRegistry extends Data {
 
   /// A reference to the `cloudflare_email_security_impersonation_registry` this data source reads, for
   /// arguments typed `RefTo<CloudflareEmailSecurityImpersonationRegistry>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareEmailSecurityImpersonationRegistry> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

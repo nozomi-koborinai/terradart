@@ -37,8 +37,8 @@ final class DataGoogleBeyondcorpSecurityGatewayIamPolicy extends Data {
 
   /// A reference to the `google_beyondcorp_security_gateway_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleBeyondcorpSecurityGatewayIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleBeyondcorpSecurityGatewayIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleBeyondcorpSecurityGatewayIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

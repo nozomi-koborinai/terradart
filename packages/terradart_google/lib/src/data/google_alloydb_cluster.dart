@@ -35,8 +35,8 @@ final class DataGoogleAlloydbCluster extends Data {
 
   /// A reference to the `google_alloydb_cluster` this data source reads, for
   /// arguments typed `RefTo<GoogleAlloydbCluster>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleAlloydbCluster> get ref => RefTo.read(this);
+  RefTo<GoogleAlloydbCluster> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

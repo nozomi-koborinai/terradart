@@ -23,8 +23,8 @@ final class DataAwsIamOutboundWebIdentityFederation extends Data {
 
   /// A reference to the `aws_iam_outbound_web_identity_federation` this data source reads, for
   /// arguments typed `RefTo<AwsIamOutboundWebIdentityFederation>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsIamOutboundWebIdentityFederation> get ref => RefTo.read(this);
+  RefTo<AwsIamOutboundWebIdentityFederation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `issuer_identifier` attribute.
   TfRef<String> get issuerIdentifier =>

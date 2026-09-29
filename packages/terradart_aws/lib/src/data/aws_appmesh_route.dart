@@ -38,8 +38,8 @@ final class DataAwsAppmeshRoute extends Data {
 
   /// A reference to the `aws_appmesh_route` this data source reads, for
   /// arguments typed `RefTo<AwsAppmeshRoute>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAppmeshRoute> get ref => RefTo.read(this);
+  RefTo<AwsAppmeshRoute> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

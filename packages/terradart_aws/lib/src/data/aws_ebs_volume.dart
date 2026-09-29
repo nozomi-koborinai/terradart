@@ -52,8 +52,8 @@ final class DataAwsEbsVolume extends Data {
 
   /// A reference to the `aws_ebs_volume` this data source reads, for
   /// arguments typed `RefTo<AwsEbsVolume>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEbsVolume> get ref => RefTo.read(this);
+  RefTo<AwsEbsVolume> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

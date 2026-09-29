@@ -37,9 +37,8 @@ final class DataCloudflareWorkersForPlatformsDispatchNamespace extends Data {
 
   /// A reference to the `cloudflare_workers_for_platforms_dispatch_namespace` this data source reads, for
   /// arguments typed `RefTo<CloudflareWorkersForPlatformsDispatchNamespace>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareWorkersForPlatformsDispatchNamespace> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

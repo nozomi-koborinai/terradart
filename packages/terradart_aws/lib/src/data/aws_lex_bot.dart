@@ -32,8 +32,8 @@ final class DataAwsLexBot extends Data {
 
   /// A reference to the `aws_lex_bot` this data source reads, for
   /// arguments typed `RefTo<AwsLexBot>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLexBot> get ref => RefTo.read(this);
+  RefTo<AwsLexBot> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

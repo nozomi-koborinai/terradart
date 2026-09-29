@@ -23,8 +23,8 @@ final class DataAwsIamGroup extends Data {
 
   /// A reference to the `aws_iam_group` this data source reads, for
   /// arguments typed `RefTo<AwsIamGroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsIamGroup> get ref => RefTo.read(this);
+  RefTo<AwsIamGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

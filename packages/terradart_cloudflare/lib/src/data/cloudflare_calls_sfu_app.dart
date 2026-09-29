@@ -31,8 +31,8 @@ final class DataCloudflareCallsSfuApp extends Data {
 
   /// A reference to the `cloudflare_calls_sfu_app` this data source reads, for
   /// arguments typed `RefTo<CloudflareCallsSfuApp>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCallsSfuApp> get ref => RefTo.read(this);
+  RefTo<CloudflareCallsSfuApp> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

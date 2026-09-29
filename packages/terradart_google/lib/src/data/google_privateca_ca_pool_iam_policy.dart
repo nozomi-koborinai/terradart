@@ -35,8 +35,8 @@ final class DataGooglePrivatecaCaPoolIamPolicy extends Data {
 
   /// A reference to the `google_privateca_ca_pool_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GooglePrivatecaCaPoolIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GooglePrivatecaCaPoolIamPolicy> get ref => RefTo.read(this);
+  RefTo<GooglePrivatecaCaPoolIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -39,8 +39,8 @@ final class DataGoogleDataprocMetastoreDatabaseIamPolicy extends Data {
 
   /// A reference to the `google_dataproc_metastore_database_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleDataprocMetastoreDatabaseIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDataprocMetastoreDatabaseIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleDataprocMetastoreDatabaseIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

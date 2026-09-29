@@ -34,8 +34,8 @@ final class DataCloudflareZoneSetting extends Data {
 
   /// A reference to the `cloudflare_zone_setting` this data source reads, for
   /// arguments typed `RefTo<CloudflareZoneSetting>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZoneSetting> get ref => RefTo.read(this);
+  RefTo<CloudflareZoneSetting> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

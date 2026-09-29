@@ -34,8 +34,8 @@ final class DataAwsConnectInstance extends Data {
 
   /// A reference to the `aws_connect_instance` this data source reads, for
   /// arguments typed `RefTo<AwsConnectInstance>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsConnectInstance> get ref => RefTo.read(this);
+  RefTo<AwsConnectInstance> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

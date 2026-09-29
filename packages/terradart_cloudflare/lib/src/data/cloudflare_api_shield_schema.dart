@@ -37,8 +37,8 @@ final class DataCloudflareApiShieldSchema extends Data {
 
   /// A reference to the `cloudflare_api_shield_schema` this data source reads, for
   /// arguments typed `RefTo<CloudflareApiShieldSchema>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareApiShieldSchema> get ref => RefTo.read(this);
+  RefTo<CloudflareApiShieldSchema> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

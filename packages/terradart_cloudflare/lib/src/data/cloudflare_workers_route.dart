@@ -31,8 +31,8 @@ final class DataCloudflareWorkersRoute extends Data {
 
   /// A reference to the `cloudflare_workers_route` this data source reads, for
   /// arguments typed `RefTo<CloudflareWorkersRoute>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareWorkersRoute> get ref => RefTo.read(this);
+  RefTo<CloudflareWorkersRoute> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

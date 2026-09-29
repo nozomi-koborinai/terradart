@@ -38,8 +38,8 @@ final class DataGoogleOracleDatabaseExascaleDbStorageVault extends Data {
 
   /// A reference to the `google_oracle_database_exascale_db_storage_vault` this data source reads, for
   /// arguments typed `RefTo<GoogleOracleDatabaseExascaleDbStorageVault>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleOracleDatabaseExascaleDbStorageVault> get ref => RefTo.read(this);
+  RefTo<GoogleOracleDatabaseExascaleDbStorageVault> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

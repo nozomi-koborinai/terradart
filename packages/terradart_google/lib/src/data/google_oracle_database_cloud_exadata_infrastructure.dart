@@ -38,9 +38,8 @@ final class DataGoogleOracleDatabaseCloudExadataInfrastructure extends Data {
 
   /// A reference to the `google_oracle_database_cloud_exadata_infrastructure` this data source reads, for
   /// arguments typed `RefTo<GoogleOracleDatabaseCloudExadataInfrastructure>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<GoogleOracleDatabaseCloudExadataInfrastructure> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

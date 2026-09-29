@@ -32,8 +32,8 @@ final class DataAwsMskVpcConnection extends Data {
 
   /// A reference to the `aws_msk_vpc_connection` this data source reads, for
   /// arguments typed `RefTo<AwsMskVpcConnection>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsMskVpcConnection> get ref => RefTo.read(this);
+  RefTo<AwsMskVpcConnection> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

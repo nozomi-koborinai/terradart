@@ -35,8 +35,8 @@ final class DataCloudflareMagicWanStaticRoute extends Data {
 
   /// A reference to the `cloudflare_magic_wan_static_route` this data source reads, for
   /// arguments typed `RefTo<CloudflareMagicWanStaticRoute>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareMagicWanStaticRoute> get ref => RefTo.read(this);
+  RefTo<CloudflareMagicWanStaticRoute> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

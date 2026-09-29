@@ -27,8 +27,8 @@ final class DataAwsSecretsmanagerSecretRotation extends Data {
 
   /// A reference to the `aws_secretsmanager_secret_rotation` this data source reads, for
   /// arguments typed `RefTo<AwsSecretsmanagerSecretRotation>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSecretsmanagerSecretRotation> get ref => RefTo.read(this);
+  RefTo<AwsSecretsmanagerSecretRotation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

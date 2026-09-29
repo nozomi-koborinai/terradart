@@ -26,8 +26,8 @@ final class DataCloudflareOrganizationProfile extends Data {
 
   /// A reference to the `cloudflare_organization_profile` this data source reads, for
   /// arguments typed `RefTo<CloudflareOrganizationProfile>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareOrganizationProfile> get ref => RefTo.read(this);
+  RefTo<CloudflareOrganizationProfile> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `business_address` attribute.
   TfRef<String> get businessAddress =>

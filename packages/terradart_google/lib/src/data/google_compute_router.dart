@@ -37,8 +37,8 @@ final class DataGoogleComputeRouter extends Data {
 
   /// A reference to the `google_compute_router` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeRouter>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeRouter> get ref => RefTo.read(this);
+  RefTo<GoogleComputeRouter> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

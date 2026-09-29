@@ -24,8 +24,8 @@ final class DataAwsCloudfrontOriginAccessIdentity extends Data {
 
   /// A reference to the `aws_cloudfront_origin_access_identity` this data source reads, for
   /// arguments typed `RefTo<AwsCloudfrontOriginAccessIdentity>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCloudfrontOriginAccessIdentity> get ref => RefTo.read(this);
+  RefTo<AwsCloudfrontOriginAccessIdentity> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

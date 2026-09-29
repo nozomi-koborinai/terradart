@@ -142,8 +142,8 @@ final class DataCloudflareEmailSecurityDomain extends Data {
 
   /// A reference to the `cloudflare_email_security_domain` this data source reads, for
   /// arguments typed `RefTo<CloudflareEmailSecurityDomain>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareEmailSecurityDomain> get ref => RefTo.read(this);
+  RefTo<CloudflareEmailSecurityDomain> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

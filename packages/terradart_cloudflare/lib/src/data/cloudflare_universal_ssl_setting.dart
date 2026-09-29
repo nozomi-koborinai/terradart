@@ -30,8 +30,8 @@ final class DataCloudflareUniversalSslSetting extends Data {
 
   /// A reference to the `cloudflare_universal_ssl_setting` this data source reads, for
   /// arguments typed `RefTo<CloudflareUniversalSslSetting>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareUniversalSslSetting> get ref => RefTo.read(this);
+  RefTo<CloudflareUniversalSslSetting> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

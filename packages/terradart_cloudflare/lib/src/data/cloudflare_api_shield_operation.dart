@@ -99,8 +99,8 @@ final class DataCloudflareApiShieldOperation extends Data {
 
   /// A reference to the `cloudflare_api_shield_operation` this data source reads, for
   /// arguments typed `RefTo<CloudflareApiShieldOperation>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareApiShieldOperation> get ref => RefTo.read(this);
+  RefTo<CloudflareApiShieldOperation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

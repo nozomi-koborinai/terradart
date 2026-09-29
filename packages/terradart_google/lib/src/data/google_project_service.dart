@@ -30,8 +30,8 @@ final class DataGoogleProjectService extends Data {
 
   /// A reference to the `google_project_service` this data source reads, for
   /// arguments typed `RefTo<GoogleProjectService>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleProjectService> get ref => RefTo.read(this);
+  RefTo<GoogleProjectService> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -77,8 +77,8 @@ final class DataCloudflareShareResource extends Data {
 
   /// A reference to the `cloudflare_share_resource` this data source reads, for
   /// arguments typed `RefTo<CloudflareShareResource>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareShareResource> get ref => RefTo.read(this);
+  RefTo<CloudflareShareResource> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -24,8 +24,8 @@ final class DataCloudflareOriginTlsComplianceModes extends Data {
 
   /// A reference to the `cloudflare_origin_tls_compliance_modes` this data source reads, for
   /// arguments typed `RefTo<CloudflareOriginTlsComplianceModes>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareOriginTlsComplianceModes> get ref => RefTo.read(this);
+  RefTo<CloudflareOriginTlsComplianceModes> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

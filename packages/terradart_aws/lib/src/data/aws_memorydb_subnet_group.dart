@@ -32,8 +32,8 @@ final class DataAwsMemorydbSubnetGroup extends Data {
 
   /// A reference to the `aws_memorydb_subnet_group` this data source reads, for
   /// arguments typed `RefTo<AwsMemorydbSubnetGroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsMemorydbSubnetGroup> get ref => RefTo.read(this);
+  RefTo<AwsMemorydbSubnetGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

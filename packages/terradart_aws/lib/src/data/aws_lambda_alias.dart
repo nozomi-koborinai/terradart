@@ -32,8 +32,8 @@ final class DataAwsLambdaAlias extends Data {
 
   /// A reference to the `aws_lambda_alias` this data source reads, for
   /// arguments typed `RefTo<AwsLambdaAlias>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLambdaAlias> get ref => RefTo.read(this);
+  RefTo<AwsLambdaAlias> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

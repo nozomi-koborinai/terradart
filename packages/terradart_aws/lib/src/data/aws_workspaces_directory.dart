@@ -32,8 +32,8 @@ final class DataAwsWorkspacesDirectory extends Data {
 
   /// A reference to the `aws_workspaces_directory` this data source reads, for
   /// arguments typed `RefTo<AwsWorkspacesDirectory>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsWorkspacesDirectory> get ref => RefTo.read(this);
+  RefTo<AwsWorkspacesDirectory> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -34,8 +34,8 @@ final class DataCloudflareWorkersCronTrigger extends Data {
 
   /// A reference to the `cloudflare_workers_cron_trigger` this data source reads, for
   /// arguments typed `RefTo<CloudflareWorkersCronTrigger>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareWorkersCronTrigger> get ref => RefTo.read(this);
+  RefTo<CloudflareWorkersCronTrigger> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

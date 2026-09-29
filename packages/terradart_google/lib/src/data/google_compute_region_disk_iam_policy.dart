@@ -35,8 +35,8 @@ final class DataGoogleComputeRegionDiskIamPolicy extends Data {
 
   /// A reference to the `google_compute_region_disk_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeRegionDiskIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeRegionDiskIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleComputeRegionDiskIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

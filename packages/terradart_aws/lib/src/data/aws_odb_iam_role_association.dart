@@ -32,8 +32,8 @@ final class DataAwsOdbIamRoleAssociation extends Data {
 
   /// A reference to the `aws_odb_iam_role_association` this data source reads, for
   /// arguments typed `RefTo<AwsOdbIamRoleAssociation>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsOdbIamRoleAssociation> get ref => RefTo.read(this);
+  RefTo<AwsOdbIamRoleAssociation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `aws_integration` attribute.
   TfRef<String> get awsIntegration =>

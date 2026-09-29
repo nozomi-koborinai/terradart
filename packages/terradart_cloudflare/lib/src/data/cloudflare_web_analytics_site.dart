@@ -60,8 +60,8 @@ final class DataCloudflareWebAnalyticsSite extends Data {
 
   /// A reference to the `cloudflare_web_analytics_site` this data source reads, for
   /// arguments typed `RefTo<CloudflareWebAnalyticsSite>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareWebAnalyticsSite> get ref => RefTo.read(this);
+  RefTo<CloudflareWebAnalyticsSite> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

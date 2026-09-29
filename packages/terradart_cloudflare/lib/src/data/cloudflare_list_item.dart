@@ -36,8 +36,8 @@ final class DataCloudflareListItem extends Data {
 
   /// A reference to the `cloudflare_list_item` this data source reads, for
   /// arguments typed `RefTo<CloudflareListItem>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareListItem> get ref => RefTo.read(this);
+  RefTo<CloudflareListItem> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

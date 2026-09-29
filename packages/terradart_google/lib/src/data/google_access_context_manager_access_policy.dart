@@ -31,8 +31,8 @@ final class DataGoogleAccessContextManagerAccessPolicy extends Data {
 
   /// A reference to the `google_access_context_manager_access_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleAccessContextManagerAccessPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleAccessContextManagerAccessPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleAccessContextManagerAccessPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

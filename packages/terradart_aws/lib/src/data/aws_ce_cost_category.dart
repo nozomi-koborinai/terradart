@@ -30,8 +30,8 @@ final class DataAwsCeCostCategory extends Data {
 
   /// A reference to the `aws_ce_cost_category` this data source reads, for
   /// arguments typed `RefTo<AwsCeCostCategory>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCeCostCategory> get ref => RefTo.read(this);
+  RefTo<AwsCeCostCategory> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

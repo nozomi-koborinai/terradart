@@ -32,8 +32,8 @@ final class DataAwsLocationPlaceIndex extends Data {
 
   /// A reference to the `aws_location_place_index` this data source reads, for
   /// arguments typed `RefTo<AwsLocationPlaceIndex>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLocationPlaceIndex> get ref => RefTo.read(this);
+  RefTo<AwsLocationPlaceIndex> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

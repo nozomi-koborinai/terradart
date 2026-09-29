@@ -32,8 +32,8 @@ final class DataAwsImagebuilderImageRecipe extends Data {
 
   /// A reference to the `aws_imagebuilder_image_recipe` this data source reads, for
   /// arguments typed `RefTo<AwsImagebuilderImageRecipe>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsImagebuilderImageRecipe> get ref => RefTo.read(this);
+  RefTo<AwsImagebuilderImageRecipe> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

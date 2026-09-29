@@ -29,8 +29,8 @@ final class DataAppwriteSite extends Data {
 
   /// A reference to the `appwrite_site` this data source reads, for
   /// arguments typed `RefTo<AppwriteSite>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AppwriteSite> get ref => RefTo.read(this);
+  RefTo<AppwriteSite> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

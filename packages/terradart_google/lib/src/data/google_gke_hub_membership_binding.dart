@@ -37,8 +37,8 @@ final class DataGoogleGkeHubMembershipBinding extends Data {
 
   /// A reference to the `google_gke_hub_membership_binding` this data source reads, for
   /// arguments typed `RefTo<GoogleGkeHubMembershipBinding>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleGkeHubMembershipBinding> get ref => RefTo.read(this);
+  RefTo<GoogleGkeHubMembershipBinding> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -246,8 +246,8 @@ final class DataAwsLakeformationPermissions extends Data {
 
   /// A reference to the `aws_lakeformation_permissions` this data source reads, for
   /// arguments typed `RefTo<AwsLakeformationPermissions>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLakeformationPermissions> get ref => RefTo.read(this);
+  RefTo<AwsLakeformationPermissions> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

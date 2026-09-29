@@ -33,8 +33,8 @@ final class DataGoogleStorageBucketObject extends Data {
 
   /// A reference to the `google_storage_bucket_object` this data source reads, for
   /// arguments typed `RefTo<GoogleStorageBucketObject>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleStorageBucketObject> get ref => RefTo.read(this);
+  RefTo<GoogleStorageBucketObject> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

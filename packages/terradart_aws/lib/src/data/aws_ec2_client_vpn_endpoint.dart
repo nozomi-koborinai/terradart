@@ -56,8 +56,8 @@ final class DataAwsEc2ClientVpnEndpoint extends Data {
 
   /// A reference to the `aws_ec2_client_vpn_endpoint` this data source reads, for
   /// arguments typed `RefTo<AwsEc2ClientVpnEndpoint>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEc2ClientVpnEndpoint> get ref => RefTo.read(this);
+  RefTo<AwsEc2ClientVpnEndpoint> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

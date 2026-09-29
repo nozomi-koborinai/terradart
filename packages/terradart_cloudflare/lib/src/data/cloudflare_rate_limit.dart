@@ -34,8 +34,8 @@ final class DataCloudflareRateLimit extends Data {
 
   /// A reference to the `cloudflare_rate_limit` this data source reads, for
   /// arguments typed `RefTo<CloudflareRateLimit>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareRateLimit> get ref => RefTo.read(this);
+  RefTo<CloudflareRateLimit> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

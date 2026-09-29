@@ -30,8 +30,8 @@ final class DataGoogleTagsTagValue extends Data {
 
   /// A reference to the `google_tags_tag_value` this data source reads, for
   /// arguments typed `RefTo<GoogleTagsTagValue>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleTagsTagValue> get ref => RefTo.read(this);
+  RefTo<GoogleTagsTagValue> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

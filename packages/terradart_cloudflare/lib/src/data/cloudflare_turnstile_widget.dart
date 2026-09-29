@@ -80,8 +80,8 @@ final class DataCloudflareTurnstileWidget extends Data {
 
   /// A reference to the `cloudflare_turnstile_widget` this data source reads, for
   /// arguments typed `RefTo<CloudflareTurnstileWidget>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareTurnstileWidget> get ref => RefTo.read(this);
+  RefTo<CloudflareTurnstileWidget> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

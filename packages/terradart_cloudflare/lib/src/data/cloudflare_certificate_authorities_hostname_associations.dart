@@ -39,9 +39,8 @@ final class DataCloudflareCertificateAuthoritiesHostnameAssociations
 
   /// A reference to the `cloudflare_certificate_authorities_hostname_associations` this data source reads, for
   /// arguments typed `RefTo<CloudflareCertificateAuthoritiesHostnameAssociations>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareCertificateAuthoritiesHostnameAssociations> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -37,8 +37,8 @@ final class DataCloudflareCustomPages extends Data {
 
   /// A reference to the `cloudflare_custom_pages` this data source reads, for
   /// arguments typed `RefTo<CloudflareCustomPages>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCustomPages> get ref => RefTo.read(this);
+  RefTo<CloudflareCustomPages> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -28,8 +28,8 @@ final class DataAwsCodeguruprofilerProfilingGroup extends Data {
 
   /// A reference to the `aws_codeguruprofiler_profiling_group` this data source reads, for
   /// arguments typed `RefTo<AwsCodeguruprofilerProfilingGroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCodeguruprofilerProfilingGroup> get ref => RefTo.read(this);
+  RefTo<AwsCodeguruprofilerProfilingGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

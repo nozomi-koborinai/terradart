@@ -99,8 +99,8 @@ final class DataCloudflareZeroTrustTunnelCloudflared extends Data {
 
   /// A reference to the `cloudflare_zero_trust_tunnel_cloudflared` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustTunnelCloudflared>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustTunnelCloudflared> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustTunnelCloudflared> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

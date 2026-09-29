@@ -31,8 +31,8 @@ final class DataAwsGlueDataCatalogEncryptionSettings extends Data {
 
   /// A reference to the `aws_glue_data_catalog_encryption_settings` this data source reads, for
   /// arguments typed `RefTo<AwsGlueDataCatalogEncryptionSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsGlueDataCatalogEncryptionSettings> get ref => RefTo.read(this);
+  RefTo<AwsGlueDataCatalogEncryptionSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

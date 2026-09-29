@@ -22,8 +22,8 @@ final class DataAwsIamAccountAlias extends Data {
 
   /// A reference to the `aws_iam_account_alias` this data source reads, for
   /// arguments typed `RefTo<AwsIamAccountAlias>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsIamAccountAlias> get ref => RefTo.read(this);
+  RefTo<AwsIamAccountAlias> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

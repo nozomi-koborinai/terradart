@@ -43,8 +43,8 @@ final class DataGoogleSecretManagerRegionalSecretVersion extends Data {
 
   /// A reference to the `google_secret_manager_regional_secret_version` this data source reads, for
   /// arguments typed `RefTo<GoogleSecretManagerRegionalSecretVersion>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleSecretManagerRegionalSecretVersion> get ref => RefTo.read(this);
+  RefTo<GoogleSecretManagerRegionalSecretVersion> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

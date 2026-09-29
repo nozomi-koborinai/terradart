@@ -31,8 +31,8 @@ final class DataCloudflareLeakedCredentialCheck extends Data {
 
   /// A reference to the `cloudflare_leaked_credential_check` this data source reads, for
   /// arguments typed `RefTo<CloudflareLeakedCredentialCheck>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareLeakedCredentialCheck> get ref => RefTo.read(this);
+  RefTo<CloudflareLeakedCredentialCheck> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');

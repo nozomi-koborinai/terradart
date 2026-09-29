@@ -32,8 +32,8 @@ final class DataAwsFsxWindowsFileSystem extends Data {
 
   /// A reference to the `aws_fsx_windows_file_system` this data source reads, for
   /// arguments typed `RefTo<AwsFsxWindowsFileSystem>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsFsxWindowsFileSystem> get ref => RefTo.read(this);
+  RefTo<AwsFsxWindowsFileSystem> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

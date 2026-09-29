@@ -27,8 +27,8 @@ final class DataGoogleComputeNetworkPeering extends Data {
 
   /// A reference to the `google_compute_network_peering` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeNetworkPeering>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeNetworkPeering> get ref => RefTo.read(this);
+  RefTo<GoogleComputeNetworkPeering> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

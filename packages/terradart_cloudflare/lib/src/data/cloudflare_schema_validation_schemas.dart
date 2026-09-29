@@ -55,8 +55,8 @@ final class DataCloudflareSchemaValidationSchemas extends Data {
 
   /// A reference to the `cloudflare_schema_validation_schemas` this data source reads, for
   /// arguments typed `RefTo<CloudflareSchemaValidationSchemas>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareSchemaValidationSchemas> get ref => RefTo.read(this);
+  RefTo<CloudflareSchemaValidationSchemas> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

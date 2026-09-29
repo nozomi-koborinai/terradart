@@ -38,8 +38,8 @@ final class DataGoogleClouddeployCustomTargetTypeIamPolicy extends Data {
 
   /// A reference to the `google_clouddeploy_custom_target_type_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleClouddeployCustomTargetTypeIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleClouddeployCustomTargetTypeIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleClouddeployCustomTargetTypeIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

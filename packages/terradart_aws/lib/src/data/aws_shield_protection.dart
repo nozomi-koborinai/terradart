@@ -30,8 +30,8 @@ final class DataAwsShieldProtection extends Data {
 
   /// A reference to the `aws_shield_protection` this data source reads, for
   /// arguments typed `RefTo<AwsShieldProtection>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsShieldProtection> get ref => RefTo.read(this);
+  RefTo<AwsShieldProtection> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

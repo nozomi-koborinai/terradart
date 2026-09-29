@@ -26,8 +26,8 @@ final class DataAwsSpotDatafeedSubscription extends Data {
 
   /// A reference to the `aws_spot_datafeed_subscription` this data source reads, for
   /// arguments typed `RefTo<AwsSpotDatafeedSubscription>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSpotDatafeedSubscription> get ref => RefTo.read(this);
+  RefTo<AwsSpotDatafeedSubscription> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `bucket` attribute.
   TfRef<String> get bucket => TfRef.attribute<String>(this, 'bucket');

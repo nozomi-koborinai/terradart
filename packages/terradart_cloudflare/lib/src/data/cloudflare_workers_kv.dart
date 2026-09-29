@@ -36,8 +36,8 @@ final class DataCloudflareWorkersKv extends Data {
 
   /// A reference to the `cloudflare_workers_kv` this data source reads, for
   /// arguments typed `RefTo<CloudflareWorkersKv>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareWorkersKv> get ref => RefTo.read(this);
+  RefTo<CloudflareWorkersKv> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

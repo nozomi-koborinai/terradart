@@ -30,8 +30,8 @@ final class DataAwsRdsGlobalCluster extends Data {
 
   /// A reference to the `aws_rds_global_cluster` this data source reads, for
   /// arguments typed `RefTo<AwsRdsGlobalCluster>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsRdsGlobalCluster> get ref => RefTo.read(this);
+  RefTo<AwsRdsGlobalCluster> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');

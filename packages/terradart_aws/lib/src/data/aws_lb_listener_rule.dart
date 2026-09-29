@@ -361,8 +361,8 @@ final class DataAwsLbListenerRule extends Data {
 
   /// A reference to the `aws_lb_listener_rule` this data source reads, for
   /// arguments typed `RefTo<AwsLbListenerRule>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLbListenerRule> get ref => RefTo.read(this);
+  RefTo<AwsLbListenerRule> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>

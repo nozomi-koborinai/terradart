@@ -32,8 +32,8 @@ final class DataAwsElb extends Data {
 
   /// A reference to the `aws_elb` this data source reads, for
   /// arguments typed `RefTo<AwsElb>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsElb> get ref => RefTo.read(this);
+  RefTo<AwsElb> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

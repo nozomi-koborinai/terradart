@@ -49,8 +49,8 @@ final class DataAwsConnectBotAssociation extends Data {
 
   /// A reference to the `aws_connect_bot_association` this data source reads, for
   /// arguments typed `RefTo<AwsConnectBotAssociation>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsConnectBotAssociation> get ref => RefTo.read(this);
+  RefTo<AwsConnectBotAssociation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -27,8 +27,8 @@ final class DataAwsGlobalacceleratorAccelerator extends Data {
 
   /// A reference to the `aws_globalaccelerator_accelerator` this data source reads, for
   /// arguments typed `RefTo<AwsGlobalacceleratorAccelerator>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsGlobalacceleratorAccelerator> get ref => RefTo.read(this);
+  RefTo<AwsGlobalacceleratorAccelerator> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

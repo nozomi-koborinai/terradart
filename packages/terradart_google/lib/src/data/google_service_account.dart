@@ -33,8 +33,8 @@ final class DataGoogleServiceAccount extends Data {
 
   /// A reference to the `google_service_account` this data source reads, for
   /// arguments typed `RefTo<GoogleServiceAccount>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleServiceAccount> get ref => RefTo.read(this);
+  RefTo<GoogleServiceAccount> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -50,8 +50,8 @@ final class DataAwsVpnConnection extends Data {
 
   /// A reference to the `aws_vpn_connection` this data source reads, for
   /// arguments typed `RefTo<AwsVpnConnection>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsVpnConnection> get ref => RefTo.read(this);
+  RefTo<AwsVpnConnection> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `category` attribute.
   TfRef<String> get category => TfRef.attribute<String>(this, 'category');

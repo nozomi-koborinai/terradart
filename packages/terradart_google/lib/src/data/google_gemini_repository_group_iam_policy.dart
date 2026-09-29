@@ -38,8 +38,8 @@ final class DataGoogleGeminiRepositoryGroupIamPolicy extends Data {
 
   /// A reference to the `google_gemini_repository_group_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleGeminiRepositoryGroupIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleGeminiRepositoryGroupIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleGeminiRepositoryGroupIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

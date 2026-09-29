@@ -40,8 +40,8 @@ final class DataGoogleServiceNetworkingPeeredDnsDomain extends Data {
 
   /// A reference to the `google_service_networking_peered_dns_domain` this data source reads, for
   /// arguments typed `RefTo<GoogleServiceNetworkingPeeredDnsDomain>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleServiceNetworkingPeeredDnsDomain> get ref => RefTo.read(this);
+  RefTo<GoogleServiceNetworkingPeeredDnsDomain> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

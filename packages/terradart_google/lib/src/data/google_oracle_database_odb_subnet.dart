@@ -37,8 +37,8 @@ final class DataGoogleOracleDatabaseOdbSubnet extends Data {
 
   /// A reference to the `google_oracle_database_odb_subnet` this data source reads, for
   /// arguments typed `RefTo<GoogleOracleDatabaseOdbSubnet>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleOracleDatabaseOdbSubnet> get ref => RefTo.read(this);
+  RefTo<GoogleOracleDatabaseOdbSubnet> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

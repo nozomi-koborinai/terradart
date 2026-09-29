@@ -38,8 +38,8 @@ final class DataGoogleComputeInstanceGroupManager extends Data {
 
   /// A reference to the `google_compute_instance_group_manager` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeInstanceGroupManager>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeInstanceGroupManager> get ref => RefTo.read(this);
+  RefTo<GoogleComputeInstanceGroupManager> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

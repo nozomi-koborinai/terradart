@@ -40,9 +40,8 @@ final class DataGoogleWorkstationsWorkstationConfigIamPolicy extends Data {
 
   /// A reference to the `google_workstations_workstation_config_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleWorkstationsWorkstationConfigIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<GoogleWorkstationsWorkstationConfigIamPolicy> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

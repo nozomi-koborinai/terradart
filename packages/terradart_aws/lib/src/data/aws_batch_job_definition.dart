@@ -36,8 +36,8 @@ final class DataAwsBatchJobDefinition extends Data {
 
   /// A reference to the `aws_batch_job_definition` this data source reads, for
   /// arguments typed `RefTo<AwsBatchJobDefinition>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsBatchJobDefinition> get ref => RefTo.read(this);
+  RefTo<AwsBatchJobDefinition> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

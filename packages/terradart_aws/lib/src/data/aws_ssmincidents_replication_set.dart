@@ -23,8 +23,8 @@ final class DataAwsSsmincidentsReplicationSet extends Data {
 
   /// A reference to the `aws_ssmincidents_replication_set` this data source reads, for
   /// arguments typed `RefTo<AwsSsmincidentsReplicationSet>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSsmincidentsReplicationSet> get ref => RefTo.read(this);
+  RefTo<AwsSsmincidentsReplicationSet> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

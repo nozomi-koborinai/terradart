@@ -34,8 +34,8 @@ final class DataCloudflareR2DataCatalog extends Data {
 
   /// A reference to the `cloudflare_r2_data_catalog` this data source reads, for
   /// arguments typed `RefTo<CloudflareR2DataCatalog>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareR2DataCatalog> get ref => RefTo.read(this);
+  RefTo<CloudflareR2DataCatalog> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

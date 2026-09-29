@@ -38,9 +38,8 @@ final class DataGoogleSecureSourceManagerRepositoryIamPolicy extends Data {
 
   /// A reference to the `google_secure_source_manager_repository_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleSecureSourceManagerRepositoryIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<GoogleSecureSourceManagerRepositoryIamPolicy> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

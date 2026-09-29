@@ -30,8 +30,8 @@ final class DataAwsAgentregistryRegistry extends Data {
 
   /// A reference to the `aws_agentregistry_registry` this data source reads, for
   /// arguments typed `RefTo<AwsAgentregistryRegistry>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAgentregistryRegistry> get ref => RefTo.read(this);
+  RefTo<AwsAgentregistryRegistry> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

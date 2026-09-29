@@ -39,8 +39,8 @@ final class DataAwsRoute53Zone extends Data {
 
   /// A reference to the `aws_route53_zone` this data source reads, for
   /// arguments typed `RefTo<AwsRoute53Zone>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsRoute53Zone> get ref => RefTo.read(this);
+  RefTo<AwsRoute53Zone> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

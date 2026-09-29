@@ -36,8 +36,8 @@ final class DataAwsCloudcontrolapiResource extends Data {
 
   /// A reference to the `aws_cloudcontrolapi_resource` this data source reads, for
   /// arguments typed `RefTo<AwsCloudcontrolapiResource>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCloudcontrolapiResource> get ref => RefTo.read(this);
+  RefTo<AwsCloudcontrolapiResource> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

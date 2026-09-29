@@ -32,8 +32,8 @@ final class DataAwsCognitoIdentityPool extends Data {
 
   /// A reference to the `aws_cognito_identity_pool` this data source reads, for
   /// arguments typed `RefTo<AwsCognitoIdentityPool>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCognitoIdentityPool> get ref => RefTo.read(this);
+  RefTo<AwsCognitoIdentityPool> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

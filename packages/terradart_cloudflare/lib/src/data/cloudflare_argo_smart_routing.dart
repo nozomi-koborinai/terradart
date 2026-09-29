@@ -30,8 +30,8 @@ final class DataCloudflareArgoSmartRouting extends Data {
 
   /// A reference to the `cloudflare_argo_smart_routing` this data source reads, for
   /// arguments typed `RefTo<CloudflareArgoSmartRouting>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareArgoSmartRouting> get ref => RefTo.read(this);
+  RefTo<CloudflareArgoSmartRouting> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

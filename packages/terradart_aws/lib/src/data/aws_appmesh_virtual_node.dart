@@ -36,8 +36,8 @@ final class DataAwsAppmeshVirtualNode extends Data {
 
   /// A reference to the `aws_appmesh_virtual_node` this data source reads, for
   /// arguments typed `RefTo<AwsAppmeshVirtualNode>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAppmeshVirtualNode> get ref => RefTo.read(this);
+  RefTo<AwsAppmeshVirtualNode> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

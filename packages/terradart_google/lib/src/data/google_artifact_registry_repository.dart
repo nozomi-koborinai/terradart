@@ -35,8 +35,8 @@ final class DataGoogleArtifactRegistryRepository extends Data {
 
   /// A reference to the `google_artifact_registry_repository` this data source reads, for
   /// arguments typed `RefTo<GoogleArtifactRegistryRepository>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleArtifactRegistryRepository> get ref => RefTo.read(this);
+  RefTo<GoogleArtifactRegistryRepository> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

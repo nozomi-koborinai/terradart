@@ -27,8 +27,8 @@ final class DataGoogleComputeFirewallPolicyIamPolicy extends Data {
 
   /// A reference to the `google_compute_firewall_policy_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeFirewallPolicyIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeFirewallPolicyIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleComputeFirewallPolicyIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

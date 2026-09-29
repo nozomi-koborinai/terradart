@@ -56,8 +56,8 @@ final class DataAwsEc2NetworkInsightsAnalysis extends Data {
 
   /// A reference to the `aws_ec2_network_insights_analysis` this data source reads, for
   /// arguments typed `RefTo<AwsEc2NetworkInsightsAnalysis>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEc2NetworkInsightsAnalysis> get ref => RefTo.read(this);
+  RefTo<AwsEc2NetworkInsightsAnalysis> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -35,8 +35,8 @@ final class DataGoogleBigqueryTable extends Data {
 
   /// A reference to the `google_bigquery_table` this data source reads, for
   /// arguments typed `RefTo<GoogleBigqueryTable>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleBigqueryTable> get ref => RefTo.read(this);
+  RefTo<GoogleBigqueryTable> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

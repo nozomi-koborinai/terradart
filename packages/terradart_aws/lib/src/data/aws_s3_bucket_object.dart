@@ -38,8 +38,8 @@ final class DataAwsS3BucketObject extends Data {
 
   /// A reference to the `aws_s3_bucket_object` this data source reads, for
   /// arguments typed `RefTo<AwsS3BucketObject>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsS3BucketObject> get ref => RefTo.read(this);
+  RefTo<AwsS3BucketObject> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

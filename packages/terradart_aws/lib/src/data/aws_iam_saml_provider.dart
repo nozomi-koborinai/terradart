@@ -27,8 +27,8 @@ final class DataAwsIamSamlProvider extends Data {
 
   /// A reference to the `aws_iam_saml_provider` this data source reads, for
   /// arguments typed `RefTo<AwsIamSamlProvider>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsIamSamlProvider> get ref => RefTo.read(this);
+  RefTo<AwsIamSamlProvider> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

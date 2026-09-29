@@ -29,8 +29,8 @@ final class DataGoogleServiceAccountIamPolicy extends Data {
 
   /// A reference to the `google_service_account_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleServiceAccountIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleServiceAccountIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleServiceAccountIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

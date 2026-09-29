@@ -31,8 +31,8 @@ final class DataGoogleHealthcareConsentStoreIamPolicy extends Data {
 
   /// A reference to the `google_healthcare_consent_store_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleHealthcareConsentStoreIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleHealthcareConsentStoreIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleHealthcareConsentStoreIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

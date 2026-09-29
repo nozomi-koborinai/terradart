@@ -36,9 +36,8 @@ final class DataCloudflareZeroTrustTunnelWarpConnectorConfig extends Data {
 
   /// A reference to the `cloudflare_zero_trust_tunnel_warp_connector_config` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustTunnelWarpConnectorConfig>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareZeroTrustTunnelWarpConnectorConfig> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `configuration_version` attribute.
   TfRef<num> get configurationVersion =>

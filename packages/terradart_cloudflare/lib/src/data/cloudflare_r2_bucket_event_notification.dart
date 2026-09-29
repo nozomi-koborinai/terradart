@@ -37,8 +37,8 @@ final class DataCloudflareR2BucketEventNotification extends Data {
 
   /// A reference to the `cloudflare_r2_bucket_event_notification` this data source reads, for
   /// arguments typed `RefTo<CloudflareR2BucketEventNotification>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareR2BucketEventNotification> get ref => RefTo.read(this);
+  RefTo<CloudflareR2BucketEventNotification> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `queue_name` attribute.
   TfRef<String> get queueName => TfRef.attribute<String>(this, 'queue_name');

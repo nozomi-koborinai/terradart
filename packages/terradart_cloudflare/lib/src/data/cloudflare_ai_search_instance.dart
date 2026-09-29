@@ -78,8 +78,8 @@ final class DataCloudflareAiSearchInstance extends Data {
 
   /// A reference to the `cloudflare_ai_search_instance` this data source reads, for
   /// arguments typed `RefTo<CloudflareAiSearchInstance>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareAiSearchInstance> get ref => RefTo.read(this);
+  RefTo<CloudflareAiSearchInstance> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

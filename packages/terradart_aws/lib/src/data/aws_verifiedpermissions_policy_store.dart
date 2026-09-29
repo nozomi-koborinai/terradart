@@ -28,8 +28,8 @@ final class DataAwsVerifiedpermissionsPolicyStore extends Data {
 
   /// A reference to the `aws_verifiedpermissions_policy_store` this data source reads, for
   /// arguments typed `RefTo<AwsVerifiedpermissionsPolicyStore>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsVerifiedpermissionsPolicyStore> get ref => RefTo.read(this);
+  RefTo<AwsVerifiedpermissionsPolicyStore> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

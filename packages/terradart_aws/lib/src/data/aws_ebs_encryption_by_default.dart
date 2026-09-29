@@ -26,8 +26,8 @@ final class DataAwsEbsEncryptionByDefault extends Data {
 
   /// A reference to the `aws_ebs_encryption_by_default` this data source reads, for
   /// arguments typed `RefTo<AwsEbsEncryptionByDefault>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEbsEncryptionByDefault> get ref => RefTo.read(this);
+  RefTo<AwsEbsEncryptionByDefault> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

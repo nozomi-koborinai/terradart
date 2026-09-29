@@ -32,8 +32,8 @@ final class DataAwsSesv2EmailIdentityMailFromAttributes extends Data {
 
   /// A reference to the `aws_sesv2_email_identity_mail_from_attributes` this data source reads, for
   /// arguments typed `RefTo<AwsSesv2EmailIdentityMailFromAttributes>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSesv2EmailIdentityMailFromAttributes> get ref => RefTo.read(this);
+  RefTo<AwsSesv2EmailIdentityMailFromAttributes> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

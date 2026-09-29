@@ -24,8 +24,8 @@ final class DataAwsCloudfrontFunction extends Data {
 
   /// A reference to the `aws_cloudfront_function` this data source reads, for
   /// arguments typed `RefTo<AwsCloudfrontFunction>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCloudfrontFunction> get ref => RefTo.read(this);
+  RefTo<AwsCloudfrontFunction> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

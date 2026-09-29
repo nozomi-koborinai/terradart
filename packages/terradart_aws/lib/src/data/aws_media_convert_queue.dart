@@ -32,8 +32,8 @@ final class DataAwsMediaConvertQueue extends Data {
 
   /// A reference to the `aws_media_convert_queue` this data source reads, for
   /// arguments typed `RefTo<AwsMediaConvertQueue>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsMediaConvertQueue> get ref => RefTo.read(this);
+  RefTo<AwsMediaConvertQueue> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -27,8 +27,8 @@ final class DataAwsSesEmailIdentity extends Data {
 
   /// A reference to the `aws_ses_email_identity` this data source reads, for
   /// arguments typed `RefTo<AwsSesEmailIdentity>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSesEmailIdentity> get ref => RefTo.read(this);
+  RefTo<AwsSesEmailIdentity> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

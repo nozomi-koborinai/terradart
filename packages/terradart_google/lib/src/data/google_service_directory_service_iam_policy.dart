@@ -27,8 +27,8 @@ final class DataGoogleServiceDirectoryServiceIamPolicy extends Data {
 
   /// A reference to the `google_service_directory_service_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleServiceDirectoryServiceIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleServiceDirectoryServiceIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleServiceDirectoryServiceIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

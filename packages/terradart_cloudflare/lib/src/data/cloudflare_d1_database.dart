@@ -50,8 +50,8 @@ final class DataCloudflareD1Database extends Data {
 
   /// A reference to the `cloudflare_d1_database` this data source reads, for
   /// arguments typed `RefTo<CloudflareD1Database>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareD1Database> get ref => RefTo.read(this);
+  RefTo<CloudflareD1Database> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

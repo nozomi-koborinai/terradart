@@ -32,8 +32,8 @@ final class DataCloudflareQueueConsumer extends Data {
 
   /// A reference to the `cloudflare_queue_consumer` this data source reads, for
   /// arguments typed `RefTo<CloudflareQueueConsumer>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareQueueConsumer> get ref => RefTo.read(this);
+  RefTo<CloudflareQueueConsumer> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `consumer_id` attribute.
   TfRef<String> get consumerId => TfRef.attribute<String>(this, 'consumer_id');

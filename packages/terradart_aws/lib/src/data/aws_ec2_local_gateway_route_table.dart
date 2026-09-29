@@ -62,8 +62,8 @@ final class DataAwsEc2LocalGatewayRouteTable extends Data {
 
   /// A reference to the `aws_ec2_local_gateway_route_table` this data source reads, for
   /// arguments typed `RefTo<AwsEc2LocalGatewayRouteTable>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEc2LocalGatewayRouteTable> get ref => RefTo.read(this);
+  RefTo<AwsEc2LocalGatewayRouteTable> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

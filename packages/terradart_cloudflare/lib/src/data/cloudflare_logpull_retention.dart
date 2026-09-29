@@ -30,8 +30,8 @@ final class DataCloudflareLogpullRetention extends Data {
 
   /// A reference to the `cloudflare_logpull_retention` this data source reads, for
   /// arguments typed `RefTo<CloudflareLogpullRetention>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareLogpullRetention> get ref => RefTo.read(this);
+  RefTo<CloudflareLogpullRetention> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

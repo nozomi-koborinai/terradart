@@ -31,9 +31,8 @@ final class DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback
 
   /// A reference to the `cloudflare_zero_trust_device_default_profile_local_domain_fallback` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

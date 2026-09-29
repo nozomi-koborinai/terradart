@@ -35,8 +35,8 @@ final class DataGoogleCloudRunService extends Data {
 
   /// A reference to the `google_cloud_run_service` this data source reads, for
   /// arguments typed `RefTo<GoogleCloudRunService>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleCloudRunService> get ref => RefTo.read(this);
+  RefTo<GoogleCloudRunService> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

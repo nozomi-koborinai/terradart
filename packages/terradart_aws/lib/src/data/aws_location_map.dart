@@ -32,8 +32,8 @@ final class DataAwsLocationMap extends Data {
 
   /// A reference to the `aws_location_map` this data source reads, for
   /// arguments typed `RefTo<AwsLocationMap>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLocationMap> get ref => RefTo.read(this);
+  RefTo<AwsLocationMap> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

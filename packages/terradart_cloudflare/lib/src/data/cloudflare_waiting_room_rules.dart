@@ -34,8 +34,8 @@ final class DataCloudflareWaitingRoomRules extends Data {
 
   /// A reference to the `cloudflare_waiting_room_rules` this data source reads, for
   /// arguments typed `RefTo<CloudflareWaitingRoomRules>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareWaitingRoomRules> get ref => RefTo.read(this);
+  RefTo<CloudflareWaitingRoomRules> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

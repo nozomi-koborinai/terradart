@@ -73,8 +73,8 @@ final class DataCloudflareCertificatePack extends Data {
 
   /// A reference to the `cloudflare_certificate_pack` this data source reads, for
   /// arguments typed `RefTo<CloudflareCertificatePack>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCertificatePack> get ref => RefTo.read(this);
+  RefTo<CloudflareCertificatePack> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

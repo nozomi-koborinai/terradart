@@ -32,8 +32,8 @@ final class DataAwsEfsAccessPoint extends Data {
 
   /// A reference to the `aws_efs_access_point` this data source reads, for
   /// arguments typed `RefTo<AwsEfsAccessPoint>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEfsAccessPoint> get ref => RefTo.read(this);
+  RefTo<AwsEfsAccessPoint> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

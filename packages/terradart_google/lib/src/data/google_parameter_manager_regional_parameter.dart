@@ -37,8 +37,8 @@ final class DataGoogleParameterManagerRegionalParameter extends Data {
 
   /// A reference to the `google_parameter_manager_regional_parameter` this data source reads, for
   /// arguments typed `RefTo<GoogleParameterManagerRegionalParameter>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleParameterManagerRegionalParameter> get ref => RefTo.read(this);
+  RefTo<GoogleParameterManagerRegionalParameter> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

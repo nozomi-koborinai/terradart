@@ -28,8 +28,8 @@ final class DataCloudflareLoadBalancerMonitorGroup extends Data {
 
   /// A reference to the `cloudflare_load_balancer_monitor_group` this data source reads, for
   /// arguments typed `RefTo<CloudflareLoadBalancerMonitorGroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareLoadBalancerMonitorGroup> get ref => RefTo.read(this);
+  RefTo<CloudflareLoadBalancerMonitorGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

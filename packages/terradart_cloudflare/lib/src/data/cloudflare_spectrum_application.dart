@@ -76,8 +76,8 @@ final class DataCloudflareSpectrumApplication extends Data {
 
   /// A reference to the `cloudflare_spectrum_application` this data source reads, for
   /// arguments typed `RefTo<CloudflareSpectrumApplication>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareSpectrumApplication> get ref => RefTo.read(this);
+  RefTo<CloudflareSpectrumApplication> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

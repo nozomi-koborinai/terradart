@@ -32,8 +32,8 @@ final class DataCloudflareHostnameTlsSetting extends Data {
 
   /// A reference to the `cloudflare_hostname_tls_setting` this data source reads, for
   /// arguments typed `RefTo<CloudflareHostnameTlsSetting>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareHostnameTlsSetting> get ref => RefTo.read(this);
+  RefTo<CloudflareHostnameTlsSetting> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');

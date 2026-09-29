@@ -34,8 +34,8 @@ final class DataAwsEcsService extends Data {
 
   /// A reference to the `aws_ecs_service` this data source reads, for
   /// arguments typed `RefTo<AwsEcsService>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEcsService> get ref => RefTo.read(this);
+  RefTo<AwsEcsService> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

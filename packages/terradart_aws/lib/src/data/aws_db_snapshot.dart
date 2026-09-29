@@ -44,8 +44,8 @@ final class DataAwsDbSnapshot extends Data {
 
   /// A reference to the `aws_db_snapshot` this data source reads, for
   /// arguments typed `RefTo<AwsDbSnapshot>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsDbSnapshot> get ref => RefTo.read(this);
+  RefTo<AwsDbSnapshot> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

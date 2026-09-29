@@ -39,9 +39,8 @@ final class DataCloudflareApiShieldOperationSchemaValidationSettings
 
   /// A reference to the `cloudflare_api_shield_operation_schema_validation_settings` this data source reads, for
   /// arguments typed `RefTo<CloudflareApiShieldOperationSchemaValidationSettings>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareApiShieldOperationSchemaValidationSettings> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `mitigation_action` attribute.
   TfRef<String> get mitigationAction =>

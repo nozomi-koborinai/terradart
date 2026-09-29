@@ -30,8 +30,8 @@ final class DataGoogleKmsSecretCiphertext extends Data {
 
   /// A reference to the `google_kms_secret_ciphertext` this data source reads, for
   /// arguments typed `RefTo<GoogleKmsSecretCiphertext>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleKmsSecretCiphertext> get ref => RefTo.read(this);
+  RefTo<GoogleKmsSecretCiphertext> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

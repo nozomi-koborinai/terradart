@@ -27,6 +27,6 @@ final class DataCloudflareRegistrarDomain extends Data {
 
   /// A reference to the `cloudflare_registrar_domain` this data source reads, for
   /// arguments typed `RefTo<CloudflareRegistrarDomain>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareRegistrarDomain> get ref => RefTo.read(this);
+  RefTo<CloudflareRegistrarDomain> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 }

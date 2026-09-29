@@ -35,8 +35,8 @@ final class DataGoogleCloudfunctions2Function extends Data {
 
   /// A reference to the `google_cloudfunctions2_function` this data source reads, for
   /// arguments typed `RefTo<GoogleCloudfunctions2Function>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleCloudfunctions2Function> get ref => RefTo.read(this);
+  RefTo<GoogleCloudfunctions2Function> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

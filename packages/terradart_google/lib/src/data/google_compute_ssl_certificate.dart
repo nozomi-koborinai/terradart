@@ -30,8 +30,8 @@ final class DataGoogleComputeSslCertificate extends Data {
 
   /// A reference to the `google_compute_ssl_certificate` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeSslCertificate>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeSslCertificate> get ref => RefTo.read(this);
+  RefTo<GoogleComputeSslCertificate> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

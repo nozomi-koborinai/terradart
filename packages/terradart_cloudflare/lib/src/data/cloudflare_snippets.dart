@@ -27,8 +27,8 @@ final class DataCloudflareSnippets extends Data {
 
   /// A reference to the `cloudflare_snippets` this data source reads, for
   /// arguments typed `RefTo<CloudflareSnippets>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareSnippets> get ref => RefTo.read(this);
+  RefTo<CloudflareSnippets> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `created_on` attribute.
   TfRef<String> get createdOn => TfRef.attribute<String>(this, 'created_on');

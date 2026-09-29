@@ -32,8 +32,8 @@ final class DataAwsElasticacheSubnetGroup extends Data {
 
   /// A reference to the `aws_elasticache_subnet_group` this data source reads, for
   /// arguments typed `RefTo<AwsElasticacheSubnetGroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsElasticacheSubnetGroup> get ref => RefTo.read(this);
+  RefTo<AwsElasticacheSubnetGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

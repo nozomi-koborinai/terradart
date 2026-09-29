@@ -32,8 +32,8 @@ final class DataAwsTimestreamwriteTable extends Data {
 
   /// A reference to the `aws_timestreamwrite_table` this data source reads, for
   /// arguments typed `RefTo<AwsTimestreamwriteTable>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsTimestreamwriteTable> get ref => RefTo.read(this);
+  RefTo<AwsTimestreamwriteTable> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

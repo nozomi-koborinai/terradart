@@ -56,8 +56,8 @@ final class DataCloudflareZeroTrustAccessIdentityProvider extends Data {
 
   /// A reference to the `cloudflare_zero_trust_access_identity_provider` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustAccessIdentityProvider>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustAccessIdentityProvider> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustAccessIdentityProvider> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

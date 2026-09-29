@@ -36,8 +36,8 @@ final class DataCloudflareByoIpPrefix extends Data {
 
   /// A reference to the `cloudflare_byo_ip_prefix` this data source reads, for
   /// arguments typed `RefTo<CloudflareByoIpPrefix>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareByoIpPrefix> get ref => RefTo.read(this);
+  RefTo<CloudflareByoIpPrefix> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

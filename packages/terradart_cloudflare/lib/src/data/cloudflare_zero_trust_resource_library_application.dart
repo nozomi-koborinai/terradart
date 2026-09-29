@@ -69,9 +69,8 @@ final class DataCloudflareZeroTrustResourceLibraryApplication extends Data {
 
   /// A reference to the `cloudflare_zero_trust_resource_library_application` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustResourceLibraryApplication>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareZeroTrustResourceLibraryApplication> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

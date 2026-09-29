@@ -27,8 +27,8 @@ final class DataGoogleHealthcareHl7V2StoreIamPolicy extends Data {
 
   /// A reference to the `google_healthcare_hl7_v2_store_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleHealthcareHl7V2StoreIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleHealthcareHl7V2StoreIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleHealthcareHl7V2StoreIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

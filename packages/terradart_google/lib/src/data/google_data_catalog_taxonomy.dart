@@ -35,8 +35,8 @@ final class DataGoogleDataCatalogTaxonomy extends Data {
 
   /// A reference to the `google_data_catalog_taxonomy` this data source reads, for
   /// arguments typed `RefTo<GoogleDataCatalogTaxonomy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDataCatalogTaxonomy> get ref => RefTo.read(this);
+  RefTo<GoogleDataCatalogTaxonomy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

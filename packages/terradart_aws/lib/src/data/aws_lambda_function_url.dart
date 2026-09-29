@@ -32,8 +32,8 @@ final class DataAwsLambdaFunctionUrl extends Data {
 
   /// A reference to the `aws_lambda_function_url` this data source reads, for
   /// arguments typed `RefTo<AwsLambdaFunctionUrl>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLambdaFunctionUrl> get ref => RefTo.read(this);
+  RefTo<AwsLambdaFunctionUrl> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

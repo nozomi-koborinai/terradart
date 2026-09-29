@@ -32,8 +32,8 @@ final class DataCloudflareAuthenticatedOriginPullsSettings extends Data {
 
   /// A reference to the `cloudflare_authenticated_origin_pulls_settings` this data source reads, for
   /// arguments typed `RefTo<CloudflareAuthenticatedOriginPullsSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareAuthenticatedOriginPullsSettings> get ref => RefTo.read(this);
+  RefTo<CloudflareAuthenticatedOriginPullsSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

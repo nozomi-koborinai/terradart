@@ -30,8 +30,8 @@ final class DataCloudflareZoneCacheVariants extends Data {
 
   /// A reference to the `cloudflare_zone_cache_variants` this data source reads, for
   /// arguments typed `RefTo<CloudflareZoneCacheVariants>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZoneCacheVariants> get ref => RefTo.read(this);
+  RefTo<CloudflareZoneCacheVariants> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

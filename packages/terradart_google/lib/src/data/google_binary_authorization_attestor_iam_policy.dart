@@ -36,8 +36,8 @@ final class DataGoogleBinaryAuthorizationAttestorIamPolicy extends Data {
 
   /// A reference to the `google_binary_authorization_attestor_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleBinaryAuthorizationAttestorIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleBinaryAuthorizationAttestorIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleBinaryAuthorizationAttestorIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

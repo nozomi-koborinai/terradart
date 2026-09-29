@@ -36,8 +36,8 @@ final class DataAwsCloudformationType extends Data {
 
   /// A reference to the `aws_cloudformation_type` this data source reads, for
   /// arguments typed `RefTo<AwsCloudformationType>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCloudformationType> get ref => RefTo.read(this);
+  RefTo<AwsCloudformationType> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

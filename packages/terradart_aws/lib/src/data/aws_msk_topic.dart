@@ -32,8 +32,8 @@ final class DataAwsMskTopic extends Data {
 
   /// A reference to the `aws_msk_topic` this data source reads, for
   /// arguments typed `RefTo<AwsMskTopic>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsMskTopic> get ref => RefTo.read(this);
+  RefTo<AwsMskTopic> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

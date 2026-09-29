@@ -101,8 +101,8 @@ final class DataCloudflareEmailSecurityBlockSender extends Data {
 
   /// A reference to the `cloudflare_email_security_block_sender` this data source reads, for
   /// arguments typed `RefTo<CloudflareEmailSecurityBlockSender>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareEmailSecurityBlockSender> get ref => RefTo.read(this);
+  RefTo<CloudflareEmailSecurityBlockSender> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

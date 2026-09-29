@@ -32,8 +32,8 @@ final class DataAwsDmsReplicationInstance extends Data {
 
   /// A reference to the `aws_dms_replication_instance` this data source reads, for
   /// arguments typed `RefTo<AwsDmsReplicationInstance>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsDmsReplicationInstance> get ref => RefTo.read(this);
+  RefTo<AwsDmsReplicationInstance> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

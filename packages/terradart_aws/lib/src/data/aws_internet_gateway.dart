@@ -53,8 +53,8 @@ final class DataAwsInternetGateway extends Data {
 
   /// A reference to the `aws_internet_gateway` this data source reads, for
   /// arguments typed `RefTo<AwsInternetGateway>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsInternetGateway> get ref => RefTo.read(this);
+  RefTo<AwsInternetGateway> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

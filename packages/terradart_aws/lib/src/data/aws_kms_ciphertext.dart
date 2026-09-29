@@ -34,8 +34,8 @@ final class DataAwsKmsCiphertext extends Data {
 
   /// A reference to the `aws_kms_ciphertext` this data source reads, for
   /// arguments typed `RefTo<AwsKmsCiphertext>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsKmsCiphertext> get ref => RefTo.read(this);
+  RefTo<AwsKmsCiphertext> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

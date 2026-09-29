@@ -36,8 +36,8 @@ final class DataGoogleCloudRunV2WorkerPoolIamPolicy extends Data {
 
   /// A reference to the `google_cloud_run_v2_worker_pool_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleCloudRunV2WorkerPoolIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleCloudRunV2WorkerPoolIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleCloudRunV2WorkerPoolIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

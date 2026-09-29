@@ -29,8 +29,8 @@ final class DataAppwriteWebhook extends Data {
 
   /// A reference to the `appwrite_webhook` this data source reads, for
   /// arguments typed `RefTo<AppwriteWebhook>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AppwriteWebhook> get ref => RefTo.read(this);
+  RefTo<AppwriteWebhook> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

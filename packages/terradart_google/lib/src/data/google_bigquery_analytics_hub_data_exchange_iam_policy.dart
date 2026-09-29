@@ -38,9 +38,8 @@ final class DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Data {
 
   /// A reference to the `google_bigquery_analytics_hub_data_exchange_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleBigqueryAnalyticsHubDataExchangeIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<GoogleBigqueryAnalyticsHubDataExchangeIamPolicy> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

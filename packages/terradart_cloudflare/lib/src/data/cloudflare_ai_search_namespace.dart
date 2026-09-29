@@ -27,8 +27,8 @@ final class DataCloudflareAiSearchNamespace extends Data {
 
   /// A reference to the `cloudflare_ai_search_namespace` this data source reads, for
   /// arguments typed `RefTo<CloudflareAiSearchNamespace>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareAiSearchNamespace> get ref => RefTo.read(this);
+  RefTo<CloudflareAiSearchNamespace> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

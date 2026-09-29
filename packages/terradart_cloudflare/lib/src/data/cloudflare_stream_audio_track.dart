@@ -31,6 +31,6 @@ final class DataCloudflareStreamAudioTrack extends Data {
 
   /// A reference to the `cloudflare_stream_audio_track` this data source reads, for
   /// arguments typed `RefTo<CloudflareStreamAudioTrack>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareStreamAudioTrack> get ref => RefTo.read(this);
+  RefTo<CloudflareStreamAudioTrack> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 }

@@ -35,8 +35,8 @@ final class DataCloudflareMagicWanGreTunnel extends Data {
 
   /// A reference to the `cloudflare_magic_wan_gre_tunnel` this data source reads, for
   /// arguments typed `RefTo<CloudflareMagicWanGreTunnel>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareMagicWanGreTunnel> get ref => RefTo.read(this);
+  RefTo<CloudflareMagicWanGreTunnel> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

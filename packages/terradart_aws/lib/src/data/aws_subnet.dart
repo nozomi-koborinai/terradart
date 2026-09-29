@@ -65,8 +65,8 @@ final class DataAwsSubnet extends Data {
 
   /// A reference to the `aws_subnet` this data source reads, for
   /// arguments typed `RefTo<AwsSubnet>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSubnet> get ref => RefTo.read(this);
+  RefTo<AwsSubnet> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

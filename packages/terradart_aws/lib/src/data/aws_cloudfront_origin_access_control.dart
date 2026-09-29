@@ -23,8 +23,8 @@ final class DataAwsCloudfrontOriginAccessControl extends Data {
 
   /// A reference to the `aws_cloudfront_origin_access_control` this data source reads, for
   /// arguments typed `RefTo<AwsCloudfrontOriginAccessControl>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCloudfrontOriginAccessControl> get ref => RefTo.read(this);
+  RefTo<AwsCloudfrontOriginAccessControl> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

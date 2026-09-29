@@ -34,8 +34,8 @@ final class DataCloudflareHealthcheck extends Data {
 
   /// A reference to the `cloudflare_healthcheck` this data source reads, for
   /// arguments typed `RefTo<CloudflareHealthcheck>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareHealthcheck> get ref => RefTo.read(this);
+  RefTo<CloudflareHealthcheck> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

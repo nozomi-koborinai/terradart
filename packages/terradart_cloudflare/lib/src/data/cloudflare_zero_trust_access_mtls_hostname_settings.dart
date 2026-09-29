@@ -38,9 +38,8 @@ final class DataCloudflareZeroTrustAccessMtlsHostnameSettings extends Data {
 
   /// A reference to the `cloudflare_zero_trust_access_mtls_hostname_settings` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustAccessMtlsHostnameSettings>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareZeroTrustAccessMtlsHostnameSettings> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `china_network` attribute.
   TfRef<bool> get chinaNetwork => TfRef.attribute<bool>(this, 'china_network');

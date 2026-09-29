@@ -32,8 +32,8 @@ final class DataAwsLbTrustStore extends Data {
 
   /// A reference to the `aws_lb_trust_store` this data source reads, for
   /// arguments typed `RefTo<AwsLbTrustStore>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLbTrustStore> get ref => RefTo.read(this);
+  RefTo<AwsLbTrustStore> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

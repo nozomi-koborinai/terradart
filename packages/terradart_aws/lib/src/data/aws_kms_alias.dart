@@ -27,8 +27,8 @@ final class DataAwsKmsAlias extends Data {
 
   /// A reference to the `aws_kms_alias` this data source reads, for
   /// arguments typed `RefTo<AwsKmsAlias>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsKmsAlias> get ref => RefTo.read(this);
+  RefTo<AwsKmsAlias> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

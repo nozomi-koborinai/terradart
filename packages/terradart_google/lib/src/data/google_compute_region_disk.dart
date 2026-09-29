@@ -35,8 +35,8 @@ final class DataGoogleComputeRegionDisk extends Data {
 
   /// A reference to the `google_compute_region_disk` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeRegionDisk>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeRegionDisk> get ref => RefTo.read(this);
+  RefTo<GoogleComputeRegionDisk> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

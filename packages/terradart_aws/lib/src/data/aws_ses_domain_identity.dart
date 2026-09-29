@@ -27,8 +27,8 @@ final class DataAwsSesDomainIdentity extends Data {
 
   /// A reference to the `aws_ses_domain_identity` this data source reads, for
   /// arguments typed `RefTo<AwsSesDomainIdentity>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSesDomainIdentity> get ref => RefTo.read(this);
+  RefTo<AwsSesDomainIdentity> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

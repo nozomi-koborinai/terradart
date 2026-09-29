@@ -30,8 +30,8 @@ final class DataGoogleFolderOrganizationPolicy extends Data {
 
   /// A reference to the `google_folder_organization_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleFolderOrganizationPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleFolderOrganizationPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleFolderOrganizationPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

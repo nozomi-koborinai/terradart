@@ -32,8 +32,8 @@ final class DataAwsSnsTopic extends Data {
 
   /// A reference to the `aws_sns_topic` this data source reads, for
   /// arguments typed `RefTo<AwsSnsTopic>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSnsTopic> get ref => RefTo.read(this);
+  RefTo<AwsSnsTopic> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

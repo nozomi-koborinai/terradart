@@ -75,8 +75,8 @@ final class DataCloudflareZeroTrustNetworkHostnameRoute extends Data {
 
   /// A reference to the `cloudflare_zero_trust_network_hostname_route` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustNetworkHostnameRoute>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustNetworkHostnameRoute> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustNetworkHostnameRoute> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

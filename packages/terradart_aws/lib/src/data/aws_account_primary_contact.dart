@@ -26,8 +26,8 @@ final class DataAwsAccountPrimaryContact extends Data {
 
   /// A reference to the `aws_account_primary_contact` this data source reads, for
   /// arguments typed `RefTo<AwsAccountPrimaryContact>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAccountPrimaryContact> get ref => RefTo.read(this);
+  RefTo<AwsAccountPrimaryContact> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `address_line_1` attribute.
   TfRef<String> get addressLine1 =>

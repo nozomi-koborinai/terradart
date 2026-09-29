@@ -35,8 +35,8 @@ final class DataGoogleVmwareengineNetwork extends Data {
 
   /// A reference to the `google_vmwareengine_network` this data source reads, for
   /// arguments typed `RefTo<GoogleVmwareengineNetwork>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleVmwareengineNetwork> get ref => RefTo.read(this);
+  RefTo<GoogleVmwareengineNetwork> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

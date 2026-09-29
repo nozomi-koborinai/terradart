@@ -36,8 +36,8 @@ final class DataCloudflareZeroTrustTunnelCloudflaredConfig extends Data {
 
   /// A reference to the `cloudflare_zero_trust_tunnel_cloudflared_config` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustTunnelCloudflaredConfig>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustTunnelCloudflaredConfig> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustTunnelCloudflaredConfig> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');

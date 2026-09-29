@@ -26,8 +26,8 @@ final class DataGoogleProjectIamPolicy extends Data {
 
   /// A reference to the `google_project_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleProjectIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleProjectIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleProjectIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

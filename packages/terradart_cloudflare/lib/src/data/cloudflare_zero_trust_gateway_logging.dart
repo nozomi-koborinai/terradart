@@ -27,8 +27,8 @@ final class DataCloudflareZeroTrustGatewayLogging extends Data {
 
   /// A reference to the `cloudflare_zero_trust_gateway_logging` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustGatewayLogging>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustGatewayLogging> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustGatewayLogging> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

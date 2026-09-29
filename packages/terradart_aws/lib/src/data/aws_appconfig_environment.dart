@@ -34,8 +34,8 @@ final class DataAwsAppconfigEnvironment extends Data {
 
   /// A reference to the `aws_appconfig_environment` this data source reads, for
   /// arguments typed `RefTo<AwsAppconfigEnvironment>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAppconfigEnvironment> get ref => RefTo.read(this);
+  RefTo<AwsAppconfigEnvironment> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

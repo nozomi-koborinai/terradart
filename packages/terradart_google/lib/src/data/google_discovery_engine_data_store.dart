@@ -37,8 +37,8 @@ final class DataGoogleDiscoveryEngineDataStore extends Data {
 
   /// A reference to the `google_discovery_engine_data_store` this data source reads, for
   /// arguments typed `RefTo<GoogleDiscoveryEngineDataStore>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDiscoveryEngineDataStore> get ref => RefTo.read(this);
+  RefTo<GoogleDiscoveryEngineDataStore> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

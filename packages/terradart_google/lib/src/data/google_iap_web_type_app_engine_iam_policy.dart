@@ -31,8 +31,8 @@ final class DataGoogleIapWebTypeAppEngineIamPolicy extends Data {
 
   /// A reference to the `google_iap_web_type_app_engine_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleIapWebTypeAppEngineIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleIapWebTypeAppEngineIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleIapWebTypeAppEngineIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -34,8 +34,8 @@ final class DataAwsServicecatalogProduct extends Data {
 
   /// A reference to the `aws_servicecatalog_product` this data source reads, for
   /// arguments typed `RefTo<AwsServicecatalogProduct>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsServicecatalogProduct> get ref => RefTo.read(this);
+  RefTo<AwsServicecatalogProduct> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

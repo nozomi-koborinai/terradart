@@ -89,8 +89,8 @@ final class DataCloudflareSecretsStoreSecret extends Data {
 
   /// A reference to the `cloudflare_secrets_store_secret` this data source reads, for
   /// arguments typed `RefTo<CloudflareSecretsStoreSecret>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareSecretsStoreSecret> get ref => RefTo.read(this);
+  RefTo<CloudflareSecretsStoreSecret> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

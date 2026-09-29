@@ -30,8 +30,8 @@ final class DataAwsRedshiftserverlessWorkgroup extends Data {
 
   /// A reference to the `aws_redshiftserverless_workgroup` this data source reads, for
   /// arguments typed `RefTo<AwsRedshiftserverlessWorkgroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsRedshiftserverlessWorkgroup> get ref => RefTo.read(this);
+  RefTo<AwsRedshiftserverlessWorkgroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

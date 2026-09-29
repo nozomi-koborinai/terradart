@@ -34,8 +34,8 @@ final class DataAwsWafv2WebAcl extends Data {
 
   /// A reference to the `aws_wafv2_web_acl` this data source reads, for
   /// arguments typed `RefTo<AwsWafv2WebAcl>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsWafv2WebAcl> get ref => RefTo.read(this);
+  RefTo<AwsWafv2WebAcl> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

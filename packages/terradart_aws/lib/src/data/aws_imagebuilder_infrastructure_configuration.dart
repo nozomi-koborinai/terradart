@@ -36,8 +36,8 @@ final class DataAwsImagebuilderInfrastructureConfiguration extends Data {
 
   /// A reference to the `aws_imagebuilder_infrastructure_configuration` this data source reads, for
   /// arguments typed `RefTo<AwsImagebuilderInfrastructureConfiguration>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsImagebuilderInfrastructureConfiguration> get ref => RefTo.read(this);
+  RefTo<AwsImagebuilderInfrastructureConfiguration> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

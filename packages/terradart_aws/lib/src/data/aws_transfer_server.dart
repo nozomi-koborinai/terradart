@@ -32,8 +32,8 @@ final class DataAwsTransferServer extends Data {
 
   /// A reference to the `aws_transfer_server` this data source reads, for
   /// arguments typed `RefTo<AwsTransferServer>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsTransferServer> get ref => RefTo.read(this);
+  RefTo<AwsTransferServer> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

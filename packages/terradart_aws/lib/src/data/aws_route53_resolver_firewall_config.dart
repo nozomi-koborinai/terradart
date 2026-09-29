@@ -30,8 +30,8 @@ final class DataAwsRoute53ResolverFirewallConfig extends Data {
 
   /// A reference to the `aws_route53_resolver_firewall_config` this data source reads, for
   /// arguments typed `RefTo<AwsRoute53ResolverFirewallConfig>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsRoute53ResolverFirewallConfig> get ref => RefTo.read(this);
+  RefTo<AwsRoute53ResolverFirewallConfig> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

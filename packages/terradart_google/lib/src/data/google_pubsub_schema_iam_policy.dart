@@ -30,8 +30,8 @@ final class DataGooglePubsubSchemaIamPolicy extends Data {
 
   /// A reference to the `google_pubsub_schema_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GooglePubsubSchemaIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GooglePubsubSchemaIamPolicy> get ref => RefTo.read(this);
+  RefTo<GooglePubsubSchemaIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -27,8 +27,8 @@ final class DataAwsMedialiveInput extends Data {
 
   /// A reference to the `aws_medialive_input` this data source reads, for
   /// arguments typed `RefTo<AwsMedialiveInput>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsMedialiveInput> get ref => RefTo.read(this);
+  RefTo<AwsMedialiveInput> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

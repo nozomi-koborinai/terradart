@@ -31,8 +31,8 @@ final class DataGoogleObservabilityFolderSettings extends Data {
 
   /// A reference to the `google_observability_folder_settings` this data source reads, for
   /// arguments typed `RefTo<GoogleObservabilityFolderSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleObservabilityFolderSettings> get ref => RefTo.read(this);
+  RefTo<GoogleObservabilityFolderSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -32,8 +32,8 @@ final class DataAwsBackupFramework extends Data {
 
   /// A reference to the `aws_backup_framework` this data source reads, for
   /// arguments typed `RefTo<AwsBackupFramework>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsBackupFramework> get ref => RefTo.read(this);
+  RefTo<AwsBackupFramework> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

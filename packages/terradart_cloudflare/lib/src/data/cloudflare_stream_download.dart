@@ -31,6 +31,6 @@ final class DataCloudflareStreamDownload extends Data {
 
   /// A reference to the `cloudflare_stream_download` this data source reads, for
   /// arguments typed `RefTo<CloudflareStreamDownload>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareStreamDownload> get ref => RefTo.read(this);
+  RefTo<CloudflareStreamDownload> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 }

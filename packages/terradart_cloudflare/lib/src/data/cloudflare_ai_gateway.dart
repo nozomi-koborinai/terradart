@@ -48,8 +48,8 @@ final class DataCloudflareAiGateway extends Data {
 
   /// A reference to the `cloudflare_ai_gateway` this data source reads, for
   /// arguments typed `RefTo<CloudflareAiGateway>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareAiGateway> get ref => RefTo.read(this);
+  RefTo<CloudflareAiGateway> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

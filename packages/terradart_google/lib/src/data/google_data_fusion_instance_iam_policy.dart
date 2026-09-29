@@ -36,8 +36,8 @@ final class DataGoogleDataFusionInstanceIamPolicy extends Data {
 
   /// A reference to the `google_data_fusion_instance_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleDataFusionInstanceIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDataFusionInstanceIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleDataFusionInstanceIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

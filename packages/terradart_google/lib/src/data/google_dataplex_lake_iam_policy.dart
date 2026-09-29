@@ -35,8 +35,8 @@ final class DataGoogleDataplexLakeIamPolicy extends Data {
 
   /// A reference to the `google_dataplex_lake_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleDataplexLakeIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDataplexLakeIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleDataplexLakeIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

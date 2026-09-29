@@ -30,6 +30,6 @@ final class DataCloudflareZeroTrustRiskBehavior extends Data {
 
   /// A reference to the `cloudflare_zero_trust_risk_behavior` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustRiskBehavior>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustRiskBehavior> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustRiskBehavior> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 }

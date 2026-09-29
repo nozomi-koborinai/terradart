@@ -32,8 +32,8 @@ final class DataAwsImagebuilderImagePipeline extends Data {
 
   /// A reference to the `aws_imagebuilder_image_pipeline` this data source reads, for
   /// arguments typed `RefTo<AwsImagebuilderImagePipeline>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsImagebuilderImagePipeline> get ref => RefTo.read(this);
+  RefTo<AwsImagebuilderImagePipeline> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

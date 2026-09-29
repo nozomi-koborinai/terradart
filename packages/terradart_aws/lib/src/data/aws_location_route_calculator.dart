@@ -32,8 +32,8 @@ final class DataAwsLocationRouteCalculator extends Data {
 
   /// A reference to the `aws_location_route_calculator` this data source reads, for
   /// arguments typed `RefTo<AwsLocationRouteCalculator>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLocationRouteCalculator> get ref => RefTo.read(this);
+  RefTo<AwsLocationRouteCalculator> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

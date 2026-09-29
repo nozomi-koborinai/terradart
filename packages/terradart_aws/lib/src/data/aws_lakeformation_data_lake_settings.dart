@@ -30,8 +30,8 @@ final class DataAwsLakeformationDataLakeSettings extends Data {
 
   /// A reference to the `aws_lakeformation_data_lake_settings` this data source reads, for
   /// arguments typed `RefTo<AwsLakeformationDataLakeSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLakeformationDataLakeSettings> get ref => RefTo.read(this);
+  RefTo<AwsLakeformationDataLakeSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

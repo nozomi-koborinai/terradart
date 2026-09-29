@@ -32,8 +32,8 @@ final class DataAwsWafv2RegexPatternSet extends Data {
 
   /// A reference to the `aws_wafv2_regex_pattern_set` this data source reads, for
   /// arguments typed `RefTo<AwsWafv2RegexPatternSet>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsWafv2RegexPatternSet> get ref => RefTo.read(this);
+  RefTo<AwsWafv2RegexPatternSet> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -28,8 +28,8 @@ final class DataCloudflareAuthenticatedOriginPulls extends Data {
 
   /// A reference to the `cloudflare_authenticated_origin_pulls` this data source reads, for
   /// arguments typed `RefTo<CloudflareAuthenticatedOriginPulls>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareAuthenticatedOriginPulls> get ref => RefTo.read(this);
+  RefTo<CloudflareAuthenticatedOriginPulls> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `cert_id` attribute.
   TfRef<String> get certId => TfRef.attribute<String>(this, 'cert_id');

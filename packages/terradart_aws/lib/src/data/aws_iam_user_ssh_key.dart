@@ -32,8 +32,8 @@ final class DataAwsIamUserSshKey extends Data {
 
   /// A reference to the `aws_iam_user_ssh_key` this data source reads, for
   /// arguments typed `RefTo<AwsIamUserSshKey>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsIamUserSshKey> get ref => RefTo.read(this);
+  RefTo<AwsIamUserSshKey> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -34,8 +34,8 @@ final class DataAwsServicecatalogappregistryAttributeGroup extends Data {
 
   /// A reference to the `aws_servicecatalogappregistry_attribute_group` this data source reads, for
   /// arguments typed `RefTo<AwsServicecatalogappregistryAttributeGroup>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsServicecatalogappregistryAttributeGroup> get ref => RefTo.read(this);
+  RefTo<AwsServicecatalogappregistryAttributeGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

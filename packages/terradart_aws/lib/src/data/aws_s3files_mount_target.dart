@@ -27,8 +27,8 @@ final class DataAwsS3filesMountTarget extends Data {
 
   /// A reference to the `aws_s3files_mount_target` this data source reads, for
   /// arguments typed `RefTo<AwsS3filesMountTarget>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsS3filesMountTarget> get ref => RefTo.read(this);
+  RefTo<AwsS3filesMountTarget> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

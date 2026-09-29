@@ -34,8 +34,8 @@ final class DataAwsLocationGeofenceCollection extends Data {
 
   /// A reference to the `aws_location_geofence_collection` this data source reads, for
   /// arguments typed `RefTo<AwsLocationGeofenceCollection>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLocationGeofenceCollection> get ref => RefTo.read(this);
+  RefTo<AwsLocationGeofenceCollection> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

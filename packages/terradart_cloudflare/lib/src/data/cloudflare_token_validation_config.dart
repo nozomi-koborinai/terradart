@@ -32,8 +32,8 @@ final class DataCloudflareTokenValidationConfig extends Data {
 
   /// A reference to the `cloudflare_token_validation_config` this data source reads, for
   /// arguments typed `RefTo<CloudflareTokenValidationConfig>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareTokenValidationConfig> get ref => RefTo.read(this);
+  RefTo<CloudflareTokenValidationConfig> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

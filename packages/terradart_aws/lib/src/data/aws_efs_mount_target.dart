@@ -34,8 +34,8 @@ final class DataAwsEfsMountTarget extends Data {
 
   /// A reference to the `aws_efs_mount_target` this data source reads, for
   /// arguments typed `RefTo<AwsEfsMountTarget>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEfsMountTarget> get ref => RefTo.read(this);
+  RefTo<AwsEfsMountTarget> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

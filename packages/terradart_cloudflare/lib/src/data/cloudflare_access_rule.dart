@@ -147,8 +147,8 @@ final class DataCloudflareAccessRule extends Data {
 
   /// A reference to the `cloudflare_access_rule` this data source reads, for
   /// arguments typed `RefTo<CloudflareAccessRule>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareAccessRule> get ref => RefTo.read(this);
+  RefTo<CloudflareAccessRule> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

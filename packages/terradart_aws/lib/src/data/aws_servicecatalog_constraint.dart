@@ -34,8 +34,8 @@ final class DataAwsServicecatalogConstraint extends Data {
 
   /// A reference to the `aws_servicecatalog_constraint` this data source reads, for
   /// arguments typed `RefTo<AwsServicecatalogConstraint>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsServicecatalogConstraint> get ref => RefTo.read(this);
+  RefTo<AwsServicecatalogConstraint> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

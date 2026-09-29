@@ -27,8 +27,8 @@ final class DataAwsCurReportDefinition extends Data {
 
   /// A reference to the `aws_cur_report_definition` this data source reads, for
   /// arguments typed `RefTo<AwsCurReportDefinition>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCurReportDefinition> get ref => RefTo.read(this);
+  RefTo<AwsCurReportDefinition> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

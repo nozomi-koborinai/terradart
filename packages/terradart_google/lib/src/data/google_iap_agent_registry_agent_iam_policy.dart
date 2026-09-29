@@ -36,8 +36,8 @@ final class DataGoogleIapAgentRegistryAgentIamPolicy extends Data {
 
   /// A reference to the `google_iap_agent_registry_agent_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleIapAgentRegistryAgentIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleIapAgentRegistryAgentIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleIapAgentRegistryAgentIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

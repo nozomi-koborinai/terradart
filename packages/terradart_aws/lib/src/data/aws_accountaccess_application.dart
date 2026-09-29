@@ -33,8 +33,8 @@ final class DataAwsAccountaccessApplication extends Data {
 
   /// A reference to the `aws_accountaccess_application` this data source reads, for
   /// arguments typed `RefTo<AwsAccountaccessApplication>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAccountaccessApplication> get ref => RefTo.read(this);
+  RefTo<AwsAccountaccessApplication> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');

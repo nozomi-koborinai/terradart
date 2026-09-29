@@ -36,8 +36,8 @@ final class DataGoogleCloudbuildv2ConnectionIamPolicy extends Data {
 
   /// A reference to the `google_cloudbuildv2_connection_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleCloudbuildv2ConnectionIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleCloudbuildv2ConnectionIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleCloudbuildv2ConnectionIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

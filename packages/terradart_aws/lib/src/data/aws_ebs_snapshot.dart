@@ -59,8 +59,8 @@ final class DataAwsEbsSnapshot extends Data {
 
   /// A reference to the `aws_ebs_snapshot` this data source reads, for
   /// arguments typed `RefTo<AwsEbsSnapshot>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEbsSnapshot> get ref => RefTo.read(this);
+  RefTo<AwsEbsSnapshot> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

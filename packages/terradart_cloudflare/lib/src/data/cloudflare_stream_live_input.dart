@@ -45,8 +45,8 @@ final class DataCloudflareStreamLiveInput extends Data {
 
   /// A reference to the `cloudflare_stream_live_input` this data source reads, for
   /// arguments typed `RefTo<CloudflareStreamLiveInput>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareStreamLiveInput> get ref => RefTo.read(this);
+  RefTo<CloudflareStreamLiveInput> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `created` attribute.
   TfRef<String> get created => TfRef.attribute<String>(this, 'created');

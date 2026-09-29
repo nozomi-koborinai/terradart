@@ -96,8 +96,8 @@ final class DataAwsIdentitystoreUser extends Data {
 
   /// A reference to the `aws_identitystore_user` this data source reads, for
   /// arguments typed `RefTo<AwsIdentitystoreUser>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsIdentitystoreUser> get ref => RefTo.read(this);
+  RefTo<AwsIdentitystoreUser> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -37,8 +37,8 @@ final class DataAwsConnectSecurityProfile extends Data {
 
   /// A reference to the `aws_connect_security_profile` this data source reads, for
   /// arguments typed `RefTo<AwsConnectSecurityProfile>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsConnectSecurityProfile> get ref => RefTo.read(this);
+  RefTo<AwsConnectSecurityProfile> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -27,8 +27,8 @@ final class DataCloudflareSnippetRules extends Data {
 
   /// A reference to the `cloudflare_snippet_rules` this data source reads, for
   /// arguments typed `RefTo<CloudflareSnippetRules>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareSnippetRules> get ref => RefTo.read(this);
+  RefTo<CloudflareSnippetRules> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

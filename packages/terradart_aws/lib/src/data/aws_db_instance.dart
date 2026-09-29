@@ -33,8 +33,8 @@ final class DataAwsDbInstance extends Data {
 
   /// A reference to the `aws_db_instance` this data source reads, for
   /// arguments typed `RefTo<AwsDbInstance>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsDbInstance> get ref => RefTo.read(this);
+  RefTo<AwsDbInstance> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -43,8 +43,8 @@ final class DataCloudflareManagedTransforms extends Data {
 
   /// A reference to the `cloudflare_managed_transforms` this data source reads, for
   /// arguments typed `RefTo<CloudflareManagedTransforms>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareManagedTransforms> get ref => RefTo.read(this);
+  RefTo<CloudflareManagedTransforms> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

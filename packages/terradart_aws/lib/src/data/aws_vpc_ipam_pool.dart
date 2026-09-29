@@ -55,8 +55,8 @@ final class DataAwsVpcIpamPool extends Data {
 
   /// A reference to the `aws_vpc_ipam_pool` this data source reads, for
   /// arguments typed `RefTo<AwsVpcIpamPool>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsVpcIpamPool> get ref => RefTo.read(this);
+  RefTo<AwsVpcIpamPool> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

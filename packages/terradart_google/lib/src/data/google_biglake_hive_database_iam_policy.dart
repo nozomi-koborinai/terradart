@@ -36,8 +36,8 @@ final class DataGoogleBiglakeHiveDatabaseIamPolicy extends Data {
 
   /// A reference to the `google_biglake_hive_database_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleBiglakeHiveDatabaseIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleBiglakeHiveDatabaseIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleBiglakeHiveDatabaseIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

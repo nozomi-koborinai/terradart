@@ -146,8 +146,8 @@ final class DataCloudflareZone extends Data {
 
   /// A reference to the `cloudflare_zone` this data source reads, for
   /// arguments typed `RefTo<CloudflareZone>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZone> get ref => RefTo.read(this);
+  RefTo<CloudflareZone> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

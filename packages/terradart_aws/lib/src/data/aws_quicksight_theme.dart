@@ -34,8 +34,8 @@ final class DataAwsQuicksightTheme extends Data {
 
   /// A reference to the `aws_quicksight_theme` this data source reads, for
   /// arguments typed `RefTo<AwsQuicksightTheme>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsQuicksightTheme> get ref => RefTo.read(this);
+  RefTo<AwsQuicksightTheme> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

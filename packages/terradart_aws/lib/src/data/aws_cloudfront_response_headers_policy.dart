@@ -24,8 +24,8 @@ final class DataAwsCloudfrontResponseHeadersPolicy extends Data {
 
   /// A reference to the `aws_cloudfront_response_headers_policy` this data source reads, for
   /// arguments typed `RefTo<AwsCloudfrontResponseHeadersPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCloudfrontResponseHeadersPolicy> get ref => RefTo.read(this);
+  RefTo<AwsCloudfrontResponseHeadersPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

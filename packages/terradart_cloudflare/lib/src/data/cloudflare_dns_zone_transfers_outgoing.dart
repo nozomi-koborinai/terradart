@@ -32,8 +32,8 @@ final class DataCloudflareDnsZoneTransfersOutgoing extends Data {
 
   /// A reference to the `cloudflare_dns_zone_transfers_outgoing` this data source reads, for
   /// arguments typed `RefTo<CloudflareDnsZoneTransfersOutgoing>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareDnsZoneTransfersOutgoing> get ref => RefTo.read(this);
+  RefTo<CloudflareDnsZoneTransfersOutgoing> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

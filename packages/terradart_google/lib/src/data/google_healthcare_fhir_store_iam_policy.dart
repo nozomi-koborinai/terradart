@@ -27,8 +27,8 @@ final class DataGoogleHealthcareFhirStoreIamPolicy extends Data {
 
   /// A reference to the `google_healthcare_fhir_store_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleHealthcareFhirStoreIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleHealthcareFhirStoreIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleHealthcareFhirStoreIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

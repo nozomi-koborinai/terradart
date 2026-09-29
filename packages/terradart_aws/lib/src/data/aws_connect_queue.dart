@@ -36,8 +36,8 @@ final class DataAwsConnectQueue extends Data {
 
   /// A reference to the `aws_connect_queue` this data source reads, for
   /// arguments typed `RefTo<AwsConnectQueue>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsConnectQueue> get ref => RefTo.read(this);
+  RefTo<AwsConnectQueue> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

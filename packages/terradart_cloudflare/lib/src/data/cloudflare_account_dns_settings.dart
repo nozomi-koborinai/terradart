@@ -30,8 +30,8 @@ final class DataCloudflareAccountDnsSettings extends Data {
 
   /// A reference to the `cloudflare_account_dns_settings` this data source reads, for
   /// arguments typed `RefTo<CloudflareAccountDnsSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareAccountDnsSettings> get ref => RefTo.read(this);
+  RefTo<CloudflareAccountDnsSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `enforce_dns_only` attribute.
   TfRef<bool> get enforceDnsOnly =>

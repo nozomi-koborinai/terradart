@@ -32,8 +32,8 @@ final class DataAwsFsxOntapFileSystem extends Data {
 
   /// A reference to the `aws_fsx_ontap_file_system` this data source reads, for
   /// arguments typed `RefTo<AwsFsxOntapFileSystem>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsFsxOntapFileSystem> get ref => RefTo.read(this);
+  RefTo<AwsFsxOntapFileSystem> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

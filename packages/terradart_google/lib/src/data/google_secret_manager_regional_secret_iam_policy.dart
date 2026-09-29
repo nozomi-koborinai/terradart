@@ -38,8 +38,8 @@ final class DataGoogleSecretManagerRegionalSecretIamPolicy extends Data {
 
   /// A reference to the `google_secret_manager_regional_secret_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleSecretManagerRegionalSecretIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleSecretManagerRegionalSecretIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleSecretManagerRegionalSecretIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

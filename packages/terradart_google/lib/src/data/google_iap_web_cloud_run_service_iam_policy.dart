@@ -36,8 +36,8 @@ final class DataGoogleIapWebCloudRunServiceIamPolicy extends Data {
 
   /// A reference to the `google_iap_web_cloud_run_service_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleIapWebCloudRunServiceIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleIapWebCloudRunServiceIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleIapWebCloudRunServiceIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -34,8 +34,8 @@ final class DataAwsSecretsmanagerSecret extends Data {
 
   /// A reference to the `aws_secretsmanager_secret` this data source reads, for
   /// arguments typed `RefTo<AwsSecretsmanagerSecret>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSecretsmanagerSecret> get ref => RefTo.read(this);
+  RefTo<AwsSecretsmanagerSecret> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

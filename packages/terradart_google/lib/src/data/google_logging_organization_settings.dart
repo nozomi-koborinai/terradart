@@ -27,8 +27,8 @@ final class DataGoogleLoggingOrganizationSettings extends Data {
 
   /// A reference to the `google_logging_organization_settings` this data source reads, for
   /// arguments typed `RefTo<GoogleLoggingOrganizationSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleLoggingOrganizationSettings> get ref => RefTo.read(this);
+  RefTo<GoogleLoggingOrganizationSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

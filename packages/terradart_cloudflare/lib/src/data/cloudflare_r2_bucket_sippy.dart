@@ -27,8 +27,8 @@ final class DataCloudflareR2BucketSippy extends Data {
 
   /// A reference to the `cloudflare_r2_bucket_sippy` this data source reads, for
   /// arguments typed `RefTo<CloudflareR2BucketSippy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareR2BucketSippy> get ref => RefTo.read(this);
+  RefTo<CloudflareR2BucketSippy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');

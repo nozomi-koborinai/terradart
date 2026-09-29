@@ -36,8 +36,8 @@ final class DataCloudflareStreamCaptionLanguage extends Data {
 
   /// A reference to the `cloudflare_stream_caption_language` this data source reads, for
   /// arguments typed `RefTo<CloudflareStreamCaptionLanguage>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareStreamCaptionLanguage> get ref => RefTo.read(this);
+  RefTo<CloudflareStreamCaptionLanguage> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `generated` attribute.
   TfRef<bool> get generated => TfRef.attribute<bool>(this, 'generated');

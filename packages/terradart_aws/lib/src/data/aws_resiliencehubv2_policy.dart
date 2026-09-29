@@ -27,8 +27,8 @@ final class DataAwsResiliencehubv2Policy extends Data {
 
   /// A reference to the `aws_resiliencehubv2_policy` this data source reads, for
   /// arguments typed `RefTo<AwsResiliencehubv2Policy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsResiliencehubv2Policy> get ref => RefTo.read(this);
+  RefTo<AwsResiliencehubv2Policy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

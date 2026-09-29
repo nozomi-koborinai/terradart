@@ -133,8 +133,8 @@ final class DataCloudflareAccountDnsSettingsInternalView extends Data {
 
   /// A reference to the `cloudflare_account_dns_settings_internal_view` this data source reads, for
   /// arguments typed `RefTo<CloudflareAccountDnsSettingsInternalView>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareAccountDnsSettingsInternalView> get ref => RefTo.read(this);
+  RefTo<CloudflareAccountDnsSettingsInternalView> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

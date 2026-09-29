@@ -32,8 +32,8 @@ final class DataAwsApiGatewayResource extends Data {
 
   /// A reference to the `aws_api_gateway_resource` this data source reads, for
   /// arguments typed `RefTo<AwsApiGatewayResource>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsApiGatewayResource> get ref => RefTo.read(this);
+  RefTo<AwsApiGatewayResource> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

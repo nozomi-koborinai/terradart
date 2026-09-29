@@ -38,8 +38,8 @@ final class DataAwsConnectContactFlow extends Data {
 
   /// A reference to the `aws_connect_contact_flow` this data source reads, for
   /// arguments typed `RefTo<AwsConnectContactFlow>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsConnectContactFlow> get ref => RefTo.read(this);
+  RefTo<AwsConnectContactFlow> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -58,8 +58,8 @@ final class DataAwsVpc extends Data {
 
   /// A reference to the `aws_vpc` this data source reads, for
   /// arguments typed `RefTo<AwsVpc>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsVpc> get ref => RefTo.read(this);
+  RefTo<AwsVpc> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

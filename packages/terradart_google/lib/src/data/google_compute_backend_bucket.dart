@@ -30,8 +30,8 @@ final class DataGoogleComputeBackendBucket extends Data {
 
   /// A reference to the `google_compute_backend_bucket` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeBackendBucket>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeBackendBucket> get ref => RefTo.read(this);
+  RefTo<GoogleComputeBackendBucket> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

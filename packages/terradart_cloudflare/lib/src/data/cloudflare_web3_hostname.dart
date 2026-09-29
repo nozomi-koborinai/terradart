@@ -34,8 +34,8 @@ final class DataCloudflareWeb3Hostname extends Data {
 
   /// A reference to the `cloudflare_web3_hostname` this data source reads, for
   /// arguments typed `RefTo<CloudflareWeb3Hostname>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareWeb3Hostname> get ref => RefTo.read(this);
+  RefTo<CloudflareWeb3Hostname> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

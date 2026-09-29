@@ -32,8 +32,8 @@ final class DataCloudflareMagicTransitCf1Site extends Data {
 
   /// A reference to the `cloudflare_magic_transit_cf1_site` this data source reads, for
   /// arguments typed `RefTo<CloudflareMagicTransitCf1Site>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareMagicTransitCf1Site> get ref => RefTo.read(this);
+  RefTo<CloudflareMagicTransitCf1Site> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

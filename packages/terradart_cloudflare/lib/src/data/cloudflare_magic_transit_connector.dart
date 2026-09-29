@@ -60,8 +60,8 @@ final class DataCloudflareMagicTransitConnector extends Data {
 
   /// A reference to the `cloudflare_magic_transit_connector` this data source reads, for
   /// arguments typed `RefTo<CloudflareMagicTransitConnector>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareMagicTransitConnector> get ref => RefTo.read(this);
+  RefTo<CloudflareMagicTransitConnector> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

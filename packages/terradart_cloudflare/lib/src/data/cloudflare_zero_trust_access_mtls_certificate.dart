@@ -39,8 +39,8 @@ final class DataCloudflareZeroTrustAccessMtlsCertificate extends Data {
 
   /// A reference to the `cloudflare_zero_trust_access_mtls_certificate` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustAccessMtlsCertificate>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustAccessMtlsCertificate> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustAccessMtlsCertificate> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

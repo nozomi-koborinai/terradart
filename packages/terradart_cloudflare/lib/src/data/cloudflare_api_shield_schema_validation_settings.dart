@@ -34,9 +34,8 @@ final class DataCloudflareApiShieldSchemaValidationSettings extends Data {
 
   /// A reference to the `cloudflare_api_shield_schema_validation_settings` this data source reads, for
   /// arguments typed `RefTo<CloudflareApiShieldSchemaValidationSettings>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareApiShieldSchemaValidationSettings> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

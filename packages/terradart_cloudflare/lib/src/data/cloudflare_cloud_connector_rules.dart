@@ -27,8 +27,8 @@ final class DataCloudflareCloudConnectorRules extends Data {
 
   /// A reference to the `cloudflare_cloud_connector_rules` this data source reads, for
   /// arguments typed `RefTo<CloudflareCloudConnectorRules>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCloudConnectorRules> get ref => RefTo.read(this);
+  RefTo<CloudflareCloudConnectorRules> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

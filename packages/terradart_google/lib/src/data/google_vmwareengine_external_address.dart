@@ -28,8 +28,8 @@ final class DataGoogleVmwareengineExternalAddress extends Data {
 
   /// A reference to the `google_vmwareengine_external_address` this data source reads, for
   /// arguments typed `RefTo<GoogleVmwareengineExternalAddress>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleVmwareengineExternalAddress> get ref => RefTo.read(this);
+  RefTo<GoogleVmwareengineExternalAddress> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

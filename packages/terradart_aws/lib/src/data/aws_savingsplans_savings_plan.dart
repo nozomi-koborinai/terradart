@@ -23,8 +23,8 @@ final class DataAwsSavingsplansSavingsPlan extends Data {
 
   /// A reference to the `aws_savingsplans_savings_plan` this data source reads, for
   /// arguments typed `RefTo<AwsSavingsplansSavingsPlan>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSavingsplansSavingsPlan> get ref => RefTo.read(this);
+  RefTo<AwsSavingsplansSavingsPlan> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `commitment` attribute.
   TfRef<String> get commitment => TfRef.attribute<String>(this, 'commitment');

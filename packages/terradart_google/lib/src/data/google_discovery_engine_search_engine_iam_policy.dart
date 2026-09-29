@@ -40,8 +40,8 @@ final class DataGoogleDiscoveryEngineSearchEngineIamPolicy extends Data {
 
   /// A reference to the `google_discovery_engine_search_engine_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleDiscoveryEngineSearchEngineIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDiscoveryEngineSearchEngineIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleDiscoveryEngineSearchEngineIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

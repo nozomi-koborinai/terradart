@@ -26,8 +26,8 @@ final class DataGoogleTagsTagKeyIamPolicy extends Data {
 
   /// A reference to the `google_tags_tag_key_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleTagsTagKeyIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleTagsTagKeyIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleTagsTagKeyIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

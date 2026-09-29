@@ -33,8 +33,8 @@ final class DataCloudflareMagicTransitSiteLan extends Data {
 
   /// A reference to the `cloudflare_magic_transit_site_lan` this data source reads, for
   /// arguments typed `RefTo<CloudflareMagicTransitSiteLan>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareMagicTransitSiteLan> get ref => RefTo.read(this);
+  RefTo<CloudflareMagicTransitSiteLan> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -52,8 +52,8 @@ final class DataAwsVpcDhcpOptions extends Data {
 
   /// A reference to the `aws_vpc_dhcp_options` this data source reads, for
   /// arguments typed `RefTo<AwsVpcDhcpOptions>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsVpcDhcpOptions> get ref => RefTo.read(this);
+  RefTo<AwsVpcDhcpOptions> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

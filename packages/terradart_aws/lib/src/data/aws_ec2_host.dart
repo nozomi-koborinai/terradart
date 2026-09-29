@@ -52,8 +52,8 @@ final class DataAwsEc2Host extends Data {
 
   /// A reference to the `aws_ec2_host` this data source reads, for
   /// arguments typed `RefTo<AwsEc2Host>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEc2Host> get ref => RefTo.read(this);
+  RefTo<AwsEc2Host> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

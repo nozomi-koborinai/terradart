@@ -35,8 +35,8 @@ final class DataGoogleComputeInstanceIamPolicy extends Data {
 
   /// A reference to the `google_compute_instance_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeInstanceIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeInstanceIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleComputeInstanceIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

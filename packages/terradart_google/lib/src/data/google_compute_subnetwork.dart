@@ -37,8 +37,8 @@ final class DataGoogleComputeSubnetwork extends Data {
 
   /// A reference to the `google_compute_subnetwork` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeSubnetwork>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeSubnetwork> get ref => RefTo.read(this);
+  RefTo<GoogleComputeSubnetwork> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

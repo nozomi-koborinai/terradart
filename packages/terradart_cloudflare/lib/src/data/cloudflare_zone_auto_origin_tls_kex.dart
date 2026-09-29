@@ -23,8 +23,8 @@ final class DataCloudflareZoneAutoOriginTlsKex extends Data {
 
   /// A reference to the `cloudflare_zone_auto_origin_tls_kex` this data source reads, for
   /// arguments typed `RefTo<CloudflareZoneAutoOriginTlsKex>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZoneAutoOriginTlsKex> get ref => RefTo.read(this);
+  RefTo<CloudflareZoneAutoOriginTlsKex> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

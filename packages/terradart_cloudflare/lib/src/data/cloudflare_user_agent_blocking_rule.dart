@@ -60,8 +60,8 @@ final class DataCloudflareUserAgentBlockingRule extends Data {
 
   /// A reference to the `cloudflare_user_agent_blocking_rule` this data source reads, for
   /// arguments typed `RefTo<CloudflareUserAgentBlockingRule>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareUserAgentBlockingRule> get ref => RefTo.read(this);
+  RefTo<CloudflareUserAgentBlockingRule> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

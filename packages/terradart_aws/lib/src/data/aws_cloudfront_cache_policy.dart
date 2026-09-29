@@ -23,8 +23,8 @@ final class DataAwsCloudfrontCachePolicy extends Data {
 
   /// A reference to the `aws_cloudfront_cache_policy` this data source reads, for
   /// arguments typed `RefTo<AwsCloudfrontCachePolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCloudfrontCachePolicy> get ref => RefTo.read(this);
+  RefTo<AwsCloudfrontCachePolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

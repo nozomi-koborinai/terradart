@@ -27,6 +27,6 @@ final class DataCloudflareR2BucketLifecycle extends Data {
 
   /// A reference to the `cloudflare_r2_bucket_lifecycle` this data source reads, for
   /// arguments typed `RefTo<CloudflareR2BucketLifecycle>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareR2BucketLifecycle> get ref => RefTo.read(this);
+  RefTo<CloudflareR2BucketLifecycle> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 }

@@ -35,8 +35,8 @@ final class DataCloudflareMagicWanIpsecTunnel extends Data {
 
   /// A reference to the `cloudflare_magic_wan_ipsec_tunnel` this data source reads, for
   /// arguments typed `RefTo<CloudflareMagicWanIpsecTunnel>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareMagicWanIpsecTunnel> get ref => RefTo.read(this);
+  RefTo<CloudflareMagicWanIpsecTunnel> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

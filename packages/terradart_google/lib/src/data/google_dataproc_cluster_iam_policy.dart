@@ -35,8 +35,8 @@ final class DataGoogleDataprocClusterIamPolicy extends Data {
 
   /// A reference to the `google_dataproc_cluster_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleDataprocClusterIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDataprocClusterIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleDataprocClusterIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

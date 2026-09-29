@@ -36,8 +36,8 @@ final class DataAwsConnectRoutingProfile extends Data {
 
   /// A reference to the `aws_connect_routing_profile` this data source reads, for
   /// arguments typed `RefTo<AwsConnectRoutingProfile>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsConnectRoutingProfile> get ref => RefTo.read(this);
+  RefTo<AwsConnectRoutingProfile> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

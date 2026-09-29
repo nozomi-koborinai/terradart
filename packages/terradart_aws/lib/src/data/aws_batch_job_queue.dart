@@ -32,8 +32,8 @@ final class DataAwsBatchJobQueue extends Data {
 
   /// A reference to the `aws_batch_job_queue` this data source reads, for
   /// arguments typed `RefTo<AwsBatchJobQueue>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsBatchJobQueue> get ref => RefTo.read(this);
+  RefTo<AwsBatchJobQueue> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

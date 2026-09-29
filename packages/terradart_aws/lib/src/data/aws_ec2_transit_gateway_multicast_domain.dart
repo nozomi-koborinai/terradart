@@ -58,8 +58,8 @@ final class DataAwsEc2TransitGatewayMulticastDomain extends Data {
 
   /// A reference to the `aws_ec2_transit_gateway_multicast_domain` this data source reads, for
   /// arguments typed `RefTo<AwsEc2TransitGatewayMulticastDomain>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEc2TransitGatewayMulticastDomain> get ref => RefTo.read(this);
+  RefTo<AwsEc2TransitGatewayMulticastDomain> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -37,8 +37,8 @@ final class DataCloudflareObservatoryScheduledTest extends Data {
 
   /// A reference to the `cloudflare_observatory_scheduled_test` this data source reads, for
   /// arguments typed `RefTo<CloudflareObservatoryScheduledTest>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareObservatoryScheduledTest> get ref => RefTo.read(this);
+  RefTo<CloudflareObservatoryScheduledTest> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `frequency` attribute.
   TfRef<String> get frequency => TfRef.attribute<String>(this, 'frequency');

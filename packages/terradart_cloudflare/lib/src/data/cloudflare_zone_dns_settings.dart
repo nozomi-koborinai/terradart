@@ -31,8 +31,8 @@ final class DataCloudflareZoneDnsSettings extends Data {
 
   /// A reference to the `cloudflare_zone_dns_settings` this data source reads, for
   /// arguments typed `RefTo<CloudflareZoneDnsSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZoneDnsSettings> get ref => RefTo.read(this);
+  RefTo<CloudflareZoneDnsSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `flatten_all_cnames` attribute.
   TfRef<bool> get flattenAllCnames =>

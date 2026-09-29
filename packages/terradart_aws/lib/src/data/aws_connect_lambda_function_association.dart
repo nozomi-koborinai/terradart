@@ -33,8 +33,8 @@ final class DataAwsConnectLambdaFunctionAssociation extends Data {
 
   /// A reference to the `aws_connect_lambda_function_association` this data source reads, for
   /// arguments typed `RefTo<AwsConnectLambdaFunctionAssociation>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsConnectLambdaFunctionAssociation> get ref => RefTo.read(this);
+  RefTo<AwsConnectLambdaFunctionAssociation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

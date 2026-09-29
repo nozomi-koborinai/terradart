@@ -75,8 +75,8 @@ final class DataCloudflareWorker extends Data {
 
   /// A reference to the `cloudflare_worker` this data source reads, for
   /// arguments typed `RefTo<CloudflareWorker>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareWorker> get ref => RefTo.read(this);
+  RefTo<CloudflareWorker> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -36,8 +36,8 @@ final class DataAwsLbListener extends Data {
 
   /// A reference to the `aws_lb_listener` this data source reads, for
   /// arguments typed `RefTo<AwsLbListener>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLbListener> get ref => RefTo.read(this);
+  RefTo<AwsLbListener> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

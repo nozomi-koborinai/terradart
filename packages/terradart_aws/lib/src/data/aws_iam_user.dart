@@ -27,8 +27,8 @@ final class DataAwsIamUser extends Data {
 
   /// A reference to the `aws_iam_user` this data source reads, for
   /// arguments typed `RefTo<AwsIamUser>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsIamUser> get ref => RefTo.read(this);
+  RefTo<AwsIamUser> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

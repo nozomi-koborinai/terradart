@@ -27,8 +27,8 @@ final class DataAwsLambdaCodeSigningConfig extends Data {
 
   /// A reference to the `aws_lambda_code_signing_config` this data source reads, for
   /// arguments typed `RefTo<AwsLambdaCodeSigningConfig>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsLambdaCodeSigningConfig> get ref => RefTo.read(this);
+  RefTo<AwsLambdaCodeSigningConfig> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

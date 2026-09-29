@@ -37,8 +37,8 @@ final class DataGoogleArtifactRegistryRepositoryIamPolicy extends Data {
 
   /// A reference to the `google_artifact_registry_repository_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleArtifactRegistryRepositoryIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleArtifactRegistryRepositoryIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleArtifactRegistryRepositoryIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -38,9 +38,8 @@ final class DataCloudflareSchemaValidationOperationSettings extends Data {
 
   /// A reference to the `cloudflare_schema_validation_operation_settings` this data source reads, for
   /// arguments typed `RefTo<CloudflareSchemaValidationOperationSettings>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<CloudflareSchemaValidationOperationSettings> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `mitigation_action` attribute.
   TfRef<String> get mitigationAction =>

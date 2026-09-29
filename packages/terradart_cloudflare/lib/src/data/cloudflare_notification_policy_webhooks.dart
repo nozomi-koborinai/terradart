@@ -38,8 +38,8 @@ final class DataCloudflareNotificationPolicyWebhooks extends Data {
 
   /// A reference to the `cloudflare_notification_policy_webhooks` this data source reads, for
   /// arguments typed `RefTo<CloudflareNotificationPolicyWebhooks>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareNotificationPolicyWebhooks> get ref => RefTo.read(this);
+  RefTo<CloudflareNotificationPolicyWebhooks> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

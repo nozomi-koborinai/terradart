@@ -32,8 +32,8 @@ final class DataAwsCloudhsmV2Cluster extends Data {
 
   /// A reference to the `aws_cloudhsm_v2_cluster` this data source reads, for
   /// arguments typed `RefTo<AwsCloudhsmV2Cluster>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsCloudhsmV2Cluster> get ref => RefTo.read(this);
+  RefTo<AwsCloudhsmV2Cluster> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

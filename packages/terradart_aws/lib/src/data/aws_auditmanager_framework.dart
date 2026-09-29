@@ -32,8 +32,8 @@ final class DataAwsAuditmanagerFramework extends Data {
 
   /// A reference to the `aws_auditmanager_framework` this data source reads, for
   /// arguments typed `RefTo<AwsAuditmanagerFramework>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAuditmanagerFramework> get ref => RefTo.read(this);
+  RefTo<AwsAuditmanagerFramework> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

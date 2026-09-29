@@ -27,8 +27,8 @@ final class DataAwsOdbCloudAutonomousVmCluster extends Data {
 
   /// A reference to the `aws_odb_cloud_autonomous_vm_cluster` this data source reads, for
   /// arguments typed `RefTo<AwsOdbCloudAutonomousVmCluster>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsOdbCloudAutonomousVmCluster> get ref => RefTo.read(this);
+  RefTo<AwsOdbCloudAutonomousVmCluster> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

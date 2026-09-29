@@ -54,8 +54,8 @@ final class DataAwsEc2TransitGatewayPeeringAttachment extends Data {
 
   /// A reference to the `aws_ec2_transit_gateway_peering_attachment` this data source reads, for
   /// arguments typed `RefTo<AwsEc2TransitGatewayPeeringAttachment>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEc2TransitGatewayPeeringAttachment> get ref => RefTo.read(this);
+  RefTo<AwsEc2TransitGatewayPeeringAttachment> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

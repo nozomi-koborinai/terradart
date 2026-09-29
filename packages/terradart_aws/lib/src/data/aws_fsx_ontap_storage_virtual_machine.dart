@@ -53,8 +53,8 @@ final class DataAwsFsxOntapStorageVirtualMachine extends Data {
 
   /// A reference to the `aws_fsx_ontap_storage_virtual_machine` this data source reads, for
   /// arguments typed `RefTo<AwsFsxOntapStorageVirtualMachine>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsFsxOntapStorageVirtualMachine> get ref => RefTo.read(this);
+  RefTo<AwsFsxOntapStorageVirtualMachine> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

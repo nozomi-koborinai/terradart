@@ -26,8 +26,8 @@ final class DataGoogleHealthcareDatasetIamPolicy extends Data {
 
   /// A reference to the `google_healthcare_dataset_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleHealthcareDatasetIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleHealthcareDatasetIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleHealthcareDatasetIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

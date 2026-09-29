@@ -35,8 +35,8 @@ final class DataGoogleRedisInstance extends Data {
 
   /// A reference to the `google_redis_instance` this data source reads, for
   /// arguments typed `RefTo<GoogleRedisInstance>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleRedisInstance> get ref => RefTo.read(this);
+  RefTo<GoogleRedisInstance> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -32,8 +32,8 @@ final class DataAwsAcmpcaCertificateAuthority extends Data {
 
   /// A reference to the `aws_acmpca_certificate_authority` this data source reads, for
   /// arguments typed `RefTo<AwsAcmpcaCertificateAuthority>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAcmpcaCertificateAuthority> get ref => RefTo.read(this);
+  RefTo<AwsAcmpcaCertificateAuthority> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

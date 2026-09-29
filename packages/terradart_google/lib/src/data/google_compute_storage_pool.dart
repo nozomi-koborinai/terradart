@@ -35,8 +35,8 @@ final class DataGoogleComputeStoragePool extends Data {
 
   /// A reference to the `google_compute_storage_pool` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeStoragePool>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeStoragePool> get ref => RefTo.read(this);
+  RefTo<GoogleComputeStoragePool> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

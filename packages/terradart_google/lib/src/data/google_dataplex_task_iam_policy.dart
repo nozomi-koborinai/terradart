@@ -37,8 +37,8 @@ final class DataGoogleDataplexTaskIamPolicy extends Data {
 
   /// A reference to the `google_dataplex_task_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleDataplexTaskIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleDataplexTaskIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleDataplexTaskIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

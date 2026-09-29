@@ -36,8 +36,8 @@ final class DataAwsSsoadminPermissionSet extends Data {
 
   /// A reference to the `aws_ssoadmin_permission_set` this data source reads, for
   /// arguments typed `RefTo<AwsSsoadminPermissionSet>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsSsoadminPermissionSet> get ref => RefTo.read(this);
+  RefTo<AwsSsoadminPermissionSet> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -39,9 +39,8 @@ final class DataGoogleIapWebRegionForwardingRuleServiceIamPolicy extends Data {
 
   /// A reference to the `google_iap_web_region_forwarding_rule_service_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleIapWebRegionForwardingRuleServiceIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
   RefTo<GoogleIapWebRegionForwardingRuleServiceIamPolicy> get ref =>
-      RefTo.read(this);
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

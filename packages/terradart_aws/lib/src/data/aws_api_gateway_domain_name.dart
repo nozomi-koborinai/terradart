@@ -34,8 +34,8 @@ final class DataAwsApiGatewayDomainName extends Data {
 
   /// A reference to the `aws_api_gateway_domain_name` this data source reads, for
   /// arguments typed `RefTo<AwsApiGatewayDomainName>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsApiGatewayDomainName> get ref => RefTo.read(this);
+  RefTo<AwsApiGatewayDomainName> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

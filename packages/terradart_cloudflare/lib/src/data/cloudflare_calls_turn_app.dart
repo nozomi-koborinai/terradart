@@ -31,8 +31,8 @@ final class DataCloudflareCallsTurnApp extends Data {
 
   /// A reference to the `cloudflare_calls_turn_app` this data source reads, for
   /// arguments typed `RefTo<CloudflareCallsTurnApp>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCallsTurnApp> get ref => RefTo.read(this);
+  RefTo<CloudflareCallsTurnApp> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

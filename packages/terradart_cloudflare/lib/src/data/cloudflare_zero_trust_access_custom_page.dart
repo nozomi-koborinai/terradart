@@ -35,8 +35,8 @@ final class DataCloudflareZeroTrustAccessCustomPage extends Data {
 
   /// A reference to the `cloudflare_zero_trust_access_custom_page` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustAccessCustomPage>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustAccessCustomPage> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustAccessCustomPage> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

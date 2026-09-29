@@ -36,8 +36,8 @@ final class DataGoogleComputeInstantSnapshotIamPolicy extends Data {
 
   /// A reference to the `google_compute_instant_snapshot_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeInstantSnapshotIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeInstantSnapshotIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleComputeInstantSnapshotIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

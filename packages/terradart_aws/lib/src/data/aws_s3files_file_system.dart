@@ -27,8 +27,8 @@ final class DataAwsS3filesFileSystem extends Data {
 
   /// A reference to the `aws_s3files_file_system` this data source reads, for
   /// arguments typed `RefTo<AwsS3filesFileSystem>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsS3filesFileSystem> get ref => RefTo.read(this);
+  RefTo<AwsS3filesFileSystem> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

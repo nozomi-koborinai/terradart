@@ -58,8 +58,8 @@ final class DataAwsRouteTable extends Data {
 
   /// A reference to the `aws_route_table` this data source reads, for
   /// arguments typed `RefTo<AwsRouteTable>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsRouteTable> get ref => RefTo.read(this);
+  RefTo<AwsRouteTable> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -36,8 +36,8 @@ final class DataAwsAppmeshVirtualRouter extends Data {
 
   /// A reference to the `aws_appmesh_virtual_router` this data source reads, for
   /// arguments typed `RefTo<AwsAppmeshVirtualRouter>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAppmeshVirtualRouter> get ref => RefTo.read(this);
+  RefTo<AwsAppmeshVirtualRouter> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

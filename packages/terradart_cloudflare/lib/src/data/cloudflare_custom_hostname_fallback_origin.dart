@@ -31,8 +31,8 @@ final class DataCloudflareCustomHostnameFallbackOrigin extends Data {
 
   /// A reference to the `cloudflare_custom_hostname_fallback_origin` this data source reads, for
   /// arguments typed `RefTo<CloudflareCustomHostnameFallbackOrigin>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCustomHostnameFallbackOrigin> get ref => RefTo.read(this);
+  RefTo<CloudflareCustomHostnameFallbackOrigin> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -27,8 +27,8 @@ final class DataAwsDbProxy extends Data {
 
   /// A reference to the `aws_db_proxy` this data source reads, for
   /// arguments typed `RefTo<AwsDbProxy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsDbProxy> get ref => RefTo.read(this);
+  RefTo<AwsDbProxy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

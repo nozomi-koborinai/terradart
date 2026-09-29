@@ -31,8 +31,8 @@ final class DataGoogleObservabilityProjectSettings extends Data {
 
   /// A reference to the `google_observability_project_settings` this data source reads, for
   /// arguments typed `RefTo<GoogleObservabilityProjectSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleObservabilityProjectSettings> get ref => RefTo.read(this);
+  RefTo<GoogleObservabilityProjectSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

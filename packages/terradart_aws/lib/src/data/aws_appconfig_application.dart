@@ -30,8 +30,8 @@ final class DataAwsAppconfigApplication extends Data {
 
   /// A reference to the `aws_appconfig_application` this data source reads, for
   /// arguments typed `RefTo<AwsAppconfigApplication>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsAppconfigApplication> get ref => RefTo.read(this);
+  RefTo<AwsAppconfigApplication> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

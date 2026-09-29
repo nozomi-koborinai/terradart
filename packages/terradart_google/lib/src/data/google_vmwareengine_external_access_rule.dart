@@ -28,8 +28,8 @@ final class DataGoogleVmwareengineExternalAccessRule extends Data {
 
   /// A reference to the `google_vmwareengine_external_access_rule` this data source reads, for
   /// arguments typed `RefTo<GoogleVmwareengineExternalAccessRule>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleVmwareengineExternalAccessRule> get ref => RefTo.read(this);
+  RefTo<GoogleVmwareengineExternalAccessRule> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -32,8 +32,8 @@ final class DataAppwriteMongoDatabase extends Data {
 
   /// A reference to the `appwrite_mongo_database` this data source reads, for
   /// arguments typed `RefTo<AppwriteMongoDatabase>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AppwriteMongoDatabase> get ref => RefTo.read(this);
+  RefTo<AppwriteMongoDatabase> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

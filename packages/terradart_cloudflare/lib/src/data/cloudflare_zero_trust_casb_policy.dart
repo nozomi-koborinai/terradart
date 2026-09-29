@@ -31,8 +31,8 @@ final class DataCloudflareZeroTrustCasbPolicy extends Data {
 
   /// A reference to the `cloudflare_zero_trust_casb_policy` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustCasbPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustCasbPolicy> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustCasbPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

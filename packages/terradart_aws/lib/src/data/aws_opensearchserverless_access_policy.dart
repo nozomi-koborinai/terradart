@@ -33,8 +33,8 @@ final class DataAwsOpensearchserverlessAccessPolicy extends Data {
 
   /// A reference to the `aws_opensearchserverless_access_policy` this data source reads, for
   /// arguments typed `RefTo<AwsOpensearchserverlessAccessPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsOpensearchserverlessAccessPolicy> get ref => RefTo.read(this);
+  RefTo<AwsOpensearchserverlessAccessPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -28,8 +28,8 @@ final class DataAwsOrganizationsOrganizationalUnit extends Data {
 
   /// A reference to the `aws_organizations_organizational_unit` this data source reads, for
   /// arguments typed `RefTo<AwsOrganizationsOrganizationalUnit>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsOrganizationsOrganizationalUnit> get ref => RefTo.read(this);
+  RefTo<AwsOrganizationsOrganizationalUnit> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

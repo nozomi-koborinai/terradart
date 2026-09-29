@@ -32,8 +32,8 @@ final class DataCloudflareCustomPageAsset extends Data {
 
   /// A reference to the `cloudflare_custom_page_asset` this data source reads, for
   /// arguments typed `RefTo<CloudflareCustomPageAsset>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCustomPageAsset> get ref => RefTo.read(this);
+  RefTo<CloudflareCustomPageAsset> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

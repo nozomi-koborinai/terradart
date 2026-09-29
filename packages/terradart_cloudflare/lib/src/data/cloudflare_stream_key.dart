@@ -30,8 +30,8 @@ final class DataCloudflareStreamKey extends Data {
 
   /// A reference to the `cloudflare_stream_key` this data source reads, for
   /// arguments typed `RefTo<CloudflareStreamKey>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareStreamKey> get ref => RefTo.read(this);
+  RefTo<CloudflareStreamKey> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

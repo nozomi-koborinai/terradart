@@ -35,8 +35,8 @@ final class DataGoogleComputeReservation extends Data {
 
   /// A reference to the `google_compute_reservation` this data source reads, for
   /// arguments typed `RefTo<GoogleComputeReservation>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleComputeReservation> get ref => RefTo.read(this);
+  RefTo<GoogleComputeReservation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -31,8 +31,8 @@ final class DataGoogleNetworkConnectivityHubIamPolicy extends Data {
 
   /// A reference to the `google_network_connectivity_hub_iam_policy` this data source reads, for
   /// arguments typed `RefTo<GoogleNetworkConnectivityHubIamPolicy>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<GoogleNetworkConnectivityHubIamPolicy> get ref => RefTo.read(this);
+  RefTo<GoogleNetworkConnectivityHubIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

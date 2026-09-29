@@ -49,8 +49,8 @@ final class DataCloudflareCustomCsr extends Data {
 
   /// A reference to the `cloudflare_custom_csr` this data source reads, for
   /// arguments typed `RefTo<CloudflareCustomCsr>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareCustomCsr> get ref => RefTo.read(this);
+  RefTo<CloudflareCustomCsr> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -51,8 +51,8 @@ final class DataAwsEc2CapacityBlockReservation extends Data {
 
   /// A reference to the `aws_ec2_capacity_block_reservation` this data source reads, for
   /// arguments typed `RefTo<AwsEc2CapacityBlockReservation>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<AwsEc2CapacityBlockReservation> get ref => RefTo.read(this);
+  RefTo<AwsEc2CapacityBlockReservation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

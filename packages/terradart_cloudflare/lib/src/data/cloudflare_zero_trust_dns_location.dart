@@ -86,8 +86,8 @@ final class DataCloudflareZeroTrustDnsLocation extends Data {
 
   /// A reference to the `cloudflare_zero_trust_dns_location` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustDnsLocation>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustDnsLocation> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustDnsLocation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

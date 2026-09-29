@@ -27,8 +27,8 @@ final class DataCloudflareZeroTrustDeviceSettings extends Data {
 
   /// A reference to the `cloudflare_zero_trust_device_settings` this data source reads, for
   /// arguments typed `RefTo<CloudflareZeroTrustDeviceSettings>`.
-  // ignore: invalid_use_of_internal_member
-  RefTo<CloudflareZeroTrustDeviceSettings> get ref => RefTo.read(this);
+  RefTo<CloudflareZeroTrustDeviceSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `disable_for_time` attribute.
   TfRef<num> get disableForTime =>
