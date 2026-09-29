@@ -20,22 +20,20 @@ final class ComputePreviewFeatureStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
-        service: TfArg.literal('compute.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('compute.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleComputePreviewFeature(
         localName: 'alpha',
-        name: TfArg.literal('alpha-api-access'),
-        activationStatus: TfArg.literal(
-          ComputePreviewFeatureActivationStatus.activationStateUnspecified,
-        ),
+        name: .literal('alpha-api-access'),
+        activationStatus: .literal(.activationStateUnspecified),
         // API currently accepts only FAST_ROLLOUT (provider basic example).
         rolloutOperation: ComputePreviewFeatureRolloutOperation(
           rolloutInput: ComputePreviewFeatureRolloutOperationRolloutInput(
-            predefinedRolloutPlan: TfArg.literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
+            predefinedRolloutPlan: .literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
           ),
         ),
         dependsOn: [ResourceDependency(apiCompute)],

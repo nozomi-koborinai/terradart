@@ -63,386 +63,350 @@ final class AppwriteDemoStack extends Stack {
       const TfVariable(type: 'string', sensitive: true),
     );
 
-    add(
-      AppwriteProject(localName: 'demo', name: TfArg.literal('terradart-demo')),
-    );
+    add(AppwriteProject(localName: 'demo', name: .literal('terradart-demo')));
 
     final bucket = add(
       AppwriteStorageBucket(
         localName: 'uploads',
-        name: TfArg.literal('uploads'),
-        fileSecurity: TfArg.literal(true),
-        maximumFileSize: TfArg.literal(10485760),
+        name: .literal('uploads'),
+        fileSecurity: .literal(true),
+        maximumFileSize: .literal(10485760),
       ),
     );
     add(
       AppwriteStorageFile(
         localName: 'seed',
-        bucketId: TfArg.ref(bucket.id),
-        filePath: TfArg.literal('seed.txt'),
-        name: TfArg.literal('seed.txt'),
+        bucketId: .ref(bucket.id),
+        filePath: .literal('seed.txt'),
+        name: .literal('seed.txt'),
       ),
     );
 
-    final db = add(
-      AppwriteTablesdb(localName: 'main', name: TfArg.literal('main')),
-    );
+    final db = add(AppwriteTablesdb(localName: 'main', name: .literal('main')));
     final table = add(
       AppwriteTablesdbTable(
         localName: 'users',
-        databaseId: TfArg.ref(db.id),
-        name: TfArg.literal('users'),
+        databaseId: .ref(db.id),
+        name: .literal('users'),
       ),
     );
     add(
       AppwriteTablesdbColumn(
         localName: 'name',
-        databaseId: TfArg.ref(db.id),
-        tableId: TfArg.ref(table.id),
-        type: TfArg.literal(TablesdbColumnType.varchar),
-        key: TfArg.literal('name'),
-        size: TfArg.literal(255),
-        columnRequired: TfArg.literal(true),
+        databaseId: .ref(db.id),
+        tableId: .ref(table.id),
+        type: .literal(.varchar),
+        key: .literal('name'),
+        size: .literal(255),
+        columnRequired: .literal(true),
       ),
     );
     add(
       AppwriteTablesdbIndex(
         localName: 'name_idx',
-        databaseId: TfArg.ref(db.id),
-        tableId: TfArg.ref(table.id),
-        type: TfArg.literal('key'),
-        columns: TfArg.literal(['name']),
-        key: TfArg.literal('name_idx'),
+        databaseId: .ref(db.id),
+        tableId: .ref(table.id),
+        type: .literal('key'),
+        columns: .literal(['name']),
+        key: .literal('name_idx'),
       ),
     );
     add(
       AppwriteTablesdbRow(
         localName: 'seed',
-        databaseId: TfArg.ref(db.id),
-        tableId: TfArg.ref(table.id),
-        data: TfArg.literal('{"name":"demo"}'),
+        databaseId: .ref(db.id),
+        tableId: .ref(table.id),
+        data: .literal('{"name":"demo"}'),
       ),
     );
 
     final pg = add(
       AppwritePostgresqlDatabase(
         localName: 'pg',
-        name: TfArg.literal('terradart-pg'),
+        name: .literal('terradart-pg'),
       ),
     );
     add(
       AppwritePostgresqlBackupPolicy(
         localName: 'pg_nightly',
-        databaseId: TfArg.ref(pg.id),
-        name: TfArg.literal('nightly'),
-        retention: TfArg.literal(7),
-        schedule: TfArg.literal('0 2 * * *'),
+        databaseId: .ref(pg.id),
+        name: .literal('nightly'),
+        retention: .literal(7),
+        schedule: .literal('0 2 * * *'),
       ),
     );
     add(
       AppwritePostgresqlBackupStorage(
         localName: 'pg_offsite',
-        databaseId: TfArg.ref(pg.id),
-        bucket: TfArg.literal('terradart-pg-backups'),
-        storageProvider: TfArg.literal(
-          PostgresqlBackupStorageStorageProvider.s3,
-        ),
+        databaseId: .ref(pg.id),
+        bucket: .literal('terradart-pg-backups'),
+        storageProvider: .literal(.s3),
         accessKey: TfArg.variable('backup_access_key'),
         secretKey: TfArg.variable('backup_secret_key'),
       ),
     );
+    add(AppwritePostgresqlBranch(localName: 'pg_dev', databaseId: .ref(pg.id)));
     add(
-      AppwritePostgresqlBranch(
-        localName: 'pg_dev',
-        databaseId: TfArg.ref(pg.id),
-      ),
-    );
-    add(
-      AppwritePostgresqlPooler(
-        localName: 'pg_pool',
-        databaseId: TfArg.ref(pg.id),
-      ),
+      AppwritePostgresqlPooler(localName: 'pg_pool', databaseId: .ref(pg.id)),
     );
     add(
       AppwritePostgresqlExtension(
         localName: 'pg_uuid',
-        databaseId: TfArg.ref(pg.id),
-        name: TfArg.literal('uuid-ossp'),
+        databaseId: .ref(pg.id),
+        name: .literal('uuid-ossp'),
       ),
     );
 
     final mysql = add(
       AppwriteMysqlDatabase(
         localName: 'mysql',
-        name: TfArg.literal('terradart-mysql'),
+        name: .literal('terradart-mysql'),
       ),
     );
     add(
       AppwriteMysqlBackupPolicy(
         localName: 'mysql_nightly',
-        databaseId: TfArg.ref(mysql.id),
-        name: TfArg.literal('nightly'),
-        retention: TfArg.literal(7),
-        schedule: TfArg.literal('0 2 * * *'),
+        databaseId: .ref(mysql.id),
+        name: .literal('nightly'),
+        retention: .literal(7),
+        schedule: .literal('0 2 * * *'),
       ),
     );
     add(
       AppwriteMysqlBackupStorage(
         localName: 'mysql_offsite',
-        databaseId: TfArg.ref(mysql.id),
-        bucket: TfArg.literal('terradart-mysql-backups'),
-        storageProvider: TfArg.literal(MysqlBackupStorageStorageProvider.s3),
+        databaseId: .ref(mysql.id),
+        bucket: .literal('terradart-mysql-backups'),
+        storageProvider: .literal(.s3),
         accessKey: TfArg.variable('backup_access_key'),
         secretKey: TfArg.variable('backup_secret_key'),
       ),
     );
     add(
-      AppwriteMysqlBranch(
-        localName: 'mysql_dev',
-        databaseId: TfArg.ref(mysql.id),
-      ),
+      AppwriteMysqlBranch(localName: 'mysql_dev', databaseId: .ref(mysql.id)),
     );
     add(
-      AppwriteMysqlPooler(
-        localName: 'mysql_pool',
-        databaseId: TfArg.ref(mysql.id),
-      ),
+      AppwriteMysqlPooler(localName: 'mysql_pool', databaseId: .ref(mysql.id)),
     );
 
     final mongo = add(
       AppwriteMongoDatabase(
         localName: 'mongo',
-        name: TfArg.literal('terradart-mongo'),
+        name: .literal('terradart-mongo'),
       ),
     );
     add(
       AppwriteMongoBackupPolicy(
         localName: 'mongo_nightly',
-        databaseId: TfArg.ref(mongo.id),
-        name: TfArg.literal('nightly'),
-        retention: TfArg.literal(7),
-        schedule: TfArg.literal('0 2 * * *'),
+        databaseId: .ref(mongo.id),
+        name: .literal('nightly'),
+        retention: .literal(7),
+        schedule: .literal('0 2 * * *'),
       ),
     );
     add(
       AppwriteMongoBackupStorage(
         localName: 'mongo_offsite',
-        databaseId: TfArg.ref(mongo.id),
-        bucket: TfArg.literal('terradart-mongo-backups'),
-        storageProvider: TfArg.literal(MongoBackupStorageStorageProvider.s3),
+        databaseId: .ref(mongo.id),
+        bucket: .literal('terradart-mongo-backups'),
+        storageProvider: .literal(.s3),
         accessKey: TfArg.variable('backup_access_key'),
         secretKey: TfArg.variable('backup_secret_key'),
       ),
     );
     add(
-      AppwriteMongoBranch(
-        localName: 'mongo_dev',
-        databaseId: TfArg.ref(mongo.id),
-      ),
+      AppwriteMongoBranch(localName: 'mongo_dev', databaseId: .ref(mongo.id)),
     );
 
     final team = add(
-      AppwriteAuthTeam(localName: 'editors', name: TfArg.literal('editors')),
+      AppwriteAuthTeam(localName: 'editors', name: .literal('editors')),
     );
     final user = add(
       AppwriteAuthUser(
         localName: 'demo_user',
-        name: TfArg.literal('Demo User'),
-        email: TfArg.literal('demo@example.com'),
+        name: .literal('Demo User'),
+        email: .literal('demo@example.com'),
       ),
     );
 
     final fn = add(
       AppwriteFunction(
         localName: 'on_signup',
-        name: TfArg.literal('on-signup'),
-        runtime: TfArg.literal('node-22'),
-        entrypoint: TfArg.literal('index.js'),
-        timeout: TfArg.literal(30),
+        name: .literal('on-signup'),
+        runtime: .literal('node-22'),
+        entrypoint: .literal('index.js'),
+        timeout: .literal(30),
       ),
     );
     add(
       AppwriteFunctionVariable(
         localName: 'api_url',
-        functionId: TfArg.ref(fn.id),
-        key: TfArg.literal('API_URL'),
+        functionId: .ref(fn.id),
+        key: .literal('API_URL'),
         value: TfArg.variable('function_api_url'),
       ),
     );
     add(
       AppwriteFunctionDeployment(
         localName: 'on_signup_src',
-        functionId: TfArg.ref(fn.id),
-        sourceType: TfArg.literal(FunctionDeploymentSourceType.template),
-        owner: TfArg.literal('appwrite'),
-        repository: TfArg.literal('templates-for-sites'),
-        type: TfArg.literal('branch'),
-        reference: TfArg.literal('main'),
-        activate: TfArg.literal(true),
+        functionId: .ref(fn.id),
+        sourceType: .literal(.template),
+        owner: .literal('appwrite'),
+        repository: .literal('templates-for-sites'),
+        type: .literal('branch'),
+        reference: .literal('main'),
+        activate: .literal(true),
       ),
     );
 
     final site = add(
       AppwriteSite(
         localName: 'dashboard',
-        name: TfArg.literal('dashboard'),
-        framework: TfArg.literal('nextjs'),
-        buildRuntime: TfArg.literal('node-22'),
-        installCommand: TfArg.literal('npm install'),
-        buildCommand: TfArg.literal('npm run build'),
+        name: .literal('dashboard'),
+        framework: .literal('nextjs'),
+        buildRuntime: .literal('node-22'),
+        installCommand: .literal('npm install'),
+        buildCommand: .literal('npm run build'),
       ),
     );
     add(
       AppwriteSiteVariable(
         localName: 'public_api',
-        siteId: TfArg.ref(site.id),
-        key: TfArg.literal('NEXT_PUBLIC_API_URL'),
+        siteId: .ref(site.id),
+        key: .literal('NEXT_PUBLIC_API_URL'),
         value: TfArg.variable('site_api_url'),
       ),
     );
     add(
       AppwriteSiteDeployment(
         localName: 'dashboard_src',
-        siteId: TfArg.ref(site.id),
-        sourceType: TfArg.literal(SiteDeploymentSourceType.template),
-        owner: TfArg.literal('appwrite'),
-        repository: TfArg.literal('templates-for-sites'),
-        rootDirectory: TfArg.literal('nextjs/starter'),
-        type: TfArg.literal('branch'),
-        reference: TfArg.literal('main'),
-        activate: TfArg.literal(true),
+        siteId: .ref(site.id),
+        sourceType: .literal(.template),
+        owner: .literal('appwrite'),
+        repository: .literal('templates-for-sites'),
+        rootDirectory: .literal('nextjs/starter'),
+        type: .literal('branch'),
+        reference: .literal('main'),
+        activate: .literal(true),
       ),
     );
 
     add(
       AppwriteProxyRule(
         localName: 'dash_domain',
-        domain: TfArg.literal('dash.terradart-demo.example'),
-        resourceId: TfArg.ref(site.id),
-        type: TfArg.literal(ProxyRuleType.site),
+        domain: .literal('dash.terradart-demo.example'),
+        resourceId: .ref(site.id),
+        type: .literal(.site),
       ),
     );
 
     add(
       AppwriteMessagingProvider(
         localName: 'smtp',
-        name: TfArg.literal('smtp'),
-        type: TfArg.literal(MessagingProviderType.smtp),
-        host: TfArg.literal('smtp.example.com'),
-        port: TfArg.literal(587),
+        name: .literal('smtp'),
+        type: .literal(.smtp),
+        host: .literal('smtp.example.com'),
+        port: .literal(587),
       ),
     );
     final topic = add(
-      AppwriteMessagingTopic(
-        localName: 'alerts',
-        name: TfArg.literal('alerts'),
-      ),
+      AppwriteMessagingTopic(localName: 'alerts', name: .literal('alerts')),
     );
     add(
       AppwriteMessagingSubscriber(
         localName: 'ops',
-        topicId: TfArg.ref(topic.id),
-        targetId: TfArg.literal('target-demo'),
+        topicId: .ref(topic.id),
+        targetId: .literal('target-demo'),
       ),
     );
 
     final hook = add(
       AppwriteWebhook(
         localName: 'user_events',
-        name: TfArg.literal('user-events'),
-        url: TfArg.literal('https://api.example.com/webhooks/users'),
-        events: TfArg.literal(['users.*.create', 'users.*.update']),
+        name: .literal('user-events'),
+        url: .literal('https://api.example.com/webhooks/users'),
+        events: .literal(['users.*.create', 'users.*.update']),
       ),
     );
     add(
       AppwriteBackupPolicy(
         localName: 'shared',
-        retention: TfArg.literal(14),
-        schedule: TfArg.literal('0 3 * * *'),
-        services: TfArg.literal(['database', 'storage']),
+        retention: .literal(14),
+        schedule: .literal('0 3 * * *'),
+        services: .literal(['database', 'storage']),
       ),
     );
 
+    addData(DataAppwriteAuthTeam(localName: 'editors_ds', id: .ref(team.id)));
+    addData(DataAppwriteAuthUser(localName: 'demo_user_ds', id: .ref(user.id)));
+    addData(DataAppwriteFunction(localName: 'fn_ds', id: .ref(fn.id)));
     addData(
-      DataAppwriteAuthTeam(localName: 'editors_ds', id: TfArg.ref(team.id)),
+      DataAppwriteMessagingTopic(localName: 'topic_ds', id: .ref(topic.id)),
     );
+    addData(DataAppwriteSite(localName: 'site_ds', id: .ref(site.id)));
     addData(
-      DataAppwriteAuthUser(localName: 'demo_user_ds', id: TfArg.ref(user.id)),
+      DataAppwriteStorageBucket(localName: 'bucket_ds', id: .ref(bucket.id)),
     );
-    addData(DataAppwriteFunction(localName: 'fn_ds', id: TfArg.ref(fn.id)));
-    addData(
-      DataAppwriteMessagingTopic(
-        localName: 'topic_ds',
-        id: TfArg.ref(topic.id),
-      ),
-    );
-    addData(DataAppwriteSite(localName: 'site_ds', id: TfArg.ref(site.id)));
-    addData(
-      DataAppwriteStorageBucket(
-        localName: 'bucket_ds',
-        id: TfArg.ref(bucket.id),
-      ),
-    );
-    addData(DataAppwriteTablesdb(localName: 'db_ds', id: TfArg.ref(db.id)));
-    addData(DataAppwriteWebhook(localName: 'hook_ds', id: TfArg.ref(hook.id)));
+    addData(DataAppwriteTablesdb(localName: 'db_ds', id: .ref(db.id)));
+    addData(DataAppwriteWebhook(localName: 'hook_ds', id: .ref(hook.id)));
 
     addData(DataAppwritePostgresqlSpecifications(localName: 'pg_specs'));
     addData(DataAppwritePostgresqlDatabases(localName: 'pg_list'));
     addData(
-      DataAppwritePostgresqlDatabase(localName: 'pg_ds', id: TfArg.ref(pg.id)),
+      DataAppwritePostgresqlDatabase(localName: 'pg_ds', id: .ref(pg.id)),
     );
     addData(
       DataAppwritePostgresqlDatabaseStatus(
         localName: 'pg_status',
-        databaseId: TfArg.ref(pg.id),
+        databaseId: .ref(pg.id),
       ),
     );
     addData(
       DataAppwritePostgresqlBackups(
         localName: 'pg_backups',
-        databaseId: TfArg.ref(pg.id),
+        databaseId: .ref(pg.id),
       ),
     );
     addData(
       DataAppwritePostgresqlExtensions(
         localName: 'pg_exts',
-        databaseId: TfArg.ref(pg.id),
+        databaseId: .ref(pg.id),
       ),
     );
 
     addData(DataAppwriteMysqlSpecifications(localName: 'mysql_specs'));
     addData(DataAppwriteMysqlDatabases(localName: 'mysql_list'));
     addData(
-      DataAppwriteMysqlDatabase(localName: 'mysql_ds', id: TfArg.ref(mysql.id)),
+      DataAppwriteMysqlDatabase(localName: 'mysql_ds', id: .ref(mysql.id)),
     );
     addData(
       DataAppwriteMysqlDatabaseStatus(
         localName: 'mysql_status',
-        databaseId: TfArg.ref(mysql.id),
+        databaseId: .ref(mysql.id),
       ),
     );
     addData(
       DataAppwriteMysqlBackups(
         localName: 'mysql_backups',
-        databaseId: TfArg.ref(mysql.id),
+        databaseId: .ref(mysql.id),
       ),
     );
 
     addData(DataAppwriteMongoSpecifications(localName: 'mongo_specs'));
     addData(DataAppwriteMongoDatabases(localName: 'mongo_list'));
     addData(
-      DataAppwriteMongoDatabase(localName: 'mongo_ds', id: TfArg.ref(mongo.id)),
+      DataAppwriteMongoDatabase(localName: 'mongo_ds', id: .ref(mongo.id)),
     );
     addData(
       DataAppwriteMongoDatabaseStatus(
         localName: 'mongo_status',
-        databaseId: TfArg.ref(mongo.id),
+        databaseId: .ref(mongo.id),
       ),
     );
     addData(
       DataAppwriteMongoBackups(
         localName: 'mongo_backups',
-        databaseId: TfArg.ref(mongo.id),
+        databaseId: .ref(mongo.id),
       ),
     );
   }

@@ -26,42 +26,40 @@ final class CloudRunV1Stack extends Stack {
     final apiRun = add(
       GoogleProjectService(
         localName: 'api_run',
-        service: TfArg.literal('run.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('run.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final invoker = add(
       GoogleServiceAccount(
         localName: 'run_invoker',
-        accountId: TfArg.literal('run-v1-invoker'),
-        displayName: TfArg.literal('Cloud Run v1 invoker'),
+        accountId: .literal('run-v1-invoker'),
+        displayName: .literal('Cloud Run v1 invoker'),
       ),
     );
 
     final hello = add(
       GoogleCloudRunService(
         localName: 'hello',
-        location: TfArg.literal('us-central1'),
-        name: TfArg.literal('terradart-run-v1'),
+        location: .literal('us-central1'),
+        name: .literal('terradart-run-v1'),
         template: CloudRunServiceTemplate(
           spec: CloudRunServiceTemplateSpec(
             containers: [
               CloudRunServiceTemplateSpecContainers(
-                image: TfArg.literal(
-                  'us-docker.pkg.dev/cloudrun/container/hello',
-                ),
+                image: .literal('us-docker.pkg.dev/cloudrun/container/hello'),
               ),
             ],
           ),
         ),
         traffic: [
           CloudRunServiceTraffic(
-            percent: TfArg.literal(100),
-            latestRevision: TfArg.literal(true),
+            percent: .literal(100),
+            latestRevision: .literal(true),
           ),
         ],
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(apiRun)],
       ),
     );
@@ -69,10 +67,10 @@ final class CloudRunV1Stack extends Stack {
     add(
       GoogleCloudRunServiceIamMember(
         localName: 'invoker',
-        service: TfArg.ref(hello.nameRef),
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/run.invoker'),
-        member: TfArg.ref(invoker.iamMember),
+        service: .ref(hello.nameRef),
+        location: .literal('us-central1'),
+        role: .literal('roles/run.invoker'),
+        member: .ref(invoker.iamMember),
         dependsOn: [
           ResourceDependency(apiRun),
           ResourceDependency(hello),

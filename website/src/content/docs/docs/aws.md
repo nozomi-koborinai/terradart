@@ -50,11 +50,11 @@ final class HelloLambdaStack extends Stack {
       localName: 'lambda_trust',
       statement: [
         DataIamPolicyDocumentStatement(
-          actions: TfArg.literal(['sts:AssumeRole']),
+          actions: .literal(['sts:AssumeRole']),
           principals: [
             DataIamPolicyDocumentStatementPrincipals(
-              type: TfArg.literal('Service'),
-              identifiers: TfArg.literal(['lambda.amazonaws.com']),
+              type: .literal('Service'),
+              identifiers: .literal(['lambda.amazonaws.com']),
             ),
           ],
         ),
@@ -64,42 +64,42 @@ final class HelloLambdaStack extends Stack {
 
     final role = AwsIamRole(
       localName: 'hello',
-      name: .name(TfArg.literal('hello-dart')),
-      assumeRolePolicy: TfArg.ref(trust.json),
+      name: .name(.literal('hello-dart')),
+      assumeRolePolicy: .ref(trust.json),
     );
     add(role);
     add(AwsIamRolePolicyAttachment(
       localName: 'hello_logs',
-      role: TfArg.ref(role.nameRef),
-      policyArn: TfArg.literal(
+      role: .ref(role.nameRef),
+      policyArn: .literal(
         'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole',
       ),
     ));
 
     final logs = AwsCloudwatchLogGroup(
       localName: 'hello',
-      name: .name(TfArg.literal('/aws/lambda/hello-dart')),
-      retentionInDays: TfArg.literal(14),
+      name: .name(.literal('/aws/lambda/hello-dart')),
+      retentionInDays: .literal(14),
     );
     add(logs);
 
     final fn = AwsLambdaFunction(
       localName: 'hello',
-      functionName: TfArg.literal('hello-dart'),
-      role: TfArg.ref(role.arn),
-      runtime: TfArg.literal('provided.al2023'),
-      handler: TfArg.literal('bootstrap'),
-      filename: TfArg.literal('../build/bootstrap.zip'),
+      functionName: .literal('hello-dart'),
+      role: .ref(role.arn),
+      runtime: .literal('provided.al2023'),
+      handler: .literal('bootstrap'),
+      filename: .literal('../build/bootstrap.zip'),
       loggingConfig: LambdaFunctionLoggingConfig(
-        logFormat: TfArg.literal('Text'),
-        logGroup: TfArg.ref(logs.nameRef),
+        logFormat: .literal('Text'),
+        logGroup: .ref(logs.nameRef),
       ),
     );
     add(fn);
     add(AwsLambdaFunctionUrl(
       localName: 'hello',
-      functionName: TfArg.ref(fn.arn),
-      authorizationType: TfArg.literal('NONE'),
+      functionName: .ref(fn.arn),
+      authorizationType: .literal('NONE'),
     ));
   }
 }
@@ -135,11 +135,11 @@ final class DartServerStack extends Stack {
         localName: '${name}_trust',
         statement: [
           DataIamPolicyDocumentStatement(
-            actions: TfArg.literal(['sts:AssumeRole']),
+            actions: .literal(['sts:AssumeRole']),
             principals: [
               DataIamPolicyDocumentStatementPrincipals(
-                type: TfArg.literal('Service'),
-                identifiers: TfArg.literal([service]),
+                type: .literal('Service'),
+                identifiers: .literal([service]),
               ),
             ],
           ),
@@ -148,14 +148,14 @@ final class DartServerStack extends Stack {
       addData(trust);
       final role = AwsIamRole(
         localName: name,
-        name: .name(TfArg.literal('dart-server-$name')),
-        assumeRolePolicy: TfArg.ref(trust.json),
+        name: .name(.literal('dart-server-$name')),
+        assumeRolePolicy: .ref(trust.json),
       );
       add(role);
       add(AwsIamRolePolicyAttachment(
         localName: name,
-        role: TfArg.ref(role.nameRef),
-        policyArn: TfArg.literal(policyArn),
+        role: .ref(role.nameRef),
+        policyArn: .literal(policyArn),
       ));
       return role;
     }
@@ -174,23 +174,23 @@ final class DartServerStack extends Stack {
 
     final cluster = AwsEcsCluster(
       localName: 'server',
-      name: TfArg.literal('dart-server'),
+      name: .literal('dart-server'),
     );
     add(cluster);
 
     add(AwsEcsExpressGatewayService(
       localName: 'server',
-      serviceName: TfArg.literal('dart-server'),
-      cluster: TfArg.ref(cluster.nameRef),
-      executionRoleArn: TfArg.ref(execution.arn),
-      infrastructureRoleArn: TfArg.ref(infrastructure.arn),
-      cpu: TfArg.literal('256'),
-      memory: TfArg.literal('512'),
-      healthCheckPath: TfArg.literal('/'),
+      serviceName: .literal('dart-server'),
+      cluster: .ref(cluster.nameRef),
+      executionRoleArn: .ref(execution.arn),
+      infrastructureRoleArn: .ref(infrastructure.arn),
+      cpu: .literal('256'),
+      memory: .literal('512'),
+      healthCheckPath: .literal('/'),
       primaryContainer: [
         EcsExpressGatewayServicePrimaryContainer(
-          image: TfArg.literal(image),
-          containerPort: TfArg.literal(8080),
+          image: .literal(image),
+          containerPort: .literal(8080),
         ),
       ],
     ));
@@ -218,67 +218,67 @@ final class FlutterWebStack extends Stack {
       : super(providers: [const AwsProvider(region: 'us-east-1')]) {
     final bucket = AwsS3Bucket(
       localName: 'site',
-      bucket: .bucketPrefix(TfArg.literal('flutter-web-')),
+      bucket: .bucketPrefix(.literal('flutter-web-')),
     );
     add(bucket);
     add(AwsS3BucketPublicAccessBlock(
       localName: 'site',
-      bucket: TfArg.ref(bucket.id),
-      blockPublicAcls: TfArg.literal(true),
-      blockPublicPolicy: TfArg.literal(true),
-      ignorePublicAcls: TfArg.literal(true),
-      restrictPublicBuckets: TfArg.literal(true),
+      bucket: .ref(bucket.id),
+      blockPublicAcls: .literal(true),
+      blockPublicPolicy: .literal(true),
+      ignorePublicAcls: .literal(true),
+      restrictPublicBuckets: .literal(true),
     ));
 
     final oac = AwsCloudfrontOriginAccessControl(
       localName: 'site',
-      name: TfArg.literal('flutter-web'),
-      originAccessControlOriginType: TfArg.literal('s3'),
-      signingBehavior: TfArg.literal('always'),
-      signingProtocol: TfArg.literal('sigv4'),
+      name: .literal('flutter-web'),
+      originAccessControlOriginType: .literal('s3'),
+      signingBehavior: .literal('always'),
+      signingProtocol: .literal('sigv4'),
     );
     add(oac);
 
     final cachePolicy = DataAwsCloudfrontCachePolicy(
       localName: 'caching_optimized',
-      name: TfArg.literal('Managed-CachingOptimized'),
+      name: .literal('Managed-CachingOptimized'),
     );
     addData(cachePolicy);
 
     final distribution = AwsCloudfrontDistribution(
       localName: 'site',
-      enabled: TfArg.literal(true),
-      defaultRootObject: TfArg.literal('index.html'),
+      enabled: .literal(true),
+      defaultRootObject: .literal('index.html'),
       origin: [
         CloudfrontDistributionOrigin(
-          originId: TfArg.literal('site'),
-          domainName: TfArg.ref(bucket.bucketRegionalDomainName),
-          originAccessControlId: TfArg.ref(oac.id),
+          originId: .literal('site'),
+          domainName: .ref(bucket.bucketRegionalDomainName),
+          originAccessControlId: .ref(oac.id),
         ),
       ],
       defaultCacheBehavior: CloudfrontDistributionDefaultCacheBehavior(
-        targetOriginId: TfArg.literal('site'),
-        viewerProtocolPolicy: TfArg.literal('redirect-to-https'),
-        allowedMethods: TfArg.literal(['GET', 'HEAD']),
-        cachedMethods: TfArg.literal(['GET', 'HEAD']),
-        cachePolicyId: TfArg.ref(cachePolicy.id),
+        targetOriginId: .literal('site'),
+        viewerProtocolPolicy: .literal('redirect-to-https'),
+        allowedMethods: .literal(['GET', 'HEAD']),
+        cachedMethods: .literal(['GET', 'HEAD']),
+        cachePolicyId: .ref(cachePolicy.id),
       ),
       // Flutter Web routes are client-side: serve index.html for unknown paths.
       customErrorResponse: [
         for (final code in [403, 404])
           CloudfrontDistributionCustomErrorResponse(
-            errorCode: TfArg.literal(code),
-            responseCode: TfArg.literal(200),
-            responsePagePath: TfArg.literal('/index.html'),
+            errorCode: .literal(code),
+            responseCode: .literal(200),
+            responsePagePath: .literal('/index.html'),
           ),
       ],
       restrictions: CloudfrontDistributionRestrictions(
         geoRestriction: CloudfrontDistributionRestrictionsGeoRestriction(
-          restrictionType: TfArg.literal('none'),
+          restrictionType: .literal('none'),
         ),
       ),
       viewerCertificate: CloudfrontDistributionViewerCertificate(
-        cloudfrontDefaultCertificate: TfArg.literal(true),
+        cloudfrontDefaultCertificate: .literal(true),
       ),
     );
     add(distribution);
@@ -287,19 +287,19 @@ final class FlutterWebStack extends Stack {
       localName: 'site_bucket',
       statement: [
         DataIamPolicyDocumentStatement(
-          actions: TfArg.literal(['s3:GetObject']),
-          resources: TfArg.literal(['${bucket.arn.interpolation}/*']),
+          actions: .literal(['s3:GetObject']),
+          resources: .literal(['${bucket.arn.interpolation}/*']),
           principals: [
             DataIamPolicyDocumentStatementPrincipals(
-              type: TfArg.literal('Service'),
-              identifiers: TfArg.literal(['cloudfront.amazonaws.com']),
+              type: .literal('Service'),
+              identifiers: .literal(['cloudfront.amazonaws.com']),
             ),
           ],
           condition: [
             DataIamPolicyDocumentStatementCondition(
-              test: TfArg.literal('StringEquals'),
-              variable: TfArg.literal('AWS:SourceArn'),
-              values: TfArg.literal([TfArg.ref(distribution.arn)]),
+              test: .literal('StringEquals'),
+              variable: .literal('AWS:SourceArn'),
+              values: .literal([.ref(distribution.arn)]),
             ),
           ],
         ),
@@ -308,8 +308,8 @@ final class FlutterWebStack extends Stack {
     addData(readFromCloudFront);
     add(AwsS3BucketPolicy(
       localName: 'site',
-      bucket: TfArg.ref(bucket.id),
-      policy: TfArg.ref(readFromCloudFront.json),
+      bucket: .ref(bucket.id),
+      policy: .ref(readFromCloudFront.json),
     ));
   }
 }

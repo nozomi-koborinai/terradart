@@ -41,7 +41,7 @@ final class AccessControlsStack extends Stack {
       GoogleAccessContextManagerAccessPolicy(
         localName: 'org_policy',
         parent: TfArg.expression('organizations/\${var.ops_organization_id}'),
-        title: TfArg.literal('terradart-quickstart-policy'),
+        title: .literal('terradart-quickstart-policy'),
         dependsOn: apiDeps,
       ),
     );
@@ -49,14 +49,14 @@ final class AccessControlsStack extends Stack {
     final usOnly = add(
       GoogleAccessContextManagerAccessLevel(
         localName: 'us_only',
-        name: TfArg.literal('us_only'),
-        parent: TfArg.ref(policy.name),
-        title: TfArg.literal('US-only access'),
+        name: .literal('us_only'),
+        parent: .ref(policy.name),
+        title: .literal('US-only access'),
         definition: .basic(
           AccessContextManagerAccessLevelBasic(
             conditions: [
               AccessContextManagerAccessLevelBasicConditions(
-                regions: TfArg.literal(['US']),
+                regions: .literal(['US']),
               ),
             ],
           ),
@@ -68,13 +68,13 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeter(
         localName: 'storage_perimeter',
-        name: TfArg.literal('storage_perimeter'),
-        parent: TfArg.ref(policy.name),
-        title: TfArg.literal('Restrict Storage to US-only clients'),
+        name: .literal('storage_perimeter'),
+        parent: .ref(policy.name),
+        title: .literal('Restrict Storage to US-only clients'),
         status: AccessContextManagerServicePerimeterStatus(
-          resources: TfArg.literal(['projects/$projectId']),
-          restrictedServices: TfArg.literal(['storage.googleapis.com']),
-          accessLevels: TfArg.literal([usOnly.nameRef.interpolation]),
+          resources: .literal(['projects/$projectId']),
+          restrictedServices: .literal(['storage.googleapis.com']),
+          accessLevels: .literal([usOnly.nameRef.interpolation]),
         ),
         dependsOn: [ResourceDependency(policy), ResourceDependency(usOnly)],
       ),
@@ -87,12 +87,12 @@ final class AccessControlsStack extends Stack {
     final dryRun = add(
       GoogleAccessContextManagerServicePerimeter(
         localName: 'storage_dry_run',
-        name: TfArg.literal('storage_dry_run'),
-        parent: TfArg.ref(policy.name),
-        title: TfArg.literal('Storage dry-run perimeter'),
-        useExplicitDryRunSpec: TfArg.literal(true),
+        name: .literal('storage_dry_run'),
+        parent: .ref(policy.name),
+        title: .literal('Storage dry-run perimeter'),
+        useExplicitDryRunSpec: .literal(true),
         spec: AccessContextManagerServicePerimeterSpec(
-          restrictedServices: TfArg.literal(['storage.googleapis.com']),
+          restrictedServices: .literal(['storage.googleapis.com']),
         ),
         lifecycle: const LifecycleOptions(
           ignoreChanges: [
@@ -108,9 +108,9 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterDryRunResource(
         localName: 'dry_run_project',
-        perimeterName: TfArg.ref(dryRun.nameRef),
-        resource: TfArg.literal('projects/987654321'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        perimeterName: .ref(dryRun.nameRef),
+        resource: .literal('projects/987654321'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(dryRun)],
       ),
     );
@@ -122,14 +122,14 @@ final class AccessControlsStack extends Stack {
     final chromeos = add(
       GoogleAccessContextManagerAccessLevel(
         localName: 'chromeos_no_lock',
-        name: TfArg.literal('chromeos_no_lock'),
-        parent: TfArg.ref(policy.name),
-        title: TfArg.literal('chromeos_no_lock'),
+        name: .literal('chromeos_no_lock'),
+        parent: .ref(policy.name),
+        title: .literal('chromeos_no_lock'),
         definition: .basic(
           AccessContextManagerAccessLevelBasic(
             conditions: [
               AccessContextManagerAccessLevelBasicConditions(
-                regions: TfArg.literal(['US']),
+                regions: .literal(['US']),
               ),
             ],
           ),
@@ -144,28 +144,25 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerAccessLevelCondition(
         localName: 'chromeos_condition',
-        accessLevel: TfArg.ref(chromeos.nameRef),
-        ipSubnetworks: TfArg.literal(['192.0.4.0/24']),
-        members: TfArg.literal([
-          'user:test@google.com',
-          'user:test2@google.com',
-        ]),
-        negate: TfArg.literal(false),
+        accessLevel: .ref(chromeos.nameRef),
+        ipSubnetworks: .literal(['192.0.4.0/24']),
+        members: .literal(['user:test@google.com', 'user:test2@google.com']),
+        negate: .literal(false),
         devicePolicy: AccessContextManagerAccessLevelConditionDevicePolicy(
-          requireScreenLock: TfArg.literal(false),
-          requireAdminApproval: TfArg.literal(false),
-          requireCorpOwned: TfArg.literal(true),
+          requireScreenLock: .literal(false),
+          requireAdminApproval: .literal(false),
+          requireCorpOwned: .literal(true),
           osConstraints: [
             AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints(
-              osType: TfArg.literal(
+              osType: .literal(
                 AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType
                     .desktopChromeOs,
               ),
             ),
           ],
         ),
-        regions: TfArg.literal(['IT', 'US']),
-        deletionPolicy: TfArg.literal('DELETE'),
+        regions: .literal(['IT', 'US']),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(chromeos)],
       ),
     );
@@ -173,9 +170,9 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerAccessPolicyIamMember(
         localName: 'policy_viewer',
-        name: TfArg.ref(policy.name),
-        role: TfArg.literal('roles/accesscontextmanager.policyViewer'),
-        member: TfArg.literal('group:security-admins@example.com'),
+        name: .ref(policy.name),
+        role: .literal('roles/accesscontextmanager.policyViewer'),
+        member: .literal('group:security-admins@example.com'),
         dependsOn: [ResourceDependency(policy)],
       ),
     );
@@ -185,22 +182,16 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerAuthorizedOrgsDesc(
         localName: 'demo_orgs',
-        parent: TfArg.literal('accessPolicies/${policy.name.interpolation}'),
-        name: TfArg.literal(
+        parent: .literal('accessPolicies/${policy.name.interpolation}'),
+        name: .literal(
           'accessPolicies/${policy.name.interpolation}'
           '/authorizedOrgsDescs/terradart_desc',
         ),
-        orgs: TfArg.literal(['organizations/12345']),
-        authorizationType: TfArg.literal(
-          AccessContextManagerAuthorizedOrgsDescAuthorizationType.trust,
-        ),
-        assetType: TfArg.literal(
-          AccessContextManagerAuthorizedOrgsDescAssetType.credentialStrength,
-        ),
-        authorizationDirection: TfArg.literal(
-          AccessContextManagerAuthorizedOrgsDescAuthorizationDirection.to,
-        ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        orgs: .literal(['organizations/12345']),
+        authorizationType: .literal(.trust),
+        assetType: .literal(.credentialStrength),
+        authorizationDirection: .literal(.to),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(policy)],
       ),
     );
@@ -210,18 +201,18 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerAccessLevels(
         localName: 'bulk_levels',
-        parent: TfArg.ref(policy.name),
+        parent: .ref(policy.name),
         accessLevels: [
           AccessContextManagerAccessLevelsAccessLevels(
-            name: TfArg.literal(
+            name: .literal(
               'accessPolicies/${policy.name.interpolation}'
               '/accessLevels/bulk_eu',
             ),
-            title: TfArg.literal('bulk_eu'),
+            title: .literal('bulk_eu'),
             basic: AccessContextManagerAccessLevelsAccessLevelsBasic(
               conditions: [
                 AccessContextManagerAccessLevelsAccessLevelsBasicConditions(
-                  regions: TfArg.literal(['DE']),
+                  regions: .literal(['DE']),
                 ),
               ],
             ),
@@ -234,14 +225,14 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeters(
         localName: 'bulk_perimeters',
-        parent: TfArg.ref(policy.name),
+        parent: .ref(policy.name),
         servicePerimeters: [
           AccessContextManagerServicePerimetersServicePerimeters(
-            name: TfArg.literal(
+            name: .literal(
               'accessPolicies/${policy.name.interpolation}'
               '/servicePerimeters/bulk_storage',
             ),
-            title: TfArg.literal('bulk_storage'),
+            title: .literal('bulk_storage'),
           ),
         ],
         dependsOn: [ResourceDependency(policy)],
@@ -251,11 +242,11 @@ final class AccessControlsStack extends Stack {
     final attach = add(
       GoogleAccessContextManagerServicePerimeter(
         localName: 'attach_perimeter',
-        name: TfArg.literal('attach_perimeter'),
-        parent: TfArg.ref(policy.name),
-        title: TfArg.literal('Attachment perimeter'),
+        name: .literal('attach_perimeter'),
+        parent: .ref(policy.name),
+        title: .literal('Attachment perimeter'),
         status: AccessContextManagerServicePerimeterStatus(
-          restrictedServices: TfArg.literal(['storage.googleapis.com']),
+          restrictedServices: .literal(['storage.googleapis.com']),
         ),
         lifecycle: const LifecycleOptions(
           ignoreChanges: [
@@ -271,9 +262,9 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterResource(
         localName: 'live_project',
-        perimeterName: TfArg.ref(attach.nameRef),
-        resource: TfArg.literal('projects/987654322'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        perimeterName: .ref(attach.nameRef),
+        resource: .literal('projects/987654322'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(attach)],
       ),
     );
@@ -281,10 +272,10 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterIngressPolicy(
         localName: 'attach_ingress',
-        perimeter: TfArg.ref(attach.nameRef),
-        title: TfArg.literal('allow identities'),
+        perimeter: .ref(attach.nameRef),
+        title: .literal('allow identities'),
         ingressFrom: AccessContextManagerServicePerimeterIngressPolicyIngressFrom(
-          identityType: TfArg.literal(
+          identityType: .literal(
             AccessContextManagerServicePerimeterIngressPolicyIngressFromIdentityType
                 .anyIdentity,
           ),
@@ -296,10 +287,10 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterEgressPolicy(
         localName: 'attach_egress',
-        perimeter: TfArg.ref(attach.nameRef),
-        title: TfArg.literal('allow egress'),
+        perimeter: .ref(attach.nameRef),
+        title: .literal('allow egress'),
         egressFrom: AccessContextManagerServicePerimeterEgressPolicyEgressFrom(
-          identityType: TfArg.literal(
+          identityType: .literal(
             AccessContextManagerServicePerimeterEgressPolicyEgressFromIdentityType
                 .anyIdentity,
           ),
@@ -311,11 +302,11 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterDryRunIngressPolicy(
         localName: 'dry_run_ingress',
-        perimeter: TfArg.ref(dryRun.nameRef),
-        title: TfArg.literal('dry-run ingress'),
+        perimeter: .ref(dryRun.nameRef),
+        title: .literal('dry-run ingress'),
         ingressFrom:
             AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom(
-              identityType: TfArg.literal(
+              identityType: .literal(
                 AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFromIdentityType
                     .anyIdentity,
               ),
@@ -327,11 +318,11 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerServicePerimeterDryRunEgressPolicy(
         localName: 'dry_run_egress',
-        perimeter: TfArg.ref(dryRun.nameRef),
-        title: TfArg.literal('dry-run egress'),
+        perimeter: .ref(dryRun.nameRef),
+        title: .literal('dry-run egress'),
         egressFrom:
             AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFrom(
-              identityType: TfArg.literal(
+              identityType: .literal(
                 AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFromIdentityType
                     .anyIdentity,
               ),
@@ -343,11 +334,11 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerIngressPolicy(
         localName: 'legacy_ingress',
-        ingressPolicyName: TfArg.literal(
+        ingressPolicyName: .literal(
           '${attach.nameRef.interpolation}/ingressPolicies/legacy',
         ),
-        resource: TfArg.literal('projects/987654323'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        resource: .literal('projects/987654323'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(attach)],
       ),
     );
@@ -355,11 +346,11 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerEgressPolicy(
         localName: 'legacy_egress',
-        egressPolicyName: TfArg.literal(
+        egressPolicyName: .literal(
           '${attach.nameRef.interpolation}/egressPolicies/legacy',
         ),
-        resource: TfArg.literal('projects/987654323'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        resource: .literal('projects/987654323'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(attach)],
       ),
     );
@@ -368,9 +359,9 @@ final class AccessControlsStack extends Stack {
       GoogleAccessContextManagerGcpUserAccessBinding(
         localName: 'group_binding',
         organizationId: TfArg.expression('\${var.ops_organization_id}'),
-        groupKey: TfArg.literal('00abcde12345678'),
-        accessLevels: TfArg.literal([usOnly.nameRef.interpolation]),
-        deletionPolicy: TfArg.literal('DELETE'),
+        groupKey: .literal('00abcde12345678'),
+        accessLevels: .literal([usOnly.nameRef.interpolation]),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(usOnly)],
       ),
     );

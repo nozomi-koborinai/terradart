@@ -36,8 +36,8 @@ final class IdentityPlatformStack extends Stack {
       GoogleIdentityPlatformTenant(
         localName: 'app',
         // API: start with a letter; letters/digits/hyphens only; 4–20 chars.
-        displayName: TfArg.literal('TerraDart-app'),
-        allowPasswordSignup: TfArg.literal(true),
+        displayName: .literal('TerraDart-app'),
+        allowPasswordSignup: .literal(true),
         dependsOn: apiDeps,
       ),
     );
@@ -47,12 +47,12 @@ final class IdentityPlatformStack extends Stack {
     add(
       GoogleIdentityPlatformOauthIdpConfig(
         localName: 'project_oidc',
-        name: TfArg.literal('oidc.terradart-project'),
-        displayName: TfArg.literal('TerraDart project dummy OIDC'),
-        issuer: TfArg.literal('https://accounts.example.com'),
-        clientId: TfArg.literal('terradart-dummy-client'),
-        enabled: TfArg.literal(false),
-        deletionPolicy: TfArg.literal('DELETE'),
+        name: .literal('oidc.terradart-project'),
+        displayName: .literal('TerraDart project dummy OIDC'),
+        issuer: .literal('https://accounts.example.com'),
+        clientId: .literal('terradart-dummy-client'),
+        enabled: .literal(false),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );
@@ -62,13 +62,13 @@ final class IdentityPlatformStack extends Stack {
     add(
       GoogleIdentityPlatformTenantOauthIdpConfig(
         localName: 'demo_oidc',
-        name: TfArg.literal('oidc.terradart'),
-        tenant: TfArg.ref(tenant.nameRef),
-        displayName: TfArg.literal('TerraDart dummy OIDC'),
-        issuer: TfArg.literal('https://accounts.example.com'),
-        clientId: TfArg.literal('terradart-dummy-client'),
-        enabled: TfArg.literal(false),
-        deletionPolicy: TfArg.literal('DELETE'),
+        name: .literal('oidc.terradart'),
+        tenant: .ref(tenant.nameRef),
+        displayName: .literal('TerraDart dummy OIDC'),
+        issuer: .literal('https://accounts.example.com'),
+        clientId: .literal('terradart-dummy-client'),
+        enabled: .literal(false),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );

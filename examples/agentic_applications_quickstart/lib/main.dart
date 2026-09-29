@@ -40,13 +40,13 @@ final class AnalystPersonaStack extends Stack {
     final dataset = add(
       GoogleBigqueryDataset(
         localName: 'treasury',
-        datasetId: TfArg.literal('terradart_treasury'),
-        location: TfArg.literal('US'),
-        friendlyName: TfArg.literal('TerraDart treasury'),
-        description: TfArg.literal(
+        datasetId: .literal('terradart_treasury'),
+        location: .literal('US'),
+        friendlyName: .literal('TerraDart treasury'),
+        description: .literal(
           'Grounding data for the TerraDart treasury analyst persona.',
         ),
-        deleteContentsOnDestroy: TfArg.literal(true),
+        deleteContentsOnDestroy: .literal(true),
         dependsOn: apiDeps,
       ),
     );
@@ -54,11 +54,11 @@ final class AnalystPersonaStack extends Stack {
     final positions = add(
       GoogleBigqueryTable(
         localName: 'cash_positions',
-        datasetId: TfArg.ref(dataset.datasetIdRef),
-        tableId: TfArg.literal('cash_positions'),
-        description: TfArg.literal('Daily closing cash balance per account.'),
-        deletionProtection: TfArg.literal(false),
-        schema: TfArg.literal(
+        datasetId: .ref(dataset.datasetIdRef),
+        tableId: .literal('cash_positions'),
+        description: .literal('Daily closing cash balance per account.'),
+        deletionProtection: .literal(false),
+        schema: .literal(
           jsonEncode([
             {'name': 'as_of_date', 'type': 'DATE', 'mode': 'REQUIRED'},
             {'name': 'account_id', 'type': 'STRING', 'mode': 'REQUIRED'},
@@ -80,50 +80,48 @@ final class AnalystPersonaStack extends Stack {
     add(
       GoogleAgenticApplicationsAnalystAgentPersona(
         localName: 'treasury_analyst',
-        location: TfArg.literal('us-central1'),
-        analystAgentPersonaId: TfArg.literal('terradart-treasury-analyst'),
-        displayName: TfArg.literal('TerraDart treasury analyst'),
-        role: TfArg.literal(
-          AgenticApplicationsAnalystAgentPersonaRole.treasuryAnalyst,
-        ),
-        displayDescription: TfArg.literal(
+        location: .literal('us-central1'),
+        analystAgentPersonaId: .literal('terradart-treasury-analyst'),
+        displayName: .literal('TerraDart treasury analyst'),
+        role: .literal(.treasuryAnalyst),
+        displayDescription: .literal(
           'Answers cash-position and liquidity questions for TerraDart.',
         ),
-        modelDescription: TfArg.literal(
+        modelDescription: .literal(
           'Treasury analyst for a mid-size SaaS company. Prefers same-day '
           'balances and always reports amounts in the account currency.',
         ),
-        customerContext: TfArg.literal([
+        customerContext: .literal([
           'TerraDart operates in USD, EUR and JPY.',
           'The fiscal year ends on March 31.',
         ]),
         resources: [
           AgenticApplicationsAnalystAgentPersonaResources(
-            displayLabel: TfArg.literal('Cash positions'),
-            modelDescription: TfArg.literal(
+            displayLabel: .literal('Cash positions'),
+            modelDescription: .literal(
               'One row per account and day, with the closing balance.',
             ),
             bigqueryResource:
                 AgenticApplicationsAnalystAgentPersonaResourcesBigqueryResource(
-                  bigqueryDataset: TfArg.literal(datasetPath),
-                  bigqueryTable: TfArg.literal(tablePath),
-                  columnDescriptions: TfArg.literal({
+                  bigqueryDataset: .literal(datasetPath),
+                  bigqueryTable: .literal(tablePath),
+                  columnDescriptions: .literal({
                     'closing_balance':
                         'Closing balance in the account currency.',
                   }),
                 ),
           ),
           AgenticApplicationsAnalystAgentPersonaResources(
-            displayLabel: TfArg.literal('Liquidity policy'),
-            modelDescription: TfArg.literal(
+            displayLabel: .literal('Liquidity policy'),
+            modelDescription: .literal(
               'Internal policy the analyst must follow when flagging risk.',
             ),
-            useRag: TfArg.literal(true),
+            useRag: .literal(true),
             rawFileResource:
                 AgenticApplicationsAnalystAgentPersonaResourcesRawFileResource(
-                  fileTitle: TfArg.literal('liquidity_policy.md'),
-                  mimeType: TfArg.literal('text/markdown'),
-                  fileContent: TfArg.literal(
+                  fileTitle: .literal('liquidity_policy.md'),
+                  mimeType: .literal('text/markdown'),
+                  fileContent: .literal(
                     '# Liquidity policy\n\n'
                     'Flag any account whose closing balance covers less than '
                     '30 days of operating expenses.\n',
@@ -135,20 +133,18 @@ final class AnalystPersonaStack extends Stack {
         // schema alone does not carry.
         tables: [
           AgenticApplicationsAnalystAgentPersonaTables(
-            name: TfArg.literal('cash_positions'),
-            description: TfArg.literal('Daily closing balances per account.'),
+            name: .literal('cash_positions'),
+            description: .literal('Daily closing balances per account.'),
             columns: [
               AgenticApplicationsAnalystAgentPersonaTablesColumns(
-                name: TfArg.literal('account_id'),
-                dataType: TfArg.literal('STRING'),
-                description: TfArg.literal(
-                  'Internal treasury account identifier.',
-                ),
+                name: .literal('account_id'),
+                dataType: .literal('STRING'),
+                description: .literal('Internal treasury account identifier.'),
               ),
               AgenticApplicationsAnalystAgentPersonaTablesColumns(
-                name: TfArg.literal('closing_balance'),
-                dataType: TfArg.literal('NUMERIC'),
-                description: TfArg.literal(
+                name: .literal('closing_balance'),
+                dataType: .literal('NUMERIC'),
+                description: .literal(
                   'Balance at end of day, in the account currency.',
                 ),
               ),
@@ -157,11 +153,11 @@ final class AnalystPersonaStack extends Stack {
         ],
         skills: [
           AgenticApplicationsAnalystAgentPersonaSkills(
-            skillId: TfArg.literal('daily-cash-position'),
-            description: TfArg.literal(
+            skillId: .literal('daily-cash-position'),
+            description: .literal(
               'Summarize the latest cash position per currency.',
             ),
-            content: TfArg.literal(
+            content: .literal(
               '# Daily cash position\n\n'
               '1. Read the latest `as_of_date` in `cash_positions`.\n'
               '2. Group closing balances by currency.\n'
@@ -169,8 +165,8 @@ final class AnalystPersonaStack extends Stack {
             ),
             references: [
               AgenticApplicationsAnalystAgentPersonaSkillsReferences(
-                referenceId: TfArg.literal('policy-threshold'),
-                content: TfArg.literal(
+                referenceId: .literal('policy-threshold'),
+                content: .literal(
                   'The 30-day threshold is defined in liquidity_policy.md.',
                 ),
               ),
@@ -179,7 +175,7 @@ final class AnalystPersonaStack extends Stack {
         ],
         externalDataSources: [
           AgenticApplicationsAnalystAgentPersonaExternalDataSources(
-            enabled: TfArg.literal(true),
+            enabled: .literal(true),
             treasurySecuritiesAuctions:
                 const AgenticApplicationsAnalystAgentPersonaExternalDataSourcesTreasurySecuritiesAuctions(),
           ),
@@ -188,15 +184,15 @@ final class AnalystPersonaStack extends Stack {
           AgenticApplicationsAnalystAgentPersonaArtifactExamples(
             resource:
                 AgenticApplicationsAnalystAgentPersonaArtifactExamplesResource(
-                  displayLabel: TfArg.literal('Weekly liquidity brief'),
-                  modelDescription: TfArg.literal(
+                  displayLabel: .literal('Weekly liquidity brief'),
+                  modelDescription: .literal(
                     'Shape of the weekly brief the analyst produces.',
                   ),
                   rawFileResource:
                       AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceRawFileResource(
-                        fileTitle: TfArg.literal('weekly_brief_example.md'),
-                        mimeType: TfArg.literal('text/markdown'),
-                        fileContent: TfArg.literal(
+                        fileTitle: .literal('weekly_brief_example.md'),
+                        mimeType: .literal('text/markdown'),
+                        fileContent: .literal(
                           '# Weekly liquidity brief\n\n'
                           '## Position by currency\n\n## Accounts to watch\n',
                         ),
@@ -209,7 +205,7 @@ final class AnalystPersonaStack extends Stack {
         artifactsConfig: AgenticApplicationsAnalystAgentPersonaArtifactsConfig(
           documentGenerationOptions:
               AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerationOptions(
-                exportFormat: TfArg.literal('PDF'),
+                exportFormat: .literal('PDF'),
               ),
         ),
         dependsOn: [...apiDeps, ResourceDependency(positions)],

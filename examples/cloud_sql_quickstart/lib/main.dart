@@ -46,8 +46,8 @@ final class CloudSqlStack extends Stack {
     final vpc = add(
       GoogleComputeNetwork(
         localName: 'sql_vpc',
-        name: TfArg.literal('cloudsql-vpc'),
-        autoCreateSubnetworks: TfArg.literal(false),
+        name: .literal('cloudsql-vpc'),
+        autoCreateSubnetworks: .literal(false),
       ),
     );
 
@@ -56,11 +56,11 @@ final class CloudSqlStack extends Stack {
     final psaRange = add(
       GoogleComputeGlobalAddress(
         localName: 'psa_range',
-        name: TfArg.literal('cloudsql-psa-range'),
-        addressType: TfArg.literal(GlobalAddressType.internal),
-        purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),
-        prefixLength: TfArg.literal(16),
-        network: TfArg.ref(vpc.selfLink),
+        name: .literal('cloudsql-psa-range'),
+        addressType: .literal(.internal),
+        purpose: .literal(.vpcPeering),
+        prefixLength: .literal(16),
+        network: .ref(vpc.selfLink),
       ),
     );
 
@@ -69,9 +69,9 @@ final class CloudSqlStack extends Stack {
     final psaConnection = add(
       GoogleServiceNetworkingConnection(
         localName: 'psa',
-        network: TfArg.ref(vpc.selfLink),
-        service: TfArg.literal('servicenetworking.googleapis.com'),
-        reservedPeeringRanges: TfArg.literal([
+        network: .ref(vpc.selfLink),
+        service: .literal('servicenetworking.googleapis.com'),
+        reservedPeeringRanges: .literal([
           // ServiceNetworking expects the *name* of the global_address, not
           // its self_link. Wrap in a list for the schema's repeated string.
           psaRange.nameRef.interpolation,
@@ -94,23 +94,23 @@ final class CloudSqlStack extends Stack {
     final primary = add(
       GoogleSqlDatabaseInstance(
         localName: 'primary',
-        name: TfArg.literal('orders-primary'),
-        databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
-        region: TfArg.literal('asia-northeast1'),
-        deletionProtection: TfArg.literal(false),
+        name: .literal('orders-primary'),
+        databaseVersion: .literal(.postgres15),
+        region: .literal('asia-northeast1'),
+        deletionProtection: .literal(false),
         settings: SqlDatabaseInstanceSettings(
-          tier: TfArg.literal('db-custom-2-7680'),
-          availabilityType: TfArg.literal(SqlAvailabilityType.zonal),
-          edition: TfArg.literal(SqlEdition.enterprise),
-          diskSize: TfArg.literal(20),
-          diskType: TfArg.literal(SqlDiskType.pdSsd),
+          tier: .literal('db-custom-2-7680'),
+          availabilityType: .literal(.zonal),
+          edition: .literal(.enterprise),
+          diskSize: .literal(20),
+          diskType: .literal(.pdSsd),
           ipConfiguration: SqlDatabaseInstanceIpConfiguration(
-            ipv4Enabled: TfArg.literal(false),
-            privateNetwork: TfArg.ref(vpc.selfLink),
+            ipv4Enabled: .literal(false),
+            privateNetwork: .ref(vpc.selfLink),
             // Pins the instance to the named PSA range; without this the
             // API would pick any peered range, which is ambiguous when a
             // VPC has multiple PSA peerings.
-            allocatedIpRange: TfArg.ref(psaRange.nameRef),
+            allocatedIpRange: .ref(psaRange.nameRef),
           ),
           // Query Insights is not a typed helper on the settings block; it
           // rides through `advancedExtra`, the raw-map escape hatch keyed by
@@ -136,8 +136,8 @@ final class CloudSqlStack extends Stack {
     add(
       GoogleSqlDatabase(
         localName: 'orders',
-        instance: TfArg.ref(primary.nameRef),
-        name: TfArg.literal('orders'),
+        instance: .ref(primary.nameRef),
+        name: .literal('orders'),
       ),
     );
 
@@ -146,31 +146,31 @@ final class CloudSqlStack extends Stack {
     add(
       GoogleSqlUser(
         localName: 'app',
-        instance: TfArg.ref(primary.nameRef),
-        name: TfArg.literal('app'),
-        type: TfArg.literal(SqlUserType.builtIn),
-        passwordWo: TfArg.literal(dbPassword),
-        passwordWoVersion: TfArg.literal(1),
+        instance: .ref(primary.nameRef),
+        name: .literal('app'),
+        type: .literal(.builtIn),
+        passwordWo: .literal(dbPassword),
+        passwordWoVersion: .literal(1),
       ),
     );
 
     add(
       GoogleSqlSslCert(
         localName: 'client_cert',
-        instance: TfArg.ref(primary.nameRef),
-        commonName: TfArg.literal('app-client'),
+        instance: .ref(primary.nameRef),
+        commonName: .literal('app-client'),
       ),
     );
 
     add(
       GoogleSqlSourceRepresentationInstance(
         localName: 'legacy_mysql',
-        name: TfArg.literal('legacy-mysql'),
-        region: TfArg.literal('asia-northeast1'),
-        databaseVersion: TfArg.literal('MYSQL_8_0'),
-        host: TfArg.literal('203.0.113.50'),
-        port: TfArg.literal(3306),
-        username: TfArg.literal('replica'),
+        name: .literal('legacy-mysql'),
+        region: .literal('asia-northeast1'),
+        databaseVersion: .literal('MYSQL_8_0'),
+        host: .literal('203.0.113.50'),
+        port: .literal(3306),
+        username: .literal('replica'),
         password: TfArg.variable('source_rep_password'),
       ),
     );
@@ -182,16 +182,16 @@ final class CloudSqlStack extends Stack {
     final alloyCluster = add(
       GoogleAlloydbCluster(
         localName: 'alloydb',
-        clusterId: TfArg.literal('app-alloydb'),
-        location: TfArg.literal('asia-northeast1'),
+        clusterId: .literal('app-alloydb'),
+        location: .literal('asia-northeast1'),
         networkConfig: AlloydbClusterNetworkConfig(
-          network: TfArg.ref(vpc.selfLink),
-          allocatedIpRange: TfArg.ref(psaRange.nameRef),
+          network: .ref(vpc.selfLink),
+          allocatedIpRange: .ref(psaRange.nameRef),
         ),
         initialUser: AlloydbClusterInitialUser(
-          user: TfArg.literal('postgres'),
-          passwordWo: TfArg.literal(dbPassword),
-          passwordWoVersion: TfArg.literal(1),
+          user: .literal('postgres'),
+          passwordWo: .literal(dbPassword),
+          passwordWoVersion: .literal(1),
         ),
         dependsOn: [ResourceDependency(psaConnection)],
       ),
@@ -200,30 +200,30 @@ final class CloudSqlStack extends Stack {
     add(
       GoogleAlloydbInstance(
         localName: 'alloydb_primary',
-        cluster: TfArg.ref(alloyCluster.id),
-        instanceId: TfArg.literal('primary'),
-        instanceType: TfArg.literal(AlloydbInstanceType.primary),
-        machineConfig: AlloydbInstanceMachineConfig(cpuCount: TfArg.literal(2)),
+        cluster: .ref(alloyCluster.id),
+        instanceId: .literal('primary'),
+        instanceType: .literal(.primary),
+        machineConfig: AlloydbInstanceMachineConfig(cpuCount: .literal(2)),
       ),
     );
 
     add(
       GoogleAlloydbUser(
         localName: 'alloydb_app',
-        cluster: TfArg.ref(alloyCluster.id),
-        userId: TfArg.literal('app'),
-        userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),
-        passwordWo: TfArg.literal(dbPassword),
-        passwordWoVersion: TfArg.literal('1'),
+        cluster: .ref(alloyCluster.id),
+        userId: .literal('app'),
+        userType: .literal(.alloydbBuiltIn),
+        passwordWo: .literal(dbPassword),
+        passwordWoVersion: .literal('1'),
       ),
     );
 
     add(
       GoogleAlloydbBackup(
         localName: 'alloydb_nightly',
-        backupId: TfArg.literal('nightly-backup'),
-        clusterName: TfArg.ref(alloyCluster.id),
-        location: TfArg.literal('asia-northeast1'),
+        backupId: .literal('nightly-backup'),
+        clusterName: .ref(alloyCluster.id),
+        location: .literal('asia-northeast1'),
       ),
     );
   }

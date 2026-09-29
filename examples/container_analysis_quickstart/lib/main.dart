@@ -41,11 +41,11 @@ final class ContainerAnalysisStack extends Stack {
 
     final note = GoogleContainerAnalysisNote(
       localName: 'attestor',
-      name: TfArg.literal('terradart-attestor-note'),
-      shortDescription: TfArg.literal('TerraDart Container Analysis note'),
+      name: .literal('terradart-attestor-note'),
+      shortDescription: .literal('TerraDart Container Analysis note'),
       attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
         hint: ContainerAnalysisNoteAttestationAuthorityHint(
-          humanReadableName: TfArg.literal('TerraDart attestor'),
+          humanReadableName: .literal('TerraDart attestor'),
         ),
       ),
       dependsOn: apiDeps,
@@ -54,17 +54,17 @@ final class ContainerAnalysisStack extends Stack {
 
     final viewer = GoogleServiceAccount(
       localName: 'note_viewer',
-      accountId: TfArg.literal('ca-note-viewer'),
-      displayName: TfArg.literal('Container Analysis note viewer'),
+      accountId: .literal('ca-note-viewer'),
+      displayName: .literal('Container Analysis note viewer'),
     );
     add(viewer);
 
     add(
       GoogleContainerAnalysisNoteIamMember(
         localName: 'note_viewer',
-        note: TfArg.ref(note.nameRef),
-        role: TfArg.literal('roles/containeranalysis.notes.occurrences.viewer'),
-        member: TfArg.ref(viewer.iamMember),
+        note: .ref(note.nameRef),
+        role: .literal('roles/containeranalysis.notes.occurrences.viewer'),
+        member: .ref(viewer.iamMember),
         dependsOn: [ResourceDependency(note), ResourceDependency(viewer)],
       ),
     );
@@ -72,9 +72,9 @@ final class ContainerAnalysisStack extends Stack {
     final noteBinding = add(
       GoogleContainerAnalysisNoteIamBinding(
         localName: 'note_viewer_binding',
-        note: TfArg.ref(note.nameRef),
-        role: TfArg.literal('roles/containeranalysis.notes.occurrences.viewer'),
-        members: TfArg.literal([viewer.iamMember.interpolation]),
+        note: .ref(note.nameRef),
+        role: .literal('roles/containeranalysis.notes.occurrences.viewer'),
+        members: .literal([viewer.iamMember.interpolation]),
         dependsOn: [ResourceDependency(note), ResourceDependency(viewer)],
       ),
     );
@@ -82,8 +82,8 @@ final class ContainerAnalysisStack extends Stack {
     add(
       GoogleContainerAnalysisNoteIamPolicy(
         localName: 'note_viewer_policy',
-        note: TfArg.ref(note.nameRef),
-        policyData: TfArg.literal(
+        note: .ref(note.nameRef),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/containeranalysis.notes.occurrences.viewer',
             member:

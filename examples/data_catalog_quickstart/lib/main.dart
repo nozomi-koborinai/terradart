@@ -30,18 +30,18 @@ final class DataCatalogStack extends Stack {
     final apiDataCatalog = add(
       GoogleProjectService(
         localName: 'api_datacatalog',
-        service: TfArg.literal('datacatalog.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('datacatalog.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final group = add(
       GoogleDataCatalogEntryGroup(
         localName: 'group',
-        entryGroupId: TfArg.literal('terradart_entry_group'),
-        region: TfArg.literal('us-central1'),
-        displayName: TfArg.literal('TerraDart entry group'),
-        description: TfArg.literal('TerraDart smoke Data Catalog entry group'),
+        entryGroupId: .literal('terradart_entry_group'),
+        region: .literal('us-central1'),
+        displayName: .literal('TerraDart entry group'),
+        description: .literal('TerraDart smoke Data Catalog entry group'),
         dependsOn: [ResourceDependency(apiDataCatalog)],
       ),
     );
@@ -49,13 +49,13 @@ final class DataCatalogStack extends Stack {
     final customEntry = add(
       GoogleDataCatalogEntry(
         localName: 'custom_entry',
-        entryGroup: TfArg.ref(group.id),
-        entryId: TfArg.literal('terradart_entry'),
+        entryGroup: .ref(group.id),
+        entryId: .literal('terradart_entry'),
         entryKind: .customType(
-          userSpecifiedType: TfArg.literal('terradart_custom_type'),
+          userSpecifiedType: .literal('terradart_custom_type'),
         ),
-        userSpecifiedSystem: TfArg.literal('TerraDart'),
-        displayName: TfArg.literal('TerraDart custom entry'),
+        userSpecifiedSystem: .literal('TerraDart'),
+        displayName: .literal('TerraDart custom entry'),
         dependsOn: [ResourceDependency(group)],
       ),
     );
@@ -63,10 +63,10 @@ final class DataCatalogStack extends Stack {
     final taxonomy = add(
       GoogleDataCatalogTaxonomy(
         localName: 'pii',
-        displayName: TfArg.literal('terradart_pii_taxonomy'),
-        description: TfArg.literal('Policy tags for PII columns'),
-        activatedPolicyTypes: TfArg.literal(['FINE_GRAINED_ACCESS_CONTROL']),
-        region: TfArg.literal('us-central1'),
+        displayName: .literal('terradart_pii_taxonomy'),
+        description: .literal('Policy tags for PII columns'),
+        activatedPolicyTypes: .literal(['FINE_GRAINED_ACCESS_CONTROL']),
+        region: .literal('us-central1'),
         dependsOn: [ResourceDependency(apiDataCatalog)],
       ),
     );
@@ -74,9 +74,9 @@ final class DataCatalogStack extends Stack {
     final emailTag = add(
       GoogleDataCatalogPolicyTag(
         localName: 'email',
-        displayName: TfArg.literal('email'),
-        taxonomy: TfArg.ref(taxonomy.id),
-        description: TfArg.literal('Email addresses'),
+        displayName: .literal('email'),
+        taxonomy: .ref(taxonomy.id),
+        description: .literal('Email addresses'),
         dependsOn: [ResourceDependency(taxonomy)],
       ),
     );
@@ -84,20 +84,20 @@ final class DataCatalogStack extends Stack {
     final tagTemplate = add(
       GoogleDataCatalogTagTemplate(
         localName: 'demo',
-        tagTemplateId: TfArg.literal('terradart_template'),
-        region: TfArg.literal('us-central1'),
-        displayName: TfArg.literal('TerraDart Tag Template'),
+        tagTemplateId: .literal('terradart_template'),
+        region: .literal('us-central1'),
+        displayName: .literal('TerraDart Tag Template'),
         fields: [
           DataCatalogTagTemplateField(
-            fieldId: TfArg.literal('source'),
-            displayName: TfArg.literal('Source of data asset'),
-            isRequired: TfArg.literal(true),
+            fieldId: .literal('source'),
+            displayName: .literal('Source of data asset'),
+            isRequired: .literal(true),
             type: const .primitiveType(
               DataCatalogTagTemplatePrimitiveType.string,
             ),
           ),
         ],
-        forceDelete: TfArg.literal(true),
+        forceDelete: .literal(true),
         dependsOn: [ResourceDependency(apiDataCatalog)],
       ),
     );
@@ -105,15 +105,15 @@ final class DataCatalogStack extends Stack {
     add(
       GoogleDataCatalogTag(
         localName: 'entry_source',
-        parent: TfArg.ref(customEntry.id),
-        template: TfArg.ref(tagTemplate.id),
+        parent: .ref(customEntry.id),
+        template: .ref(tagTemplate.id),
         fields: [
           DataCatalogTagField(
-            fieldName: TfArg.literal('source'),
-            value: .stringValue(TfArg.literal('terradart-smoke')),
+            fieldName: .literal('source'),
+            value: .stringValue(.literal('terradart-smoke')),
           ),
         ],
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [
           ResourceDependency(customEntry),
           ResourceDependency(tagTemplate),
@@ -124,18 +124,18 @@ final class DataCatalogStack extends Stack {
     final reader = add(
       GoogleServiceAccount(
         localName: 'catalog_reader',
-        accountId: TfArg.literal('catalog-reader'),
-        displayName: TfArg.literal('Data Catalog reader'),
+        accountId: .literal('catalog-reader'),
+        displayName: .literal('Data Catalog reader'),
       ),
     );
 
     add(
       GoogleDataCatalogEntryGroupIamMember(
         localName: 'group_viewer',
-        entryGroup: TfArg.ref(group.id),
-        region: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/datacatalog.viewer'),
-        member: TfArg.ref(reader.iamMember),
+        entryGroup: .ref(group.id),
+        region: .literal('us-central1'),
+        role: .literal('roles/datacatalog.viewer'),
+        member: .ref(reader.iamMember),
         dependsOn: [ResourceDependency(group), ResourceDependency(reader)],
       ),
     );
@@ -143,10 +143,10 @@ final class DataCatalogStack extends Stack {
     add(
       GoogleDataCatalogTaxonomyIamMember(
         localName: 'taxonomy_viewer',
-        taxonomy: TfArg.ref(taxonomy.id),
-        region: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/datacatalog.viewer'),
-        member: TfArg.ref(reader.iamMember),
+        taxonomy: .ref(taxonomy.id),
+        region: .literal('us-central1'),
+        role: .literal('roles/datacatalog.viewer'),
+        member: .ref(reader.iamMember),
         dependsOn: [ResourceDependency(taxonomy), ResourceDependency(reader)],
       ),
     );
@@ -154,9 +154,9 @@ final class DataCatalogStack extends Stack {
     add(
       GoogleDataCatalogPolicyTagIamMember(
         localName: 'policy_tag_viewer',
-        policyTag: TfArg.ref(emailTag.id),
-        role: TfArg.literal('roles/datacatalog.viewer'),
-        member: TfArg.ref(reader.iamMember),
+        policyTag: .ref(emailTag.id),
+        role: .literal('roles/datacatalog.viewer'),
+        member: .ref(reader.iamMember),
         dependsOn: [ResourceDependency(emailTag), ResourceDependency(reader)],
       ),
     );
@@ -164,10 +164,10 @@ final class DataCatalogStack extends Stack {
     add(
       GoogleDataCatalogTagTemplateIamMember(
         localName: 'tag_template_viewer',
-        tagTemplate: TfArg.ref(tagTemplate.id),
-        region: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/datacatalog.viewer'),
-        member: TfArg.ref(reader.iamMember),
+        tagTemplate: .ref(tagTemplate.id),
+        region: .literal('us-central1'),
+        role: .literal('roles/datacatalog.viewer'),
+        member: .ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(tagTemplate),
           ResourceDependency(reader),

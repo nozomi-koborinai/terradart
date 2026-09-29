@@ -41,7 +41,7 @@ final class DbCredentialsStack extends Stack {
     final secret = add(
       GoogleSecretManagerSecret(
         localName: 'db_password',
-        secretId: TfArg.literal('db-password'),
+        secretId: .literal('db-password'),
         replication: SecretManagerSecretReplication.auto(),
         labels: const TfArgLiteral<Map<String, String>>({
           'managed-by': 'terradart',
@@ -54,10 +54,10 @@ final class DbCredentialsStack extends Stack {
     add(
       GoogleSecretManagerSecretVersion(
         localName: 'db_password_v$secretVersion',
-        secret: TfArg.ref(secret.id),
+        secret: .ref(secret.id),
         payload: .writeOnly(
-          secretDataWo: TfArg.literal(dbPasswordCleartext),
-          secretDataWoVersion: TfArg.literal('$secretVersion'),
+          secretDataWo: .literal(dbPasswordCleartext),
+          secretDataWoVersion: .literal('$secretVersion'),
         ),
       ),
     );
@@ -69,8 +69,8 @@ final class DbCredentialsStack extends Stack {
     final appSa = add(
       GoogleServiceAccount(
         localName: 'app',
-        accountId: TfArg.literal('app-runner'),
-        displayName: TfArg.literal('Application runtime (secret reader)'),
+        accountId: .literal('app-runner'),
+        displayName: .literal('Application runtime (secret reader)'),
       ),
     );
 
@@ -81,9 +81,9 @@ final class DbCredentialsStack extends Stack {
       GoogleSecretManagerSecretIamMember(
         localName: 'db_password_accessor',
         // Secret IAM identity is `secret_id` (NOT `id` / `name`).
-        secretId: TfArg.ref(secret.secretIdRef),
-        role: TfArg.literal('roles/secretmanager.secretAccessor'),
-        member: TfArg.ref(appSa.iamMember),
+        secretId: .ref(secret.secretIdRef),
+        role: .literal('roles/secretmanager.secretAccessor'),
+        member: .ref(appSa.iamMember),
         dependsOn: [ResourceDependency(appSa)],
       ),
     );
@@ -94,9 +94,9 @@ final class DbCredentialsStack extends Stack {
     final secretAccessorBinding = add(
       GoogleSecretManagerSecretIamBinding(
         localName: 'db_password_accessor_binding',
-        secretId: TfArg.ref(secret.secretIdRef),
-        role: TfArg.literal('roles/secretmanager.secretAccessor'),
-        members: TfArg.literal([appSa.iamMember.interpolation]),
+        secretId: .ref(secret.secretIdRef),
+        role: .literal('roles/secretmanager.secretAccessor'),
+        members: .literal([appSa.iamMember.interpolation]),
         dependsOn: [ResourceDependency(secret), ResourceDependency(appSa)],
       ),
     );
@@ -104,8 +104,8 @@ final class DbCredentialsStack extends Stack {
     add(
       GoogleSecretManagerSecretIamPolicy(
         localName: 'db_password_accessor_policy',
-        secretId: TfArg.ref(secret.secretIdRef),
-        policyData: TfArg.literal(
+        secretId: .ref(secret.secretIdRef),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/secretmanager.secretAccessor',
             member:
@@ -126,8 +126,8 @@ final class DbCredentialsStack extends Stack {
     final regionalSecret = add(
       GoogleSecretManagerRegionalSecret(
         localName: 'db_password_regional',
-        secretId: TfArg.literal('db-password-regional'),
-        location: TfArg.literal('us-central1'),
+        secretId: .literal('db-password-regional'),
+        location: .literal('us-central1'),
         labels: const TfArgLiteral<Map<String, String>>({
           'managed-by': 'terradart',
         }),
@@ -144,10 +144,10 @@ final class DbCredentialsStack extends Stack {
     add(
       GoogleSecretManagerRegionalSecretIamMember(
         localName: 'db_password_regional_accessor',
-        secretId: TfArg.ref(regionalSecret.secretIdRef),
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/secretmanager.secretAccessor'),
-        member: TfArg.ref(appSa.iamMember),
+        secretId: .ref(regionalSecret.secretIdRef),
+        location: .literal('us-central1'),
+        role: .literal('roles/secretmanager.secretAccessor'),
+        member: .ref(appSa.iamMember),
         dependsOn: [
           ResourceDependency(regionalSecret),
           ResourceDependency(appSa),
@@ -158,10 +158,10 @@ final class DbCredentialsStack extends Stack {
     final regionalAccessorBinding = add(
       GoogleSecretManagerRegionalSecretIamBinding(
         localName: 'db_password_regional_accessor_binding',
-        secretId: TfArg.ref(regionalSecret.secretIdRef),
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/secretmanager.secretAccessor'),
-        members: TfArg.literal([appSa.iamMember.interpolation]),
+        secretId: .ref(regionalSecret.secretIdRef),
+        location: .literal('us-central1'),
+        role: .literal('roles/secretmanager.secretAccessor'),
+        members: .literal([appSa.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(regionalSecret),
           ResourceDependency(appSa),
@@ -172,9 +172,9 @@ final class DbCredentialsStack extends Stack {
     add(
       GoogleSecretManagerRegionalSecretIamPolicy(
         localName: 'db_password_regional_accessor_policy',
-        secretId: TfArg.ref(regionalSecret.secretIdRef),
-        location: TfArg.literal('us-central1'),
-        policyData: TfArg.literal(
+        secretId: .ref(regionalSecret.secretIdRef),
+        location: .literal('us-central1'),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/secretmanager.secretAccessor',
             member:

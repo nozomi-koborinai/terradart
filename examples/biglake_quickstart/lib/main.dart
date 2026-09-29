@@ -35,24 +35,24 @@ final class MetastoreStack extends Stack {
     final apiBiglake = add(
       GoogleProjectService(
         localName: 'api_biglake',
-        service: TfArg.literal('biglake.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('biglake.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiStorage = add(
       GoogleProjectService(
         localName: 'api_storage',
-        service: TfArg.literal('storage.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('storage.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final catalog = add(
       GoogleBiglakeCatalog(
         localName: 'analytics',
-        name: TfArg.literal('terradart_catalog'),
-        location: TfArg.literal('us-central1'),
+        name: .literal('terradart_catalog'),
+        location: .literal('us-central1'),
         dependsOn: [ResourceDependency(apiBiglake)],
       ),
     );
@@ -60,10 +60,10 @@ final class MetastoreStack extends Stack {
     final database = add(
       GoogleBiglakeDatabase(
         localName: 'sales',
-        name: TfArg.literal('terradart_db'),
-        catalog: TfArg.ref(catalog.id),
-        type: TfArg.literal('HIVE'),
-        hiveOptions: TfArg.literal(<String, Object?>{
+        name: .literal('terradart_db'),
+        catalog: .ref(catalog.id),
+        type: .literal('HIVE'),
+        hiveOptions: .literal(<String, Object?>{
           'location_uri': '$warehouse/terradart_db',
           'parameters': {'owner': 'terradart'},
         }),
@@ -74,10 +74,10 @@ final class MetastoreStack extends Stack {
     add(
       GoogleBiglakeTable(
         localName: 'orders',
-        name: TfArg.literal('terradart_orders'),
-        database: TfArg.ref(database.id),
-        type: TfArg.literal('HIVE'),
-        hiveOptions: TfArg.literal(<String, Object?>{
+        name: .literal('terradart_orders'),
+        database: .ref(database.id),
+        type: .literal('HIVE'),
+        hiveOptions: .literal(<String, Object?>{
           'table_type': 'MANAGED_TABLE',
           'storage_descriptor': {
             'location_uri': '$warehouse/terradart_db/orders',
@@ -93,10 +93,10 @@ final class MetastoreStack extends Stack {
     final icebergBucket = add(
       GoogleStorageBucket(
         localName: 'iceberg_bucket',
-        name: TfArg.literal(icebergBucketName),
-        location: TfArg.literal('US-CENTRAL1'),
-        forceDestroy: TfArg.literal(true),
-        uniformBucketLevelAccess: TfArg.literal(true),
+        name: .literal(icebergBucketName),
+        location: .literal('US-CENTRAL1'),
+        forceDestroy: .literal(true),
+        uniformBucketLevelAccess: .literal(true),
         dependsOn: [ResourceDependency(apiStorage)],
       ),
     );
@@ -104,13 +104,9 @@ final class MetastoreStack extends Stack {
     final icebergCatalog = add(
       GoogleBiglakeIcebergCatalog(
         localName: 'iceberg_catalog',
-        name: TfArg.ref(icebergBucket.nameRef),
-        catalogType: TfArg.literal(
-          BiglakeIcebergCatalogCatalogType.catalogTypeGcsBucket,
-        ),
-        credentialMode: TfArg.literal(
-          BiglakeIcebergCatalogCredentialMode.credentialModeEndUser,
-        ),
+        name: .ref(icebergBucket.nameRef),
+        catalogType: .literal(.catalogTypeGcsBucket),
+        credentialMode: .literal(.credentialModeEndUser),
         dependsOn: [
           ResourceDependency(apiBiglake),
           ResourceDependency(icebergBucket),
@@ -121,8 +117,8 @@ final class MetastoreStack extends Stack {
     final icebergNamespace = add(
       GoogleBiglakeIcebergNamespace(
         localName: 'iceberg_ns',
-        catalog: TfArg.ref(icebergCatalog.nameRef),
-        namespaceId: TfArg.literal('terradart_ns'),
+        catalog: .ref(icebergCatalog.nameRef),
+        namespaceId: .literal('terradart_ns'),
         dependsOn: [ResourceDependency(icebergCatalog)],
       ),
     );
@@ -130,13 +126,13 @@ final class MetastoreStack extends Stack {
     final icebergTable = add(
       GoogleBiglakeIcebergTable(
         localName: 'iceberg_orders',
-        catalog: TfArg.ref(icebergCatalog.nameRef),
-        namespace: TfArg.ref(icebergNamespace.namespaceIdRef),
-        name: TfArg.literal('terradart_iceberg_orders'),
-        location: TfArg.literal(
+        catalog: .ref(icebergCatalog.nameRef),
+        namespace: .ref(icebergNamespace.namespaceIdRef),
+        name: .literal('terradart_iceberg_orders'),
+        location: .literal(
           'gs://$icebergBucketName/terradart_ns/terradart_iceberg_orders',
         ),
-        schema: TfArg.literal(<String, Object?>{
+        schema: .literal(<String, Object?>{
           'type': 'struct',
           'fields': [
             {
@@ -150,7 +146,7 @@ final class MetastoreStack extends Stack {
           ],
           'identifier_field_ids': [1],
         }),
-        partitionSpec: TfArg.literal(<String, Object?>{
+        partitionSpec: .literal(<String, Object?>{
           'fields': [
             {'name': 'id_partition', 'source_id': 1, 'transform': 'identity'},
           ],
@@ -162,17 +158,17 @@ final class MetastoreStack extends Stack {
     final reader = add(
       GoogleServiceAccount(
         localName: 'iceberg_reader',
-        accountId: TfArg.literal('terradart-iceberg-reader'),
-        displayName: TfArg.literal('BigLake Iceberg reader'),
+        accountId: .literal('terradart-iceberg-reader'),
+        displayName: .literal('BigLake Iceberg reader'),
       ),
     );
 
     add(
       GoogleBiglakeIcebergCatalogIamMember(
         localName: 'catalog_reader',
-        name: TfArg.ref(icebergCatalog.nameRef),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(reader.iamMember),
+        name: .ref(icebergCatalog.nameRef),
+        role: .literal('roles/viewer'),
+        member: .ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(icebergCatalog),
           ResourceDependency(reader),
@@ -183,10 +179,10 @@ final class MetastoreStack extends Stack {
     add(
       GoogleBiglakeIcebergNamespaceIamMember(
         localName: 'namespace_reader',
-        catalog: TfArg.ref(icebergCatalog.nameRef),
-        namespaceId: TfArg.ref(icebergNamespace.namespaceIdRef),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(reader.iamMember),
+        catalog: .ref(icebergCatalog.nameRef),
+        namespaceId: .ref(icebergNamespace.namespaceIdRef),
+        role: .literal('roles/viewer'),
+        member: .ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(icebergNamespace),
           ResourceDependency(reader),
@@ -197,11 +193,11 @@ final class MetastoreStack extends Stack {
     add(
       GoogleBiglakeIcebergTableIamMember(
         localName: 'table_reader',
-        catalog: TfArg.ref(icebergCatalog.nameRef),
-        namespace: TfArg.ref(icebergNamespace.namespaceIdRef),
-        name: TfArg.ref(icebergTable.nameRef),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(reader.iamMember),
+        catalog: .ref(icebergCatalog.nameRef),
+        namespace: .ref(icebergNamespace.namespaceIdRef),
+        name: .ref(icebergTable.nameRef),
+        role: .literal('roles/viewer'),
+        member: .ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(icebergTable),
           ResourceDependency(reader),

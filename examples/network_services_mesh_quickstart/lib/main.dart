@@ -23,17 +23,17 @@ final class NetworkServicesMeshStack extends Stack {
     final apiNetworkServices = add(
       GoogleProjectService(
         localName: 'api_networkservices',
-        service: TfArg.literal('networkservices.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('networkservices.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final mesh = add(
       GoogleNetworkServicesMesh(
         localName: 'app',
-        name: TfArg.literal('terradart-mesh'),
-        location: TfArg.literal('global'),
-        description: TfArg.literal('TerraDart smoke mesh'),
+        name: .literal('terradart-mesh'),
+        location: .literal('global'),
+        description: .literal('TerraDart smoke mesh'),
         dependsOn: [ResourceDependency(apiNetworkServices)],
       ),
     );
@@ -47,18 +47,18 @@ final class NetworkServicesMeshStack extends Stack {
     add(
       GoogleNetworkServicesHttpRoute(
         localName: 'http',
-        name: TfArg.literal('terradart-http-route'),
-        hostnames: TfArg.literal(['example']),
+        name: .literal('terradart-http-route'),
+        hostnames: .literal(['example']),
         meshes: meshId,
         rules: [
           NetworkServicesHttpRouteRules(
             matches: [
               NetworkServicesHttpRouteRulesMatches(
-                match: .fullPathMatch(TfArg.literal('example')),
+                match: .fullPathMatch(.literal('example')),
                 queryParameters: [
                   NetworkServicesHttpRouteRulesMatchesQueryParameters(
-                    queryParameter: TfArg.literal('key'),
-                    match: .exactMatch(TfArg.literal('value')),
+                    queryParameter: .literal('key'),
+                    match: .exactMatch(.literal('value')),
                   ),
                 ],
               ),
@@ -72,24 +72,24 @@ final class NetworkServicesMeshStack extends Stack {
     add(
       GoogleNetworkServicesGrpcRoute(
         localName: 'grpc',
-        name: TfArg.literal('terradart-grpc-route'),
-        hostnames: TfArg.literal(['example.com']),
+        name: .literal('terradart-grpc-route'),
+        hostnames: .literal(['example.com']),
         meshes: meshId,
         rules: [
           NetworkServicesGrpcRouteRules(
             matches: [
               NetworkServicesGrpcRouteRulesMatches(
                 method: NetworkServicesGrpcRouteRulesMatchesMethod(
-                  grpcService: TfArg.literal('helloworld.Greeter'),
-                  grpcMethod: TfArg.literal('SayHello'),
+                  grpcService: .literal('helloworld.Greeter'),
+                  grpcMethod: .literal('SayHello'),
                 ),
               ),
             ],
             action: NetworkServicesGrpcRouteRulesAction(
               retryPolicy: NetworkServicesGrpcRouteRulesActionRetryPolicy(
-                numRetries: TfArg.literal(1),
+                numRetries: .literal(1),
                 retryConditions: [
-                  TfArg.literal(
+                  .literal(
                     NetworkServicesGrpcRouteRulesActionRetryPolicyRetryConditions
                         .connectFailure,
                   ),
@@ -108,18 +108,18 @@ final class NetworkServicesMeshStack extends Stack {
     add(
       GoogleNetworkServicesTcpRoute(
         localName: 'tcp',
-        name: TfArg.literal('terradart-tcp-route'),
+        name: .literal('terradart-tcp-route'),
         meshes: meshId,
         rules: [
           NetworkServicesTcpRouteRules(
             matches: [
               NetworkServicesTcpRouteRulesMatches(
-                address: TfArg.literal('0.0.0.0/0'),
-                port: TfArg.literal('8081'),
+                address: .literal('0.0.0.0/0'),
+                port: .literal('8081'),
               ),
             ],
             action: NetworkServicesTcpRouteRulesAction(
-              originalDestination: TfArg.literal(true),
+              originalDestination: .literal(true),
             ),
           ),
         ],
@@ -130,19 +130,19 @@ final class NetworkServicesMeshStack extends Stack {
     add(
       GoogleNetworkServicesEndpointPolicy(
         localName: 'ep',
-        name: TfArg.literal('terradart-ep'),
-        type: TfArg.literal(NetworkServicesEndpointPolicyType.sidecarProxy),
+        name: .literal('terradart-ep'),
+        type: .literal(.sidecarProxy),
         endpointMatcher: NetworkServicesEndpointPolicyEndpointMatcher(
           metadataLabelMatcher:
               NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher(
-                metadataLabelMatchCriteria: TfArg.literal(
+                metadataLabelMatchCriteria: .literal(
                   NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria
                       .matchAny,
                 ),
                 metadataLabels: [
                   NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels(
-                    labelName: TfArg.literal('app'),
-                    labelValue: TfArg.literal('terradart'),
+                    labelName: .literal('app'),
+                    labelValue: .literal('terradart'),
                   ),
                 ],
               ),

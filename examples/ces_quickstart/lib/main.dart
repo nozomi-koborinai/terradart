@@ -33,17 +33,17 @@ final class CesStack extends Stack {
     final app = add(
       GoogleCesApp(
         localName: 'app',
-        location: TfArg.literal('us'),
-        appId: TfArg.literal('terradart-ces'),
-        displayName: TfArg.literal('terradart-ces'),
-        description: TfArg.literal('TerraDart CES smoke app'),
+        location: .literal('us'),
+        appId: .literal('terradart-ces'),
+        displayName: .literal('terradart-ces'),
+        description: .literal('TerraDart CES smoke app'),
         languageSettings: CesAppLanguageSettings(
-          defaultLanguageCode: TfArg.literal('en-US'),
-          supportedLanguageCodes: TfArg.literal(['es-ES']),
-          fallbackAction: TfArg.literal('escalate'),
+          defaultLanguageCode: .literal('en-US'),
+          supportedLanguageCodes: .literal(['es-ES']),
+          fallbackAction: .literal('escalate'),
         ),
         timeZoneSettings: CesAppTimeZoneSettings(
-          timeZone: TfArg.literal('America/Los_Angeles'),
+          timeZone: .literal('America/Los_Angeles'),
         ),
         lifecycle: const LifecycleOptions(ignoreChanges: ['root_agent']),
         dependsOn: apiDeps,
@@ -53,11 +53,11 @@ final class CesStack extends Stack {
     final search = add(
       GoogleCesTool(
         localName: 'search',
-        location: TfArg.ref(app.locationRef),
-        app: TfArg.ref(app.appIdRef),
-        toolId: TfArg.literal('terradart-ces-search'),
+        location: .ref(app.locationRef),
+        app: .ref(app.appIdRef),
+        toolId: .literal('terradart-ces-search'),
         googleSearchTool: CesToolGoogleSearchTool(
-          name: TfArg.literal('google_search'),
+          name: .literal('google_search'),
         ),
         dependsOn: [ResourceDependency(app)],
       ),
@@ -66,12 +66,12 @@ final class CesStack extends Stack {
     final openapi = add(
       GoogleCesToolset(
         localName: 'openapi',
-        location: TfArg.ref(app.locationRef),
-        app: TfArg.ref(app.appIdRef),
-        toolsetId: TfArg.literal('terradart-ces-toolset'),
-        displayName: TfArg.literal('terradart-ces-toolset'),
+        location: .ref(app.locationRef),
+        app: .ref(app.appIdRef),
+        toolsetId: .literal('terradart-ces-toolset'),
+        displayName: .literal('terradart-ces-toolset'),
         openApiToolset: CesToolsetOpenApiToolset(
-          openApiSchema: TfArg.literal(
+          openApiSchema: .literal(
             'openapi: 3.0.0\n'
             'info:\n'
             '  title: TerraDart CES smoke API\n'
@@ -92,17 +92,17 @@ final class CesStack extends Stack {
     final safety = add(
       GoogleCesGuardrail(
         localName: 'safety',
-        location: TfArg.ref(app.locationRef),
-        app: TfArg.ref(app.appIdRef),
-        guardrailId: TfArg.literal('terradart-ces-guardrail'),
-        displayName: TfArg.literal('terradart-ces-guardrail'),
-        enabled: TfArg.literal(true),
+        location: .ref(app.locationRef),
+        app: .ref(app.appIdRef),
+        guardrailId: .literal('terradart-ces-guardrail'),
+        displayName: .literal('terradart-ces-guardrail'),
+        enabled: .literal(true),
         action: CesGuardrailAction(
           respondImmediately: CesGuardrailActionRespondImmediately(
             responses: [
               CesGuardrailActionRespondImmediatelyResponses(
-                text: TfArg.literal('I cannot help with that.'),
-                disabled: TfArg.literal(false),
+                text: .literal('I cannot help with that.'),
+                disabled: .literal(false),
               ),
             ],
           ),
@@ -110,13 +110,11 @@ final class CesStack extends Stack {
         modelSafety: CesGuardrailModelSafety(
           safetySettings: [
             CesGuardrailModelSafetySafetySettings(
-              category: TfArg.literal(
+              category: .literal(
                 CesGuardrailModelSafetySafetySettingsCategory
                     .harmCategoryHateSpeech,
               ),
-              threshold: TfArg.literal(
-                CesGuardrailModelSafetySafetySettingsThreshold.blockNone,
-              ),
+              threshold: .literal(.blockNone),
             ),
           ],
         ),
@@ -127,15 +125,15 @@ final class CesStack extends Stack {
     final agent = add(
       GoogleCesAgent(
         localName: 'agent',
-        location: TfArg.ref(app.locationRef),
-        app: TfArg.ref(app.appIdRef),
-        agentId: TfArg.literal('terradart-ces-agent'),
-        displayName: TfArg.literal('terradart-ces-agent'),
-        instruction: TfArg.literal('You are a helpful assistant.'),
+        location: .ref(app.locationRef),
+        app: .ref(app.appIdRef),
+        agentId: .literal('terradart-ces-agent'),
+        displayName: .literal('terradart-ces-agent'),
+        instruction: .literal('You are a helpful assistant.'),
         llmAgent: const CesAgentLlmAgent(),
-        tools: TfArg.literal([search.nameRef.interpolation]),
-        toolsets: [CesAgentToolsets(toolset: TfArg.ref(openapi.nameRef))],
-        guardrails: TfArg.literal([safety.nameRef.interpolation]),
+        tools: .literal([search.nameRef.interpolation]),
+        toolsets: [CesAgentToolsets(toolset: .ref(openapi.nameRef))],
+        guardrails: .literal([safety.nameRef.interpolation]),
         dependsOn: [
           ResourceDependency(app),
           ResourceDependency(search),
@@ -148,9 +146,9 @@ final class CesStack extends Stack {
     final association = add(
       GoogleCesAppRootAgentAssociation(
         localName: 'root',
-        location: TfArg.ref(app.locationRef),
-        appId: TfArg.ref(app.appIdRef),
-        agentId: TfArg.ref(agent.agentIdRef),
+        location: .ref(app.locationRef),
+        appId: .ref(app.appIdRef),
+        agentId: .ref(agent.agentIdRef),
         dependsOn: [ResourceDependency(app), ResourceDependency(agent)],
       ),
     );
@@ -158,16 +156,16 @@ final class CesStack extends Stack {
     add(
       GoogleCesExample(
         localName: 'greeting',
-        location: TfArg.ref(app.locationRef),
-        app: TfArg.ref(app.appIdRef),
-        exampleId: TfArg.literal('terradart-ces-example'),
-        displayName: TfArg.literal('terradart-ces-example'),
-        description: TfArg.literal('TerraDart CES smoke few-shot'),
-        entryAgent: TfArg.ref(agent.nameRef),
+        location: .ref(app.locationRef),
+        app: .ref(app.appIdRef),
+        exampleId: .literal('terradart-ces-example'),
+        displayName: .literal('terradart-ces-example'),
+        description: .literal('TerraDart CES smoke few-shot'),
+        entryAgent: .ref(agent.nameRef),
         messages: [
           CesExampleMessages(
-            role: TfArg.literal('user'),
-            chunks: [CesExampleMessagesChunks(text: TfArg.literal('Hello'))],
+            role: .literal('user'),
+            chunks: [CesExampleMessagesChunks(text: .literal('Hello'))],
           ),
         ],
         dependsOn: [ResourceDependency(app), ResourceDependency(agent)],
@@ -177,10 +175,10 @@ final class CesStack extends Stack {
     final version = add(
       GoogleCesAppVersion(
         localName: 'v1',
-        location: TfArg.ref(app.locationRef),
-        app: TfArg.ref(app.appIdRef),
-        appVersionId: TfArg.literal('v1'),
-        displayName: TfArg.literal('terradart-ces-v1'),
+        location: .ref(app.locationRef),
+        app: .ref(app.appIdRef),
+        appVersionId: .literal('v1'),
+        displayName: .literal('terradart-ces-v1'),
         dependsOn: [
           ResourceDependency(app),
           ResourceDependency(association),
@@ -194,13 +192,13 @@ final class CesStack extends Stack {
     add(
       GoogleCesDeployment(
         localName: 'api',
-        location: TfArg.ref(app.locationRef),
-        app: TfArg.ref(app.appIdRef),
-        appVersion: TfArg.ref(version.nameRef),
-        displayName: TfArg.literal('terradart-ces-deploy'),
+        location: .ref(app.locationRef),
+        app: .ref(app.appIdRef),
+        appVersion: .ref(version.nameRef),
+        displayName: .literal('terradart-ces-deploy'),
         channelProfile: CesDeploymentChannelProfile(
-          channelType: TfArg.literal('API'),
-          profileId: TfArg.literal('terradart-ces-api'),
+          channelType: .literal('API'),
+          profileId: .literal('terradart-ces-api'),
         ),
         dependsOn: [ResourceDependency(app), ResourceDependency(version)],
       ),

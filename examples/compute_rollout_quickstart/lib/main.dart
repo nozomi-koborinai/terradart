@@ -29,38 +29,38 @@ final class ComputeRolloutStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
-        service: TfArg.literal('compute.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('compute.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final plan = add(
       GoogleComputeRolloutPlan(
         localName: 'smoke_plan',
-        name: TfArg.literal('terradart-smoke-rollout'),
-        description: TfArg.literal('TerraDart smoke rollout plan'),
-        locationScope: TfArg.literal(ComputeRolloutPlanLocationScope.zonal),
+        name: .literal('terradart-smoke-rollout'),
+        description: .literal('TerraDart smoke rollout plan'),
+        locationScope: .literal(.zonal),
         waves: [
           ComputeRolloutPlanWaves(
-            displayName: TfArg.literal('wave-1'),
+            displayName: .literal('wave-1'),
             selectors: [
               ComputeRolloutPlanWavesSelectors(
                 locationSelector:
                     ComputeRolloutPlanWavesSelectorsLocationSelector(
-                      includedLocations: TfArg.literal(['us-central1-a']),
+                      includedLocations: .literal(['us-central1-a']),
                     ),
               ),
             ],
             validation: ComputeRolloutPlanWavesValidation(
-              type: TfArg.literal('time'),
+              type: .literal('time'),
               timeBasedValidationMetadata:
                   ComputeRolloutPlanWavesValidationTimeBasedValidationMetadata(
-                    waitDuration: TfArg.literal('0s'),
+                    waitDuration: .literal('0s'),
                   ),
             ),
             orchestrationOptions: ComputeRolloutPlanWavesOrchestrationOptions(
-              maxConcurrentLocations: TfArg.literal(10),
-              maxConcurrentResourcesPerLocation: TfArg.literal(10),
+              maxConcurrentLocations: .literal(10),
+              maxConcurrentResourcesPerLocation: .literal(10),
             ),
           ),
         ],
@@ -77,31 +77,29 @@ final class ComputeRolloutStack extends Stack {
     add(
       GoogleComputeGlobalVmExtensionPolicy(
         localName: 'ops_agent_global',
-        name: TfArg.literal('terradart-global-ops-agent'),
-        description: TfArg.literal(
+        name: .literal('terradart-global-ops-agent'),
+        description: .literal(
           'Global Ops Agent policy (label-gated; no matching VMs)',
         ),
-        priority: TfArg.literal(10),
+        priority: .literal(10),
         extensionPolicies: [
           ComputeGlobalVmExtensionPolicyExtensionPolicies(
-            extensionName: TfArg.literal('ops-agent'),
-            pinnedVersion: TfArg.literal('2.66.0'),
+            extensionName: .literal('ops-agent'),
+            pinnedVersion: .literal('2.66.0'),
           ),
         ],
         instanceSelectors: [
           ComputeGlobalVmExtensionPolicyInstanceSelectors(
             labelSelector:
                 ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector(
-                  inclusionLabels: TfArg.literal({'terradart-smoke': 'never'}),
+                  inclusionLabels: .literal({'terradart-smoke': 'never'}),
                 ),
           ),
         ],
         rolloutOperation: ComputeGlobalVmExtensionPolicyRolloutOperation(
           rolloutInput:
               ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(
-                plan: .name(
-                  TfArg.literal(planResourceName),
-                ),
+                plan: .name(.literal(planResourceName)),
               ),
         ),
         dependsOn: [ResourceDependency(apiCompute), ResourceDependency(plan)],

@@ -34,10 +34,10 @@ final class ApigeeAnalyticsStack extends Stack {
     add(
       GoogleApigeeDataCollector(
         localName: 'request_latency',
-        orgId: TfArg.literal(orgId),
-        dataCollectorId: TfArg.literal('dc_request_latency'),
-        type: TfArg.literal(ApigeeDataCollectorType.integer),
-        description: TfArg.literal('Request latency in milliseconds'),
+        orgId: .literal(orgId),
+        dataCollectorId: .literal('dc_request_latency'),
+        type: .literal(.integer),
+        description: .literal('Request latency in milliseconds'),
         dependsOn: apiDeps,
       ),
     );
@@ -45,13 +45,13 @@ final class ApigeeAnalyticsStack extends Stack {
     add(
       GoogleApigeeDatastore(
         localName: 'analytics_gcs',
-        orgId: TfArg.literal(orgId),
-        displayName: TfArg.literal('Analytics GCS export'),
-        targetType: TfArg.literal(ApigeeDatastoreTargetType.gcs),
+        orgId: .literal(orgId),
+        displayName: .literal('Analytics GCS export'),
+        targetType: .literal(.gcs),
         datastoreConfig: ApigeeDatastoreDatastoreConfig(
-          projectId: TfArg.literal(projectId),
-          bucketName: TfArg.literal('$projectId-apigee-analytics'),
-          path: TfArg.literal('analytics'),
+          projectId: .literal(projectId),
+          bucketName: .literal('$projectId-apigee-analytics'),
+          path: .literal('analytics'),
         ),
         dependsOn: apiDeps,
       ),
@@ -62,11 +62,11 @@ final class ApigeeAnalyticsStack extends Stack {
     add(
       GoogleApigeeSecurityMonitoringCondition(
         localName: 'demo_smc',
-        conditionId: TfArg.literal('terradart-smc'),
-        orgId: TfArg.literal(orgId),
-        profile: TfArg.literal('demo-profile'),
-        scope: TfArg.literal('demo-env'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        conditionId: .literal('terradart-smc'),
+        orgId: .literal(orgId),
+        profile: .literal('demo-profile'),
+        scope: .literal('demo-env'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );

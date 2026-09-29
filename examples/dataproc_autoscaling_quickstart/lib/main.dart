@@ -24,24 +24,24 @@ final class DataprocAutoscalingStack extends Stack {
     final apiDataproc = add(
       GoogleProjectService(
         localName: 'api_dataproc',
-        service: TfArg.literal('dataproc.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('dataproc.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final policy = add(
       GoogleDataprocAutoscalingPolicy(
         localName: 'asp',
-        policyId: TfArg.literal('terradart-asp'),
-        location: TfArg.literal('us-central1'),
+        policyId: .literal('terradart-asp'),
+        location: .literal('us-central1'),
         workerConfig: DataprocAutoscalingPolicyWorkerConfig(
-          maxInstances: TfArg.literal(3),
+          maxInstances: .literal(3),
         ),
         basicAlgorithm: DataprocAutoscalingPolicyBasicAlgorithm(
           yarnConfig: DataprocAutoscalingPolicyBasicAlgorithmYarnConfig(
-            gracefulDecommissionTimeout: TfArg.literal('30s'),
-            scaleUpFactor: TfArg.literal(0.5),
-            scaleDownFactor: TfArg.literal(0.5),
+            gracefulDecommissionTimeout: .literal('30s'),
+            scaleUpFactor: .literal(0.5),
+            scaleDownFactor: .literal(0.5),
           ),
         ),
         dependsOn: [ResourceDependency(apiDataproc)],
@@ -51,18 +51,18 @@ final class DataprocAutoscalingStack extends Stack {
     final policyReader = add(
       GoogleServiceAccount(
         localName: 'policy_reader',
-        accountId: TfArg.literal('terradart-asp-reader'),
-        displayName: TfArg.literal('Dataproc autoscaling policy reader'),
+        accountId: .literal('terradart-asp-reader'),
+        displayName: .literal('Dataproc autoscaling policy reader'),
       ),
     );
 
     add(
       GoogleDataprocAutoscalingPolicyIamMember(
         localName: 'policy_reader_grant',
-        policyId: TfArg.literal('terradart-asp'),
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(policyReader.iamMember),
+        policyId: .literal('terradart-asp'),
+        location: .literal('us-central1'),
+        role: .literal('roles/viewer'),
+        member: .ref(policyReader.iamMember),
         dependsOn: [
           ResourceDependency(policy),
           ResourceDependency(policyReader),
@@ -73,28 +73,28 @@ final class DataprocAutoscalingStack extends Stack {
     add(
       GoogleDataprocWorkflowTemplate(
         localName: 'sparkpi',
-        name: TfArg.literal('terradart-wf'),
-        location: TfArg.literal('us-central1'),
+        name: .literal('terradart-wf'),
+        location: .literal('us-central1'),
         placement: DataprocWorkflowTemplatePlacement(
           managedCluster: DataprocWorkflowTemplatePlacementManagedCluster(
-            clusterName: TfArg.literal('terradart-wf-cluster'),
+            clusterName: .literal('terradart-wf-cluster'),
             config: DataprocWorkflowTemplatePlacementManagedClusterConfig(
               gceClusterConfig:
                   DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfig(
-                    zone: TfArg.literal('us-central1-a'),
+                    zone: .literal('us-central1-a'),
                   ),
             ),
           ),
         ),
         jobs: [
           DataprocWorkflowTemplateJobs(
-            stepId: TfArg.literal('sparkpi'),
+            stepId: .literal('sparkpi'),
             sparkJob: DataprocWorkflowTemplateJobsSparkJob(
-              mainClass: TfArg.literal('org.apache.spark.examples.SparkPi'),
+              mainClass: .literal('org.apache.spark.examples.SparkPi'),
             ),
           ),
         ],
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(apiDataproc)],
       ),
     );

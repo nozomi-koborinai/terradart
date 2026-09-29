@@ -42,21 +42,19 @@ final class AwsEcsExpressStack extends Stack {
       ) {
     final repo = AwsEcrRepository(
       localName: 'server',
-      name: TfArg.literal(_name),
-      imageTagMutability: TfArg.literal(
-        EcrRepositoryImageTagMutability.mutable,
-      ),
-      forceDelete: TfArg.literal(true),
+      name: .literal(_name),
+      imageTagMutability: .literal(.mutable),
+      forceDelete: .literal(true),
       imageScanningConfiguration: EcrRepositoryImageScanningConfiguration(
-        scanOnPush: TfArg.literal(true),
+        scanOnPush: .literal(true),
       ),
     );
     add(repo);
     add(
       AwsEcrLifecyclePolicy(
         localName: 'server',
-        repository: TfArg.ref(repo.nameRef),
-        policy: TfArg.literal(
+        repository: .ref(repo.nameRef),
+        policy: .literal(
           jsonEncode({
             'rules': [
               {
@@ -92,42 +90,39 @@ final class AwsEcsExpressStack extends Stack {
           'AmazonECSInfrastructureRoleforExpressGatewayServices',
     );
 
-    final cluster = AwsEcsCluster(
-      localName: 'server',
-      name: TfArg.literal(_name),
-    );
+    final cluster = AwsEcsCluster(localName: 'server', name: .literal(_name));
     add(cluster);
 
     final logs = AwsCloudwatchLogGroup(
       localName: 'server',
-      name: .name(TfArg.literal('/ecs/$_name')),
-      retentionInDays: TfArg.literal(14),
+      name: .name(.literal('/ecs/$_name')),
+      retentionInDays: .literal(14),
     );
     add(logs);
 
     add(
       AwsEcsExpressGatewayService(
         localName: 'server',
-        serviceName: TfArg.literal(_name),
-        cluster: TfArg.ref(cluster.nameRef),
-        executionRoleArn: TfArg.ref(execution.role.arn),
-        infrastructureRoleArn: TfArg.ref(infrastructure.role.arn),
-        cpu: TfArg.literal('256'),
-        memory: TfArg.literal('512'),
-        healthCheckPath: TfArg.literal('/'),
+        serviceName: .literal(_name),
+        cluster: .ref(cluster.nameRef),
+        executionRoleArn: .ref(execution.role.arn),
+        infrastructureRoleArn: .ref(infrastructure.role.arn),
+        cpu: .literal('256'),
+        memory: .literal('512'),
+        healthCheckPath: .literal('/'),
         primaryContainer: [
           EcsExpressGatewayServicePrimaryContainer(
             image: TfArg.expression(
               '${repo.repositoryUrl.interpolation}:$imageTag',
             ),
-            containerPort: TfArg.literal(_port),
+            containerPort: .literal(_port),
             environment: [
               EcsExpressGatewayServicePrimaryContainerEnvironment(
-                name: TfArg.literal('PORT'),
-                value: TfArg.literal('$_port'),
+                name: .literal('PORT'),
+                value: .literal('$_port'),
               ),
             ],
-            awsLogsConfiguration: TfArg.literal([
+            awsLogsConfiguration: .literal([
               {
                 'log_group': TfArg.ref(logs.nameRef),
                 'log_stream_prefix': 'server',
@@ -154,12 +149,12 @@ final class AwsEcsExpressStack extends Stack {
       localName: '${localName}_trust',
       statement: [
         DataIamPolicyDocumentStatement(
-          effect: TfArg.literal('Allow'),
-          actions: TfArg.literal(['sts:AssumeRole']),
+          effect: .literal('Allow'),
+          actions: .literal(['sts:AssumeRole']),
           principals: [
             DataIamPolicyDocumentStatementPrincipals(
-              type: TfArg.literal('Service'),
-              identifiers: TfArg.literal([service]),
+              type: .literal('Service'),
+              identifiers: .literal([service]),
             ),
           ],
         ),
@@ -168,14 +163,14 @@ final class AwsEcsExpressStack extends Stack {
     addData(trust);
     final role = AwsIamRole(
       localName: localName,
-      name: .name(TfArg.literal(name)),
-      assumeRolePolicy: TfArg.ref(trust.json),
+      name: .name(.literal(name)),
+      assumeRolePolicy: .ref(trust.json),
     );
     add(role);
     final attachment = AwsIamRolePolicyAttachment(
       localName: localName,
-      role: TfArg.ref(role.nameRef),
-      policyArn: TfArg.literal(policyArn),
+      role: .ref(role.nameRef),
+      policyArn: .literal(policyArn),
     );
     add(attachment);
     return (role: role, attachment: attachment);

@@ -32,31 +32,31 @@ final class VectorSearchStack extends Stack {
     final apiVectorSearch = add(
       GoogleProjectService(
         localName: 'api_vectorsearch',
-        service: TfArg.literal('vectorsearch.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('vectorsearch.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final collection = add(
       GoogleVectorSearchCollection(
         localName: 'docs',
-        location: TfArg.literal(location),
-        collectionId: TfArg.literal('terradart-docs'),
-        displayName: TfArg.literal('TerraDart docs'),
-        description: TfArg.literal('Vector Search collection + data object'),
-        dataSchema: TfArg.literal(
+        location: .literal(location),
+        collectionId: .literal('terradart-docs'),
+        displayName: .literal('TerraDart docs'),
+        description: .literal('Vector Search collection + data object'),
+        dataSchema: .literal(
           '{"type":"object","properties":{"title":{"type":"string"},'
           '"plot":{"type":"string"}}}',
         ),
         vectorSchema: [
           VectorSearchCollectionVectorSchema(
-            fieldName: TfArg.literal('text_embedding'),
+            fieldName: .literal('text_embedding'),
             denseVector: VectorSearchCollectionVectorSchemaDenseVector(
-              dimensions: TfArg.literal(768),
+              dimensions: .literal(768),
             ),
           ),
         ],
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(apiVectorSearch)],
       ),
     );
@@ -64,21 +64,21 @@ final class VectorSearchStack extends Stack {
     add(
       GoogleVectorSearchDataObject(
         localName: 'sample_doc',
-        location: TfArg.literal(location),
-        collectionId: TfArg.ref(collection.collectionIdRef),
-        dataObjectId: TfArg.literal('terradart-sample-doc'),
-        data: TfArg.literal(
+        location: .literal(location),
+        collectionId: .ref(collection.collectionIdRef),
+        dataObjectId: .literal('terradart-sample-doc'),
+        data: .literal(
           '{"title":"TerraDart smoke","plot":"Schema coverage only"}',
         ),
         vectors: [
           VectorSearchDataObjectVectors(
-            fieldName: TfArg.literal('text_embedding'),
+            fieldName: .literal('text_embedding'),
             dense: VectorSearchDataObjectVectorsDense(
-              values: TfArg.literal(zeroEmbedding),
+              values: .literal(zeroEmbedding),
             ),
           ),
         ],
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [
           ResourceDependency(apiVectorSearch),
           ResourceDependency(collection),

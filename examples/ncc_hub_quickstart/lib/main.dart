@@ -43,10 +43,10 @@ final class NccHubStack extends Stack {
     final hub = add(
       GoogleNetworkConnectivityHub(
         localName: 'hub',
-        name: TfArg.literal('terradart-ncc-hub'),
-        description: TfArg.literal('TerraDart NCC hub'),
-        policyMode: TfArg.literal('PRESET'),
-        presetTopology: TfArg.literal('STAR'),
+        name: .literal('terradart-ncc-hub'),
+        description: .literal('TerraDart NCC hub'),
+        policyMode: .literal('PRESET'),
+        presetTopology: .literal('STAR'),
         dependsOn: apiDeps,
       ),
     );
@@ -54,9 +54,9 @@ final class NccHubStack extends Stack {
     final centerGroup = add(
       GoogleNetworkConnectivityGroup(
         localName: 'center',
-        hub: TfArg.ref(hub.id),
-        name: TfArg.literal(NetworkConnectivityGroupName.center),
-        description: TfArg.literal('STAR center group'),
+        hub: .ref(hub.id),
+        name: .literal(.center),
+        description: .literal('STAR center group'),
         dependsOn: [...apiDeps, ResourceDependency(hub)],
       ),
     );
@@ -64,8 +64,8 @@ final class NccHubStack extends Stack {
     final vpc = add(
       GoogleComputeNetwork(
         localName: 'spoke_vpc',
-        name: TfArg.literal('terradart-ncc-spoke-vpc'),
-        autoCreateSubnetworks: TfArg.literal(false),
+        name: .literal('terradart-ncc-spoke-vpc'),
+        autoCreateSubnetworks: .literal(false),
         dependsOn: apiDeps,
       ),
     );
@@ -73,11 +73,11 @@ final class NccHubStack extends Stack {
     final subnet = add(
       GoogleComputeSubnetwork(
         localName: 'spoke_subnet',
-        name: TfArg.literal('terradart-ncc-spoke-subnet'),
-        ipCidrRange: TfArg.literal('10.20.0.0/24'),
-        region: TfArg.literal(region),
-        network: TfArg.ref(vpc.id),
-        privateIpGoogleAccess: TfArg.literal(true),
+        name: .literal('terradart-ncc-spoke-subnet'),
+        ipCidrRange: .literal('10.20.0.0/24'),
+        region: .literal(region),
+        network: .ref(vpc.id),
+        privateIpGoogleAccess: .literal(true),
         dependsOn: [...apiDeps, ResourceDependency(vpc)],
       ),
     );
@@ -85,11 +85,11 @@ final class NccHubStack extends Stack {
     add(
       GoogleNetworkConnectivitySpoke(
         localName: 'vpc_spoke',
-        name: TfArg.literal('terradart-vpc-spoke'),
-        location: TfArg.literal('global'),
-        hub: TfArg.ref(hub.id),
-        group: TfArg.literal('center'),
-        attachment: .linkedVpcNetwork(uri: TfArg.ref(vpc.id)),
+        name: .literal('terradart-vpc-spoke'),
+        location: .literal('global'),
+        hub: .ref(hub.id),
+        group: .literal('center'),
+        attachment: .linkedVpcNetwork(uri: .ref(vpc.id)),
         dependsOn: [
           ...apiDeps,
           ResourceDependency(hub),
@@ -102,12 +102,12 @@ final class NccHubStack extends Stack {
     add(
       GoogleNetworkConnectivityInternalRange(
         localName: 'reserved',
-        name: TfArg.literal('terradart-ncc-ir'),
-        network: TfArg.ref(vpc.id),
-        usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),
-        peering: TfArg.literal(NetworkConnectivityInternalRangePeering.forSelf),
-        ipCidrRange: TfArg.literal('10.9.0.0/24'),
-        description: TfArg.literal('Reserved range for NCC smoke'),
+        name: .literal('terradart-ncc-ir'),
+        network: .ref(vpc.id),
+        usage: .literal(.forVpc),
+        peering: .literal(.forSelf),
+        ipCidrRange: .literal('10.9.0.0/24'),
+        description: .literal('Reserved range for NCC smoke'),
         dependsOn: [...apiDeps, ResourceDependency(vpc)],
       ),
     );
@@ -115,16 +115,12 @@ final class NccHubStack extends Stack {
     add(
       GoogleNetworkConnectivityRegionalEndpoint(
         localName: 'storage_rep',
-        name: TfArg.literal('terradart-storage-rep'),
-        location: TfArg.literal(region),
-        targetGoogleApi: TfArg.literal(
-          'storage.us-central1.rep.googleapis.com',
-        ),
-        accessType: TfArg.literal(
-          NetworkConnectivityRegionalEndpointAccessType.regional,
-        ),
-        network: TfArg.ref(vpc.id),
-        subnetwork: TfArg.ref(subnet.id),
+        name: .literal('terradart-storage-rep'),
+        location: .literal(region),
+        targetGoogleApi: .literal('storage.us-central1.rep.googleapis.com'),
+        accessType: .literal(.regional),
+        network: .ref(vpc.id),
+        subnetwork: .ref(subnet.id),
         dependsOn: [
           ...apiDeps,
           ResourceDependency(vpc),
@@ -136,25 +132,23 @@ final class NccHubStack extends Stack {
     add(
       GoogleNetworkConnectivityPolicyBasedRoute(
         localName: 'default_pbr',
-        name: TfArg.literal('terradart-ncc-pbr'),
-        network: TfArg.ref(vpc.id),
+        name: .literal('terradart-ncc-pbr'),
+        network: .ref(vpc.id),
         filter: NetworkConnectivityPolicyBasedRouteFilter(
-          protocolVersion: TfArg.literal(
-            NetworkConnectivityPolicyBasedRouteFilterProtocolVersion.ipv4,
-          ),
+          protocolVersion: .literal(.ipv4),
         ),
         nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(
-          TfArg.literal(
+          .literal(
             NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes
                 .defaultRouting,
           ),
         ),
         scope: .virtualMachine(
           NetworkConnectivityPolicyBasedRouteVirtualMachine(
-            tags: TfArg.literal(['terradart-pbr']),
+            tags: .literal(['terradart-pbr']),
           ),
         ),
-        description: TfArg.literal('TerraDart PBR smoke (DEFAULT_ROUTING)'),
+        description: .literal('TerraDart PBR smoke (DEFAULT_ROUTING)'),
         dependsOn: [...apiDeps, ResourceDependency(vpc)],
       ),
     );
@@ -162,17 +156,17 @@ final class NccHubStack extends Stack {
     final inventory = add(
       GoogleServiceAccount(
         localName: 'ncc_inventory',
-        accountId: TfArg.literal('ncc-inventory'),
-        displayName: TfArg.literal('NCC hub inventory reader'),
+        accountId: .literal('ncc-inventory'),
+        displayName: .literal('NCC hub inventory reader'),
       ),
     );
 
     add(
       GoogleNetworkConnectivityHubIamMember(
         localName: 'hub_viewer',
-        hub: TfArg.ref(hub.id),
-        role: TfArg.literal('roles/networkconnectivity.viewer'),
-        member: TfArg.ref(inventory.iamMember),
+        hub: .ref(hub.id),
+        role: .literal('roles/networkconnectivity.viewer'),
+        member: .ref(inventory.iamMember),
         dependsOn: [ResourceDependency(hub), ResourceDependency(inventory)],
       ),
     );

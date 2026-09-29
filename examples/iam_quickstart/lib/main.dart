@@ -59,29 +59,25 @@ final class IamShowcaseStack extends Stack {
     final wifPool = add(
       GoogleIamWorkloadIdentityPool(
         localName: 'ci',
-        workloadIdentityPoolId: TfArg.literal('github-actions'),
-        displayName: TfArg.literal('GitHub Actions CI/CD'),
+        workloadIdentityPoolId: .literal('github-actions'),
+        displayName: .literal('GitHub Actions CI/CD'),
       ),
     );
 
     add(
       GoogleIamWorkloadIdentityPoolProvider(
         localName: 'github_provider',
-        workloadIdentityPoolId: TfArg.ref(wifPool.nameRef),
-        workloadIdentityPoolProviderId: TfArg.literal('github-actions'),
-        displayName: TfArg.literal('GitHub Actions OIDC'),
-        attributeCondition: TfArg.literal(
-          'assertion.repository_owner == "my-org"',
-        ),
-        attributeMapping: TfArg.literal({
+        workloadIdentityPoolId: .ref(wifPool.nameRef),
+        workloadIdentityPoolProviderId: .literal('github-actions'),
+        displayName: .literal('GitHub Actions OIDC'),
+        attributeCondition: .literal('assertion.repository_owner == "my-org"'),
+        attributeMapping: .literal({
           'google.subject': 'assertion.repository',
           'attribute.repository_owner': 'assertion.repository_owner',
         }),
         trustSource: .oidc(
-          allowedAudiences: [TfArg.literal('https://github.com/my-org')],
-          issuerUri: TfArg.literal(
-            'https://token.actions.githubusercontent.com',
-          ),
+          allowedAudiences: [.literal('https://github.com/my-org')],
+          issuerUri: .literal('https://token.actions.githubusercontent.com'),
         ),
         dependsOn: [ResourceDependency(wifPool)],
       ),
@@ -96,8 +92,8 @@ final class IamShowcaseStack extends Stack {
     final sa = add(
       GoogleServiceAccount(
         localName: 'demo',
-        accountId: TfArg.literal('demo-sa'),
-        displayName: TfArg.literal('IAM quickstart demo SA'),
+        accountId: .literal('demo-sa'),
+        displayName: .literal('IAM quickstart demo SA'),
       ),
     );
 
@@ -108,8 +104,8 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIamWorkloadIdentityPoolIamMember(
         localName: 'wif_pool_viewer',
-        workloadIdentityPoolId: TfArg.ref(wifPool.nameRef),
-        role: TfArg.literal('roles/iam.workloadIdentityPoolViewer'),
+        workloadIdentityPoolId: .ref(wifPool.nameRef),
+        role: .literal('roles/iam.workloadIdentityPoolViewer'),
         member: saMember,
         dependsOn: [ResourceDependency(wifPool), ResourceDependency(sa)],
       ),
@@ -118,29 +114,29 @@ final class IamShowcaseStack extends Stack {
     final apiPubsub = add(
       GoogleProjectService(
         localName: 'api_pubsub',
-        service: TfArg.literal('pubsub.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('pubsub.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
     final apiCloudTasks = add(
       GoogleProjectService(
         localName: 'api_cloudtasks',
-        service: TfArg.literal('cloudtasks.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('cloudtasks.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
     final apiSecretManager = add(
       GoogleProjectService(
         localName: 'api_secretmanager',
-        service: TfArg.literal('secretmanager.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('secretmanager.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
     final apiIap = add(
       GoogleProjectService(
         localName: 'api_iap',
-        service: TfArg.literal('iap.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('iap.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -149,7 +145,7 @@ final class IamShowcaseStack extends Stack {
     final topic = add(
       GooglePubsubTopic(
         localName: 'demo',
-        name: TfArg.literal('demo-topic'),
+        name: .literal('demo-topic'),
         dependsOn: [ResourceDependency(apiPubsub)],
       ),
     );
@@ -157,9 +153,9 @@ final class IamShowcaseStack extends Stack {
     final subscription = add(
       GooglePubsubSubscription(
         localName: 'demo_sub',
-        name: TfArg.literal('demo-sub'),
+        name: .literal('demo-sub'),
         // topic.id (NOT topic.nameRef) -- subscriptions need full path.
-        topic: TfArg.ref(topic.id),
+        topic: .ref(topic.id),
         dependsOn: [ResourceDependency(apiPubsub)],
       ),
     );
@@ -167,8 +163,8 @@ final class IamShowcaseStack extends Stack {
     final queue = add(
       GoogleCloudTasksQueue(
         localName: 'demo_queue',
-        name: TfArg.literal('demo-queue'),
-        location: TfArg.literal('us-central1'),
+        name: .literal('demo-queue'),
+        location: .literal('us-central1'),
         dependsOn: [ResourceDependency(apiCloudTasks)],
       ),
     );
@@ -176,7 +172,7 @@ final class IamShowcaseStack extends Stack {
     final secret = add(
       GoogleSecretManagerSecret(
         localName: 'demo_secret',
-        secretId: TfArg.literal('demo-secret'),
+        secretId: .literal('demo-secret'),
         replication: SecretManagerSecretReplication.auto(),
         dependsOn: [ResourceDependency(apiSecretManager)],
       ),
@@ -188,8 +184,8 @@ final class IamShowcaseStack extends Stack {
       GooglePubsubTopicIamMember(
         localName: 'topic_publisher',
         // Topic IAM identifies the topic by its **name** (not id).
-        topic: TfArg.ref(topic.nameRef),
-        role: TfArg.literal('roles/pubsub.publisher'),
+        topic: .ref(topic.nameRef),
+        role: .literal('roles/pubsub.publisher'),
         member: saMember,
       ),
     );
@@ -200,8 +196,8 @@ final class IamShowcaseStack extends Stack {
       GooglePubsubSubscriptionIamMember(
         localName: 'sub_subscriber',
         // Subscription IAM uses the subscription **name**.
-        subscription: TfArg.ref(subscription.nameRef),
-        role: TfArg.literal('roles/pubsub.subscriber'),
+        subscription: .ref(subscription.nameRef),
+        role: .literal('roles/pubsub.subscriber'),
         member: saMember,
       ),
     );
@@ -212,9 +208,9 @@ final class IamShowcaseStack extends Stack {
       GoogleCloudTasksQueueIamMember(
         localName: 'queue_enqueuer',
         // Queue IAM identifies via **name + location** (not id).
-        name: TfArg.ref(queue.nameRef),
-        location: TfArg.ref(queue.locationRef),
-        role: TfArg.literal('roles/cloudtasks.enqueuer'),
+        name: .ref(queue.nameRef),
+        location: .ref(queue.locationRef),
+        role: .literal('roles/cloudtasks.enqueuer'),
         member: saMember,
       ),
     );
@@ -225,8 +221,8 @@ final class IamShowcaseStack extends Stack {
       GoogleSecretManagerSecretIamMember(
         localName: 'secret_accessor',
         // Secret IAM identifies via **secret_id** (not id / name).
-        secretId: TfArg.ref(secret.secretIdRef),
-        role: TfArg.literal('roles/secretmanager.secretAccessor'),
+        secretId: .ref(secret.secretIdRef),
+        role: .literal('roles/secretmanager.secretAccessor'),
         member: saMember,
       ),
     );
@@ -239,9 +235,9 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIapAppEngineServiceIamMember(
         localName: 'gae_service_invoker',
-        appId: TfArg.literal(projectId),
-        service: TfArg.literal('default'),
-        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        appId: .literal(projectId),
+        service: .literal('default'),
+        role: .literal('roles/iap.httpsResourceAccessor'),
         member: saMember,
         dependsOn: [ResourceDependency(apiIap)],
       ),
@@ -250,10 +246,10 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIapAppEngineVersionIamMember(
         localName: 'gae_version_invoker',
-        appId: TfArg.literal(projectId),
-        service: TfArg.literal('default'),
-        versionId: TfArg.literal('v1'),
-        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        appId: .literal(projectId),
+        service: .literal('default'),
+        versionId: .literal('v1'),
+        role: .literal('roles/iap.httpsResourceAccessor'),
         member: saMember,
         dependsOn: [ResourceDependency(apiIap)],
       ),
@@ -262,8 +258,8 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIapWebTypeAppEngineIamMember(
         localName: 'gae_app_invoker',
-        appId: TfArg.literal(projectId),
-        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        appId: .literal(projectId),
+        role: .literal('roles/iap.httpsResourceAccessor'),
         member: saMember,
         dependsOn: [ResourceDependency(apiIap)],
       ),
@@ -277,8 +273,8 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIapAgentRegistryIamMember(
         localName: 'agent_registry_invoker',
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        location: .literal('us-central1'),
+        role: .literal('roles/iap.httpsResourceAccessor'),
         member: saMember,
         dependsOn: [ResourceDependency(apiIap)],
       ),
@@ -287,8 +283,8 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIapLocationWebIamMember(
         localName: 'location_web_invoker',
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        location: .literal('us-central1'),
+        role: .literal('roles/iap.httpsResourceAccessor'),
         member: saMember,
         dependsOn: [ResourceDependency(apiIap)],
       ),
@@ -300,7 +296,7 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIapWebIamMember(
         localName: 'web_invoker',
-        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        role: .literal('roles/iap.httpsResourceAccessor'),
         member: saMember,
         dependsOn: [ResourceDependency(apiIap)],
       ),
@@ -309,7 +305,7 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIapWebTypeComputeIamMember(
         localName: 'web_type_compute_invoker',
-        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        role: .literal('roles/iap.httpsResourceAccessor'),
         member: saMember,
         dependsOn: [ResourceDependency(apiIap)],
       ),
@@ -324,18 +320,18 @@ final class IamShowcaseStack extends Stack {
     final customRole = add(
       GoogleProjectIamCustomRole(
         localName: 'gcs_observer',
-        roleId: TfArg.literal('gcsObserver'),
-        title: TfArg.literal('GCS Observer'),
-        permissions: TfArg.literal([
+        roleId: .literal('gcsObserver'),
+        title: .literal('GCS Observer'),
+        permissions: .literal([
           'storage.objects.get',
           'storage.objects.list',
           'storage.buckets.get',
           'storage.buckets.list',
         ]),
-        description: TfArg.literal(
+        description: .literal(
           'Read-only access to GCS objects and bucket metadata.',
         ),
-        stage: TfArg.literal(CustomRoleStage.ga),
+        stage: .literal(.ga),
       ),
     );
 
@@ -346,10 +342,10 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleProjectIamMember(
         localName: 'demo_sa_observer',
-        project: TfArg.literal(projectId),
+        project: .literal(projectId),
         // Reference the custom role's full path so Terraform binds against
         // the created resource (not just a string literal).
-        role: TfArg.ref(customRole.nameRef),
+        role: .ref(customRole.nameRef),
         member: saMember,
         dependsOn: [ResourceDependency(customRole)],
       ),
@@ -364,8 +360,8 @@ final class IamShowcaseStack extends Stack {
     final impersonator = add(
       GoogleServiceAccount(
         localName: 'impersonator',
-        accountId: TfArg.literal('demo-impersonator'),
-        displayName: TfArg.literal('Demo SA impersonator'),
+        accountId: .literal('demo-impersonator'),
+        displayName: .literal('Demo SA impersonator'),
       ),
     );
 
@@ -373,9 +369,9 @@ final class IamShowcaseStack extends Stack {
       GoogleServiceAccountIamMember(
         localName: 'demo_sa_user',
         // Target SA is the demo SA; identified by its full resource path.
-        serviceAccountId: TfArg.ref(sa.name),
-        role: TfArg.literal('roles/iam.serviceAccountUser'),
-        member: TfArg.ref(impersonator.iamMember),
+        serviceAccountId: .ref(sa.name),
+        role: .literal('roles/iam.serviceAccountUser'),
+        member: .ref(impersonator.iamMember),
       ),
     );
 
@@ -388,9 +384,9 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleServiceAccountKey(
         localName: 'demo_sa_key',
-        serviceAccountId: TfArg.ref(sa.name),
-        keyAlgorithm: TfArg.literal(KeyAlgorithm.rsa2048),
-        privateKeyType: TfArg.literal(PrivateKeyType.googleCredentialsFile),
+        serviceAccountId: .ref(sa.name),
+        keyAlgorithm: .literal(.rsa2048),
+        privateKeyType: .literal(.googleCredentialsFile),
       ),
     );
 
@@ -402,19 +398,19 @@ final class IamShowcaseStack extends Stack {
     final apiOsLogin = add(
       GoogleProjectService(
         localName: 'api_oslogin',
-        service: TfArg.literal('oslogin.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('oslogin.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleOsLoginSshPublicKey(
         localName: 'demo_ssh',
-        user: TfArg.ref(sa.email),
-        key: TfArg.literal(
+        user: .ref(sa.email),
+        key: .literal(
           'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMlTZg5RNgdRr0tVBEkKHZOi3VCrR2eoC7e5stONs4Uw terradart-dummy',
         ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(sa), ResourceDependency(apiOsLogin)],
       ),
     );
@@ -430,15 +426,15 @@ final class IamShowcaseStack extends Stack {
     final apiWorkloadIdentity = add(
       GoogleProjectService(
         localName: 'api_workloadidentity',
-        service: TfArg.literal('workloadidentity.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('workloadidentity.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleWorkloadIdentityServiceAgent(
         localName: 'pubsub_agents',
-        parent: TfArg.literal(
+        parent: .literal(
           'projects/${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com',
         ),
         dependsOn: [ResourceDependency(apiWorkloadIdentity)],
@@ -453,13 +449,13 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIamOauthClient(
         localName: 'demo_oauth',
-        oauthClientId: TfArg.literal('terradart-oauth'),
-        location: TfArg.literal('global'),
-        allowedGrantTypes: TfArg.literal(['AUTHORIZATION_CODE_GRANT']),
-        allowedRedirectUris: TfArg.literal(['https://www.example.com']),
-        allowedScopes: TfArg.literal(['openid']),
-        clientType: TfArg.literal('PUBLIC_CLIENT'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        oauthClientId: .literal('terradart-oauth'),
+        location: .literal('global'),
+        allowedGrantTypes: .literal(['AUTHORIZATION_CODE_GRANT']),
+        allowedRedirectUris: .literal(['https://www.example.com']),
+        allowedScopes: .literal(['openid']),
+        clientType: .literal('PUBLIC_CLIENT'),
+        deletionPolicy: .literal('DELETE'),
       ),
     );
 
@@ -468,20 +464,20 @@ final class IamShowcaseStack extends Stack {
     final workforce = add(
       GoogleIamWorkforcePool(
         localName: 'workforce',
-        location: TfArg.literal('global'),
-        parent: TfArg.literal('organizations/123456789'),
-        workforcePoolId: TfArg.literal('terradart-wf'),
-        displayName: TfArg.literal('terradart workforce'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        location: .literal('global'),
+        parent: .literal('organizations/123456789'),
+        workforcePoolId: .literal('terradart-wf'),
+        displayName: .literal('terradart workforce'),
+        deletionPolicy: .literal('DELETE'),
       ),
     );
 
     add(
       GoogleIamWorkforcePoolIamMember(
         localName: 'workforce_viewer',
-        workforcePoolId: TfArg.literal('terradart-wf'),
-        location: TfArg.literal('global'),
-        role: TfArg.literal('roles/iam.workforcePoolViewer'),
+        workforcePoolId: .literal('terradart-wf'),
+        location: .literal('global'),
+        role: .literal('roles/iam.workforcePoolViewer'),
         member: saMember,
         dependsOn: [ResourceDependency(workforce), ResourceDependency(sa)],
       ),
@@ -490,14 +486,14 @@ final class IamShowcaseStack extends Stack {
     final wfProvider = add(
       GoogleIamWorkforcePoolProvider(
         localName: 'workforce_oidc',
-        location: TfArg.literal('global'),
-        workforcePoolId: TfArg.literal('terradart-wf'),
-        providerId: TfArg.literal('terradart-oidc'),
+        location: .literal('global'),
+        workforcePoolId: .literal('terradart-wf'),
+        providerId: .literal('terradart-oidc'),
         trustSource: .oidc(
-          issuerUri: TfArg.literal('https://accounts.google.com'),
-          clientId: TfArg.literal('client.apps.googleusercontent.com'),
+          issuerUri: .literal('https://accounts.google.com'),
+          clientId: .literal('client.apps.googleusercontent.com'),
         ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(workforce)],
       ),
     );
@@ -505,17 +501,15 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIamWorkforcePoolProviderKey(
         localName: 'workforce_key',
-        location: TfArg.literal('global'),
-        workforcePoolId: TfArg.literal('terradart-wf'),
-        providerId: TfArg.literal('terradart-oidc'),
-        keyId: TfArg.literal('terradart-key'),
-        use: TfArg.literal('ENCRYPTION'),
+        location: .literal('global'),
+        workforcePoolId: .literal('terradart-wf'),
+        providerId: .literal('terradart-oidc'),
+        keyId: .literal('terradart-key'),
+        use: .literal('ENCRYPTION'),
         keyData: IamWorkforcePoolProviderKeyKeyData(
-          keySpec: TfArg.literal(
-            IamWorkforcePoolProviderKeyKeyDataKeySpec.rsa2048,
-          ),
+          keySpec: .literal(.rsa2048),
         ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(wfProvider)],
       ),
     );
@@ -523,15 +517,15 @@ final class IamShowcaseStack extends Stack {
     final scim = add(
       GoogleIamWorkforcePoolProviderScimTenant(
         localName: 'workforce_scim',
-        location: TfArg.literal('global'),
-        workforcePoolId: TfArg.literal('terradart-wf'),
-        providerId: TfArg.literal('terradart-oidc'),
-        scimTenantId: TfArg.literal('terradart-scim'),
-        claimMapping: TfArg.literal(<String, String>{
+        location: .literal('global'),
+        workforcePoolId: .literal('terradart-wf'),
+        providerId: .literal('terradart-oidc'),
+        scimTenantId: .literal('terradart-scim'),
+        claimMapping: .literal(<String, String>{
           'google.subject': 'user.externalId',
           'google.group': 'group.externalId',
         }),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(wfProvider)],
       ),
     );
@@ -539,12 +533,12 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleIamWorkforcePoolProviderScimToken(
         localName: 'workforce_scim_token',
-        location: TfArg.literal('global'),
-        workforcePoolId: TfArg.literal('terradart-wf'),
-        providerId: TfArg.literal('terradart-oidc'),
-        scimTenantId: TfArg.literal('terradart-scim'),
-        scimTokenId: TfArg.literal('terradart-scim-token'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        location: .literal('global'),
+        workforcePoolId: .literal('terradart-wf'),
+        providerId: .literal('terradart-oidc'),
+        scimTenantId: .literal('terradart-scim'),
+        scimTokenId: .literal('terradart-scim-token'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(scim)],
       ),
     );

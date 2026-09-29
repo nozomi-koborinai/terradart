@@ -23,58 +23,53 @@ final class TranscoderStack extends Stack {
     final apiTranscoder = add(
       GoogleProjectService(
         localName: 'api_transcoder',
-        service: TfArg.literal('transcoder.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('transcoder.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleTranscoderJobTemplate(
         localName: 'sd',
-        jobTemplateId: TfArg.literal('terradart-sd'),
-        location: TfArg.literal('us-central1'),
+        jobTemplateId: .literal('terradart-sd'),
+        location: .literal('us-central1'),
         config: TranscoderJobTemplateConfig(
-          inputs: [
-            TranscoderJobTemplateConfigInputs(key: TfArg.literal('input0')),
-          ],
+          inputs: [TranscoderJobTemplateConfigInputs(key: .literal('input0'))],
           editList: [
             TranscoderJobTemplateConfigEditList(
-              key: TfArg.literal('atom0'),
-              inputs: TfArg.literal(['input0']),
-              startTimeOffset: TfArg.literal('0s'),
+              key: .literal('atom0'),
+              inputs: .literal(['input0']),
+              startTimeOffset: .literal('0s'),
             ),
           ],
           elementaryStreams: [
             TranscoderJobTemplateConfigElementaryStreams(
-              key: TfArg.literal('video-stream0'),
+              key: .literal('video-stream0'),
               videoStream: TranscoderJobTemplateConfigElementaryStreamsVideoStream(
                 h264:
                     TranscoderJobTemplateConfigElementaryStreamsVideoStreamH264(
-                      widthPixels: TfArg.literal(640),
-                      heightPixels: TfArg.literal(360),
-                      bitrateBps: TfArg.literal(550000),
-                      frameRate: TfArg.literal(60),
+                      widthPixels: .literal(640),
+                      heightPixels: .literal(360),
+                      bitrateBps: .literal(550000),
+                      frameRate: .literal(60),
                     ),
               ),
             ),
             TranscoderJobTemplateConfigElementaryStreams(
-              key: TfArg.literal('audio-stream0'),
+              key: .literal('audio-stream0'),
               audioStream:
                   TranscoderJobTemplateConfigElementaryStreamsAudioStream(
-                    codec: TfArg.literal('aac'),
-                    bitrateBps: TfArg.literal(64000),
+                    codec: .literal('aac'),
+                    bitrateBps: .literal(64000),
                   ),
             ),
           ],
           muxStreams: [
             TranscoderJobTemplateConfigMuxStreams(
-              key: TfArg.literal('sd'),
-              fileName: TfArg.literal('sd.mp4'),
-              container: TfArg.literal('mp4'),
-              elementaryStreams: TfArg.literal([
-                'video-stream0',
-                'audio-stream0',
-              ]),
+              key: .literal('sd'),
+              fileName: .literal('sd.mp4'),
+              container: .literal('mp4'),
+              elementaryStreams: .literal(['video-stream0', 'audio-stream0']),
             ),
           ],
         ),

@@ -40,8 +40,8 @@ final class RegistryStack extends Stack {
     final apiServiceDirectory = add(
       GoogleProjectService(
         localName: 'api_servicedirectory',
-        service: TfArg.literal('servicedirectory.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('servicedirectory.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -50,17 +50,17 @@ final class RegistryStack extends Stack {
     final consumer = add(
       GoogleServiceAccount(
         localName: 'registry_consumer',
-        accountId: TfArg.literal('registry-consumer'),
-        displayName: TfArg.literal('Service Directory consumer'),
+        accountId: .literal('registry-consumer'),
+        displayName: .literal('Service Directory consumer'),
       ),
     );
 
     final namespace = add(
       GoogleServiceDirectoryNamespace(
         localName: 'registry',
-        namespaceId: TfArg.literal('terradart-registry'),
-        location: TfArg.literal('us-central1'),
-        labels: TfArg.literal(const {'managed-by': 'terradart'}),
+        namespaceId: .literal('terradart-registry'),
+        location: .literal('us-central1'),
+        labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [ResourceDependency(apiServiceDirectory)],
       ),
     );
@@ -68,9 +68,9 @@ final class RegistryStack extends Stack {
     final service = add(
       GoogleServiceDirectoryService(
         localName: 'api',
-        serviceId: TfArg.literal('api'),
-        namespace: TfArg.ref(namespace.id),
-        metadata: TfArg.literal(const {'protocol': 'grpc'}),
+        serviceId: .literal('api'),
+        namespace: .ref(namespace.id),
+        metadata: .literal(const {'protocol': 'grpc'}),
         dependsOn: [ResourceDependency(namespace)],
       ),
     );
@@ -78,11 +78,11 @@ final class RegistryStack extends Stack {
     add(
       GoogleServiceDirectoryEndpoint(
         localName: 'api_primary',
-        endpointId: TfArg.literal('api-primary'),
-        service: TfArg.ref(service.id),
-        address: TfArg.literal('10.0.0.42'),
-        port: TfArg.literal(443),
-        metadata: TfArg.literal(const {'weight': '100'}),
+        endpointId: .literal('api-primary'),
+        service: .ref(service.id),
+        address: .literal('10.0.0.42'),
+        port: .literal(443),
+        metadata: .literal(const {'weight': '100'}),
         dependsOn: [ResourceDependency(service)],
       ),
     );
@@ -91,9 +91,9 @@ final class RegistryStack extends Stack {
     final namespaceViewer = add(
       GoogleServiceDirectoryNamespaceIamMember(
         localName: 'namespace_viewer',
-        name: TfArg.ref(namespace.id),
-        role: TfArg.literal('roles/servicedirectory.viewer'),
-        member: TfArg.ref(consumer.iamMember),
+        name: .ref(namespace.id),
+        role: .literal('roles/servicedirectory.viewer'),
+        member: .ref(consumer.iamMember),
         dependsOn: [
           ResourceDependency(namespace),
           ResourceDependency(consumer),
@@ -104,9 +104,9 @@ final class RegistryStack extends Stack {
     final namespaceViewerBinding = add(
       GoogleServiceDirectoryNamespaceIamBinding(
         localName: 'namespace_viewer_binding',
-        name: TfArg.ref(namespace.id),
-        role: TfArg.literal('roles/servicedirectory.viewer'),
-        members: TfArg.literal([consumer.iamMember.interpolation]),
+        name: .ref(namespace.id),
+        role: .literal('roles/servicedirectory.viewer'),
+        members: .literal([consumer.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(namespace),
           ResourceDependency(namespaceViewer),
@@ -117,8 +117,8 @@ final class RegistryStack extends Stack {
     add(
       GoogleServiceDirectoryNamespaceIamPolicy(
         localName: 'namespace_viewer_policy',
-        name: TfArg.ref(namespace.id),
-        policyData: TfArg.literal(
+        name: .ref(namespace.id),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/servicedirectory.viewer',
             member:
@@ -136,9 +136,9 @@ final class RegistryStack extends Stack {
     final serviceEditor = add(
       GoogleServiceDirectoryServiceIamMember(
         localName: 'service_editor',
-        name: TfArg.ref(service.id),
-        role: TfArg.literal('roles/servicedirectory.editor'),
-        member: TfArg.ref(consumer.iamMember),
+        name: .ref(service.id),
+        role: .literal('roles/servicedirectory.editor'),
+        member: .ref(consumer.iamMember),
         dependsOn: [ResourceDependency(service), ResourceDependency(consumer)],
       ),
     );
@@ -146,9 +146,9 @@ final class RegistryStack extends Stack {
     final serviceEditorBinding = add(
       GoogleServiceDirectoryServiceIamBinding(
         localName: 'service_editor_binding',
-        name: TfArg.ref(service.id),
-        role: TfArg.literal('roles/servicedirectory.editor'),
-        members: TfArg.literal([consumer.iamMember.interpolation]),
+        name: .ref(service.id),
+        role: .literal('roles/servicedirectory.editor'),
+        members: .literal([consumer.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(service),
           ResourceDependency(serviceEditor),
@@ -159,8 +159,8 @@ final class RegistryStack extends Stack {
     add(
       GoogleServiceDirectoryServiceIamPolicy(
         localName: 'service_editor_policy',
-        name: TfArg.ref(service.id),
-        policyData: TfArg.literal(
+        name: .ref(service.id),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/servicedirectory.editor',
             member:

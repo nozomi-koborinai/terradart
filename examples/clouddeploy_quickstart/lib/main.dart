@@ -39,8 +39,8 @@ final class DeployStack extends Stack {
     final apiClouddeploy = add(
       GoogleProjectService(
         localName: 'api_clouddeploy',
-        service: TfArg.literal('clouddeploy.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('clouddeploy.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -51,18 +51,18 @@ final class DeployStack extends Stack {
     final deployer = add(
       GoogleServiceAccount(
         localName: 'deployer',
-        accountId: TfArg.literal('clouddeploy-deployer'),
-        displayName: TfArg.literal('Cloud Deploy automation SA'),
+        accountId: .literal('clouddeploy-deployer'),
+        displayName: .literal('Cloud Deploy automation SA'),
       ),
     );
 
     final runTarget = add(
       GoogleClouddeployTarget(
         localName: 'prod_run',
-        name: TfArg.literal('terradart-run-target'),
-        location: TfArg.literal('us-central1'),
-        description: TfArg.literal('Cloud Run production target'),
-        run: TfArg.literal(<String, Object?>{
+        name: .literal('terradart-run-target'),
+        location: .literal('us-central1'),
+        description: .literal('Cloud Run production target'),
+        run: .literal(<String, Object?>{
           'location': 'projects/$projectId/locations/us-central1',
         }),
         dependsOn: [ResourceDependency(apiClouddeploy)],
@@ -72,10 +72,10 @@ final class DeployStack extends Stack {
     final pipeline = add(
       GoogleClouddeployDeliveryPipeline(
         localName: 'app_pipeline',
-        name: TfArg.literal('terradart-pipeline'),
-        location: TfArg.literal('us-central1'),
-        description: TfArg.literal('App delivery pipeline'),
-        serialPipeline: TfArg.literal(<String, Object?>{
+        name: .literal('terradart-pipeline'),
+        location: .literal('us-central1'),
+        description: .literal('App delivery pipeline'),
+        serialPipeline: .literal(<String, Object?>{
           'stages': [
             {'target_id': 'terradart-run-target', 'profiles': <String>[]},
           ],
@@ -90,13 +90,13 @@ final class DeployStack extends Stack {
     final customType = add(
       GoogleClouddeployCustomTargetType(
         localName: 'custom',
-        name: TfArg.literal('terradart-custom-target-type'),
-        location: TfArg.literal('us-central1'),
-        description: TfArg.literal('Custom target type (render + deploy)'),
+        name: .literal('terradart-custom-target-type'),
+        location: .literal('us-central1'),
+        description: .literal('Custom target type (render + deploy)'),
         actions: .customActions(
           ClouddeployCustomTargetTypeCustomActions(
-            renderAction: TfArg.literal('render'),
-            deployAction: TfArg.literal('deploy'),
+            renderAction: .literal('render'),
+            deployAction: .literal('deploy'),
           ),
         ),
         dependsOn: [ResourceDependency(apiClouddeploy)],
@@ -108,10 +108,10 @@ final class DeployStack extends Stack {
     add(
       GoogleClouddeployTargetIamMember(
         localName: 'deployer_target_viewer',
-        name: TfArg.ref(runTarget.nameRef),
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/clouddeploy.viewer'),
-        member: TfArg.ref(deployer.iamMember),
+        name: .ref(runTarget.nameRef),
+        location: .literal('us-central1'),
+        role: .literal('roles/clouddeploy.viewer'),
+        member: .ref(deployer.iamMember),
         dependsOn: [
           ResourceDependency(runTarget),
           ResourceDependency(deployer),
@@ -122,10 +122,10 @@ final class DeployStack extends Stack {
     add(
       GoogleClouddeployDeliveryPipelineIamMember(
         localName: 'deployer_pipeline_viewer',
-        name: TfArg.ref(pipeline.nameRef),
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/clouddeploy.viewer'),
-        member: TfArg.ref(deployer.iamMember),
+        name: .ref(pipeline.nameRef),
+        location: .literal('us-central1'),
+        role: .literal('roles/clouddeploy.viewer'),
+        member: .ref(deployer.iamMember),
         dependsOn: [ResourceDependency(pipeline), ResourceDependency(deployer)],
       ),
     );
@@ -133,10 +133,10 @@ final class DeployStack extends Stack {
     final pipelineReleaser = add(
       GoogleClouddeployDeliveryPipelineIamMember(
         localName: 'deployer_pipeline_releaser',
-        name: TfArg.ref(pipeline.nameRef),
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/clouddeploy.releaser'),
-        member: TfArg.ref(deployer.iamMember),
+        name: .ref(pipeline.nameRef),
+        location: .literal('us-central1'),
+        role: .literal('roles/clouddeploy.releaser'),
+        member: .ref(deployer.iamMember),
         dependsOn: [ResourceDependency(pipeline), ResourceDependency(deployer)],
       ),
     );
@@ -145,9 +145,9 @@ final class DeployStack extends Stack {
     final deployerActAs = add(
       GoogleServiceAccountIamMember(
         localName: 'deployer_actas',
-        serviceAccountId: TfArg.ref(deployer.name),
-        role: TfArg.literal('roles/iam.serviceAccountUser'),
-        member: TfArg.literal(
+        serviceAccountId: .ref(deployer.name),
+        role: .literal('roles/iam.serviceAccountUser'),
+        member: .literal(
           'serviceAccount:service-${current.number.interpolation}'
           '@gcp-sa-clouddeploy.iam.gserviceaccount.com',
         ),
@@ -158,10 +158,10 @@ final class DeployStack extends Stack {
     add(
       GoogleClouddeployCustomTargetTypeIamMember(
         localName: 'deployer_custom_type_viewer',
-        name: TfArg.ref(customType.nameRef),
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/clouddeploy.viewer'),
-        member: TfArg.ref(deployer.iamMember),
+        name: .ref(customType.nameRef),
+        location: .literal('us-central1'),
+        role: .literal('roles/clouddeploy.viewer'),
+        member: .ref(deployer.iamMember),
         dependsOn: [
           ResourceDependency(customType),
           ResourceDependency(deployer),
@@ -174,17 +174,17 @@ final class DeployStack extends Stack {
     add(
       GoogleClouddeployAutomation(
         localName: 'promote',
-        name: TfArg.literal('terradart-automation'),
-        location: TfArg.literal('us-central1'),
-        deliveryPipeline: TfArg.ref(pipeline.nameRef),
-        serviceAccount: TfArg.ref(deployer.email),
-        suspended: TfArg.literal(true),
-        selector: TfArg.literal(<String, Object?>{
+        name: .literal('terradart-automation'),
+        location: .literal('us-central1'),
+        deliveryPipeline: .ref(pipeline.nameRef),
+        serviceAccount: .ref(deployer.email),
+        suspended: .literal(true),
+        selector: .literal(<String, Object?>{
           'targets': [
             {'id': 'terradart-run-target'},
           ],
         }),
-        rules: TfArg.literal([
+        rules: .literal([
           {
             'promote_release_rule': {'id': 'promote-release'},
           },
@@ -203,14 +203,14 @@ final class DeployStack extends Stack {
     add(
       GoogleClouddeployDeployPolicy(
         localName: 'freeze',
-        name: TfArg.literal('terradart-deploy-policy'),
-        location: TfArg.literal('us-central1'),
-        selectors: TfArg.literal([
+        name: .literal('terradart-deploy-policy'),
+        location: .literal('us-central1'),
+        selectors: .literal([
           {
             'delivery_pipeline': {'id': 'terradart-pipeline'},
           },
         ]),
-        rules: TfArg.literal([
+        rules: .literal([
           {
             'rollout_restriction': {
               'id': 'no-automation',

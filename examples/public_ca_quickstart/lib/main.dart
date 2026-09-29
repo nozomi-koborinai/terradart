@@ -21,15 +21,15 @@ final class PublicCaStack extends Stack {
     final apiPublicCa = add(
       GoogleProjectService(
         localName: 'api_publicca',
-        service: TfArg.literal('publicca.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('publicca.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GooglePublicCaExternalAccountKey(
         localName: 'acme_eab',
-        location: TfArg.literal('global'),
+        location: .literal('global'),
         dependsOn: [ResourceDependency(apiPublicCa)],
       ),
     );

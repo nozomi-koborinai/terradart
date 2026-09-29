@@ -15,7 +15,7 @@ final class HelloBetaStack extends Stack {
     add(
       GoogleFirebaseProject(
         localName: 'firebase',
-        project: TfArg.literal(projectId),
+        project: .literal(projectId),
       ),
     );
   }

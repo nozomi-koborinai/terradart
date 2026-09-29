@@ -63,8 +63,8 @@ final class CloudBuildStack extends Stack {
     final buildSa = add(
       GoogleServiceAccount(
         localName: 'build_sa',
-        accountId: TfArg.literal('cloud-build-sa'),
-        displayName: TfArg.literal('Cloud Build runner'),
+        accountId: .literal('cloud-build-sa'),
+        displayName: .literal('Cloud Build runner'),
         dependsOn: apiDeps,
       ),
     );
@@ -72,8 +72,8 @@ final class CloudBuildStack extends Stack {
     final saLogWriter = add(
       GoogleProjectIamMember(
         localName: 'build_sa_log_writer',
-        project: TfArg.literal(projectId),
-        role: TfArg.literal('roles/logging.logWriter'),
+        project: .literal(projectId),
+        role: .literal('roles/logging.logWriter'),
         member: TfArg.ref<String>(buildSa.iamMember),
       ),
     );
@@ -81,8 +81,8 @@ final class CloudBuildStack extends Stack {
     final saBuilder = add(
       GoogleProjectIamMember(
         localName: 'build_sa_builder',
-        project: TfArg.literal(projectId),
-        role: TfArg.literal('roles/cloudbuild.builds.builder'),
+        project: .literal(projectId),
+        role: .literal('roles/cloudbuild.builds.builder'),
         member: TfArg.ref<String>(buildSa.iamMember),
       ),
     );
@@ -94,20 +94,20 @@ final class CloudBuildStack extends Stack {
     // ID surfaced by GitHub when the app is installed against an org/repo.
     // `oauth_token_secret_version` references a Secret Manager secret version
     // holding the user OAuth token; here it's a placeholder literal -- in a
-    // real stack, prefer `TfArg.ref(secretVersion.id)` to keep the secret as
+    // real stack, prefer `.ref(secretVersion.id)` to keep the secret as
     // the source of truth.
 
     final lbConn = add(
       GoogleCloudbuildv2Connection(
         localName: 'lb_conn',
-        location: TfArg.literal(region),
-        name: TfArg.literal('github-app-conn'),
+        location: .literal(region),
+        name: .literal('github-app-conn'),
         host: .githubConfig(
           Cloudbuildv2ConnectionGithubConfig(
-            appInstallationId: TfArg.literal(12345),
+            appInstallationId: .literal(12345),
             authorizerCredential:
                 Cloudbuildv2ConnectionGithubAuthorizerCredential(
-                  oauthTokenSecretVersion: TfArg.literal(
+                  oauthTokenSecretVersion: .literal(
                     'projects/p/secrets/github-oauth/versions/1',
                   ),
                 ),
@@ -124,8 +124,8 @@ final class CloudBuildStack extends Stack {
       GoogleCloudbuildv2ConnectionIamMember(
         localName: 'lb_conn_iam',
         name: TfArg.ref<String>(lbConn.nameRef),
-        location: TfArg.literal(region),
-        role: TfArg.literal('roles/cloudbuild.connectionViewer'),
+        location: .literal(region),
+        role: .literal('roles/cloudbuild.connectionViewer'),
         member: TfArg.ref<String>(buildSa.iamMember),
         dependsOn: [ResourceDependency(lbConn), ResourceDependency(buildSa)],
       ),
@@ -140,10 +140,10 @@ final class CloudBuildStack extends Stack {
     final lbRepo = add(
       GoogleCloudbuildv2Repository(
         localName: 'lb_repo',
-        location: TfArg.literal(region),
-        name: TfArg.literal('myapp'),
+        location: .literal(region),
+        name: .literal('myapp'),
         parentConnection: TfArg.ref<String>(lbConn.id),
-        remoteUri: TfArg.literal('https://github.com/example/myapp.git'),
+        remoteUri: .literal('https://github.com/example/myapp.git'),
         dependsOn: apiDeps,
       ),
     );
@@ -157,11 +157,11 @@ final class CloudBuildStack extends Stack {
     final lbAr = add(
       GoogleArtifactRegistryRepository(
         localName: 'lb_ar',
-        location: TfArg.literal(region),
-        repositoryId: TfArg.literal('myapp-images'),
-        format: TfArg.literal('DOCKER'),
-        mode: TfArg.literal(ArtifactRegistryMode.standardRepository),
-        description: TfArg.literal('Container images built by Cloud Build'),
+        location: .literal(region),
+        repositoryId: .literal('myapp-images'),
+        format: .literal('DOCKER'),
+        mode: .literal(.standardRepository),
+        description: .literal('Container images built by Cloud Build'),
         dependsOn: apiDeps,
       ),
     );
@@ -176,9 +176,9 @@ final class CloudBuildStack extends Stack {
     final arIam = add(
       GoogleArtifactRegistryRepositoryIamMember(
         localName: 'lb_ar_iam',
-        location: TfArg.literal(region),
+        location: .literal(region),
         repository: TfArg.ref<String>(lbAr.nameRef),
-        role: TfArg.literal('roles/artifactregistry.writer'),
+        role: .literal('roles/artifactregistry.writer'),
         member: TfArg.ref<String>(buildSa.iamMember),
       ),
     );
@@ -194,14 +194,14 @@ final class CloudBuildStack extends Stack {
     final lbPool = add(
       GoogleCloudbuildWorkerPool(
         localName: 'lb_pool',
-        name: TfArg.literal('private-pool'),
-        location: TfArg.literal(region),
+        name: .literal('private-pool'),
+        location: .literal(region),
         workerConfig: CloudbuildWorkerPoolWorkerConfig(
-          machineType: TfArg.literal('e2-standard-4'),
-          diskSizeGb: TfArg.literal(100),
+          machineType: .literal('e2-standard-4'),
+          diskSizeGb: .literal(100),
         ),
         networkConfig: CloudbuildWorkerPoolNetworkConfig(
-          peeredNetwork: TfArg.literal(
+          peeredNetwork: .literal(
             'projects/PROJECT_ID/global/networks/cloudbuild-peered-vpc',
           ),
         ),
@@ -218,13 +218,13 @@ final class CloudBuildStack extends Stack {
     add(
       GoogleCloudbuildTrigger(
         localName: 'lb_trigger',
-        name: TfArg.literal('myapp-main-push'),
-        location: TfArg.literal(region),
+        name: .literal('myapp-main-push'),
+        location: .literal(region),
         repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
           repository: TfArg.ref<String>(lbRepo.id),
-          push: CloudbuildTriggerPushFilter(branch: TfArg.literal('^main\$')),
+          push: CloudbuildTriggerPushFilter(branch: .literal('^main\$')),
         ),
-        buildSpec: .filename(filename: TfArg.literal('cloudbuild.yaml')),
+        buildSpec: .filename(filename: .literal('cloudbuild.yaml')),
         // `service_account` wants the full SA resource path
         // `projects/{project}/serviceAccounts/{email}` — `buildSa.id` is
         // exactly that, so reference it instead of hand-building the string.
@@ -234,7 +234,7 @@ final class CloudBuildStack extends Stack {
         // substitution exported here. (The trigger schema attaches a
         // pool only through inline `build.options`; the `filename` form
         // delegates pool selection to the in-repo build config.)
-        substitutions: TfArg.literal({'_WORKER_POOL': lbPool.id.interpolation}),
+        substitutions: .literal({'_WORKER_POOL': lbPool.id.interpolation}),
         // The trigger needs `cloudbuild.googleapis.com` enabled and the
         // runner SA + its role bindings to exist before it can be created.
         dependsOn: [

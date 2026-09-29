@@ -22,20 +22,18 @@ final class NetworkSecurityBackendAuthStack extends Stack {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         localName: 'api_networksecurity',
-        service: TfArg.literal('networksecurity.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('networksecurity.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleNetworkSecurityBackendAuthenticationConfig(
         localName: 'backend_auth',
-        name: TfArg.literal('terradart-backend-auth'),
-        location: TfArg.literal('global'),
-        description: TfArg.literal('TerraDart smoke backend authentication'),
-        wellKnownRoots: TfArg.literal(
-          NetworkSecurityBackendAuthenticationConfigWellKnownRoots.publicRoots,
-        ),
+        name: .literal('terradart-backend-auth'),
+        location: .literal('global'),
+        description: .literal('TerraDart smoke backend authentication'),
+        wellKnownRoots: .literal(.publicRoots),
         dependsOn: [ResourceDependency(apiNetworkSecurity)],
       ),
     );

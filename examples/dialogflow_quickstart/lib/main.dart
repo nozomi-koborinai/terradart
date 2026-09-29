@@ -33,14 +33,14 @@ final class DialogflowSipTrunkStack extends Stack {
     add(
       GoogleDialogflowAgent(
         localName: 'agent',
-        displayName: TfArg.literal('terradart-agent'),
-        defaultLanguageCode: TfArg.literal('en'),
-        timeZone: TfArg.literal('Europe/Berlin'),
-        description: TfArg.literal('Demo Dialogflow agent (terradart)'),
-        matchMode: TfArg.literal(DialogflowAgentMatchMode.hybrid),
-        apiVersion: TfArg.literal(DialogflowAgentApiVersion.v2),
-        tier: TfArg.literal(DialogflowAgentTier.standard),
-        enableLogging: TfArg.literal(true),
+        displayName: .literal('terradart-agent'),
+        defaultLanguageCode: .literal('en'),
+        timeZone: .literal('Europe/Berlin'),
+        description: .literal('Demo Dialogflow agent (terradart)'),
+        matchMode: .literal(.hybrid),
+        apiVersion: .literal(.v2),
+        tier: .literal(.standard),
+        enableLogging: .literal(true),
         dependsOn: apiDeps,
       ),
     );
@@ -48,9 +48,9 @@ final class DialogflowSipTrunkStack extends Stack {
     add(
       GoogleDialogflowSipTrunk(
         localName: 'carrier_trunk',
-        location: TfArg.literal('europe-west3'),
-        expectedHostname: TfArg.literal(['terradart-carrier.example.com']),
-        displayName: TfArg.literal('terradart-carrier-trunk'),
+        location: .literal('europe-west3'),
+        expectedHostname: .literal(['terradart-carrier.example.com']),
+        displayName: .literal('terradart-carrier-trunk'),
         dependsOn: apiDeps,
       ),
     );
@@ -60,9 +60,9 @@ final class DialogflowSipTrunkStack extends Stack {
     add(
       GoogleDialogflowConversationProfile(
         localName: 'demo_profile',
-        displayName: TfArg.literal('terradart-profile'),
-        location: TfArg.literal('global'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        displayName: .literal('terradart-profile'),
+        location: .literal('global'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );
@@ -72,14 +72,14 @@ final class DialogflowSipTrunkStack extends Stack {
     add(
       GoogleDialogflowGenerator(
         localName: 'demo_summarizer',
-        location: TfArg.literal('global'),
-        description: TfArg.literal('terradart summarization generator'),
-        triggerEvent: TfArg.literal(DialogflowGeneratorTriggerEvent.manualCall),
+        location: .literal('global'),
+        description: .literal('terradart summarization generator'),
+        triggerEvent: .literal(.manualCall),
         summarizationContext: DialogflowGeneratorSummarizationContext(
-          version: TfArg.literal('4.0'),
-          outputLanguageCode: TfArg.literal('en'),
+          version: .literal('4.0'),
+          outputLanguageCode: .literal('en'),
         ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );
@@ -88,9 +88,9 @@ final class DialogflowSipTrunkStack extends Stack {
     add(
       GoogleDialogflowEncryptionSpec(
         localName: 'cmek',
-        location: TfArg.literal('europe-west3'),
+        location: .literal('europe-west3'),
         encryptionSpec: DialogflowEncryptionSpecEncryptionSpec(
-          kmsKey: TfArg.literal(
+          kmsKey: .literal(
             'projects/$projectId/locations/europe-west3/keyRings/terradart/cryptoKeys/dialogflow',
           ),
         ),
