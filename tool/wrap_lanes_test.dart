@@ -245,9 +245,10 @@ providers:
       final check = parseWrapLanes('$lane    references: check\n').single;
       final args = WrapGate.wrap.args(check);
       expect(
-        args.sublist(args.indexOf('--reference-targets'), args.length - 3),
-        ['--reference-targets', '../../tool/reference_targets.yaml'],
+        args[args.indexOf('--reference-targets') + 1],
+        '../../tool/reference_targets.yaml',
       );
+      expect(args, isNot(contains('--typed-references')));
       final typed = parseWrapLanes('$lane    references: typed\n').single;
       expect(WrapGate.regen.args(typed), contains('--typed-references'));
       expect(WrapGate.lint.args(typed), isNot(contains('--reference-targets')));
