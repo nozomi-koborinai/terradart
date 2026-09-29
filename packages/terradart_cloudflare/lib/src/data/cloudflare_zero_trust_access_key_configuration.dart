@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_access_key_configuration.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_key_configuration`.
 const Set<String> _cloudflareZeroTrustAccessKeyConfigurationSensitive =
@@ -19,10 +20,13 @@ final class DataCloudflareZeroTrustAccessKeyConfiguration extends Data {
 
   DataCloudflareZeroTrustAccessKeyConfiguration({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'account_id': ?accountId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'account_id': ?accountId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields =>

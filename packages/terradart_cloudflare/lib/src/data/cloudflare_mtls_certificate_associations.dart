@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_mtls_certificate_associations`.
 const Set<String> _cloudflareMtlsCertificateAssociationsSensitive = <String>{};
@@ -17,14 +18,14 @@ final class DataCloudflareMtlsCertificateAssociations extends Data {
 
   DataCloudflareMtlsCertificateAssociations({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> mtlsCertificateId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'mtls_certificate_id': mtlsCertificateId,
          },
        );

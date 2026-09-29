@@ -78,25 +78,25 @@ enum Pinpointsmsvoicev2EventDestinationMatchingEventTypes
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.cloudwatchLogsDestination(...)`.
-sealed class Pinpointsmsvoicev2EventDestinationDestination {
-  const Pinpointsmsvoicev2EventDestinationDestination();
+sealed class Pinpointsmsvoicev2EventDestinationTarget {
+  const Pinpointsmsvoicev2EventDestinationTarget();
 
   /// Sets `cloudwatch_logs_destination`.
-  const factory Pinpointsmsvoicev2EventDestinationDestination.cloudwatchLogsDestination(
+  const factory Pinpointsmsvoicev2EventDestinationTarget.cloudwatchLogsDestination(
     List<Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestination>
     cloudwatchLogsDestination,
-  ) = Pinpointsmsvoicev2EventDestinationDestinationCloudwatchLogsDestination;
+  ) = Pinpointsmsvoicev2EventDestinationTargetCloudwatchLogsDestination;
 
   /// Sets `kinesis_firehose_destination`.
-  const factory Pinpointsmsvoicev2EventDestinationDestination.kinesisFirehoseDestination(
+  const factory Pinpointsmsvoicev2EventDestinationTarget.kinesisFirehoseDestination(
     List<Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestination>
     kinesisFirehoseDestination,
-  ) = Pinpointsmsvoicev2EventDestinationDestinationKinesisFirehoseDestination;
+  ) = Pinpointsmsvoicev2EventDestinationTargetKinesisFirehoseDestination;
 
   /// Sets `sns_destination`.
-  const factory Pinpointsmsvoicev2EventDestinationDestination.snsDestination(
+  const factory Pinpointsmsvoicev2EventDestinationTarget.snsDestination(
     List<Pinpointsmsvoicev2EventDestinationSnsDestination> snsDestination,
-  ) = Pinpointsmsvoicev2EventDestinationDestinationSnsDestination;
+  ) = Pinpointsmsvoicev2EventDestinationTargetSnsDestination;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -108,10 +108,10 @@ sealed class Pinpointsmsvoicev2EventDestinationDestination {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Pinpointsmsvoicev2EventDestinationDestination.cloudwatchLogsDestination] choice: sets `cloudwatch_logs_destination`.
-final class Pinpointsmsvoicev2EventDestinationDestinationCloudwatchLogsDestination
-    extends Pinpointsmsvoicev2EventDestinationDestination {
-  const Pinpointsmsvoicev2EventDestinationDestinationCloudwatchLogsDestination(
+/// The [Pinpointsmsvoicev2EventDestinationTarget.cloudwatchLogsDestination] choice: sets `cloudwatch_logs_destination`.
+final class Pinpointsmsvoicev2EventDestinationTargetCloudwatchLogsDestination
+    extends Pinpointsmsvoicev2EventDestinationTarget {
+  const Pinpointsmsvoicev2EventDestinationTargetCloudwatchLogsDestination(
     this.cloudwatchLogsDestination,
   );
 
@@ -136,10 +136,10 @@ final class Pinpointsmsvoicev2EventDestinationDestinationCloudwatchLogsDestinati
   };
 }
 
-/// The [Pinpointsmsvoicev2EventDestinationDestination.kinesisFirehoseDestination] choice: sets `kinesis_firehose_destination`.
-final class Pinpointsmsvoicev2EventDestinationDestinationKinesisFirehoseDestination
-    extends Pinpointsmsvoicev2EventDestinationDestination {
-  const Pinpointsmsvoicev2EventDestinationDestinationKinesisFirehoseDestination(
+/// The [Pinpointsmsvoicev2EventDestinationTarget.kinesisFirehoseDestination] choice: sets `kinesis_firehose_destination`.
+final class Pinpointsmsvoicev2EventDestinationTargetKinesisFirehoseDestination
+    extends Pinpointsmsvoicev2EventDestinationTarget {
+  const Pinpointsmsvoicev2EventDestinationTargetKinesisFirehoseDestination(
     this.kinesisFirehoseDestination,
   );
 
@@ -164,10 +164,10 @@ final class Pinpointsmsvoicev2EventDestinationDestinationKinesisFirehoseDestinat
   };
 }
 
-/// The [Pinpointsmsvoicev2EventDestinationDestination.snsDestination] choice: sets `sns_destination`.
-final class Pinpointsmsvoicev2EventDestinationDestinationSnsDestination
-    extends Pinpointsmsvoicev2EventDestinationDestination {
-  const Pinpointsmsvoicev2EventDestinationDestinationSnsDestination(
+/// The [Pinpointsmsvoicev2EventDestinationTarget.snsDestination] choice: sets `sns_destination`.
+final class Pinpointsmsvoicev2EventDestinationTargetSnsDestination
+    extends Pinpointsmsvoicev2EventDestinationTarget {
+  const Pinpointsmsvoicev2EventDestinationTargetSnsDestination(
     this.snsDestination,
   );
 
@@ -254,7 +254,7 @@ final class AwsPinpointsmsvoicev2EventDestination extends Resource {
     required List<TfArg<Pinpointsmsvoicev2EventDestinationMatchingEventTypes>>
     matchingEventTypes,
     TfArg<String>? region,
-    required Pinpointsmsvoicev2EventDestinationDestination destination,
+    required Pinpointsmsvoicev2EventDestinationTarget target,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -269,7 +269,7 @@ final class AwsPinpointsmsvoicev2EventDestination extends Resource {
              for (final e in matchingEventTypes) e.toTfJson(),
            ]),
            'region': ?region,
-           ...destination.argMap,
+           ...target.argMap,
          },
        );
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_token_validation_configs`.
 const Set<String> _cloudflareTokenValidationConfigsSensitive = <String>{};
@@ -18,12 +19,12 @@ final class DataCloudflareTokenValidationConfigs extends Data {
   DataCloudflareTokenValidationConfigs({
     required super.localName,
     TfArg<num>? maxItems,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'max_items': ?maxItems, 'zone_id': ?zoneId},
+         argMap: {'max_items': ?maxItems, 'zone_id': ?zoneId?.encodeAs('id')},
        );
 
   @override

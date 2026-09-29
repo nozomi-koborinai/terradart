@@ -28,12 +28,12 @@ sealed class DocdbClusterInstanceIdentifier {
   /// Sets `identifier`.
   const factory DocdbClusterInstanceIdentifier.identifier(
     TfArg<String> identifier,
-  ) = DocdbClusterInstanceIdentifierIdentifier;
+  ) = DocdbClusterInstanceIdentifierChoice;
 
   /// Sets `identifier_prefix`.
   const factory DocdbClusterInstanceIdentifier.identifierPrefix(
     TfArg<String> identifierPrefix,
-  ) = DocdbClusterInstanceIdentifierIdentifierPrefix;
+  ) = DocdbClusterInstanceIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,9 +46,9 @@ sealed class DocdbClusterInstanceIdentifier {
 }
 
 /// The [DocdbClusterInstanceIdentifier.identifier] choice: sets `identifier`.
-final class DocdbClusterInstanceIdentifierIdentifier
+final class DocdbClusterInstanceIdentifierChoice
     extends DocdbClusterInstanceIdentifier {
-  const DocdbClusterInstanceIdentifierIdentifier(this.identifier);
+  const DocdbClusterInstanceIdentifierChoice(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -63,9 +63,9 @@ final class DocdbClusterInstanceIdentifierIdentifier
 }
 
 /// The [DocdbClusterInstanceIdentifier.identifierPrefix] choice: sets `identifier_prefix`.
-final class DocdbClusterInstanceIdentifierIdentifierPrefix
+final class DocdbClusterInstanceIdentifierPrefix
     extends DocdbClusterInstanceIdentifier {
-  const DocdbClusterInstanceIdentifierIdentifierPrefix(this.identifierPrefix);
+  const DocdbClusterInstanceIdentifierPrefix(this.identifierPrefix);
 
   final TfArg<String> identifierPrefix;
 

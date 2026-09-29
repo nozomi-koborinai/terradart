@@ -13,8 +13,8 @@ export 'src/emr/aws_emr_cluster.dart'
         EmrClusterAutoTerminationPolicy,
         EmrClusterBootstrapAction,
         EmrClusterConfigurations,
-        EmrClusterConfigurationsConfigurations,
-        EmrClusterConfigurationsConfigurationsJson,
+        EmrClusterConfigurationsChoice,
+        EmrClusterConfigurationsJson,
         EmrClusterCoreInstanceFleet,
         EmrClusterCoreInstanceFleetInstanceTypeConfigs,
         EmrClusterCoreInstanceFleetInstanceTypeConfigsEbsConfig,
@@ -25,8 +25,8 @@ export 'src/emr/aws_emr_cluster.dart'
         EmrClusterCoreInstanceGroupEbsConfig,
         EmrClusterEc2Attributes,
         EmrClusterEc2AttributesSubnet,
-        EmrClusterEc2AttributesSubnetSubnetId,
-        EmrClusterEc2AttributesSubnetSubnetIds,
+        EmrClusterEc2AttributesSubnetId,
+        EmrClusterEc2AttributesSubnetIds,
         EmrClusterKerberosAttributes,
         EmrClusterListStepsStates,
         EmrClusterMasterInstanceFleet,
@@ -62,13 +62,13 @@ export 'src/emr/aws_emr_security_configuration.dart'
     show
         AwsEmrSecurityConfiguration,
         EmrSecurityConfigurationName,
-        EmrSecurityConfigurationNameName,
-        EmrSecurityConfigurationNameNamePrefix;
+        EmrSecurityConfigurationNameChoice,
+        EmrSecurityConfigurationNamePrefix;
 export 'src/emr/aws_emr_studio.dart' show AwsEmrStudio, EmrStudioAuthMode;
 export 'src/emr/aws_emr_studio_session_mapping.dart'
     show
         AwsEmrStudioSessionMapping,
         EmrStudioSessionMappingIdentity,
-        EmrStudioSessionMappingIdentityIdentityId,
-        EmrStudioSessionMappingIdentityIdentityName,
+        EmrStudioSessionMappingIdentityId,
+        EmrStudioSessionMappingIdentityName,
         EmrStudioSessionMappingIdentityType;

@@ -89,9 +89,6 @@ export 'src/codebuild/aws_codebuild_webhook.dart'
     show
         AwsCodebuildWebhook,
         CodebuildWebhookBuildType,
-        CodebuildWebhookFilter,
-        CodebuildWebhookFilterBranchFilter,
-        CodebuildWebhookFilterFilterGroup,
         CodebuildWebhookFilterGroup,
         CodebuildWebhookFilterGroupFilter,
         CodebuildWebhookFilterGroupFilterType,
@@ -99,4 +96,7 @@ export 'src/codebuild/aws_codebuild_webhook.dart'
         CodebuildWebhookPullRequestBuildPolicyApproverRoles,
         CodebuildWebhookPullRequestBuildPolicyRequiresCommentApproval,
         CodebuildWebhookScopeConfiguration,
-        CodebuildWebhookScopeConfigurationScope;
+        CodebuildWebhookScopeConfigurationScope,
+        CodebuildWebhookTrigger,
+        CodebuildWebhookTriggerBranchFilter,
+        CodebuildWebhookTriggerFilterGroup;

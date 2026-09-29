@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../kms/google_kms_secret_ciphertext.dart';
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_kms_secret_ciphertext`.
 const Set<String> _googleKmsSecretCiphertextSensitive = <String>{'plaintext'};
@@ -16,13 +17,16 @@ final class DataGoogleKmsSecretCiphertext extends Data {
 
   DataGoogleKmsSecretCiphertext({
     required super.localName,
-    required TfArg<String> cryptoKey,
+    required RefTo<GoogleKmsCryptoKey> cryptoKey,
     required TfArg<String> plaintext,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'crypto_key': cryptoKey, 'plaintext': plaintext},
+         argMap: {
+           'crypto_key': cryptoKey.encodeAs('id'),
+           'plaintext': plaintext,
+         },
        );
 
   @override

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_dex_tests`.
 const Set<String> _cloudflareZeroTrustDexTestsSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataCloudflareZeroTrustDexTests extends Data {
 
   DataCloudflareZeroTrustDexTests({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? kind,
     TfArg<num>? maxItems,
     TfArg<String>? testName,
@@ -26,7 +27,7 @@ final class DataCloudflareZeroTrustDexTests extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'kind': ?kind,
            'max_items': ?maxItems,
            'test_name': ?testName,

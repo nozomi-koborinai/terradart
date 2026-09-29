@@ -65,10 +65,9 @@ export 'src/compute/google_compute_backend_service.dart'
         ComputeBackendServiceIap,
         ComputeBackendServiceLocalityLbPolicies,
         ComputeBackendServiceLocalityLbPoliciesCustomPolicy,
-        ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies,
-        ComputeBackendServiceLocalityLbPoliciesLocalityLbPoliciesCustomPolicy,
-        ComputeBackendServiceLocalityLbPoliciesLocalityLbPoliciesPolicy,
+        ComputeBackendServiceLocalityLbPoliciesCustomPolicyChoice,
         ComputeBackendServiceLocalityLbPoliciesPolicy,
+        ComputeBackendServiceLocalityLbPoliciesPolicyChoice,
         ComputeBackendServiceLogConfig,
         ComputeBackendServiceLogConfigRequestHeaders,
         ComputeBackendServiceLogConfigResponseHeaders,
@@ -227,13 +226,13 @@ export 'src/compute/google_compute_https_health_check.dart'
     show GoogleComputeHttpsHealthCheck;
 export 'src/compute/google_compute_image.dart'
     show
-        ComputeImageDiskSource,
         ComputeImageImageEncryptionKey,
-        ComputeImageImageSource,
-        ComputeImageSnapshotSource,
         ComputeImageSource,
+        ComputeImageSourceDisk,
         ComputeImageSourceDiskEncryptionKey,
+        ComputeImageSourceImage,
         ComputeImageSourceImageEncryptionKey,
+        ComputeImageSourceSnapshot,
         ComputeImageSourceSnapshotEncryptionKey,
         GoogleComputeImage;
 export 'src/compute/google_compute_image_iam_binding.dart'
@@ -503,9 +502,9 @@ export 'src/compute/google_compute_node_template.dart'
         ComputeNodeTemplateCpuOvercommitType,
         ComputeNodeTemplateDisks,
         ComputeNodeTemplateNodeType,
+        ComputeNodeTemplateNodeTypeChoice,
         ComputeNodeTemplateNodeTypeFlexibility,
-        ComputeNodeTemplateNodeTypeNodeType,
-        ComputeNodeTemplateNodeTypeNodeTypeFlexibility,
+        ComputeNodeTemplateNodeTypeFlexibilityChoice,
         ComputeNodeTemplateServerBinding,
         ComputeNodeTemplateServerBindingType,
         GoogleComputeNodeTemplate;
@@ -669,14 +668,14 @@ export 'src/compute/google_compute_region_health_aggregation_policy.dart'
         GoogleComputeRegionHealthAggregationPolicy;
 export 'src/compute/google_compute_region_health_check.dart'
     show
+        ComputeRegionHealthCheckGrpcHealthCheckConfig,
+        ComputeRegionHealthCheckHttp2HealthCheckConfig,
+        ComputeRegionHealthCheckHttpHealthCheckConfig,
+        ComputeRegionHealthCheckHttpsHealthCheckConfig,
         ComputeRegionHealthCheckProtocol,
-        ComputeRegionHealthCheckRegionHealthCheckGrpcConfig,
-        ComputeRegionHealthCheckRegionHealthCheckHttp2Config,
-        ComputeRegionHealthCheckRegionHealthCheckHttpConfig,
-        ComputeRegionHealthCheckRegionHealthCheckHttpsConfig,
         ComputeRegionHealthCheckRegionHealthCheckLogConfig,
-        ComputeRegionHealthCheckRegionHealthCheckSslConfig,
-        ComputeRegionHealthCheckRegionHealthCheckTcpConfig,
+        ComputeRegionHealthCheckSslHealthCheckConfig,
+        ComputeRegionHealthCheckTcpHealthCheckConfig,
         GoogleComputeRegionHealthCheck,
         RegionHealthCheckPortSpecification,
         RegionHealthCheckProxyHeader,
@@ -988,12 +987,11 @@ export 'src/compute/google_compute_resource_policy.dart'
         ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy,
         ComputeResourcePolicySnapshotSchedulePolicySchedule,
         ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule,
-        ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency,
-        ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyDailySchedule,
-        ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyHourlySchedule,
-        ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyWeeklySchedule,
+        ComputeResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleChoice,
         ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule,
+        ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleChoice,
         ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule,
+        ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleChoice,
         ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleDayOfWeeks,
         ComputeResourcePolicySnapshotSchedulePolicySnapshotProperties,
         ComputeResourcePolicyWorkloadPolicy,
@@ -1029,8 +1027,8 @@ export 'src/compute/google_compute_router.dart'
         ComputeRouterBgp,
         ComputeRouterBgpAdvertiseMode,
         ComputeRouterNetwork,
+        ComputeRouterNetworkChoice,
         ComputeRouterNetworkNccGateway,
-        ComputeRouterNetworkNetwork,
         GoogleComputeRouter;
 export 'src/compute/google_compute_router_interface.dart'
     show GoogleComputeRouterInterface;
@@ -1336,8 +1334,8 @@ export 'src/compute/google_compute_vpn_gateway.dart'
 export 'src/compute/google_compute_vpn_tunnel.dart'
     show
         ComputeVpnTunnelPeer,
-        ComputeVpnTunnelPeerPeerExternalGateway,
-        ComputeVpnTunnelPeerPeerGcpGateway,
+        ComputeVpnTunnelPeerExternalGateway,
+        ComputeVpnTunnelPeerGcpGateway,
         GoogleComputeVpnTunnel;
 export 'src/compute/google_compute_wire_group.dart'
     show

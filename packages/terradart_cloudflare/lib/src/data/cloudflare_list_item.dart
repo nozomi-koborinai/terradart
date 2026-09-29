@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../rules/cloudflare_list_item.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_list_item`.
 const Set<String> _cloudflareListItemSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataCloudflareListItem extends Data {
 
   DataCloudflareListItem({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> itemId,
     required TfArg<String> listId,
     super.provider,
@@ -25,7 +26,7 @@ final class DataCloudflareListItem extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'item_id': itemId,
            'list_id': listId,
          },

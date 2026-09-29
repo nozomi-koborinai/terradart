@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../stream/cloudflare_stream_live_input.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_stream_live_input`.
 const Set<String> _cloudflareStreamLiveInputSensitive = <String>{
@@ -28,14 +29,14 @@ final class DataCloudflareStreamLiveInput extends Data {
 
   DataCloudflareStreamLiveInput({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> liveInputIdentifier,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'live_input_identifier': liveInputIdentifier,
          },
        );

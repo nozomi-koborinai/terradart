@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_dlp_custom_profile.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_custom_profile`.
 const Set<String> _cloudflareZeroTrustDlpCustomProfileSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareZeroTrustDlpCustomProfile extends Data {
 
   DataCloudflareZeroTrustDlpCustomProfile({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> profileId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'profile_id': profileId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'profile_id': profileId,
+         },
        );
 
   @override

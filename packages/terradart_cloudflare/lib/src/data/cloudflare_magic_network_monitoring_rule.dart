@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../magic/cloudflare_magic_network_monitoring_rule.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_magic_network_monitoring_rule`.
 const Set<String> _cloudflareMagicNetworkMonitoringRuleSensitive = <String>{};
@@ -18,13 +19,13 @@ final class DataCloudflareMagicNetworkMonitoringRule extends Data {
 
   DataCloudflareMagicNetworkMonitoringRule({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> ruleId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'rule_id': ruleId},
+         argMap: {'account_id': ?accountId?.encodeAs('id'), 'rule_id': ruleId},
        );
 
   @override

@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../custom_hostname/cloudflare_custom_hostname.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_custom_hostname`.
 const Set<String> _cloudflareCustomHostnameSensitive = <String>{
@@ -180,7 +181,7 @@ final class DataCloudflareCustomHostname extends Data {
   DataCloudflareCustomHostname({
     required super.localName,
     TfArg<String>? customHostnameId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataCustomHostnameFilter? filter,
     super.provider,
     super.timeouts,
@@ -188,7 +189,7 @@ final class DataCloudflareCustomHostname extends Data {
          terraformType: tfType,
          argMap: {
            'custom_hostname_id': ?customHostnameId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

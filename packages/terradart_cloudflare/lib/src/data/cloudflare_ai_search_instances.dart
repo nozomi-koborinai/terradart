@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_ai_search_instances`.
 const Set<String> _cloudflareAiSearchInstancesSensitive = <String>{};
@@ -12,7 +13,7 @@ final class DataCloudflareAiSearchInstances extends Data {
 
   DataCloudflareAiSearchInstances({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? namespace,
     TfArg<String>? orderBy,
@@ -23,7 +24,7 @@ final class DataCloudflareAiSearchInstances extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'max_items': ?maxItems,
            'namespace': ?namespace,
            'order_by': ?orderBy,

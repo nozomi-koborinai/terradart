@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_storage_object_signed_url`.
 const Set<String> _googleStorageObjectSignedUrlSensitive = <String>{
@@ -17,7 +18,7 @@ final class DataGoogleStorageObjectSignedUrl extends Data {
 
   DataGoogleStorageObjectSignedUrl({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     TfArg<String>? contentMd5,
     TfArg<String>? contentType,
     TfArg<String>? credentials,
@@ -30,7 +31,7 @@ final class DataGoogleStorageObjectSignedUrl extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('name'),
            'content_md5': ?contentMd5,
            'content_type': ?contentType,
            'credentials': ?credentials,

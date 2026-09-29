@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../api_shield/cloudflare_token_validation_rules.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_token_validation_rules`.
 const Set<String> _cloudflareTokenValidationRulesSensitive = <String>{};
@@ -65,7 +66,7 @@ final class DataCloudflareTokenValidationRules extends Data {
   DataCloudflareTokenValidationRules({
     required super.localName,
     TfArg<String>? ruleId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataTokenValidationRulesFilter? filter,
     super.provider,
     super.timeouts,
@@ -73,7 +74,7 @@ final class DataCloudflareTokenValidationRules extends Data {
          terraformType: tfType,
          argMap: {
            'rule_id': ?ruleId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

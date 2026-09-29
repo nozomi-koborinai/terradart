@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../account/cloudflare_account_dns_settings_internal_view.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_account_dns_settings_internal_view`.
 const Set<String> _cloudflareAccountDnsSettingsInternalViewSensitive =
@@ -28,7 +30,7 @@ final class DataAccountDnsSettingsInternalViewFilter {
 
   final TfArg<DataAccountDnsSettingsInternalViewFilterOrder>? order;
 
-  final TfArg<String>? zoneId;
+  final RefTo<CloudflareZone>? zoneId;
 
   final TfArg<String>? zoneName;
 
@@ -38,7 +40,7 @@ final class DataAccountDnsSettingsInternalViewFilter {
     'direction': ?direction?.toTfJson(),
     'match': ?match?.toTfJson(),
     'order': ?order?.toTfJson(),
-    'zone_id': ?zoneId?.toTfJson(),
+    'zone_id': ?zoneId?.encodeAs('id').toTfJson(),
     'zone_name': ?zoneName?.toTfJson(),
     'name': ?name?.encode(),
   };
@@ -113,7 +115,7 @@ final class DataCloudflareAccountDnsSettingsInternalView extends Data {
 
   DataCloudflareAccountDnsSettingsInternalView({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? viewId,
     DataAccountDnsSettingsInternalViewFilter? filter,
     super.provider,
@@ -121,7 +123,7 @@ final class DataCloudflareAccountDnsSettingsInternalView extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'view_id': ?viewId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

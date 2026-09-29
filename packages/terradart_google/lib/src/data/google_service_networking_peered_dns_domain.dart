@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../service_networking/google_service_networking_peered_dns_domain.dart';
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_service_networking_peered_dns_domain`.
 const Set<String> _googleServiceNetworkingPeeredDnsDomainSensitive = <String>{};
@@ -18,7 +19,7 @@ final class DataGoogleServiceNetworkingPeeredDnsDomain extends Data {
     required super.localName,
     TfArg<String>? deletionPolicy,
     required TfArg<String> name,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     required TfArg<String> project,
     required TfArg<String> service,
     super.provider,
@@ -28,7 +29,7 @@ final class DataGoogleServiceNetworkingPeeredDnsDomain extends Data {
          argMap: {
            'deletion_policy': ?deletionPolicy,
            'name': name,
-           'network': network,
+           'network': network.encodeAs('name'),
            'project': project,
            'service': service,
          },

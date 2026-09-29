@@ -222,12 +222,10 @@ final class NetworkRouteStack extends Stack {
         region: .literal('us-central1'),
         kind: .snapshotSchedulePolicy(
           ComputeResourcePolicySnapshotSchedulePolicy(
-            schedule: ComputeResourcePolicySnapshotSchedulePolicySchedule(
-              frequency: .dailySchedule(
-                ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
-                  daysInCycle: .literal(1),
-                  startTime: .literal('04:00'),
-                ),
+            schedule: .dailySchedule(
+              ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
+                daysInCycle: .literal(1),
+                startTime: .literal('04:00'),
               ),
             ),
             retentionPolicy:

@@ -11,9 +11,9 @@ export 'src/firebase_app_hosting/google_firebase_app_hosting_backend.dart'
         GoogleFirebaseAppHostingBackend;
 export 'src/firebase_app_hosting/google_firebase_app_hosting_build.dart'
     show
-        FirebaseAppHostingBuildAppHostingBuildSource,
-        FirebaseAppHostingBuildAppHostingBuildSourceCodebase,
-        FirebaseAppHostingBuildAppHostingBuildSourceContainer,
+        FirebaseAppHostingBuildSource,
+        FirebaseAppHostingBuildSourceCodebase,
+        FirebaseAppHostingBuildSourceContainer,
         GoogleFirebaseAppHostingBuild;
 export 'src/firebase_app_hosting/google_firebase_app_hosting_default_domain.dart'
     show GoogleFirebaseAppHostingDefaultDomain;

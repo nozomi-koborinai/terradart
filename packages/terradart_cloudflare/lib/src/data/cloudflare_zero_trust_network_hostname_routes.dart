@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_network_hostname_routes`.
 const Set<String> _cloudflareZeroTrustNetworkHostnameRoutesSensitive =
@@ -18,7 +19,7 @@ final class DataCloudflareZeroTrustNetworkHostnameRoutes extends Data {
 
   DataCloudflareZeroTrustNetworkHostnameRoutes({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? comment,
     TfArg<String>? existedAt,
     TfArg<String>? hostname,
@@ -30,7 +31,7 @@ final class DataCloudflareZeroTrustNetworkHostnameRoutes extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'comment': ?comment,
            'existed_at': ?existedAt,
            'hostname': ?hostname,

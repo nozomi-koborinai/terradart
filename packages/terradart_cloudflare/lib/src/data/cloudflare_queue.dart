@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../queues/cloudflare_queue.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_queue`.
 const Set<String> _cloudflareQueueSensitive = <String>{};
@@ -18,13 +19,16 @@ final class DataCloudflareQueue extends Data {
 
   DataCloudflareQueue({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> queueId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'queue_id': queueId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'queue_id': queueId,
+         },
        );
 
   @override

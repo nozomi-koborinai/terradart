@@ -335,43 +335,30 @@ final class ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy {
   };
 }
 
-/// Typed helper for the `snapshot_schedule_policy.schedule` block of
-/// `google_compute_resource_policy` (derived from provider schema).
-@immutable
-final class ComputeResourcePolicySnapshotSchedulePolicySchedule {
-  const ComputeResourcePolicySnapshotSchedulePolicySchedule({
-    required this.frequency,
-  });
-
-  final ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency frequency;
-
-  Map<String, Object?> encode() => {...frequency.encode()};
-}
-
 /// Exactly one of `hourly_schedule`, `daily_schedule`, `weekly_schedule` on the `snapshot_schedule_policy.schedule` block of `google_compute_resource_policy`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.hourlySchedule(...)`.
-sealed class ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency();
+sealed class ComputeResourcePolicySnapshotSchedulePolicySchedule {
+  const ComputeResourcePolicySnapshotSchedulePolicySchedule();
 
   /// Sets `hourly_schedule`.
-  const factory ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency.hourlySchedule(
+  const factory ComputeResourcePolicySnapshotSchedulePolicySchedule.hourlySchedule(
     ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlySchedule
     hourlySchedule,
-  ) = ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyHourlySchedule;
+  ) = ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleChoice;
 
   /// Sets `daily_schedule`.
-  const factory ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency.dailySchedule(
+  const factory ComputeResourcePolicySnapshotSchedulePolicySchedule.dailySchedule(
     ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule
     dailySchedule,
-  ) = ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyDailySchedule;
+  ) = ComputeResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleChoice;
 
   /// Sets `weekly_schedule`.
-  const factory ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency.weeklySchedule(
+  const factory ComputeResourcePolicySnapshotSchedulePolicySchedule.weeklySchedule(
     ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklySchedule
     weeklySchedule,
-  ) = ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyWeeklySchedule;
+  ) = ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -379,10 +366,10 @@ sealed class ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency {
   Map<String, Object?> encode();
 }
 
-/// The [ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency.hourlySchedule] choice: sets `hourly_schedule`.
-final class ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyHourlySchedule
-    extends ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyHourlySchedule(
+/// The [ComputeResourcePolicySnapshotSchedulePolicySchedule.hourlySchedule] choice: sets `hourly_schedule`.
+final class ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleChoice
+    extends ComputeResourcePolicySnapshotSchedulePolicySchedule {
+  const ComputeResourcePolicySnapshotSchedulePolicyScheduleHourlyScheduleChoice(
     this.hourlySchedule,
   );
 
@@ -396,10 +383,10 @@ final class ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyHourlySc
   Map<String, Object?> encode() => {'hourly_schedule': hourlySchedule.encode()};
 }
 
-/// The [ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency.dailySchedule] choice: sets `daily_schedule`.
-final class ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyDailySchedule
-    extends ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyDailySchedule(
+/// The [ComputeResourcePolicySnapshotSchedulePolicySchedule.dailySchedule] choice: sets `daily_schedule`.
+final class ComputeResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleChoice
+    extends ComputeResourcePolicySnapshotSchedulePolicySchedule {
+  const ComputeResourcePolicySnapshotSchedulePolicyScheduleDailyScheduleChoice(
     this.dailySchedule,
   );
 
@@ -413,10 +400,10 @@ final class ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyDailySch
   Map<String, Object?> encode() => {'daily_schedule': dailySchedule.encode()};
 }
 
-/// The [ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency.weeklySchedule] choice: sets `weekly_schedule`.
-final class ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyWeeklySchedule
-    extends ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequency {
-  const ComputeResourcePolicySnapshotSchedulePolicyScheduleFrequencyWeeklySchedule(
+/// The [ComputeResourcePolicySnapshotSchedulePolicySchedule.weeklySchedule] choice: sets `weekly_schedule`.
+final class ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleChoice
+    extends ComputeResourcePolicySnapshotSchedulePolicySchedule {
+  const ComputeResourcePolicySnapshotSchedulePolicyScheduleWeeklyScheduleChoice(
     this.weeklySchedule,
   );
 
@@ -573,12 +560,10 @@ final class ComputeResourcePolicyWorkloadPolicy {
 ///   region: .literal('us-central1'),
 ///   kind: .snapshotSchedulePolicy(
 ///     ComputeResourcePolicySnapshotSchedulePolicy(
-///       schedule: ComputeResourcePolicySnapshotSchedulePolicySchedule(
-///         frequency: .dailySchedule(
-///           ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
-///             daysInCycle: .literal(1),
-///             startTime: .literal('04:00'),
-///           ),
+///       schedule: .dailySchedule(
+///         ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
+///           daysInCycle: .literal(1),
+///           startTime: .literal('04:00'),
 ///         ),
 ///       ),
 ///       retentionPolicy:

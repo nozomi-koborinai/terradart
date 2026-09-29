@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../workers/cloudflare_workers_custom_domain.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_workers_custom_domain`.
 const Set<String> _cloudflareWorkersCustomDomainSensitive = <String>{};
@@ -26,7 +28,7 @@ final class DataWorkersCustomDomainFilter {
 
   final TfArg<String>? service;
 
-  final TfArg<String>? zoneId;
+  final RefTo<CloudflareZone>? zoneId;
 
   final TfArg<String>? zoneName;
 
@@ -34,7 +36,7 @@ final class DataWorkersCustomDomainFilter {
     'environment': ?environment?.toTfJson(),
     'hostname': ?hostname?.toTfJson(),
     'service': ?service?.toTfJson(),
-    'zone_id': ?zoneId?.toTfJson(),
+    'zone_id': ?zoneId?.encodeAs('id').toTfJson(),
     'zone_name': ?zoneName?.toTfJson(),
   };
 }
@@ -49,7 +51,7 @@ final class DataCloudflareWorkersCustomDomain extends Data {
 
   DataCloudflareWorkersCustomDomain({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? domainId,
     DataWorkersCustomDomainFilter? filter,
     super.provider,
@@ -57,7 +59,7 @@ final class DataCloudflareWorkersCustomDomain extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'domain_id': ?domainId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

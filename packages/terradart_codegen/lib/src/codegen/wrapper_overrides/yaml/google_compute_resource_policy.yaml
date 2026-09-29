@@ -6,7 +6,6 @@ deriveNestedTypes: true
 
 sealedNames:
   "disk_consistency_group_policy, group_placement_policy, instance_schedule_policy, snapshot_schedule_policy": kind
-  "snapshot_schedule_policy.schedule.daily_schedule, snapshot_schedule_policy.schedule.hourly_schedule, snapshot_schedule_policy.schedule.weekly_schedule": frequency
 
 curatedDoc: |-
   /// A Compute Engine resource policy. Set at most one policy [kind]
@@ -22,12 +21,10 @@ curatedDoc: |-
   ///   region: .literal('us-central1'),
   ///   kind: .snapshotSchedulePolicy(
   ///     ComputeResourcePolicySnapshotSchedulePolicy(
-  ///       schedule: ComputeResourcePolicySnapshotSchedulePolicySchedule(
-  ///         frequency: .dailySchedule(
-  ///           ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
-  ///             daysInCycle: .literal(1),
-  ///             startTime: .literal('04:00'),
-  ///           ),
+  ///       schedule: .dailySchedule(
+  ///         ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
+  ///           daysInCycle: .literal(1),
+  ///           startTime: .literal('04:00'),
   ///         ),
   ///       ),
   ///       retentionPolicy:

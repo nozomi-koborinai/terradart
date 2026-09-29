@@ -198,7 +198,7 @@ sealed class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone {
   /// Sets `availability_zone_ids`.
   const factory Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone.availabilityZoneIds(
     TfArg<List<Object?>> availabilityZoneIds,
-  ) = Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneAvailabilityZoneIds;
+  ) = Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIds;
 
   /// Sets `availability_zones`.
   const factory Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone.availabilityZones(
@@ -212,9 +212,9 @@ sealed class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone {
 }
 
 /// The [Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone.availabilityZoneIds] choice: sets `availability_zone_ids`.
-final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneAvailabilityZoneIds
+final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIds
     extends Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone {
-  const Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneAvailabilityZoneIds(
+  const Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIds(
     this.availabilityZoneIds,
   );
 

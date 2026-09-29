@@ -26,12 +26,12 @@ sealed class NeptuneClusterInstanceIdentifier {
   /// Sets `identifier`.
   const factory NeptuneClusterInstanceIdentifier.identifier(
     TfArg<String> identifier,
-  ) = NeptuneClusterInstanceIdentifierIdentifier;
+  ) = NeptuneClusterInstanceIdentifierChoice;
 
   /// Sets `identifier_prefix`.
   const factory NeptuneClusterInstanceIdentifier.identifierPrefix(
     TfArg<String> identifierPrefix,
-  ) = NeptuneClusterInstanceIdentifierIdentifierPrefix;
+  ) = NeptuneClusterInstanceIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,9 +44,9 @@ sealed class NeptuneClusterInstanceIdentifier {
 }
 
 /// The [NeptuneClusterInstanceIdentifier.identifier] choice: sets `identifier`.
-final class NeptuneClusterInstanceIdentifierIdentifier
+final class NeptuneClusterInstanceIdentifierChoice
     extends NeptuneClusterInstanceIdentifier {
-  const NeptuneClusterInstanceIdentifierIdentifier(this.identifier);
+  const NeptuneClusterInstanceIdentifierChoice(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -61,9 +61,9 @@ final class NeptuneClusterInstanceIdentifierIdentifier
 }
 
 /// The [NeptuneClusterInstanceIdentifier.identifierPrefix] choice: sets `identifier_prefix`.
-final class NeptuneClusterInstanceIdentifierIdentifierPrefix
+final class NeptuneClusterInstanceIdentifierPrefix
     extends NeptuneClusterInstanceIdentifier {
-  const NeptuneClusterInstanceIdentifierIdentifierPrefix(this.identifierPrefix);
+  const NeptuneClusterInstanceIdentifierPrefix(this.identifierPrefix);
 
   final TfArg<String> identifierPrefix;
 

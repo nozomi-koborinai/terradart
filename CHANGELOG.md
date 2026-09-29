@@ -65,6 +65,25 @@ Per-package changelogs live alongside each package and are the system of record 
   networks, `name` → `id` on Pub/Sub topic IAM, ...); `.pinned('attr')` keeps
   the old one. See `MIGRATING.md`. A type a later provider pin adds is typed
   by the weekly bump when its inputs match the ledger.
+- **Sealed variants take `RefTo<R>`** (**breaking**; `terradart_aws`,
+  `terradart_cloudflare`, `terradart_google`) — a member of a sealed group
+  that the reference ledger matches is typed too, top-level or inside a
+  nested helper: `scope: .zoneId(zone.ref)` on `cloudflare_ruleset`,
+  `code: .s3Bucket(bucket.ref)` on `aws_lambda_function`, `subnet:
+  .subnets(.literal([a.ref, b.ref]))` on `aws_lb`. Typed inputs go to 322
+  google, 1,155 aws and 294 cloudflare. `terradart wrap` now lists every
+  input the ledger matches but that stays a string (`reference input not
+  typed:`). Synth output is unchanged. See `MIGRATING.md`.
+- **Data-source arguments take `RefTo<R>`** (**breaking**;
+  `terradart_aws`, `terradart_cloudflare`, `terradart_google`) — the
+  reference ledger now matches data-source inputs too:
+  `DataAwsNatGateway(vpcId: vpc.ref)`,
+  `DataGoogleStorageBucketObjectContents(bucket: bucket.ref, ...)`,
+  `DataCloudflareZoneLockdowns(zoneId: zone.ref)`. A data source inherits its
+  resource twin's ledger `attributes` / `exclude` entries; a
+  `data.<type>.<path>` key applies to the data source alone. Typed inputs go
+  to 346 google, 1,197 aws and 782 cloudflare. Synth output is unchanged. See
+  `MIGRATING.md`.
 
 - **Sealed variants are factory constructors** (**breaking**;
   `terradart_codegen`, `terradart_migrate`, every provider package) — a
@@ -81,14 +100,25 @@ Per-package changelogs live alongside each package and are the system of record 
   `terradart_codegen`, every provider package) — a sealed slot is named
   for what its members are alternatives of, like a protobuf `oneof`:
   `code: .filename(...)` instead of `filenameOrImageUriOrS3Bucket:`, and
-  `name:`, `match:`, `destinationConfig:` on the groups new in this
+  `name:`, `match:`, `system:` on the groups new in this
   release. The name comes from the new `sealedNames` override
-  axis, else from the members' shared prefix or suffix or their whole
-  block, else it falls back to the `Or` name and waits in
+  axis, else from the members' shared prefix or suffix, else it falls back to the `Or` name and waits in
   `tool/sealed_name_debt.yaml` (`awaiting-name:`), which `wrap --check`
   keeps in sync. The 16-member cap is gone: every sealable group seals.
   Every group on every lane is named in this release, so the ledger is
   empty. See `MIGRATING.md`.
+- **No sealed type name repeats a block segment** (**breaking**;
+  `terradart_codegen`, every provider package) — a joined name drops the
+  words its halves share (`…RagConfigRagConfig` → `…RagConfig`), and a
+  variant that would still repeat a segment or take a declared class ends
+  in `Choice` / `Option` / `Variant`. A block holding nothing but one
+  exactly-one group (or an at-most-one group, when the block is optional)
+  is the sealed type itself: `amount: .lastPeriodAmount(...)` instead of
+  `amount: BillingBudgetAmount(amount: .lastPeriodAmount(...))`. The
+  variants of five hand-written `terradart_google` sealed types are
+  renamed the same way (`StorageBucketObjectBody`, `ComputeImageSource*`,
+  …). `tool/sealed_type_names_test.dart` fails on any sealed type or
+  variant that says a segment twice across a join. See `MIGRATING.md`.
 - **`terradart_google` compute and networking input groups are sealed
   types** (**breaking**) — the GA lane's first `deriveExactlyOne`
   adoption: 16 Magic Modules groups on 13 resources (11 `conflicts` sets

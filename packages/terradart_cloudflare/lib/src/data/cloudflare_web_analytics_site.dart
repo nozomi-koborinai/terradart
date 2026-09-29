@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../web_analytics/cloudflare_web_analytics_site.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_web_analytics_site`.
 const Set<String> _cloudflareWebAnalyticsSiteSensitive = <String>{};
@@ -39,7 +40,7 @@ final class DataCloudflareWebAnalyticsSite extends Data {
 
   DataCloudflareWebAnalyticsSite({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? siteId,
     DataWebAnalyticsSiteFilter? filter,
     super.provider,
@@ -47,7 +48,7 @@ final class DataCloudflareWebAnalyticsSite extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'site_id': ?siteId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

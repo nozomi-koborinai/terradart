@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../turnstile/cloudflare_turnstile_widget.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_turnstile_widget`.
 const Set<String> _cloudflareTurnstileWidgetSensitive = <String>{'secret'};
@@ -61,7 +62,7 @@ final class DataCloudflareTurnstileWidget extends Data {
 
   DataCloudflareTurnstileWidget({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? sitekey,
     DataTurnstileWidgetFilter? filter,
     super.provider,
@@ -69,7 +70,7 @@ final class DataCloudflareTurnstileWidget extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'sitekey': ?sitekey,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

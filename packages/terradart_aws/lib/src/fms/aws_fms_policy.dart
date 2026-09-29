@@ -27,12 +27,12 @@ sealed class FmsPolicyResourceType {
 
   /// Sets `resource_type`.
   const factory FmsPolicyResourceType.resourceType(TfArg<String> resourceType) =
-      FmsPolicyResourceTypeResourceType;
+      FmsPolicyResourceTypeChoice;
 
   /// Sets `resource_type_list`.
   const factory FmsPolicyResourceType.resourceTypeList(
     TfArg<List<String>> resourceTypeList,
-  ) = FmsPolicyResourceTypeResourceTypeList;
+  ) = FmsPolicyResourceTypeList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,8 +45,8 @@ sealed class FmsPolicyResourceType {
 }
 
 /// The [FmsPolicyResourceType.resourceType] choice: sets `resource_type`.
-final class FmsPolicyResourceTypeResourceType extends FmsPolicyResourceType {
-  const FmsPolicyResourceTypeResourceType(this.resourceType);
+final class FmsPolicyResourceTypeChoice extends FmsPolicyResourceType {
+  const FmsPolicyResourceTypeChoice(this.resourceType);
 
   final TfArg<String> resourceType;
 
@@ -61,9 +61,8 @@ final class FmsPolicyResourceTypeResourceType extends FmsPolicyResourceType {
 }
 
 /// The [FmsPolicyResourceType.resourceTypeList] choice: sets `resource_type_list`.
-final class FmsPolicyResourceTypeResourceTypeList
-    extends FmsPolicyResourceType {
-  const FmsPolicyResourceTypeResourceTypeList(this.resourceTypeList);
+final class FmsPolicyResourceTypeList extends FmsPolicyResourceType {
+  const FmsPolicyResourceTypeList(this.resourceTypeList);
 
   final TfArg<List<String>> resourceTypeList;
 

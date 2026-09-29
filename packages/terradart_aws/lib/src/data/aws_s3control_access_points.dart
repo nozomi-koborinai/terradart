@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 
 /// Sensitive field paths for `aws_s3control_access_points`.
 const Set<String> _awsS3controlAccessPointsSensitive = <String>{};
@@ -13,7 +14,7 @@ final class DataAwsS3controlAccessPoints extends Data {
   DataAwsS3controlAccessPoints({
     required super.localName,
     TfArg<String>? accountId,
-    TfArg<String>? bucket,
+    RefTo<AwsS3Bucket>? bucket,
     TfArg<String>? dataSourceId,
     TfArg<String>? dataSourceType,
     TfArg<String>? region,
@@ -23,7 +24,7 @@ final class DataAwsS3controlAccessPoints extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': ?accountId,
-           'bucket': ?bucket,
+           'bucket': ?bucket?.encodeAs('id'),
            'data_source_id': ?dataSourceId,
            'data_source_type': ?dataSourceType,
            'region': ?region,

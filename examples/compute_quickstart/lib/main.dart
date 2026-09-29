@@ -1190,12 +1190,10 @@ final class NetworkStack extends Stack {
         region: .literal('asia-northeast1'),
         kind: .snapshotSchedulePolicy(
           ComputeResourcePolicySnapshotSchedulePolicy(
-            schedule: ComputeResourcePolicySnapshotSchedulePolicySchedule(
-              frequency: .dailySchedule(
-                ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
-                  daysInCycle: .literal(1),
-                  startTime: .literal('04:00'),
-                ),
+            schedule: .dailySchedule(
+              ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
+                daysInCycle: .literal(1),
+                startTime: .literal('04:00'),
               ),
             ),
             retentionPolicy:

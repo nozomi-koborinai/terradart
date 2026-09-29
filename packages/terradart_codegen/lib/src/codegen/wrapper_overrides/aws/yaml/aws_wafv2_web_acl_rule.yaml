@@ -10,4 +10,4 @@ deriveExactlyOne: true
 dedupeNestedTypes: true
 
 sealedNames:
-  "action, override_action": rule_action
+  "action, override_action": behavior

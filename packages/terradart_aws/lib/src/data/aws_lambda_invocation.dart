@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../lambda/aws_lambda_invocation.dart';
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 
 /// Sensitive field paths for `aws_lambda_invocation`.
 const Set<String> _awsLambdaInvocationSensitive = <String>{};
@@ -13,7 +14,7 @@ final class DataAwsLambdaInvocation extends Data {
 
   DataAwsLambdaInvocation({
     required super.localName,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> input,
     TfArg<String>? qualifier,
     TfArg<String>? region,
@@ -23,7 +24,7 @@ final class DataAwsLambdaInvocation extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            'input': input,
            'qualifier': ?qualifier,
            'region': ?region,

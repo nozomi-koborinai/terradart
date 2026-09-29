@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_filter`.
 const Set<String> _cloudflareFilterSensitive = <String>{};
@@ -49,7 +50,7 @@ final class DataCloudflareFilter extends Data {
   DataCloudflareFilter({
     required super.localName,
     TfArg<String>? filterId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataFilterFilter? filter,
     super.provider,
     super.timeouts,
@@ -57,7 +58,7 @@ final class DataCloudflareFilter extends Data {
          terraformType: tfType,
          argMap: {
            'filter_id': ?filterId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

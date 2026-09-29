@@ -6,7 +6,6 @@ import 'package:terradart_codegen/src/codegen/exactly_one_types.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_emitter.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
-import 'package:terradart_codegen/src/codegen/references/reference_targets.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 import 'package:terradart_codegen/src/ir/attribute.dart';
 import 'package:terradart_codegen/src/ir/constraints.dart';
@@ -229,41 +228,40 @@ void main() {
     expect(off.skipped, isEmpty);
   });
 
-  test('a member that names another resource takes its RefTo', () {
-    final def = ResourceDef(
-      terraformType: 'aws_thing',
-      root: BlockDef(attributes: [_attr('a'), _attr('b')]),
-    );
-    final derived = deriveExactlyOneSlots(
-      {
-        'aws_thing': const WrapperOverride(
-          outputDir: 'thing',
-          deriveExactlyOne: true,
-        ),
-      },
-      {'aws_thing': def},
-      providerEnums: _groups,
-      rawSchemas: const {},
-      references: const {
-        'aws_thing': {
-          'a': ResolvedReference(
-            target: 'aws_vpc',
-            className: 'AwsVpc',
-            outputDir: 'ec2',
-            attribute: 'id',
-            list: false,
-          ),
+  test('a block that is one exactly-one group is itself the sealed type', () {
+    Map<String, dynamic> optional() => {'type': 'string', 'optional': true};
+    final specs = collectNestedTypes(
+      resourceBlock: {
+        'block_types': {
+          'settings': {
+            'nesting_mode': 'list',
+            'max_items': 1,
+            'block': {
+              'attributes': {'x': optional(), 'y': optional()},
+            },
+          },
         },
       },
+      resourcePrefix: 'Thing',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      exactlyOneGroups: const {
+        'settings': [
+          ['x', 'y'],
+        ],
+      },
     );
-    final prelude = derived.overrides['aws_thing']!.prelude!;
+    final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+    expect(src, contains('sealed class ThingSettings {'));
     expect(
-      prelude,
-      contains('const factory ThingAOrB.a(RefTo<AwsVpc> a) = ThingAOrBA;'),
+      src,
+      contains(
+        'const factory ThingSettings.x(TfArg<String> x) = ThingSettingsX;',
+      ),
     );
-    expect(prelude, contains("{'a': a.encodeAs('id').toTfJson()};"));
-    expect(prelude, contains("{'a': a.encodeAs('id')};"));
-    expect(prelude, contains('const factory ThingAOrB.b(TfArg<String> b)'));
+    expect(src, contains('final class ThingSettingsY extends ThingSettings {'));
+    expect(src, isNot(contains('@immutable')));
+    expect(src, isNot(contains('XOrY')));
   });
 
   test('a nested exactly-one group becomes a sealed helper field', () {
@@ -294,63 +292,16 @@ void main() {
     expect(src, contains('required this.xOrY'));
     expect(src, contains('final ThingSettingsXOrY xOrY;'));
     expect(src, contains('...xOrY.encode(),'));
-    expect(src, contains('final class ThingSettingsXOrYY'));
+    expect(src, contains('final class ThingSettingsXOrYChoice'));
     expect(
       src,
       contains(
         'const factory ThingSettingsXOrY.y(TfArg<String> y) = '
-        'ThingSettingsXOrYY;',
+        'ThingSettingsXOrYChoice;',
       ),
     );
     expect(src, isNot(contains('this.x,')));
     expect(src, contains('this.z'));
-  });
-
-  test('a nested sealed member that names another resource takes its '
-      'RefTo', () {
-    final specs = collectNestedTypes(
-      resourceBlock: {
-        'block_types': {
-          'settings': {
-            'nesting_mode': 'list',
-            'max_items': 1,
-            'block': {
-              'attributes': {
-                'x': {'type': 'string', 'optional': true},
-                'y': {'type': 'string', 'optional': true},
-                'z': {'type': 'string', 'optional': true},
-              },
-            },
-          },
-        },
-      },
-      resourcePrefix: 'Thing',
-      customSlotKeys: const {},
-      excludedPaths: const {},
-      exactlyOneGroups: const {
-        'settings': [
-          ['x', 'y'],
-        ],
-      },
-      references: (path) => path.join('.') == 'settings.x'
-          ? const ResolvedReference(
-              target: 'aws_vpc',
-              className: 'AwsVpc',
-              outputDir: 'ec2',
-              attribute: 'id',
-              list: false,
-            )
-          : null,
-    );
-    final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
-    expect(
-      src,
-      contains(
-        'const factory ThingSettingsXOrY.x(RefTo<AwsVpc> x) = '
-        'ThingSettingsXOrYX;',
-      ),
-    );
-    expect(src, contains("'x': x.encodeAs('id').toTfJson()"));
   });
 
   test('unsealedNestedGroups reports the nested groups left unsealed', () {
@@ -427,7 +378,56 @@ void main() {
   });
 
   group('sealed concept names', () {
-    test('derive from a shared prefix, suffix, or the whole block', () {
+    test('join a segment without repeating the prefix', () {
+      expect(
+        joinTypeName('RdsCluster', 'cluster_identifier'),
+        'RdsClusterIdentifier',
+      );
+      expect(joinTypeName('Foo', 'bar_baz'), 'FooBarBaz');
+      expect(joinTypeName('RagConfig', 'rag_config'), 'RagConfig');
+      expect(repeatsAcrossJoin('AssessmentRuleSampleRule', 'Sample'), isTrue);
+      expect(repeatsAcrossJoin('TtlConfig', 'TtlConfigTtl'), isTrue);
+      expect(repeatsAcrossJoin('BackupBackupPlan', 'Retention'), isFalse);
+      expect(repeatsAcrossJoin('Budget', 'Amount'), isFalse);
+    });
+
+    test('a sealed name that repeats a segment is not derived', () {
+      expect(sealedTypeName('BudgetAmount', 'spend'), 'BudgetAmountSpend');
+      expect(sealedTypeName('BudgetAmount', 'amount'), isNull);
+      expect(sealedTypeName('AssessmentRuleSampleRule', 'sample'), isNull);
+      expect(
+        sealedNameClash('AssessmentRuleSampleRule', 'sample', [
+          'a',
+          'b',
+        ], const {}),
+        contains('repeats a segment'),
+      );
+      expect(sealedNameClash('Rule', 'amount', ['a', 'b'], const {}), isNull);
+      expect(
+        sealedNameClash('Rule', 'amount', ['a', 'b'], const {'RuleAmount'}),
+        contains('is taken'),
+      );
+    });
+
+    test('variant names skip taken and repeating candidates', () {
+      expect(exactlyOneVariantNames('Source', ['s3', 'gcs'], const {}), [
+        'SourceS3',
+        'SourceGcs',
+      ]);
+      expect(
+        exactlyOneVariantNames(
+          'Launch',
+          ['launch_template'],
+          const {'LaunchTemplate'},
+        ),
+        ['LaunchTemplateChoice'],
+      );
+      expect(exactlyOneVariantNames('ToolChoice', ['choice'], const {}), [
+        'ToolChoiceOption',
+      ]);
+    });
+
+    test('derive from a shared prefix or suffix', () {
       expect(deriveSealedConcept(['name', 'name_prefix']), 'name');
       expect(
         deriveSealedConcept(['content_base64', 'content_file']),
@@ -449,11 +449,19 @@ void main() {
       expect(deriveSealedConcept(['enable_x', 'enable_y']), isNull);
       expect(deriveSealedConcept(['role_arn', 'user_arn']), isNull);
       expect(deriveSealedConcept(['region', 'aws_region']), isNull);
-      expect(
-        deriveSealedConcept(['s3', 'gcs'], wholeBlockName: 'source'),
-        'source',
-      );
       expect(deriveSealedConcept(['s3', 'gcs']), isNull);
+    });
+
+    test('a fallback that clashes is an error, not a repeating name', () {
+      final resolved = resolveSealedName(
+        members: ['a', 'b'],
+        human: null,
+        derived: null,
+        clashes: (c) => 'the sealed type name repeats a segment of X',
+      );
+      expect(resolved.concept, 'a_or_b');
+      expect(resolved.error, contains('name it in sealedNames'));
+      expect(resolved.error, contains('repeats a segment'));
     });
 
     test('a human name wins; a clash or a repeat is an error', () {
@@ -566,6 +574,7 @@ void main() {
                       'attributes': {
                         'r': {'type': 'string', 'optional': true},
                         's': {'type': 'string', 'optional': true},
+                        't': {'type': 'string', 'optional': true},
                       },
                     },
                   },
@@ -794,7 +803,10 @@ void main() {
     expect(o.paramOrder, ['a_or_b', 'c_or_d']);
     expect(o.prelude, contains('/// At most one of `c`, `d` on `aws_thing`'));
     expect(o.prelude, contains('sealed class ThingCOrD {'));
-    expect(o.prelude, contains('final class ThingCOrDD extends ThingCOrD {'));
+    expect(
+      o.prelude,
+      contains('final class ThingCOrDChoice extends ThingCOrD {'),
+    );
   });
 
   test('a hand helper custom slot becomes a variant of its group', () {
@@ -858,7 +870,7 @@ void main() {
     expect(o.customSlots!.keys, unorderedEquals(['a_or_b', 'c']));
     expect(o.paramOrder, ['d', 'a_or_b', 'c']);
     expect(o.argMapOrder, ['a_or_b', 'd', 'c']);
-    expect(o.prelude, contains('const ThingAOrBB(this.bee);'));
+    expect(o.prelude, contains('const ThingAOrBChoice(this.bee);'));
     expect(o.prelude, contains('final ThingBHelper bee;'));
     expect(o.prelude, contains("{'b': [bee.encode()]};"));
     expect(o.prelude, contains("{'b': TfArg.literal([bee.encode()])};"));

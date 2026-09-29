@@ -2623,7 +2623,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAccessRule(
         localName: 'd_access_rule',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         ruleId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -2631,7 +2631,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAccessRules(
         localName: 'd_access_rules',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -2645,28 +2645,28 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAccountApiTokenPermissionGroups(
         localName: 'd_account_api_token_permission_groups',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAccountApiTokenPermissionGroupsList(
         localName: 'd_account_api_token_permission_groups_list',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAccountDnsSettings(
         localName: 'd_account_dns_settings',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAccountDnsSettingsInternalView(
         localName: 'd_account_dns_settings_internal_view',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         viewId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -2674,14 +2674,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAccountDnsSettingsInternalViews(
         localName: 'd_account_dns_settings_internal_views',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAccountMember(
         localName: 'd_account_member',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         memberId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -2689,14 +2689,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAccountMembers(
         localName: 'd_account_members',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAccountPermissionGroup(
         localName: 'd_account_permission_group',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         permissionGroupId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -2704,14 +2704,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAccountPermissionGroups(
         localName: 'd_account_permission_groups',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAccountRole(
         localName: 'd_account_role',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         roleId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -2719,21 +2719,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAccountRoles(
         localName: 'd_account_roles',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAccountSubscription(
         localName: 'd_account_subscription',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAccountToken(
         localName: 'd_account_token',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         tokenId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -2741,7 +2741,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAccountTokens(
         localName: 'd_account_tokens',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -2751,21 +2751,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareAddressMap(
         localName: 'd_address_map',
         addressMapId: TfArg.literal('192.0.2.1'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAddressMaps(
         localName: 'd_address_maps',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAiGateway(
         localName: 'd_ai_gateway',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: DataAiGatewayFilter(search: TfArg.literal(leftover)),
       ),
     );
@@ -2775,21 +2775,21 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'd_ai_gateway_dynamic_routing',
         gatewayId: TfArg.literal('00000000000000000000000000000001'),
         id: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAiGateways(
         localName: 'd_ai_gateways',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAiSearchInstance(
         localName: 'd_ai_search_instance',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: DataAiSearchInstanceFilter(namespace: TfArg.literal(leftover)),
       ),
     );
@@ -2797,14 +2797,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAiSearchInstances(
         localName: 'd_ai_search_instances',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAiSearchNamespace(
         localName: 'd_ai_search_namespace',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         name: TfArg.literal(leftover),
       ),
     );
@@ -2812,14 +2812,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAiSearchNamespaces(
         localName: 'd_ai_search_namespaces',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareAiSearchToken(
         localName: 'd_ai_search_token',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: DataAiSearchTokenFilter(search: TfArg.literal(leftover)),
       ),
     );
@@ -2827,28 +2827,28 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareAiSearchTokens(
         localName: 'd_ai_search_tokens',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareApiShield(
         localName: 'd_api_shield',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareApiShieldDiscoveryOperations(
         localName: 'd_api_shield_discovery_operations',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareApiShieldOperation(
         localName: 'd_api_shield_operation',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         operationId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -2857,14 +2857,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareApiShieldOperationSchemaValidationSettings(
         localName: 'd_api_shield_operation_schema_validation_setting',
         operationId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareApiShieldOperations(
         localName: 'd_api_shield_operations',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -2872,21 +2872,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareApiShieldSchema(
         localName: 'd_api_shield_schema',
         schemaId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareApiShieldSchemaValidationSettings(
         localName: 'd_api_shield_schema_validation_settings',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareApiShieldSchemas(
         localName: 'd_api_shield_schemas',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -2908,14 +2908,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareArgoSmartRouting(
         localName: 'd_argo_smart_routing',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareArgoTieredCaching(
         localName: 'd_argo_tiered_caching',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -2923,7 +2923,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareAuthenticatedOriginPulls(
         localName: 'd_authenticated_origin_pulls',
         hostname: TfArg.literal(leftover),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -2931,14 +2931,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareAuthenticatedOriginPullsCertificate(
         localName: 'd_authenticated_origin_pulls_certificate',
         certificateId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareAuthenticatedOriginPullsCertificates(
         localName: 'd_authenticated_origin_pulls_certificates',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -2946,35 +2946,35 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareAuthenticatedOriginPullsHostnameCertificate(
         localName: 'd_authenticated_origin_pulls_hostname_certificat',
         certificateId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareAuthenticatedOriginPullsHostnameCertificates(
         localName: 'd_authenticated_origin_pulls_hostname_certific_2',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareAuthenticatedOriginPullsSettings(
         localName: 'd_authenticated_origin_pulls_settings',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareBotManagement(
         localName: 'd_bot_management',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareBotnetFeedConfigAsn(
         localName: 'd_botnet_feed_config_asn',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -2982,21 +2982,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareByoIpPrefix(
         localName: 'd_byo_ip_prefix',
         prefixId: TfArg.literal('192.0.2.0/24'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareByoIpPrefixes(
         localName: 'd_byo_ip_prefixes',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareCallsSfuApp(
         localName: 'd_calls_sfu_app',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         appId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3004,14 +3004,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareCallsSfuApps(
         localName: 'd_calls_sfu_apps',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareCallsTurnApp(
         localName: 'd_calls_turn_app',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         keyId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3019,14 +3019,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareCallsTurnApps(
         localName: 'd_calls_turn_apps',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareCertificateAuthoritiesHostnameAssociations(
         localName: 'd_certificate_authorities_hostname_associations',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         mtlsCertificateId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3034,7 +3034,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareCertificatePack(
         localName: 'd_certificate_pack',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         certificatePackId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3042,14 +3042,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareCertificatePacks(
         localName: 'd_certificate_packs',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareClientCertificate(
         localName: 'd_client_certificate',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         clientCertificateId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3057,21 +3057,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareClientCertificates(
         localName: 'd_client_certificates',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareCloudConnectorRules(
         localName: 'd_cloud_connector_rules',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareCloudforceOneRequest(
         localName: 'd_cloudforce_one_request',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         requestId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3079,7 +3079,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareCloudforceOneRequestAsset(
         localName: 'd_cloudforce_one_request_asset',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         assetId: TfArg.literal('00000000000000000000000000000001'),
         requestId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -3091,7 +3091,7 @@ final class CloudflareLeftoverStack extends Stack {
         page: TfArg.literal(200),
         perPage: TfArg.literal(200),
         requestId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3099,7 +3099,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareCloudforceOneRequestPriority(
         localName: 'd_cloudforce_one_request_priority',
         priorityId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3108,14 +3108,14 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'd_cloudforce_one_requests',
         page: TfArg.literal(200),
         perPage: TfArg.literal(200),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareConnectivityDirectoryService(
         localName: 'd_connectivity_directory_service',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         serviceId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3123,35 +3123,35 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareConnectivityDirectoryServices(
         localName: 'd_connectivity_directory_services',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareContentScanning(
         localName: 'd_content_scanning',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareContentScanningExpressions(
         localName: 'd_content_scanning_expressions',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareCtAlerting(
         localName: 'd_ct_alerting',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareCustomCsr(
         localName: 'd_custom_csr',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         customCsrId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3159,14 +3159,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareCustomCsrs(
         localName: 'd_custom_csrs',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareCustomHostname(
         localName: 'd_custom_hostname',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         customHostnameId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3174,21 +3174,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareCustomHostnameFallbackOrigin(
         localName: 'd_custom_hostname_fallback_origin',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareCustomHostnames(
         localName: 'd_custom_hostnames',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareCustomOriginTrustStore(
         localName: 'd_custom_origin_trust_store',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         customOriginTrustStoreId: TfArg.literal(
           '00000000000000000000000000000001',
         ),
@@ -3198,7 +3198,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareCustomOriginTrustStores(
         localName: 'd_custom_origin_trust_stores',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -3206,14 +3206,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareCustomPageAsset(
         localName: 'd_custom_page_asset',
         assetName: TfArg.literal(leftover),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareCustomPageAssets(
         localName: 'd_custom_page_assets',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3221,21 +3221,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareCustomPages(
         localName: 'd_custom_pages',
         identifier: TfArg.literal('1000_errors'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareCustomPagesList(
         localName: 'd_custom_pages_list',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareCustomSsl(
         localName: 'd_custom_ssl',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         customCertificateId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3243,14 +3243,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareCustomSsls(
         localName: 'd_custom_ssls',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareD1Database(
         localName: 'd_d1_database',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         databaseId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3258,21 +3258,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareD1Databases(
         localName: 'd_d1_databases',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareDcvDelegation(
         localName: 'd_dcv_delegation',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareDlsPrefixBinding(
         localName: 'd_dls_prefix_binding',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         bindingId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3280,7 +3280,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareDlsPrefixBindings(
         localName: 'd_dls_prefix_bindings',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3288,21 +3288,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareDnsFirewall(
         localName: 'd_dns_firewall',
         dnsFirewallId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareDnsFirewalls(
         localName: 'd_dns_firewalls',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareDnsRecord(
         localName: 'd_dns_record',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         dnsRecordId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3310,7 +3310,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareDnsRecords(
         localName: 'd_dns_records',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -3318,28 +3318,28 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareDnsZoneTransfersAcl(
         localName: 'd_dns_zone_transfers_acl',
         aclId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareDnsZoneTransfersAcls(
         localName: 'd_dns_zone_transfers_acls',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareDnsZoneTransfersIncoming(
         localName: 'd_dns_zone_transfers_incoming',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareDnsZoneTransfersOutgoing(
         localName: 'd_dns_zone_transfers_outgoing',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -3347,14 +3347,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareDnsZoneTransfersPeer(
         localName: 'd_dns_zone_transfers_peer',
         peerId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareDnsZoneTransfersPeers(
         localName: 'd_dns_zone_transfers_peers',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3362,21 +3362,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareDnsZoneTransfersTsig(
         localName: 'd_dns_zone_transfers_tsig',
         tsigId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareDnsZoneTransfersTsigs(
         localName: 'd_dns_zone_transfers_tsigs',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareEmailRoutingAddress(
         localName: 'd_email_routing_address',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         destinationAddressIdentifier: TfArg.literal('192.0.2.1'),
       ),
     );
@@ -3384,28 +3384,28 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareEmailRoutingAddresses(
         localName: 'd_email_routing_addresses',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareEmailRoutingCatchAll(
         localName: 'd_email_routing_catch_all',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareEmailRoutingDns(
         localName: 'd_email_routing_dns',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareEmailRoutingRule(
         localName: 'd_email_routing_rule',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         ruleIdentifier: TfArg.literal(leftover),
       ),
     );
@@ -3413,28 +3413,28 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareEmailRoutingRules(
         localName: 'd_email_routing_rules',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareEmailRoutingSettings(
         localName: 'd_email_routing_settings',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareEmailSecurityAllowPolicies(
         localName: 'd_email_security_allow_policies',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareEmailSecurityAllowPolicy(
         localName: 'd_email_security_allow_policy',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         policyId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3442,7 +3442,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareEmailSecurityBlockSender(
         localName: 'd_email_security_block_sender',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         patternId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3450,14 +3450,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareEmailSecurityBlockSenders(
         localName: 'd_email_security_block_senders',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareEmailSecurityDomain(
         localName: 'd_email_security_domain',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         domainId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3465,7 +3465,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareEmailSecurityDomains(
         localName: 'd_email_security_domains',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         integrationId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3473,14 +3473,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareEmailSecurityImpersonationRegistries(
         localName: 'd_email_security_impersonation_registries',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareEmailSecurityImpersonationRegistry(
         localName: 'd_email_security_impersonation_registry',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         impersonationRegistryId: TfArg.literal(
           '00000000000000000000000000000001',
         ),
@@ -3490,7 +3490,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareEmailSecurityTrustedDomains(
         localName: 'd_email_security_trusted_domains',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         trustedDomainId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3498,7 +3498,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareEmailSecurityTrustedDomainsList(
         localName: 'd_email_security_trusted_domains_list',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3506,21 +3506,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareEmailSendingSubdomain(
         localName: 'd_email_sending_subdomain',
         subdomainId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareEmailSendingSubdomains(
         localName: 'd_email_sending_subdomains',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareFieldExtractor(
         localName: 'd_field_extractor',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         extractor: TfArg.literal(leftover),
       ),
     );
@@ -3528,7 +3528,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareFilter(
         localName: 'd_filter',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         filterId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3536,21 +3536,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareFilters(
         localName: 'd_filters',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareFirewallRules(
         localName: 'd_firewall_rules',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareFlagshipApp(
         localName: 'd_flagship_app',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         appId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3558,14 +3558,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareFlagshipApps(
         localName: 'd_flagship_apps',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareFlagshipFlag(
         localName: 'd_flagship_flag',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         appId: TfArg.literal('00000000000000000000000000000001'),
         filter: DataFlagshipFlagFilter(limit: TfArg.literal(leftover)),
       ),
@@ -3574,7 +3574,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareFlagshipFlags(
         localName: 'd_flagship_flags',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         appId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3582,7 +3582,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareGoogleTagGateway(
         localName: 'd_google_tag_gateway',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -3590,14 +3590,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareHealthcheck(
         localName: 'd_healthcheck',
         healthcheckId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareHealthchecks(
         localName: 'd_healthchecks',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -3606,7 +3606,7 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'd_hostname_tls_setting',
         hostname: TfArg.literal(leftover),
         settingId: TfArg.literal('ciphers'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -3614,7 +3614,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareHostnameTlsSettings(
         localName: 'd_hostname_tls_settings',
         settingId: TfArg.literal('ciphers'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -3622,14 +3622,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareHyperdriveConfig(
         localName: 'd_hyperdrive_config',
         hyperdriveId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareHyperdriveConfigs(
         localName: 'd_hyperdrive_configs',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3637,7 +3637,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareImage(
         localName: 'd_image',
         imageId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3645,14 +3645,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareImageVariant(
         localName: 'd_image_variant',
         variantId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareImages(
         localName: 'd_images',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3662,21 +3662,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareKeylessCertificate(
         localName: 'd_keyless_certificate',
         keylessCertificateId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareKeylessCertificates(
         localName: 'd_keyless_certificates',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareLeakedCredentialCheck(
         localName: 'd_leaked_credential_check',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -3684,14 +3684,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareLeakedCredentialCheckRule(
         localName: 'd_leaked_credential_check_rule',
         detectionId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareLeakedCredentialCheckRules(
         localName: 'd_leaked_credential_check_rules',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -3699,7 +3699,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareList(
         localName: 'd_list',
         listId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3708,7 +3708,7 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'd_list_item',
         itemId: TfArg.literal('00000000000000000000000000000001'),
         listId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3716,14 +3716,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareListItems(
         localName: 'd_list_items',
         listId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareLists(
         localName: 'd_lists',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3731,7 +3731,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareLoadBalancer(
         localName: 'd_load_balancer',
         loadBalancerId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -3739,14 +3739,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareLoadBalancerMonitor(
         localName: 'd_load_balancer_monitor',
         monitorId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareLoadBalancerMonitorGroup(
         localName: 'd_load_balancer_monitor_group',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         monitorGroupId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3754,21 +3754,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareLoadBalancerMonitorGroups(
         localName: 'd_load_balancer_monitor_groups',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareLoadBalancerMonitors(
         localName: 'd_load_balancer_monitors',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareLoadBalancerPool(
         localName: 'd_load_balancer_pool',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         poolId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3776,28 +3776,28 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareLoadBalancerPools(
         localName: 'd_load_balancer_pools',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareLoadBalancers(
         localName: 'd_load_balancers',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareLogpullRetention(
         localName: 'd_logpull_retention',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareLogpushDatasetField(
         localName: 'd_logpush_dataset_field',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         datasetId: TfArg.literal('audit_logs'),
       ),
     );
@@ -3805,7 +3805,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareLogpushDatasetJob(
         localName: 'd_logpush_dataset_job',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         datasetId: TfArg.literal('audit_logs'),
       ),
     );
@@ -3814,21 +3814,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareLogpushJob(
         localName: 'd_logpush_job',
         jobId: TfArg.literal(200),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareLogpushJobs(
         localName: 'd_logpush_jobs',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareMagicNetworkMonitoringConfiguration(
         localName: 'd_magic_network_monitoring_configuration',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3836,21 +3836,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareMagicNetworkMonitoringRule(
         localName: 'd_magic_network_monitoring_rule',
         ruleId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareMagicNetworkMonitoringRules(
         localName: 'd_magic_network_monitoring_rules',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareMagicTransitCf1Site(
         localName: 'd_magic_transit_cf1_site',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         cf1SiteId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3858,14 +3858,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareMagicTransitCf1Sites(
         localName: 'd_magic_transit_cf1_sites',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareMagicTransitConnector(
         localName: 'd_magic_transit_connector',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         connectorId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3873,14 +3873,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareMagicTransitConnectors(
         localName: 'd_magic_transit_connectors',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareMagicTransitSite(
         localName: 'd_magic_transit_site',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         siteId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3888,7 +3888,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareMagicTransitSiteAcl(
         localName: 'd_magic_transit_site_acl',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         aclId: TfArg.literal('00000000000000000000000000000001'),
         siteId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -3898,14 +3898,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareMagicTransitSiteAcls(
         localName: 'd_magic_transit_site_acls',
         siteId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareMagicTransitSiteLan(
         localName: 'd_magic_transit_site_lan',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         lanId: TfArg.literal('00000000000000000000000000000001'),
         siteId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -3915,14 +3915,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareMagicTransitSiteLans(
         localName: 'd_magic_transit_site_lans',
         siteId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareMagicTransitSiteWan(
         localName: 'd_magic_transit_site_wan',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         siteId: TfArg.literal('00000000000000000000000000000001'),
         wanId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -3932,21 +3932,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareMagicTransitSiteWans(
         localName: 'd_magic_transit_site_wans',
         siteId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareMagicTransitSites(
         localName: 'd_magic_transit_sites',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareMagicWanBgpFilterProfile(
         localName: 'd_magic_wan_bgp_filter_profile',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         profileId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -3954,7 +3954,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareMagicWanBgpFilterProfiles(
         localName: 'd_magic_wan_bgp_filter_profiles',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3962,7 +3962,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareMagicWanGreTunnel(
         localName: 'd_magic_wan_gre_tunnel',
         greTunnelId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3970,7 +3970,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareMagicWanIpsecTunnel(
         localName: 'd_magic_wan_ipsec_tunnel',
         ipsecTunnelId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -3978,21 +3978,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareMagicWanStaticRoute(
         localName: 'd_magic_wan_static_route',
         routeId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareManagedTransforms(
         localName: 'd_managed_transforms',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareMoqRelay(
         localName: 'd_moq_relay',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         relayId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4000,14 +4000,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareMoqRelays(
         localName: 'd_moq_relays',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareMtlsCertificate(
         localName: 'd_mtls_certificate',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         mtlsCertificateId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4015,7 +4015,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareMtlsCertificateAssociations(
         localName: 'd_mtls_certificate_associations',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         mtlsCertificateId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4023,21 +4023,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareMtlsCertificates(
         localName: 'd_mtls_certificates',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareNelSetting(
         localName: 'd_nel_setting',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareNotificationPolicies(
         localName: 'd_notification_policies',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4045,7 +4045,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareNotificationPolicy(
         localName: 'd_notification_policy',
         policyId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4053,21 +4053,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareNotificationPolicyWebhooks(
         localName: 'd_notification_policy_webhooks',
         webhookId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareNotificationPolicyWebhooksList(
         localName: 'd_notification_policy_webhooks_list',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareOauthClient(
         localName: 'd_oauth_client',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         oauthClientId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4075,7 +4075,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareOauthClients(
         localName: 'd_oauth_clients',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4085,7 +4085,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareObservatoryScheduledTest(
         localName: 'd_observatory_scheduled_test',
         url: TfArg.literal('https://example.com'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4115,7 +4115,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareOriginCaCertificates(
         localName: 'd_origin_ca_certificates',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4123,21 +4123,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareOriginCloudRegion(
         localName: 'd_origin_cloud_region',
         originIp: TfArg.literal('192.0.2.1'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareOriginCloudRegions(
         localName: 'd_origin_cloud_regions',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareOriginTlsComplianceModes(
         localName: 'd_origin_tls_compliance_modes',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4145,7 +4145,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflarePageRule(
         localName: 'd_page_rule',
         pageruleId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4153,14 +4153,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflarePageShieldConnections(
         localName: 'd_page_shield_connections',
         connectionId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflarePageShieldConnectionsList(
         localName: 'd_page_shield_connections_list',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4168,21 +4168,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflarePageShieldCookies(
         localName: 'd_page_shield_cookies',
         cookieId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflarePageShieldCookiesList(
         localName: 'd_page_shield_cookies_list',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflarePageShieldPolicies(
         localName: 'd_page_shield_policies',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4190,7 +4190,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflarePageShieldPolicy(
         localName: 'd_page_shield_policy',
         policyId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4198,21 +4198,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflarePageShieldScripts(
         localName: 'd_page_shield_scripts',
         scriptId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflarePageShieldScriptsList(
         localName: 'd_page_shield_scripts_list',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflarePagesDomain(
         localName: 'd_pages_domain',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         domainName: TfArg.literal(leftover),
         projectName: TfArg.literal(leftover),
       ),
@@ -4222,7 +4222,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflarePagesDomains(
         localName: 'd_pages_domains',
         projectName: TfArg.literal(leftover),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4230,14 +4230,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflarePagesProject(
         localName: 'd_pages_project',
         projectName: TfArg.literal(leftover),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflarePagesProjects(
         localName: 'd_pages_projects',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4245,14 +4245,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflarePipeline(
         localName: 'd_pipeline',
         pipelineId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflarePipelineSink(
         localName: 'd_pipeline_sink',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         sinkId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4260,7 +4260,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflarePipelineSinks(
         localName: 'd_pipeline_sinks',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         pipelineId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4268,7 +4268,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflarePipelineStream(
         localName: 'd_pipeline_stream',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         streamId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4276,7 +4276,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflarePipelineStreams(
         localName: 'd_pipeline_streams',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         pipelineId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4284,7 +4284,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflarePrecursor(
         localName: 'd_precursor',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4292,14 +4292,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareQueue(
         localName: 'd_queue',
         queueId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareQueueConsumer(
         localName: 'd_queue_consumer',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         queueId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4308,14 +4308,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareQueueConsumers(
         localName: 'd_queue_consumers',
         queueId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareQueues(
         localName: 'd_queues',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4323,14 +4323,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareR2Bucket(
         localName: 'd_r2_bucket',
         bucketName: TfArg.literal(leftover),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareR2BucketCors(
         localName: 'd_r2_bucket_cors',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         bucketName: TfArg.literal(leftover),
       ),
     );
@@ -4338,7 +4338,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareR2BucketEventNotification(
         localName: 'd_r2_bucket_event_notification',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         bucketName: TfArg.literal(leftover),
         queueId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -4347,7 +4347,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareR2BucketLifecycle(
         localName: 'd_r2_bucket_lifecycle',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         bucketName: TfArg.literal(leftover),
       ),
     );
@@ -4355,7 +4355,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareR2BucketLock(
         localName: 'd_r2_bucket_lock',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         bucketName: TfArg.literal(leftover),
       ),
     );
@@ -4363,7 +4363,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareR2BucketSippy(
         localName: 'd_r2_bucket_sippy',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         bucketName: TfArg.literal(leftover),
       ),
     );
@@ -4371,7 +4371,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareR2CustomDomain(
         localName: 'd_r2_custom_domain',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         bucketName: TfArg.literal(leftover),
         domain: TfArg.literal(leftover),
       ),
@@ -4381,7 +4381,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareR2DataCatalog(
         localName: 'd_r2_data_catalog',
         bucketName: TfArg.literal(leftover),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4389,7 +4389,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareRateLimit(
         localName: 'd_rate_limit',
         rateLimitId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4397,28 +4397,28 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareRegionalHostname(
         localName: 'd_regional_hostname',
         hostname: TfArg.literal(leftover),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareRegionalHostnames(
         localName: 'd_regional_hostnames',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareRegionalTieredCache(
         localName: 'd_regional_tiered_cache',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareRegistrarDomain(
         localName: 'd_registrar_domain',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         domainName: TfArg.literal(leftover),
       ),
     );
@@ -4426,14 +4426,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareRegistrarDomains(
         localName: 'd_registrar_domains',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareResourceGroup(
         localName: 'd_resource_group',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         resourceGroupId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4441,14 +4441,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareResourceGroups(
         localName: 'd_resource_groups',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareRuleset(
         localName: 'd_ruleset',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         rulesetId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4456,7 +4456,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareRulesets(
         localName: 'd_rulesets',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4464,21 +4464,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareSchemaValidationOperationSettings(
         localName: 'd_schema_validation_operation_settings',
         operationId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareSchemaValidationOperationSettingsList(
         localName: 'd_schema_validation_operation_settings_list',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareSchemaValidationSchemas(
         localName: 'd_schema_validation_schemas',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         schemaId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4486,21 +4486,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareSchemaValidationSchemasList(
         localName: 'd_schema_validation_schemas_list',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareSchemaValidationSettings(
         localName: 'd_schema_validation_settings',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareSecretsStore(
         localName: 'd_secrets_store',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         storeId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4508,7 +4508,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareSecretsStoreSecret(
         localName: 'd_secrets_store_secret',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         storeId: TfArg.literal('00000000000000000000000000000001'),
         secretId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -4517,7 +4517,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareSecretsStoreSecrets(
         localName: 'd_secrets_store_secrets',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         storeId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4525,14 +4525,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareSecretsStores(
         localName: 'd_secrets_stores',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareShare(
         localName: 'd_share',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         shareId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4540,7 +4540,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareShareRecipient(
         localName: 'd_share_recipient',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         recipientId: TfArg.literal('00000000000000000000000000000001'),
         shareId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -4549,7 +4549,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareShareRecipients(
         localName: 'd_share_recipients',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         shareId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4557,7 +4557,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareShareResource(
         localName: 'd_share_resource',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         shareId: TfArg.literal('00000000000000000000000000000001'),
         shareResourceId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -4566,7 +4566,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareShareResources(
         localName: 'd_share_resources',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         shareId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4574,7 +4574,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareShares(
         localName: 'd_shares',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4582,28 +4582,28 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareSnippet(
         localName: 'd_snippet',
         snippetName: TfArg.literal(leftover),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareSnippetList(
         localName: 'd_snippet_list',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareSnippetRules(
         localName: 'd_snippet_rules',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareSnippetRulesList(
         localName: 'd_snippet_rules_list',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4611,21 +4611,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareSnippets(
         localName: 'd_snippets',
         snippetName: TfArg.literal(leftover),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareSnippetsList(
         localName: 'd_snippets_list',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareSpectrumApplication(
         localName: 'd_spectrum_application',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         appId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4633,14 +4633,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareSpectrumApplications(
         localName: 'd_spectrum_applications',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareSpectrumProtocols(
         localName: 'd_spectrum_protocols',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4648,21 +4648,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareSsoConnector(
         localName: 'd_sso_connector',
         ssoConnectorId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareSsoConnectors(
         localName: 'd_sso_connectors',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareStream(
         localName: 'd_stream',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         identifier: TfArg.literal('1000_errors'),
       ),
     );
@@ -4670,7 +4670,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareStreamAudioTrack(
         localName: 'd_stream_audio_track',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         identifier: TfArg.literal('1000_errors'),
       ),
     );
@@ -4678,7 +4678,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareStreamCaptionLanguage(
         localName: 'd_stream_caption_language',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         identifier: TfArg.literal('1000_errors'),
         language: TfArg.literal(leftover),
       ),
@@ -4687,7 +4687,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareStreamDownload(
         localName: 'd_stream_download',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         identifier: TfArg.literal('1000_errors'),
       ),
     );
@@ -4695,14 +4695,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareStreamKey(
         localName: 'd_stream_key',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareStreamLiveInput(
         localName: 'd_stream_live_input',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         liveInputIdentifier: TfArg.literal(leftover),
       ),
     );
@@ -4710,7 +4710,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareStreamWatermark(
         localName: 'd_stream_watermark',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         identifier: TfArg.literal('1000_errors'),
       ),
     );
@@ -4718,21 +4718,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareStreamWatermarks(
         localName: 'd_stream_watermarks',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareStreamWebhook(
         localName: 'd_stream_webhook',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareStreams(
         localName: 'd_streams',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         liveInputId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4740,7 +4740,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareTieredCache(
         localName: 'd_tiered_cache',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4748,21 +4748,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareTokenValidationConfig(
         localName: 'd_token_validation_config',
         configId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareTokenValidationConfigs(
         localName: 'd_token_validation_configs',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareTokenValidationRules(
         localName: 'd_token_validation_rules',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         ruleId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4770,7 +4770,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareTokenValidationRulesList(
         localName: 'd_token_validation_rules_list',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         ruleId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4778,14 +4778,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareTotalTls(
         localName: 'd_total_tls',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareTurnstileWidget(
         localName: 'd_turnstile_widget',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         sitekey: TfArg.literal(leftover),
       ),
     );
@@ -4793,7 +4793,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareTurnstileWidgets(
         localName: 'd_turnstile_widgets',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: TfArg.literal(leftover),
       ),
     );
@@ -4801,14 +4801,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareUniversalSslSetting(
         localName: 'd_universal_ssl_setting',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareUrlNormalizationSettings(
         localName: 'd_url_normalization_settings',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4817,7 +4817,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareUserAgentBlockingRule(
         localName: 'd_user_agent_blocking_rule',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         uaRuleId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4825,14 +4825,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareUserAgentBlockingRules(
         localName: 'd_user_agent_blocking_rules',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareUserGroup(
         localName: 'd_user_group',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         userGroupId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4840,7 +4840,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareUserGroupMembers(
         localName: 'd_user_group_members',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         userGroupId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4848,7 +4848,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareUserGroups(
         localName: 'd_user_groups',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4857,7 +4857,7 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'd_vulnerability_scanner_credential',
         credentialId: TfArg.literal('00000000000000000000000000000001'),
         credentialSetId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4865,14 +4865,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareVulnerabilityScannerCredentialSet(
         localName: 'd_vulnerability_scanner_credential_set',
         credentialSetId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareVulnerabilityScannerCredentialSets(
         localName: 'd_vulnerability_scanner_credential_sets',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4880,7 +4880,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareVulnerabilityScannerCredentials(
         localName: 'd_vulnerability_scanner_credentials',
         credentialSetId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4888,14 +4888,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareVulnerabilityScannerTargetEnvironment(
         localName: 'd_vulnerability_scanner_target_environment',
         targetEnvironmentId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareVulnerabilityScannerTargetEnvironments(
         localName: 'd_vulnerability_scanner_target_environments',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4903,7 +4903,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareWaitingRoom(
         localName: 'd_waiting_room',
         waitingRoomId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4912,7 +4912,7 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'd_waiting_room_event',
         eventId: TfArg.literal('00000000000000000000000000000001'),
         waitingRoomId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4920,7 +4920,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareWaitingRoomEvents(
         localName: 'd_waiting_room_events',
         waitingRoomId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -4928,21 +4928,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareWaitingRoomRules(
         localName: 'd_waiting_room_rules',
         waitingRoomId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareWaitingRoomSettings(
         localName: 'd_waiting_room_settings',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareWaitingRooms(
         localName: 'd_waiting_rooms',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -4950,21 +4950,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareWeb3Hostname(
         localName: 'd_web3_hostname',
         identifier: TfArg.literal('1000_errors'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareWeb3Hostnames(
         localName: 'd_web3_hostnames',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareWebAnalyticsSite(
         localName: 'd_web_analytics_site',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         siteId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4972,14 +4972,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareWebAnalyticsSites(
         localName: 'd_web_analytics_sites',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareWorker(
         localName: 'd_worker',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         workerId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -4987,7 +4987,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareWorkerVersion(
         localName: 'd_worker_version',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         versionId: TfArg.literal('00000000000000000000000000000001'),
         workerId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -4997,14 +4997,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareWorkerVersions(
         localName: 'd_worker_versions',
         workerId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareWorkers(
         localName: 'd_workers',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5012,14 +5012,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareWorkersCronTrigger(
         localName: 'd_workers_cron_trigger',
         scriptName: TfArg.literal(leftover),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareWorkersCustomDomain(
         localName: 'd_workers_custom_domain',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         domainId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5027,14 +5027,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareWorkersCustomDomains(
         localName: 'd_workers_custom_domains',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareWorkersDeployment(
         localName: 'd_workers_deployment',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         deploymentId: TfArg.literal('00000000000000000000000000000001'),
         scriptName: TfArg.literal(leftover),
       ),
@@ -5043,7 +5043,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareWorkersDeployments(
         localName: 'd_workers_deployments',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         scriptName: TfArg.literal(leftover),
       ),
     );
@@ -5052,21 +5052,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareWorkersForPlatformsDispatchNamespace(
         localName: 'd_workers_for_platforms_dispatch_namespace',
         dispatchNamespace: TfArg.literal(leftover),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareWorkersForPlatformsDispatchNamespaces(
         localName: 'd_workers_for_platforms_dispatch_namespaces',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareWorkersKv(
         localName: 'd_workers_kv',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         keyName: TfArg.literal(leftover),
         namespaceId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -5075,7 +5075,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareWorkersKvNamespace(
         localName: 'd_workers_kv_namespace',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         namespaceId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5083,7 +5083,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareWorkersKvNamespaces(
         localName: 'd_workers_kv_namespaces',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5091,21 +5091,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareWorkersRoute(
         localName: 'd_workers_route',
         routeId: TfArg.literal('00000000000000000000000000000001'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareWorkersRoutes(
         localName: 'd_workers_routes',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareWorkersScript(
         localName: 'd_workers_script',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         scriptName: TfArg.literal(leftover),
       ),
     );
@@ -5113,7 +5113,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareWorkersScriptSubdomain(
         localName: 'd_workers_script_subdomain',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         scriptName: TfArg.literal(leftover),
       ),
     );
@@ -5121,14 +5121,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareWorkersScripts(
         localName: 'd_workers_scripts',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareWorkflow(
         localName: 'd_workflow',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         workflowName: TfArg.literal(leftover),
       ),
     );
@@ -5136,14 +5136,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareWorkflows(
         localName: 'd_workflows',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessAiControlsMcpPortal(
         localName: 'd_zero_trust_access_ai_controls_mcp_portal',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: DataZeroTrustAccessAiControlsMcpPortalFilter(
           search: TfArg.literal(leftover),
         ),
@@ -5153,14 +5153,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustAccessAiControlsMcpPortals(
         localName: 'd_zero_trust_access_ai_controls_mcp_portals',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessAiControlsMcpServer(
         localName: 'd_zero_trust_access_ai_controls_mcp_server',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: DataZeroTrustAccessAiControlsMcpServerFilter(
           search: TfArg.literal(leftover),
         ),
@@ -5170,14 +5170,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustAccessAiControlsMcpServers(
         localName: 'd_zero_trust_access_ai_controls_mcp_servers',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessApplication(
         localName: 'd_zero_trust_access_application',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         appId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5185,7 +5185,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustAccessApplications(
         localName: 'd_zero_trust_access_applications',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5193,21 +5193,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustAccessCustomPage(
         localName: 'd_zero_trust_access_custom_page',
         customPageId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessCustomPages(
         localName: 'd_zero_trust_access_custom_pages',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessGroup(
         localName: 'd_zero_trust_access_group',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         groupId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5215,14 +5215,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustAccessGroups(
         localName: 'd_zero_trust_access_groups',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessIdentityProvider(
         localName: 'd_zero_trust_access_identity_provider',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         identityProviderId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5230,14 +5230,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustAccessIdentityProviders(
         localName: 'd_zero_trust_access_identity_providers',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessInfrastructureTarget(
         localName: 'd_zero_trust_access_infrastructure_target',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         targetId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5245,7 +5245,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustAccessInfrastructureTargets(
         localName: 'd_zero_trust_access_infrastructure_targets',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         virtualNetworkId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5253,7 +5253,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustAccessKeyConfiguration(
         localName: 'd_zero_trust_access_key_configuration',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5261,28 +5261,28 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustAccessMtlsCertificate(
         localName: 'd_zero_trust_access_mtls_certificate',
         certificateId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessMtlsCertificates(
         localName: 'd_zero_trust_access_mtls_certificates',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessMtlsHostnameSettings(
         localName: 'd_zero_trust_access_mtls_hostname_settings',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessPolicies(
         localName: 'd_zero_trust_access_policies',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5290,14 +5290,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustAccessPolicy(
         localName: 'd_zero_trust_access_policy',
         policyId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessServiceToken(
         localName: 'd_zero_trust_access_service_token',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         serviceTokenId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5305,7 +5305,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustAccessServiceTokens(
         localName: 'd_zero_trust_access_service_tokens',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5313,14 +5313,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustAccessShortLivedCertificate(
         localName: 'd_zero_trust_access_short_lived_certificate',
         appId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessShortLivedCertificates(
         localName: 'd_zero_trust_access_short_lived_certificates',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5328,28 +5328,28 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustAccessTag(
         localName: 'd_zero_trust_access_tag',
         tagName: TfArg.literal(leftover),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustAccessTags(
         localName: 'd_zero_trust_access_tags',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustCasbPolicies(
         localName: 'd_zero_trust_casb_policies',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustCasbPolicy(
         localName: 'd_zero_trust_casb_policy',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         policyId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5357,7 +5357,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustCasbWebhook(
         localName: 'd_zero_trust_casb_webhook',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         webhookId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5365,21 +5365,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustCasbWebhooks(
         localName: 'd_zero_trust_casb_webhooks',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustConnectivitySettings(
         localName: 'd_zero_trust_connectivity_settings',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDeviceCustomProfile(
         localName: 'd_zero_trust_device_custom_profile',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         policyId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5388,42 +5388,42 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDeviceCustomProfileLocalDomainFallback(
         localName: 'd_zero_trust_device_custom_profile_local_domain_',
         policyId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDeviceCustomProfiles(
         localName: 'd_zero_trust_device_custom_profiles',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDeviceDefaultProfile(
         localName: 'd_zero_trust_device_default_profile',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDeviceDefaultProfileCertificates(
         localName: 'd_zero_trust_device_default_profile_certificates',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback(
         localName: 'd_zero_trust_device_default_profile_local_domain',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDeviceDeploymentGroups(
         localName: 'd_zero_trust_device_deployment_groups',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         groupId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5431,14 +5431,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDeviceDeploymentGroupsList(
         localName: 'd_zero_trust_device_deployment_groups_list',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDeviceIpProfile(
         localName: 'd_zero_trust_device_ip_profile',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         profileId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5446,7 +5446,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDeviceIpProfiles(
         localName: 'd_zero_trust_device_ip_profiles',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5454,14 +5454,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDeviceManagedNetworks(
         localName: 'd_zero_trust_device_managed_networks',
         networkId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDeviceManagedNetworksList(
         localName: 'd_zero_trust_device_managed_networks_list',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5469,14 +5469,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDevicePostureIntegration(
         localName: 'd_zero_trust_device_posture_integration',
         integrationId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDevicePostureIntegrations(
         localName: 'd_zero_trust_device_posture_integrations',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5484,21 +5484,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDevicePostureRule(
         localName: 'd_zero_trust_device_posture_rule',
         ruleId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDevicePostureRules(
         localName: 'd_zero_trust_device_posture_rules',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDeviceSettings(
         localName: 'd_zero_trust_device_settings',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5506,7 +5506,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDeviceSubnet(
         localName: 'd_zero_trust_device_subnet',
         subnetId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5514,21 +5514,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDexRule(
         localName: 'd_zero_trust_dex_rule',
         ruleId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDexRules(
         localName: 'd_zero_trust_dex_rules',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDexTest(
         localName: 'd_zero_trust_dex_test',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         dexTestId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5536,14 +5536,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDexTests(
         localName: 'd_zero_trust_dex_tests',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpCustomEntries(
         localName: 'd_zero_trust_dlp_custom_entries',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5551,7 +5551,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDlpCustomEntry(
         localName: 'd_zero_trust_dlp_custom_entry',
         entryId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5559,14 +5559,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDlpCustomProfile(
         localName: 'd_zero_trust_dlp_custom_profile',
         profileId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpCustomPromptTopic(
         localName: 'd_zero_trust_dlp_custom_prompt_topic',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         entryId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5574,14 +5574,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDlpCustomPromptTopics(
         localName: 'd_zero_trust_dlp_custom_prompt_topics',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpDataClass(
         localName: 'd_zero_trust_dlp_data_class',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         dataClassId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5589,14 +5589,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDlpDataClasses(
         localName: 'd_zero_trust_dlp_data_classes',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpDataTag(
         localName: 'd_zero_trust_dlp_data_tag',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         categoryId: TfArg.literal('00000000000000000000000000000001'),
         tagId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -5605,14 +5605,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDlpDataTagCategories(
         localName: 'd_zero_trust_dlp_data_tag_categories',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpDataTagCategory(
         localName: 'd_zero_trust_dlp_data_tag_category',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         categoryId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5620,7 +5620,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDlpDataTags(
         localName: 'd_zero_trust_dlp_data_tags',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         categoryId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5629,21 +5629,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDlpDataset(
         localName: 'd_zero_trust_dlp_dataset',
         datasetId: TfArg.literal('audit_logs'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpDatasets(
         localName: 'd_zero_trust_dlp_datasets',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpEntries(
         localName: 'd_zero_trust_dlp_entries',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5651,14 +5651,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDlpEntry(
         localName: 'd_zero_trust_dlp_entry',
         entryId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpIntegrationEntries(
         localName: 'd_zero_trust_dlp_integration_entries',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5666,14 +5666,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDlpIntegrationEntry(
         localName: 'd_zero_trust_dlp_integration_entry',
         entryId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpPredefinedEntries(
         localName: 'd_zero_trust_dlp_predefined_entries',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5681,7 +5681,7 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDlpPredefinedEntry(
         localName: 'd_zero_trust_dlp_predefined_entry',
         entryId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5689,14 +5689,14 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustDlpPredefinedProfile(
         localName: 'd_zero_trust_dlp_predefined_profile',
         profileId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpSensitivityGroup(
         localName: 'd_zero_trust_dlp_sensitivity_group',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         sensitivityGroupId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5704,14 +5704,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDlpSensitivityGroups(
         localName: 'd_zero_trust_dlp_sensitivity_groups',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDlpSensitivityLevel(
         localName: 'd_zero_trust_dlp_sensitivity_level',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         sensitivityGroupId: TfArg.literal('00000000000000000000000000000001'),
         sensitivityLevelId: TfArg.literal('00000000000000000000000000000001'),
       ),
@@ -5720,7 +5720,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDlpSensitivityLevelOrder(
         localName: 'd_zero_trust_dlp_sensitivity_level_order',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         sensitivityGroupId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5728,7 +5728,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDlpSensitivityLevels(
         localName: 'd_zero_trust_dlp_sensitivity_levels',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         sensitivityGroupId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5736,14 +5736,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDlpSettings(
         localName: 'd_zero_trust_dlp_settings',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustDnsLocation(
         localName: 'd_zero_trust_dns_location',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         locationId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5751,7 +5751,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustDnsLocations(
         localName: 'd_zero_trust_dns_locations',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: TfArg.literal([leftover]),
       ),
     );
@@ -5759,14 +5759,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustGatewayAppTypesList(
         localName: 'd_zero_trust_gateway_app_types_list',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustGatewayCategoriesList(
         localName: 'd_zero_trust_gateway_categories_list',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5774,21 +5774,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustGatewayCertificate(
         localName: 'd_zero_trust_gateway_certificate',
         certificateId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustGatewayCertificates(
         localName: 'd_zero_trust_gateway_certificates',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustGatewayLogging(
         localName: 'd_zero_trust_gateway_logging',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5796,21 +5796,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustGatewayPacfile(
         localName: 'd_zero_trust_gateway_pacfile',
         pacfileId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustGatewayPacfiles(
         localName: 'd_zero_trust_gateway_pacfiles',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustGatewayPolicies(
         localName: 'd_zero_trust_gateway_policies',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: TfArg.literal([leftover]),
       ),
     );
@@ -5818,7 +5818,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustGatewayPolicy(
         localName: 'd_zero_trust_gateway_policy',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         ruleId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5826,7 +5826,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustGatewayProxyEndpoint(
         localName: 'd_zero_trust_gateway_proxy_endpoint',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         proxyEndpointId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5834,7 +5834,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustGatewayProxyEndpoints(
         localName: 'd_zero_trust_gateway_proxy_endpoints',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: TfArg.literal([leftover]),
       ),
     );
@@ -5842,14 +5842,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustGatewaySettings(
         localName: 'd_zero_trust_gateway_settings',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustList(
         localName: 'd_zero_trust_list',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         listId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5857,7 +5857,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustLists(
         localName: 'd_zero_trust_lists',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: TfArg.literal([leftover]),
       ),
     );
@@ -5865,7 +5865,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustNetworkHostnameRoute(
         localName: 'd_zero_trust_network_hostname_route',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         hostnameRouteId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5873,7 +5873,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustNetworkHostnameRoutes(
         localName: 'd_zero_trust_network_hostname_routes',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         tunnelId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5881,14 +5881,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustOrganization(
         localName: 'd_zero_trust_organization',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustResourceLibraryApplication(
         localName: 'd_zero_trust_resource_library_application',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: DataZeroTrustResourceLibraryApplicationFilter(
           fields: TfArg.literal(leftover),
         ),
@@ -5898,7 +5898,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustResourceLibraryApplications(
         localName: 'd_zero_trust_resource_library_applications',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         filter: TfArg.literal(leftover),
       ),
     );
@@ -5906,14 +5906,14 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustResourceLibraryCategories(
         localName: 'd_zero_trust_resource_library_categories',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustResourceLibraryCategory(
         localName: 'd_zero_trust_resource_library_category',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         id: TfArg.literal(200),
       ),
     );
@@ -5921,7 +5921,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustRiskBehavior(
         localName: 'd_zero_trust_risk_behavior',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -5929,21 +5929,21 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZeroTrustRiskScoringIntegration(
         localName: 'd_zero_trust_risk_scoring_integration',
         integrationId: TfArg.literal('00000000000000000000000000000001'),
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustRiskScoringIntegrations(
         localName: 'd_zero_trust_risk_scoring_integrations',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustTunnelCloudflared(
         localName: 'd_zero_trust_tunnel_cloudflared',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         tunnelId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5951,7 +5951,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustTunnelCloudflaredConfig(
         localName: 'd_zero_trust_tunnel_cloudflared_config',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         tunnelId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5959,7 +5959,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustTunnelCloudflaredRoute(
         localName: 'd_zero_trust_tunnel_cloudflared_route',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         routeId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5967,7 +5967,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustTunnelCloudflaredRoutes(
         localName: 'd_zero_trust_tunnel_cloudflared_routes',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         routeId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5975,7 +5975,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustTunnelCloudflaredToken(
         localName: 'd_zero_trust_tunnel_cloudflared_token',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         tunnelId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5983,7 +5983,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork(
         localName: 'd_zero_trust_tunnel_cloudflared_virtual_network',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         virtualNetworkId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -5991,21 +5991,21 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustTunnelCloudflaredVirtualNetworks(
         localName: 'd_zero_trust_tunnel_cloudflared_virtual_networks',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustTunnelCloudflareds(
         localName: 'd_zero_trust_tunnel_cloudflareds',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
     addData(
       DataCloudflareZeroTrustTunnelWarpConnector(
         localName: 'd_zero_trust_tunnel_warp_connector',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         tunnelId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -6013,7 +6013,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustTunnelWarpConnectorConfig(
         localName: 'd_zero_trust_tunnel_warp_connector_config',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         tunnelId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -6021,7 +6021,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustTunnelWarpConnectorToken(
         localName: 'd_zero_trust_tunnel_warp_connector_token',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
         tunnelId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -6029,7 +6029,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZeroTrustTunnelWarpConnectors(
         localName: 'd_zero_trust_tunnel_warp_connectors',
-        accountId: TfArg.literal(accountId),
+        accountId: RefTo.literal(accountId),
       ),
     );
 
@@ -6040,49 +6040,49 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZoneAutoOriginTlsKex(
         localName: 'd_zone_auto_origin_tls_kex',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareZoneCacheReserve(
         localName: 'd_zone_cache_reserve',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareZoneCacheVariants(
         localName: 'd_zone_cache_variants',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareZoneDnsSettings(
         localName: 'd_zone_dns_settings',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareZoneDnssec(
         localName: 'd_zone_dnssec',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareZoneHold(
         localName: 'd_zone_hold',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareZoneLockdown(
         localName: 'd_zone_lockdown',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
         lockDownsId: TfArg.literal('00000000000000000000000000000001'),
       ),
     );
@@ -6090,7 +6090,7 @@ final class CloudflareLeftoverStack extends Stack {
     addData(
       DataCloudflareZoneLockdowns(
         localName: 'd_zone_lockdowns',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
@@ -6098,28 +6098,28 @@ final class CloudflareLeftoverStack extends Stack {
       DataCloudflareZoneSetting(
         localName: 'd_zone_setting',
         settingId: TfArg.literal('ciphers'),
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareZoneSubscription(
         localName: 'd_zone_subscription',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareZoneTracing(
         localName: 'd_zone_tracing',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 
     addData(
       DataCloudflareZoneTracingRules(
         localName: 'd_zone_tracing_rules',
-        zoneId: TfArg.literal(zoneId),
+        zoneId: RefTo.literal(zoneId),
       ),
     );
 

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_access_custom_page.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_custom_page`.
 const Set<String> _cloudflareZeroTrustAccessCustomPageSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareZeroTrustAccessCustomPage extends Data {
 
   DataCloudflareZeroTrustAccessCustomPage({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> customPageId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'custom_page_id': customPageId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'custom_page_id': customPageId,
+         },
        );
 
   @override

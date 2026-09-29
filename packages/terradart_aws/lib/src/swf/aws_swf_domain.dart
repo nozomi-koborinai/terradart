@@ -15,11 +15,11 @@ sealed class SwfDomainName {
   const SwfDomainName();
 
   /// Sets `name`.
-  const factory SwfDomainName.name(TfArg<String> name) = SwfDomainNameName;
+  const factory SwfDomainName.name(TfArg<String> name) = SwfDomainNameChoice;
 
   /// Sets `name_prefix`.
   const factory SwfDomainName.namePrefix(TfArg<String> namePrefix) =
-      SwfDomainNameNamePrefix;
+      SwfDomainNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,8 +32,8 @@ sealed class SwfDomainName {
 }
 
 /// The [SwfDomainName.name] choice: sets `name`.
-final class SwfDomainNameName extends SwfDomainName {
-  const SwfDomainNameName(this.name);
+final class SwfDomainNameChoice extends SwfDomainName {
+  const SwfDomainNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -48,8 +48,8 @@ final class SwfDomainNameName extends SwfDomainName {
 }
 
 /// The [SwfDomainName.namePrefix] choice: sets `name_prefix`.
-final class SwfDomainNameNamePrefix extends SwfDomainName {
-  const SwfDomainNameNamePrefix(this.namePrefix);
+final class SwfDomainNamePrefix extends SwfDomainName {
+  const SwfDomainNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -16,12 +16,12 @@ sealed class VpcEndpointConnectionNotificationVpcEndpoint {
   /// Sets `vpc_endpoint_id`.
   const factory VpcEndpointConnectionNotificationVpcEndpoint.vpcEndpointId(
     TfArg<String> vpcEndpointId,
-  ) = VpcEndpointConnectionNotificationVpcEndpointVpcEndpointId;
+  ) = VpcEndpointConnectionNotificationVpcEndpointId;
 
   /// Sets `vpc_endpoint_service_id`.
   const factory VpcEndpointConnectionNotificationVpcEndpoint.vpcEndpointServiceId(
     TfArg<String> vpcEndpointServiceId,
-  ) = VpcEndpointConnectionNotificationVpcEndpointVpcEndpointServiceId;
+  ) = VpcEndpointConnectionNotificationVpcEndpointServiceId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,11 +34,9 @@ sealed class VpcEndpointConnectionNotificationVpcEndpoint {
 }
 
 /// The [VpcEndpointConnectionNotificationVpcEndpoint.vpcEndpointId] choice: sets `vpc_endpoint_id`.
-final class VpcEndpointConnectionNotificationVpcEndpointVpcEndpointId
+final class VpcEndpointConnectionNotificationVpcEndpointId
     extends VpcEndpointConnectionNotificationVpcEndpoint {
-  const VpcEndpointConnectionNotificationVpcEndpointVpcEndpointId(
-    this.vpcEndpointId,
-  );
+  const VpcEndpointConnectionNotificationVpcEndpointId(this.vpcEndpointId);
 
   final TfArg<String> vpcEndpointId;
 
@@ -55,9 +53,9 @@ final class VpcEndpointConnectionNotificationVpcEndpointVpcEndpointId
 }
 
 /// The [VpcEndpointConnectionNotificationVpcEndpoint.vpcEndpointServiceId] choice: sets `vpc_endpoint_service_id`.
-final class VpcEndpointConnectionNotificationVpcEndpointVpcEndpointServiceId
+final class VpcEndpointConnectionNotificationVpcEndpointServiceId
     extends VpcEndpointConnectionNotificationVpcEndpoint {
-  const VpcEndpointConnectionNotificationVpcEndpointVpcEndpointServiceId(
+  const VpcEndpointConnectionNotificationVpcEndpointServiceId(
     this.vpcEndpointServiceId,
   );
 

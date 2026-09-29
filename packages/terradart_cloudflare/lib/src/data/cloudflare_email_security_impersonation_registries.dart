@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_email_security_impersonation_registries`.
 const Set<String> _cloudflareEmailSecurityImpersonationRegistriesSensitive =
@@ -18,7 +19,7 @@ final class DataCloudflareEmailSecurityImpersonationRegistries extends Data {
 
   DataCloudflareEmailSecurityImpersonationRegistries({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<num>? maxItems,
     TfArg<String>? order,
@@ -29,7 +30,7 @@ final class DataCloudflareEmailSecurityImpersonationRegistries extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'direction': ?direction,
            'max_items': ?maxItems,
            'order': ?order,

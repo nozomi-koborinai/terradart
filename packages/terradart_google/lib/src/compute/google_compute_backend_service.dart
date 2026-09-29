@@ -613,36 +613,22 @@ final class ComputeBackendServiceIap {
   };
 }
 
-/// Typed helper for the `locality_lb_policies` block of
-/// `google_compute_backend_service` (derived from provider schema).
-@immutable
-final class ComputeBackendServiceLocalityLbPolicies {
-  const ComputeBackendServiceLocalityLbPolicies({
-    required this.localityLbPolicies,
-  });
-
-  final ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies
-  localityLbPolicies;
-
-  Map<String, Object?> encode() => {...localityLbPolicies.encode()};
-}
-
 /// Exactly one of `policy`, `custom_policy` on the `locality_lb_policies` block of `google_compute_backend_service`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.policy(...)`.
-sealed class ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies {
-  const ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies();
+sealed class ComputeBackendServiceLocalityLbPolicies {
+  const ComputeBackendServiceLocalityLbPolicies();
 
   /// Sets `policy`.
-  const factory ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies.policy(
+  const factory ComputeBackendServiceLocalityLbPolicies.policy(
     ComputeBackendServiceLocalityLbPoliciesPolicy policy,
-  ) = ComputeBackendServiceLocalityLbPoliciesLocalityLbPoliciesPolicy;
+  ) = ComputeBackendServiceLocalityLbPoliciesPolicyChoice;
 
   /// Sets `custom_policy`.
-  const factory ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies.customPolicy(
+  const factory ComputeBackendServiceLocalityLbPolicies.customPolicy(
     ComputeBackendServiceLocalityLbPoliciesCustomPolicy customPolicy,
-  ) = ComputeBackendServiceLocalityLbPoliciesLocalityLbPoliciesCustomPolicy;
+  ) = ComputeBackendServiceLocalityLbPoliciesCustomPolicyChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -650,12 +636,10 @@ sealed class ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies {
   Map<String, Object?> encode();
 }
 
-/// The [ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies.policy] choice: sets `policy`.
-final class ComputeBackendServiceLocalityLbPoliciesLocalityLbPoliciesPolicy
-    extends ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies {
-  const ComputeBackendServiceLocalityLbPoliciesLocalityLbPoliciesPolicy(
-    this.policy,
-  );
+/// The [ComputeBackendServiceLocalityLbPolicies.policy] choice: sets `policy`.
+final class ComputeBackendServiceLocalityLbPoliciesPolicyChoice
+    extends ComputeBackendServiceLocalityLbPolicies {
+  const ComputeBackendServiceLocalityLbPoliciesPolicyChoice(this.policy);
 
   final ComputeBackendServiceLocalityLbPoliciesPolicy policy;
 
@@ -666,10 +650,10 @@ final class ComputeBackendServiceLocalityLbPoliciesLocalityLbPoliciesPolicy
   Map<String, Object?> encode() => {'policy': policy.encode()};
 }
 
-/// The [ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies.customPolicy] choice: sets `custom_policy`.
-final class ComputeBackendServiceLocalityLbPoliciesLocalityLbPoliciesCustomPolicy
-    extends ComputeBackendServiceLocalityLbPoliciesLocalityLbPolicies {
-  const ComputeBackendServiceLocalityLbPoliciesLocalityLbPoliciesCustomPolicy(
+/// The [ComputeBackendServiceLocalityLbPolicies.customPolicy] choice: sets `custom_policy`.
+final class ComputeBackendServiceLocalityLbPoliciesCustomPolicyChoice
+    extends ComputeBackendServiceLocalityLbPolicies {
+  const ComputeBackendServiceLocalityLbPoliciesCustomPolicyChoice(
     this.customPolicy,
   );
 

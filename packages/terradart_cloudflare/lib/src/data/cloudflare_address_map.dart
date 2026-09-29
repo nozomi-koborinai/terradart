@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../address_map/cloudflare_address_map.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_address_map`.
 const Set<String> _cloudflareAddressMapSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareAddressMap extends Data {
 
   DataCloudflareAddressMap({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> addressMapId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'address_map_id': addressMapId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'address_map_id': addressMapId,
+         },
        );
 
   @override

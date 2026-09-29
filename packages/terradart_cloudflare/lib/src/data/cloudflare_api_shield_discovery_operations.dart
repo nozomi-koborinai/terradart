@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_api_shield_discovery_operations`.
 const Set<String> _cloudflareApiShieldDiscoveryOperationsSensitive = <String>{};
@@ -26,7 +27,7 @@ final class DataCloudflareApiShieldDiscoveryOperations extends Data {
     TfArg<String>? order,
     TfArg<String>? origin,
     TfArg<String>? state,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -41,7 +42,7 @@ final class DataCloudflareApiShieldDiscoveryOperations extends Data {
            'order': ?order,
            'origin': ?origin,
            'state': ?state,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

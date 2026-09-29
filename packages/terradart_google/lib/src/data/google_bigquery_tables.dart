@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
 
 /// Sensitive field paths for `google_bigquery_tables`.
 const Set<String> _googleBigqueryTablesSensitive = <String>{};
@@ -15,13 +16,16 @@ final class DataGoogleBigqueryTables extends Data {
 
   DataGoogleBigqueryTables({
     required super.localName,
-    required TfArg<String> datasetId,
+    required RefTo<GoogleBigqueryDataset> datasetId,
     TfArg<String>? project,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'dataset_id': datasetId, 'project': ?project},
+         argMap: {
+           'dataset_id': datasetId.encodeAs('dataset_id'),
+           'project': ?project,
+         },
        );
 
   @override

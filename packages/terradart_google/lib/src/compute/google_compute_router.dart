@@ -70,7 +70,7 @@ sealed class ComputeRouterNetwork {
   /// Sets `network`.
   const factory ComputeRouterNetwork.network(
     RefTo<GoogleComputeNetwork> network,
-  ) = ComputeRouterNetworkNetwork;
+  ) = ComputeRouterNetworkChoice;
 
   /// Sets `ncc_gateway`.
   const factory ComputeRouterNetwork.nccGateway(TfArg<String> nccGateway) =
@@ -87,8 +87,8 @@ sealed class ComputeRouterNetwork {
 }
 
 /// The [ComputeRouterNetwork.network] choice: sets `network`.
-final class ComputeRouterNetworkNetwork extends ComputeRouterNetwork {
-  const ComputeRouterNetworkNetwork(this.network);
+final class ComputeRouterNetworkChoice extends ComputeRouterNetwork {
+  const ComputeRouterNetworkChoice(this.network);
 
   final RefTo<GoogleComputeNetwork> network;
 

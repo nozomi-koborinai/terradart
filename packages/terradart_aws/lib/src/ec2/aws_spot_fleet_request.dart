@@ -87,12 +87,12 @@ sealed class SpotFleetRequestLaunch {
   /// Sets `launch_specification`.
   const factory SpotFleetRequestLaunch.launchSpecification(
     List<SpotFleetRequestLaunchSpecification> launchSpecification,
-  ) = SpotFleetRequestLaunchLaunchSpecification;
+  ) = SpotFleetRequestLaunchSpecificationChoice;
 
   /// Sets `launch_template_config`.
   const factory SpotFleetRequestLaunch.launchTemplateConfig(
     List<SpotFleetRequestLaunchTemplateConfig> launchTemplateConfig,
-  ) = SpotFleetRequestLaunchLaunchTemplateConfig;
+  ) = SpotFleetRequestLaunchTemplateConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -105,9 +105,9 @@ sealed class SpotFleetRequestLaunch {
 }
 
 /// The [SpotFleetRequestLaunch.launchSpecification] choice: sets `launch_specification`.
-final class SpotFleetRequestLaunchLaunchSpecification
+final class SpotFleetRequestLaunchSpecificationChoice
     extends SpotFleetRequestLaunch {
-  const SpotFleetRequestLaunchLaunchSpecification(this.launchSpecification);
+  const SpotFleetRequestLaunchSpecificationChoice(this.launchSpecification);
 
   final List<SpotFleetRequestLaunchSpecification> launchSpecification;
 
@@ -128,9 +128,9 @@ final class SpotFleetRequestLaunchLaunchSpecification
 }
 
 /// The [SpotFleetRequestLaunch.launchTemplateConfig] choice: sets `launch_template_config`.
-final class SpotFleetRequestLaunchLaunchTemplateConfig
+final class SpotFleetRequestLaunchTemplateConfigChoice
     extends SpotFleetRequestLaunch {
-  const SpotFleetRequestLaunchLaunchTemplateConfig(this.launchTemplateConfig);
+  const SpotFleetRequestLaunchTemplateConfigChoice(this.launchTemplateConfig);
 
   final List<SpotFleetRequestLaunchTemplateConfig> launchTemplateConfig;
 

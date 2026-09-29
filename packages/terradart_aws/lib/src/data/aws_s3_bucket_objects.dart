@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 
 /// Sensitive field paths for `aws_s3_bucket_objects`.
 const Set<String> _awsS3BucketObjectsSensitive = <String>{};
@@ -12,7 +13,7 @@ final class DataAwsS3BucketObjects extends Data {
 
   DataAwsS3BucketObjects({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? delimiter,
     TfArg<String>? encodingType,
     TfArg<bool>? fetchOwner,
@@ -25,7 +26,7 @@ final class DataAwsS3BucketObjects extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            'delimiter': ?delimiter,
            'encoding_type': ?encodingType,
            'fetch_owner': ?fetchOwner,

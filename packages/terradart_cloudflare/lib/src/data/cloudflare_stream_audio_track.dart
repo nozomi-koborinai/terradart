@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../stream/cloudflare_stream_audio_track.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_stream_audio_track`.
 const Set<String> _cloudflareStreamAudioTrackSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareStreamAudioTrack extends Data {
 
   DataCloudflareStreamAudioTrack({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> identifier,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'identifier': identifier},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'identifier': identifier,
+         },
        );
 
   @override

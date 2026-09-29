@@ -12,28 +12,28 @@ const Set<String> _awsGlueClassifierSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.csvClassifier(...)`.
-sealed class GlueClassifierClassifier {
-  const GlueClassifierClassifier();
+sealed class GlueClassifierFormat {
+  const GlueClassifierFormat();
 
   /// Sets `csv_classifier`.
-  const factory GlueClassifierClassifier.csvClassifier(
+  const factory GlueClassifierFormat.csvClassifier(
     GlueClassifierCsvClassifier csvClassifier,
-  ) = GlueClassifierClassifierCsvClassifier;
+  ) = GlueClassifierFormatCsvClassifier;
 
   /// Sets `grok_classifier`.
-  const factory GlueClassifierClassifier.grokClassifier(
+  const factory GlueClassifierFormat.grokClassifier(
     GlueClassifierGrokClassifier grokClassifier,
-  ) = GlueClassifierClassifierGrokClassifier;
+  ) = GlueClassifierFormatGrokClassifier;
 
   /// Sets `json_classifier`.
-  const factory GlueClassifierClassifier.jsonClassifier(
+  const factory GlueClassifierFormat.jsonClassifier(
     GlueClassifierJsonClassifier jsonClassifier,
-  ) = GlueClassifierClassifierJsonClassifier;
+  ) = GlueClassifierFormatJsonClassifier;
 
   /// Sets `xml_classifier`.
-  const factory GlueClassifierClassifier.xmlClassifier(
+  const factory GlueClassifierFormat.xmlClassifier(
     GlueClassifierXmlClassifier xmlClassifier,
-  ) = GlueClassifierClassifierXmlClassifier;
+  ) = GlueClassifierFormatXmlClassifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,10 +45,9 @@ sealed class GlueClassifierClassifier {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [GlueClassifierClassifier.csvClassifier] choice: sets `csv_classifier`.
-final class GlueClassifierClassifierCsvClassifier
-    extends GlueClassifierClassifier {
-  const GlueClassifierClassifierCsvClassifier(this.csvClassifier);
+/// The [GlueClassifierFormat.csvClassifier] choice: sets `csv_classifier`.
+final class GlueClassifierFormatCsvClassifier extends GlueClassifierFormat {
+  const GlueClassifierFormatCsvClassifier(this.csvClassifier);
 
   final GlueClassifierCsvClassifier csvClassifier;
 
@@ -64,10 +63,9 @@ final class GlueClassifierClassifierCsvClassifier
   };
 }
 
-/// The [GlueClassifierClassifier.grokClassifier] choice: sets `grok_classifier`.
-final class GlueClassifierClassifierGrokClassifier
-    extends GlueClassifierClassifier {
-  const GlueClassifierClassifierGrokClassifier(this.grokClassifier);
+/// The [GlueClassifierFormat.grokClassifier] choice: sets `grok_classifier`.
+final class GlueClassifierFormatGrokClassifier extends GlueClassifierFormat {
+  const GlueClassifierFormatGrokClassifier(this.grokClassifier);
 
   final GlueClassifierGrokClassifier grokClassifier;
 
@@ -83,10 +81,9 @@ final class GlueClassifierClassifierGrokClassifier
   };
 }
 
-/// The [GlueClassifierClassifier.jsonClassifier] choice: sets `json_classifier`.
-final class GlueClassifierClassifierJsonClassifier
-    extends GlueClassifierClassifier {
-  const GlueClassifierClassifierJsonClassifier(this.jsonClassifier);
+/// The [GlueClassifierFormat.jsonClassifier] choice: sets `json_classifier`.
+final class GlueClassifierFormatJsonClassifier extends GlueClassifierFormat {
+  const GlueClassifierFormatJsonClassifier(this.jsonClassifier);
 
   final GlueClassifierJsonClassifier jsonClassifier;
 
@@ -102,10 +99,9 @@ final class GlueClassifierClassifierJsonClassifier
   };
 }
 
-/// The [GlueClassifierClassifier.xmlClassifier] choice: sets `xml_classifier`.
-final class GlueClassifierClassifierXmlClassifier
-    extends GlueClassifierClassifier {
-  const GlueClassifierClassifierXmlClassifier(this.xmlClassifier);
+/// The [GlueClassifierFormat.xmlClassifier] choice: sets `xml_classifier`.
+final class GlueClassifierFormatXmlClassifier extends GlueClassifierFormat {
+  const GlueClassifierFormatXmlClassifier(this.xmlClassifier);
 
   final GlueClassifierXmlClassifier xmlClassifier;
 
@@ -272,14 +268,14 @@ final class AwsGlueClassifier extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    GlueClassifierClassifier? classifier,
+    GlueClassifierFormat? format,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'region': ?region, ...?classifier?.argMap},
+         argMap: {'name': name, 'region': ?region, ...?format?.argMap},
        );
 
   @override

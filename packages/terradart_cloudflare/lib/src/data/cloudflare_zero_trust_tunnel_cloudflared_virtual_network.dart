@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_tunnel_cloudflared_virtual_network.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_tunnel_cloudflared_virtual_network`.
 const Set<String> _cloudflareZeroTrustTunnelCloudflaredVirtualNetworkSensitive =
@@ -53,7 +54,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork
 
   DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? virtualNetworkId,
     DataZeroTrustTunnelCloudflaredVirtualNetworkFilter? filter,
     super.provider,
@@ -61,7 +62,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'virtual_network_id': ?virtualNetworkId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

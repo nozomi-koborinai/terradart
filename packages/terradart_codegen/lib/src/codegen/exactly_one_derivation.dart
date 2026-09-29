@@ -29,19 +29,22 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// `skippedAtMostOne` with a reason and keep their plain slots. Exactly-one
 /// groups claim their members first.
 ///
-/// A member [references] names takes the `RefTo<Target>` the plain slot
-/// would have.
-///
 /// Every sealed group, top-level or nested, is named by
 /// [resolveSealedName] and listed in `names`; `nameErrors` lists each
 /// `sealedNames` entry that clashes, repeats the derived name, or matches
 /// no sealed group.
+///
+/// [references] (`--typed-references`: resource type → dotted input path →
+/// target) types a member the ledger matches: its variant holds a
+/// `RefTo<Target>`. `typedReferences` lists each top-level member typed
+/// that way, as `<type>.<member>`.
 ({
   Map<String, WrapperOverride> overrides,
   List<String> skipped,
   List<String> skippedAtMostOne,
   List<SealedName> names,
   List<String> nameErrors,
+  List<String> typedReferences,
 })
 deriveExactlyOneSlots(
   Map<String, WrapperOverride> overrides,
@@ -54,9 +57,11 @@ deriveExactlyOneSlots(
   final skippedAtMostOne = <String>[];
   final names = <SealedName>[];
   final nameErrors = <String>[];
+  final typedReferences = <String>[];
   final out = <String, WrapperOverride>{};
   for (final MapEntry(key: type, value: o) in overrides.entries) {
     final def = defs[type];
+    final refs = references[type] ?? const <String, ResolvedReference>{};
     final groups = providerEnums.exactlyOneGroupsByBlock(type)[''];
     final optionalGroups = providerEnums.atMostOneGroupsByBlock(type)[''];
     final nested = providerEnums.nestedExactlyOneGroups(type, o);
@@ -81,6 +86,7 @@ deriveExactlyOneSlots(
             exactlyOneGroups: nested,
             atMostOneGroups: nestedOptional,
             sealedNames: o.sealedNames,
+            references: (path) => refs[path.join('.')],
             typeOverrides: o.nestedDartTypeOverrides,
           )
         : const <NestedBlockSpec>[];
@@ -98,10 +104,11 @@ deriveExactlyOneSlots(
                 (members: g, optional: true),
             ],
             specs,
+            refs,
             skipped: skipped,
             skippedAtMostOne: skippedAtMostOne,
             names: typeNames,
-            references: references[type] ?? const {},
+            typedReferences: typedReferences,
           );
     typeNames.addAll(nestedSealedNames(specs));
     final human = {
@@ -148,6 +155,7 @@ deriveExactlyOneSlots(
     skippedAtMostOne: skippedAtMostOne,
     names: names,
     nameErrors: nameErrors,
+    typedReferences: typedReferences,
   );
 }
 
@@ -194,11 +202,12 @@ WrapperOverride _derive(
   WrapperOverride o,
   ResourceDef def,
   List<({List<String> members, bool optional})> groups,
-  List<NestedBlockSpec> nestedSpecs, {
+  List<NestedBlockSpec> nestedSpecs,
+  Map<String, ResolvedReference> refs, {
   required List<String> skipped,
   required List<String> skippedAtMostOne,
   required List<SealedGroupName> names,
-  required Map<String, ResolvedReference> references,
+  required List<String> typedReferences,
 }) {
   final prefix = shortResourcePascal(type);
   final order = orderedConstructorParams(def, o.paramOrder);
@@ -214,18 +223,19 @@ WrapperOverride _derive(
     final attr = attrs[m];
     if (attr != null) {
       if (attr.constraints.required) return null;
-      final dartType = o.dartTypeOverrides?[m] ?? writeDartType(attr.type);
-      if (references[m] case final ref? when o.dartTypeOverrides?[m] == null) {
-        final encode = "encodeAs('${ref.attribute}')";
+      final ref = refs[m];
+      if (ref != null && o.dartTypeOverrides?[m] == null) {
+        final value = "$ident.encodeAs('${ref.attribute}')";
         return (
           tfName: m,
           ident: ident,
           fieldType: ref.dartType,
-          encodeExpr: '$ident.$encode.toTfJson()',
-          argMapExpr: '$ident.$encode',
+          encodeExpr: '$value.toTfJson()',
+          argMapExpr: value,
           deprecation: deprecation,
         );
       }
+      final dartType = o.dartTypeOverrides?[m] ?? writeDartType(attr.type);
       if (isEnumListType(dartType)) {
         final encode = '[for (final e in $ident) e.toTfJson()]';
         return (
@@ -317,6 +327,12 @@ WrapperOverride _derive(
       (optional ? skippedAtMostOne : skipped).add('$label: $reason');
       continue;
     }
+    Set<String> classesFor() => {
+      ...classNames,
+      for (final n in order)
+        if (!group.contains(n) || _hasClass(n, blocks, o))
+          prefix + snakeToPascal(n),
+    };
     String? clashes(String concept) {
       if (!group.contains(concept) &&
               (order.contains(concept) || slots.containsKey(concept)) ||
@@ -324,20 +340,7 @@ WrapperOverride _derive(
           _metaParams.contains(concept)) {
         return 'the slot $concept is taken';
       }
-      final sealed = prefix + snakeToPascal(concept);
-      final classes = {
-        ...classNames,
-        for (final n in order)
-          if (!group.contains(n) || _hasClass(n, blocks, o))
-            prefix + snakeToPascal(n),
-      };
-      for (final name in [
-        sealed,
-        for (final m in group) exactlyOneVariantName(sealed, m),
-      ]) {
-        if (classes.contains(name)) return 'the class $name is taken';
-      }
-      return null;
+      return sealedNameClash(prefix, concept, group, classesFor());
     }
 
     final key = sealedGroupKeyOf(const [], group);
@@ -358,11 +361,20 @@ WrapperOverride _derive(
     final slot = resolved.concept;
     chosenSlots.add(slot);
     taken.addAll(group);
+    typedReferences.addAll([
+      for (final v in variants)
+        if (refs[v.tfName]?.dartType == v.fieldType) '$type.${v.tfName}',
+    ]);
     group.forEach(slots.remove);
-    final sealed = prefix + snakeToPascal(slot);
+    // Only a group whose name reports an error (which fails `wrap`) reaches
+    // the plain concatenations: `clashes` vetted every name it resolves to.
+    final sealed = sealedTypeName(prefix, slot) ?? prefix + snakeToPascal(slot);
+    final variantClasses =
+        exactlyOneVariantNames(sealed, group, classesFor()) ??
+        [for (final m in group) exactlyOneVariantName(sealed, m)];
     classNames
       ..add(sealed)
-      ..addAll([for (final m in group) exactlyOneVariantName(sealed, m)]);
+      ..addAll(variantClasses);
     final ident = snakeToDartIdent(slot);
     slots[slot] = optional
         ? CustomSlot(
@@ -385,6 +397,7 @@ WrapperOverride _derive(
           members: group,
           where: '`$type`',
           variants: variants,
+          variantClasses: variantClasses,
           optional: optional,
         ),
       );

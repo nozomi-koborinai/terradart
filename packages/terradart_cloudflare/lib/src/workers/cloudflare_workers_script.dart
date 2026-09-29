@@ -48,11 +48,11 @@ sealed class WorkersScriptContent {
 
   /// Sets `content`.
   const factory WorkersScriptContent.content(TfArg<String> content) =
-      WorkersScriptContentContent;
+      WorkersScriptContentChoice;
 
   /// Sets `content_file`.
   const factory WorkersScriptContent.contentFile(TfArg<String> contentFile) =
-      WorkersScriptContentContentFile;
+      WorkersScriptContentFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -65,8 +65,8 @@ sealed class WorkersScriptContent {
 }
 
 /// The [WorkersScriptContent.content] choice: sets `content`.
-final class WorkersScriptContentContent extends WorkersScriptContent {
-  const WorkersScriptContentContent(this.content);
+final class WorkersScriptContentChoice extends WorkersScriptContent {
+  const WorkersScriptContentChoice(this.content);
 
   final TfArg<String> content;
 
@@ -81,8 +81,8 @@ final class WorkersScriptContentContent extends WorkersScriptContent {
 }
 
 /// The [WorkersScriptContent.contentFile] choice: sets `content_file`.
-final class WorkersScriptContentContentFile extends WorkersScriptContent {
-  const WorkersScriptContentContentFile(this.contentFile);
+final class WorkersScriptContentFile extends WorkersScriptContent {
+  const WorkersScriptContentFile(this.contentFile);
 
   final TfArg<String> contentFile;
 
@@ -628,12 +628,12 @@ sealed class WorkersScriptFilesContent {
   /// Sets `content_base64`.
   const factory WorkersScriptFilesContent.contentBase64(
     TfArg<String> contentBase64,
-  ) = WorkersScriptFilesContentContentBase64;
+  ) = WorkersScriptFilesContentBase64;
 
   /// Sets `content_file`.
   const factory WorkersScriptFilesContent.contentFile(
     TfArg<String> contentFile,
-  ) = WorkersScriptFilesContentContentFile;
+  ) = WorkersScriptFilesContentFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -642,9 +642,8 @@ sealed class WorkersScriptFilesContent {
 }
 
 /// The [WorkersScriptFilesContent.contentBase64] choice: sets `content_base64`.
-final class WorkersScriptFilesContentContentBase64
-    extends WorkersScriptFilesContent {
-  const WorkersScriptFilesContentContentBase64(this.contentBase64);
+final class WorkersScriptFilesContentBase64 extends WorkersScriptFilesContent {
+  const WorkersScriptFilesContentBase64(this.contentBase64);
 
   final TfArg<String> contentBase64;
 
@@ -656,9 +655,8 @@ final class WorkersScriptFilesContentContentBase64
 }
 
 /// The [WorkersScriptFilesContent.contentFile] choice: sets `content_file`.
-final class WorkersScriptFilesContentContentFile
-    extends WorkersScriptFilesContent {
-  const WorkersScriptFilesContentContentFile(this.contentFile);
+final class WorkersScriptFilesContentFile extends WorkersScriptFilesContent {
+  const WorkersScriptFilesContentFile(this.contentFile);
 
   final TfArg<String> contentFile;
 

@@ -19,33 +19,22 @@ enum BedrockEvaluationJobApplicationType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Typed helper for the `evaluation_config` block of
-/// `aws_bedrock_evaluation_job` (derived from provider schema).
-@immutable
-final class BedrockEvaluationJobEvaluationConfig {
-  const BedrockEvaluationJobEvaluationConfig({required this.evaluationConfig});
-
-  final BedrockEvaluationJobEvaluationConfigEvaluationConfig evaluationConfig;
-
-  Map<String, Object?> encode() => {...evaluationConfig.encode()};
-}
-
 /// Exactly one of `automated`, `human` on the `evaluation_config` block of `aws_bedrock_evaluation_job`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.automated(...)`.
-sealed class BedrockEvaluationJobEvaluationConfigEvaluationConfig {
-  const BedrockEvaluationJobEvaluationConfigEvaluationConfig();
+sealed class BedrockEvaluationJobEvaluationConfig {
+  const BedrockEvaluationJobEvaluationConfig();
 
   /// Sets `automated`.
-  const factory BedrockEvaluationJobEvaluationConfigEvaluationConfig.automated(
+  const factory BedrockEvaluationJobEvaluationConfig.automated(
     List<BedrockEvaluationJobEvaluationConfigAutomated> automated,
-  ) = BedrockEvaluationJobEvaluationConfigEvaluationConfigAutomated;
+  ) = BedrockEvaluationJobEvaluationConfigAutomatedChoice;
 
   /// Sets `human`.
-  const factory BedrockEvaluationJobEvaluationConfigEvaluationConfig.human(
+  const factory BedrockEvaluationJobEvaluationConfig.human(
     List<BedrockEvaluationJobEvaluationConfigHuman> human,
-  ) = BedrockEvaluationJobEvaluationConfigEvaluationConfigHuman;
+  ) = BedrockEvaluationJobEvaluationConfigHumanChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,12 +42,10 @@ sealed class BedrockEvaluationJobEvaluationConfigEvaluationConfig {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockEvaluationJobEvaluationConfigEvaluationConfig.automated] choice: sets `automated`.
-final class BedrockEvaluationJobEvaluationConfigEvaluationConfigAutomated
-    extends BedrockEvaluationJobEvaluationConfigEvaluationConfig {
-  const BedrockEvaluationJobEvaluationConfigEvaluationConfigAutomated(
-    this.automated,
-  );
+/// The [BedrockEvaluationJobEvaluationConfig.automated] choice: sets `automated`.
+final class BedrockEvaluationJobEvaluationConfigAutomatedChoice
+    extends BedrockEvaluationJobEvaluationConfig {
+  const BedrockEvaluationJobEvaluationConfigAutomatedChoice(this.automated);
 
   final List<BedrockEvaluationJobEvaluationConfigAutomated> automated;
 
@@ -71,10 +58,10 @@ final class BedrockEvaluationJobEvaluationConfigEvaluationConfigAutomated
   };
 }
 
-/// The [BedrockEvaluationJobEvaluationConfigEvaluationConfig.human] choice: sets `human`.
-final class BedrockEvaluationJobEvaluationConfigEvaluationConfigHuman
-    extends BedrockEvaluationJobEvaluationConfigEvaluationConfig {
-  const BedrockEvaluationJobEvaluationConfigEvaluationConfigHuman(this.human);
+/// The [BedrockEvaluationJobEvaluationConfig.human] choice: sets `human`.
+final class BedrockEvaluationJobEvaluationConfigHumanChoice
+    extends BedrockEvaluationJobEvaluationConfig {
+  const BedrockEvaluationJobEvaluationConfigHumanChoice(this.human);
 
   final List<BedrockEvaluationJobEvaluationConfigHuman> human;
 
@@ -219,36 +206,22 @@ final class BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCusto
   };
 }
 
-/// Typed helper for the `evaluation_config.automated.custom_metric_config.custom_metric.custom_metric_definition.rating_scale.value` block of
-/// `aws_bedrock_evaluation_job` (derived from provider schema).
-@immutable
-final class BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue {
-  const BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue({
-    required this.value,
-  });
-
-  final BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValue
-  value;
-
-  Map<String, Object?> encode() => {...value.encode()};
-}
-
 /// Exactly one of `float_value`, `string_value` on the `evaluation_config.automated.custom_metric_config.custom_metric.custom_metric_definition.rating_scale.value` block of `aws_bedrock_evaluation_job`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.floatValue(...)`.
-sealed class BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValue {
-  const BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValue();
+sealed class BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue {
+  const BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue();
 
   /// Sets `float_value`.
-  const factory BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValue.floatValue(
+  const factory BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue.floatValue(
     TfArg<num> floatValue,
-  ) = BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValueFloatValue;
+  ) = BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueFloatValue;
 
   /// Sets `string_value`.
-  const factory BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValue.stringValue(
+  const factory BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue.stringValue(
     TfArg<String> stringValue,
-  ) = BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValueStringValue;
+  ) = BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueStringValue;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -256,11 +229,11 @@ sealed class BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCust
   Map<String, Object?> encode();
 }
 
-/// The [BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValue.floatValue] choice: sets `float_value`.
-final class BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValueFloatValue
+/// The [BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue.floatValue] choice: sets `float_value`.
+final class BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueFloatValue
     extends
-        BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValue {
-  const BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValueFloatValue(
+        BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue {
+  const BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueFloatValue(
     this.floatValue,
   );
 
@@ -273,11 +246,11 @@ final class BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCusto
   Map<String, Object?> encode() => {'float_value': floatValue.toTfJson()};
 }
 
-/// The [BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValue.stringValue] choice: sets `string_value`.
-final class BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValueStringValue
+/// The [BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue.stringValue] choice: sets `string_value`.
+final class BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueStringValue
     extends
-        BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValue {
-  const BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValueStringValue(
+        BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue {
+  const BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueStringValue(
     this.stringValue,
   );
 
@@ -616,33 +589,22 @@ final class BedrockEvaluationJobEvaluationConfigHumanHumanWorkflowConfig {
   };
 }
 
-/// Typed helper for the `inference_config` block of
-/// `aws_bedrock_evaluation_job` (derived from provider schema).
-@immutable
-final class BedrockEvaluationJobInferenceConfig {
-  const BedrockEvaluationJobInferenceConfig({required this.inferenceConfig});
-
-  final BedrockEvaluationJobInferenceConfigInferenceConfig inferenceConfig;
-
-  Map<String, Object?> encode() => {...inferenceConfig.encode()};
-}
-
 /// Exactly one of `model`, `rag_config` on the `inference_config` block of `aws_bedrock_evaluation_job`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.model(...)`.
-sealed class BedrockEvaluationJobInferenceConfigInferenceConfig {
-  const BedrockEvaluationJobInferenceConfigInferenceConfig();
+sealed class BedrockEvaluationJobInferenceConfig {
+  const BedrockEvaluationJobInferenceConfig();
 
   /// Sets `model`.
-  const factory BedrockEvaluationJobInferenceConfigInferenceConfig.model(
+  const factory BedrockEvaluationJobInferenceConfig.model(
     List<BedrockEvaluationJobInferenceConfigModel> model,
-  ) = BedrockEvaluationJobInferenceConfigInferenceConfigModel;
+  ) = BedrockEvaluationJobInferenceConfigModelChoice;
 
   /// Sets `rag_config`.
-  const factory BedrockEvaluationJobInferenceConfigInferenceConfig.ragConfig(
+  const factory BedrockEvaluationJobInferenceConfig.ragConfig(
     List<BedrockEvaluationJobInferenceConfigRagConfig> ragConfig,
-  ) = BedrockEvaluationJobInferenceConfigInferenceConfigRagConfig;
+  ) = BedrockEvaluationJobInferenceConfigRagConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -650,10 +612,10 @@ sealed class BedrockEvaluationJobInferenceConfigInferenceConfig {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockEvaluationJobInferenceConfigInferenceConfig.model] choice: sets `model`.
-final class BedrockEvaluationJobInferenceConfigInferenceConfigModel
-    extends BedrockEvaluationJobInferenceConfigInferenceConfig {
-  const BedrockEvaluationJobInferenceConfigInferenceConfigModel(this.model);
+/// The [BedrockEvaluationJobInferenceConfig.model] choice: sets `model`.
+final class BedrockEvaluationJobInferenceConfigModelChoice
+    extends BedrockEvaluationJobInferenceConfig {
+  const BedrockEvaluationJobInferenceConfigModelChoice(this.model);
 
   final List<BedrockEvaluationJobInferenceConfigModel> model;
 
@@ -666,12 +628,10 @@ final class BedrockEvaluationJobInferenceConfigInferenceConfigModel
   };
 }
 
-/// The [BedrockEvaluationJobInferenceConfigInferenceConfig.ragConfig] choice: sets `rag_config`.
-final class BedrockEvaluationJobInferenceConfigInferenceConfigRagConfig
-    extends BedrockEvaluationJobInferenceConfigInferenceConfig {
-  const BedrockEvaluationJobInferenceConfigInferenceConfigRagConfig(
-    this.ragConfig,
-  );
+/// The [BedrockEvaluationJobInferenceConfig.ragConfig] choice: sets `rag_config`.
+final class BedrockEvaluationJobInferenceConfigRagConfigChoice
+    extends BedrockEvaluationJobInferenceConfig {
+  const BedrockEvaluationJobInferenceConfigRagConfigChoice(this.ragConfig);
 
   final List<BedrockEvaluationJobInferenceConfigRagConfig> ragConfig;
 
@@ -684,34 +644,23 @@ final class BedrockEvaluationJobInferenceConfigInferenceConfigRagConfig
   };
 }
 
-/// Typed helper for the `inference_config.model` block of
-/// `aws_bedrock_evaluation_job` (derived from provider schema).
-@immutable
-final class BedrockEvaluationJobInferenceConfigModel {
-  const BedrockEvaluationJobInferenceConfigModel({required this.model});
-
-  final BedrockEvaluationJobInferenceConfigModelModel model;
-
-  Map<String, Object?> encode() => {...model.encode()};
-}
-
 /// Exactly one of `bedrock_model`, `precomputed_inference_source` on the `inference_config.model` block of `aws_bedrock_evaluation_job`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.bedrockModel(...)`.
-sealed class BedrockEvaluationJobInferenceConfigModelModel {
-  const BedrockEvaluationJobInferenceConfigModelModel();
+sealed class BedrockEvaluationJobInferenceConfigModel {
+  const BedrockEvaluationJobInferenceConfigModel();
 
   /// Sets `bedrock_model`.
-  const factory BedrockEvaluationJobInferenceConfigModelModel.bedrockModel(
+  const factory BedrockEvaluationJobInferenceConfigModel.bedrockModel(
     List<BedrockEvaluationJobInferenceConfigModelBedrockModel> bedrockModel,
-  ) = BedrockEvaluationJobInferenceConfigModelModelBedrockModel;
+  ) = BedrockEvaluationJobInferenceConfigModelBedrockModelChoice;
 
   /// Sets `precomputed_inference_source`.
-  const factory BedrockEvaluationJobInferenceConfigModelModel.precomputedInferenceSource(
+  const factory BedrockEvaluationJobInferenceConfigModel.precomputedInferenceSource(
     List<BedrockEvaluationJobInferenceConfigModelPrecomputedInferenceSource>
     precomputedInferenceSource,
-  ) = BedrockEvaluationJobInferenceConfigModelModelPrecomputedInferenceSource;
+  ) = BedrockEvaluationJobInferenceConfigModelPrecomputedInferenceSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -719,10 +668,10 @@ sealed class BedrockEvaluationJobInferenceConfigModelModel {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockEvaluationJobInferenceConfigModelModel.bedrockModel] choice: sets `bedrock_model`.
-final class BedrockEvaluationJobInferenceConfigModelModelBedrockModel
-    extends BedrockEvaluationJobInferenceConfigModelModel {
-  const BedrockEvaluationJobInferenceConfigModelModelBedrockModel(
+/// The [BedrockEvaluationJobInferenceConfigModel.bedrockModel] choice: sets `bedrock_model`.
+final class BedrockEvaluationJobInferenceConfigModelBedrockModelChoice
+    extends BedrockEvaluationJobInferenceConfigModel {
+  const BedrockEvaluationJobInferenceConfigModelBedrockModelChoice(
     this.bedrockModel,
   );
 
@@ -737,10 +686,10 @@ final class BedrockEvaluationJobInferenceConfigModelModelBedrockModel
   };
 }
 
-/// The [BedrockEvaluationJobInferenceConfigModelModel.precomputedInferenceSource] choice: sets `precomputed_inference_source`.
-final class BedrockEvaluationJobInferenceConfigModelModelPrecomputedInferenceSource
-    extends BedrockEvaluationJobInferenceConfigModelModel {
-  const BedrockEvaluationJobInferenceConfigModelModelPrecomputedInferenceSource(
+/// The [BedrockEvaluationJobInferenceConfigModel.precomputedInferenceSource] choice: sets `precomputed_inference_source`.
+final class BedrockEvaluationJobInferenceConfigModelPrecomputedInferenceSourceChoice
+    extends BedrockEvaluationJobInferenceConfigModel {
+  const BedrockEvaluationJobInferenceConfigModelPrecomputedInferenceSourceChoice(
     this.precomputedInferenceSource,
   );
 
@@ -829,35 +778,24 @@ final class BedrockEvaluationJobInferenceConfigModelPrecomputedInferenceSource {
   };
 }
 
-/// Typed helper for the `inference_config.rag_config` block of
-/// `aws_bedrock_evaluation_job` (derived from provider schema).
-@immutable
-final class BedrockEvaluationJobInferenceConfigRagConfig {
-  const BedrockEvaluationJobInferenceConfigRagConfig({required this.ragConfig});
-
-  final BedrockEvaluationJobInferenceConfigRagConfigRagConfig ragConfig;
-
-  Map<String, Object?> encode() => {...ragConfig.encode()};
-}
-
 /// Exactly one of `knowledge_base_config`, `precomputed_rag_source_config` on the `inference_config.rag_config` block of `aws_bedrock_evaluation_job`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.knowledgeBaseConfig(...)`.
-sealed class BedrockEvaluationJobInferenceConfigRagConfigRagConfig {
-  const BedrockEvaluationJobInferenceConfigRagConfigRagConfig();
+sealed class BedrockEvaluationJobInferenceConfigRagConfig {
+  const BedrockEvaluationJobInferenceConfigRagConfig();
 
   /// Sets `knowledge_base_config`.
-  const factory BedrockEvaluationJobInferenceConfigRagConfigRagConfig.knowledgeBaseConfig(
+  const factory BedrockEvaluationJobInferenceConfigRagConfig.knowledgeBaseConfig(
     List<BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig>
     knowledgeBaseConfig,
-  ) = BedrockEvaluationJobInferenceConfigRagConfigRagConfigKnowledgeBaseConfig;
+  ) = BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigChoice;
 
   /// Sets `precomputed_rag_source_config`.
-  const factory BedrockEvaluationJobInferenceConfigRagConfigRagConfig.precomputedRagSourceConfig(
+  const factory BedrockEvaluationJobInferenceConfigRagConfig.precomputedRagSourceConfig(
     List<BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig>
     precomputedRagSourceConfig,
-  ) = BedrockEvaluationJobInferenceConfigRagConfigRagConfigPrecomputedRagSourceConfig;
+  ) = BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -865,10 +803,10 @@ sealed class BedrockEvaluationJobInferenceConfigRagConfigRagConfig {
   Map<String, Object?> encode();
 }
 
-/// The [BedrockEvaluationJobInferenceConfigRagConfigRagConfig.knowledgeBaseConfig] choice: sets `knowledge_base_config`.
-final class BedrockEvaluationJobInferenceConfigRagConfigRagConfigKnowledgeBaseConfig
-    extends BedrockEvaluationJobInferenceConfigRagConfigRagConfig {
-  const BedrockEvaluationJobInferenceConfigRagConfigRagConfigKnowledgeBaseConfig(
+/// The [BedrockEvaluationJobInferenceConfigRagConfig.knowledgeBaseConfig] choice: sets `knowledge_base_config`.
+final class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigChoice
+    extends BedrockEvaluationJobInferenceConfigRagConfig {
+  const BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigChoice(
     this.knowledgeBaseConfig,
   );
 
@@ -884,10 +822,10 @@ final class BedrockEvaluationJobInferenceConfigRagConfigRagConfigKnowledgeBaseCo
   };
 }
 
-/// The [BedrockEvaluationJobInferenceConfigRagConfigRagConfig.precomputedRagSourceConfig] choice: sets `precomputed_rag_source_config`.
-final class BedrockEvaluationJobInferenceConfigRagConfigRagConfigPrecomputedRagSourceConfig
-    extends BedrockEvaluationJobInferenceConfigRagConfigRagConfig {
-  const BedrockEvaluationJobInferenceConfigRagConfigRagConfigPrecomputedRagSourceConfig(
+/// The [BedrockEvaluationJobInferenceConfigRagConfig.precomputedRagSourceConfig] choice: sets `precomputed_rag_source_config`.
+final class BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigChoice
+    extends BedrockEvaluationJobInferenceConfigRagConfig {
+  const BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigChoice(
     this.precomputedRagSourceConfig,
   );
 
@@ -907,42 +845,28 @@ final class BedrockEvaluationJobInferenceConfigRagConfigRagConfigPrecomputedRagS
   };
 }
 
-/// Typed helper for the `inference_config.rag_config.knowledge_base_config` block of
-/// `aws_bedrock_evaluation_job` (derived from provider schema).
-@immutable
-final class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig {
-  const BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig({
-    required this.retrieve,
-  });
-
-  final BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieve
-  retrieve;
-
-  Map<String, Object?> encode() => {...retrieve.encode()};
-}
-
 /// Exactly one of `retrieve_and_generate_config`, `retrieve_config` on the `inference_config.rag_config.knowledge_base_config` block of `aws_bedrock_evaluation_job`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.retrieveAndGenerateConfig(...)`.
-sealed class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieve {
-  const BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieve();
+sealed class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig {
+  const BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig();
 
   /// Sets `retrieve_and_generate_config`.
-  const factory BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieve.retrieveAndGenerateConfig(
+  const factory BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig.retrieveAndGenerateConfig(
     List<
       BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveAndGenerateConfig
     >
     retrieveAndGenerateConfig,
-  ) = BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveRetrieveAndGenerateConfig;
+  ) = BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveAndGenerateConfigChoice;
 
   /// Sets `retrieve_config`.
-  const factory BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieve.retrieveConfig(
+  const factory BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig.retrieveConfig(
     List<
       BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveConfig
     >
     retrieveConfig,
-  ) = BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveRetrieveConfig;
+  ) = BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -950,11 +874,10 @@ sealed class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetr
   Map<String, Object?> encode();
 }
 
-/// The [BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieve.retrieveAndGenerateConfig] choice: sets `retrieve_and_generate_config`.
-final class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveRetrieveAndGenerateConfig
-    extends
-        BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieve {
-  const BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveRetrieveAndGenerateConfig(
+/// The [BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig.retrieveAndGenerateConfig] choice: sets `retrieve_and_generate_config`.
+final class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveAndGenerateConfigChoice
+    extends BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig {
+  const BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveAndGenerateConfigChoice(
     this.retrieveAndGenerateConfig,
   );
 
@@ -974,11 +897,10 @@ final class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetri
   };
 }
 
-/// The [BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieve.retrieveConfig] choice: sets `retrieve_config`.
-final class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveRetrieveConfig
-    extends
-        BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieve {
-  const BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveRetrieveConfig(
+/// The [BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig.retrieveConfig] choice: sets `retrieve_config`.
+final class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveConfigChoice
+    extends BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig {
+  const BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieveConfigChoice(
     this.retrieveConfig,
   );
 
@@ -1122,42 +1044,28 @@ final class BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetri
   };
 }
 
-/// Typed helper for the `inference_config.rag_config.precomputed_rag_source_config` block of
-/// `aws_bedrock_evaluation_job` (derived from provider schema).
-@immutable
-final class BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig {
-  const BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig({
-    required this.retrieve,
-  });
-
-  final BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieve
-  retrieve;
-
-  Map<String, Object?> encode() => {...retrieve.encode()};
-}
-
 /// Exactly one of `retrieve_and_generate_source_config`, `retrieve_source_config` on the `inference_config.rag_config.precomputed_rag_source_config` block of `aws_bedrock_evaluation_job`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.retrieveAndGenerateSourceConfig(...)`.
-sealed class BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieve {
-  const BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieve();
+sealed class BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig {
+  const BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig();
 
   /// Sets `retrieve_and_generate_source_config`.
-  const factory BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieve.retrieveAndGenerateSourceConfig(
+  const factory BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig.retrieveAndGenerateSourceConfig(
     List<
       BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveAndGenerateSourceConfig
     >
     retrieveAndGenerateSourceConfig,
-  ) = BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveRetrieveAndGenerateSourceConfig;
+  ) = BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveAndGenerateSourceConfigChoice;
 
   /// Sets `retrieve_source_config`.
-  const factory BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieve.retrieveSourceConfig(
+  const factory BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig.retrieveSourceConfig(
     List<
       BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveSourceConfig
     >
     retrieveSourceConfig,
-  ) = BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveRetrieveSourceConfig;
+  ) = BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveSourceConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1165,11 +1073,11 @@ sealed class BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceCon
   Map<String, Object?> encode();
 }
 
-/// The [BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieve.retrieveAndGenerateSourceConfig] choice: sets `retrieve_and_generate_source_config`.
-final class BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveRetrieveAndGenerateSourceConfig
+/// The [BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig.retrieveAndGenerateSourceConfig] choice: sets `retrieve_and_generate_source_config`.
+final class BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveAndGenerateSourceConfigChoice
     extends
-        BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieve {
-  const BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveRetrieveAndGenerateSourceConfig(
+        BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig {
+  const BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveAndGenerateSourceConfigChoice(
     this.retrieveAndGenerateSourceConfig,
   );
 
@@ -1189,11 +1097,11 @@ final class BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConf
   };
 }
 
-/// The [BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieve.retrieveSourceConfig] choice: sets `retrieve_source_config`.
-final class BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveRetrieveSourceConfig
+/// The [BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig.retrieveSourceConfig] choice: sets `retrieve_source_config`.
+final class BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveSourceConfigChoice
     extends
-        BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieve {
-  const BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveRetrieveSourceConfig(
+        BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig {
+  const BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieveSourceConfigChoice(
     this.retrieveSourceConfig,
   );
 

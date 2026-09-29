@@ -16,11 +16,11 @@ sealed class KeyPairKeyName {
 
   /// Sets `key_name`.
   const factory KeyPairKeyName.keyName(TfArg<String> keyName) =
-      KeyPairKeyNameKeyName;
+      KeyPairKeyNameChoice;
 
   /// Sets `key_name_prefix`.
   const factory KeyPairKeyName.keyNamePrefix(TfArg<String> keyNamePrefix) =
-      KeyPairKeyNameKeyNamePrefix;
+      KeyPairKeyNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class KeyPairKeyName {
 }
 
 /// The [KeyPairKeyName.keyName] choice: sets `key_name`.
-final class KeyPairKeyNameKeyName extends KeyPairKeyName {
-  const KeyPairKeyNameKeyName(this.keyName);
+final class KeyPairKeyNameChoice extends KeyPairKeyName {
+  const KeyPairKeyNameChoice(this.keyName);
 
   final TfArg<String> keyName;
 
@@ -49,8 +49,8 @@ final class KeyPairKeyNameKeyName extends KeyPairKeyName {
 }
 
 /// The [KeyPairKeyName.keyNamePrefix] choice: sets `key_name_prefix`.
-final class KeyPairKeyNameKeyNamePrefix extends KeyPairKeyName {
-  const KeyPairKeyNameKeyNamePrefix(this.keyNamePrefix);
+final class KeyPairKeyNamePrefix extends KeyPairKeyName {
+  const KeyPairKeyNamePrefix(this.keyNamePrefix);
 
   final TfArg<String> keyNamePrefix;
 

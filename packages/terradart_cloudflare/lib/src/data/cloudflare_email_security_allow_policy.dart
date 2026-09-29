@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../email/cloudflare_email_security_allow_policy.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_email_security_allow_policy`.
 const Set<String> _cloudflareEmailSecurityAllowPolicySensitive = <String>{};
@@ -97,7 +98,7 @@ final class DataCloudflareEmailSecurityAllowPolicy extends Data {
 
   DataCloudflareEmailSecurityAllowPolicy({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? policyId,
     DataEmailSecurityAllowPolicyFilter? filter,
     super.provider,
@@ -105,7 +106,7 @@ final class DataCloudflareEmailSecurityAllowPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'policy_id': ?policyId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

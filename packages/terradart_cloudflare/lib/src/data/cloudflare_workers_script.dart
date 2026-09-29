@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../workers/cloudflare_workers_script.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_workers_script`.
 const Set<String> _cloudflareWorkersScriptSensitive = <String>{};
@@ -29,7 +30,7 @@ final class DataCloudflareWorkersScript extends Data {
 
   DataCloudflareWorkersScript({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? scriptName,
     DataWorkersScriptFilter? filter,
     super.provider,
@@ -37,7 +38,7 @@ final class DataCloudflareWorkersScript extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'script_name': ?scriptName,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

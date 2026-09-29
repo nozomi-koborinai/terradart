@@ -15,8 +15,8 @@ export 'src/storagegateway/aws_storagegateway_gateway.dart'
     show
         AwsStoragegatewayGateway,
         StoragegatewayGatewayActivation,
-        StoragegatewayGatewayActivationActivationKey,
         StoragegatewayGatewayActivationGatewayIpAddress,
+        StoragegatewayGatewayActivationKey,
         StoragegatewayGatewayGatewayType,
         StoragegatewayGatewayMaintenanceStartTime,
         StoragegatewayGatewayMediumChangerType,
@@ -50,7 +50,7 @@ export 'src/storagegateway/aws_storagegateway_upload_buffer.dart'
     show
         AwsStoragegatewayUploadBuffer,
         StoragegatewayUploadBufferDisk,
-        StoragegatewayUploadBufferDiskDiskId,
-        StoragegatewayUploadBufferDiskDiskPath;
+        StoragegatewayUploadBufferDiskId,
+        StoragegatewayUploadBufferDiskPath;
 export 'src/storagegateway/aws_storagegateway_working_storage.dart'
     show AwsStoragegatewayWorkingStorage;

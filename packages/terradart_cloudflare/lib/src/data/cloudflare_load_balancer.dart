@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../load_balancer/cloudflare_load_balancer.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_load_balancer`.
 const Set<String> _cloudflareLoadBalancerSensitive = <String>{};
@@ -20,7 +21,7 @@ final class DataCloudflareLoadBalancer extends Data {
     required TfArg<String> loadBalancerId,
     TfArg<Map<String, List<String>>>? popPools,
     TfArg<Map<String, List<String>>>? regionPools,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -29,7 +30,7 @@ final class DataCloudflareLoadBalancer extends Data {
            'load_balancer_id': loadBalancerId,
            'pop_pools': ?popPools,
            'region_pools': ?regionPools,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 
