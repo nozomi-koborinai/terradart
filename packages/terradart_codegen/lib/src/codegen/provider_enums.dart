@@ -195,14 +195,22 @@ final class ProviderEnums {
     );
   }
 
+  /// Whether [path] names an input: a computed-only attribute or block is
+  /// an output, which no group can constrain.
   static bool _hasInput(BlockDef block, List<String> path) {
     final [head, ...rest] = path;
     if (rest.isEmpty) {
-      return block.attributes.any((a) => a.name == head) ||
-          block.nestedBlocks.any((b) => b.name == head);
+      return block.attributes.any(
+            (a) => a.name == head && !a.constraints.computedOnly,
+          ) ||
+          block.nestedBlocks.any(
+            (b) => b.name == head && !b.constraints.computedOnly,
+          );
     }
     for (final b in block.nestedBlocks) {
-      if (b.name == head) return _hasInput(b.block, rest);
+      if (b.name == head && !b.constraints.computedOnly) {
+        return _hasInput(b.block, rest);
+      }
     }
     return false;
   }

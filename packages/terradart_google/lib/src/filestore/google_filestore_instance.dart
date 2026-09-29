@@ -26,13 +26,22 @@ enum FilestoreInstanceTier implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `networks.modes` — assigned IP address modes.
-enum FilestoreInstanceNetworkMode implements TerraformEnum {
-  addressModeUnspecified('ADDRESS_MODE_UNSPECIFIED'),
-  modeIpv4('MODE_IPV4'),
-  modeIpv6('MODE_IPV6');
+/// `desired_replica_state` — the replica state to move the instance to.
+enum FilestoreInstanceDesiredReplicaState implements TerraformEnum {
+  paused('PAUSED'),
+  ready('READY');
 
-  const FilestoreInstanceNetworkMode(this.terraformValue);
+  const FilestoreInstanceDesiredReplicaState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `protocol` — the file protocol the instance serves.
+enum FilestoreInstanceProtocol implements TerraformEnum {
+  nfsV3('NFS_V3'),
+  nfsV41('NFS_V4_1');
+
+  const FilestoreInstanceProtocol(this.terraformValue);
   @override
   final String terraformValue;
 }
@@ -363,17 +372,19 @@ final class FilestoreInstancePerformanceConfigIopsPerTb {
 /// ```dart
 /// GoogleFilestoreInstance(
 ///   localName: 'nfs',
-///   name: TfArg.literal('shared-nfs'),
-///   tier: TfArg.literal(FilestoreInstanceTier.basicHdd),
-///   location: TfArg.literal('asia-northeast1'),
+///   name: .literal('shared-nfs'),
+///   tier: .literal(.basicHdd),
+///   location: .literal('asia-northeast1'),
 ///   fileShares: FilestoreInstanceFileShares(
-///     name: TfArg.literal('share1'),
-///     capacityGb: TfArg.literal(1024),
+///     name: .literal('share1'),
+///     capacityGb: .literal(1024),
 ///   ),
-///   networks: FilestoreInstanceNetworks(
-///     network: TfArg.ref(vpc.id),
-///     modes: const [FilestoreInstanceNetworkMode.modeIpv4],
-///   ),
+///   networks: [
+///     FilestoreInstanceNetworks(
+///       network: vpc.ref,
+///       modes: [.literal(.modeIpv4)],
+///     ),
+///   ],
 /// );
 /// ```
 final class GoogleFilestoreInstance extends Resource {
@@ -391,10 +402,10 @@ final class GoogleFilestoreInstance extends Resource {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? deletionProtectionReason,
     TfArg<String>? description,
-    TfArg<String>? desiredReplicaState,
+    TfArg<FilestoreInstanceDesiredReplicaState>? desiredReplicaState,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<String>? project,
-    TfArg<String>? protocol,
+    TfArg<FilestoreInstanceProtocol>? protocol,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? zone,
     FilestoreInstanceDirectoryServices? directoryServices,

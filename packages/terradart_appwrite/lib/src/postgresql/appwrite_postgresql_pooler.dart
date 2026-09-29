@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../postgresql/appwrite_postgresql_database.dart'
+    show AppwritePostgresqlDatabase;
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_postgresql_pooler`.
 const Set<String> _appwritePostgresqlPoolerSensitive = <String>{};
 
@@ -27,14 +31,14 @@ final class AppwritePostgresqlPooler extends Resource {
 
   AppwritePostgresqlPooler({
     required super.localName,
-    required TfArg<String> databaseId,
+    required RefTo<AppwritePostgresqlDatabase> databaseId,
     TfArg<num>? defaultPoolSize,
     TfArg<PostgresqlPoolerMode>? mode,
     TfArg<String>? poolerCpuLimit,
     TfArg<String>? poolerCpuRequest,
     TfArg<String>? poolerMemoryLimit,
     TfArg<String>? poolerMemoryRequest,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<bool>? readWriteSplitting,
     super.lifecycle,
     super.dependsOn,
@@ -43,14 +47,14 @@ final class AppwritePostgresqlPooler extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'database_id': databaseId,
+           'database_id': databaseId.encodeAs('id'),
            'default_pool_size': ?defaultPoolSize,
            'mode': ?mode,
            'pooler_cpu_limit': ?poolerCpuLimit,
            'pooler_cpu_request': ?poolerCpuRequest,
            'pooler_memory_limit': ?poolerMemoryLimit,
            'pooler_memory_request': ?poolerMemoryRequest,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'read_write_splitting': ?readWriteSplitting,
          },
        );

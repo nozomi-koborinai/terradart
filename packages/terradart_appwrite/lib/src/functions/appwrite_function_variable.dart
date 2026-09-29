@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../functions/appwrite_function.dart' show AppwriteFunction;
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_function_variable`.
 const Set<String> _appwriteFunctionVariableSensitive = <String>{'value'};
 
@@ -17,9 +20,9 @@ final class AppwriteFunctionVariable extends Resource {
 
   AppwriteFunctionVariable({
     required super.localName,
-    required TfArg<String> functionId,
+    required RefTo<AppwriteFunction> functionId,
     required TfArg<String> key,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<bool>? secret,
     required TfArg<String> value,
     super.lifecycle,
@@ -29,9 +32,9 @@ final class AppwriteFunctionVariable extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_id': functionId,
+           'function_id': functionId.encodeAs('id'),
            'key': key,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'secret': ?secret,
            'value': value,
          },

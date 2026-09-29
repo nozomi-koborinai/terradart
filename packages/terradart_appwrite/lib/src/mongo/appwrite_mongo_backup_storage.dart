@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../mongo/appwrite_mongo_database.dart' show AppwriteMongoDatabase;
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_mongo_backup_storage`.
 const Set<String> _appwriteMongoBackupStorageSensitive = <String>{
   'access_key',
@@ -41,10 +44,10 @@ final class AppwriteMongoBackupStorage extends Resource {
     required super.localName,
     required TfArg<String> accessKey,
     required TfArg<String> bucket,
-    required TfArg<String> databaseId,
+    required RefTo<AppwriteMongoDatabase> databaseId,
     TfArg<String>? endpoint,
     TfArg<String>? prefix,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<String>? region,
     required TfArg<String> secretKey,
     required TfArg<MongoBackupStorageStorageProvider> storageProvider,
@@ -57,10 +60,10 @@ final class AppwriteMongoBackupStorage extends Resource {
          argMap: {
            'access_key': accessKey,
            'bucket': bucket,
-           'database_id': databaseId,
+           'database_id': databaseId.encodeAs('id'),
            'endpoint': ?endpoint,
            'prefix': ?prefix,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'region': ?region,
            'secret_key': secretKey,
            'storage_provider': storageProvider,

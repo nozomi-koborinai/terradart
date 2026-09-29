@@ -305,6 +305,21 @@ void main() {
       });
     });
 
+    test('types limits a rule to the types it matches', () {
+      ReferenceRule scoped(String types) => ReferenceRule(
+        target: 'google_x_network',
+        attribute: 'self_link',
+        slots: RegExp(r'^network$'),
+        types: RegExp(types),
+      );
+      final r = _resolve([scoped(r'^google_x_vm$')]);
+      expect(r.errors, isEmpty);
+      expect(r.byResource['google_x_vm']!.keys, ['network']);
+      expect(_resolve([scoped(r'^google_y_')]).errors, [
+        'google_x_network: the rule matches no curated input',
+      ]);
+    });
+
     test('a partial run does not report entries it cannot see', () {
       expect(
         _resolve([
@@ -332,6 +347,7 @@ hashicorp/google:
   - target: google_x_network
     attribute: id
     slots: '^network\$'
+    types: '^google_x_'
     attributes:
       google_x_vm.network: self_link
     exclude:
@@ -343,6 +359,7 @@ cloudflare/cloudflare:
 ''');
       final rules = loadReferenceRules(path, 'hashicorp/google');
       expect(rules.single.target, 'google_x_network');
+      expect(rules.single.types!.pattern, '^google_x_');
       expect(rules.single.attributes, {'google_x_vm.network': 'self_link'});
       expect(rules.single.exclude, {'google_x_vm.nic.network'});
       expect(loadReferenceRules(path, 'hashicorp/aws'), isEmpty);
@@ -625,7 +642,10 @@ class XVmNic {
       expect(derived.skipped, isEmpty);
       expect(derived.skippedAtMostOne, isEmpty);
       expect(derived.typedReferences, ['google_x_nic.network']);
-      expect(emitter.typedReferences, ['google_x_nic.peer.network']);
+      expect(emitter.typedReferences, [
+        'google_x_nic.network',
+        'google_x_nic.peer.network',
+      ]);
       expect(
         src,
         contains("import '../x/google_x_network.dart' show GoogleXNetwork;"),

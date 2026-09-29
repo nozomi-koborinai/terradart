@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_webhook`.
 const Set<String> _appwriteWebhookSensitive = <String>{
   'auth_password',
@@ -22,7 +24,7 @@ final class AppwriteWebhook extends Resource {
     TfArg<bool>? enabled,
     required TfArg<List<String>> events,
     required TfArg<String> name,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<bool>? tls,
     required TfArg<String> url,
     super.lifecycle,
@@ -37,7 +39,7 @@ final class AppwriteWebhook extends Resource {
            'enabled': ?enabled,
            'events': events,
            'name': name,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'tls': ?tls,
            'url': url,
          },
