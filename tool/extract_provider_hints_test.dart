@@ -129,19 +129,14 @@ func (r *R) ConfigValidators(_ context.Context) []resource.ConfigValidator {
       final scan = scanFrameworkSchema(src);
       String dotted(List<List<String>> g) =>
           [for (final m in g) m.join('.')].join(',');
-      expect([
-        for (final g in scan.groups) dotted(g)
-      ], [
+      final groups = scan.groups.map(dotted).toList();
+      final atMostOne = scan.atMostOne.map(dotted).toList();
+      expect(groups, [
         'account_id,zone_id',
         'roles,policies',
         'modules.content_base64,modules.content_file',
       ]);
-      expect([
-        for (final g in scan.atMostOne) dotted(g)
-      ], [
-        'content,data',
-        'script,script_file',
-      ]);
+      expect(atMostOne, ['content,data', 'script,script_file']);
       expect(scan.unresolved, 1);
       expect([for (final h in scan.hints) h.dotted], ['modules.content_file']);
     });
