@@ -164,7 +164,7 @@ final class ApiServiceStack extends Stack {
         addressType: .literal(.internal),
         purpose: .literal(.vpcPeering),
         prefixLength: .literal(16),
-        network: .ref(vpc.id),
+        network: vpc.ref,
         dependsOn: apiDeps,
       ),
     );
@@ -172,7 +172,7 @@ final class ApiServiceStack extends Stack {
     final psaConnection = add(
       GoogleServiceNetworkingConnection(
         localName: 'psa',
-        network: .ref(vpc.id),
+        network: vpc.ref,
         service: .literal('servicenetworking.googleapis.com'),
         reservedPeeringRanges: .literal([psaRange.nameRef.interpolation]),
         dependsOn: apiDeps,
@@ -184,7 +184,7 @@ final class ApiServiceStack extends Stack {
       name: .literal('run-vpc'),
       region: .literal('asia-northeast1'),
       ipCidrRange: .literal('10.8.0.0/28'),
-      network: .ref(vpc.id),
+      network: vpc.ref,
       minCapacity: .minInstances(.literal(2)),
       maxCapacity: .maxInstances(.literal(3)),
       dependsOn: apiDeps,
@@ -201,7 +201,7 @@ final class ApiServiceStack extends Stack {
         // Private Service Access: peer the instance into the dedicated VPC
         // over the PSA range reserved above. The provider takes the network
         // id (projects/<project>/global/networks/<name>), not a short name.
-        authorizedNetwork: .ref(vpc.id),
+        authorizedNetwork: vpc.ref,
         connectMode: .literal(.privateServiceAccess),
         dependsOn: [...apiDeps, ResourceDependency(psaConnection)],
       ),
@@ -223,7 +223,7 @@ final class ApiServiceStack extends Stack {
         // order it after the peering; a short name or the default network
         // (no PSA range) fails apply with "Google private service access is
         // not enabled".
-        authorizedNetwork: .ref(vpc.id),
+        authorizedNetwork: vpc.ref,
         dependsOn: [...apiDeps, ResourceDependency(psaConnection)],
       ),
     );

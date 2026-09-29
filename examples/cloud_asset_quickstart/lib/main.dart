@@ -56,7 +56,7 @@ final class CloudAssetStack extends Stack {
     final publisher = add(
       GooglePubsubTopicIamMember(
         localName: 'cloudasset_publisher',
-        topic: .ref(topic.nameRef),
+        topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
         member: .ref(assetSa.member),
         dependsOn: [ResourceDependency(topic), ResourceDependency(assetSa)],
@@ -83,7 +83,7 @@ final class CloudAssetStack extends Stack {
         feedOutputConfig: CloudAssetProjectFeedFeedOutputConfig(
           pubsubDestination:
               CloudAssetProjectFeedFeedOutputConfigPubsubDestination(
-                topic: .ref(topic.id),
+                topic: topic.ref,
               ),
         ),
         dependsOn: [ResourceDependency(feedIamReady)],

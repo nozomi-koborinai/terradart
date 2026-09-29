@@ -226,9 +226,9 @@ final class CloudBuildStack extends Stack {
         ),
         buildSpec: .filename(filename: .literal('cloudbuild.yaml')),
         // `service_account` wants the full SA resource path
-        // `projects/{project}/serviceAccounts/{email}` — `buildSa.id` is
-        // exactly that, so reference it instead of hand-building the string.
-        serviceAccount: TfArg.ref<String>(buildSa.id),
+        // `projects/{project}/serviceAccounts/{email}`, which `buildSa.ref`
+        // emits, so reference it instead of hand-building the string.
+        serviceAccount: buildSa.ref,
         // Worker pool dispatch is configured inside `cloudbuild.yaml`
         // via `options.pool.name`, fed by the `_WORKER_POOL`
         // substitution exported here. (The trigger schema attaches a

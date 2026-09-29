@@ -67,7 +67,7 @@ final class StorageTransferStack extends Stack {
     final stsSrcAdmin = add(
       GoogleStorageBucketIamMember(
         localName: 'sts_src_admin',
-        bucket: .ref(src.nameRef),
+        bucket: src.ref,
         role: .literal('roles/storage.objectAdmin'),
         member: .literal(stsMember),
         dependsOn: [...apiDeps, ResourceDependency(src)],
@@ -77,7 +77,7 @@ final class StorageTransferStack extends Stack {
     final stsDstAdmin = add(
       GoogleStorageBucketIamMember(
         localName: 'sts_dst_admin',
-        bucket: .ref(dst.nameRef),
+        bucket: dst.ref,
         role: .literal('roles/storage.objectAdmin'),
         member: .literal(stsMember),
         dependsOn: [...apiDeps, ResourceDependency(dst)],
@@ -97,7 +97,7 @@ final class StorageTransferStack extends Stack {
     final insightsAdmin = add(
       GoogleStorageBucketIamMember(
         localName: 'insights_src_admin',
-        bucket: .ref(src.nameRef),
+        bucket: src.ref,
         role: .literal('roles/storage.admin'),
         member: .literal(insightsMember),
         dependsOn: [...apiDeps, ResourceDependency(src)],
@@ -123,10 +123,10 @@ final class StorageTransferStack extends Stack {
         status: .literal('DISABLED'),
         transferSpec: StorageTransferJobTransferSpec(
           gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(
-            bucketName: .ref(src.nameRef),
+            bucketName: src.ref,
           ),
           gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(
-            bucketName: .ref(dst.nameRef),
+            bucketName: dst.ref,
           ),
         ),
         dependsOn: [
@@ -164,12 +164,12 @@ final class StorageTransferStack extends Stack {
               metadataFields: .literal(['name', 'size']),
               storageDestinationOptions:
                   StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(
-                    bucket: .ref(src.nameRef),
+                    bucket: src.ref,
                     destinationPath: .literal('insights-reports/'),
                   ),
               storageFilters:
                   StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(
-                    bucket: .ref(src.nameRef),
+                    bucket: src.ref,
                   ),
             ),
         dependsOn: [
@@ -198,7 +198,7 @@ final class StorageTransferStack extends Stack {
     add(
       GoogleStorageBucketAcl(
         localName: 'legacy_bucket_acl',
-        bucket: .ref(aclBucket.nameRef),
+        bucket: aclBucket.ref,
         predefinedAcl: .literal('private'),
         dependsOn: [...apiDeps, ResourceDependency(aclBucket)],
       ),
@@ -219,7 +219,7 @@ final class StorageTransferStack extends Stack {
     add(
       GoogleStorageDefaultObjectAcl(
         localName: 'legacy_default_acl',
-        bucket: .ref(defaultAclBucket.nameRef),
+        bucket: defaultAclBucket.ref,
         roleEntity: .literal([
           'OWNER:project-owners-${current.number.interpolation}',
         ]),
@@ -242,7 +242,7 @@ final class StorageTransferStack extends Stack {
     final marker = add(
       GoogleStorageBucketObject(
         localName: 'acl_marker',
-        bucket: .ref(objectAclBucket.nameRef),
+        bucket: objectAclBucket.ref,
         name: .literal('acl-marker.txt'),
         body: .source(source: .literal('../acl-marker.txt')),
         contentType: .literal('text/plain'),
@@ -253,7 +253,7 @@ final class StorageTransferStack extends Stack {
     add(
       GoogleStorageObjectAcl(
         localName: 'legacy_object_acl',
-        bucket: .ref(objectAclBucket.nameRef),
+        bucket: objectAclBucket.ref,
         object: .ref(marker.nameRef),
         predefinedAcl: .literal('private'),
         dependsOn: [...apiDeps, ResourceDependency(marker)],

@@ -85,7 +85,7 @@ final class CryptoStack extends Stack {
     add(
       GoogleKmsCryptoKeyVersion(
         localName: 'payments_primary',
-        cryptoKey: .ref(paymentsKey.id),
+        cryptoKey: paymentsKey.ref,
         dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],
       ),
     );
@@ -94,7 +94,7 @@ final class CryptoStack extends Stack {
       GoogleContactCenterInsightsEncryptionSpec(
         localName: 'insights_cmek',
         location: .literal('asia-northeast1'),
-        kmsKey: .ref(paymentsKey.id),
+        kmsKey: paymentsKey.ref,
         dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],
       ),
     );
@@ -153,7 +153,7 @@ final class CryptoStack extends Stack {
     add(
       GoogleKmsSecretCiphertext(
         localName: 'payments_secret',
-        cryptoKey: .ref(paymentsKey.id),
+        cryptoKey: paymentsKey.ref,
         // Schema-sensitive — must be a Terraform variable (see bin/infra.dart).
         plaintext: TfArg.variable('kms_secret_plaintext'),
         dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],

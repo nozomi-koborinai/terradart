@@ -39,7 +39,7 @@ final class AppHostingStack extends Stack {
         backendId: .literal('quickstart-backend'),
         location: .literal('us-central1'),
         appId: .literal('1:1234567890:web:abcdef'),
-        serviceAccount: .ref(sa.email),
+        serviceAccount: sa.ref,
         servingLocality: .literal(.regionalStrict),
         displayName: .literal('terradart App Hosting quickstart'),
       ),

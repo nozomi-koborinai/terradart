@@ -56,7 +56,7 @@ final class ConfigDeploymentStack extends Stack {
         localName: 'vpc_blueprint',
         name: .literal('terradart-vpc-deployment'),
         location: .literal('us-central1'),
-        serviceAccount: .ref(actuationSa.name),
+        serviceAccount: actuationSa.ref,
         forceDestroy: .literal(true),
         terraformBlueprint: ConfigDeploymentTerraformBlueprint(
           source: .git(

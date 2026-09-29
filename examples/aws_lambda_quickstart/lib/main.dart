@@ -71,7 +71,7 @@ final class AwsLambdaStack extends Stack {
     add(
       AwsIamRolePolicyAttachment(
         localName: 'hello_logs',
-        role: .ref(role.nameRef),
+        role: role.ref,
         policyArn: .literal(
           'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole',
         ),
@@ -88,7 +88,7 @@ final class AwsLambdaStack extends Stack {
     final fn = AwsLambdaFunction(
       localName: 'hello',
       functionName: .literal(_functionName),
-      role: .ref(role.arn),
+      role: role.ref,
       runtime: .literal(.providedAl2023),
       handler: .literal('bootstrap'),
       architectures: [.literal(.x8664)],
@@ -97,14 +97,14 @@ final class AwsLambdaStack extends Stack {
       timeout: .literal(10),
       loggingConfig: LambdaFunctionLoggingConfig(
         logFormat: .literal(.text),
-        logGroup: .ref(logs.nameRef),
+        logGroup: logs.ref,
       ),
     );
     add(fn);
     add(
       AwsLambdaFunctionUrl(
         localName: 'hello',
-        functionName: .ref(fn.arn),
+        functionName: fn.ref,
         authorizationType: .literal(.none),
       ),
     );

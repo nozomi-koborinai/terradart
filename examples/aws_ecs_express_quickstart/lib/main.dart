@@ -105,7 +105,7 @@ final class AwsEcsExpressStack extends Stack {
         localName: 'server',
         serviceName: .literal(_name),
         cluster: .ref(cluster.nameRef),
-        executionRoleArn: .ref(execution.role.arn),
+        executionRoleArn: execution.role.ref,
         infrastructureRoleArn: .ref(infrastructure.role.arn),
         cpu: .literal('256'),
         memory: .literal('512'),
@@ -169,7 +169,7 @@ final class AwsEcsExpressStack extends Stack {
     add(role);
     final attachment = AwsIamRolePolicyAttachment(
       localName: localName,
-      role: .ref(role.nameRef),
+      role: role.ref,
       policyArn: .literal(policyArn),
     );
     add(attachment);
