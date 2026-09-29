@@ -196,6 +196,7 @@ final class GoogleCloudfunctionsFunction extends Resource {
     List<CloudfunctionsFunctionSecretEnvironmentVariables>?
     secretEnvironmentVariables,
     List<CloudfunctionsFunctionSecretVolumes>? secretVolumes,
+    CloudfunctionsFunctionSourceRepository? sourceRepository,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -249,6 +250,8 @@ final class GoogleCloudfunctionsFunction extends Resource {
              'secret_volumes': TfArg.literal([
                for (final e in secretVolumes) e.encode(),
              ]),
+           if (sourceRepository != null)
+             'source_repository': TfArg.literal(sourceRepository.encode()),
          },
        );
 

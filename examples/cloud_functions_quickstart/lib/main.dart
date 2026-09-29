@@ -58,9 +58,16 @@ final class HttpFunctionStack extends Stack {
         buildConfig: Cloudfunctions2FunctionBuildConfig(
           runtime: .literal('python311'),
           entryPoint: .literal('hello'),
-          source: .storageSource(
-            bucket: .ref(sourceBucket.nameRef),
-            object: .ref(sourceObject.nameRef),
+          source: Cloudfunctions2FunctionBuildConfigSource(
+            origin: .storageSource(
+              Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+                bucket: .of(sourceBucket),
+                object: .ref(sourceObject.nameRef),
+              ),
+            ),
+          ),
+          updatePolicy: .automaticUpdatePolicy(
+            Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy(),
           ),
         ),
         serviceConfig: Cloudfunctions2FunctionServiceConfig(
@@ -69,7 +76,7 @@ final class HttpFunctionStack extends Stack {
           minInstanceCount: .literal(0),
           maxInstanceCount: .literal(4),
           ingressSettings: .literal(.allowInternalAndGclb),
-          serviceAccountEmail: .ref(runtimeSa.email),
+          serviceAccountEmail: .of(runtimeSa),
           environmentVariables: .literal({'LOG_LEVEL': 'info'}),
         ),
       ),

@@ -27,6 +27,8 @@ paramOrder:
   - initial_config
   - deletion_policy
   - project
+  - service_account
+  - scan_config
 
 extraGetters: |2
     /// Reference to `repository_id` attribute.

@@ -2,23 +2,26 @@ outputDir: cloud_run
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 
 curatedDoc: |-
   /// Example (minimal hello-world service):
   /// ```dart
   /// final svc = GoogleCloudRunV2Service(
   ///   localName: 'hello',
-  ///   name: TfArg.literal('hello-svc'),
-  ///   location: TfArg.literal('asia-northeast1'),
-  ///   template: const CloudRunV2ServiceTemplate(
+  ///   name: .literal('hello-svc'),
+  ///   location: .literal('asia-northeast1'),
+  ///   template: CloudRunV2ServiceTemplate(
   ///     containers: [
-  ///       CloudRunV2ServiceServiceContainer(
-  ///         image: TfArg.literal('gcr.io/cloudrun/hello'),
-  ///         ports: CloudRunV2ServiceContainerPort(containerPort: 8080),
+  ///       CloudRunV2ServiceTemplateContainers(
+  ///         image: .literal('gcr.io/cloudrun/hello'),
+  ///         ports: CloudRunV2ServiceTemplateContainersPorts(
+  ///           containerPort: .literal(8080),
+  ///         ),
   ///       ),
   ///     ],
   ///   ),
-  ///   ingress: TfArg.literal(Ingress.all),
+  ///   ingress: .literal(.all),
   /// );
   /// ```
   ///
@@ -26,38 +29,58 @@ curatedDoc: |-
   /// ```dart
   /// final api = GoogleCloudRunV2Service(
   ///   localName: 'api',
-  ///   name: TfArg.literal('api'),
-  ///   location: TfArg.literal('asia-northeast1'),
+  ///   name: .literal('api'),
+  ///   location: .literal('asia-northeast1'),
   ///   template: CloudRunV2ServiceTemplate(
   ///     containers: [
-  ///       CloudRunV2ServiceServiceContainer(
-  ///         image: TfArg.literal('asia-northeast1-docker.pkg.dev/p/r/api:v1'),
+  ///       CloudRunV2ServiceTemplateContainers(
+  ///         image: .literal('asia-northeast1-docker.pkg.dev/p/r/api:v1'),
   ///         env: [
-  ///           CloudRunV2ServiceEnvVar(
-  ///             name: 'DATABASE_URL',
-  ///             source: CloudRunV2ServiceEnvVarFromSecret(
-  ///               secret: TfArg.literal('db-url'),
-  ///               version: TfArg.literal('latest'),
+  ///           CloudRunV2ServiceTemplateContainersEnv(
+  ///             name: .literal('DATABASE_URL'),
+  ///             source: .valueSource(
+  ///               CloudRunV2ServiceTemplateContainersEnvValueSource(
+  ///                 secretKeyRef:
+  ///                     CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef(
+  ///                       secret: .literal('db-url'),
+  ///                       version: .literal('latest'),
+  ///                     ),
+  ///               ),
   ///             ),
   ///           ),
   ///         ],
   ///         volumeMounts: [
-  ///           CloudRunV2ServiceVolumeMount(name: 'cache', mountPath: '/var/cache'),
+  ///           CloudRunV2ServiceTemplateContainersVolumeMounts(
+  ///             name: .literal('cache'),
+  ///             mountPath: .literal('/var/cache'),
+  ///           ),
   ///         ],
   ///       ),
   ///     ],
   ///     volumes: [
-  ///       CloudRunV2ServiceServiceVolume(
-  ///         name: 'cache',
-  ///         source: CloudRunV2ServiceGcsVolume(
-  ///           bucket: TfArg.literal('my-cache-bucket'),
+  ///       CloudRunV2ServiceTemplateVolumes(
+  ///         name: .literal('cache'),
+  ///         source: .gcs(
+  ///           CloudRunV2ServiceTemplateVolumesGcs(bucket: .of(bucket)),
   ///         ),
   ///       ),
   ///     ],
-  ///     executionEnvironment: TfArg.literal(ExecutionEnvironment.gen2),
+  ///     executionEnvironment: .literal(.gen2),
   ///   ),
   /// );
   /// ```
+
+# The Cloud Run Admin API takes one source per volume and one value per
+# environment variable; the provider leaves both checks to the API.
+exactlyOneOf:
+  - "template.volumes.cloud_sql_instance, template.volumes.empty_dir, template.volumes.gcs, template.volumes.nfs, template.volumes.secret"
+  - "template.containers.env.value, template.containers.env.value_source"
+
+sealedNames:
+  "template.containers.env.value, template.containers.env.value_source": source
+  "template.volumes.cloud_sql_instance, template.volumes.empty_dir, template.volumes.gcs, template.volumes.nfs, template.volumes.secret": source
+  "binary_authorization.policy, binary_authorization.use_default": policy
+  "template.vpc_access.connector, template.vpc_access.network_interfaces": connection
 
 paramOrder:
   - name
@@ -79,6 +102,9 @@ paramOrder:
   - iap_enabled
   - deletion_protection
   - project
+  - tags
+  - build_config
+  - multi_region_settings
 
 extraImports:
   - "import 'package:meta/meta.dart';"
@@ -92,6 +118,12 @@ extraGetters: |2
 dartTypeOverrides:
   ingress: Ingress
   launch_stage: LaunchStage
+  scaling.scaling_mode: ScalingMode
+  template.execution_environment: ExecutionEnvironment
+  template.vpc_access.egress: VpcAccessEgress
+  template.workload_identity_config.identity_type: CloudRunV2ServiceWorkloadIdentityType
+  traffic.type: TrafficTargetAllocationType
+  template.volumes.empty_dir.medium: EmptyDirMedium
 
 prelude: |
   // ===========================================================================
@@ -128,7 +160,7 @@ prelude: |
     final String terraformValue;
   }
 
-  /// Egress policy for [CloudRunV2ServiceVpcAccess.egress] (`template.vpc_access.egress`).
+  /// Egress policy for [CloudRunV2ServiceTemplateVpcAccess.egress] (`template.vpc_access.egress`).
   /// `allTraffic` routes every outbound request through the connector or
   /// network interface; `privateRangesOnly` keeps RFC1918 + Google APIs
   /// inside the VPC and bypasses it for the public internet.
@@ -141,10 +173,10 @@ prelude: |
     final String terraformValue;
   }
 
-  /// Scaling mode shared by service-level [CloudRunV2ServiceServiceScaling] and (when
+  /// Scaling mode shared by service-level [CloudRunV2ServiceScaling] and (when
   /// applicable) other Cloud Run v2 scaling blocks. `automatic` lets the
   /// runtime pick instance count from min/max bounds; `manual` pins to a
-  /// fixed [CloudRunV2ServiceServiceScaling.manualInstanceCount].
+  /// fixed [CloudRunV2ServiceScaling.manualInstanceCount].
   enum ScalingMode implements TerraformEnum {
     automatic('AUTOMATIC'),
     manual('MANUAL');
@@ -166,7 +198,7 @@ prelude: |
     final String terraformValue;
   }
 
-  /// Identity a revision runs as ([CloudRunV2ServiceWorkloadIdentityConfig.identityType]).
+  /// Identity a revision runs as ([CloudRunV2ServiceTemplateWorkloadIdentityConfig.identityType]).
   enum CloudRunV2ServiceWorkloadIdentityType implements TerraformEnum {
     serviceAccount('IDENTITY_TYPE_SERVICE_ACCOUNT'),
     workloadIdentity('IDENTITY_TYPE_WORKLOAD_IDENTITY'),
@@ -206,971 +238,21 @@ prelude: |
   // Top-level nested helpers
   // ===========================================================================
 
-  /// `binary_authorization` block. Enforces Binary Authorization on the
-  /// service. Set [useDefault] OR [policy] (the two conflict at the
-  /// provider level). [breakglassJustification] only takes effect when a
-  /// policy denies admission and the deployer wants to override it.
-  @immutable
-  class CloudRunV2ServiceBinaryAuthorization {
-    const CloudRunV2ServiceBinaryAuthorization({
-      this.useDefault,
-      this.policy,
-      this.breakglassJustification,
-    });
-
-    /// `true` uses the project's default BinAuthz policy. Conflicts with
-    /// [policy].
-    final TfArg<bool>? useDefault;
-
-    /// Path to a custom BinAuthz policy. Format:
-    /// `projects/{project}/platforms/cloudRun/{policy-name}`. Conflicts
-    /// with [useDefault].
-    final TfArg<String>? policy;
-
-    /// Justification string passed when breakglassing past a denied
-    /// admission. See
-    /// https://cloud.google.com/binary-authorization/docs/using-breakglass.
-    final TfArg<String>? breakglassJustification;
-
-    Map<String, Object?> toArgMap() => {
-      if (useDefault != null) 'use_default': useDefault!.toTfJson(),
-      if (policy != null) 'policy': policy!.toTfJson(),
-      if (breakglassJustification != null)
-        'breakglass_justification': breakglassJustification!.toTfJson(),
-    };
-  }
-
-  /// Service-level `scaling` block (top-level on the service, not the
-  /// template). Use this to pin manual instance count for the whole
-  /// service. The revision-level [CloudRunV2ServiceTemplateScaling] block lives under
-  /// [CloudRunV2ServiceTemplate.scaling].
-  @immutable
-  class CloudRunV2ServiceServiceScaling {
-    const CloudRunV2ServiceServiceScaling({
-      this.minInstanceCount,
-      this.maxInstanceCount,
-      this.scalingMode,
-      this.manualInstanceCount,
-    });
-
-    /// Floor on total live instances across all revisions receiving
-    /// traffic. Default 0.
-    final TfArg<int>? minInstanceCount;
-
-    /// Ceiling on total live instances across all revisions receiving
-    /// traffic. When `null`, GCP computes a quota-driven default.
-    final TfArg<int>? maxInstanceCount;
-
-    /// `automatic` (default) or `manual`. When `manual`, set
-    /// [manualInstanceCount].
-    final TfArg<ScalingMode>? scalingMode;
-
-    /// Pinned total instance count when [scalingMode] is `manual`. Ignored
-    /// otherwise.
-    final TfArg<int>? manualInstanceCount;
-
-    Map<String, Object?> toArgMap() => {
-      if (minInstanceCount != null)
-        'min_instance_count': minInstanceCount!.toTfJson(),
-      if (maxInstanceCount != null)
-        'max_instance_count': maxInstanceCount!.toTfJson(),
-      if (scalingMode != null) 'scaling_mode': scalingMode!.toTfJson(),
-      if (manualInstanceCount != null)
-        'manual_instance_count': manualInstanceCount!.toTfJson(),
-    };
-  }
-
-  /// One `traffic` entry. Splits traffic across revisions. Default (when
-  /// the list is omitted) is 100% to the latest Ready revision.
-  @immutable
-  class CloudRunV2ServiceTraffic {
-    const CloudRunV2ServiceTraffic({
-      this.type,
-      this.revision,
-      this.percent,
-      this.tag,
-    });
-
-    /// `latest` or `revision`. When `revision`, [revision] is required.
-    final TfArg<TrafficTargetAllocationType>? type;
-
-    /// Target revision name. Required when [type] is `revision`.
-    final TfArg<String>? revision;
-
-    /// Percent of traffic (0–100). Sum across the list should be 100.
-    final TfArg<int>? percent;
-
-    /// Optional tag — exposes the revision under
-    /// `https://<tag>---<service>-<hash>.<region>.run.app`.
-    final TfArg<String>? tag;
-
-    Map<String, Object?> toArgMap() => {
-      if (type != null) 'type': type!.toTfJson(),
-      if (revision != null) 'revision': revision!.toTfJson(),
-      if (percent != null) 'percent': percent!.toTfJson(),
-      if (tag != null) 'tag': tag!.toTfJson(),
-    };
-  }
-
   // ===========================================================================
   // CloudRunV2ServiceTemplate + nested helpers
   // ===========================================================================
 
-  /// `template` block — the revision template. Required on every Cloud Run
-  /// v2 service. Holds at least one [CloudRunV2ServiceServiceContainer] plus optional
-  /// scaling, VPC access, volumes, etc.
-  @immutable
-  class CloudRunV2ServiceTemplate {
-    const CloudRunV2ServiceTemplate({
-      required this.containers,
-      this.revision,
-      this.labels,
-      this.annotations,
-      this.scaling,
-      this.vpcAccess,
-      this.timeout,
-      this.serviceAccount,
-      this.executionEnvironment,
-      this.encryptionKey,
-      this.maxInstanceRequestConcurrency,
-      this.sessionAffinity,
-      this.healthCheckDisabled,
-      this.gpuZonalRedundancyDisabled,
-      this.volumes,
-      this.nodeSelector,
-      this.workloadIdentityConfig,
-    });
-
-    /// One or more containers (the schema allows ≥1; multiple containers
-    /// form a sidecar pattern with a single ingress container).
-    final List<CloudRunV2ServiceServiceContainer> containers;
-
-    /// Pin the revision name. When `null`, GCP auto-generates
-    /// `<service>-<random>-<idx>`.
-    final TfArg<String>? revision;
-
-    /// Per-revision labels. Cloud Run v2 forbids labels with the
-    /// `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`,
-    /// or `autoscaling.knative.dev` namespaces.
-    final TfArg<Map<String, String>>? labels;
-
-    /// Per-revision annotations. Same namespace restrictions as [labels].
-    final TfArg<Map<String, String>>? annotations;
-
-    /// Revision-level scaling (min/max instance count).
-    final CloudRunV2ServiceTemplateScaling? scaling;
-
-    /// VPC connector or direct VPC egress configuration.
-    final CloudRunV2ServiceVpcAccess? vpcAccess;
-
-    /// Per-request timeout duration ("3.5s" form). Default 5 minutes.
-    final TfArg<String>? timeout;
-
-    /// Service account email the revision runs as. Defaults to the project
-    /// default compute SA.
-    final TfArg<String>? serviceAccount;
-
-    /// `gen1` (legacy gVisor) or `gen2` (default; supports GCSFuse +
-    /// larger CPU tiers).
-    final TfArg<ExecutionEnvironment>? executionEnvironment;
-
-    /// CMEK key name to encrypt the revision's container image.
-    final TfArg<String>? encryptionKey;
-
-    /// Max concurrent requests per instance. Default 80 when CPU >= 1, else 1.
-    final TfArg<int>? maxInstanceRequestConcurrency;
-
-    /// Whether the LB should send the same client to the same instance.
-    final TfArg<bool>? sessionAffinity;
-
-    /// Disables container health checks during deployment.
-    final TfArg<bool>? healthCheckDisabled;
-
-    /// Disables GPU zonal redundancy on this revision.
-    final TfArg<bool>? gpuZonalRedundancyDisabled;
-
-    /// Volumes available to all containers in the revision. Reference one
-    /// from [CloudRunV2ServiceServiceContainer.volumeMounts] by [CloudRunV2ServiceServiceVolume.name].
-    final List<CloudRunV2ServiceServiceVolume>? volumes;
-
-    /// GPU accelerator pin. Required when the revision uses GPU CPU tiers.
-    final CloudRunV2ServiceNodeSelector? nodeSelector;
-
-    /// Workload identity settings for this revision.
-    final CloudRunV2ServiceWorkloadIdentityConfig? workloadIdentityConfig;
-
-    Map<String, Object?> toArgMap() => {
-      'containers': containers.map((c) => c.toArgMap()).toList(),
-      if (revision != null) 'revision': revision!.toTfJson(),
-      if (labels != null) 'labels': labels!.toTfJson(),
-      if (annotations != null) 'annotations': annotations!.toTfJson(),
-      if (scaling != null) 'scaling': [scaling!.toArgMap()],
-      if (vpcAccess != null) 'vpc_access': [vpcAccess!.toArgMap()],
-      if (timeout != null) 'timeout': timeout!.toTfJson(),
-      if (serviceAccount != null)
-        'service_account': serviceAccount!.toTfJson(),
-      if (executionEnvironment != null)
-        'execution_environment': executionEnvironment!.toTfJson(),
-      if (encryptionKey != null) 'encryption_key': encryptionKey!.toTfJson(),
-      if (maxInstanceRequestConcurrency != null)
-        'max_instance_request_concurrency':
-            maxInstanceRequestConcurrency!.toTfJson(),
-      if (sessionAffinity != null)
-        'session_affinity': sessionAffinity!.toTfJson(),
-      if (healthCheckDisabled != null)
-        'health_check_disabled': healthCheckDisabled!.toTfJson(),
-      if (gpuZonalRedundancyDisabled != null)
-        'gpu_zonal_redundancy_disabled':
-            gpuZonalRedundancyDisabled!.toTfJson(),
-      if (volumes != null)
-        'volumes': volumes!.map((v) => v.toArgMap()).toList(),
-      if (nodeSelector != null) 'node_selector': [nodeSelector!.toArgMap()],
-      if (workloadIdentityConfig != null)
-        'workload_identity_config': [workloadIdentityConfig!.toArgMap()],
-    };
-  }
-
-  /// Revision-level scaling block (`template.scaling`). Sets the floor and
-  /// ceiling on serving instances for THIS revision. Service-level
-  /// [CloudRunV2ServiceServiceScaling] applies across revisions.
-  @immutable
-  class CloudRunV2ServiceTemplateScaling {
-    const CloudRunV2ServiceTemplateScaling({this.minInstanceCount, this.maxInstanceCount});
-
-    /// Minimum serving instances for this revision. Default 0.
-    final TfArg<int>? minInstanceCount;
-
-    /// Maximum serving instances for this revision. When `null` GCP picks
-    /// a quota-driven default.
-    final TfArg<int>? maxInstanceCount;
-
-    Map<String, Object?> toArgMap() => {
-      if (minInstanceCount != null)
-        'min_instance_count': minInstanceCount!.toTfJson(),
-      if (maxInstanceCount != null)
-        'max_instance_count': maxInstanceCount!.toTfJson(),
-    };
-  }
-
-  /// `template.vpc_access` block. Either pin a Serverless VPC Access
-  /// connector ([connector]) OR use direct VPC egress
-  /// ([networkInterfaces]) — the two conflict at the provider level.
-  @immutable
-  class CloudRunV2ServiceVpcAccess {
-    const CloudRunV2ServiceVpcAccess({
-      this.connector,
-      this.egress,
-      this.networkInterfaces,
-    });
-
-    /// Serverless VPC Access connector path:
-    /// `projects/{p}/locations/{l}/connectors/{c}`. Conflicts with
-    /// [networkInterfaces].
-    final TfArg<String>? connector;
-
-    /// Egress policy. `allTraffic` routes every outbound request through
-    /// the VPC; `privateRangesOnly` keeps public internet egress direct.
-    final TfArg<VpcAccessEgress>? egress;
-
-    /// Direct VPC egress interfaces. Currently the schema accepts at most
-    /// one entry. Conflicts with [connector].
-    final List<CloudRunV2ServiceVpcNetworkInterface>? networkInterfaces;
-
-    Map<String, Object?> toArgMap() => {
-      if (connector != null) 'connector': connector!.toTfJson(),
-      if (egress != null) 'egress': egress!.toTfJson(),
-      if (networkInterfaces != null)
-        'network_interfaces':
-            networkInterfaces!.map((n) => n.toArgMap()).toList(),
-    };
-  }
-
-  /// One direct-VPC-egress interface under [CloudRunV2ServiceVpcAccess.networkInterfaces].
-  /// At least one of [network] or [subnetwork] must be specified.
-  @immutable
-  class CloudRunV2ServiceVpcNetworkInterface {
-    const CloudRunV2ServiceVpcNetworkInterface({this.network, this.subnetwork, this.tags});
-
-    /// VPC network self-link or short name. If omitted, looked up from
-    /// [subnetwork].
-    final TfArg<String>? network;
-
-    /// VPC subnetwork self-link or short name. If omitted, the subnetwork
-    /// with the same name as [network] is used.
-    final TfArg<String>? subnetwork;
-
-    /// Network tags applied to this Cloud Run service.
-    final TfArg<List<String>>? tags;
-
-    Map<String, Object?> toArgMap() => {
-      if (network != null) 'network': network!.toTfJson(),
-      if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
-      if (tags != null) 'tags': tags!.toTfJson(),
-    };
-  }
-
-  /// GPU accelerator selector (`template.node_selector`). Required for
-  /// GPU-tier revisions.
-  @immutable
-  class CloudRunV2ServiceNodeSelector {
-    const CloudRunV2ServiceNodeSelector({required this.accelerator});
-
-    /// Accelerator type, e.g. `'nvidia-l4'`. See
-    /// https://cloud.google.com/run/docs/configuring/services/gpu.
-    final TfArg<String> accelerator;
-
-    Map<String, Object?> toArgMap() => {
-      'accelerator': accelerator.toTfJson(),
-    };
-  }
-
-  /// `template.workload_identity_config` block.
-  @immutable
-  class CloudRunV2ServiceWorkloadIdentityConfig {
-    const CloudRunV2ServiceWorkloadIdentityConfig({
-      this.identity,
-      this.identityCertificateEnabled,
-      this.identityType,
-    });
-
-    /// The revision's SPIFFE workload identity; enables provisioning of
-    /// SPIFFE workload certificates.
-    final TfArg<String>? identity;
-
-    /// Whether an instance receives a managed workload identity certificate.
-    final TfArg<bool>? identityCertificateEnabled;
-
-    final TfArg<CloudRunV2ServiceWorkloadIdentityType>? identityType;
-
-    Map<String, Object?> toArgMap() => {
-      if (identity != null) 'identity': identity!.toTfJson(),
-      if (identityCertificateEnabled != null)
-        'identity_certificate_enabled': identityCertificateEnabled!.toTfJson(),
-      if (identityType != null) 'identity_type': identityType!.toTfJson(),
-    };
-  }
-
   // ===========================================================================
   // Containers
   // ===========================================================================
-
-  /// One entry in `template.containers`. At minimum supply [image]. Use
-  /// [name] to disambiguate when running multiple containers (sidecars).
-  @immutable
-  class CloudRunV2ServiceServiceContainer {
-    const CloudRunV2ServiceServiceContainer({
-      required this.image,
-      this.name,
-      this.command,
-      this.args,
-      this.env,
-      this.resources,
-      this.ports,
-      this.volumeMounts,
-      this.workingDir,
-      this.dependsOn,
-      this.startupProbe,
-      this.livenessProbe,
-    });
-
-    /// Container image URL (GCR/GAR/Docker Hub).
-    final TfArg<String> image;
-
-    /// DNS_LABEL container name. Required when running sidecars.
-    final TfArg<String>? name;
-
-    /// Entrypoint override. Overrides image ENTRYPOINT.
-    final TfArg<List<String>>? command;
-
-    /// Argument override. Overrides image CMD.
-    final TfArg<List<String>>? args;
-
-    /// Environment variables — both literal and secret-backed forms via
-    /// the sealed [CloudRunV2ServiceEnvVarSource] dispatch.
-    final List<CloudRunV2ServiceEnvVar>? env;
-
-    /// CPU / memory / GPU limits + cold-start knobs.
-    final CloudRunV2ServiceContainerResources? resources;
-
-    /// Container port. Cloud Run v2 supports exactly one port per
-    /// container; pass a single [CloudRunV2ServiceContainerPort] (not a list).
-    final CloudRunV2ServiceContainerPort? ports;
-
-    /// Volume mounts — reference [CloudRunV2ServiceServiceVolume.name] from
-    /// [CloudRunV2ServiceTemplate.volumes].
-    final List<CloudRunV2ServiceVolumeMount>? volumeMounts;
-
-    /// Container working directory. Falls back to image default.
-    final TfArg<String>? workingDir;
-
-    /// Names of containers that must reach Ready before this one starts
-    /// (sidecar startup ordering).
-    final TfArg<List<String>>? dependsOn;
-
-    /// Periodic probe that gates traffic until the container reports
-    /// ready.
-    final CloudRunV2ServiceStartupProbe? startupProbe;
-
-    /// Periodic probe that restarts the container on failure.
-    final CloudRunV2ServiceLivenessProbe? livenessProbe;
-
-    Map<String, Object?> toArgMap() => {
-      'image': image.toTfJson(),
-      if (name != null) 'name': name!.toTfJson(),
-      if (command != null) 'command': command!.toTfJson(),
-      if (args != null) 'args': args!.toTfJson(),
-      if (env != null) 'env': env!.map((e) => e.toArgMap()).toList(),
-      if (resources != null) 'resources': [resources!.toArgMap()],
-      if (ports != null) 'ports': [ports!.toArgMap()],
-      if (volumeMounts != null)
-        'volume_mounts': volumeMounts!.map((v) => v.toArgMap()).toList(),
-      if (workingDir != null) 'working_dir': workingDir!.toTfJson(),
-      if (dependsOn != null) 'depends_on': dependsOn!.toTfJson(),
-      if (startupProbe != null) 'startup_probe': [startupProbe!.toArgMap()],
-      if (livenessProbe != null)
-        'liveness_probe': [livenessProbe!.toArgMap()],
-    };
-  }
-
-  /// One env var. Set [source] to inject a value (literal or secret-ref).
-  /// When [source] is `null` the variable is emitted with an empty literal
-  /// (the schema's documented default — provider suppresses the diff).
-  @immutable
-  class CloudRunV2ServiceEnvVar {
-    const CloudRunV2ServiceEnvVar({required this.name, this.source});
-
-    /// C_IDENTIFIER name. Required.
-    final TfArg<String> name;
-
-    /// Value source. Pick exactly one of [CloudRunV2ServiceEnvVarFromLiteral] or
-    /// [CloudRunV2ServiceEnvVarFromSecret].
-    final CloudRunV2ServiceEnvVarSource? source;
-
-    Map<String, Object?> toArgMap() => {
-      'name': name.toTfJson(),
-      if (source != null) ...source!.encode(),
-    };
-  }
-
-  /// Sealed dispatch for one [CloudRunV2ServiceEnvVar.source]. Models the
-  /// `value` / `value_source.secret_key_ref` exactly_one_of constraint at
-  /// the type level.
-  sealed class CloudRunV2ServiceEnvVarSource {
-    const CloudRunV2ServiceEnvVarSource();
-
-    /// Literal env var value (`env.value`).
-    const factory CloudRunV2ServiceEnvVarSource.value(
-      TfArg<String> value,
-    ) = CloudRunV2ServiceEnvVarFromLiteral;
-
-    /// Secret-Manager backed env var (`env.value_source.secret_key_ref`).
-    const factory CloudRunV2ServiceEnvVarSource.secret({
-      required TfArg<String> secret,
-      TfArg<String>? version,
-    }) = CloudRunV2ServiceEnvVarFromSecret;
-
-    /// Returns the JSON fragment to merge into [CloudRunV2ServiceEnvVar.toArgMap].
-    Map<String, Object?> encode();
-  }
-
-  /// Literal env var value (`env.value`).
-  @immutable
-  final class CloudRunV2ServiceEnvVarFromLiteral extends CloudRunV2ServiceEnvVarSource {
-    const CloudRunV2ServiceEnvVarFromLiteral(this.value);
-
-    /// Literal string value (≤32768 chars).
-    final TfArg<String> value;
-
-    @override
-    Map<String, Object?> encode() => {'value': value.toTfJson()};
-  }
-
-  /// Secret-Manager backed env var (`env.value_source.secret_key_ref`).
-  /// Pass the secret name (short form `{secret}` when in the same project,
-  /// or full `projects/{p}/secrets/{s}` path otherwise) and the version.
-  @immutable
-  final class CloudRunV2ServiceEnvVarFromSecret extends CloudRunV2ServiceEnvVarSource {
-    const CloudRunV2ServiceEnvVarFromSecret({required this.secret, this.version});
-
-    /// Secret name. Required.
-    final TfArg<String> secret;
-
-    /// Version (`'latest'` or numeric string).
-    final TfArg<String>? version;
-
-    @override
-    Map<String, Object?> encode() => {
-      'value_source': [
-        {
-          'secret_key_ref': [
-            {
-              'secret': secret.toTfJson(),
-              if (version != null) 'version': version!.toTfJson(),
-            },
-          ],
-        },
-      ],
-    };
-  }
-
-  /// Container resource block (`resources`). The provider accepts CPU
-  /// values in `'1'`, `'2'`, `'4'`, `'6'`, `'8'`; memory in `'512Mi'`,
-  /// `'1Gi'`, etc.; GPU in `'1'` (only one nvidia.com/gpu supported).
-  @immutable
-  class CloudRunV2ServiceContainerResources {
-    const CloudRunV2ServiceContainerResources({
-      this.limits,
-      this.cpuIdle,
-      this.startupCpuBoost,
-    });
-
-    /// Resource limits map. Recognized keys: `cpu`, `memory`,
-    /// `nvidia.com/gpu`.
-    final TfArg<Map<String, String>>? limits;
-
-    /// If `true`, CPU is only allocated during requests (the default when
-    /// the block is omitted). Must be set explicitly to `true` when the
-    /// block IS provided.
-    final TfArg<bool>? cpuIdle;
-
-    /// Boosts CPU on cold-start above the requested threshold.
-    final TfArg<bool>? startupCpuBoost;
-
-    Map<String, Object?> toArgMap() => {
-      if (limits != null) 'limits': limits!.toTfJson(),
-      if (cpuIdle != null) 'cpu_idle': cpuIdle!.toTfJson(),
-      if (startupCpuBoost != null)
-        'startup_cpu_boost': startupCpuBoost!.toTfJson(),
-    };
-  }
-
-  /// Container port (`ports`). Cloud Run v2 supports exactly one port per
-  /// container.
-  @immutable
-  class CloudRunV2ServiceContainerPort {
-    const CloudRunV2ServiceContainerPort({this.containerPort, this.name});
-
-    /// TCP port number. Default is the value of `PORT` env (passed by
-    /// Cloud Run at runtime).
-    final TfArg<int>? containerPort;
-
-    /// Protocol selector. Must be `'http1'` or `'h2c'`.
-    final TfArg<String>? name;
-
-    Map<String, Object?> toArgMap() => {
-      if (containerPort != null)
-        'container_port': containerPort!.toTfJson(),
-      if (name != null) 'name': name!.toTfJson(),
-    };
-  }
-
-  /// Volume mount entry. [name] must match a [CloudRunV2ServiceServiceVolume.name] under
-  /// [CloudRunV2ServiceTemplate.volumes].
-  @immutable
-  class CloudRunV2ServiceVolumeMount {
-    const CloudRunV2ServiceVolumeMount({
-      required this.name,
-      required this.mountPath,
-      this.subPath,
-    });
-
-    /// Volume name. Must match a [CloudRunV2ServiceServiceVolume.name].
-    final TfArg<String> name;
-
-    /// Mount path inside the container. For Cloud SQL volumes leave empty
-    /// or use `/cloudsql`.
-    final TfArg<String> mountPath;
-
-    /// Sub-path within the volume to expose (relative path).
-    final TfArg<String>? subPath;
-
-    Map<String, Object?> toArgMap() => {
-      'name': name.toTfJson(),
-      'mount_path': mountPath.toTfJson(),
-      if (subPath != null) 'sub_path': subPath!.toTfJson(),
-    };
-  }
 
   // ===========================================================================
   // Probes (startup + liveness). HTTP / TCP sub-blocks are typed; grpc + exec
   // are intentionally untyped Map<String, Object?> stubs to bound the file.
   // ===========================================================================
 
-  /// `startup_probe` block. Gates the container Ready signal during cold
-  /// start. Pick exactly one of [httpGet] / [tcpSocket] / [grpc].
-  @immutable
-  class CloudRunV2ServiceStartupProbe {
-    const CloudRunV2ServiceStartupProbe({
-      this.initialDelaySeconds,
-      this.timeoutSeconds,
-      this.periodSeconds,
-      this.failureThreshold,
-      this.httpGet,
-      this.tcpSocket,
-      this.grpc,
-    });
-
-    /// Seconds to wait before the first probe.
-    final TfArg<int>? initialDelaySeconds;
-
-    /// Per-probe timeout. Must be < [periodSeconds].
-    final TfArg<int>? timeoutSeconds;
-
-    /// Interval between probes.
-    final TfArg<int>? periodSeconds;
-
-    /// Consecutive failures before the probe is considered failed.
-    final TfArg<int>? failureThreshold;
-
-    /// HTTP GET action.
-    final CloudRunV2ServiceHttpGetAction? httpGet;
-
-    /// TCP socket action.
-    final CloudRunV2ServiceTcpSocketAction? tcpSocket;
-
-    /// gRPC action — passed through as an opaque map for bounded coverage.
-    /// Schema fields: `port` (int), `service` (string).
-    final Map<String, Object?>? grpc;
-
-    Map<String, Object?> toArgMap() => {
-      if (initialDelaySeconds != null)
-        'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
-      if (timeoutSeconds != null)
-        'timeout_seconds': timeoutSeconds!.toTfJson(),
-      if (periodSeconds != null)
-        'period_seconds': periodSeconds!.toTfJson(),
-      if (failureThreshold != null)
-        'failure_threshold': failureThreshold!.toTfJson(),
-      if (httpGet != null) 'http_get': [httpGet!.toArgMap()],
-      if (tcpSocket != null) 'tcp_socket': [tcpSocket!.toArgMap()],
-      if (grpc != null) 'grpc': [grpc],
-    };
-  }
-
-  /// `liveness_probe` block. Restarts the container on failure. Same
-  /// shape as [CloudRunV2ServiceStartupProbe] but uses liveness semantics (probe is gated
-  /// AFTER startup).
-  @immutable
-  class CloudRunV2ServiceLivenessProbe {
-    const CloudRunV2ServiceLivenessProbe({
-      this.initialDelaySeconds,
-      this.timeoutSeconds,
-      this.periodSeconds,
-      this.failureThreshold,
-      this.httpGet,
-      this.tcpSocket,
-      this.grpc,
-    });
-
-    final TfArg<int>? initialDelaySeconds;
-    final TfArg<int>? timeoutSeconds;
-    final TfArg<int>? periodSeconds;
-    final TfArg<int>? failureThreshold;
-    final CloudRunV2ServiceHttpGetAction? httpGet;
-    final CloudRunV2ServiceTcpSocketAction? tcpSocket;
-    final Map<String, Object?>? grpc;
-
-    Map<String, Object?> toArgMap() => {
-      if (initialDelaySeconds != null)
-        'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
-      if (timeoutSeconds != null)
-        'timeout_seconds': timeoutSeconds!.toTfJson(),
-      if (periodSeconds != null)
-        'period_seconds': periodSeconds!.toTfJson(),
-      if (failureThreshold != null)
-        'failure_threshold': failureThreshold!.toTfJson(),
-      if (httpGet != null) 'http_get': [httpGet!.toArgMap()],
-      if (tcpSocket != null) 'tcp_socket': [tcpSocket!.toArgMap()],
-      if (grpc != null) 'grpc': [grpc],
-    };
-  }
-
-  /// `http_get` probe action.
-  @immutable
-  class CloudRunV2ServiceHttpGetAction {
-    const CloudRunV2ServiceHttpGetAction({this.path, this.port, this.httpHeaders});
-
-    /// Path on the HTTP server. Default `'/'`.
-    final TfArg<String>? path;
-
-    /// Port to probe. Default is the container port.
-    final TfArg<int>? port;
-
-    /// Custom request headers (HTTP allows repeats).
-    final List<CloudRunV2ServiceHttpHeader>? httpHeaders;
-
-    Map<String, Object?> toArgMap() => {
-      if (path != null) 'path': path!.toTfJson(),
-      if (port != null) 'port': port!.toTfJson(),
-      if (httpHeaders != null)
-        'http_headers': httpHeaders!.map((h) => h.toArgMap()).toList(),
-    };
-  }
-
-  /// `tcp_socket` probe action.
-  @immutable
-  class CloudRunV2ServiceTcpSocketAction {
-    const CloudRunV2ServiceTcpSocketAction({this.port});
-
-    /// Port to probe (1–65535). Defaults to the container port.
-    final TfArg<int>? port;
-
-    Map<String, Object?> toArgMap() => {
-      if (port != null) 'port': port!.toTfJson(),
-    };
-  }
-
-  /// One `http_headers` entry under [CloudRunV2ServiceHttpGetAction.httpHeaders].
-  @immutable
-  class CloudRunV2ServiceHttpHeader {
-    const CloudRunV2ServiceHttpHeader({required this.name, this.value});
-
-    /// Header field name. Required.
-    final TfArg<String> name;
-
-    /// Header field value. Defaults to empty string.
-    final TfArg<String>? value;
-
-    Map<String, Object?> toArgMap() => {
-      'name': name.toTfJson(),
-      if (value != null) 'value': value!.toTfJson(),
-    };
-  }
-
   // ===========================================================================
   // Volumes (sealed source per volume — secret / cloud_sql / empty_dir / gcs /
   // nfs are mutually exclusive per the provider's commented exactly_one_of).
   // ===========================================================================
 
-  /// One entry in `template.volumes`. The volume's name is referenced
-  /// from [CloudRunV2ServiceVolumeMount.name] inside any [CloudRunV2ServiceServiceContainer.volumeMounts].
-  /// Pick exactly one [source] (sealed [CloudRunV2ServiceVolumeSource]).
-  @immutable
-  class CloudRunV2ServiceServiceVolume {
-    const CloudRunV2ServiceServiceVolume({required this.name, required this.source});
-
-    /// Volume name. Must be unique within the revision and match
-    /// downstream [CloudRunV2ServiceVolumeMount.name].
-    final TfArg<String> name;
-
-    /// Backing storage. Pick exactly one of [CloudRunV2ServiceVolumeSecret],
-    /// [CloudRunV2ServiceCloudSqlVolume], [CloudRunV2ServiceEmptyDirVolume], [CloudRunV2ServiceGcsVolume], [CloudRunV2ServiceNfsVolume].
-    final CloudRunV2ServiceVolumeSource source;
-
-    Map<String, Object?> toArgMap() => {
-      'name': name.toTfJson(),
-      ...source.encode(),
-    };
-  }
-
-  /// Sealed dispatch for [CloudRunV2ServiceServiceVolume.source]. Each subclass encodes its
-  /// own Terraform key (`secret`, `cloud_sql_instance`, `empty_dir`,
-  /// `gcs`, `nfs`).
-  sealed class CloudRunV2ServiceVolumeSource {
-    const CloudRunV2ServiceVolumeSource();
-
-    /// Secret Manager-backed volume.
-    const factory CloudRunV2ServiceVolumeSource.secret({
-      required TfArg<String> secret,
-      TfArg<int>? defaultMode,
-      List<CloudRunV2ServiceSecretVolumeItem>? items,
-    }) = CloudRunV2ServiceVolumeSecret;
-
-    /// Cloud SQL backed volume.
-    const factory CloudRunV2ServiceVolumeSource.cloudSqlInstance({
-      TfArg<List<String>>? instances,
-    }) = CloudRunV2ServiceCloudSqlVolume;
-
-    /// Ephemeral shared volume (`empty_dir`).
-    const factory CloudRunV2ServiceVolumeSource.emptyDir({
-      TfArg<EmptyDirMedium>? medium,
-      TfArg<String>? sizeLimit,
-    }) = CloudRunV2ServiceEmptyDirVolume;
-
-    /// GCSFuse-backed volume (`gcs`).
-    const factory CloudRunV2ServiceVolumeSource.gcs({
-      required TfArg<String> bucket,
-      TfArg<bool>? readOnly,
-      TfArg<List<String>>? mountOptions,
-    }) = CloudRunV2ServiceGcsVolume;
-
-    /// NFS-mounted volume (`nfs`).
-    const factory CloudRunV2ServiceVolumeSource.nfs({
-      required TfArg<String> server,
-      required TfArg<String> path,
-      TfArg<bool>? readOnly,
-    }) = CloudRunV2ServiceNfsVolume;
-
-    Map<String, Object?> encode();
-  }
-
-  /// Secret Manager-backed volume. Files appear under
-  /// `<mountPath>/<items[].path>`, or under `<mountPath>/<secretName>`
-  /// when [items] is empty.
-  @immutable
-  final class CloudRunV2ServiceVolumeSecret extends CloudRunV2ServiceVolumeSource {
-    const CloudRunV2ServiceVolumeSecret({
-      required this.secret,
-      this.defaultMode,
-      this.items,
-    });
-
-    /// Secret name. Short form when same-project, full
-    /// `projects/{p}/secrets/{s}` otherwise.
-    final TfArg<String> secret;
-
-    /// Octal mode bits to apply to all keys by default. 0–0777. Default 0444.
-    final TfArg<int>? defaultMode;
-
-    /// Per-version file mappings. When set, the volume exposes ONLY these.
-    final List<CloudRunV2ServiceSecretVolumeItem>? items;
-
-    @override
-    Map<String, Object?> encode() => {
-      'secret': [
-        {
-          'secret': secret.toTfJson(),
-          if (defaultMode != null) 'default_mode': defaultMode!.toTfJson(),
-          if (items != null)
-            'items': items!.map((i) => i.toArgMap()).toList(),
-        },
-      ],
-    };
-  }
-
-  /// One entry under [CloudRunV2ServiceVolumeSecret.items].
-  @immutable
-  class CloudRunV2ServiceSecretVolumeItem {
-    const CloudRunV2ServiceSecretVolumeItem({required this.path, this.version, this.mode});
-
-    /// Relative path of the file in the container.
-    final TfArg<String> path;
-
-    /// Secret version (`'latest'` or numeric string).
-    final TfArg<String>? version;
-
-    /// Octal mode bits (01–0777).
-    final TfArg<int>? mode;
-
-    Map<String, Object?> toArgMap() => {
-      'path': path.toTfJson(),
-      if (version != null) 'version': version!.toTfJson(),
-      if (mode != null) 'mode': mode!.toTfJson(),
-    };
-  }
-
-  /// Cloud SQL backed volume. Mount path conventionally `/cloudsql` (or
-  /// empty — the provider auto-mounts at `/cloudsql/<instance>`).
-  @immutable
-  final class CloudRunV2ServiceCloudSqlVolume extends CloudRunV2ServiceVolumeSource {
-    const CloudRunV2ServiceCloudSqlVolume({this.instances});
-
-    /// Cloud SQL connection names: `{project}:{region}:{instance}`.
-    final TfArg<List<String>>? instances;
-
-    @override
-    Map<String, Object?> encode() => {
-      'cloud_sql_instance': [
-        {if (instances != null) 'instances': instances!.toTfJson()},
-      ],
-    };
-  }
-
-  /// Ephemeral shared volume (`empty_dir`). Lives only as long as the
-  /// revision instance.
-  @immutable
-  final class CloudRunV2ServiceEmptyDirVolume extends CloudRunV2ServiceVolumeSource {
-    const CloudRunV2ServiceEmptyDirVolume({this.medium, this.sizeLimit});
-
-    /// Storage backing. Default `MEMORY`.
-    final TfArg<EmptyDirMedium>? medium;
-
-    /// Cap (Kubernetes Quantity, e.g. `'500Mi'`).
-    final TfArg<String>? sizeLimit;
-
-    @override
-    Map<String, Object?> encode() => {
-      'empty_dir': [
-        {
-          if (medium != null) 'medium': medium!.toTfJson(),
-          if (sizeLimit != null) 'size_limit': sizeLimit!.toTfJson(),
-        },
-      ],
-    };
-  }
-
-  /// GCSFuse-backed volume (`gcs`). Only supported in gen2 execution
-  /// environment.
-  @immutable
-  final class CloudRunV2ServiceGcsVolume extends CloudRunV2ServiceVolumeSource {
-    const CloudRunV2ServiceGcsVolume({
-      required this.bucket,
-      this.readOnly,
-      this.mountOptions,
-    });
-
-    /// GCS bucket name.
-    final TfArg<String> bucket;
-
-    /// Mount as read-only.
-    final TfArg<bool>? readOnly;
-
-    /// Flags passed to `gcsfuse` (without leading dashes).
-    final TfArg<List<String>>? mountOptions;
-
-    @override
-    Map<String, Object?> encode() => {
-      'gcs': [
-        {
-          'bucket': bucket.toTfJson(),
-          if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-          if (mountOptions != null)
-            'mount_options': mountOptions!.toTfJson(),
-        },
-      ],
-    };
-  }
-
-  /// NFS-mounted volume (`nfs`). Both [server] and [path] are required.
-  @immutable
-  final class CloudRunV2ServiceNfsVolume extends CloudRunV2ServiceVolumeSource {
-    const CloudRunV2ServiceNfsVolume({
-      required this.server,
-      required this.path,
-      this.readOnly,
-    });
-
-    /// NFS server hostname or IP.
-    final TfArg<String> server;
-
-    /// Export path on the NFS server.
-    final TfArg<String> path;
-
-    /// Mount as read-only.
-    final TfArg<bool>? readOnly;
-
-    @override
-    Map<String, Object?> encode() => {
-      'nfs': [
-        {
-          'server': server.toTfJson(),
-          'path': path.toTfJson(),
-          if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-        },
-      ],
-    };
-  }
-
-customSlots:
-  template:
-    paramDeclaration: 'required CloudRunV2ServiceTemplate template'
-    argMapEntry: "'template': TfArg.literal([template.toArgMap()]),"
-  traffic:
-    paramDeclaration: 'List<CloudRunV2ServiceTraffic>? traffic'
-    argMapEntry: "if (traffic != null) 'traffic': TfArg.literal(traffic.map((t) => t.toArgMap()).toList()),"
-  scaling:
-    paramDeclaration: 'CloudRunV2ServiceServiceScaling? scaling'
-    argMapEntry: "if (scaling != null) 'scaling': TfArg.literal([scaling.toArgMap()]),"
-  binary_authorization:
-    paramDeclaration: 'CloudRunV2ServiceBinaryAuthorization? binaryAuthorization'
-    argMapEntry: "if (binaryAuthorization != null) 'binary_authorization': TfArg.literal([binaryAuthorization.toArgMap()]),"

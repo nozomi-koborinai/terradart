@@ -4,124 +4,145 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_colab_notebook_execution`.
 const Set<String> _googleColabNotebookExecutionSensitive = <String>{};
 
-/// Exactly one notebook input source for [GoogleColabNotebookExecution].
+/// Exactly one of `dataform_repository_source`, `gcs_notebook_source`, `direct_notebook_source` on `google_colab_notebook_execution`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.dataformRepositorySource(...)`.
 sealed class ColabNotebookExecutionSource {
   const ColabNotebookExecutionSource();
 
-  /// `dataform_repository_source`.
-  const factory ColabNotebookExecutionSource.dataform({
-    required TfArg<String> dataformRepositoryResourceName,
-    TfArg<String>? commitSha,
-  }) = ColabNotebookExecutionDataformSource;
+  /// Sets `dataform_repository_source`.
+  const factory ColabNotebookExecutionSource.dataformRepositorySource(
+    ColabNotebookExecutionDataformRepositorySource dataformRepositorySource,
+  ) = ColabNotebookExecutionSourceDataformRepositorySource;
 
-  /// `gcs_notebook_source`.
-  const factory ColabNotebookExecutionSource.gcs({
-    required TfArg<String> uri,
-    TfArg<String>? generation,
-  }) = ColabNotebookExecutionGcsSource;
+  /// Sets `gcs_notebook_source`.
+  const factory ColabNotebookExecutionSource.gcsNotebookSource(
+    ColabNotebookExecutionGcsNotebookSource gcsNotebookSource,
+  ) = ColabNotebookExecutionSourceGcsNotebookSource;
 
-  /// `direct_notebook_source` — base64 ipynb content.
-  const factory ColabNotebookExecutionSource.direct({
-    required TfArg<String> content,
-  }) = ColabNotebookExecutionDirectSource;
+  /// Sets `direct_notebook_source`.
+  const factory ColabNotebookExecutionSource.directNotebookSource(
+    ColabNotebookExecutionDirectNotebookSource directNotebookSource,
+  ) = ColabNotebookExecutionSourceDirectNotebookSource;
 
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
-  /// Single-element list (`nesting_mode: list, max_items: 1`).
-  List<Map<String, Object?>> encode();
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `dataform_repository_source`.
-@immutable
-final class ColabNotebookExecutionDataformSource
+/// The [ColabNotebookExecutionSource.dataformRepositorySource] choice: sets `dataform_repository_source`.
+final class ColabNotebookExecutionSourceDataformRepositorySource
     extends ColabNotebookExecutionSource {
-  const ColabNotebookExecutionDataformSource({
-    required this.dataformRepositoryResourceName,
-    this.commitSha,
-  });
+  const ColabNotebookExecutionSourceDataformRepositorySource(
+    this.dataformRepositorySource,
+  );
 
-  final TfArg<String> dataformRepositoryResourceName;
-  final TfArg<String>? commitSha;
+  final ColabNotebookExecutionDataformRepositorySource dataformRepositorySource;
 
   @override
   String get blockKey => 'dataform_repository_source';
 
   @override
-  List<Map<String, Object?>> encode() => [
-    {
-      'dataform_repository_resource_name': dataformRepositoryResourceName
-          .toTfJson(),
-      if (commitSha != null) 'commit_sha': commitSha!.toTfJson(),
-    },
-  ];
+  Map<String, Object?> encode() => {
+    'dataform_repository_source': dataformRepositorySource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'dataform_repository_source': TfArg.literal(
+      dataformRepositorySource.encode(),
+    ),
+  };
 }
 
-/// `gcs_notebook_source`.
-@immutable
-final class ColabNotebookExecutionGcsSource
+/// The [ColabNotebookExecutionSource.gcsNotebookSource] choice: sets `gcs_notebook_source`.
+final class ColabNotebookExecutionSourceGcsNotebookSource
     extends ColabNotebookExecutionSource {
-  const ColabNotebookExecutionGcsSource({required this.uri, this.generation});
+  const ColabNotebookExecutionSourceGcsNotebookSource(this.gcsNotebookSource);
 
-  final TfArg<String> uri;
-  final TfArg<String>? generation;
+  final ColabNotebookExecutionGcsNotebookSource gcsNotebookSource;
 
   @override
   String get blockKey => 'gcs_notebook_source';
 
   @override
-  List<Map<String, Object?>> encode() => [
-    {
-      'uri': uri.toTfJson(),
-      if (generation != null) 'generation': generation!.toTfJson(),
-    },
-  ];
+  Map<String, Object?> encode() => {
+    'gcs_notebook_source': gcsNotebookSource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'gcs_notebook_source': TfArg.literal(gcsNotebookSource.encode()),
+  };
 }
 
-/// `direct_notebook_source` — base64 ipynb content.
-@immutable
-final class ColabNotebookExecutionDirectSource
+/// The [ColabNotebookExecutionSource.directNotebookSource] choice: sets `direct_notebook_source`.
+final class ColabNotebookExecutionSourceDirectNotebookSource
     extends ColabNotebookExecutionSource {
-  const ColabNotebookExecutionDirectSource({required this.content});
+  const ColabNotebookExecutionSourceDirectNotebookSource(
+    this.directNotebookSource,
+  );
 
-  final TfArg<String> content;
+  final ColabNotebookExecutionDirectNotebookSource directNotebookSource;
 
   @override
   String get blockKey => 'direct_notebook_source';
 
   @override
-  List<Map<String, Object?>> encode() => [
-    {'content': content.toTfJson()},
-  ];
+  Map<String, Object?> encode() => {
+    'direct_notebook_source': directNotebookSource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'direct_notebook_source': TfArg.literal(directNotebookSource.encode()),
+  };
 }
 
-/// Exactly one compute configuration (runtime template **or** custom env).
+/// Exactly one of `notebook_runtime_template_resource_name`, `custom_environment_spec` on `google_colab_notebook_execution`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.notebookRuntimeTemplateResourceName(...)`.
 sealed class ColabNotebookExecutionCompute {
   const ColabNotebookExecutionCompute();
 
-  /// `notebook_runtime_template_resource_name` attribute.
-  const factory ColabNotebookExecutionCompute.template(
+  /// Sets `notebook_runtime_template_resource_name`.
+  const factory ColabNotebookExecutionCompute.notebookRuntimeTemplateResourceName(
     TfArg<String> notebookRuntimeTemplateResourceName,
-  ) = ColabNotebookExecutionTemplateCompute;
+  ) = ColabNotebookExecutionComputeNotebookRuntimeTemplateResourceName;
 
-  /// `custom_environment_spec` nested block (literal map matching provider).
-  const factory ColabNotebookExecutionCompute.custom(
-    TfArg<Map<String, Object?>> customEnvironmentSpec,
-  ) = ColabNotebookExecutionCustomCompute;
+  /// Sets `custom_environment_spec`.
+  const factory ColabNotebookExecutionCompute.customEnvironmentSpec(
+    ColabNotebookExecutionCustomEnvironmentSpec customEnvironmentSpec,
+  ) = ColabNotebookExecutionComputeCustomEnvironmentSpec;
 
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
-  /// Flat `{blockKey: value}` for Gate 6 / dynamic argMap dispatch.
   Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `notebook_runtime_template_resource_name` attribute.
-@immutable
-final class ColabNotebookExecutionTemplateCompute
+/// The [ColabNotebookExecutionCompute.notebookRuntimeTemplateResourceName] choice: sets `notebook_runtime_template_resource_name`.
+final class ColabNotebookExecutionComputeNotebookRuntimeTemplateResourceName
     extends ColabNotebookExecutionCompute {
-  const ColabNotebookExecutionTemplateCompute(
+  const ColabNotebookExecutionComputeNotebookRuntimeTemplateResourceName(
     this.notebookRuntimeTemplateResourceName,
   );
 
@@ -132,70 +153,270 @@ final class ColabNotebookExecutionTemplateCompute
 
   @override
   Map<String, Object?> encode() => {
-    blockKey: notebookRuntimeTemplateResourceName.toTfJson(),
+    'notebook_runtime_template_resource_name':
+        notebookRuntimeTemplateResourceName.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'notebook_runtime_template_resource_name':
+        notebookRuntimeTemplateResourceName,
   };
 }
 
-/// `custom_environment_spec` nested block (literal map matching provider).
-@immutable
-final class ColabNotebookExecutionCustomCompute
+/// The [ColabNotebookExecutionCompute.customEnvironmentSpec] choice: sets `custom_environment_spec`.
+final class ColabNotebookExecutionComputeCustomEnvironmentSpec
     extends ColabNotebookExecutionCompute {
-  const ColabNotebookExecutionCustomCompute(this.customEnvironmentSpec);
+  const ColabNotebookExecutionComputeCustomEnvironmentSpec(
+    this.customEnvironmentSpec,
+  );
 
-  final TfArg<Map<String, Object?>> customEnvironmentSpec;
+  final ColabNotebookExecutionCustomEnvironmentSpec customEnvironmentSpec;
 
   @override
   String get blockKey => 'custom_environment_spec';
 
   @override
   Map<String, Object?> encode() => {
-    blockKey: [customEnvironmentSpec.toTfJson()],
+    'custom_environment_spec': customEnvironmentSpec.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'custom_environment_spec': TfArg.literal(customEnvironmentSpec.encode()),
   };
 }
 
-/// Exactly one execution identity (`execution_user` or `service_account`).
+/// Exactly one of `execution_user`, `service_account` on `google_colab_notebook_execution`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.executionUser(...)`.
 sealed class ColabNotebookExecutionIdentity {
   const ColabNotebookExecutionIdentity();
 
+  /// Sets `execution_user`.
   const factory ColabNotebookExecutionIdentity.executionUser(
     TfArg<String> executionUser,
-  ) = ColabNotebookExecutionExecutionUser;
+  ) = ColabNotebookExecutionIdentityExecutionUser;
 
+  /// Sets `service_account`.
   const factory ColabNotebookExecutionIdentity.serviceAccount(
-    TfArg<String> serviceAccount,
-  ) = ColabNotebookExecutionServiceAccount;
+    RefTo<GoogleServiceAccount> serviceAccount,
+  ) = ColabNotebookExecutionIdentityServiceAccount;
 
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
-  TfArg<String> get value;
+  Map<String, Object?> encode();
 
-  Map<String, Object?> encode() => {blockKey: value.toTfJson()};
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `execution_user` variant.
-@immutable
-final class ColabNotebookExecutionExecutionUser
+/// The [ColabNotebookExecutionIdentity.executionUser] choice: sets `execution_user`.
+final class ColabNotebookExecutionIdentityExecutionUser
     extends ColabNotebookExecutionIdentity {
-  const ColabNotebookExecutionExecutionUser(this.value);
+  const ColabNotebookExecutionIdentityExecutionUser(this.executionUser);
 
-  @override
-  final TfArg<String> value;
+  final TfArg<String> executionUser;
 
   @override
   String get blockKey => 'execution_user';
-}
-
-/// `service_account` variant.
-@immutable
-final class ColabNotebookExecutionServiceAccount
-    extends ColabNotebookExecutionIdentity {
-  const ColabNotebookExecutionServiceAccount(this.value);
 
   @override
-  final TfArg<String> value;
+  Map<String, Object?> encode() => {'execution_user': executionUser.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'execution_user': executionUser};
+}
+
+/// The [ColabNotebookExecutionIdentity.serviceAccount] choice: sets `service_account`.
+final class ColabNotebookExecutionIdentityServiceAccount
+    extends ColabNotebookExecutionIdentity {
+  const ColabNotebookExecutionIdentityServiceAccount(this.serviceAccount);
+
+  final RefTo<GoogleServiceAccount> serviceAccount;
 
   @override
   String get blockKey => 'service_account';
+
+  @override
+  Map<String, Object?> encode() => {
+    'service_account': serviceAccount.encodeAs('email').toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'service_account': serviceAccount.encodeAs('email'),
+  };
+}
+
+/// Typed helper for the `custom_environment_spec` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionCustomEnvironmentSpec {
+  const ColabNotebookExecutionCustomEnvironmentSpec({
+    this.machineSpec,
+    this.networkSpec,
+    this.persistentDiskSpec,
+    this.shieldedInstanceConfig,
+  });
+
+  final ColabNotebookExecutionCustomEnvironmentSpecMachineSpec? machineSpec;
+
+  final ColabNotebookExecutionCustomEnvironmentSpecNetworkSpec? networkSpec;
+
+  final ColabNotebookExecutionCustomEnvironmentSpecPersistentDiskSpec?
+  persistentDiskSpec;
+
+  final ColabNotebookExecutionCustomEnvironmentSpecShieldedInstanceConfig?
+  shieldedInstanceConfig;
+
+  Map<String, Object?> encode() => {
+    'machine_spec': ?machineSpec?.encode(),
+    'network_spec': ?networkSpec?.encode(),
+    'persistent_disk_spec': ?persistentDiskSpec?.encode(),
+    'shielded_instance_config': ?shieldedInstanceConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `custom_environment_spec.machine_spec` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionCustomEnvironmentSpecMachineSpec {
+  const ColabNotebookExecutionCustomEnvironmentSpecMachineSpec({
+    this.acceleratorCount,
+    this.acceleratorType,
+    this.machineType,
+  });
+
+  final TfArg<num>? acceleratorCount;
+
+  final TfArg<String>? acceleratorType;
+
+  final TfArg<String>? machineType;
+
+  Map<String, Object?> encode() => {
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `custom_environment_spec.network_spec` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionCustomEnvironmentSpecNetworkSpec {
+  const ColabNotebookExecutionCustomEnvironmentSpecNetworkSpec({
+    this.enableInternetAccess,
+    this.network,
+    this.subnetwork,
+  });
+
+  final TfArg<bool>? enableInternetAccess;
+
+  final RefTo<GoogleComputeNetwork>? network;
+
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
+
+  Map<String, Object?> encode() => {
+    'enable_internet_access': ?enableInternetAccess?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `custom_environment_spec.persistent_disk_spec` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionCustomEnvironmentSpecPersistentDiskSpec {
+  const ColabNotebookExecutionCustomEnvironmentSpecPersistentDiskSpec({
+    this.diskSizeGb,
+    this.diskType,
+  });
+
+  final TfArg<String>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  Map<String, Object?> encode() => {
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `custom_environment_spec.shielded_instance_config` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionCustomEnvironmentSpecShieldedInstanceConfig {
+  const ColabNotebookExecutionCustomEnvironmentSpecShieldedInstanceConfig({
+    this.enableIntegrityMonitoring,
+    this.enableSecureBoot,
+    this.enableVtpm,
+  });
+
+  final TfArg<bool>? enableIntegrityMonitoring;
+
+  final TfArg<bool>? enableSecureBoot;
+
+  final TfArg<bool>? enableVtpm;
+
+  Map<String, Object?> encode() => {
+    'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
+    'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
+    'enable_vtpm': ?enableVtpm?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `dataform_repository_source` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionDataformRepositorySource {
+  const ColabNotebookExecutionDataformRepositorySource({
+    this.commitSha,
+    required this.dataformRepositoryResourceName,
+  });
+
+  final TfArg<String>? commitSha;
+
+  final TfArg<String> dataformRepositoryResourceName;
+
+  Map<String, Object?> encode() => {
+    'commit_sha': ?commitSha?.toTfJson(),
+    'dataform_repository_resource_name': dataformRepositoryResourceName
+        .toTfJson(),
+  };
+}
+
+/// Typed helper for the `direct_notebook_source` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionDirectNotebookSource {
+  const ColabNotebookExecutionDirectNotebookSource({required this.content});
+
+  final TfArg<String> content;
+
+  Map<String, Object?> encode() => {'content': content.toTfJson()};
+}
+
+/// Typed helper for the `gcs_notebook_source` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionGcsNotebookSource {
+  const ColabNotebookExecutionGcsNotebookSource({
+    this.generation,
+    required this.uri,
+  });
+
+  final TfArg<String>? generation;
+
+  final TfArg<String> uri;
+
+  Map<String, Object?> encode() => {
+    'generation': ?generation?.toTfJson(),
+    'uri': uri.toTfJson(),
+  };
 }
 
 /// Typed helper for the `workbench_runtime` block of
@@ -315,6 +536,7 @@ final class GoogleColabNotebookExecution extends Resource {
     TfArg<String>? executionTimeout,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    ColabNotebookExecutionWorkbenchRuntime? workbenchRuntime,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -329,9 +551,11 @@ final class GoogleColabNotebookExecution extends Resource {
            'execution_timeout': ?executionTimeout,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
-           source.blockKey: TfArg.literal(source.encode()),
-           compute.blockKey: TfArg.literal(compute.encode()[compute.blockKey]),
-           identity.blockKey: identity.value,
+           ...source.argMap,
+           ...compute.argMap,
+           ...identity.argMap,
+           if (workbenchRuntime != null)
+             'workbench_runtime': TfArg.literal(workbenchRuntime.encode()),
          },
        );
 

@@ -80,7 +80,7 @@ final class DeferredLeftoverStack extends Stack {
         securityActionId: .literal('terradart-leftover'),
         state: .literal(.enabled),
         conditionConfig: const ApigeeSecurityActionConditionConfig(),
-        deny: const ApigeeSecurityActionDeny(),
+        effect: const .deny(ApigeeSecurityActionDeny()),
       ),
     );
 

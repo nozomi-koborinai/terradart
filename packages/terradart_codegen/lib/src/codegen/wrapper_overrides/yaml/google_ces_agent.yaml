@@ -57,6 +57,7 @@ paramOrder:
   - after_tool_callbacks
   - deletion_policy
   - project
+  - transfer_rules
 
 extraGetters: |2
     /// Reference to `agent_id` (set this on create so association can bind it).

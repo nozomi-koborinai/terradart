@@ -17,6 +17,90 @@ enum ApigeeSecurityActionState implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `allow`, `deny`, `flag` on `google_apigee_security_action`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.allow(...)`.
+sealed class ApigeeSecurityActionEffect {
+  const ApigeeSecurityActionEffect();
+
+  /// Sets `allow`.
+  const factory ApigeeSecurityActionEffect.allow(
+    ApigeeSecurityActionAllow allow,
+  ) = ApigeeSecurityActionEffectAllow;
+
+  /// Sets `deny`.
+  const factory ApigeeSecurityActionEffect.deny(ApigeeSecurityActionDeny deny) =
+      ApigeeSecurityActionEffectDeny;
+
+  /// Sets `flag`.
+  const factory ApigeeSecurityActionEffect.flag(ApigeeSecurityActionFlag flag) =
+      ApigeeSecurityActionEffectFlag;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [ApigeeSecurityActionEffect.allow] choice: sets `allow`.
+final class ApigeeSecurityActionEffectAllow extends ApigeeSecurityActionEffect {
+  const ApigeeSecurityActionEffectAllow(this.allow);
+
+  final ApigeeSecurityActionAllow allow;
+
+  @override
+  String get blockKey => 'allow';
+
+  @override
+  Map<String, Object?> encode() => {'allow': allow.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'allow': TfArg.literal(allow.encode()),
+  };
+}
+
+/// The [ApigeeSecurityActionEffect.deny] choice: sets `deny`.
+final class ApigeeSecurityActionEffectDeny extends ApigeeSecurityActionEffect {
+  const ApigeeSecurityActionEffectDeny(this.deny);
+
+  final ApigeeSecurityActionDeny deny;
+
+  @override
+  String get blockKey => 'deny';
+
+  @override
+  Map<String, Object?> encode() => {'deny': deny.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'deny': TfArg.literal(deny.encode()),
+  };
+}
+
+/// The [ApigeeSecurityActionEffect.flag] choice: sets `flag`.
+final class ApigeeSecurityActionEffectFlag extends ApigeeSecurityActionEffect {
+  const ApigeeSecurityActionEffectFlag(this.flag);
+
+  final ApigeeSecurityActionFlag flag;
+
+  @override
+  String get blockKey => 'flag';
+
+  @override
+  Map<String, Object?> encode() => {'flag': flag.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'flag': TfArg.literal(flag.encode()),
+  };
+}
+
 /// At most one of `expire_time`, `ttl` on `google_apigee_security_action`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
@@ -209,7 +293,7 @@ final class GoogleApigeeSecurityAction extends Resource {
     required TfArg<String> securityActionId,
     required TfArg<ApigeeSecurityActionState> state,
     required ApigeeSecurityActionConditionConfig conditionConfig,
-    ApigeeSecurityActionDeny? deny,
+    required ApigeeSecurityActionEffect effect,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -226,7 +310,7 @@ final class GoogleApigeeSecurityAction extends Resource {
            'security_action_id': securityActionId,
            'state': state,
            'condition_config': TfArg.literal(conditionConfig.encode()),
-           if (deny != null) 'deny': TfArg.literal(deny.encode()),
+           ...effect.argMap,
          },
        );
 

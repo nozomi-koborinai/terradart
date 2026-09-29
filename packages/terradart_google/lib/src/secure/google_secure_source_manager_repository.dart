@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_secure_source_manager_repository`.
 const Set<String> _googleSecureSourceManagerRepositorySensitive = <String>{};
 
@@ -94,6 +96,8 @@ final class GoogleSecureSourceManagerRepository extends Resource {
     SecureSourceManagerRepositoryInitialConfig? initialConfig,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    RefTo<GoogleServiceAccount>? serviceAccount,
+    SecureSourceManagerRepositoryScanConfig? scanConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -109,6 +113,9 @@ final class GoogleSecureSourceManagerRepository extends Resource {
              'initial_config': TfArg.literal(initialConfig.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           'service_account': ?serviceAccount?.encodeAs('email'),
+           if (scanConfig != null)
+             'scan_config': TfArg.literal(scanConfig.encode()),
          },
        );
 

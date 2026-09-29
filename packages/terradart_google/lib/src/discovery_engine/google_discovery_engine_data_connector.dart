@@ -9,6 +9,67 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 /// Sensitive field paths for `google_discovery_engine_data_connector`.
 const Set<String> _googleDiscoveryEngineDataConnectorSensitive = <String>{};
 
+/// Exactly one of `params`, `json_params` on `google_discovery_engine_data_connector`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.params(...)`.
+sealed class DiscoveryEngineDataConnectorParams {
+  const DiscoveryEngineDataConnectorParams();
+
+  /// Sets `params`.
+  const factory DiscoveryEngineDataConnectorParams.params(
+    TfArg<Map<String, String>> params,
+  ) = DiscoveryEngineDataConnectorParamsParams;
+
+  /// Sets `json_params`.
+  const factory DiscoveryEngineDataConnectorParams.jsonParams(
+    TfArg<String> jsonParams,
+  ) = DiscoveryEngineDataConnectorParamsJsonParams;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DiscoveryEngineDataConnectorParams.params] choice: sets `params`.
+final class DiscoveryEngineDataConnectorParamsParams
+    extends DiscoveryEngineDataConnectorParams {
+  const DiscoveryEngineDataConnectorParamsParams(this.params);
+
+  final TfArg<Map<String, String>> params;
+
+  @override
+  String get blockKey => 'params';
+
+  @override
+  Map<String, Object?> encode() => {'params': params.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'params': params};
+}
+
+/// The [DiscoveryEngineDataConnectorParams.jsonParams] choice: sets `json_params`.
+final class DiscoveryEngineDataConnectorParamsJsonParams
+    extends DiscoveryEngineDataConnectorParams {
+  const DiscoveryEngineDataConnectorParamsJsonParams(this.jsonParams);
+
+  final TfArg<String> jsonParams;
+
+  @override
+  String get blockKey => 'json_params';
+
+  @override
+  Map<String, Object?> encode() => {'json_params': jsonParams.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'json_params': jsonParams};
+}
+
 /// Typed helper for the `action_config` block of
 /// `google_discovery_engine_data_connector` (derived from provider schema).
 @immutable
@@ -172,7 +233,7 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<String>? incrementalRefreshInterval,
     TfArg<bool>? incrementalSyncDisabled,
-    TfArg<String>? jsonParams,
+    required DiscoveryEngineDataConnectorParams params,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required TfArg<String> location,
     TfArg<String>? project,
@@ -183,6 +244,8 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
     DiscoveryEngineDataConnectorBapConfig? bapConfig,
     List<DiscoveryEngineDataConnectorDestinationConfigs>? destinationConfigs,
     List<DiscoveryEngineDataConnectorEntities>? entities,
+    TfArg<String>? tag,
+    DiscoveryEngineDataConnectorMetadata? metadata,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -199,7 +262,7 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
            'deletion_policy': ?deletionPolicy,
            'incremental_refresh_interval': ?incrementalRefreshInterval,
            'incremental_sync_disabled': ?incrementalSyncDisabled,
-           'json_params': ?jsonParams,
+           ...params.argMap,
            'kms_key_name': ?kmsKeyName?.encodeAs('id'),
            'location': location,
            'project': ?project,
@@ -216,6 +279,8 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
              ]),
            if (entities != null)
              'entities': TfArg.literal([for (final e in entities) e.encode()]),
+           'tag': ?tag,
+           if (metadata != null) 'metadata': TfArg.literal(metadata.encode()),
          },
        );
 

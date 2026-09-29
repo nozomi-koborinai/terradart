@@ -11,7 +11,8 @@ library;
 
 export 'src/vertex_ai/google_vertex_ai_cache_config.dart'
     show GoogleVertexAiCacheConfig;
-export 'src/vertex_ai/google_vertex_ai_dataset.dart' show GoogleVertexAiDataset;
+export 'src/vertex_ai/google_vertex_ai_dataset.dart'
+    show GoogleVertexAiDataset, VertexAiDatasetEncryptionSpec;
 export 'src/vertex_ai/google_vertex_ai_deployment_resource_pool.dart'
     show
         GoogleVertexAiDeploymentResourcePool,
@@ -72,16 +73,24 @@ export 'src/vertex_ai/google_vertex_ai_feature_online_store.dart'
         GoogleVertexAiFeatureOnlineStore,
         VertexAiFeatureOnlineStoreBigtable,
         VertexAiFeatureOnlineStoreBigtableAutoScaling,
+        VertexAiFeatureOnlineStoreDedicatedServingEndpoint,
+        VertexAiFeatureOnlineStoreDedicatedServingEndpointPrivateServiceConnectConfig,
+        VertexAiFeatureOnlineStoreEncryptionSpec,
         VertexAiFeatureOnlineStoreOptimized,
         VertexAiFeatureOnlineStoreStorage;
 export 'src/vertex_ai/google_vertex_ai_feature_online_store_featureview.dart'
     show
         GoogleVertexAiFeatureOnlineStoreFeatureview,
         VertexAiFeatureOnlineStoreFeatureviewBigQuerySource,
-        VertexAiFeatureOnlineStoreFeatureviewFeatureGroup,
         VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource,
+        VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGroups,
         VertexAiFeatureOnlineStoreFeatureviewSource,
-        VertexAiFeatureOnlineStoreFeatureviewSyncConfig;
+        VertexAiFeatureOnlineStoreFeatureviewSourceBigQuerySource,
+        VertexAiFeatureOnlineStoreFeatureviewSourceFeatureRegistrySource,
+        VertexAiFeatureOnlineStoreFeatureviewSyncConfig,
+        VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule,
+        VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleContinuous,
+        VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleCron;
 export 'src/vertex_ai/google_vertex_ai_featurestore.dart'
     show
         GoogleVertexAiFeaturestore,
@@ -261,7 +270,7 @@ export 'src/vertex_ai/google_vertex_ai_semantic_governance_policy_engine.dart'
         GoogleVertexAiSemanticGovernancePolicyEngine,
         VertexAiSemanticGovernancePolicyEngineGatewayConfigs;
 export 'src/vertex_ai/google_vertex_ai_tensorboard.dart'
-    show GoogleVertexAiTensorboard;
+    show GoogleVertexAiTensorboard, VertexAiTensorboardEncryptionSpec;
 export 'src/vertex_ai/google_vertex_ai_tensorboard_experiment.dart'
     show GoogleVertexAiTensorboardExperiment;
 export 'src/vertex_ai/google_vertex_ai_tensorboard_run.dart'

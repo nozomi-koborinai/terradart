@@ -9,6 +9,172 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_app_engine_standard_app_version`.
 const Set<String> _googleAppEngineStandardAppVersionSensitive = <String>{};
 
+/// At most one of `app_engine_apis`, `app_engine_bundled_services` on `google_app_engine_standard_app_version`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.appEngineApis(...)`.
+sealed class AppEngineStandardAppVersionLegacyServices {
+  const AppEngineStandardAppVersionLegacyServices();
+
+  /// Sets `app_engine_apis`.
+  const factory AppEngineStandardAppVersionLegacyServices.appEngineApis(
+    TfArg<bool> appEngineApis,
+  ) = AppEngineStandardAppVersionLegacyServicesAppEngineApis;
+
+  /// Sets `app_engine_bundled_services`.
+  const factory AppEngineStandardAppVersionLegacyServices.appEngineBundledServices(
+    TfArg<List<String>> appEngineBundledServices,
+  ) = AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [AppEngineStandardAppVersionLegacyServices.appEngineApis] choice: sets `app_engine_apis`.
+final class AppEngineStandardAppVersionLegacyServicesAppEngineApis
+    extends AppEngineStandardAppVersionLegacyServices {
+  const AppEngineStandardAppVersionLegacyServicesAppEngineApis(
+    this.appEngineApis,
+  );
+
+  final TfArg<bool> appEngineApis;
+
+  @override
+  String get blockKey => 'app_engine_apis';
+
+  @override
+  Map<String, Object?> encode() => {
+    'app_engine_apis': appEngineApis.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'app_engine_apis': appEngineApis};
+}
+
+/// The [AppEngineStandardAppVersionLegacyServices.appEngineBundledServices] choice: sets `app_engine_bundled_services`.
+final class AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices
+    extends AppEngineStandardAppVersionLegacyServices {
+  const AppEngineStandardAppVersionLegacyServicesAppEngineBundledServices(
+    this.appEngineBundledServices,
+  );
+
+  final TfArg<List<String>> appEngineBundledServices;
+
+  @override
+  String get blockKey => 'app_engine_bundled_services';
+
+  @override
+  Map<String, Object?> encode() => {
+    'app_engine_bundled_services': appEngineBundledServices.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'app_engine_bundled_services': appEngineBundledServices,
+  };
+}
+
+/// At most one of `automatic_scaling`, `basic_scaling`, `manual_scaling` on `google_app_engine_standard_app_version`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.automaticScaling(...)`.
+sealed class AppEngineStandardAppVersionScaling {
+  const AppEngineStandardAppVersionScaling();
+
+  /// Sets `automatic_scaling`.
+  const factory AppEngineStandardAppVersionScaling.automaticScaling(
+    AppEngineStandardAppVersionAutomaticScaling automaticScaling,
+  ) = AppEngineStandardAppVersionScalingAutomaticScaling;
+
+  /// Sets `basic_scaling`.
+  const factory AppEngineStandardAppVersionScaling.basicScaling(
+    AppEngineStandardAppVersionBasicScaling basicScaling,
+  ) = AppEngineStandardAppVersionScalingBasicScaling;
+
+  /// Sets `manual_scaling`.
+  const factory AppEngineStandardAppVersionScaling.manualScaling(
+    AppEngineStandardAppVersionManualScaling manualScaling,
+  ) = AppEngineStandardAppVersionScalingManualScaling;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [AppEngineStandardAppVersionScaling.automaticScaling] choice: sets `automatic_scaling`.
+final class AppEngineStandardAppVersionScalingAutomaticScaling
+    extends AppEngineStandardAppVersionScaling {
+  const AppEngineStandardAppVersionScalingAutomaticScaling(
+    this.automaticScaling,
+  );
+
+  final AppEngineStandardAppVersionAutomaticScaling automaticScaling;
+
+  @override
+  String get blockKey => 'automatic_scaling';
+
+  @override
+  Map<String, Object?> encode() => {
+    'automatic_scaling': automaticScaling.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'automatic_scaling': TfArg.literal(automaticScaling.encode()),
+  };
+}
+
+/// The [AppEngineStandardAppVersionScaling.basicScaling] choice: sets `basic_scaling`.
+final class AppEngineStandardAppVersionScalingBasicScaling
+    extends AppEngineStandardAppVersionScaling {
+  const AppEngineStandardAppVersionScalingBasicScaling(this.basicScaling);
+
+  final AppEngineStandardAppVersionBasicScaling basicScaling;
+
+  @override
+  String get blockKey => 'basic_scaling';
+
+  @override
+  Map<String, Object?> encode() => {'basic_scaling': basicScaling.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'basic_scaling': TfArg.literal(basicScaling.encode()),
+  };
+}
+
+/// The [AppEngineStandardAppVersionScaling.manualScaling] choice: sets `manual_scaling`.
+final class AppEngineStandardAppVersionScalingManualScaling
+    extends AppEngineStandardAppVersionScaling {
+  const AppEngineStandardAppVersionScalingManualScaling(this.manualScaling);
+
+  final AppEngineStandardAppVersionManualScaling manualScaling;
+
+  @override
+  String get blockKey => 'manual_scaling';
+
+  @override
+  Map<String, Object?> encode() => {'manual_scaling': manualScaling.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'manual_scaling': TfArg.literal(manualScaling.encode()),
+  };
+}
+
 /// Typed helper for the `automatic_scaling` block of
 /// `google_app_engine_standard_app_version` (derived from provider schema).
 @immutable
@@ -367,10 +533,9 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     List<AppEngineStandardAppVersionHandlers>? handlers,
     required AppEngineStandardAppVersionDeployment deployment,
     required AppEngineStandardAppVersionEntrypoint entrypoint,
-    AppEngineStandardAppVersionAutomaticScaling? automaticScaling,
-    AppEngineStandardAppVersionManualScaling? manualScaling,
+    AppEngineStandardAppVersionScaling? scaling,
     AppEngineStandardAppVersionVpcAccessConnector? vpcAccessConnector,
-    TfArg<bool>? appEngineApis,
+    AppEngineStandardAppVersionLegacyServices? legacyServices,
     TfArg<bool>? deleteServiceOnDestroy,
     TfArg<String>? deletionPolicy,
     TfArg<bool>? noopOnDestroy,
@@ -378,6 +543,7 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
     TfArg<bool>? threadsafe,
     TfArg<List<String>>? inboundServices,
     TfArg<String>? project,
+    List<AppEngineStandardAppVersionLibraries>? libraries,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -395,13 +561,10 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
              'handlers': TfArg.literal([for (final e in handlers) e.encode()]),
            'deployment': TfArg.literal(deployment.encode()),
            'entrypoint': TfArg.literal(entrypoint.encode()),
-           if (automaticScaling != null)
-             'automatic_scaling': TfArg.literal(automaticScaling.encode()),
-           if (manualScaling != null)
-             'manual_scaling': TfArg.literal(manualScaling.encode()),
+           ...?scaling?.argMap,
            if (vpcAccessConnector != null)
              'vpc_access_connector': TfArg.literal(vpcAccessConnector.encode()),
-           'app_engine_apis': ?appEngineApis,
+           ...?legacyServices?.argMap,
            'delete_service_on_destroy': ?deleteServiceOnDestroy,
            'deletion_policy': ?deletionPolicy,
            'noop_on_destroy': ?noopOnDestroy,
@@ -409,6 +572,10 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
            'threadsafe': ?threadsafe,
            'inbound_services': ?inboundServices,
            'project': ?project,
+           if (libraries != null)
+             'libraries': TfArg.literal([
+               for (final e in libraries) e.encode(),
+             ]),
          },
        );
 

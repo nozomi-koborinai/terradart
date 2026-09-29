@@ -47,3 +47,5 @@ paramOrder:
   - channel_profile
   - deletion_policy
   - project
+  - instagram_credentials
+  - whatsapp_credentials

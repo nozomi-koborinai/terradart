@@ -6,6 +6,11 @@ import 'package:terradart_google/src/cloud_run/google_cloud_run_v2_service.dart'
     show EmptyDirMedium, ScalingMode;
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_cloud_run_v2_worker_pool`.
 const Set<String> _googleCloudRunV2WorkerPoolSensitive = <String>{};
 
@@ -43,99 +48,6 @@ enum CloudRunV2WorkerPoolEncryptionKeyRevocationAction
   const CloudRunV2WorkerPoolEncryptionKeyRevocationAction(this.terraformValue);
   @override
   final String terraformValue;
-}
-
-@immutable
-class CloudRunV2WorkerPoolInstanceSplit {
-  const CloudRunV2WorkerPoolInstanceSplit({
-    this.percent,
-    this.revision,
-    this.type,
-  });
-
-  final TfArg<int>? percent;
-  final TfArg<String>? revision;
-  final CloudRunV2WorkerPoolInstanceSplitType? type;
-
-  Map<String, Object?> toArgMap() => {
-    if (percent != null) 'percent': percent!.toTfJson(),
-    if (revision != null) 'revision': revision!.toTfJson(),
-    if (type != null) 'type': type!.terraformValue,
-  };
-}
-
-@immutable
-class CloudRunV2WorkerPoolScaling {
-  const CloudRunV2WorkerPoolScaling({
-    this.manualInstanceCount,
-    this.maxInstanceCount,
-    this.minInstanceCount,
-    this.scalingMode,
-  });
-
-  final TfArg<int>? manualInstanceCount;
-  final TfArg<int>? maxInstanceCount;
-  final TfArg<int>? minInstanceCount;
-  final ScalingMode? scalingMode;
-
-  Map<String, Object?> encode() => {
-    if (manualInstanceCount != null)
-      'manual_instance_count': manualInstanceCount!.toTfJson(),
-    if (maxInstanceCount != null)
-      'max_instance_count': maxInstanceCount!.toTfJson(),
-    if (minInstanceCount != null)
-      'min_instance_count': minInstanceCount!.toTfJson(),
-    if (scalingMode != null) 'scaling_mode': scalingMode!.terraformValue,
-  };
-}
-
-@immutable
-class CloudRunV2WorkerPoolEmptyDirVolume {
-  const CloudRunV2WorkerPoolEmptyDirVolume({this.medium, this.sizeLimit});
-
-  final EmptyDirMedium? medium;
-  final TfArg<String>? sizeLimit;
-
-  Map<String, Object?> encode() => {
-    if (medium != null) 'medium': medium!.terraformValue,
-    if (sizeLimit != null) 'size_limit': sizeLimit!.toTfJson(),
-  };
-}
-
-@immutable
-class CloudRunV2WorkerPoolVolume {
-  const CloudRunV2WorkerPoolVolume({required this.name, this.emptyDir});
-
-  final TfArg<String> name;
-  final CloudRunV2WorkerPoolEmptyDirVolume? emptyDir;
-
-  Map<String, Object?> toArgMap() => {
-    'name': name.toTfJson(),
-    if (emptyDir != null) 'empty_dir': [emptyDir!.encode()],
-  };
-}
-
-@immutable
-class CloudRunV2WorkerPoolTemplate {
-  const CloudRunV2WorkerPoolTemplate({
-    this.containers,
-    this.encryptionKeyRevocationAction,
-    this.volumes,
-  });
-
-  /// Container specs — pass literal maps when full container typing is not needed.
-  final List<Map<String, Object?>>? containers;
-  final CloudRunV2WorkerPoolEncryptionKeyRevocationAction?
-  encryptionKeyRevocationAction;
-  final List<CloudRunV2WorkerPoolVolume>? volumes;
-
-  Map<String, Object?> encode() => {
-    if (containers != null) 'containers': containers,
-    if (encryptionKeyRevocationAction != null)
-      'encryption_key_revocation_action':
-          encryptionKeyRevocationAction!.terraformValue,
-    if (volumes != null) 'volumes': volumes!.map((v) => v.toArgMap()).toList(),
-  };
 }
 
 /// Typed helper for the `binary_authorization` block of
@@ -211,6 +123,882 @@ final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy
   Map<String, Object?> encode() => {'policy': policy.toTfJson()};
 }
 
+/// Typed helper for the `instance_splits` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolInstanceSplits {
+  const CloudRunV2WorkerPoolInstanceSplits({
+    this.percent,
+    this.revision,
+    this.type,
+  });
+
+  final TfArg<num>? percent;
+
+  final TfArg<String>? revision;
+
+  final TfArg<CloudRunV2WorkerPoolInstanceSplitType>? type;
+
+  Map<String, Object?> encode() => {
+    'percent': ?percent?.toTfJson(),
+    'revision': ?revision?.toTfJson(),
+    'type': ?type?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `scaling` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolScaling {
+  const CloudRunV2WorkerPoolScaling({
+    this.manualInstanceCount,
+    this.maxInstanceCount,
+    this.minInstanceCount,
+    this.scalingMode,
+  });
+
+  final TfArg<num>? manualInstanceCount;
+
+  final TfArg<num>? maxInstanceCount;
+
+  final TfArg<num>? minInstanceCount;
+
+  final TfArg<ScalingMode>? scalingMode;
+
+  Map<String, Object?> encode() => {
+    'manual_instance_count': ?manualInstanceCount?.toTfJson(),
+    'max_instance_count': ?maxInstanceCount?.toTfJson(),
+    'min_instance_count': ?minInstanceCount?.toTfJson(),
+    'scaling_mode': ?scalingMode?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplate {
+  const CloudRunV2WorkerPoolTemplate({
+    this.annotations,
+    this.client,
+    this.clientVersion,
+    this.encryptionKey,
+    this.encryptionKeyRevocationAction,
+    this.encryptionKeyShutdownDuration,
+    this.gpuZonalRedundancyDisabled,
+    this.labels,
+    this.revision,
+    this.serviceAccount,
+    this.containers,
+    this.nodeSelector,
+    this.volumes,
+    this.vpcAccess,
+  });
+
+  final TfArg<Map<String, String>>? annotations;
+
+  final TfArg<String>? client;
+
+  final TfArg<String>? clientVersion;
+
+  final TfArg<String>? encryptionKey;
+
+  final TfArg<CloudRunV2WorkerPoolEncryptionKeyRevocationAction>?
+  encryptionKeyRevocationAction;
+
+  final TfArg<String>? encryptionKeyShutdownDuration;
+
+  final TfArg<bool>? gpuZonalRedundancyDisabled;
+
+  final TfArg<Map<String, String>>? labels;
+
+  final TfArg<String>? revision;
+
+  final RefTo<GoogleServiceAccount>? serviceAccount;
+
+  final List<CloudRunV2WorkerPoolTemplateContainers>? containers;
+
+  final CloudRunV2WorkerPoolTemplateNodeSelector? nodeSelector;
+
+  final List<CloudRunV2WorkerPoolTemplateVolumes>? volumes;
+
+  final CloudRunV2WorkerPoolTemplateVpcAccess? vpcAccess;
+
+  Map<String, Object?> encode() => {
+    'annotations': ?annotations?.toTfJson(),
+    'client': ?client?.toTfJson(),
+    'client_version': ?clientVersion?.toTfJson(),
+    'encryption_key': ?encryptionKey?.toTfJson(),
+    'encryption_key_revocation_action': ?encryptionKeyRevocationAction
+        ?.toTfJson(),
+    'encryption_key_shutdown_duration': ?encryptionKeyShutdownDuration
+        ?.toTfJson(),
+    'gpu_zonal_redundancy_disabled': ?gpuZonalRedundancyDisabled?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'revision': ?revision?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    if (containers != null)
+      'containers': [for (final e in containers!) e.encode()],
+    'node_selector': ?nodeSelector?.encode(),
+    if (volumes != null) 'volumes': [for (final e in volumes!) e.encode()],
+    'vpc_access': ?vpcAccess?.encode(),
+  };
+}
+
+/// Typed helper for the `template.containers` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainers {
+  const CloudRunV2WorkerPoolTemplateContainers({
+    this.args,
+    this.command,
+    this.dependsOn,
+    required this.image,
+    this.name,
+    this.sandboxLauncher,
+    this.workingDir,
+    this.env,
+    this.livenessProbe,
+    this.resources,
+    this.startupProbe,
+    this.volumeMounts,
+  });
+
+  final TfArg<List<Object?>>? args;
+
+  final TfArg<List<Object?>>? command;
+
+  final TfArg<List<Object?>>? dependsOn;
+
+  final TfArg<String> image;
+
+  final TfArg<String>? name;
+
+  final TfArg<bool>? sandboxLauncher;
+
+  final TfArg<String>? workingDir;
+
+  final List<CloudRunV2WorkerPoolTemplateContainersEnv>? env;
+
+  final CloudRunV2WorkerPoolTemplateContainersLivenessProbe? livenessProbe;
+
+  final CloudRunV2WorkerPoolTemplateContainersResources? resources;
+
+  final CloudRunV2WorkerPoolTemplateContainersStartupProbe? startupProbe;
+
+  final List<CloudRunV2WorkerPoolTemplateContainersVolumeMounts>? volumeMounts;
+
+  Map<String, Object?> encode() => {
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'depends_on': ?dependsOn?.toTfJson(),
+    'image': image.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'sandbox_launcher': ?sandboxLauncher?.toTfJson(),
+    'working_dir': ?workingDir?.toTfJson(),
+    if (env != null) 'env': [for (final e in env!) e.encode()],
+    'liveness_probe': ?livenessProbe?.encode(),
+    'resources': ?resources?.encode(),
+    'startup_probe': ?startupProbe?.encode(),
+    if (volumeMounts != null)
+      'volume_mounts': [for (final e in volumeMounts!) e.encode()],
+  };
+}
+
+/// Typed helper for the `template.containers.env` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersEnv {
+  const CloudRunV2WorkerPoolTemplateContainersEnv({
+    required this.name,
+    required this.source,
+  });
+
+  final TfArg<String> name;
+
+  final CloudRunV2WorkerPoolTemplateContainersEnvSource source;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    ...source.encode(),
+  };
+}
+
+/// Exactly one of `value`, `value_source` on the `template.containers.env` block of `google_cloud_run_v2_worker_pool`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.value(...)`.
+sealed class CloudRunV2WorkerPoolTemplateContainersEnvSource {
+  const CloudRunV2WorkerPoolTemplateContainersEnvSource();
+
+  /// Sets `value`.
+  const factory CloudRunV2WorkerPoolTemplateContainersEnvSource.value(
+    TfArg<String> value,
+  ) = CloudRunV2WorkerPoolTemplateContainersEnvSourceValue;
+
+  /// Sets `value_source`.
+  const factory CloudRunV2WorkerPoolTemplateContainersEnvSource.valueSource(
+    CloudRunV2WorkerPoolTemplateContainersEnvValueSource valueSource,
+  ) = CloudRunV2WorkerPoolTemplateContainersEnvSourceValueSource;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [CloudRunV2WorkerPoolTemplateContainersEnvSource.value] choice: sets `value`.
+final class CloudRunV2WorkerPoolTemplateContainersEnvSourceValue
+    extends CloudRunV2WorkerPoolTemplateContainersEnvSource {
+  const CloudRunV2WorkerPoolTemplateContainersEnvSourceValue(this.value);
+
+  final TfArg<String> value;
+
+  @override
+  String get blockKey => 'value';
+
+  @override
+  Map<String, Object?> encode() => {'value': value.toTfJson()};
+}
+
+/// The [CloudRunV2WorkerPoolTemplateContainersEnvSource.valueSource] choice: sets `value_source`.
+final class CloudRunV2WorkerPoolTemplateContainersEnvSourceValueSource
+    extends CloudRunV2WorkerPoolTemplateContainersEnvSource {
+  const CloudRunV2WorkerPoolTemplateContainersEnvSourceValueSource(
+    this.valueSource,
+  );
+
+  final CloudRunV2WorkerPoolTemplateContainersEnvValueSource valueSource;
+
+  @override
+  String get blockKey => 'value_source';
+
+  @override
+  Map<String, Object?> encode() => {'value_source': valueSource.encode()};
+}
+
+/// Typed helper for the `template.containers.env.value_source` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersEnvValueSource {
+  const CloudRunV2WorkerPoolTemplateContainersEnvValueSource({
+    this.secretKeyRef,
+  });
+
+  final CloudRunV2WorkerPoolTemplateContainersEnvValueSourceSecretKeyRef?
+  secretKeyRef;
+
+  Map<String, Object?> encode() => {'secret_key_ref': ?secretKeyRef?.encode()};
+}
+
+/// Typed helper for the `template.containers.env.value_source.secret_key_ref` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersEnvValueSourceSecretKeyRef {
+  const CloudRunV2WorkerPoolTemplateContainersEnvValueSourceSecretKeyRef({
+    required this.secret,
+    this.version,
+  });
+
+  final TfArg<String> secret;
+
+  final TfArg<String>? version;
+
+  Map<String, Object?> encode() => {
+    'secret': secret.toTfJson(),
+    'version': ?version?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.containers.liveness_probe` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersLivenessProbe {
+  const CloudRunV2WorkerPoolTemplateContainersLivenessProbe({
+    this.failureThreshold,
+    this.initialDelaySeconds,
+    this.periodSeconds,
+    this.timeoutSeconds,
+    this.grpc,
+    this.httpGet,
+    this.tcpSocket,
+  });
+
+  final TfArg<num>? failureThreshold;
+
+  final TfArg<num>? initialDelaySeconds;
+
+  final TfArg<num>? periodSeconds;
+
+  final TfArg<num>? timeoutSeconds;
+
+  final CloudRunV2WorkerPoolTemplateContainersLivenessProbeGrpc? grpc;
+
+  final CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGet? httpGet;
+
+  final CloudRunV2WorkerPoolTemplateContainersLivenessProbeTcpSocket? tcpSocket;
+
+  Map<String, Object?> encode() => {
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
+    'period_seconds': ?periodSeconds?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
+    'grpc': ?grpc?.encode(),
+    'http_get': ?httpGet?.encode(),
+    'tcp_socket': ?tcpSocket?.encode(),
+  };
+}
+
+/// Typed helper for the `template.containers.liveness_probe.grpc` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeGrpc {
+  const CloudRunV2WorkerPoolTemplateContainersLivenessProbeGrpc({
+    this.port,
+    this.service,
+  });
+
+  final TfArg<num>? port;
+
+  final TfArg<String>? service;
+
+  Map<String, Object?> encode() => {
+    'port': ?port?.toTfJson(),
+    'service': ?service?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.containers.liveness_probe.http_get` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGet {
+  const CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGet({
+    this.path,
+    this.port,
+    this.httpHeaders,
+  });
+
+  final TfArg<String>? path;
+
+  final TfArg<num>? port;
+
+  final List<
+    CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGetHttpHeaders
+  >?
+  httpHeaders;
+
+  Map<String, Object?> encode() => {
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    if (httpHeaders != null)
+      'http_headers': [for (final e in httpHeaders!) e.encode()],
+  };
+}
+
+/// Typed helper for the `template.containers.liveness_probe.http_get.http_headers` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGetHttpHeaders {
+  const CloudRunV2WorkerPoolTemplateContainersLivenessProbeHttpGetHttpHeaders({
+    required this.name,
+    this.value,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<String>? value;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'value': ?value?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.containers.liveness_probe.tcp_socket` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersLivenessProbeTcpSocket {
+  const CloudRunV2WorkerPoolTemplateContainersLivenessProbeTcpSocket({
+    this.port,
+  });
+
+  final TfArg<num>? port;
+
+  Map<String, Object?> encode() => {'port': ?port?.toTfJson()};
+}
+
+/// Typed helper for the `template.containers.resources` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersResources {
+  const CloudRunV2WorkerPoolTemplateContainersResources({this.limits});
+
+  final TfArg<Map<String, String>>? limits;
+
+  Map<String, Object?> encode() => {'limits': ?limits?.toTfJson()};
+}
+
+/// Typed helper for the `template.containers.startup_probe` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersStartupProbe {
+  const CloudRunV2WorkerPoolTemplateContainersStartupProbe({
+    this.failureThreshold,
+    this.initialDelaySeconds,
+    this.periodSeconds,
+    this.timeoutSeconds,
+    this.grpc,
+    this.httpGet,
+    this.tcpSocket,
+  });
+
+  final TfArg<num>? failureThreshold;
+
+  final TfArg<num>? initialDelaySeconds;
+
+  final TfArg<num>? periodSeconds;
+
+  final TfArg<num>? timeoutSeconds;
+
+  final CloudRunV2WorkerPoolTemplateContainersStartupProbeGrpc? grpc;
+
+  final CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGet? httpGet;
+
+  final CloudRunV2WorkerPoolTemplateContainersStartupProbeTcpSocket? tcpSocket;
+
+  Map<String, Object?> encode() => {
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
+    'period_seconds': ?periodSeconds?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
+    'grpc': ?grpc?.encode(),
+    'http_get': ?httpGet?.encode(),
+    'tcp_socket': ?tcpSocket?.encode(),
+  };
+}
+
+/// Typed helper for the `template.containers.startup_probe.grpc` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersStartupProbeGrpc {
+  const CloudRunV2WorkerPoolTemplateContainersStartupProbeGrpc({
+    this.port,
+    this.service,
+  });
+
+  final TfArg<num>? port;
+
+  final TfArg<String>? service;
+
+  Map<String, Object?> encode() => {
+    'port': ?port?.toTfJson(),
+    'service': ?service?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.containers.startup_probe.http_get` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGet {
+  const CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGet({
+    this.path,
+    this.port,
+    this.httpHeaders,
+  });
+
+  final TfArg<String>? path;
+
+  final TfArg<num>? port;
+
+  final List<
+    CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGetHttpHeaders
+  >?
+  httpHeaders;
+
+  Map<String, Object?> encode() => {
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    if (httpHeaders != null)
+      'http_headers': [for (final e in httpHeaders!) e.encode()],
+  };
+}
+
+/// Typed helper for the `template.containers.startup_probe.http_get.http_headers` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGetHttpHeaders {
+  const CloudRunV2WorkerPoolTemplateContainersStartupProbeHttpGetHttpHeaders({
+    required this.name,
+    this.value,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<String>? value;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'value': ?value?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.containers.startup_probe.tcp_socket` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersStartupProbeTcpSocket {
+  const CloudRunV2WorkerPoolTemplateContainersStartupProbeTcpSocket({
+    this.port,
+  });
+
+  final TfArg<num>? port;
+
+  Map<String, Object?> encode() => {'port': ?port?.toTfJson()};
+}
+
+/// Typed helper for the `template.containers.volume_mounts` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateContainersVolumeMounts {
+  const CloudRunV2WorkerPoolTemplateContainersVolumeMounts({
+    required this.mountPath,
+    required this.name,
+    this.subPath,
+  });
+
+  final TfArg<String> mountPath;
+
+  final TfArg<String> name;
+
+  final TfArg<String>? subPath;
+
+  Map<String, Object?> encode() => {
+    'mount_path': mountPath.toTfJson(),
+    'name': name.toTfJson(),
+    'sub_path': ?subPath?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.node_selector` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateNodeSelector {
+  const CloudRunV2WorkerPoolTemplateNodeSelector({required this.accelerator});
+
+  final TfArg<String> accelerator;
+
+  Map<String, Object?> encode() => {'accelerator': accelerator.toTfJson()};
+}
+
+/// Typed helper for the `template.volumes` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateVolumes {
+  const CloudRunV2WorkerPoolTemplateVolumes({
+    required this.name,
+    required this.source,
+  });
+
+  final TfArg<String> name;
+
+  final CloudRunV2WorkerPoolTemplateVolumesSource source;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    ...source.encode(),
+  };
+}
+
+/// Exactly one of `cloud_sql_instance`, `empty_dir`, `gcs`, `nfs`, `secret` on the `template.volumes` block of `google_cloud_run_v2_worker_pool`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.cloudSqlInstance(...)`.
+sealed class CloudRunV2WorkerPoolTemplateVolumesSource {
+  const CloudRunV2WorkerPoolTemplateVolumesSource();
+
+  /// Sets `cloud_sql_instance`.
+  const factory CloudRunV2WorkerPoolTemplateVolumesSource.cloudSqlInstance(
+    CloudRunV2WorkerPoolTemplateVolumesCloudSqlInstance cloudSqlInstance,
+  ) = CloudRunV2WorkerPoolTemplateVolumesSourceCloudSqlInstance;
+
+  /// Sets `empty_dir`.
+  const factory CloudRunV2WorkerPoolTemplateVolumesSource.emptyDir(
+    CloudRunV2WorkerPoolTemplateVolumesEmptyDir emptyDir,
+  ) = CloudRunV2WorkerPoolTemplateVolumesSourceEmptyDir;
+
+  /// Sets `gcs`.
+  const factory CloudRunV2WorkerPoolTemplateVolumesSource.gcs(
+    CloudRunV2WorkerPoolTemplateVolumesGcs gcs,
+  ) = CloudRunV2WorkerPoolTemplateVolumesSourceGcs;
+
+  /// Sets `nfs`.
+  const factory CloudRunV2WorkerPoolTemplateVolumesSource.nfs(
+    CloudRunV2WorkerPoolTemplateVolumesNfs nfs,
+  ) = CloudRunV2WorkerPoolTemplateVolumesSourceNfs;
+
+  /// Sets `secret`.
+  const factory CloudRunV2WorkerPoolTemplateVolumesSource.secret(
+    CloudRunV2WorkerPoolTemplateVolumesSecret secret,
+  ) = CloudRunV2WorkerPoolTemplateVolumesSourceSecret;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [CloudRunV2WorkerPoolTemplateVolumesSource.cloudSqlInstance] choice: sets `cloud_sql_instance`.
+final class CloudRunV2WorkerPoolTemplateVolumesSourceCloudSqlInstance
+    extends CloudRunV2WorkerPoolTemplateVolumesSource {
+  const CloudRunV2WorkerPoolTemplateVolumesSourceCloudSqlInstance(
+    this.cloudSqlInstance,
+  );
+
+  final CloudRunV2WorkerPoolTemplateVolumesCloudSqlInstance cloudSqlInstance;
+
+  @override
+  String get blockKey => 'cloud_sql_instance';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cloud_sql_instance': cloudSqlInstance.encode(),
+  };
+}
+
+/// The [CloudRunV2WorkerPoolTemplateVolumesSource.emptyDir] choice: sets `empty_dir`.
+final class CloudRunV2WorkerPoolTemplateVolumesSourceEmptyDir
+    extends CloudRunV2WorkerPoolTemplateVolumesSource {
+  const CloudRunV2WorkerPoolTemplateVolumesSourceEmptyDir(this.emptyDir);
+
+  final CloudRunV2WorkerPoolTemplateVolumesEmptyDir emptyDir;
+
+  @override
+  String get blockKey => 'empty_dir';
+
+  @override
+  Map<String, Object?> encode() => {'empty_dir': emptyDir.encode()};
+}
+
+/// The [CloudRunV2WorkerPoolTemplateVolumesSource.gcs] choice: sets `gcs`.
+final class CloudRunV2WorkerPoolTemplateVolumesSourceGcs
+    extends CloudRunV2WorkerPoolTemplateVolumesSource {
+  const CloudRunV2WorkerPoolTemplateVolumesSourceGcs(this.gcs);
+
+  final CloudRunV2WorkerPoolTemplateVolumesGcs gcs;
+
+  @override
+  String get blockKey => 'gcs';
+
+  @override
+  Map<String, Object?> encode() => {'gcs': gcs.encode()};
+}
+
+/// The [CloudRunV2WorkerPoolTemplateVolumesSource.nfs] choice: sets `nfs`.
+final class CloudRunV2WorkerPoolTemplateVolumesSourceNfs
+    extends CloudRunV2WorkerPoolTemplateVolumesSource {
+  const CloudRunV2WorkerPoolTemplateVolumesSourceNfs(this.nfs);
+
+  final CloudRunV2WorkerPoolTemplateVolumesNfs nfs;
+
+  @override
+  String get blockKey => 'nfs';
+
+  @override
+  Map<String, Object?> encode() => {'nfs': nfs.encode()};
+}
+
+/// The [CloudRunV2WorkerPoolTemplateVolumesSource.secret] choice: sets `secret`.
+final class CloudRunV2WorkerPoolTemplateVolumesSourceSecret
+    extends CloudRunV2WorkerPoolTemplateVolumesSource {
+  const CloudRunV2WorkerPoolTemplateVolumesSourceSecret(this.secret);
+
+  final CloudRunV2WorkerPoolTemplateVolumesSecret secret;
+
+  @override
+  String get blockKey => 'secret';
+
+  @override
+  Map<String, Object?> encode() => {'secret': secret.encode()};
+}
+
+/// Typed helper for the `template.volumes.cloud_sql_instance` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateVolumesCloudSqlInstance {
+  const CloudRunV2WorkerPoolTemplateVolumesCloudSqlInstance({this.instances});
+
+  final TfArg<List<Object?>>? instances;
+
+  Map<String, Object?> encode() => {'instances': ?instances?.toTfJson()};
+}
+
+/// Typed helper for the `template.volumes.empty_dir` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateVolumesEmptyDir {
+  const CloudRunV2WorkerPoolTemplateVolumesEmptyDir({
+    this.medium,
+    this.sizeLimit,
+  });
+
+  final TfArg<EmptyDirMedium>? medium;
+
+  final TfArg<String>? sizeLimit;
+
+  Map<String, Object?> encode() => {
+    'medium': ?medium?.toTfJson(),
+    'size_limit': ?sizeLimit?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.volumes.gcs` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateVolumesGcs {
+  const CloudRunV2WorkerPoolTemplateVolumesGcs({
+    required this.bucket,
+    this.mountOptions,
+    this.readOnly,
+  });
+
+  final RefTo<GoogleStorageBucket> bucket;
+
+  final TfArg<List<Object?>>? mountOptions;
+
+  final TfArg<bool>? readOnly;
+
+  Map<String, Object?> encode() => {
+    'bucket': bucket.encodeAs('name').toTfJson(),
+    'mount_options': ?mountOptions?.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.volumes.nfs` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateVolumesNfs {
+  const CloudRunV2WorkerPoolTemplateVolumesNfs({
+    required this.path,
+    this.readOnly,
+    required this.server,
+  });
+
+  final TfArg<String> path;
+
+  final TfArg<bool>? readOnly;
+
+  final TfArg<String> server;
+
+  Map<String, Object?> encode() => {
+    'path': path.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
+    'server': server.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.volumes.secret` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateVolumesSecret {
+  const CloudRunV2WorkerPoolTemplateVolumesSecret({
+    this.defaultMode,
+    required this.secret,
+    this.items,
+  });
+
+  final TfArg<num>? defaultMode;
+
+  final TfArg<String> secret;
+
+  final List<CloudRunV2WorkerPoolTemplateVolumesSecretItems>? items;
+
+  Map<String, Object?> encode() => {
+    'default_mode': ?defaultMode?.toTfJson(),
+    'secret': secret.toTfJson(),
+    if (items != null) 'items': [for (final e in items!) e.encode()],
+  };
+}
+
+/// Typed helper for the `template.volumes.secret.items` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateVolumesSecretItems {
+  const CloudRunV2WorkerPoolTemplateVolumesSecretItems({
+    this.mode,
+    required this.path,
+    this.version,
+  });
+
+  final TfArg<num>? mode;
+
+  final TfArg<String> path;
+
+  final TfArg<String>? version;
+
+  Map<String, Object?> encode() => {
+    'mode': ?mode?.toTfJson(),
+    'path': path.toTfJson(),
+    'version': ?version?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.vpc_access` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateVpcAccess {
+  const CloudRunV2WorkerPoolTemplateVpcAccess({
+    this.connector,
+    this.egress,
+    this.networkInterfaces,
+  });
+
+  final TfArg<String>? connector;
+
+  final TfArg<CloudRunV2WorkerPoolTemplateVpcAccessEgress>? egress;
+
+  final List<CloudRunV2WorkerPoolTemplateVpcAccessNetworkInterfaces>?
+  networkInterfaces;
+
+  Map<String, Object?> encode() => {
+    'connector': ?connector?.toTfJson(),
+    'egress': ?egress?.toTfJson(),
+    if (networkInterfaces != null)
+      'network_interfaces': [for (final e in networkInterfaces!) e.encode()],
+  };
+}
+
+/// `egress` — derived from the provider schema description.
+enum CloudRunV2WorkerPoolTemplateVpcAccessEgress implements TerraformEnum {
+  allTraffic('ALL_TRAFFIC'),
+  privateRangesOnly('PRIVATE_RANGES_ONLY');
+
+  const CloudRunV2WorkerPoolTemplateVpcAccessEgress(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `template.vpc_access.network_interfaces` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolTemplateVpcAccessNetworkInterfaces {
+  const CloudRunV2WorkerPoolTemplateVpcAccessNetworkInterfaces({
+    this.network,
+    this.subnetwork,
+    this.tags,
+  });
+
+  final RefTo<GoogleComputeNetwork>? network;
+
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
+
+  final TfArg<List<Object?>>? tags;
+
+  Map<String, Object?> encode() => {
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
+    'tags': ?tags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_cloud_run_v2_worker_pool`.
 ///
 /// WorkerPool acts as a top-level container that manages a set of
@@ -234,9 +1022,9 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
     required TfArg<String> name,
     TfArg<String>? project,
     CloudRunV2WorkerPoolBinaryAuthorization? binaryAuthorization,
-    List<CloudRunV2WorkerPoolInstanceSplit>? instanceSplits,
+    List<CloudRunV2WorkerPoolInstanceSplits>? instanceSplits,
     CloudRunV2WorkerPoolScaling? scaling,
-    CloudRunV2WorkerPoolTemplate? template,
+    required CloudRunV2WorkerPoolTemplate template,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -259,11 +1047,11 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
                binaryAuthorization.encode(),
              ),
            if (instanceSplits != null)
-             'instance_splits': TfArg.literal(
-               instanceSplits.map((s) => s.toArgMap()).toList(),
-             ),
-           if (scaling != null) 'scaling': TfArg.literal([scaling.encode()]),
-           if (template != null) 'template': TfArg.literal([template.encode()]),
+             'instance_splits': TfArg.literal([
+               for (final e in instanceSplits) e.encode(),
+             ]),
+           if (scaling != null) 'scaling': TfArg.literal(scaling.encode()),
+           'template': TfArg.literal(template.encode()),
          },
        );
 

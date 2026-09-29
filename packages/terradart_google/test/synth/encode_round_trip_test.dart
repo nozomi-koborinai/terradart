@@ -31,16 +31,11 @@ import 'package:terradart_google/app.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/bigtable.dart';
 import 'package:terradart_google/certificate_manager.dart';
-import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/cloud_functions.dart';
 import 'package:terradart_google/config.dart';
 import 'package:terradart_google/dataplex.dart';
-import 'package:terradart_google/colab.dart';
 import 'package:terradart_google/dataproc.dart';
-import 'package:terradart_google/discovery_engine.dart';
-import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/spanner.dart';
-import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/data_catalog.dart';
 import 'package:terradart_google/dlp.dart';
@@ -166,68 +161,6 @@ final Map<String, Object Function()> _syntheticInstances = {
   'AppEngineFlexibleAppVersionManualScalingMode': () =>
       AppEngineFlexibleAppVersionManualScalingMode(instances: TfArg.literal(1)),
 
-  // --- EnvVarSource (2) — cloud_run_v2_service -----------------------------
-  'CloudRunV2ServiceEnvVarFromLiteral': () =>
-      CloudRunV2ServiceEnvVarFromLiteral(TfArg.literal('mock-value')),
-  'CloudRunV2ServiceEnvVarFromSecret': () =>
-      CloudRunV2ServiceEnvVarFromSecret(secret: TfArg.literal('mock-secret')),
-
-  // --- VolumeSource (5) — cloud_run_v2_service -----------------------------
-  'CloudRunV2ServiceVolumeSecret': () =>
-      CloudRunV2ServiceVolumeSecret(secret: TfArg.literal('mock-secret')),
-  'CloudRunV2ServiceCloudSqlVolume': () =>
-      const CloudRunV2ServiceCloudSqlVolume(),
-  'CloudRunV2ServiceEmptyDirVolume': () =>
-      const CloudRunV2ServiceEmptyDirVolume(),
-  'CloudRunV2ServiceGcsVolume': () =>
-      CloudRunV2ServiceGcsVolume(bucket: TfArg.literal('mock-bucket')),
-  'CloudRunV2ServiceNfsVolume': () => CloudRunV2ServiceNfsVolume(
-    server: TfArg.literal('nfs.example.com'),
-    path: TfArg.literal('/exports/data'),
-  ),
-
-  // --- JobEnvVarSource (2) — cloud_run_v2_job ------------------------------
-  'CloudRunV2JobEnvVarFromLiteral': () =>
-      CloudRunV2JobEnvVarFromLiteral(TfArg.literal('mock-value')),
-  'CloudRunV2JobEnvVarFromSecret': () => CloudRunV2JobEnvVarFromSecret(
-    secret: TfArg.literal('mock-secret'),
-    version: TfArg.literal('latest'),
-  ),
-
-  // --- JobVolumeSource (5) — cloud_run_v2_job ------------------------------
-  'CloudRunV2JobVolumeSecret': () =>
-      CloudRunV2JobVolumeSecret(secret: TfArg.literal('mock-secret')),
-  'CloudRunV2JobCloudSqlVolume': () => const CloudRunV2JobCloudSqlVolume(),
-  'CloudRunV2JobEmptyDirVolume': () => const CloudRunV2JobEmptyDirVolume(),
-  'CloudRunV2JobGcsVolume': () =>
-      CloudRunV2JobGcsVolume(bucket: TfArg.literal('mock-bucket')),
-  'CloudRunV2JobNfsVolume': () =>
-      CloudRunV2JobNfsVolume(server: TfArg.literal('nfs.example.com')),
-
-  // --- DiscoveryEngineControlAction (5) — google_discovery_engine_control ---
-  'DiscoveryEngineControlBoostAction': () => DiscoveryEngineControlBoostAction(
-    dataStore: TfArg.literal('mock-store'),
-    filter: TfArg.literal('true'),
-  ),
-  'DiscoveryEngineControlFilterAction': () =>
-      DiscoveryEngineControlFilterAction(
-        dataStore: TfArg.literal('mock-store'),
-        filter: TfArg.literal('true'),
-      ),
-  'DiscoveryEngineControlRedirectAction': () =>
-      DiscoveryEngineControlRedirectAction(
-        redirectUri: TfArg.literal('https://example.com'),
-      ),
-  'DiscoveryEngineControlSynonymsAction': () =>
-      const DiscoveryEngineControlSynonymsAction(),
-  'DiscoveryEngineControlPromoteAction': () =>
-      DiscoveryEngineControlPromoteAction(
-        dataStore: TfArg.literal('mock-store'),
-        searchLinkPromotion: DiscoveryEngineControlSearchLinkPromotion(
-          title: TfArg.literal('pinned'),
-        ),
-      ),
-
   // --- StorageInsightsDatasetConfigSource (3) — google_storage_insights_dataset_config ---
   'StorageInsightsDatasetConfigSourceProjects': () =>
       StorageInsightsDatasetConfigSourceProjects(
@@ -245,18 +178,6 @@ final Map<String, Object Function()> _syntheticInstances = {
       const StorageInsightsReportConfigCsvFormat(),
   'StorageInsightsReportConfigParquetFormat': () =>
       const StorageInsightsReportConfigParquetFormat(),
-
-  // --- CloudSchedulerJobSchedulerTarget (3) — cloud_scheduler_job ---------------------------
-  'CloudSchedulerJobPubsubTarget': () => CloudSchedulerJobPubsubTarget(
-    topicName: TfArg.literal('projects/p/topics/t'),
-  ),
-  'CloudSchedulerJobHttpTarget': () => CloudSchedulerJobHttpTarget(
-    uri: TfArg.literal('https://example.com/webhook'),
-  ),
-  'CloudSchedulerJobAppEngineHttpTarget': () =>
-      CloudSchedulerJobAppEngineHttpTarget(
-        relativeUri: TfArg.literal('/handler'),
-      ),
 
   // --- SourceConfig (2) — cloudfunctions2_function -------------------------
   'StorageSource': () => StorageSource(
@@ -400,27 +321,6 @@ final Map<String, Object Function()> _syntheticInstances = {
     asset: BigqueryConnectionConfigurationAsset(database: TfArg.literal('db')),
   ),
 
-  // --- CloudbuildTriggerBuildSpec (3) — cloudbuild_trigger -----------------
-  'CloudbuildTriggerFilenameSpec': () =>
-      CloudbuildTriggerFilenameSpec(filename: TfArg.literal('cloudbuild.yaml')),
-  'CloudbuildTriggerInlineBuildSpec': () => CloudbuildTriggerInlineBuildSpec(
-    build: CloudbuildTriggerBuild(
-      step: [
-        CloudbuildTriggerBuildStep(
-          name: TfArg.literal('gcr.io/cloud-builders/docker'),
-          args: TfArg.literal(['build', '.']),
-        ),
-      ],
-    ),
-  ),
-  'CloudbuildTriggerGitFileSourceSpec': () =>
-      CloudbuildTriggerGitFileSourceSpec(
-        gitFileSource: CloudbuildTriggerGitFileSource(
-          path: TfArg.literal('cloudbuild.yaml'),
-          repoType: TfArg.literal(CloudBuildTriggerRepoType.github),
-        ),
-      ),
-
   // --- ConfigDeploymentBlueprintSource (2) — google_config_deployment ------
   'ConfigDeploymentBlueprintFromGcs': () => ConfigDeploymentBlueprintFromGcs(
     gcsSource: TfArg.literal('gs://mock-bucket/blueprint.zip'),
@@ -457,43 +357,6 @@ final Map<String, Object Function()> _syntheticInstances = {
       const SpannerBackupScheduleFullBackupSpec(),
   'SpannerBackupScheduleIncrementalBackupSpec': () =>
       const SpannerBackupScheduleIncrementalBackupSpec(),
-
-  // --- ColabNotebookExecutionSource (3) — google_colab_notebook_execution --
-  'ColabNotebookExecutionDataformSource': () =>
-      ColabNotebookExecutionDataformSource(
-        dataformRepositoryResourceName: TfArg.literal(
-          'projects/p/locations/us-central1/repositories/r',
-        ),
-      ),
-  'ColabNotebookExecutionGcsSource': () => ColabNotebookExecutionGcsSource(
-    uri: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
-  ),
-  'ColabNotebookExecutionDirectSource': () =>
-      ColabNotebookExecutionDirectSource(
-        content: TfArg.literal('eyJuYiI6MX0='),
-      ),
-
-  // --- ColabNotebookExecutionCompute (2) -----------------------------------
-  'ColabNotebookExecutionTemplateCompute': () =>
-      ColabNotebookExecutionTemplateCompute(
-        TfArg.literal(
-          'projects/p/locations/us-central1/notebookRuntimeTemplates/t',
-        ),
-      ),
-  'ColabNotebookExecutionCustomCompute': () =>
-      ColabNotebookExecutionCustomCompute(
-        TfArg.literal(const {
-          'machine_spec': {'machine_type': 'e2-standard-4'},
-        }),
-      ),
-
-  // --- ColabNotebookExecutionIdentity (2) ----------------------------------
-  'ColabNotebookExecutionExecutionUser': () =>
-      ColabNotebookExecutionExecutionUser(TfArg.literal('user@example.com')),
-  'ColabNotebookExecutionServiceAccount': () =>
-      ColabNotebookExecutionServiceAccount(
-        TfArg.literal('sa@p.iam.gserviceaccount.com'),
-      ),
 
   // --- EdgecontainerClusterControlPlane (2) — edgecontainer_cluster --------
   'EdgecontainerClusterControlPlaneRemote': () =>
@@ -811,22 +674,6 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
   'VertexAiFeatureOnlineStoreOptimized': () =>
       const VertexAiFeatureOnlineStoreOptimized(),
-
-  // --- VertexAiFeatureOnlineStoreFeatureviewSource (2) — featureview -------
-  'VertexAiFeatureOnlineStoreFeatureviewBigQuerySource': () =>
-      VertexAiFeatureOnlineStoreFeatureviewBigQuerySource(
-        uri: TfArg.literal('bq://p.dataset.view'),
-        entityIdColumns: TfArg.literal(const ['entity_id']),
-      ),
-  'VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource': () =>
-      VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource(
-        featureGroups: [
-          VertexAiFeatureOnlineStoreFeatureviewFeatureGroup(
-            featureGroupId: TfArg.literal('customer_features'),
-            featureIds: TfArg.literal(const ['feature_score']),
-          ),
-        ],
-      ),
 
   // --- VertexAiRagEngineConfigManagedDbTier (3) — rag_engine_config --------
   'VertexAiRagEngineConfigBasic': () => const VertexAiRagEngineConfigBasic(),

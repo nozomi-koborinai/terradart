@@ -62,9 +62,9 @@ final class DeployStack extends Stack {
         name: .literal('terradart-run-target'),
         location: .literal('us-central1'),
         description: .literal('Cloud Run production target'),
-        run: .literal(<String, Object?>{
-          'location': 'projects/$projectId/locations/us-central1',
-        }),
+        run: ClouddeployTargetRun(
+          location: .literal('projects/$projectId/locations/us-central1'),
+        ),
         dependsOn: [ResourceDependency(apiClouddeploy)],
       ),
     );
@@ -179,16 +179,22 @@ final class DeployStack extends Stack {
         deliveryPipeline: .ref(pipeline.nameRef),
         serviceAccount: deployer.ref,
         suspended: .literal(true),
-        selector: .literal(<String, Object?>{
-          'targets': [
-            {'id': 'terradart-run-target'},
+        selector: ClouddeployAutomationSelector(
+          targets: [
+            ClouddeployAutomationSelectorTargets(
+              id: .literal('terradart-run-target'),
+            ),
           ],
-        }),
-        rules: .literal([
-          {
-            'promote_release_rule': {'id': 'promote-release'},
-          },
-        ]),
+        ),
+        rules: [
+          ClouddeployAutomationRules(
+            rule: .promoteReleaseRule(
+              ClouddeployAutomationRulesPromoteReleaseRule(
+                id: .literal('promote-release'),
+              ),
+            ),
+          ),
+        ],
         dependsOn: [
           ResourceDependency(apiClouddeploy),
           ResourceDependency(pipeline),

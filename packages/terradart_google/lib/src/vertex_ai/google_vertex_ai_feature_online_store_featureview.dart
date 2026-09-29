@@ -8,90 +8,134 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleVertexAiFeatureOnlineStoreFeatureviewSensitive =
     <String>{};
 
-// ===========================================================================
-// VertexAiFeatureOnlineStoreFeatureviewSource — sealed (BQ | Registry)
-// ===========================================================================
-
-/// Data source for [GoogleVertexAiFeatureOnlineStoreFeatureview]. Sealed so
-/// the MM `exactly_one_of` (`big_query_source` /
-/// `feature_registry_source`) is exhaustive at the type level.
+/// Exactly one of `big_query_source`, `feature_registry_source` on `google_vertex_ai_feature_online_store_featureview`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.bigQuerySource(...)`.
 sealed class VertexAiFeatureOnlineStoreFeatureviewSource {
   const VertexAiFeatureOnlineStoreFeatureviewSource();
 
-  /// `big_query_source` — materialize a BigQuery view on each sync.
-  const factory VertexAiFeatureOnlineStoreFeatureviewSource.bigQuerySource({
-    required TfArg<String> uri,
-    required TfArg<List<String>> entityIdColumns,
-  }) = VertexAiFeatureOnlineStoreFeatureviewBigQuerySource;
+  /// Sets `big_query_source`.
+  const factory VertexAiFeatureOnlineStoreFeatureviewSource.bigQuerySource(
+    VertexAiFeatureOnlineStoreFeatureviewBigQuerySource bigQuerySource,
+  ) = VertexAiFeatureOnlineStoreFeatureviewSourceBigQuerySource;
 
-  /// `feature_registry_source` — sync selected Feature Registry features.
-  const factory VertexAiFeatureOnlineStoreFeatureviewSource.featureRegistrySource({
-    required List<VertexAiFeatureOnlineStoreFeatureviewFeatureGroup>
-    featureGroups,
-    TfArg<String>? projectNumber,
-  }) = VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource;
+  /// Sets `feature_registry_source`.
+  const factory VertexAiFeatureOnlineStoreFeatureviewSource.featureRegistrySource(
+    VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource
+    featureRegistrySource,
+  ) = VertexAiFeatureOnlineStoreFeatureviewSourceFeatureRegistrySource;
 
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
-  List<Map<String, Object?>> encode();
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `big_query_source` — materialize a BigQuery view on each sync.
-@immutable
-final class VertexAiFeatureOnlineStoreFeatureviewBigQuerySource
+/// The [VertexAiFeatureOnlineStoreFeatureviewSource.bigQuerySource] choice: sets `big_query_source`.
+final class VertexAiFeatureOnlineStoreFeatureviewSourceBigQuerySource
     extends VertexAiFeatureOnlineStoreFeatureviewSource {
-  const VertexAiFeatureOnlineStoreFeatureviewBigQuerySource({
-    required this.uri,
-    required this.entityIdColumns,
-  });
+  const VertexAiFeatureOnlineStoreFeatureviewSourceBigQuerySource(
+    this.bigQuerySource,
+  );
 
-  final TfArg<String> uri;
-  final TfArg<List<String>> entityIdColumns;
+  final VertexAiFeatureOnlineStoreFeatureviewBigQuerySource bigQuerySource;
 
   @override
   String get blockKey => 'big_query_source';
 
   @override
-  List<Map<String, Object?>> encode() => [
-    {'uri': uri.toTfJson(), 'entity_id_columns': entityIdColumns.toTfJson()},
-  ];
+  Map<String, Object?> encode() => {
+    'big_query_source': bigQuerySource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'big_query_source': TfArg.literal(bigQuerySource.encode()),
+  };
 }
 
-/// `feature_registry_source` — sync selected Feature Registry features.
-@immutable
-final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource
+/// The [VertexAiFeatureOnlineStoreFeatureviewSource.featureRegistrySource] choice: sets `feature_registry_source`.
+final class VertexAiFeatureOnlineStoreFeatureviewSourceFeatureRegistrySource
     extends VertexAiFeatureOnlineStoreFeatureviewSource {
-  const VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource({
-    required this.featureGroups,
-    this.projectNumber,
-  });
+  const VertexAiFeatureOnlineStoreFeatureviewSourceFeatureRegistrySource(
+    this.featureRegistrySource,
+  );
 
-  final List<VertexAiFeatureOnlineStoreFeatureviewFeatureGroup> featureGroups;
-  final TfArg<String>? projectNumber;
+  final VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource
+  featureRegistrySource;
 
   @override
   String get blockKey => 'feature_registry_source';
 
   @override
-  List<Map<String, Object?>> encode() => [
-    {
-      'feature_groups': [for (final g in featureGroups) g.encode()],
-      if (projectNumber != null) 'project_number': projectNumber!.toTfJson(),
-    },
-  ];
+  Map<String, Object?> encode() => {
+    'feature_registry_source': featureRegistrySource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'feature_registry_source': TfArg.literal(featureRegistrySource.encode()),
+  };
 }
 
-/// One Feature Registry group entry under
-/// [VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource].
+/// Typed helper for the `big_query_source` block of
+/// `google_vertex_ai_feature_online_store_featureview` (derived from provider schema).
 @immutable
-final class VertexAiFeatureOnlineStoreFeatureviewFeatureGroup {
-  const VertexAiFeatureOnlineStoreFeatureviewFeatureGroup({
+final class VertexAiFeatureOnlineStoreFeatureviewBigQuerySource {
+  const VertexAiFeatureOnlineStoreFeatureviewBigQuerySource({
+    required this.entityIdColumns,
+    required this.uri,
+  });
+
+  final TfArg<List<Object?>> entityIdColumns;
+
+  final TfArg<String> uri;
+
+  Map<String, Object?> encode() => {
+    'entity_id_columns': entityIdColumns.toTfJson(),
+    'uri': uri.toTfJson(),
+  };
+}
+
+/// Typed helper for the `feature_registry_source` block of
+/// `google_vertex_ai_feature_online_store_featureview` (derived from provider schema).
+@immutable
+final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource {
+  const VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource({
+    this.projectNumber,
+    required this.featureGroups,
+  });
+
+  final TfArg<String>? projectNumber;
+
+  final List<
+    VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGroups
+  >
+  featureGroups;
+
+  Map<String, Object?> encode() => {
+    'project_number': ?projectNumber?.toTfJson(),
+    'feature_groups': [for (final e in featureGroups) e.encode()],
+  };
+}
+
+/// Typed helper for the `feature_registry_source.feature_groups` block of
+/// `google_vertex_ai_feature_online_store_featureview` (derived from provider schema).
+@immutable
+final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGroups {
+  const VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGroups({
     required this.featureGroupId,
     required this.featureIds,
   });
 
   final TfArg<String> featureGroupId;
-  final TfArg<List<String>> featureIds;
+
+  final TfArg<List<Object?>> featureIds;
 
   Map<String, Object?> encode() => {
     'feature_group_id': featureGroupId.toTfJson(),
@@ -99,23 +143,69 @@ final class VertexAiFeatureOnlineStoreFeatureviewFeatureGroup {
   };
 }
 
-/// Optional `sync_config` block (`cron` and/or `continuous`).
+/// Typed helper for the `sync_config` block of
+/// `google_vertex_ai_feature_online_store_featureview` (derived from provider schema).
 @immutable
 final class VertexAiFeatureOnlineStoreFeatureviewSyncConfig {
-  const VertexAiFeatureOnlineStoreFeatureviewSyncConfig({
-    this.cron,
+  const VertexAiFeatureOnlineStoreFeatureviewSyncConfig({this.schedule});
+
+  final VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule? schedule;
+
+  Map<String, Object?> encode() => {...?schedule?.encode()};
+}
+
+/// At most one of `cron`, `continuous` on the `sync_config` block of `google_vertex_ai_feature_online_store_featureview`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.cron(...)`.
+sealed class VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule {
+  const VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule();
+
+  /// Sets `cron`.
+  const factory VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule.cron(
+    TfArg<String> cron,
+  ) = VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleCron;
+
+  /// Sets `continuous`.
+  const factory VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule.continuous(
+    TfArg<bool> continuous,
+  ) = VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleContinuous;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule.cron] choice: sets `cron`.
+final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleCron
+    extends VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule {
+  const VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleCron(this.cron);
+
+  final TfArg<String> cron;
+
+  @override
+  String get blockKey => 'cron';
+
+  @override
+  Map<String, Object?> encode() => {'cron': cron.toTfJson()};
+}
+
+/// The [VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule.continuous] choice: sets `continuous`.
+final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleContinuous
+    extends VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule {
+  const VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleContinuous(
     this.continuous,
-  });
+  );
 
-  final TfArg<String>? cron;
-  final TfArg<bool>? continuous;
+  final TfArg<bool> continuous;
 
-  List<Map<String, Object?>> encode() => [
-    {
-      if (cron != null) 'cron': cron!.toTfJson(),
-      if (continuous != null) 'continuous': continuous!.toTfJson(),
-    },
-  ];
+  @override
+  String get blockKey => 'continuous';
+
+  @override
+  Map<String, Object?> encode() => {'continuous': continuous.toTfJson()};
 }
 
 /// Factory wrapper for `google_vertex_ai_feature_online_store_featureview`.
@@ -128,8 +218,7 @@ final class VertexAiFeatureOnlineStoreFeatureviewSyncConfig {
 /// Feature Registry group into online serving.
 ///
 /// Choose exactly one [VertexAiFeatureOnlineStoreFeatureviewSource]:
-/// - [VertexAiFeatureOnlineStoreFeatureviewBigQuerySource]
-/// - [VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource]
+/// `.bigQuerySource(...)` or `.featureRegistrySource(...)`.
 ///
 /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no
 /// FeatureView SKU** after MCP `list_skus` (online serving / storage SKUs
@@ -141,18 +230,20 @@ final class VertexAiFeatureOnlineStoreFeatureviewSyncConfig {
 ///
 /// Example (Feature Registry source):
 /// ```dart
-/// GoogleVertexAiFeatureOnlineStoreFeatureview(
+/// final fv = GoogleVertexAiFeatureOnlineStoreFeatureview(
 ///   localName: 'fv',
-///   featureOnlineStore: TfArg.ref(store.nameRef),
-///   name: TfArg.literal('customer_view'),
-///   region: TfArg.literal('us-central1'),
-///   source: VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource(
-///     featureGroups: [
-///       VertexAiFeatureOnlineStoreFeatureviewFeatureGroup(
-///         featureGroupId: TfArg.literal('terradart_customer_features'),
-///         featureIds: TfArg.literal(['feature_score']),
-///       ),
-///     ],
+///   featureOnlineStore: .ref(fos.nameRef),
+///   name: .literal('customer_view'),
+///   region: .literal('us-central1'),
+///   source: .featureRegistrySource(
+///     VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource(
+///       featureGroups: [
+///         VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGroups(
+///           featureGroupId: .literal('terradart_customer_features'),
+///           featureIds: .literal(['feature_score']),
+///         ),
+///       ],
+///     ),
 ///   ),
 /// );
 /// ```
@@ -185,7 +276,7 @@ final class GoogleVertexAiFeatureOnlineStoreFeatureview extends Resource {
            'labels': ?labels,
            'project': ?project,
            'deletion_policy': ?deletionPolicy,
-           source.blockKey: TfArg.literal(source.encode()),
+           ...source.argMap,
          },
        );
 

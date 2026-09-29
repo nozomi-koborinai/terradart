@@ -145,6 +145,9 @@ final class GoogleDeveloperConnectAccountConnector extends Resource {
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    TfArg<String>? etag,
+    DeveloperConnectAccountConnectorCustomOauthConfig? customOauthConfig,
+    DeveloperConnectAccountConnectorProxyConfig? proxyConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -162,6 +165,11 @@ final class GoogleDeveloperConnectAccountConnector extends Resource {
            'annotations': ?annotations,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           'etag': ?etag,
+           if (customOauthConfig != null)
+             'custom_oauth_config': TfArg.literal(customOauthConfig.encode()),
+           if (proxyConfig != null)
+             'proxy_config': TfArg.literal(proxyConfig.encode()),
          },
        );
 

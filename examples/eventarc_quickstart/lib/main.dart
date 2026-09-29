@@ -88,14 +88,15 @@ final class EventarcStack extends Stack {
         localName: 'ingest_pipeline',
         location: .literal(location),
         pipelineId: .literal('ingest-pipeline'),
-        destinations: .literal([
-          {
-            'workflow':
-                'projects/$projectId/locations/$location/workflows/ingest',
-          },
-        ]),
-        loggingConfig: const EventarcMessageBusLoggingConfig(
-          logSeverity: EventarcMessageBusLogSeverity.notice,
+        destinations: [
+          EventarcPipelineDestinations(
+            workflow: .literal(
+              'projects/$projectId/locations/$location/workflows/ingest',
+            ),
+          ),
+        ],
+        loggingConfig: EventarcPipelineLoggingConfig(
+          logSeverity: .literal(.notice),
         ),
         dependsOn: eventarcDeps,
       ),
@@ -147,7 +148,7 @@ final class EventarcStack extends Stack {
           ),
         ],
         destination: EventarcTriggerDestination(
-          httpEndpoint: EventarcTriggerHttpEndpoint(
+          httpEndpoint: EventarcTriggerDestinationHttpEndpoint(
             uri: .literal('https://example.com/events'),
           ),
         ),

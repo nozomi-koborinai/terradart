@@ -128,8 +128,8 @@ void main() {
           name: TfArg.literal('nightly'),
           region: TfArg.literal('us-central1'),
           schedule: TfArg.literal('0 0 * * *'),
-          target: CloudSchedulerJobPubsubTarget(
-            topicName: TfArg.ref(ordersTopic.id),
+          target: .pubsubTarget(
+            CloudSchedulerJobPubsubTarget(topicName: .of(ordersTopic)),
           ),
         ),
       );

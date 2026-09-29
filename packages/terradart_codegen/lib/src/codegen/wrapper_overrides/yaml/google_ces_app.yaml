@@ -59,6 +59,9 @@ paramOrder:
   - variable_declarations
   - deletion_policy
   - project
+  - locked
+  - error_handling_settings
+  - vpc_sc_settings
 
 extraGetters: |2
     /// Reference to `app_id` (parent segment for agents / tools / guardrails).

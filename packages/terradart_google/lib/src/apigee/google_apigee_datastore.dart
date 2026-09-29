@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_apigee_datastore`.
 const Set<String> _googleApigeeDatastoreSensitive = <String>{};
 
@@ -27,29 +29,34 @@ enum ApigeeDatastoreDeletionPolicy implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `datastore_config` block (max=1). Required when [targetType] is set.
+/// Typed helper for the `datastore_config` block of
+/// `google_apigee_datastore` (derived from provider schema).
 @immutable
-class ApigeeDatastoreDatastoreConfig {
+final class ApigeeDatastoreDatastoreConfig {
   const ApigeeDatastoreDatastoreConfig({
-    required this.projectId,
     this.bucketName,
-    this.path,
     this.datasetName,
+    this.path,
+    required this.projectId,
     this.tablePrefix,
   });
 
-  final TfArg<String> projectId;
-  final TfArg<String>? bucketName;
-  final TfArg<String>? path;
+  final RefTo<GoogleStorageBucket>? bucketName;
+
   final TfArg<String>? datasetName;
+
+  final TfArg<String>? path;
+
+  final TfArg<String> projectId;
+
   final TfArg<String>? tablePrefix;
 
-  Map<String, Object?> toArgMap() => {
-    'project_id': projectId,
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (datasetName != null) 'dataset_name': datasetName!.toTfJson(),
-    if (tablePrefix != null) 'table_prefix': tablePrefix!.toTfJson(),
+  Map<String, Object?> encode() => {
+    'bucket_name': ?bucketName?.encodeAs('name').toTfJson(),
+    'dataset_name': ?datasetName?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'project_id': projectId.toTfJson(),
+    'table_prefix': ?tablePrefix?.toTfJson(),
   };
 }
 
@@ -66,7 +73,7 @@ final class GoogleApigeeDatastore extends Resource {
     required TfArg<String> orgId,
     required TfArg<String> displayName,
     required TfArg<ApigeeDatastoreTargetType> targetType,
-    ApigeeDatastoreDatastoreConfig? datastoreConfig,
+    required ApigeeDatastoreDatastoreConfig datastoreConfig,
     TfArg<ApigeeDatastoreDeletionPolicy>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
@@ -78,8 +85,7 @@ final class GoogleApigeeDatastore extends Resource {
            'org_id': orgId,
            'display_name': displayName,
            'target_type': targetType,
-           if (datastoreConfig != null)
-             'datastore_config': TfArg.literal([datastoreConfig.toArgMap()]),
+           'datastore_config': TfArg.literal(datastoreConfig.encode()),
            'deletion_policy': ?deletionPolicy,
          },
        );

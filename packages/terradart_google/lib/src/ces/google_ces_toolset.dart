@@ -645,6 +645,8 @@ final class GoogleCesToolset extends Resource {
     CesToolsetToolFakeConfig? toolFakeConfig,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    TfArg<String>? timeout,
+    CesToolsetConnectorToolset? connectorToolset,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -666,6 +668,9 @@ final class GoogleCesToolset extends Resource {
              'tool_fake_config': TfArg.literal(toolFakeConfig.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           'timeout': ?timeout,
+           if (connectorToolset != null)
+             'connector_toolset': TfArg.literal(connectorToolset.encode()),
          },
        );
 

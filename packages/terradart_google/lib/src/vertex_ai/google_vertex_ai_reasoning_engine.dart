@@ -1543,6 +1543,7 @@ final class GoogleVertexAiReasoningEngine extends Resource {
     VertexAiReasoningEngineSpec? spec,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
+    VertexAiReasoningEngineContextSpec? contextSpec,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -1559,6 +1560,8 @@ final class GoogleVertexAiReasoningEngine extends Resource {
            if (spec != null) 'spec': TfArg.literal(spec.encode()),
            'project': ?project,
            'deletion_policy': ?deletionPolicy,
+           if (contextSpec != null)
+             'context_spec': TfArg.literal(contextSpec.encode()),
          },
        );
 

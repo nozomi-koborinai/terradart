@@ -1,10 +1,26 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_vertex_ai_dataset`.
 const Set<String> _googleVertexAiDatasetSensitive = <String>{};
+
+/// Typed helper for the `encryption_spec` block of
+/// `google_vertex_ai_dataset` (derived from provider schema).
+@immutable
+final class VertexAiDatasetEncryptionSpec {
+  const VertexAiDatasetEncryptionSpec({this.kmsKeyName});
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
+
+  Map<String, Object?> encode() => {
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_vertex_ai_dataset`.
 ///
@@ -17,7 +33,7 @@ final class GoogleVertexAiDataset extends Resource {
     required TfArg<String> displayName,
     required TfArg<String> metadataSchemaUri,
     TfArg<String>? region,
-    TfArg<Map<String, dynamic>>? encryptionSpec,
+    VertexAiDatasetEncryptionSpec? encryptionSpec,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -31,7 +47,8 @@ final class GoogleVertexAiDataset extends Resource {
            'display_name': displayName,
            'metadata_schema_uri': metadataSchemaUri,
            'region': ?region,
-           'encryption_spec': ?encryptionSpec,
+           if (encryptionSpec != null)
+             'encryption_spec': TfArg.literal(encryptionSpec.encode()),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

@@ -19,233 +19,443 @@ enum DiscoveryEngineControlSolutionType implements TerraformEnum {
   final String terraformValue;
 }
 
-// ===========================================================================
-// DiscoveryEngineControlAction — sealed (boost | filter | redirect |
-// synonyms | promote)
-// ===========================================================================
-
-/// Choice of serving-control action. Sealed so the MM `exactly_one_of`
-/// group (`boost_action` / `filter_action` / `redirect_action` /
-/// `synonyms_action` / `promote_action`) is exhaustive at the type level.
+/// Exactly one of `boost_action`, `filter_action`, `redirect_action`, `synonyms_action`, `promote_action` on `google_discovery_engine_control`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.boostAction(...)`.
 sealed class DiscoveryEngineControlAction {
   const DiscoveryEngineControlAction();
 
-  /// `boost_action` — change result order.
-  const factory DiscoveryEngineControlAction.boostAction({
-    required TfArg<String> dataStore,
-    required TfArg<String> filter,
-    TfArg<double>? fixedBoost,
-    DiscoveryEngineControlInterpolationBoostSpec? interpolationBoostSpec,
-  }) = DiscoveryEngineControlBoostAction;
+  /// Sets `boost_action`.
+  const factory DiscoveryEngineControlAction.boostAction(
+    DiscoveryEngineControlBoostAction boostAction,
+  ) = DiscoveryEngineControlActionBoostAction;
 
-  /// `filter_action` — drop matching results.
-  const factory DiscoveryEngineControlAction.filterAction({
-    required TfArg<String> dataStore,
-    required TfArg<String> filter,
-  }) = DiscoveryEngineControlFilterAction;
+  /// Sets `filter_action`.
+  const factory DiscoveryEngineControlAction.filterAction(
+    DiscoveryEngineControlFilterAction filterAction,
+  ) = DiscoveryEngineControlActionFilterAction;
 
-  /// `redirect_action` — send the query to [redirectUri].
-  const factory DiscoveryEngineControlAction.redirectAction({
-    required TfArg<String> redirectUri,
-  }) = DiscoveryEngineControlRedirectAction;
+  /// Sets `redirect_action`.
+  const factory DiscoveryEngineControlAction.redirectAction(
+    DiscoveryEngineControlRedirectAction redirectAction,
+  ) = DiscoveryEngineControlActionRedirectAction;
 
-  /// `synonyms_action` — treat [synonyms] as equivalent query terms.
-  const factory DiscoveryEngineControlAction.synonymsAction({
-    TfArg<List<String>>? synonyms,
-  }) = DiscoveryEngineControlSynonymsAction;
+  /// Sets `synonyms_action`.
+  const factory DiscoveryEngineControlAction.synonymsAction(
+    DiscoveryEngineControlSynonymsAction synonymsAction,
+  ) = DiscoveryEngineControlActionSynonymsAction;
 
-  /// `promote_action` — pin a search-link promotion on [dataStore].
-  const factory DiscoveryEngineControlAction.promoteAction({
-    required TfArg<String> dataStore,
-    required DiscoveryEngineControlSearchLinkPromotion searchLinkPromotion,
-  }) = DiscoveryEngineControlPromoteAction;
+  /// Sets `promote_action`.
+  const factory DiscoveryEngineControlAction.promoteAction(
+    DiscoveryEngineControlPromoteAction promoteAction,
+  ) = DiscoveryEngineControlActionPromoteAction;
 
-  /// argMap key (`boost_action`, `filter_action`, …).
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
-  /// JSON fragment for the block value (single-element list; the schema
-  /// nested blocks are `nesting_mode: list, max_items: 1`).
-  List<Map<String, Object?>> encode();
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `boost_action` — change result order. Pick at most one of
-/// [fixedBoost] or [interpolationBoostSpec].
-@immutable
-final class DiscoveryEngineControlBoostAction
+/// The [DiscoveryEngineControlAction.boostAction] choice: sets `boost_action`.
+final class DiscoveryEngineControlActionBoostAction
     extends DiscoveryEngineControlAction {
-  const DiscoveryEngineControlBoostAction({
-    required this.dataStore,
-    required this.filter,
-    this.fixedBoost,
-    this.interpolationBoostSpec,
-  });
+  const DiscoveryEngineControlActionBoostAction(this.boostAction);
 
-  final TfArg<String> dataStore;
-  final TfArg<String> filter;
-  final TfArg<double>? fixedBoost;
-  final DiscoveryEngineControlInterpolationBoostSpec? interpolationBoostSpec;
+  final DiscoveryEngineControlBoostAction boostAction;
 
   @override
   String get blockKey => 'boost_action';
 
   @override
-  List<Map<String, Object?>> encode() => [
-    {
-      'data_store': dataStore.toTfJson(),
-      'filter': filter.toTfJson(),
-      if (fixedBoost != null) 'fixed_boost': fixedBoost!.toTfJson(),
-      if (interpolationBoostSpec != null)
-        'interpolation_boost_spec': [interpolationBoostSpec!.toArgMap()],
-    },
-  ];
-}
+  Map<String, Object?> encode() => {'boost_action': boostAction.encode()};
 
-/// `boost_action.interpolation_boost_spec.attribute_type`.
-enum DiscoveryEngineControlInterpolationAttributeType implements TerraformEnum {
-  numerical('NUMERICAL'),
-  freshness('FRESHNESS');
-
-  const DiscoveryEngineControlInterpolationAttributeType(this.terraformValue);
   @override
-  final String terraformValue;
-}
-
-/// `boost_action.interpolation_boost_spec.interpolation_type`.
-enum DiscoveryEngineControlInterpolationType implements TerraformEnum {
-  linear('LINEAR');
-
-  const DiscoveryEngineControlInterpolationType(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
-/// `boost_action.interpolation_boost_spec` (max 1).
-@immutable
-class DiscoveryEngineControlInterpolationBoostSpec {
-  const DiscoveryEngineControlInterpolationBoostSpec({
-    this.fieldName,
-    this.attributeType,
-    this.interpolationType,
-  });
-
-  final TfArg<String>? fieldName;
-  final TfArg<DiscoveryEngineControlInterpolationAttributeType>? attributeType;
-  final TfArg<DiscoveryEngineControlInterpolationType>? interpolationType;
-
-  Map<String, Object?> toArgMap() => {
-    if (fieldName != null) 'field_name': fieldName!.toTfJson(),
-    if (attributeType != null) 'attribute_type': attributeType!.toTfJson(),
-    if (interpolationType != null)
-      'interpolation_type': interpolationType!.toTfJson(),
+  Map<String, TfArg<Object?>> get argMap => {
+    'boost_action': TfArg.literal(boostAction.encode()),
   };
 }
 
-/// `filter_action` — drop matching results.
-@immutable
-final class DiscoveryEngineControlFilterAction
+/// The [DiscoveryEngineControlAction.filterAction] choice: sets `filter_action`.
+final class DiscoveryEngineControlActionFilterAction
     extends DiscoveryEngineControlAction {
+  const DiscoveryEngineControlActionFilterAction(this.filterAction);
+
+  final DiscoveryEngineControlFilterAction filterAction;
+
+  @override
+  String get blockKey => 'filter_action';
+
+  @override
+  Map<String, Object?> encode() => {'filter_action': filterAction.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'filter_action': TfArg.literal(filterAction.encode()),
+  };
+}
+
+/// The [DiscoveryEngineControlAction.redirectAction] choice: sets `redirect_action`.
+final class DiscoveryEngineControlActionRedirectAction
+    extends DiscoveryEngineControlAction {
+  const DiscoveryEngineControlActionRedirectAction(this.redirectAction);
+
+  final DiscoveryEngineControlRedirectAction redirectAction;
+
+  @override
+  String get blockKey => 'redirect_action';
+
+  @override
+  Map<String, Object?> encode() => {'redirect_action': redirectAction.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'redirect_action': TfArg.literal(redirectAction.encode()),
+  };
+}
+
+/// The [DiscoveryEngineControlAction.synonymsAction] choice: sets `synonyms_action`.
+final class DiscoveryEngineControlActionSynonymsAction
+    extends DiscoveryEngineControlAction {
+  const DiscoveryEngineControlActionSynonymsAction(this.synonymsAction);
+
+  final DiscoveryEngineControlSynonymsAction synonymsAction;
+
+  @override
+  String get blockKey => 'synonyms_action';
+
+  @override
+  Map<String, Object?> encode() => {'synonyms_action': synonymsAction.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'synonyms_action': TfArg.literal(synonymsAction.encode()),
+  };
+}
+
+/// The [DiscoveryEngineControlAction.promoteAction] choice: sets `promote_action`.
+final class DiscoveryEngineControlActionPromoteAction
+    extends DiscoveryEngineControlAction {
+  const DiscoveryEngineControlActionPromoteAction(this.promoteAction);
+
+  final DiscoveryEngineControlPromoteAction promoteAction;
+
+  @override
+  String get blockKey => 'promote_action';
+
+  @override
+  Map<String, Object?> encode() => {'promote_action': promoteAction.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'promote_action': TfArg.literal(promoteAction.encode()),
+  };
+}
+
+/// Typed helper for the `boost_action` block of
+/// `google_discovery_engine_control` (derived from provider schema).
+@immutable
+final class DiscoveryEngineControlBoostAction {
+  const DiscoveryEngineControlBoostAction({
+    required this.dataStore,
+    required this.filter,
+    required this.boost,
+  });
+
+  final TfArg<String> dataStore;
+
+  final TfArg<String> filter;
+
+  final DiscoveryEngineControlBoostActionBoost boost;
+
+  Map<String, Object?> encode() => {
+    'data_store': dataStore.toTfJson(),
+    'filter': filter.toTfJson(),
+    ...boost.encode(),
+  };
+}
+
+/// Exactly one of `fixed_boost`, `interpolation_boost_spec` on the `boost_action` block of `google_discovery_engine_control`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.fixedBoost(...)`.
+sealed class DiscoveryEngineControlBoostActionBoost {
+  const DiscoveryEngineControlBoostActionBoost();
+
+  /// Sets `fixed_boost`.
+  const factory DiscoveryEngineControlBoostActionBoost.fixedBoost(
+    TfArg<num> fixedBoost,
+  ) = DiscoveryEngineControlBoostActionBoostFixedBoost;
+
+  /// Sets `interpolation_boost_spec`.
+  const factory DiscoveryEngineControlBoostActionBoost.interpolationBoostSpec(
+    DiscoveryEngineControlBoostActionInterpolationBoostSpec
+    interpolationBoostSpec,
+  ) = DiscoveryEngineControlBoostActionBoostInterpolationBoostSpec;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [DiscoveryEngineControlBoostActionBoost.fixedBoost] choice: sets `fixed_boost`.
+final class DiscoveryEngineControlBoostActionBoostFixedBoost
+    extends DiscoveryEngineControlBoostActionBoost {
+  const DiscoveryEngineControlBoostActionBoostFixedBoost(this.fixedBoost);
+
+  final TfArg<num> fixedBoost;
+
+  @override
+  String get blockKey => 'fixed_boost';
+
+  @override
+  Map<String, Object?> encode() => {'fixed_boost': fixedBoost.toTfJson()};
+}
+
+/// The [DiscoveryEngineControlBoostActionBoost.interpolationBoostSpec] choice: sets `interpolation_boost_spec`.
+final class DiscoveryEngineControlBoostActionBoostInterpolationBoostSpec
+    extends DiscoveryEngineControlBoostActionBoost {
+  const DiscoveryEngineControlBoostActionBoostInterpolationBoostSpec(
+    this.interpolationBoostSpec,
+  );
+
+  final DiscoveryEngineControlBoostActionInterpolationBoostSpec
+  interpolationBoostSpec;
+
+  @override
+  String get blockKey => 'interpolation_boost_spec';
+
+  @override
+  Map<String, Object?> encode() => {
+    'interpolation_boost_spec': interpolationBoostSpec.encode(),
+  };
+}
+
+/// Typed helper for the `boost_action.interpolation_boost_spec` block of
+/// `google_discovery_engine_control` (derived from provider schema).
+@immutable
+final class DiscoveryEngineControlBoostActionInterpolationBoostSpec {
+  const DiscoveryEngineControlBoostActionInterpolationBoostSpec({
+    this.attributeType,
+    this.fieldName,
+    this.interpolationType,
+    this.controlPoint,
+  });
+
+  final TfArg<
+    DiscoveryEngineControlBoostActionInterpolationBoostSpecAttributeType
+  >?
+  attributeType;
+
+  final TfArg<String>? fieldName;
+
+  final TfArg<String>? interpolationType;
+
+  final DiscoveryEngineControlBoostActionInterpolationBoostSpecControlPoint?
+  controlPoint;
+
+  Map<String, Object?> encode() => {
+    'attribute_type': ?attributeType?.toTfJson(),
+    'field_name': ?fieldName?.toTfJson(),
+    'interpolation_type': ?interpolationType?.toTfJson(),
+    'control_point': ?controlPoint?.encode(),
+  };
+}
+
+/// `attribute_type` — derived from the provider schema description.
+enum DiscoveryEngineControlBoostActionInterpolationBoostSpecAttributeType
+    implements TerraformEnum {
+  numerical('NUMERICAL'),
+  freshness('FRESHNESS');
+
+  const DiscoveryEngineControlBoostActionInterpolationBoostSpecAttributeType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `boost_action.interpolation_boost_spec.control_point` block of
+/// `google_discovery_engine_control` (derived from provider schema).
+@immutable
+final class DiscoveryEngineControlBoostActionInterpolationBoostSpecControlPoint {
+  const DiscoveryEngineControlBoostActionInterpolationBoostSpecControlPoint({
+    this.attributeValue,
+    this.boostAmount,
+  });
+
+  final TfArg<String>? attributeValue;
+
+  final TfArg<num>? boostAmount;
+
+  Map<String, Object?> encode() => {
+    'attribute_value': ?attributeValue?.toTfJson(),
+    'boost_amount': ?boostAmount?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions` block of
+/// `google_discovery_engine_control` (derived from provider schema).
+@immutable
+final class DiscoveryEngineControlConditions {
+  const DiscoveryEngineControlConditions({
+    this.queryRegex,
+    this.activeTimeRange,
+    this.queryTerms,
+  });
+
+  final TfArg<String>? queryRegex;
+
+  final List<DiscoveryEngineControlConditionsActiveTimeRange>? activeTimeRange;
+
+  final List<DiscoveryEngineControlConditionsQueryTerms>? queryTerms;
+
+  Map<String, Object?> encode() => {
+    'query_regex': ?queryRegex?.toTfJson(),
+    if (activeTimeRange != null)
+      'active_time_range': [for (final e in activeTimeRange!) e.encode()],
+    if (queryTerms != null)
+      'query_terms': [for (final e in queryTerms!) e.encode()],
+  };
+}
+
+/// Typed helper for the `conditions.active_time_range` block of
+/// `google_discovery_engine_control` (derived from provider schema).
+@immutable
+final class DiscoveryEngineControlConditionsActiveTimeRange {
+  const DiscoveryEngineControlConditionsActiveTimeRange({
+    this.endTime,
+    this.startTime,
+  });
+
+  final TfArg<String>? endTime;
+
+  final TfArg<String>? startTime;
+
+  Map<String, Object?> encode() => {
+    'end_time': ?endTime?.toTfJson(),
+    'start_time': ?startTime?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `conditions.query_terms` block of
+/// `google_discovery_engine_control` (derived from provider schema).
+@immutable
+final class DiscoveryEngineControlConditionsQueryTerms {
+  const DiscoveryEngineControlConditionsQueryTerms({
+    this.fullMatch,
+    this.value,
+  });
+
+  final TfArg<bool>? fullMatch;
+
+  final TfArg<String>? value;
+
+  Map<String, Object?> encode() => {
+    'full_match': ?fullMatch?.toTfJson(),
+    'value': ?value?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `filter_action` block of
+/// `google_discovery_engine_control` (derived from provider schema).
+@immutable
+final class DiscoveryEngineControlFilterAction {
   const DiscoveryEngineControlFilterAction({
     required this.dataStore,
     required this.filter,
   });
 
   final TfArg<String> dataStore;
+
   final TfArg<String> filter;
 
-  @override
-  String get blockKey => 'filter_action';
-
-  @override
-  List<Map<String, Object?>> encode() => [
-    {'data_store': dataStore.toTfJson(), 'filter': filter.toTfJson()},
-  ];
+  Map<String, Object?> encode() => {
+    'data_store': dataStore.toTfJson(),
+    'filter': filter.toTfJson(),
+  };
 }
 
-/// `redirect_action` — send the query to [redirectUri].
+/// Typed helper for the `promote_action` block of
+/// `google_discovery_engine_control` (derived from provider schema).
 @immutable
-final class DiscoveryEngineControlRedirectAction
-    extends DiscoveryEngineControlAction {
-  const DiscoveryEngineControlRedirectAction({required this.redirectUri});
-
-  final TfArg<String> redirectUri;
-
-  @override
-  String get blockKey => 'redirect_action';
-
-  @override
-  List<Map<String, Object?>> encode() => [
-    {'redirect_uri': redirectUri.toTfJson()},
-  ];
-}
-
-/// `synonyms_action` — treat [synonyms] as equivalent query terms.
-@immutable
-final class DiscoveryEngineControlSynonymsAction
-    extends DiscoveryEngineControlAction {
-  const DiscoveryEngineControlSynonymsAction({this.synonyms});
-
-  final TfArg<List<String>>? synonyms;
-
-  @override
-  String get blockKey => 'synonyms_action';
-
-  @override
-  List<Map<String, Object?>> encode() => [
-    {if (synonyms != null) 'synonyms': synonyms!.toTfJson()},
-  ];
-}
-
-/// `promote_action` — pin a search-link promotion on [dataStore].
-@immutable
-final class DiscoveryEngineControlPromoteAction
-    extends DiscoveryEngineControlAction {
+final class DiscoveryEngineControlPromoteAction {
   const DiscoveryEngineControlPromoteAction({
     required this.dataStore,
     required this.searchLinkPromotion,
   });
 
   final TfArg<String> dataStore;
-  final DiscoveryEngineControlSearchLinkPromotion searchLinkPromotion;
 
-  @override
-  String get blockKey => 'promote_action';
+  final DiscoveryEngineControlPromoteActionSearchLinkPromotion
+  searchLinkPromotion;
 
-  @override
-  List<Map<String, Object?>> encode() => [
-    {
-      'data_store': dataStore.toTfJson(),
-      'search_link_promotion': [searchLinkPromotion.toArgMap()],
-    },
-  ];
+  Map<String, Object?> encode() => {
+    'data_store': dataStore.toTfJson(),
+    'search_link_promotion': searchLinkPromotion.encode(),
+  };
 }
 
-/// `promote_action.search_link_promotion` (min 1).
+/// Typed helper for the `promote_action.search_link_promotion` block of
+/// `google_discovery_engine_control` (derived from provider schema).
 @immutable
-class DiscoveryEngineControlSearchLinkPromotion {
-  const DiscoveryEngineControlSearchLinkPromotion({
-    required this.title,
+final class DiscoveryEngineControlPromoteActionSearchLinkPromotion {
+  const DiscoveryEngineControlPromoteActionSearchLinkPromotion({
     this.description,
     this.document,
     this.enabled,
     this.imageUri,
+    required this.title,
     this.uri,
   });
 
-  final TfArg<String> title;
   final TfArg<String>? description;
+
   final TfArg<String>? document;
+
   final TfArg<bool>? enabled;
+
   final TfArg<String>? imageUri;
+
+  final TfArg<String> title;
+
   final TfArg<String>? uri;
 
-  Map<String, Object?> toArgMap() => {
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'document': ?document?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'image_uri': ?imageUri?.toTfJson(),
     'title': title.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (document != null) 'document': document!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (imageUri != null) 'image_uri': imageUri!.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
+}
+
+/// Typed helper for the `redirect_action` block of
+/// `google_discovery_engine_control` (derived from provider schema).
+@immutable
+final class DiscoveryEngineControlRedirectAction {
+  const DiscoveryEngineControlRedirectAction({required this.redirectUri});
+
+  final TfArg<String> redirectUri;
+
+  Map<String, Object?> encode() => {'redirect_uri': redirectUri.toTfJson()};
+}
+
+/// Typed helper for the `synonyms_action` block of
+/// `google_discovery_engine_control` (derived from provider schema).
+@immutable
+final class DiscoveryEngineControlSynonymsAction {
+  const DiscoveryEngineControlSynonymsAction({this.synonyms});
+
+  final TfArg<List<Object?>>? synonyms;
+
+  Map<String, Object?> encode() => {'synonyms': ?synonyms?.toTfJson()};
 }
 
 /// Factory wrapper for `google_discovery_engine_control`.
@@ -275,6 +485,7 @@ final class GoogleDiscoveryEngineControl extends Resource {
     TfArg<List<String>>? useCases,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    List<DiscoveryEngineControlConditions>? conditions,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -291,7 +502,11 @@ final class GoogleDiscoveryEngineControl extends Resource {
            'use_cases': ?useCases,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
-           action.blockKey: TfArg.literal(action.encode()),
+           ...action.argMap,
+           if (conditions != null)
+             'conditions': TfArg.literal([
+               for (final e in conditions) e.encode(),
+             ]),
          },
        );
 

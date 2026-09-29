@@ -160,7 +160,11 @@ final class DiscoveryEngineCatalogStack extends Stack {
         displayName: .literal('terradart synonyms'),
         solutionType: .literal(.solutionTypeSearch),
         useCases: .literal(['SEARCH_USE_CASE_SEARCH']),
-        action: .synonymsAction(synonyms: .literal(['quickstart', 'demo'])),
+        action: .synonymsAction(
+          DiscoveryEngineControlSynonymsAction(
+            synonyms: .literal(['quickstart', 'demo']),
+          ),
+        ),
         dependsOn: [ResourceDependency(searchEngine)],
       ),
     );
@@ -204,8 +208,8 @@ final class DiscoveryEngineCatalogStack extends Stack {
         collectionDisplayName: .literal('terradart jira'),
         dataSource: .literal('jira'),
         refreshInterval: .literal('1800s'),
-        jsonParams: .literal(
-          '{"instance_uri":"https://example.atlassian.net"}',
+        params: .jsonParams(
+          .literal('{"instance_uri":"https://example.atlassian.net"}'),
         ),
         deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,

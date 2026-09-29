@@ -836,6 +836,9 @@ final class GoogleCesApp extends Resource {
     List<CesAppVariableDeclarations>? variableDeclarations,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    TfArg<bool>? locked,
+    CesAppErrorHandlingSettings? errorHandlingSettings,
+    CesAppVpcScSettings? vpcScSettings,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -885,6 +888,13 @@ final class GoogleCesApp extends Resource {
              ]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           'locked': ?locked,
+           if (errorHandlingSettings != null)
+             'error_handling_settings': TfArg.literal(
+               errorHandlingSettings.encode(),
+             ),
+           if (vpcScSettings != null)
+             'vpc_sc_settings': TfArg.literal(vpcScSettings.encode()),
          },
        );
 
