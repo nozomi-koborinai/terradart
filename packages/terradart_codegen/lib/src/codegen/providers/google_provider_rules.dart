@@ -28,6 +28,11 @@ base class GoogleProviderRules extends ProviderRules {
     return lines;
   }
 
+  /// Both google lanes seal Magic Modules groups (`wrap --mm-groups` on GA,
+  /// `--mm-hints` on beta).
+  @override
+  bool get exactlyOneDefaults => true;
+
   /// Google provider alias map. Bootstrap entries derived from the 13 yaml
   /// files shipped in Phase 4.1; extend during Phase 4.5 wave rollout when
   /// new MM products land.
@@ -343,7 +348,4 @@ final class GoogleBetaProviderRules extends GoogleProviderRules {
 
   @override
   bool get derivedEnumDefaults => true;
-
-  @override
-  bool get exactlyOneDefaults => true;
 }

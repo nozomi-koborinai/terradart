@@ -42,7 +42,13 @@
 #                    enum-valued inputs and seal `exactly_one_of` groups from
 #                    the Magic Modules YAML in <schemaDir>/mm, the way
 #                    providerEnums does from provider hints (exclusive with
-#                    it). The google lane keeps its hand-promoted overrides.
+#                    it). The google lane keeps its hand-promoted enums.
+#   mmGroups:        (optional, default false) wrap --mm-groups: only the
+#                    sealable groups of mmHints (`exactly_one_of`,
+#                    `conflicts`, `at_least_one_of`) feed `deriveExactlyOne`;
+#                    enum typing stays the merged IR's (google GA, whose
+#                    MM YAML sync_mm_yaml.dart refreshes on every bump).
+#                    Exclusive with mmHints and providerEnums.
 #   mmSync:          (optional) sync <schemaDir>/mm from the fixture itself
 #                    instead of a hand-kept manifest: tool/sync_lane_mm_yaml.dart
 #                    resolves every schema.json resource through the header of
@@ -92,6 +98,7 @@ providers:
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source
     schemaMode: full
     mm: true
+    mmGroups: true
     outputPackage: packages/terradart_google
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml
