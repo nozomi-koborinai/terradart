@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
 import '../iam/aws_iam_role.dart' show AwsIamRole;
 
 /// Sensitive field paths for `aws_emr_cluster`.
@@ -426,12 +427,13 @@ sealed class EmrClusterEc2AttributesSubnet {
   const EmrClusterEc2AttributesSubnet();
 
   /// Sets `subnet_id`.
-  const factory EmrClusterEc2AttributesSubnet.subnetId(TfArg<String> subnetId) =
-      EmrClusterEc2AttributesSubnetId;
+  const factory EmrClusterEc2AttributesSubnet.subnetId(
+    RefTo<AwsSubnet> subnetId,
+  ) = EmrClusterEc2AttributesSubnetId;
 
   /// Sets `subnet_ids`.
   const factory EmrClusterEc2AttributesSubnet.subnetIds(
-    TfArg<List<Object?>> subnetIds,
+    TfArg<List<RefTo<AwsSubnet>>> subnetIds,
   ) = EmrClusterEc2AttributesSubnetIds;
 
   /// The Terraform argument this choice sets.
@@ -445,13 +447,15 @@ final class EmrClusterEc2AttributesSubnetId
     extends EmrClusterEc2AttributesSubnet {
   const EmrClusterEc2AttributesSubnetId(this.subnetId);
 
-  final TfArg<String> subnetId;
+  final RefTo<AwsSubnet> subnetId;
 
   @override
   String get blockKey => 'subnet_id';
 
   @override
-  Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'subnet_id': subnetId.encodeAs('id').toTfJson(),
+  };
 }
 
 /// The [EmrClusterEc2AttributesSubnet.subnetIds] choice: sets `subnet_ids`.
@@ -459,13 +463,15 @@ final class EmrClusterEc2AttributesSubnetIds
     extends EmrClusterEc2AttributesSubnet {
   const EmrClusterEc2AttributesSubnetIds(this.subnetIds);
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   @override
   String get blockKey => 'subnet_ids';
 
   @override
-  Map<String, Object?> encode() => {'subnet_ids': subnetIds.toTfJson()};
+  Map<String, Object?> encode() => {
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `kerberos_attributes` block of

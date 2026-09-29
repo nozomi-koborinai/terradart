@@ -78,6 +78,25 @@ The examples changed in these places:
 `.literal` / `.variable` / `.expression` otherwise, so migrated stacks keep
 their synth output.
 
+A sealed choice between such arguments takes the same `RefTo<Target>`,
+whether it is a top-level argument or a field of a nested helper. Synth
+output does not change: each variant emits the attribute the plain argument
+emits.
+
+| Resource | Before | After |
+|----------|--------|-------|
+| `cloudflare_ruleset` | `scope: .zoneId(TfArg.ref(zone.id))` | `scope: .zoneId(zone.ref)` |
+| `aws_lambda_function` | `code: .s3Bucket(TfArg.ref(bucket.id))` | `code: .s3Bucket(bucket.ref)` |
+| `aws_lb` / `aws_alb` | `subnet: .subnets(TfArg.literal([a.id.interpolation]))` | `subnet: .subnets(.literal([a.ref]))` |
+| `aws_flow_log` | `source: .vpcId(TfArg.ref(vpc.id))` | `source: .vpcId(vpc.ref)` |
+
+The other sealed members typed this way: `aws_cloudhsm_v2_hsm`
+`subnet_id`, `aws_s3_object` / `aws_s3_bucket_object` `kms_key_id`,
+`aws_launch_template`, `aws_route_table_association`,
+`aws_vpc_block_public_access_exclusion`, `aws_emr_cluster`,
+`aws_networkfirewall_firewall`, `google_dataproc_batch`,
+`google_spanner_backup_schedule` and `google_vertex_ai_index_endpoint`.
+
 ### Sealed arguments are built with dot shorthands
 
 **Breaking (`terradart_aws`, every package with a derived sealed type)** —

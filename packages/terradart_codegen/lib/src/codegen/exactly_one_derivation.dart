@@ -6,6 +6,7 @@ import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
 import 'provider_enums.dart';
+import 'references/reference_targets.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
 /// The `deriveExactlyOne` gate for a resource's own arguments: every
@@ -32,26 +33,35 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// [resolveSealedName] and listed in `names`; `nameErrors` lists each
 /// `sealedNames` entry that clashes, repeats the derived name, or matches
 /// no sealed group.
+///
+/// [references] (`--typed-references`: resource type → dotted input path →
+/// target) types a member the ledger matches: its variant holds a
+/// `RefTo<Target>`. `typedReferences` lists each top-level member typed
+/// that way, as `<type>.<member>`.
 ({
   Map<String, WrapperOverride> overrides,
   List<String> skipped,
   List<String> skippedAtMostOne,
   List<SealedName> names,
   List<String> nameErrors,
+  List<String> typedReferences,
 })
 deriveExactlyOneSlots(
   Map<String, WrapperOverride> overrides,
   Map<String, ResourceDef> defs, {
   required ProviderEnums providerEnums,
   required Map<String, Map<String, dynamic>> rawSchemas,
+  Map<String, Map<String, ResolvedReference>> references = const {},
 }) {
   final skipped = <String>[];
   final skippedAtMostOne = <String>[];
   final names = <SealedName>[];
   final nameErrors = <String>[];
+  final typedReferences = <String>[];
   final out = <String, WrapperOverride>{};
   for (final MapEntry(key: type, value: o) in overrides.entries) {
     final def = defs[type];
+    final refs = references[type] ?? const <String, ResolvedReference>{};
     final groups = providerEnums.exactlyOneGroupsByBlock(type)[''];
     final optionalGroups = providerEnums.atMostOneGroupsByBlock(type)[''];
     final nested = providerEnums.nestedExactlyOneGroups(type, o);
@@ -76,6 +86,7 @@ deriveExactlyOneSlots(
             exactlyOneGroups: nested,
             atMostOneGroups: nestedOptional,
             sealedNames: o.sealedNames,
+            references: (path) => refs[path.join('.')],
           )
         : const <NestedBlockSpec>[];
     final typeNames = <SealedGroupName>[];
@@ -92,9 +103,11 @@ deriveExactlyOneSlots(
                 (members: g, optional: true),
             ],
             specs,
+            refs,
             skipped: skipped,
             skippedAtMostOne: skippedAtMostOne,
             names: typeNames,
+            typedReferences: typedReferences,
           );
     typeNames.addAll(nestedSealedNames(specs));
     final human = {
@@ -141,6 +154,7 @@ deriveExactlyOneSlots(
     skippedAtMostOne: skippedAtMostOne,
     names: names,
     nameErrors: nameErrors,
+    typedReferences: typedReferences,
   );
 }
 
@@ -187,10 +201,12 @@ WrapperOverride _derive(
   WrapperOverride o,
   ResourceDef def,
   List<({List<String> members, bool optional})> groups,
-  List<NestedBlockSpec> nestedSpecs, {
+  List<NestedBlockSpec> nestedSpecs,
+  Map<String, ResolvedReference> refs, {
   required List<String> skipped,
   required List<String> skippedAtMostOne,
   required List<SealedGroupName> names,
+  required List<String> typedReferences,
 }) {
   final prefix = shortResourcePascal(type);
   final order = orderedConstructorParams(def, o.paramOrder);
@@ -206,6 +222,18 @@ WrapperOverride _derive(
     final attr = attrs[m];
     if (attr != null) {
       if (attr.constraints.required) return null;
+      final ref = refs[m];
+      if (ref != null && o.dartTypeOverrides?[m] == null) {
+        final value = "$ident.encodeAs('${ref.attribute}')";
+        return (
+          tfName: m,
+          ident: ident,
+          fieldType: ref.dartType,
+          encodeExpr: '$value.toTfJson()',
+          argMapExpr: value,
+          deprecation: deprecation,
+        );
+      }
       final dartType = o.dartTypeOverrides?[m] ?? writeDartType(attr.type);
       if (isEnumListType(dartType)) {
         final encode = '[for (final e in $ident) e.toTfJson()]';
@@ -332,6 +360,10 @@ WrapperOverride _derive(
     final slot = resolved.concept;
     chosenSlots.add(slot);
     taken.addAll(group);
+    typedReferences.addAll([
+      for (final v in variants)
+        if (refs[v.tfName]?.dartType == v.fieldType) '$type.${v.tfName}',
+    ]);
     group.forEach(slots.remove);
     // Only a group whose name reports an error (which fails `wrap`) reaches
     // the plain concatenations: `clashes` vetted every name it resolves to.

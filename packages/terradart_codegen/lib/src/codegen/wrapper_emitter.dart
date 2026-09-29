@@ -198,8 +198,19 @@ class WrapperEmitter {
       buf.writeln(imp);
     }
     buf.writeln("import 'package:terradart_core/terradart_core.dart';");
+    // A top-level sealed group's variants live in the prelude
+    // (`deriveExactlyOneSlots`), so its members are in neither map.
+    final preludeRefs = [
+      for (final ref in refs.values)
+        if (override?.prelude?.contains('RefTo<${ref.className}>') ?? false)
+          ref,
+    ];
     final refImports = {
-      for (final ref in [...topLevelRefs.values, ...nestedRefs.values])
+      for (final ref in [
+        ...topLevelRefs.values,
+        ...nestedRefs.values,
+        ...preludeRefs,
+      ])
         if (ref.target != def.terraformType) ref.import,
     }.toList()..sort();
     if (refImports.isNotEmpty) {

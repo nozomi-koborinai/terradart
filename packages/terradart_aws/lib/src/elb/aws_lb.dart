@@ -101,7 +101,8 @@ sealed class LbSubnet {
       LbSubnetMappingChoice;
 
   /// Sets `subnets`.
-  const factory LbSubnet.subnets(TfArg<List<String>> subnets) = LbSubnetSubnets;
+  const factory LbSubnet.subnets(TfArg<List<RefTo<AwsSubnet>>> subnets) =
+      LbSubnetSubnets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -139,16 +140,18 @@ final class LbSubnetMappingChoice extends LbSubnet {
 final class LbSubnetSubnets extends LbSubnet {
   const LbSubnetSubnets(this.subnets);
 
-  final TfArg<List<String>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   @override
   String get blockKey => 'subnets';
 
   @override
-  Map<String, Object?> encode() => {'subnets': subnets.toTfJson()};
+  Map<String, Object?> encode() => {
+    'subnets': subnets.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'subnets': subnets};
+  Map<String, TfArg<Object?>> get argMap => {'subnets': subnets.encodeAs('id')};
 }
 
 /// At most one of `name`, `name_prefix` on `aws_lb`: the provider rejects

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_vpc_block_public_access_exclusion`.
 const Set<String> _awsVpcBlockPublicAccessExclusionSensitive = <String>{};
 
@@ -28,11 +31,11 @@ sealed class VpcBlockPublicAccessExclusionTarget {
 
   /// Sets `subnet_id`.
   const factory VpcBlockPublicAccessExclusionTarget.subnetId(
-    TfArg<String> subnetId,
+    RefTo<AwsSubnet> subnetId,
   ) = VpcBlockPublicAccessExclusionTargetSubnetId;
 
   /// Sets `vpc_id`.
-  const factory VpcBlockPublicAccessExclusionTarget.vpcId(TfArg<String> vpcId) =
+  const factory VpcBlockPublicAccessExclusionTarget.vpcId(RefTo<AwsVpc> vpcId) =
       VpcBlockPublicAccessExclusionTargetVpcId;
 
   /// The Terraform argument this choice sets.
@@ -50,16 +53,20 @@ final class VpcBlockPublicAccessExclusionTargetSubnetId
     extends VpcBlockPublicAccessExclusionTarget {
   const VpcBlockPublicAccessExclusionTargetSubnetId(this.subnetId);
 
-  final TfArg<String> subnetId;
+  final RefTo<AwsSubnet> subnetId;
 
   @override
   String get blockKey => 'subnet_id';
 
   @override
-  Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'subnet_id': subnetId.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'subnet_id': subnetId};
+  Map<String, TfArg<Object?>> get argMap => {
+    'subnet_id': subnetId.encodeAs('id'),
+  };
 }
 
 /// The [VpcBlockPublicAccessExclusionTarget.vpcId] choice: sets `vpc_id`.
@@ -67,16 +74,16 @@ final class VpcBlockPublicAccessExclusionTargetVpcId
     extends VpcBlockPublicAccessExclusionTarget {
   const VpcBlockPublicAccessExclusionTargetVpcId(this.vpcId);
 
-  final TfArg<String> vpcId;
+  final RefTo<AwsVpc> vpcId;
 
   @override
   String get blockKey => 'vpc_id';
 
   @override
-  Map<String, Object?> encode() => {'vpc_id': vpcId.toTfJson()};
+  Map<String, Object?> encode() => {'vpc_id': vpcId.encodeAs('id').toTfJson()};
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId};
+  Map<String, TfArg<Object?>> get argMap => {'vpc_id': vpcId.encodeAs('id')};
 }
 
 /// Factory wrapper for `aws_vpc_block_public_access_exclusion`.
