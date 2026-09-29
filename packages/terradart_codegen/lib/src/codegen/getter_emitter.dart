@@ -100,5 +100,5 @@ String emitResourceRefGetter(String className) =>
 String emitDataSourceRefGetter(String resourceType, String className) =>
     '  /// A reference to the `$resourceType` this data source reads, for\n'
     '  /// arguments typed `RefTo<$className>`.\n'
-    '  // ignore: invalid_use_of_internal_member\n'
-    '  RefTo<$className> get ref => RefTo.read(this);\n';
+    '  RefTo<$className> get ref =>\n'
+    '      RefTo.read(this); // ignore: invalid_use_of_internal_member\n';
