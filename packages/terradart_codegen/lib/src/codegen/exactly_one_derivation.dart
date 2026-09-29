@@ -31,7 +31,8 @@ import 'wrapper_overrides/wrapper_override.dart';
   Map<String, WrapperOverride> overrides,
   List<String> skipped,
   List<String> skippedAtMostOne,
-}) deriveExactlyOneSlots(
+})
+deriveExactlyOneSlots(
   Map<String, WrapperOverride> overrides,
   Map<String, ResourceDef> defs, {
   required ProviderEnums providerEnums,
@@ -284,9 +285,6 @@ List<String> _replaceMembers(
   final first = order.indexWhere(group.contains);
   return [
     for (var i = 0; i < order.length; i++)
-      if (i == first)
-        slot
-      else if (!group.contains(order[i]))
-        order[i],
+      if (i == first) slot else if (!group.contains(order[i])) order[i],
   ];
 }

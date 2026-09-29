@@ -15,12 +15,12 @@ import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:test/test.dart';
 
 Attribute _attr(String name, {bool required = false}) => Attribute(
-      name: name,
-      type: const StringType(),
-      constraints: required
-          ? const Constraints(required: true)
-          : const Constraints(optional: true),
-    );
+  name: name,
+  type: const StringType(),
+  constraints: required
+      ? const Constraints(required: true)
+      : const Constraints(optional: true),
+);
 
 const _groups = ProviderEnums.on(
   exactlyOneGroups: {
@@ -73,8 +73,8 @@ void main() {
     tearDown(() => dir.deleteSync(recursive: true));
 
     void write(String body) => File(
-          p.join(dir.path, 'hints', 'aws_thing.yaml'),
-        ).writeAsStringSync('provider_version: 1.0.0\n$body');
+      p.join(dir.path, 'hints', 'aws_thing.yaml'),
+    ).writeAsStringSync('provider_version: 1.0.0\n$body');
 
     test('reads exactly_one_of_groups', () {
       write(
@@ -249,15 +249,15 @@ void main() {
 
   test('unsealedNestedGroups follows shared helpers to every copy', () {
     Map<String, dynamic> settings() => {
-          'nesting_mode': 'list',
-          'max_items': 1,
-          'block': {
-            'attributes': {
-              'x': {'type': 'string', 'optional': true},
-              'y': {'type': 'string', 'optional': true},
-            },
-          },
-        };
+      'nesting_mode': 'list',
+      'max_items': 1,
+      'block': {
+        'attributes': {
+          'x': {'type': 'string', 'optional': true},
+          'y': {'type': 'string', 'optional': true},
+        },
+      },
+    };
     const groups = {
       'one': [
         ['x', 'y'],
@@ -457,9 +457,7 @@ void main() {
       ),
       rawSchemas: const {},
     );
-    expect(derived.skippedAtMostOne, [
-      'aws_thing [c, d]: c is a custom slot',
-    ]);
+    expect(derived.skippedAtMostOne, ['aws_thing [c, d]: c is a custom slot']);
     final o = derived.overrides['aws_thing']!;
     expect(o.customSlots!.keys, unorderedEquals(['a_or_b', 'c']));
     expect(o.paramOrder, ['d', 'a_or_b', 'c']);

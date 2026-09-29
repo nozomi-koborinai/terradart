@@ -29,10 +29,10 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// [off] is every lane's default and changes nothing.
 final class ProviderEnums {
   const ProviderEnums._({required this.enabled, required this.hints})
-      : exactlyOneGroups = const {},
-        atMostOneGroups = const {},
-        caseInsensitive = false,
-        availableValuesDialect = false;
+    : exactlyOneGroups = const {},
+      atMostOneGroups = const {},
+      caseInsensitive = false,
+      availableValuesDialect = false;
 
   /// The gate closed: no enrichment, the default description resolver.
   static const ProviderEnums off = ProviderEnums._(enabled: false, hints: {});
@@ -88,10 +88,10 @@ final class ProviderEnums {
   const ProviderEnums._groups({
     required this.exactlyOneGroups,
     required this.atMostOneGroups,
-  })  : enabled = false,
-        hints = const {},
-        caseInsensitive = false,
-        availableValuesDialect = false;
+  }) : enabled = false,
+       hints = const {},
+       caseInsensitive = false,
+       availableValuesDialect = false;
 
   /// Reads `<sourceDir>/hints/*.yaml` (a missing directory means no hints).
   ///
@@ -107,12 +107,13 @@ final class ProviderEnums {
     final groups = <String, List<List<String>>>{};
     final atMostOne = <String, List<List<String>>>{};
     if (dir.existsSync()) {
-      final files = dir
-          .listSync()
-          .whereType<File>()
-          .where((f) => f.path.endsWith('.yaml'))
-          .toList()
-        ..sort((a, b) => a.path.compareTo(b.path));
+      final files =
+          dir
+              .listSync()
+              .whereType<File>()
+              .where((f) => f.path.endsWith('.yaml'))
+              .toList()
+            ..sort((a, b) => a.path.compareTo(b.path));
       for (final file in files) {
         final src = file.readAsStringSync();
         final doc = loadYaml(src);
@@ -174,8 +175,7 @@ final class ProviderEnums {
   /// names.
   Map<String, List<List<String>>> exactlyOneGroupsByBlock(
     String terraformType,
-  ) =>
-      _byBlock(exactlyOneGroups[terraformType]);
+  ) => _byBlock(exactlyOneGroups[terraformType]);
 
   /// Terraform type → the mutually exclusive input sets the provider also
   /// accepts none of (at most one), in the shape of [exactlyOneGroups]
@@ -186,8 +186,7 @@ final class ProviderEnums {
   /// [exactlyOneGroupsByBlock].
   Map<String, List<List<String>>> atMostOneGroupsByBlock(
     String terraformType,
-  ) =>
-      _byBlock(atMostOneGroups[terraformType]);
+  ) => _byBlock(atMostOneGroups[terraformType]);
 
   static Map<String, List<List<String>>> _byBlock(List<List<String>>? groups) {
     final out = <String, List<List<String>>>{};
@@ -312,12 +311,10 @@ ResourceDef _enrich(ResourceDef def, EnumValuesResolver resolve) {
 bool isEnumListType(String dartType) => dartType.startsWith('List<TfArg<');
 
 bool _isStringish(TypeDef t) => switch (t) {
-      StringType() => true,
-      ListType(:final element) ||
-      SetType(:final element) =>
-        element is StringType,
-      _ => false,
-    };
+  StringType() => true,
+  ListType(:final element) || SetType(:final element) => element is StringType,
+  _ => false,
+};
 
 String _enumSlotType(Attribute attr, String enumType) =>
     attr.type is StringType ? enumType : 'List<TfArg<$enumType>>';
