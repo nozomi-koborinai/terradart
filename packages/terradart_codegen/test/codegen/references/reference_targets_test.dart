@@ -404,12 +404,12 @@ hashicorp/google:
         },
       },
     };
+    final provider =
+        (schema['provider_schemas']!
+                as Map)['registry.terraform.io/hashicorp/google']
+            as Map;
     final blocks = {
-      for (final e
-          in ((schema['provider_schemas']!
-                      as Map)['registry.terraform.io/hashicorp/google']
-                  as Map)['resource_schemas']
-              .entries)
+      for (final e in (provider['resource_schemas'] as Map).entries)
         e.key as String: ((e.value as Map)['block'] as Map)
             .cast<String, dynamic>(),
     };
