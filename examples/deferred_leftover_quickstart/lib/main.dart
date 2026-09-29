@@ -413,16 +413,25 @@ final class DeferredLeftoverStack extends Stack {
         streamId: TfArg.literal('terradart-leftover'),
         destinationConfig: DatastreamStreamDestinationConfig(
           destinationConnectionProfile: TfArg.literal('terradart-leftover'),
-          gcsDestinationConfig:
-              const DatastreamStreamDestinationConfigGcsDestinationConfig(
-                avroFileFormat:
-                    DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat(),
+          gcsDestinationConfigOrBigqueryDestinationConfig:
+              const DatastreamStreamDestinationConfigGcsDestinationConfigOption(
+                gcsDestinationConfig:
+                    DatastreamStreamDestinationConfigGcsDestinationConfig(
+                      avroFileFormatOrJsonFileFormat:
+                          DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOption(
+                            avroFileFormat:
+                                DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat(),
+                          ),
+                    ),
               ),
         ),
         sourceConfig: DatastreamStreamSourceConfig(
           sourceConnectionProfile: TfArg.literal('terradart-leftover'),
-          mysqlSourceConfig:
-              const DatastreamStreamSourceConfigMysqlSourceConfig(),
+          mysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig:
+              const DatastreamStreamSourceConfigMysqlSourceConfigOption(
+                mysqlSourceConfig:
+                    DatastreamStreamSourceConfigMysqlSourceConfig(),
+              ),
         ),
         backfillNone: const DatastreamStreamBackfillNone(),
       ),

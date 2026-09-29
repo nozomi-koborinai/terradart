@@ -1,6 +1,7 @@
 outputDir: monitoring
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

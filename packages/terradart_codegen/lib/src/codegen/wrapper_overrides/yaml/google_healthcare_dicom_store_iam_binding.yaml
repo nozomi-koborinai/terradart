@@ -1,6 +1,7 @@
 outputDir: healthcare
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

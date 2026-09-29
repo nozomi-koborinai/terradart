@@ -8,6 +8,12 @@ library;
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange.dart'
     show
         BigqueryAnalyticsHubDataExchangeDiscoveryType,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfig,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfigOption,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfig,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOption,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig,
         GoogleBigqueryAnalyticsHubDataExchange;
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_binding.dart'
     show GoogleBigqueryAnalyticsHubDataExchangeIamBinding;
@@ -17,7 +23,19 @@ export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_policy.dart
     show GoogleBigqueryAnalyticsHubDataExchangeIamPolicy;
 export 'src/bigquery/google_bigquery_analytics_hub_listing.dart'
     show
+        BigqueryAnalyticsHubListingBigqueryDataset,
+        BigqueryAnalyticsHubListingBigqueryDatasetOption,
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources,
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesRoutineOption,
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOption,
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine,
+        BigqueryAnalyticsHubListingDataProvider,
         BigqueryAnalyticsHubListingDiscoveryType,
+        BigqueryAnalyticsHubListingPublisher,
+        BigqueryAnalyticsHubListingPubsubTopic,
+        BigqueryAnalyticsHubListingPubsubTopicOption,
+        BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset,
+        BigqueryAnalyticsHubListingRestrictedExportConfig,
         GoogleBigqueryAnalyticsHubListing;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_binding.dart'
     show GoogleBigqueryAnalyticsHubListingIamBinding;
@@ -132,8 +150,17 @@ export 'src/bigquery/google_bigquery_dataset_access.dart'
         BigqueryDatasetAccessAuthorizedDataset,
         BigqueryDatasetAccessAuthorizedRoutine,
         BigqueryDatasetAccessAuthorizedView,
+        BigqueryDatasetAccessDatasetOption,
         BigqueryDatasetAccessDatasetTargetType,
+        BigqueryDatasetAccessDomainOption,
+        BigqueryDatasetAccessGroupByEmailOption,
+        BigqueryDatasetAccessIamMemberOption,
         BigqueryDatasetAccessPredefinedGroup,
+        BigqueryDatasetAccessRoutineOption,
+        BigqueryDatasetAccessSpecialGroupOption,
+        BigqueryDatasetAccessUserByEmailOption,
+        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine,
+        BigqueryDatasetAccessViewOption,
         GoogleBigqueryDatasetAccess;
 export 'src/bigquery/google_bigquery_dataset_iam_binding.dart'
     show GoogleBigqueryDatasetIamBinding;

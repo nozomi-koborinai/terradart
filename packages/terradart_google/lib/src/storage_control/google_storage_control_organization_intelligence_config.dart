@@ -13,35 +13,123 @@ const Set<String> _googleStorageControlOrganizationIntelligenceConfigSensitive =
 @immutable
 final class StorageControlOrganizationIntelligenceConfigFilter {
   const StorageControlOrganizationIntelligenceConfigFilter({
-    this.excludedCloudStorageBuckets,
-    this.excludedCloudStorageLocations,
-    this.includedCloudStorageBuckets,
-    this.includedCloudStorageLocations,
+    this.excludedCloudStorageBucketsOrIncludedCloudStorageBuckets,
+    this.excludedCloudStorageLocationsOrIncludedCloudStorageLocations,
   });
 
-  final StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBuckets?
-  excludedCloudStorageBuckets;
+  final StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets?
+  excludedCloudStorageBucketsOrIncludedCloudStorageBuckets;
 
-  final StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocations?
-  excludedCloudStorageLocations;
-
-  final StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBuckets?
-  includedCloudStorageBuckets;
-
-  final StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocations?
-  includedCloudStorageLocations;
+  final StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations?
+  excludedCloudStorageLocationsOrIncludedCloudStorageLocations;
 
   Map<String, Object?> encode() => {
-    if (excludedCloudStorageBuckets != null)
-      'excluded_cloud_storage_buckets': excludedCloudStorageBuckets!.encode(),
-    if (excludedCloudStorageLocations != null)
-      'excluded_cloud_storage_locations': excludedCloudStorageLocations!
-          .encode(),
-    if (includedCloudStorageBuckets != null)
-      'included_cloud_storage_buckets': includedCloudStorageBuckets!.encode(),
-    if (includedCloudStorageLocations != null)
-      'included_cloud_storage_locations': includedCloudStorageLocations!
-          .encode(),
+    ...?excludedCloudStorageBucketsOrIncludedCloudStorageBuckets?.encode(),
+    ...?excludedCloudStorageLocationsOrIncludedCloudStorageLocations?.encode(),
+  };
+}
+
+/// At most one of `excluded_cloud_storage_buckets`, `included_cloud_storage_buckets` on the `filter` block of `google_storage_control_organization_intelligence_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets {
+  const StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `excluded_cloud_storage_buckets` (one of the [StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets] choices).
+final class StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOption
+    extends
+        StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets {
+  const StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOption({
+    required this.excludedCloudStorageBuckets,
+  });
+
+  final StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBuckets
+  excludedCloudStorageBuckets;
+
+  @override
+  String get blockKey => 'excluded_cloud_storage_buckets';
+
+  @override
+  Map<String, Object?> encode() => {
+    'excluded_cloud_storage_buckets': excludedCloudStorageBuckets.encode(),
+  };
+}
+
+/// Sets `included_cloud_storage_buckets` (one of the [StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets] choices).
+final class StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBucketsOption
+    extends
+        StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets {
+  const StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBucketsOption({
+    required this.includedCloudStorageBuckets,
+  });
+
+  final StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBuckets
+  includedCloudStorageBuckets;
+
+  @override
+  String get blockKey => 'included_cloud_storage_buckets';
+
+  @override
+  Map<String, Object?> encode() => {
+    'included_cloud_storage_buckets': includedCloudStorageBuckets.encode(),
+  };
+}
+
+/// At most one of `excluded_cloud_storage_locations`, `included_cloud_storage_locations` on the `filter` block of `google_storage_control_organization_intelligence_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations {
+  const StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `excluded_cloud_storage_locations` (one of the [StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations] choices).
+final class StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOption
+    extends
+        StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations {
+  const StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOption({
+    required this.excludedCloudStorageLocations,
+  });
+
+  final StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocations
+  excludedCloudStorageLocations;
+
+  @override
+  String get blockKey => 'excluded_cloud_storage_locations';
+
+  @override
+  Map<String, Object?> encode() => {
+    'excluded_cloud_storage_locations': excludedCloudStorageLocations.encode(),
+  };
+}
+
+/// Sets `included_cloud_storage_locations` (one of the [StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations] choices).
+final class StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocationsOption
+    extends
+        StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations {
+  const StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocationsOption({
+    required this.includedCloudStorageLocations,
+  });
+
+  final StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocations
+  includedCloudStorageLocations;
+
+  @override
+  String get blockKey => 'included_cloud_storage_locations';
+
+  @override
+  Map<String, Object?> encode() => {
+    'included_cloud_storage_locations': includedCloudStorageLocations.encode(),
   };
 }
 

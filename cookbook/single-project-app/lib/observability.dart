@@ -28,12 +28,15 @@ GooglePubsubSubscription buildOrderSubscription({
   localName: 'orders_subscription',
   name: TfArg.literal('coffee-orders-sub'),
   topic: TfArg.ref(orderTopic.id),
-  pushConfig: PubsubSubscriptionPushConfig(
-    pushEndpoint: TfArg.ref(coffeeService.uri),
-    oidcToken: PubsubSubscriptionOidcToken(
-      serviceAccountEmail: TfArg.ref(runSa.email),
-    ),
-  ),
+  bigqueryConfigOrPushConfigOrCloudStorageConfig:
+      PubsubSubscriptionPushConfigOption(
+        pushConfig: PubsubSubscriptionPushConfig(
+          pushEndpoint: TfArg.ref(coffeeService.uri),
+          oidcToken: PubsubSubscriptionOidcToken(
+            serviceAccountEmail: TfArg.ref(runSa.email),
+          ),
+        ),
+      ),
 );
 
 GoogleMonitoringNotificationChannel buildEmailChannel(String alertEmail) =>

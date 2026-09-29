@@ -4,6 +4,7 @@
 outputDir: biglake
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Authoritative IAM binding for a single `role` on a Biglake Hive Database.

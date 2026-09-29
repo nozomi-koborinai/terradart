@@ -1,5 +1,6 @@
 outputDir: database_migration
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true

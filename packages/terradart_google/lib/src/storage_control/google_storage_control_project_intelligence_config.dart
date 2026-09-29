@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_storage_control_project_intelligence_config`.
@@ -20,6 +21,187 @@ enum StorageControlProjectIntelligenceConfigEditionConfig
   );
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `filter` block of
+/// `google_storage_control_project_intelligence_config` (derived from provider schema).
+@immutable
+final class StorageControlProjectIntelligenceConfigFilter {
+  const StorageControlProjectIntelligenceConfigFilter({
+    this.excludedCloudStorageBucketsOrIncludedCloudStorageBuckets,
+    this.excludedCloudStorageLocationsOrIncludedCloudStorageLocations,
+  });
+
+  final StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets?
+  excludedCloudStorageBucketsOrIncludedCloudStorageBuckets;
+
+  final StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations?
+  excludedCloudStorageLocationsOrIncludedCloudStorageLocations;
+
+  Map<String, Object?> encode() => {
+    ...?excludedCloudStorageBucketsOrIncludedCloudStorageBuckets?.encode(),
+    ...?excludedCloudStorageLocationsOrIncludedCloudStorageLocations?.encode(),
+  };
+}
+
+/// At most one of `excluded_cloud_storage_buckets`, `included_cloud_storage_buckets` on the `filter` block of `google_storage_control_project_intelligence_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets {
+  const StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `excluded_cloud_storage_buckets` (one of the [StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets] choices).
+final class StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOption
+    extends
+        StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets {
+  const StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOption({
+    required this.excludedCloudStorageBuckets,
+  });
+
+  final StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBuckets
+  excludedCloudStorageBuckets;
+
+  @override
+  String get blockKey => 'excluded_cloud_storage_buckets';
+
+  @override
+  Map<String, Object?> encode() => {
+    'excluded_cloud_storage_buckets': excludedCloudStorageBuckets.encode(),
+  };
+}
+
+/// Sets `included_cloud_storage_buckets` (one of the [StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets] choices).
+final class StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBucketsOption
+    extends
+        StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOrIncludedCloudStorageBuckets {
+  const StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBucketsOption({
+    required this.includedCloudStorageBuckets,
+  });
+
+  final StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBuckets
+  includedCloudStorageBuckets;
+
+  @override
+  String get blockKey => 'included_cloud_storage_buckets';
+
+  @override
+  Map<String, Object?> encode() => {
+    'included_cloud_storage_buckets': includedCloudStorageBuckets.encode(),
+  };
+}
+
+/// At most one of `excluded_cloud_storage_locations`, `included_cloud_storage_locations` on the `filter` block of `google_storage_control_project_intelligence_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations {
+  const StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `excluded_cloud_storage_locations` (one of the [StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations] choices).
+final class StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOption
+    extends
+        StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations {
+  const StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOption({
+    required this.excludedCloudStorageLocations,
+  });
+
+  final StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocations
+  excludedCloudStorageLocations;
+
+  @override
+  String get blockKey => 'excluded_cloud_storage_locations';
+
+  @override
+  Map<String, Object?> encode() => {
+    'excluded_cloud_storage_locations': excludedCloudStorageLocations.encode(),
+  };
+}
+
+/// Sets `included_cloud_storage_locations` (one of the [StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations] choices).
+final class StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocationsOption
+    extends
+        StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOrIncludedCloudStorageLocations {
+  const StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocationsOption({
+    required this.includedCloudStorageLocations,
+  });
+
+  final StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocations
+  includedCloudStorageLocations;
+
+  @override
+  String get blockKey => 'included_cloud_storage_locations';
+
+  @override
+  Map<String, Object?> encode() => {
+    'included_cloud_storage_locations': includedCloudStorageLocations.encode(),
+  };
+}
+
+/// Typed helper for the `filter.excluded_cloud_storage_buckets` block of
+/// `google_storage_control_project_intelligence_config` (derived from provider schema).
+@immutable
+final class StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBuckets {
+  const StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBuckets({
+    required this.bucketIdRegexes,
+  });
+
+  final TfArg<List<Object?>> bucketIdRegexes;
+
+  Map<String, Object?> encode() => {
+    'bucket_id_regexes': bucketIdRegexes.toTfJson(),
+  };
+}
+
+/// Typed helper for the `filter.excluded_cloud_storage_locations` block of
+/// `google_storage_control_project_intelligence_config` (derived from provider schema).
+@immutable
+final class StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocations {
+  const StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocations({
+    required this.locations,
+  });
+
+  final TfArg<List<Object?>> locations;
+
+  Map<String, Object?> encode() => {'locations': locations.toTfJson()};
+}
+
+/// Typed helper for the `filter.included_cloud_storage_buckets` block of
+/// `google_storage_control_project_intelligence_config` (derived from provider schema).
+@immutable
+final class StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBuckets {
+  const StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBuckets({
+    required this.bucketIdRegexes,
+  });
+
+  final TfArg<List<Object?>> bucketIdRegexes;
+
+  Map<String, Object?> encode() => {
+    'bucket_id_regexes': bucketIdRegexes.toTfJson(),
+  };
+}
+
+/// Typed helper for the `filter.included_cloud_storage_locations` block of
+/// `google_storage_control_project_intelligence_config` (derived from provider schema).
+@immutable
+final class StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocations {
+  const StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocations({
+    required this.locations,
+  });
+
+  final TfArg<List<Object?>> locations;
+
+  Map<String, Object?> encode() => {'locations': locations.toTfJson()};
 }
 
 /// Factory wrapper for `google_storage_control_project_intelligence_config`.
@@ -64,7 +246,7 @@ final class GoogleStorageControlProjectIntelligenceConfig extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<StorageControlProjectIntelligenceConfigEditionConfig>? editionConfig,
-    TfArg<Map<String, dynamic>>? filter,
+    StorageControlProjectIntelligenceConfigFilter? filter,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -74,7 +256,7 @@ final class GoogleStorageControlProjectIntelligenceConfig extends Resource {
          argMap: {
            'name': name,
            if (editionConfig != null) 'edition_config': editionConfig,
-           if (filter != null) 'filter': filter,
+           if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );
 

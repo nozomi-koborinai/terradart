@@ -1,5 +1,6 @@
 outputDir: dataplex
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 # `spark` / `notebook` are the real schema block names the hand-written

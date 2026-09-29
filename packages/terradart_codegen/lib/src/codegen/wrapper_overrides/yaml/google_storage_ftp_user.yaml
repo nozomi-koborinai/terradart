@@ -4,6 +4,7 @@
 outputDir: storage
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveEnums: true
 deriveNestedTypes: true
 

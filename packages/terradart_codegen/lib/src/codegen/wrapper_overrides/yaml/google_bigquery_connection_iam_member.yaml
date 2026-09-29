@@ -1,5 +1,6 @@
 outputDir: bigquery
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 paramOrder:

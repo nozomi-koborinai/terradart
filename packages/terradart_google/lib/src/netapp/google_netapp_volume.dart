@@ -347,15 +347,58 @@ final class NetappVolumeLargeCapacityConfig {
 /// `google_netapp_volume` (derived from provider schema).
 @immutable
 final class NetappVolumeRestoreParameters {
-  const NetappVolumeRestoreParameters({this.sourceBackup, this.sourceSnapshot});
+  const NetappVolumeRestoreParameters({
+    required this.sourceBackupOrSourceSnapshot,
+  });
 
-  final TfArg<String>? sourceBackup;
+  final NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot
+  sourceBackupOrSourceSnapshot;
 
-  final TfArg<String>? sourceSnapshot;
+  Map<String, Object?> encode() => {...sourceBackupOrSourceSnapshot.encode()};
+}
 
+/// Exactly one of `source_backup`, `source_snapshot` on the `restore_parameters` block of `google_netapp_volume`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
+  const NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `source_backup` (one of the [NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot] choices).
+final class NetappVolumeRestoreParametersSourceBackupOption
+    extends NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
+  const NetappVolumeRestoreParametersSourceBackupOption({
+    required this.sourceBackup,
+  });
+
+  final TfArg<String> sourceBackup;
+
+  @override
+  String get blockKey => 'source_backup';
+
+  @override
+  Map<String, Object?> encode() => {'source_backup': sourceBackup.toTfJson()};
+}
+
+/// Sets `source_snapshot` (one of the [NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot] choices).
+final class NetappVolumeRestoreParametersSourceSnapshotOption
+    extends NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
+  const NetappVolumeRestoreParametersSourceSnapshotOption({
+    required this.sourceSnapshot,
+  });
+
+  final TfArg<String> sourceSnapshot;
+
+  @override
+  String get blockKey => 'source_snapshot';
+
+  @override
   Map<String, Object?> encode() => {
-    if (sourceBackup != null) 'source_backup': sourceBackup!.toTfJson(),
-    if (sourceSnapshot != null) 'source_snapshot': sourceSnapshot!.toTfJson(),
+    'source_snapshot': sourceSnapshot.toTfJson(),
   };
 }
 

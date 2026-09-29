@@ -185,6 +185,83 @@ class PubsubSubscriptionExpirationPolicy {
 // Factory
 // ===========================================================================
 
+/// At most one of `bigquery_config`, `push_config`, `cloud_storage_config` on `google_pubsub_subscription`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig {
+  const PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `bigquery_config` (one of the [PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig] choices).
+final class PubsubSubscriptionBigqueryConfigOption
+    extends PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig {
+  const PubsubSubscriptionBigqueryConfigOption({required this.bigqueryConfig});
+
+  final PubsubSubscriptionBigQueryConfig bigqueryConfig;
+
+  @override
+  String get blockKey => 'bigquery_config';
+
+  @override
+  Map<String, Object?> encode() => {'bigquery_config': bigqueryConfig.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'bigquery_config': TfArg.literal(bigqueryConfig.encode()),
+  };
+}
+
+/// Sets `push_config` (one of the [PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig] choices).
+final class PubsubSubscriptionPushConfigOption
+    extends PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig {
+  const PubsubSubscriptionPushConfigOption({required this.pushConfig});
+
+  final PubsubSubscriptionPushConfig pushConfig;
+
+  @override
+  String get blockKey => 'push_config';
+
+  @override
+  Map<String, Object?> encode() => {'push_config': pushConfig.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'push_config': TfArg.literal(pushConfig.encode()),
+  };
+}
+
+/// Sets `cloud_storage_config` (one of the [PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig] choices).
+final class PubsubSubscriptionCloudStorageConfigOption
+    extends PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig {
+  const PubsubSubscriptionCloudStorageConfigOption({
+    required this.cloudStorageConfig,
+  });
+
+  final PubsubSubscriptionCloudStorageConfig cloudStorageConfig;
+
+  @override
+  String get blockKey => 'cloud_storage_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cloud_storage_config': cloudStorageConfig.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cloud_storage_config': TfArg.literal(cloudStorageConfig.encode()),
+  };
+}
+
 /// Factory wrapper for `google_pubsub_subscription`.
 ///
 /// A named resource representing the stream of messages from a single, specific
@@ -213,9 +290,8 @@ final class GooglePubsubSubscription extends Resource {
     required TfArg<String> name,
     required TfArg<String> topic,
     TfArg<Map<String, String>>? labels,
-    PubsubSubscriptionBigQueryConfig? bigqueryConfig,
-    PubsubSubscriptionCloudStorageConfig? cloudStorageConfig,
-    PubsubSubscriptionPushConfig? pushConfig,
+    PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig?
+    bigqueryConfigOrPushConfigOrCloudStorageConfig,
     TfArg<int>? ackDeadlineSeconds,
     TfArg<String>? messageRetentionDuration,
     TfArg<bool>? retainAckedMessages,
@@ -238,12 +314,7 @@ final class GooglePubsubSubscription extends Resource {
            'name': name,
            'topic': topic,
            if (labels != null) 'labels': labels,
-           if (bigqueryConfig != null)
-             'bigquery_config': TfArg.literal(bigqueryConfig.encode()),
-           if (cloudStorageConfig != null)
-             'cloud_storage_config': TfArg.literal(cloudStorageConfig.encode()),
-           if (pushConfig != null)
-             'push_config': TfArg.literal(pushConfig.encode()),
+           ...?bigqueryConfigOrPushConfigOrCloudStorageConfig?.argMap,
            if (ackDeadlineSeconds != null)
              'ack_deadline_seconds': ackDeadlineSeconds,
            if (messageRetentionDuration != null)

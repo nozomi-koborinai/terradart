@@ -87,5 +87,8 @@ export 'src/logging/google_logging_saved_query.dart'
     show
         GoogleLoggingSavedQuery,
         LoggingSavedQueryLoggingQuery,
+        LoggingSavedQueryLoggingQueryOption,
+        LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery,
         LoggingSavedQueryOpsAnalyticsQuery,
+        LoggingSavedQueryOpsAnalyticsQueryOption,
         LoggingSavedQueryVisibility;

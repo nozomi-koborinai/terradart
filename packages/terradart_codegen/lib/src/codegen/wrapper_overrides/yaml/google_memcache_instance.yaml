@@ -1,6 +1,7 @@
 outputDir: memcache
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 dartTypeOverrides:

@@ -56,6 +56,40 @@ profile blocks), `GoogleNetworkServicesGateway` (`all_ports` / `ports`),
 (`instance_properties` / `source_instance_template`), and the
 `GoogleNetworkServicesHttpRoute` header and query-parameter matches.
 
+Data, storage, databases and observability (35 groups on 20 resources):
+
+| Before | After |
+|--------|-------|
+| `GooglePubsubSubscription(pushConfig: PubsubSubscriptionPushConfig(...), ...)` | `GooglePubsubSubscription(bigqueryConfigOrPushConfigOrCloudStorageConfig: PubsubSubscriptionPushConfigOption(pushConfig: PubsubSubscriptionPushConfig(...)), ...)` |
+| `GoogleBigqueryDatasetAccess(specialGroup: TfArg.literal(...), ...)` | `GoogleBigqueryDatasetAccess(userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine: BigqueryDatasetAccessSpecialGroupOption(specialGroup: TfArg.literal(...)), ...)` |
+| `GoogleBigqueryAnalyticsHubListing(bigqueryDataset: TfArg.literal({'dataset': ...}), ...)` | `GoogleBigqueryAnalyticsHubListing(pubsubTopicOrBigqueryDataset: BigqueryAnalyticsHubListingBigqueryDatasetOption(bigqueryDataset: BigqueryAnalyticsHubListingBigqueryDataset(dataset: TfArg.literal(...))), ...)` |
+| `GoogleMonitoringSlo(rollingPeriodDays: TfArg.literal(30), ...)` | `GoogleMonitoringSlo(rollingPeriodDaysOrCalendarPeriod: MonitoringSloRollingPeriodDaysOption(rollingPeriodDays: TfArg.literal(30)), ...)` |
+| `GoogleLoggingSavedQuery(loggingQuery: LoggingSavedQueryLoggingQuery(...), ...)` | `GoogleLoggingSavedQuery(loggingQueryOrOpsAnalyticsQuery: LoggingSavedQueryLoggingQueryOption(loggingQuery: LoggingSavedQueryLoggingQuery(...)), ...)` |
+| `DataplexDatascanData(resource: TfArg.literal(...))` | `DataplexDatascanData(entityOrResource: DataplexDatascanDataResourceOption(resource: TfArg.literal(...)))` |
+| `DatastreamStreamSourceConfig(mysqlSourceConfig: ..., ...)` | `DatastreamStreamSourceConfig(mysqlSourceConfigOrOracleSourceConfigOr...: DatastreamStreamSourceConfigMysqlSourceConfigOption(mysqlSourceConfig: ...), ...)` |
+
+`GoogleBigqueryDatasetAccess`'s `view`, `dataset` and `routine` keep their
+helper classes (`BigqueryDatasetAccessView`, ...) inside the variants. The
+other groups: `GoogleBigqueryAnalyticsHubDataExchange`
+(`default_exchange_config` / `dcr_exchange_config`), the listing's
+`selected_resources` (`table` / `routine`),
+`GoogleDatabaseMigrationServiceMigrationJob` (the three connectivity
+blocks), `GoogleDataplexDatascan` (`execution_identity` and the trigger),
+`GoogleDataprocBatch` (`network_uri` / `subnetwork_uri`),
+`GoogleDatastreamConnectionProfile` (SSH / private connectivity and the SSH
+`password` / `private_key`), the rest of `GoogleDatastreamStream`'s
+destination (GCS / BigQuery, file format, target dataset, merge / append
+only) and MySQL `binary_log_position` / `gtid`,
+`GoogleDataLossPreventionDiscoveryConfig` (namespaced tag value / key),
+`GoogleHealthcarePipelineJob` (the three job kinds and the reconciliation
+destination), `GoogleMemorystoreInstance` (`gcs_source` /
+`managed_backup_source`), `GoogleNetappVolume`'s `restore_parameters`,
+`GoogleSpannerBackupSchedule` (`kms_key_name` / `kms_key_names`),
+`GoogleSpannerInstancePartition` (node count / processing units /
+autoscaling and the autoscaling limits), and the included / excluded bucket
+and location filters of the three `GoogleStorageControl*IntelligenceConfig`
+resources.
+
 ### `terradart_cloudflare` exactly-one inputs are sealed types
 
 **Breaking (`terradart_cloudflare`)** — 13 input groups across 5 resources

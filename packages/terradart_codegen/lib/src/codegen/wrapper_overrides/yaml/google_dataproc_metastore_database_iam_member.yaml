@@ -1,6 +1,7 @@
 outputDir: dataproc
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 paramOrder:
