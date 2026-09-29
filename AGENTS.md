@@ -168,7 +168,7 @@ tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 
 Cursor sessions (including Cursor Cloud Agent) get hooks from `.cursor/hooks.json`:
 
-- `afterFileEdit` — `dart format` on the packages the CI format step checks, plus `tool/` and `examples/` (never the provider packages, whose wrappers keep `terradart wrap`'s format).
+- `afterFileEdit` — `dart format` on the paths the CI format step (`tool/format_check.sh`) checks, plus `tool/` and `examples/`. In the provider packages that means only hand-written files: a file whose first line is wrap's `// GENERATED FILE - DO NOT EDIT` header keeps `terradart wrap`'s format, which `wrap --check` guards byte-for-byte. The scope derives from that header (`tool/hook_lib.sh`), never a hand-kept file list.
 - `preToolUse` (`Write|Edit`) — blocks direct edits to generated wrappers, the migration manifests, wrap goldens, and `.github/workflows/`.
 
 Regenerate via `terradart wrap`; refresh goldens through the maintainer flow, not in-place edits.

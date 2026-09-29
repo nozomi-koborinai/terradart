@@ -63,14 +63,16 @@ jobs:
         with:
           sdk: stable
       - run: dart pub get
-      # Format check is scoped to the hand-written packages (the same list as
-      # tool/agent_verify.sh and the afterFileEdit hook) because the provider
-      # package wrappers are formatted by `terradart wrap`'s pinned
-      # dart_style (3.1.9), which can drift from the SDK-bundled `dart format`
-      # CLI. wrap CLI output is the authoritative format for generated wrappers
-      # and is guarded by the `wrap_check` job (`terradart wrap --check`).
+      # Format check covers every hand-written Dart path in packages/ (the
+      # same scope as tool/agent_verify.sh and the afterFileEdit hook, all
+      # from tool/hook_lib.sh): the hand-written packages whole, plus each
+      # provider-package file without wrap's generated header. Generated
+      # files are formatted by `terradart wrap`'s pinned dart_style, which
+      # can drift from the SDK-bundled `dart format` CLI; wrap output is the
+      # authoritative format there, guarded byte-for-byte by the `wrap_check`
+      # job (`terradart wrap --check`).
       - if: matrix.package == 'terradart_core'
-        run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/ packages/terradart_hcl/ packages/terradart_migrate/ packages/terradart_time/
+        run: tool/format_check.sh
       - if: matrix.package == 'terradart_core'
         run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
       - if: matrix.package == 'terradart_core'
