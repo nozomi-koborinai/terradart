@@ -104,6 +104,170 @@ final class StorageInsightsDatasetConfigOrganizationScope
   Map<String, Object?> encode() => {blockKey: true};
 }
 
+/// At most one of `include_cloud_storage_locations`, `exclude_cloud_storage_locations` on `google_storage_insights_dataset_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.includeCloudStorageLocations(...)`.
+sealed class StorageInsightsDatasetConfigCloudStorageLocations {
+  const StorageInsightsDatasetConfigCloudStorageLocations();
+
+  /// Sets `include_cloud_storage_locations`.
+  const factory StorageInsightsDatasetConfigCloudStorageLocations.includeCloudStorageLocations(
+    StorageInsightsDatasetConfigIncludeCloudStorageLocations
+    includeCloudStorageLocations,
+  ) = StorageInsightsDatasetConfigCloudStorageLocationsIncludeCloudStorageLocations;
+
+  /// Sets `exclude_cloud_storage_locations`.
+  const factory StorageInsightsDatasetConfigCloudStorageLocations.excludeCloudStorageLocations(
+    StorageInsightsDatasetConfigExcludeCloudStorageLocations
+    excludeCloudStorageLocations,
+  ) = StorageInsightsDatasetConfigCloudStorageLocationsExcludeCloudStorageLocations;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [StorageInsightsDatasetConfigCloudStorageLocations.includeCloudStorageLocations] choice: sets `include_cloud_storage_locations`.
+final class StorageInsightsDatasetConfigCloudStorageLocationsIncludeCloudStorageLocations
+    extends StorageInsightsDatasetConfigCloudStorageLocations {
+  const StorageInsightsDatasetConfigCloudStorageLocationsIncludeCloudStorageLocations(
+    this.includeCloudStorageLocations,
+  );
+
+  final StorageInsightsDatasetConfigIncludeCloudStorageLocations
+  includeCloudStorageLocations;
+
+  @override
+  String get blockKey => 'include_cloud_storage_locations';
+
+  @override
+  Map<String, Object?> encode() => {
+    'include_cloud_storage_locations': includeCloudStorageLocations.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'include_cloud_storage_locations': TfArg.literal(
+      includeCloudStorageLocations.encode(),
+    ),
+  };
+}
+
+/// The [StorageInsightsDatasetConfigCloudStorageLocations.excludeCloudStorageLocations] choice: sets `exclude_cloud_storage_locations`.
+final class StorageInsightsDatasetConfigCloudStorageLocationsExcludeCloudStorageLocations
+    extends StorageInsightsDatasetConfigCloudStorageLocations {
+  const StorageInsightsDatasetConfigCloudStorageLocationsExcludeCloudStorageLocations(
+    this.excludeCloudStorageLocations,
+  );
+
+  final StorageInsightsDatasetConfigExcludeCloudStorageLocations
+  excludeCloudStorageLocations;
+
+  @override
+  String get blockKey => 'exclude_cloud_storage_locations';
+
+  @override
+  Map<String, Object?> encode() => {
+    'exclude_cloud_storage_locations': excludeCloudStorageLocations.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'exclude_cloud_storage_locations': TfArg.literal(
+      excludeCloudStorageLocations.encode(),
+    ),
+  };
+}
+
+/// At most one of `include_cloud_storage_buckets`, `exclude_cloud_storage_buckets` on `google_storage_insights_dataset_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.includeCloudStorageBuckets(...)`.
+sealed class StorageInsightsDatasetConfigCloudStorageBuckets {
+  const StorageInsightsDatasetConfigCloudStorageBuckets();
+
+  /// Sets `include_cloud_storage_buckets`.
+  const factory StorageInsightsDatasetConfigCloudStorageBuckets.includeCloudStorageBuckets(
+    StorageInsightsDatasetConfigIncludeCloudStorageBuckets
+    includeCloudStorageBuckets,
+  ) = StorageInsightsDatasetConfigCloudStorageBucketsIncludeCloudStorageBuckets;
+
+  /// Sets `exclude_cloud_storage_buckets`.
+  const factory StorageInsightsDatasetConfigCloudStorageBuckets.excludeCloudStorageBuckets(
+    StorageInsightsDatasetConfigExcludeCloudStorageBuckets
+    excludeCloudStorageBuckets,
+  ) = StorageInsightsDatasetConfigCloudStorageBucketsExcludeCloudStorageBuckets;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [StorageInsightsDatasetConfigCloudStorageBuckets.includeCloudStorageBuckets] choice: sets `include_cloud_storage_buckets`.
+final class StorageInsightsDatasetConfigCloudStorageBucketsIncludeCloudStorageBuckets
+    extends StorageInsightsDatasetConfigCloudStorageBuckets {
+  const StorageInsightsDatasetConfigCloudStorageBucketsIncludeCloudStorageBuckets(
+    this.includeCloudStorageBuckets,
+  );
+
+  final StorageInsightsDatasetConfigIncludeCloudStorageBuckets
+  includeCloudStorageBuckets;
+
+  @override
+  String get blockKey => 'include_cloud_storage_buckets';
+
+  @override
+  Map<String, Object?> encode() => {
+    'include_cloud_storage_buckets': includeCloudStorageBuckets.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'include_cloud_storage_buckets': TfArg.literal(
+      includeCloudStorageBuckets.encode(),
+    ),
+  };
+}
+
+/// The [StorageInsightsDatasetConfigCloudStorageBuckets.excludeCloudStorageBuckets] choice: sets `exclude_cloud_storage_buckets`.
+final class StorageInsightsDatasetConfigCloudStorageBucketsExcludeCloudStorageBuckets
+    extends StorageInsightsDatasetConfigCloudStorageBuckets {
+  const StorageInsightsDatasetConfigCloudStorageBucketsExcludeCloudStorageBuckets(
+    this.excludeCloudStorageBuckets,
+  );
+
+  final StorageInsightsDatasetConfigExcludeCloudStorageBuckets
+  excludeCloudStorageBuckets;
+
+  @override
+  String get blockKey => 'exclude_cloud_storage_buckets';
+
+  @override
+  Map<String, Object?> encode() => {
+    'exclude_cloud_storage_buckets': excludeCloudStorageBuckets.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'exclude_cloud_storage_buckets': TfArg.literal(
+      excludeCloudStorageBuckets.encode(),
+    ),
+  };
+}
+
 /// Typed helper for the `exclude_cloud_storage_buckets` block of
 /// `google_storage_insights_dataset_config` (derived from provider schema).
 @immutable
@@ -267,13 +431,14 @@ final class GoogleStorageInsightsDatasetConfig extends Resource {
     required TfArg<num> retentionPeriodDays,
     required StorageInsightsDatasetConfigIdentity identity,
     required StorageInsightsDatasetConfigSource source,
-    StorageInsightsDatasetConfigIncludeCloudStorageBuckets?
-    includeCloudStorageBuckets,
+    StorageInsightsDatasetConfigCloudStorageBuckets? cloudStorageBuckets,
     TfArg<bool>? includeNewlyCreatedBuckets,
     TfArg<String>? description,
     TfArg<bool>? linkDataset,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    TfArg<num>? activityDataRetentionPeriodDays,
+    StorageInsightsDatasetConfigCloudStorageLocations? cloudStorageLocations,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -285,16 +450,16 @@ final class GoogleStorageInsightsDatasetConfig extends Resource {
            'dataset_config_id': datasetConfigId,
            'retention_period_days': retentionPeriodDays,
            'identity': TfArg.literal(identity.encode()),
-           if (includeCloudStorageBuckets != null)
-             'include_cloud_storage_buckets': TfArg.literal(
-               includeCloudStorageBuckets.encode(),
-             ),
+           ...?cloudStorageBuckets?.argMap,
            'include_newly_created_buckets': ?includeNewlyCreatedBuckets,
            'description': ?description,
            'link_dataset': ?linkDataset,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
            source.blockKey: TfArg.literal(source.encode()[source.blockKey]),
+           'activity_data_retention_period_days':
+               ?activityDataRetentionPeriodDays,
+           ...?cloudStorageLocations?.argMap,
          },
        );
 

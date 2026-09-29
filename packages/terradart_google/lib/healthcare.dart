@@ -13,7 +13,7 @@ export 'src/healthcare/google_healthcare_consent_store_iam_member.dart'
 export 'src/healthcare/google_healthcare_consent_store_iam_policy.dart'
     show GoogleHealthcareConsentStoreIamPolicy;
 export 'src/healthcare/google_healthcare_dataset.dart'
-    show GoogleHealthcareDataset;
+    show GoogleHealthcareDataset, HealthcareDatasetEncryptionSpec;
 export 'src/healthcare/google_healthcare_dataset_iam_binding.dart'
     show GoogleHealthcareDatasetIamBinding;
 export 'src/healthcare/google_healthcare_dataset_iam_member.dart'
@@ -21,7 +21,7 @@ export 'src/healthcare/google_healthcare_dataset_iam_member.dart'
 export 'src/healthcare/google_healthcare_dataset_iam_policy.dart'
     show GoogleHealthcareDatasetIamPolicy;
 export 'src/healthcare/google_healthcare_dicom_store.dart'
-    show GoogleHealthcareDicomStore;
+    show GoogleHealthcareDicomStore, HealthcareDicomStoreNotificationConfig;
 export 'src/healthcare/google_healthcare_dicom_store_iam_binding.dart'
     show GoogleHealthcareDicomStoreIamBinding;
 export 'src/healthcare/google_healthcare_dicom_store_iam_member.dart'
@@ -34,6 +34,12 @@ export 'src/healthcare/google_healthcare_fhir_store.dart'
         HealthcareFhirStoreComplexDataTypeReferenceParsing,
         HealthcareFhirStoreNotificationConfig,
         HealthcareFhirStoreNotificationConfigs,
+        HealthcareFhirStoreStreamConfigs,
+        HealthcareFhirStoreStreamConfigsBigqueryDestination,
+        HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfig,
+        HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfig,
+        HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigLastUpdatedPartitionConfigType,
+        HealthcareFhirStoreStreamConfigsBigqueryDestinationSchemaConfigSchemaType,
         HealthcareFhirStoreValidationConfig,
         HealthcareFhirStoreVersion;
 export 'src/healthcare/google_healthcare_fhir_store_iam_binding.dart'
@@ -45,6 +51,8 @@ export 'src/healthcare/google_healthcare_fhir_store_iam_policy.dart'
 export 'src/healthcare/google_healthcare_hl7_v2_store.dart'
     show
         GoogleHealthcareHl7V2Store,
+        HealthcareHl7V2StoreNotificationConfig,
+        HealthcareHl7V2StoreNotificationConfigs,
         HealthcareHl7V2StoreParserConfig,
         HealthcareHl7V2StoreParserConfigVersion;
 export 'src/healthcare/google_healthcare_hl7_v2_store_iam_binding.dart'

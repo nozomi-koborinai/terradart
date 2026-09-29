@@ -143,10 +143,7 @@ final class AnalyticsStack extends Stack {
         location: .literal('asia-northeast1'),
         dataPolicyId: .literal('mask-email'),
         dataPolicyType: .literal(.dataMaskingPolicy),
-        dataMaskingPolicy: const BigqueryDatapolicyDataPolicyDataMaskingPolicy(
-          predefinedExpression:
-              BigqueryDatapolicyDataPolicyPredefinedExpression.emailMask,
-        ),
+        dataMaskingPolicy: .predefinedExpression(.literal(.emailMask)),
         policyTag: .literal(
           'projects/$projectId/locations/asia-northeast1/taxonomies/1/policyTags/1',
         ),
@@ -246,12 +243,16 @@ final class AnalyticsStack extends Stack {
         dataExchangeId: .literal('shared-exchange'),
         listingId: .literal('events-listing'),
         location: .literal('asia-northeast1'),
-        destinationDataset: .literal({
-          'location': 'asia-northeast1',
-          'dataset_reference': [
-            {'dataset_id': 'analytics_prod', 'project_id': projectId},
-          ],
-        }),
+        destination: .destinationDataset(
+          BigqueryAnalyticsHubListingSubscriptionDestinationDataset(
+            location: .literal('asia-northeast1'),
+            datasetReference:
+                BigqueryAnalyticsHubListingSubscriptionDestinationDatasetDatasetReference(
+                  datasetId: .literal('analytics_prod'),
+                  projectId: .literal(projectId),
+                ),
+          ),
+        ),
       ),
     );
 
@@ -281,18 +282,20 @@ final class AnalyticsStack extends Stack {
         localName: 'events_count_job',
         jobId: .literal('events-count-backfill'),
         location: .literal('asia-northeast1'),
-        jobConfiguration: .query(
-          query: .literal(
-            'SELECT COUNT(*) AS event_count FROM analytics_prod.events',
+        configuration: .query(
+          BigqueryJobQuery(
+            query: .literal(
+              'SELECT COUNT(*) AS event_count FROM analytics_prod.events',
+            ),
+            useLegacySql: .literal(false),
+            destinationTable: BigqueryJobQueryDestinationTable(
+              projectId: .literal(projectId),
+              datasetId: dataset.ref,
+              tableId: .literal('events_daily_count'),
+            ),
+            writeDisposition: .literal(.writeTruncate),
+            createDisposition: .literal(.createIfNeeded),
           ),
-          useLegacySql: .literal(false),
-          destinationTable: BigqueryJobDestinationTable(
-            projectId: .literal(projectId),
-            datasetId: .ref(dataset.datasetIdRef),
-            tableId: .literal('events_daily_count'),
-          ),
-          writeDisposition: BigqueryJobWriteDisposition.writeTruncate,
-          createDisposition: BigqueryJobCreateDisposition.createIfNeeded,
         ),
       ),
     );

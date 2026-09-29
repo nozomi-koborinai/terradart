@@ -70,10 +70,11 @@ final class DataformStack extends Stack {
         region: .literal('us-central1'),
         displayName: .literal('TerraDart analytics'),
         serviceAccount: runner.ref,
-        workspaceCompilationOverrides: .literal(<String, Object?>{
-          'schema_suffix': 'terradart',
-          'table_prefix': 'terradart_',
-        }),
+        workspaceCompilationOverrides:
+            DataformRepositoryWorkspaceCompilationOverrides(
+              schemaSuffix: .literal('terradart'),
+              tablePrefix: .literal('terradart_'),
+            ),
         labels: .literal({'managed-by': 'terradart'}),
         // FORCE also removes workspaces created inside the repository.
         deletionPolicy: .literal('FORCE'),

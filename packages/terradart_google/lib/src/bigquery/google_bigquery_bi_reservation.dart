@@ -1,10 +1,36 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
 
 /// Sensitive field paths for `google_bigquery_bi_reservation`.
 const Set<String> _googleBigqueryBiReservationSensitive = <String>{};
+
+/// Typed helper for the `preferred_tables` block of
+/// `google_bigquery_bi_reservation` (derived from provider schema).
+@immutable
+final class BigqueryBiReservationPreferredTables {
+  const BigqueryBiReservationPreferredTables({
+    this.datasetId,
+    this.projectId,
+    this.tableId,
+  });
+
+  final RefTo<GoogleBigqueryDataset>? datasetId;
+
+  final TfArg<String>? projectId;
+
+  final TfArg<String>? tableId;
+
+  Map<String, Object?> encode() => {
+    'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
+    'table_id': ?tableId?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_bigquery_bi_reservation`.
 ///
@@ -17,7 +43,7 @@ final class GoogleBigqueryBiReservation extends Resource {
     required TfArg<String> location,
     TfArg<String>? project,
     TfArg<num>? size,
-    TfArg<List<Map<String, dynamic>>>? preferredTables,
+    List<BigqueryBiReservationPreferredTables>? preferredTables,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -28,7 +54,10 @@ final class GoogleBigqueryBiReservation extends Resource {
            'location': location,
            'project': ?project,
            'size': ?size,
-           'preferred_tables': ?preferredTables,
+           if (preferredTables != null)
+             'preferred_tables': TfArg.literal([
+               for (final e in preferredTables) e.encode(),
+             ]),
          },
        );
 

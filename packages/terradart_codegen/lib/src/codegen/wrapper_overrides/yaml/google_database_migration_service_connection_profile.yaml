@@ -24,7 +24,12 @@ paramOrder:
   - project
   - role
   - postgresql
+  - alloydb
+  - cloudsql
+  - mysql
+  - oracle
 
 sealedNames:
+  "alloydb, cloudsql, mysql, oracle, postgresql": engine
   "cloudsql.settings.ip_config.authorized_networks.expire_time, cloudsql.settings.ip_config.authorized_networks.ttl": expiration
   "oracle.forward_ssh_connectivity.password, oracle.forward_ssh_connectivity.private_key": credential

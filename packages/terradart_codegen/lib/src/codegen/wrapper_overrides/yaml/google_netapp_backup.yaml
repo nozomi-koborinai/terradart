@@ -26,6 +26,7 @@ paramOrder:
   - labels
   - deletion_policy
   - project
+  - ontap_source
 
 extraGetters: |2
     /// Reference to `name` attribute.

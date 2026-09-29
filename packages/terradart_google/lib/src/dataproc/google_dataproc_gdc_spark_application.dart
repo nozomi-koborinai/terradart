@@ -7,6 +7,147 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_dataproc_gdc_spark_application`.
 const Set<String> _googleDataprocGdcSparkApplicationSensitive = <String>{};
 
+/// Exactly one of `pyspark_application_config`, `spark_application_config`, `spark_sql_application_config`, `spark_r_application_config` on `google_dataproc_gdc_spark_application`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.pysparkApplicationConfig(...)`.
+sealed class DataprocGdcSparkApplicationWorkload {
+  const DataprocGdcSparkApplicationWorkload();
+
+  /// Sets `pyspark_application_config`.
+  const factory DataprocGdcSparkApplicationWorkload.pysparkApplicationConfig(
+    DataprocGdcSparkApplicationPysparkApplicationConfig
+    pysparkApplicationConfig,
+  ) = DataprocGdcSparkApplicationWorkloadPysparkApplicationConfig;
+
+  /// Sets `spark_application_config`.
+  const factory DataprocGdcSparkApplicationWorkload.sparkApplicationConfig(
+    DataprocGdcSparkApplicationSparkApplicationConfig sparkApplicationConfig,
+  ) = DataprocGdcSparkApplicationWorkloadSparkApplicationConfig;
+
+  /// Sets `spark_sql_application_config`.
+  const factory DataprocGdcSparkApplicationWorkload.sparkSqlApplicationConfig(
+    DataprocGdcSparkApplicationSparkSqlApplicationConfig
+    sparkSqlApplicationConfig,
+  ) = DataprocGdcSparkApplicationWorkloadSparkSqlApplicationConfig;
+
+  /// Sets `spark_r_application_config`.
+  const factory DataprocGdcSparkApplicationWorkload.sparkRApplicationConfig(
+    DataprocGdcSparkApplicationSparkRApplicationConfig sparkRApplicationConfig,
+  ) = DataprocGdcSparkApplicationWorkloadSparkRApplicationConfig;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataprocGdcSparkApplicationWorkload.pysparkApplicationConfig] choice: sets `pyspark_application_config`.
+final class DataprocGdcSparkApplicationWorkloadPysparkApplicationConfig
+    extends DataprocGdcSparkApplicationWorkload {
+  const DataprocGdcSparkApplicationWorkloadPysparkApplicationConfig(
+    this.pysparkApplicationConfig,
+  );
+
+  final DataprocGdcSparkApplicationPysparkApplicationConfig
+  pysparkApplicationConfig;
+
+  @override
+  String get blockKey => 'pyspark_application_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'pyspark_application_config': pysparkApplicationConfig.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'pyspark_application_config': TfArg.literal(
+      pysparkApplicationConfig.encode(),
+    ),
+  };
+}
+
+/// The [DataprocGdcSparkApplicationWorkload.sparkApplicationConfig] choice: sets `spark_application_config`.
+final class DataprocGdcSparkApplicationWorkloadSparkApplicationConfig
+    extends DataprocGdcSparkApplicationWorkload {
+  const DataprocGdcSparkApplicationWorkloadSparkApplicationConfig(
+    this.sparkApplicationConfig,
+  );
+
+  final DataprocGdcSparkApplicationSparkApplicationConfig
+  sparkApplicationConfig;
+
+  @override
+  String get blockKey => 'spark_application_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'spark_application_config': sparkApplicationConfig.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'spark_application_config': TfArg.literal(sparkApplicationConfig.encode()),
+  };
+}
+
+/// The [DataprocGdcSparkApplicationWorkload.sparkSqlApplicationConfig] choice: sets `spark_sql_application_config`.
+final class DataprocGdcSparkApplicationWorkloadSparkSqlApplicationConfig
+    extends DataprocGdcSparkApplicationWorkload {
+  const DataprocGdcSparkApplicationWorkloadSparkSqlApplicationConfig(
+    this.sparkSqlApplicationConfig,
+  );
+
+  final DataprocGdcSparkApplicationSparkSqlApplicationConfig
+  sparkSqlApplicationConfig;
+
+  @override
+  String get blockKey => 'spark_sql_application_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'spark_sql_application_config': sparkSqlApplicationConfig.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'spark_sql_application_config': TfArg.literal(
+      sparkSqlApplicationConfig.encode(),
+    ),
+  };
+}
+
+/// The [DataprocGdcSparkApplicationWorkload.sparkRApplicationConfig] choice: sets `spark_r_application_config`.
+final class DataprocGdcSparkApplicationWorkloadSparkRApplicationConfig
+    extends DataprocGdcSparkApplicationWorkload {
+  const DataprocGdcSparkApplicationWorkloadSparkRApplicationConfig(
+    this.sparkRApplicationConfig,
+  );
+
+  final DataprocGdcSparkApplicationSparkRApplicationConfig
+  sparkRApplicationConfig;
+
+  @override
+  String get blockKey => 'spark_r_application_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'spark_r_application_config': sparkRApplicationConfig.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'spark_r_application_config': TfArg.literal(
+      sparkRApplicationConfig.encode(),
+    ),
+  };
+}
+
 /// Typed helper for the `pyspark_application_config` block of
 /// `google_dataproc_gdc_spark_application` (derived from provider schema).
 @immutable
@@ -173,7 +314,7 @@ final class GoogleDataprocGdcSparkApplication extends Resource {
     required TfArg<String> serviceinstance,
     required TfArg<String> sparkApplicationId,
     TfArg<String>? version,
-    DataprocGdcSparkApplicationSparkApplicationConfig? sparkApplicationConfig,
+    required DataprocGdcSparkApplicationWorkload workload,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -194,10 +335,7 @@ final class GoogleDataprocGdcSparkApplication extends Resource {
            'serviceinstance': serviceinstance,
            'spark_application_id': sparkApplicationId,
            'version': ?version,
-           if (sparkApplicationConfig != null)
-             'spark_application_config': TfArg.literal(
-               sparkApplicationConfig.encode(),
-             ),
+           ...workload.argMap,
          },
        );
 

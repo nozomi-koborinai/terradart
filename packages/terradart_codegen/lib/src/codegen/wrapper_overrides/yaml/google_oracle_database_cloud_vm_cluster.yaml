@@ -4,6 +4,7 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
 
 curatedDoc: |-
   /// Oracle Exadata VM cluster on Oracle Database@Google Cloud.
@@ -26,6 +27,10 @@ paramOrder:
   - deletion_policy
   - deletion_protection
   - project
+  - backup_subnet_cidr
+  - cidr
+  - exascale_db_storage_vault
+  - network
 
 prelude: |
   /// Terraform `deletion_policy` for Cloud VM clusters.

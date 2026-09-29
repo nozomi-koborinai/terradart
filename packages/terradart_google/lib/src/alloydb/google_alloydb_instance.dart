@@ -1,7 +1,10 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_alloydb_instance`.
 const Set<String> _googleAlloydbInstanceSensitive = <String>{};
@@ -17,17 +20,227 @@ enum AlloydbInstanceType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `machine_config` nested block (max=1).
-class AlloydbInstanceMachineConfig {
+/// Typed helper for the `client_connection_config` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstanceClientConnectionConfig {
+  const AlloydbInstanceClientConnectionConfig({
+    this.requireConnectors,
+    this.sslConfig,
+  });
+
+  final TfArg<bool>? requireConnectors;
+
+  final AlloydbInstanceClientConnectionConfigSslConfig? sslConfig;
+
+  Map<String, Object?> encode() => {
+    'require_connectors': ?requireConnectors?.toTfJson(),
+    'ssl_config': ?sslConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `client_connection_config.ssl_config` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstanceClientConnectionConfigSslConfig {
+  const AlloydbInstanceClientConnectionConfigSslConfig({this.sslMode});
+
+  final TfArg<AlloydbInstanceClientConnectionConfigSslConfigSslMode>? sslMode;
+
+  Map<String, Object?> encode() => {'ssl_mode': ?sslMode?.toTfJson()};
+}
+
+/// `ssl_mode` — derived from the provider schema description.
+enum AlloydbInstanceClientConnectionConfigSslConfigSslMode
+    implements TerraformEnum {
+  encryptedOnly('ENCRYPTED_ONLY'),
+  allowUnencryptedAndEncrypted('ALLOW_UNENCRYPTED_AND_ENCRYPTED');
+
+  const AlloydbInstanceClientConnectionConfigSslConfigSslMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `connection_pool_config` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstanceConnectionPoolConfig {
+  const AlloydbInstanceConnectionPoolConfig({
+    required this.enabled,
+    this.flags,
+  });
+
+  final TfArg<bool> enabled;
+
+  final TfArg<Map<String, String>>? flags;
+
+  Map<String, Object?> encode() => {
+    'enabled': enabled.toTfJson(),
+    'flags': ?flags?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `machine_config` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstanceMachineConfig {
   const AlloydbInstanceMachineConfig({this.cpuCount, this.machineType});
 
   final TfArg<num>? cpuCount;
+
   final TfArg<String>? machineType;
 
-  Map<String, Object?> toArgMap() => {
-    if (cpuCount != null) 'cpu_count': cpuCount!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
+  Map<String, Object?> encode() => {
+    'cpu_count': ?cpuCount?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
   };
+}
+
+/// Typed helper for the `network_config` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstanceNetworkConfig {
+  const AlloydbInstanceNetworkConfig({
+    this.allocatedIpRangeOverride,
+    this.enableOutboundPublicIp,
+    this.enablePublicIp,
+    this.authorizedExternalNetworks,
+  });
+
+  final TfArg<String>? allocatedIpRangeOverride;
+
+  final TfArg<bool>? enableOutboundPublicIp;
+
+  final TfArg<bool>? enablePublicIp;
+
+  final List<AlloydbInstanceNetworkConfigAuthorizedExternalNetworks>?
+  authorizedExternalNetworks;
+
+  Map<String, Object?> encode() => {
+    'allocated_ip_range_override': ?allocatedIpRangeOverride?.toTfJson(),
+    'enable_outbound_public_ip': ?enableOutboundPublicIp?.toTfJson(),
+    'enable_public_ip': ?enablePublicIp?.toTfJson(),
+    if (authorizedExternalNetworks != null)
+      'authorized_external_networks': [
+        for (final e in authorizedExternalNetworks!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `network_config.authorized_external_networks` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstanceNetworkConfigAuthorizedExternalNetworks {
+  const AlloydbInstanceNetworkConfigAuthorizedExternalNetworks({
+    this.cidrRange,
+  });
+
+  final TfArg<String>? cidrRange;
+
+  Map<String, Object?> encode() => {'cidr_range': ?cidrRange?.toTfJson()};
+}
+
+/// Typed helper for the `psc_instance_config` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstancePscInstanceConfig {
+  const AlloydbInstancePscInstanceConfig({
+    this.allowedConsumerProjects,
+    this.pscAutoConnections,
+    this.pscInterfaceConfigs,
+  });
+
+  final TfArg<List<Object?>>? allowedConsumerProjects;
+
+  final List<AlloydbInstancePscInstanceConfigPscAutoConnections>?
+  pscAutoConnections;
+
+  final List<AlloydbInstancePscInstanceConfigPscInterfaceConfigs>?
+  pscInterfaceConfigs;
+
+  Map<String, Object?> encode() => {
+    'allowed_consumer_projects': ?allowedConsumerProjects?.toTfJson(),
+    if (pscAutoConnections != null)
+      'psc_auto_connections': [for (final e in pscAutoConnections!) e.encode()],
+    if (pscInterfaceConfigs != null)
+      'psc_interface_configs': [
+        for (final e in pscInterfaceConfigs!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `psc_instance_config.psc_auto_connections` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstancePscInstanceConfigPscAutoConnections {
+  const AlloydbInstancePscInstanceConfigPscAutoConnections({
+    this.consumerNetwork,
+    this.consumerProject,
+  });
+
+  final RefTo<GoogleComputeNetwork>? consumerNetwork;
+
+  final TfArg<String>? consumerProject;
+
+  Map<String, Object?> encode() => {
+    'consumer_network': ?consumerNetwork?.encodeAs('id').toTfJson(),
+    'consumer_project': ?consumerProject?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `psc_instance_config.psc_interface_configs` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstancePscInstanceConfigPscInterfaceConfigs {
+  const AlloydbInstancePscInstanceConfigPscInterfaceConfigs({
+    this.networkAttachmentResource,
+  });
+
+  final TfArg<String>? networkAttachmentResource;
+
+  Map<String, Object?> encode() => {
+    'network_attachment_resource': ?networkAttachmentResource?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `query_insights_config` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstanceQueryInsightsConfig {
+  const AlloydbInstanceQueryInsightsConfig({
+    this.queryPlansPerMinute,
+    this.queryStringLength,
+    this.recordApplicationTags,
+    this.recordClientAddress,
+  });
+
+  final TfArg<num>? queryPlansPerMinute;
+
+  final TfArg<num>? queryStringLength;
+
+  final TfArg<bool>? recordApplicationTags;
+
+  final TfArg<bool>? recordClientAddress;
+
+  Map<String, Object?> encode() => {
+    'query_plans_per_minute': ?queryPlansPerMinute?.toTfJson(),
+    'query_string_length': ?queryStringLength?.toTfJson(),
+    'record_application_tags': ?recordApplicationTags?.toTfJson(),
+    'record_client_address': ?recordClientAddress?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `read_pool_config` block of
+/// `google_alloydb_instance` (derived from provider schema).
+@immutable
+final class AlloydbInstanceReadPoolConfig {
+  const AlloydbInstanceReadPoolConfig({this.nodeCount});
+
+  final TfArg<num>? nodeCount;
+
+  Map<String, Object?> encode() => {'node_count': ?nodeCount?.toTfJson()};
 }
 
 /// Factory wrapper for `google_alloydb_instance`.
@@ -67,6 +280,17 @@ final class GoogleAlloydbInstance extends Resource {
     AlloydbInstanceMachineConfig? machineConfig,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
+    TfArg<String>? activationPolicy,
+    TfArg<Map<String, String>>? annotations,
+    TfArg<String>? availabilityType,
+    TfArg<Map<String, String>>? databaseFlags,
+    TfArg<String>? gceZone,
+    AlloydbInstanceClientConnectionConfig? clientConnectionConfig,
+    AlloydbInstanceConnectionPoolConfig? connectionPoolConfig,
+    AlloydbInstanceNetworkConfig? networkConfig,
+    AlloydbInstancePscInstanceConfig? pscInstanceConfig,
+    AlloydbInstanceQueryInsightsConfig? queryInsightsConfig,
+    AlloydbInstanceReadPoolConfig? readPoolConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -78,9 +302,32 @@ final class GoogleAlloydbInstance extends Resource {
            'instance_id': instanceId,
            'instance_type': instanceType,
            if (machineConfig != null)
-             'machine_config': TfArg.literal([machineConfig.toArgMap()]),
+             'machine_config': TfArg.literal(machineConfig.encode()),
            'display_name': ?displayName,
            'labels': ?labels,
+           'activation_policy': ?activationPolicy,
+           'annotations': ?annotations,
+           'availability_type': ?availabilityType,
+           'database_flags': ?databaseFlags,
+           'gce_zone': ?gceZone,
+           if (clientConnectionConfig != null)
+             'client_connection_config': TfArg.literal(
+               clientConnectionConfig.encode(),
+             ),
+           if (connectionPoolConfig != null)
+             'connection_pool_config': TfArg.literal(
+               connectionPoolConfig.encode(),
+             ),
+           if (networkConfig != null)
+             'network_config': TfArg.literal(networkConfig.encode()),
+           if (pscInstanceConfig != null)
+             'psc_instance_config': TfArg.literal(pscInstanceConfig.encode()),
+           if (queryInsightsConfig != null)
+             'query_insights_config': TfArg.literal(
+               queryInsightsConfig.encode(),
+             ),
+           if (readPoolConfig != null)
+             'read_pool_config': TfArg.literal(readPoolConfig.encode()),
          },
        );
 

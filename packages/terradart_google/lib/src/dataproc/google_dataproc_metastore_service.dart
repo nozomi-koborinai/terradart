@@ -5,6 +5,8 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_dataproc_metastore_service`.
 const Set<String> _googleDataprocMetastoreServiceSensitive = <String>{};
@@ -60,26 +62,444 @@ enum DataprocMetastoreServiceEndpointProtocol implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `hive_metastore_config` block on a Dataproc Metastore service.
+/// At most one of `tier`, `scaling_config` on `google_dataproc_metastore_service`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.tier(...)`.
+sealed class DataprocMetastoreServiceCapacity {
+  const DataprocMetastoreServiceCapacity();
+
+  /// Sets `tier`.
+  const factory DataprocMetastoreServiceCapacity.tier(
+    TfArg<DataprocMetastoreServiceTier> tier,
+  ) = DataprocMetastoreServiceCapacityTier;
+
+  /// Sets `scaling_config`.
+  const factory DataprocMetastoreServiceCapacity.scalingConfig(
+    DataprocMetastoreServiceScalingConfig scalingConfig,
+  ) = DataprocMetastoreServiceCapacityScalingConfig;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DataprocMetastoreServiceCapacity.tier] choice: sets `tier`.
+final class DataprocMetastoreServiceCapacityTier
+    extends DataprocMetastoreServiceCapacity {
+  const DataprocMetastoreServiceCapacityTier(this.tier);
+
+  final TfArg<DataprocMetastoreServiceTier> tier;
+
+  @override
+  String get blockKey => 'tier';
+
+  @override
+  Map<String, Object?> encode() => {'tier': tier.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'tier': tier};
+}
+
+/// The [DataprocMetastoreServiceCapacity.scalingConfig] choice: sets `scaling_config`.
+final class DataprocMetastoreServiceCapacityScalingConfig
+    extends DataprocMetastoreServiceCapacity {
+  const DataprocMetastoreServiceCapacityScalingConfig(this.scalingConfig);
+
+  final DataprocMetastoreServiceScalingConfig scalingConfig;
+
+  @override
+  String get blockKey => 'scaling_config';
+
+  @override
+  Map<String, Object?> encode() => {'scaling_config': scalingConfig.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'scaling_config': TfArg.literal(scalingConfig.encode()),
+  };
+}
+
+/// Typed helper for the `encryption_config` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
 @immutable
-class DataprocMetastoreServiceHiveMetastoreConfig {
+final class DataprocMetastoreServiceEncryptionConfig {
+  const DataprocMetastoreServiceEncryptionConfig({required this.kmsKey});
+
+  final RefTo<GoogleKmsCryptoKey> kmsKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key': kmsKey.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `hive_metastore_config` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceHiveMetastoreConfig {
   const DataprocMetastoreServiceHiveMetastoreConfig({
-    required this.version,
     this.configOverrides,
     this.endpointProtocol,
+    required this.version,
+    this.auxiliaryVersions,
+    this.kerberosConfig,
   });
 
-  final TfArg<String> version;
   final TfArg<Map<String, String>>? configOverrides;
+
   final TfArg<DataprocMetastoreServiceEndpointProtocol>? endpointProtocol;
 
-  Map<String, Object?> toArgMap() => {
+  final TfArg<String> version;
+
+  final List<DataprocMetastoreServiceHiveMetastoreConfigAuxiliaryVersions>?
+  auxiliaryVersions;
+
+  final DataprocMetastoreServiceHiveMetastoreConfigKerberosConfig?
+  kerberosConfig;
+
+  Map<String, Object?> encode() => {
+    'config_overrides': ?configOverrides?.toTfJson(),
+    'endpoint_protocol': ?endpointProtocol?.toTfJson(),
     'version': version.toTfJson(),
-    if (configOverrides != null)
-      'config_overrides': configOverrides!.toTfJson(),
-    if (endpointProtocol != null)
-      'endpoint_protocol': endpointProtocol!.toTfJson(),
+    if (auxiliaryVersions != null)
+      'auxiliary_versions': [for (final e in auxiliaryVersions!) e.encode()],
+    'kerberos_config': ?kerberosConfig?.encode(),
   };
+}
+
+/// Typed helper for the `hive_metastore_config.auxiliary_versions` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceHiveMetastoreConfigAuxiliaryVersions {
+  const DataprocMetastoreServiceHiveMetastoreConfigAuxiliaryVersions({
+    this.configOverrides,
+    required this.key,
+    required this.version,
+  });
+
+  final TfArg<Map<String, String>>? configOverrides;
+
+  final TfArg<String> key;
+
+  final TfArg<String> version;
+
+  Map<String, Object?> encode() => {
+    'config_overrides': ?configOverrides?.toTfJson(),
+    'key': key.toTfJson(),
+    'version': version.toTfJson(),
+  };
+}
+
+/// Typed helper for the `hive_metastore_config.kerberos_config` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceHiveMetastoreConfigKerberosConfig {
+  const DataprocMetastoreServiceHiveMetastoreConfigKerberosConfig({
+    required this.krb5ConfigGcsUri,
+    required this.principal,
+    required this.keytab,
+  });
+
+  final TfArg<String> krb5ConfigGcsUri;
+
+  final TfArg<String> principal;
+
+  final DataprocMetastoreServiceHiveMetastoreConfigKerberosConfigKeytab keytab;
+
+  Map<String, Object?> encode() => {
+    'krb5_config_gcs_uri': krb5ConfigGcsUri.toTfJson(),
+    'principal': principal.toTfJson(),
+    'keytab': keytab.encode(),
+  };
+}
+
+/// Typed helper for the `hive_metastore_config.kerberos_config.keytab` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceHiveMetastoreConfigKerberosConfigKeytab {
+  const DataprocMetastoreServiceHiveMetastoreConfigKerberosConfigKeytab({
+    required this.cloudSecret,
+  });
+
+  final TfArg<String> cloudSecret;
+
+  Map<String, Object?> encode() => {'cloud_secret': cloudSecret.toTfJson()};
+}
+
+/// Typed helper for the `maintenance_window` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceMaintenanceWindow {
+  const DataprocMetastoreServiceMaintenanceWindow({
+    required this.dayOfWeek,
+    required this.hourOfDay,
+  });
+
+  final TfArg<DataprocMetastoreServiceMaintenanceWindowDayOfWeek> dayOfWeek;
+
+  final TfArg<num> hourOfDay;
+
+  Map<String, Object?> encode() => {
+    'day_of_week': dayOfWeek.toTfJson(),
+    'hour_of_day': hourOfDay.toTfJson(),
+  };
+}
+
+/// `day_of_week` — derived from the provider schema description.
+enum DataprocMetastoreServiceMaintenanceWindowDayOfWeek
+    implements TerraformEnum {
+  monday('MONDAY'),
+  tuesday('TUESDAY'),
+  wednesday('WEDNESDAY'),
+  thursday('THURSDAY'),
+  friday('FRIDAY'),
+  saturday('SATURDAY'),
+  sunday('SUNDAY');
+
+  const DataprocMetastoreServiceMaintenanceWindowDayOfWeek(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `metadata_integration` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceMetadataIntegration {
+  const DataprocMetastoreServiceMetadataIntegration({
+    required this.dataCatalogConfig,
+  });
+
+  final DataprocMetastoreServiceMetadataIntegrationDataCatalogConfig
+  dataCatalogConfig;
+
+  Map<String, Object?> encode() => {
+    'data_catalog_config': dataCatalogConfig.encode(),
+  };
+}
+
+/// Typed helper for the `metadata_integration.data_catalog_config` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceMetadataIntegrationDataCatalogConfig {
+  const DataprocMetastoreServiceMetadataIntegrationDataCatalogConfig({
+    required this.enabled,
+  });
+
+  final TfArg<bool> enabled;
+
+  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
+}
+
+/// Typed helper for the `network_config` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceNetworkConfig {
+  const DataprocMetastoreServiceNetworkConfig({required this.consumers});
+
+  final List<DataprocMetastoreServiceNetworkConfigConsumers> consumers;
+
+  Map<String, Object?> encode() => {
+    'consumers': [for (final e in consumers) e.encode()],
+  };
+}
+
+/// Typed helper for the `network_config.consumers` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceNetworkConfigConsumers {
+  const DataprocMetastoreServiceNetworkConfigConsumers({
+    required this.subnetwork,
+  });
+
+  final RefTo<GoogleComputeSubnetwork> subnetwork;
+
+  Map<String, Object?> encode() => {
+    'subnetwork': subnetwork.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Exactly one of `instance_size`, `scaling_factor`, `autoscaling_config` on the `scaling_config` block of `google_dataproc_metastore_service`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.instanceSize(...)`.
+sealed class DataprocMetastoreServiceScalingConfig {
+  const DataprocMetastoreServiceScalingConfig();
+
+  /// Sets `instance_size`.
+  const factory DataprocMetastoreServiceScalingConfig.instanceSize(
+    TfArg<DataprocMetastoreServiceScalingConfigInstanceSize> instanceSize,
+  ) = DataprocMetastoreServiceScalingConfigInstanceSizeChoice;
+
+  /// Sets `scaling_factor`.
+  const factory DataprocMetastoreServiceScalingConfig.scalingFactor(
+    TfArg<num> scalingFactor,
+  ) = DataprocMetastoreServiceScalingConfigScalingFactor;
+
+  /// Sets `autoscaling_config`.
+  const factory DataprocMetastoreServiceScalingConfig.autoscalingConfig(
+    DataprocMetastoreServiceScalingConfigAutoscalingConfig autoscalingConfig,
+  ) = DataprocMetastoreServiceScalingConfigAutoscalingConfigChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [DataprocMetastoreServiceScalingConfig.instanceSize] choice: sets `instance_size`.
+final class DataprocMetastoreServiceScalingConfigInstanceSizeChoice
+    extends DataprocMetastoreServiceScalingConfig {
+  const DataprocMetastoreServiceScalingConfigInstanceSizeChoice(
+    this.instanceSize,
+  );
+
+  final TfArg<DataprocMetastoreServiceScalingConfigInstanceSize> instanceSize;
+
+  @override
+  String get blockKey => 'instance_size';
+
+  @override
+  Map<String, Object?> encode() => {'instance_size': instanceSize.toTfJson()};
+}
+
+/// The [DataprocMetastoreServiceScalingConfig.scalingFactor] choice: sets `scaling_factor`.
+final class DataprocMetastoreServiceScalingConfigScalingFactor
+    extends DataprocMetastoreServiceScalingConfig {
+  const DataprocMetastoreServiceScalingConfigScalingFactor(this.scalingFactor);
+
+  final TfArg<num> scalingFactor;
+
+  @override
+  String get blockKey => 'scaling_factor';
+
+  @override
+  Map<String, Object?> encode() => {'scaling_factor': scalingFactor.toTfJson()};
+}
+
+/// The [DataprocMetastoreServiceScalingConfig.autoscalingConfig] choice: sets `autoscaling_config`.
+final class DataprocMetastoreServiceScalingConfigAutoscalingConfigChoice
+    extends DataprocMetastoreServiceScalingConfig {
+  const DataprocMetastoreServiceScalingConfigAutoscalingConfigChoice(
+    this.autoscalingConfig,
+  );
+
+  final DataprocMetastoreServiceScalingConfigAutoscalingConfig
+  autoscalingConfig;
+
+  @override
+  String get blockKey => 'autoscaling_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'autoscaling_config': autoscalingConfig.encode(),
+  };
+}
+
+/// `instance_size` — derived from the provider schema description.
+enum DataprocMetastoreServiceScalingConfigInstanceSize
+    implements TerraformEnum {
+  extraSmall('EXTRA_SMALL'),
+  small('SMALL'),
+  medium('MEDIUM'),
+  large('LARGE'),
+  extraLarge('EXTRA_LARGE');
+
+  const DataprocMetastoreServiceScalingConfigInstanceSize(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `scaling_config.autoscaling_config` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceScalingConfigAutoscalingConfig {
+  const DataprocMetastoreServiceScalingConfigAutoscalingConfig({
+    this.autoscalingEnabled,
+    this.limitConfig,
+  });
+
+  final TfArg<bool>? autoscalingEnabled;
+
+  final DataprocMetastoreServiceScalingConfigAutoscalingConfigLimitConfig?
+  limitConfig;
+
+  Map<String, Object?> encode() => {
+    'autoscaling_enabled': ?autoscalingEnabled?.toTfJson(),
+    'limit_config': ?limitConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `scaling_config.autoscaling_config.limit_config` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceScalingConfigAutoscalingConfigLimitConfig {
+  const DataprocMetastoreServiceScalingConfigAutoscalingConfigLimitConfig({
+    this.maxScalingFactor,
+    this.minScalingFactor,
+  });
+
+  final TfArg<num>? maxScalingFactor;
+
+  final TfArg<num>? minScalingFactor;
+
+  Map<String, Object?> encode() => {
+    'max_scaling_factor': ?maxScalingFactor?.toTfJson(),
+    'min_scaling_factor': ?minScalingFactor?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `scheduled_backup` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceScheduledBackup {
+  const DataprocMetastoreServiceScheduledBackup({
+    required this.backupLocation,
+    this.cronSchedule,
+    this.enabled,
+    this.timeZone,
+  });
+
+  final TfArg<String> backupLocation;
+
+  final TfArg<String>? cronSchedule;
+
+  final TfArg<bool>? enabled;
+
+  final TfArg<String>? timeZone;
+
+  Map<String, Object?> encode() => {
+    'backup_location': backupLocation.toTfJson(),
+    'cron_schedule': ?cronSchedule?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'time_zone': ?timeZone?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `telemetry_config` block of
+/// `google_dataproc_metastore_service` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceTelemetryConfig {
+  const DataprocMetastoreServiceTelemetryConfig({this.logFormat});
+
+  final TfArg<DataprocMetastoreServiceTelemetryConfigLogFormat>? logFormat;
+
+  Map<String, Object?> encode() => {'log_format': ?logFormat?.toTfJson()};
+}
+
+/// `log_format` — derived from the provider schema description.
+enum DataprocMetastoreServiceTelemetryConfigLogFormat implements TerraformEnum {
+  legacy('LEGACY'),
+  json('JSON');
+
+  const DataprocMetastoreServiceTelemetryConfigLogFormat(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Factory wrapper for `google_dataproc_metastore_service`.
@@ -98,7 +518,7 @@ final class GoogleDataprocMetastoreService extends Resource {
     required super.localName,
     required TfArg<String> serviceId,
     TfArg<String>? location,
-    TfArg<DataprocMetastoreServiceTier>? tier,
+    DataprocMetastoreServiceCapacity? capacity,
     TfArg<DataprocMetastoreServiceDatabaseType>? databaseType,
     TfArg<DataprocMetastoreServiceReleaseChannel>? releaseChannel,
     DataprocMetastoreServiceHiveMetastoreConfig? hiveMetastoreConfig,
@@ -108,6 +528,13 @@ final class GoogleDataprocMetastoreService extends Resource {
     TfArg<bool>? deletionProtection,
     TfArg<DataprocMetastoreServiceDeletionPolicy>? deletionPolicy,
     TfArg<String>? project,
+    TfArg<Map<String, String>>? tags,
+    DataprocMetastoreServiceEncryptionConfig? encryptionConfig,
+    DataprocMetastoreServiceMaintenanceWindow? maintenanceWindow,
+    DataprocMetastoreServiceMetadataIntegration? metadataIntegration,
+    DataprocMetastoreServiceNetworkConfig? networkConfig,
+    DataprocMetastoreServiceScheduledBackup? scheduledBackup,
+    DataprocMetastoreServiceTelemetryConfig? telemetryConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -117,19 +544,34 @@ final class GoogleDataprocMetastoreService extends Resource {
          argMap: {
            'service_id': serviceId,
            'location': ?location,
-           'tier': ?tier,
+           ...?capacity?.argMap,
            'database_type': ?databaseType,
            'release_channel': ?releaseChannel,
            if (hiveMetastoreConfig != null)
-             'hive_metastore_config': TfArg.literal([
-               hiveMetastoreConfig.toArgMap(),
-             ]),
+             'hive_metastore_config': TfArg.literal(
+               hiveMetastoreConfig.encode(),
+             ),
            'network': ?network?.encodeAs('id'),
            'port': ?port,
            'labels': ?labels,
            'deletion_protection': ?deletionProtection,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           'tags': ?tags,
+           if (encryptionConfig != null)
+             'encryption_config': TfArg.literal(encryptionConfig.encode()),
+           if (maintenanceWindow != null)
+             'maintenance_window': TfArg.literal(maintenanceWindow.encode()),
+           if (metadataIntegration != null)
+             'metadata_integration': TfArg.literal(
+               metadataIntegration.encode(),
+             ),
+           if (networkConfig != null)
+             'network_config': TfArg.literal(networkConfig.encode()),
+           if (scheduledBackup != null)
+             'scheduled_backup': TfArg.literal(scheduledBackup.encode()),
+           if (telemetryConfig != null)
+             'telemetry_config': TfArg.literal(telemetryConfig.encode()),
          },
        );
 

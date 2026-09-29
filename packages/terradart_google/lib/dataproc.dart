@@ -123,6 +123,11 @@ export 'src/dataproc/google_dataproc_gdc_spark_application.dart'
         DataprocGdcSparkApplicationSparkRApplicationConfig,
         DataprocGdcSparkApplicationSparkSqlApplicationConfig,
         DataprocGdcSparkApplicationSparkSqlApplicationConfigQueryList,
+        DataprocGdcSparkApplicationWorkload,
+        DataprocGdcSparkApplicationWorkloadPysparkApplicationConfig,
+        DataprocGdcSparkApplicationWorkloadSparkApplicationConfig,
+        DataprocGdcSparkApplicationWorkloadSparkRApplicationConfig,
+        DataprocGdcSparkApplicationWorkloadSparkSqlApplicationConfig,
         GoogleDataprocGdcSparkApplication;
 export 'src/dataproc/google_dataproc_job.dart'
     show
@@ -169,11 +174,34 @@ export 'src/dataproc/google_dataproc_metastore_federation_iam_policy.dart'
     show GoogleDataprocMetastoreFederationIamPolicy;
 export 'src/dataproc/google_dataproc_metastore_service.dart'
     show
+        DataprocMetastoreServiceCapacity,
+        DataprocMetastoreServiceCapacityScalingConfig,
+        DataprocMetastoreServiceCapacityTier,
         DataprocMetastoreServiceDatabaseType,
         DataprocMetastoreServiceDeletionPolicy,
+        DataprocMetastoreServiceEncryptionConfig,
         DataprocMetastoreServiceEndpointProtocol,
         DataprocMetastoreServiceHiveMetastoreConfig,
+        DataprocMetastoreServiceHiveMetastoreConfigAuxiliaryVersions,
+        DataprocMetastoreServiceHiveMetastoreConfigKerberosConfig,
+        DataprocMetastoreServiceHiveMetastoreConfigKerberosConfigKeytab,
+        DataprocMetastoreServiceMaintenanceWindow,
+        DataprocMetastoreServiceMaintenanceWindowDayOfWeek,
+        DataprocMetastoreServiceMetadataIntegration,
+        DataprocMetastoreServiceMetadataIntegrationDataCatalogConfig,
+        DataprocMetastoreServiceNetworkConfig,
+        DataprocMetastoreServiceNetworkConfigConsumers,
         DataprocMetastoreServiceReleaseChannel,
+        DataprocMetastoreServiceScalingConfig,
+        DataprocMetastoreServiceScalingConfigAutoscalingConfig,
+        DataprocMetastoreServiceScalingConfigAutoscalingConfigChoice,
+        DataprocMetastoreServiceScalingConfigAutoscalingConfigLimitConfig,
+        DataprocMetastoreServiceScalingConfigInstanceSize,
+        DataprocMetastoreServiceScalingConfigInstanceSizeChoice,
+        DataprocMetastoreServiceScalingConfigScalingFactor,
+        DataprocMetastoreServiceScheduledBackup,
+        DataprocMetastoreServiceTelemetryConfig,
+        DataprocMetastoreServiceTelemetryConfigLogFormat,
         DataprocMetastoreServiceTier,
         GoogleDataprocMetastoreService;
 export 'src/dataproc/google_dataproc_metastore_service_iam_binding.dart'

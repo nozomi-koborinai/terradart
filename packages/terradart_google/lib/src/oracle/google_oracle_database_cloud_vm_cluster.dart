@@ -1,7 +1,10 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_oracle_database_cloud_vm_cluster`.
 const Set<String> _googleOracleDatabaseCloudVmClusterSensitive = <String>{};
@@ -15,6 +18,126 @@ enum OracleDatabaseCloudVmClusterDeletionPolicy implements TerraformEnum {
   const OracleDatabaseCloudVmClusterDeletionPolicy(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `properties` block of
+/// `google_oracle_database_cloud_vm_cluster` (derived from provider schema).
+@immutable
+final class OracleDatabaseCloudVmClusterProperties {
+  const OracleDatabaseCloudVmClusterProperties({
+    this.clusterName,
+    required this.cpuCoreCount,
+    this.dataStorageSizeTb,
+    this.dbNodeStorageSizeGb,
+    this.dbServerOcids,
+    this.diskRedundancy,
+    this.giVersion,
+    this.hostnamePrefix,
+    required this.licenseType,
+    this.localBackupEnabled,
+    this.memorySizeGb,
+    this.nodeCount,
+    this.ocpuCount,
+    this.sparseDiskgroupEnabled,
+    this.sshPublicKeys,
+    this.diagnosticsDataCollectionOptions,
+    this.timeZone,
+  });
+
+  final TfArg<String>? clusterName;
+
+  final TfArg<num> cpuCoreCount;
+
+  final TfArg<num>? dataStorageSizeTb;
+
+  final TfArg<num>? dbNodeStorageSizeGb;
+
+  final TfArg<List<Object?>>? dbServerOcids;
+
+  final TfArg<String>? diskRedundancy;
+
+  final TfArg<String>? giVersion;
+
+  final TfArg<String>? hostnamePrefix;
+
+  final TfArg<String> licenseType;
+
+  final TfArg<bool>? localBackupEnabled;
+
+  final TfArg<num>? memorySizeGb;
+
+  final TfArg<num>? nodeCount;
+
+  final TfArg<num>? ocpuCount;
+
+  final TfArg<bool>? sparseDiskgroupEnabled;
+
+  final TfArg<List<Object?>>? sshPublicKeys;
+
+  final OracleDatabaseCloudVmClusterPropertiesDiagnosticsDataCollectionOptions?
+  diagnosticsDataCollectionOptions;
+
+  final OracleDatabaseCloudVmClusterPropertiesTimeZone? timeZone;
+
+  Map<String, Object?> encode() => {
+    'cluster_name': ?clusterName?.toTfJson(),
+    'cpu_core_count': cpuCoreCount.toTfJson(),
+    'data_storage_size_tb': ?dataStorageSizeTb?.toTfJson(),
+    'db_node_storage_size_gb': ?dbNodeStorageSizeGb?.toTfJson(),
+    'db_server_ocids': ?dbServerOcids?.toTfJson(),
+    'disk_redundancy': ?diskRedundancy?.toTfJson(),
+    'gi_version': ?giVersion?.toTfJson(),
+    'hostname_prefix': ?hostnamePrefix?.toTfJson(),
+    'license_type': licenseType.toTfJson(),
+    'local_backup_enabled': ?localBackupEnabled?.toTfJson(),
+    'memory_size_gb': ?memorySizeGb?.toTfJson(),
+    'node_count': ?nodeCount?.toTfJson(),
+    'ocpu_count': ?ocpuCount?.toTfJson(),
+    'sparse_diskgroup_enabled': ?sparseDiskgroupEnabled?.toTfJson(),
+    'ssh_public_keys': ?sshPublicKeys?.toTfJson(),
+    'diagnostics_data_collection_options': ?diagnosticsDataCollectionOptions
+        ?.encode(),
+    'time_zone': ?timeZone?.encode(),
+  };
+}
+
+/// Typed helper for the `properties.diagnostics_data_collection_options` block of
+/// `google_oracle_database_cloud_vm_cluster` (derived from provider schema).
+@immutable
+final class OracleDatabaseCloudVmClusterPropertiesDiagnosticsDataCollectionOptions {
+  const OracleDatabaseCloudVmClusterPropertiesDiagnosticsDataCollectionOptions({
+    this.diagnosticsEventsEnabled,
+    this.healthMonitoringEnabled,
+    this.incidentLogsEnabled,
+  });
+
+  final TfArg<bool>? diagnosticsEventsEnabled;
+
+  final TfArg<bool>? healthMonitoringEnabled;
+
+  final TfArg<bool>? incidentLogsEnabled;
+
+  Map<String, Object?> encode() => {
+    'diagnostics_events_enabled': ?diagnosticsEventsEnabled?.toTfJson(),
+    'health_monitoring_enabled': ?healthMonitoringEnabled?.toTfJson(),
+    'incident_logs_enabled': ?incidentLogsEnabled?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `properties.time_zone` block of
+/// `google_oracle_database_cloud_vm_cluster` (derived from provider schema).
+@immutable
+final class OracleDatabaseCloudVmClusterPropertiesTimeZone {
+  const OracleDatabaseCloudVmClusterPropertiesTimeZone({this.id, this.version});
+
+  final TfArg<String>? id;
+
+  final TfArg<String>? version;
+
+  Map<String, Object?> encode() => {
+    'id': ?id?.toTfJson(),
+    'version': ?version?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_oracle_database_cloud_vm_cluster`.
@@ -39,11 +162,15 @@ final class GoogleOracleDatabaseCloudVmCluster extends Resource {
     TfArg<String>? odbNetwork,
     TfArg<String>? odbSubnet,
     TfArg<String>? backupOdbSubnet,
-    TfArg<Map<String, dynamic>>? properties,
+    OracleDatabaseCloudVmClusterProperties? properties,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseCloudVmClusterDeletionPolicy>? deletionPolicy,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
+    TfArg<String>? backupSubnetCidr,
+    TfArg<String>? cidr,
+    TfArg<String>? exascaleDbStorageVault,
+    RefTo<GoogleComputeNetwork>? network,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -58,11 +185,16 @@ final class GoogleOracleDatabaseCloudVmCluster extends Resource {
            'odb_network': ?odbNetwork,
            'odb_subnet': ?odbSubnet,
            'backup_odb_subnet': ?backupOdbSubnet,
-           'properties': ?properties,
+           if (properties != null)
+             'properties': TfArg.literal(properties.encode()),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'deletion_protection': ?deletionProtection,
            'project': ?project,
+           'backup_subnet_cidr': ?backupSubnetCidr,
+           'cidr': ?cidr,
+           'exascale_db_storage_vault': ?exascaleDbStorageVault,
+           'network': ?network?.encodeAs('id'),
          },
        );
 

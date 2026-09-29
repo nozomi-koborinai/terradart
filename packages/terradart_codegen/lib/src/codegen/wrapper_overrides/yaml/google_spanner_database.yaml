@@ -3,6 +3,7 @@ outputDir: spanner
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 paramOrder:
   - instance
@@ -11,6 +12,10 @@ paramOrder:
   - version_retention_period
   - ddl
   - deletion_protection
+  - default_time_zone
+  - enable_drop_protection
+  - project
+  - encryption_config
 
 dartTypeOverrides:
   database_dialect: SpannerDatabaseDialect

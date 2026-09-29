@@ -3,6 +3,7 @@ outputDir: dataform
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 curatedDoc: |-
   /// Dataform **repository** — the regional container for SQL workflow code,
@@ -37,6 +38,9 @@ curatedDoc: |-
   /// );
   /// ```
 
+sealedNames:
+  "git_remote_settings.authentication_token_secret_version, git_remote_settings.git_repository_link, git_remote_settings.ssh_authentication_config": authentication
+
 paramOrder:
   - name
   - region
@@ -48,3 +52,4 @@ paramOrder:
   - labels
   - deletion_policy
   - project
+  - git_remote_settings

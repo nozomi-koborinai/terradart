@@ -321,7 +321,9 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'serviceconnectionprofile',
         connectionProfileId: .literal('terradart-leftover'),
         deletionPolicy: .literal('DELETE'),
-        postgresql: const DatabaseMigrationServiceConnectionProfilePostgresql(),
+        engine: const .postgresql(
+          DatabaseMigrationServiceConnectionProfilePostgresql(),
+        ),
       ),
     );
 
@@ -359,8 +361,9 @@ final class DeferredLeftoverStack extends Stack {
         location: .literal('us-central1'),
         serviceinstance: .literal('terradart-leftover'),
         sparkApplicationId: .literal('terradart-leftover'),
-        sparkApplicationConfig:
-            const DataprocGdcSparkApplicationSparkApplicationConfig(),
+        workload: const .sparkApplicationConfig(
+          DataprocGdcSparkApplicationSparkApplicationConfig(),
+        ),
       ),
     );
 
@@ -371,8 +374,10 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: .literal('DELETE'),
         displayName: .literal('terradart-leftover'),
         location: .literal('us-central1'),
-        gcsProfile: DatastreamConnectionProfileGcsProfile(
-          bucket: .literal('terradart-leftover'),
+        endpoint: .gcsProfile(
+          DatastreamConnectionProfileGcsProfile(
+            bucket: .literal('terradart-leftover'),
+          ),
         ),
       ),
     );
@@ -384,9 +389,13 @@ final class DeferredLeftoverStack extends Stack {
         displayName: .literal('terradart-leftover'),
         location: .literal('us-central1'),
         privateConnectionId: .literal('terradart-leftover'),
-        vpcPeeringConfig: DatastreamPrivateConnectionVpcPeeringConfig(
-          subnet: .literal('10.0.0.0/29'),
-          vpc: .literal('projects/ci-test-project-id/global/networks/default'),
+        connectivity: .vpcPeeringConfig(
+          DatastreamPrivateConnectionVpcPeeringConfig(
+            subnet: .literal('10.0.0.0/29'),
+            vpc: .literal(
+              'projects/ci-test-project-id/global/networks/default',
+            ),
+          ),
         ),
       ),
     );
@@ -414,7 +423,7 @@ final class DeferredLeftoverStack extends Stack {
             DatastreamStreamSourceConfigMysqlSourceConfig(),
           ),
         ),
-        backfillNone: const DatastreamStreamBackfillNone(),
+        backfill: const .backfillNone(DatastreamStreamBackfillNone()),
       ),
     );
 

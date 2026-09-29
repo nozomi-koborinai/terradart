@@ -2,12 +2,11 @@ outputDir: bigquery
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 dartTypeOverrides:
   data_policy_type: BigqueryDatapolicyDataPolicyType
-
-extraImports:
-  - "import 'package:meta/meta.dart';"
+  data_masking_policy.predefined_expression: BigqueryDatapolicyDataPolicyPredefinedExpression
 
 prelude: |
   /// Enrollment level for `google_bigquery_datapolicy_data_policy.data_policy_type`.
@@ -33,24 +32,6 @@ prelude: |
     @override
     final String terraformValue;
   }
-
-  @immutable
-  class BigqueryDatapolicyDataPolicyDataMaskingPolicy {
-    const BigqueryDatapolicyDataPolicyDataMaskingPolicy({
-      required this.predefinedExpression,
-    });
-
-    final BigqueryDatapolicyDataPolicyPredefinedExpression predefinedExpression;
-
-    Map<String, Object?> encode() => {
-      'predefined_expression': predefinedExpression.terraformValue,
-    };
-  }
-
-customSlots:
-  data_masking_policy:
-    paramDeclaration: 'BigqueryDatapolicyDataPolicyDataMaskingPolicy? dataMaskingPolicy'
-    argMapEntry: "if (dataMaskingPolicy != null) 'data_masking_policy': TfArg.literal([dataMaskingPolicy.encode()]),"
 
 paramOrder:
   - data_policy_id

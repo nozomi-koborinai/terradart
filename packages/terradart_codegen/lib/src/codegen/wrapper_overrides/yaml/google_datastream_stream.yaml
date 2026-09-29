@@ -46,6 +46,7 @@ paramOrder:
   - destination_config
   - rule_sets
   - source_config
+  - backfill_all
 
 sealedNames:
   "destination_config.bigquery_destination_config, destination_config.gcs_destination_config": system

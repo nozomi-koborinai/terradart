@@ -141,13 +141,13 @@ final class OracleExadataStack extends Stack {
         odbNetwork: .ref(odbNetwork.nameRef),
         odbSubnet: .ref(clientSubnet.nameRef),
         backupOdbSubnet: .ref(backupSubnet.nameRef),
-        properties: .literal({
-          'license_type': 'LICENSE_INCLUDED',
-          'cpu_core_count': 4,
-          'gi_version': '19.0.0.0',
-          'hostname_prefix': 'exa1',
-          'ssh_public_keys': [_placeholderSshPublicKey],
-        }),
+        properties: OracleDatabaseCloudVmClusterProperties(
+          licenseType: .literal('LICENSE_INCLUDED'),
+          cpuCoreCount: .literal(4),
+          giVersion: .literal('19.0.0.0'),
+          hostnamePrefix: .literal('exa1'),
+          sshPublicKeys: .literal([_placeholderSshPublicKey]),
+        ),
         dependsOn: [
           ...apiDeps,
           ResourceDependency(exadata),

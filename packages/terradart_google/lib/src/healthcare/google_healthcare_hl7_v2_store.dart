@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_healthcare_hl7_v2_store`.
 const Set<String> _googleHealthcareHl7V2StoreSensitive = <String>{};
 
@@ -23,36 +25,62 @@ enum HealthcareHl7V2StoreParserConfigVersion implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `parser_config` block on a [GoogleHealthcareHl7V2Store] — controls how
-/// inbound HL7v2 messages are parsed.
+/// Typed helper for the `notification_config` block of
+/// `google_healthcare_hl7_v2_store` (derived from provider schema).
 @immutable
-class HealthcareHl7V2StoreParserConfig {
-  const HealthcareHl7V2StoreParserConfig({
-    this.version,
-    this.allowNullHeader,
-    this.segmentTerminator,
-    this.schema,
-  });
+final class HealthcareHl7V2StoreNotificationConfig {
+  const HealthcareHl7V2StoreNotificationConfig({required this.pubsubTopic});
 
-  /// Parser version. Prefer [HealthcareHl7V2StoreParserConfigVersion.v3].
-  final TfArg<HealthcareHl7V2StoreParserConfigVersion>? version;
-
-  /// Whether messages with no header segment are accepted.
-  final TfArg<bool>? allowNullHeader;
-
-  /// Byte(s) to use as the segment terminator (base64-encoded).
-  final TfArg<String>? segmentTerminator;
-
-  /// JSON-encoded schema describing how to parse messages.
-  final TfArg<String>? schema;
+  final RefTo<GooglePubsubTopic> pubsubTopic;
 
   Map<String, Object?> encode() => {
-    if (version != null) 'version': version!.toTfJson(),
-    if (allowNullHeader != null)
-      'allow_null_header': allowNullHeader!.toTfJson(),
-    if (segmentTerminator != null)
-      'segment_terminator': segmentTerminator!.toTfJson(),
-    if (schema != null) 'schema': schema!.toTfJson(),
+    'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `notification_configs` block of
+/// `google_healthcare_hl7_v2_store` (derived from provider schema).
+@immutable
+final class HealthcareHl7V2StoreNotificationConfigs {
+  const HealthcareHl7V2StoreNotificationConfigs({
+    this.filter,
+    required this.pubsubTopic,
+  });
+
+  final TfArg<String>? filter;
+
+  final RefTo<GooglePubsubTopic> pubsubTopic;
+
+  Map<String, Object?> encode() => {
+    'filter': ?filter?.toTfJson(),
+    'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `parser_config` block of
+/// `google_healthcare_hl7_v2_store` (derived from provider schema).
+@immutable
+final class HealthcareHl7V2StoreParserConfig {
+  const HealthcareHl7V2StoreParserConfig({
+    this.allowNullHeader,
+    this.schema,
+    this.segmentTerminator,
+    this.version,
+  });
+
+  final TfArg<bool>? allowNullHeader;
+
+  final TfArg<String>? schema;
+
+  final TfArg<String>? segmentTerminator;
+
+  final TfArg<HealthcareHl7V2StoreParserConfigVersion>? version;
+
+  Map<String, Object?> encode() => {
+    'allow_null_header': ?allowNullHeader?.toTfJson(),
+    'schema': ?schema?.toTfJson(),
+    'segment_terminator': ?segmentTerminator?.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -71,6 +99,8 @@ final class GoogleHealthcareHl7V2Store extends Resource {
     TfArg<bool>? rejectDuplicateMessage,
     HealthcareHl7V2StoreParserConfig? parserConfig,
     TfArg<Map<String, String>>? labels,
+    HealthcareHl7V2StoreNotificationConfig? notificationConfig,
+    List<HealthcareHl7V2StoreNotificationConfigs>? notificationConfigs,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -84,6 +114,12 @@ final class GoogleHealthcareHl7V2Store extends Resource {
            if (parserConfig != null)
              'parser_config': TfArg.literal(parserConfig.encode()),
            'labels': ?labels,
+           if (notificationConfig != null)
+             'notification_config': TfArg.literal(notificationConfig.encode()),
+           if (notificationConfigs != null)
+             'notification_configs': TfArg.literal([
+               for (final e in notificationConfigs) e.encode(),
+             ]),
          },
        );
 

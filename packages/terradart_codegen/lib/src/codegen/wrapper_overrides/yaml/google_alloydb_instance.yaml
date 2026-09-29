@@ -3,6 +3,7 @@ outputDir: alloydb
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 paramOrder:
   - cluster
@@ -11,6 +12,17 @@ paramOrder:
   - machine_config
   - display_name
   - labels
+  - activation_policy
+  - annotations
+  - availability_type
+  - database_flags
+  - gce_zone
+  - client_connection_config
+  - connection_pool_config
+  - network_config
+  - psc_instance_config
+  - query_insights_config
+  - read_pool_config
 
 dartTypeOverrides:
   instance_type: AlloydbInstanceType
@@ -51,23 +63,3 @@ prelude: |
     final String terraformValue;
   }
 
-  /// `machine_config` nested block (max=1).
-  class AlloydbInstanceMachineConfig {
-    const AlloydbInstanceMachineConfig({
-      this.cpuCount,
-      this.machineType,
-    });
-
-    final TfArg<num>? cpuCount;
-    final TfArg<String>? machineType;
-
-    Map<String, Object?> toArgMap() => {
-          if (cpuCount != null) 'cpu_count': cpuCount!.toTfJson(),
-          if (machineType != null) 'machine_type': machineType!.toTfJson(),
-        };
-  }
-
-customSlots:
-  machine_config:
-    paramDeclaration: 'AlloydbInstanceMachineConfig? machineConfig'
-    argMapEntry: "if (machineConfig != null) 'machine_config': TfArg.literal([machineConfig.toArgMap()]),"

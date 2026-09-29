@@ -29,9 +29,12 @@ export 'src/firestore/google_firestore_document.dart'
 export 'src/firestore/google_firestore_field.dart'
     show
         FirestoreFieldIndexConfig,
+        FirestoreFieldIndexConfigIndexes,
+        FirestoreFieldIndexConfigIndexesMode,
+        FirestoreFieldIndexConfigIndexesModeArrayConfig,
+        FirestoreFieldIndexConfigIndexesModeOrder,
         FirestoreFieldOrder,
         FirestoreFieldQueryScope,
-        FirestoreFieldSingleFieldIndex,
         FirestoreFieldTtlConfig,
         GoogleFirestoreField;
 export 'src/firestore/google_firestore_index.dart'

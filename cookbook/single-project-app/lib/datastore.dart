@@ -18,7 +18,7 @@ GoogleSqlDatabaseInstance buildSqlInstance({
   deletionProtection: .literal(false),
   settings: SqlDatabaseInstanceSettings(
     tier: .literal('db-f1-micro'),
-    ipConfiguration: SqlDatabaseInstanceIpConfiguration(
+    ipConfiguration: SqlDatabaseInstanceSettingsIpConfiguration(
       ipv4Enabled: .literal(false),
       privateNetwork: .ref(vpc.selfLink),
     ),

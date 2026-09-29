@@ -24,6 +24,7 @@ export 'src/bigtable/google_bigtable_instance.dart'
     show
         BigtableClusterStorageType,
         BigtableInstanceCluster,
+        BigtableInstanceClusterAutoscalingConfig,
         BigtableInstanceEdition,
         BigtableInstanceType,
         GoogleBigtableInstance;

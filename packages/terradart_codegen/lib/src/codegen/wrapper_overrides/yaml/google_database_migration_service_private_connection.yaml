@@ -24,3 +24,4 @@ paramOrder:
   - private_connection_id
   - project
   - vpc_peering_config
+  - psc_interface_config

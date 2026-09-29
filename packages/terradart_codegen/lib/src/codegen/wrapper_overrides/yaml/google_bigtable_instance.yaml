@@ -3,6 +3,7 @@ outputDir: bigtable
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 curatedDoc: |-
   /// Cloud Bigtable instance — the top-level container for clusters and tables.
@@ -41,6 +42,7 @@ paramOrder:
   - deletion_protection
   - force_destroy
   - project
+  - tags
 
 extraGetters: |
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
@@ -48,6 +50,7 @@ extraGetters: |
 dartTypeOverrides:
   instance_type: BigtableInstanceType
   edition: BigtableInstanceEdition
+  cluster.storage_type: BigtableClusterStorageType
 
 prelude: |
   /// `instance_type` on `google_bigtable_instance`.
@@ -80,32 +83,3 @@ prelude: |
     final String terraformValue;
   }
 
-  /// One cluster block on `google_bigtable_instance`.
-  class BigtableInstanceCluster {
-    const BigtableInstanceCluster({
-      required this.clusterId,
-      this.zone,
-      this.numNodes,
-      this.storageType,
-      this.kmsKeyName,
-    });
-
-    final TfArg<String> clusterId;
-    final TfArg<String>? zone;
-    final TfArg<num>? numNodes;
-    final TfArg<BigtableClusterStorageType>? storageType;
-    final TfArg<String>? kmsKeyName;
-
-    Map<String, Object?> toArgMap() => {
-          'cluster_id': clusterId.toTfJson(),
-          if (zone != null) 'zone': zone!.toTfJson(),
-          if (numNodes != null) 'num_nodes': numNodes!.toTfJson(),
-          if (storageType != null) 'storage_type': storageType!.toTfJson(),
-          if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
-        };
-  }
-
-customSlots:
-  cluster:
-    paramDeclaration: 'List<BigtableInstanceCluster>? cluster'
-    argMapEntry: "if (cluster != null) 'cluster': TfArg.literal(cluster.map((c) => c.toArgMap()).toList()),"

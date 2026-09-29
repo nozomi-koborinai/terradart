@@ -11,11 +11,6 @@ extraImports:
 dartTypeOverrides:
   version: HealthcareFhirStoreVersion
 
-# BigQuery FHIR streaming is out of scope for this thin Wave; freeze the
-# nested schema_config enums until a follow-up curates stream_configs.
-nestedTypeExcludes:
-  - stream_configs
-
 curatedDoc: |-
   /// FHIR store inside a [GoogleHealthcareDataset] — stores FHIR resources
   /// (DSTU2 / STU3 / R4). Empty stores are free; you are billed for stored
@@ -37,3 +32,10 @@ paramOrder:
   - disable_resource_versioning
   - labels
   - deletion_policy
+  - complex_data_type_reference_parsing
+  - default_search_handling_strict
+  - enable_history_import
+  - notification_config
+  - notification_configs
+  - stream_configs
+  - validation_config

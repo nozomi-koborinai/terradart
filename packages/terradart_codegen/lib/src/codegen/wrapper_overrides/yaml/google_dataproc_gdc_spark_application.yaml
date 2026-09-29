@@ -30,3 +30,9 @@ paramOrder:
   - spark_application_id
   - version
   - spark_application_config
+  - pyspark_application_config
+  - spark_r_application_config
+  - spark_sql_application_config
+
+sealedNames:
+  "pyspark_application_config, spark_application_config, spark_r_application_config, spark_sql_application_config": workload

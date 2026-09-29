@@ -48,6 +48,15 @@ paramOrder:
   - restore_parameters
   - deletion_policy
   - project
+  - large_capacity
+  - multiple_endpoints
+  - restricted_actions
+  - throughput_mibps
+  - block_devices
+  - cache_parameters
+  - hybrid_replication_parameters
+  - large_capacity_config
+  - tiering_policy
 
 extraGetters: |2
     /// Reference to `name` attribute.

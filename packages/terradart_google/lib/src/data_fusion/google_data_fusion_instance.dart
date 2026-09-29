@@ -1,7 +1,11 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 
 /// Sensitive field paths for `google_data_fusion_instance`.
 const Set<String> _googleDataFusionInstanceSensitive = <String>{};
@@ -29,6 +33,201 @@ enum DataFusionInstanceType implements TerraformEnum {
   const DataFusionInstanceType(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `accelerators` block of
+/// `google_data_fusion_instance` (derived from provider schema).
+@immutable
+final class DataFusionInstanceAccelerators {
+  const DataFusionInstanceAccelerators({
+    required this.acceleratorType,
+    required this.state,
+  });
+
+  final TfArg<DataFusionInstanceAcceleratorsAcceleratorType> acceleratorType;
+
+  final TfArg<DataFusionInstanceAcceleratorsState> state;
+
+  Map<String, Object?> encode() => {
+    'accelerator_type': acceleratorType.toTfJson(),
+    'state': state.toTfJson(),
+  };
+}
+
+/// `accelerator_type` — derived from the provider schema description.
+enum DataFusionInstanceAcceleratorsAcceleratorType implements TerraformEnum {
+  cdc('CDC'),
+  healthcare('HEALTHCARE'),
+  ccaiInsights('CCAI_INSIGHTS');
+
+  const DataFusionInstanceAcceleratorsAcceleratorType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `state` — derived from the provider schema description.
+enum DataFusionInstanceAcceleratorsState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const DataFusionInstanceAcceleratorsState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `crypto_key_config` block of
+/// `google_data_fusion_instance` (derived from provider schema).
+@immutable
+final class DataFusionInstanceCryptoKeyConfig {
+  const DataFusionInstanceCryptoKeyConfig({required this.keyReference});
+
+  final TfArg<String> keyReference;
+
+  Map<String, Object?> encode() => {'key_reference': keyReference.toTfJson()};
+}
+
+/// Typed helper for the `event_publish_config` block of
+/// `google_data_fusion_instance` (derived from provider schema).
+@immutable
+final class DataFusionInstanceEventPublishConfig {
+  const DataFusionInstanceEventPublishConfig({
+    required this.enabled,
+    required this.topic,
+  });
+
+  final TfArg<bool> enabled;
+
+  final RefTo<GooglePubsubTopic> topic;
+
+  Map<String, Object?> encode() => {
+    'enabled': enabled.toTfJson(),
+    'topic': topic.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `maintenance_policy` block of
+/// `google_data_fusion_instance` (derived from provider schema).
+@immutable
+final class DataFusionInstanceMaintenancePolicy {
+  const DataFusionInstanceMaintenancePolicy({this.maintenanceWindow});
+
+  final DataFusionInstanceMaintenancePolicyMaintenanceWindow? maintenanceWindow;
+
+  Map<String, Object?> encode() => {
+    'maintenance_window': ?maintenanceWindow?.encode(),
+  };
+}
+
+/// Typed helper for the `maintenance_policy.maintenance_window` block of
+/// `google_data_fusion_instance` (derived from provider schema).
+@immutable
+final class DataFusionInstanceMaintenancePolicyMaintenanceWindow {
+  const DataFusionInstanceMaintenancePolicyMaintenanceWindow({
+    required this.recurringTimeWindow,
+  });
+
+  final DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindow
+  recurringTimeWindow;
+
+  Map<String, Object?> encode() => {
+    'recurring_time_window': recurringTimeWindow.encode(),
+  };
+}
+
+/// Typed helper for the `maintenance_policy.maintenance_window.recurring_time_window` block of
+/// `google_data_fusion_instance` (derived from provider schema).
+@immutable
+final class DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindow {
+  const DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindow({
+    required this.recurrence,
+    required this.window,
+  });
+
+  final TfArg<String> recurrence;
+
+  final DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindowWindow
+  window;
+
+  Map<String, Object?> encode() => {
+    'recurrence': recurrence.toTfJson(),
+    'window': window.encode(),
+  };
+}
+
+/// Typed helper for the `maintenance_policy.maintenance_window.recurring_time_window.window` block of
+/// `google_data_fusion_instance` (derived from provider schema).
+@immutable
+final class DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindowWindow {
+  const DataFusionInstanceMaintenancePolicyMaintenanceWindowRecurringTimeWindowWindow({
+    required this.endTime,
+    required this.startTime,
+  });
+
+  final TfArg<String> endTime;
+
+  final TfArg<String> startTime;
+
+  Map<String, Object?> encode() => {
+    'end_time': endTime.toTfJson(),
+    'start_time': startTime.toTfJson(),
+  };
+}
+
+/// Typed helper for the `network_config` block of
+/// `google_data_fusion_instance` (derived from provider schema).
+@immutable
+final class DataFusionInstanceNetworkConfig {
+  const DataFusionInstanceNetworkConfig({
+    this.connectionType,
+    this.ipAllocation,
+    this.network,
+    this.privateServiceConnectConfig,
+  });
+
+  final TfArg<DataFusionInstanceNetworkConfigConnectionType>? connectionType;
+
+  final TfArg<String>? ipAllocation;
+
+  final RefTo<GoogleComputeNetwork>? network;
+
+  final DataFusionInstanceNetworkConfigPrivateServiceConnectConfig?
+  privateServiceConnectConfig;
+
+  Map<String, Object?> encode() => {
+    'connection_type': ?connectionType?.toTfJson(),
+    'ip_allocation': ?ipAllocation?.toTfJson(),
+    'network': ?network?.encodeAs('name').toTfJson(),
+    'private_service_connect_config': ?privateServiceConnectConfig?.encode(),
+  };
+}
+
+/// `connection_type` — derived from the provider schema description.
+enum DataFusionInstanceNetworkConfigConnectionType implements TerraformEnum {
+  vpcPeering('VPC_PEERING'),
+  privateServiceConnectInterfaces('PRIVATE_SERVICE_CONNECT_INTERFACES');
+
+  const DataFusionInstanceNetworkConfigConnectionType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `network_config.private_service_connect_config` block of
+/// `google_data_fusion_instance` (derived from provider schema).
+@immutable
+final class DataFusionInstanceNetworkConfigPrivateServiceConnectConfig {
+  const DataFusionInstanceNetworkConfigPrivateServiceConnectConfig({
+    this.networkAttachment,
+    this.unreachableCidrBlock,
+  });
+
+  final TfArg<String>? networkAttachment;
+
+  final TfArg<String>? unreachableCidrBlock;
+
+  Map<String, Object?> encode() => {
+    'network_attachment': ?networkAttachment?.toTfJson(),
+    'unreachable_cidr_block': ?unreachableCidrBlock?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_data_fusion_instance`.
@@ -64,16 +263,18 @@ final class GoogleDataFusionInstance extends Resource {
     TfArg<bool>? enableStackdriverMonitoring,
     TfArg<String>? version,
     TfArg<String>? zone,
-    TfArg<Map<String, dynamic>>? networkConfig,
-    TfArg<Map<String, dynamic>>? cryptoKeyConfig,
-    TfArg<Map<String, dynamic>>? eventPublishConfig,
-    TfArg<List<Map<String, dynamic>>>? accelerators,
-    TfArg<Map<String, dynamic>>? maintenancePolicy,
+    DataFusionInstanceNetworkConfig? networkConfig,
+    DataFusionInstanceCryptoKeyConfig? cryptoKeyConfig,
+    DataFusionInstanceEventPublishConfig? eventPublishConfig,
+    List<DataFusionInstanceAccelerators>? accelerators,
+    DataFusionInstanceMaintenancePolicy? maintenancePolicy,
     TfArg<Map<String, String>>? options,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    TfArg<String>? dataprocServiceAccount,
+    TfArg<String>? patchRevision,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -92,16 +293,25 @@ final class GoogleDataFusionInstance extends Resource {
            'enable_stackdriver_monitoring': ?enableStackdriverMonitoring,
            'version': ?version,
            'zone': ?zone,
-           'network_config': ?networkConfig,
-           'crypto_key_config': ?cryptoKeyConfig,
-           'event_publish_config': ?eventPublishConfig,
-           'accelerators': ?accelerators,
-           'maintenance_policy': ?maintenancePolicy,
+           if (networkConfig != null)
+             'network_config': TfArg.literal(networkConfig.encode()),
+           if (cryptoKeyConfig != null)
+             'crypto_key_config': TfArg.literal(cryptoKeyConfig.encode()),
+           if (eventPublishConfig != null)
+             'event_publish_config': TfArg.literal(eventPublishConfig.encode()),
+           if (accelerators != null)
+             'accelerators': TfArg.literal([
+               for (final e in accelerators) e.encode(),
+             ]),
+           if (maintenancePolicy != null)
+             'maintenance_policy': TfArg.literal(maintenancePolicy.encode()),
            'options': ?options,
            'labels': ?labels,
            'tags': ?tags,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           'dataproc_service_account': ?dataprocServiceAccount,
+           'patch_revision': ?patchRevision,
          },
        );
 

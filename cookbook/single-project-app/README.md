@@ -97,7 +97,7 @@ This recipe uses the terradart v0.9.0 API surface. Key changes from v0.8.0-dev:
 - **Concrete `synth()`** — `Stack.synth()` is now a concrete default that writes `tf-out/main.tf.json`. The `@override synth(...)` boilerplate and `dart:convert` import are gone from the Stack subclass.
 - **`TfArg.variable('name')`** — route secrets through Terraform variable blocks (`${var.db_password}`) instead of masking workarounds.
 - **`.iamMember` getter** — `GoogleServiceAccount.iamMember` (was `.member`) is self-documenting at IAM binding call sites.
-- **Service-prefixed helper classes** — `SqlDatabaseInstanceSettings`, `SqlDatabaseInstanceIpConfiguration`, `SecretManagerSecretReplication`, `CloudRunV2ServiceTemplate`, `CloudRunV2ServiceServiceContainer`, `CloudRunV2ServiceEnvVar`, `PubsubSubscriptionPushConfig`, `MonitoringUptimeCheckConfigMonitoredResource`, `MonitoringAlertPolicyAlertCondition`, etc. Prevents name collisions when importing multiple barrels.
+- **Service-prefixed helper classes** — `SqlDatabaseInstanceSettings`, `SqlDatabaseInstanceSettingsIpConfiguration`, `SecretManagerSecretReplication`, `CloudRunV2ServiceTemplate`, `CloudRunV2ServiceServiceContainer`, `CloudRunV2ServiceEnvVar`, `PubsubSubscriptionPushConfig`, `MonitoringUptimeCheckConfigMonitoredResource`, `MonitoringAlertPolicyAlertCondition`, etc. Prevents name collisions when importing multiple barrels.
 - **Enum name polish** — `Comparison.lessThan` (was `.lt`), `Aligner.alignNextOlder` (was `.nextOlder`).
 
 ## D1b — GCS backend
