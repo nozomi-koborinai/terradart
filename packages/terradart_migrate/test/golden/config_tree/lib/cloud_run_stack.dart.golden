@@ -15,14 +15,12 @@ final class CloudRunStack extends Stack {
     final thisCloudRunV2Service = add(
       GoogleCloudRunV2Service(
         localName: r'this',
-        name: TfArg.variable(r'name'),
-        location: TfArg.literal(r'asia-northeast1'),
+        name: .variable(r'name'),
+        location: .literal(r'asia-northeast1'),
         template: CloudRunV2ServiceTemplate(
           containers: [
             CloudRunV2ServiceServiceContainer(
-              image: TfArg.expression(
-                r'gcr.io/example-project/${var.name}:latest',
-              ),
+              image: .expression(r'gcr.io/example-project/${var.name}:latest'),
             ),
           ],
         ),
@@ -31,10 +29,10 @@ final class CloudRunStack extends Stack {
     add(
       GoogleCloudRunV2ServiceIamMember(
         localName: r'invoker',
-        name: TfArg.ref(thisCloudRunV2Service.nameRef),
-        role: TfArg.literal(r'roles/run.invoker'),
-        member: TfArg.literal(r'allUsers'),
-        location: TfArg.ref(thisCloudRunV2Service.locationRef),
+        name: .ref(thisCloudRunV2Service.nameRef),
+        role: .literal(r'roles/run.invoker'),
+        member: .literal(r'allUsers'),
+        location: .ref(thisCloudRunV2Service.locationRef),
       ),
     );
     addExport(

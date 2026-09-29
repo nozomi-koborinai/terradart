@@ -75,9 +75,9 @@ void main() {
     test('the Stack takes the environment and reads the constant', () {
       expect(merged.source, contains('AppStack({required this.env})'));
       expect(merged.source, contains('final Env env;'));
-      expect(merged.source, contains('name: TfArg.literal(env.assetsName)'));
+      expect(merged.source, contains('name: .literal(env.assetsName)'));
       // The block itself is written once, not once per environment.
-      expect('name: TfArg.literal'.allMatches(merged.source), hasLength(1));
+      expect('name: .literal'.allMatches(merged.source), hasLength(1));
       expect(merged.source, contains("import 'env.dart';"));
     });
 
@@ -230,7 +230,7 @@ resource "google_storage_bucket" "assets" {
       );
       expect(
         merged.source,
-        contains('storageClass: TfArg.literal(env.assetsStorageClass)'),
+        contains('storageClass: .literal(env.assetsStorageClass)'),
       );
     });
 
@@ -239,14 +239,8 @@ resource "google_storage_bucket" "assets" {
         merged.envSource,
         contains('final BucketStorageClass assetsStorageClass;'),
       );
-      expect(
-        merged.envSource,
-        contains('assetsStorageClass: BucketStorageClass.standard'),
-      );
-      expect(
-        merged.envSource,
-        contains('assetsStorageClass: BucketStorageClass.nearline'),
-      );
+      expect(merged.envSource, contains('assetsStorageClass: .standard'));
+      expect(merged.envSource, contains('assetsStorageClass: .nearline'));
       expect(merged.envSource, isNot(contains("r'NEARLINE'")));
       // The enum's own barrel, so the file compiles on its own.
       expect(
@@ -393,7 +387,7 @@ resource "unknown_thing" "x" {
         m.source,
         contains('AppStack({required this.env, required String workspace})'),
       );
-      expect(m.source, contains(r"TfArg.literal('a-$workspace')"));
+      expect(m.source, contains(r".literal('a-$workspace')"));
     });
   });
 }

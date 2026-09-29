@@ -27,51 +27,44 @@ final class RealPlanSrcStack extends Stack {
     add(
       GoogleStorageBucket(
         localName: r'assets',
-        name: TfArg.literal(r'example-dogfood-assets'),
-        location: TfArg.literal(r'US'),
-        forceDestroy: TfArg.literal(true),
+        name: .literal(r'example-dogfood-assets'),
+        location: .literal(r'US'),
+        forceDestroy: .literal(true),
       ),
     );
-    add(
-      GooglePubsubTopic(localName: r'events', name: TfArg.literal(r'events')),
-    );
+    add(GooglePubsubTopic(localName: r'events', name: .literal(r'events')));
     add(
       GoogleServiceAccount(
         localName: r'ci',
-        accountId: TfArg.literal(r'ci-runner'),
-        displayName: TfArg.literal(r'CI Runner'),
+        accountId: .literal(r'ci-runner'),
+        displayName: .literal(r'CI Runner'),
       ),
     );
     final router = add(
       GoogleComputeRouter(
         localName: r'router',
-        name: TfArg.literal(r'example-router'),
-        network: TfArg.literal(r'default'),
-        region: TfArg.literal(r'us-central1'),
+        name: .literal(r'example-router'),
+        network: .literal(r'default'),
+        region: .literal(r'us-central1'),
       ),
     );
     add(
       GoogleComputeRouterNat(
         localName: r'nat',
-        name: TfArg.literal(r'example-nat'),
-        router: TfArg.ref(router.nameRef),
-        region: TfArg.literal(r'us-central1'),
-        sourceSubnetworkIpRangesToNat: TfArg.literal(
-          ComputeRouterNatSourceSubnetworkIpRangesToNat
-              .allSubnetworksAllIpRanges,
-        ),
-        natIpAllocateOption: TfArg.literal(
-          ComputeRouterNatNatIpAllocateOption.autoOnly,
-        ),
+        name: .literal(r'example-nat'),
+        router: .ref(router.nameRef),
+        region: .literal(r'us-central1'),
+        sourceSubnetworkIpRangesToNat: .literal(.allSubnetworksAllIpRanges),
+        natIpAllocateOption: .literal(.autoOnly),
       ),
     );
     // --- Still uncurated in terradart_google (not a required sentinel) ---
     add(
       GoogleIdentityPlatformOauthIdpConfig(
         localName: r'hello',
-        name: TfArg.literal(r'oidc.hello'),
-        issuer: TfArg.literal(r'https://accounts.example.com'),
-        clientId: TfArg.literal(r'dummy'),
+        name: .literal(r'oidc.hello'),
+        issuer: .literal(r'https://accounts.example.com'),
+        clientId: .literal(r'dummy'),
       ),
     );
     addModule(ModuleCall(localName: r'network', source: r'./modules/network'));
