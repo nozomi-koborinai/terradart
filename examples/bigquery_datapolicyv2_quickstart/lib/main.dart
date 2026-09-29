@@ -24,20 +24,18 @@ final class DataPolicyV2Stack extends Stack {
     final api = add(
       GoogleProjectService(
         localName: 'api_bigquerydatapolicy',
-        service: TfArg.literal('bigquerydatapolicy.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('bigquerydatapolicy.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleBigqueryDatapolicyv2DataPolicy(
         localName: 'raw_access',
-        location: TfArg.literal('us-central1'),
-        dataPolicyId: TfArg.literal('raw-access'),
-        dataPolicyType: TfArg.literal(
-          BigqueryDatapolicyv2DataPolicyType.rawDataAccessPolicy,
-        ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        location: .literal('us-central1'),
+        dataPolicyId: .literal('raw-access'),
+        dataPolicyType: .literal(.rawDataAccessPolicy),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(api)],
       ),
     );
@@ -45,17 +43,15 @@ final class DataPolicyV2Stack extends Stack {
     final emailMask = add(
       GoogleBigqueryDatapolicyv2DataPolicy(
         localName: 'email_mask_v2',
-        location: TfArg.literal('us-central1'),
-        dataPolicyId: TfArg.literal('email-mask-v2'),
-        dataPolicyType: TfArg.literal(
-          BigqueryDatapolicyv2DataPolicyType.dataMaskingPolicy,
-        ),
+        location: .literal('us-central1'),
+        dataPolicyId: .literal('email-mask-v2'),
+        dataPolicyType: .literal(.dataMaskingPolicy),
         dataMaskingPolicy:
             const BigqueryDatapolicyv2DataPolicyDataMaskingPolicy(
               predefinedExpression:
                   BigqueryDatapolicyv2DataPolicyPredefinedExpression.emailMask,
             ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(api)],
       ),
     );
@@ -63,18 +59,18 @@ final class DataPolicyV2Stack extends Stack {
     final reader = add(
       GoogleServiceAccount(
         localName: 'mask_reader',
-        accountId: TfArg.literal('mask-reader-v2'),
-        displayName: TfArg.literal('Data Policy V2 masked reader'),
+        accountId: .literal('mask-reader-v2'),
+        displayName: .literal('Data Policy V2 masked reader'),
       ),
     );
 
     add(
       GoogleBigqueryDatapolicyv2DataPolicyIamMember(
         localName: 'email_mask_reader',
-        dataPolicyId: TfArg.literal('email-mask-v2'),
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/bigquerydatapolicy.maskedReader'),
-        member: TfArg.ref(reader.iamMember),
+        dataPolicyId: .literal('email-mask-v2'),
+        location: .literal('us-central1'),
+        role: .literal('roles/bigquerydatapolicy.maskedReader'),
+        member: .ref(reader.iamMember),
         dependsOn: [ResourceDependency(emailMask), ResourceDependency(reader)],
       ),
     );

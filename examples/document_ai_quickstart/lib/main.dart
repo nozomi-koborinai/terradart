@@ -26,8 +26,8 @@ final class DocAiStack extends Stack {
     final apiDocumentAi = add(
       GoogleProjectService(
         localName: 'api_documentai',
-        service: TfArg.literal('documentai.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('documentai.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -36,9 +36,9 @@ final class DocAiStack extends Stack {
         localName: 'ocr',
         // Document AI processors live in a multi-region (`us` or `eu`), not a
         // compute region.
-        location: TfArg.literal('us'),
-        displayName: TfArg.literal('terradart-ocr'),
-        type: TfArg.literal('OCR_PROCESSOR'),
+        location: .literal('us'),
+        displayName: .literal('terradart-ocr'),
+        type: .literal('OCR_PROCESSOR'),
         dependsOn: [ResourceDependency(apiDocumentAi)],
       ),
     );
@@ -46,10 +46,8 @@ final class DocAiStack extends Stack {
     add(
       GoogleDocumentAiProcessorDefaultVersion(
         localName: 'ocr_default',
-        processor: TfArg.ref(ocr.id),
-        version: TfArg.literal(
-          '${ocr.id.interpolation}/processorVersions/stable',
-        ),
+        processor: .ref(ocr.id),
+        version: .literal('${ocr.id.interpolation}/processorVersions/stable'),
         // `stable` resolves to the latest channel version; ignore the
         // API-returned concrete id so plans stay clean.
         lifecycle: const LifecycleOptions(ignoreChanges: ['version']),
@@ -60,8 +58,8 @@ final class DocAiStack extends Stack {
     add(
       GoogleDocumentAiSchema(
         localName: 'fields',
-        location: TfArg.literal('us'),
-        displayName: TfArg.literal('terradart-schema'),
+        location: .literal('us'),
+        displayName: .literal('terradart-schema'),
         dependsOn: [ResourceDependency(apiDocumentAi)],
       ),
     );

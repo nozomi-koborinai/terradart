@@ -22,17 +22,17 @@ final class LatencyAlertStack extends Stack {
     final apiMonitoring = add(
       GoogleProjectService(
         localName: 'api_monitoring',
-        service: TfArg.literal('monitoring.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('monitoring.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final oncallEmail = add(
       GoogleMonitoringNotificationChannel(
         localName: 'oncall_email',
-        type: TfArg.literal('email'),
-        displayName: TfArg.literal('On-call email'),
-        labels: TfArg.literal({'email_address': 'oncall@example.com'}),
+        type: .literal('email'),
+        displayName: .literal('On-call email'),
+        labels: .literal({'email_address': 'oncall@example.com'}),
         dependsOn: [ResourceDependency(apiMonitoring)],
       ),
     );
@@ -43,8 +43,8 @@ final class LatencyAlertStack extends Stack {
     final apiService = add(
       GoogleMonitoringCustomService(
         localName: 'api',
-        serviceId: TfArg.literal('api'),
-        displayName: TfArg.literal('API service'),
+        serviceId: .literal('api'),
+        displayName: .literal('API service'),
         dependsOn: [ResourceDependency(apiMonitoring)],
       ),
     );
@@ -52,8 +52,8 @@ final class LatencyAlertStack extends Stack {
     add(
       GoogleMonitoringCustomService(
         localName: 'checkout_api',
-        serviceId: TfArg.literal('checkout-api'),
-        displayName: TfArg.literal('Checkout API'),
+        serviceId: .literal('checkout-api'),
+        displayName: .literal('Checkout API'),
         dependsOn: [ResourceDependency(apiMonitoring)],
       ),
     );
@@ -61,8 +61,8 @@ final class LatencyAlertStack extends Stack {
     final publicUrls = add(
       GoogleMonitoringGroup(
         localName: 'public_urls',
-        displayName: TfArg.literal('Public URLs'),
-        filter: TfArg.literal('resource.type="uptime_url"'),
+        displayName: .literal('Public URLs'),
+        filter: .literal('resource.type="uptime_url"'),
         dependsOn: [ResourceDependency(apiMonitoring)],
       ),
     );
@@ -70,18 +70,18 @@ final class LatencyAlertStack extends Stack {
     add(
       GoogleMonitoringUptimeCheckConfig(
         localName: 'api_uptime',
-        displayName: TfArg.literal('Public API healthz'),
-        timeout: TfArg.literal('10s'),
-        period: TfArg.literal('60s'),
+        displayName: .literal('Public API healthz'),
+        timeout: .literal('10s'),
+        period: .literal('60s'),
         httpCheck: MonitoringUptimeCheckConfigHttpCheck(
-          path: TfArg.literal('/healthz'),
-          port: TfArg.literal(443),
-          useSsl: TfArg.literal(true),
-          validateSsl: TfArg.literal(true),
+          path: .literal('/healthz'),
+          port: .literal(443),
+          useSsl: .literal(true),
+          validateSsl: .literal(true),
           requestMethod: MonitoringUptimeCheckHttpMethod.get,
         ),
         target: .monitoredResource(
-          type: TfArg.literal('uptime_url'),
+          type: .literal('uptime_url'),
           labels: {'host': 'api.example.com', 'project_id': projectId},
         ),
         selectedRegions: const [
@@ -99,13 +99,11 @@ final class LatencyAlertStack extends Stack {
     add(
       GoogleMonitoringMetricDescriptor(
         localName: 'api_latency_custom',
-        type: TfArg.literal('custom.googleapis.com/api/latency_ms'),
-        metricKind: TfArg.literal(MonitoringMetricKind.gauge),
-        valueType: TfArg.literal(MonitoringValueType.doubleValue),
-        displayName: TfArg.literal('API latency (custom)'),
-        description: TfArg.literal(
-          'Custom gauge for API latency in milliseconds.',
-        ),
+        type: .literal('custom.googleapis.com/api/latency_ms'),
+        metricKind: .literal(.gauge),
+        valueType: .literal(.doubleValue),
+        displayName: .literal('API latency (custom)'),
+        description: .literal('Custom gauge for API latency in milliseconds.'),
         dependsOn: [ResourceDependency(apiMonitoring)],
       ),
     );
@@ -113,7 +111,7 @@ final class LatencyAlertStack extends Stack {
     add(
       GoogleMonitoringDashboard(
         localName: 'api_overview',
-        dashboardJson: TfArg.literal('''
+        dashboardJson: .literal('''
 {
   "displayName": "API overview",
   "mosaicLayout": {
@@ -132,18 +130,18 @@ final class LatencyAlertStack extends Stack {
         // Custom services have no derived telemetry, so a `basic_sli`
         // (availability/latency) cannot be evaluated against them; use a
         // request-based good/total ratio on the Cloud Run request metric.
-        service: TfArg.ref(apiService.serviceIdRef),
-        goal: TfArg.literal(0.99),
-        displayName: TfArg.literal('API availability'),
-        period: .rollingPeriodDays(TfArg.literal(30)),
+        service: .ref(apiService.serviceIdRef),
+        goal: .literal(0.99),
+        displayName: .literal('API availability'),
+        period: .rollingPeriodDays(.literal(30)),
         sli: .requestBasedSli(
           goodTotalRatio: MonitoringSloGoodTotalRatio(
-            goodServiceFilter: TfArg.literal(
+            goodServiceFilter: .literal(
               'metric.type="run.googleapis.com/request_count" '
               'AND resource.type="cloud_run_revision" '
               'AND metric.label.response_code_class="2xx"',
             ),
-            totalServiceFilter: TfArg.literal(
+            totalServiceFilter: .literal(
               'metric.type="run.googleapis.com/request_count" '
               'AND resource.type="cloud_run_revision"',
             ),
@@ -162,40 +160,40 @@ final class LatencyAlertStack extends Stack {
     //
     // GoogleMonitoringMonitoredProject(
     //   localName: 'metrics_scope_child',
-    //   metricsScope: TfArg.literal('locations/global/metricsScopes/$projectId'),
-    //   name: TfArg.literal('some-other-project-id'),
+    //   metricsScope: .literal('locations/global/metricsScopes/$projectId'),
+    //   name: .literal('some-other-project-id'),
     // );
 
     add(
       GoogleMonitoringAlertPolicy(
         localName: 'api_p95_latency',
-        displayName: TfArg.literal('api-p95-latency'),
-        combiner: TfArg.literal(AlertCombiner.or),
-        severity: TfArg.literal(AlertSeverity.warning),
+        displayName: .literal('api-p95-latency'),
+        combiner: .literal(.or),
+        severity: .literal(.warning),
         // The channel's resource name is `projects/<p>/notificationChannels/
         // <numeric-id>` (server-assigned), NOT its display name. Reference the
         // in-stack channel's `id` so the alert policy gets the real path
         // instead of a hardcoded `.../oncall-email` (404 at apply).
-        notificationChannels: TfArg.literal([oncallEmail.id.interpolation]),
+        notificationChannels: .literal([oncallEmail.id.interpolation]),
         conditions: [
           MonitoringAlertPolicyAlertCondition(
-            displayName: TfArg.literal('p95 > 1500ms for 5m'),
+            displayName: .literal('p95 > 1500ms for 5m'),
             conditionThreshold: MonitoringAlertPolicyConditionThreshold(
-              filter: TfArg.literal(
+              filter: .literal(
                 'metric.type="run.googleapis.com/request_latencies" '
                 'AND resource.type="cloud_run_revision" '
                 'AND resource.label.service_name="api"',
               ),
-              comparison: TfArg.literal(Comparison.greaterThan),
-              duration: TfArg.literal('300s'),
-              thresholdValue: TfArg.literal(1500),
-              evaluationMissingData: TfArg.literal(EvaluationMissingData.noOp),
+              comparison: .literal(.greaterThan),
+              duration: .literal('300s'),
+              thresholdValue: .literal(1500),
+              evaluationMissingData: .literal(.noOp),
               aggregations: [
                 MonitoringAlertPolicyAggregation(
-                  alignmentPeriod: TfArg.literal('60s'),
+                  alignmentPeriod: .literal('60s'),
                   perSeriesAligner: Aligner.percentile95,
                   crossSeriesReducer: Reducer.percentile95,
-                  groupByFields: TfArg.literal(const [
+                  groupByFields: .literal(const [
                     'resource.label.revision_name',
                   ]),
                 ),
@@ -209,7 +207,7 @@ final class LatencyAlertStack extends Stack {
         // alert policies may specify a notification rate limit"); keep only
         // `auto_close`.
         alertStrategy: MonitoringAlertPolicyAlertStrategy(
-          autoClose: TfArg.literal('1800s'),
+          autoClose: .literal('1800s'),
         ),
         dependsOn: [
           ResourceDependency(oncallEmail),
@@ -225,18 +223,18 @@ final class LatencyAlertStack extends Stack {
     final apiEssentialContacts = add(
       GoogleProjectService(
         localName: 'api_essentialcontacts',
-        service: TfArg.literal('essentialcontacts.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('essentialcontacts.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleEssentialContactsContact(
         localName: 'platform_technical',
-        parent: TfArg.literal('projects/$projectId'),
-        email: TfArg.literal('platform-notices@example.com'),
-        languageTag: TfArg.literal('en-US'),
-        notificationCategorySubscriptions: TfArg.literal(const ['TECHNICAL']),
+        parent: .literal('projects/$projectId'),
+        email: .literal('platform-notices@example.com'),
+        languageTag: .literal('en-US'),
+        notificationCategorySubscriptions: .literal(const ['TECHNICAL']),
         dependsOn: [ResourceDependency(apiEssentialContacts)],
       ),
     );

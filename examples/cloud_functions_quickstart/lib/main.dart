@@ -27,52 +27,50 @@ final class HttpFunctionStack extends Stack {
       ) {
     final sourceBucket = GoogleStorageBucket(
       localName: 'fn_source',
-      name: TfArg.literal('$projectId-fn-source'),
-      location: TfArg.literal('asia-northeast1'),
-      forceDestroy: TfArg.literal(true),
-      uniformBucketLevelAccess: TfArg.literal(true),
+      name: .literal('$projectId-fn-source'),
+      location: .literal('asia-northeast1'),
+      forceDestroy: .literal(true),
+      uniformBucketLevelAccess: .literal(true),
     );
     add(sourceBucket);
 
     final sourceObject = GoogleStorageBucketObject(
       localName: 'fn_source_zip',
-      bucket: TfArg.ref(sourceBucket.nameRef),
-      name: TfArg.literal('hello-http.zip'),
-      body: .source(source: TfArg.literal('./hello-http.zip')),
+      bucket: .ref(sourceBucket.nameRef),
+      name: .literal('hello-http.zip'),
+      body: .source(source: .literal('./hello-http.zip')),
     );
     add(sourceObject);
 
     final runtimeSa = GoogleServiceAccount(
       localName: 'fn_runtime',
-      accountId: TfArg.literal('hello-http-runtime'),
-      displayName: TfArg.literal('Runtime SA for hello-http Cloud Function'),
+      accountId: .literal('hello-http-runtime'),
+      displayName: .literal('Runtime SA for hello-http Cloud Function'),
     );
     add(runtimeSa);
 
     final helloHttp = add(
       GoogleCloudfunctions2Function(
         localName: 'hello_http',
-        name: TfArg.literal('hello-http'),
-        location: TfArg.literal('asia-northeast1'),
-        description: TfArg.literal(
-          'terradart Cloud Functions Gen 2 quickstart.',
-        ),
+        name: .literal('hello-http'),
+        location: .literal('asia-northeast1'),
+        description: .literal('terradart Cloud Functions Gen 2 quickstart.'),
         buildConfig: Cloudfunctions2FunctionBuildConfig(
-          runtime: TfArg.literal('python311'),
-          entryPoint: TfArg.literal('hello'),
+          runtime: .literal('python311'),
+          entryPoint: .literal('hello'),
           source: .storageSource(
-            bucket: TfArg.ref(sourceBucket.nameRef),
-            object: TfArg.ref(sourceObject.nameRef),
+            bucket: .ref(sourceBucket.nameRef),
+            object: .ref(sourceObject.nameRef),
           ),
         ),
         serviceConfig: Cloudfunctions2FunctionServiceConfig(
-          availableMemory: TfArg.literal('256M'),
-          timeoutSeconds: TfArg.literal(60),
-          minInstanceCount: TfArg.literal(0),
-          maxInstanceCount: TfArg.literal(4),
-          ingressSettings: TfArg.literal(IngressSettings.allowInternalAndGclb),
-          serviceAccountEmail: TfArg.ref(runtimeSa.email),
-          environmentVariables: TfArg.literal({'LOG_LEVEL': 'info'}),
+          availableMemory: .literal('256M'),
+          timeoutSeconds: .literal(60),
+          minInstanceCount: .literal(0),
+          maxInstanceCount: .literal(4),
+          ingressSettings: .literal(.allowInternalAndGclb),
+          serviceAccountEmail: .ref(runtimeSa.email),
+          environmentVariables: .literal({'LOG_LEVEL': 'info'}),
         ),
       ),
     );
@@ -80,10 +78,10 @@ final class HttpFunctionStack extends Stack {
     add(
       GoogleCloudfunctions2FunctionIamMember(
         localName: 'hello_http_invoker',
-        cloudFunction: TfArg.ref(helloHttp.nameRef),
-        location: TfArg.literal('asia-northeast1'),
-        role: TfArg.literal('roles/cloudfunctions.invoker'),
-        member: TfArg.literal('allAuthenticatedUsers'),
+        cloudFunction: .ref(helloHttp.nameRef),
+        location: .literal('asia-northeast1'),
+        role: .literal('roles/cloudfunctions.invoker'),
+        member: .literal('allAuthenticatedUsers'),
       ),
     );
   }

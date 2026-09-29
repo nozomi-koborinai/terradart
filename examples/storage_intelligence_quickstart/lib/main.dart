@@ -23,18 +23,16 @@ final class StorageIntelligenceStack extends Stack {
     final apiStorage = add(
       GoogleProjectService(
         localName: 'api_storage',
-        service: TfArg.literal('storage.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('storage.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleStorageControlProjectIntelligenceConfig(
         localName: 'intelligence',
-        name: TfArg.literal(projectId),
-        editionConfig: TfArg.literal(
-          StorageControlProjectIntelligenceConfigEditionConfig.disabled,
-        ),
+        name: .literal(projectId),
+        editionConfig: .literal(.disabled),
         dependsOn: [ResourceDependency(apiStorage)],
       ),
     );

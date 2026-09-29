@@ -40,7 +40,7 @@ final class CloudAssetStack extends Stack {
     final assetSa = add(
       GoogleProjectServiceIdentity(
         localName: 'cloudasset',
-        service: TfArg.literal('cloudasset.googleapis.com'),
+        service: .literal('cloudasset.googleapis.com'),
         dependsOn: apiDeps,
       ),
     );
@@ -48,7 +48,7 @@ final class CloudAssetStack extends Stack {
     final topic = add(
       GooglePubsubTopic(
         localName: 'feed_output',
-        name: TfArg.literal('terradart-asset-feed'),
+        name: .literal('terradart-asset-feed'),
         dependsOn: apiDeps,
       ),
     );
@@ -56,9 +56,9 @@ final class CloudAssetStack extends Stack {
     final publisher = add(
       GooglePubsubTopicIamMember(
         localName: 'cloudasset_publisher',
-        topic: TfArg.ref(topic.nameRef),
-        role: TfArg.literal('roles/pubsub.publisher'),
-        member: TfArg.ref(assetSa.member),
+        topic: .ref(topic.nameRef),
+        role: .literal('roles/pubsub.publisher'),
+        member: .ref(assetSa.member),
         dependsOn: [ResourceDependency(topic), ResourceDependency(assetSa)],
       ),
     );
@@ -75,15 +75,15 @@ final class CloudAssetStack extends Stack {
     add(
       GoogleCloudAssetProjectFeed(
         localName: 'project_feed',
-        feedId: TfArg.literal('terradart-project-feed'),
-        assetTypes: TfArg.literal(const [
+        feedId: .literal('terradart-project-feed'),
+        assetTypes: .literal(const [
           'cloudresourcemanager.googleapis.com/Project',
         ]),
-        contentType: TfArg.literal(CloudAssetProjectFeedContentType.resource),
+        contentType: .literal(.resource),
         feedOutputConfig: CloudAssetProjectFeedFeedOutputConfig(
           pubsubDestination:
               CloudAssetProjectFeedFeedOutputConfigPubsubDestination(
-                topic: TfArg.ref(topic.id),
+                topic: .ref(topic.id),
               ),
         ),
         dependsOn: [ResourceDependency(feedIamReady)],

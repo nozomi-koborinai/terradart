@@ -56,8 +56,8 @@ final class CryptoStack extends Stack {
 
     final ring = GoogleKmsKeyRing(
       localName: 'main',
-      name: TfArg.literal('main-ring'),
-      location: TfArg.literal('asia-northeast1'),
+      name: .literal('main-ring'),
+      location: .literal('asia-northeast1'),
       dependsOn: apiDeps,
     );
     add(ring);
@@ -70,12 +70,12 @@ final class CryptoStack extends Stack {
 
     final paymentsKey = GoogleKmsCryptoKey(
       localName: 'payments',
-      name: TfArg.literal('payments'),
-      keyRing: TfArg.ref(ring.id),
-      purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),
+      name: .literal('payments'),
+      keyRing: .ref(ring.id),
+      purpose: .literal(.encryptDecrypt),
       rotationPeriod: TfArg.duration(const Duration(days: 90)),
       versionTemplate: KmsCryptoKeyVersionTemplate(
-        algorithm: TfArg.literal('GOOGLE_SYMMETRIC_ENCRYPTION'),
+        algorithm: .literal('GOOGLE_SYMMETRIC_ENCRYPTION'),
         protectionLevel: KmsProtectionLevel.software,
       ),
       dependsOn: apiDeps,
@@ -85,7 +85,7 @@ final class CryptoStack extends Stack {
     add(
       GoogleKmsCryptoKeyVersion(
         localName: 'payments_primary',
-        cryptoKey: TfArg.ref(paymentsKey.id),
+        cryptoKey: .ref(paymentsKey.id),
         dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],
       ),
     );
@@ -93,8 +93,8 @@ final class CryptoStack extends Stack {
     add(
       GoogleContactCenterInsightsEncryptionSpec(
         localName: 'insights_cmek',
-        location: TfArg.literal('asia-northeast1'),
-        kmsKey: TfArg.ref(paymentsKey.id),
+        location: .literal('asia-northeast1'),
+        kmsKey: .ref(paymentsKey.id),
         dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],
       ),
     );
@@ -107,17 +107,17 @@ final class CryptoStack extends Stack {
 
     final encrypter = GoogleServiceAccount(
       localName: 'payments_encrypter',
-      accountId: TfArg.literal('payments-encrypter'),
-      displayName: TfArg.literal('Payments KEK encrypter'),
+      accountId: .literal('payments-encrypter'),
+      displayName: .literal('Payments KEK encrypter'),
     );
     add(encrypter);
 
     add(
       GoogleKmsCryptoKeyIamMember(
         localName: 'payments_encrypter_binding',
-        cryptoKeyId: TfArg.ref(paymentsKey.id),
-        role: TfArg.literal('roles/cloudkms.cryptoKeyEncrypter'),
-        member: TfArg.ref(encrypter.iamMember),
+        cryptoKeyId: .ref(paymentsKey.id),
+        role: .literal('roles/cloudkms.cryptoKeyEncrypter'),
+        member: .ref(encrypter.iamMember),
       ),
     );
 
@@ -130,17 +130,17 @@ final class CryptoStack extends Stack {
 
     final ringInventory = GoogleServiceAccount(
       localName: 'kms_ring_inventory',
-      accountId: TfArg.literal('kms-ring-inventory'),
-      displayName: TfArg.literal('KMS ring inventory reader'),
+      accountId: .literal('kms-ring-inventory'),
+      displayName: .literal('KMS ring inventory reader'),
     );
     add(ringInventory);
 
     add(
       GoogleKmsKeyRingIamMember(
         localName: 'ring_inventory_binding',
-        keyRingId: TfArg.ref(ring.id),
-        role: TfArg.literal('roles/cloudkms.viewer'),
-        member: TfArg.ref(ringInventory.iamMember),
+        keyRingId: .ref(ring.id),
+        role: .literal('roles/cloudkms.viewer'),
+        member: .ref(ringInventory.iamMember),
       ),
     );
 
@@ -153,7 +153,7 @@ final class CryptoStack extends Stack {
     add(
       GoogleKmsSecretCiphertext(
         localName: 'payments_secret',
-        cryptoKey: TfArg.ref(paymentsKey.id),
+        cryptoKey: .ref(paymentsKey.id),
         // Schema-sensitive — must be a Terraform variable (see bin/infra.dart).
         plaintext: TfArg.variable('kms_secret_plaintext'),
         dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],
@@ -163,14 +163,10 @@ final class CryptoStack extends Stack {
     add(
       GoogleKmsKeyRingImportJob(
         localName: 'import_software',
-        keyRing: TfArg.ref(ring.id),
-        importJobId: TfArg.literal('terradart-import'),
-        importMethod: TfArg.literal(
-          KmsKeyRingImportJobImportMethod.rsaOaep3072Sha1Aes256,
-        ),
-        protectionLevel: TfArg.literal(
-          KmsKeyRingImportJobProtectionLevel.software,
-        ),
+        keyRing: .ref(ring.id),
+        importJobId: .literal('terradart-import'),
+        importMethod: .literal(.rsaOaep3072Sha1Aes256),
+        protectionLevel: .literal(.software),
         dependsOn: [...apiDeps, ResourceDependency(ring)],
       ),
     );

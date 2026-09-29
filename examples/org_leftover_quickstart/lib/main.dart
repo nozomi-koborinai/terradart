@@ -31,24 +31,24 @@ final class OrgLeftoverStack extends Stack {
     add(
       GoogleComputeFirewallPolicyWithRules(
         localName: 'fw_with_rules',
-        parent: TfArg.literal(org),
-        shortName: TfArg.literal('terradart-fw'),
+        parent: .literal(org),
+        shortName: .literal('terradart-fw'),
         rule: [
           ComputeFirewallPolicyWithRulesRule(
-            action: TfArg.literal('allow'),
-            priority: TfArg.literal(1000),
+            action: .literal('allow'),
+            priority: .literal(1000),
             match: ComputeFirewallPolicyWithRulesRuleMatch(
-              srcIpRanges: TfArg.literal(['192.0.2.0/24']),
+              srcIpRanges: .literal(['192.0.2.0/24']),
               layer4Config: [
                 ComputeFirewallPolicyWithRulesRuleMatchLayer4Config(
-                  ipProtocol: TfArg.literal('tcp'),
-                  ports: TfArg.literal(['443']),
+                  ipProtocol: .literal('tcp'),
+                  ports: .literal(['443']),
                 ),
               ],
             ),
           ),
         ],
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );
@@ -56,34 +56,34 @@ final class OrgLeftoverStack extends Stack {
     final policy = add(
       GoogleComputeOrganizationSecurityPolicy(
         localName: 'org_armor',
-        parent: TfArg.literal(org),
-        displayName: TfArg.literal('terradart-org-armor'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        parent: .literal(org),
+        displayName: .literal('terradart-org-armor'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );
     add(
       GoogleComputeOrganizationSecurityPolicyAssociation(
         localName: 'org_armor_assoc',
-        name: TfArg.literal('terradart-org-armor-assoc'),
-        policyId: TfArg.ref(policy.id),
-        attachmentId: TfArg.literal(org),
-        deletionPolicy: TfArg.literal('DELETE'),
+        name: .literal('terradart-org-armor-assoc'),
+        policyId: .ref(policy.id),
+        attachmentId: .literal(org),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(policy)],
       ),
     );
     add(
       GoogleComputeOrganizationSecurityPolicyRule(
         localName: 'org_armor_rule',
-        policyId: TfArg.ref(policy.id),
-        action: TfArg.literal('allow'),
-        priority: TfArg.literal(1000),
+        policyId: .ref(policy.id),
+        action: .literal('allow'),
+        priority: .literal(1000),
         match: ComputeOrganizationSecurityPolicyRuleMatch(
           config: ComputeOrganizationSecurityPolicyRuleMatchConfig(
-            srcIpRanges: TfArg.literal(['192.0.2.0/24']),
+            srcIpRanges: .literal(['192.0.2.0/24']),
           ),
         ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(policy)],
       ),
     );
@@ -91,21 +91,21 @@ final class OrgLeftoverStack extends Stack {
     final advertised = add(
       GoogleComputePublicAdvertisedPrefix(
         localName: 'byoip_pap',
-        name: TfArg.literal('terradart-pap'),
-        ipCidrRange: TfArg.literal('1.2.3.0/24'),
-        description: TfArg.literal('placeholder BYOIP prefix'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        name: .literal('terradart-pap'),
+        ipCidrRange: .literal('1.2.3.0/24'),
+        description: .literal('placeholder BYOIP prefix'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );
     add(
       GoogleComputePublicDelegatedPrefix(
         localName: 'byoip_pdp',
-        name: TfArg.literal('terradart-pdp'),
-        region: TfArg.literal('us-central1'),
-        ipCidrRange: TfArg.literal('1.2.3.0/25'),
-        parentPrefix: TfArg.ref(advertised.id),
-        deletionPolicy: TfArg.literal('DELETE'),
+        name: .literal('terradart-pdp'),
+        region: .literal('us-central1'),
+        ipCidrRange: .literal('1.2.3.0/25'),
+        parentPrefix: .ref(advertised.id),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(advertised)],
       ),
     );
@@ -113,16 +113,16 @@ final class OrgLeftoverStack extends Stack {
     add(
       GoogleStorageControlFolderIntelligenceConfig(
         localName: 'folder_intel',
-        name: TfArg.literal('123456789'),
-        editionConfig: TfArg.literal('DISABLED'),
+        name: .literal('123456789'),
+        editionConfig: .literal('DISABLED'),
         dependsOn: apiDeps,
       ),
     );
     add(
       GoogleStorageControlOrganizationIntelligenceConfig(
         localName: 'org_intel',
-        name: TfArg.literal('123456789'),
-        editionConfig: TfArg.literal('DISABLED'),
+        name: .literal('123456789'),
+        editionConfig: .literal('DISABLED'),
         dependsOn: apiDeps,
       ),
     );
@@ -130,15 +130,15 @@ final class OrgLeftoverStack extends Stack {
     add(
       GoogleNetworkServicesWasmPlugin(
         localName: 'wasm',
-        name: TfArg.literal('terradart-wasm'),
-        mainVersionId: TfArg.literal('v1'),
+        name: .literal('terradart-wasm'),
+        mainVersionId: .literal('v1'),
         versions: [
           NetworkServicesWasmPluginVersions(
-            versionName: TfArg.literal('v1'),
-            imageUri: TfArg.literal('us-docker.pkg.dev/example/wasm/plugin:v1'),
+            versionName: .literal('v1'),
+            imageUri: .literal('us-docker.pkg.dev/example/wasm/plugin:v1'),
           ),
         ],
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );

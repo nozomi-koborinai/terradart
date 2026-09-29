@@ -45,9 +45,9 @@ final class OrdersStack extends Stack {
     final ordersSchema = add(
       GooglePubsubSchema(
         localName: 'orders_proto',
-        name: TfArg.literal('orders-proto'),
-        type: TfArg.literal(PubsubSchemaType.protocolBuffer),
-        definition: TfArg.literal(
+        name: .literal('orders-proto'),
+        type: .literal(.protocolBuffer),
+        definition: .literal(
           'syntax = "proto3"; message Order { string id = 1; }',
         ),
       ),
@@ -61,23 +61,23 @@ final class OrdersStack extends Stack {
       GoogleServiceAccount(
         localName: 'orders_publisher',
         // 6-30 chars, lowercase letters/digits/hyphens.
-        accountId: TfArg.literal('orders-publisher'),
-        displayName: TfArg.literal('Orders Pub/Sub publisher'),
+        accountId: .literal('orders-publisher'),
+        displayName: .literal('Orders Pub/Sub publisher'),
       ),
     );
 
     add(
       GooglePubsubSchemaIamMember(
         localName: 'orders_schema_publisher',
-        schema: TfArg.ref(ordersSchema.id),
+        schema: .ref(ordersSchema.id),
         // `roles/pubsub.schemaAdmin` is a project-level role and is NOT
         // grantable on an individual schema resource (apply fails with
         // "Role ... is not supported for this resource"). At the schema
         // resource level the publisher only needs to read/validate the
         // schema, which `roles/pubsub.viewer` covers
         // (pubsub.schemas.get/list/validate).
-        role: TfArg.literal('roles/pubsub.viewer'),
-        member: TfArg.ref(ordersPublisher.iamMember),
+        role: .literal('roles/pubsub.viewer'),
+        member: .ref(ordersPublisher.iamMember),
         dependsOn: [
           ResourceDependency(ordersSchema),
           ResourceDependency(ordersPublisher),
@@ -88,9 +88,9 @@ final class OrdersStack extends Stack {
     final schemaViewerBinding = add(
       GooglePubsubSchemaIamBinding(
         localName: 'orders_schema_viewer_binding',
-        schema: TfArg.ref(ordersSchema.id),
-        role: TfArg.literal('roles/pubsub.viewer'),
-        members: TfArg.literal([ordersPublisher.iamMember.interpolation]),
+        schema: .ref(ordersSchema.id),
+        role: .literal('roles/pubsub.viewer'),
+        members: .literal([ordersPublisher.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(ordersSchema),
           ResourceDependency(ordersPublisher),
@@ -101,8 +101,8 @@ final class OrdersStack extends Stack {
     add(
       GooglePubsubSchemaIamPolicy(
         localName: 'orders_schema_viewer_policy',
-        schema: TfArg.ref(ordersSchema.id),
-        policyData: TfArg.literal(
+        schema: .ref(ordersSchema.id),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/pubsub.viewer',
             member:
@@ -119,9 +119,9 @@ final class OrdersStack extends Stack {
     final topic = add(
       GooglePubsubTopic(
         localName: 'orders',
-        name: TfArg.literal('orders-prod'),
+        name: .literal('orders-prod'),
         // 7-day retention so late-arriving subscribers can backfill.
-        messageRetentionDuration: TfArg.literal(
+        messageRetentionDuration: .literal(
           const Duration(days: 7).toTfDurationString(),
         ),
       ),
@@ -130,14 +130,14 @@ final class OrdersStack extends Stack {
     add(
       GooglePubsubSubscription(
         localName: 'orders_push',
-        name: TfArg.literal('orders-push'),
+        name: .literal('orders-push'),
         // Cloud Scheduler / Pub/Sub cross-resource refs need topic.id (the
         // full `projects/.../topics/orders-prod` path), NOT topic.nameRef.
-        topic: TfArg.ref(topic.id),
-        ackDeadlineSeconds: TfArg.literal(60),
+        topic: .ref(topic.id),
+        ackDeadlineSeconds: .literal(60),
         delivery: .pushConfig(
           PubsubSubscriptionPushConfig(
-            pushEndpoint: TfArg.literal('https://app.example.com/push'),
+            pushEndpoint: .literal('https://app.example.com/push'),
           ),
         ),
       ),
@@ -146,9 +146,9 @@ final class OrdersStack extends Stack {
     add(
       GooglePubsubTopicIamMember(
         localName: 'orders_pubsub_agent',
-        topic: TfArg.ref(topic.nameRef),
-        role: TfArg.literal('roles/pubsub.publisher'),
-        member: TfArg.literal(
+        topic: .ref(topic.nameRef),
+        role: .literal('roles/pubsub.publisher'),
+        member: .literal(
           'serviceAccount:service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com',
         ),
         dependsOn: [ResourceDependency(topic)],
@@ -160,9 +160,9 @@ final class OrdersStack extends Stack {
     final topicViewerBinding = add(
       GooglePubsubTopicIamBinding(
         localName: 'orders_publisher_binding',
-        topic: TfArg.ref(topic.nameRef),
-        role: TfArg.literal('roles/pubsub.viewer'),
-        members: TfArg.literal([ordersPublisher.iamMember.interpolation]),
+        topic: .ref(topic.nameRef),
+        role: .literal('roles/pubsub.viewer'),
+        members: .literal([ordersPublisher.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(topic),
           ResourceDependency(ordersPublisher),
@@ -173,8 +173,8 @@ final class OrdersStack extends Stack {
     add(
       GooglePubsubTopicIamPolicy(
         localName: 'orders_publisher_policy',
-        topic: TfArg.ref(topic.nameRef),
-        policyData: TfArg.literal(
+        topic: .ref(topic.nameRef),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/pubsub.viewer',
             member:

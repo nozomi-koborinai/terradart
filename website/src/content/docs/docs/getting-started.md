@@ -48,7 +48,7 @@ final class OrdersStack extends Stack {
       : super(providers: [GoogleProvider(project: projectId)]) {
     final topic = add(GooglePubsubTopic(
       localName: 'orders',
-      name: TfArg.literal('orders-prod'),
+      name: .literal('orders-prod'),
     ));
     addExport('ORDERS_TOPIC_NAME', ResourceIdExport(topic.nameRef));
     setAppExportsOutputPath('lib/generated/orders_stack.app.dart');
@@ -151,51 +151,51 @@ final class MobileAppBackendStack extends Stack {
     // 1. [Beta] Enable Firebase on the project
     final fb = add(GoogleFirebaseProject(
       localName: 'firebase',
-      project: TfArg.literal(projectId),
+      project: .literal(projectId),
     ));
 
     // 2. [Beta] Register Firebase client app
     add(GoogleFirebaseWebApp(
       localName: 'web_client',
-      displayName: TfArg.literal('Web Client'),
-      project: TfArg.literal(projectId),
+      displayName: .literal('Web Client'),
+      project: .literal(projectId),
       dependsOn: [fb],
     ));
 
     // 3. [GA] Firestore Database (Native mode)
     final db = add(GoogleFirestoreDatabase(
       localName: 'db',
-      name: TfArg.literal('(default)'),
-      locationId: TfArg.literal('asia-northeast1'),
-      type: TfArg.literal(FirestoreDatabaseType.firestoreNative),
+      name: .literal('(default)'),
+      locationId: .literal('asia-northeast1'),
+      type: .literal(.firestoreNative),
       dependsOn: [fb],
     ));
 
     // 4. [GA] Cloud Storage for user uploads
     final uploadsBucket = add(GoogleStorageBucket(
       localName: 'uploads',
-      name: TfArg.literal('$projectId-uploads'),
-      location: TfArg.literal('ASIA-NORTHEAST1'),
-      storageClass: TfArg.literal(BucketStorageClass.standard),
-      uniformBucketLevelAccess: TfArg.literal(true),
+      name: .literal('$projectId-uploads'),
+      location: .literal('ASIA-NORTHEAST1'),
+      storageClass: .literal(.standard),
+      uniformBucketLevelAccess: .literal(true),
     ));
 
     // 5. [GA] Cloud Run v2 backend service
     add(GoogleCloudRunV2Service(
       localName: 'api',
-      name: TfArg.literal('api-server'),
-      location: TfArg.literal('asia-northeast1'),
+      name: .literal('api-server'),
+      location: .literal('asia-northeast1'),
       template: CloudRunV2ServiceTemplate(
         containers: [
           CloudRunV2ServiceServiceContainer(
-            name: TfArg.literal('server'),
-            image: TfArg.literal(
+            name: .literal('server'),
+            image: .literal(
               'us-docker.pkg.dev/cloudrun/container/hello',
             ),
             env: [
               CloudRunV2ServiceEnvVar(
-                name: TfArg.literal('UPLOAD_BUCKET'),
-                source: .value(TfArg.ref(uploadsBucket.nameRef)),
+                name: .literal('UPLOAD_BUCKET'),
+                source: .value(.ref(uploadsBucket.nameRef)),
               ),
             ],
           ),
@@ -220,8 +220,8 @@ final class MultiRegionStack extends Stack {
         ]) {
     add(GoogleStorageBucket(
       localName: 'assets_eu',
-      name: TfArg.literal('my-app-assets-eu'),
-      location: TfArg.literal('EUROPE-WEST1'),
+      name: .literal('my-app-assets-eu'),
+      location: .literal('EUROPE-WEST1'),
       provider: 'google.eu', // provider = google.eu
     ));
   }

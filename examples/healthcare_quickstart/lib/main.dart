@@ -31,8 +31,8 @@ final class HealthcareStack extends Stack {
     final apiHealthcare = add(
       GoogleProjectService(
         localName: 'api_healthcare',
-        service: TfArg.literal('healthcare.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('healthcare.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -41,17 +41,17 @@ final class HealthcareStack extends Stack {
     final analyst = add(
       GoogleServiceAccount(
         localName: 'analyst',
-        accountId: TfArg.literal('healthcare-analyst'),
-        displayName: TfArg.literal('Healthcare dataset analyst'),
+        accountId: .literal('healthcare-analyst'),
+        displayName: .literal('Healthcare dataset analyst'),
       ),
     );
 
     final dataset = add(
       GoogleHealthcareDataset(
         localName: 'records',
-        name: TfArg.literal('terradart-records'),
-        location: TfArg.literal('us-central1'),
-        timeZone: TfArg.literal('UTC'),
+        name: .literal('terradart-records'),
+        location: .literal('us-central1'),
+        timeZone: .literal('UTC'),
         dependsOn: [ResourceDependency(apiHealthcare)],
       ),
     );
@@ -59,9 +59,9 @@ final class HealthcareStack extends Stack {
     final dicom = add(
       GoogleHealthcareDicomStore(
         localName: 'images',
-        name: TfArg.literal('terradart-images'),
-        dataset: TfArg.ref(dataset.id),
-        labels: TfArg.literal(const {'managed-by': 'terradart'}),
+        name: .literal('terradart-images'),
+        dataset: .ref(dataset.id),
+        labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [ResourceDependency(dataset)],
       ),
     );
@@ -69,9 +69,9 @@ final class HealthcareStack extends Stack {
     final consent = add(
       GoogleHealthcareConsentStore(
         localName: 'consents',
-        name: TfArg.literal('terradart-consents'),
-        dataset: TfArg.ref(dataset.id),
-        defaultConsentTtl: TfArg.literal('86400s'),
+        name: .literal('terradart-consents'),
+        dataset: .ref(dataset.id),
+        defaultConsentTtl: .literal('86400s'),
         dependsOn: [ResourceDependency(dataset)],
       ),
     );
@@ -79,12 +79,12 @@ final class HealthcareStack extends Stack {
     final hl7 = add(
       GoogleHealthcareHl7V2Store(
         localName: 'messages',
-        name: TfArg.literal('terradart-hl7'),
-        dataset: TfArg.ref(dataset.id),
-        rejectDuplicateMessage: TfArg.literal(true),
+        name: .literal('terradart-hl7'),
+        dataset: .ref(dataset.id),
+        rejectDuplicateMessage: .literal(true),
         parserConfig: HealthcareHl7V2StoreParserConfig(
-          version: TfArg.literal(HealthcareHl7V2StoreParserConfigVersion.v3),
-          allowNullHeader: TfArg.literal(false),
+          version: .literal(.v3),
+          allowNullHeader: .literal(false),
         ),
         dependsOn: [ResourceDependency(dataset)],
       ),
@@ -93,10 +93,10 @@ final class HealthcareStack extends Stack {
     final fhir = add(
       GoogleHealthcareFhirStore(
         localName: 'clinical',
-        name: TfArg.literal('terradart-fhir'),
-        dataset: TfArg.ref(dataset.id),
-        version: TfArg.literal(HealthcareFhirStoreVersion.r4),
-        labels: TfArg.literal(const {'managed-by': 'terradart'}),
+        name: .literal('terradart-fhir'),
+        dataset: .ref(dataset.id),
+        version: .literal(.r4),
+        labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [ResourceDependency(dataset)],
       ),
     );
@@ -104,9 +104,9 @@ final class HealthcareStack extends Stack {
     add(
       GoogleHealthcareDatasetIamMember(
         localName: 'dataset_viewer',
-        datasetId: TfArg.ref(dataset.id),
-        role: TfArg.literal('roles/healthcare.datasetViewer'),
-        member: TfArg.ref(analyst.iamMember),
+        datasetId: .ref(dataset.id),
+        role: .literal('roles/healthcare.datasetViewer'),
+        member: .ref(analyst.iamMember),
         dependsOn: [ResourceDependency(dataset), ResourceDependency(analyst)],
       ),
     );
@@ -115,9 +115,9 @@ final class HealthcareStack extends Stack {
     add(
       GoogleHealthcareDicomStoreIamMember(
         localName: 'dicom_viewer',
-        dicomStoreId: TfArg.ref(dicom.id),
-        role: TfArg.literal('roles/healthcare.dicomViewer'),
-        member: TfArg.ref(analyst.iamMember),
+        dicomStoreId: .ref(dicom.id),
+        role: .literal('roles/healthcare.dicomViewer'),
+        member: .ref(analyst.iamMember),
         dependsOn: [ResourceDependency(dicom), ResourceDependency(analyst)],
       ),
     );
@@ -125,9 +125,9 @@ final class HealthcareStack extends Stack {
     add(
       GoogleHealthcareHl7V2StoreIamMember(
         localName: 'hl7_consumer',
-        hl7V2StoreId: TfArg.ref(hl7.id),
-        role: TfArg.literal('roles/healthcare.hl7V2Consumer'),
-        member: TfArg.ref(analyst.iamMember),
+        hl7V2StoreId: .ref(hl7.id),
+        role: .literal('roles/healthcare.hl7V2Consumer'),
+        member: .ref(analyst.iamMember),
         dependsOn: [ResourceDependency(hl7), ResourceDependency(analyst)],
       ),
     );
@@ -135,10 +135,10 @@ final class HealthcareStack extends Stack {
     add(
       GoogleHealthcareConsentStoreIamMember(
         localName: 'consent_viewer',
-        consentStoreId: TfArg.ref(consent.id),
-        dataset: TfArg.ref(dataset.id),
-        role: TfArg.literal('roles/healthcare.consentStoreViewer'),
-        member: TfArg.ref(analyst.iamMember),
+        consentStoreId: .ref(consent.id),
+        dataset: .ref(dataset.id),
+        role: .literal('roles/healthcare.consentStoreViewer'),
+        member: .ref(analyst.iamMember),
         dependsOn: [ResourceDependency(consent), ResourceDependency(analyst)],
       ),
     );
@@ -146,9 +146,9 @@ final class HealthcareStack extends Stack {
     add(
       GoogleHealthcareFhirStoreIamMember(
         localName: 'fhir_viewer',
-        fhirStoreId: TfArg.ref(fhir.id),
-        role: TfArg.literal('roles/healthcare.fhirResourceReader'),
-        member: TfArg.ref(analyst.iamMember),
+        fhirStoreId: .ref(fhir.id),
+        role: .literal('roles/healthcare.fhirResourceReader'),
+        member: .ref(analyst.iamMember),
         dependsOn: [ResourceDependency(fhir), ResourceDependency(analyst)],
       ),
     );

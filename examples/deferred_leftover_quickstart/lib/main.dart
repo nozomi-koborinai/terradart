@@ -61,26 +61,24 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleActiveDirectoryDomainTrust(
         localName: 'activedirectorydomaintrust',
-        deletionPolicy: TfArg.literal('DELETE'),
-        domain: TfArg.literal('terradart-leftover'),
-        targetDnsIpAddresses: TfArg.literal(['terradart-leftover']),
-        targetDomainName: TfArg.literal('terradart-leftover'),
-        trustDirection: TfArg.literal(
-          ActiveDirectoryDomainTrustTrustDirection.inbound,
-        ),
+        deletionPolicy: .literal('DELETE'),
+        domain: .literal('terradart-leftover'),
+        targetDnsIpAddresses: .literal(['terradart-leftover']),
+        targetDomainName: .literal('terradart-leftover'),
+        trustDirection: .literal(.inbound),
         trustHandshakeSecret: TfArg.variable('ad_trust_handshake_secret'),
-        trustType: TfArg.literal(ActiveDirectoryDomainTrustTrustType.forest),
+        trustType: .literal(.forest),
       ),
     );
 
     add(
       GoogleApigeeSecurityAction(
         localName: 'apigeesecurityaction',
-        deletionPolicy: TfArg.literal('DELETE'),
-        envId: TfArg.literal('terradart-leftover'),
-        orgId: TfArg.literal('organizations/123456789'),
-        securityActionId: TfArg.literal('terradart-leftover'),
-        state: TfArg.literal(ApigeeSecurityActionState.enabled),
+        deletionPolicy: .literal('DELETE'),
+        envId: .literal('terradart-leftover'),
+        orgId: .literal('organizations/123456789'),
+        securityActionId: .literal('terradart-leftover'),
+        state: .literal(.enabled),
         conditionConfig: const ApigeeSecurityActionConditionConfig(),
         deny: const ApigeeSecurityActionDeny(),
       ),
@@ -89,57 +87,51 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleAssuredWorkloadsWorkload(
         localName: 'assuredworkloadsworkload',
-        complianceRegime: TfArg.literal(
-          AssuredWorkloadsWorkloadComplianceRegime.complianceRegimeUnspecified,
-        ),
-        deletionPolicy: TfArg.literal('DELETE'),
-        displayName: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('us-central1'),
-        organization: TfArg.literal('organizations/123456789'),
+        complianceRegime: .literal(.complianceRegimeUnspecified),
+        deletionPolicy: .literal('DELETE'),
+        displayName: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
+        organization: .literal('organizations/123456789'),
       ),
     );
 
     add(
       GoogleBillingBudget(
         localName: 'billingbudget',
-        billingAccount: TfArg.literal('billingAccounts/000000-000000-000000'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        amount: BillingBudgetAmount(
-          amount: .lastPeriodAmount(TfArg.literal(true)),
-        ),
+        billingAccount: .literal('billingAccounts/000000-000000-000000'),
+        deletionPolicy: .literal('DELETE'),
+        amount: BillingBudgetAmount(amount: .lastPeriodAmount(.literal(true))),
       ),
     );
 
     add(
       GoogleBillingProjectInfo(
         localName: 'billingprojectinfo',
-        billingAccount: TfArg.literal('billingAccounts/000000-000000-000000'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        billingAccount: .literal('billingAccounts/000000-000000-000000'),
+        deletionPolicy: .literal('DELETE'),
       ),
     );
 
     add(
       GoogleBillingSubaccount(
         localName: 'billingsubaccount',
-        deletionPolicy: TfArg.literal('DELETE'),
-        displayName: TfArg.literal('terradart-leftover'),
-        masterBillingAccount: TfArg.literal(
-          'billingAccounts/000000-000000-000000',
-        ),
+        deletionPolicy: .literal('DELETE'),
+        displayName: .literal('terradart-leftover'),
+        masterBillingAccount: .literal('billingAccounts/000000-000000-000000'),
       ),
     );
 
     add(
       GoogleCloudAssetFolderFeed(
         localName: 'cloudassetfolderfeed',
-        billingProject: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        feedId: TfArg.literal('terradart-leftover'),
-        folder: TfArg.literal('folders/123456789'),
+        billingProject: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        feedId: .literal('terradart-leftover'),
+        folder: .literal('folders/123456789'),
         feedOutputConfig: CloudAssetFolderFeedFeedOutputConfig(
           pubsubDestination:
               CloudAssetFolderFeedFeedOutputConfigPubsubDestination(
-                topic: TfArg.literal('terradart-leftover'),
+                topic: .literal('terradart-leftover'),
               ),
         ),
       ),
@@ -148,14 +140,14 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleCloudAssetOrganizationFeed(
         localName: 'cloudassetorganizationfeed',
-        billingProject: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        feedId: TfArg.literal('terradart-leftover'),
-        orgId: TfArg.literal('organizations/123456789'),
+        billingProject: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        feedId: .literal('terradart-leftover'),
+        orgId: .literal('organizations/123456789'),
         feedOutputConfig: CloudAssetOrganizationFeedFeedOutputConfig(
           pubsubDestination:
               CloudAssetOrganizationFeedFeedOutputConfigPubsubDestination(
-                topic: TfArg.literal('terradart-leftover'),
+                topic: .literal('terradart-leftover'),
               ),
         ),
       ),
@@ -164,11 +156,11 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleCloudIdentityGroup(
         localName: 'cloudidentitygroup',
-        deletionPolicy: TfArg.literal('DELETE'),
-        labels: TfArg.literal({'terradart': 'leftover'}),
-        parent: TfArg.literal('organizations/123456789'),
+        deletionPolicy: .literal('DELETE'),
+        labels: .literal({'terradart': 'leftover'}),
+        parent: .literal('organizations/123456789'),
         groupKey: CloudIdentityGroupGroupKey(
-          id: TfArg.literal('terradart-leftover'),
+          id: .literal('terradart-leftover'),
         ),
       ),
     );
@@ -176,27 +168,23 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleCloudIdentityGroupMembership(
         localName: 'cloudidentitygroupmembership',
-        deletionPolicy: TfArg.literal('DELETE'),
-        group: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        group: .literal('terradart-leftover'),
         preferredMemberKey: CloudIdentityGroupMembershipPreferredMemberKey(
-          id: TfArg.literal('leftover@example.com'),
+          id: .literal('leftover@example.com'),
         ),
-        roles: [
-          CloudIdentityGroupMembershipRoles(
-            name: TfArg.literal(CloudIdentityGroupMembershipRolesName.owner),
-          ),
-        ],
+        roles: [CloudIdentityGroupMembershipRoles(name: .literal(.owner))],
       ),
     );
 
     add(
       GoogleCloudRunDomainMapping(
         localName: 'cloudrundomainmapping',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        name: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        name: .literal('terradart-leftover'),
         spec: CloudRunDomainMappingSpec(
-          routeName: TfArg.literal('terradart-leftover'),
+          routeName: .literal('terradart-leftover'),
         ),
       ),
     );
@@ -204,44 +192,44 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleCloudSecurityComplianceCloudControl(
         localName: 'cloudsecuritycompliancecloud',
-        cloudControlId: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
+        cloudControlId: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
       ),
     );
 
     add(
       GoogleCloudSecurityComplianceFramework(
         localName: 'cloudsecuritycomplianceframe',
-        deletionPolicy: TfArg.literal('DELETE'),
-        frameworkId: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('us-central1'),
+        deletionPolicy: .literal('DELETE'),
+        frameworkId: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
       ),
     );
 
     add(
       GoogleCloudSecurityComplianceFrameworkDeployment(
         localName: 'complianceframeworkdeploymen',
-        deletionPolicy: TfArg.literal('DELETE'),
-        frameworkDeploymentId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        frameworkDeploymentId: .literal('terradart-leftover'),
         cloudControlMetadata: [
           CloudSecurityComplianceFrameworkDeploymentCloudControlMetadata(
-            enforcementMode: TfArg.literal('terradart-leftover'),
+            enforcementMode: .literal('terradart-leftover'),
             cloudControlDetails:
                 CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetails(
-                  majorRevisionId: TfArg.literal('terradart-leftover'),
-                  name: TfArg.literal('terradart-leftover'),
+                  majorRevisionId: .literal('terradart-leftover'),
+                  name: .literal('terradart-leftover'),
                 ),
           ),
         ],
         framework: CloudSecurityComplianceFrameworkDeploymentFramework(
-          framework: TfArg.literal('terradart-leftover'),
-          majorRevisionId: TfArg.literal('terradart-leftover'),
+          framework: .literal('terradart-leftover'),
+          majorRevisionId: .literal('terradart-leftover'),
         ),
         targetResourceConfig:
             CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig(
               targetResourceConfig: .existingTargetResource(
-                TfArg.literal('organizations/123456789'),
+                .literal('organizations/123456789'),
               ),
             ),
       ),
@@ -250,16 +238,16 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleCloudbuildBitbucketServerConfig(
         localName: 'cloudbuildbitbucketservercon',
-        apiKey: TfArg.literal('terradart-leftover'),
-        configId: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        hostUri: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('us-central1'),
-        username: TfArg.literal('terradart-leftover'),
+        apiKey: .literal('terradart-leftover'),
+        configId: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        hostUri: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
+        username: .literal('terradart-leftover'),
         secrets: CloudbuildBitbucketServerConfigSecrets(
-          adminAccessTokenVersionName: TfArg.literal('terradart-leftover'),
-          readAccessTokenVersionName: TfArg.literal('terradart-leftover'),
-          webhookSecretVersionName: TfArg.literal('terradart-leftover'),
+          adminAccessTokenVersionName: .literal('terradart-leftover'),
+          readAccessTokenVersionName: .literal('terradart-leftover'),
+          webhookSecretVersionName: .literal('terradart-leftover'),
         ),
       ),
     );
@@ -267,33 +255,33 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleClouddomainsRegistration(
         localName: 'clouddomainsregistration',
-        domainName: TfArg.literal('example-leftover.test'),
-        location: TfArg.literal('us-central1'),
+        domainName: .literal('example-leftover.test'),
+        location: .literal('us-central1'),
         contactSettings: ClouddomainsRegistrationContactSettings(
-          privacy: TfArg.literal('REDACTED_CONTACT_DATA'),
+          privacy: .literal('REDACTED_CONTACT_DATA'),
           adminContact: ClouddomainsRegistrationContactSettingsAdminContact(
-            email: TfArg.literal('leftover@example.com'),
-            phoneNumber: TfArg.literal('+15555550100'),
+            email: .literal('leftover@example.com'),
+            phoneNumber: .literal('+15555550100'),
             postalAddress:
                 ClouddomainsRegistrationContactSettingsAdminContactPostalAddress(
-                  regionCode: TfArg.literal('US'),
+                  regionCode: .literal('US'),
                 ),
           ),
           registrantContact:
               ClouddomainsRegistrationContactSettingsRegistrantContact(
-                email: TfArg.literal('leftover@example.com'),
-                phoneNumber: TfArg.literal('+15555550100'),
+                email: .literal('leftover@example.com'),
+                phoneNumber: .literal('+15555550100'),
                 postalAddress:
                     ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddress(
-                      regionCode: TfArg.literal('US'),
+                      regionCode: .literal('US'),
                     ),
               ),
           technicalContact: ClouddomainsRegistrationContactSettingsTechnicalContact(
-            email: TfArg.literal('leftover@example.com'),
-            phoneNumber: TfArg.literal('+15555550100'),
+            email: .literal('leftover@example.com'),
+            phoneNumber: .literal('+15555550100'),
             postalAddress:
                 ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress(
-                  regionCode: TfArg.literal('US'),
+                  regionCode: .literal('US'),
                 ),
           ),
         ),
@@ -304,9 +292,9 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleCloudfunctionsFunction(
         localName: 'cloudfunctionsfunction',
-        deletionPolicy: TfArg.literal('DELETE'),
-        name: TfArg.literal('terradart-leftover'),
-        runtime: TfArg.literal('nodejs20'),
+        deletionPolicy: .literal('DELETE'),
+        name: .literal('terradart-leftover'),
+        runtime: .literal('nodejs20'),
       ),
     );
 
@@ -315,27 +303,27 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleDataLossPreventionDiscoveryConfig(
         localName: 'datalosspreventiondiscoveryc',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        parent: TfArg.literal('organizations/123456789'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        parent: .literal('organizations/123456789'),
       ),
     );
 
     add(
       GoogleDataPipelinePipeline(
         localName: 'datapipelinepipeline',
-        deletionPolicy: TfArg.literal('DELETE'),
-        name: TfArg.literal('terradart-leftover'),
-        state: TfArg.literal(DataPipelinePipelineState.stateUnspecified),
-        type: TfArg.literal(DataPipelinePipelineType.pipelineTypeUnspecified),
+        deletionPolicy: .literal('DELETE'),
+        name: .literal('terradart-leftover'),
+        state: .literal(.stateUnspecified),
+        type: .literal(.pipelineTypeUnspecified),
       ),
     );
 
     add(
       GoogleDatabaseMigrationServiceConnectionProfile(
         localName: 'serviceconnectionprofile',
-        connectionProfileId: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        connectionProfileId: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
         postgresql: const DatabaseMigrationServiceConnectionProfilePostgresql(),
       ),
     );
@@ -343,24 +331,24 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleDatabaseMigrationServiceMigrationJob(
         localName: 'databasemigrationservicemigr',
-        deletionPolicy: TfArg.literal('DELETE'),
-        destination: TfArg.literal('storage.googleapis.com/terradart-leftover'),
-        migrationJobId: TfArg.literal('terradart-leftover'),
-        source: TfArg.literal('terradart-leftover'),
-        type: TfArg.literal(DatabaseMigrationServiceMigrationJobType.oneTime),
+        deletionPolicy: .literal('DELETE'),
+        destination: .literal('storage.googleapis.com/terradart-leftover'),
+        migrationJobId: .literal('terradart-leftover'),
+        source: .literal('terradart-leftover'),
+        type: .literal(.oneTime),
       ),
     );
 
     add(
       GoogleDatabaseMigrationServicePrivateConnection(
         localName: 'serviceprivateconnection',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        privateConnectionId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        privateConnectionId: .literal('terradart-leftover'),
         vpcPeeringConfig:
             DatabaseMigrationServicePrivateConnectionVpcPeeringConfig(
-              subnet: TfArg.literal('10.0.0.0/29'),
-              vpcName: TfArg.literal(
+              subnet: .literal('10.0.0.0/29'),
+              vpcName: .literal(
                 'projects/ci-test-project-id/global/networks/default',
               ),
             ),
@@ -370,10 +358,10 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleDataprocGdcSparkApplication(
         localName: 'dataprocgdcsparkapplication',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        serviceinstance: TfArg.literal('terradart-leftover'),
-        sparkApplicationId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        serviceinstance: .literal('terradart-leftover'),
+        sparkApplicationId: .literal('terradart-leftover'),
         sparkApplicationConfig:
             const DataprocGdcSparkApplicationSparkApplicationConfig(),
       ),
@@ -382,12 +370,12 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleDatastreamConnectionProfile(
         localName: 'datastreamconnectionprofile',
-        connectionProfileId: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        displayName: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('us-central1'),
+        connectionProfileId: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        displayName: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
         gcsProfile: DatastreamConnectionProfileGcsProfile(
-          bucket: TfArg.literal('terradart-leftover'),
+          bucket: .literal('terradart-leftover'),
         ),
       ),
     );
@@ -395,15 +383,13 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleDatastreamPrivateConnection(
         localName: 'datastreamprivateconnection',
-        deletionPolicy: TfArg.literal('DELETE'),
-        displayName: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('us-central1'),
-        privateConnectionId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        displayName: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
+        privateConnectionId: .literal('terradart-leftover'),
         vpcPeeringConfig: DatastreamPrivateConnectionVpcPeeringConfig(
-          subnet: TfArg.literal('10.0.0.0/29'),
-          vpc: TfArg.literal(
-            'projects/ci-test-project-id/global/networks/default',
-          ),
+          subnet: .literal('10.0.0.0/29'),
+          vpc: .literal('projects/ci-test-project-id/global/networks/default'),
         ),
       ),
     );
@@ -411,12 +397,12 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleDatastreamStream(
         localName: 'datastreamstream',
-        deletionPolicy: TfArg.literal('DELETE'),
-        displayName: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('us-central1'),
-        streamId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        displayName: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
+        streamId: .literal('terradart-leftover'),
         destinationConfig: DatastreamStreamDestinationConfig(
-          destinationConnectionProfile: TfArg.literal('terradart-leftover'),
+          destinationConnectionProfile: .literal('terradart-leftover'),
           destinationConfig: const .gcsDestinationConfig(
             DatastreamStreamDestinationConfigGcsDestinationConfig(
               fileFormat: .avroFileFormat(
@@ -426,7 +412,7 @@ final class DeferredLeftoverStack extends Stack {
           ),
         ),
         sourceConfig: DatastreamStreamSourceConfig(
-          sourceConnectionProfile: TfArg.literal('terradart-leftover'),
+          sourceConnectionProfile: .literal('terradart-leftover'),
           sourceConfig: const .mysqlSourceConfig(
             DatastreamStreamSourceConfigMysqlSourceConfig(),
           ),
@@ -438,11 +424,11 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleDeploymentManagerDeployment(
         localName: 'deploymentmanagerdeployment',
-        deletionPolicy: TfArg.literal('DELETE'),
-        name: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        name: .literal('terradart-leftover'),
         target: DeploymentManagerDeploymentTarget(
           config: DeploymentManagerDeploymentTargetConfig(
-            content: TfArg.literal('terradart-leftover'),
+            content: .literal('terradart-leftover'),
           ),
         ),
       ),
@@ -451,42 +437,42 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleDeveloperConnectConnection(
         localName: 'developerconnectconnection',
-        connectionId: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
+        connectionId: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
       ),
     );
 
     add(
       GoogleDeveloperConnectGitRepositoryLink(
         localName: 'developerconnectgitrepositor',
-        cloneUri: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        gitRepositoryLinkId: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('us-central1'),
-        parentConnection: TfArg.literal('terradart-leftover'),
+        cloneUri: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        gitRepositoryLinkId: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
+        parentConnection: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleDeveloperConnectInsightsConfig(
         localName: 'developerconnectinsightsconf',
-        deletionPolicy: TfArg.literal('DELETE'),
-        insightsConfigId: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('us-central1'),
+        deletionPolicy: .literal('DELETE'),
+        insightsConfigId: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
       ),
     );
 
     add(
       GoogleDocumentAiWarehouseDocumentSchema(
         localName: 'documentaiwarehousedocuments',
-        deletionPolicy: TfArg.literal('DELETE'),
-        displayName: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('us-central1'),
-        projectNumber: TfArg.literal('123456789012'),
+        deletionPolicy: .literal('DELETE'),
+        displayName: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
+        projectNumber: .literal('123456789012'),
         propertyDefinitions: [
           DocumentAiWarehouseDocumentSchemaPropertyDefinitions(
-            name: TfArg.literal('terradart-leftover'),
+            name: .literal('terradart-leftover'),
           ),
         ],
       ),
@@ -495,44 +481,42 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleDocumentAiWarehouseLocation(
         localName: 'documentaiwarehouselocation',
-        accessControlMode: TfArg.literal(
+        accessControlMode: .literal(
           DocumentAiWarehouseLocationAccessControlMode
               .aclModeDocumentLevelAccessControlGci,
         ),
-        databaseType: TfArg.literal(
-          DocumentAiWarehouseLocationDatabaseType.dbInfraSpanner,
-        ),
-        location: TfArg.literal('us-central1'),
-        projectNumber: TfArg.literal('123456789012'),
+        databaseType: .literal(.dbInfraSpanner),
+        location: .literal('us-central1'),
+        projectNumber: .literal('123456789012'),
       ),
     );
 
     add(
       GoogleFirebaserulesRelease(
         localName: 'firebaserulesrelease',
-        deletionPolicy: TfArg.literal('DELETE'),
-        name: TfArg.literal('terradart-leftover'),
-        rulesetName: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        name: .literal('terradart-leftover'),
+        rulesetName: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleFolder(
         localName: 'folder',
-        deletionPolicy: TfArg.literal('DELETE'),
-        displayName: TfArg.literal('terradart-leftover'),
-        parent: TfArg.literal('organizations/123456789'),
+        deletionPolicy: .literal('DELETE'),
+        displayName: .literal('terradart-leftover'),
+        parent: .literal('organizations/123456789'),
       ),
     );
 
     add(
       GoogleFolderAccessApprovalSettings(
         localName: 'folderaccessapprovalsettings',
-        deletionPolicy: TfArg.literal('DELETE'),
-        folderId: TfArg.literal('folders/123456789'),
+        deletionPolicy: .literal('DELETE'),
+        folderId: .literal('folders/123456789'),
         enrolledServices: [
           FolderAccessApprovalSettingsEnrolledServices(
-            cloudProduct: TfArg.literal('terradart-leftover'),
+            cloudProduct: .literal('terradart-leftover'),
           ),
         ],
       ),
@@ -541,11 +525,11 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleFolderIamAuditConfig(
         localName: 'folderiamauditconfig',
-        folder: TfArg.literal('folders/123456789'),
-        service: TfArg.literal('allServices'),
+        folder: .literal('folders/123456789'),
+        service: .literal('allServices'),
         auditLogConfig: [
           FolderIamAuditConfigAuditLogConfig(
-            logType: TfArg.literal('terradart-leftover'),
+            logType: .literal('terradart-leftover'),
           ),
         ],
       ),
@@ -554,25 +538,23 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleFolderOrganizationPolicy(
         localName: 'folderorganizationpolicy',
-        constraint: TfArg.literal(
-          'constraints/compute.disableSerialPortAccess',
-        ),
-        deletionPolicy: TfArg.literal('DELETE'),
-        folder: TfArg.literal('folders/123456789'),
+        constraint: .literal('constraints/compute.disableSerialPortAccess'),
+        deletionPolicy: .literal('DELETE'),
+        folder: .literal('folders/123456789'),
       ),
     );
 
     add(
       GoogleGeminiRepositoryGroup(
         localName: 'geminirepositorygroup',
-        codeRepositoryIndex: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        repositoryGroupId: TfArg.literal('terradart-leftover'),
+        codeRepositoryIndex: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        repositoryGroupId: .literal('terradart-leftover'),
         repositories: [
           GeminiRepositoryGroupRepositories(
-            branchPattern: TfArg.literal('terradart-leftover'),
-            resource: TfArg.literal('terradart-leftover'),
+            branchPattern: .literal('terradart-leftover'),
+            resource: .literal('terradart-leftover'),
           ),
         ],
       ),
@@ -581,40 +563,40 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleGkeHubFeatureMembership(
         localName: 'gkehubfeaturemembership',
-        deletionPolicy: TfArg.literal('DELETE'),
-        feature: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('us-central1'),
-        membership: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        feature: .literal('terradart-leftover'),
+        location: .literal('us-central1'),
+        membership: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleGkeHubMembershipBinding(
         localName: 'gkehubmembershipbinding',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        membershipBindingId: TfArg.literal('terradart-leftover'),
-        membershipId: TfArg.literal('terradart-leftover'),
-        scope: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        membershipBindingId: .literal('terradart-leftover'),
+        membershipId: .literal('terradart-leftover'),
+        scope: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleHealthcarePipelineJob(
         localName: 'healthcarepipelinejob',
-        dataset: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        name: TfArg.literal('terradart-leftover'),
+        dataset: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        name: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleIamAccessBoundaryPolicy(
         localName: 'iamaccessboundarypolicy',
-        deletionPolicy: TfArg.literal('DELETE'),
-        name: TfArg.literal('terradart-leftover'),
-        parent: TfArg.literal('organizations/123456789'),
+        deletionPolicy: .literal('DELETE'),
+        name: .literal('terradart-leftover'),
+        parent: .literal('organizations/123456789'),
         rules: [const IamAccessBoundaryPolicyRules()],
       ),
     );
@@ -622,11 +604,11 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleIamFoldersPolicyBinding(
         localName: 'iamfolderspolicybinding',
-        deletionPolicy: TfArg.literal('DELETE'),
-        folder: TfArg.literal('folders/123456789'),
-        location: TfArg.literal('us-central1'),
-        policy: TfArg.literal('terradart-leftover'),
-        policyBindingId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        folder: .literal('folders/123456789'),
+        location: .literal('us-central1'),
+        policy: .literal('terradart-leftover'),
+        policyBindingId: .literal('terradart-leftover'),
         target: const IamFoldersPolicyBindingTarget(),
       ),
     );
@@ -634,21 +616,21 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleIamOauthClientCredential(
         localName: 'iamoauthclientcredential',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        oauthClientCredentialId: TfArg.literal('terradart-leftover'),
-        oauthclient: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        oauthClientCredentialId: .literal('terradart-leftover'),
+        oauthclient: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleIamOrganizationsPolicyBinding(
         localName: 'iamorganizationspolicybindin',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        organization: TfArg.literal('organizations/123456789'),
-        policy: TfArg.literal('terradart-leftover'),
-        policyBindingId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        organization: .literal('organizations/123456789'),
+        policy: .literal('terradart-leftover'),
+        policyBindingId: .literal('terradart-leftover'),
         target: const IamOrganizationsPolicyBindingTarget(),
       ),
     );
@@ -656,20 +638,20 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleIamPrincipalAccessBoundaryPolicy(
         localName: 'iamprincipalaccessboundarypo',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        organization: TfArg.literal('organizations/123456789'),
-        principalAccessBoundaryPolicyId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        organization: .literal('organizations/123456789'),
+        principalAccessBoundaryPolicyId: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleIamProjectsPolicyBinding(
         localName: 'iamprojectspolicybinding',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        policy: TfArg.literal('terradart-leftover'),
-        policyBindingId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        policy: .literal('terradart-leftover'),
+        policyBindingId: .literal('terradart-leftover'),
         target: const IamProjectsPolicyBindingTarget(),
       ),
     );
@@ -677,22 +659,22 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleIdentityPlatformDefaultSupportedIdpConfig(
         localName: 'supportedidpconfig',
-        clientId: TfArg.literal('terradart-leftover'),
-        clientSecret: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        idpId: TfArg.literal('google.com'),
+        clientId: .literal('terradart-leftover'),
+        clientSecret: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        idpId: .literal('google.com'),
       ),
     );
 
     add(
       GoogleIdentityPlatformInboundSamlConfig(
         localName: 'identityplatforminboundsamlc',
-        deletionPolicy: TfArg.literal('DELETE'),
-        displayName: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        displayName: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
         idpConfig: IdentityPlatformInboundSamlConfigIdpConfig(
-          idpEntityId: TfArg.literal('terradart-leftover'),
-          ssoUrl: TfArg.literal('terradart-leftover'),
+          idpEntityId: .literal('terradart-leftover'),
+          ssoUrl: .literal('terradart-leftover'),
           idpCertificates: [
             const IdentityPlatformInboundSamlConfigIdpConfigIdpCertificates(),
           ],
@@ -704,31 +686,31 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleIdentityPlatformTenantDefaultSupportedIdpConfig(
         localName: 'supportedidpconfig',
-        clientId: TfArg.literal('terradart-leftover'),
-        clientSecret: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        idpId: TfArg.literal('google.com'),
-        tenant: TfArg.literal('terradart-leftover'),
+        clientId: .literal('terradart-leftover'),
+        clientSecret: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        idpId: .literal('google.com'),
+        tenant: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleIdentityPlatformTenantInboundSamlConfig(
         localName: 'inboundsamlconfig',
-        deletionPolicy: TfArg.literal('DELETE'),
-        displayName: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-        tenant: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        displayName: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        tenant: .literal('terradart-leftover'),
         idpConfig: IdentityPlatformTenantInboundSamlConfigIdpConfig(
-          idpEntityId: TfArg.literal('terradart-leftover'),
-          ssoUrl: TfArg.literal('terradart-leftover'),
+          idpEntityId: .literal('terradart-leftover'),
+          ssoUrl: .literal('terradart-leftover'),
           idpCertificates: [
             const IdentityPlatformTenantInboundSamlConfigIdpConfigIdpCertificates(),
           ],
         ),
         spConfig: IdentityPlatformTenantInboundSamlConfigSpConfig(
-          callbackUri: TfArg.literal('terradart-leftover'),
-          spEntityId: TfArg.literal('terradart-leftover'),
+          callbackUri: .literal('terradart-leftover'),
+          spEntityId: .literal('terradart-leftover'),
         ),
       ),
     );
@@ -736,89 +718,89 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleLoggingBillingAccountBucketConfig(
         localName: 'loggingbillingaccountbucketc',
-        billingAccount: TfArg.literal('billingAccounts/000000-000000-000000'),
-        bucketId: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
+        billingAccount: .literal('billingAccounts/000000-000000-000000'),
+        bucketId: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
       ),
     );
 
     add(
       GoogleLoggingBillingAccountExclusion(
         localName: 'loggingbillingaccountexclusi',
-        billingAccount: TfArg.literal('billingAccounts/000000-000000-000000'),
-        filter: TfArg.literal('severity>=ERROR'),
-        name: TfArg.literal('terradart-leftover'),
+        billingAccount: .literal('billingAccounts/000000-000000-000000'),
+        filter: .literal('severity>=ERROR'),
+        name: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleLoggingBillingAccountSink(
         localName: 'loggingbillingaccountsink',
-        billingAccount: TfArg.literal('billingAccounts/000000-000000-000000'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        destination: TfArg.literal('storage.googleapis.com/terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
+        billingAccount: .literal('billingAccounts/000000-000000-000000'),
+        deletionPolicy: .literal('DELETE'),
+        destination: .literal('storage.googleapis.com/terradart-leftover'),
+        name: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleLoggingFolderBucketConfig(
         localName: 'loggingfolderbucketconfig',
-        bucketId: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        folder: TfArg.literal('folders/123456789'),
-        location: TfArg.literal('us-central1'),
+        bucketId: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        folder: .literal('folders/123456789'),
+        location: .literal('us-central1'),
       ),
     );
 
     add(
       GoogleLoggingFolderExclusion(
         localName: 'loggingfolderexclusion',
-        filter: TfArg.literal('severity>=ERROR'),
-        folder: TfArg.literal('folders/123456789'),
-        name: TfArg.literal('terradart-leftover'),
+        filter: .literal('severity>=ERROR'),
+        folder: .literal('folders/123456789'),
+        name: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleLoggingFolderSettings(
         localName: 'loggingfoldersettings',
-        folder: TfArg.literal('folders/123456789'),
+        folder: .literal('folders/123456789'),
       ),
     );
 
     add(
       GoogleLoggingOrganizationBucketConfig(
         localName: 'loggingorganizationbucketcon',
-        bucketId: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        organization: TfArg.literal('organizations/123456789'),
+        bucketId: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        organization: .literal('organizations/123456789'),
       ),
     );
 
     add(
       GoogleLoggingOrganizationExclusion(
         localName: 'loggingorganizationexclusion',
-        filter: TfArg.literal('severity>=ERROR'),
-        name: TfArg.literal('terradart-leftover'),
-        orgId: TfArg.literal('organizations/123456789'),
+        filter: .literal('severity>=ERROR'),
+        name: .literal('terradart-leftover'),
+        orgId: .literal('organizations/123456789'),
       ),
     );
 
     add(
       GoogleLoggingOrganizationSettings(
         localName: 'loggingorganizationsettings',
-        organization: TfArg.literal('organizations/123456789'),
+        organization: .literal('organizations/123456789'),
       ),
     );
 
     add(
       GoogleModelArmorFloorsetting(
         localName: 'modelarmorfloorsetting',
-        location: TfArg.literal('us-central1'),
-        parent: TfArg.literal('organizations/123456789'),
+        location: .literal('us-central1'),
+        parent: .literal('organizations/123456789'),
         filterConfig: const ModelArmorFloorsettingFilterConfig(),
       ),
     );
@@ -826,20 +808,20 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleNetworkManagementOrganizationVpcFlowLogsConfig(
         localName: 'flowlogsconfig',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        organization: TfArg.literal('organizations/123456789'),
-        vpcFlowLogsConfigId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        organization: .literal('organizations/123456789'),
+        vpcFlowLogsConfigId: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleNetworkSecurityAuthzPolicy(
         localName: 'networksecurityauthzpolicy',
-        action: TfArg.literal(NetworkSecurityAuthzPolicyAction.allow),
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        name: TfArg.literal('terradart-leftover'),
+        action: .literal(.allow),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        name: .literal('terradart-leftover'),
         target: const NetworkSecurityAuthzPolicyTarget(),
       ),
     );
@@ -847,33 +829,33 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleOrgPolicyCustomConstraint(
         localName: 'orgpolicycustomconstraint',
-        actionType: TfArg.literal(OrgPolicyCustomConstraintActionType.allow),
-        condition: TfArg.literal('terradart-leftover'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        methodTypes: TfArg.literal(['terradart-leftover']),
-        name: TfArg.literal('terradart-leftover'),
-        parent: TfArg.literal('organizations/123456789'),
-        resourceTypes: TfArg.literal(['terradart-leftover']),
+        actionType: .literal(.allow),
+        condition: .literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        methodTypes: .literal(['terradart-leftover']),
+        name: .literal('terradart-leftover'),
+        parent: .literal('organizations/123456789'),
+        resourceTypes: .literal(['terradart-leftover']),
       ),
     );
 
     add(
       GoogleOrgPolicyPolicy(
         localName: 'orgpolicypolicy',
-        deletionPolicy: TfArg.literal('DELETE'),
-        name: TfArg.literal('terradart-leftover'),
-        parent: TfArg.literal('organizations/123456789'),
+        deletionPolicy: .literal('DELETE'),
+        name: .literal('terradart-leftover'),
+        parent: .literal('organizations/123456789'),
       ),
     );
 
     add(
       GoogleOrganizationAccessApprovalSettings(
         localName: 'organizationaccessapprovalse',
-        deletionPolicy: TfArg.literal('DELETE'),
-        organizationId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        organizationId: .literal('terradart-leftover'),
         enrolledServices: [
           OrganizationAccessApprovalSettingsEnrolledServices(
-            cloudProduct: TfArg.literal('terradart-leftover'),
+            cloudProduct: .literal('terradart-leftover'),
           ),
         ],
       ),
@@ -882,11 +864,11 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleOrganizationIamAuditConfig(
         localName: 'organizationiamauditconfig',
-        orgId: TfArg.literal('organizations/123456789'),
-        service: TfArg.literal('allServices'),
+        orgId: .literal('organizations/123456789'),
+        service: .literal('allServices'),
         auditLogConfig: [
           OrganizationIamAuditConfigAuditLogConfig(
-            logType: TfArg.literal('terradart-leftover'),
+            logType: .literal('terradart-leftover'),
           ),
         ],
       ),
@@ -895,32 +877,30 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleOrganizationIamCustomRole(
         localName: 'organizationiamcustomrole',
-        deletionPolicy: TfArg.literal('DELETE'),
-        orgId: TfArg.literal('organizations/123456789'),
-        permissions: TfArg.literal(['terradart-leftover']),
-        roleId: TfArg.literal('terradart_leftover'),
-        title: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        orgId: .literal('organizations/123456789'),
+        permissions: .literal(['terradart-leftover']),
+        roleId: .literal('terradart_leftover'),
+        title: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleOrganizationPolicy(
         localName: 'organizationpolicy',
-        constraint: TfArg.literal(
-          'constraints/compute.disableSerialPortAccess',
-        ),
-        deletionPolicy: TfArg.literal('DELETE'),
-        orgId: TfArg.literal('organizations/123456789'),
+        constraint: .literal('constraints/compute.disableSerialPortAccess'),
+        deletionPolicy: .literal('DELETE'),
+        orgId: .literal('organizations/123456789'),
       ),
     );
 
     add(
       GoogleOsConfigV2PolicyOrchestratorForFolder(
         localName: 'orchestratorforfolder',
-        action: TfArg.literal('DEPRIVILEGE'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        folderId: TfArg.literal('folders/123456789'),
-        policyOrchestratorId: TfArg.literal('terradart-leftover'),
+        action: .literal('DEPRIVILEGE'),
+        deletionPolicy: .literal('DELETE'),
+        folderId: .literal('folders/123456789'),
+        policyOrchestratorId: .literal('terradart-leftover'),
         orchestratedResource:
             const OsConfigV2PolicyOrchestratorForFolderOrchestratedResource(),
       ),
@@ -929,10 +909,10 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleOsConfigV2PolicyOrchestratorForOrganization(
         localName: 'orchestratorfororganization',
-        action: TfArg.literal('DEPRIVILEGE'),
-        deletionPolicy: TfArg.literal('DELETE'),
-        organizationId: TfArg.literal('terradart-leftover'),
-        policyOrchestratorId: TfArg.literal('terradart-leftover'),
+        action: .literal('DEPRIVILEGE'),
+        deletionPolicy: .literal('DELETE'),
+        organizationId: .literal('terradart-leftover'),
+        policyOrchestratorId: .literal('terradart-leftover'),
         orchestratedResource:
             const OsConfigV2PolicyOrchestratorForOrganizationOrchestratedResource(),
       ),
@@ -941,11 +921,11 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleProjectAccessApprovalSettings(
         localName: 'projectaccessapprovalsetting',
-        deletionPolicy: TfArg.literal('DELETE'),
-        projectId: TfArg.literal(projectId),
+        deletionPolicy: .literal('DELETE'),
+        projectId: .literal(projectId),
         enrolledServices: [
           ProjectAccessApprovalSettingsEnrolledServices(
-            cloudProduct: TfArg.literal('terradart-leftover'),
+            cloudProduct: .literal('terradart-leftover'),
           ),
         ],
       ),
@@ -954,65 +934,63 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleProjectDefaultServiceAccounts(
         localName: 'projectdefaultserviceaccount',
-        action: TfArg.literal('DEPRIVILEGE'),
-        project: TfArg.literal(projectId),
+        action: .literal('DEPRIVILEGE'),
+        project: .literal(projectId),
       ),
     );
 
     add(
       GoogleProjectIamMemberRemove(
         localName: 'projectiammemberremove',
-        member: TfArg.literal('user:leftover@example.com'),
-        project: TfArg.literal(projectId),
-        role: TfArg.literal('roles/viewer'),
+        member: .literal('user:leftover@example.com'),
+        project: .literal(projectId),
+        role: .literal('roles/viewer'),
       ),
     );
 
     add(
       GoogleProjectOrganizationPolicy(
         localName: 'projectorganizationpolicy',
-        constraint: TfArg.literal(
-          'constraints/compute.disableSerialPortAccess',
-        ),
-        deletionPolicy: TfArg.literal('DELETE'),
-        project: TfArg.literal(projectId),
+        constraint: .literal('constraints/compute.disableSerialPortAccess'),
+        deletionPolicy: .literal('DELETE'),
+        project: .literal(projectId),
       ),
     );
 
     add(
       GoogleResourceManagerCapability(
         localName: 'resourcemanagercapability',
-        capabilityName: TfArg.literal('terradart-leftover'),
-        parent: TfArg.literal('organizations/123456789'),
-        value: TfArg.literal(false),
+        capabilityName: .literal('terradart-leftover'),
+        parent: .literal('organizations/123456789'),
+        value: .literal(false),
       ),
     );
 
     add(
       GoogleResourceManagerLien(
         localName: 'resourcemanagerlien',
-        deletionPolicy: TfArg.literal('DELETE'),
-        origin: TfArg.literal('terradart-leftover'),
-        parent: TfArg.literal('organizations/123456789'),
-        reason: TfArg.literal('terradart-leftover'),
-        restrictions: TfArg.literal(['terradart-leftover']),
+        deletionPolicy: .literal('DELETE'),
+        origin: .literal('terradart-leftover'),
+        parent: .literal('organizations/123456789'),
+        reason: .literal('terradart-leftover'),
+        restrictions: .literal(['terradart-leftover']),
       ),
     );
 
     add(
       GoogleSecurityposturePosture(
         localName: 'securitypostureposture',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        parent: TfArg.literal('organizations/123456789'),
-        postureId: TfArg.literal('terradart-leftover'),
-        state: TfArg.literal(SecurityposturePostureState.deprecated),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        parent: .literal('organizations/123456789'),
+        postureId: .literal('terradart-leftover'),
+        state: .literal(.deprecated),
         policySets: [
           SecurityposturePosturePolicySets(
-            policySetId: TfArg.literal('terradart-leftover'),
+            policySetId: .literal('terradart-leftover'),
             policies: [
               SecurityposturePosturePolicySetsPolicies(
-                policyId: TfArg.literal('terradart-leftover'),
+                policyId: .literal('terradart-leftover'),
                 constraint:
                     const SecurityposturePosturePolicySetsPoliciesConstraint(),
               ),
@@ -1025,23 +1003,23 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleSecurityposturePostureDeployment(
         localName: 'securitypostureposturedeploy',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
-        parent: TfArg.literal('organizations/123456789'),
-        postureDeploymentId: TfArg.literal('terradart-leftover'),
-        postureId: TfArg.literal('terradart-leftover'),
-        postureRevisionId: TfArg.literal('terradart-leftover'),
-        targetResource: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
+        parent: .literal('organizations/123456789'),
+        postureDeploymentId: .literal('terradart-leftover'),
+        postureId: .literal('terradart-leftover'),
+        postureRevisionId: .literal('terradart-leftover'),
+        targetResource: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleServiceNetworkingPeeredDnsDomain(
         localName: 'servicenetworkingpeereddnsdo',
-        deletionPolicy: TfArg.literal('DELETE'),
-        dnsSuffix: TfArg.literal('leftover.example.'),
-        name: TfArg.literal('terradart-leftover'),
-        network: TfArg.literal(
+        deletionPolicy: .literal('DELETE'),
+        dnsSuffix: .literal('leftover.example.'),
+        name: .literal('terradart-leftover'),
+        network: .literal(
           'projects/ci-test-project-id/global/networks/default',
         ),
       ),
@@ -1050,33 +1028,31 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleServiceNetworkingVpcServiceControls(
         localName: 'servicenetworkingvpcservicec',
-        enabled: TfArg.literal(false),
-        network: TfArg.literal(
+        enabled: .literal(false),
+        network: .literal(
           'projects/ci-test-project-id/global/networks/default',
         ),
-        service: TfArg.literal('allServices'),
+        service: .literal('allServices'),
       ),
     );
 
     add(
       GoogleSiteVerificationOwner(
         localName: 'siteverificationowner',
-        deletionPolicy: TfArg.literal('DELETE'),
-        email: TfArg.literal('leftover@example.com'),
-        webResourceId: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('DELETE'),
+        email: .literal('leftover@example.com'),
+        webResourceId: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleSiteVerificationWebResource(
         localName: 'siteverificationwebresource',
-        deletionPolicy: TfArg.literal('DELETE'),
-        verificationMethod: TfArg.literal(
-          SiteVerificationWebResourceVerificationMethod.analytics,
-        ),
+        deletionPolicy: .literal('DELETE'),
+        verificationMethod: .literal(.analytics),
         site: SiteVerificationWebResourceSite(
-          identifier: TfArg.literal('terradart-leftover'),
-          type: TfArg.literal(SiteVerificationWebResourceSiteType.inetDomain),
+          identifier: .literal('terradart-leftover'),
+          type: .literal(.inetDomain),
         ),
       ),
     );
@@ -1084,95 +1060,95 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleSqlProvisionScript(
         localName: 'sqlprovisionscript',
-        deletionPolicy: TfArg.literal('ABANDON'),
-        instance: TfArg.literal('terradart-leftover'),
-        script: TfArg.literal('terradart-leftover'),
+        deletionPolicy: .literal('ABANDON'),
+        instance: .literal('terradart-leftover'),
+        script: .literal('terradart-leftover'),
       ),
     );
 
     add(
       GoogleTranscoderJob(
         localName: 'transcoderjob',
-        deletionPolicy: TfArg.literal('DELETE'),
-        location: TfArg.literal('us-central1'),
+        deletionPolicy: .literal('DELETE'),
+        location: .literal('us-central1'),
       ),
     );
     add(
       GoogleBiglakeHiveCatalog(
         localName: 'biglake_hive_catalog',
-        locationUri: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-        primaryLocation: TfArg.literal('terradart-leftover'),
+        locationUri: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        primaryLocation: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleBiglakeHiveCatalogIamBinding(
         localName: 'biglake_hive_catalog_iam_binding',
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleBiglakeHiveCatalogIamMember(
         localName: 'biglake_hive_catalog_iam_member',
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        member: .literal('user:terradart-leftover@example.com'),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleBiglakeHiveCatalogIamPolicy(
         localName: 'biglake_hive_catalog_iam_policy',
-        name: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        name: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleBiglakeHiveDatabase(
         localName: 'biglake_hive_database',
-        catalog: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
+        catalog: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleBiglakeHiveDatabaseIamBinding(
         localName: 'biglake_hive_database_iam_binding',
-        catalog: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        catalog: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleBiglakeHiveDatabaseIamMember(
         localName: 'biglake_hive_database_iam_member',
-        catalog: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        catalog: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleBiglakeHiveDatabaseIamPolicy(
         localName: 'biglake_hive_database_iam_policy',
-        catalog: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        catalog: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleBiglakeHiveTable(
         localName: 'biglake_hive_table',
-        catalog: TfArg.literal('terradart-leftover'),
-        database: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
+        catalog: .literal('terradart-leftover'),
+        database: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
         storageDescriptor: BiglakeHiveTableStorageDescriptor(
-          locationUri: TfArg.literal('gs://terradart-leftover'),
+          locationUri: .literal('gs://terradart-leftover'),
           columns: [
             BiglakeHiveTableStorageDescriptorColumns(
-              name: TfArg.literal('id'),
-              type: TfArg.literal('string'),
+              name: .literal('id'),
+              type: .literal('string'),
             ),
           ],
         ),
@@ -1181,56 +1157,56 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleBiglakeHiveTableIamBinding(
         localName: 'biglake_hive_table_iam_binding',
-        catalog: TfArg.literal('terradart-leftover'),
-        database: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        catalog: .literal('terradart-leftover'),
+        database: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleBiglakeHiveTableIamMember(
         localName: 'biglake_hive_table_iam_member',
-        catalog: TfArg.literal('terradart-leftover'),
-        database: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        catalog: .literal('terradart-leftover'),
+        database: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleBiglakeHiveTableIamPolicy(
         localName: 'biglake_hive_table_iam_policy',
-        catalog: TfArg.literal('terradart-leftover'),
-        database: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        catalog: .literal('terradart-leftover'),
+        database: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleComputeNetworkEdgeSecurityService(
         localName: 'compute_network_edge_security_service',
-        name: TfArg.literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleObservabilityFolderSettings(
         localName: 'observability_folder_settings',
-        folder: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('terradart-leftover'),
+        folder: .literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleObservabilityOrganizationSettings(
         localName: 'observability_organization_settings',
-        location: TfArg.literal('terradart-leftover'),
-        organization: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        organization: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleObservabilityProjectSettings(
         localName: 'observability_project_settings',
-        location: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
       ),
     );
   }

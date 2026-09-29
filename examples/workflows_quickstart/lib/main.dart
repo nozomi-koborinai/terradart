@@ -25,24 +25,22 @@ final class WorkflowStack extends Stack {
     final apiWorkflows = add(
       GoogleProjectService(
         localName: 'api_workflows',
-        service: TfArg.literal('workflows.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('workflows.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final hello = add(
       GoogleWorkflowsWorkflow(
         localName: 'hello',
-        name: TfArg.literal('terradart-hello'),
-        region: TfArg.literal('us-central1'),
-        description: TfArg.literal('Returns a greeting (terradart demo)'),
-        callLogLevel: TfArg.literal(
-          WorkflowsWorkflowCallLogLevel.logErrorsOnly,
-        ),
+        name: .literal('terradart-hello'),
+        region: .literal('us-central1'),
+        description: .literal('Returns a greeting (terradart demo)'),
+        callLogLevel: .literal(.logErrorsOnly),
         // The provider defaults deletion_protection to true, which blocks
         // teardown; set it false so the example can be created and destroyed.
-        deletionProtection: TfArg.literal(false),
-        sourceContents: TfArg.literal('''
+        deletionProtection: .literal(false),
+        sourceContents: .literal('''
 main:
   steps:
     - sayHello:

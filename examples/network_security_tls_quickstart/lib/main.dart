@@ -21,17 +21,17 @@ final class NetworkSecurityTlsStack extends Stack {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         localName: 'api_networksecurity',
-        service: TfArg.literal('networksecurity.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('networksecurity.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleNetworkSecurityClientTlsPolicy(
         localName: 'backend',
-        name: TfArg.literal('terradart-client-tls'),
-        location: TfArg.literal('global'),
-        description: TfArg.literal('TerraDart smoke client TLS policy'),
+        name: .literal('terradart-client-tls'),
+        location: .literal('global'),
+        description: .literal('TerraDart smoke client TLS policy'),
         dependsOn: [ResourceDependency(apiNetworkSecurity)],
       ),
     );
@@ -39,10 +39,10 @@ final class NetworkSecurityTlsStack extends Stack {
     add(
       GoogleNetworkSecurityServerTlsPolicy(
         localName: 'frontend',
-        name: TfArg.literal('terradart-server-tls'),
-        location: TfArg.literal('global'),
-        description: TfArg.literal('TerraDart smoke server TLS policy'),
-        allowOpen: TfArg.literal(true),
+        name: .literal('terradart-server-tls'),
+        location: .literal('global'),
+        description: .literal('TerraDart smoke server TLS policy'),
+        allowOpen: .literal(true),
         dependsOn: [ResourceDependency(apiNetworkSecurity)],
       ),
     );

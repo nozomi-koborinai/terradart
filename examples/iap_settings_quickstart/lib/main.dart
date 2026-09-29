@@ -36,24 +36,24 @@ final class IapSettingsStack extends Stack {
     final apiIap = add(
       GoogleProjectService(
         localName: 'api_iap',
-        service: TfArg.literal('iap.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('iap.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiIam = add(
       GoogleProjectService(
         localName: 'api_iam',
-        service: TfArg.literal('iam.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('iam.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final webInvoker = add(
       GoogleServiceAccount(
         localName: 'web_invoker',
-        accountId: TfArg.literal('iap-web-invoker'),
-        displayName: TfArg.literal('IAP location-web invoker (demo)'),
+        accountId: .literal('iap-web-invoker'),
+        displayName: .literal('IAP location-web invoker (demo)'),
         dependsOn: [ResourceDependency(apiIam)],
       ),
     );
@@ -61,7 +61,7 @@ final class IapSettingsStack extends Stack {
     add(
       GoogleIapSettings(
         localName: 'web',
-        name: TfArg.literal('projects/$projectId/iap_web'),
+        name: .literal('projects/$projectId/iap_web'),
         dependsOn: [ResourceDependency(apiIap)],
       ),
     );
@@ -69,9 +69,9 @@ final class IapSettingsStack extends Stack {
     final locationBinding = add(
       GoogleIapLocationWebIamBinding(
         localName: 'location_web_invokers',
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
-        members: TfArg.literal([webInvoker.iamMember.interpolation]),
+        location: .literal('us-central1'),
+        role: .literal('roles/iap.httpsResourceAccessor'),
+        members: .literal([webInvoker.iamMember.interpolation]),
         dependsOn: [ResourceDependency(apiIap), ResourceDependency(webInvoker)],
       ),
     );
@@ -79,8 +79,8 @@ final class IapSettingsStack extends Stack {
     add(
       GoogleIapLocationWebIamPolicy(
         localName: 'location_web_policy',
-        location: TfArg.literal('us-central1'),
-        policyData: TfArg.literal(
+        location: .literal('us-central1'),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/iap.httpsResourceAccessor',
             member:

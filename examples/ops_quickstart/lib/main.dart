@@ -36,47 +36,45 @@ final class AuditPipelineStack extends Stack {
     final apiLogging = add(
       GoogleProjectService(
         localName: 'api_logging',
-        service: TfArg.literal('logging.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('logging.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiBigquery = add(
       GoogleProjectService(
         localName: 'api_bigquery',
-        service: TfArg.literal('bigquery.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('bigquery.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiSpanner = add(
       GoogleProjectService(
         localName: 'api_spanner',
-        service: TfArg.literal('spanner.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('spanner.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final dataset = GoogleBigqueryDataset(
       localName: 'audit_logs',
-      datasetId: TfArg.literal('audit_logs'),
-      location: TfArg.literal('asia-northeast1'),
-      friendlyName: TfArg.literal('Cloud Audit Logs sink'),
-      description: TfArg.literal(
-        'Sink destination for cloudaudit.googleapis.com.',
-      ),
+      datasetId: .literal('audit_logs'),
+      location: .literal('asia-northeast1'),
+      friendlyName: .literal('Cloud Audit Logs sink'),
+      description: .literal('Sink destination for cloudaudit.googleapis.com.'),
       dependsOn: [ResourceDependency(apiBigquery)],
     );
     add(dataset);
 
     final auditBucket = GoogleLoggingProjectBucketConfig(
       localName: 'audit_bucket',
-      bucketId: TfArg.literal(bucketId),
-      location: TfArg.literal(location),
-      project: TfArg.literal(projectId),
-      retentionDays: TfArg.literal(30),
-      enableAnalytics: TfArg.literal(true),
-      description: TfArg.literal('Audit log bucket for filtered views.'),
+      bucketId: .literal(bucketId),
+      location: .literal(location),
+      project: .literal(projectId),
+      retentionDays: .literal(30),
+      enableAnalytics: .literal(true),
+      description: .literal('Audit log bucket for filtered views.'),
       dependsOn: [ResourceDependency(apiLogging)],
     );
     add(auditBucket);
@@ -84,11 +82,11 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingLogScope(
         localName: 'audit_scope',
-        name: TfArg.literal('audit-scope'),
-        resourceNames: TfArg.literal([
+        name: .literal('audit-scope'),
+        resourceNames: .literal([
           'projects/$projectId/locations/$location/buckets/$bucketId',
         ]),
-        description: TfArg.literal('Scope for audit log analytics.'),
+        description: .literal('Scope for audit log analytics.'),
         dependsOn: [ResourceDependency(auditBucket)],
       ),
     );
@@ -96,10 +94,10 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingLinkedDataset(
         localName: 'audit_analytics',
-        bucket: TfArg.ref(auditBucket.bucketIdRef),
-        linkId: TfArg.literal('audit-analytics'),
+        bucket: .ref(auditBucket.bucketIdRef),
+        linkId: .literal('audit-analytics'),
         bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
-          datasetId: TfArg.ref(dataset.datasetIdRef),
+          datasetId: .ref(dataset.datasetIdRef),
         ),
         dependsOn: [
           ResourceDependency(auditBucket),
@@ -110,11 +108,11 @@ final class AuditPipelineStack extends Stack {
 
     final auditView = GoogleLoggingLogView(
       localName: 'audit_view',
-      bucket: TfArg.ref(auditBucket.bucketIdRef),
-      name: TfArg.literal(viewName),
-      location: TfArg.literal(location),
-      filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
-      description: TfArg.literal('Audit-only slice of the audit log bucket.'),
+      bucket: .ref(auditBucket.bucketIdRef),
+      name: .literal(viewName),
+      location: .literal(location),
+      filter: .literal('logName:"cloudaudit.googleapis.com"'),
+      description: .literal('Audit-only slice of the audit log bucket.'),
       dependsOn: [ResourceDependency(auditBucket)],
     );
     add(auditView);
@@ -122,14 +120,14 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingLogViewIamMember(
         localName: 'audit_view_viewer',
-        bucket: TfArg.ref(auditBucket.bucketIdRef),
-        location: TfArg.literal(location),
-        name: TfArg.ref(auditView.nameRef),
-        parent: TfArg.literal(
+        bucket: .ref(auditBucket.bucketIdRef),
+        location: .literal(location),
+        name: .ref(auditView.nameRef),
+        parent: .literal(
           'projects/$projectId/locations/$location/buckets/$bucketId/views/$viewName',
         ),
-        role: TfArg.literal('roles/logging.viewer'),
-        member: TfArg.literal('group:security-auditors@example.com'),
+        role: .literal('roles/logging.viewer'),
+        member: .literal('group:security-auditors@example.com'),
         dependsOn: [ResourceDependency(auditView)],
       ),
     );
@@ -137,9 +135,9 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingProjectExclusion(
         localName: 'drop_dns_noise',
-        name: TfArg.literal('drop-dns-noise'),
-        filter: TfArg.literal('resource.type="dns_query"'),
-        description: TfArg.literal('Skip high-volume DNS query logs.'),
+        name: .literal('drop-dns-noise'),
+        filter: .literal('resource.type="dns_query"'),
+        description: .literal('Skip high-volume DNS query logs.'),
         dependsOn: [ResourceDependency(apiLogging)],
       ),
     );
@@ -147,14 +145,14 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingSavedQuery(
         localName: 'audit_errors',
-        name: TfArg.literal('audit-errors'),
-        displayName: TfArg.literal('Audit errors'),
-        parent: TfArg.literal('projects/$projectId/locations/$location'),
-        location: TfArg.literal(location),
-        visibility: TfArg.literal(LoggingSavedQueryVisibility.private),
+        name: .literal('audit-errors'),
+        displayName: .literal('Audit errors'),
+        parent: .literal('projects/$projectId/locations/$location'),
+        location: .literal(location),
+        visibility: .literal(.private),
         query: .loggingQuery(
           LoggingSavedQueryLoggingQuery(
-            filter: TfArg.literal(
+            filter: .literal(
               'logName:"cloudaudit.googleapis.com" AND severity>=ERROR',
             ),
           ),
@@ -166,15 +164,15 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingMetric(
         localName: 'audit_error_count',
-        name: TfArg.literal('audit_error_count'),
-        filter: TfArg.literal(
+        name: .literal('audit_error_count'),
+        filter: .literal(
           'logName:"cloudaudit.googleapis.com" AND severity>=ERROR',
         ),
-        bucketName: TfArg.ref(auditBucket.bucketIdRef),
+        bucketName: .ref(auditBucket.bucketIdRef),
         metricDescriptor: LoggingMetricDescriptor(
-          metricKind: TfArg.literal(LoggingMetricKind.delta),
-          valueType: TfArg.literal(LoggingMetricValueType.int64),
-          displayName: TfArg.literal('Audit error count'),
+          metricKind: .literal(.delta),
+          valueType: .literal(.int64),
+          displayName: .literal('Audit error count'),
         ),
         dependsOn: [ResourceDependency(auditBucket)],
       ),
@@ -187,12 +185,12 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingProjectSink(
         localName: 'audit_to_bq',
-        name: TfArg.literal('audit-to-bq'),
+        name: .literal('audit-to-bq'),
         destination: projectSinkDestination,
-        filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
-        uniqueWriterIdentity: TfArg.literal(true),
+        filter: .literal('logName:"cloudaudit.googleapis.com"'),
+        uniqueWriterIdentity: .literal(true),
         bigqueryOptions: LoggingProjectSinkBigqueryOptions(
-          usePartitionedTables: TfArg.literal(true),
+          usePartitionedTables: .literal(true),
         ),
         dependsOn: [
           ResourceDependency(dataset),
@@ -204,13 +202,13 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingFolderSink(
         localName: 'folder_audit_to_bq',
-        name: TfArg.literal('folder-audit-to-bq'),
+        name: .literal('folder-audit-to-bq'),
         folder: TfArg.variable('ops_folder_id'),
         destination: projectSinkDestination,
-        filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
-        includeChildren: TfArg.literal(true),
+        filter: .literal('logName:"cloudaudit.googleapis.com"'),
+        includeChildren: .literal(true),
         bigqueryOptions: LoggingFolderSinkBigqueryOptions(
-          usePartitionedTables: TfArg.literal(true),
+          usePartitionedTables: .literal(true),
         ),
         dependsOn: [
           ResourceDependency(dataset),
@@ -222,13 +220,13 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleLoggingOrganizationSink(
         localName: 'org_audit_to_bq',
-        name: TfArg.literal('org-audit-to-bq'),
+        name: .literal('org-audit-to-bq'),
         orgId: TfArg.variable('ops_organization_id'),
         destination: projectSinkDestination,
-        filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
-        includeChildren: TfArg.literal(true),
+        filter: .literal('logName:"cloudaudit.googleapis.com"'),
+        includeChildren: .literal(true),
         bigqueryOptions: LoggingOrganizationSinkBigqueryOptions(
-          usePartitionedTables: TfArg.literal(true),
+          usePartitionedTables: .literal(true),
         ),
         dependsOn: [
           ResourceDependency(dataset),
@@ -242,9 +240,9 @@ final class AuditPipelineStack extends Stack {
     final spanner = add(
       GoogleSpannerInstance(
         localName: 'audit_spanner',
-        config: TfArg.literal('regional-asia-northeast1'),
-        displayName: TfArg.literal('Audit metadata store'),
-        numNodes: TfArg.literal(1),
+        config: .literal('regional-asia-northeast1'),
+        displayName: .literal('Audit metadata store'),
+        numNodes: .literal(1),
         dependsOn: [ResourceDependency(apiSpanner)],
       ),
     );
@@ -252,9 +250,9 @@ final class AuditPipelineStack extends Stack {
     final spannerDb = add(
       GoogleSpannerDatabase(
         localName: 'audit_meta',
-        instance: TfArg.ref(spanner.nameRef),
-        name: TfArg.literal('audit_meta'),
-        versionRetentionPeriod: TfArg.literal('86400s'),
+        instance: .ref(spanner.nameRef),
+        name: .literal('audit_meta'),
+        versionRetentionPeriod: .literal('86400s'),
         dependsOn: [ResourceDependency(spanner)],
       ),
     );
@@ -262,9 +260,9 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleSpannerInstanceIamMember(
         localName: 'spanner_instance_viewer',
-        instance: TfArg.ref(spanner.nameRef),
-        role: TfArg.literal('roles/spanner.viewer'),
-        member: TfArg.literal('group:audit-readers@example.com'),
+        instance: .ref(spanner.nameRef),
+        role: .literal('roles/spanner.viewer'),
+        member: .literal('group:audit-readers@example.com'),
         dependsOn: [ResourceDependency(spanner)],
       ),
     );
@@ -272,10 +270,10 @@ final class AuditPipelineStack extends Stack {
     add(
       GoogleSpannerDatabaseIamMember(
         localName: 'spanner_db_reader',
-        instance: TfArg.ref(spanner.nameRef),
-        database: TfArg.ref(spannerDb.nameRef),
-        role: TfArg.literal('roles/spanner.databaseReader'),
-        member: TfArg.literal('group:audit-readers@example.com'),
+        instance: .ref(spanner.nameRef),
+        database: .ref(spannerDb.nameRef),
+        role: .literal('roles/spanner.databaseReader'),
+        member: .literal('group:audit-readers@example.com'),
         dependsOn: [ResourceDependency(spannerDb)],
       ),
     );

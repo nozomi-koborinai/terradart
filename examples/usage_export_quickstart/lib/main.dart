@@ -21,15 +21,15 @@ final class UsageExportStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
-        service: TfArg.literal('compute.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('compute.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
     final apiStorage = add(
       GoogleProjectService(
         localName: 'api_storage',
-        service: TfArg.literal('storage.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('storage.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -38,10 +38,10 @@ final class UsageExportStack extends Stack {
     final reports = add(
       GoogleStorageBucket(
         localName: 'usage_reports',
-        name: TfArg.literal('$projectId-terradart-usage-reports'),
-        location: TfArg.literal('US'),
-        forceDestroy: TfArg.literal(true),
-        uniformBucketLevelAccess: TfArg.literal(true),
+        name: .literal('$projectId-terradart-usage-reports'),
+        location: .literal('US'),
+        forceDestroy: .literal(true),
+        uniformBucketLevelAccess: .literal(true),
         dependsOn: [
           ResourceDependency(apiCompute),
           ResourceDependency(apiStorage),
@@ -52,8 +52,8 @@ final class UsageExportStack extends Stack {
     add(
       GoogleProjectUsageExportBucket(
         localName: 'usage_export',
-        bucketName: TfArg.ref(reports.nameRef),
-        prefix: TfArg.literal('gce-usage'),
+        bucketName: .ref(reports.nameRef),
+        prefix: .literal('gce-usage'),
         dependsOn: [
           ResourceDependency(apiCompute),
           ResourceDependency(reports),

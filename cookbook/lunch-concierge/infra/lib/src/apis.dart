@@ -31,26 +31,26 @@ LunchApis addApisAndRepository(Stack stack) {
   final vertexApi = stack.add(
     GoogleProjectService(
       localName: 'api_aiplatform',
-      service: TfArg.literal('aiplatform.googleapis.com'),
-      disableOnDestroy: TfArg.literal(false),
+      service: .literal('aiplatform.googleapis.com'),
+      disableOnDestroy: .literal(false),
     ),
   );
 
   final iapApi = stack.add(
     GoogleProjectService(
       localName: 'api_iap',
-      service: TfArg.literal('iap.googleapis.com'),
-      disableOnDestroy: TfArg.literal(false),
+      service: .literal('iap.googleapis.com'),
+      disableOnDestroy: .literal(false),
     ),
   );
 
   stack.add(
     GoogleArtifactRegistryRepository(
       localName: 'app_images',
-      repositoryId: TfArg.literal(repositoryId),
-      format: TfArg.literal('DOCKER'),
-      location: TfArg.literal(region),
-      description: TfArg.literal('Lunch Concierge demo container images'),
+      repositoryId: .literal(repositoryId),
+      format: .literal('DOCKER'),
+      location: .literal(region),
+      description: .literal('Lunch Concierge demo container images'),
       dependsOn: apiDeps,
     ),
   );

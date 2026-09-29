@@ -22,16 +22,16 @@ final class ModelArmorStack extends Stack {
     final apiModelArmor = add(
       GoogleProjectService(
         localName: 'api_modelarmor',
-        service: TfArg.literal('modelarmor.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('modelarmor.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleModelArmorTemplate(
         localName: 'basic',
-        location: TfArg.literal('us-central1'),
-        templateId: TfArg.literal('terradart-modelarmor'),
+        location: .literal('us-central1'),
+        templateId: .literal('terradart-modelarmor'),
         filterConfig: const ModelArmorTemplateFilterConfig(),
         dependsOn: [ResourceDependency(apiModelArmor)],
       ),

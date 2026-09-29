@@ -26,19 +26,19 @@ final class ProjectIamAuditConfigStack extends Stack {
     final apiIam = add(
       GoogleProjectService(
         localName: 'api_iam',
-        service: TfArg.literal('iam.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('iam.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleProjectIamAuditConfig(
         localName: 'storage_admin_read',
-        project: TfArg.literal(projectId),
-        service: TfArg.literal('storage.googleapis.com'),
+        project: .literal(projectId),
+        service: .literal('storage.googleapis.com'),
         auditLogConfig: [
           ProjectIamAuditConfigAuditLogConfig(
-            logType: TfArg.literal(
+            logType: .literal(
               ProjectIamAuditConfigAuditLogConfigLogType
                   .adminRead
                   .terraformValue,
@@ -51,8 +51,8 @@ final class ProjectIamAuditConfigStack extends Stack {
     final denied = add(
       GoogleServiceAccount(
         localName: 'denied',
-        accountId: TfArg.literal('terradart-denied'),
-        displayName: TfArg.literal('TerraDart deny-policy target'),
+        accountId: .literal('terradart-denied'),
+        displayName: .literal('TerraDart deny-policy target'),
         dependsOn: [ResourceDependency(apiIam)],
       ),
     );
@@ -60,24 +60,24 @@ final class ProjectIamAuditConfigStack extends Stack {
     add(
       GoogleIamDenyPolicy(
         localName: 'storage_get_deny',
-        parent: TfArg.literal(
+        parent: .literal(
           Uri.encodeComponent(
             'cloudresourcemanager.googleapis.com/projects/$projectId',
           ),
         ),
-        name: TfArg.literal('terradart-storage-get-deny'),
-        displayName: TfArg.literal('Deny storage.objects.get for smoke SA'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        name: .literal('terradart-storage-get-deny'),
+        displayName: .literal('Deny storage.objects.get for smoke SA'),
+        deletionPolicy: .literal('DELETE'),
         rules: [
           IamDenyPolicyRules(
-            description: TfArg.literal(
+            description: .literal(
               'Deny storage.objects.get for the in-stack SA only.',
             ),
             denyRule: IamDenyPolicyRulesDenyRule(
-              deniedPrincipals: TfArg.literal([
+              deniedPrincipals: .literal([
                 'principal://iam.googleapis.com/projects/-/serviceAccounts/${denied.email.interpolation}',
               ]),
-              deniedPermissions: TfArg.literal([
+              deniedPermissions: .literal([
                 'storage.googleapis.com/objects.get',
               ]),
             ),

@@ -49,9 +49,9 @@ final class GkeQuickstartStack extends Stack {
     final vpc = add(
       GoogleComputeNetwork(
         localName: 'main',
-        name: TfArg.literal('gke-vpc'),
-        autoCreateSubnetworks: TfArg.literal(false),
-        routingMode: TfArg.literal(RoutingMode.regional),
+        name: .literal('gke-vpc'),
+        autoCreateSubnetworks: .literal(false),
+        routingMode: .literal(.regional),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );
@@ -59,33 +59,33 @@ final class GkeQuickstartStack extends Stack {
     final subnet = add(
       GoogleComputeSubnetwork(
         localName: 'gke',
-        name: TfArg.literal('gke-subnet'),
-        region: TfArg.literal(region),
-        network: TfArg.ref(vpc.id),
-        ipCidrRange: TfArg.literal('10.20.0.0/20'),
+        name: .literal('gke-subnet'),
+        region: .literal(region),
+        network: .ref(vpc.id),
+        ipCidrRange: .literal('10.20.0.0/20'),
       ),
     );
 
     final cluster = add(
       GoogleContainerCluster(
         localName: 'main',
-        name: TfArg.literal(clusterName),
-        location: TfArg.literal(region),
-        initialNodeCount: TfArg.literal(1),
-        removeDefaultNodePool: TfArg.literal(true),
-        network: TfArg.ref(vpc.nameRef),
-        subnetwork: TfArg.ref(subnet.nameRef),
+        name: .literal(clusterName),
+        location: .literal(region),
+        initialNodeCount: .literal(1),
+        removeDefaultNodePool: .literal(true),
+        network: .ref(vpc.nameRef),
+        subnetwork: .ref(subnet.nameRef),
         // GKE clusters default `deletion_protection = true`, which makes
         // `terraform destroy` refuse to delete the cluster. This is a
         // short-lived smoke example, so opt out to keep teardown clean.
-        deletionProtection: TfArg.literal(false),
+        deletionProtection: .literal(false),
         // The GKE Hub membership below requires the cluster to have Workload
         // Identity enabled; the workload pool is always `<project>.svc.id.goog`.
-        workloadIdentityConfig: TfArg.literal({
+        workloadIdentityConfig: .literal({
           'workload_pool': TfArg.literal('$projectId.svc.id.goog'),
         }),
         // Backup for GKE (Wave 10) requires the agent addon on the cluster.
-        addonsConfig: TfArg.literal({
+        addonsConfig: .literal({
           'gke_backup_agent_config': {'enabled': TfArg.literal(true)},
         }),
         dependsOn: [
@@ -98,10 +98,10 @@ final class GkeQuickstartStack extends Stack {
     final primaryPool = add(
       GoogleContainerNodePool(
         localName: 'primary',
-        name: TfArg.literal('primary-pool'),
-        location: TfArg.literal(region),
-        cluster: TfArg.ref(cluster.nameRef),
-        nodeCount: TfArg.literal(1),
+        name: .literal('primary-pool'),
+        location: .literal(region),
+        cluster: .ref(cluster.nameRef),
+        nodeCount: .literal(1),
         dependsOn: [ResourceDependency(cluster)],
       ),
     );
@@ -114,11 +114,11 @@ final class GkeQuickstartStack extends Stack {
     final membership = add(
       GoogleGkeHubMembership(
         localName: 'main',
-        membershipId: TfArg.literal('main-cluster'),
-        endpoint: TfArg.literal({
+        membershipId: .literal('main-cluster'),
+        endpoint: .literal({
           'gke_cluster': {'resource_link': TfArg.ref(cluster.id)},
         }),
-        authority: TfArg.literal({
+        authority: .literal({
           'issuer': TfArg.literal(
             'https://container.googleapis.com/v1/projects/$projectId/locations/$region/clusters/$clusterName',
           ),
@@ -143,17 +143,17 @@ final class GkeQuickstartStack extends Stack {
     final backupOperator = add(
       GoogleServiceAccount(
         localName: 'backup_operator',
-        accountId: TfArg.literal('gke-backup-operator'),
-        displayName: TfArg.literal('GKE Backup operator'),
+        accountId: .literal('gke-backup-operator'),
+        displayName: .literal('GKE Backup operator'),
       ),
     );
 
     add(
       GoogleGkeHubMembershipIamMember(
         localName: 'membership_viewer',
-        membershipId: TfArg.literal('main-cluster'),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(backupOperator.iamMember),
+        membershipId: .literal('main-cluster'),
+        role: .literal('roles/viewer'),
+        member: .ref(backupOperator.iamMember),
         dependsOn: [
           ResourceDependency(membership),
           ResourceDependency(backupOperator),
@@ -164,23 +164,22 @@ final class GkeQuickstartStack extends Stack {
     final backupPlan = add(
       GoogleGkeBackupBackupPlan(
         localName: 'main',
-        name: TfArg.literal('main-backup-plan'),
-        location: TfArg.literal(region),
-        cluster: TfArg.ref(cluster.id),
+        name: .literal('main-backup-plan'),
+        location: .literal(region),
+        cluster: .ref(cluster.id),
         backupSchedule: GkeBackupBackupPlanBackupSchedule(
-          cronSchedule: TfArg.literal('0 3 * * *'),
+          cronSchedule: .literal('0 3 * * *'),
         ),
         // GKE Backup requires the plan to declare a backup scope; without one
         // the API rejects creation with INVALID_BACKUP_SCOPE. Back up every
         // namespace (plus secrets + volume data) — the canonical basic scope.
         backupConfig: GkeBackupBackupPlanBackupConfig(
-          scope:
-              .allNamespaces(TfArg.literal(true)),
-          includeSecrets: TfArg.literal(true),
-          includeVolumeData: TfArg.literal(true),
+          scope: .allNamespaces(.literal(true)),
+          includeSecrets: .literal(true),
+          includeVolumeData: .literal(true),
         ),
         retentionPolicy: GkeBackupBackupPlanRetentionPolicy(
-          backupRetainDays: TfArg.literal(7),
+          backupRetainDays: .literal(7),
         ),
         dependsOn: [
           ResourceDependency(apiGkeBackup),
@@ -192,18 +191,18 @@ final class GkeQuickstartStack extends Stack {
     add(
       GoogleGkeBackupRestorePlan(
         localName: 'main',
-        name: TfArg.literal('main-restore-plan'),
-        location: TfArg.literal(region),
+        name: .literal('main-restore-plan'),
+        location: .literal(region),
         // The API requires the full backup-plan resource name
         // (`projects/.../locations/.../backupPlans/...`); the bare `name`
         // attribute is rejected with INVALID_FIELD. `id` is that full path.
-        backupPlan: TfArg.ref(backupPlan.id),
-        cluster: TfArg.ref(cluster.id),
+        backupPlan: .ref(backupPlan.id),
+        cluster: .ref(cluster.id),
         // Selecting namespaced resources (here: every namespace) requires the
         // restore mode for those resources to be set, otherwise the API
         // rejects creation with MISSING_NAMESPACED_RESOURCE_RESTORE_MODE.
         restoreConfig: GkeBackupRestorePlanRestoreConfig(
-          allNamespaces: TfArg.literal(true),
+          allNamespaces: .literal(true),
           namespacedResourceRestoreMode:
               GkeBackupRestorePlanNamespacedResourceRestoreMode
                   .deleteAndRestore,
@@ -223,10 +222,10 @@ final class GkeQuickstartStack extends Stack {
     add(
       GoogleGkeBackupBackupPlanIamMember(
         localName: 'viewer',
-        name: TfArg.ref(backupPlan.nameRef),
-        location: TfArg.literal(region),
-        role: TfArg.literal('roles/gkebackup.viewer'),
-        member: TfArg.ref(backupOperator.iamMember),
+        name: .ref(backupPlan.nameRef),
+        location: .literal(region),
+        role: .literal('roles/gkebackup.viewer'),
+        member: .ref(backupOperator.iamMember),
         dependsOn: [ResourceDependency(backupOperator)],
       ),
     );

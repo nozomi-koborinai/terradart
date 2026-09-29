@@ -23,17 +23,17 @@ final class IapTunnelStack extends Stack {
     final apiIap = add(
       GoogleProjectService(
         localName: 'api_iap',
-        service: TfArg.literal('iap.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('iap.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final destGroup = add(
       GoogleIapTunnelDestGroup(
         localName: 'internal',
-        groupName: TfArg.literal('terradart-internal'),
-        region: TfArg.literal('us-central1'),
-        cidrs: TfArg.literal(['10.1.0.0/16']),
+        groupName: .literal('terradart-internal'),
+        region: .literal('us-central1'),
+        cidrs: .literal(['10.1.0.0/16']),
         dependsOn: [ResourceDependency(apiIap)],
       ),
     );
@@ -41,18 +41,18 @@ final class IapTunnelStack extends Stack {
     final tunnelUser = add(
       GoogleServiceAccount(
         localName: 'tunnel_user',
-        accountId: TfArg.literal('terradart-tunnel-user'),
-        displayName: TfArg.literal('IAP tunnel user'),
+        accountId: .literal('terradart-tunnel-user'),
+        displayName: .literal('IAP tunnel user'),
       ),
     );
 
     add(
       GoogleIapTunnelDestGroupIamMember(
         localName: 'tunnel_user_grant',
-        destGroup: TfArg.literal('terradart-internal'),
-        region: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(tunnelUser.iamMember),
+        destGroup: .literal('terradart-internal'),
+        region: .literal('us-central1'),
+        role: .literal('roles/viewer'),
+        member: .ref(tunnelUser.iamMember),
         dependsOn: [
           ResourceDependency(destGroup),
           ResourceDependency(tunnelUser),
@@ -64,8 +64,8 @@ final class IapTunnelStack extends Stack {
     add(
       GoogleIapTunnelIamMember(
         localName: 'tunnel_project_grant',
-        role: TfArg.literal('roles/iap.tunnelResourceAccessor'),
-        member: TfArg.ref(tunnelUser.iamMember),
+        role: .literal('roles/iap.tunnelResourceAccessor'),
+        member: .ref(tunnelUser.iamMember),
         dependsOn: [ResourceDependency(apiIap), ResourceDependency(tunnelUser)],
       ),
     );

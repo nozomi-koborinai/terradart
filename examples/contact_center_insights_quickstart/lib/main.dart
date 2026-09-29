@@ -28,19 +28,19 @@ final class ContactCenterInsightsStack extends Stack {
     final apiInsights = add(
       GoogleProjectService(
         localName: 'api_contactcenterinsights',
-        service: TfArg.literal('contactcenterinsights.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('contactcenterinsights.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final rule = add(
       GoogleContactCenterInsightsAnalysisRule(
         localName: 'draft_rule',
-        location: TfArg.literal('us-central1'),
-        displayName: TfArg.literal('terradart-draft-analysis'),
+        location: .literal('us-central1'),
+        displayName: .literal('terradart-draft-analysis'),
         // Keep inactive so apply does not enroll conversations in analysis.
-        active: TfArg.literal(false),
-        analysisPercentage: TfArg.literal(0),
+        active: .literal(false),
+        analysisPercentage: .literal(0),
         dependsOn: [ResourceDependency(apiInsights)],
       ),
     );
@@ -48,11 +48,11 @@ final class ContactCenterInsightsStack extends Stack {
     final view = add(
       GoogleContactCenterInsightsView(
         localName: 'phone_calls',
-        location: TfArg.literal('us-central1'),
-        displayName: TfArg.literal('terradart-phone-calls'),
+        location: .literal('us-central1'),
+        displayName: .literal('terradart-phone-calls'),
         // API rejects an empty value ("Value cannot be empty"); use a
         // documented conversation filter instead.
-        value: TfArg.literal('medium="PHONE_CALL"'),
+        value: .literal('medium="PHONE_CALL"'),
         dependsOn: [ResourceDependency(apiInsights)],
       ),
     );
@@ -62,13 +62,11 @@ final class ContactCenterInsightsStack extends Stack {
     final scorecard = add(
       GoogleContactCenterInsightsQaScorecard(
         localName: 'qa',
-        location: TfArg.literal('us-central1'),
-        qaScorecardId: TfArg.literal(scorecardId),
-        displayName: TfArg.literal('TerraDart QA'),
-        description: TfArg.literal('Quickstart scorecard'),
-        source: TfArg.literal(
-          ContactCenterInsightsQaScorecardSource.customerDefined,
-        ),
+        location: .literal('us-central1'),
+        qaScorecardId: .literal(scorecardId),
+        displayName: .literal('TerraDart QA'),
+        description: .literal('Quickstart scorecard'),
+        source: .literal(.customerDefined),
         dependsOn: [ResourceDependency(apiInsights)],
       ),
     );
@@ -79,8 +77,8 @@ final class ContactCenterInsightsStack extends Stack {
     final revision = add(
       GoogleContactCenterInsightsQaScorecardRevision(
         localName: 'qa_rev',
-        location: TfArg.literal('us-central1'),
-        qaScorecard: TfArg.literal(scorecardId),
+        location: .literal('us-central1'),
+        qaScorecard: .literal(scorecardId),
         dependsOn: [ResourceDependency(scorecard)],
       ),
     );
@@ -88,22 +86,22 @@ final class ContactCenterInsightsStack extends Stack {
     final question = add(
       GoogleContactCenterInsightsQaQuestion(
         localName: 'greeting',
-        location: TfArg.literal('us-central1'),
-        qaScorecard: TfArg.literal(scorecardId),
-        revision: TfArg.ref(revision.qaScorecardRevisionId),
-        questionBody: TfArg.literal('Did the agent greet the customer?'),
-        questionType: TfArg.literal('CUSTOMIZABLE'),
-        abbreviation: TfArg.literal('Greeting'),
+        location: .literal('us-central1'),
+        qaScorecard: .literal(scorecardId),
+        revision: .ref(revision.qaScorecardRevisionId),
+        questionBody: .literal('Did the agent greet the customer?'),
+        questionType: .literal('CUSTOMIZABLE'),
+        abbreviation: .literal('Greeting'),
         answerChoices: [
           // Scores must be non-zero doubles — the provider omits a 0 score
           // and the API returns 400 "Answer choice score must be set".
           ContactCenterInsightsQaQuestionAnswerChoices(
-            strValue: TfArg.literal('Yes'),
-            score: TfArg.literal(1.0),
+            strValue: .literal('Yes'),
+            score: .literal(1.0),
           ),
           ContactCenterInsightsQaQuestionAnswerChoices(
-            strValue: TfArg.literal('No'),
-            score: TfArg.literal(0.5),
+            strValue: .literal('No'),
+            score: .literal(0.5),
           ),
         ],
         dependsOn: [ResourceDependency(revision)],
@@ -114,15 +112,15 @@ final class ContactCenterInsightsStack extends Stack {
     final assessment = add(
       GoogleContactCenterInsightsAssessmentRule(
         localName: 'draft_assessment',
-        location: TfArg.literal('us-central1'),
-        assessmentRuleId: TfArg.literal('terradartassess'),
-        displayName: TfArg.literal('terradart-draft-assessment'),
-        active: TfArg.literal(false),
+        location: .literal('us-central1'),
+        assessmentRuleId: .literal('terradartassess'),
+        displayName: .literal('terradart-draft-assessment'),
+        active: .literal(false),
         sampleRule: ContactCenterInsightsAssessmentRuleSampleRule(
-          sample: .samplePercentage(TfArg.literal(0)),
+          sample: .samplePercentage(.literal(0)),
         ),
         scheduleInfo: ContactCenterInsightsAssessmentRuleScheduleInfo(
-          schedule: TfArg.literal('every 1 hours'),
+          schedule: .literal('every 1 hours'),
         ),
         dependsOn: [ResourceDependency(apiInsights)],
       ),
@@ -131,21 +129,19 @@ final class ContactCenterInsightsStack extends Stack {
     final autoLabel = add(
       GoogleContactCenterInsightsAutoLabelingRule(
         localName: 'draft_autolabel',
-        location: TfArg.literal('us-central1'),
-        autoLabelingRuleId: TfArg.literal('terradartautolabel'),
-        displayName: TfArg.literal('terradart-draft-autolabel'),
-        description: TfArg.literal('Inactive quickstart auto-label rule'),
-        labelKey: TfArg.literal('terradart_label'),
-        labelKeyType: TfArg.literal(
-          ContactCenterInsightsAutoLabelingRuleLabelKeyType.labelKeyTypeCustom,
-        ),
+        location: .literal('us-central1'),
+        autoLabelingRuleId: .literal('terradartautolabel'),
+        displayName: .literal('terradart-draft-autolabel'),
+        description: .literal('Inactive quickstart auto-label rule'),
+        labelKey: .literal('terradart_label'),
+        labelKeyType: .literal(.labelKeyTypeCustom),
         conditions: [
           ContactCenterInsightsAutoLabelingRuleConditions(
-            condition: TfArg.literal('true'),
-            value: TfArg.literal("'draft'"),
+            condition: .literal('true'),
+            value: .literal("'draft'"),
           ),
         ],
-        active: TfArg.literal(false),
+        active: .literal(false),
         dependsOn: [ResourceDependency(apiInsights)],
       ),
     );

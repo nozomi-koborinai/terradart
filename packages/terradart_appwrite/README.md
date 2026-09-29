@@ -40,8 +40,8 @@ final class AppwriteInfraStack extends Stack {
     add(
       AppwriteStorageBucket(
         localName: 'uploads',
-        name: TfArg.literal('uploads'),
-        maximumFileSize: TfArg.literal(10485760),
+        name: .literal('uploads'),
+        maximumFileSize: .literal(10485760),
       ),
     );
   }

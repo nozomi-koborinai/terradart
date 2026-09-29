@@ -25,24 +25,24 @@ final class VpcFlowLogsStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
-        service: TfArg.literal('compute.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('compute.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiNetworkManagement = add(
       GoogleProjectService(
         localName: 'api_networkmanagement',
-        service: TfArg.literal('networkmanagement.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('networkmanagement.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final network = add(
       GoogleComputeNetwork(
         localName: 'vpc',
-        name: TfArg.literal('terradart-flow-vpc'),
-        autoCreateSubnetworks: TfArg.literal(false),
+        name: .literal('terradart-flow-vpc'),
+        autoCreateSubnetworks: .literal(false),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );
@@ -50,18 +50,16 @@ final class VpcFlowLogsStack extends Stack {
     add(
       GoogleNetworkManagementVpcFlowLogsConfig(
         localName: 'vpc_logs',
-        vpcFlowLogsConfigId: TfArg.literal('terradart-vpc-flow'),
-        location: TfArg.literal('global'),
-        network: TfArg.literal(
+        vpcFlowLogsConfigId: .literal('terradart-vpc-flow'),
+        location: .literal('global'),
+        network: .literal(
           'projects/${current.number.interpolation}/global/networks/'
           '${network.nameRef.interpolation}',
         ),
-        description: TfArg.literal('TerraDart smoke VPC Flow Logs config'),
-        state: TfArg.literal(NetworkManagementVpcFlowLogsConfigState.enabled),
-        flowSampling: TfArg.literal(0.5),
-        metadata: TfArg.literal(
-          NetworkManagementVpcFlowLogsConfigMetadata.excludeAllMetadata,
-        ),
+        description: .literal('TerraDart smoke VPC Flow Logs config'),
+        state: .literal(.enabled),
+        flowSampling: .literal(0.5),
+        metadata: .literal(.excludeAllMetadata),
         dependsOn: [
           ResourceDependency(apiNetworkManagement),
           ResourceDependency(network),

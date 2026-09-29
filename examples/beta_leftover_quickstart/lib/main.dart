@@ -51,26 +51,26 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleActiveDirectoryPeering(
         localName: 'active_directory_peering',
-        authorizedNetwork: TfArg.literal('terradart-leftover'),
-        domainResource: TfArg.literal('terradart-leftover'),
-        peeringId: TfArg.literal('terradart-leftover'),
+        authorizedNetwork: .literal('terradart-leftover'),
+        domainResource: .literal('terradart-leftover'),
+        peeringId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleApiGatewayApi(
         localName: 'api_gateway_api',
-        apiId: TfArg.literal('terradart-leftover'),
+        apiId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleApiGatewayApiConfig(
         localName: 'api_gateway_api_config',
-        api: TfArg.literal('terradart-leftover'),
+        api: .literal('terradart-leftover'),
         spec: .openapiDocuments([
           ApiGatewayApiConfigOpenapiDocuments(
             document: ApiGatewayApiConfigOpenapiDocumentsDocument(
-              contents: TfArg.literal('b3BlbmFwaTogIjMuMC4wIg=='),
-              path: TfArg.literal('openapi.yaml'),
+              contents: .literal('b3BlbmFwaTogIjMuMC4wIg=='),
+              path: .literal('openapi.yaml'),
             ),
           ),
         ]),
@@ -79,80 +79,80 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleApiGatewayApiConfigIamBinding(
         localName: 'api_gateway_api_config_iam_binding',
-        api: TfArg.literal('terradart-leftover'),
-        apiConfig: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        api: .literal('terradart-leftover'),
+        apiConfig: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleApiGatewayApiConfigIamMember(
         localName: 'api_gateway_api_config_iam_member',
-        api: TfArg.literal('terradart-leftover'),
-        apiConfig: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        api: .literal('terradart-leftover'),
+        apiConfig: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleApiGatewayApiConfigIamPolicy(
         localName: 'api_gateway_api_config_iam_policy',
-        api: TfArg.literal('terradart-leftover'),
-        apiConfig: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        api: .literal('terradart-leftover'),
+        apiConfig: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleApiGatewayApiIamBinding(
         localName: 'api_gateway_api_iam_binding',
-        api: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        api: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleApiGatewayApiIamMember(
         localName: 'api_gateway_api_iam_member',
-        api: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        api: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleApiGatewayApiIamPolicy(
         localName: 'api_gateway_api_iam_policy',
-        api: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        api: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleApiGatewayGateway(
         localName: 'api_gateway_gateway',
-        apiConfig: TfArg.literal('terradart-leftover'),
-        gatewayId: TfArg.literal('terradart-leftover'),
+        apiConfig: .literal('terradart-leftover'),
+        gatewayId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleApiGatewayGatewayIamBinding(
         localName: 'api_gateway_gateway_iam_binding',
-        gateway: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        gateway: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleApiGatewayGatewayIamMember(
         localName: 'api_gateway_gateway_iam_member',
-        gateway: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        gateway: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleApiGatewayGatewayIamPolicy(
         localName: 'api_gateway_gateway_iam_policy',
-        gateway: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        gateway: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
@@ -163,144 +163,142 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleBigqueryAnalyticsHubDataExchangeSubscription(
         localName: 'bigquery_analytics_hub_data_exchange_subscription',
-        dataExchangeId: TfArg.literal('terradart-leftover'),
-        dataExchangeLocation: TfArg.literal('terradart-leftover'),
-        dataExchangeProject: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('terradart-leftover'),
-        subscriptionId: TfArg.literal('terradart-leftover'),
+        dataExchangeId: .literal('terradart-leftover'),
+        dataExchangeLocation: .literal('terradart-leftover'),
+        dataExchangeProject: .literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        subscriptionId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleCesEvaluation(
         localName: 'ces_evaluation',
-        app: TfArg.literal('terradart-leftover'),
-        displayName: TfArg.literal('terradart-leftover'),
-        evaluationId: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('terradart-leftover'),
+        app: .literal('terradart-leftover'),
+        displayName: .literal('terradart-leftover'),
+        evaluationId: .literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleCesSecuritySettings(
         localName: 'ces_security_settings',
-        location: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleChronicleSoarDomain(
         localName: 'chronicle_soar_domain',
-        displayName: TfArg.literal('terradart-leftover'),
-        environmentsJson: TfArg.literal('terradart-leftover'),
-        instance: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('terradart-leftover'),
+        displayName: .literal('terradart-leftover'),
+        environmentsJson: .literal('terradart-leftover'),
+        instance: .literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleComputeBackendBucketIamBinding(
         localName: 'compute_backend_bucket_iam_binding',
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeBackendBucketIamMember(
         localName: 'compute_backend_bucket_iam_member',
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        member: .literal('user:terradart-leftover@example.com'),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeBackendBucketIamPolicy(
         localName: 'compute_backend_bucket_iam_policy',
-        name: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        name: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleComputeBackendServiceIamBinding(
         localName: 'compute_backend_service_iam_binding',
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeBackendServiceIamMember(
         localName: 'compute_backend_service_iam_member',
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        member: .literal('user:terradart-leftover@example.com'),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeBackendServiceIamPolicy(
         localName: 'compute_backend_service_iam_policy',
-        name: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        name: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleComputeFutureReservation(
         localName: 'compute_future_reservation',
-        name: TfArg.literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
         timeWindow: ComputeFutureReservationTimeWindow(
-          startTime: TfArg.literal('2026-01-01T00:00:00Z'),
-          endTime: TfArg.literal('2026-01-02T00:00:00Z'),
+          startTime: .literal('2026-01-01T00:00:00Z'),
+          endTime: .literal('2026-01-02T00:00:00Z'),
         ),
       ),
     );
     add(
       GoogleComputeInstanceFromMachineImage(
         localName: 'compute_instance_from_machine_image',
-        name: TfArg.literal('terradart-leftover'),
-        sourceMachineImage: TfArg.literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        sourceMachineImage: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleComputeMachineImage(
         localName: 'compute_machine_image',
-        name: TfArg.literal('terradart-leftover'),
-        sourceInstance: TfArg.literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        sourceInstance: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleComputeMachineImageIamBinding(
         localName: 'compute_machine_image_iam_binding',
-        machineImage: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        machineImage: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeMachineImageIamMember(
         localName: 'compute_machine_image_iam_member',
-        machineImage: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        machineImage: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeMachineImageIamPolicy(
         localName: 'compute_machine_image_iam_policy',
-        machineImage: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        machineImage: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleComputeNetworkFirewallPolicyPacketMirroringRule(
         localName: 'compute_network_firewall_policy_packet_mirroring_rule',
-        action: TfArg.literal('mirror'),
-        direction: TfArg.literal(
-          ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.ingress,
-        ),
-        firewallPolicy: TfArg.literal('terradart-leftover'),
-        priority: TfArg.literal(1000),
+        action: .literal('mirror'),
+        direction: .literal(.ingress),
+        firewallPolicy: .literal('terradart-leftover'),
+        priority: .literal(1000),
         match: ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(
-          srcIpRanges: TfArg.literal(['0.0.0.0/0']),
+          srcIpRanges: .literal(['0.0.0.0/0']),
           layer4Configs: [
             ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs(
-              ipProtocol: TfArg.literal('tcp'),
+              ipProtocol: .literal('tcp'),
             ),
           ],
         ),
@@ -309,73 +307,73 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleComputeRegionBackendBucket(
         localName: 'compute_region_backend_bucket',
-        bucketName: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-        region: TfArg.literal('terradart-leftover'),
+        bucketName: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        region: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleComputeRegionBackendBucketIamBinding(
         localName: 'compute_region_backend_bucket_iam_binding',
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeRegionBackendBucketIamMember(
         localName: 'compute_region_backend_bucket_iam_member',
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        member: .literal('user:terradart-leftover@example.com'),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeRegionBackendBucketIamPolicy(
         localName: 'compute_region_backend_bucket_iam_policy',
-        name: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        name: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleComputeRegionBackendServiceIamBinding(
         localName: 'compute_region_backend_service_iam_binding',
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeRegionBackendServiceIamMember(
         localName: 'compute_region_backend_service_iam_member',
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        name: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal('roles/viewer'),
+        member: .literal('user:terradart-leftover@example.com'),
+        name: .literal('terradart-leftover'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleComputeRegionBackendServiceIamPolicy(
         localName: 'compute_region_backend_service_iam_policy',
-        name: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        name: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleComputeRegionNetworkPolicy(
         localName: 'compute_region_network_policy',
-        name: TfArg.literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleComputeRegionNetworkPolicyTrafficClassificationRule(
         localName: 'compute_region_network_policy_traffic_classification_rule',
-        networkPolicy: TfArg.literal('terradart-leftover'),
-        priority: TfArg.literal(1000),
+        networkPolicy: .literal('terradart-leftover'),
+        priority: .literal(1000),
         match: ComputeRegionNetworkPolicyTrafficClassificationRuleMatch(
-          srcIpRanges: TfArg.literal(['0.0.0.0/0']),
+          srcIpRanges: .literal(['0.0.0.0/0']),
           layer4Configs: [
             ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs(
-              ipProtocol: TfArg.literal('tcp'),
+              ipProtocol: .literal('tcp'),
             ),
           ],
         ),
@@ -384,125 +382,123 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleGkeHubMembershipRbacRoleBinding(
         localName: 'gke_hub_membership_rbac_role_binding',
-        location: TfArg.literal('terradart-leftover'),
-        membershipId: TfArg.literal('terradart-leftover'),
-        membershipRbacRoleBindingId: TfArg.literal('terradart-leftover'),
-        user: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        membershipId: .literal('terradart-leftover'),
+        membershipRbacRoleBindingId: .literal('terradart-leftover'),
+        user: .literal('terradart-leftover'),
         role: GkeHubMembershipRbacRoleBindingRole(
-          predefinedRole: TfArg.literal(
-            GkeHubMembershipRbacRoleBindingRolePredefinedRole.admin,
-          ),
+          predefinedRole: .literal(.admin),
         ),
       ),
     );
     add(
       GoogleDataflowFlexTemplateJob(
         localName: 'dataflow_flex_template_job',
-        containerSpecGcsPath: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
+        containerSpecGcsPath: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleDataformConfig(
         localName: 'dataform_config',
-        region: TfArg.literal('terradart-leftover'),
+        region: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleDataformRepositoryReleaseConfig(
         localName: 'dataform_repository_release_config',
-        gitCommitish: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
+        gitCommitish: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleDataformRepositoryWorkflowConfig(
         localName: 'dataform_repository_workflow_config',
-        name: TfArg.literal('terradart-leftover'),
-        releaseConfig: TfArg.literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        releaseConfig: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleDataplexDataAsset(
         localName: 'dataplex_data_asset',
-        dataAssetId: TfArg.literal('terradart-leftover'),
-        dataProductId: TfArg.literal('terradart-leftover'),
-        location: TfArg.literal('terradart-leftover'),
-        resource: TfArg.literal('terradart-leftover'),
+        dataAssetId: .literal('terradart-leftover'),
+        dataProductId: .literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        resource: .literal('terradart-leftover'),
       ),
     );
     add(GoogleFirebaseAiLogicConfig(localName: 'firebase_ai_logic_config'));
     add(
       GoogleFirebaseAiLogicPromptTemplate(
         localName: 'firebase_ai_logic_prompt_template',
-        location: TfArg.literal('terradart-leftover'),
-        templateId: TfArg.literal('terradart-leftover'),
-        templateString: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        templateId: .literal('terradart-leftover'),
+        templateString: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleFirebaseAiLogicPromptTemplateLock(
         localName: 'firebase_ai_logic_prompt_template_lock',
-        location: TfArg.literal('terradart-leftover'),
-        templateId: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        templateId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleFirebaseAndroidApp(
         localName: 'firebase_android_app',
-        displayName: TfArg.literal('terradart-leftover'),
-        packageName: TfArg.literal('terradart-leftover'),
+        displayName: .literal('terradart-leftover'),
+        packageName: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleFirebaseAppleApp(
         localName: 'firebase_apple_app',
-        bundleId: TfArg.literal('terradart-leftover'),
-        displayName: TfArg.literal('terradart-leftover'),
+        bundleId: .literal('terradart-leftover'),
+        displayName: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleFirebaseDatabaseInstance(
         localName: 'firebase_database_instance',
-        instanceId: TfArg.literal('terradart-leftover'),
-        region: TfArg.literal('terradart-leftover'),
+        instanceId: .literal('terradart-leftover'),
+        region: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleFirebaseExtensionsInstance(
         localName: 'firebase_extensions_instance',
-        instanceId: TfArg.literal('terradart-leftover'),
+        instanceId: .literal('terradart-leftover'),
         config: FirebaseExtensionsInstanceConfig(
-          extensionRef: TfArg.literal('firebase/firestore-send-email'),
-          params: TfArg.literal({'LOCATION': 'us-central1'}),
+          extensionRef: .literal('firebase/firestore-send-email'),
+          params: .literal({'LOCATION': 'us-central1'}),
         ),
       ),
     );
     add(
       GoogleFirebaseHostingChannel(
         localName: 'firebase_hosting_channel',
-        channelId: TfArg.literal('terradart-leftover'),
-        siteId: TfArg.literal('terradart-leftover'),
+        channelId: .literal('terradart-leftover'),
+        siteId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleFirebaseHostingCustomDomain(
         localName: 'firebase_hosting_custom_domain',
-        customDomain: TfArg.literal('terradart-leftover'),
-        siteId: TfArg.literal('terradart-leftover'),
+        customDomain: .literal('terradart-leftover'),
+        siteId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleFirebaseHostingRelease(
         localName: 'firebase_hosting_release',
-        siteId: TfArg.literal('terradart-leftover'),
+        siteId: .literal('terradart-leftover'),
       ),
     );
     add(GoogleFirebaseHostingSite(localName: 'firebase_hosting_site'));
     add(
       GoogleFirebaseHostingVersion(
         localName: 'firebase_hosting_version',
-        siteId: TfArg.literal('terradart-leftover'),
+        siteId: .literal('terradart-leftover'),
       ),
     );
     add(GoogleFirebaseProject(localName: 'firebase_project'));
@@ -510,45 +506,45 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleFirebaseStorageDefaultBucket(
         localName: 'firebase_storage_default_bucket',
-        location: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleFirebaseWebApp(
         localName: 'firebase_web_app',
-        displayName: TfArg.literal('terradart-leftover'),
+        displayName: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleFolderServiceIdentity(
         localName: 'folder_service_identity',
-        folder: TfArg.literal('terradart-leftover'),
-        service: TfArg.literal('pubsub.googleapis.com'),
+        folder: .literal('terradart-leftover'),
+        service: .literal('pubsub.googleapis.com'),
       ),
     );
     add(
       GoogleCloudIdentityPolicy(
         localName: 'cloud_identity_policy',
-        customer: TfArg.literal('terradart-leftover'),
+        customer: .literal('terradart-leftover'),
         policyQuery: CloudIdentityPolicyPolicyQuery(
-          orgUnit: TfArg.literal('terradart-leftover'),
+          orgUnit: .literal('terradart-leftover'),
         ),
         setting: CloudIdentityPolicySetting(
-          type: TfArg.literal('settings/terradart-leftover'),
-          valueJson: TfArg.literal('{}'),
+          type: .literal('settings/terradart-leftover'),
+          valueJson: .literal('{}'),
         ),
       ),
     );
     add(
       GoogleKmsFolderKajPolicyConfig(
         localName: 'kms_folder_kaj_policy_config',
-        folder: TfArg.literal('terradart-leftover'),
+        folder: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleKmsOrganizationKajPolicyConfig(
         localName: 'kms_organization_kaj_policy_config',
-        organization: TfArg.literal('terradart-leftover'),
+        organization: .literal('terradart-leftover'),
       ),
     );
     add(
@@ -559,340 +555,338 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleNetworkSecurityAuthorizationPolicy(
         localName: 'network_security_authorization_policy',
-        action: TfArg.literal(NetworkSecurityAuthorizationPolicyAction.allow),
-        name: TfArg.literal('terradart-leftover'),
+        action: .literal(.allow),
+        name: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleNetworkSecuritySacAttachment(
         localName: 'network_security_sac_attachment',
-        location: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
-        nccGateway: TfArg.literal('terradart-leftover'),
-        sacRealm: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        nccGateway: .literal('terradart-leftover'),
+        sacRealm: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleNetworkSecuritySacRealm(
         localName: 'network_security_sac_realm',
-        name: TfArg.literal('terradart-leftover'),
-        securityService: TfArg.literal(
-          NetworkSecuritySacRealmSecurityService.securityServiceUnspecified,
-        ),
+        name: .literal('terradart-leftover'),
+        securityService: .literal(.securityServiceUnspecified),
       ),
     );
     add(
       GoogleNetworkServicesServiceLbPolicies(
         localName: 'network_services_service_lb_policies',
-        location: TfArg.literal('terradart-leftover'),
-        name: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleOrganizationServiceIdentity(
         localName: 'organization_service_identity',
-        organization: TfArg.literal('terradart-leftover'),
-        service: TfArg.literal('pubsub.googleapis.com'),
+        organization: .literal('terradart-leftover'),
+        service: .literal('pubsub.googleapis.com'),
       ),
     );
     add(
       GoogleOsConfigGuestPolicies(
         localName: 'os_config_guest_policies',
-        guestPolicyId: TfArg.literal('terradart-leftover'),
+        guestPolicyId: .literal('terradart-leftover'),
         assignment: OsConfigGuestPoliciesAssignment(
-          zones: TfArg.literal(['us-central1-a']),
+          zones: .literal(['us-central1-a']),
         ),
       ),
     );
     add(
       GooglePrivilegedAccessManagerSettings(
         localName: 'privileged_access_manager_settings',
-        location: TfArg.literal('terradart-leftover'),
-        parent: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        parent: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleProjectServiceIdentity(
         localName: 'project_service_identity',
-        service: TfArg.literal('pubsub.googleapis.com'),
+        service: .literal('pubsub.googleapis.com'),
       ),
     );
     add(
       GoogleRuntimeconfigConfig(
         localName: 'runtimeconfig_config',
-        name: TfArg.literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleRuntimeconfigConfigIamBinding(
         localName: 'runtimeconfig_config_iam_binding',
-        config: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        config: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleRuntimeconfigConfigIamMember(
         localName: 'runtimeconfig_config_iam_member',
-        config: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        config: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleRuntimeconfigConfigIamPolicy(
         localName: 'runtimeconfig_config_iam_policy',
-        config: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        config: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleRuntimeconfigVariable(
         localName: 'runtimeconfig_variable',
-        name: TfArg.literal('terradart-leftover'),
-        parent: TfArg.literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        parent: .literal('terradart-leftover'),
         text: TfArg.variable('runtimeconfig_variable_text'),
       ),
     );
     add(
       GoogleSaasRuntimeRelease(
         localName: 'saas_runtime_release',
-        location: TfArg.literal('terradart-leftover'),
-        releaseId: TfArg.literal('terradart-leftover'),
-        unitKind: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        releaseId: .literal('terradart-leftover'),
+        unitKind: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleSaasRuntimeRolloutKind(
         localName: 'saas_runtime_rollout_kind',
-        location: TfArg.literal('terradart-leftover'),
-        rolloutKindId: TfArg.literal('terradart-leftover'),
-        unitKind: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        rolloutKindId: .literal('terradart-leftover'),
+        unitKind: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleSaasRuntimeSaas(
         localName: 'saas_runtime_saas',
-        location: TfArg.literal('terradart-leftover'),
-        saasId: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        saasId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleSaasRuntimeTenant(
         localName: 'saas_runtime_tenant',
-        location: TfArg.literal('terradart-leftover'),
-        saas: TfArg.literal('terradart-leftover'),
-        tenantId: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        saas: .literal('terradart-leftover'),
+        tenantId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleSaasRuntimeUnit(
         localName: 'saas_runtime_unit',
-        location: TfArg.literal('terradart-leftover'),
-        unitId: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        unitId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleSaasRuntimeUnitKind(
         localName: 'saas_runtime_unit_kind',
-        location: TfArg.literal('terradart-leftover'),
-        saas: TfArg.literal('terradart-leftover'),
-        unitKindId: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        saas: .literal('terradart-leftover'),
+        unitKindId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleSaasRuntimeUnitOperation(
         localName: 'saas_runtime_unit_operation',
-        location: TfArg.literal('terradart-leftover'),
-        unit: TfArg.literal('terradart-leftover'),
-        unitOperationId: TfArg.literal('terradart-leftover'),
+        location: .literal('terradart-leftover'),
+        unit: .literal('terradart-leftover'),
+        unitOperationId: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleSecurityScannerScanConfig(
         localName: 'security_scanner_scan_config',
-        displayName: TfArg.literal('terradart-leftover'),
-        startingUrls: TfArg.literal(['terradart-leftover']),
+        displayName: .literal('terradart-leftover'),
+        startingUrls: .literal(['terradart-leftover']),
       ),
     );
     add(
       GoogleServiceUsageConsumerQuotaOverride(
         localName: 'service_usage_consumer_quota_override',
-        limit: TfArg.literal('terradart-leftover'),
-        metric: TfArg.literal('terradart-leftover'),
-        overrideValue: TfArg.literal('terradart-leftover'),
-        service: TfArg.literal('pubsub.googleapis.com'),
+        limit: .literal('terradart-leftover'),
+        metric: .literal('terradart-leftover'),
+        overrideValue: .literal('terradart-leftover'),
+        service: .literal('pubsub.googleapis.com'),
       ),
     );
     add(
       GoogleTagsTagBindingCollection(
         localName: 'tags_tag_binding_collection',
-        fullResourceName: TfArg.literal('terradart-leftover'),
-        tags: TfArg.literal({'tagKeys/1': 'tagValues/1'}),
+        fullResourceName: .literal('terradart-leftover'),
+        tags: .literal({'tagKeys/1': 'tagValues/1'}),
       ),
     );
     add(
       GoogleTpuV2QueuedResource(
         localName: 'tpu_v2_queued_resource',
-        name: TfArg.literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleTpuV2Vm(
         localName: 'tpu_v2_vm',
-        name: TfArg.literal('terradart-leftover'),
-        runtimeVersion: TfArg.literal('terradart-leftover'),
+        name: .literal('terradart-leftover'),
+        runtimeVersion: .literal('terradart-leftover'),
       ),
     );
     add(
       GoogleVertexAiEndpointIamBinding(
         localName: 'vertex_ai_endpoint_iam_binding',
-        endpoint: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        endpoint: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiEndpointIamMember(
         localName: 'vertex_ai_endpoint_iam_member',
-        endpoint: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        endpoint: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiEndpointIamPolicy(
         localName: 'vertex_ai_endpoint_iam_policy',
-        endpoint: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        endpoint: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleVertexAiFeatureGroupIamBinding(
         localName: 'vertex_ai_feature_group_iam_binding',
-        featureGroup: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        featureGroup: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiFeatureGroupIamMember(
         localName: 'vertex_ai_feature_group_iam_member',
-        featureGroup: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        featureGroup: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiFeatureGroupIamPolicy(
         localName: 'vertex_ai_feature_group_iam_policy',
-        featureGroup: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        featureGroup: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleVertexAiFeatureOnlineStoreFeatureviewIamBinding(
         localName: 'vertex_ai_feature_online_store_featureview_iam_binding',
-        featureOnlineStore: TfArg.literal('terradart-leftover'),
-        featureView: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        featureOnlineStore: .literal('terradart-leftover'),
+        featureView: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiFeatureOnlineStoreFeatureviewIamMember(
         localName: 'vertex_ai_feature_online_store_featureview_iam_member',
-        featureOnlineStore: TfArg.literal('terradart-leftover'),
-        featureView: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        featureOnlineStore: .literal('terradart-leftover'),
+        featureView: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiFeatureOnlineStoreFeatureviewIamPolicy(
         localName: 'vertex_ai_feature_online_store_featureview_iam_policy',
-        featureOnlineStore: TfArg.literal('terradart-leftover'),
-        featureView: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        featureOnlineStore: .literal('terradart-leftover'),
+        featureView: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleVertexAiFeatureOnlineStoreIamBinding(
         localName: 'vertex_ai_feature_online_store_iam_binding',
-        featureOnlineStore: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        featureOnlineStore: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiFeatureOnlineStoreIamMember(
         localName: 'vertex_ai_feature_online_store_iam_member',
-        featureOnlineStore: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        featureOnlineStore: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiFeatureOnlineStoreIamPolicy(
         localName: 'vertex_ai_feature_online_store_iam_policy',
-        featureOnlineStore: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        featureOnlineStore: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleVertexAiFeaturestoreEntitytypeIamBinding(
         localName: 'vertex_ai_featurestore_entitytype_iam_binding',
-        entitytype: TfArg.literal('terradart-leftover'),
-        featurestore: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        entitytype: .literal('terradart-leftover'),
+        featurestore: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiFeaturestoreEntitytypeIamMember(
         localName: 'vertex_ai_featurestore_entitytype_iam_member',
-        entitytype: TfArg.literal('terradart-leftover'),
-        featurestore: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        entitytype: .literal('terradart-leftover'),
+        featurestore: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiFeaturestoreEntitytypeIamPolicy(
         localName: 'vertex_ai_featurestore_entitytype_iam_policy',
-        entitytype: TfArg.literal('terradart-leftover'),
-        featurestore: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        entitytype: .literal('terradart-leftover'),
+        featurestore: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(
       GoogleVertexAiFeaturestoreIamBinding(
         localName: 'vertex_ai_featurestore_iam_binding',
-        featurestore: TfArg.literal('terradart-leftover'),
-        members: TfArg.literal(['user:terradart-leftover@example.com']),
-        role: TfArg.literal('roles/viewer'),
+        featurestore: .literal('terradart-leftover'),
+        members: .literal(['user:terradart-leftover@example.com']),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiFeaturestoreIamMember(
         localName: 'vertex_ai_featurestore_iam_member',
-        featurestore: TfArg.literal('terradart-leftover'),
-        member: TfArg.literal('user:terradart-leftover@example.com'),
-        role: TfArg.literal('roles/viewer'),
+        featurestore: .literal('terradart-leftover'),
+        member: .literal('user:terradart-leftover@example.com'),
+        role: .literal('roles/viewer'),
       ),
     );
     add(
       GoogleVertexAiFeaturestoreIamPolicy(
         localName: 'vertex_ai_featurestore_iam_policy',
-        featurestore: TfArg.literal('terradart-leftover'),
-        policyData: TfArg.literal('{"bindings":[]}'),
+        featurestore: .literal('terradart-leftover'),
+        policyData: .literal('{"bindings":[]}'),
       ),
     );
     add(GoogleVertexAiMetadataStore(localName: 'vertex_ai_metadata_store'));
     add(
       GoogleVertexAiModelGardenEnableModel(
         localName: 'vertex_ai_model_garden_enable_model',
-        publisherModelName: TfArg.literal('terradart-leftover'),
+        publisherModelName: .literal('terradart-leftover'),
       ),
     );
   }

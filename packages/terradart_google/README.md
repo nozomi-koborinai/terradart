@@ -32,8 +32,8 @@ final class AssetsStack extends Stack {
         ]) {
     add(GoogleStorageBucket(
       localName: 'assets',
-      name: TfArg.literal('my-app-assets-prod'),
-      storageClass: TfArg.literal(BucketStorageClass.standard),
+      name: .literal('my-app-assets-prod'),
+      storageClass: .literal(.standard),
     ));
   }
 }

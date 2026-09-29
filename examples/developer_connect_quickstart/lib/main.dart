@@ -23,22 +23,22 @@ final class DeveloperConnectStack extends Stack {
     final apiDeveloperConnect = add(
       GoogleProjectService(
         localName: 'api_developerconnect',
-        service: TfArg.literal('developerconnect.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('developerconnect.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleDeveloperConnectAccountConnector(
         localName: 'github',
-        location: TfArg.literal('us-central1'),
-        accountConnectorId: TfArg.literal('terradart-github'),
+        location: .literal('us-central1'),
+        accountConnectorId: .literal('terradart-github'),
         providerOauthConfig:
             DeveloperConnectAccountConnectorProviderOauthConfig(
-              systemProviderId: TfArg.literal('GITHUB'),
-              scopes: TfArg.literal(['repo']),
+              systemProviderId: .literal('GITHUB'),
+              scopes: .literal(['repo']),
             ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(apiDeveloperConnect)],
       ),
     );

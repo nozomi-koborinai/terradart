@@ -84,22 +84,22 @@ final class EndpointsStack extends Stack {
     final apiServiceManagement = add(
       GoogleProjectService(
         localName: 'api_servicemanagement',
-        service: TfArg.literal('servicemanagement.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('servicemanagement.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
     final apiServiceControl = add(
       GoogleProjectService(
         localName: 'api_servicecontrol',
-        service: TfArg.literal('servicecontrol.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('servicecontrol.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
     final apiEndpoints = add(
       GoogleProjectService(
         localName: 'api_endpoints',
-        service: TfArg.literal('endpoints.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('endpoints.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -118,9 +118,9 @@ final class EndpointsStack extends Stack {
     final service = add(
       GoogleEndpointsService(
         localName: 'echo',
-        serviceName: TfArg.literal(serviceName),
-        openapiConfig: TfArg.literal(_openapiConfig(serviceName)),
-        deletionPolicy: TfArg.literal('DELETE'),
+        serviceName: .literal(serviceName),
+        openapiConfig: .literal(_openapiConfig(serviceName)),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(apiWait)],
       ),
     );
@@ -128,17 +128,17 @@ final class EndpointsStack extends Stack {
     final sa = add(
       GoogleServiceAccount(
         localName: 'viewer',
-        accountId: TfArg.literal('ep-viewer'),
-        displayName: TfArg.literal('Endpoints leftover viewer'),
+        accountId: .literal('ep-viewer'),
+        displayName: .literal('Endpoints leftover viewer'),
       ),
     );
 
     add(
       GoogleEndpointsServiceIamMember(
         localName: 'viewer',
-        serviceName: TfArg.literal(serviceName),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(sa.iamMember),
+        serviceName: .literal(serviceName),
+        role: .literal('roles/viewer'),
+        member: .ref(sa.iamMember),
         dependsOn: [ResourceDependency(service), ResourceDependency(sa)],
       ),
     );

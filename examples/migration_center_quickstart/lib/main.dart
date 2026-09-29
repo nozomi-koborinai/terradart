@@ -30,7 +30,7 @@ final class MigrationCenterStack extends Stack {
     add(
       GoogleMigrationCenterSettings(
         localName: 'default',
-        location: TfArg.literal(location),
+        location: .literal(location),
         dependsOn: apiDeps,
       ),
     );
@@ -39,20 +39,20 @@ final class MigrationCenterStack extends Stack {
     // SOURCE_TYPE_DISCOVERY_CLIENT source (API 400 otherwise).
     final uploadSource = GoogleMigrationCenterSource(
       localName: 'inventory',
-      location: TfArg.literal(location),
-      sourceId: TfArg.literal('terradart-source'),
-      displayName: TfArg.literal('TerraDart upload source'),
-      type: TfArg.literal(MigrationCenterSourceType.sourceTypeUpload),
+      location: .literal(location),
+      sourceId: .literal('terradart-source'),
+      displayName: .literal('TerraDart upload source'),
+      type: .literal(.sourceTypeUpload),
       dependsOn: apiDeps,
     );
     add(uploadSource);
 
     final discoverySource = GoogleMigrationCenterSource(
       localName: 'discovery',
-      location: TfArg.literal(location),
-      sourceId: TfArg.literal('terradart-discovery-source'),
-      displayName: TfArg.literal('TerraDart discovery source'),
-      type: TfArg.literal(MigrationCenterSourceType.sourceTypeDiscoveryClient),
+      location: .literal(location),
+      sourceId: .literal('terradart-discovery-source'),
+      displayName: .literal('TerraDart discovery source'),
+      type: .literal(.sourceTypeDiscoveryClient),
       dependsOn: apiDeps,
     );
     add(discoverySource);
@@ -62,19 +62,19 @@ final class MigrationCenterStack extends Stack {
     final discoverySa = add(
       GoogleServiceAccount(
         localName: 'discovery_agent',
-        accountId: TfArg.literal('mc-discovery-agent'),
-        displayName: TfArg.literal('Migration Center discovery agent'),
+        accountId: .literal('mc-discovery-agent'),
+        displayName: .literal('Migration Center discovery agent'),
       ),
     );
 
     add(
       GoogleMigrationCenterDiscoveryClient(
         localName: 'agent',
-        location: TfArg.literal(location),
-        discoveryClientId: TfArg.literal('terradart-discovery'),
-        source: TfArg.ref(discoverySource.nameRef),
-        serviceAccount: TfArg.ref(discoverySa.email),
-        displayName: TfArg.literal('TerraDart discovery client'),
+        location: .literal(location),
+        discoveryClientId: .literal('terradart-discovery'),
+        source: .ref(discoverySource.nameRef),
+        serviceAccount: .ref(discoverySa.email),
+        displayName: .literal('TerraDart discovery client'),
         dependsOn: [
           ...apiDeps,
           ResourceDependency(discoverySource),
@@ -85,10 +85,10 @@ final class MigrationCenterStack extends Stack {
 
     final importJob = GoogleMigrationCenterImportJob(
       localName: 'upload',
-      location: TfArg.literal(location),
-      importJobId: TfArg.literal(importJobId),
-      assetSource: TfArg.ref(uploadSource.nameRef),
-      displayName: TfArg.literal('TerraDart import job'),
+      location: .literal(location),
+      importJobId: .literal(importJobId),
+      assetSource: .ref(uploadSource.nameRef),
+      displayName: .literal('TerraDart import job'),
       dependsOn: [...apiDeps, ResourceDependency(uploadSource)],
     );
     add(importJob);
@@ -98,11 +98,11 @@ final class MigrationCenterStack extends Stack {
     add(
       GoogleMigrationCenterImportDataFile(
         localName: 'payload',
-        location: TfArg.literal(location),
-        importJob: TfArg.literal(importJobId),
-        importDataFileId: TfArg.literal('terradart-import-file'),
-        format: TfArg.literal(MigrationCenterImportDataFileFormat.rvtoolsXlsx),
-        displayName: TfArg.literal('TerraDart import payload'),
+        location: .literal(location),
+        importJob: .literal(importJobId),
+        importDataFileId: .literal('terradart-import-file'),
+        format: .literal(.rvtoolsXlsx),
+        displayName: .literal('TerraDart import payload'),
         dependsOn: [...apiDeps, ResourceDependency(importJob)],
       ),
     );
@@ -112,40 +112,40 @@ final class MigrationCenterStack extends Stack {
     add(
       GoogleMigrationCenterAssetsExportJob(
         localName: 'export',
-        location: TfArg.literal(location),
-        assetsExportJobId: TfArg.literal('terradart-export'),
-        performanceData: TfArg.literal(<String, Object?>{'max_days': 30}),
+        location: .literal(location),
+        assetsExportJobId: .literal('terradart-export'),
+        performanceData: .literal(<String, Object?>{'max_days': 30}),
         dependsOn: apiDeps,
       ),
     );
 
     final group = GoogleMigrationCenterGroup(
       localName: 'assets',
-      location: TfArg.literal(location),
-      groupId: TfArg.literal('terradart-group'),
-      displayName: TfArg.literal('TerraDart asset group'),
+      location: .literal(location),
+      groupId: .literal('terradart-group'),
+      displayName: .literal('TerraDart asset group'),
       dependsOn: apiDeps,
     );
     add(group);
 
     final preferenceSet = GoogleMigrationCenterPreferenceSet(
       localName: 'defaults',
-      location: TfArg.literal(location),
-      preferenceSetId: TfArg.literal('terradart-prefs'),
-      displayName: TfArg.literal('TerraDart preference set'),
+      location: .literal(location),
+      preferenceSetId: .literal('terradart-prefs'),
+      displayName: .literal('TerraDart preference set'),
       dependsOn: apiDeps,
     );
     add(preferenceSet);
 
     final reportConfig = GoogleMigrationCenterReportConfig(
       localName: 'tco',
-      location: TfArg.literal(location),
-      reportConfigId: TfArg.literal(reportConfigId),
-      displayName: TfArg.literal('TerraDart report config'),
+      location: .literal(location),
+      reportConfigId: .literal(reportConfigId),
+      displayName: .literal('TerraDart report config'),
       groupPreferencesetAssignments: [
         MigrationCenterReportConfigGroupPreferencesetAssignment(
-          group: TfArg.ref(group.nameRef),
-          preferenceSet: TfArg.ref(preferenceSet.nameRef),
+          group: .ref(group.nameRef),
+          preferenceSet: .ref(preferenceSet.nameRef),
         ),
       ],
       dependsOn: [
@@ -161,11 +161,11 @@ final class MigrationCenterStack extends Stack {
     add(
       GoogleMigrationCenterReport(
         localName: 'assessment',
-        location: TfArg.literal(location),
-        reportConfig: TfArg.literal(reportConfigId),
-        reportId: TfArg.literal('terradart-report'),
-        type: TfArg.literal(MigrationCenterReportType.totalCostOfOwnership),
-        displayName: TfArg.literal('TerraDart assessment report'),
+        location: .literal(location),
+        reportConfig: .literal(reportConfigId),
+        reportId: .literal('terradart-report'),
+        type: .literal(.totalCostOfOwnership),
+        displayName: .literal('TerraDart assessment report'),
         dependsOn: [...apiDeps, ResourceDependency(reportConfig)],
       ),
     );

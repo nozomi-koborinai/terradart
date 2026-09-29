@@ -47,7 +47,7 @@ Three concrete patterns where the Dart type system catches what HCL cannot:
 Terraform schemas often have fields that accept one of a small, fixed set of strings — `INGRESS_TRAFFIC_ALL` vs `INGRESS_TRAFFIC_INTERNAL_ONLY`, for example. TerraDart emits these as Dart enums:
 
 ```dart
-ingress: TfArg.literal(Ingress.all)  // typo → compile error
+ingress: .literal(.all)  // typo → compile error
 ```
 
 ### Sealed classes for exactly-one-of nested blocks
@@ -56,8 +56,8 @@ Some Terraform blocks accept exactly one variant from a set — for instance, a 
 
 ```dart
 access: [
-  Access.userByEmail(email: TfArg.literal("ops@example.com")),
-  Access.iamMember(member: TfArg.ref(runSa.member)),
+  Access.userByEmail(email: .literal("ops@example.com")),
+  Access.iamMember(member: .ref(runSa.member)),
 ]
 ```
 

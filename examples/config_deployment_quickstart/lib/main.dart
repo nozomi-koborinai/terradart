@@ -27,8 +27,8 @@ final class ConfigDeploymentStack extends Stack {
     final actuationSa = add(
       GoogleServiceAccount(
         localName: 'im_actuation',
-        accountId: TfArg.literal('im-actuation-sa'),
-        displayName: TfArg.literal('Infrastructure Manager actuation SA'),
+        accountId: .literal('im-actuation-sa'),
+        displayName: .literal('Infrastructure Manager actuation SA'),
         dependsOn: apiDeps,
       ),
     );
@@ -36,44 +36,44 @@ final class ConfigDeploymentStack extends Stack {
     final configAgent = add(
       GoogleProjectIamMember(
         localName: 'im_config_agent',
-        project: TfArg.literal(projectId),
-        role: TfArg.literal('roles/config.agent'),
-        member: TfArg.ref(actuationSa.iamMember),
+        project: .literal(projectId),
+        role: .literal('roles/config.agent'),
+        member: .ref(actuationSa.iamMember),
       ),
     );
 
     final networkAdmin = add(
       GoogleProjectIamMember(
         localName: 'im_network_admin',
-        project: TfArg.literal(projectId),
-        role: TfArg.literal('roles/compute.networkAdmin'),
-        member: TfArg.ref(actuationSa.iamMember),
+        project: .literal(projectId),
+        role: .literal('roles/compute.networkAdmin'),
+        member: .ref(actuationSa.iamMember),
       ),
     );
 
     add(
       GoogleConfigDeployment(
         localName: 'vpc_blueprint',
-        name: TfArg.literal('terradart-vpc-deployment'),
-        location: TfArg.literal('us-central1'),
-        serviceAccount: TfArg.ref(actuationSa.name),
-        forceDestroy: TfArg.literal(true),
+        name: .literal('terradart-vpc-deployment'),
+        location: .literal('us-central1'),
+        serviceAccount: .ref(actuationSa.name),
+        forceDestroy: .literal(true),
         terraformBlueprint: ConfigDeploymentTerraformBlueprint(
           source: .git(
-            repo: TfArg.literal(
+            repo: .literal(
               'https://github.com/terraform-google-modules/terraform-google-network',
             ),
-            directory: TfArg.literal('modules/vpc'),
-            ref: TfArg.literal('main'),
+            directory: .literal('modules/vpc'),
+            ref: .literal('main'),
           ),
           inputValues: [
             ConfigDeploymentInputValue(
-              variableName: TfArg.literal('project_id'),
-              inputValue: TfArg.literal(jsonEncode(projectId)),
+              variableName: .literal('project_id'),
+              inputValue: .literal(jsonEncode(projectId)),
             ),
             ConfigDeploymentInputValue(
-              variableName: TfArg.literal('network_name'),
-              inputValue: TfArg.literal(jsonEncode('terradart-test-network')),
+              variableName: .literal('network_name'),
+              inputValue: .literal(jsonEncode('terradart-test-network')),
             ),
           ],
         ),

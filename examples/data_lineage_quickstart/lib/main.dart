@@ -20,29 +20,29 @@ final class DataLineageStack extends Stack {
     final apiLineage = add(
       GoogleProjectService(
         localName: 'api_datalineage',
-        service: TfArg.literal('datalineage.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('datalineage.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleDataLineageConfig(
         localName: 'lineage',
-        parent: TfArg.literal('projects/$projectId'),
-        location: TfArg.literal('global'),
+        parent: .literal('projects/$projectId'),
+        location: .literal('global'),
         ingestion: DataLineageConfigIngestion(
           rule: [
             DataLineageConfigIngestionRule(
               integrationSelector:
                   DataLineageConfigIngestionRuleIntegrationSelector(
-                    integration: TfArg.literal(
+                    integration: .literal(
                       DataLineageConfigIngestionRuleIntegrationSelectorIntegration
                           .dataproc,
                     ),
                   ),
               lineageEnablement:
                   DataLineageConfigIngestionRuleLineageEnablement(
-                    enabled: TfArg.literal(true),
+                    enabled: .literal(true),
                   ),
             ),
           ],

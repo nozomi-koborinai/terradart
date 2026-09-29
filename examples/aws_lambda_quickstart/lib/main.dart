@@ -42,19 +42,19 @@ final class AwsLambdaStack extends Stack {
       localName: 'lambda_trust',
       statement: [
         DataIamPolicyDocumentStatement(
-          effect: TfArg.literal('Allow'),
-          actions: TfArg.literal(['sts:AssumeRole']),
+          effect: .literal('Allow'),
+          actions: .literal(['sts:AssumeRole']),
           principals: [
             DataIamPolicyDocumentStatementPrincipals(
-              type: TfArg.literal('Service'),
-              identifiers: TfArg.literal(['lambda.amazonaws.com']),
+              type: .literal('Service'),
+              identifiers: .literal(['lambda.amazonaws.com']),
             ),
           ],
           condition: [
             DataIamPolicyDocumentStatementCondition(
-              test: TfArg.literal('StringEquals'),
-              variable: TfArg.literal('aws:SourceAccount'),
-              values: TfArg.literal([TfArg.ref(account.accountId)]),
+              test: .literal('StringEquals'),
+              variable: .literal('aws:SourceAccount'),
+              values: .literal([TfArg.ref(account.accountId)]),
             ),
           ],
         ),
@@ -64,15 +64,15 @@ final class AwsLambdaStack extends Stack {
 
     final role = AwsIamRole(
       localName: 'hello',
-      name: .name(TfArg.literal(_functionName)),
-      assumeRolePolicy: TfArg.ref(trust.json),
+      name: .name(.literal(_functionName)),
+      assumeRolePolicy: .ref(trust.json),
     );
     add(role);
     add(
       AwsIamRolePolicyAttachment(
         localName: 'hello_logs',
-        role: TfArg.ref(role.nameRef),
-        policyArn: TfArg.literal(
+        role: .ref(role.nameRef),
+        policyArn: .literal(
           'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole',
         ),
       ),
@@ -80,36 +80,32 @@ final class AwsLambdaStack extends Stack {
 
     final logs = AwsCloudwatchLogGroup(
       localName: 'hello',
-      name: .name(TfArg.literal('/aws/lambda/$_functionName')),
-      retentionInDays: TfArg.literal(14),
+      name: .name(.literal('/aws/lambda/$_functionName')),
+      retentionInDays: .literal(14),
     );
     add(logs);
 
     final fn = AwsLambdaFunction(
       localName: 'hello',
-      functionName: TfArg.literal(_functionName),
-      role: TfArg.ref(role.arn),
-      runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023),
-      handler: TfArg.literal('bootstrap'),
-      architectures: [TfArg.literal(LambdaFunctionArchitectures.x8664)],
-      code: .filename(
-        TfArg.literal('../build/bootstrap.zip'),
-      ),
-      memorySize: TfArg.literal(128),
-      timeout: TfArg.literal(10),
+      functionName: .literal(_functionName),
+      role: .ref(role.arn),
+      runtime: .literal(.providedAl2023),
+      handler: .literal('bootstrap'),
+      architectures: [.literal(.x8664)],
+      code: .filename(.literal('../build/bootstrap.zip')),
+      memorySize: .literal(128),
+      timeout: .literal(10),
       loggingConfig: LambdaFunctionLoggingConfig(
-        logFormat: TfArg.literal(LambdaFunctionLoggingConfigLogFormat.text),
-        logGroup: TfArg.ref(logs.nameRef),
+        logFormat: .literal(.text),
+        logGroup: .ref(logs.nameRef),
       ),
     );
     add(fn);
     add(
       AwsLambdaFunctionUrl(
         localName: 'hello',
-        functionName: TfArg.ref(fn.arn),
-        authorizationType: TfArg.literal(
-          LambdaFunctionUrlAuthorizationType.none,
-        ),
+        functionName: .ref(fn.arn),
+        authorizationType: .literal(.none),
       ),
     );
   }

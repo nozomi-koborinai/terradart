@@ -43,22 +43,20 @@ final class InternalDnsStack extends Stack {
       ) {
     final vpc = GoogleComputeNetwork(
       localName: 'gnd_vpc',
-      name: TfArg.literal('gnd-vpc'),
-      autoCreateSubnetworks: TfArg.literal(false),
+      name: .literal('gnd-vpc'),
+      autoCreateSubnetworks: .literal(false),
     );
     add(vpc);
 
     final internalZone = GoogleDnsManagedZone(
       localName: 'internal',
-      name: TfArg.literal('internal-corp'),
-      dnsName: TfArg.literal('internal.corp.'),
-      description: TfArg.literal(
-        'Private DNS for internal services in gnd-vpc.',
-      ),
-      visibility: TfArg.literal(DnsZoneVisibility.private),
+      name: .literal('internal-corp'),
+      dnsName: .literal('internal.corp.'),
+      description: .literal('Private DNS for internal services in gnd-vpc.'),
+      visibility: .literal(.private),
       privateVisibilityConfig: DnsManagedZonePrivateVisibilityConfig(
         networks: [
-          DnsManagedZonePrivateVisibilityNetwork(networkUrl: TfArg.ref(vpc.id)),
+          DnsManagedZonePrivateVisibilityNetwork(networkUrl: .ref(vpc.id)),
         ],
       ),
       // NOTE: DNSSEC is a public-internet chain-of-trust feature and is only
@@ -77,8 +75,8 @@ final class InternalDnsStack extends Stack {
 
     final zoneAdmin = GoogleServiceAccount(
       localName: 'internal_zone_admin',
-      accountId: TfArg.literal('internal-zone-admin'),
-      displayName: TfArg.literal('internal.corp. zone admin'),
+      accountId: .literal('internal-zone-admin'),
+      displayName: .literal('internal.corp. zone admin'),
     );
     add(zoneAdmin);
 
@@ -88,9 +86,9 @@ final class InternalDnsStack extends Stack {
     final zoneAdminMember = add(
       GoogleDnsManagedZoneIamMember(
         localName: 'internal_zone_admin_member',
-        managedZone: TfArg.ref(internalZone.nameRef),
-        role: TfArg.literal('roles/dns.admin'),
-        member: TfArg.ref(zoneAdmin.iamMember),
+        managedZone: .ref(internalZone.nameRef),
+        role: .literal('roles/dns.admin'),
+        member: .ref(zoneAdmin.iamMember),
         dependsOn: [
           ResourceDependency(internalZone),
           ResourceDependency(zoneAdmin),
@@ -101,9 +99,9 @@ final class InternalDnsStack extends Stack {
     final zoneAdminBinding = add(
       GoogleDnsManagedZoneIamBinding(
         localName: 'internal_zone_admin_binding',
-        managedZone: TfArg.ref(internalZone.nameRef),
-        role: TfArg.literal('roles/dns.admin'),
-        members: TfArg.literal([zoneAdmin.iamMember.interpolation]),
+        managedZone: .ref(internalZone.nameRef),
+        role: .literal('roles/dns.admin'),
+        members: .literal([zoneAdmin.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(internalZone),
           ResourceDependency(zoneAdminMember),
@@ -114,8 +112,8 @@ final class InternalDnsStack extends Stack {
     add(
       GoogleDnsManagedZoneIamPolicy(
         localName: 'internal_zone_admin_policy',
-        managedZone: TfArg.ref(internalZone.nameRef),
-        policyData: TfArg.literal(
+        managedZone: .ref(internalZone.nameRef),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/dns.admin',
             member:
@@ -134,19 +132,19 @@ final class InternalDnsStack extends Stack {
     add(
       GoogleDnsPolicy(
         localName: 'internal_logging',
-        name: TfArg.literal('internal-logging-policy'),
-        enableLogging: TfArg.literal(true),
+        name: .literal('internal-logging-policy'),
+        enableLogging: .literal(true),
       ),
     );
 
     add(
       GoogleDnsRecordSet(
         localName: 'api_a',
-        managedZone: TfArg.ref(internalZone.nameRef),
-        name: TfArg.literal('api.internal.corp.'),
-        type: TfArg.literal(DnsRecordSetType.a),
-        ttl: TfArg.literal(300),
-        rrdatas: TfArg.literal(['10.0.0.10']),
+        managedZone: .ref(internalZone.nameRef),
+        name: .literal('api.internal.corp.'),
+        type: .literal(.a),
+        ttl: .literal(300),
+        rrdatas: .literal(['10.0.0.10']),
       ),
     );
 
@@ -155,8 +153,8 @@ final class InternalDnsStack extends Stack {
     final overrides = add(
       GoogleDnsResponsePolicy(
         localName: 'internal_overrides',
-        responsePolicyName: TfArg.literal('internal-overrides'),
-        description: TfArg.literal(
+        responsePolicyName: .literal('internal-overrides'),
+        description: .literal(
           'Local DNS overrides for hybrid resolution in gnd-vpc.',
         ),
       ),
@@ -171,10 +169,10 @@ final class InternalDnsStack extends Stack {
         // explicit `dependsOn` guarantees the policy is created first
         // (otherwise apply fails: the rule references a policy that doesn't
         // exist yet).
-        responsePolicy: TfArg.literal('internal-overrides'),
+        responsePolicy: .literal('internal-overrides'),
         dependsOn: [ResourceDependency(overrides)],
-        ruleName: TfArg.literal('legacy-fallback'),
-        dnsName: TfArg.literal('legacy.internal.corp.'),
+        ruleName: .literal('legacy-fallback'),
+        dnsName: .literal('legacy.internal.corp.'),
         localData: DnsResponsePolicyRuleLocalData(
           localDatas: [
             DnsResponsePolicyRuleLocalDataEntry(
@@ -182,9 +180,9 @@ final class InternalDnsStack extends Stack {
               // (trailing dot), matching the rule's `dns_name` above. A bare
               // label such as 'legacy' is rejected at apply time
               // ("Invalid value for ...localData.rrSet.Name: 'legacy'").
-              name: TfArg.literal('legacy.internal.corp.'),
+              name: .literal('legacy.internal.corp.'),
               type: DnsResponsePolicyRuleRecordType.a,
-              ttl: TfArg.literal(300),
+              ttl: .literal(300),
               rrdatas: const ['10.0.0.20'],
             ),
           ],

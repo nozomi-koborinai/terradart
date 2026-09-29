@@ -26,21 +26,21 @@ final class ListsStack extends Stack {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         localName: 'api_networksecurity',
-        service: TfArg.literal('networksecurity.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('networksecurity.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final blocklist = add(
       GoogleNetworkSecurityAddressGroup(
         localName: 'blocklist',
-        name: TfArg.literal('terradart-blocklist'),
-        parent: TfArg.literal('projects/$projectId'),
-        location: TfArg.literal('us-central1'),
-        type: TfArg.literal(NetworkSecurityAddressGroupType.ipv4),
-        capacity: TfArg.literal(100),
-        items: TfArg.literal(const ['10.0.0.0/8', '192.168.0.0/16']),
-        description: TfArg.literal('Blocked CIDR ranges (terradart demo)'),
+        name: .literal('terradart-blocklist'),
+        parent: .literal('projects/$projectId'),
+        location: .literal('us-central1'),
+        type: .literal(.ipv4),
+        capacity: .literal(100),
+        items: .literal(const ['10.0.0.0/8', '192.168.0.0/16']),
+        description: .literal('Blocked CIDR ranges (terradart demo)'),
         dependsOn: [ResourceDependency(apiNetworkSecurity)],
       ),
     );
@@ -48,10 +48,10 @@ final class ListsStack extends Stack {
     add(
       GoogleNetworkSecurityUrlLists(
         localName: 'allowlist',
-        name: TfArg.literal('terradart-allowlist'),
-        location: TfArg.literal('us-central1'),
-        values: TfArg.literal(const ['*.example.com', 'docs.example.org']),
-        description: TfArg.literal('Allowed host matchers (terradart demo)'),
+        name: .literal('terradart-allowlist'),
+        location: .literal('us-central1'),
+        values: .literal(const ['*.example.com', 'docs.example.org']),
+        description: .literal('Allowed host matchers (terradart demo)'),
         dependsOn: [ResourceDependency(apiNetworkSecurity)],
       ),
     );
@@ -62,16 +62,16 @@ final class ListsStack extends Stack {
     final apiNetworkConnectivity = add(
       GoogleProjectService(
         localName: 'api_networkconnectivity',
-        service: TfArg.literal('networkconnectivity.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('networkconnectivity.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleNetworkConnectivityHub(
         localName: 'hub',
-        name: TfArg.literal('terradart-hub'),
-        description: TfArg.literal('NCC routing hub (terradart demo)'),
+        name: .literal('terradart-hub'),
+        description: .literal('NCC routing hub (terradart demo)'),
         dependsOn: [ResourceDependency(apiNetworkConnectivity)],
       ),
     );
@@ -79,18 +79,18 @@ final class ListsStack extends Stack {
     final auditor = add(
       GoogleServiceAccount(
         localName: 'address_group_auditor',
-        accountId: TfArg.literal('terradart-ag-auditor'),
-        displayName: TfArg.literal('Address group auditor'),
+        accountId: .literal('terradart-ag-auditor'),
+        displayName: .literal('Address group auditor'),
       ),
     );
 
     add(
       GoogleNetworkSecurityAddressGroupIamMember(
         localName: 'blocklist_auditor',
-        name: TfArg.ref(blocklist.nameRef),
-        location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(auditor.iamMember),
+        name: .ref(blocklist.nameRef),
+        location: .literal('us-central1'),
+        role: .literal('roles/viewer'),
+        member: .ref(auditor.iamMember),
         dependsOn: [ResourceDependency(blocklist), ResourceDependency(auditor)],
       ),
     );
