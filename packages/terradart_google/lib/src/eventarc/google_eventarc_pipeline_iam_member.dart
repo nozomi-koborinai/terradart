@@ -12,12 +12,12 @@ final class GoogleEventarcPipelineIamMember extends Resource {
 
   GoogleEventarcPipelineIamMember({
     required super.localName,
-    TfArg<String>? location,
-    required TfArg<String> member,
     required TfArg<String> pipelineId,
-    TfArg<String>? project,
     required TfArg<String> role,
+    required TfArg<String> member,
     TfArg<Map<String, dynamic>>? condition,
+    TfArg<String>? location,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -25,12 +25,12 @@ final class GoogleEventarcPipelineIamMember extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': ?location,
-           'member': member,
            'pipeline_id': pipelineId,
-           'project': ?project,
            'role': role,
+           'member': member,
            'condition': ?condition,
+           'location': ?location,
+           'project': ?project,
          },
        );
 
@@ -40,4 +40,10 @@ final class GoogleEventarcPipelineIamMember extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleEventarcPipelineIamMember>`.
   RefTo<GoogleEventarcPipelineIamMember> get ref => RefTo.of(this);
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }
