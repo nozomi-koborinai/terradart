@@ -2,6 +2,7 @@
 // Regenerate with `terradart wrap --migrate-manifest <this file>` (lanes: tool/providers.yaml).
 import '../migrate_manifest.dart';
 
+/// The migration manifest of `terradart_aws`: one [MigrateEntry] per curated factory.
 const MigrateManifest awsMigrateManifest = MigrateManifest(
   package: 'terradart_aws',
   entries: <MigrateEntry>[

@@ -24,6 +24,10 @@ import 'package:terradart_core/terradart_core.dart';
 /// Requires `TimeProvider` in `Stack.providers` — synth fails fast when the
 /// `time` provider is missing.
 final class TimeSleep extends Resource {
+  /// Creates a `time_sleep` resource addressed as `time_sleep.<localName>`.
+  ///
+  /// [createDuration] is the wait after create (for example `'60s'`);
+  /// [destroyDuration], when set, is the wait before destroy.
   TimeSleep({
     required super.localName,
     required TfArg<String> createDuration,

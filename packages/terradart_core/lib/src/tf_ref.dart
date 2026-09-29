@@ -5,6 +5,8 @@ import 'package:meta/meta.dart';
 /// Both `Resource` and `Data` implement this, allowing `TfRef` to remain
 /// ignorant of the resource hierarchy.
 abstract interface class TfAddressed {
+  /// Terraform address of this block, e.g. `google_pubsub_topic.orders` or
+  /// `data.google_project.current`.
   String get tfAddress;
 }
 

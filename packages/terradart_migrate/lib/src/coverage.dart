@@ -17,6 +17,8 @@ final class TypeCoverage {
 
   /// `google_pubsub_topic`.
   final String type;
+
+  /// Whether [type] is a resource or a data source type.
   final CatalogKind kind;
 
   /// The curated factory for [type], or `null` when no TerraDart catalog
@@ -30,10 +32,13 @@ final class TypeCoverage {
   /// Blocks that stay in Terraform, each counted once.
   int kept = 0;
 
+  /// True when some TerraDart catalog curates [type].
   bool get inCatalog => factory != null;
 
+  /// [translated] plus [kept].
   int get count => translated + kept;
 
+  /// This type's row of the JSON report.
   Map<String, Object?> toJson() => {
     'type': type,
     'kind': _kindName(kind),
@@ -55,10 +60,17 @@ final class DirectoryCoverage {
 
   /// Relative to the scanned directory (`.` for the directory itself).
   final String directory;
+
+  /// True for a root module, false for a child module.
   final bool isRoot;
+
+  /// Resources and data sources in this directory that become Dart.
   int translated = 0;
+
+  /// Resources and data sources in this directory that stay in Terraform.
   int kept = 0;
 
+  /// This directory's row of the JSON report.
   Map<String, Object?> toJson() => {
     'directory': directory,
     'role': isRoot ? 'root' : 'child',
@@ -91,6 +103,7 @@ final class MigrationCoverage {
     required this.unscanned,
   });
 
+  /// Counts every `resource` and `data` block of [project].
   factory MigrationCoverage.of(MigratedProject project) {
     final types = <(String, CatalogKind), TypeCoverage>{};
     final directories = <DirectoryCoverage>[];
@@ -154,20 +167,30 @@ final class MigrationCoverage {
 
   /// Most blocks first.
   final List<TypeCoverage> types;
+
+  /// One entry per module directory, in tree order.
   final List<DirectoryCoverage> directories;
 
   /// Every block that stays in Terraform — `resource` and `data` blocks, and
   /// the providers, variables, backends and so on that a Stack cannot hold.
   final List<KeptBlock> kept;
+
+  /// `module` calls whose resources were not counted.
   final List<UnscannedModule> unscanned;
 
+  /// Resource and data blocks counted, over every type.
   int get total => types.fold(0, (n, t) => n + t.count);
+
+  /// Resource and data blocks that become Dart, over every type.
   int get translated => types.fold(0, (n, t) => n + t.translated);
+
+  /// How many of [types] some TerraDart catalog curates.
   int get curatedTypes => types.where((t) => t.inCatalog).length;
 
   static int _pct(int part, int whole) =>
       whole == 0 ? 0 : (part * 100 / whole).round();
 
+  /// The report as JSON (`--report --json`).
   Map<String, Object?> toJson() => {
     'version': packageVersion,
     'input': input,
@@ -191,8 +214,10 @@ final class MigrationCoverage {
     ],
   };
 
+  /// [toJson], indented.
   String renderJson() => const JsonEncoder.withIndent('  ').convert(toJson());
 
+  /// The report as the human-readable text `--report` prints.
   String renderText() {
     final b = StringBuffer()
       ..writeln('terradart-migrate $packageVersion --report: $input')

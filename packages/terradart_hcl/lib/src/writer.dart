@@ -9,8 +9,10 @@ import 'ast.dart';
 /// `parseHcl(write(parseHcl(x)))` is structurally identical to
 /// `parseHcl(x)`.
 final class HclWriter {
+  /// Creates a writer that indents each nesting level by [indent].
   const HclWriter({this.indent = '  '});
 
+  /// The text written once per nesting level (two spaces by default).
   final String indent;
 
   static final RegExp _identifier = RegExp(

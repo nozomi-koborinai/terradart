@@ -12,6 +12,7 @@ import 'tf_json.dart';
 /// evaluated or merged: `*_override.tf` files are read like any other file,
 /// and duplicate addresses are kept as written.
 final class TfModule {
+  /// Collects the top-level blocks of [files], in file order.
   TfModule.fromFiles(List<HclFile> files) : files = List.unmodifiable(files) {
     for (final file in files) {
       for (final entry in file.body.entries) {
@@ -28,14 +29,31 @@ final class TfModule {
   factory TfModule.fromTfJson(String json, {String? fileName}) =>
       TfModule.fromFiles([decodeTfJson(json, fileName: fileName)]);
 
+  /// The files the module was read from, unmodifiable.
   final List<HclFile> files;
+
+  /// Every `terraform { ... }` block, in source order.
   final terraform = <TerraformBlock>[];
+
+  /// Every `provider "name" { ... }` block, in source order.
   final providers = <ProviderBlock>[];
+
+  /// Every `variable "name" { ... }` block, in source order.
   final variables = <VariableBlock>[];
+
+  /// Every entry of every `locals { ... }` block, in source order.
   final locals = <LocalValue>[];
+
+  /// Every `output "name" { ... }` block, in source order.
   final outputs = <OutputBlock>[];
+
+  /// Every `resource "type" "name" { ... }` block, in source order.
   final resources = <ResourceBlock>[];
+
+  /// Every `data "type" "name" { ... }` block, in source order.
   final dataSources = <DataBlock>[];
+
+  /// Every `module "name" { ... }` block, in source order.
   final moduleCalls = <ModuleCallBlock>[];
 
   /// `moved`, `import`, `removed`, `check` and any block type this model
@@ -140,6 +158,7 @@ final class TfModule {
     return null;
   }
 
+  /// `variable "name"` by name, first wins.
   VariableBlock? variable(String name) {
     for (final v in variables) {
       if (v.name == name) return v;
@@ -147,6 +166,7 @@ final class TfModule {
     return null;
   }
 
+  /// `output "name"` by name, first wins.
   OutputBlock? output(String name) {
     for (final o in outputs) {
       if (o.name == name) return o;
@@ -154,6 +174,7 @@ final class TfModule {
     return null;
   }
 
+  /// The local value `name` from any `locals` block, first wins.
   LocalValue? local(String name) {
     for (final l in locals) {
       if (l.name == name) return l;
@@ -166,10 +187,16 @@ final class TfModule {
 sealed class TfBlock {
   const TfBlock(this.file, this.block);
 
+  /// The file the block was read from.
   final HclFile file;
+
+  /// The block's syntax node.
   final Block block;
 
+  /// The block's contents between the braces.
   Body get body => block.body;
+
+  /// Where the block sits in [file].
   SourceRange get range => block.range;
 
   /// The block exactly as written (empty for JSON-decoded files).
@@ -207,6 +234,7 @@ Body bodyFromObject(ObjectExpr object) => Body([
 final class TerraformBlock extends TfBlock {
   const TerraformBlock._(super.file, super.block);
 
+  /// The `required_version` argument, if any.
   Expr? get requiredVersion => argument('required_version');
 
   /// `backend "type" { ... }`, if any — also from the JSON form
@@ -257,6 +285,7 @@ final class TerraformBlock extends TfBlock {
 final class ProviderBlock extends TfBlock {
   const ProviderBlock._(super.file, super.block);
 
+  /// The provider's local name (`google`, `aws`).
   String get name => block.labels.single.text;
 
   /// The `alias` argument as a string, when it is a literal.
@@ -267,10 +296,19 @@ final class ProviderBlock extends TfBlock {
 final class VariableBlock extends TfBlock {
   const VariableBlock._(super.file, super.block);
 
+  /// The variable name.
   String get name => block.labels.single.text;
+
+  /// The `type` constraint, if any.
   Expr? get type => argument('type');
+
+  /// The `default` value, if any.
   Expr? get defaultValue => argument('default');
+
+  /// The `description` argument, if any.
   Expr? get description => argument('description');
+
+  /// The `sensitive` argument, if any.
   Expr? get sensitive => argument('sensitive');
 }
 
@@ -278,13 +316,19 @@ final class VariableBlock extends TfBlock {
 final class LocalValue {
   const LocalValue._(this.file, this.block, this.attribute);
 
+  /// The file the value was read from.
   final HclFile file;
 
   /// The enclosing `locals` block.
   final Block block;
+
+  /// The `name = expr` attribute inside [block].
   final Attribute attribute;
 
+  /// The local's name, referenced as `local.<name>`.
   String get name => attribute.name;
+
+  /// The local's expression.
   Expr get value => attribute.value;
 }
 
@@ -292,17 +336,31 @@ final class LocalValue {
 final class OutputBlock extends TfBlock {
   const OutputBlock._(super.file, super.block);
 
+  /// The output name.
   String get name => block.labels.single.text;
+
+  /// The `value` argument, if any.
   Expr? get value => argument('value');
+
+  /// The `description` argument, if any.
   Expr? get description => argument('description');
+
+  /// The `sensitive` argument, if any.
   Expr? get sensitive => argument('sensitive');
 }
 
 /// Arguments shared by resources, data sources and module calls.
 mixin _MetaArguments on TfBlock {
+  /// The `count` meta-argument, if any.
   Expr? get count => argument('count');
+
+  /// The `for_each` meta-argument, if any.
   Expr? get forEach => argument('for_each');
+
+  /// The `provider` meta-argument, if any.
   Expr? get provider => argument('provider');
+
+  /// The `depends_on` meta-argument, if any.
   Expr? get dependsOn => argument('depends_on');
 }
 
@@ -310,8 +368,13 @@ mixin _MetaArguments on TfBlock {
 final class ResourceBlock extends TfBlock with _MetaArguments {
   const ResourceBlock._(super.file, super.block);
 
+  /// The resource type (`google_pubsub_topic`).
   String get type => block.labels[0].text;
+
+  /// The resource's local name.
   String get name => block.labels[1].text;
+
+  /// The Terraform address `type.name`.
   String get address => '$type.$name';
 
   /// `lifecycle { ... }` (or the JSON object form).
@@ -325,8 +388,13 @@ final class ResourceBlock extends TfBlock with _MetaArguments {
 final class DataBlock extends TfBlock with _MetaArguments {
   const DataBlock._(super.file, super.block);
 
+  /// The data source type (`google_project`).
   String get type => block.labels[0].text;
+
+  /// The data source's local name.
   String get name => block.labels[1].text;
+
+  /// The Terraform address `data.type.name`.
   String get address => 'data.$type.$name';
 }
 
@@ -334,8 +402,13 @@ final class DataBlock extends TfBlock with _MetaArguments {
 final class ModuleCallBlock extends TfBlock with _MetaArguments {
   const ModuleCallBlock._(super.file, super.block);
 
+  /// The module call's name, referenced as `module.<name>`.
   String get name => block.labels.single.text;
+
+  /// The `source` argument, if any.
   Expr? get source => argument('source');
+
+  /// The `version` argument, if any.
   Expr? get version => argument('version');
 }
 
@@ -344,5 +417,6 @@ final class ModuleCallBlock extends TfBlock with _MetaArguments {
 final class OpaqueBlock extends TfBlock {
   const OpaqueBlock._(super.file, super.block);
 
+  /// The block type (`moved`, `import`, ...).
   String get type => block.type;
 }

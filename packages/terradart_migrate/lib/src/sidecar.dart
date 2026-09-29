@@ -33,6 +33,7 @@ const outputsFileName = 'outputs.tf';
 
 /// One module's sidecar files.
 final class Sidecar {
+  /// Creates the sidecar; see [buildSidecar].
   const Sidecar({required this.files, required this.placements});
 
   /// File name → content, for the directory the Stack synthesizes into.
@@ -41,6 +42,7 @@ final class Sidecar {
   /// Kept address → the file its block landed in.
   final Map<String, String> placements;
 
+  /// True when nothing stays in Terraform, so no sidecar file is written.
   bool get isEmpty => files.isEmpty;
 }
 

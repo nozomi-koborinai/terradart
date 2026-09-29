@@ -18,6 +18,7 @@ import 'tf_expr.dart';
 
 /// One input of a local module: its `variable` block, as a Dart parameter.
 final class ModuleInput {
+  /// Creates the input for `variable "tfName"`.
   const ModuleInput({
     required this.tfName,
     required this.dartName,
@@ -46,6 +47,7 @@ final class ModuleInput {
 
 /// One output of a local module, as a `TfRef` getter.
 final class ModuleOutput {
+  /// Creates the getter for `output "tfName"`.
   const ModuleOutput({
     required this.tfName,
     required this.dartName,
@@ -58,11 +60,13 @@ final class ModuleOutput {
   /// `serviceName`.
   final String dartName;
 
+  /// The output's `description`, when it is a literal.
   final String? description;
 }
 
 /// The Dart-side interface of one local module directory.
 final class LocalModule {
+  /// Creates the interface of module [name]; see [localModuleOf].
   const LocalModule({
     required this.name,
     required this.className,
@@ -81,7 +85,10 @@ final class LocalModule {
   /// `service_account_module` — the library file is `lib/<fileStem>.dart`.
   final String fileStem;
 
+  /// One constructor parameter per `variable` block, in source order.
   final List<ModuleInput> inputs;
+
+  /// One getter per `output` block, in source order.
   final List<ModuleOutput> outputs;
 
   /// True when the module declares neither a `variable` nor an `output`:

@@ -3,6 +3,7 @@ library;
 
 /// A block that became Dart.
 final class MigratedItem {
+  /// Creates the item for the block at [address].
   const MigratedItem({required this.address, this.dartName});
 
   /// `google_pubsub_topic.orders`, `data.google_project.current`,
@@ -12,6 +13,7 @@ final class MigratedItem {
   /// The Dart local holding the resource, when one was needed.
   final String? dartName;
 
+  /// This item as it appears in the JSON report.
   Map<String, Object?> toJson() => {
     'address': address,
     if (dartName != null) 'dartName': dartName,
@@ -21,6 +23,7 @@ final class MigratedItem {
 /// A `count` / `for_each` block unrolled into one resource per instance,
 /// each with a `moved` entry carrying its state to the new address.
 final class ExpandedItem {
+  /// Creates the item for the block at [address].
   const ExpandedItem({
     required this.address,
     required this.isForEach,
@@ -33,8 +36,10 @@ final class ExpandedItem {
   /// True for `for_each`, false for `count`.
   final bool isForEach;
 
+  /// One entry per instance, in index or key order.
   final List<ExpandedInstanceItem> instances;
 
+  /// This item as it appears in the JSON report.
   Map<String, Object?> toJson() => {
     'address': address,
     'meta': isForEach ? 'for_each' : 'count',
@@ -44,6 +49,7 @@ final class ExpandedItem {
 
 /// One instance of an [ExpandedItem].
 final class ExpandedInstanceItem {
+  /// Creates the instance moved [from] one address [to] another.
   const ExpandedInstanceItem({
     required this.key,
     required this.from,
@@ -60,21 +66,28 @@ final class ExpandedInstanceItem {
   /// The address of the resource it became: `google_pubsub_topic.orders_0`.
   final String to;
 
+  /// This instance as it appears in the JSON report.
   Map<String, Object?> toJson() => {'key': key, 'from': from, 'to': to};
 }
 
 /// A block that stays in Terraform, and why.
 final class KeptItem {
+  /// Creates the item for the block at [address], kept for [reason].
   const KeptItem({required this.address, required this.reason});
 
+  /// The block's address, as in [MigratedItem.address].
   final String address;
+
+  /// Why the block could not become Dart.
   final String reason;
 
+  /// This item as it appears in the JSON report.
   Map<String, Object?> toJson() => {'address': address, 'reason': reason};
 }
 
 /// The report of one module's migration.
 final class MigrationReport {
+  /// Creates the report for [module], migrated into [stackClass].
   const MigrationReport({
     required this.module,
     required this.stackClass,
@@ -119,6 +132,7 @@ final class MigrationReport {
   /// Resource / data-source addresses that were migrated.
   Iterable<String> get migratedAddresses => migrated.map((m) => m.address);
 
+  /// The report as JSON.
   Map<String, Object?> toJson() => {
     'module': module,
     'stackClass': stackClass,
@@ -131,6 +145,7 @@ final class MigrationReport {
     'expanded': [for (final e in expanded) e.toJson()],
   };
 
+  /// The report as the human-readable text the CLI prints.
   String renderText() {
     final b = StringBuffer()
       ..writeln('terradart-migrate: $module → $stackClass')

@@ -20,6 +20,7 @@ import 'version.dart';
 
 /// One migrated module directory.
 final class MigratedModule {
+  /// Creates the result for module directory [dir]; see [migrateTree].
   const MigratedModule({
     required this.dir,
     required this.name,
@@ -31,10 +32,13 @@ final class MigratedModule {
     this.mergedInto,
   });
 
+  /// The scanned directory.
   final ModuleDir dir;
 
   /// The module name the Stack was derived from (`dev`, `service_account`).
   final String name;
+
+  /// The directory's own Stack, as [migrateStack] emitted it.
   final MigratedStack stack;
 
   /// What stays in Terraform; with no Stack, the directory's whole output.
@@ -54,11 +58,13 @@ final class MigratedModule {
   /// (`--merge-envs`), or `null` when it kept a Stack of its own.
   final String? mergedInto;
 
+  /// The [stack]'s report.
   MigrationReport get report => stack.report;
 
   /// Scan notes and emitter warnings together.
   List<String> get warnings => [...dir.warnings, ...report.warnings];
 
+  /// This module's entry in the JSON report.
   Map<String, Object?> toJson() => {
     'directory': dir.relPath,
     'role': dir.role.name,
@@ -79,6 +85,7 @@ final class MigratedModule {
 
 /// The whole migrated package.
 final class MigratedProject {
+  /// Creates the result; see [migrateTree].
   MigratedProject({
     required this.name,
     required this.packageName,
@@ -90,12 +97,19 @@ final class MigratedProject {
     this.merged = const [],
   });
 
+  /// The project name the caller gave.
   final String name;
+
+  /// The generated package's pub name, derived from [name].
   final String packageName;
 
   /// The scanned directory, as the caller named it.
   final String inputPath;
+
+  /// One entry per module directory, in tree order.
   final List<MigratedModule> modules;
+
+  /// How each group of environment siblings differs.
   final List<EnvironmentComparison> environments;
 
   /// The environment groups `--merge-envs` folded into one Stack — or, with
@@ -109,16 +123,23 @@ final class MigratedProject {
   /// Files copied byte for byte: source path → path relative to the package.
   final List<({String from, String to})> copies;
 
+  /// Blocks that became Dart, over every module.
   int get migratedCount =>
       modules.fold(0, (n, m) => n + m.report.migrated.length);
+
+  /// Blocks left in Terraform, over every module.
   int get keptCount => modules.fold(0, (n, m) => n + m.report.kept.length);
+
+  /// True when nothing was left in Terraform.
   bool get isComplete => keptCount == 0;
 
+  /// The [modules] that are root modules, in tree order.
   List<MigratedModule> get roots => [
     for (final m in modules)
       if (m.dir.isRoot) m,
   ];
 
+  /// The migration as JSON (`terradart-migrate --json`).
   Map<String, Object?> toJson() => {
     'version': packageVersion,
     'input': inputPath,

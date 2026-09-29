@@ -26,6 +26,7 @@ export 'emit/naming.dart' show snakeCase;
 
 /// One module's Stack, as [migrateStack] emits it.
 final class MigratedStack {
+  /// Creates the result; see [migrateStack].
   const MigratedStack({
     required this.stackClass,
     required this.stackFile,
@@ -61,6 +62,8 @@ final class MigratedStack {
   /// True when the Stack takes a `workspace` parameter (`--lift-workspace`
   /// and something read `terraform.workspace`).
   final bool usesWorkspace;
+
+  /// What became Dart and what stays in Terraform.
   final MigrationReport report;
 }
 
@@ -120,6 +123,7 @@ MigratedStack migrateStack(
 /// The output of [migrateModule]: files (path → content, relative to the
 /// generated package root) and the report.
 final class MigrationResult {
+  /// Creates the result; see [migrateModule].
   const MigrationResult({
     required this.files,
     required this.report,
@@ -132,6 +136,8 @@ final class MigrationResult {
   /// `lib/<stack_file>.dart`, `bin/infra.dart`, `pubspec.yaml`, and the
   /// sidecar files under `tf-out/`.
   final Map<String, String> files;
+
+  /// What became Dart and what stays in Terraform.
   final MigrationReport report;
 
   /// `OrdersStack`.

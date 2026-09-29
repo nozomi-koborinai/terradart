@@ -14,6 +14,7 @@ import 'version.dart';
 
 /// Exit codes (BSD sysexits, like `terradart`).
 abstract final class MigrateExitCodes {
+  /// The run finished; the report says what stayed in Terraform.
   static const success = 0;
 
   /// Bad flags or missing required options.
