@@ -51,15 +51,18 @@ void main() {
         expect(
           encoded.keys.toSet(),
           equals({entry.key, 'role'}),
-          reason: '${entry.value.runtimeType} must emit only '
+          reason:
+              '${entry.value.runtimeType} must emit only '
               '${entry.key} + role',
         );
-        final leaked =
-            principalKeys.difference({entry.key}).where(encoded.containsKey);
+        final leaked = principalKeys
+            .difference({entry.key})
+            .where(encoded.containsKey);
         expect(
           leaked,
           isEmpty,
-          reason: '${entry.value.runtimeType} leaked sibling principal '
+          reason:
+              '${entry.value.runtimeType} leaked sibling principal '
               'key(s): $leaked',
         );
       }

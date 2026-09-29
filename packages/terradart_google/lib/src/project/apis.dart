@@ -103,8 +103,9 @@ abstract final class Apis {
     TfArg<String>? createDuration;
     if (sleepRequested) {
       createDuration = TfArg.duration(propagationDelay);
-      final hasTimeProvider =
-          stack.providers.any((p) => p.providerName == 'time');
+      final hasTimeProvider = stack.providers.any(
+        (p) => p.providerName == 'time',
+      );
       if (!hasTimeProvider) {
         throw StateError(
           'Apis.enable inserts a `time_sleep` resource, but Stack.providers '

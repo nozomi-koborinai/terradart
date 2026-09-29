@@ -124,14 +124,18 @@ void main() {
           name: TfArg.literal('nightly'),
           region: TfArg.literal('us-central1'),
           schedule: TfArg.literal('0 0 * * *'),
-          target: CloudSchedulerJobPubsubTarget(topicName: TfArg.ref(ordersTopic.id)),
+          target: CloudSchedulerJobPubsubTarget(
+            topicName: TfArg.ref(ordersTopic.id),
+          ),
         ),
       );
 
       final actual = stack.synth().tfJson;
-      final golden = jsonDecode(
-        await File('test/golden/full_stack.tf.json').readAsString(),
-      ) as Map<String, dynamic>;
+      final golden =
+          jsonDecode(
+                await File('test/golden/full_stack.tf.json').readAsString(),
+              )
+              as Map<String, dynamic>;
       expect(actual, equals(golden));
 
       // Sanity: data.google_project is keyed under "data", not "resource".

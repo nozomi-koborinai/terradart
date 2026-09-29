@@ -13,9 +13,6 @@ void main() {
         AccessContextManagerServicePerimeterPerimeterType.perimeterTypeBridge,
       ),
     );
-    expect(
-      p.argMap['perimeter_type']!.toTfJson(),
-      'PERIMETER_TYPE_BRIDGE',
-    );
+    expect(p.argMap['perimeter_type']!.toTfJson(), 'PERIMETER_TYPE_BRIDGE');
   });
 }

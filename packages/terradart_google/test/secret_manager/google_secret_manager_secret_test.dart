@@ -14,8 +14,12 @@ void main() {
     test('SecretManagerSecretReplication.userManaged with two replicas', () {
       expect(
         SecretManagerSecretReplication.userManaged(const [
-          SecretManagerSecretReplica(location: TfArgLiteral<String>('us-central1')),
-          SecretManagerSecretReplica(location: TfArgLiteral<String>('us-east1')),
+          SecretManagerSecretReplica(
+            location: TfArgLiteral<String>('us-central1'),
+          ),
+          SecretManagerSecretReplica(
+            location: TfArgLiteral<String>('us-east1'),
+          ),
         ]).encode(),
         equals({
           'user_managed': {
@@ -31,11 +35,12 @@ void main() {
     test('SecretManagerSecretReplication.auto with CMEK', () {
       expect(
         SecretManagerSecretReplication.auto(
-          customerManagedEncryption: const SecretManagerSecretCustomerManagedEncryption(
-            kmsKeyName: TfArgLiteral<String>(
-              'projects/p/locations/l/keyRings/r/cryptoKeys/k',
-            ),
-          ),
+          customerManagedEncryption:
+              const SecretManagerSecretCustomerManagedEncryption(
+                kmsKeyName: TfArgLiteral<String>(
+                  'projects/p/locations/l/keyRings/r/cryptoKeys/k',
+                ),
+              ),
         ).encode(),
         equals({
           'auto': {
@@ -75,7 +80,9 @@ void main() {
         localName: 'rotated',
         secretId: TfArg.literal('rotated'),
         replication: SecretManagerSecretReplication.auto(),
-        topics: [SecretManagerSecretSecretTopic(name: TfArg.ref(notifyTopic.id))],
+        topics: [
+          SecretManagerSecretSecretTopic(name: TfArg.ref(notifyTopic.id)),
+        ],
         rotation: const SecretManagerSecretRotation(
           nextRotationTime: TfArgLiteral<String>('2026-06-01T00:00:00Z'),
           rotationPeriod: TfArgLiteral<String>('86400s'),

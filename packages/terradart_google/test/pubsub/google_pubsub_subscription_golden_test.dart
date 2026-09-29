@@ -31,11 +31,13 @@ void main() {
     );
 
     final actual = stack.synth().tfJson;
-    final expected = jsonDecode(
-      await File(
-        'test/golden/pubsub_subscription_push.tf.json',
-      ).readAsString(),
-    ) as Map<String, dynamic>;
+    final expected =
+        jsonDecode(
+              await File(
+                'test/golden/pubsub_subscription_push.tf.json',
+              ).readAsString(),
+            )
+            as Map<String, dynamic>;
     expect(actual, equals(expected));
   });
 }

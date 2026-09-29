@@ -53,10 +53,7 @@ void main() {
       );
       expect(
         object.sensitiveFields,
-        containsAll(<String>{
-          'content',
-          'customer_encryption.encryption_key',
-        }),
+        containsAll(<String>{'content', 'customer_encryption.encryption_key'}),
       );
     });
 
@@ -92,8 +89,10 @@ void main() {
         ),
       );
       final tfJson = stack.synth().tfJson;
-      final resource = ((tfJson['resource']
-          as Map)['google_storage_bucket_object'] as Map)['seed'] as Map;
+      final resource =
+          ((tfJson['resource'] as Map)['google_storage_bucket_object']
+                  as Map)['seed']
+              as Map;
       expect(resource['content'], equals(r'${var.seed_content}'));
     });
   });

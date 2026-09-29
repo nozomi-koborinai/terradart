@@ -17,12 +17,15 @@ void main() {
     });
 
     test('equality is by path', () {
-      const a =
-          FirestoreReference('projects/p/databases/(default)/documents/a');
-      const b =
-          FirestoreReference('projects/p/databases/(default)/documents/a');
-      const c =
-          FirestoreReference('projects/p/databases/(default)/documents/b');
+      const a = FirestoreReference(
+        'projects/p/databases/(default)/documents/a',
+      );
+      const b = FirestoreReference(
+        'projects/p/databases/(default)/documents/a',
+      );
+      const c = FirestoreReference(
+        'projects/p/databases/(default)/documents/b',
+      );
       expect(a, equals(b));
       expect(a, isNot(equals(c)));
     });
@@ -47,10 +50,7 @@ void main() {
   group('FirestoreFields.encode — primitives', () {
     test('null → nullValue', () {
       final out = FirestoreFields.encode({'k': null});
-      expect(
-        out.toTfJson(),
-        equals('{"k":{"nullValue":null}}'),
-      );
+      expect(out.toTfJson(), equals('{"k":{"nullValue":null}}'));
     });
 
     test('bool → booleanValue', () {
@@ -58,41 +58,30 @@ void main() {
       expect(
         out.toTfJson(),
         equals(
-            '{"enabled":{"booleanValue":true},"disabled":{"booleanValue":false}}'),
+          '{"enabled":{"booleanValue":true},"disabled":{"booleanValue":false}}',
+        ),
       );
     });
 
     test('int → integerValue (string-encoded for 64-bit precision)', () {
       final out = FirestoreFields.encode({'count': 42});
-      expect(
-        out.toTfJson(),
-        equals('{"count":{"integerValue":"42"}}'),
-      );
+      expect(out.toTfJson(), equals('{"count":{"integerValue":"42"}}'));
     });
 
     test('int near 2^53 boundary stays precise as string', () {
       final big = 9007199254740993; // 2^53 + 1, loses precision as JSON number
       final out = FirestoreFields.encode({'big': big});
-      expect(
-        out.toTfJson(),
-        contains('"integerValue":"9007199254740993"'),
-      );
+      expect(out.toTfJson(), contains('"integerValue":"9007199254740993"'));
     });
 
     test('double → doubleValue', () {
       final out = FirestoreFields.encode({'price': 19.99});
-      expect(
-        out.toTfJson(),
-        equals('{"price":{"doubleValue":19.99}}'),
-      );
+      expect(out.toTfJson(), equals('{"price":{"doubleValue":19.99}}'));
     });
 
     test('String → stringValue', () {
       final out = FirestoreFields.encode({'name': 'premium'});
-      expect(
-        out.toTfJson(),
-        equals('{"name":{"stringValue":"premium"}}'),
-      );
+      expect(out.toTfJson(), equals('{"name":{"stringValue":"premium"}}'));
     });
 
     test('String with quotes / unicode encoded correctly', () {
@@ -123,10 +112,7 @@ void main() {
     test('Uint8List → bytesValue (base64)', () {
       final bytes = Uint8List.fromList([0x48, 0x65, 0x6c, 0x6c, 0x6f]);
       final out = FirestoreFields.encode({'payload': bytes});
-      expect(
-        out.toTfJson(),
-        equals('{"payload":{"bytesValue":"SGVsbG8="}}'),
-      );
+      expect(out.toTfJson(), equals('{"payload":{"bytesValue":"SGVsbG8="}}'));
     });
   });
 
@@ -217,21 +203,25 @@ void main() {
       final out = FirestoreFields.encode({
         'related_plans': [
           const FirestoreReference(
-              'projects/p/databases/(default)/documents/plans/free'),
+            'projects/p/databases/(default)/documents/plans/free',
+          ),
           const FirestoreReference(
-              'projects/p/databases/(default)/documents/plans/pro'),
+            'projects/p/databases/(default)/documents/plans/pro',
+          ),
         ],
       });
       final encoded = out.toTfJson() as String;
       expect(
         encoded,
         contains(
-            '"referenceValue":"projects/p/databases/(default)/documents/plans/free"'),
+          '"referenceValue":"projects/p/databases/(default)/documents/plans/free"',
+        ),
       );
       expect(
         encoded,
         contains(
-            '"referenceValue":"projects/p/databases/(default)/documents/plans/pro"'),
+          '"referenceValue":"projects/p/databases/(default)/documents/plans/pro"',
+        ),
       );
     });
   });

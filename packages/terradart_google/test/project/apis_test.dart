@@ -17,25 +17,23 @@ void main() {
       final apis = Apis.required(
         barrels: [Barrels.compute, Barrels.serviceNetworking],
       );
-      final endpoints = apis
-          .map((a) => a.argMap['service']!.toTfJson() as String)
-          .toList()
-        ..sort();
-      expect(
-        endpoints,
-        [
-          'compute.googleapis.com',
-          'servicenetworking.googleapis.com',
-          'vpcaccess.googleapis.com',
-        ],
-      );
+      final endpoints =
+          apis.map((a) => a.argMap['service']!.toTfJson() as String).toList()
+            ..sort();
+      expect(endpoints, [
+        'compute.googleapis.com',
+        'servicenetworking.googleapis.com',
+        'vpcaccess.googleapis.com',
+      ]);
     });
 
     test('pubsub barrel is a single API', () {
       final apis = Apis.required(barrels: [Barrels.pubsub]);
       expect(apis, hasLength(1));
       expect(
-          apis.single.argMap['service']!.toTfJson(), 'pubsub.googleapis.com');
+        apis.single.argMap['service']!.toTfJson(),
+        'pubsub.googleapis.com',
+      );
     });
 
     test('project barrel alone yields no APIs', () {
@@ -46,10 +44,7 @@ void main() {
     test('iam barrel includes iam.googleapis.com (deny policies)', () {
       final apis = Apis.required(barrels: [Barrels.iamApi]);
       expect(apis, hasLength(1));
-      expect(
-        apis.single.argMap['service']!.toTfJson(),
-        'iam.googleapis.com',
-      );
+      expect(apis.single.argMap['service']!.toTfJson(), 'iam.googleapis.com');
     });
 
     test('alloydb barrel includes alloydb.googleapis.com', () {
@@ -105,38 +100,36 @@ void main() {
     });
 
     test(
-        'binaryAuthorization barrel includes binaryauthorization.googleapis.com',
-        () {
-      final apis = Apis.required(barrels: [Barrels.binaryAuthorization]);
-      expect(apis, hasLength(1));
-      expect(
-        apis.single.argMap['service']!.toTfJson(),
-        'binaryauthorization.googleapis.com',
-      );
-    });
+      'binaryAuthorization barrel includes binaryauthorization.googleapis.com',
+      () {
+        final apis = Apis.required(barrels: [Barrels.binaryAuthorization]);
+        expect(apis, hasLength(1));
+        expect(
+          apis.single.argMap['service']!.toTfJson(),
+          'binaryauthorization.googleapis.com',
+        );
+      },
+    );
 
     test('publicCa barrel includes publicca.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.publicCa]);
-      expect(
-        apis.map((a) => a.argMap['service']!.toTfJson()).toList(),
-        ['publicca.googleapis.com'],
-      );
+      expect(apis.map((a) => a.argMap['service']!.toTfJson()).toList(), [
+        'publicca.googleapis.com',
+      ]);
     });
 
     test('dataCatalog barrel includes datacatalog.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.dataCatalog]);
-      expect(
-        apis.map((a) => a.argMap['service']!.toTfJson()).toList(),
-        ['datacatalog.googleapis.com'],
-      );
+      expect(apis.map((a) => a.argMap['service']!.toTfJson()).toList(), [
+        'datacatalog.googleapis.com',
+      ]);
     });
 
     test('storageControl barrel includes storage.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.storageControl]);
-      expect(
-        apis.map((a) => a.argMap['service']!.toTfJson()).toList(),
-        ['storage.googleapis.com'],
-      );
+      expect(apis.map((a) => a.argMap['service']!.toTfJson()).toList(), [
+        'storage.googleapis.com',
+      ]);
     });
 
     test('apikeys barrel includes apikeys.googleapis.com', () {
@@ -151,10 +144,7 @@ void main() {
     test('ces barrel includes ces.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.ces]);
       expect(apis, hasLength(1));
-      expect(
-        apis.single.argMap['service']!.toTfJson(),
-        'ces.googleapis.com',
-      );
+      expect(apis.single.argMap['service']!.toTfJson(), 'ces.googleapis.com');
     });
 
     test('dataform barrel includes dataform.googleapis.com', () {
@@ -194,10 +184,9 @@ void main() {
         propagationDelay: Duration.zero,
       );
       expect(deps, hasLength(1));
-      expect(
-        stack.resources.map((r) => r.terraformType),
-        ['google_project_service'],
-      );
+      expect(stack.resources.map((r) => r.terraformType), [
+        'google_project_service',
+      ]);
     });
 
     test('negative delay also skips the sleep', () {
@@ -208,10 +197,9 @@ void main() {
         propagationDelay: const Duration(seconds: -1),
       );
       expect(deps, hasLength(1));
-      expect(
-        stack.resources.map((r) => r.terraformType),
-        ['google_project_service'],
-      );
+      expect(stack.resources.map((r) => r.terraformType), [
+        'google_project_service',
+      ]);
     });
 
     test('adds time_sleep with service-keyed triggers when delay is set', () {
@@ -221,19 +209,18 @@ void main() {
         barrels: [Barrels.pubsub],
         propagationDelay: const Duration(seconds: 45),
       );
-      expect(
-        stack.resources.map((r) => r.terraformType),
-        ['google_project_service', 'time_sleep'],
-      );
+      expect(stack.resources.map((r) => r.terraformType), [
+        'google_project_service',
+        'time_sleep',
+      ]);
       final sleep = stack.resources.whereType<TimeSleep>().single;
       // The returned dependency targets the sleep (not the services), and
       // the sleep itself depends on every service — the services -> sleep ->
       // dependents ordering is the whole contract of this helper.
       expect(deps.single.target, same(sleep));
-      expect(
-        sleep.dependsOn!.map((d) => d.bareAddress),
-        ['google_project_service.api_pubsub'],
-      );
+      expect(sleep.dependsOn!.map((d) => d.bareAddress), [
+        'google_project_service.api_pubsub',
+      ]);
       expect(sleep.localName, 'api_propagation');
       expect(sleep.argMap['create_duration']!.toTfJson(), '45s');
       expect(sleep.argMap['triggers']!.toTfJson(), {
@@ -245,14 +232,13 @@ void main() {
       final stack = TestStack(providers: const [TimeProvider()]);
       Apis.enable(stack, barrels: [Barrels.pubsub], localNamePrefix: 'apis_a');
       Apis.enable(stack, barrels: [Barrels.redis], localNamePrefix: 'apis_b');
-      expect(
-        stack.resources.whereType<TimeSleep>().map((s) => s.localName),
-        ['apis_a_propagation', 'apis_b_propagation'],
-      );
+      expect(stack.resources.whereType<TimeSleep>().map((s) => s.localName), [
+        'apis_a_propagation',
+        'apis_b_propagation',
+      ]);
     });
 
-    test(
-        'throws StateError before mutating the stack when TimeProvider '
+    test('throws StateError before mutating the stack when TimeProvider '
         'is missing', () {
       final stack = TestStack();
       expect(
@@ -262,8 +248,7 @@ void main() {
       expect(stack.resources, isEmpty);
     });
 
-    test(
-        'throws ArgumentError before mutating the stack for sub-second '
+    test('throws ArgumentError before mutating the stack for sub-second '
         'delays', () {
       final stack = TestStack(providers: const [TimeProvider()]);
       expect(

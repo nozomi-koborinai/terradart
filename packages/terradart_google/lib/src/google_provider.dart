@@ -14,12 +14,7 @@ import '_provider_meta.dart';
 /// there is no `TfArgRef` use case here. Pass literal strings only.
 @immutable
 final class GoogleProvider implements StackProvider {
-  const GoogleProvider({
-    this.alias,
-    this.project,
-    this.region,
-    this.zone,
-  });
+  const GoogleProvider({this.alias, this.project, this.region, this.zone});
 
   /// Provider alias (`provider "google" { alias = "eu" }`), or `null` for
   /// the default configuration. Select it on a resource with
@@ -49,8 +44,8 @@ final class GoogleProvider implements StackProvider {
 
   @override
   Map<String, Object?> get configArgs => {
-        if (project != null) 'project': project,
-        if (region != null) 'region': region,
-        if (zone != null) 'zone': zone,
-      };
+    if (project != null) 'project': project,
+    if (region != null) 'region': region,
+    if (zone != null) 'zone': zone,
+  };
 }

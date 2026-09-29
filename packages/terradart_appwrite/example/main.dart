@@ -9,14 +9,14 @@ import 'package:terradart_appwrite/terradart_appwrite.dart';
 /// environment variables.
 final class HelloStack extends Stack {
   HelloStack()
-      : super(
-          providers: [
-            const AppwriteProvider(
-              endpoint: 'https://cloud.appwrite.io/v1',
-              projectId: 'my-project',
-            ),
-          ],
-        ) {
+    : super(
+        providers: [
+          const AppwriteProvider(
+            endpoint: 'https://cloud.appwrite.io/v1',
+            projectId: 'my-project',
+          ),
+        ],
+      ) {
     add(
       AppwriteStorageBucket(
         localName: 'uploads',

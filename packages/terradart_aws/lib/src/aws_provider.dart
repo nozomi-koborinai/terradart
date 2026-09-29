@@ -126,36 +126,36 @@ final class AwsProvider implements StackProvider {
 
   @override
   Map<String, Object?> get configArgs => {
-        if (region != null) 'region': region,
-        if (profile != null) 'profile': profile,
-        if (allowedAccountIds != null) 'allowed_account_ids': allowedAccountIds,
-        if (forbiddenAccountIds != null)
-          'forbidden_account_ids': forbiddenAccountIds,
-        if (assumeRole != null)
-          'assume_role': [for (final r in assumeRole!) r.toJson()],
-        if (defaultTags != null)
-          'default_tags': [
-            {'tags': defaultTags},
-          ],
-        if (ignoreTags != null) 'ignore_tags': [ignoreTags!.toJson()],
-        if (endpoints != null) 'endpoints': [endpoints],
-        if (sharedConfigFiles != null) 'shared_config_files': sharedConfigFiles,
-        if (sharedCredentialsFiles != null)
-          'shared_credentials_files': sharedCredentialsFiles,
-        if (skipCredentialsValidation != null)
-          'skip_credentials_validation': skipCredentialsValidation,
-        if (skipMetadataApiCheck != null)
-          'skip_metadata_api_check': skipMetadataApiCheck,
-        if (skipRegionValidation != null)
-          'skip_region_validation': skipRegionValidation,
-        if (skipRequestingAccountId != null)
-          'skip_requesting_account_id': skipRequestingAccountId,
-        if (retryMode != null) 'retry_mode': retryMode,
-        if (maxRetries != null) 'max_retries': maxRetries,
-        if (useFipsEndpoint != null) 'use_fips_endpoint': useFipsEndpoint,
-        if (useDualstackEndpoint != null)
-          'use_dualstack_endpoint': useDualstackEndpoint,
-      };
+    if (region != null) 'region': region,
+    if (profile != null) 'profile': profile,
+    if (allowedAccountIds != null) 'allowed_account_ids': allowedAccountIds,
+    if (forbiddenAccountIds != null)
+      'forbidden_account_ids': forbiddenAccountIds,
+    if (assumeRole != null)
+      'assume_role': [for (final r in assumeRole!) r.toJson()],
+    if (defaultTags != null)
+      'default_tags': [
+        {'tags': defaultTags},
+      ],
+    if (ignoreTags != null) 'ignore_tags': [ignoreTags!.toJson()],
+    if (endpoints != null) 'endpoints': [endpoints],
+    if (sharedConfigFiles != null) 'shared_config_files': sharedConfigFiles,
+    if (sharedCredentialsFiles != null)
+      'shared_credentials_files': sharedCredentialsFiles,
+    if (skipCredentialsValidation != null)
+      'skip_credentials_validation': skipCredentialsValidation,
+    if (skipMetadataApiCheck != null)
+      'skip_metadata_api_check': skipMetadataApiCheck,
+    if (skipRegionValidation != null)
+      'skip_region_validation': skipRegionValidation,
+    if (skipRequestingAccountId != null)
+      'skip_requesting_account_id': skipRequestingAccountId,
+    if (retryMode != null) 'retry_mode': retryMode,
+    if (maxRetries != null) 'max_retries': maxRetries,
+    if (useFipsEndpoint != null) 'use_fips_endpoint': useFipsEndpoint,
+    if (useDualstackEndpoint != null)
+      'use_dualstack_endpoint': useDualstackEndpoint,
+  };
 }
 
 /// One `assume_role` block of [AwsProvider].
@@ -201,16 +201,16 @@ final class AwsAssumeRole {
   final List<String>? transitiveTagKeys;
 
   Map<String, Object?> toJson() => {
-        if (roleArn != null) 'role_arn': roleArn,
-        if (sessionName != null) 'session_name': sessionName,
-        if (externalId != null) 'external_id': externalId,
-        if (duration != null) 'duration': duration,
-        if (policy != null) 'policy': policy,
-        if (policyArns != null) 'policy_arns': policyArns,
-        if (sourceIdentity != null) 'source_identity': sourceIdentity,
-        if (tags != null) 'tags': tags,
-        if (transitiveTagKeys != null) 'transitive_tag_keys': transitiveTagKeys,
-      };
+    if (roleArn != null) 'role_arn': roleArn,
+    if (sessionName != null) 'session_name': sessionName,
+    if (externalId != null) 'external_id': externalId,
+    if (duration != null) 'duration': duration,
+    if (policy != null) 'policy': policy,
+    if (policyArns != null) 'policy_arns': policyArns,
+    if (sourceIdentity != null) 'source_identity': sourceIdentity,
+    if (tags != null) 'tags': tags,
+    if (transitiveTagKeys != null) 'transitive_tag_keys': transitiveTagKeys,
+  };
 }
 
 /// The `ignore_tags` block of [AwsProvider].
@@ -225,7 +225,7 @@ final class AwsIgnoreTags {
   final List<String>? keyPrefixes;
 
   Map<String, Object?> toJson() => {
-        if (keys != null) 'keys': keys,
-        if (keyPrefixes != null) 'key_prefixes': keyPrefixes,
-      };
+    if (keys != null) 'keys': keys,
+    if (keyPrefixes != null) 'key_prefixes': keyPrefixes,
+  };
 }
