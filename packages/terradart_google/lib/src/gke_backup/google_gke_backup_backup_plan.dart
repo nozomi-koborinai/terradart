@@ -105,8 +105,31 @@ final class GkeBackupBackupPlanBackupConfig {
 
 /// Exactly one of `all_namespaces`, `selected_namespaces`, `selected_applications`, `selected_namespace_labels` on the `backup_config` block of `google_gke_backup_backup_plan`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.allNamespaces(...)`.
 sealed class GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels {
   const GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels();
+
+  /// Sets `all_namespaces`.
+  const factory GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels.allNamespaces(
+    TfArg<bool> allNamespaces,
+  ) = GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsAllNamespaces;
+
+  /// Sets `selected_namespaces`.
+  const factory GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels.selectedNamespaces(
+    GkeBackupBackupPlanBackupConfigSelectedNamespaces selectedNamespaces,
+  ) = GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaces;
+
+  /// Sets `selected_applications`.
+  const factory GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels.selectedApplications(
+    GkeBackupBackupPlanBackupConfigSelectedApplications selectedApplications,
+  ) = GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedApplications;
+
+  /// Sets `selected_namespace_labels`.
+  const factory GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels.selectedNamespaceLabels(
+    GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels
+    selectedNamespaceLabels,
+  ) = GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaceLabels;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -114,13 +137,13 @@ sealed class GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrS
   Map<String, Object?> encode();
 }
 
-/// Sets `all_namespaces` (one of the [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels] choices).
-final class GkeBackupBackupPlanBackupConfigAllNamespacesOption
+/// The [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels.allNamespaces] choice: sets `all_namespaces`.
+final class GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsAllNamespaces
     extends
         GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels {
-  const GkeBackupBackupPlanBackupConfigAllNamespacesOption({
-    required this.allNamespaces,
-  });
+  const GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsAllNamespaces(
+    this.allNamespaces,
+  );
 
   final TfArg<bool> allNamespaces;
 
@@ -131,13 +154,13 @@ final class GkeBackupBackupPlanBackupConfigAllNamespacesOption
   Map<String, Object?> encode() => {'all_namespaces': allNamespaces.toTfJson()};
 }
 
-/// Sets `selected_namespaces` (one of the [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels] choices).
-final class GkeBackupBackupPlanBackupConfigSelectedNamespacesOption
+/// The [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels.selectedNamespaces] choice: sets `selected_namespaces`.
+final class GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaces
     extends
         GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels {
-  const GkeBackupBackupPlanBackupConfigSelectedNamespacesOption({
-    required this.selectedNamespaces,
-  });
+  const GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaces(
+    this.selectedNamespaces,
+  );
 
   final GkeBackupBackupPlanBackupConfigSelectedNamespaces selectedNamespaces;
 
@@ -150,13 +173,13 @@ final class GkeBackupBackupPlanBackupConfigSelectedNamespacesOption
   };
 }
 
-/// Sets `selected_applications` (one of the [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels] choices).
-final class GkeBackupBackupPlanBackupConfigSelectedApplicationsOption
+/// The [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels.selectedApplications] choice: sets `selected_applications`.
+final class GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedApplications
     extends
         GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels {
-  const GkeBackupBackupPlanBackupConfigSelectedApplicationsOption({
-    required this.selectedApplications,
-  });
+  const GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedApplications(
+    this.selectedApplications,
+  );
 
   final GkeBackupBackupPlanBackupConfigSelectedApplications
   selectedApplications;
@@ -170,13 +193,13 @@ final class GkeBackupBackupPlanBackupConfigSelectedApplicationsOption
   };
 }
 
-/// Sets `selected_namespace_labels` (one of the [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels] choices).
-final class GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsOption
+/// The [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels.selectedNamespaceLabels] choice: sets `selected_namespace_labels`.
+final class GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaceLabels
     extends
         GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels {
-  const GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsOption({
-    required this.selectedNamespaceLabels,
-  });
+  const GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaceLabels(
+    this.selectedNamespaceLabels,
+  );
 
   final GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels
   selectedNamespaceLabels;

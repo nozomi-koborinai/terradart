@@ -9,8 +9,20 @@ const Set<String> _awsDocdbEventSubscriptionSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_docdb_event_subscription`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class DocdbEventSubscriptionNameOrNamePrefix {
   const DocdbEventSubscriptionNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory DocdbEventSubscriptionNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = DocdbEventSubscriptionNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory DocdbEventSubscriptionNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = DocdbEventSubscriptionNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,10 @@ sealed class DocdbEventSubscriptionNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [DocdbEventSubscriptionNameOrNamePrefix] choices).
-final class DocdbEventSubscriptionNameOption
+/// The [DocdbEventSubscriptionNameOrNamePrefix.name] choice: sets `name`.
+final class DocdbEventSubscriptionNameOrNamePrefixName
     extends DocdbEventSubscriptionNameOrNamePrefix {
-  const DocdbEventSubscriptionNameOption({required this.name});
+  const DocdbEventSubscriptionNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +51,10 @@ final class DocdbEventSubscriptionNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [DocdbEventSubscriptionNameOrNamePrefix] choices).
-final class DocdbEventSubscriptionNamePrefixOption
+/// The [DocdbEventSubscriptionNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class DocdbEventSubscriptionNameOrNamePrefixNamePrefix
     extends DocdbEventSubscriptionNameOrNamePrefix {
-  const DocdbEventSubscriptionNamePrefixOption({required this.namePrefix});
+  const DocdbEventSubscriptionNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

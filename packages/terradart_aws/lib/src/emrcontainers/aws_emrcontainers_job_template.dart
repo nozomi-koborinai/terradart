@@ -209,8 +209,22 @@ final class EmrcontainersJobTemplateJobTemplateDataJobDriver {
 
 /// Exactly one of `spark_sql_job_driver`, `spark_submit_job_driver` on the `job_template_data.job_driver` block of `aws_emrcontainers_job_template`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sparkSqlJobDriver(...)`.
 sealed class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriver {
   const EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriver();
+
+  /// Sets `spark_sql_job_driver`.
+  const factory EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriver.sparkSqlJobDriver(
+    EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver
+    sparkSqlJobDriver,
+  ) = EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriverSparkSqlJobDriver;
+
+  /// Sets `spark_submit_job_driver`.
+  const factory EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriver.sparkSubmitJobDriver(
+    EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver
+    sparkSubmitJobDriver,
+  ) = EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriverSparkSubmitJobDriver;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -218,13 +232,13 @@ sealed class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOr
   Map<String, Object?> encode();
 }
 
-/// Sets `spark_sql_job_driver` (one of the [EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriver] choices).
-final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOption
+/// The [EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriver.sparkSqlJobDriver] choice: sets `spark_sql_job_driver`.
+final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriverSparkSqlJobDriver
     extends
         EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriver {
-  const EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOption({
-    required this.sparkSqlJobDriver,
-  });
+  const EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriverSparkSqlJobDriver(
+    this.sparkSqlJobDriver,
+  );
 
   final EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver
   sparkSqlJobDriver;
@@ -238,13 +252,13 @@ final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOpt
   };
 }
 
-/// Sets `spark_submit_job_driver` (one of the [EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriver] choices).
-final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriverOption
+/// The [EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriver.sparkSubmitJobDriver] choice: sets `spark_submit_job_driver`.
+final class EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriverSparkSubmitJobDriver
     extends
         EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriver {
-  const EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriverOption({
-    required this.sparkSubmitJobDriver,
-  });
+  const EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriverOrSparkSubmitJobDriverSparkSubmitJobDriver(
+    this.sparkSubmitJobDriver,
+  );
 
   final EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSubmitJobDriver
   sparkSubmitJobDriver;

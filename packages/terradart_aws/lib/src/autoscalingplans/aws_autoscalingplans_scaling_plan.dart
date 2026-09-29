@@ -26,8 +26,20 @@ final class AutoscalingplansScalingPlanApplicationSource {
 /// At most one of `cloudformation_stack_arn`, `tag_filter` on the `application_source` block of `aws_autoscalingplans_scaling_plan`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.cloudformationStackArn(...)`.
 sealed class AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter {
   const AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter();
+
+  /// Sets `cloudformation_stack_arn`.
+  const factory AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter.cloudformationStackArn(
+    TfArg<String> cloudformationStackArn,
+  ) = AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilterCloudformationStackArn;
+
+  /// Sets `tag_filter`.
+  const factory AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter.tagFilter(
+    List<AutoscalingplansScalingPlanApplicationSourceTagFilter> tagFilter,
+  ) = AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilterTagFilter;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,13 +47,13 @@ sealed class AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnO
   Map<String, Object?> encode();
 }
 
-/// Sets `cloudformation_stack_arn` (one of the [AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter] choices).
-final class AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOption
+/// The [AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter.cloudformationStackArn] choice: sets `cloudformation_stack_arn`.
+final class AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilterCloudformationStackArn
     extends
         AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter {
-  const AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOption({
-    required this.cloudformationStackArn,
-  });
+  const AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilterCloudformationStackArn(
+    this.cloudformationStackArn,
+  );
 
   final TfArg<String> cloudformationStackArn;
 
@@ -54,13 +66,13 @@ final class AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOp
   };
 }
 
-/// Sets `tag_filter` (one of the [AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter] choices).
-final class AutoscalingplansScalingPlanApplicationSourceTagFilterOption
+/// The [AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter.tagFilter] choice: sets `tag_filter`.
+final class AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilterTagFilter
     extends
         AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter {
-  const AutoscalingplansScalingPlanApplicationSourceTagFilterOption({
-    required this.tagFilter,
-  });
+  const AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilterTagFilter(
+    this.tagFilter,
+  );
 
   final List<AutoscalingplansScalingPlanApplicationSourceTagFilter> tagFilter;
 

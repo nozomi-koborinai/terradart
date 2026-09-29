@@ -139,11 +139,18 @@ final class MigrateHelper {
   const MigrateHelper({
     required this.className,
     required this.slots,
+    this.shorthand,
     this.reason,
   });
 
   /// The helper's Dart class name.
   final String className;
+
+  /// For a sealed variant: the factory constructor on its sealed type that
+  /// builds it, so a migrator writes the dot shorthand `.<shorthand>(...)`
+  /// instead of naming the class. Null for a plain helper, and for a
+  /// hand-written variant its sealed type declares no factory for.
+  final String? shorthand;
 
   /// Constructor parameters in declaration order. Each slot's
   /// [MigrateSlot.tfName] is relative to the map this class's `encode()`

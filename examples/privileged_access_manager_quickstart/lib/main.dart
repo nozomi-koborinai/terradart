@@ -69,11 +69,9 @@ final class PrivilegedAccessManagerStack extends Stack {
         ),
         requesterJustificationConfig:
             const PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
-              notMandatoryOrUnstructured:
-                  PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructuredOption(
-                    unstructured:
-                        PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
-                  ),
+              notMandatoryOrUnstructured: .unstructured(
+                PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
+              ),
             ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: [ResourceDependency(apiPam), ResourceDependency(requester)],

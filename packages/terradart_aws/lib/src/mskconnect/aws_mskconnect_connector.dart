@@ -25,8 +25,20 @@ final class MskconnectConnectorCapacity {
 
 /// Exactly one of `autoscaling`, `provisioned_capacity` on the `capacity` block of `aws_mskconnect_connector`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.autoscaling(...)`.
 sealed class MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
   const MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity();
+
+  /// Sets `autoscaling`.
+  const factory MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity.autoscaling(
+    MskconnectConnectorCapacityAutoscaling autoscaling,
+  ) = MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityAutoscaling;
+
+  /// Sets `provisioned_capacity`.
+  const factory MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity.provisionedCapacity(
+    MskconnectConnectorCapacityProvisionedCapacity provisionedCapacity,
+  ) = MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityProvisionedCapacity;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,12 +46,12 @@ sealed class MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
   Map<String, Object?> encode();
 }
 
-/// Sets `autoscaling` (one of the [MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity] choices).
-final class MskconnectConnectorCapacityAutoscalingOption
+/// The [MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity.autoscaling] choice: sets `autoscaling`.
+final class MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityAutoscaling
     extends MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
-  const MskconnectConnectorCapacityAutoscalingOption({
-    required this.autoscaling,
-  });
+  const MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityAutoscaling(
+    this.autoscaling,
+  );
 
   final MskconnectConnectorCapacityAutoscaling autoscaling;
 
@@ -50,12 +62,12 @@ final class MskconnectConnectorCapacityAutoscalingOption
   Map<String, Object?> encode() => {'autoscaling': autoscaling.encode()};
 }
 
-/// Sets `provisioned_capacity` (one of the [MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity] choices).
-final class MskconnectConnectorCapacityProvisionedCapacityOption
+/// The [MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity.provisionedCapacity] choice: sets `provisioned_capacity`.
+final class MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityProvisionedCapacity
     extends MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
-  const MskconnectConnectorCapacityProvisionedCapacityOption({
-    required this.provisionedCapacity,
-  });
+  const MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityProvisionedCapacity(
+    this.provisionedCapacity,
+  );
 
   final MskconnectConnectorCapacityProvisionedCapacity provisionedCapacity;
 

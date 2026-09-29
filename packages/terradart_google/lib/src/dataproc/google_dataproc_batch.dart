@@ -214,8 +214,20 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
 /// At most one of `network_uri`, `subnetwork_uri` on the `environment_config.execution_config` block of `google_dataproc_batch`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.networkUri(...)`.
 sealed class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri {
   const DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri();
+
+  /// Sets `network_uri`.
+  const factory DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri.networkUri(
+    TfArg<String> networkUri,
+  ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriNetworkUri;
+
+  /// Sets `subnetwork_uri`.
+  const factory DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri.subnetworkUri(
+    TfArg<String> subnetworkUri,
+  ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriSubnetworkUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -223,13 +235,13 @@ sealed class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetwork
   Map<String, Object?> encode();
 }
 
-/// Sets `network_uri` (one of the [DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri] choices).
-final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOption
+/// The [DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri.networkUri] choice: sets `network_uri`.
+final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriNetworkUri
     extends
         DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri {
-  const DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOption({
-    required this.networkUri,
-  });
+  const DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriNetworkUri(
+    this.networkUri,
+  );
 
   final TfArg<String> networkUri;
 
@@ -240,13 +252,13 @@ final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOption
   Map<String, Object?> encode() => {'network_uri': networkUri.toTfJson()};
 }
 
-/// Sets `subnetwork_uri` (one of the [DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri] choices).
-final class DataprocBatchEnvironmentConfigExecutionConfigSubnetworkUriOption
+/// The [DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri.subnetworkUri] choice: sets `subnetwork_uri`.
+final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriSubnetworkUri
     extends
         DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri {
-  const DataprocBatchEnvironmentConfigExecutionConfigSubnetworkUriOption({
-    required this.subnetworkUri,
-  });
+  const DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriSubnetworkUri(
+    this.subnetworkUri,
+  );
 
   final TfArg<String> subnetworkUri;
 

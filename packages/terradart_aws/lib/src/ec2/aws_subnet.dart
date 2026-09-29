@@ -19,8 +19,20 @@ enum SubnetPrivateDnsHostnameTypeOnLaunch implements TerraformEnum {
 /// At most one of `availability_zone`, `availability_zone_id` on `aws_subnet`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.availabilityZone(...)`.
 sealed class SubnetAvailabilityZoneOrAvailabilityZoneId {
   const SubnetAvailabilityZoneOrAvailabilityZoneId();
+
+  /// Sets `availability_zone`.
+  const factory SubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZone(
+    TfArg<String> availabilityZone,
+  ) = SubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZone;
+
+  /// Sets `availability_zone_id`.
+  const factory SubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZoneId(
+    TfArg<String> availabilityZoneId,
+  ) = SubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZoneId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,10 +44,12 @@ sealed class SubnetAvailabilityZoneOrAvailabilityZoneId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `availability_zone` (one of the [SubnetAvailabilityZoneOrAvailabilityZoneId] choices).
-final class SubnetAvailabilityZoneOption
+/// The [SubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZone] choice: sets `availability_zone`.
+final class SubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZone
     extends SubnetAvailabilityZoneOrAvailabilityZoneId {
-  const SubnetAvailabilityZoneOption({required this.availabilityZone});
+  const SubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZone(
+    this.availabilityZone,
+  );
 
   final TfArg<String> availabilityZone;
 
@@ -53,10 +67,12 @@ final class SubnetAvailabilityZoneOption
   };
 }
 
-/// Sets `availability_zone_id` (one of the [SubnetAvailabilityZoneOrAvailabilityZoneId] choices).
-final class SubnetAvailabilityZoneIdOption
+/// The [SubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZoneId] choice: sets `availability_zone_id`.
+final class SubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZoneId
     extends SubnetAvailabilityZoneOrAvailabilityZoneId {
-  const SubnetAvailabilityZoneIdOption({required this.availabilityZoneId});
+  const SubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZoneId(
+    this.availabilityZoneId,
+  );
 
   final TfArg<String> availabilityZoneId;
 
@@ -77,8 +93,20 @@ final class SubnetAvailabilityZoneIdOption
 /// At most one of `ipv6_cidr_block`, `ipv6_netmask_length` on `aws_subnet`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.ipv6CidrBlock(...)`.
 sealed class SubnetIpv6CidrBlockOrIpv6NetmaskLength {
   const SubnetIpv6CidrBlockOrIpv6NetmaskLength();
+
+  /// Sets `ipv6_cidr_block`.
+  const factory SubnetIpv6CidrBlockOrIpv6NetmaskLength.ipv6CidrBlock(
+    TfArg<String> ipv6CidrBlock,
+  ) = SubnetIpv6CidrBlockOrIpv6NetmaskLengthIpv6CidrBlock;
+
+  /// Sets `ipv6_netmask_length`.
+  const factory SubnetIpv6CidrBlockOrIpv6NetmaskLength.ipv6NetmaskLength(
+    TfArg<num> ipv6NetmaskLength,
+  ) = SubnetIpv6CidrBlockOrIpv6NetmaskLengthIpv6NetmaskLength;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -90,10 +118,10 @@ sealed class SubnetIpv6CidrBlockOrIpv6NetmaskLength {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `ipv6_cidr_block` (one of the [SubnetIpv6CidrBlockOrIpv6NetmaskLength] choices).
-final class SubnetIpv6CidrBlockOption
+/// The [SubnetIpv6CidrBlockOrIpv6NetmaskLength.ipv6CidrBlock] choice: sets `ipv6_cidr_block`.
+final class SubnetIpv6CidrBlockOrIpv6NetmaskLengthIpv6CidrBlock
     extends SubnetIpv6CidrBlockOrIpv6NetmaskLength {
-  const SubnetIpv6CidrBlockOption({required this.ipv6CidrBlock});
+  const SubnetIpv6CidrBlockOrIpv6NetmaskLengthIpv6CidrBlock(this.ipv6CidrBlock);
 
   final TfArg<String> ipv6CidrBlock;
 
@@ -109,10 +137,12 @@ final class SubnetIpv6CidrBlockOption
   Map<String, TfArg<Object?>> get argMap => {'ipv6_cidr_block': ipv6CidrBlock};
 }
 
-/// Sets `ipv6_netmask_length` (one of the [SubnetIpv6CidrBlockOrIpv6NetmaskLength] choices).
-final class SubnetIpv6NetmaskLengthOption
+/// The [SubnetIpv6CidrBlockOrIpv6NetmaskLength.ipv6NetmaskLength] choice: sets `ipv6_netmask_length`.
+final class SubnetIpv6CidrBlockOrIpv6NetmaskLengthIpv6NetmaskLength
     extends SubnetIpv6CidrBlockOrIpv6NetmaskLength {
-  const SubnetIpv6NetmaskLengthOption({required this.ipv6NetmaskLength});
+  const SubnetIpv6CidrBlockOrIpv6NetmaskLengthIpv6NetmaskLength(
+    this.ipv6NetmaskLength,
+  );
 
   final TfArg<num> ipv6NetmaskLength;
 

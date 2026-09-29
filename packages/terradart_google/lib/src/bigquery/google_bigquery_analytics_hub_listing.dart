@@ -18,8 +18,20 @@ enum BigqueryAnalyticsHubListingDiscoveryType implements TerraformEnum {
 
 /// Exactly one of `pubsub_topic`, `bigquery_dataset` on `google_bigquery_analytics_hub_listing`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.pubsubTopic(...)`.
 sealed class BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset {
   const BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset();
+
+  /// Sets `pubsub_topic`.
+  const factory BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset.pubsubTopic(
+    BigqueryAnalyticsHubListingPubsubTopic pubsubTopic,
+  ) = BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetPubsubTopic;
+
+  /// Sets `bigquery_dataset`.
+  const factory BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset.bigqueryDataset(
+    BigqueryAnalyticsHubListingBigqueryDataset bigqueryDataset,
+  ) = BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetBigqueryDataset;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -31,12 +43,12 @@ sealed class BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `pubsub_topic` (one of the [BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset] choices).
-final class BigqueryAnalyticsHubListingPubsubTopicOption
+/// The [BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset.pubsubTopic] choice: sets `pubsub_topic`.
+final class BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetPubsubTopic
     extends BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset {
-  const BigqueryAnalyticsHubListingPubsubTopicOption({
-    required this.pubsubTopic,
-  });
+  const BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetPubsubTopic(
+    this.pubsubTopic,
+  );
 
   final BigqueryAnalyticsHubListingPubsubTopic pubsubTopic;
 
@@ -52,12 +64,12 @@ final class BigqueryAnalyticsHubListingPubsubTopicOption
   };
 }
 
-/// Sets `bigquery_dataset` (one of the [BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset] choices).
-final class BigqueryAnalyticsHubListingBigqueryDatasetOption
+/// The [BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset.bigqueryDataset] choice: sets `bigquery_dataset`.
+final class BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetBigqueryDataset
     extends BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset {
-  const BigqueryAnalyticsHubListingBigqueryDatasetOption({
-    required this.bigqueryDataset,
-  });
+  const BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetBigqueryDataset(
+    this.bigqueryDataset,
+  );
 
   final BigqueryAnalyticsHubListingBigqueryDataset bigqueryDataset;
 
@@ -117,8 +129,20 @@ final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources {
 
 /// Exactly one of `table`, `routine` on the `bigquery_dataset.selected_resources` block of `google_bigquery_analytics_hub_listing`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.table(...)`.
 sealed class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine {
   const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine();
+
+  /// Sets `table`.
+  const factory BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine.table(
+    TfArg<String> table,
+  ) = BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineTable;
+
+  /// Sets `routine`.
+  const factory BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine.routine(
+    TfArg<String> routine,
+  ) = BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineRoutine;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -126,13 +150,13 @@ sealed class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrR
   Map<String, Object?> encode();
 }
 
-/// Sets `table` (one of the [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine] choices).
-final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOption
+/// The [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine.table] choice: sets `table`.
+final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineTable
     extends
         BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine {
-  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOption({
-    required this.table,
-  });
+  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineTable(
+    this.table,
+  );
 
   final TfArg<String> table;
 
@@ -143,13 +167,13 @@ final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOpti
   Map<String, Object?> encode() => {'table': table.toTfJson()};
 }
 
-/// Sets `routine` (one of the [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine] choices).
-final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesRoutineOption
+/// The [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine.routine] choice: sets `routine`.
+final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineRoutine
     extends
         BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine {
-  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesRoutineOption({
-    required this.routine,
-  });
+  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineRoutine(
+    this.routine,
+  );
 
   final TfArg<String> routine;
 

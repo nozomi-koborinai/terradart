@@ -87,8 +87,19 @@ enum LbXffHeaderProcessingMode implements TerraformEnum {
 
 /// Exactly one of `subnet_mapping`, `subnets` on `aws_lb`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.subnetMapping(...)`.
 sealed class LbSubnetMappingOrSubnets {
   const LbSubnetMappingOrSubnets();
+
+  /// Sets `subnet_mapping`.
+  const factory LbSubnetMappingOrSubnets.subnetMapping(
+    List<LbSubnetMapping> subnetMapping,
+  ) = LbSubnetMappingOrSubnetsSubnetMapping;
+
+  /// Sets `subnets`.
+  const factory LbSubnetMappingOrSubnets.subnets(TfArg<List<String>> subnets) =
+      LbSubnetMappingOrSubnetsSubnets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -100,9 +111,10 @@ sealed class LbSubnetMappingOrSubnets {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `subnet_mapping` (one of the [LbSubnetMappingOrSubnets] choices).
-final class LbSubnetMappingOption extends LbSubnetMappingOrSubnets {
-  const LbSubnetMappingOption({required this.subnetMapping});
+/// The [LbSubnetMappingOrSubnets.subnetMapping] choice: sets `subnet_mapping`.
+final class LbSubnetMappingOrSubnetsSubnetMapping
+    extends LbSubnetMappingOrSubnets {
+  const LbSubnetMappingOrSubnetsSubnetMapping(this.subnetMapping);
 
   final List<LbSubnetMapping> subnetMapping;
 
@@ -122,9 +134,9 @@ final class LbSubnetMappingOption extends LbSubnetMappingOrSubnets {
   };
 }
 
-/// Sets `subnets` (one of the [LbSubnetMappingOrSubnets] choices).
-final class LbSubnetsOption extends LbSubnetMappingOrSubnets {
-  const LbSubnetsOption({required this.subnets});
+/// The [LbSubnetMappingOrSubnets.subnets] choice: sets `subnets`.
+final class LbSubnetMappingOrSubnetsSubnets extends LbSubnetMappingOrSubnets {
+  const LbSubnetMappingOrSubnetsSubnets(this.subnets);
 
   final TfArg<List<String>> subnets;
 
@@ -141,8 +153,18 @@ final class LbSubnetsOption extends LbSubnetMappingOrSubnets {
 /// At most one of `name`, `name_prefix` on `aws_lb`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class LbNameOrNamePrefix {
   const LbNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory LbNameOrNamePrefix.name(TfArg<String> name) =
+      LbNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory LbNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
+      LbNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -154,9 +176,9 @@ sealed class LbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [LbNameOrNamePrefix] choices).
-final class LbNameOption extends LbNameOrNamePrefix {
-  const LbNameOption({required this.name});
+/// The [LbNameOrNamePrefix.name] choice: sets `name`.
+final class LbNameOrNamePrefixName extends LbNameOrNamePrefix {
+  const LbNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -170,9 +192,9 @@ final class LbNameOption extends LbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [LbNameOrNamePrefix] choices).
-final class LbNamePrefixOption extends LbNameOrNamePrefix {
-  const LbNamePrefixOption({required this.namePrefix});
+/// The [LbNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class LbNameOrNamePrefixNamePrefix extends LbNameOrNamePrefix {
+  const LbNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

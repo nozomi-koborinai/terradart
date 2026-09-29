@@ -20,8 +20,25 @@ enum ElasticBeanstalkEnvironmentTier implements TerraformEnum {
 /// At most one of `platform_arn`, `solution_stack_name`, `template_name` on `aws_elastic_beanstalk_environment`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.platformArn(...)`.
 sealed class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
   const ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName();
+
+  /// Sets `platform_arn`.
+  const factory ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.platformArn(
+    TfArg<String> platformArn,
+  ) = ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNamePlatformArn;
+
+  /// Sets `solution_stack_name`.
+  const factory ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.solutionStackName(
+    TfArg<String> solutionStackName,
+  ) = ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameSolutionStackName;
+
+  /// Sets `template_name`.
+  const factory ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.templateName(
+    TfArg<String> templateName,
+  ) = ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameTemplateName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,13 +50,13 @@ sealed class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplate
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `platform_arn` (one of the [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName] choices).
-final class ElasticBeanstalkEnvironmentPlatformArnOption
+/// The [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.platformArn] choice: sets `platform_arn`.
+final class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNamePlatformArn
     extends
         ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
-  const ElasticBeanstalkEnvironmentPlatformArnOption({
-    required this.platformArn,
-  });
+  const ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNamePlatformArn(
+    this.platformArn,
+  );
 
   final TfArg<String> platformArn;
 
@@ -53,13 +70,13 @@ final class ElasticBeanstalkEnvironmentPlatformArnOption
   Map<String, TfArg<Object?>> get argMap => {'platform_arn': platformArn};
 }
 
-/// Sets `solution_stack_name` (one of the [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName] choices).
-final class ElasticBeanstalkEnvironmentSolutionStackNameOption
+/// The [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.solutionStackName] choice: sets `solution_stack_name`.
+final class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameSolutionStackName
     extends
         ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
-  const ElasticBeanstalkEnvironmentSolutionStackNameOption({
-    required this.solutionStackName,
-  });
+  const ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameSolutionStackName(
+    this.solutionStackName,
+  );
 
   final TfArg<String> solutionStackName;
 
@@ -77,13 +94,13 @@ final class ElasticBeanstalkEnvironmentSolutionStackNameOption
   };
 }
 
-/// Sets `template_name` (one of the [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName] choices).
-final class ElasticBeanstalkEnvironmentTemplateNameOption
+/// The [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName.templateName] choice: sets `template_name`.
+final class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameTemplateName
     extends
         ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
-  const ElasticBeanstalkEnvironmentTemplateNameOption({
-    required this.templateName,
-  });
+  const ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateNameTemplateName(
+    this.templateName,
+  );
 
   final TfArg<String> templateName;
 

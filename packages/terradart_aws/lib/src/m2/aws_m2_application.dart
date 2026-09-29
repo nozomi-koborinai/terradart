@@ -30,8 +30,20 @@ final class M2ApplicationDefinition {
 
 /// Exactly one of `content`, `s3_location` on the `definition` block of `aws_m2_application`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.content(...)`.
 sealed class M2ApplicationDefinitionContentOrS3Location {
   const M2ApplicationDefinitionContentOrS3Location();
+
+  /// Sets `content`.
+  const factory M2ApplicationDefinitionContentOrS3Location.content(
+    TfArg<String> content,
+  ) = M2ApplicationDefinitionContentOrS3LocationContent;
+
+  /// Sets `s3_location`.
+  const factory M2ApplicationDefinitionContentOrS3Location.s3Location(
+    TfArg<String> s3Location,
+  ) = M2ApplicationDefinitionContentOrS3LocationS3Location;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -39,10 +51,10 @@ sealed class M2ApplicationDefinitionContentOrS3Location {
   Map<String, Object?> encode();
 }
 
-/// Sets `content` (one of the [M2ApplicationDefinitionContentOrS3Location] choices).
-final class M2ApplicationDefinitionContentOption
+/// The [M2ApplicationDefinitionContentOrS3Location.content] choice: sets `content`.
+final class M2ApplicationDefinitionContentOrS3LocationContent
     extends M2ApplicationDefinitionContentOrS3Location {
-  const M2ApplicationDefinitionContentOption({required this.content});
+  const M2ApplicationDefinitionContentOrS3LocationContent(this.content);
 
   final TfArg<String> content;
 
@@ -53,10 +65,10 @@ final class M2ApplicationDefinitionContentOption
   Map<String, Object?> encode() => {'content': content.toTfJson()};
 }
 
-/// Sets `s3_location` (one of the [M2ApplicationDefinitionContentOrS3Location] choices).
-final class M2ApplicationDefinitionS3LocationOption
+/// The [M2ApplicationDefinitionContentOrS3Location.s3Location] choice: sets `s3_location`.
+final class M2ApplicationDefinitionContentOrS3LocationS3Location
     extends M2ApplicationDefinitionContentOrS3Location {
-  const M2ApplicationDefinitionS3LocationOption({required this.s3Location});
+  const M2ApplicationDefinitionContentOrS3LocationS3Location(this.s3Location);
 
   final TfArg<String> s3Location;
 

@@ -19,8 +19,20 @@ enum Wafv2WebAclRuleGroupAssociationOverrideAction implements TerraformEnum {
 
 /// Exactly one of `managed_rule_group`, `rule_group_reference` on `aws_wafv2_web_acl_rule_group_association`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.managedRuleGroup(...)`.
 sealed class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference {
   const Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference();
+
+  /// Sets `managed_rule_group`.
+  const factory Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference.managedRuleGroup(
+    List<Wafv2WebAclRuleGroupAssociationManagedRuleGroup> managedRuleGroup,
+  ) = Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceManagedRuleGroup;
+
+  /// Sets `rule_group_reference`.
+  const factory Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference.ruleGroupReference(
+    List<Wafv2WebAclRuleGroupAssociationRuleGroupReference> ruleGroupReference,
+  ) = Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceRuleGroupReference;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,13 +44,13 @@ sealed class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `managed_rule_group` (one of the [Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference] choices).
-final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOption
+/// The [Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference.managedRuleGroup] choice: sets `managed_rule_group`.
+final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceManagedRuleGroup
     extends
         Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference {
-  const Wafv2WebAclRuleGroupAssociationManagedRuleGroupOption({
-    required this.managedRuleGroup,
-  });
+  const Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceManagedRuleGroup(
+    this.managedRuleGroup,
+  );
 
   final List<Wafv2WebAclRuleGroupAssociationManagedRuleGroup> managedRuleGroup;
 
@@ -58,13 +70,13 @@ final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOption
   };
 }
 
-/// Sets `rule_group_reference` (one of the [Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference] choices).
-final class Wafv2WebAclRuleGroupAssociationRuleGroupReferenceOption
+/// The [Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference.ruleGroupReference] choice: sets `rule_group_reference`.
+final class Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceRuleGroupReference
     extends
         Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReference {
-  const Wafv2WebAclRuleGroupAssociationRuleGroupReferenceOption({
-    required this.ruleGroupReference,
-  });
+  const Wafv2WebAclRuleGroupAssociationManagedRuleGroupOrRuleGroupReferenceRuleGroupReference(
+    this.ruleGroupReference,
+  );
 
   final List<Wafv2WebAclRuleGroupAssociationRuleGroupReference>
   ruleGroupReference;

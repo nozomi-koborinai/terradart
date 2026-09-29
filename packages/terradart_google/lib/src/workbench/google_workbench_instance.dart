@@ -91,8 +91,20 @@ final class WorkbenchInstanceGceSetup {
 /// At most one of `vm_image`, `container_image` on the `gce_setup` block of `google_workbench_instance`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.vmImage(...)`.
 sealed class WorkbenchInstanceGceSetupVmImageOrContainerImage {
   const WorkbenchInstanceGceSetupVmImageOrContainerImage();
+
+  /// Sets `vm_image`.
+  const factory WorkbenchInstanceGceSetupVmImageOrContainerImage.vmImage(
+    WorkbenchInstanceGceSetupVmImage vmImage,
+  ) = WorkbenchInstanceGceSetupVmImageOrContainerImageVmImage;
+
+  /// Sets `container_image`.
+  const factory WorkbenchInstanceGceSetupVmImageOrContainerImage.containerImage(
+    WorkbenchInstanceGceSetupContainerImage containerImage,
+  ) = WorkbenchInstanceGceSetupVmImageOrContainerImageContainerImage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -100,10 +112,10 @@ sealed class WorkbenchInstanceGceSetupVmImageOrContainerImage {
   Map<String, Object?> encode();
 }
 
-/// Sets `vm_image` (one of the [WorkbenchInstanceGceSetupVmImageOrContainerImage] choices).
-final class WorkbenchInstanceGceSetupVmImageOption
+/// The [WorkbenchInstanceGceSetupVmImageOrContainerImage.vmImage] choice: sets `vm_image`.
+final class WorkbenchInstanceGceSetupVmImageOrContainerImageVmImage
     extends WorkbenchInstanceGceSetupVmImageOrContainerImage {
-  const WorkbenchInstanceGceSetupVmImageOption({required this.vmImage});
+  const WorkbenchInstanceGceSetupVmImageOrContainerImageVmImage(this.vmImage);
 
   final WorkbenchInstanceGceSetupVmImage vmImage;
 
@@ -114,12 +126,12 @@ final class WorkbenchInstanceGceSetupVmImageOption
   Map<String, Object?> encode() => {'vm_image': vmImage.encode()};
 }
 
-/// Sets `container_image` (one of the [WorkbenchInstanceGceSetupVmImageOrContainerImage] choices).
-final class WorkbenchInstanceGceSetupContainerImageOption
+/// The [WorkbenchInstanceGceSetupVmImageOrContainerImage.containerImage] choice: sets `container_image`.
+final class WorkbenchInstanceGceSetupVmImageOrContainerImageContainerImage
     extends WorkbenchInstanceGceSetupVmImageOrContainerImage {
-  const WorkbenchInstanceGceSetupContainerImageOption({
-    required this.containerImage,
-  });
+  const WorkbenchInstanceGceSetupVmImageOrContainerImageContainerImage(
+    this.containerImage,
+  );
 
   final WorkbenchInstanceGceSetupContainerImage containerImage;
 

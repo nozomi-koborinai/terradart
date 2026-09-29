@@ -9,8 +9,19 @@ const Set<String> _awsLightsailKeyPairSensitive = <String>{'private_key'};
 /// At most one of `name`, `name_prefix` on `aws_lightsail_key_pair`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class LightsailKeyPairNameOrNamePrefix {
   const LightsailKeyPairNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory LightsailKeyPairNameOrNamePrefix.name(TfArg<String> name) =
+      LightsailKeyPairNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory LightsailKeyPairNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = LightsailKeyPairNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +33,10 @@ sealed class LightsailKeyPairNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [LightsailKeyPairNameOrNamePrefix] choices).
-final class LightsailKeyPairNameOption
+/// The [LightsailKeyPairNameOrNamePrefix.name] choice: sets `name`.
+final class LightsailKeyPairNameOrNamePrefixName
     extends LightsailKeyPairNameOrNamePrefix {
-  const LightsailKeyPairNameOption({required this.name});
+  const LightsailKeyPairNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +50,10 @@ final class LightsailKeyPairNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [LightsailKeyPairNameOrNamePrefix] choices).
-final class LightsailKeyPairNamePrefixOption
+/// The [LightsailKeyPairNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class LightsailKeyPairNameOrNamePrefixNamePrefix
     extends LightsailKeyPairNameOrNamePrefix {
-  const LightsailKeyPairNamePrefixOption({required this.namePrefix});
+  const LightsailKeyPairNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

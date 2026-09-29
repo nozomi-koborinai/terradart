@@ -8,8 +8,20 @@ const Set<String> _awsCloudwatchLogResourcePolicySensitive = <String>{};
 
 /// Exactly one of `policy_name`, `resource_arn` on `aws_cloudwatch_log_resource_policy`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.policyName(...)`.
 sealed class CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
   const CloudwatchLogResourcePolicyPolicyNameOrResourceArn();
+
+  /// Sets `policy_name`.
+  const factory CloudwatchLogResourcePolicyPolicyNameOrResourceArn.policyName(
+    TfArg<String> policyName,
+  ) = CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName;
+
+  /// Sets `resource_arn`.
+  const factory CloudwatchLogResourcePolicyPolicyNameOrResourceArn.resourceArn(
+    TfArg<String> resourceArn,
+  ) = CloudwatchLogResourcePolicyPolicyNameOrResourceArnResourceArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,10 +33,12 @@ sealed class CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `policy_name` (one of the [CloudwatchLogResourcePolicyPolicyNameOrResourceArn] choices).
-final class CloudwatchLogResourcePolicyPolicyNameOption
+/// The [CloudwatchLogResourcePolicyPolicyNameOrResourceArn.policyName] choice: sets `policy_name`.
+final class CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName
     extends CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
-  const CloudwatchLogResourcePolicyPolicyNameOption({required this.policyName});
+  const CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName(
+    this.policyName,
+  );
 
   final TfArg<String> policyName;
 
@@ -38,12 +52,12 @@ final class CloudwatchLogResourcePolicyPolicyNameOption
   Map<String, TfArg<Object?>> get argMap => {'policy_name': policyName};
 }
 
-/// Sets `resource_arn` (one of the [CloudwatchLogResourcePolicyPolicyNameOrResourceArn] choices).
-final class CloudwatchLogResourcePolicyResourceArnOption
+/// The [CloudwatchLogResourcePolicyPolicyNameOrResourceArn.resourceArn] choice: sets `resource_arn`.
+final class CloudwatchLogResourcePolicyPolicyNameOrResourceArnResourceArn
     extends CloudwatchLogResourcePolicyPolicyNameOrResourceArn {
-  const CloudwatchLogResourcePolicyResourceArnOption({
-    required this.resourceArn,
-  });
+  const CloudwatchLogResourcePolicyPolicyNameOrResourceArnResourceArn(
+    this.resourceArn,
+  );
 
   final TfArg<String> resourceArn;
 

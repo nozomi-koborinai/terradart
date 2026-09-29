@@ -9,8 +9,19 @@ const Set<String> _awsCloudfrontPublicKeySensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_cloudfront_public_key`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class CloudfrontPublicKeyNameOrNamePrefix {
   const CloudfrontPublicKeyNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory CloudfrontPublicKeyNameOrNamePrefix.name(TfArg<String> name) =
+      CloudfrontPublicKeyNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory CloudfrontPublicKeyNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = CloudfrontPublicKeyNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +33,10 @@ sealed class CloudfrontPublicKeyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [CloudfrontPublicKeyNameOrNamePrefix] choices).
-final class CloudfrontPublicKeyNameOption
+/// The [CloudfrontPublicKeyNameOrNamePrefix.name] choice: sets `name`.
+final class CloudfrontPublicKeyNameOrNamePrefixName
     extends CloudfrontPublicKeyNameOrNamePrefix {
-  const CloudfrontPublicKeyNameOption({required this.name});
+  const CloudfrontPublicKeyNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +50,10 @@ final class CloudfrontPublicKeyNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [CloudfrontPublicKeyNameOrNamePrefix] choices).
-final class CloudfrontPublicKeyNamePrefixOption
+/// The [CloudfrontPublicKeyNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class CloudfrontPublicKeyNameOrNamePrefixNamePrefix
     extends CloudfrontPublicKeyNameOrNamePrefix {
-  const CloudfrontPublicKeyNamePrefixOption({required this.namePrefix});
+  const CloudfrontPublicKeyNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -21,8 +21,20 @@ enum VpcBlockPublicAccessExclusionInternetGatewayExclusionMode
 
 /// Exactly one of `subnet_id`, `vpc_id` on `aws_vpc_block_public_access_exclusion`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.subnetId(...)`.
 sealed class VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
   const VpcBlockPublicAccessExclusionSubnetIdOrVpcId();
+
+  /// Sets `subnet_id`.
+  const factory VpcBlockPublicAccessExclusionSubnetIdOrVpcId.subnetId(
+    TfArg<String> subnetId,
+  ) = VpcBlockPublicAccessExclusionSubnetIdOrVpcIdSubnetId;
+
+  /// Sets `vpc_id`.
+  const factory VpcBlockPublicAccessExclusionSubnetIdOrVpcId.vpcId(
+    TfArg<String> vpcId,
+  ) = VpcBlockPublicAccessExclusionSubnetIdOrVpcIdVpcId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +46,10 @@ sealed class VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `subnet_id` (one of the [VpcBlockPublicAccessExclusionSubnetIdOrVpcId] choices).
-final class VpcBlockPublicAccessExclusionSubnetIdOption
+/// The [VpcBlockPublicAccessExclusionSubnetIdOrVpcId.subnetId] choice: sets `subnet_id`.
+final class VpcBlockPublicAccessExclusionSubnetIdOrVpcIdSubnetId
     extends VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
-  const VpcBlockPublicAccessExclusionSubnetIdOption({required this.subnetId});
+  const VpcBlockPublicAccessExclusionSubnetIdOrVpcIdSubnetId(this.subnetId);
 
   final TfArg<String> subnetId;
 
@@ -51,10 +63,10 @@ final class VpcBlockPublicAccessExclusionSubnetIdOption
   Map<String, TfArg<Object?>> get argMap => {'subnet_id': subnetId};
 }
 
-/// Sets `vpc_id` (one of the [VpcBlockPublicAccessExclusionSubnetIdOrVpcId] choices).
-final class VpcBlockPublicAccessExclusionVpcIdOption
+/// The [VpcBlockPublicAccessExclusionSubnetIdOrVpcId.vpcId] choice: sets `vpc_id`.
+final class VpcBlockPublicAccessExclusionSubnetIdOrVpcIdVpcId
     extends VpcBlockPublicAccessExclusionSubnetIdOrVpcId {
-  const VpcBlockPublicAccessExclusionVpcIdOption({required this.vpcId});
+  const VpcBlockPublicAccessExclusionSubnetIdOrVpcIdVpcId(this.vpcId);
 
   final TfArg<String> vpcId;
 

@@ -9,8 +9,21 @@ const Set<String> _awsBackupRestoreTestingSelectionSensitive = <String>{};
 
 /// Exactly one of `protected_resource_arns`, `protected_resource_conditions` on `aws_backup_restore_testing_selection`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.protectedResourceArns(...)`.
 sealed class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions {
   const BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions();
+
+  /// Sets `protected_resource_arns`.
+  const factory BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions.protectedResourceArns(
+    TfArg<List<String>> protectedResourceArns,
+  ) = BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceArns;
+
+  /// Sets `protected_resource_conditions`.
+  const factory BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions.protectedResourceConditions(
+    List<BackupRestoreTestingSelectionProtectedResourceConditions>
+    protectedResourceConditions,
+  ) = BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceConditions;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,13 +35,13 @@ sealed class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResour
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `protected_resource_arns` (one of the [BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions] choices).
-final class BackupRestoreTestingSelectionProtectedResourceArnsOption
+/// The [BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions.protectedResourceArns] choice: sets `protected_resource_arns`.
+final class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceArns
     extends
         BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions {
-  const BackupRestoreTestingSelectionProtectedResourceArnsOption({
-    required this.protectedResourceArns,
-  });
+  const BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceArns(
+    this.protectedResourceArns,
+  );
 
   final TfArg<List<String>> protectedResourceArns;
 
@@ -46,13 +59,13 @@ final class BackupRestoreTestingSelectionProtectedResourceArnsOption
   };
 }
 
-/// Sets `protected_resource_conditions` (one of the [BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions] choices).
-final class BackupRestoreTestingSelectionProtectedResourceConditionsOption
+/// The [BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions.protectedResourceConditions] choice: sets `protected_resource_conditions`.
+final class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceConditions
     extends
         BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions {
-  const BackupRestoreTestingSelectionProtectedResourceConditionsOption({
-    required this.protectedResourceConditions,
-  });
+  const BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceConditions(
+    this.protectedResourceConditions,
+  );
 
   final List<BackupRestoreTestingSelectionProtectedResourceConditions>
   protectedResourceConditions;

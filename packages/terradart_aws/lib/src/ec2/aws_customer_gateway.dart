@@ -18,8 +18,20 @@ enum CustomerGatewayType implements TerraformEnum {
 /// At most one of `bgp_asn`, `bgp_asn_extended` on `aws_customer_gateway`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.bgpAsn(...)`.
 sealed class CustomerGatewayBgpAsnOrBgpAsnExtended {
   const CustomerGatewayBgpAsnOrBgpAsnExtended();
+
+  /// Sets `bgp_asn`.
+  const factory CustomerGatewayBgpAsnOrBgpAsnExtended.bgpAsn(
+    TfArg<String> bgpAsn,
+  ) = CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsn;
+
+  /// Sets `bgp_asn_extended`.
+  const factory CustomerGatewayBgpAsnOrBgpAsnExtended.bgpAsnExtended(
+    TfArg<String> bgpAsnExtended,
+  ) = CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsnExtended;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -31,10 +43,10 @@ sealed class CustomerGatewayBgpAsnOrBgpAsnExtended {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `bgp_asn` (one of the [CustomerGatewayBgpAsnOrBgpAsnExtended] choices).
-final class CustomerGatewayBgpAsnOption
+/// The [CustomerGatewayBgpAsnOrBgpAsnExtended.bgpAsn] choice: sets `bgp_asn`.
+final class CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsn
     extends CustomerGatewayBgpAsnOrBgpAsnExtended {
-  const CustomerGatewayBgpAsnOption({required this.bgpAsn});
+  const CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsn(this.bgpAsn);
 
   final TfArg<String> bgpAsn;
 
@@ -48,10 +60,12 @@ final class CustomerGatewayBgpAsnOption
   Map<String, TfArg<Object?>> get argMap => {'bgp_asn': bgpAsn};
 }
 
-/// Sets `bgp_asn_extended` (one of the [CustomerGatewayBgpAsnOrBgpAsnExtended] choices).
-final class CustomerGatewayBgpAsnExtendedOption
+/// The [CustomerGatewayBgpAsnOrBgpAsnExtended.bgpAsnExtended] choice: sets `bgp_asn_extended`.
+final class CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsnExtended
     extends CustomerGatewayBgpAsnOrBgpAsnExtended {
-  const CustomerGatewayBgpAsnExtendedOption({required this.bgpAsnExtended});
+  const CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsnExtended(
+    this.bgpAsnExtended,
+  );
 
   final TfArg<String> bgpAsnExtended;
 

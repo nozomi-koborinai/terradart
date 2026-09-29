@@ -20,8 +20,19 @@ enum Macie2FindingsFilterAction implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_macie2_findings_filter`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class Macie2FindingsFilterNameOrNamePrefix {
   const Macie2FindingsFilterNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory Macie2FindingsFilterNameOrNamePrefix.name(TfArg<String> name) =
+      Macie2FindingsFilterNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory Macie2FindingsFilterNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = Macie2FindingsFilterNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +44,10 @@ sealed class Macie2FindingsFilterNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [Macie2FindingsFilterNameOrNamePrefix] choices).
-final class Macie2FindingsFilterNameOption
+/// The [Macie2FindingsFilterNameOrNamePrefix.name] choice: sets `name`.
+final class Macie2FindingsFilterNameOrNamePrefixName
     extends Macie2FindingsFilterNameOrNamePrefix {
-  const Macie2FindingsFilterNameOption({required this.name});
+  const Macie2FindingsFilterNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +61,10 @@ final class Macie2FindingsFilterNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [Macie2FindingsFilterNameOrNamePrefix] choices).
-final class Macie2FindingsFilterNamePrefixOption
+/// The [Macie2FindingsFilterNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class Macie2FindingsFilterNameOrNamePrefixNamePrefix
     extends Macie2FindingsFilterNameOrNamePrefix {
-  const Macie2FindingsFilterNamePrefixOption({required this.namePrefix});
+  const Macie2FindingsFilterNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -24,9 +24,9 @@ export 'src/discovery_engine/google_discovery_engine_chat_engine.dart'
     show
         DiscoveryEngineChatEngineChatEngineConfig,
         DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig,
-        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOption,
         DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink,
-        DiscoveryEngineChatEngineChatEngineConfigDialogflowAgentToLinkOption,
+        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkAgentCreationConfig,
+        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkDialogflowAgentToLink,
         DiscoveryEngineChatEngineCommonConfig,
         DiscoveryEngineChatEngineIndustryVertical,
         GoogleDiscoveryEngineChatEngine;

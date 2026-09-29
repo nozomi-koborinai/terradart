@@ -10,8 +10,20 @@ const Set<String> _awsWafv2WebAclRuleSensitive = <String>{};
 /// At most one of `action`, `override_action` on `aws_wafv2_web_acl_rule`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.action(...)`.
 sealed class Wafv2WebAclRuleActionOrOverrideAction {
   const Wafv2WebAclRuleActionOrOverrideAction();
+
+  /// Sets `action`.
+  const factory Wafv2WebAclRuleActionOrOverrideAction.action(
+    List<Wafv2WebAclRuleAction> action,
+  ) = Wafv2WebAclRuleActionOrOverrideActionAction;
+
+  /// Sets `override_action`.
+  const factory Wafv2WebAclRuleActionOrOverrideAction.overrideAction(
+    List<Wafv2WebAclRuleOverrideAction> overrideAction,
+  ) = Wafv2WebAclRuleActionOrOverrideActionOverrideAction;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +35,10 @@ sealed class Wafv2WebAclRuleActionOrOverrideAction {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `action` (one of the [Wafv2WebAclRuleActionOrOverrideAction] choices).
-final class Wafv2WebAclRuleActionOption
+/// The [Wafv2WebAclRuleActionOrOverrideAction.action] choice: sets `action`.
+final class Wafv2WebAclRuleActionOrOverrideActionAction
     extends Wafv2WebAclRuleActionOrOverrideAction {
-  const Wafv2WebAclRuleActionOption({required this.action});
+  const Wafv2WebAclRuleActionOrOverrideActionAction(this.action);
 
   final List<Wafv2WebAclRuleAction> action;
 
@@ -44,10 +56,12 @@ final class Wafv2WebAclRuleActionOption
   };
 }
 
-/// Sets `override_action` (one of the [Wafv2WebAclRuleActionOrOverrideAction] choices).
-final class Wafv2WebAclRuleOverrideActionOption
+/// The [Wafv2WebAclRuleActionOrOverrideAction.overrideAction] choice: sets `override_action`.
+final class Wafv2WebAclRuleActionOrOverrideActionOverrideAction
     extends Wafv2WebAclRuleActionOrOverrideAction {
-  const Wafv2WebAclRuleOverrideActionOption({required this.overrideAction});
+  const Wafv2WebAclRuleActionOrOverrideActionOverrideAction(
+    this.overrideAction,
+  );
 
   final List<Wafv2WebAclRuleOverrideAction> overrideAction;
 

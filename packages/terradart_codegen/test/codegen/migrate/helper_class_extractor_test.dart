@@ -41,6 +41,57 @@ class PushConfig {
       expect(h.fields[1].typeSource, 'TfArg<Map<String, String>>?');
     });
 
+    test('records the factory constructor that builds a sealed variant', () {
+      const src = '''
+sealed class Code {
+  const Code();
+
+  /// Sets `image_uri`.
+  const factory Code.imageUri(TfArg<String> imageUri) = CodeImageUri;
+  const factory Code.s3({
+    required TfArg<String> bucket,
+  }) = CodeS3;
+
+  String get blockKey;
+  Map<String, Object?> encode();
+}
+
+final class CodeImageUri extends Code {
+  const CodeImageUri(this.imageUri);
+  final TfArg<String> imageUri;
+  @override
+  String get blockKey => 'image_uri';
+  @override
+  Map<String, Object?> encode() => {'image_uri': imageUri.toTfJson()};
+}
+
+final class CodeS3 extends Code {
+  const CodeS3({required this.bucket});
+  final TfArg<String> bucket;
+  @override
+  String get blockKey => 's3_bucket';
+  @override
+  Map<String, Object?> encode() => {'s3_bucket': bucket.toTfJson()};
+}
+
+final class CodeOther extends Code {
+  const CodeOther({required this.other});
+  final TfArg<String> other;
+  @override
+  String get blockKey => 'other';
+  @override
+  Map<String, Object?> encode() => {'other': other.toTfJson()};
+}
+''';
+      final image = _one(src, 'CodeImageUri');
+      expect(image.shorthand, 'imageUri');
+      expect(image.fields.single.positional, isTrue);
+      expect(image.fields.single.required, isTrue);
+      expect(image.fields.single.tfKey, 'image_uri');
+      expect(_one(src, 'CodeS3').shorthand, 's3');
+      expect(_one(src, 'CodeOther').shorthand, isNull);
+    });
+
     test('accepts the list-of-one and typed-literal encode forms', () {
       const src = '''
 final class SparkR extends Workload {

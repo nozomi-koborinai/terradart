@@ -35,8 +35,25 @@ enum AcmCertificateValidationMethod implements TerraformEnum {
 
 /// Exactly one of `domain_name`, `private_key`, `private_key_wo` on `aws_acm_certificate`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.domainName(...)`.
 sealed class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
   const AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo();
+
+  /// Sets `domain_name`.
+  const factory AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.domainName(
+    TfArg<String> domainName,
+  ) = AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName;
+
+  /// Sets `private_key`.
+  const factory AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.privateKey(
+    TfArg<String> privateKey,
+  ) = AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey;
+
+  /// Sets `private_key_wo`.
+  const factory AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.privateKeyWo(
+    TfArg<String> privateKeyWo,
+  ) = AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKeyWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -48,10 +65,12 @@ sealed class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `domain_name` (one of the [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo] choices).
-final class AcmCertificateDomainNameOption
+/// The [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.domainName] choice: sets `domain_name`.
+final class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName
     extends AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
-  const AcmCertificateDomainNameOption({required this.domainName});
+  const AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName(
+    this.domainName,
+  );
 
   final TfArg<String> domainName;
 
@@ -65,10 +84,12 @@ final class AcmCertificateDomainNameOption
   Map<String, TfArg<Object?>> get argMap => {'domain_name': domainName};
 }
 
-/// Sets `private_key` (one of the [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo] choices).
-final class AcmCertificatePrivateKeyOption
+/// The [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.privateKey] choice: sets `private_key`.
+final class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey
     extends AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
-  const AcmCertificatePrivateKeyOption({required this.privateKey});
+  const AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey(
+    this.privateKey,
+  );
 
   final TfArg<String> privateKey;
 
@@ -82,10 +103,12 @@ final class AcmCertificatePrivateKeyOption
   Map<String, TfArg<Object?>> get argMap => {'private_key': privateKey};
 }
 
-/// Sets `private_key_wo` (one of the [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo] choices).
-final class AcmCertificatePrivateKeyWoOption
+/// The [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.privateKeyWo] choice: sets `private_key_wo`.
+final class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKeyWo
     extends AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
-  const AcmCertificatePrivateKeyWoOption({required this.privateKeyWo});
+  const AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKeyWo(
+    this.privateKeyWo,
+  );
 
   final TfArg<String> privateKeyWo;
 

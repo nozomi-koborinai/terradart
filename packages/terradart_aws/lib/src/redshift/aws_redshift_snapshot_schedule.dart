@@ -9,8 +9,20 @@ const Set<String> _awsRedshiftSnapshotScheduleSensitive = <String>{};
 /// At most one of `identifier`, `identifier_prefix` on `aws_redshift_snapshot_schedule`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.identifier(...)`.
 sealed class RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix {
   const RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix();
+
+  /// Sets `identifier`.
+  const factory RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix.identifier(
+    TfArg<String> identifier,
+  ) = RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifier;
+
+  /// Sets `identifier_prefix`.
+  const factory RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix.identifierPrefix(
+    TfArg<String> identifierPrefix,
+  ) = RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,12 @@ sealed class RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `identifier` (one of the [RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix] choices).
-final class RedshiftSnapshotScheduleIdentifierOption
+/// The [RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix.identifier] choice: sets `identifier`.
+final class RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifier
     extends RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix {
-  const RedshiftSnapshotScheduleIdentifierOption({required this.identifier});
+  const RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifier(
+    this.identifier,
+  );
 
   final TfArg<String> identifier;
 
@@ -39,12 +53,12 @@ final class RedshiftSnapshotScheduleIdentifierOption
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
 
-/// Sets `identifier_prefix` (one of the [RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix] choices).
-final class RedshiftSnapshotScheduleIdentifierPrefixOption
+/// The [RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix.identifierPrefix] choice: sets `identifier_prefix`.
+final class RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifierPrefix
     extends RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix {
-  const RedshiftSnapshotScheduleIdentifierPrefixOption({
-    required this.identifierPrefix,
-  });
+  const RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifierPrefix(
+    this.identifierPrefix,
+  );
 
   final TfArg<String> identifierPrefix;
 

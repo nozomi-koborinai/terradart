@@ -9,8 +9,20 @@ const Set<String> _awsNetworkmanagerCoreNetworkSensitive = <String>{};
 /// At most one of `base_policy_document`, `base_policy_regions` on `aws_networkmanager_core_network`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.basePolicyDocument(...)`.
 sealed class NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
   const NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions();
+
+  /// Sets `base_policy_document`.
+  const factory NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions.basePolicyDocument(
+    TfArg<String> basePolicyDocument,
+  ) = NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyDocument;
+
+  /// Sets `base_policy_regions`.
+  const factory NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions.basePolicyRegions(
+    TfArg<List<String>> basePolicyRegions,
+  ) = NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyRegions;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,12 +34,12 @@ sealed class NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `base_policy_document` (one of the [NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions] choices).
-final class NetworkmanagerCoreNetworkBasePolicyDocumentOption
+/// The [NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions.basePolicyDocument] choice: sets `base_policy_document`.
+final class NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyDocument
     extends NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
-  const NetworkmanagerCoreNetworkBasePolicyDocumentOption({
-    required this.basePolicyDocument,
-  });
+  const NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyDocument(
+    this.basePolicyDocument,
+  );
 
   final TfArg<String> basePolicyDocument;
 
@@ -45,12 +57,12 @@ final class NetworkmanagerCoreNetworkBasePolicyDocumentOption
   };
 }
 
-/// Sets `base_policy_regions` (one of the [NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions] choices).
-final class NetworkmanagerCoreNetworkBasePolicyRegionsOption
+/// The [NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions.basePolicyRegions] choice: sets `base_policy_regions`.
+final class NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyRegions
     extends NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
-  const NetworkmanagerCoreNetworkBasePolicyRegionsOption({
-    required this.basePolicyRegions,
-  });
+  const NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyRegions(
+    this.basePolicyRegions,
+  );
 
   final TfArg<List<String>> basePolicyRegions;
 

@@ -45,9 +45,9 @@ export 'src/fsx/aws_fsx_ontap_file_system.dart'
         FsxOntapFileSystemDiskIopsConfigurationMode,
         FsxOntapFileSystemNetworkType,
         FsxOntapFileSystemStorageType,
-        FsxOntapFileSystemThroughputCapacityOption,
         FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair,
-        FsxOntapFileSystemThroughputCapacityPerHaPairOption;
+        FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacity,
+        FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacityPerHaPair;
 export 'src/fsx/aws_fsx_ontap_storage_virtual_machine.dart'
     show
         AwsFsxOntapStorageVirtualMachine,
@@ -60,9 +60,9 @@ export 'src/fsx/aws_fsx_ontap_volume.dart'
         FsxOntapVolumeAggregateConfiguration,
         FsxOntapVolumeOntapVolumeType,
         FsxOntapVolumeSecurityStyle,
-        FsxOntapVolumeSizeInBytesOption,
         FsxOntapVolumeSizeInBytesOrSizeInMegabytes,
-        FsxOntapVolumeSizeInMegabytesOption,
+        FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInBytes,
+        FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInMegabytes,
         FsxOntapVolumeSnaplockConfiguration,
         FsxOntapVolumeSnaplockConfigurationAutocommitPeriod,
         FsxOntapVolumeSnaplockConfigurationAutocommitPeriodType,
@@ -122,8 +122,9 @@ export 'src/fsx/aws_fsx_s3_access_point_attachment.dart'
 export 'src/fsx/aws_fsx_windows_file_system.dart'
     show
         AwsFsxWindowsFileSystem,
-        FsxWindowsFileSystemActiveDirectoryIdOption,
         FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory,
+        FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId,
+        FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory,
         FsxWindowsFileSystemAuditLogConfiguration,
         FsxWindowsFileSystemAuditLogConfigurationFileAccessAuditLogLevel,
         FsxWindowsFileSystemAuditLogConfigurationFileShareAccessAuditLogLevel,
@@ -132,5 +133,4 @@ export 'src/fsx/aws_fsx_windows_file_system.dart'
         FsxWindowsFileSystemDiskIopsConfigurationMode,
         FsxWindowsFileSystemNetworkType,
         FsxWindowsFileSystemSelfManagedActiveDirectory,
-        FsxWindowsFileSystemSelfManagedActiveDirectoryOption,
         FsxWindowsFileSystemStorageType;

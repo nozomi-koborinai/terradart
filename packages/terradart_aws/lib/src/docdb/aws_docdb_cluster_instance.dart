@@ -18,8 +18,20 @@ enum DocdbClusterInstanceEngine implements TerraformEnum {
 /// At most one of `identifier`, `identifier_prefix` on `aws_docdb_cluster_instance`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.identifier(...)`.
 sealed class DocdbClusterInstanceIdentifierOrIdentifierPrefix {
   const DocdbClusterInstanceIdentifierOrIdentifierPrefix();
+
+  /// Sets `identifier`.
+  const factory DocdbClusterInstanceIdentifierOrIdentifierPrefix.identifier(
+    TfArg<String> identifier,
+  ) = DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifier;
+
+  /// Sets `identifier_prefix`.
+  const factory DocdbClusterInstanceIdentifierOrIdentifierPrefix.identifierPrefix(
+    TfArg<String> identifierPrefix,
+  ) = DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -31,10 +43,12 @@ sealed class DocdbClusterInstanceIdentifierOrIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `identifier` (one of the [DocdbClusterInstanceIdentifierOrIdentifierPrefix] choices).
-final class DocdbClusterInstanceIdentifierOption
+/// The [DocdbClusterInstanceIdentifierOrIdentifierPrefix.identifier] choice: sets `identifier`.
+final class DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifier
     extends DocdbClusterInstanceIdentifierOrIdentifierPrefix {
-  const DocdbClusterInstanceIdentifierOption({required this.identifier});
+  const DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifier(
+    this.identifier,
+  );
 
   final TfArg<String> identifier;
 
@@ -48,12 +62,12 @@ final class DocdbClusterInstanceIdentifierOption
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
 
-/// Sets `identifier_prefix` (one of the [DocdbClusterInstanceIdentifierOrIdentifierPrefix] choices).
-final class DocdbClusterInstanceIdentifierPrefixOption
+/// The [DocdbClusterInstanceIdentifierOrIdentifierPrefix.identifierPrefix] choice: sets `identifier_prefix`.
+final class DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix
     extends DocdbClusterInstanceIdentifierOrIdentifierPrefix {
-  const DocdbClusterInstanceIdentifierPrefixOption({
-    required this.identifierPrefix,
-  });
+  const DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix(
+    this.identifierPrefix,
+  );
 
   final TfArg<String> identifierPrefix;
 

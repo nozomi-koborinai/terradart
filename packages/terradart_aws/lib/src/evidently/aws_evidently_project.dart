@@ -24,8 +24,20 @@ final class EvidentlyProjectDataDelivery {
 /// At most one of `cloudwatch_logs`, `s3_destination` on the `data_delivery` block of `aws_evidently_project`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.cloudwatchLogs(...)`.
 sealed class EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination {
   const EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination();
+
+  /// Sets `cloudwatch_logs`.
+  const factory EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination.cloudwatchLogs(
+    EvidentlyProjectDataDeliveryCloudwatchLogs cloudwatchLogs,
+  ) = EvidentlyProjectDataDeliveryCloudwatchLogsOrS3DestinationCloudwatchLogs;
+
+  /// Sets `s3_destination`.
+  const factory EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination.s3Destination(
+    EvidentlyProjectDataDeliveryS3Destination s3Destination,
+  ) = EvidentlyProjectDataDeliveryCloudwatchLogsOrS3DestinationS3Destination;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,12 +45,12 @@ sealed class EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination {
   Map<String, Object?> encode();
 }
 
-/// Sets `cloudwatch_logs` (one of the [EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination] choices).
-final class EvidentlyProjectDataDeliveryCloudwatchLogsOption
+/// The [EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination.cloudwatchLogs] choice: sets `cloudwatch_logs`.
+final class EvidentlyProjectDataDeliveryCloudwatchLogsOrS3DestinationCloudwatchLogs
     extends EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination {
-  const EvidentlyProjectDataDeliveryCloudwatchLogsOption({
-    required this.cloudwatchLogs,
-  });
+  const EvidentlyProjectDataDeliveryCloudwatchLogsOrS3DestinationCloudwatchLogs(
+    this.cloudwatchLogs,
+  );
 
   final EvidentlyProjectDataDeliveryCloudwatchLogs cloudwatchLogs;
 
@@ -49,12 +61,12 @@ final class EvidentlyProjectDataDeliveryCloudwatchLogsOption
   Map<String, Object?> encode() => {'cloudwatch_logs': cloudwatchLogs.encode()};
 }
 
-/// Sets `s3_destination` (one of the [EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination] choices).
-final class EvidentlyProjectDataDeliveryS3DestinationOption
+/// The [EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination.s3Destination] choice: sets `s3_destination`.
+final class EvidentlyProjectDataDeliveryCloudwatchLogsOrS3DestinationS3Destination
     extends EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination {
-  const EvidentlyProjectDataDeliveryS3DestinationOption({
-    required this.s3Destination,
-  });
+  const EvidentlyProjectDataDeliveryCloudwatchLogsOrS3DestinationS3Destination(
+    this.s3Destination,
+  );
 
   final EvidentlyProjectDataDeliveryS3Destination s3Destination;
 

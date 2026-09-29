@@ -9,8 +9,20 @@ const Set<String> _awsMskChannelSensitive = <String>{};
 
 /// Exactly one of `iceberg_destination`, `s3_destination` on `aws_msk_channel`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.icebergDestination(...)`.
 sealed class MskChannelIcebergDestinationOrS3Destination {
   const MskChannelIcebergDestinationOrS3Destination();
+
+  /// Sets `iceberg_destination`.
+  const factory MskChannelIcebergDestinationOrS3Destination.icebergDestination(
+    List<MskChannelIcebergDestination> icebergDestination,
+  ) = MskChannelIcebergDestinationOrS3DestinationIcebergDestination;
+
+  /// Sets `s3_destination`.
+  const factory MskChannelIcebergDestinationOrS3Destination.s3Destination(
+    List<MskChannelS3Destination> s3Destination,
+  ) = MskChannelIcebergDestinationOrS3DestinationS3Destination;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,12 @@ sealed class MskChannelIcebergDestinationOrS3Destination {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `iceberg_destination` (one of the [MskChannelIcebergDestinationOrS3Destination] choices).
-final class MskChannelIcebergDestinationOption
+/// The [MskChannelIcebergDestinationOrS3Destination.icebergDestination] choice: sets `iceberg_destination`.
+final class MskChannelIcebergDestinationOrS3DestinationIcebergDestination
     extends MskChannelIcebergDestinationOrS3Destination {
-  const MskChannelIcebergDestinationOption({required this.icebergDestination});
+  const MskChannelIcebergDestinationOrS3DestinationIcebergDestination(
+    this.icebergDestination,
+  );
 
   final List<MskChannelIcebergDestination> icebergDestination;
 
@@ -45,10 +59,12 @@ final class MskChannelIcebergDestinationOption
   };
 }
 
-/// Sets `s3_destination` (one of the [MskChannelIcebergDestinationOrS3Destination] choices).
-final class MskChannelS3DestinationOption
+/// The [MskChannelIcebergDestinationOrS3Destination.s3Destination] choice: sets `s3_destination`.
+final class MskChannelIcebergDestinationOrS3DestinationS3Destination
     extends MskChannelIcebergDestinationOrS3Destination {
-  const MskChannelS3DestinationOption({required this.s3Destination});
+  const MskChannelIcebergDestinationOrS3DestinationS3Destination(
+    this.s3Destination,
+  );
 
   final List<MskChannelS3Destination> s3Destination;
 

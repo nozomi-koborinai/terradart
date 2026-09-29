@@ -9,8 +9,20 @@ const Set<String> _awsImagebuilderImageSensitive = <String>{};
 
 /// Exactly one of `container_recipe_arn`, `image_recipe_arn` on `aws_imagebuilder_image`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.containerRecipeArn(...)`.
 sealed class ImagebuilderImageContainerRecipeArnOrImageRecipeArn {
   const ImagebuilderImageContainerRecipeArnOrImageRecipeArn();
+
+  /// Sets `container_recipe_arn`.
+  const factory ImagebuilderImageContainerRecipeArnOrImageRecipeArn.containerRecipeArn(
+    TfArg<String> containerRecipeArn,
+  ) = ImagebuilderImageContainerRecipeArnOrImageRecipeArnContainerRecipeArn;
+
+  /// Sets `image_recipe_arn`.
+  const factory ImagebuilderImageContainerRecipeArnOrImageRecipeArn.imageRecipeArn(
+    TfArg<String> imageRecipeArn,
+  ) = ImagebuilderImageContainerRecipeArnOrImageRecipeArnImageRecipeArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,12 +34,12 @@ sealed class ImagebuilderImageContainerRecipeArnOrImageRecipeArn {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `container_recipe_arn` (one of the [ImagebuilderImageContainerRecipeArnOrImageRecipeArn] choices).
-final class ImagebuilderImageContainerRecipeArnOption
+/// The [ImagebuilderImageContainerRecipeArnOrImageRecipeArn.containerRecipeArn] choice: sets `container_recipe_arn`.
+final class ImagebuilderImageContainerRecipeArnOrImageRecipeArnContainerRecipeArn
     extends ImagebuilderImageContainerRecipeArnOrImageRecipeArn {
-  const ImagebuilderImageContainerRecipeArnOption({
-    required this.containerRecipeArn,
-  });
+  const ImagebuilderImageContainerRecipeArnOrImageRecipeArnContainerRecipeArn(
+    this.containerRecipeArn,
+  );
 
   final TfArg<String> containerRecipeArn;
 
@@ -45,10 +57,12 @@ final class ImagebuilderImageContainerRecipeArnOption
   };
 }
 
-/// Sets `image_recipe_arn` (one of the [ImagebuilderImageContainerRecipeArnOrImageRecipeArn] choices).
-final class ImagebuilderImageImageRecipeArnOption
+/// The [ImagebuilderImageContainerRecipeArnOrImageRecipeArn.imageRecipeArn] choice: sets `image_recipe_arn`.
+final class ImagebuilderImageContainerRecipeArnOrImageRecipeArnImageRecipeArn
     extends ImagebuilderImageContainerRecipeArnOrImageRecipeArn {
-  const ImagebuilderImageImageRecipeArnOption({required this.imageRecipeArn});
+  const ImagebuilderImageContainerRecipeArnOrImageRecipeArnImageRecipeArn(
+    this.imageRecipeArn,
+  );
 
   final TfArg<String> imageRecipeArn;
 

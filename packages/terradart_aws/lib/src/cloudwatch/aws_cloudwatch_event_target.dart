@@ -10,8 +10,25 @@ const Set<String> _awsCloudwatchEventTargetSensitive = <String>{};
 /// At most one of `input`, `input_path`, `input_transformer` on `aws_cloudwatch_event_target`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.input(...)`.
 sealed class CloudwatchEventTargetInputOrInputPathOrInputTransformer {
   const CloudwatchEventTargetInputOrInputPathOrInputTransformer();
+
+  /// Sets `input`.
+  const factory CloudwatchEventTargetInputOrInputPathOrInputTransformer.input(
+    TfArg<String> input,
+  ) = CloudwatchEventTargetInputOrInputPathOrInputTransformerInput;
+
+  /// Sets `input_path`.
+  const factory CloudwatchEventTargetInputOrInputPathOrInputTransformer.inputPath(
+    TfArg<String> inputPath,
+  ) = CloudwatchEventTargetInputOrInputPathOrInputTransformerInputPath;
+
+  /// Sets `input_transformer`.
+  const factory CloudwatchEventTargetInputOrInputPathOrInputTransformer.inputTransformer(
+    CloudwatchEventTargetInputTransformer inputTransformer,
+  ) = CloudwatchEventTargetInputOrInputPathOrInputTransformerInputTransformer;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +40,12 @@ sealed class CloudwatchEventTargetInputOrInputPathOrInputTransformer {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `input` (one of the [CloudwatchEventTargetInputOrInputPathOrInputTransformer] choices).
-final class CloudwatchEventTargetInputOption
+/// The [CloudwatchEventTargetInputOrInputPathOrInputTransformer.input] choice: sets `input`.
+final class CloudwatchEventTargetInputOrInputPathOrInputTransformerInput
     extends CloudwatchEventTargetInputOrInputPathOrInputTransformer {
-  const CloudwatchEventTargetInputOption({required this.input});
+  const CloudwatchEventTargetInputOrInputPathOrInputTransformerInput(
+    this.input,
+  );
 
   final TfArg<String> input;
 
@@ -40,10 +59,12 @@ final class CloudwatchEventTargetInputOption
   Map<String, TfArg<Object?>> get argMap => {'input': input};
 }
 
-/// Sets `input_path` (one of the [CloudwatchEventTargetInputOrInputPathOrInputTransformer] choices).
-final class CloudwatchEventTargetInputPathOption
+/// The [CloudwatchEventTargetInputOrInputPathOrInputTransformer.inputPath] choice: sets `input_path`.
+final class CloudwatchEventTargetInputOrInputPathOrInputTransformerInputPath
     extends CloudwatchEventTargetInputOrInputPathOrInputTransformer {
-  const CloudwatchEventTargetInputPathOption({required this.inputPath});
+  const CloudwatchEventTargetInputOrInputPathOrInputTransformerInputPath(
+    this.inputPath,
+  );
 
   final TfArg<String> inputPath;
 
@@ -57,12 +78,12 @@ final class CloudwatchEventTargetInputPathOption
   Map<String, TfArg<Object?>> get argMap => {'input_path': inputPath};
 }
 
-/// Sets `input_transformer` (one of the [CloudwatchEventTargetInputOrInputPathOrInputTransformer] choices).
-final class CloudwatchEventTargetInputTransformerOption
+/// The [CloudwatchEventTargetInputOrInputPathOrInputTransformer.inputTransformer] choice: sets `input_transformer`.
+final class CloudwatchEventTargetInputOrInputPathOrInputTransformerInputTransformer
     extends CloudwatchEventTargetInputOrInputPathOrInputTransformer {
-  const CloudwatchEventTargetInputTransformerOption({
-    required this.inputTransformer,
-  });
+  const CloudwatchEventTargetInputOrInputPathOrInputTransformerInputTransformer(
+    this.inputTransformer,
+  );
 
   final CloudwatchEventTargetInputTransformer inputTransformer;
 

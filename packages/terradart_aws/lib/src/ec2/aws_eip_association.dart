@@ -8,8 +8,20 @@ const Set<String> _awsEipAssociationSensitive = <String>{};
 
 /// Exactly one of `instance_id`, `network_interface_id` on `aws_eip_association`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.instanceId(...)`.
 sealed class EipAssociationInstanceIdOrNetworkInterfaceId {
   const EipAssociationInstanceIdOrNetworkInterfaceId();
+
+  /// Sets `instance_id`.
+  const factory EipAssociationInstanceIdOrNetworkInterfaceId.instanceId(
+    TfArg<String> instanceId,
+  ) = EipAssociationInstanceIdOrNetworkInterfaceIdInstanceId;
+
+  /// Sets `network_interface_id`.
+  const factory EipAssociationInstanceIdOrNetworkInterfaceId.networkInterfaceId(
+    TfArg<String> networkInterfaceId,
+  ) = EipAssociationInstanceIdOrNetworkInterfaceIdNetworkInterfaceId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,10 +33,10 @@ sealed class EipAssociationInstanceIdOrNetworkInterfaceId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `instance_id` (one of the [EipAssociationInstanceIdOrNetworkInterfaceId] choices).
-final class EipAssociationInstanceIdOption
+/// The [EipAssociationInstanceIdOrNetworkInterfaceId.instanceId] choice: sets `instance_id`.
+final class EipAssociationInstanceIdOrNetworkInterfaceIdInstanceId
     extends EipAssociationInstanceIdOrNetworkInterfaceId {
-  const EipAssociationInstanceIdOption({required this.instanceId});
+  const EipAssociationInstanceIdOrNetworkInterfaceIdInstanceId(this.instanceId);
 
   final TfArg<String> instanceId;
 
@@ -38,12 +50,12 @@ final class EipAssociationInstanceIdOption
   Map<String, TfArg<Object?>> get argMap => {'instance_id': instanceId};
 }
 
-/// Sets `network_interface_id` (one of the [EipAssociationInstanceIdOrNetworkInterfaceId] choices).
-final class EipAssociationNetworkInterfaceIdOption
+/// The [EipAssociationInstanceIdOrNetworkInterfaceId.networkInterfaceId] choice: sets `network_interface_id`.
+final class EipAssociationInstanceIdOrNetworkInterfaceIdNetworkInterfaceId
     extends EipAssociationInstanceIdOrNetworkInterfaceId {
-  const EipAssociationNetworkInterfaceIdOption({
-    required this.networkInterfaceId,
-  });
+  const EipAssociationInstanceIdOrNetworkInterfaceIdNetworkInterfaceId(
+    this.networkInterfaceId,
+  );
 
   final TfArg<String> networkInterfaceId;
 

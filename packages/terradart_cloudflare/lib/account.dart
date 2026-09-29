@@ -25,11 +25,11 @@ export 'src/account/cloudflare_account_member.dart'
     show
         AccountMemberPolicies,
         AccountMemberPoliciesAccess,
-        AccountMemberPoliciesOption,
         AccountMemberPoliciesPermissionGroups,
         AccountMemberPoliciesResourceGroups,
-        AccountMemberRolesOption,
         AccountMemberRolesOrPolicies,
+        AccountMemberRolesOrPoliciesPolicies,
+        AccountMemberRolesOrPoliciesRoles,
         AccountMemberStatus,
         CloudflareAccountMember;
 export 'src/account/cloudflare_account_subscription.dart'

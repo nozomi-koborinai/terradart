@@ -8,8 +8,25 @@ const Set<String> _awsEc2TrafficMirrorTargetSensitive = <String>{};
 
 /// Exactly one of `gateway_load_balancer_endpoint_id`, `network_interface_id`, `network_load_balancer_arn` on `aws_ec2_traffic_mirror_target`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.gatewayLoadBalancerEndpointId(...)`.
 sealed class Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn {
   const Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn();
+
+  /// Sets `gateway_load_balancer_endpoint_id`.
+  const factory Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn.gatewayLoadBalancerEndpointId(
+    TfArg<String> gatewayLoadBalancerEndpointId,
+  ) = Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnGatewayLoadBalancerEndpointId;
+
+  /// Sets `network_interface_id`.
+  const factory Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn.networkInterfaceId(
+    TfArg<String> networkInterfaceId,
+  ) = Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkInterfaceId;
+
+  /// Sets `network_load_balancer_arn`.
+  const factory Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn.networkLoadBalancerArn(
+    TfArg<String> networkLoadBalancerArn,
+  ) = Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkLoadBalancerArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,13 +38,13 @@ sealed class Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfa
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `gateway_load_balancer_endpoint_id` (one of the [Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn] choices).
-final class Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOption
+/// The [Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn.gatewayLoadBalancerEndpointId] choice: sets `gateway_load_balancer_endpoint_id`.
+final class Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnGatewayLoadBalancerEndpointId
     extends
         Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn {
-  const Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOption({
-    required this.gatewayLoadBalancerEndpointId,
-  });
+  const Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnGatewayLoadBalancerEndpointId(
+    this.gatewayLoadBalancerEndpointId,
+  );
 
   final TfArg<String> gatewayLoadBalancerEndpointId;
 
@@ -46,13 +63,13 @@ final class Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOption
   };
 }
 
-/// Sets `network_interface_id` (one of the [Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn] choices).
-final class Ec2TrafficMirrorTargetNetworkInterfaceIdOption
+/// The [Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn.networkInterfaceId] choice: sets `network_interface_id`.
+final class Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkInterfaceId
     extends
         Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn {
-  const Ec2TrafficMirrorTargetNetworkInterfaceIdOption({
-    required this.networkInterfaceId,
-  });
+  const Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkInterfaceId(
+    this.networkInterfaceId,
+  );
 
   final TfArg<String> networkInterfaceId;
 
@@ -70,13 +87,13 @@ final class Ec2TrafficMirrorTargetNetworkInterfaceIdOption
   };
 }
 
-/// Sets `network_load_balancer_arn` (one of the [Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn] choices).
-final class Ec2TrafficMirrorTargetNetworkLoadBalancerArnOption
+/// The [Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn.networkLoadBalancerArn] choice: sets `network_load_balancer_arn`.
+final class Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkLoadBalancerArn
     extends
         Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn {
-  const Ec2TrafficMirrorTargetNetworkLoadBalancerArnOption({
-    required this.networkLoadBalancerArn,
-  });
+  const Ec2TrafficMirrorTargetGatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArnNetworkLoadBalancerArn(
+    this.networkLoadBalancerArn,
+  );
 
   final TfArg<String> networkLoadBalancerArn;
 

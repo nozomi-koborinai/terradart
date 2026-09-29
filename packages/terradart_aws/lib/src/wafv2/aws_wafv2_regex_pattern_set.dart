@@ -20,8 +20,19 @@ enum Wafv2RegexPatternSetScope implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_wafv2_regex_pattern_set`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class Wafv2RegexPatternSetNameOrNamePrefix {
   const Wafv2RegexPatternSetNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory Wafv2RegexPatternSetNameOrNamePrefix.name(TfArg<String> name) =
+      Wafv2RegexPatternSetNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory Wafv2RegexPatternSetNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = Wafv2RegexPatternSetNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +44,10 @@ sealed class Wafv2RegexPatternSetNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [Wafv2RegexPatternSetNameOrNamePrefix] choices).
-final class Wafv2RegexPatternSetNameOption
+/// The [Wafv2RegexPatternSetNameOrNamePrefix.name] choice: sets `name`.
+final class Wafv2RegexPatternSetNameOrNamePrefixName
     extends Wafv2RegexPatternSetNameOrNamePrefix {
-  const Wafv2RegexPatternSetNameOption({required this.name});
+  const Wafv2RegexPatternSetNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +61,10 @@ final class Wafv2RegexPatternSetNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [Wafv2RegexPatternSetNameOrNamePrefix] choices).
-final class Wafv2RegexPatternSetNamePrefixOption
+/// The [Wafv2RegexPatternSetNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class Wafv2RegexPatternSetNameOrNamePrefixNamePrefix
     extends Wafv2RegexPatternSetNameOrNamePrefix {
-  const Wafv2RegexPatternSetNamePrefixOption({required this.namePrefix});
+  const Wafv2RegexPatternSetNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

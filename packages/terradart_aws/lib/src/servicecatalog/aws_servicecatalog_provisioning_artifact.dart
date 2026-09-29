@@ -43,8 +43,20 @@ enum ServicecatalogProvisioningArtifactType implements TerraformEnum {
 
 /// Exactly one of `template_physical_id`, `template_url` on `aws_servicecatalog_provisioning_artifact`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.templatePhysicalId(...)`.
 sealed class ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
   const ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl();
+
+  /// Sets `template_physical_id`.
+  const factory ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl.templatePhysicalId(
+    TfArg<String> templatePhysicalId,
+  ) = ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplatePhysicalId;
+
+  /// Sets `template_url`.
+  const factory ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl.templateUrl(
+    TfArg<String> templateUrl,
+  ) = ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplateUrl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -56,12 +68,12 @@ sealed class ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `template_physical_id` (one of the [ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl] choices).
-final class ServicecatalogProvisioningArtifactTemplatePhysicalIdOption
+/// The [ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl.templatePhysicalId] choice: sets `template_physical_id`.
+final class ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplatePhysicalId
     extends ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
-  const ServicecatalogProvisioningArtifactTemplatePhysicalIdOption({
-    required this.templatePhysicalId,
-  });
+  const ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplatePhysicalId(
+    this.templatePhysicalId,
+  );
 
   final TfArg<String> templatePhysicalId;
 
@@ -79,12 +91,12 @@ final class ServicecatalogProvisioningArtifactTemplatePhysicalIdOption
   };
 }
 
-/// Sets `template_url` (one of the [ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl] choices).
-final class ServicecatalogProvisioningArtifactTemplateUrlOption
+/// The [ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl.templateUrl] choice: sets `template_url`.
+final class ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplateUrl
     extends ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
-  const ServicecatalogProvisioningArtifactTemplateUrlOption({
-    required this.templateUrl,
-  });
+  const ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplateUrl(
+    this.templateUrl,
+  );
 
   final TfArg<String> templateUrl;
 

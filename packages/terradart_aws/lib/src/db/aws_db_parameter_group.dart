@@ -10,8 +10,19 @@ const Set<String> _awsDbParameterGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_db_parameter_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class DbParameterGroupNameOrNamePrefix {
   const DbParameterGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory DbParameterGroupNameOrNamePrefix.name(TfArg<String> name) =
+      DbParameterGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory DbParameterGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = DbParameterGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +34,10 @@ sealed class DbParameterGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [DbParameterGroupNameOrNamePrefix] choices).
-final class DbParameterGroupNameOption
+/// The [DbParameterGroupNameOrNamePrefix.name] choice: sets `name`.
+final class DbParameterGroupNameOrNamePrefixName
     extends DbParameterGroupNameOrNamePrefix {
-  const DbParameterGroupNameOption({required this.name});
+  const DbParameterGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -40,10 +51,10 @@ final class DbParameterGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [DbParameterGroupNameOrNamePrefix] choices).
-final class DbParameterGroupNamePrefixOption
+/// The [DbParameterGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class DbParameterGroupNameOrNamePrefixNamePrefix
     extends DbParameterGroupNameOrNamePrefix {
-  const DbParameterGroupNamePrefixOption({required this.namePrefix});
+  const DbParameterGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

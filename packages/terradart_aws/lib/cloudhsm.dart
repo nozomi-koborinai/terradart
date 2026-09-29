@@ -8,6 +8,6 @@ export 'src/cloudhsm/aws_cloudhsm_v2_cluster.dart'
 export 'src/cloudhsm/aws_cloudhsm_v2_hsm.dart'
     show
         AwsCloudhsmV2Hsm,
-        CloudhsmV2HsmAvailabilityZoneOption,
         CloudhsmV2HsmAvailabilityZoneOrSubnetId,
-        CloudhsmV2HsmSubnetIdOption;
+        CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone,
+        CloudhsmV2HsmAvailabilityZoneOrSubnetIdSubnetId;

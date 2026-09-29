@@ -49,8 +49,20 @@ enum NetworkServicesGatewayType implements TerraformEnum {
 /// At most one of `all_ports`, `ports` on `google_network_services_gateway`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.allPorts(...)`.
 sealed class NetworkServicesGatewayAllPortsOrPorts {
   const NetworkServicesGatewayAllPortsOrPorts();
+
+  /// Sets `all_ports`.
+  const factory NetworkServicesGatewayAllPortsOrPorts.allPorts(
+    TfArg<bool> allPorts,
+  ) = NetworkServicesGatewayAllPortsOrPortsAllPorts;
+
+  /// Sets `ports`.
+  const factory NetworkServicesGatewayAllPortsOrPorts.ports(
+    TfArg<List<num>> ports,
+  ) = NetworkServicesGatewayAllPortsOrPortsPorts;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -62,10 +74,10 @@ sealed class NetworkServicesGatewayAllPortsOrPorts {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `all_ports` (one of the [NetworkServicesGatewayAllPortsOrPorts] choices).
-final class NetworkServicesGatewayAllPortsOption
+/// The [NetworkServicesGatewayAllPortsOrPorts.allPorts] choice: sets `all_ports`.
+final class NetworkServicesGatewayAllPortsOrPortsAllPorts
     extends NetworkServicesGatewayAllPortsOrPorts {
-  const NetworkServicesGatewayAllPortsOption({required this.allPorts});
+  const NetworkServicesGatewayAllPortsOrPortsAllPorts(this.allPorts);
 
   final TfArg<bool> allPorts;
 
@@ -79,10 +91,10 @@ final class NetworkServicesGatewayAllPortsOption
   Map<String, TfArg<Object?>> get argMap => {'all_ports': allPorts};
 }
 
-/// Sets `ports` (one of the [NetworkServicesGatewayAllPortsOrPorts] choices).
-final class NetworkServicesGatewayPortsOption
+/// The [NetworkServicesGatewayAllPortsOrPorts.ports] choice: sets `ports`.
+final class NetworkServicesGatewayAllPortsOrPortsPorts
     extends NetworkServicesGatewayAllPortsOrPorts {
-  const NetworkServicesGatewayPortsOption({required this.ports});
+  const NetworkServicesGatewayAllPortsOrPortsPorts(this.ports);
 
   final TfArg<List<num>> ports;
 

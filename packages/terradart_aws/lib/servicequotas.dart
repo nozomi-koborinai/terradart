@@ -13,8 +13,8 @@ export 'src/servicequotas/aws_servicequotas_service_quota.dart'
 export 'src/servicequotas/aws_servicequotas_template.dart'
     show
         AwsServicequotasTemplate,
-        ServicequotasTemplateAwsRegionOption,
         ServicequotasTemplateAwsRegionOrRegion,
-        ServicequotasTemplateRegionOption;
+        ServicequotasTemplateAwsRegionOrRegionAwsRegion,
+        ServicequotasTemplateAwsRegionOrRegionRegion;
 export 'src/servicequotas/aws_servicequotas_template_association.dart'
     show AwsServicequotasTemplateAssociation;

@@ -28,8 +28,20 @@ enum ImagebuilderContainerRecipePlatformOverride implements TerraformEnum {
 
 /// Exactly one of `dockerfile_template_data`, `dockerfile_template_uri` on `aws_imagebuilder_container_recipe`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.dockerfileTemplateData(...)`.
 sealed class ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri {
   const ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri();
+
+  /// Sets `dockerfile_template_data`.
+  const factory ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri.dockerfileTemplateData(
+    TfArg<String> dockerfileTemplateData,
+  ) = ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateData;
+
+  /// Sets `dockerfile_template_uri`.
+  const factory ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri.dockerfileTemplateUri(
+    TfArg<String> dockerfileTemplateUri,
+  ) = ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -41,13 +53,13 @@ sealed class ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTempla
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `dockerfile_template_data` (one of the [ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri] choices).
-final class ImagebuilderContainerRecipeDockerfileTemplateDataOption
+/// The [ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri.dockerfileTemplateData] choice: sets `dockerfile_template_data`.
+final class ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateData
     extends
         ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri {
-  const ImagebuilderContainerRecipeDockerfileTemplateDataOption({
-    required this.dockerfileTemplateData,
-  });
+  const ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateData(
+    this.dockerfileTemplateData,
+  );
 
   final TfArg<String> dockerfileTemplateData;
 
@@ -65,13 +77,13 @@ final class ImagebuilderContainerRecipeDockerfileTemplateDataOption
   };
 }
 
-/// Sets `dockerfile_template_uri` (one of the [ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri] choices).
-final class ImagebuilderContainerRecipeDockerfileTemplateUriOption
+/// The [ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri.dockerfileTemplateUri] choice: sets `dockerfile_template_uri`.
+final class ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateUri
     extends
         ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri {
-  const ImagebuilderContainerRecipeDockerfileTemplateUriOption({
-    required this.dockerfileTemplateUri,
-  });
+  const ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateUri(
+    this.dockerfileTemplateUri,
+  );
 
   final TfArg<String> dockerfileTemplateUri;
 

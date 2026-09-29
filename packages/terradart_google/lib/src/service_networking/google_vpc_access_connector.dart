@@ -28,8 +28,20 @@ class VpcAccessConnectorSubnet {
 /// At most one of `min_throughput`, `min_instances` on `google_vpc_access_connector`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.minThroughput(...)`.
 sealed class VpcAccessConnectorMinThroughputOrMinInstances {
   const VpcAccessConnectorMinThroughputOrMinInstances();
+
+  /// Sets `min_throughput`.
+  const factory VpcAccessConnectorMinThroughputOrMinInstances.minThroughput(
+    TfArg<num> minThroughput,
+  ) = VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput;
+
+  /// Sets `min_instances`.
+  const factory VpcAccessConnectorMinThroughputOrMinInstances.minInstances(
+    TfArg<num> minInstances,
+  ) = VpcAccessConnectorMinThroughputOrMinInstancesMinInstances;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -41,10 +53,12 @@ sealed class VpcAccessConnectorMinThroughputOrMinInstances {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `min_throughput` (one of the [VpcAccessConnectorMinThroughputOrMinInstances] choices).
-final class VpcAccessConnectorMinThroughputOption
+/// The [VpcAccessConnectorMinThroughputOrMinInstances.minThroughput] choice: sets `min_throughput`.
+final class VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput
     extends VpcAccessConnectorMinThroughputOrMinInstances {
-  const VpcAccessConnectorMinThroughputOption({required this.minThroughput});
+  const VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput(
+    this.minThroughput,
+  );
 
   final TfArg<num> minThroughput;
 
@@ -58,10 +72,12 @@ final class VpcAccessConnectorMinThroughputOption
   Map<String, TfArg<Object?>> get argMap => {'min_throughput': minThroughput};
 }
 
-/// Sets `min_instances` (one of the [VpcAccessConnectorMinThroughputOrMinInstances] choices).
-final class VpcAccessConnectorMinInstancesOption
+/// The [VpcAccessConnectorMinThroughputOrMinInstances.minInstances] choice: sets `min_instances`.
+final class VpcAccessConnectorMinThroughputOrMinInstancesMinInstances
     extends VpcAccessConnectorMinThroughputOrMinInstances {
-  const VpcAccessConnectorMinInstancesOption({required this.minInstances});
+  const VpcAccessConnectorMinThroughputOrMinInstancesMinInstances(
+    this.minInstances,
+  );
 
   final TfArg<num> minInstances;
 
@@ -78,8 +94,20 @@ final class VpcAccessConnectorMinInstancesOption
 /// At most one of `max_instances`, `max_throughput` on `google_vpc_access_connector`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.maxInstances(...)`.
 sealed class VpcAccessConnectorMaxInstancesOrMaxThroughput {
   const VpcAccessConnectorMaxInstancesOrMaxThroughput();
+
+  /// Sets `max_instances`.
+  const factory VpcAccessConnectorMaxInstancesOrMaxThroughput.maxInstances(
+    TfArg<num> maxInstances,
+  ) = VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances;
+
+  /// Sets `max_throughput`.
+  const factory VpcAccessConnectorMaxInstancesOrMaxThroughput.maxThroughput(
+    TfArg<num> maxThroughput,
+  ) = VpcAccessConnectorMaxInstancesOrMaxThroughputMaxThroughput;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -91,10 +119,12 @@ sealed class VpcAccessConnectorMaxInstancesOrMaxThroughput {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `max_instances` (one of the [VpcAccessConnectorMaxInstancesOrMaxThroughput] choices).
-final class VpcAccessConnectorMaxInstancesOption
+/// The [VpcAccessConnectorMaxInstancesOrMaxThroughput.maxInstances] choice: sets `max_instances`.
+final class VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances
     extends VpcAccessConnectorMaxInstancesOrMaxThroughput {
-  const VpcAccessConnectorMaxInstancesOption({required this.maxInstances});
+  const VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances(
+    this.maxInstances,
+  );
 
   final TfArg<num> maxInstances;
 
@@ -108,10 +138,12 @@ final class VpcAccessConnectorMaxInstancesOption
   Map<String, TfArg<Object?>> get argMap => {'max_instances': maxInstances};
 }
 
-/// Sets `max_throughput` (one of the [VpcAccessConnectorMaxInstancesOrMaxThroughput] choices).
-final class VpcAccessConnectorMaxThroughputOption
+/// The [VpcAccessConnectorMaxInstancesOrMaxThroughput.maxThroughput] choice: sets `max_throughput`.
+final class VpcAccessConnectorMaxInstancesOrMaxThroughputMaxThroughput
     extends VpcAccessConnectorMaxInstancesOrMaxThroughput {
-  const VpcAccessConnectorMaxThroughputOption({required this.maxThroughput});
+  const VpcAccessConnectorMaxInstancesOrMaxThroughputMaxThroughput(
+    this.maxThroughput,
+  );
 
   final TfArg<num> maxThroughput;
 

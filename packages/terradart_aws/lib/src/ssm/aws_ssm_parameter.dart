@@ -41,8 +41,25 @@ enum SsmParameterType implements TerraformEnum {
 
 /// Exactly one of `insecure_value`, `value`, `value_wo` on `aws_ssm_parameter`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.insecureValue(...)`.
 sealed class SsmParameterInsecureValueOrValueOrValueWo {
   const SsmParameterInsecureValueOrValueOrValueWo();
+
+  /// Sets `insecure_value`.
+  const factory SsmParameterInsecureValueOrValueOrValueWo.insecureValue(
+    TfArg<String> insecureValue,
+  ) = SsmParameterInsecureValueOrValueOrValueWoInsecureValue;
+
+  /// Sets `value`.
+  const factory SsmParameterInsecureValueOrValueOrValueWo.value(
+    TfArg<String> value,
+  ) = SsmParameterInsecureValueOrValueOrValueWoValue;
+
+  /// Sets `value_wo`.
+  const factory SsmParameterInsecureValueOrValueOrValueWo.valueWo(
+    TfArg<String> valueWo,
+  ) = SsmParameterInsecureValueOrValueOrValueWoValueWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -54,10 +71,12 @@ sealed class SsmParameterInsecureValueOrValueOrValueWo {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `insecure_value` (one of the [SsmParameterInsecureValueOrValueOrValueWo] choices).
-final class SsmParameterInsecureValueOption
+/// The [SsmParameterInsecureValueOrValueOrValueWo.insecureValue] choice: sets `insecure_value`.
+final class SsmParameterInsecureValueOrValueOrValueWoInsecureValue
     extends SsmParameterInsecureValueOrValueOrValueWo {
-  const SsmParameterInsecureValueOption({required this.insecureValue});
+  const SsmParameterInsecureValueOrValueOrValueWoInsecureValue(
+    this.insecureValue,
+  );
 
   final TfArg<String> insecureValue;
 
@@ -71,10 +90,10 @@ final class SsmParameterInsecureValueOption
   Map<String, TfArg<Object?>> get argMap => {'insecure_value': insecureValue};
 }
 
-/// Sets `value` (one of the [SsmParameterInsecureValueOrValueOrValueWo] choices).
-final class SsmParameterValueOption
+/// The [SsmParameterInsecureValueOrValueOrValueWo.value] choice: sets `value`.
+final class SsmParameterInsecureValueOrValueOrValueWoValue
     extends SsmParameterInsecureValueOrValueOrValueWo {
-  const SsmParameterValueOption({required this.value});
+  const SsmParameterInsecureValueOrValueOrValueWoValue(this.value);
 
   final TfArg<String> value;
 
@@ -88,10 +107,10 @@ final class SsmParameterValueOption
   Map<String, TfArg<Object?>> get argMap => {'value': value};
 }
 
-/// Sets `value_wo` (one of the [SsmParameterInsecureValueOrValueOrValueWo] choices).
-final class SsmParameterValueWoOption
+/// The [SsmParameterInsecureValueOrValueOrValueWo.valueWo] choice: sets `value_wo`.
+final class SsmParameterInsecureValueOrValueOrValueWoValueWo
     extends SsmParameterInsecureValueOrValueOrValueWo {
-  const SsmParameterValueWoOption({required this.valueWo});
+  const SsmParameterInsecureValueOrValueOrValueWoValueWo(this.valueWo);
 
   final TfArg<String> valueWo;
 

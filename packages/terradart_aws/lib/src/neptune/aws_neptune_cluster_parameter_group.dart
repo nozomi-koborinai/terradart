@@ -10,8 +10,20 @@ const Set<String> _awsNeptuneClusterParameterGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_neptune_cluster_parameter_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class NeptuneClusterParameterGroupNameOrNamePrefix {
   const NeptuneClusterParameterGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory NeptuneClusterParameterGroupNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = NeptuneClusterParameterGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory NeptuneClusterParameterGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = NeptuneClusterParameterGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +35,10 @@ sealed class NeptuneClusterParameterGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [NeptuneClusterParameterGroupNameOrNamePrefix] choices).
-final class NeptuneClusterParameterGroupNameOption
+/// The [NeptuneClusterParameterGroupNameOrNamePrefix.name] choice: sets `name`.
+final class NeptuneClusterParameterGroupNameOrNamePrefixName
     extends NeptuneClusterParameterGroupNameOrNamePrefix {
-  const NeptuneClusterParameterGroupNameOption({required this.name});
+  const NeptuneClusterParameterGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -40,12 +52,10 @@ final class NeptuneClusterParameterGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [NeptuneClusterParameterGroupNameOrNamePrefix] choices).
-final class NeptuneClusterParameterGroupNamePrefixOption
+/// The [NeptuneClusterParameterGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class NeptuneClusterParameterGroupNameOrNamePrefixNamePrefix
     extends NeptuneClusterParameterGroupNameOrNamePrefix {
-  const NeptuneClusterParameterGroupNamePrefixOption({
-    required this.namePrefix,
-  });
+  const NeptuneClusterParameterGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

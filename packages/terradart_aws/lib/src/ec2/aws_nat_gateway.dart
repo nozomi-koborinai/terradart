@@ -30,8 +30,20 @@ enum NatGatewayConnectivityType implements TerraformEnum {
 /// At most one of `secondary_private_ip_address_count`, `secondary_private_ip_addresses` on `aws_nat_gateway`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.secondaryPrivateIpAddressCount(...)`.
 sealed class NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses {
   const NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses();
+
+  /// Sets `secondary_private_ip_address_count`.
+  const factory NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses.secondaryPrivateIpAddressCount(
+    TfArg<num> secondaryPrivateIpAddressCount,
+  ) = NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddressCount;
+
+  /// Sets `secondary_private_ip_addresses`.
+  const factory NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses.secondaryPrivateIpAddresses(
+    TfArg<List<String>> secondaryPrivateIpAddresses,
+  ) = NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddresses;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,13 +55,13 @@ sealed class NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddress
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `secondary_private_ip_address_count` (one of the [NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses] choices).
-final class NatGatewaySecondaryPrivateIpAddressCountOption
+/// The [NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses.secondaryPrivateIpAddressCount] choice: sets `secondary_private_ip_address_count`.
+final class NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddressCount
     extends
         NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses {
-  const NatGatewaySecondaryPrivateIpAddressCountOption({
-    required this.secondaryPrivateIpAddressCount,
-  });
+  const NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddressCount(
+    this.secondaryPrivateIpAddressCount,
+  );
 
   final TfArg<num> secondaryPrivateIpAddressCount;
 
@@ -68,13 +80,13 @@ final class NatGatewaySecondaryPrivateIpAddressCountOption
   };
 }
 
-/// Sets `secondary_private_ip_addresses` (one of the [NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses] choices).
-final class NatGatewaySecondaryPrivateIpAddressesOption
+/// The [NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses.secondaryPrivateIpAddresses] choice: sets `secondary_private_ip_addresses`.
+final class NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddresses
     extends
         NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses {
-  const NatGatewaySecondaryPrivateIpAddressesOption({
-    required this.secondaryPrivateIpAddresses,
-  });
+  const NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddresses(
+    this.secondaryPrivateIpAddresses,
+  );
 
   final TfArg<List<String>> secondaryPrivateIpAddresses;
 

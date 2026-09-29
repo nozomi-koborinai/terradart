@@ -725,8 +725,20 @@ class ComputeRegionUrlMapRegionUrlMapTestHeader {
 /// At most one of `default_url_redirect`, `default_route_action` on `google_compute_region_url_map`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.defaultUrlRedirect(...)`.
 sealed class ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
   const ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction();
+
+  /// Sets `default_url_redirect`.
+  const factory ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultUrlRedirect(
+    ComputeRegionUrlMapRegionUrlMapUrlRedirect defaultUrlRedirect,
+  ) = ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect;
+
+  /// Sets `default_route_action`.
+  const factory ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultRouteAction(
+    ComputeRegionUrlMapRegionUrlMapRouteAction defaultRouteAction,
+  ) = ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -738,12 +750,12 @@ sealed class ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `default_url_redirect` (one of the [ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction] choices).
-final class ComputeRegionUrlMapDefaultUrlRedirectOption
+/// The [ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultUrlRedirect] choice: sets `default_url_redirect`.
+final class ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect
     extends ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
-  const ComputeRegionUrlMapDefaultUrlRedirectOption({
-    required this.defaultUrlRedirect,
-  });
+  const ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect(
+    this.defaultUrlRedirect,
+  );
 
   final ComputeRegionUrlMapRegionUrlMapUrlRedirect defaultUrlRedirect;
 
@@ -761,12 +773,12 @@ final class ComputeRegionUrlMapDefaultUrlRedirectOption
   };
 }
 
-/// Sets `default_route_action` (one of the [ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction] choices).
-final class ComputeRegionUrlMapDefaultRouteActionOption
+/// The [ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultRouteAction] choice: sets `default_route_action`.
+final class ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction
     extends ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
-  const ComputeRegionUrlMapDefaultRouteActionOption({
-    required this.defaultRouteAction,
-  });
+  const ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction(
+    this.defaultRouteAction,
+  );
 
   final ComputeRegionUrlMapRegionUrlMapRouteAction defaultRouteAction;
 

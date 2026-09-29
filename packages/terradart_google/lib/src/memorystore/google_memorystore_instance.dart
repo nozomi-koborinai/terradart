@@ -32,8 +32,20 @@ enum MemorystoreInstanceServerCaMode implements TerraformEnum {
 /// At most one of `gcs_source`, `managed_backup_source` on `google_memorystore_instance`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.gcsSource(...)`.
 sealed class MemorystoreInstanceGcsSourceOrManagedBackupSource {
   const MemorystoreInstanceGcsSourceOrManagedBackupSource();
+
+  /// Sets `gcs_source`.
+  const factory MemorystoreInstanceGcsSourceOrManagedBackupSource.gcsSource(
+    MemorystoreInstanceGcsSource gcsSource,
+  ) = MemorystoreInstanceGcsSourceOrManagedBackupSourceGcsSource;
+
+  /// Sets `managed_backup_source`.
+  const factory MemorystoreInstanceGcsSourceOrManagedBackupSource.managedBackupSource(
+    MemorystoreInstanceManagedBackupSource managedBackupSource,
+  ) = MemorystoreInstanceGcsSourceOrManagedBackupSourceManagedBackupSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,10 +57,12 @@ sealed class MemorystoreInstanceGcsSourceOrManagedBackupSource {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `gcs_source` (one of the [MemorystoreInstanceGcsSourceOrManagedBackupSource] choices).
-final class MemorystoreInstanceGcsSourceOption
+/// The [MemorystoreInstanceGcsSourceOrManagedBackupSource.gcsSource] choice: sets `gcs_source`.
+final class MemorystoreInstanceGcsSourceOrManagedBackupSourceGcsSource
     extends MemorystoreInstanceGcsSourceOrManagedBackupSource {
-  const MemorystoreInstanceGcsSourceOption({required this.gcsSource});
+  const MemorystoreInstanceGcsSourceOrManagedBackupSourceGcsSource(
+    this.gcsSource,
+  );
 
   final MemorystoreInstanceGcsSource gcsSource;
 
@@ -64,12 +78,12 @@ final class MemorystoreInstanceGcsSourceOption
   };
 }
 
-/// Sets `managed_backup_source` (one of the [MemorystoreInstanceGcsSourceOrManagedBackupSource] choices).
-final class MemorystoreInstanceManagedBackupSourceOption
+/// The [MemorystoreInstanceGcsSourceOrManagedBackupSource.managedBackupSource] choice: sets `managed_backup_source`.
+final class MemorystoreInstanceGcsSourceOrManagedBackupSourceManagedBackupSource
     extends MemorystoreInstanceGcsSourceOrManagedBackupSource {
-  const MemorystoreInstanceManagedBackupSourceOption({
-    required this.managedBackupSource,
-  });
+  const MemorystoreInstanceGcsSourceOrManagedBackupSourceManagedBackupSource(
+    this.managedBackupSource,
+  );
 
   final MemorystoreInstanceManagedBackupSource managedBackupSource;
 

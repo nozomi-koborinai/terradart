@@ -9,8 +9,20 @@ const Set<String> _awsCognitoManagedLoginBrandingSensitive = <String>{};
 
 /// Exactly one of `settings`, `use_cognito_provided_values` on `aws_cognito_managed_login_branding`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.settings(...)`.
 sealed class CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
   const CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues();
+
+  /// Sets `settings`.
+  const factory CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues.settings(
+    TfArg<String> settings,
+  ) = CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings;
+
+  /// Sets `use_cognito_provided_values`.
+  const factory CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues.useCognitoProvidedValues(
+    TfArg<bool> useCognitoProvidedValues,
+  ) = CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,12 @@ sealed class CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `settings` (one of the [CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues] choices).
-final class CognitoManagedLoginBrandingSettingsOption
+/// The [CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues.settings] choice: sets `settings`.
+final class CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings
     extends CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
-  const CognitoManagedLoginBrandingSettingsOption({required this.settings});
+  const CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings(
+    this.settings,
+  );
 
   final TfArg<String> settings;
 
@@ -39,12 +53,12 @@ final class CognitoManagedLoginBrandingSettingsOption
   Map<String, TfArg<Object?>> get argMap => {'settings': settings};
 }
 
-/// Sets `use_cognito_provided_values` (one of the [CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues] choices).
-final class CognitoManagedLoginBrandingUseCognitoProvidedValuesOption
+/// The [CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues.useCognitoProvidedValues] choice: sets `use_cognito_provided_values`.
+final class CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues
     extends CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
-  const CognitoManagedLoginBrandingUseCognitoProvidedValuesOption({
-    required this.useCognitoProvidedValues,
-  });
+  const CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues(
+    this.useCognitoProvidedValues,
+  );
 
   final TfArg<bool> useCognitoProvidedValues;
 

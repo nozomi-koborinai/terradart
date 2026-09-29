@@ -10,8 +10,19 @@ const Set<String> _awsSecretsmanagerSecretSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_secretsmanager_secret`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class SecretsmanagerSecretNameOrNamePrefix {
   const SecretsmanagerSecretNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory SecretsmanagerSecretNameOrNamePrefix.name(TfArg<String> name) =
+      SecretsmanagerSecretNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory SecretsmanagerSecretNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = SecretsmanagerSecretNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +34,10 @@ sealed class SecretsmanagerSecretNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [SecretsmanagerSecretNameOrNamePrefix] choices).
-final class SecretsmanagerSecretNameOption
+/// The [SecretsmanagerSecretNameOrNamePrefix.name] choice: sets `name`.
+final class SecretsmanagerSecretNameOrNamePrefixName
     extends SecretsmanagerSecretNameOrNamePrefix {
-  const SecretsmanagerSecretNameOption({required this.name});
+  const SecretsmanagerSecretNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -40,10 +51,10 @@ final class SecretsmanagerSecretNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [SecretsmanagerSecretNameOrNamePrefix] choices).
-final class SecretsmanagerSecretNamePrefixOption
+/// The [SecretsmanagerSecretNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class SecretsmanagerSecretNameOrNamePrefixNamePrefix
     extends SecretsmanagerSecretNameOrNamePrefix {
-  const SecretsmanagerSecretNamePrefixOption({required this.namePrefix});
+  const SecretsmanagerSecretNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

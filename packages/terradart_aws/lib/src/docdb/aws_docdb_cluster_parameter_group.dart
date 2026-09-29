@@ -10,8 +10,20 @@ const Set<String> _awsDocdbClusterParameterGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_docdb_cluster_parameter_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class DocdbClusterParameterGroupNameOrNamePrefix {
   const DocdbClusterParameterGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory DocdbClusterParameterGroupNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = DocdbClusterParameterGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory DocdbClusterParameterGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = DocdbClusterParameterGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +35,10 @@ sealed class DocdbClusterParameterGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [DocdbClusterParameterGroupNameOrNamePrefix] choices).
-final class DocdbClusterParameterGroupNameOption
+/// The [DocdbClusterParameterGroupNameOrNamePrefix.name] choice: sets `name`.
+final class DocdbClusterParameterGroupNameOrNamePrefixName
     extends DocdbClusterParameterGroupNameOrNamePrefix {
-  const DocdbClusterParameterGroupNameOption({required this.name});
+  const DocdbClusterParameterGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -40,10 +52,10 @@ final class DocdbClusterParameterGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [DocdbClusterParameterGroupNameOrNamePrefix] choices).
-final class DocdbClusterParameterGroupNamePrefixOption
+/// The [DocdbClusterParameterGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class DocdbClusterParameterGroupNameOrNamePrefixNamePrefix
     extends DocdbClusterParameterGroupNameOrNamePrefix {
-  const DocdbClusterParameterGroupNamePrefixOption({required this.namePrefix});
+  const DocdbClusterParameterGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -10,8 +10,19 @@ const Set<String> _awsNeptuneParameterGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_neptune_parameter_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class NeptuneParameterGroupNameOrNamePrefix {
   const NeptuneParameterGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory NeptuneParameterGroupNameOrNamePrefix.name(TfArg<String> name) =
+      NeptuneParameterGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory NeptuneParameterGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = NeptuneParameterGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +34,10 @@ sealed class NeptuneParameterGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [NeptuneParameterGroupNameOrNamePrefix] choices).
-final class NeptuneParameterGroupNameOption
+/// The [NeptuneParameterGroupNameOrNamePrefix.name] choice: sets `name`.
+final class NeptuneParameterGroupNameOrNamePrefixName
     extends NeptuneParameterGroupNameOrNamePrefix {
-  const NeptuneParameterGroupNameOption({required this.name});
+  const NeptuneParameterGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -40,10 +51,10 @@ final class NeptuneParameterGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [NeptuneParameterGroupNameOrNamePrefix] choices).
-final class NeptuneParameterGroupNamePrefixOption
+/// The [NeptuneParameterGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class NeptuneParameterGroupNameOrNamePrefixNamePrefix
     extends NeptuneParameterGroupNameOrNamePrefix {
-  const NeptuneParameterGroupNamePrefixOption({required this.namePrefix});
+  const NeptuneParameterGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

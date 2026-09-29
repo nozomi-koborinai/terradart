@@ -54,17 +54,15 @@ final class NetworkServicesMeshStack extends Stack {
           NetworkServicesHttpRouteRules(
             matches: [
               NetworkServicesHttpRouteRulesMatches(
-                fullPathMatchOrPrefixMatchOrRegexMatch:
-                    NetworkServicesHttpRouteRulesMatchesFullPathMatchOption(
-                      fullPathMatch: TfArg.literal('example'),
-                    ),
+                fullPathMatchOrPrefixMatchOrRegexMatch: .fullPathMatch(
+                  TfArg.literal('example'),
+                ),
                 queryParameters: [
                   NetworkServicesHttpRouteRulesMatchesQueryParameters(
                     queryParameter: TfArg.literal('key'),
-                    exactMatchOrRegexMatchOrPresentMatch:
-                        NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOption(
-                          exactMatch: TfArg.literal('value'),
-                        ),
+                    exactMatchOrRegexMatchOrPresentMatch: .exactMatch(
+                      TfArg.literal('value'),
+                    ),
                   ),
                 ],
               ),

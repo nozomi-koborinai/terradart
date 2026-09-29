@@ -162,8 +162,20 @@ final class CloudRunV2WorkerPoolBinaryAuthorization {
 /// At most one of `use_default`, `policy` on the `binary_authorization` block of `google_cloud_run_v2_worker_pool`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.useDefault(...)`.
 sealed class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
   const CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy();
+
+  /// Sets `use_default`.
+  const factory CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy.useDefault(
+    TfArg<bool> useDefault,
+  ) = CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyUseDefault;
+
+  /// Sets `policy`.
+  const factory CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy.policy(
+    TfArg<String> policy,
+  ) = CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyPolicy;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -171,12 +183,12 @@ sealed class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
   Map<String, Object?> encode();
 }
 
-/// Sets `use_default` (one of the [CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy] choices).
-final class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOption
+/// The [CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy.useDefault] choice: sets `use_default`.
+final class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyUseDefault
     extends CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
-  const CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOption({
-    required this.useDefault,
-  });
+  const CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyUseDefault(
+    this.useDefault,
+  );
 
   final TfArg<bool> useDefault;
 
@@ -187,12 +199,12 @@ final class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOption
   Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
 }
 
-/// Sets `policy` (one of the [CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy] choices).
-final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyOption
+/// The [CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy.policy] choice: sets `policy`.
+final class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyPolicy
     extends CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
-  const CloudRunV2WorkerPoolBinaryAuthorizationPolicyOption({
-    required this.policy,
-  });
+  const CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyPolicy(
+    this.policy,
+  );
 
   final TfArg<String> policy;
 

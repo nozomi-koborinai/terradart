@@ -6,58 +6,58 @@ library;
 export 'src/docdb/aws_docdb_cluster.dart'
     show
         AwsDocdbCluster,
-        DocdbClusterClusterIdentifierOption,
         DocdbClusterClusterIdentifierOrClusterIdentifierPrefix,
-        DocdbClusterClusterIdentifierPrefixOption,
+        DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier,
+        DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix,
         DocdbClusterEnabledCloudwatchLogsExports,
         DocdbClusterEngine,
-        DocdbClusterManageMasterUserPasswordOption,
         DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo,
-        DocdbClusterMasterPasswordOption,
-        DocdbClusterMasterPasswordWoOption,
+        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword,
+        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword,
+        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo,
         DocdbClusterNetworkType,
         DocdbClusterRestoreToPointInTime,
-        DocdbClusterRestoreToPointInTimeOption,
         DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier,
-        DocdbClusterRestoreToPointInTimeRestoreToTimeOption,
+        DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierRestoreToPointInTime,
+        DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierSnapshotIdentifier,
         DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime,
+        DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeRestoreToTime,
+        DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeUseLatestRestorableTime,
         DocdbClusterRestoreToPointInTimeRestoreType,
-        DocdbClusterRestoreToPointInTimeUseLatestRestorableTimeOption,
         DocdbClusterServerlessV2ScalingConfiguration,
-        DocdbClusterSnapshotIdentifierOption,
         DocdbClusterStorageType;
 export 'src/docdb/aws_docdb_cluster_instance.dart'
     show
         AwsDocdbClusterInstance,
         DocdbClusterInstanceEngine,
-        DocdbClusterInstanceIdentifierOption,
         DocdbClusterInstanceIdentifierOrIdentifierPrefix,
-        DocdbClusterInstanceIdentifierPrefixOption;
+        DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifier,
+        DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix;
 export 'src/docdb/aws_docdb_cluster_parameter_group.dart'
     show
         AwsDocdbClusterParameterGroup,
-        DocdbClusterParameterGroupNameOption,
         DocdbClusterParameterGroupNameOrNamePrefix,
-        DocdbClusterParameterGroupNamePrefixOption,
+        DocdbClusterParameterGroupNameOrNamePrefixName,
+        DocdbClusterParameterGroupNameOrNamePrefixNamePrefix,
         DocdbClusterParameterGroupParameter,
         DocdbClusterParameterGroupParameterApplyMethod;
 export 'src/docdb/aws_docdb_cluster_snapshot.dart' show AwsDocdbClusterSnapshot;
 export 'src/docdb/aws_docdb_event_subscription.dart'
     show
         AwsDocdbEventSubscription,
-        DocdbEventSubscriptionNameOption,
         DocdbEventSubscriptionNameOrNamePrefix,
-        DocdbEventSubscriptionNamePrefixOption;
+        DocdbEventSubscriptionNameOrNamePrefixName,
+        DocdbEventSubscriptionNameOrNamePrefixNamePrefix;
 export 'src/docdb/aws_docdb_global_cluster.dart'
     show
         AwsDocdbGlobalCluster,
         DocdbGlobalClusterEngine,
-        DocdbGlobalClusterEngineOption,
         DocdbGlobalClusterEngineOrSourceDbClusterIdentifier,
-        DocdbGlobalClusterSourceDbClusterIdentifierOption;
+        DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine,
+        DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier;
 export 'src/docdb/aws_docdb_subnet_group.dart'
     show
         AwsDocdbSubnetGroup,
-        DocdbSubnetGroupNameOption,
         DocdbSubnetGroupNameOrNamePrefix,
-        DocdbSubnetGroupNamePrefixOption;
+        DocdbSubnetGroupNameOrNamePrefixName,
+        DocdbSubnetGroupNameOrNamePrefixNamePrefix;

@@ -9,8 +9,18 @@ const Set<String> _awsKmsAliasSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_kms_alias`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class KmsAliasNameOrNamePrefix {
   const KmsAliasNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory KmsAliasNameOrNamePrefix.name(TfArg<String> name) =
+      KmsAliasNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory KmsAliasNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
+      KmsAliasNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,9 +32,9 @@ sealed class KmsAliasNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [KmsAliasNameOrNamePrefix] choices).
-final class KmsAliasNameOption extends KmsAliasNameOrNamePrefix {
-  const KmsAliasNameOption({required this.name});
+/// The [KmsAliasNameOrNamePrefix.name] choice: sets `name`.
+final class KmsAliasNameOrNamePrefixName extends KmsAliasNameOrNamePrefix {
+  const KmsAliasNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -38,9 +48,10 @@ final class KmsAliasNameOption extends KmsAliasNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [KmsAliasNameOrNamePrefix] choices).
-final class KmsAliasNamePrefixOption extends KmsAliasNameOrNamePrefix {
-  const KmsAliasNamePrefixOption({required this.namePrefix});
+/// The [KmsAliasNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class KmsAliasNameOrNamePrefixNamePrefix
+    extends KmsAliasNameOrNamePrefix {
+  const KmsAliasNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

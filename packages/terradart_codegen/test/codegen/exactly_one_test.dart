@@ -160,7 +160,12 @@ void main() {
     expect(o.paramOrder, isNot(contains('b')));
     expect(o.paramOrder, containsAll(['a_or_b', 'c', 'd', 'name']));
     expect(o.prelude, contains('sealed class ThingAOrB {'));
-    expect(o.prelude, contains('final class ThingAOption extends ThingAOrB {'));
+    expect(o.prelude, contains('final class ThingAOrBA extends ThingAOrB {'));
+    expect(
+      o.prelude,
+      contains('const factory ThingAOrB.a(TfArg<String> a) = ThingAOrBA;'),
+    );
+    expect(o.prelude, contains('const ThingAOrBA(this.a);'));
     expect(o.prelude, contains("{'b': b};"));
 
     final off = deriveExactlyOneSlots(
@@ -201,7 +206,14 @@ void main() {
     expect(src, contains('required this.xOrY'));
     expect(src, contains('final ThingSettingsXOrY xOrY;'));
     expect(src, contains('...xOrY.encode(),'));
-    expect(src, contains('final class ThingSettingsYOption'));
+    expect(src, contains('final class ThingSettingsXOrYY'));
+    expect(
+      src,
+      contains(
+        'const factory ThingSettingsXOrY.y(TfArg<String> y) = '
+        'ThingSettingsXOrYY;',
+      ),
+    );
     expect(src, isNot(contains('this.x,')));
     expect(src, contains('this.z'));
   });
@@ -462,7 +474,7 @@ void main() {
     expect(o.paramOrder, ['a_or_b', 'c_or_d']);
     expect(o.prelude, contains('/// At most one of `c`, `d` on `aws_thing`'));
     expect(o.prelude, contains('sealed class ThingCOrD {'));
-    expect(o.prelude, contains('final class ThingDOption extends ThingCOrD {'));
+    expect(o.prelude, contains('final class ThingCOrDD extends ThingCOrD {'));
   });
 
   test('a hand helper custom slot becomes a variant of its group', () {
@@ -526,7 +538,7 @@ void main() {
     expect(o.customSlots!.keys, unorderedEquals(['a_or_b', 'c']));
     expect(o.paramOrder, ['d', 'a_or_b', 'c']);
     expect(o.argMapOrder, ['a_or_b', 'd', 'c']);
-    expect(o.prelude, contains('const ThingBOption({required this.bee});'));
+    expect(o.prelude, contains('const ThingAOrBB(this.bee);'));
     expect(o.prelude, contains('final ThingBHelper bee;'));
     expect(o.prelude, contains("{'b': [bee.encode()]};"));
     expect(o.prelude, contains("{'b': TfArg.literal([bee.encode()])};"));

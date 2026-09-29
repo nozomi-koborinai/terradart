@@ -22,8 +22,20 @@ enum EcsTaskSetLaunchType implements TerraformEnum {
 /// At most one of `capacity_provider_strategy`, `launch_type` on `aws_ecs_task_set`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.capacityProviderStrategy(...)`.
 sealed class EcsTaskSetCapacityProviderStrategyOrLaunchType {
   const EcsTaskSetCapacityProviderStrategyOrLaunchType();
+
+  /// Sets `capacity_provider_strategy`.
+  const factory EcsTaskSetCapacityProviderStrategyOrLaunchType.capacityProviderStrategy(
+    List<EcsTaskSetCapacityProviderStrategy> capacityProviderStrategy,
+  ) = EcsTaskSetCapacityProviderStrategyOrLaunchTypeCapacityProviderStrategy;
+
+  /// Sets `launch_type`.
+  const factory EcsTaskSetCapacityProviderStrategyOrLaunchType.launchType(
+    TfArg<EcsTaskSetLaunchType> launchType,
+  ) = EcsTaskSetCapacityProviderStrategyOrLaunchTypeLaunchType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,12 +47,12 @@ sealed class EcsTaskSetCapacityProviderStrategyOrLaunchType {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `capacity_provider_strategy` (one of the [EcsTaskSetCapacityProviderStrategyOrLaunchType] choices).
-final class EcsTaskSetCapacityProviderStrategyOption
+/// The [EcsTaskSetCapacityProviderStrategyOrLaunchType.capacityProviderStrategy] choice: sets `capacity_provider_strategy`.
+final class EcsTaskSetCapacityProviderStrategyOrLaunchTypeCapacityProviderStrategy
     extends EcsTaskSetCapacityProviderStrategyOrLaunchType {
-  const EcsTaskSetCapacityProviderStrategyOption({
-    required this.capacityProviderStrategy,
-  });
+  const EcsTaskSetCapacityProviderStrategyOrLaunchTypeCapacityProviderStrategy(
+    this.capacityProviderStrategy,
+  );
 
   final List<EcsTaskSetCapacityProviderStrategy> capacityProviderStrategy;
 
@@ -62,10 +74,12 @@ final class EcsTaskSetCapacityProviderStrategyOption
   };
 }
 
-/// Sets `launch_type` (one of the [EcsTaskSetCapacityProviderStrategyOrLaunchType] choices).
-final class EcsTaskSetLaunchTypeOption
+/// The [EcsTaskSetCapacityProviderStrategyOrLaunchType.launchType] choice: sets `launch_type`.
+final class EcsTaskSetCapacityProviderStrategyOrLaunchTypeLaunchType
     extends EcsTaskSetCapacityProviderStrategyOrLaunchType {
-  const EcsTaskSetLaunchTypeOption({required this.launchType});
+  const EcsTaskSetCapacityProviderStrategyOrLaunchTypeLaunchType(
+    this.launchType,
+  );
 
   final TfArg<EcsTaskSetLaunchType> launchType;
 

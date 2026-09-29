@@ -39,8 +39,20 @@ enum EmrClusterScaleDownBehavior implements TerraformEnum {
 /// At most one of `configurations`, `configurations_json` on `aws_emr_cluster`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.configurations(...)`.
 sealed class EmrClusterConfigurationsOrConfigurationsJson {
   const EmrClusterConfigurationsOrConfigurationsJson();
+
+  /// Sets `configurations`.
+  const factory EmrClusterConfigurationsOrConfigurationsJson.configurations(
+    TfArg<String> configurations,
+  ) = EmrClusterConfigurationsOrConfigurationsJsonConfigurations;
+
+  /// Sets `configurations_json`.
+  const factory EmrClusterConfigurationsOrConfigurationsJson.configurationsJson(
+    TfArg<String> configurationsJson,
+  ) = EmrClusterConfigurationsOrConfigurationsJsonConfigurationsJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,10 +64,12 @@ sealed class EmrClusterConfigurationsOrConfigurationsJson {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `configurations` (one of the [EmrClusterConfigurationsOrConfigurationsJson] choices).
-final class EmrClusterConfigurationsOption
+/// The [EmrClusterConfigurationsOrConfigurationsJson.configurations] choice: sets `configurations`.
+final class EmrClusterConfigurationsOrConfigurationsJsonConfigurations
     extends EmrClusterConfigurationsOrConfigurationsJson {
-  const EmrClusterConfigurationsOption({required this.configurations});
+  const EmrClusterConfigurationsOrConfigurationsJsonConfigurations(
+    this.configurations,
+  );
 
   final TfArg<String> configurations;
 
@@ -71,10 +85,12 @@ final class EmrClusterConfigurationsOption
   Map<String, TfArg<Object?>> get argMap => {'configurations': configurations};
 }
 
-/// Sets `configurations_json` (one of the [EmrClusterConfigurationsOrConfigurationsJson] choices).
-final class EmrClusterConfigurationsJsonOption
+/// The [EmrClusterConfigurationsOrConfigurationsJson.configurationsJson] choice: sets `configurations_json`.
+final class EmrClusterConfigurationsOrConfigurationsJsonConfigurationsJson
     extends EmrClusterConfigurationsOrConfigurationsJson {
-  const EmrClusterConfigurationsJsonOption({required this.configurationsJson});
+  const EmrClusterConfigurationsOrConfigurationsJsonConfigurationsJson(
+    this.configurationsJson,
+  );
 
   final TfArg<String> configurationsJson;
 
@@ -449,8 +465,20 @@ final class EmrClusterEc2Attributes {
 /// At most one of `subnet_id`, `subnet_ids` on the `ec2_attributes` block of `aws_emr_cluster`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.subnetId(...)`.
 sealed class EmrClusterEc2AttributesSubnetIdOrSubnetIds {
   const EmrClusterEc2AttributesSubnetIdOrSubnetIds();
+
+  /// Sets `subnet_id`.
+  const factory EmrClusterEc2AttributesSubnetIdOrSubnetIds.subnetId(
+    TfArg<String> subnetId,
+  ) = EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetId;
+
+  /// Sets `subnet_ids`.
+  const factory EmrClusterEc2AttributesSubnetIdOrSubnetIds.subnetIds(
+    TfArg<List<Object?>> subnetIds,
+  ) = EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetIds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -458,10 +486,10 @@ sealed class EmrClusterEc2AttributesSubnetIdOrSubnetIds {
   Map<String, Object?> encode();
 }
 
-/// Sets `subnet_id` (one of the [EmrClusterEc2AttributesSubnetIdOrSubnetIds] choices).
-final class EmrClusterEc2AttributesSubnetIdOption
+/// The [EmrClusterEc2AttributesSubnetIdOrSubnetIds.subnetId] choice: sets `subnet_id`.
+final class EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetId
     extends EmrClusterEc2AttributesSubnetIdOrSubnetIds {
-  const EmrClusterEc2AttributesSubnetIdOption({required this.subnetId});
+  const EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetId(this.subnetId);
 
   final TfArg<String> subnetId;
 
@@ -472,10 +500,10 @@ final class EmrClusterEc2AttributesSubnetIdOption
   Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
 }
 
-/// Sets `subnet_ids` (one of the [EmrClusterEc2AttributesSubnetIdOrSubnetIds] choices).
-final class EmrClusterEc2AttributesSubnetIdsOption
+/// The [EmrClusterEc2AttributesSubnetIdOrSubnetIds.subnetIds] choice: sets `subnet_ids`.
+final class EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetIds
     extends EmrClusterEc2AttributesSubnetIdOrSubnetIds {
-  const EmrClusterEc2AttributesSubnetIdsOption({required this.subnetIds});
+  const EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetIds(this.subnetIds);
 
   final TfArg<List<Object?>> subnetIds;
 

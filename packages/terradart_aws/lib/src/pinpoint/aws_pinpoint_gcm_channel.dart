@@ -21,8 +21,20 @@ enum PinpointGcmChannelDefaultAuthenticationMethod implements TerraformEnum {
 
 /// Exactly one of `api_key`, `service_json` on `aws_pinpoint_gcm_channel`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.apiKey(...)`.
 sealed class PinpointGcmChannelApiKeyOrServiceJson {
   const PinpointGcmChannelApiKeyOrServiceJson();
+
+  /// Sets `api_key`.
+  const factory PinpointGcmChannelApiKeyOrServiceJson.apiKey(
+    TfArg<String> apiKey,
+  ) = PinpointGcmChannelApiKeyOrServiceJsonApiKey;
+
+  /// Sets `service_json`.
+  const factory PinpointGcmChannelApiKeyOrServiceJson.serviceJson(
+    TfArg<String> serviceJson,
+  ) = PinpointGcmChannelApiKeyOrServiceJsonServiceJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +46,10 @@ sealed class PinpointGcmChannelApiKeyOrServiceJson {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `api_key` (one of the [PinpointGcmChannelApiKeyOrServiceJson] choices).
-final class PinpointGcmChannelApiKeyOption
+/// The [PinpointGcmChannelApiKeyOrServiceJson.apiKey] choice: sets `api_key`.
+final class PinpointGcmChannelApiKeyOrServiceJsonApiKey
     extends PinpointGcmChannelApiKeyOrServiceJson {
-  const PinpointGcmChannelApiKeyOption({required this.apiKey});
+  const PinpointGcmChannelApiKeyOrServiceJsonApiKey(this.apiKey);
 
   final TfArg<String> apiKey;
 
@@ -51,10 +63,10 @@ final class PinpointGcmChannelApiKeyOption
   Map<String, TfArg<Object?>> get argMap => {'api_key': apiKey};
 }
 
-/// Sets `service_json` (one of the [PinpointGcmChannelApiKeyOrServiceJson] choices).
-final class PinpointGcmChannelServiceJsonOption
+/// The [PinpointGcmChannelApiKeyOrServiceJson.serviceJson] choice: sets `service_json`.
+final class PinpointGcmChannelApiKeyOrServiceJsonServiceJson
     extends PinpointGcmChannelApiKeyOrServiceJson {
-  const PinpointGcmChannelServiceJsonOption({required this.serviceJson});
+  const PinpointGcmChannelApiKeyOrServiceJsonServiceJson(this.serviceJson);
 
   final TfArg<String> serviceJson;
 

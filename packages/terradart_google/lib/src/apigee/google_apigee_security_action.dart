@@ -20,8 +20,19 @@ enum ApigeeSecurityActionState implements TerraformEnum {
 /// At most one of `expire_time`, `ttl` on `google_apigee_security_action`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.expireTime(...)`.
 sealed class ApigeeSecurityActionExpireTimeOrTtl {
   const ApigeeSecurityActionExpireTimeOrTtl();
+
+  /// Sets `expire_time`.
+  const factory ApigeeSecurityActionExpireTimeOrTtl.expireTime(
+    TfArg<String> expireTime,
+  ) = ApigeeSecurityActionExpireTimeOrTtlExpireTime;
+
+  /// Sets `ttl`.
+  const factory ApigeeSecurityActionExpireTimeOrTtl.ttl(TfArg<String> ttl) =
+      ApigeeSecurityActionExpireTimeOrTtlTtl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +44,10 @@ sealed class ApigeeSecurityActionExpireTimeOrTtl {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `expire_time` (one of the [ApigeeSecurityActionExpireTimeOrTtl] choices).
-final class ApigeeSecurityActionExpireTimeOption
+/// The [ApigeeSecurityActionExpireTimeOrTtl.expireTime] choice: sets `expire_time`.
+final class ApigeeSecurityActionExpireTimeOrTtlExpireTime
     extends ApigeeSecurityActionExpireTimeOrTtl {
-  const ApigeeSecurityActionExpireTimeOption({required this.expireTime});
+  const ApigeeSecurityActionExpireTimeOrTtlExpireTime(this.expireTime);
 
   final TfArg<String> expireTime;
 
@@ -50,10 +61,10 @@ final class ApigeeSecurityActionExpireTimeOption
   Map<String, TfArg<Object?>> get argMap => {'expire_time': expireTime};
 }
 
-/// Sets `ttl` (one of the [ApigeeSecurityActionExpireTimeOrTtl] choices).
-final class ApigeeSecurityActionTtlOption
+/// The [ApigeeSecurityActionExpireTimeOrTtl.ttl] choice: sets `ttl`.
+final class ApigeeSecurityActionExpireTimeOrTtlTtl
     extends ApigeeSecurityActionExpireTimeOrTtl {
-  const ApigeeSecurityActionTtlOption({required this.ttl});
+  const ApigeeSecurityActionExpireTimeOrTtlTtl(this.ttl);
 
   final TfArg<String> ttl;
 

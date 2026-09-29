@@ -8,8 +8,20 @@ const Set<String> _awsEc2ClientVpnAuthorizationRuleSensitive = <String>{};
 
 /// Exactly one of `access_group_id`, `authorize_all_groups` on `aws_ec2_client_vpn_authorization_rule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.accessGroupId(...)`.
 sealed class Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups {
   const Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups();
+
+  /// Sets `access_group_id`.
+  const factory Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups.accessGroupId(
+    TfArg<String> accessGroupId,
+  ) = Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAccessGroupId;
+
+  /// Sets `authorize_all_groups`.
+  const factory Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups.authorizeAllGroups(
+    TfArg<bool> authorizeAllGroups,
+  ) = Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAuthorizeAllGroups;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,12 +33,12 @@ sealed class Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `access_group_id` (one of the [Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups] choices).
-final class Ec2ClientVpnAuthorizationRuleAccessGroupIdOption
+/// The [Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups.accessGroupId] choice: sets `access_group_id`.
+final class Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAccessGroupId
     extends Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups {
-  const Ec2ClientVpnAuthorizationRuleAccessGroupIdOption({
-    required this.accessGroupId,
-  });
+  const Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAccessGroupId(
+    this.accessGroupId,
+  );
 
   final TfArg<String> accessGroupId;
 
@@ -42,12 +54,12 @@ final class Ec2ClientVpnAuthorizationRuleAccessGroupIdOption
   Map<String, TfArg<Object?>> get argMap => {'access_group_id': accessGroupId};
 }
 
-/// Sets `authorize_all_groups` (one of the [Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups] choices).
-final class Ec2ClientVpnAuthorizationRuleAuthorizeAllGroupsOption
+/// The [Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups.authorizeAllGroups] choice: sets `authorize_all_groups`.
+final class Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAuthorizeAllGroups
     extends Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroups {
-  const Ec2ClientVpnAuthorizationRuleAuthorizeAllGroupsOption({
-    required this.authorizeAllGroups,
-  });
+  const Ec2ClientVpnAuthorizationRuleAccessGroupIdOrAuthorizeAllGroupsAuthorizeAllGroups(
+    this.authorizeAllGroups,
+  );
 
   final TfArg<bool> authorizeAllGroups;
 

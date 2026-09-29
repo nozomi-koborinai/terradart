@@ -36,8 +36,20 @@ enum KinesisStreamShardLevelMetrics implements TerraformEnum {
 /// At most one of `shard_count`, `warm_throughput_mib_ps` on `aws_kinesis_stream`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.shardCount(...)`.
 sealed class KinesisStreamShardCountOrWarmThroughputMibPs {
   const KinesisStreamShardCountOrWarmThroughputMibPs();
+
+  /// Sets `shard_count`.
+  const factory KinesisStreamShardCountOrWarmThroughputMibPs.shardCount(
+    TfArg<num> shardCount,
+  ) = KinesisStreamShardCountOrWarmThroughputMibPsShardCount;
+
+  /// Sets `warm_throughput_mib_ps`.
+  const factory KinesisStreamShardCountOrWarmThroughputMibPs.warmThroughputMibPs(
+    TfArg<num> warmThroughputMibPs,
+  ) = KinesisStreamShardCountOrWarmThroughputMibPsWarmThroughputMibPs;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -49,10 +61,10 @@ sealed class KinesisStreamShardCountOrWarmThroughputMibPs {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `shard_count` (one of the [KinesisStreamShardCountOrWarmThroughputMibPs] choices).
-final class KinesisStreamShardCountOption
+/// The [KinesisStreamShardCountOrWarmThroughputMibPs.shardCount] choice: sets `shard_count`.
+final class KinesisStreamShardCountOrWarmThroughputMibPsShardCount
     extends KinesisStreamShardCountOrWarmThroughputMibPs {
-  const KinesisStreamShardCountOption({required this.shardCount});
+  const KinesisStreamShardCountOrWarmThroughputMibPsShardCount(this.shardCount);
 
   final TfArg<num> shardCount;
 
@@ -66,12 +78,12 @@ final class KinesisStreamShardCountOption
   Map<String, TfArg<Object?>> get argMap => {'shard_count': shardCount};
 }
 
-/// Sets `warm_throughput_mib_ps` (one of the [KinesisStreamShardCountOrWarmThroughputMibPs] choices).
-final class KinesisStreamWarmThroughputMibPsOption
+/// The [KinesisStreamShardCountOrWarmThroughputMibPs.warmThroughputMibPs] choice: sets `warm_throughput_mib_ps`.
+final class KinesisStreamShardCountOrWarmThroughputMibPsWarmThroughputMibPs
     extends KinesisStreamShardCountOrWarmThroughputMibPs {
-  const KinesisStreamWarmThroughputMibPsOption({
-    required this.warmThroughputMibPs,
-  });
+  const KinesisStreamShardCountOrWarmThroughputMibPsWarmThroughputMibPs(
+    this.warmThroughputMibPs,
+  );
 
   final TfArg<num> warmThroughputMibPs;
 

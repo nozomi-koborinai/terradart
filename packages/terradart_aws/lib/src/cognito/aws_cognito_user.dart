@@ -32,8 +32,20 @@ enum CognitoUserMessageAction implements TerraformEnum {
 /// At most one of `password`, `temporary_password` on `aws_cognito_user`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.password(...)`.
 sealed class CognitoUserPasswordOrTemporaryPassword {
   const CognitoUserPasswordOrTemporaryPassword();
+
+  /// Sets `password`.
+  const factory CognitoUserPasswordOrTemporaryPassword.password(
+    TfArg<String> password,
+  ) = CognitoUserPasswordOrTemporaryPasswordPassword;
+
+  /// Sets `temporary_password`.
+  const factory CognitoUserPasswordOrTemporaryPassword.temporaryPassword(
+    TfArg<String> temporaryPassword,
+  ) = CognitoUserPasswordOrTemporaryPasswordTemporaryPassword;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,10 +57,10 @@ sealed class CognitoUserPasswordOrTemporaryPassword {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `password` (one of the [CognitoUserPasswordOrTemporaryPassword] choices).
-final class CognitoUserPasswordOption
+/// The [CognitoUserPasswordOrTemporaryPassword.password] choice: sets `password`.
+final class CognitoUserPasswordOrTemporaryPasswordPassword
     extends CognitoUserPasswordOrTemporaryPassword {
-  const CognitoUserPasswordOption({required this.password});
+  const CognitoUserPasswordOrTemporaryPasswordPassword(this.password);
 
   final TfArg<String> password;
 
@@ -62,10 +74,12 @@ final class CognitoUserPasswordOption
   Map<String, TfArg<Object?>> get argMap => {'password': password};
 }
 
-/// Sets `temporary_password` (one of the [CognitoUserPasswordOrTemporaryPassword] choices).
-final class CognitoUserTemporaryPasswordOption
+/// The [CognitoUserPasswordOrTemporaryPassword.temporaryPassword] choice: sets `temporary_password`.
+final class CognitoUserPasswordOrTemporaryPasswordTemporaryPassword
     extends CognitoUserPasswordOrTemporaryPassword {
-  const CognitoUserTemporaryPasswordOption({required this.temporaryPassword});
+  const CognitoUserPasswordOrTemporaryPasswordTemporaryPassword(
+    this.temporaryPassword,
+  );
 
   final TfArg<String> temporaryPassword;
 

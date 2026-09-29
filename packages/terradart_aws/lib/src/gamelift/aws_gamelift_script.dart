@@ -9,8 +9,20 @@ const Set<String> _awsGameliftScriptSensitive = <String>{};
 
 /// Exactly one of `storage_location`, `zip_file` on `aws_gamelift_script`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.storageLocation(...)`.
 sealed class GameliftScriptStorageLocationOrZipFile {
   const GameliftScriptStorageLocationOrZipFile();
+
+  /// Sets `storage_location`.
+  const factory GameliftScriptStorageLocationOrZipFile.storageLocation(
+    GameliftScriptStorageLocation storageLocation,
+  ) = GameliftScriptStorageLocationOrZipFileStorageLocation;
+
+  /// Sets `zip_file`.
+  const factory GameliftScriptStorageLocationOrZipFile.zipFile(
+    TfArg<String> zipFile,
+  ) = GameliftScriptStorageLocationOrZipFileZipFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,12 @@ sealed class GameliftScriptStorageLocationOrZipFile {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `storage_location` (one of the [GameliftScriptStorageLocationOrZipFile] choices).
-final class GameliftScriptStorageLocationOption
+/// The [GameliftScriptStorageLocationOrZipFile.storageLocation] choice: sets `storage_location`.
+final class GameliftScriptStorageLocationOrZipFileStorageLocation
     extends GameliftScriptStorageLocationOrZipFile {
-  const GameliftScriptStorageLocationOption({required this.storageLocation});
+  const GameliftScriptStorageLocationOrZipFileStorageLocation(
+    this.storageLocation,
+  );
 
   final GameliftScriptStorageLocation storageLocation;
 
@@ -43,10 +57,10 @@ final class GameliftScriptStorageLocationOption
   };
 }
 
-/// Sets `zip_file` (one of the [GameliftScriptStorageLocationOrZipFile] choices).
-final class GameliftScriptZipFileOption
+/// The [GameliftScriptStorageLocationOrZipFile.zipFile] choice: sets `zip_file`.
+final class GameliftScriptStorageLocationOrZipFileZipFile
     extends GameliftScriptStorageLocationOrZipFile {
-  const GameliftScriptZipFileOption({required this.zipFile});
+  const GameliftScriptStorageLocationOrZipFileZipFile(this.zipFile);
 
   final TfArg<String> zipFile;
 

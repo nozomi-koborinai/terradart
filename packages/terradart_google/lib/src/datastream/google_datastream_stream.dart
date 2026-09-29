@@ -647,8 +647,21 @@ final class DatastreamStreamDestinationConfig {
 
 /// Exactly one of `gcs_destination_config`, `bigquery_destination_config` on the `destination_config` block of `google_datastream_stream`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.gcsDestinationConfig(...)`.
 sealed class DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig {
   const DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig();
+
+  /// Sets `gcs_destination_config`.
+  const factory DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig.gcsDestinationConfig(
+    DatastreamStreamDestinationConfigGcsDestinationConfig gcsDestinationConfig,
+  ) = DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfigGcsDestinationConfig;
+
+  /// Sets `bigquery_destination_config`.
+  const factory DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig.bigqueryDestinationConfig(
+    DatastreamStreamDestinationConfigBigqueryDestinationConfig
+    bigqueryDestinationConfig,
+  ) = DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfigBigqueryDestinationConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -656,13 +669,13 @@ sealed class DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDest
   Map<String, Object?> encode();
 }
 
-/// Sets `gcs_destination_config` (one of the [DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig] choices).
-final class DatastreamStreamDestinationConfigGcsDestinationConfigOption
+/// The [DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig.gcsDestinationConfig] choice: sets `gcs_destination_config`.
+final class DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfigGcsDestinationConfig
     extends
         DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig {
-  const DatastreamStreamDestinationConfigGcsDestinationConfigOption({
-    required this.gcsDestinationConfig,
-  });
+  const DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfigGcsDestinationConfig(
+    this.gcsDestinationConfig,
+  );
 
   final DatastreamStreamDestinationConfigGcsDestinationConfig
   gcsDestinationConfig;
@@ -676,13 +689,13 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfigOption
   };
 }
 
-/// Sets `bigquery_destination_config` (one of the [DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig] choices).
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigOption
+/// The [DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig.bigqueryDestinationConfig] choice: sets `bigquery_destination_config`.
+final class DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfigBigqueryDestinationConfig
     extends
         DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfig {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigOption({
-    required this.bigqueryDestinationConfig,
-  });
+  const DatastreamStreamDestinationConfigGcsDestinationConfigOrBigqueryDestinationConfigBigqueryDestinationConfig(
+    this.bigqueryDestinationConfig,
+  );
 
   final DatastreamStreamDestinationConfigBigqueryDestinationConfig
   bigqueryDestinationConfig;
@@ -728,8 +741,22 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfig {
 
 /// Exactly one of `single_target_dataset`, `source_hierarchy_datasets` on the `destination_config.bigquery_destination_config` block of `google_datastream_stream`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.singleTargetDataset(...)`.
 sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets {
   const DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets();
+
+  /// Sets `single_target_dataset`.
+  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets.singleTargetDataset(
+    DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset
+    singleTargetDataset,
+  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasetsSingleTargetDataset;
+
+  /// Sets `source_hierarchy_datasets`.
+  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets.sourceHierarchyDatasets(
+    DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasets
+    sourceHierarchyDatasets,
+  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasetsSourceHierarchyDatasets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -737,13 +764,13 @@ sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTar
   Map<String, Object?> encode();
 }
 
-/// Sets `single_target_dataset` (one of the [DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets] choices).
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOption
+/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets.singleTargetDataset] choice: sets `single_target_dataset`.
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasetsSingleTargetDataset
     extends
         DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOption({
-    required this.singleTargetDataset,
-  });
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasetsSingleTargetDataset(
+    this.singleTargetDataset,
+  );
 
   final DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset
   singleTargetDataset;
@@ -757,13 +784,13 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTarg
   };
 }
 
-/// Sets `source_hierarchy_datasets` (one of the [DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets] choices).
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasetsOption
+/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets.sourceHierarchyDatasets] choice: sets `source_hierarchy_datasets`.
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasetsSourceHierarchyDatasets
     extends
         DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasets {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasetsOption({
-    required this.sourceHierarchyDatasets,
-  });
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOrSourceHierarchyDatasetsSourceHierarchyDatasets(
+    this.sourceHierarchyDatasets,
+  );
 
   final DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasets
   sourceHierarchyDatasets;
@@ -780,8 +807,21 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHier
 /// At most one of `merge`, `append_only` on the `destination_config.bigquery_destination_config` block of `google_datastream_stream`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.merge(...)`.
 sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly {
   const DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly();
+
+  /// Sets `merge`.
+  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly.merge(
+    DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge merge,
+  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyMerge;
+
+  /// Sets `append_only`.
+  const factory DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly.appendOnly(
+    DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly
+    appendOnly,
+  ) = DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyAppendOnly;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -789,13 +829,13 @@ sealed class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAp
   Map<String, Object?> encode();
 }
 
-/// Sets `merge` (one of the [DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly] choices).
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOption
+/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly.merge] choice: sets `merge`.
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyMerge
     extends
         DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOption({
-    required this.merge,
-  });
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyMerge(
+    this.merge,
+  );
 
   final DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge merge;
 
@@ -806,13 +846,13 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOptio
   Map<String, Object?> encode() => {'merge': merge.encode()};
 }
 
-/// Sets `append_only` (one of the [DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly] choices).
-final class DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnlyOption
+/// The [DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly.appendOnly] choice: sets `append_only`.
+final class DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyAppendOnly
     extends
         DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnly {
-  const DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnlyOption({
-    required this.appendOnly,
-  });
+  const DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyAppendOnly(
+    this.appendOnly,
+  );
 
   final DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly
   appendOnly;
@@ -961,8 +1001,22 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfig {
 
 /// Exactly one of `avro_file_format`, `json_file_format` on the `destination_config.gcs_destination_config` block of `google_datastream_stream`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.avroFileFormat(...)`.
 sealed class DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat {
   const DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat();
+
+  /// Sets `avro_file_format`.
+  const factory DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat.avroFileFormat(
+    DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat
+    avroFileFormat,
+  ) = DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormatAvroFileFormat;
+
+  /// Sets `json_file_format`.
+  const factory DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat.jsonFileFormat(
+    DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat
+    jsonFileFormat,
+  ) = DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormatJsonFileFormat;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -970,13 +1024,13 @@ sealed class DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat
   Map<String, Object?> encode();
 }
 
-/// Sets `avro_file_format` (one of the [DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat] choices).
-final class DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOption
+/// The [DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat.avroFileFormat] choice: sets `avro_file_format`.
+final class DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormatAvroFileFormat
     extends
         DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat {
-  const DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOption({
-    required this.avroFileFormat,
-  });
+  const DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormatAvroFileFormat(
+    this.avroFileFormat,
+  );
 
   final DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat
   avroFileFormat;
@@ -990,13 +1044,13 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatO
   };
 }
 
-/// Sets `json_file_format` (one of the [DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat] choices).
-final class DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatOption
+/// The [DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat.jsonFileFormat] choice: sets `json_file_format`.
+final class DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormatJsonFileFormat
     extends
         DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormat {
-  const DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatOption({
-    required this.jsonFileFormat,
-  });
+  const DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOrJsonFileFormatJsonFileFormat(
+    this.jsonFileFormat,
+  );
 
   final DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat
   jsonFileFormat;
@@ -1482,8 +1536,45 @@ final class DatastreamStreamSourceConfig {
 
 /// Exactly one of `mysql_source_config`, `oracle_source_config`, `postgresql_source_config`, `sql_server_source_config`, `salesforce_source_config`, `spanner_source_config`, `mongodb_source_config` on the `source_config` block of `google_datastream_stream`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.mysqlSourceConfig(...)`.
 sealed class DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
   const DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig();
+
+  /// Sets `mysql_source_config`.
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.mysqlSourceConfig(
+    DatastreamStreamSourceConfigMysqlSourceConfig mysqlSourceConfig,
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigMysqlSourceConfig;
+
+  /// Sets `oracle_source_config`.
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.oracleSourceConfig(
+    DatastreamStreamSourceConfigOracleSourceConfig oracleSourceConfig,
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigOracleSourceConfig;
+
+  /// Sets `postgresql_source_config`.
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.postgresqlSourceConfig(
+    DatastreamStreamSourceConfigPostgresqlSourceConfig postgresqlSourceConfig,
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigPostgresqlSourceConfig;
+
+  /// Sets `sql_server_source_config`.
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.sqlServerSourceConfig(
+    DatastreamStreamSourceConfigSqlServerSourceConfig sqlServerSourceConfig,
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigSqlServerSourceConfig;
+
+  /// Sets `salesforce_source_config`.
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.salesforceSourceConfig(
+    DatastreamStreamSourceConfigSalesforceSourceConfig salesforceSourceConfig,
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigSalesforceSourceConfig;
+
+  /// Sets `spanner_source_config`.
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.spannerSourceConfig(
+    DatastreamStreamSourceConfigSpannerSourceConfig spannerSourceConfig,
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigSpannerSourceConfig;
+
+  /// Sets `mongodb_source_config`.
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.mongodbSourceConfig(
+    DatastreamStreamSourceConfigMongodbSourceConfig mongodbSourceConfig,
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigMongodbSourceConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1491,13 +1582,13 @@ sealed class DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOr
   Map<String, Object?> encode();
 }
 
-/// Sets `mysql_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
-final class DatastreamStreamSourceConfigMysqlSourceConfigOption
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.mysqlSourceConfig] choice: sets `mysql_source_config`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigMysqlSourceConfig
     extends
         DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
-  const DatastreamStreamSourceConfigMysqlSourceConfigOption({
-    required this.mysqlSourceConfig,
-  });
+  const DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigMysqlSourceConfig(
+    this.mysqlSourceConfig,
+  );
 
   final DatastreamStreamSourceConfigMysqlSourceConfig mysqlSourceConfig;
 
@@ -1510,13 +1601,13 @@ final class DatastreamStreamSourceConfigMysqlSourceConfigOption
   };
 }
 
-/// Sets `oracle_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
-final class DatastreamStreamSourceConfigOracleSourceConfigOption
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.oracleSourceConfig] choice: sets `oracle_source_config`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigOracleSourceConfig
     extends
         DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
-  const DatastreamStreamSourceConfigOracleSourceConfigOption({
-    required this.oracleSourceConfig,
-  });
+  const DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigOracleSourceConfig(
+    this.oracleSourceConfig,
+  );
 
   final DatastreamStreamSourceConfigOracleSourceConfig oracleSourceConfig;
 
@@ -1529,13 +1620,13 @@ final class DatastreamStreamSourceConfigOracleSourceConfigOption
   };
 }
 
-/// Sets `postgresql_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
-final class DatastreamStreamSourceConfigPostgresqlSourceConfigOption
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.postgresqlSourceConfig] choice: sets `postgresql_source_config`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigPostgresqlSourceConfig
     extends
         DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
-  const DatastreamStreamSourceConfigPostgresqlSourceConfigOption({
-    required this.postgresqlSourceConfig,
-  });
+  const DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigPostgresqlSourceConfig(
+    this.postgresqlSourceConfig,
+  );
 
   final DatastreamStreamSourceConfigPostgresqlSourceConfig
   postgresqlSourceConfig;
@@ -1549,13 +1640,13 @@ final class DatastreamStreamSourceConfigPostgresqlSourceConfigOption
   };
 }
 
-/// Sets `sql_server_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
-final class DatastreamStreamSourceConfigSqlServerSourceConfigOption
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.sqlServerSourceConfig] choice: sets `sql_server_source_config`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigSqlServerSourceConfig
     extends
         DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
-  const DatastreamStreamSourceConfigSqlServerSourceConfigOption({
-    required this.sqlServerSourceConfig,
-  });
+  const DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigSqlServerSourceConfig(
+    this.sqlServerSourceConfig,
+  );
 
   final DatastreamStreamSourceConfigSqlServerSourceConfig sqlServerSourceConfig;
 
@@ -1568,13 +1659,13 @@ final class DatastreamStreamSourceConfigSqlServerSourceConfigOption
   };
 }
 
-/// Sets `salesforce_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
-final class DatastreamStreamSourceConfigSalesforceSourceConfigOption
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.salesforceSourceConfig] choice: sets `salesforce_source_config`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigSalesforceSourceConfig
     extends
         DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
-  const DatastreamStreamSourceConfigSalesforceSourceConfigOption({
-    required this.salesforceSourceConfig,
-  });
+  const DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigSalesforceSourceConfig(
+    this.salesforceSourceConfig,
+  );
 
   final DatastreamStreamSourceConfigSalesforceSourceConfig
   salesforceSourceConfig;
@@ -1588,13 +1679,13 @@ final class DatastreamStreamSourceConfigSalesforceSourceConfigOption
   };
 }
 
-/// Sets `spanner_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
-final class DatastreamStreamSourceConfigSpannerSourceConfigOption
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.spannerSourceConfig] choice: sets `spanner_source_config`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigSpannerSourceConfig
     extends
         DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
-  const DatastreamStreamSourceConfigSpannerSourceConfigOption({
-    required this.spannerSourceConfig,
-  });
+  const DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigSpannerSourceConfig(
+    this.spannerSourceConfig,
+  );
 
   final DatastreamStreamSourceConfigSpannerSourceConfig spannerSourceConfig;
 
@@ -1607,13 +1698,13 @@ final class DatastreamStreamSourceConfigSpannerSourceConfigOption
   };
 }
 
-/// Sets `mongodb_source_config` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig] choices).
-final class DatastreamStreamSourceConfigMongodbSourceConfigOption
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig.mongodbSourceConfig] choice: sets `mongodb_source_config`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigMongodbSourceConfig
     extends
         DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig {
-  const DatastreamStreamSourceConfigMongodbSourceConfigOption({
-    required this.mongodbSourceConfig,
-  });
+  const DatastreamStreamSourceConfigMysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfigMongodbSourceConfig(
+    this.mongodbSourceConfig,
+  );
 
   final DatastreamStreamSourceConfigMongodbSourceConfig mongodbSourceConfig;
 
@@ -1849,8 +1940,21 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
 /// At most one of `binary_log_position`, `gtid` on the `source_config.mysql_source_config` block of `google_datastream_stream`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.binaryLogPosition(...)`.
 sealed class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid {
   const DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid();
+
+  /// Sets `binary_log_position`.
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid.binaryLogPosition(
+    DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition
+    binaryLogPosition,
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidBinaryLogPosition;
+
+  /// Sets `gtid`.
+  const factory DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid.gtid(
+    DatastreamStreamSourceConfigMysqlSourceConfigGtid gtid,
+  ) = DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidGtid;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1858,13 +1962,13 @@ sealed class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGti
   Map<String, Object?> encode();
 }
 
-/// Sets `binary_log_position` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid] choices).
-final class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOption
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid.binaryLogPosition] choice: sets `binary_log_position`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidBinaryLogPosition
     extends
         DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid {
-  const DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOption({
-    required this.binaryLogPosition,
-  });
+  const DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidBinaryLogPosition(
+    this.binaryLogPosition,
+  );
 
   final DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition
   binaryLogPosition;
@@ -1878,13 +1982,13 @@ final class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOption
   };
 }
 
-/// Sets `gtid` (one of the [DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid] choices).
-final class DatastreamStreamSourceConfigMysqlSourceConfigGtidOption
+/// The [DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid.gtid] choice: sets `gtid`.
+final class DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidGtid
     extends
         DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtid {
-  const DatastreamStreamSourceConfigMysqlSourceConfigGtidOption({
-    required this.gtid,
-  });
+  const DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidGtid(
+    this.gtid,
+  );
 
   final DatastreamStreamSourceConfigMysqlSourceConfigGtid gtid;
 

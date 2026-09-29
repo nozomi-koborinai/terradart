@@ -9,8 +9,20 @@ const Set<String> _awsAppstreamImageBuilderSensitive = <String>{};
 
 /// Exactly one of `image_arn`, `image_name` on `aws_appstream_image_builder`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.imageArn(...)`.
 sealed class AppstreamImageBuilderImageArnOrImageName {
   const AppstreamImageBuilderImageArnOrImageName();
+
+  /// Sets `image_arn`.
+  const factory AppstreamImageBuilderImageArnOrImageName.imageArn(
+    TfArg<String> imageArn,
+  ) = AppstreamImageBuilderImageArnOrImageNameImageArn;
+
+  /// Sets `image_name`.
+  const factory AppstreamImageBuilderImageArnOrImageName.imageName(
+    TfArg<String> imageName,
+  ) = AppstreamImageBuilderImageArnOrImageNameImageName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,10 @@ sealed class AppstreamImageBuilderImageArnOrImageName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `image_arn` (one of the [AppstreamImageBuilderImageArnOrImageName] choices).
-final class AppstreamImageBuilderImageArnOption
+/// The [AppstreamImageBuilderImageArnOrImageName.imageArn] choice: sets `image_arn`.
+final class AppstreamImageBuilderImageArnOrImageNameImageArn
     extends AppstreamImageBuilderImageArnOrImageName {
-  const AppstreamImageBuilderImageArnOption({required this.imageArn});
+  const AppstreamImageBuilderImageArnOrImageNameImageArn(this.imageArn);
 
   final TfArg<String> imageArn;
 
@@ -39,10 +51,10 @@ final class AppstreamImageBuilderImageArnOption
   Map<String, TfArg<Object?>> get argMap => {'image_arn': imageArn};
 }
 
-/// Sets `image_name` (one of the [AppstreamImageBuilderImageArnOrImageName] choices).
-final class AppstreamImageBuilderImageNameOption
+/// The [AppstreamImageBuilderImageArnOrImageName.imageName] choice: sets `image_name`.
+final class AppstreamImageBuilderImageArnOrImageNameImageName
     extends AppstreamImageBuilderImageArnOrImageName {
-  const AppstreamImageBuilderImageNameOption({required this.imageName});
+  const AppstreamImageBuilderImageArnOrImageNameImageName(this.imageName);
 
   final TfArg<String> imageName;
 

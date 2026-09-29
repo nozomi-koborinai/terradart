@@ -22,8 +22,20 @@ enum CloudwatchEventRuleState implements TerraformEnum {
 /// At most one of `is_enabled`, `state` on `aws_cloudwatch_event_rule`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.isEnabled(...)`.
 sealed class CloudwatchEventRuleIsEnabledOrState {
   const CloudwatchEventRuleIsEnabledOrState();
+
+  /// Sets `is_enabled`.
+  const factory CloudwatchEventRuleIsEnabledOrState.isEnabled(
+    TfArg<bool> isEnabled,
+  ) = CloudwatchEventRuleIsEnabledOrStateIsEnabled;
+
+  /// Sets `state`.
+  const factory CloudwatchEventRuleIsEnabledOrState.state(
+    TfArg<CloudwatchEventRuleState> state,
+  ) = CloudwatchEventRuleIsEnabledOrStateState;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,10 +47,10 @@ sealed class CloudwatchEventRuleIsEnabledOrState {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `is_enabled` (one of the [CloudwatchEventRuleIsEnabledOrState] choices).
-final class CloudwatchEventRuleIsEnabledOption
+/// The [CloudwatchEventRuleIsEnabledOrState.isEnabled] choice: sets `is_enabled`.
+final class CloudwatchEventRuleIsEnabledOrStateIsEnabled
     extends CloudwatchEventRuleIsEnabledOrState {
-  const CloudwatchEventRuleIsEnabledOption({required this.isEnabled});
+  const CloudwatchEventRuleIsEnabledOrStateIsEnabled(this.isEnabled);
 
   final TfArg<bool> isEnabled;
 
@@ -52,10 +64,10 @@ final class CloudwatchEventRuleIsEnabledOption
   Map<String, TfArg<Object?>> get argMap => {'is_enabled': isEnabled};
 }
 
-/// Sets `state` (one of the [CloudwatchEventRuleIsEnabledOrState] choices).
-final class CloudwatchEventRuleStateOption
+/// The [CloudwatchEventRuleIsEnabledOrState.state] choice: sets `state`.
+final class CloudwatchEventRuleIsEnabledOrStateState
     extends CloudwatchEventRuleIsEnabledOrState {
-  const CloudwatchEventRuleStateOption({required this.state});
+  const CloudwatchEventRuleIsEnabledOrStateState(this.state);
 
   final TfArg<CloudwatchEventRuleState> state;
 
@@ -72,8 +84,19 @@ final class CloudwatchEventRuleStateOption
 /// At most one of `name`, `name_prefix` on `aws_cloudwatch_event_rule`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class CloudwatchEventRuleNameOrNamePrefix {
   const CloudwatchEventRuleNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory CloudwatchEventRuleNameOrNamePrefix.name(TfArg<String> name) =
+      CloudwatchEventRuleNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory CloudwatchEventRuleNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = CloudwatchEventRuleNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -85,10 +108,10 @@ sealed class CloudwatchEventRuleNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [CloudwatchEventRuleNameOrNamePrefix] choices).
-final class CloudwatchEventRuleNameOption
+/// The [CloudwatchEventRuleNameOrNamePrefix.name] choice: sets `name`.
+final class CloudwatchEventRuleNameOrNamePrefixName
     extends CloudwatchEventRuleNameOrNamePrefix {
-  const CloudwatchEventRuleNameOption({required this.name});
+  const CloudwatchEventRuleNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -102,10 +125,10 @@ final class CloudwatchEventRuleNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [CloudwatchEventRuleNameOrNamePrefix] choices).
-final class CloudwatchEventRuleNamePrefixOption
+/// The [CloudwatchEventRuleNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class CloudwatchEventRuleNameOrNamePrefixNamePrefix
     extends CloudwatchEventRuleNameOrNamePrefix {
-  const CloudwatchEventRuleNamePrefixOption({required this.namePrefix});
+  const CloudwatchEventRuleNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

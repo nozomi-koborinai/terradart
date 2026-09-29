@@ -9,8 +9,19 @@ const Set<String> _awsNeptuneSubnetGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_neptune_subnet_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class NeptuneSubnetGroupNameOrNamePrefix {
   const NeptuneSubnetGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory NeptuneSubnetGroupNameOrNamePrefix.name(TfArg<String> name) =
+      NeptuneSubnetGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory NeptuneSubnetGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = NeptuneSubnetGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +33,10 @@ sealed class NeptuneSubnetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [NeptuneSubnetGroupNameOrNamePrefix] choices).
-final class NeptuneSubnetGroupNameOption
+/// The [NeptuneSubnetGroupNameOrNamePrefix.name] choice: sets `name`.
+final class NeptuneSubnetGroupNameOrNamePrefixName
     extends NeptuneSubnetGroupNameOrNamePrefix {
-  const NeptuneSubnetGroupNameOption({required this.name});
+  const NeptuneSubnetGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +50,10 @@ final class NeptuneSubnetGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [NeptuneSubnetGroupNameOrNamePrefix] choices).
-final class NeptuneSubnetGroupNamePrefixOption
+/// The [NeptuneSubnetGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class NeptuneSubnetGroupNameOrNamePrefixNamePrefix
     extends NeptuneSubnetGroupNameOrNamePrefix {
-  const NeptuneSubnetGroupNamePrefixOption({required this.namePrefix});
+  const NeptuneSubnetGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -34,8 +34,20 @@ enum ComprehendDocumentClassifierMode implements TerraformEnum {
 /// At most one of `version_name`, `version_name_prefix` on `aws_comprehend_document_classifier`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.versionName(...)`.
 sealed class ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
   const ComprehendDocumentClassifierVersionNameOrVersionNamePrefix();
+
+  /// Sets `version_name`.
+  const factory ComprehendDocumentClassifierVersionNameOrVersionNamePrefix.versionName(
+    TfArg<String> versionName,
+  ) = ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionName;
+
+  /// Sets `version_name_prefix`.
+  const factory ComprehendDocumentClassifierVersionNameOrVersionNamePrefix.versionNamePrefix(
+    TfArg<String> versionNamePrefix,
+  ) = ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,12 +59,12 @@ sealed class ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `version_name` (one of the [ComprehendDocumentClassifierVersionNameOrVersionNamePrefix] choices).
-final class ComprehendDocumentClassifierVersionNameOption
+/// The [ComprehendDocumentClassifierVersionNameOrVersionNamePrefix.versionName] choice: sets `version_name`.
+final class ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionName
     extends ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
-  const ComprehendDocumentClassifierVersionNameOption({
-    required this.versionName,
-  });
+  const ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionName(
+    this.versionName,
+  );
 
   final TfArg<String> versionName;
 
@@ -66,12 +78,12 @@ final class ComprehendDocumentClassifierVersionNameOption
   Map<String, TfArg<Object?>> get argMap => {'version_name': versionName};
 }
 
-/// Sets `version_name_prefix` (one of the [ComprehendDocumentClassifierVersionNameOrVersionNamePrefix] choices).
-final class ComprehendDocumentClassifierVersionNamePrefixOption
+/// The [ComprehendDocumentClassifierVersionNameOrVersionNamePrefix.versionNamePrefix] choice: sets `version_name_prefix`.
+final class ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionNamePrefix
     extends ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
-  const ComprehendDocumentClassifierVersionNamePrefixOption({
-    required this.versionNamePrefix,
-  });
+  const ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionNamePrefix(
+    this.versionNamePrefix,
+  );
 
   final TfArg<String> versionNamePrefix;
 
@@ -121,8 +133,21 @@ final class ComprehendDocumentClassifierInputDataConfig {
 
 /// Exactly one of `augmented_manifests`, `s3_uri` on the `input_data_config` block of `aws_comprehend_document_classifier`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.augmentedManifests(...)`.
 sealed class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri {
   const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri();
+
+  /// Sets `augmented_manifests`.
+  const factory ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri.augmentedManifests(
+    List<ComprehendDocumentClassifierInputDataConfigAugmentedManifests>
+    augmentedManifests,
+  ) = ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriAugmentedManifests;
+
+  /// Sets `s3_uri`.
+  const factory ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri.s3Uri(
+    TfArg<String> s3Uri,
+  ) = ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriS3Uri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -130,13 +155,13 @@ sealed class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Ur
   Map<String, Object?> encode();
 }
 
-/// Sets `augmented_manifests` (one of the [ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri] choices).
-final class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOption
+/// The [ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri.augmentedManifests] choice: sets `augmented_manifests`.
+final class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriAugmentedManifests
     extends
         ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri {
-  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOption({
-    required this.augmentedManifests,
-  });
+  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriAugmentedManifests(
+    this.augmentedManifests,
+  );
 
   final List<ComprehendDocumentClassifierInputDataConfigAugmentedManifests>
   augmentedManifests;
@@ -150,13 +175,13 @@ final class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOption
   };
 }
 
-/// Sets `s3_uri` (one of the [ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri] choices).
-final class ComprehendDocumentClassifierInputDataConfigS3UriOption
+/// The [ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri.s3Uri] choice: sets `s3_uri`.
+final class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriS3Uri
     extends
         ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri {
-  const ComprehendDocumentClassifierInputDataConfigS3UriOption({
-    required this.s3Uri,
-  });
+  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriS3Uri(
+    this.s3Uri,
+  );
 
   final TfArg<String> s3Uri;
 

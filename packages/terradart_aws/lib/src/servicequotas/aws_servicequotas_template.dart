@@ -8,8 +8,20 @@ const Set<String> _awsServicequotasTemplateSensitive = <String>{};
 
 /// Exactly one of `aws_region`, `region` on `aws_servicequotas_template`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.awsRegion(...)`.
 sealed class ServicequotasTemplateAwsRegionOrRegion {
   const ServicequotasTemplateAwsRegionOrRegion();
+
+  /// Sets `aws_region`.
+  const factory ServicequotasTemplateAwsRegionOrRegion.awsRegion(
+    TfArg<String> awsRegion,
+  ) = ServicequotasTemplateAwsRegionOrRegionAwsRegion;
+
+  /// Sets `region`.
+  const factory ServicequotasTemplateAwsRegionOrRegion.region(
+    TfArg<String> region,
+  ) = ServicequotasTemplateAwsRegionOrRegionRegion;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,10 +33,10 @@ sealed class ServicequotasTemplateAwsRegionOrRegion {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `aws_region` (one of the [ServicequotasTemplateAwsRegionOrRegion] choices).
-final class ServicequotasTemplateAwsRegionOption
+/// The [ServicequotasTemplateAwsRegionOrRegion.awsRegion] choice: sets `aws_region`.
+final class ServicequotasTemplateAwsRegionOrRegionAwsRegion
     extends ServicequotasTemplateAwsRegionOrRegion {
-  const ServicequotasTemplateAwsRegionOption({required this.awsRegion});
+  const ServicequotasTemplateAwsRegionOrRegionAwsRegion(this.awsRegion);
 
   final TfArg<String> awsRegion;
 
@@ -38,10 +50,10 @@ final class ServicequotasTemplateAwsRegionOption
   Map<String, TfArg<Object?>> get argMap => {'aws_region': awsRegion};
 }
 
-/// Sets `region` (one of the [ServicequotasTemplateAwsRegionOrRegion] choices).
-final class ServicequotasTemplateRegionOption
+/// The [ServicequotasTemplateAwsRegionOrRegion.region] choice: sets `region`.
+final class ServicequotasTemplateAwsRegionOrRegionRegion
     extends ServicequotasTemplateAwsRegionOrRegion {
-  const ServicequotasTemplateRegionOption({required this.region});
+  const ServicequotasTemplateAwsRegionOrRegionRegion(this.region);
 
   final TfArg<String> region;
 

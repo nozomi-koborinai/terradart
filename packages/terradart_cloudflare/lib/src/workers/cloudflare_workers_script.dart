@@ -39,8 +39,20 @@ enum WorkersScriptUsageModel implements TerraformEnum {
 /// At most one of `content`, `content_file` on `cloudflare_workers_script`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.content(...)`.
 sealed class WorkersScriptContentOrContentFile {
   const WorkersScriptContentOrContentFile();
+
+  /// Sets `content`.
+  const factory WorkersScriptContentOrContentFile.content(
+    TfArg<String> content,
+  ) = WorkersScriptContentOrContentFileContent;
+
+  /// Sets `content_file`.
+  const factory WorkersScriptContentOrContentFile.contentFile(
+    TfArg<String> contentFile,
+  ) = WorkersScriptContentOrContentFileContentFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,10 +64,10 @@ sealed class WorkersScriptContentOrContentFile {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `content` (one of the [WorkersScriptContentOrContentFile] choices).
-final class WorkersScriptContentOption
+/// The [WorkersScriptContentOrContentFile.content] choice: sets `content`.
+final class WorkersScriptContentOrContentFileContent
     extends WorkersScriptContentOrContentFile {
-  const WorkersScriptContentOption({required this.content});
+  const WorkersScriptContentOrContentFileContent(this.content);
 
   final TfArg<String> content;
 
@@ -69,10 +81,10 @@ final class WorkersScriptContentOption
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
 
-/// Sets `content_file` (one of the [WorkersScriptContentOrContentFile] choices).
-final class WorkersScriptContentFileOption
+/// The [WorkersScriptContentOrContentFile.contentFile] choice: sets `content_file`.
+final class WorkersScriptContentOrContentFileContentFile
     extends WorkersScriptContentOrContentFile {
-  const WorkersScriptContentFileOption({required this.contentFile});
+  const WorkersScriptContentOrContentFileContentFile(this.contentFile);
 
   final TfArg<String> contentFile;
 
@@ -121,8 +133,19 @@ final class WorkersScriptAssets {
 /// At most one of `directory`, `jwt` on the `assets` block of `cloudflare_workers_script`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.directory(...)`.
 sealed class WorkersScriptAssetsDirectoryOrJwt {
   const WorkersScriptAssetsDirectoryOrJwt();
+
+  /// Sets `directory`.
+  const factory WorkersScriptAssetsDirectoryOrJwt.directory(
+    TfArg<String> directory,
+  ) = WorkersScriptAssetsDirectoryOrJwtDirectory;
+
+  /// Sets `jwt`.
+  const factory WorkersScriptAssetsDirectoryOrJwt.jwt(TfArg<String> jwt) =
+      WorkersScriptAssetsDirectoryOrJwtJwt;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -130,10 +153,10 @@ sealed class WorkersScriptAssetsDirectoryOrJwt {
   Map<String, Object?> encode();
 }
 
-/// Sets `directory` (one of the [WorkersScriptAssetsDirectoryOrJwt] choices).
-final class WorkersScriptAssetsDirectoryOption
+/// The [WorkersScriptAssetsDirectoryOrJwt.directory] choice: sets `directory`.
+final class WorkersScriptAssetsDirectoryOrJwtDirectory
     extends WorkersScriptAssetsDirectoryOrJwt {
-  const WorkersScriptAssetsDirectoryOption({required this.directory});
+  const WorkersScriptAssetsDirectoryOrJwtDirectory(this.directory);
 
   final TfArg<String> directory;
 
@@ -144,10 +167,10 @@ final class WorkersScriptAssetsDirectoryOption
   Map<String, Object?> encode() => {'directory': directory.toTfJson()};
 }
 
-/// Sets `jwt` (one of the [WorkersScriptAssetsDirectoryOrJwt] choices).
-final class WorkersScriptAssetsJwtOption
+/// The [WorkersScriptAssetsDirectoryOrJwt.jwt] choice: sets `jwt`.
+final class WorkersScriptAssetsDirectoryOrJwtJwt
     extends WorkersScriptAssetsDirectoryOrJwt {
-  const WorkersScriptAssetsJwtOption({required this.jwt});
+  const WorkersScriptAssetsDirectoryOrJwtJwt(this.jwt);
 
   final TfArg<String> jwt;
 
@@ -611,8 +634,20 @@ final class WorkersScriptFiles {
 
 /// Exactly one of `content_base64`, `content_file` on the `files` block of `cloudflare_workers_script`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.contentBase64(...)`.
 sealed class WorkersScriptFilesContentBase64OrContentFile {
   const WorkersScriptFilesContentBase64OrContentFile();
+
+  /// Sets `content_base64`.
+  const factory WorkersScriptFilesContentBase64OrContentFile.contentBase64(
+    TfArg<String> contentBase64,
+  ) = WorkersScriptFilesContentBase64OrContentFileContentBase64;
+
+  /// Sets `content_file`.
+  const factory WorkersScriptFilesContentBase64OrContentFile.contentFile(
+    TfArg<String> contentFile,
+  ) = WorkersScriptFilesContentBase64OrContentFileContentFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -620,10 +655,12 @@ sealed class WorkersScriptFilesContentBase64OrContentFile {
   Map<String, Object?> encode();
 }
 
-/// Sets `content_base64` (one of the [WorkersScriptFilesContentBase64OrContentFile] choices).
-final class WorkersScriptFilesContentBase64Option
+/// The [WorkersScriptFilesContentBase64OrContentFile.contentBase64] choice: sets `content_base64`.
+final class WorkersScriptFilesContentBase64OrContentFileContentBase64
     extends WorkersScriptFilesContentBase64OrContentFile {
-  const WorkersScriptFilesContentBase64Option({required this.contentBase64});
+  const WorkersScriptFilesContentBase64OrContentFileContentBase64(
+    this.contentBase64,
+  );
 
   final TfArg<String> contentBase64;
 
@@ -634,10 +671,12 @@ final class WorkersScriptFilesContentBase64Option
   Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
 }
 
-/// Sets `content_file` (one of the [WorkersScriptFilesContentBase64OrContentFile] choices).
-final class WorkersScriptFilesContentFileOption
+/// The [WorkersScriptFilesContentBase64OrContentFile.contentFile] choice: sets `content_file`.
+final class WorkersScriptFilesContentBase64OrContentFileContentFile
     extends WorkersScriptFilesContentBase64OrContentFile {
-  const WorkersScriptFilesContentFileOption({required this.contentFile});
+  const WorkersScriptFilesContentBase64OrContentFileContentFile(
+    this.contentFile,
+  );
 
   final TfArg<String> contentFile;
 

@@ -22,8 +22,20 @@ enum NetworkInterfaceInterfaceType implements TerraformEnum {
 /// At most one of `ipv4_prefix_count`, `ipv4_prefixes` on `aws_network_interface`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.ipv4PrefixCount(...)`.
 sealed class NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes {
   const NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes();
+
+  /// Sets `ipv4_prefix_count`.
+  const factory NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes.ipv4PrefixCount(
+    TfArg<num> ipv4PrefixCount,
+  ) = NetworkInterfaceIpv4PrefixCountOrIpv4PrefixesIpv4PrefixCount;
+
+  /// Sets `ipv4_prefixes`.
+  const factory NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes.ipv4Prefixes(
+    TfArg<List<String>> ipv4Prefixes,
+  ) = NetworkInterfaceIpv4PrefixCountOrIpv4PrefixesIpv4Prefixes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,10 +47,12 @@ sealed class NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `ipv4_prefix_count` (one of the [NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes] choices).
-final class NetworkInterfaceIpv4PrefixCountOption
+/// The [NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes.ipv4PrefixCount] choice: sets `ipv4_prefix_count`.
+final class NetworkInterfaceIpv4PrefixCountOrIpv4PrefixesIpv4PrefixCount
     extends NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes {
-  const NetworkInterfaceIpv4PrefixCountOption({required this.ipv4PrefixCount});
+  const NetworkInterfaceIpv4PrefixCountOrIpv4PrefixesIpv4PrefixCount(
+    this.ipv4PrefixCount,
+  );
 
   final TfArg<num> ipv4PrefixCount;
 
@@ -56,10 +70,12 @@ final class NetworkInterfaceIpv4PrefixCountOption
   };
 }
 
-/// Sets `ipv4_prefixes` (one of the [NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes] choices).
-final class NetworkInterfaceIpv4PrefixesOption
+/// The [NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes.ipv4Prefixes] choice: sets `ipv4_prefixes`.
+final class NetworkInterfaceIpv4PrefixCountOrIpv4PrefixesIpv4Prefixes
     extends NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes {
-  const NetworkInterfaceIpv4PrefixesOption({required this.ipv4Prefixes});
+  const NetworkInterfaceIpv4PrefixCountOrIpv4PrefixesIpv4Prefixes(
+    this.ipv4Prefixes,
+  );
 
   final TfArg<List<String>> ipv4Prefixes;
 
@@ -76,8 +92,25 @@ final class NetworkInterfaceIpv4PrefixesOption
 /// At most one of `ipv6_address_count`, `ipv6_address_list`, `ipv6_addresses` on `aws_network_interface`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.ipv6AddressCount(...)`.
 sealed class NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses {
   const NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses();
+
+  /// Sets `ipv6_address_count`.
+  const factory NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses.ipv6AddressCount(
+    TfArg<num> ipv6AddressCount,
+  ) = NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6AddressesIpv6AddressCount;
+
+  /// Sets `ipv6_address_list`.
+  const factory NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses.ipv6AddressList(
+    TfArg<List<String>> ipv6AddressList,
+  ) = NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6AddressesIpv6AddressList;
+
+  /// Sets `ipv6_addresses`.
+  const factory NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses.ipv6Addresses(
+    TfArg<List<String>> ipv6Addresses,
+  ) = NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6AddressesIpv6Addresses;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -89,12 +122,12 @@ sealed class NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `ipv6_address_count` (one of the [NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses] choices).
-final class NetworkInterfaceIpv6AddressCountOption
+/// The [NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses.ipv6AddressCount] choice: sets `ipv6_address_count`.
+final class NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6AddressesIpv6AddressCount
     extends NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses {
-  const NetworkInterfaceIpv6AddressCountOption({
-    required this.ipv6AddressCount,
-  });
+  const NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6AddressesIpv6AddressCount(
+    this.ipv6AddressCount,
+  );
 
   final TfArg<num> ipv6AddressCount;
 
@@ -112,10 +145,12 @@ final class NetworkInterfaceIpv6AddressCountOption
   };
 }
 
-/// Sets `ipv6_address_list` (one of the [NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses] choices).
-final class NetworkInterfaceIpv6AddressListOption
+/// The [NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses.ipv6AddressList] choice: sets `ipv6_address_list`.
+final class NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6AddressesIpv6AddressList
     extends NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses {
-  const NetworkInterfaceIpv6AddressListOption({required this.ipv6AddressList});
+  const NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6AddressesIpv6AddressList(
+    this.ipv6AddressList,
+  );
 
   final TfArg<List<String>> ipv6AddressList;
 
@@ -133,10 +168,12 @@ final class NetworkInterfaceIpv6AddressListOption
   };
 }
 
-/// Sets `ipv6_addresses` (one of the [NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses] choices).
-final class NetworkInterfaceIpv6AddressesOption
+/// The [NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses.ipv6Addresses] choice: sets `ipv6_addresses`.
+final class NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6AddressesIpv6Addresses
     extends NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses {
-  const NetworkInterfaceIpv6AddressesOption({required this.ipv6Addresses});
+  const NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6AddressesIpv6Addresses(
+    this.ipv6Addresses,
+  );
 
   final TfArg<List<String>> ipv6Addresses;
 
@@ -153,8 +190,20 @@ final class NetworkInterfaceIpv6AddressesOption
 /// At most one of `ipv6_prefix_count`, `ipv6_prefixes` on `aws_network_interface`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.ipv6PrefixCount(...)`.
 sealed class NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes {
   const NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes();
+
+  /// Sets `ipv6_prefix_count`.
+  const factory NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes.ipv6PrefixCount(
+    TfArg<num> ipv6PrefixCount,
+  ) = NetworkInterfaceIpv6PrefixCountOrIpv6PrefixesIpv6PrefixCount;
+
+  /// Sets `ipv6_prefixes`.
+  const factory NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes.ipv6Prefixes(
+    TfArg<List<String>> ipv6Prefixes,
+  ) = NetworkInterfaceIpv6PrefixCountOrIpv6PrefixesIpv6Prefixes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -166,10 +215,12 @@ sealed class NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `ipv6_prefix_count` (one of the [NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes] choices).
-final class NetworkInterfaceIpv6PrefixCountOption
+/// The [NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes.ipv6PrefixCount] choice: sets `ipv6_prefix_count`.
+final class NetworkInterfaceIpv6PrefixCountOrIpv6PrefixesIpv6PrefixCount
     extends NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes {
-  const NetworkInterfaceIpv6PrefixCountOption({required this.ipv6PrefixCount});
+  const NetworkInterfaceIpv6PrefixCountOrIpv6PrefixesIpv6PrefixCount(
+    this.ipv6PrefixCount,
+  );
 
   final TfArg<num> ipv6PrefixCount;
 
@@ -187,10 +238,12 @@ final class NetworkInterfaceIpv6PrefixCountOption
   };
 }
 
-/// Sets `ipv6_prefixes` (one of the [NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes] choices).
-final class NetworkInterfaceIpv6PrefixesOption
+/// The [NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes.ipv6Prefixes] choice: sets `ipv6_prefixes`.
+final class NetworkInterfaceIpv6PrefixCountOrIpv6PrefixesIpv6Prefixes
     extends NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes {
-  const NetworkInterfaceIpv6PrefixesOption({required this.ipv6Prefixes});
+  const NetworkInterfaceIpv6PrefixCountOrIpv6PrefixesIpv6Prefixes(
+    this.ipv6Prefixes,
+  );
 
   final TfArg<List<String>> ipv6Prefixes;
 

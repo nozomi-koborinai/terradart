@@ -6,21 +6,21 @@ library;
 export 'src/memorydb/aws_memorydb_acl.dart'
     show
         AwsMemorydbAcl,
-        MemorydbAclNameOption,
         MemorydbAclNameOrNamePrefix,
-        MemorydbAclNamePrefixOption;
+        MemorydbAclNameOrNamePrefixName,
+        MemorydbAclNameOrNamePrefixNamePrefix;
 export 'src/memorydb/aws_memorydb_cluster.dart'
     show
         AwsMemorydbCluster,
         MemorydbClusterEngine,
         MemorydbClusterIpDiscovery,
-        MemorydbClusterNameOption,
         MemorydbClusterNameOrNamePrefix,
-        MemorydbClusterNamePrefixOption,
+        MemorydbClusterNameOrNamePrefixName,
+        MemorydbClusterNameOrNamePrefixNamePrefix,
         MemorydbClusterNetworkType,
-        MemorydbClusterSnapshotArnsOption,
         MemorydbClusterSnapshotArnsOrSnapshotName,
-        MemorydbClusterSnapshotNameOption;
+        MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotArns,
+        MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotName;
 export 'src/memorydb/aws_memorydb_multi_region_cluster.dart'
     show
         AwsMemorydbMultiRegionCluster,
@@ -29,22 +29,22 @@ export 'src/memorydb/aws_memorydb_multi_region_cluster.dart'
 export 'src/memorydb/aws_memorydb_parameter_group.dart'
     show
         AwsMemorydbParameterGroup,
-        MemorydbParameterGroupNameOption,
         MemorydbParameterGroupNameOrNamePrefix,
-        MemorydbParameterGroupNamePrefixOption,
+        MemorydbParameterGroupNameOrNamePrefixName,
+        MemorydbParameterGroupNameOrNamePrefixNamePrefix,
         MemorydbParameterGroupParameter;
 export 'src/memorydb/aws_memorydb_snapshot.dart'
     show
         AwsMemorydbSnapshot,
-        MemorydbSnapshotNameOption,
         MemorydbSnapshotNameOrNamePrefix,
-        MemorydbSnapshotNamePrefixOption;
+        MemorydbSnapshotNameOrNamePrefixName,
+        MemorydbSnapshotNameOrNamePrefixNamePrefix;
 export 'src/memorydb/aws_memorydb_subnet_group.dart'
     show
         AwsMemorydbSubnetGroup,
-        MemorydbSubnetGroupNameOption,
         MemorydbSubnetGroupNameOrNamePrefix,
-        MemorydbSubnetGroupNamePrefixOption;
+        MemorydbSubnetGroupNameOrNamePrefixName,
+        MemorydbSubnetGroupNameOrNamePrefixNamePrefix;
 export 'src/memorydb/aws_memorydb_user.dart'
     show
         AwsMemorydbUser,

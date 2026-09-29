@@ -92,8 +92,19 @@ enum AlbTargetGroupTargetType implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_alb_target_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class AlbTargetGroupNameOrNamePrefix {
   const AlbTargetGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory AlbTargetGroupNameOrNamePrefix.name(TfArg<String> name) =
+      AlbTargetGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory AlbTargetGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = AlbTargetGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -105,9 +116,10 @@ sealed class AlbTargetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [AlbTargetGroupNameOrNamePrefix] choices).
-final class AlbTargetGroupNameOption extends AlbTargetGroupNameOrNamePrefix {
-  const AlbTargetGroupNameOption({required this.name});
+/// The [AlbTargetGroupNameOrNamePrefix.name] choice: sets `name`.
+final class AlbTargetGroupNameOrNamePrefixName
+    extends AlbTargetGroupNameOrNamePrefix {
+  const AlbTargetGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -121,10 +133,10 @@ final class AlbTargetGroupNameOption extends AlbTargetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [AlbTargetGroupNameOrNamePrefix] choices).
-final class AlbTargetGroupNamePrefixOption
+/// The [AlbTargetGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class AlbTargetGroupNameOrNamePrefixNamePrefix
     extends AlbTargetGroupNameOrNamePrefix {
-  const AlbTargetGroupNamePrefixOption({required this.namePrefix});
+  const AlbTargetGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

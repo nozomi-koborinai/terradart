@@ -25,8 +25,25 @@ final class RedshiftScheduledActionTargetAction {
 
 /// Exactly one of `pause_cluster`, `resize_cluster`, `resume_cluster` on the `target_action` block of `aws_redshift_scheduled_action`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.pauseCluster(...)`.
 sealed class RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster {
   const RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster();
+
+  /// Sets `pause_cluster`.
+  const factory RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster.pauseCluster(
+    RedshiftScheduledActionTargetActionPauseCluster pauseCluster,
+  ) = RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterPauseCluster;
+
+  /// Sets `resize_cluster`.
+  const factory RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster.resizeCluster(
+    RedshiftScheduledActionTargetActionResizeCluster resizeCluster,
+  ) = RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterResizeCluster;
+
+  /// Sets `resume_cluster`.
+  const factory RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster.resumeCluster(
+    RedshiftScheduledActionTargetActionResumeCluster resumeCluster,
+  ) = RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterResumeCluster;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,13 +51,13 @@ sealed class RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrRes
   Map<String, Object?> encode();
 }
 
-/// Sets `pause_cluster` (one of the [RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster] choices).
-final class RedshiftScheduledActionTargetActionPauseClusterOption
+/// The [RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster.pauseCluster] choice: sets `pause_cluster`.
+final class RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterPauseCluster
     extends
         RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster {
-  const RedshiftScheduledActionTargetActionPauseClusterOption({
-    required this.pauseCluster,
-  });
+  const RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterPauseCluster(
+    this.pauseCluster,
+  );
 
   final RedshiftScheduledActionTargetActionPauseCluster pauseCluster;
 
@@ -51,13 +68,13 @@ final class RedshiftScheduledActionTargetActionPauseClusterOption
   Map<String, Object?> encode() => {'pause_cluster': pauseCluster.encode()};
 }
 
-/// Sets `resize_cluster` (one of the [RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster] choices).
-final class RedshiftScheduledActionTargetActionResizeClusterOption
+/// The [RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster.resizeCluster] choice: sets `resize_cluster`.
+final class RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterResizeCluster
     extends
         RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster {
-  const RedshiftScheduledActionTargetActionResizeClusterOption({
-    required this.resizeCluster,
-  });
+  const RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterResizeCluster(
+    this.resizeCluster,
+  );
 
   final RedshiftScheduledActionTargetActionResizeCluster resizeCluster;
 
@@ -68,13 +85,13 @@ final class RedshiftScheduledActionTargetActionResizeClusterOption
   Map<String, Object?> encode() => {'resize_cluster': resizeCluster.encode()};
 }
 
-/// Sets `resume_cluster` (one of the [RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster] choices).
-final class RedshiftScheduledActionTargetActionResumeClusterOption
+/// The [RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster.resumeCluster] choice: sets `resume_cluster`.
+final class RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterResumeCluster
     extends
         RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster {
-  const RedshiftScheduledActionTargetActionResumeClusterOption({
-    required this.resumeCluster,
-  });
+  const RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterResumeCluster(
+    this.resumeCluster,
+  );
 
   final RedshiftScheduledActionTargetActionResumeCluster resumeCluster;
 

@@ -87,10 +87,10 @@ export 'src/vertex_ai/google_vertex_ai_featurestore.dart'
         GoogleVertexAiFeaturestore,
         VertexAiFeaturestoreEncryptionSpec,
         VertexAiFeaturestoreOnlineServingConfig,
-        VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOption,
         VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling,
-        VertexAiFeaturestoreOnlineServingConfigScaling,
-        VertexAiFeaturestoreOnlineServingConfigScalingOption;
+        VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingFixedNodeCount,
+        VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingScaling,
+        VertexAiFeaturestoreOnlineServingConfigScaling;
 export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype.dart'
     show
         GoogleVertexAiFeaturestoreEntitytype,
@@ -109,18 +109,18 @@ export 'src/vertex_ai/google_vertex_ai_index.dart'
         VertexAiIndexMetadataConfig,
         VertexAiIndexMetadataConfigAlgorithmConfig,
         VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfig,
-        VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfigOption,
         VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig,
-        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOption,
-        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig;
+        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig,
+        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfigBruteForceConfig,
+        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfigTreeAhConfig;
 export 'src/vertex_ai/google_vertex_ai_index_endpoint.dart'
     show
         GoogleVertexAiIndexEndpoint,
         VertexAiIndexEndpointEncryptionSpec,
-        VertexAiIndexEndpointNetworkOption,
         VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig,
+        VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork,
+        VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigPrivateServiceConnectConfig,
         VertexAiIndexEndpointPrivateServiceConnectConfig,
-        VertexAiIndexEndpointPrivateServiceConnectConfigOption,
         VertexAiIndexEndpointPrivateServiceConnectConfigPscAutomationConfigs;
 export 'src/vertex_ai/google_vertex_ai_index_endpoint_deployed_index.dart'
     show
@@ -149,27 +149,27 @@ export 'src/vertex_ai/google_vertex_ai_rag_corpus.dart'
         VertexAiRagCorpusVectorDbConfig,
         VertexAiRagCorpusVectorDbConfigApiAuth,
         VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfig,
-        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOption,
         VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString,
-        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeyStringOption,
-        VertexAiRagCorpusVectorDbConfigOption,
+        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyStringApiKeySecretVersion,
+        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyStringApiKeyString,
         VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfig,
+        VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfigVectorDbConfig,
+        VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfigVertexAiSearchConfig,
         VertexAiRagCorpusVectorDbConfigPinecone,
-        VertexAiRagCorpusVectorDbConfigPineconeOption,
         VertexAiRagCorpusVectorDbConfigRagEmbeddingModelConfig,
         VertexAiRagCorpusVectorDbConfigRagEmbeddingModelConfigVertexPredictionEndpoint,
         VertexAiRagCorpusVectorDbConfigRagManagedDb,
         VertexAiRagCorpusVectorDbConfigRagManagedDbAnn,
-        VertexAiRagCorpusVectorDbConfigRagManagedDbAnnOption,
         VertexAiRagCorpusVectorDbConfigRagManagedDbKnn,
-        VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOption,
         VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn,
-        VertexAiRagCorpusVectorDbConfigRagManagedDbOption,
+        VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnAnn,
+        VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnKnn,
         VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearch,
+        VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchPinecone,
+        VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchRagManagedDb,
+        VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchVertexVectorSearch,
         VertexAiRagCorpusVectorDbConfigVertexVectorSearch,
-        VertexAiRagCorpusVectorDbConfigVertexVectorSearchOption,
-        VertexAiRagCorpusVertexAiSearchConfig,
-        VertexAiRagCorpusVertexAiSearchConfigOption;
+        VertexAiRagCorpusVertexAiSearchConfig;
 export 'src/vertex_ai/google_vertex_ai_rag_engine_config.dart'
     show
         GoogleVertexAiRagEngineConfig,
@@ -205,10 +205,10 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGenerateMemoriesExamplesGeneratedMemoriesTopicsManagedMemoryTopic,
         VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics,
         VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic,
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopicOption,
         VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic,
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOption,
         VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicCustomMemoryTopic,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicManagedMemoryTopic,
         VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig,
         VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfig,
         VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfigGenerationRule,
@@ -216,16 +216,17 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigs,
         VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryConfigsSchemaConfigs,
         VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig,
-        VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOption,
         VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfig,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigDefaultTtl,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigGranularTtlConfig,
         VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig,
-        VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfigOption,
         VertexAiReasoningEngineEncryptionSpec,
         VertexAiReasoningEngineSpec,
         VertexAiReasoningEngineSpecBuildSpec,
         VertexAiReasoningEngineSpecContainerSpec,
-        VertexAiReasoningEngineSpecContainerSpecOption,
         VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec,
+        VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecContainerSpec,
+        VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecSourceCodeSpec,
         VertexAiReasoningEngineSpecDeploymentSpec,
         VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfig,
         VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfigAgentToAnywhereConfig,
@@ -244,12 +245,11 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSource,
         VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSourceConfig,
         VertexAiReasoningEngineSpecSourceCodeSpecImageSpec,
-        VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOption,
         VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec,
+        VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecImageSpec,
+        VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecPythonSpec,
         VertexAiReasoningEngineSpecSourceCodeSpecInlineSource,
-        VertexAiReasoningEngineSpecSourceCodeSpecOption,
-        VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec,
-        VertexAiReasoningEngineSpecSourceCodeSpecPythonSpecOption;
+        VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec;
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_binding.dart'
     show GoogleVertexAiReasoningEngineIamBinding;
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_member.dart'

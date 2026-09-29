@@ -292,8 +292,35 @@ class Cloudbuildv2ConnectionBitbucketCloudConfig {
 /// At most one of `github_config`, `github_enterprise_config`, `gitlab_config`, `bitbucket_cloud_config`, `bitbucket_data_center_config` on `google_cloudbuildv2_connection`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.githubConfig(...)`.
 sealed class Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
   const Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig();
+
+  /// Sets `github_config`.
+  const factory Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig.githubConfig(
+    Cloudbuildv2ConnectionGithubConfig githubConfig,
+  ) = Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubConfig;
+
+  /// Sets `github_enterprise_config`.
+  const factory Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig.githubEnterpriseConfig(
+    Cloudbuildv2ConnectionGithubEnterpriseConfig githubEnterpriseConfig,
+  ) = Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubEnterpriseConfig;
+
+  /// Sets `gitlab_config`.
+  const factory Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig.gitlabConfig(
+    Cloudbuildv2ConnectionGitlabConfig gitlabConfig,
+  ) = Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGitlabConfig;
+
+  /// Sets `bitbucket_cloud_config`.
+  const factory Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig.bitbucketCloudConfig(
+    Cloudbuildv2ConnectionBitbucketCloudConfig bitbucketCloudConfig,
+  ) = Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketCloudConfig;
+
+  /// Sets `bitbucket_data_center_config`.
+  const factory Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig.bitbucketDataCenterConfig(
+    Cloudbuildv2ConnectionBitbucketDataCenterConfig bitbucketDataCenterConfig,
+  ) = Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketDataCenterConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -305,11 +332,13 @@ sealed class Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabC
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `github_config` (one of the [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig] choices).
-final class Cloudbuildv2ConnectionGithubConfigOption
+/// The [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig.githubConfig] choice: sets `github_config`.
+final class Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubConfig
     extends
         Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
-  const Cloudbuildv2ConnectionGithubConfigOption({required this.githubConfig});
+  const Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubConfig(
+    this.githubConfig,
+  );
 
   final Cloudbuildv2ConnectionGithubConfig githubConfig;
 
@@ -327,13 +356,13 @@ final class Cloudbuildv2ConnectionGithubConfigOption
   };
 }
 
-/// Sets `github_enterprise_config` (one of the [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig] choices).
-final class Cloudbuildv2ConnectionGithubEnterpriseConfigOption
+/// The [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig.githubEnterpriseConfig] choice: sets `github_enterprise_config`.
+final class Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubEnterpriseConfig
     extends
         Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
-  const Cloudbuildv2ConnectionGithubEnterpriseConfigOption({
-    required this.githubEnterpriseConfig,
-  });
+  const Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubEnterpriseConfig(
+    this.githubEnterpriseConfig,
+  );
 
   final Cloudbuildv2ConnectionGithubEnterpriseConfig githubEnterpriseConfig;
 
@@ -353,11 +382,13 @@ final class Cloudbuildv2ConnectionGithubEnterpriseConfigOption
   };
 }
 
-/// Sets `gitlab_config` (one of the [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig] choices).
-final class Cloudbuildv2ConnectionGitlabConfigOption
+/// The [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig.gitlabConfig] choice: sets `gitlab_config`.
+final class Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGitlabConfig
     extends
         Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
-  const Cloudbuildv2ConnectionGitlabConfigOption({required this.gitlabConfig});
+  const Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGitlabConfig(
+    this.gitlabConfig,
+  );
 
   final Cloudbuildv2ConnectionGitlabConfig gitlabConfig;
 
@@ -375,13 +406,13 @@ final class Cloudbuildv2ConnectionGitlabConfigOption
   };
 }
 
-/// Sets `bitbucket_cloud_config` (one of the [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig] choices).
-final class Cloudbuildv2ConnectionBitbucketCloudConfigOption
+/// The [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig.bitbucketCloudConfig] choice: sets `bitbucket_cloud_config`.
+final class Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketCloudConfig
     extends
         Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
-  const Cloudbuildv2ConnectionBitbucketCloudConfigOption({
-    required this.bitbucketCloudConfig,
-  });
+  const Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketCloudConfig(
+    this.bitbucketCloudConfig,
+  );
 
   final Cloudbuildv2ConnectionBitbucketCloudConfig bitbucketCloudConfig;
 
@@ -399,13 +430,13 @@ final class Cloudbuildv2ConnectionBitbucketCloudConfigOption
   };
 }
 
-/// Sets `bitbucket_data_center_config` (one of the [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig] choices).
-final class Cloudbuildv2ConnectionBitbucketDataCenterConfigOption
+/// The [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig.bitbucketDataCenterConfig] choice: sets `bitbucket_data_center_config`.
+final class Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketDataCenterConfig
     extends
         Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
-  const Cloudbuildv2ConnectionBitbucketDataCenterConfigOption({
-    required this.bitbucketDataCenterConfig,
-  });
+  const Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketDataCenterConfig(
+    this.bitbucketDataCenterConfig,
+  );
 
   final Cloudbuildv2ConnectionBitbucketDataCenterConfig
   bitbucketDataCenterConfig;

@@ -99,8 +99,25 @@ enum CloudwatchMetricAlarmUnit implements TerraformEnum {
 
 /// Exactly one of `evaluation_criteria`, `metric_name`, `metric_query` on `aws_cloudwatch_metric_alarm`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.evaluationCriteria(...)`.
 sealed class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
   const CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery();
+
+  /// Sets `evaluation_criteria`.
+  const factory CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.evaluationCriteria(
+    CloudwatchMetricAlarmEvaluationCriteria evaluationCriteria,
+  ) = CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEvaluationCriteria;
+
+  /// Sets `metric_name`.
+  const factory CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.metricName(
+    TfArg<String> metricName,
+  ) = CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricName;
+
+  /// Sets `metric_query`.
+  const factory CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.metricQuery(
+    List<CloudwatchMetricAlarmMetricQuery> metricQuery,
+  ) = CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricQuery;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -112,12 +129,12 @@ sealed class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `evaluation_criteria` (one of the [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery] choices).
-final class CloudwatchMetricAlarmEvaluationCriteriaOption
+/// The [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.evaluationCriteria] choice: sets `evaluation_criteria`.
+final class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEvaluationCriteria
     extends CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
-  const CloudwatchMetricAlarmEvaluationCriteriaOption({
-    required this.evaluationCriteria,
-  });
+  const CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEvaluationCriteria(
+    this.evaluationCriteria,
+  );
 
   final CloudwatchMetricAlarmEvaluationCriteria evaluationCriteria;
 
@@ -135,10 +152,12 @@ final class CloudwatchMetricAlarmEvaluationCriteriaOption
   };
 }
 
-/// Sets `metric_name` (one of the [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery] choices).
-final class CloudwatchMetricAlarmMetricNameOption
+/// The [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.metricName] choice: sets `metric_name`.
+final class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricName
     extends CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
-  const CloudwatchMetricAlarmMetricNameOption({required this.metricName});
+  const CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricName(
+    this.metricName,
+  );
 
   final TfArg<String> metricName;
 
@@ -152,10 +171,12 @@ final class CloudwatchMetricAlarmMetricNameOption
   Map<String, TfArg<Object?>> get argMap => {'metric_name': metricName};
 }
 
-/// Sets `metric_query` (one of the [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery] choices).
-final class CloudwatchMetricAlarmMetricQueryOption
+/// The [CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery.metricQuery] choice: sets `metric_query`.
+final class CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricQuery
     extends CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery {
-  const CloudwatchMetricAlarmMetricQueryOption({required this.metricQuery});
+  const CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricQuery(
+    this.metricQuery,
+  );
 
   final List<CloudwatchMetricAlarmMetricQuery> metricQuery;
 
@@ -176,8 +197,20 @@ final class CloudwatchMetricAlarmMetricQueryOption
 /// At most one of `extended_statistic`, `statistic` on `aws_cloudwatch_metric_alarm`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.extendedStatistic(...)`.
 sealed class CloudwatchMetricAlarmExtendedStatisticOrStatistic {
   const CloudwatchMetricAlarmExtendedStatisticOrStatistic();
+
+  /// Sets `extended_statistic`.
+  const factory CloudwatchMetricAlarmExtendedStatisticOrStatistic.extendedStatistic(
+    TfArg<String> extendedStatistic,
+  ) = CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic;
+
+  /// Sets `statistic`.
+  const factory CloudwatchMetricAlarmExtendedStatisticOrStatistic.statistic(
+    TfArg<CloudwatchMetricAlarmStatistic> statistic,
+  ) = CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -189,12 +222,12 @@ sealed class CloudwatchMetricAlarmExtendedStatisticOrStatistic {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `extended_statistic` (one of the [CloudwatchMetricAlarmExtendedStatisticOrStatistic] choices).
-final class CloudwatchMetricAlarmExtendedStatisticOption
+/// The [CloudwatchMetricAlarmExtendedStatisticOrStatistic.extendedStatistic] choice: sets `extended_statistic`.
+final class CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic
     extends CloudwatchMetricAlarmExtendedStatisticOrStatistic {
-  const CloudwatchMetricAlarmExtendedStatisticOption({
-    required this.extendedStatistic,
-  });
+  const CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic(
+    this.extendedStatistic,
+  );
 
   final TfArg<String> extendedStatistic;
 
@@ -212,10 +245,12 @@ final class CloudwatchMetricAlarmExtendedStatisticOption
   };
 }
 
-/// Sets `statistic` (one of the [CloudwatchMetricAlarmExtendedStatisticOrStatistic] choices).
-final class CloudwatchMetricAlarmStatisticOption
+/// The [CloudwatchMetricAlarmExtendedStatisticOrStatistic.statistic] choice: sets `statistic`.
+final class CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic
     extends CloudwatchMetricAlarmExtendedStatisticOrStatistic {
-  const CloudwatchMetricAlarmStatisticOption({required this.statistic});
+  const CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic(
+    this.statistic,
+  );
 
   final TfArg<CloudwatchMetricAlarmStatistic> statistic;
 
@@ -232,8 +267,20 @@ final class CloudwatchMetricAlarmStatisticOption
 /// At most one of `threshold`, `threshold_metric_id` on `aws_cloudwatch_metric_alarm`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.threshold(...)`.
 sealed class CloudwatchMetricAlarmThresholdOrThresholdMetricId {
   const CloudwatchMetricAlarmThresholdOrThresholdMetricId();
+
+  /// Sets `threshold`.
+  const factory CloudwatchMetricAlarmThresholdOrThresholdMetricId.threshold(
+    TfArg<num> threshold,
+  ) = CloudwatchMetricAlarmThresholdOrThresholdMetricIdThreshold;
+
+  /// Sets `threshold_metric_id`.
+  const factory CloudwatchMetricAlarmThresholdOrThresholdMetricId.thresholdMetricId(
+    TfArg<String> thresholdMetricId,
+  ) = CloudwatchMetricAlarmThresholdOrThresholdMetricIdThresholdMetricId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -245,10 +292,12 @@ sealed class CloudwatchMetricAlarmThresholdOrThresholdMetricId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `threshold` (one of the [CloudwatchMetricAlarmThresholdOrThresholdMetricId] choices).
-final class CloudwatchMetricAlarmThresholdOption
+/// The [CloudwatchMetricAlarmThresholdOrThresholdMetricId.threshold] choice: sets `threshold`.
+final class CloudwatchMetricAlarmThresholdOrThresholdMetricIdThreshold
     extends CloudwatchMetricAlarmThresholdOrThresholdMetricId {
-  const CloudwatchMetricAlarmThresholdOption({required this.threshold});
+  const CloudwatchMetricAlarmThresholdOrThresholdMetricIdThreshold(
+    this.threshold,
+  );
 
   final TfArg<num> threshold;
 
@@ -262,12 +311,12 @@ final class CloudwatchMetricAlarmThresholdOption
   Map<String, TfArg<Object?>> get argMap => {'threshold': threshold};
 }
 
-/// Sets `threshold_metric_id` (one of the [CloudwatchMetricAlarmThresholdOrThresholdMetricId] choices).
-final class CloudwatchMetricAlarmThresholdMetricIdOption
+/// The [CloudwatchMetricAlarmThresholdOrThresholdMetricId.thresholdMetricId] choice: sets `threshold_metric_id`.
+final class CloudwatchMetricAlarmThresholdOrThresholdMetricIdThresholdMetricId
     extends CloudwatchMetricAlarmThresholdOrThresholdMetricId {
-  const CloudwatchMetricAlarmThresholdMetricIdOption({
-    required this.thresholdMetricId,
-  });
+  const CloudwatchMetricAlarmThresholdOrThresholdMetricIdThresholdMetricId(
+    this.thresholdMetricId,
+  );
 
   final TfArg<String> thresholdMetricId;
 

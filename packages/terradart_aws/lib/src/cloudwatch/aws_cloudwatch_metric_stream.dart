@@ -21,8 +21,20 @@ enum CloudwatchMetricStreamOutputFormat implements TerraformEnum {
 /// At most one of `exclude_filter`, `include_filter` on `aws_cloudwatch_metric_stream`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.excludeFilter(...)`.
 sealed class CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
   const CloudwatchMetricStreamExcludeFilterOrIncludeFilter();
+
+  /// Sets `exclude_filter`.
+  const factory CloudwatchMetricStreamExcludeFilterOrIncludeFilter.excludeFilter(
+    List<CloudwatchMetricStreamExcludeFilter> excludeFilter,
+  ) = CloudwatchMetricStreamExcludeFilterOrIncludeFilterExcludeFilter;
+
+  /// Sets `include_filter`.
+  const factory CloudwatchMetricStreamExcludeFilterOrIncludeFilter.includeFilter(
+    List<CloudwatchMetricStreamIncludeFilter> includeFilter,
+  ) = CloudwatchMetricStreamExcludeFilterOrIncludeFilterIncludeFilter;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,12 +46,12 @@ sealed class CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `exclude_filter` (one of the [CloudwatchMetricStreamExcludeFilterOrIncludeFilter] choices).
-final class CloudwatchMetricStreamExcludeFilterOption
+/// The [CloudwatchMetricStreamExcludeFilterOrIncludeFilter.excludeFilter] choice: sets `exclude_filter`.
+final class CloudwatchMetricStreamExcludeFilterOrIncludeFilterExcludeFilter
     extends CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
-  const CloudwatchMetricStreamExcludeFilterOption({
-    required this.excludeFilter,
-  });
+  const CloudwatchMetricStreamExcludeFilterOrIncludeFilterExcludeFilter(
+    this.excludeFilter,
+  );
 
   final List<CloudwatchMetricStreamExcludeFilter> excludeFilter;
 
@@ -59,12 +71,12 @@ final class CloudwatchMetricStreamExcludeFilterOption
   };
 }
 
-/// Sets `include_filter` (one of the [CloudwatchMetricStreamExcludeFilterOrIncludeFilter] choices).
-final class CloudwatchMetricStreamIncludeFilterOption
+/// The [CloudwatchMetricStreamExcludeFilterOrIncludeFilter.includeFilter] choice: sets `include_filter`.
+final class CloudwatchMetricStreamExcludeFilterOrIncludeFilterIncludeFilter
     extends CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
-  const CloudwatchMetricStreamIncludeFilterOption({
-    required this.includeFilter,
-  });
+  const CloudwatchMetricStreamExcludeFilterOrIncludeFilterIncludeFilter(
+    this.includeFilter,
+  );
 
   final List<CloudwatchMetricStreamIncludeFilter> includeFilter;
 
@@ -87,8 +99,20 @@ final class CloudwatchMetricStreamIncludeFilterOption
 /// At most one of `name`, `name_prefix` on `aws_cloudwatch_metric_stream`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class CloudwatchMetricStreamNameOrNamePrefix {
   const CloudwatchMetricStreamNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory CloudwatchMetricStreamNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = CloudwatchMetricStreamNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory CloudwatchMetricStreamNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = CloudwatchMetricStreamNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -100,10 +124,10 @@ sealed class CloudwatchMetricStreamNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [CloudwatchMetricStreamNameOrNamePrefix] choices).
-final class CloudwatchMetricStreamNameOption
+/// The [CloudwatchMetricStreamNameOrNamePrefix.name] choice: sets `name`.
+final class CloudwatchMetricStreamNameOrNamePrefixName
     extends CloudwatchMetricStreamNameOrNamePrefix {
-  const CloudwatchMetricStreamNameOption({required this.name});
+  const CloudwatchMetricStreamNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -117,10 +141,10 @@ final class CloudwatchMetricStreamNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [CloudwatchMetricStreamNameOrNamePrefix] choices).
-final class CloudwatchMetricStreamNamePrefixOption
+/// The [CloudwatchMetricStreamNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class CloudwatchMetricStreamNameOrNamePrefixNamePrefix
     extends CloudwatchMetricStreamNameOrNamePrefix {
-  const CloudwatchMetricStreamNamePrefixOption({required this.namePrefix});
+  const CloudwatchMetricStreamNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

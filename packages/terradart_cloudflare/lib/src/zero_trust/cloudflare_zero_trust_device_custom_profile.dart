@@ -20,8 +20,20 @@ enum ZeroTrustDeviceCustomProfileProfileType implements TerraformEnum {
 /// At most one of `exclude`, `include` on `cloudflare_zero_trust_device_custom_profile`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.exclude(...)`.
 sealed class ZeroTrustDeviceCustomProfileExcludeOrInclude {
   const ZeroTrustDeviceCustomProfileExcludeOrInclude();
+
+  /// Sets `exclude`.
+  const factory ZeroTrustDeviceCustomProfileExcludeOrInclude.exclude(
+    List<ZeroTrustDeviceCustomProfileExclude> exclude,
+  ) = ZeroTrustDeviceCustomProfileExcludeOrIncludeExclude;
+
+  /// Sets `include`.
+  const factory ZeroTrustDeviceCustomProfileExcludeOrInclude.include(
+    List<ZeroTrustDeviceCustomProfileInclude> include,
+  ) = ZeroTrustDeviceCustomProfileExcludeOrIncludeInclude;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +45,10 @@ sealed class ZeroTrustDeviceCustomProfileExcludeOrInclude {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `exclude` (one of the [ZeroTrustDeviceCustomProfileExcludeOrInclude] choices).
-final class ZeroTrustDeviceCustomProfileExcludeOption
+/// The [ZeroTrustDeviceCustomProfileExcludeOrInclude.exclude] choice: sets `exclude`.
+final class ZeroTrustDeviceCustomProfileExcludeOrIncludeExclude
     extends ZeroTrustDeviceCustomProfileExcludeOrInclude {
-  const ZeroTrustDeviceCustomProfileExcludeOption({required this.exclude});
+  const ZeroTrustDeviceCustomProfileExcludeOrIncludeExclude(this.exclude);
 
   final List<ZeroTrustDeviceCustomProfileExclude> exclude;
 
@@ -54,10 +66,10 @@ final class ZeroTrustDeviceCustomProfileExcludeOption
   };
 }
 
-/// Sets `include` (one of the [ZeroTrustDeviceCustomProfileExcludeOrInclude] choices).
-final class ZeroTrustDeviceCustomProfileIncludeOption
+/// The [ZeroTrustDeviceCustomProfileExcludeOrInclude.include] choice: sets `include`.
+final class ZeroTrustDeviceCustomProfileExcludeOrIncludeInclude
     extends ZeroTrustDeviceCustomProfileExcludeOrInclude {
-  const ZeroTrustDeviceCustomProfileIncludeOption({required this.include});
+  const ZeroTrustDeviceCustomProfileExcludeOrIncludeInclude(this.include);
 
   final List<ZeroTrustDeviceCustomProfileInclude> include;
 

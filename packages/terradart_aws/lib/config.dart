@@ -6,9 +6,9 @@ library;
 export 'src/config/aws_config_aggregate_authorization.dart'
     show
         AwsConfigAggregateAuthorization,
-        ConfigAggregateAuthorizationAuthorizedAwsRegionOption,
         ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion,
-        ConfigAggregateAuthorizationRegionOption;
+        ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion,
+        ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion;
 export 'src/config/aws_config_config_rule.dart'
     show
         AwsConfigConfigRule,
@@ -27,10 +27,10 @@ export 'src/config/aws_config_configuration_aggregator.dart'
     show
         AwsConfigConfigurationAggregator,
         ConfigConfigurationAggregatorAccountAggregationSource,
-        ConfigConfigurationAggregatorAccountAggregationSourceOption,
         ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource,
-        ConfigConfigurationAggregatorOrganizationAggregationSource,
-        ConfigConfigurationAggregatorOrganizationAggregationSourceOption;
+        ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceAccountAggregationSource,
+        ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceOrganizationAggregationSource,
+        ConfigConfigurationAggregatorOrganizationAggregationSource;
 export 'src/config/aws_config_configuration_recorder.dart'
     show
         AwsConfigConfigurationRecorder,
@@ -55,9 +55,9 @@ export 'src/config/aws_config_organization_conformance_pack.dart'
     show
         AwsConfigOrganizationConformancePack,
         ConfigOrganizationConformancePackInputParameter,
-        ConfigOrganizationConformancePackTemplateBodyOption,
         ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri,
-        ConfigOrganizationConformancePackTemplateS3UriOption;
+        ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateBody,
+        ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateS3Uri;
 export 'src/config/aws_config_organization_custom_policy_rule.dart'
     show
         AwsConfigOrganizationCustomPolicyRule,

@@ -22,8 +22,20 @@ enum CodestarconnectionsConnectionProviderType implements TerraformEnum {
 /// At most one of `host_arn`, `provider_type` on `aws_codestarconnections_connection`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.hostArn(...)`.
 sealed class CodestarconnectionsConnectionHostArnOrProviderType {
   const CodestarconnectionsConnectionHostArnOrProviderType();
+
+  /// Sets `host_arn`.
+  const factory CodestarconnectionsConnectionHostArnOrProviderType.hostArn(
+    TfArg<String> hostArn,
+  ) = CodestarconnectionsConnectionHostArnOrProviderTypeHostArn;
+
+  /// Sets `provider_type`.
+  const factory CodestarconnectionsConnectionHostArnOrProviderType.providerType(
+    TfArg<CodestarconnectionsConnectionProviderType> providerType,
+  ) = CodestarconnectionsConnectionHostArnOrProviderTypeProviderType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,10 +47,10 @@ sealed class CodestarconnectionsConnectionHostArnOrProviderType {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `host_arn` (one of the [CodestarconnectionsConnectionHostArnOrProviderType] choices).
-final class CodestarconnectionsConnectionHostArnOption
+/// The [CodestarconnectionsConnectionHostArnOrProviderType.hostArn] choice: sets `host_arn`.
+final class CodestarconnectionsConnectionHostArnOrProviderTypeHostArn
     extends CodestarconnectionsConnectionHostArnOrProviderType {
-  const CodestarconnectionsConnectionHostArnOption({required this.hostArn});
+  const CodestarconnectionsConnectionHostArnOrProviderTypeHostArn(this.hostArn);
 
   final TfArg<String> hostArn;
 
@@ -52,12 +64,12 @@ final class CodestarconnectionsConnectionHostArnOption
   Map<String, TfArg<Object?>> get argMap => {'host_arn': hostArn};
 }
 
-/// Sets `provider_type` (one of the [CodestarconnectionsConnectionHostArnOrProviderType] choices).
-final class CodestarconnectionsConnectionProviderTypeOption
+/// The [CodestarconnectionsConnectionHostArnOrProviderType.providerType] choice: sets `provider_type`.
+final class CodestarconnectionsConnectionHostArnOrProviderTypeProviderType
     extends CodestarconnectionsConnectionHostArnOrProviderType {
-  const CodestarconnectionsConnectionProviderTypeOption({
-    required this.providerType,
-  });
+  const CodestarconnectionsConnectionHostArnOrProviderTypeProviderType(
+    this.providerType,
+  );
 
   final TfArg<CodestarconnectionsConnectionProviderType> providerType;
 

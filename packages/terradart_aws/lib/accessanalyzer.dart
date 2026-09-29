@@ -10,12 +10,12 @@ export 'src/accessanalyzer/aws_accessanalyzer_analyzer.dart'
         AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRule,
         AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusion,
         AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResourceTypes,
-        AccessanalyzerAnalyzerConfigurationInternalAccessOption,
         AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess,
+        AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessInternalAccess,
+        AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessUnusedAccess,
         AccessanalyzerAnalyzerConfigurationUnusedAccess,
         AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRule,
         AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRuleExclusion,
-        AccessanalyzerAnalyzerConfigurationUnusedAccessOption,
         AccessanalyzerAnalyzerType,
         AwsAccessanalyzerAnalyzer;
 export 'src/accessanalyzer/aws_accessanalyzer_archive_rule.dart'

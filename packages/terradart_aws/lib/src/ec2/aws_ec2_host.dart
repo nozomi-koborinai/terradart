@@ -28,8 +28,20 @@ enum Ec2HostHostRecovery implements TerraformEnum {
 
 /// Exactly one of `instance_family`, `instance_type` on `aws_ec2_host`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.instanceFamily(...)`.
 sealed class Ec2HostInstanceFamilyOrInstanceType {
   const Ec2HostInstanceFamilyOrInstanceType();
+
+  /// Sets `instance_family`.
+  const factory Ec2HostInstanceFamilyOrInstanceType.instanceFamily(
+    TfArg<String> instanceFamily,
+  ) = Ec2HostInstanceFamilyOrInstanceTypeInstanceFamily;
+
+  /// Sets `instance_type`.
+  const factory Ec2HostInstanceFamilyOrInstanceType.instanceType(
+    TfArg<String> instanceType,
+  ) = Ec2HostInstanceFamilyOrInstanceTypeInstanceType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -41,10 +53,10 @@ sealed class Ec2HostInstanceFamilyOrInstanceType {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `instance_family` (one of the [Ec2HostInstanceFamilyOrInstanceType] choices).
-final class Ec2HostInstanceFamilyOption
+/// The [Ec2HostInstanceFamilyOrInstanceType.instanceFamily] choice: sets `instance_family`.
+final class Ec2HostInstanceFamilyOrInstanceTypeInstanceFamily
     extends Ec2HostInstanceFamilyOrInstanceType {
-  const Ec2HostInstanceFamilyOption({required this.instanceFamily});
+  const Ec2HostInstanceFamilyOrInstanceTypeInstanceFamily(this.instanceFamily);
 
   final TfArg<String> instanceFamily;
 
@@ -60,10 +72,10 @@ final class Ec2HostInstanceFamilyOption
   Map<String, TfArg<Object?>> get argMap => {'instance_family': instanceFamily};
 }
 
-/// Sets `instance_type` (one of the [Ec2HostInstanceFamilyOrInstanceType] choices).
-final class Ec2HostInstanceTypeOption
+/// The [Ec2HostInstanceFamilyOrInstanceType.instanceType] choice: sets `instance_type`.
+final class Ec2HostInstanceFamilyOrInstanceTypeInstanceType
     extends Ec2HostInstanceFamilyOrInstanceType {
-  const Ec2HostInstanceTypeOption({required this.instanceType});
+  const Ec2HostInstanceFamilyOrInstanceTypeInstanceType(this.instanceType);
 
   final TfArg<String> instanceType;
 

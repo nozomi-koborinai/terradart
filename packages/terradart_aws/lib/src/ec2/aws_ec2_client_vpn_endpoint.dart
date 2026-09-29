@@ -196,8 +196,20 @@ final class Ec2ClientVpnEndpointTransitGatewayConfiguration {
 /// At most one of `availability_zone_ids`, `availability_zones` on the `transit_gateway_configuration` block of `aws_ec2_client_vpn_endpoint`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.availabilityZoneIds(...)`.
 sealed class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZones {
   const Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZones();
+
+  /// Sets `availability_zone_ids`.
+  const factory Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZones.availabilityZoneIds(
+    TfArg<List<Object?>> availabilityZoneIds,
+  ) = Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZonesAvailabilityZoneIds;
+
+  /// Sets `availability_zones`.
+  const factory Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZones.availabilityZones(
+    TfArg<List<Object?>> availabilityZones,
+  ) = Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZonesAvailabilityZones;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -205,13 +217,13 @@ sealed class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsO
   Map<String, Object?> encode();
 }
 
-/// Sets `availability_zone_ids` (one of the [Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZones] choices).
-final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOption
+/// The [Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZones.availabilityZoneIds] choice: sets `availability_zone_ids`.
+final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZonesAvailabilityZoneIds
     extends
         Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZones {
-  const Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOption({
-    required this.availabilityZoneIds,
-  });
+  const Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZonesAvailabilityZoneIds(
+    this.availabilityZoneIds,
+  );
 
   final TfArg<List<Object?>> availabilityZoneIds;
 
@@ -224,13 +236,13 @@ final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOp
   };
 }
 
-/// Sets `availability_zones` (one of the [Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZones] choices).
-final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZonesOption
+/// The [Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZones.availabilityZones] choice: sets `availability_zones`.
+final class Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZonesAvailabilityZones
     extends
         Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZones {
-  const Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZonesOption({
-    required this.availabilityZones,
-  });
+  const Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZoneIdsOrAvailabilityZonesAvailabilityZones(
+    this.availabilityZones,
+  );
 
   final TfArg<List<Object?>> availabilityZones;
 

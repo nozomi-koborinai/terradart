@@ -11,8 +11,20 @@ const Set<String> _awsDmsCertificateSensitive = <String>{
 
 /// Exactly one of `certificate_pem`, `certificate_wallet` on `aws_dms_certificate`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.certificatePem(...)`.
 sealed class DmsCertificateCertificatePemOrCertificateWallet {
   const DmsCertificateCertificatePemOrCertificateWallet();
+
+  /// Sets `certificate_pem`.
+  const factory DmsCertificateCertificatePemOrCertificateWallet.certificatePem(
+    TfArg<String> certificatePem,
+  ) = DmsCertificateCertificatePemOrCertificateWalletCertificatePem;
+
+  /// Sets `certificate_wallet`.
+  const factory DmsCertificateCertificatePemOrCertificateWallet.certificateWallet(
+    TfArg<String> certificateWallet,
+  ) = DmsCertificateCertificatePemOrCertificateWalletCertificateWallet;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -24,10 +36,12 @@ sealed class DmsCertificateCertificatePemOrCertificateWallet {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `certificate_pem` (one of the [DmsCertificateCertificatePemOrCertificateWallet] choices).
-final class DmsCertificateCertificatePemOption
+/// The [DmsCertificateCertificatePemOrCertificateWallet.certificatePem] choice: sets `certificate_pem`.
+final class DmsCertificateCertificatePemOrCertificateWalletCertificatePem
     extends DmsCertificateCertificatePemOrCertificateWallet {
-  const DmsCertificateCertificatePemOption({required this.certificatePem});
+  const DmsCertificateCertificatePemOrCertificateWalletCertificatePem(
+    this.certificatePem,
+  );
 
   final TfArg<String> certificatePem;
 
@@ -43,12 +57,12 @@ final class DmsCertificateCertificatePemOption
   Map<String, TfArg<Object?>> get argMap => {'certificate_pem': certificatePem};
 }
 
-/// Sets `certificate_wallet` (one of the [DmsCertificateCertificatePemOrCertificateWallet] choices).
-final class DmsCertificateCertificateWalletOption
+/// The [DmsCertificateCertificatePemOrCertificateWallet.certificateWallet] choice: sets `certificate_wallet`.
+final class DmsCertificateCertificatePemOrCertificateWalletCertificateWallet
     extends DmsCertificateCertificatePemOrCertificateWallet {
-  const DmsCertificateCertificateWalletOption({
-    required this.certificateWallet,
-  });
+  const DmsCertificateCertificatePemOrCertificateWalletCertificateWallet(
+    this.certificateWallet,
+  );
 
   final TfArg<String> certificateWallet;
 

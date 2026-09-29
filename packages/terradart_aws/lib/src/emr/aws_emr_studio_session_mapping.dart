@@ -18,8 +18,20 @@ enum EmrStudioSessionMappingIdentityType implements TerraformEnum {
 
 /// Exactly one of `identity_id`, `identity_name` on `aws_emr_studio_session_mapping`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.identityId(...)`.
 sealed class EmrStudioSessionMappingIdentityIdOrIdentityName {
   const EmrStudioSessionMappingIdentityIdOrIdentityName();
+
+  /// Sets `identity_id`.
+  const factory EmrStudioSessionMappingIdentityIdOrIdentityName.identityId(
+    TfArg<String> identityId,
+  ) = EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityId;
+
+  /// Sets `identity_name`.
+  const factory EmrStudioSessionMappingIdentityIdOrIdentityName.identityName(
+    TfArg<String> identityName,
+  ) = EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -31,10 +43,12 @@ sealed class EmrStudioSessionMappingIdentityIdOrIdentityName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `identity_id` (one of the [EmrStudioSessionMappingIdentityIdOrIdentityName] choices).
-final class EmrStudioSessionMappingIdentityIdOption
+/// The [EmrStudioSessionMappingIdentityIdOrIdentityName.identityId] choice: sets `identity_id`.
+final class EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityId
     extends EmrStudioSessionMappingIdentityIdOrIdentityName {
-  const EmrStudioSessionMappingIdentityIdOption({required this.identityId});
+  const EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityId(
+    this.identityId,
+  );
 
   final TfArg<String> identityId;
 
@@ -48,10 +62,12 @@ final class EmrStudioSessionMappingIdentityIdOption
   Map<String, TfArg<Object?>> get argMap => {'identity_id': identityId};
 }
 
-/// Sets `identity_name` (one of the [EmrStudioSessionMappingIdentityIdOrIdentityName] choices).
-final class EmrStudioSessionMappingIdentityNameOption
+/// The [EmrStudioSessionMappingIdentityIdOrIdentityName.identityName] choice: sets `identity_name`.
+final class EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityName
     extends EmrStudioSessionMappingIdentityIdOrIdentityName {
-  const EmrStudioSessionMappingIdentityNameOption({required this.identityName});
+  const EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityName(
+    this.identityName,
+  );
 
   final TfArg<String> identityName;
 

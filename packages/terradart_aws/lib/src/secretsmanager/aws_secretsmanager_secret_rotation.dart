@@ -48,8 +48,20 @@ final class SecretsmanagerSecretRotationRotationRules {
 
 /// Exactly one of `automatically_after_days`, `schedule_expression` on the `rotation_rules` block of `aws_secretsmanager_secret_rotation`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.automaticallyAfterDays(...)`.
 sealed class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression {
   const SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression();
+
+  /// Sets `automatically_after_days`.
+  const factory SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression.automaticallyAfterDays(
+    TfArg<num> automaticallyAfterDays,
+  ) = SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionAutomaticallyAfterDays;
+
+  /// Sets `schedule_expression`.
+  const factory SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression.scheduleExpression(
+    TfArg<String> scheduleExpression,
+  ) = SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionScheduleExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -57,13 +69,13 @@ sealed class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrSc
   Map<String, Object?> encode();
 }
 
-/// Sets `automatically_after_days` (one of the [SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression] choices).
-final class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOption
+/// The [SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression.automaticallyAfterDays] choice: sets `automatically_after_days`.
+final class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionAutomaticallyAfterDays
     extends
         SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression {
-  const SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOption({
-    required this.automaticallyAfterDays,
-  });
+  const SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionAutomaticallyAfterDays(
+    this.automaticallyAfterDays,
+  );
 
   final TfArg<num> automaticallyAfterDays;
 
@@ -76,13 +88,13 @@ final class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOptio
   };
 }
 
-/// Sets `schedule_expression` (one of the [SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression] choices).
-final class SecretsmanagerSecretRotationRotationRulesScheduleExpressionOption
+/// The [SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression.scheduleExpression] choice: sets `schedule_expression`.
+final class SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionScheduleExpression
     extends
         SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression {
-  const SecretsmanagerSecretRotationRotationRulesScheduleExpressionOption({
-    required this.scheduleExpression,
-  });
+  const SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpressionScheduleExpression(
+    this.scheduleExpression,
+  );
 
   final TfArg<String> scheduleExpression;
 

@@ -10,8 +10,19 @@ const Set<String> _awsRoute53ZoneSensitive = <String>{};
 /// At most one of `delegation_set_id`, `vpc` on `aws_route53_zone`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.delegationSetId(...)`.
 sealed class Route53ZoneDelegationSetIdOrVpc {
   const Route53ZoneDelegationSetIdOrVpc();
+
+  /// Sets `delegation_set_id`.
+  const factory Route53ZoneDelegationSetIdOrVpc.delegationSetId(
+    TfArg<String> delegationSetId,
+  ) = Route53ZoneDelegationSetIdOrVpcDelegationSetId;
+
+  /// Sets `vpc`.
+  const factory Route53ZoneDelegationSetIdOrVpc.vpc(List<Route53ZoneVpc> vpc) =
+      Route53ZoneDelegationSetIdOrVpcVpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +34,10 @@ sealed class Route53ZoneDelegationSetIdOrVpc {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `delegation_set_id` (one of the [Route53ZoneDelegationSetIdOrVpc] choices).
-final class Route53ZoneDelegationSetIdOption
+/// The [Route53ZoneDelegationSetIdOrVpc.delegationSetId] choice: sets `delegation_set_id`.
+final class Route53ZoneDelegationSetIdOrVpcDelegationSetId
     extends Route53ZoneDelegationSetIdOrVpc {
-  const Route53ZoneDelegationSetIdOption({required this.delegationSetId});
+  const Route53ZoneDelegationSetIdOrVpcDelegationSetId(this.delegationSetId);
 
   final TfArg<String> delegationSetId;
 
@@ -44,9 +55,10 @@ final class Route53ZoneDelegationSetIdOption
   };
 }
 
-/// Sets `vpc` (one of the [Route53ZoneDelegationSetIdOrVpc] choices).
-final class Route53ZoneVpcOption extends Route53ZoneDelegationSetIdOrVpc {
-  const Route53ZoneVpcOption({required this.vpc});
+/// The [Route53ZoneDelegationSetIdOrVpc.vpc] choice: sets `vpc`.
+final class Route53ZoneDelegationSetIdOrVpcVpc
+    extends Route53ZoneDelegationSetIdOrVpc {
+  const Route53ZoneDelegationSetIdOrVpcVpc(this.vpc);
 
   final List<Route53ZoneVpc> vpc;
 

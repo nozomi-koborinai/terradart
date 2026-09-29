@@ -34,8 +34,19 @@ enum Route53RecordType implements TerraformEnum {
 
 /// Exactly one of `alias`, `records` on `aws_route53_record`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.alias(...)`.
 sealed class Route53RecordAliasOrRecords {
   const Route53RecordAliasOrRecords();
+
+  /// Sets `alias`.
+  const factory Route53RecordAliasOrRecords.alias(Route53RecordAlias alias) =
+      Route53RecordAliasOrRecordsAlias;
+
+  /// Sets `records`.
+  const factory Route53RecordAliasOrRecords.records(
+    TfArg<List<String>> records,
+  ) = Route53RecordAliasOrRecordsRecords;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,9 +58,10 @@ sealed class Route53RecordAliasOrRecords {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `alias` (one of the [Route53RecordAliasOrRecords] choices).
-final class Route53RecordAliasOption extends Route53RecordAliasOrRecords {
-  const Route53RecordAliasOption({required this.alias});
+/// The [Route53RecordAliasOrRecords.alias] choice: sets `alias`.
+final class Route53RecordAliasOrRecordsAlias
+    extends Route53RecordAliasOrRecords {
+  const Route53RecordAliasOrRecordsAlias(this.alias);
 
   final Route53RecordAlias alias;
 
@@ -65,9 +77,10 @@ final class Route53RecordAliasOption extends Route53RecordAliasOrRecords {
   };
 }
 
-/// Sets `records` (one of the [Route53RecordAliasOrRecords] choices).
-final class Route53RecordRecordsOption extends Route53RecordAliasOrRecords {
-  const Route53RecordRecordsOption({required this.records});
+/// The [Route53RecordAliasOrRecords.records] choice: sets `records`.
+final class Route53RecordAliasOrRecordsRecords
+    extends Route53RecordAliasOrRecords {
+  const Route53RecordAliasOrRecordsRecords(this.records);
 
   final TfArg<List<String>> records;
 
@@ -84,8 +97,45 @@ final class Route53RecordRecordsOption extends Route53RecordAliasOrRecords {
 /// At most one of `cidr_routing_policy`, `failover_routing_policy`, `geolocation_routing_policy`, `geoproximity_routing_policy`, `latency_routing_policy`, `multivalue_answer_routing_policy`, `weighted_routing_policy` on `aws_route53_record`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.cidrRoutingPolicy(...)`.
 sealed class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
   const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy();
+
+  /// Sets `cidr_routing_policy`.
+  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.cidrRoutingPolicy(
+    Route53RecordCidrRoutingPolicy cidrRoutingPolicy,
+  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyCidrRoutingPolicy;
+
+  /// Sets `failover_routing_policy`.
+  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.failoverRoutingPolicy(
+    Route53RecordFailoverRoutingPolicy failoverRoutingPolicy,
+  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyFailoverRoutingPolicy;
+
+  /// Sets `geolocation_routing_policy`.
+  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.geolocationRoutingPolicy(
+    Route53RecordGeolocationRoutingPolicy geolocationRoutingPolicy,
+  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeolocationRoutingPolicy;
+
+  /// Sets `geoproximity_routing_policy`.
+  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.geoproximityRoutingPolicy(
+    Route53RecordGeoproximityRoutingPolicy geoproximityRoutingPolicy,
+  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeoproximityRoutingPolicy;
+
+  /// Sets `latency_routing_policy`.
+  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.latencyRoutingPolicy(
+    Route53RecordLatencyRoutingPolicy latencyRoutingPolicy,
+  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyLatencyRoutingPolicy;
+
+  /// Sets `multivalue_answer_routing_policy`.
+  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.multivalueAnswerRoutingPolicy(
+    TfArg<bool> multivalueAnswerRoutingPolicy,
+  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyMultivalueAnswerRoutingPolicy;
+
+  /// Sets `weighted_routing_policy`.
+  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.weightedRoutingPolicy(
+    Route53RecordWeightedRoutingPolicy weightedRoutingPolicy,
+  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyWeightedRoutingPolicy;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -97,11 +147,13 @@ sealed class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationR
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cidr_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
-final class Route53RecordCidrRoutingPolicyOption
+/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.cidrRoutingPolicy] choice: sets `cidr_routing_policy`.
+final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyCidrRoutingPolicy
     extends
         Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordCidrRoutingPolicyOption({required this.cidrRoutingPolicy});
+  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyCidrRoutingPolicy(
+    this.cidrRoutingPolicy,
+  );
 
   final Route53RecordCidrRoutingPolicy cidrRoutingPolicy;
 
@@ -119,13 +171,13 @@ final class Route53RecordCidrRoutingPolicyOption
   };
 }
 
-/// Sets `failover_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
-final class Route53RecordFailoverRoutingPolicyOption
+/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.failoverRoutingPolicy] choice: sets `failover_routing_policy`.
+final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyFailoverRoutingPolicy
     extends
         Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordFailoverRoutingPolicyOption({
-    required this.failoverRoutingPolicy,
-  });
+  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyFailoverRoutingPolicy(
+    this.failoverRoutingPolicy,
+  );
 
   final Route53RecordFailoverRoutingPolicy failoverRoutingPolicy;
 
@@ -143,13 +195,13 @@ final class Route53RecordFailoverRoutingPolicyOption
   };
 }
 
-/// Sets `geolocation_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
-final class Route53RecordGeolocationRoutingPolicyOption
+/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.geolocationRoutingPolicy] choice: sets `geolocation_routing_policy`.
+final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeolocationRoutingPolicy
     extends
         Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordGeolocationRoutingPolicyOption({
-    required this.geolocationRoutingPolicy,
-  });
+  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeolocationRoutingPolicy(
+    this.geolocationRoutingPolicy,
+  );
 
   final Route53RecordGeolocationRoutingPolicy geolocationRoutingPolicy;
 
@@ -169,13 +221,13 @@ final class Route53RecordGeolocationRoutingPolicyOption
   };
 }
 
-/// Sets `geoproximity_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
-final class Route53RecordGeoproximityRoutingPolicyOption
+/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.geoproximityRoutingPolicy] choice: sets `geoproximity_routing_policy`.
+final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeoproximityRoutingPolicy
     extends
         Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordGeoproximityRoutingPolicyOption({
-    required this.geoproximityRoutingPolicy,
-  });
+  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeoproximityRoutingPolicy(
+    this.geoproximityRoutingPolicy,
+  );
 
   final Route53RecordGeoproximityRoutingPolicy geoproximityRoutingPolicy;
 
@@ -195,13 +247,13 @@ final class Route53RecordGeoproximityRoutingPolicyOption
   };
 }
 
-/// Sets `latency_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
-final class Route53RecordLatencyRoutingPolicyOption
+/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.latencyRoutingPolicy] choice: sets `latency_routing_policy`.
+final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyLatencyRoutingPolicy
     extends
         Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordLatencyRoutingPolicyOption({
-    required this.latencyRoutingPolicy,
-  });
+  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyLatencyRoutingPolicy(
+    this.latencyRoutingPolicy,
+  );
 
   final Route53RecordLatencyRoutingPolicy latencyRoutingPolicy;
 
@@ -219,13 +271,13 @@ final class Route53RecordLatencyRoutingPolicyOption
   };
 }
 
-/// Sets `multivalue_answer_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
-final class Route53RecordMultivalueAnswerRoutingPolicyOption
+/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.multivalueAnswerRoutingPolicy] choice: sets `multivalue_answer_routing_policy`.
+final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyMultivalueAnswerRoutingPolicy
     extends
         Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordMultivalueAnswerRoutingPolicyOption({
-    required this.multivalueAnswerRoutingPolicy,
-  });
+  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyMultivalueAnswerRoutingPolicy(
+    this.multivalueAnswerRoutingPolicy,
+  );
 
   final TfArg<bool> multivalueAnswerRoutingPolicy;
 
@@ -244,13 +296,13 @@ final class Route53RecordMultivalueAnswerRoutingPolicyOption
   };
 }
 
-/// Sets `weighted_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
-final class Route53RecordWeightedRoutingPolicyOption
+/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.weightedRoutingPolicy] choice: sets `weighted_routing_policy`.
+final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyWeightedRoutingPolicy
     extends
         Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordWeightedRoutingPolicyOption({
-    required this.weightedRoutingPolicy,
-  });
+  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyWeightedRoutingPolicy(
+    this.weightedRoutingPolicy,
+  );
 
   final Route53RecordWeightedRoutingPolicy weightedRoutingPolicy;
 

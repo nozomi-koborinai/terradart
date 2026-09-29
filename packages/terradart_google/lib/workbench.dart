@@ -14,7 +14,6 @@ export 'src/workbench/google_workbench_instance.dart'
         WorkbenchInstanceGceSetupBootDiskDiskType,
         WorkbenchInstanceGceSetupConfidentialInstanceConfig,
         WorkbenchInstanceGceSetupContainerImage,
-        WorkbenchInstanceGceSetupContainerImageOption,
         WorkbenchInstanceGceSetupDataDisks,
         WorkbenchInstanceGceSetupDataDisksDiskEncryption,
         WorkbenchInstanceGceSetupDataDisksDiskType,
@@ -26,8 +25,9 @@ export 'src/workbench/google_workbench_instance.dart'
         WorkbenchInstanceGceSetupServiceAccounts,
         WorkbenchInstanceGceSetupShieldedInstanceConfig,
         WorkbenchInstanceGceSetupVmImage,
-        WorkbenchInstanceGceSetupVmImageOption,
-        WorkbenchInstanceGceSetupVmImageOrContainerImage;
+        WorkbenchInstanceGceSetupVmImageOrContainerImage,
+        WorkbenchInstanceGceSetupVmImageOrContainerImageContainerImage,
+        WorkbenchInstanceGceSetupVmImageOrContainerImageVmImage;
 export 'src/workbench/google_workbench_instance_iam_binding.dart'
     show GoogleWorkbenchInstanceIamBinding;
 export 'src/workbench/google_workbench_instance_iam_member.dart'

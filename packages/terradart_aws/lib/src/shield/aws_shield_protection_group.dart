@@ -45,8 +45,20 @@ enum ShieldProtectionGroupResourceType implements TerraformEnum {
 /// At most one of `members`, `resource_type` on `aws_shield_protection_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.members(...)`.
 sealed class ShieldProtectionGroupMembersOrResourceType {
   const ShieldProtectionGroupMembersOrResourceType();
+
+  /// Sets `members`.
+  const factory ShieldProtectionGroupMembersOrResourceType.members(
+    TfArg<List<String>> members,
+  ) = ShieldProtectionGroupMembersOrResourceTypeMembers;
+
+  /// Sets `resource_type`.
+  const factory ShieldProtectionGroupMembersOrResourceType.resourceType(
+    TfArg<ShieldProtectionGroupResourceType> resourceType,
+  ) = ShieldProtectionGroupMembersOrResourceTypeResourceType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -58,10 +70,10 @@ sealed class ShieldProtectionGroupMembersOrResourceType {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `members` (one of the [ShieldProtectionGroupMembersOrResourceType] choices).
-final class ShieldProtectionGroupMembersOption
+/// The [ShieldProtectionGroupMembersOrResourceType.members] choice: sets `members`.
+final class ShieldProtectionGroupMembersOrResourceTypeMembers
     extends ShieldProtectionGroupMembersOrResourceType {
-  const ShieldProtectionGroupMembersOption({required this.members});
+  const ShieldProtectionGroupMembersOrResourceTypeMembers(this.members);
 
   final TfArg<List<String>> members;
 
@@ -75,10 +87,12 @@ final class ShieldProtectionGroupMembersOption
   Map<String, TfArg<Object?>> get argMap => {'members': members};
 }
 
-/// Sets `resource_type` (one of the [ShieldProtectionGroupMembersOrResourceType] choices).
-final class ShieldProtectionGroupResourceTypeOption
+/// The [ShieldProtectionGroupMembersOrResourceType.resourceType] choice: sets `resource_type`.
+final class ShieldProtectionGroupMembersOrResourceTypeResourceType
     extends ShieldProtectionGroupMembersOrResourceType {
-  const ShieldProtectionGroupResourceTypeOption({required this.resourceType});
+  const ShieldProtectionGroupMembersOrResourceTypeResourceType(
+    this.resourceType,
+  );
 
   final TfArg<ShieldProtectionGroupResourceType> resourceType;
 

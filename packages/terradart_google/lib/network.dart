@@ -55,14 +55,14 @@ export 'src/network/google_network_connectivity_policy_based_route.dart'
         NetworkConnectivityPolicyBasedRouteFilter,
         NetworkConnectivityPolicyBasedRouteFilterProtocolVersion,
         NetworkConnectivityPolicyBasedRouteInterconnectAttachment,
-        NetworkConnectivityPolicyBasedRouteInterconnectAttachmentOption,
         NetworkConnectivityPolicyBasedRouteNextHop,
         NetworkConnectivityPolicyBasedRouteNextHopIlbIp,
         NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes,
         NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice,
         NetworkConnectivityPolicyBasedRouteVirtualMachine,
-        NetworkConnectivityPolicyBasedRouteVirtualMachineOption,
-        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment;
+        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment,
+        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment,
+        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine;
 export 'src/network/google_network_connectivity_regional_endpoint.dart'
     show
         GoogleNetworkConnectivityRegionalEndpoint,
@@ -228,15 +228,16 @@ export 'src/network/google_network_security_security_profile.dart'
     show
         GoogleNetworkSecuritySecurityProfile,
         NetworkSecuritySecurityProfileCustomInterceptProfile,
-        NetworkSecuritySecurityProfileCustomInterceptProfileOption,
         NetworkSecuritySecurityProfileCustomMirroringProfile,
-        NetworkSecuritySecurityProfileCustomMirroringProfileOption,
         NetworkSecuritySecurityProfileThreatPreventionProfile,
         NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverrides,
         NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesAction,
         NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesProtocol,
-        NetworkSecuritySecurityProfileThreatPreventionProfileOption,
         NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile,
+        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileCustomInterceptProfile,
+        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileCustomMirroringProfile,
+        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileThreatPreventionProfile,
+        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileUrlFilteringProfile,
         NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverrides,
         NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesAction,
         NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesSeverity,
@@ -244,7 +245,6 @@ export 'src/network/google_network_security_security_profile.dart'
         NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverridesAction,
         NetworkSecuritySecurityProfileType,
         NetworkSecuritySecurityProfileUrlFilteringProfile,
-        NetworkSecuritySecurityProfileUrlFilteringProfileOption,
         NetworkSecuritySecurityProfileUrlFilteringProfileUrlFilters,
         NetworkSecuritySecurityProfileUrlFilteringProfileUrlFiltersFilteringAction;
 export 'src/network/google_network_security_security_profile_group.dart'
@@ -355,11 +355,11 @@ export 'src/network/google_network_services_endpoint_policy.dart'
 export 'src/network/google_network_services_gateway.dart'
     show
         GoogleNetworkServicesGateway,
-        NetworkServicesGatewayAllPortsOption,
         NetworkServicesGatewayAllPortsOrPorts,
+        NetworkServicesGatewayAllPortsOrPortsAllPorts,
+        NetworkServicesGatewayAllPortsOrPortsPorts,
         NetworkServicesGatewayEnvoyHeaders,
         NetworkServicesGatewayIpVersion,
-        NetworkServicesGatewayPortsOption,
         NetworkServicesGatewayRoutingMode,
         NetworkServicesGatewayType;
 export 'src/network/google_network_services_grpc_route.dart'
@@ -395,24 +395,24 @@ export 'src/network/google_network_services_http_route.dart'
         NetworkServicesHttpRouteRulesActionRetryPolicy,
         NetworkServicesHttpRouteRulesActionUrlRewrite,
         NetworkServicesHttpRouteRulesMatches,
-        NetworkServicesHttpRouteRulesMatchesFullPathMatchOption,
         NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatch,
+        NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatchFullPathMatch,
+        NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatchPrefixMatch,
+        NetworkServicesHttpRouteRulesMatchesFullPathMatchOrPrefixMatchOrRegexMatchRegexMatch,
         NetworkServicesHttpRouteRulesMatchesHeaders,
-        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOption,
         NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch,
-        NetworkServicesHttpRouteRulesMatchesHeadersPrefixMatchOption,
-        NetworkServicesHttpRouteRulesMatchesHeadersPresentMatchOption,
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatchExactMatch,
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatchPrefixMatch,
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatchPresentMatch,
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatchRangeMatch,
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatchRegexMatch,
+        NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatchSuffixMatch,
         NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch,
-        NetworkServicesHttpRouteRulesMatchesHeadersRangeMatchOption,
-        NetworkServicesHttpRouteRulesMatchesHeadersRegexMatchOption,
-        NetworkServicesHttpRouteRulesMatchesHeadersSuffixMatchOption,
-        NetworkServicesHttpRouteRulesMatchesPrefixMatchOption,
         NetworkServicesHttpRouteRulesMatchesQueryParameters,
-        NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOption,
         NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatch,
-        NetworkServicesHttpRouteRulesMatchesQueryParametersPresentMatchOption,
-        NetworkServicesHttpRouteRulesMatchesQueryParametersRegexMatchOption,
-        NetworkServicesHttpRouteRulesMatchesRegexMatchOption;
+        NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatchExactMatch,
+        NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatchPresentMatch,
+        NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOrRegexMatchOrPresentMatchRegexMatch;
 export 'src/network/google_network_services_lb_edge_extension.dart'
     show
         GoogleNetworkServicesLbEdgeExtension,

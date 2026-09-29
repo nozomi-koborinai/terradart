@@ -9,8 +9,20 @@ const Set<String> _awsDxHostedPrivateVirtualInterfaceAccepterSensitive =
 
 /// Exactly one of `dx_gateway_id`, `vpn_gateway_id` on `aws_dx_hosted_private_virtual_interface_accepter`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.dxGatewayId(...)`.
 sealed class DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId {
   const DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId();
+
+  /// Sets `dx_gateway_id`.
+  const factory DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId.dxGatewayId(
+    TfArg<String> dxGatewayId,
+  ) = DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayIdDxGatewayId;
+
+  /// Sets `vpn_gateway_id`.
+  const factory DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId.vpnGatewayId(
+    TfArg<String> vpnGatewayId,
+  ) = DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayIdVpnGatewayId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,12 +34,12 @@ sealed class DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `dx_gateway_id` (one of the [DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId] choices).
-final class DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOption
+/// The [DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId.dxGatewayId] choice: sets `dx_gateway_id`.
+final class DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayIdDxGatewayId
     extends DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId {
-  const DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOption({
-    required this.dxGatewayId,
-  });
+  const DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayIdDxGatewayId(
+    this.dxGatewayId,
+  );
 
   final TfArg<String> dxGatewayId;
 
@@ -41,12 +53,12 @@ final class DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOption
   Map<String, TfArg<Object?>> get argMap => {'dx_gateway_id': dxGatewayId};
 }
 
-/// Sets `vpn_gateway_id` (one of the [DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId] choices).
-final class DxHostedPrivateVirtualInterfaceAccepterVpnGatewayIdOption
+/// The [DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId.vpnGatewayId] choice: sets `vpn_gateway_id`.
+final class DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayIdVpnGatewayId
     extends DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayId {
-  const DxHostedPrivateVirtualInterfaceAccepterVpnGatewayIdOption({
-    required this.vpnGatewayId,
-  });
+  const DxHostedPrivateVirtualInterfaceAccepterDxGatewayIdOrVpnGatewayIdVpnGatewayId(
+    this.vpnGatewayId,
+  );
 
   final TfArg<String> vpnGatewayId;
 

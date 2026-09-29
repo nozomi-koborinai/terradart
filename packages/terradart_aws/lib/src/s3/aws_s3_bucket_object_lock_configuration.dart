@@ -54,8 +54,20 @@ final class S3BucketObjectLockConfigurationRuleDefaultRetention {
 /// At most one of `days`, `years` on the `rule.default_retention` block of `aws_s3_bucket_object_lock_configuration`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.days(...)`.
 sealed class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
   const S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears();
+
+  /// Sets `days`.
+  const factory S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears.days(
+    TfArg<num> days,
+  ) = S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays;
+
+  /// Sets `years`.
+  const factory S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears.years(
+    TfArg<num> years,
+  ) = S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsYears;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -63,12 +75,12 @@ sealed class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
   Map<String, Object?> encode();
 }
 
-/// Sets `days` (one of the [S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears] choices).
-final class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOption
+/// The [S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears.days] choice: sets `days`.
+final class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays
     extends S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
-  const S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOption({
-    required this.days,
-  });
+  const S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays(
+    this.days,
+  );
 
   final TfArg<num> days;
 
@@ -79,12 +91,12 @@ final class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOption
   Map<String, Object?> encode() => {'days': days.toTfJson()};
 }
 
-/// Sets `years` (one of the [S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears] choices).
-final class S3BucketObjectLockConfigurationRuleDefaultRetentionYearsOption
+/// The [S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears.years] choice: sets `years`.
+final class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsYears
     extends S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
-  const S3BucketObjectLockConfigurationRuleDefaultRetentionYearsOption({
-    required this.years,
-  });
+  const S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsYears(
+    this.years,
+  );
 
   final TfArg<num> years;
 

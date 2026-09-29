@@ -92,8 +92,19 @@ enum LbTargetGroupTargetType implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_lb_target_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class LbTargetGroupNameOrNamePrefix {
   const LbTargetGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory LbTargetGroupNameOrNamePrefix.name(TfArg<String> name) =
+      LbTargetGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory LbTargetGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = LbTargetGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -105,9 +116,10 @@ sealed class LbTargetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [LbTargetGroupNameOrNamePrefix] choices).
-final class LbTargetGroupNameOption extends LbTargetGroupNameOrNamePrefix {
-  const LbTargetGroupNameOption({required this.name});
+/// The [LbTargetGroupNameOrNamePrefix.name] choice: sets `name`.
+final class LbTargetGroupNameOrNamePrefixName
+    extends LbTargetGroupNameOrNamePrefix {
+  const LbTargetGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -121,10 +133,10 @@ final class LbTargetGroupNameOption extends LbTargetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [LbTargetGroupNameOrNamePrefix] choices).
-final class LbTargetGroupNamePrefixOption
+/// The [LbTargetGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class LbTargetGroupNameOrNamePrefixNamePrefix
     extends LbTargetGroupNameOrNamePrefix {
-  const LbTargetGroupNamePrefixOption({required this.namePrefix});
+  const LbTargetGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

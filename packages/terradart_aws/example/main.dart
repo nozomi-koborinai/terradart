@@ -36,7 +36,7 @@ final class HelloStack extends Stack {
     final role = AwsIamRole(
       localName: 'hello',
       assumeRolePolicy: TfArg.ref(trust.json),
-      nameOrNamePrefix: IamRoleNameOption(name: TfArg.literal('hello-dart')),
+      nameOrNamePrefix: .name(TfArg.literal('hello-dart')),
     );
     add(role);
     add(
@@ -46,8 +46,8 @@ final class HelloStack extends Stack {
         role: TfArg.ref(role.arn),
         runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023),
         handler: TfArg.literal('bootstrap'),
-        filenameOrImageUriOrS3Bucket: LambdaFunctionFilenameOption(
-          filename: TfArg.literal('build/bootstrap.zip'),
+        filenameOrImageUriOrS3Bucket: .filename(
+          TfArg.literal('build/bootstrap.zip'),
         ),
       ),
     );

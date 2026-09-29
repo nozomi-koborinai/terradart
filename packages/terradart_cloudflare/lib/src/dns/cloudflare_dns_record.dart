@@ -39,8 +39,18 @@ enum DnsRecordType implements TerraformEnum {
 /// At most one of `content`, `data` on `cloudflare_dns_record`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.content(...)`.
 sealed class DnsRecordContentOrData {
   const DnsRecordContentOrData();
+
+  /// Sets `content`.
+  const factory DnsRecordContentOrData.content(TfArg<String> content) =
+      DnsRecordContentOrDataContent;
+
+  /// Sets `data`.
+  const factory DnsRecordContentOrData.data(DnsRecordData data) =
+      DnsRecordContentOrDataData;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,9 +62,9 @@ sealed class DnsRecordContentOrData {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `content` (one of the [DnsRecordContentOrData] choices).
-final class DnsRecordContentOption extends DnsRecordContentOrData {
-  const DnsRecordContentOption({required this.content});
+/// The [DnsRecordContentOrData.content] choice: sets `content`.
+final class DnsRecordContentOrDataContent extends DnsRecordContentOrData {
+  const DnsRecordContentOrDataContent(this.content);
 
   final TfArg<String> content;
 
@@ -68,9 +78,9 @@ final class DnsRecordContentOption extends DnsRecordContentOrData {
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
 
-/// Sets `data` (one of the [DnsRecordContentOrData] choices).
-final class DnsRecordDataOption extends DnsRecordContentOrData {
-  const DnsRecordDataOption({required this.data});
+/// The [DnsRecordContentOrData.data] choice: sets `data`.
+final class DnsRecordContentOrDataData extends DnsRecordContentOrData {
+  const DnsRecordContentOrDataData(this.data);
 
   final DnsRecordData data;
 

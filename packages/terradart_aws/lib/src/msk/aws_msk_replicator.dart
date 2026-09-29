@@ -313,8 +313,20 @@ final class MskReplicatorReplicationInfoList {
 
 /// Exactly one of `source_kafka_cluster_arn`, `source_kafka_cluster_id` on the `replication_info_list` block of `aws_msk_replicator`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sourceKafkaClusterArn(...)`.
 sealed class MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId {
   const MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId();
+
+  /// Sets `source_kafka_cluster_arn`.
+  const factory MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId.sourceKafkaClusterArn(
+    TfArg<String> sourceKafkaClusterArn,
+  ) = MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterIdSourceKafkaClusterArn;
+
+  /// Sets `source_kafka_cluster_id`.
+  const factory MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId.sourceKafkaClusterId(
+    TfArg<String> sourceKafkaClusterId,
+  ) = MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterIdSourceKafkaClusterId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -322,13 +334,13 @@ sealed class MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaC
   Map<String, Object?> encode();
 }
 
-/// Sets `source_kafka_cluster_arn` (one of the [MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId] choices).
-final class MskReplicatorReplicationInfoListSourceKafkaClusterArnOption
+/// The [MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId.sourceKafkaClusterArn] choice: sets `source_kafka_cluster_arn`.
+final class MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterIdSourceKafkaClusterArn
     extends
         MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId {
-  const MskReplicatorReplicationInfoListSourceKafkaClusterArnOption({
-    required this.sourceKafkaClusterArn,
-  });
+  const MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterIdSourceKafkaClusterArn(
+    this.sourceKafkaClusterArn,
+  );
 
   final TfArg<String> sourceKafkaClusterArn;
 
@@ -341,13 +353,13 @@ final class MskReplicatorReplicationInfoListSourceKafkaClusterArnOption
   };
 }
 
-/// Sets `source_kafka_cluster_id` (one of the [MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId] choices).
-final class MskReplicatorReplicationInfoListSourceKafkaClusterIdOption
+/// The [MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId.sourceKafkaClusterId] choice: sets `source_kafka_cluster_id`.
+final class MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterIdSourceKafkaClusterId
     extends
         MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterId {
-  const MskReplicatorReplicationInfoListSourceKafkaClusterIdOption({
-    required this.sourceKafkaClusterId,
-  });
+  const MskReplicatorReplicationInfoListSourceKafkaClusterArnOrSourceKafkaClusterIdSourceKafkaClusterId(
+    this.sourceKafkaClusterId,
+  );
 
   final TfArg<String> sourceKafkaClusterId;
 
@@ -362,8 +374,20 @@ final class MskReplicatorReplicationInfoListSourceKafkaClusterIdOption
 
 /// Exactly one of `target_kafka_cluster_arn`, `target_kafka_cluster_id` on the `replication_info_list` block of `aws_msk_replicator`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.targetKafkaClusterArn(...)`.
 sealed class MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId {
   const MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId();
+
+  /// Sets `target_kafka_cluster_arn`.
+  const factory MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId.targetKafkaClusterArn(
+    TfArg<String> targetKafkaClusterArn,
+  ) = MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterIdTargetKafkaClusterArn;
+
+  /// Sets `target_kafka_cluster_id`.
+  const factory MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId.targetKafkaClusterId(
+    TfArg<String> targetKafkaClusterId,
+  ) = MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterIdTargetKafkaClusterId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -371,13 +395,13 @@ sealed class MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaC
   Map<String, Object?> encode();
 }
 
-/// Sets `target_kafka_cluster_arn` (one of the [MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId] choices).
-final class MskReplicatorReplicationInfoListTargetKafkaClusterArnOption
+/// The [MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId.targetKafkaClusterArn] choice: sets `target_kafka_cluster_arn`.
+final class MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterIdTargetKafkaClusterArn
     extends
         MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId {
-  const MskReplicatorReplicationInfoListTargetKafkaClusterArnOption({
-    required this.targetKafkaClusterArn,
-  });
+  const MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterIdTargetKafkaClusterArn(
+    this.targetKafkaClusterArn,
+  );
 
   final TfArg<String> targetKafkaClusterArn;
 
@@ -390,13 +414,13 @@ final class MskReplicatorReplicationInfoListTargetKafkaClusterArnOption
   };
 }
 
-/// Sets `target_kafka_cluster_id` (one of the [MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId] choices).
-final class MskReplicatorReplicationInfoListTargetKafkaClusterIdOption
+/// The [MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId.targetKafkaClusterId] choice: sets `target_kafka_cluster_id`.
+final class MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterIdTargetKafkaClusterId
     extends
         MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterId {
-  const MskReplicatorReplicationInfoListTargetKafkaClusterIdOption({
-    required this.targetKafkaClusterId,
-  });
+  const MskReplicatorReplicationInfoListTargetKafkaClusterArnOrTargetKafkaClusterIdTargetKafkaClusterId(
+    this.targetKafkaClusterId,
+  );
 
   final TfArg<String> targetKafkaClusterId;
 

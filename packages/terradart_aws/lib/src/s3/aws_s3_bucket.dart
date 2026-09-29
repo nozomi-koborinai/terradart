@@ -40,8 +40,18 @@ enum S3BucketRequestPayer implements TerraformEnum {
 /// At most one of `acl`, `grant` on `aws_s3_bucket`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.acl(...)`.
 sealed class S3BucketAclOrGrant {
   const S3BucketAclOrGrant();
+
+  /// Sets `acl`.
+  const factory S3BucketAclOrGrant.acl(TfArg<String> acl) =
+      S3BucketAclOrGrantAcl;
+
+  /// Sets `grant`.
+  const factory S3BucketAclOrGrant.grant(List<S3BucketGrant> grant) =
+      S3BucketAclOrGrantGrant;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,9 +63,9 @@ sealed class S3BucketAclOrGrant {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `acl` (one of the [S3BucketAclOrGrant] choices).
-final class S3BucketAclOption extends S3BucketAclOrGrant {
-  const S3BucketAclOption({required this.acl});
+/// The [S3BucketAclOrGrant.acl] choice: sets `acl`.
+final class S3BucketAclOrGrantAcl extends S3BucketAclOrGrant {
+  const S3BucketAclOrGrantAcl(this.acl);
 
   final TfArg<String> acl;
 
@@ -69,9 +79,9 @@ final class S3BucketAclOption extends S3BucketAclOrGrant {
   Map<String, TfArg<Object?>> get argMap => {'acl': acl};
 }
 
-/// Sets `grant` (one of the [S3BucketAclOrGrant] choices).
-final class S3BucketGrantOption extends S3BucketAclOrGrant {
-  const S3BucketGrantOption({required this.grant});
+/// The [S3BucketAclOrGrant.grant] choice: sets `grant`.
+final class S3BucketAclOrGrantGrant extends S3BucketAclOrGrant {
+  const S3BucketAclOrGrantGrant(this.grant);
 
   final List<S3BucketGrant> grant;
 
@@ -92,8 +102,19 @@ final class S3BucketGrantOption extends S3BucketAclOrGrant {
 /// At most one of `bucket`, `bucket_prefix` on `aws_s3_bucket`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.bucket(...)`.
 sealed class S3BucketBucketOrBucketPrefix {
   const S3BucketBucketOrBucketPrefix();
+
+  /// Sets `bucket`.
+  const factory S3BucketBucketOrBucketPrefix.bucket(TfArg<String> bucket) =
+      S3BucketBucketOrBucketPrefixBucket;
+
+  /// Sets `bucket_prefix`.
+  const factory S3BucketBucketOrBucketPrefix.bucketPrefix(
+    TfArg<String> bucketPrefix,
+  ) = S3BucketBucketOrBucketPrefixBucketPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -105,9 +126,10 @@ sealed class S3BucketBucketOrBucketPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `bucket` (one of the [S3BucketBucketOrBucketPrefix] choices).
-final class S3BucketBucketOption extends S3BucketBucketOrBucketPrefix {
-  const S3BucketBucketOption({required this.bucket});
+/// The [S3BucketBucketOrBucketPrefix.bucket] choice: sets `bucket`.
+final class S3BucketBucketOrBucketPrefixBucket
+    extends S3BucketBucketOrBucketPrefix {
+  const S3BucketBucketOrBucketPrefixBucket(this.bucket);
 
   final TfArg<String> bucket;
 
@@ -121,9 +143,10 @@ final class S3BucketBucketOption extends S3BucketBucketOrBucketPrefix {
   Map<String, TfArg<Object?>> get argMap => {'bucket': bucket};
 }
 
-/// Sets `bucket_prefix` (one of the [S3BucketBucketOrBucketPrefix] choices).
-final class S3BucketBucketPrefixOption extends S3BucketBucketOrBucketPrefix {
-  const S3BucketBucketPrefixOption({required this.bucketPrefix});
+/// The [S3BucketBucketOrBucketPrefix.bucketPrefix] choice: sets `bucket_prefix`.
+final class S3BucketBucketOrBucketPrefixBucketPrefix
+    extends S3BucketBucketOrBucketPrefix {
+  const S3BucketBucketOrBucketPrefixBucketPrefix(this.bucketPrefix);
 
   final TfArg<String> bucketPrefix;
 
@@ -744,8 +767,20 @@ final class S3BucketWebsite {
 
 /// Exactly one of `index_document`, `redirect_all_requests_to` on the `website` block of `aws_s3_bucket`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.indexDocument(...)`.
 sealed class S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo {
   const S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo();
+
+  /// Sets `index_document`.
+  const factory S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo.indexDocument(
+    TfArg<String> indexDocument,
+  ) = S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToIndexDocument;
+
+  /// Sets `redirect_all_requests_to`.
+  const factory S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo.redirectAllRequestsTo(
+    TfArg<String> redirectAllRequestsTo,
+  ) = S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToRedirectAllRequestsTo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -753,10 +788,12 @@ sealed class S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo {
   Map<String, Object?> encode();
 }
 
-/// Sets `index_document` (one of the [S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo] choices).
-final class S3BucketWebsiteIndexDocumentOption
+/// The [S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo.indexDocument] choice: sets `index_document`.
+final class S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToIndexDocument
     extends S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo {
-  const S3BucketWebsiteIndexDocumentOption({required this.indexDocument});
+  const S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToIndexDocument(
+    this.indexDocument,
+  );
 
   final TfArg<String> indexDocument;
 
@@ -767,12 +804,12 @@ final class S3BucketWebsiteIndexDocumentOption
   Map<String, Object?> encode() => {'index_document': indexDocument.toTfJson()};
 }
 
-/// Sets `redirect_all_requests_to` (one of the [S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo] choices).
-final class S3BucketWebsiteRedirectAllRequestsToOption
+/// The [S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo.redirectAllRequestsTo] choice: sets `redirect_all_requests_to`.
+final class S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToRedirectAllRequestsTo
     extends S3BucketWebsiteIndexDocumentOrRedirectAllRequestsTo {
-  const S3BucketWebsiteRedirectAllRequestsToOption({
-    required this.redirectAllRequestsTo,
-  });
+  const S3BucketWebsiteIndexDocumentOrRedirectAllRequestsToRedirectAllRequestsTo(
+    this.redirectAllRequestsTo,
+  );
 
   final TfArg<String> redirectAllRequestsTo;
 

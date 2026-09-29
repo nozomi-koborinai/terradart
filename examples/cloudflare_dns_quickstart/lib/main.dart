@@ -35,9 +35,7 @@ final class CloudflareDnsStack extends Stack {
         name: TfArg.literal('api.terradart-demo.example'),
         type: TfArg.literal(DnsRecordType.cname),
         ttl: TfArg.literal(1),
-        contentOrData: DnsRecordContentOption(
-          content: TfArg.literal('ghs.googlehosted.com'),
-        ),
+        contentOrData: .content(TfArg.literal('ghs.googlehosted.com')),
         proxied: TfArg.literal(true),
       ),
     );

@@ -7,9 +7,9 @@ export 'src/ce/aws_ce_anomaly_monitor.dart'
     show
         AwsCeAnomalyMonitor,
         CeAnomalyMonitorMonitorDimension,
-        CeAnomalyMonitorMonitorDimensionOption,
         CeAnomalyMonitorMonitorDimensionOrMonitorSpecification,
-        CeAnomalyMonitorMonitorSpecificationOption,
+        CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorDimension,
+        CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorSpecification,
         CeAnomalyMonitorMonitorType;
 export 'src/ce/aws_ce_anomaly_subscription.dart'
     show

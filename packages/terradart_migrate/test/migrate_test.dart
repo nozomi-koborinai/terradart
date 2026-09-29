@@ -186,7 +186,7 @@ resource "google_pubsub_topic_iam_member" "viewer" {
       // Typed references, enum members, nested helpers, dependencies.
       expect(src, contains('topic: TfArg.ref(orders.id)'));
       expect(src, contains('TfArg.literal(PubsubSchemaType.protocolBuffer)'));
-      expect(src, contains('pushConfig: PubsubSubscriptionPushConfig('));
+      expect(src, contains('.pushConfig(PubsubSubscriptionPushConfig('));
       expect(src, contains('ackDeadlineSeconds: TfArg.literal(60)'));
       expect(
         src,
@@ -367,7 +367,7 @@ resource "google_pubsub_topic_iam_member" "viewer" {
                 merged: true,
                 variants: {
                   'content': 'XThingContentOption',
-                  'data': 'XThingDataOption',
+                  'data': 'XThingContentOrDataData',
                 },
               ),
             ],
@@ -387,17 +387,19 @@ resource "google_pubsub_topic_iam_member" "viewer" {
               ),
             ],
           ),
-          'XThingDataOption': MigrateHelper(
-            className: 'XThingDataOption',
+          'XThingContentOrDataData': MigrateHelper(
+            className: 'XThingContentOrDataData',
             slots: [
               MigrateSlot(
                 tfName: 'data',
                 dartName: 'data',
                 kind: MigrateSlotKind.scalar,
                 required: true,
+                positional: true,
                 dartType: 'String',
               ),
             ],
+            shorthand: 'data',
           ),
         },
         enums: {},
@@ -423,13 +425,21 @@ resource "google_pubsub_topic_iam_member" "viewer" {
         expect(r.files['lib/demo_stack.dart'], isNot(contains('OrData')));
       });
 
-      test('names the variant of the member that is set', () {
+      test('builds the variant of the member that is set by dot shorthand', () {
         final r = migrate({'name': 't', 'data': 'd'});
         expect(r.report.migratedAddresses, contains('google_x_thing.t'));
         expect(
           r.files['lib/demo_stack.dart'],
+          contains("contentOrData: .data(TfArg.literal(r'd'))"),
+        );
+      });
+
+      test('names a variant class its sealed type has no factory for', () {
+        final r = migrate({'name': 't', 'content': 'c'});
+        expect(
+          r.files['lib/demo_stack.dart'],
           contains(
-            "contentOrData: XThingDataOption(data: TfArg.literal(r'd'))",
+            "contentOrData: XThingContentOption(content: TfArg.literal(r'c'))",
           ),
         );
       });

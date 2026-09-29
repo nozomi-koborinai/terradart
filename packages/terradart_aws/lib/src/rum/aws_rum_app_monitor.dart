@@ -9,8 +9,19 @@ const Set<String> _awsRumAppMonitorSensitive = <String>{};
 
 /// Exactly one of `domain`, `domain_list` on `aws_rum_app_monitor`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.domain(...)`.
 sealed class RumAppMonitorDomainOrDomainList {
   const RumAppMonitorDomainOrDomainList();
+
+  /// Sets `domain`.
+  const factory RumAppMonitorDomainOrDomainList.domain(TfArg<String> domain) =
+      RumAppMonitorDomainOrDomainListDomain;
+
+  /// Sets `domain_list`.
+  const factory RumAppMonitorDomainOrDomainList.domainList(
+    TfArg<List<String>> domainList,
+  ) = RumAppMonitorDomainOrDomainListDomainList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,9 +33,10 @@ sealed class RumAppMonitorDomainOrDomainList {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `domain` (one of the [RumAppMonitorDomainOrDomainList] choices).
-final class RumAppMonitorDomainOption extends RumAppMonitorDomainOrDomainList {
-  const RumAppMonitorDomainOption({required this.domain});
+/// The [RumAppMonitorDomainOrDomainList.domain] choice: sets `domain`.
+final class RumAppMonitorDomainOrDomainListDomain
+    extends RumAppMonitorDomainOrDomainList {
+  const RumAppMonitorDomainOrDomainListDomain(this.domain);
 
   final TfArg<String> domain;
 
@@ -38,10 +50,10 @@ final class RumAppMonitorDomainOption extends RumAppMonitorDomainOrDomainList {
   Map<String, TfArg<Object?>> get argMap => {'domain': domain};
 }
 
-/// Sets `domain_list` (one of the [RumAppMonitorDomainOrDomainList] choices).
-final class RumAppMonitorDomainListOption
+/// The [RumAppMonitorDomainOrDomainList.domainList] choice: sets `domain_list`.
+final class RumAppMonitorDomainOrDomainListDomainList
     extends RumAppMonitorDomainOrDomainList {
-  const RumAppMonitorDomainListOption({required this.domainList});
+  const RumAppMonitorDomainOrDomainListDomainList(this.domainList);
 
   final TfArg<List<String>> domainList;
 

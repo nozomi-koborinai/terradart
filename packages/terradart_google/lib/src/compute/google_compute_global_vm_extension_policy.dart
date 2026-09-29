@@ -100,8 +100,20 @@ final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput {
 
 /// Exactly one of `name`, `predefined_rollout_plan` on the `rollout_operation.rollout_input` block of `google_compute_global_vm_extension_policy`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan {
   const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan();
+
+  /// Sets `name`.
+  const factory ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan.name(
+    TfArg<String> name,
+  ) = ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanName;
+
+  /// Sets `predefined_rollout_plan`.
+  const factory ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan.predefinedRolloutPlan(
+    TfArg<String> predefinedRolloutPlan,
+  ) = ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanPredefinedRolloutPlan;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -109,13 +121,13 @@ sealed class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPre
   Map<String, Object?> encode();
 }
 
-/// Sets `name` (one of the [ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan] choices).
-final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption
+/// The [ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan.name] choice: sets `name`.
+final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanName
     extends
         ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan {
-  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption({
-    required this.name,
-  });
+  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanName(
+    this.name,
+  );
 
   final TfArg<String> name;
 
@@ -126,13 +138,13 @@ final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption
   Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
-/// Sets `predefined_rollout_plan` (one of the [ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan] choices).
-final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPredefinedRolloutPlanOption
+/// The [ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan.predefinedRolloutPlan] choice: sets `predefined_rollout_plan`.
+final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanPredefinedRolloutPlan
     extends
         ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan {
-  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPredefinedRolloutPlanOption({
-    required this.predefinedRolloutPlan,
-  });
+  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanPredefinedRolloutPlan(
+    this.predefinedRolloutPlan,
+  );
 
   final TfArg<String> predefinedRolloutPlan;
 

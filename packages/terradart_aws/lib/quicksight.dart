@@ -962,10 +962,10 @@ export 'src/quicksight/aws_quicksight_refresh_schedule.dart'
         QuicksightRefreshScheduleScheduleScheduleFrequency,
         QuicksightRefreshScheduleScheduleScheduleFrequencyInterval,
         QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay,
-        QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOption,
         QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOrDayOfWeek,
-        QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfWeek,
-        QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfWeekOption;
+        QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOrDayOfWeekDayOfMonth,
+        QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOrDayOfWeekDayOfWeek,
+        QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfWeek;
 export 'src/quicksight/aws_quicksight_role_custom_permission.dart'
     show AwsQuicksightRoleCustomPermission, QuicksightRoleCustomPermissionRole;
 export 'src/quicksight/aws_quicksight_role_membership.dart'

@@ -9,8 +9,19 @@ const Set<String> _awsIamRolePolicySensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_iam_role_policy`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class IamRolePolicyNameOrNamePrefix {
   const IamRolePolicyNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory IamRolePolicyNameOrNamePrefix.name(TfArg<String> name) =
+      IamRolePolicyNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory IamRolePolicyNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = IamRolePolicyNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,9 +33,10 @@ sealed class IamRolePolicyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [IamRolePolicyNameOrNamePrefix] choices).
-final class IamRolePolicyNameOption extends IamRolePolicyNameOrNamePrefix {
-  const IamRolePolicyNameOption({required this.name});
+/// The [IamRolePolicyNameOrNamePrefix.name] choice: sets `name`.
+final class IamRolePolicyNameOrNamePrefixName
+    extends IamRolePolicyNameOrNamePrefix {
+  const IamRolePolicyNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -38,10 +50,10 @@ final class IamRolePolicyNameOption extends IamRolePolicyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [IamRolePolicyNameOrNamePrefix] choices).
-final class IamRolePolicyNamePrefixOption
+/// The [IamRolePolicyNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class IamRolePolicyNameOrNamePrefixNamePrefix
     extends IamRolePolicyNameOrNamePrefix {
-  const IamRolePolicyNamePrefixOption({required this.namePrefix});
+  const IamRolePolicyNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

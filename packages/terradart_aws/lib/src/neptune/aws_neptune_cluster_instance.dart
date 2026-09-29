@@ -18,8 +18,20 @@ enum NeptuneClusterInstanceEngine implements TerraformEnum {
 /// At most one of `identifier`, `identifier_prefix` on `aws_neptune_cluster_instance`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.identifier(...)`.
 sealed class NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
   const NeptuneClusterInstanceIdentifierOrIdentifierPrefix();
+
+  /// Sets `identifier`.
+  const factory NeptuneClusterInstanceIdentifierOrIdentifierPrefix.identifier(
+    TfArg<String> identifier,
+  ) = NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifier;
+
+  /// Sets `identifier_prefix`.
+  const factory NeptuneClusterInstanceIdentifierOrIdentifierPrefix.identifierPrefix(
+    TfArg<String> identifierPrefix,
+  ) = NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -31,10 +43,12 @@ sealed class NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `identifier` (one of the [NeptuneClusterInstanceIdentifierOrIdentifierPrefix] choices).
-final class NeptuneClusterInstanceIdentifierOption
+/// The [NeptuneClusterInstanceIdentifierOrIdentifierPrefix.identifier] choice: sets `identifier`.
+final class NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifier
     extends NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
-  const NeptuneClusterInstanceIdentifierOption({required this.identifier});
+  const NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifier(
+    this.identifier,
+  );
 
   final TfArg<String> identifier;
 
@@ -48,12 +62,12 @@ final class NeptuneClusterInstanceIdentifierOption
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
 
-/// Sets `identifier_prefix` (one of the [NeptuneClusterInstanceIdentifierOrIdentifierPrefix] choices).
-final class NeptuneClusterInstanceIdentifierPrefixOption
+/// The [NeptuneClusterInstanceIdentifierOrIdentifierPrefix.identifierPrefix] choice: sets `identifier_prefix`.
+final class NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix
     extends NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
-  const NeptuneClusterInstanceIdentifierPrefixOption({
-    required this.identifierPrefix,
-  });
+  const NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix(
+    this.identifierPrefix,
+  );
 
   final TfArg<String> identifierPrefix;
 
