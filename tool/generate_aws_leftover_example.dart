@@ -11,6 +11,7 @@
 import 'dart:io';
 
 import 'catalog_class_names.dart';
+import 'dot_shorthands.dart';
 
 const _skipResourceTypes = {
   // Covered by aws_lambda_quickstart.
@@ -186,7 +187,12 @@ void main() {
 
   File(_outPath)
     ..createSync(recursive: true)
-    ..writeAsStringSync(buf.toString());
+    ..writeAsStringSync(
+      dotShorthands(
+        buf.toString(),
+        packageEnums('packages/terradart_aws/lib/src'),
+      ),
+    );
   // dart format splits long literals without the trailing commas
   // `require_trailing_commas` wants, so fix between two format passes.
   _run(['format', _outPath]);
