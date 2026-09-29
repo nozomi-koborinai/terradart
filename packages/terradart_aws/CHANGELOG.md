@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** mutually exclusive inputs the provider also accepts none of are nullable sealed types — 229 groups on 160 resources (169 on resource arguments, 60 in nested blocks) take one optional argument (or helper field) whose variants each set one member. The most common is `name` / `name_prefix` (59 resources): `AwsIamRole(nameOrNamePrefix: IamRoleNameOption(name: ...))`, `AwsS3Bucket(bucketOrBucketPrefix: S3BucketBucketPrefixOption(bucketPrefix: ...))`. Leave it out to set none. Synth output is unchanged. See `MIGRATING.md`.
+- **Breaking:** 3 more exactly-one groups, 163 on 117 resources now. `AwsDocdbGlobalCluster` takes a required `engineOrSourceDbClusterIdentifier`: the provider requires at least one of `engine` / `source_db_cluster_identifier`, and they conflict. `AwsPrometheusAnomalyDetector`'s `ignore_near_expected_from_above` / `_below` blocks take a required `amountOrRatio`: a `float64validator.ExactlyOneOf` the extractor used to skip. See `MIGRATING.md`.
+
 ## 0.30.0 - 2026-09-28
 
 - **Breaking:** inputs with a fixed value set are enums — 2903 string inputs on 811 resources (e.g. `AwsLambdaFunction.runtime` → `LambdaFunctionRuntime`, `AwsRoute53Record.type` → `Route53RecordType`). Synth output is unchanged. See `MIGRATING.md`.

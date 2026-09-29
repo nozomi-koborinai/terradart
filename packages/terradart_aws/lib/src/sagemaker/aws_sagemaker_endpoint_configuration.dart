@@ -7,6 +7,58 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_sagemaker_endpoint_configuration`.
 const Set<String> _awsSagemakerEndpointConfigurationSensitive = <String>{};
 
+/// At most one of `name`, `name_prefix` on `aws_sagemaker_endpoint_configuration`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SagemakerEndpointConfigurationNameOrNamePrefix {
+  const SagemakerEndpointConfigurationNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [SagemakerEndpointConfigurationNameOrNamePrefix] choices).
+final class SagemakerEndpointConfigurationNameOption
+    extends SagemakerEndpointConfigurationNameOrNamePrefix {
+  const SagemakerEndpointConfigurationNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [SagemakerEndpointConfigurationNameOrNamePrefix] choices).
+final class SagemakerEndpointConfigurationNamePrefixOption
+    extends SagemakerEndpointConfigurationNameOrNamePrefix {
+  const SagemakerEndpointConfigurationNamePrefixOption({
+    required this.namePrefix,
+  });
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `async_inference_config` block of
 /// `aws_sagemaker_endpoint_configuration` (derived from provider schema).
 @immutable
@@ -1365,8 +1417,7 @@ final class AwsSagemakerEndpointConfiguration extends Resource {
     required super.localName,
     TfArg<String>? executionRoleArn,
     TfArg<String>? kmsKeyArn,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    SagemakerEndpointConfigurationNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     SagemakerEndpointConfigurationAsyncInferenceConfig? asyncInferenceConfig,
@@ -1384,8 +1435,7 @@ final class AwsSagemakerEndpointConfiguration extends Resource {
          argMap: {
            if (executionRoleArn != null) 'execution_role_arn': executionRoleArn,
            if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (asyncInferenceConfig != null)

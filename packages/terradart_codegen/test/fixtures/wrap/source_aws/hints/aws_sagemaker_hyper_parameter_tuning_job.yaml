@@ -1469,3 +1469,8 @@ properties:
         enum_values:
           - "IdenticalDataAndAlgorithm"
           - "TransferLearning"
+at_most_one_of_groups:
+  - ["training_job_definition.algorithm_specification.algorithm_name", "training_job_definition.algorithm_specification.training_image"]
+  - ["training_job_definition.hyper_parameter_tuning_resource_config", "training_job_definition.resource_config"]
+  - ["training_job_definitions.algorithm_specification.algorithm_name", "training_job_definitions.algorithm_specification.training_image"]
+  - ["training_job_definitions.hyper_parameter_tuning_resource_config", "training_job_definitions.resource_config"]

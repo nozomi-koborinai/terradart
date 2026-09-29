@@ -8,3 +8,6 @@ properties:
       - "enabled"
       - "disabled"
       - "auto"
+at_most_one_of_groups:
+  - ["manage_master_password", "master_password", "master_password_wo"]
+  - ["snapshot_arn", "snapshot_identifier"]

@@ -6,7 +6,16 @@ library;
 export 'src/redshift/aws_redshift_authentication_profile.dart'
     show AwsRedshiftAuthenticationProfile;
 export 'src/redshift/aws_redshift_cluster.dart'
-    show AwsRedshiftCluster, RedshiftClusterAquaConfigurationStatus;
+    show
+        AwsRedshiftCluster,
+        RedshiftClusterAquaConfigurationStatus,
+        RedshiftClusterManageMasterPasswordOption,
+        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo,
+        RedshiftClusterMasterPasswordOption,
+        RedshiftClusterMasterPasswordWoOption,
+        RedshiftClusterSnapshotArnOption,
+        RedshiftClusterSnapshotArnOrSnapshotIdentifier,
+        RedshiftClusterSnapshotIdentifierOption;
 export 'src/redshift/aws_redshift_cluster_iam_roles.dart'
     show AwsRedshiftClusterIamRoles;
 export 'src/redshift/aws_redshift_cluster_snapshot.dart'
@@ -78,7 +87,11 @@ export 'src/redshift/aws_redshift_snapshot_copy.dart'
 export 'src/redshift/aws_redshift_snapshot_copy_grant.dart'
     show AwsRedshiftSnapshotCopyGrant;
 export 'src/redshift/aws_redshift_snapshot_schedule.dart'
-    show AwsRedshiftSnapshotSchedule;
+    show
+        AwsRedshiftSnapshotSchedule,
+        RedshiftSnapshotScheduleIdentifierOption,
+        RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix,
+        RedshiftSnapshotScheduleIdentifierPrefixOption;
 export 'src/redshift/aws_redshift_snapshot_schedule_association.dart'
     show AwsRedshiftSnapshotScheduleAssociation;
 export 'src/redshift/aws_redshift_subnet_group.dart'

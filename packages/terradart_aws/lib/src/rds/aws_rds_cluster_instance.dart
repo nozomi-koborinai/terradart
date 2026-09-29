@@ -6,6 +6,62 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rds_cluster_instance`.
 const Set<String> _awsRdsClusterInstanceSensitive = <String>{};
 
+/// At most one of `identifier`, `identifier_prefix` on `aws_rds_cluster_instance`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RdsClusterInstanceIdentifierOrIdentifierPrefix {
+  const RdsClusterInstanceIdentifierOrIdentifierPrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `identifier` (one of the [RdsClusterInstanceIdentifierOrIdentifierPrefix] choices).
+final class RdsClusterInstanceIdentifierOption
+    extends RdsClusterInstanceIdentifierOrIdentifierPrefix {
+  const RdsClusterInstanceIdentifierOption({required this.identifier});
+
+  final TfArg<String> identifier;
+
+  @override
+  String get blockKey => 'identifier';
+
+  @override
+  Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
+}
+
+/// Sets `identifier_prefix` (one of the [RdsClusterInstanceIdentifierOrIdentifierPrefix] choices).
+final class RdsClusterInstanceIdentifierPrefixOption
+    extends RdsClusterInstanceIdentifierOrIdentifierPrefix {
+  const RdsClusterInstanceIdentifierPrefixOption({
+    required this.identifierPrefix,
+  });
+
+  final TfArg<String> identifierPrefix;
+
+  @override
+  String get blockKey => 'identifier_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'identifier_prefix': identifierPrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'identifier_prefix': identifierPrefix,
+  };
+}
+
 /// Factory wrapper for `aws_rds_cluster_instance`.
 final class AwsRdsClusterInstance extends Resource {
   static const String tfType = 'aws_rds_cluster_instance';
@@ -24,8 +80,8 @@ final class AwsRdsClusterInstance extends Resource {
     required TfArg<String> engine,
     TfArg<String>? engineVersion,
     TfArg<bool>? forceDestroy,
-    TfArg<String>? identifier,
-    TfArg<String>? identifierPrefix,
+    RdsClusterInstanceIdentifierOrIdentifierPrefix?
+    identifierOrIdentifierPrefix,
     required TfArg<String> instanceClass,
     TfArg<num>? monitoringInterval,
     TfArg<String>? monitoringRoleArn,
@@ -63,8 +119,7 @@ final class AwsRdsClusterInstance extends Resource {
            'engine': engine,
            if (engineVersion != null) 'engine_version': engineVersion,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (identifier != null) 'identifier': identifier,
-           if (identifierPrefix != null) 'identifier_prefix': identifierPrefix,
+           ...?identifierOrIdentifierPrefix?.argMap,
            'instance_class': instanceClass,
            if (monitoringInterval != null)
              'monitoring_interval': monitoringInterval,

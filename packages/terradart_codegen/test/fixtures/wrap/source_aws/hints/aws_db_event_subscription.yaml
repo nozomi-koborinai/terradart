@@ -16,3 +16,5 @@ properties:
       - "blue-green-deployment"
       - "db-shard-group"
       - "zero-etl"
+at_most_one_of_groups:
+  - ["name", "name_prefix"]

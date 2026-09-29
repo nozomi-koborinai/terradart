@@ -104,3 +104,5 @@ properties:
           - "m6g.8xlarge"
           - "m6g.12xlarge"
           - "m6g.16xlarge"
+at_most_one_of_groups:
+  - ["launch_template.id", "launch_template.name"]

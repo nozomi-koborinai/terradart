@@ -8,3 +8,6 @@ properties:
       - "ENABLED"
       - "DISABLED"
       - "ENABLED_WITH_ALL_CLOUDTRAIL_MANAGEMENT_EVENTS"
+at_most_one_of_groups:
+  - ["is_enabled", "state"]
+  - ["name", "name_prefix"]

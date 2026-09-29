@@ -82,6 +82,148 @@ enum RdsClusterNetworkType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `cluster_identifier`, `cluster_identifier_prefix` on `aws_rds_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RdsClusterClusterIdentifierOrClusterIdentifierPrefix {
+  const RdsClusterClusterIdentifierOrClusterIdentifierPrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cluster_identifier` (one of the [RdsClusterClusterIdentifierOrClusterIdentifierPrefix] choices).
+final class RdsClusterClusterIdentifierOption
+    extends RdsClusterClusterIdentifierOrClusterIdentifierPrefix {
+  const RdsClusterClusterIdentifierOption({required this.clusterIdentifier});
+
+  final TfArg<String> clusterIdentifier;
+
+  @override
+  String get blockKey => 'cluster_identifier';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cluster_identifier': clusterIdentifier.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cluster_identifier': clusterIdentifier,
+  };
+}
+
+/// Sets `cluster_identifier_prefix` (one of the [RdsClusterClusterIdentifierOrClusterIdentifierPrefix] choices).
+final class RdsClusterClusterIdentifierPrefixOption
+    extends RdsClusterClusterIdentifierOrClusterIdentifierPrefix {
+  const RdsClusterClusterIdentifierPrefixOption({
+    required this.clusterIdentifierPrefix,
+  });
+
+  final TfArg<String> clusterIdentifierPrefix;
+
+  @override
+  String get blockKey => 'cluster_identifier_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cluster_identifier_prefix': clusterIdentifierPrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cluster_identifier_prefix': clusterIdentifierPrefix,
+  };
+}
+
+/// At most one of `manage_master_user_password`, `master_password`, `master_password_wo` on `aws_rds_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
+  const RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `manage_master_user_password` (one of the [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo] choices).
+final class RdsClusterManageMasterUserPasswordOption
+    extends
+        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
+  const RdsClusterManageMasterUserPasswordOption({
+    required this.manageMasterUserPassword,
+  });
+
+  final TfArg<bool> manageMasterUserPassword;
+
+  @override
+  String get blockKey => 'manage_master_user_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'manage_master_user_password': manageMasterUserPassword.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'manage_master_user_password': manageMasterUserPassword,
+  };
+}
+
+/// Sets `master_password` (one of the [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo] choices).
+final class RdsClusterMasterPasswordOption
+    extends
+        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
+  const RdsClusterMasterPasswordOption({required this.masterPassword});
+
+  final TfArg<String> masterPassword;
+
+  @override
+  String get blockKey => 'master_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'master_password': masterPassword.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'master_password': masterPassword};
+}
+
+/// Sets `master_password_wo` (one of the [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo] choices).
+final class RdsClusterMasterPasswordWoOption
+    extends
+        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
+  const RdsClusterMasterPasswordWoOption({required this.masterPasswordWo});
+
+  final TfArg<String> masterPasswordWo;
+
+  @override
+  String get blockKey => 'master_password_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'master_password_wo': masterPasswordWo.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'master_password_wo': masterPasswordWo,
+  };
+}
+
 /// Typed helper for the `restore_to_point_in_time` block of
 /// `aws_rds_cluster` (derived from provider schema).
 @immutable
@@ -331,8 +473,8 @@ final class AwsRdsCluster extends Resource {
     TfArg<num>? backtrackWindow,
     TfArg<num>? backupRetentionPeriod,
     TfArg<String>? caCertificateIdentifier,
-    TfArg<String>? clusterIdentifier,
-    TfArg<String>? clusterIdentifierPrefix,
+    RdsClusterClusterIdentifierOrClusterIdentifierPrefix?
+    clusterIdentifierOrClusterIdentifierPrefix,
     TfArg<List<String>>? clusterMembers,
     TfArg<RdsClusterClusterScalabilityType>? clusterScalabilityType,
     TfArg<bool>? copyTagsToSnapshot,
@@ -362,9 +504,8 @@ final class AwsRdsCluster extends Resource {
     TfArg<List<String>>? iamRoles,
     TfArg<num>? iops,
     TfArg<String>? kmsKeyId,
-    TfArg<bool>? manageMasterUserPassword,
-    TfArg<String>? masterPassword,
-    TfArg<String>? masterPasswordWo,
+    RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo?
+    manageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo,
     TfArg<num>? masterPasswordWoVersion,
     TfArg<String>? masterUserSecretKmsKeyId,
     TfArg<String>? masterUsername,
@@ -412,10 +553,7 @@ final class AwsRdsCluster extends Resource {
              'backup_retention_period': backupRetentionPeriod,
            if (caCertificateIdentifier != null)
              'ca_certificate_identifier': caCertificateIdentifier,
-           if (clusterIdentifier != null)
-             'cluster_identifier': clusterIdentifier,
-           if (clusterIdentifierPrefix != null)
-             'cluster_identifier_prefix': clusterIdentifierPrefix,
+           ...?clusterIdentifierOrClusterIdentifierPrefix?.argMap,
            if (clusterMembers != null) 'cluster_members': clusterMembers,
            if (clusterScalabilityType != null)
              'cluster_scalability_type': clusterScalabilityType,
@@ -465,10 +603,8 @@ final class AwsRdsCluster extends Resource {
            if (iamRoles != null) 'iam_roles': iamRoles,
            if (iops != null) 'iops': iops,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
-           if (manageMasterUserPassword != null)
-             'manage_master_user_password': manageMasterUserPassword,
-           if (masterPassword != null) 'master_password': masterPassword,
-           if (masterPasswordWo != null) 'master_password_wo': masterPasswordWo,
+           ...?manageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo
+               ?.argMap,
            if (masterPasswordWoVersion != null)
              'master_password_wo_version': masterPasswordWoVersion,
            if (masterUserSecretKmsKeyId != null)

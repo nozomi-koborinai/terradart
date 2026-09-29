@@ -21,3 +21,5 @@ properties:
       - "CLASSIC_LOAD_BALANCER"
       - "APPLICATION_LOAD_BALANCER"
       - "GLOBAL_ACCELERATOR"
+at_most_one_of_groups:
+  - ["members", "resource_type"]

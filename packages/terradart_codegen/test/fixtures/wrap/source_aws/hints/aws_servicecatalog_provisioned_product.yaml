@@ -13,3 +13,5 @@ exactly_one_of_groups:
   - ["provisioning_artifact_id", "provisioning_artifact_name"]
   - ["stack_set_provisioning_preferences.failure_tolerance_count", "stack_set_provisioning_preferences.failure_tolerance_percentage"]
   - ["stack_set_provisioning_preferences.max_concurrency_count", "stack_set_provisioning_preferences.max_concurrency_percentage"]
+at_most_one_of_groups:
+  - ["path_id", "path_name"]

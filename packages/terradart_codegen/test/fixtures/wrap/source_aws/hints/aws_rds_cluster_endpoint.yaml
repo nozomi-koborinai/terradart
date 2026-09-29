@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "READER"
       - "ANY"
+at_most_one_of_groups:
+  - ["excluded_members", "static_members"]

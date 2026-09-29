@@ -56,3 +56,5 @@ properties:
       - "MULTI_LABEL"
 exactly_one_of_groups:
   - ["input_data_config.augmented_manifests", "input_data_config.s3_uri"]
+at_most_one_of_groups:
+  - ["version_name", "version_name_prefix"]

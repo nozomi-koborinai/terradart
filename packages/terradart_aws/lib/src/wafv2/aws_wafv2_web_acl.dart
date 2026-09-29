@@ -17,6 +17,54 @@ enum Wafv2WebAclScope implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_wafv2_web_acl`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Wafv2WebAclNameOrNamePrefix {
+  const Wafv2WebAclNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [Wafv2WebAclNameOrNamePrefix] choices).
+final class Wafv2WebAclNameOption extends Wafv2WebAclNameOrNamePrefix {
+  const Wafv2WebAclNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [Wafv2WebAclNameOrNamePrefix] choices).
+final class Wafv2WebAclNamePrefixOption extends Wafv2WebAclNameOrNamePrefix {
+  const Wafv2WebAclNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `association_config` block of
 /// `aws_wafv2_web_acl` (derived from provider schema).
 @immutable
@@ -361,8 +409,7 @@ final class AwsWafv2WebAcl extends Resource {
   AwsWafv2WebAcl({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    Wafv2WebAclNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     TfArg<String>? ruleJson,
     required TfArg<Wafv2WebAclScope> scope,
@@ -384,8 +431,7 @@ final class AwsWafv2WebAcl extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            if (ruleJson != null) 'rule_json': ruleJson,
            'scope': scope,

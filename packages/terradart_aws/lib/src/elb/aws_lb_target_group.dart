@@ -89,6 +89,55 @@ enum LbTargetGroupTargetType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_lb_target_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LbTargetGroupNameOrNamePrefix {
+  const LbTargetGroupNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [LbTargetGroupNameOrNamePrefix] choices).
+final class LbTargetGroupNameOption extends LbTargetGroupNameOrNamePrefix {
+  const LbTargetGroupNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [LbTargetGroupNameOrNamePrefix] choices).
+final class LbTargetGroupNamePrefixOption
+    extends LbTargetGroupNameOrNamePrefix {
+  const LbTargetGroupNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `health_check` block of
 /// `aws_lb_target_group` (derived from provider schema).
 @immutable
@@ -318,8 +367,7 @@ final class AwsLbTargetGroup extends Resource {
     loadBalancingAnomalyMitigation,
     TfArg<LbTargetGroupLoadBalancingCrossZoneEnabled>?
     loadBalancingCrossZoneEnabled,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    LbTargetGroupNameOrNamePrefix? nameOrNamePrefix,
     TfArg<num>? port,
     TfArg<String>? preserveClientIp,
     TfArg<LbTargetGroupProtocol>? protocol,
@@ -358,8 +406,7 @@ final class AwsLbTargetGroup extends Resource {
                  loadBalancingAnomalyMitigation,
            if (loadBalancingCrossZoneEnabled != null)
              'load_balancing_cross_zone_enabled': loadBalancingCrossZoneEnabled,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (port != null) 'port': port,
            if (preserveClientIp != null) 'preserve_client_ip': preserveClientIp,
            if (protocol != null) 'protocol': protocol,

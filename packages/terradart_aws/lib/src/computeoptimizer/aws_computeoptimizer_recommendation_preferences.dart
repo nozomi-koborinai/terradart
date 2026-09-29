@@ -112,23 +112,66 @@ enum ComputeoptimizerRecommendationPreferencesExternalMetricsPreferenceSource
 @immutable
 final class ComputeoptimizerRecommendationPreferencesPreferredResource {
   const ComputeoptimizerRecommendationPreferencesPreferredResource({
-    this.excludeList,
-    this.includeList,
+    this.excludeListOrIncludeList,
     required this.name,
   });
 
-  final TfArg<List<Object?>>? excludeList;
-
-  final TfArg<List<Object?>>? includeList;
+  final ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList?
+  excludeListOrIncludeList;
 
   final TfArg<ComputeoptimizerRecommendationPreferencesPreferredResourceName>
   name;
 
   Map<String, Object?> encode() => {
-    if (excludeList != null) 'exclude_list': excludeList!.toTfJson(),
-    if (includeList != null) 'include_list': includeList!.toTfJson(),
+    ...?excludeListOrIncludeList?.encode(),
     'name': name.toTfJson(),
   };
+}
+
+/// At most one of `exclude_list`, `include_list` on the `preferred_resource` block of `aws_computeoptimizer_recommendation_preferences`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList {
+  const ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `exclude_list` (one of the [ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList] choices).
+final class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOption
+    extends
+        ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList {
+  const ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOption({
+    required this.excludeList,
+  });
+
+  final TfArg<List<Object?>> excludeList;
+
+  @override
+  String get blockKey => 'exclude_list';
+
+  @override
+  Map<String, Object?> encode() => {'exclude_list': excludeList.toTfJson()};
+}
+
+/// Sets `include_list` (one of the [ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList] choices).
+final class ComputeoptimizerRecommendationPreferencesPreferredResourceIncludeListOption
+    extends
+        ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList {
+  const ComputeoptimizerRecommendationPreferencesPreferredResourceIncludeListOption({
+    required this.includeList,
+  });
+
+  final TfArg<List<Object?>> includeList;
+
+  @override
+  String get blockKey => 'include_list';
+
+  @override
+  Map<String, Object?> encode() => {'include_list': includeList.toTfJson()};
 }
 
 /// `name` — derived from the provider schema description.

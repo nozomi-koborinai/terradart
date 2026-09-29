@@ -7,6 +7,56 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_rds_cluster_parameter_group`.
 const Set<String> _awsRdsClusterParameterGroupSensitive = <String>{};
 
+/// At most one of `name`, `name_prefix` on `aws_rds_cluster_parameter_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RdsClusterParameterGroupNameOrNamePrefix {
+  const RdsClusterParameterGroupNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [RdsClusterParameterGroupNameOrNamePrefix] choices).
+final class RdsClusterParameterGroupNameOption
+    extends RdsClusterParameterGroupNameOrNamePrefix {
+  const RdsClusterParameterGroupNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [RdsClusterParameterGroupNameOrNamePrefix] choices).
+final class RdsClusterParameterGroupNamePrefixOption
+    extends RdsClusterParameterGroupNameOrNamePrefix {
+  const RdsClusterParameterGroupNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `parameter` block of
 /// `aws_rds_cluster_parameter_group` (derived from provider schema).
 @immutable
@@ -48,8 +98,7 @@ final class AwsRdsClusterParameterGroup extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> family,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    RdsClusterParameterGroupNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<RdsClusterParameterGroupParameter>? parameter,
@@ -62,8 +111,7 @@ final class AwsRdsClusterParameterGroup extends Resource {
          argMap: {
            if (description != null) 'description': description,
            'family': family,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (parameter != null)

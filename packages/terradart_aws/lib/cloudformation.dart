@@ -11,10 +11,19 @@ export 'src/cloudformation/aws_cloudformation_stack.dart'
 export 'src/cloudformation/aws_cloudformation_stack_instances.dart'
     show
         AwsCloudformationStackInstances,
+        CloudformationStackInstancesAccountsOption,
+        CloudformationStackInstancesAccountsOrDeploymentTargets,
         CloudformationStackInstancesCallAs,
         CloudformationStackInstancesDeploymentTargets,
+        CloudformationStackInstancesDeploymentTargetsOption,
         CloudformationStackInstancesOperationPreferences,
         CloudformationStackInstancesOperationPreferencesConcurrencyMode,
+        CloudformationStackInstancesOperationPreferencesFailureToleranceCountOption,
+        CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage,
+        CloudformationStackInstancesOperationPreferencesFailureTolerancePercentageOption,
+        CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOption,
+        CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage,
+        CloudformationStackInstancesOperationPreferencesMaxConcurrentPercentageOption,
         CloudformationStackInstancesOperationPreferencesRegionConcurrencyType;
 export 'src/cloudformation/aws_cloudformation_stack_set.dart'
     show
@@ -24,16 +33,37 @@ export 'src/cloudformation/aws_cloudformation_stack_set.dart'
         CloudformationStackSetCapabilities,
         CloudformationStackSetManagedExecution,
         CloudformationStackSetOperationPreferences,
+        CloudformationStackSetOperationPreferencesFailureToleranceCountOption,
+        CloudformationStackSetOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage,
+        CloudformationStackSetOperationPreferencesFailureTolerancePercentageOption,
+        CloudformationStackSetOperationPreferencesMaxConcurrentCountOption,
+        CloudformationStackSetOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage,
+        CloudformationStackSetOperationPreferencesMaxConcurrentPercentageOption,
         CloudformationStackSetOperationPreferencesRegionConcurrencyType,
-        CloudformationStackSetPermissionModel;
+        CloudformationStackSetPermissionModel,
+        CloudformationStackSetTemplateBodyOption,
+        CloudformationStackSetTemplateBodyOrTemplateUrl,
+        CloudformationStackSetTemplateUrlOption;
 export 'src/cloudformation/aws_cloudformation_stack_set_instance.dart'
     show
         AwsCloudformationStackSetInstance,
+        CloudformationStackSetInstanceAccountIdOption,
+        CloudformationStackSetInstanceAccountIdOrDeploymentTargets,
         CloudformationStackSetInstanceCallAs,
         CloudformationStackSetInstanceDeploymentTargets,
+        CloudformationStackSetInstanceDeploymentTargetsOption,
         CloudformationStackSetInstanceOperationPreferences,
         CloudformationStackSetInstanceOperationPreferencesConcurrencyMode,
-        CloudformationStackSetInstanceOperationPreferencesRegionConcurrencyType;
+        CloudformationStackSetInstanceOperationPreferencesFailureToleranceCountOption,
+        CloudformationStackSetInstanceOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage,
+        CloudformationStackSetInstanceOperationPreferencesFailureTolerancePercentageOption,
+        CloudformationStackSetInstanceOperationPreferencesMaxConcurrentCountOption,
+        CloudformationStackSetInstanceOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage,
+        CloudformationStackSetInstanceOperationPreferencesMaxConcurrentPercentageOption,
+        CloudformationStackSetInstanceOperationPreferencesRegionConcurrencyType,
+        CloudformationStackSetInstanceRegionOption,
+        CloudformationStackSetInstanceRegionOrStackSetInstanceRegion,
+        CloudformationStackSetInstanceStackSetInstanceRegionOption;
 export 'src/cloudformation/aws_cloudformation_type.dart'
     show
         AwsCloudformationType,

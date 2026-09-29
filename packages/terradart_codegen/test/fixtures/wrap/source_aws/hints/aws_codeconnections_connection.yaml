@@ -16,3 +16,5 @@ properties:
       - "GitLab"
       - "GitLabSelfManaged"
       - "AzureDevOps"
+at_most_one_of_groups:
+  - ["host_arn", "provider_type"]

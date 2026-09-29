@@ -7,6 +7,79 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudwatch_event_target`.
 const Set<String> _awsCloudwatchEventTargetSensitive = <String>{};
 
+/// At most one of `input`, `input_path`, `input_transformer` on `aws_cloudwatch_event_target`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudwatchEventTargetInputOrInputPathOrInputTransformer {
+  const CloudwatchEventTargetInputOrInputPathOrInputTransformer();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `input` (one of the [CloudwatchEventTargetInputOrInputPathOrInputTransformer] choices).
+final class CloudwatchEventTargetInputOption
+    extends CloudwatchEventTargetInputOrInputPathOrInputTransformer {
+  const CloudwatchEventTargetInputOption({required this.input});
+
+  final TfArg<String> input;
+
+  @override
+  String get blockKey => 'input';
+
+  @override
+  Map<String, Object?> encode() => {'input': input.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'input': input};
+}
+
+/// Sets `input_path` (one of the [CloudwatchEventTargetInputOrInputPathOrInputTransformer] choices).
+final class CloudwatchEventTargetInputPathOption
+    extends CloudwatchEventTargetInputOrInputPathOrInputTransformer {
+  const CloudwatchEventTargetInputPathOption({required this.inputPath});
+
+  final TfArg<String> inputPath;
+
+  @override
+  String get blockKey => 'input_path';
+
+  @override
+  Map<String, Object?> encode() => {'input_path': inputPath.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'input_path': inputPath};
+}
+
+/// Sets `input_transformer` (one of the [CloudwatchEventTargetInputOrInputPathOrInputTransformer] choices).
+final class CloudwatchEventTargetInputTransformerOption
+    extends CloudwatchEventTargetInputOrInputPathOrInputTransformer {
+  const CloudwatchEventTargetInputTransformerOption({
+    required this.inputTransformer,
+  });
+
+  final CloudwatchEventTargetInputTransformer inputTransformer;
+
+  @override
+  String get blockKey => 'input_transformer';
+
+  @override
+  Map<String, Object?> encode() => {
+    'input_transformer': inputTransformer.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'input_transformer': TfArg.literal(inputTransformer.encode()),
+  };
+}
+
 /// Typed helper for the `appsync_target` block of
 /// `aws_cloudwatch_event_target` (derived from provider schema).
 @immutable
@@ -465,8 +538,8 @@ final class AwsCloudwatchEventTarget extends Resource {
     required TfArg<String> arn,
     TfArg<String>? eventBusName,
     TfArg<bool>? forceDestroy,
-    TfArg<String>? input,
-    TfArg<String>? inputPath,
+    CloudwatchEventTargetInputOrInputPathOrInputTransformer?
+    inputOrInputPathOrInputTransformer,
     TfArg<String>? region,
     TfArg<String>? roleArn,
     required TfArg<String> rule,
@@ -476,7 +549,6 @@ final class AwsCloudwatchEventTarget extends Resource {
     CloudwatchEventTargetDeadLetterConfig? deadLetterConfig,
     CloudwatchEventTargetEcsTarget? ecsTarget,
     CloudwatchEventTargetHttpTarget? httpTarget,
-    CloudwatchEventTargetInputTransformer? inputTransformer,
     CloudwatchEventTargetKinesisTarget? kinesisTarget,
     CloudwatchEventTargetRedshiftTarget? redshiftTarget,
     CloudwatchEventTargetRetryPolicy? retryPolicy,
@@ -493,8 +565,7 @@ final class AwsCloudwatchEventTarget extends Resource {
            'arn': arn,
            if (eventBusName != null) 'event_bus_name': eventBusName,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (input != null) 'input': input,
-           if (inputPath != null) 'input_path': inputPath,
+           ...?inputOrInputPathOrInputTransformer?.argMap,
            if (region != null) 'region': region,
            if (roleArn != null) 'role_arn': roleArn,
            'rule': rule,
@@ -509,8 +580,6 @@ final class AwsCloudwatchEventTarget extends Resource {
              'ecs_target': TfArg.literal(ecsTarget.encode()),
            if (httpTarget != null)
              'http_target': TfArg.literal(httpTarget.encode()),
-           if (inputTransformer != null)
-             'input_transformer': TfArg.literal(inputTransformer.encode()),
            if (kinesisTarget != null)
              'kinesis_target': TfArg.literal(kinesisTarget.encode()),
            if (redshiftTarget != null)

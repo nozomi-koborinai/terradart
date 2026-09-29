@@ -28,6 +28,104 @@ enum BatchJobDefinitionType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `container_properties`, `ecs_properties`, `eks_properties`, `node_properties` on `aws_batch_job_definition`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties {
+  const BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `container_properties` (one of the [BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties] choices).
+final class BatchJobDefinitionContainerPropertiesOption
+    extends
+        BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties {
+  const BatchJobDefinitionContainerPropertiesOption({
+    required this.containerProperties,
+  });
+
+  final TfArg<String> containerProperties;
+
+  @override
+  String get blockKey => 'container_properties';
+
+  @override
+  Map<String, Object?> encode() => {
+    'container_properties': containerProperties.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'container_properties': containerProperties,
+  };
+}
+
+/// Sets `ecs_properties` (one of the [BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties] choices).
+final class BatchJobDefinitionEcsPropertiesOption
+    extends
+        BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties {
+  const BatchJobDefinitionEcsPropertiesOption({required this.ecsProperties});
+
+  final TfArg<String> ecsProperties;
+
+  @override
+  String get blockKey => 'ecs_properties';
+
+  @override
+  Map<String, Object?> encode() => {'ecs_properties': ecsProperties.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'ecs_properties': ecsProperties};
+}
+
+/// Sets `eks_properties` (one of the [BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties] choices).
+final class BatchJobDefinitionEksPropertiesOption
+    extends
+        BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties {
+  const BatchJobDefinitionEksPropertiesOption({required this.eksProperties});
+
+  final BatchJobDefinitionEksProperties eksProperties;
+
+  @override
+  String get blockKey => 'eks_properties';
+
+  @override
+  Map<String, Object?> encode() => {'eks_properties': eksProperties.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'eks_properties': TfArg.literal(eksProperties.encode()),
+  };
+}
+
+/// Sets `node_properties` (one of the [BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties] choices).
+final class BatchJobDefinitionNodePropertiesOption
+    extends
+        BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties {
+  const BatchJobDefinitionNodePropertiesOption({required this.nodeProperties});
+
+  final TfArg<String> nodeProperties;
+
+  @override
+  String get blockKey => 'node_properties';
+
+  @override
+  Map<String, Object?> encode() => {
+    'node_properties': nodeProperties.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'node_properties': nodeProperties};
+}
+
 /// Typed helper for the `eks_properties` block of
 /// `aws_batch_job_definition` (derived from provider schema).
 @immutable
@@ -642,11 +740,10 @@ final class AwsBatchJobDefinition extends Resource {
 
   AwsBatchJobDefinition({
     required super.localName,
-    TfArg<String>? containerProperties,
+    BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties?
+    containerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties,
     TfArg<bool>? deregisterOnNewRevision,
-    TfArg<String>? ecsProperties,
     required TfArg<String> name,
-    TfArg<String>? nodeProperties,
     TfArg<Map<String, String>>? parameters,
     List<TfArg<BatchJobDefinitionPlatformCapabilities>>? platformCapabilities,
     TfArg<bool>? propagateTags,
@@ -654,7 +751,6 @@ final class AwsBatchJobDefinition extends Resource {
     TfArg<num>? schedulingPriority,
     TfArg<Map<String, String>>? tags,
     required TfArg<BatchJobDefinitionType> type,
-    BatchJobDefinitionEksProperties? eksProperties,
     BatchJobDefinitionRetryStrategy? retryStrategy,
     BatchJobDefinitionTimeout? timeout,
     super.lifecycle,
@@ -664,13 +760,11 @@ final class AwsBatchJobDefinition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (containerProperties != null)
-             'container_properties': containerProperties,
+           ...?containerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties
+               ?.argMap,
            if (deregisterOnNewRevision != null)
              'deregister_on_new_revision': deregisterOnNewRevision,
-           if (ecsProperties != null) 'ecs_properties': ecsProperties,
            'name': name,
-           if (nodeProperties != null) 'node_properties': nodeProperties,
            if (parameters != null) 'parameters': parameters,
            if (platformCapabilities != null)
              'platform_capabilities': TfArg.literal([
@@ -682,8 +776,6 @@ final class AwsBatchJobDefinition extends Resource {
              'scheduling_priority': schedulingPriority,
            if (tags != null) 'tags': tags,
            'type': type,
-           if (eksProperties != null)
-             'eks_properties': TfArg.literal(eksProperties.encode()),
            if (retryStrategy != null)
              'retry_strategy': TfArg.literal(retryStrategy.encode()),
            if (timeout != null) 'timeout': TfArg.literal(timeout.encode()),

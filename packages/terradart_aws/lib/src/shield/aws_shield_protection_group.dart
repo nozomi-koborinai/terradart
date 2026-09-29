@@ -42,6 +42,56 @@ enum ShieldProtectionGroupResourceType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `members`, `resource_type` on `aws_shield_protection_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ShieldProtectionGroupMembersOrResourceType {
+  const ShieldProtectionGroupMembersOrResourceType();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `members` (one of the [ShieldProtectionGroupMembersOrResourceType] choices).
+final class ShieldProtectionGroupMembersOption
+    extends ShieldProtectionGroupMembersOrResourceType {
+  const ShieldProtectionGroupMembersOption({required this.members});
+
+  final TfArg<List<String>> members;
+
+  @override
+  String get blockKey => 'members';
+
+  @override
+  Map<String, Object?> encode() => {'members': members.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'members': members};
+}
+
+/// Sets `resource_type` (one of the [ShieldProtectionGroupMembersOrResourceType] choices).
+final class ShieldProtectionGroupResourceTypeOption
+    extends ShieldProtectionGroupMembersOrResourceType {
+  const ShieldProtectionGroupResourceTypeOption({required this.resourceType});
+
+  final TfArg<ShieldProtectionGroupResourceType> resourceType;
+
+  @override
+  String get blockKey => 'resource_type';
+
+  @override
+  Map<String, Object?> encode() => {'resource_type': resourceType.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'resource_type': resourceType};
+}
+
 /// Factory wrapper for `aws_shield_protection_group`.
 final class AwsShieldProtectionGroup extends Resource {
   static const String tfType = 'aws_shield_protection_group';
@@ -49,10 +99,9 @@ final class AwsShieldProtectionGroup extends Resource {
   AwsShieldProtectionGroup({
     required super.localName,
     required TfArg<ShieldProtectionGroupAggregation> aggregation,
-    TfArg<List<String>>? members,
+    ShieldProtectionGroupMembersOrResourceType? membersOrResourceType,
     required TfArg<ShieldProtectionGroupPattern> pattern,
     required TfArg<String> protectionGroupId,
-    TfArg<ShieldProtectionGroupResourceType>? resourceType,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -62,10 +111,9 @@ final class AwsShieldProtectionGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'aggregation': aggregation,
-           if (members != null) 'members': members,
+           ...?membersOrResourceType?.argMap,
            'pattern': pattern,
            'protection_group_id': protectionGroupId,
-           if (resourceType != null) 'resource_type': resourceType,
            if (tags != null) 'tags': tags,
          },
        );

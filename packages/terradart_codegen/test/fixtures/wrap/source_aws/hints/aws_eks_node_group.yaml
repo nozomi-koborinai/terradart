@@ -64,3 +64,8 @@ properties:
           - "HIBERNATED"
 exactly_one_of_groups:
   - ["update_config.max_unavailable", "update_config.max_unavailable_percentage"]
+at_most_one_of_groups:
+  - ["launch_template.id", "launch_template.name"]
+  - ["node_group_name", "node_group_name_prefix"]
+  - ["node_repair_config.max_parallel_nodes_repaired_count", "node_repair_config.max_parallel_nodes_repaired_percentage"]
+  - ["node_repair_config.max_unhealthy_node_threshold_count", "node_repair_config.max_unhealthy_node_threshold_percentage"]

@@ -125,3 +125,8 @@ properties:
           - "Hibernated"
 exactly_one_of_groups:
   - ["launch_configuration", "launch_template", "mixed_instances_policy"]
+at_most_one_of_groups:
+  - ["availability_zones", "vpc_zone_identifier"]
+  - ["capacity_reservation_specification.capacity_reservation_target.capacity_reservation_ids", "capacity_reservation_specification.capacity_reservation_target.capacity_reservation_resource_group_arns"]
+  - ["launch_template.id", "launch_template.name"]
+  - ["name", "name_prefix"]

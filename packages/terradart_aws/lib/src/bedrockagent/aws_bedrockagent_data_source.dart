@@ -1071,9 +1071,7 @@ final class BedrockagentDataSourceVectorIngestionConfiguration {
 final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration {
   const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration({
     required this.chunkingStrategy,
-    this.fixedSizeChunkingConfiguration,
-    this.hierarchicalChunkingConfiguration,
-    this.semanticChunkingConfiguration,
+    this.fixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration,
   });
 
   final TfArg<
@@ -1081,35 +1079,97 @@ final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurat
   >
   chunkingStrategy;
 
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfiguration
-  >?
-  fixedSizeChunkingConfiguration;
-
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfiguration
-  >?
-  hierarchicalChunkingConfiguration;
-
-  final List<
-    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfiguration
-  >?
-  semanticChunkingConfiguration;
+  final BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration?
+  fixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration;
 
   Map<String, Object?> encode() => {
     'chunking_strategy': chunkingStrategy.toTfJson(),
-    if (fixedSizeChunkingConfiguration != null)
-      'fixed_size_chunking_configuration': [
-        for (final e in fixedSizeChunkingConfiguration!) e.encode(),
-      ],
-    if (hierarchicalChunkingConfiguration != null)
-      'hierarchical_chunking_configuration': [
-        for (final e in hierarchicalChunkingConfiguration!) e.encode(),
-      ],
-    if (semanticChunkingConfiguration != null)
-      'semantic_chunking_configuration': [
-        for (final e in semanticChunkingConfiguration!) e.encode(),
-      ],
+    ...?fixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration
+        ?.encode(),
+  };
+}
+
+/// At most one of `fixed_size_chunking_configuration`, `hierarchical_chunking_configuration`, `semantic_chunking_configuration` on the `vector_ingestion_configuration.chunking_configuration` block of `aws_bedrockagent_data_source`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration {
+  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `fixed_size_chunking_configuration` (one of the [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration] choices).
+final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOption
+    extends
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration {
+  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOption({
+    required this.fixedSizeChunkingConfiguration,
+  });
+
+  final List<
+    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfiguration
+  >
+  fixedSizeChunkingConfiguration;
+
+  @override
+  String get blockKey => 'fixed_size_chunking_configuration';
+
+  @override
+  Map<String, Object?> encode() => {
+    'fixed_size_chunking_configuration': [
+      for (final e in fixedSizeChunkingConfiguration) e.encode(),
+    ],
+  };
+}
+
+/// Sets `hierarchical_chunking_configuration` (one of the [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration] choices).
+final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfigurationOption
+    extends
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration {
+  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfigurationOption({
+    required this.hierarchicalChunkingConfiguration,
+  });
+
+  final List<
+    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfiguration
+  >
+  hierarchicalChunkingConfiguration;
+
+  @override
+  String get blockKey => 'hierarchical_chunking_configuration';
+
+  @override
+  Map<String, Object?> encode() => {
+    'hierarchical_chunking_configuration': [
+      for (final e in hierarchicalChunkingConfiguration) e.encode(),
+    ],
+  };
+}
+
+/// Sets `semantic_chunking_configuration` (one of the [BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration] choices).
+final class BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfigurationOption
+    extends
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration {
+  const BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfigurationOption({
+    required this.semanticChunkingConfiguration,
+  });
+
+  final List<
+    BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfiguration
+  >
+  semanticChunkingConfiguration;
+
+  @override
+  String get blockKey => 'semantic_chunking_configuration';
+
+  @override
+  Map<String, Object?> encode() => {
+    'semantic_chunking_configuration': [
+      for (final e in semanticChunkingConfiguration) e.encode(),
+    ],
   };
 }
 

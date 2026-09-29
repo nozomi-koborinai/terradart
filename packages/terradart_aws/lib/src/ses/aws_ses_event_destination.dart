@@ -23,6 +23,94 @@ enum SesEventDestinationMatchingTypes implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `cloudwatch_destination`, `kinesis_destination`, `sns_destination` on `aws_ses_event_destination`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination {
+  const SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cloudwatch_destination` (one of the [SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination] choices).
+final class SesEventDestinationCloudwatchDestinationOption
+    extends
+        SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination {
+  const SesEventDestinationCloudwatchDestinationOption({
+    required this.cloudwatchDestination,
+  });
+
+  final List<SesEventDestinationCloudwatchDestination> cloudwatchDestination;
+
+  @override
+  String get blockKey => 'cloudwatch_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cloudwatch_destination': [
+      for (final e in cloudwatchDestination) e.encode(),
+    ],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cloudwatch_destination': TfArg.literal([
+      for (final e in cloudwatchDestination) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `kinesis_destination` (one of the [SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination] choices).
+final class SesEventDestinationKinesisDestinationOption
+    extends
+        SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination {
+  const SesEventDestinationKinesisDestinationOption({
+    required this.kinesisDestination,
+  });
+
+  final SesEventDestinationKinesisDestination kinesisDestination;
+
+  @override
+  String get blockKey => 'kinesis_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    'kinesis_destination': kinesisDestination.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'kinesis_destination': TfArg.literal(kinesisDestination.encode()),
+  };
+}
+
+/// Sets `sns_destination` (one of the [SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination] choices).
+final class SesEventDestinationSnsDestinationOption
+    extends
+        SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination {
+  const SesEventDestinationSnsDestinationOption({required this.snsDestination});
+
+  final SesEventDestinationSnsDestination snsDestination;
+
+  @override
+  String get blockKey => 'sns_destination';
+
+  @override
+  Map<String, Object?> encode() => {'sns_destination': snsDestination.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'sns_destination': TfArg.literal(snsDestination.encode()),
+  };
+}
+
 /// Typed helper for the `cloudwatch_destination` block of
 /// `aws_ses_event_destination` (derived from provider schema).
 @immutable
@@ -101,9 +189,8 @@ final class AwsSesEventDestination extends Resource {
     required List<TfArg<SesEventDestinationMatchingTypes>> matchingTypes,
     required TfArg<String> name,
     TfArg<String>? region,
-    List<SesEventDestinationCloudwatchDestination>? cloudwatchDestination,
-    SesEventDestinationKinesisDestination? kinesisDestination,
-    SesEventDestinationSnsDestination? snsDestination,
+    SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination?
+    cloudwatchDestinationOrKinesisDestinationOrSnsDestination,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -118,14 +205,8 @@ final class AwsSesEventDestination extends Resource {
            ]),
            'name': name,
            if (region != null) 'region': region,
-           if (cloudwatchDestination != null)
-             'cloudwatch_destination': TfArg.literal([
-               for (final e in cloudwatchDestination) e.encode(),
-             ]),
-           if (kinesisDestination != null)
-             'kinesis_destination': TfArg.literal(kinesisDestination.encode()),
-           if (snsDestination != null)
-             'sns_destination': TfArg.literal(snsDestination.encode()),
+           ...?cloudwatchDestinationOrKinesisDestinationOrSnsDestination
+               ?.argMap,
          },
        );
 

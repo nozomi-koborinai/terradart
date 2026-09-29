@@ -3,4 +3,6 @@
 # re-extract with the command in README.md.
 provider_version: "6.66.0"
 exactly_one_of_groups:
+  - ["configuration.random_cut_forest.ignore_near_expected_from_above.amount", "configuration.random_cut_forest.ignore_near_expected_from_above.ratio"]
+  - ["configuration.random_cut_forest.ignore_near_expected_from_below.amount", "configuration.random_cut_forest.ignore_near_expected_from_below.ratio"]
   - ["missing_data_action.mark_as_anomaly", "missing_data_action.skip"]

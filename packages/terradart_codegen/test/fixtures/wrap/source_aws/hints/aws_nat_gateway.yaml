@@ -11,3 +11,5 @@ properties:
     enum_values:
       - "private"
       - "public"
+at_most_one_of_groups:
+  - ["secondary_private_ip_address_count", "secondary_private_ip_addresses"]

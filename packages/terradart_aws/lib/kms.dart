@@ -3,7 +3,12 @@
 /// AWS Key Management Service (KMS).
 library;
 
-export 'src/kms/aws_kms_alias.dart' show AwsKmsAlias;
+export 'src/kms/aws_kms_alias.dart'
+    show
+        AwsKmsAlias,
+        KmsAliasNameOption,
+        KmsAliasNameOrNamePrefix,
+        KmsAliasNamePrefixOption;
 export 'src/kms/aws_kms_ciphertext.dart'
     show
         AwsKmsCiphertext,

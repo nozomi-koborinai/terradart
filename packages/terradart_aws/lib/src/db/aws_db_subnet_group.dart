@@ -6,6 +6,55 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_db_subnet_group`.
 const Set<String> _awsDbSubnetGroupSensitive = <String>{};
 
+/// At most one of `name`, `name_prefix` on `aws_db_subnet_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DbSubnetGroupNameOrNamePrefix {
+  const DbSubnetGroupNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [DbSubnetGroupNameOrNamePrefix] choices).
+final class DbSubnetGroupNameOption extends DbSubnetGroupNameOrNamePrefix {
+  const DbSubnetGroupNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [DbSubnetGroupNameOrNamePrefix] choices).
+final class DbSubnetGroupNamePrefixOption
+    extends DbSubnetGroupNameOrNamePrefix {
+  const DbSubnetGroupNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Factory wrapper for `aws_db_subnet_group`.
 final class AwsDbSubnetGroup extends Resource {
   static const String tfType = 'aws_db_subnet_group';
@@ -13,8 +62,7 @@ final class AwsDbSubnetGroup extends Resource {
   AwsDbSubnetGroup({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    DbSubnetGroupNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     required TfArg<List<String>> subnetIds,
     TfArg<Map<String, String>>? tags,
@@ -26,8 +74,7 @@ final class AwsDbSubnetGroup extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            'subnet_ids': subnetIds,
            if (tags != null) 'tags': tags,

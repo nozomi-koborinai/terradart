@@ -20,3 +20,5 @@ properties:
       - "open"
       - "click"
       - "renderingFailure"
+at_most_one_of_groups:
+  - ["cloudwatch_destination", "kinesis_destination", "sns_destination"]

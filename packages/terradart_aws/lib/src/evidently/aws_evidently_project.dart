@@ -11,16 +11,58 @@ const Set<String> _awsEvidentlyProjectSensitive = <String>{};
 /// `aws_evidently_project` (derived from provider schema).
 @immutable
 final class EvidentlyProjectDataDelivery {
-  const EvidentlyProjectDataDelivery({this.cloudwatchLogs, this.s3Destination});
+  const EvidentlyProjectDataDelivery({this.cloudwatchLogsOrS3Destination});
 
-  final EvidentlyProjectDataDeliveryCloudwatchLogs? cloudwatchLogs;
-
-  final EvidentlyProjectDataDeliveryS3Destination? s3Destination;
+  final EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination?
+  cloudwatchLogsOrS3Destination;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLogs != null) 'cloudwatch_logs': cloudwatchLogs!.encode(),
-    if (s3Destination != null) 's3_destination': s3Destination!.encode(),
+    ...?cloudwatchLogsOrS3Destination?.encode(),
   };
+}
+
+/// At most one of `cloudwatch_logs`, `s3_destination` on the `data_delivery` block of `aws_evidently_project`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination {
+  const EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `cloudwatch_logs` (one of the [EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination] choices).
+final class EvidentlyProjectDataDeliveryCloudwatchLogsOption
+    extends EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination {
+  const EvidentlyProjectDataDeliveryCloudwatchLogsOption({
+    required this.cloudwatchLogs,
+  });
+
+  final EvidentlyProjectDataDeliveryCloudwatchLogs cloudwatchLogs;
+
+  @override
+  String get blockKey => 'cloudwatch_logs';
+
+  @override
+  Map<String, Object?> encode() => {'cloudwatch_logs': cloudwatchLogs.encode()};
+}
+
+/// Sets `s3_destination` (one of the [EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination] choices).
+final class EvidentlyProjectDataDeliveryS3DestinationOption
+    extends EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination {
+  const EvidentlyProjectDataDeliveryS3DestinationOption({
+    required this.s3Destination,
+  });
+
+  final EvidentlyProjectDataDeliveryS3Destination s3Destination;
+
+  @override
+  String get blockKey => 's3_destination';
+
+  @override
+  Map<String, Object?> encode() => {'s3_destination': s3Destination.encode()};
 }
 
 /// Typed helper for the `data_delivery.cloudwatch_logs` block of

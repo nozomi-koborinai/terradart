@@ -18,6 +18,66 @@ enum RbinRuleResourceType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `exclude_resource_tags`, `resource_tags` on `aws_rbin_rule`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RbinRuleExcludeResourceTagsOrResourceTags {
+  const RbinRuleExcludeResourceTagsOrResourceTags();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `exclude_resource_tags` (one of the [RbinRuleExcludeResourceTagsOrResourceTags] choices).
+final class RbinRuleExcludeResourceTagsOption
+    extends RbinRuleExcludeResourceTagsOrResourceTags {
+  const RbinRuleExcludeResourceTagsOption({required this.excludeResourceTags});
+
+  final List<RbinRuleExcludeResourceTags> excludeResourceTags;
+
+  @override
+  String get blockKey => 'exclude_resource_tags';
+
+  @override
+  Map<String, Object?> encode() => {
+    'exclude_resource_tags': [for (final e in excludeResourceTags) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'exclude_resource_tags': TfArg.literal([
+      for (final e in excludeResourceTags) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `resource_tags` (one of the [RbinRuleExcludeResourceTagsOrResourceTags] choices).
+final class RbinRuleResourceTagsOption
+    extends RbinRuleExcludeResourceTagsOrResourceTags {
+  const RbinRuleResourceTagsOption({required this.resourceTags});
+
+  final List<RbinRuleResourceTags> resourceTags;
+
+  @override
+  String get blockKey => 'resource_tags';
+
+  @override
+  Map<String, Object?> encode() => {
+    'resource_tags': [for (final e in resourceTags) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'resource_tags': TfArg.literal([for (final e in resourceTags) e.encode()]),
+  };
+}
+
 /// Typed helper for the `exclude_resource_tags` block of
 /// `aws_rbin_rule` (derived from provider schema).
 @immutable
@@ -139,9 +199,9 @@ final class AwsRbinRule extends Resource {
     TfArg<String>? region,
     required TfArg<RbinRuleResourceType> resourceType,
     TfArg<Map<String, String>>? tags,
-    List<RbinRuleExcludeResourceTags>? excludeResourceTags,
+    RbinRuleExcludeResourceTagsOrResourceTags?
+    excludeResourceTagsOrResourceTags,
     RbinRuleLockConfiguration? lockConfiguration,
-    List<RbinRuleResourceTags>? resourceTags,
     required RbinRuleRetentionPeriod retentionPeriod,
     super.lifecycle,
     super.dependsOn,
@@ -154,16 +214,9 @@ final class AwsRbinRule extends Resource {
            if (region != null) 'region': region,
            'resource_type': resourceType,
            if (tags != null) 'tags': tags,
-           if (excludeResourceTags != null)
-             'exclude_resource_tags': TfArg.literal([
-               for (final e in excludeResourceTags) e.encode(),
-             ]),
+           ...?excludeResourceTagsOrResourceTags?.argMap,
            if (lockConfiguration != null)
              'lock_configuration': TfArg.literal(lockConfiguration.encode()),
-           if (resourceTags != null)
-             'resource_tags': TfArg.literal([
-               for (final e in resourceTags) e.encode(),
-             ]),
            'retention_period': TfArg.literal(retentionPeriod.encode()),
          },
        );

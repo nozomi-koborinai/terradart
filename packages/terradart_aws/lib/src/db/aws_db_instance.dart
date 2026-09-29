@@ -81,6 +81,133 @@ enum DbInstanceReplicaMode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `identifier`, `identifier_prefix` on `aws_db_instance`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DbInstanceIdentifierOrIdentifierPrefix {
+  const DbInstanceIdentifierOrIdentifierPrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `identifier` (one of the [DbInstanceIdentifierOrIdentifierPrefix] choices).
+final class DbInstanceIdentifierOption
+    extends DbInstanceIdentifierOrIdentifierPrefix {
+  const DbInstanceIdentifierOption({required this.identifier});
+
+  final TfArg<String> identifier;
+
+  @override
+  String get blockKey => 'identifier';
+
+  @override
+  Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
+}
+
+/// Sets `identifier_prefix` (one of the [DbInstanceIdentifierOrIdentifierPrefix] choices).
+final class DbInstanceIdentifierPrefixOption
+    extends DbInstanceIdentifierOrIdentifierPrefix {
+  const DbInstanceIdentifierPrefixOption({required this.identifierPrefix});
+
+  final TfArg<String> identifierPrefix;
+
+  @override
+  String get blockKey => 'identifier_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'identifier_prefix': identifierPrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'identifier_prefix': identifierPrefix,
+  };
+}
+
+/// At most one of `manage_master_user_password`, `password`, `password_wo` on `aws_db_instance`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
+  const DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `manage_master_user_password` (one of the [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo] choices).
+final class DbInstanceManageMasterUserPasswordOption
+    extends DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
+  const DbInstanceManageMasterUserPasswordOption({
+    required this.manageMasterUserPassword,
+  });
+
+  final TfArg<bool> manageMasterUserPassword;
+
+  @override
+  String get blockKey => 'manage_master_user_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'manage_master_user_password': manageMasterUserPassword.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'manage_master_user_password': manageMasterUserPassword,
+  };
+}
+
+/// Sets `password` (one of the [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo] choices).
+final class DbInstancePasswordOption
+    extends DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
+  const DbInstancePasswordOption({required this.password});
+
+  final TfArg<String> password;
+
+  @override
+  String get blockKey => 'password';
+
+  @override
+  Map<String, Object?> encode() => {'password': password.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'password': password};
+}
+
+/// Sets `password_wo` (one of the [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo] choices).
+final class DbInstancePasswordWoOption
+    extends DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
+  const DbInstancePasswordWoOption({required this.passwordWo});
+
+  final TfArg<String> passwordWo;
+
+  @override
+  String get blockKey => 'password_wo';
+
+  @override
+  Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'password_wo': passwordWo};
+}
+
 /// Typed helper for the `blue_green_update` block of
 /// `aws_db_instance` (derived from provider schema).
 @immutable
@@ -99,14 +226,14 @@ final class DbInstanceBlueGreenUpdate {
 @immutable
 final class DbInstanceRestoreToPointInTime {
   const DbInstanceRestoreToPointInTime({
-    this.restoreTime,
+    this.restoreTimeOrUseLatestRestorableTime,
     this.sourceDbInstanceAutomatedBackupsArn,
     this.sourceDbInstanceIdentifier,
     this.sourceDbiResourceId,
-    this.useLatestRestorableTime,
   });
 
-  final TfArg<String>? restoreTime;
+  final DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime?
+  restoreTimeOrUseLatestRestorableTime;
 
   final TfArg<String>? sourceDbInstanceAutomatedBackupsArn;
 
@@ -114,10 +241,8 @@ final class DbInstanceRestoreToPointInTime {
 
   final TfArg<String>? sourceDbiResourceId;
 
-  final TfArg<bool>? useLatestRestorableTime;
-
   Map<String, Object?> encode() => {
-    if (restoreTime != null) 'restore_time': restoreTime!.toTfJson(),
+    ...?restoreTimeOrUseLatestRestorableTime?.encode(),
     if (sourceDbInstanceAutomatedBackupsArn != null)
       'source_db_instance_automated_backups_arn':
           sourceDbInstanceAutomatedBackupsArn!.toTfJson(),
@@ -125,8 +250,52 @@ final class DbInstanceRestoreToPointInTime {
       'source_db_instance_identifier': sourceDbInstanceIdentifier!.toTfJson(),
     if (sourceDbiResourceId != null)
       'source_dbi_resource_id': sourceDbiResourceId!.toTfJson(),
-    if (useLatestRestorableTime != null)
-      'use_latest_restorable_time': useLatestRestorableTime!.toTfJson(),
+  };
+}
+
+/// At most one of `restore_time`, `use_latest_restorable_time` on the `restore_to_point_in_time` block of `aws_db_instance`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime {
+  const DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `restore_time` (one of the [DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime] choices).
+final class DbInstanceRestoreToPointInTimeRestoreTimeOption
+    extends DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime {
+  const DbInstanceRestoreToPointInTimeRestoreTimeOption({
+    required this.restoreTime,
+  });
+
+  final TfArg<String> restoreTime;
+
+  @override
+  String get blockKey => 'restore_time';
+
+  @override
+  Map<String, Object?> encode() => {'restore_time': restoreTime.toTfJson()};
+}
+
+/// Sets `use_latest_restorable_time` (one of the [DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime] choices).
+final class DbInstanceRestoreToPointInTimeUseLatestRestorableTimeOption
+    extends DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime {
+  const DbInstanceRestoreToPointInTimeUseLatestRestorableTimeOption({
+    required this.useLatestRestorableTime,
+  });
+
+  final TfArg<bool> useLatestRestorableTime;
+
+  @override
+  String get blockKey => 'use_latest_restorable_time';
+
+  @override
+  Map<String, Object?> encode() => {
+    'use_latest_restorable_time': useLatestRestorableTime.toTfJson(),
   };
 }
 
@@ -199,14 +368,14 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<bool>? iamDatabaseAuthenticationEnabled,
-    TfArg<String>? identifier,
-    TfArg<String>? identifierPrefix,
+    DbInstanceIdentifierOrIdentifierPrefix? identifierOrIdentifierPrefix,
     required TfArg<String> instanceClass,
     TfArg<num>? iops,
     TfArg<String>? kmsKeyId,
     TfArg<String>? licenseModel,
     TfArg<String>? maintenanceWindow,
-    TfArg<bool>? manageMasterUserPassword,
+    DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo?
+    manageMasterUserPasswordOrPasswordOrPasswordWo,
     TfArg<String>? masterUserSecretKmsKeyId,
     TfArg<num>? maxAllocatedStorage,
     TfArg<num>? monitoringInterval,
@@ -216,8 +385,6 @@ final class AwsDbInstance extends Resource {
     TfArg<DbInstanceNetworkType>? networkType,
     TfArg<String>? optionGroupName,
     TfArg<String>? parameterGroupName,
-    TfArg<String>? password,
-    TfArg<String>? passwordWo,
     TfArg<num>? passwordWoVersion,
     TfArg<bool>? performanceInsightsEnabled,
     TfArg<String>? performanceInsightsKmsKeyId,
@@ -299,16 +466,14 @@ final class AwsDbInstance extends Resource {
            if (iamDatabaseAuthenticationEnabled != null)
              'iam_database_authentication_enabled':
                  iamDatabaseAuthenticationEnabled,
-           if (identifier != null) 'identifier': identifier,
-           if (identifierPrefix != null) 'identifier_prefix': identifierPrefix,
+           ...?identifierOrIdentifierPrefix?.argMap,
            'instance_class': instanceClass,
            if (iops != null) 'iops': iops,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            if (licenseModel != null) 'license_model': licenseModel,
            if (maintenanceWindow != null)
              'maintenance_window': maintenanceWindow,
-           if (manageMasterUserPassword != null)
-             'manage_master_user_password': manageMasterUserPassword,
+           ...?manageMasterUserPasswordOrPasswordOrPasswordWo?.argMap,
            if (masterUserSecretKmsKeyId != null)
              'master_user_secret_kms_key_id': masterUserSecretKmsKeyId,
            if (maxAllocatedStorage != null)
@@ -324,8 +489,6 @@ final class AwsDbInstance extends Resource {
            if (optionGroupName != null) 'option_group_name': optionGroupName,
            if (parameterGroupName != null)
              'parameter_group_name': parameterGroupName,
-           if (password != null) 'password': password,
-           if (passwordWo != null) 'password_wo': passwordWo,
            if (passwordWoVersion != null)
              'password_wo_version': passwordWoVersion,
            if (performanceInsightsEnabled != null)

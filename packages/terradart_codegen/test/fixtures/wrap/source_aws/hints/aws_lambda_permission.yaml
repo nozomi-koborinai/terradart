@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "NONE"
       - "AWS_IAM"
+at_most_one_of_groups:
+  - ["statement_id", "statement_id_prefix"]

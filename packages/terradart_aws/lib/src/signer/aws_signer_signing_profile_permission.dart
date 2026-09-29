@@ -18,6 +18,64 @@ enum SignerSigningProfilePermissionAction implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `statement_id`, `statement_id_prefix` on `aws_signer_signing_profile_permission`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SignerSigningProfilePermissionStatementIdOrStatementIdPrefix {
+  const SignerSigningProfilePermissionStatementIdOrStatementIdPrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `statement_id` (one of the [SignerSigningProfilePermissionStatementIdOrStatementIdPrefix] choices).
+final class SignerSigningProfilePermissionStatementIdOption
+    extends SignerSigningProfilePermissionStatementIdOrStatementIdPrefix {
+  const SignerSigningProfilePermissionStatementIdOption({
+    required this.statementId,
+  });
+
+  final TfArg<String> statementId;
+
+  @override
+  String get blockKey => 'statement_id';
+
+  @override
+  Map<String, Object?> encode() => {'statement_id': statementId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'statement_id': statementId};
+}
+
+/// Sets `statement_id_prefix` (one of the [SignerSigningProfilePermissionStatementIdOrStatementIdPrefix] choices).
+final class SignerSigningProfilePermissionStatementIdPrefixOption
+    extends SignerSigningProfilePermissionStatementIdOrStatementIdPrefix {
+  const SignerSigningProfilePermissionStatementIdPrefixOption({
+    required this.statementIdPrefix,
+  });
+
+  final TfArg<String> statementIdPrefix;
+
+  @override
+  String get blockKey => 'statement_id_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'statement_id_prefix': statementIdPrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'statement_id_prefix': statementIdPrefix,
+  };
+}
+
 /// Factory wrapper for `aws_signer_signing_profile_permission`.
 final class AwsSignerSigningProfilePermission extends Resource {
   static const String tfType = 'aws_signer_signing_profile_permission';
@@ -29,8 +87,8 @@ final class AwsSignerSigningProfilePermission extends Resource {
     required TfArg<String> profileName,
     TfArg<String>? profileVersion,
     TfArg<String>? region,
-    TfArg<String>? statementId,
-    TfArg<String>? statementIdPrefix,
+    SignerSigningProfilePermissionStatementIdOrStatementIdPrefix?
+    statementIdOrStatementIdPrefix,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -43,9 +101,7 @@ final class AwsSignerSigningProfilePermission extends Resource {
            'profile_name': profileName,
            if (profileVersion != null) 'profile_version': profileVersion,
            if (region != null) 'region': region,
-           if (statementId != null) 'statement_id': statementId,
-           if (statementIdPrefix != null)
-             'statement_id_prefix': statementIdPrefix,
+           ...?statementIdOrStatementIdPrefix?.argMap,
          },
        );
 

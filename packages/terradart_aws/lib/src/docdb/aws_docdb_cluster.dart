@@ -46,31 +46,281 @@ enum DocdbClusterStorageType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `cluster_identifier`, `cluster_identifier_prefix` on `aws_docdb_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DocdbClusterClusterIdentifierOrClusterIdentifierPrefix {
+  const DocdbClusterClusterIdentifierOrClusterIdentifierPrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cluster_identifier` (one of the [DocdbClusterClusterIdentifierOrClusterIdentifierPrefix] choices).
+final class DocdbClusterClusterIdentifierOption
+    extends DocdbClusterClusterIdentifierOrClusterIdentifierPrefix {
+  const DocdbClusterClusterIdentifierOption({required this.clusterIdentifier});
+
+  final TfArg<String> clusterIdentifier;
+
+  @override
+  String get blockKey => 'cluster_identifier';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cluster_identifier': clusterIdentifier.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cluster_identifier': clusterIdentifier,
+  };
+}
+
+/// Sets `cluster_identifier_prefix` (one of the [DocdbClusterClusterIdentifierOrClusterIdentifierPrefix] choices).
+final class DocdbClusterClusterIdentifierPrefixOption
+    extends DocdbClusterClusterIdentifierOrClusterIdentifierPrefix {
+  const DocdbClusterClusterIdentifierPrefixOption({
+    required this.clusterIdentifierPrefix,
+  });
+
+  final TfArg<String> clusterIdentifierPrefix;
+
+  @override
+  String get blockKey => 'cluster_identifier_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cluster_identifier_prefix': clusterIdentifierPrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cluster_identifier_prefix': clusterIdentifierPrefix,
+  };
+}
+
+/// At most one of `manage_master_user_password`, `master_password`, `master_password_wo` on `aws_docdb_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
+  const DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `manage_master_user_password` (one of the [DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo] choices).
+final class DocdbClusterManageMasterUserPasswordOption
+    extends
+        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
+  const DocdbClusterManageMasterUserPasswordOption({
+    required this.manageMasterUserPassword,
+  });
+
+  final TfArg<bool> manageMasterUserPassword;
+
+  @override
+  String get blockKey => 'manage_master_user_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'manage_master_user_password': manageMasterUserPassword.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'manage_master_user_password': manageMasterUserPassword,
+  };
+}
+
+/// Sets `master_password` (one of the [DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo] choices).
+final class DocdbClusterMasterPasswordOption
+    extends
+        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
+  const DocdbClusterMasterPasswordOption({required this.masterPassword});
+
+  final TfArg<String> masterPassword;
+
+  @override
+  String get blockKey => 'master_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'master_password': masterPassword.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'master_password': masterPassword};
+}
+
+/// Sets `master_password_wo` (one of the [DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo] choices).
+final class DocdbClusterMasterPasswordWoOption
+    extends
+        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
+  const DocdbClusterMasterPasswordWoOption({required this.masterPasswordWo});
+
+  final TfArg<String> masterPasswordWo;
+
+  @override
+  String get blockKey => 'master_password_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'master_password_wo': masterPasswordWo.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'master_password_wo': masterPasswordWo,
+  };
+}
+
+/// At most one of `restore_to_point_in_time`, `snapshot_identifier` on `aws_docdb_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier {
+  const DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `restore_to_point_in_time` (one of the [DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier] choices).
+final class DocdbClusterRestoreToPointInTimeOption
+    extends DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier {
+  const DocdbClusterRestoreToPointInTimeOption({
+    required this.restoreToPointInTime,
+  });
+
+  final DocdbClusterRestoreToPointInTime restoreToPointInTime;
+
+  @override
+  String get blockKey => 'restore_to_point_in_time';
+
+  @override
+  Map<String, Object?> encode() => {
+    'restore_to_point_in_time': restoreToPointInTime.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'restore_to_point_in_time': TfArg.literal(restoreToPointInTime.encode()),
+  };
+}
+
+/// Sets `snapshot_identifier` (one of the [DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier] choices).
+final class DocdbClusterSnapshotIdentifierOption
+    extends DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier {
+  const DocdbClusterSnapshotIdentifierOption({
+    required this.snapshotIdentifier,
+  });
+
+  final TfArg<String> snapshotIdentifier;
+
+  @override
+  String get blockKey => 'snapshot_identifier';
+
+  @override
+  Map<String, Object?> encode() => {
+    'snapshot_identifier': snapshotIdentifier.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'snapshot_identifier': snapshotIdentifier,
+  };
+}
+
 /// Typed helper for the `restore_to_point_in_time` block of
 /// `aws_docdb_cluster` (derived from provider schema).
 @immutable
 final class DocdbClusterRestoreToPointInTime {
   const DocdbClusterRestoreToPointInTime({
-    this.restoreToTime,
+    this.restoreToTimeOrUseLatestRestorableTime,
     this.restoreType,
     required this.sourceClusterIdentifier,
-    this.useLatestRestorableTime,
   });
 
-  final TfArg<String>? restoreToTime;
+  final DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime?
+  restoreToTimeOrUseLatestRestorableTime;
 
   final TfArg<DocdbClusterRestoreToPointInTimeRestoreType>? restoreType;
 
   final TfArg<String> sourceClusterIdentifier;
 
-  final TfArg<bool>? useLatestRestorableTime;
-
   Map<String, Object?> encode() => {
-    if (restoreToTime != null) 'restore_to_time': restoreToTime!.toTfJson(),
+    ...?restoreToTimeOrUseLatestRestorableTime?.encode(),
     if (restoreType != null) 'restore_type': restoreType!.toTfJson(),
     'source_cluster_identifier': sourceClusterIdentifier.toTfJson(),
-    if (useLatestRestorableTime != null)
-      'use_latest_restorable_time': useLatestRestorableTime!.toTfJson(),
+  };
+}
+
+/// At most one of `restore_to_time`, `use_latest_restorable_time` on the `restore_to_point_in_time` block of `aws_docdb_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
+  const DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `restore_to_time` (one of the [DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime] choices).
+final class DocdbClusterRestoreToPointInTimeRestoreToTimeOption
+    extends
+        DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
+  const DocdbClusterRestoreToPointInTimeRestoreToTimeOption({
+    required this.restoreToTime,
+  });
+
+  final TfArg<String> restoreToTime;
+
+  @override
+  String get blockKey => 'restore_to_time';
+
+  @override
+  Map<String, Object?> encode() => {
+    'restore_to_time': restoreToTime.toTfJson(),
+  };
+}
+
+/// Sets `use_latest_restorable_time` (one of the [DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime] choices).
+final class DocdbClusterRestoreToPointInTimeUseLatestRestorableTimeOption
+    extends
+        DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
+  const DocdbClusterRestoreToPointInTimeUseLatestRestorableTimeOption({
+    required this.useLatestRestorableTime,
+  });
+
+  final TfArg<bool> useLatestRestorableTime;
+
+  @override
+  String get blockKey => 'use_latest_restorable_time';
+
+  @override
+  Map<String, Object?> encode() => {
+    'use_latest_restorable_time': useLatestRestorableTime.toTfJson(),
   };
 }
 
@@ -113,8 +363,8 @@ final class AwsDocdbCluster extends Resource {
     TfArg<bool>? applyImmediately,
     TfArg<List<String>>? availabilityZones,
     TfArg<num>? backupRetentionPeriod,
-    TfArg<String>? clusterIdentifier,
-    TfArg<String>? clusterIdentifierPrefix,
+    DocdbClusterClusterIdentifierOrClusterIdentifierPrefix?
+    clusterIdentifierOrClusterIdentifierPrefix,
     TfArg<List<String>>? clusterMembers,
     TfArg<String>? dbClusterParameterGroupName,
     TfArg<String>? dbSubnetGroupName,
@@ -126,9 +376,8 @@ final class AwsDocdbCluster extends Resource {
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalClusterIdentifier,
     TfArg<String>? kmsKeyId,
-    TfArg<bool>? manageMasterUserPassword,
-    TfArg<String>? masterPassword,
-    TfArg<String>? masterPasswordWo,
+    DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo?
+    manageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo,
     TfArg<num>? masterPasswordWoVersion,
     TfArg<String>? masterUsername,
     TfArg<DocdbClusterNetworkType>? networkType,
@@ -137,12 +386,12 @@ final class AwsDocdbCluster extends Resource {
     TfArg<String>? preferredMaintenanceWindow,
     TfArg<String>? region,
     TfArg<bool>? skipFinalSnapshot,
-    TfArg<String>? snapshotIdentifier,
+    DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier?
+    restoreToPointInTimeOrSnapshotIdentifier,
     TfArg<bool>? storageEncrypted,
     TfArg<DocdbClusterStorageType>? storageType,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? vpcSecurityGroupIds,
-    DocdbClusterRestoreToPointInTime? restoreToPointInTime,
     DocdbClusterServerlessV2ScalingConfiguration?
     serverlessV2ScalingConfiguration,
     super.lifecycle,
@@ -159,10 +408,7 @@ final class AwsDocdbCluster extends Resource {
              'availability_zones': availabilityZones,
            if (backupRetentionPeriod != null)
              'backup_retention_period': backupRetentionPeriod,
-           if (clusterIdentifier != null)
-             'cluster_identifier': clusterIdentifier,
-           if (clusterIdentifierPrefix != null)
-             'cluster_identifier_prefix': clusterIdentifierPrefix,
+           ...?clusterIdentifierOrClusterIdentifierPrefix?.argMap,
            if (clusterMembers != null) 'cluster_members': clusterMembers,
            if (dbClusterParameterGroupName != null)
              'db_cluster_parameter_group_name': dbClusterParameterGroupName,
@@ -181,10 +427,8 @@ final class AwsDocdbCluster extends Resource {
            if (globalClusterIdentifier != null)
              'global_cluster_identifier': globalClusterIdentifier,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
-           if (manageMasterUserPassword != null)
-             'manage_master_user_password': manageMasterUserPassword,
-           if (masterPassword != null) 'master_password': masterPassword,
-           if (masterPasswordWo != null) 'master_password_wo': masterPasswordWo,
+           ...?manageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo
+               ?.argMap,
            if (masterPasswordWoVersion != null)
              'master_password_wo_version': masterPasswordWoVersion,
            if (masterUsername != null) 'master_username': masterUsername,
@@ -197,17 +441,12 @@ final class AwsDocdbCluster extends Resource {
            if (region != null) 'region': region,
            if (skipFinalSnapshot != null)
              'skip_final_snapshot': skipFinalSnapshot,
-           if (snapshotIdentifier != null)
-             'snapshot_identifier': snapshotIdentifier,
+           ...?restoreToPointInTimeOrSnapshotIdentifier?.argMap,
            if (storageEncrypted != null) 'storage_encrypted': storageEncrypted,
            if (storageType != null) 'storage_type': storageType,
            if (tags != null) 'tags': tags,
            if (vpcSecurityGroupIds != null)
              'vpc_security_group_ids': vpcSecurityGroupIds,
-           if (restoreToPointInTime != null)
-             'restore_to_point_in_time': TfArg.literal(
-               restoreToPointInTime.encode(),
-             ),
            if (serverlessV2ScalingConfiguration != null)
              'serverless_v2_scaling_configuration': TfArg.literal(
                serverlessV2ScalingConfiguration.encode(),

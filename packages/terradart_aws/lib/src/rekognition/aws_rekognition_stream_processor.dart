@@ -62,20 +62,63 @@ final class RekognitionStreamProcessorNotificationChannel {
 @immutable
 final class RekognitionStreamProcessorOutput {
   const RekognitionStreamProcessorOutput({
-    this.kinesisDataStream,
-    this.s3Destination,
+    this.kinesisDataStreamOrS3Destination,
   });
 
-  final List<RekognitionStreamProcessorOutputKinesisDataStream>?
-  kinesisDataStream;
-
-  final List<RekognitionStreamProcessorOutputS3Destination>? s3Destination;
+  final RekognitionStreamProcessorOutputKinesisDataStreamOrS3Destination?
+  kinesisDataStreamOrS3Destination;
 
   Map<String, Object?> encode() => {
-    if (kinesisDataStream != null)
-      'kinesis_data_stream': [for (final e in kinesisDataStream!) e.encode()],
-    if (s3Destination != null)
-      's3_destination': [for (final e in s3Destination!) e.encode()],
+    ...?kinesisDataStreamOrS3Destination?.encode(),
+  };
+}
+
+/// At most one of `kinesis_data_stream`, `s3_destination` on the `output` block of `aws_rekognition_stream_processor`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RekognitionStreamProcessorOutputKinesisDataStreamOrS3Destination {
+  const RekognitionStreamProcessorOutputKinesisDataStreamOrS3Destination();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `kinesis_data_stream` (one of the [RekognitionStreamProcessorOutputKinesisDataStreamOrS3Destination] choices).
+final class RekognitionStreamProcessorOutputKinesisDataStreamOption
+    extends RekognitionStreamProcessorOutputKinesisDataStreamOrS3Destination {
+  const RekognitionStreamProcessorOutputKinesisDataStreamOption({
+    required this.kinesisDataStream,
+  });
+
+  final List<RekognitionStreamProcessorOutputKinesisDataStream>
+  kinesisDataStream;
+
+  @override
+  String get blockKey => 'kinesis_data_stream';
+
+  @override
+  Map<String, Object?> encode() => {
+    'kinesis_data_stream': [for (final e in kinesisDataStream) e.encode()],
+  };
+}
+
+/// Sets `s3_destination` (one of the [RekognitionStreamProcessorOutputKinesisDataStreamOrS3Destination] choices).
+final class RekognitionStreamProcessorOutputS3DestinationOption
+    extends RekognitionStreamProcessorOutputKinesisDataStreamOrS3Destination {
+  const RekognitionStreamProcessorOutputS3DestinationOption({
+    required this.s3Destination,
+  });
+
+  final List<RekognitionStreamProcessorOutputS3Destination> s3Destination;
+
+  @override
+  String get blockKey => 's3_destination';
+
+  @override
+  Map<String, Object?> encode() => {
+    's3_destination': [for (final e in s3Destination) e.encode()],
   };
 }
 
@@ -114,19 +157,61 @@ final class RekognitionStreamProcessorOutputS3Destination {
 @immutable
 final class RekognitionStreamProcessorRegionsOfInterest {
   const RekognitionStreamProcessorRegionsOfInterest({
-    this.boundingBox,
-    this.polygon,
+    this.boundingBoxOrPolygon,
   });
 
-  final List<RekognitionStreamProcessorRegionsOfInterestBoundingBox>?
+  final RekognitionStreamProcessorRegionsOfInterestBoundingBoxOrPolygon?
+  boundingBoxOrPolygon;
+
+  Map<String, Object?> encode() => {...?boundingBoxOrPolygon?.encode()};
+}
+
+/// At most one of `bounding_box`, `polygon` on the `regions_of_interest` block of `aws_rekognition_stream_processor`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RekognitionStreamProcessorRegionsOfInterestBoundingBoxOrPolygon {
+  const RekognitionStreamProcessorRegionsOfInterestBoundingBoxOrPolygon();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `bounding_box` (one of the [RekognitionStreamProcessorRegionsOfInterestBoundingBoxOrPolygon] choices).
+final class RekognitionStreamProcessorRegionsOfInterestBoundingBoxOption
+    extends RekognitionStreamProcessorRegionsOfInterestBoundingBoxOrPolygon {
+  const RekognitionStreamProcessorRegionsOfInterestBoundingBoxOption({
+    required this.boundingBox,
+  });
+
+  final List<RekognitionStreamProcessorRegionsOfInterestBoundingBox>
   boundingBox;
 
-  final List<RekognitionStreamProcessorRegionsOfInterestPolygon>? polygon;
+  @override
+  String get blockKey => 'bounding_box';
 
+  @override
   Map<String, Object?> encode() => {
-    if (boundingBox != null)
-      'bounding_box': [for (final e in boundingBox!) e.encode()],
-    if (polygon != null) 'polygon': [for (final e in polygon!) e.encode()],
+    'bounding_box': [for (final e in boundingBox) e.encode()],
+  };
+}
+
+/// Sets `polygon` (one of the [RekognitionStreamProcessorRegionsOfInterestBoundingBoxOrPolygon] choices).
+final class RekognitionStreamProcessorRegionsOfInterestPolygonOption
+    extends RekognitionStreamProcessorRegionsOfInterestBoundingBoxOrPolygon {
+  const RekognitionStreamProcessorRegionsOfInterestPolygonOption({
+    required this.polygon,
+  });
+
+  final List<RekognitionStreamProcessorRegionsOfInterestPolygon> polygon;
+
+  @override
+  String get blockKey => 'polygon';
+
+  @override
+  Map<String, Object?> encode() => {
+    'polygon': [for (final e in polygon) e.encode()],
   };
 }
 
@@ -177,20 +262,59 @@ final class RekognitionStreamProcessorRegionsOfInterestPolygon {
 /// `aws_rekognition_stream_processor` (derived from provider schema).
 @immutable
 final class RekognitionStreamProcessorSettings {
-  const RekognitionStreamProcessorSettings({
-    this.connectedHome,
-    this.faceSearch,
+  const RekognitionStreamProcessorSettings({this.connectedHomeOrFaceSearch});
+
+  final RekognitionStreamProcessorSettingsConnectedHomeOrFaceSearch?
+  connectedHomeOrFaceSearch;
+
+  Map<String, Object?> encode() => {...?connectedHomeOrFaceSearch?.encode()};
+}
+
+/// At most one of `connected_home`, `face_search` on the `settings` block of `aws_rekognition_stream_processor`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RekognitionStreamProcessorSettingsConnectedHomeOrFaceSearch {
+  const RekognitionStreamProcessorSettingsConnectedHomeOrFaceSearch();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `connected_home` (one of the [RekognitionStreamProcessorSettingsConnectedHomeOrFaceSearch] choices).
+final class RekognitionStreamProcessorSettingsConnectedHomeOption
+    extends RekognitionStreamProcessorSettingsConnectedHomeOrFaceSearch {
+  const RekognitionStreamProcessorSettingsConnectedHomeOption({
+    required this.connectedHome,
   });
 
-  final List<RekognitionStreamProcessorSettingsConnectedHome>? connectedHome;
+  final List<RekognitionStreamProcessorSettingsConnectedHome> connectedHome;
 
-  final List<RekognitionStreamProcessorSettingsFaceSearch>? faceSearch;
+  @override
+  String get blockKey => 'connected_home';
 
+  @override
   Map<String, Object?> encode() => {
-    if (connectedHome != null)
-      'connected_home': [for (final e in connectedHome!) e.encode()],
-    if (faceSearch != null)
-      'face_search': [for (final e in faceSearch!) e.encode()],
+    'connected_home': [for (final e in connectedHome) e.encode()],
+  };
+}
+
+/// Sets `face_search` (one of the [RekognitionStreamProcessorSettingsConnectedHomeOrFaceSearch] choices).
+final class RekognitionStreamProcessorSettingsFaceSearchOption
+    extends RekognitionStreamProcessorSettingsConnectedHomeOrFaceSearch {
+  const RekognitionStreamProcessorSettingsFaceSearchOption({
+    required this.faceSearch,
+  });
+
+  final List<RekognitionStreamProcessorSettingsFaceSearch> faceSearch;
+
+  @override
+  String get blockKey => 'face_search';
+
+  @override
+  Map<String, Object?> encode() => {
+    'face_search': [for (final e in faceSearch) e.encode()],
   };
 }
 

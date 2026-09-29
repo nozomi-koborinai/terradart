@@ -31,6 +31,86 @@ enum VpcEndpointVpcEndpointType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `resource_configuration_arn`, `service_name`, `service_network_arn` on `aws_vpc_endpoint`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn {
+  const VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `resource_configuration_arn` (one of the [VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn] choices).
+final class VpcEndpointResourceConfigurationArnOption
+    extends
+        VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn {
+  const VpcEndpointResourceConfigurationArnOption({
+    required this.resourceConfigurationArn,
+  });
+
+  final TfArg<String> resourceConfigurationArn;
+
+  @override
+  String get blockKey => 'resource_configuration_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'resource_configuration_arn': resourceConfigurationArn.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'resource_configuration_arn': resourceConfigurationArn,
+  };
+}
+
+/// Sets `service_name` (one of the [VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn] choices).
+final class VpcEndpointServiceNameOption
+    extends
+        VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn {
+  const VpcEndpointServiceNameOption({required this.serviceName});
+
+  final TfArg<String> serviceName;
+
+  @override
+  String get blockKey => 'service_name';
+
+  @override
+  Map<String, Object?> encode() => {'service_name': serviceName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'service_name': serviceName};
+}
+
+/// Sets `service_network_arn` (one of the [VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn] choices).
+final class VpcEndpointServiceNetworkArnOption
+    extends
+        VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn {
+  const VpcEndpointServiceNetworkArnOption({required this.serviceNetworkArn});
+
+  final TfArg<String> serviceNetworkArn;
+
+  @override
+  String get blockKey => 'service_network_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'service_network_arn': serviceNetworkArn.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'service_network_arn': serviceNetworkArn,
+  };
+}
+
 /// Typed helper for the `dns_options` block of
 /// `aws_vpc_endpoint` (derived from provider schema).
 @immutable
@@ -117,11 +197,10 @@ final class AwsVpcEndpoint extends Resource {
     TfArg<String>? policy,
     TfArg<bool>? privateDnsEnabled,
     TfArg<String>? region,
-    TfArg<String>? resourceConfigurationArn,
+    VpcEndpointResourceConfigurationArnOrServiceNameOrServiceNetworkArn?
+    resourceConfigurationArnOrServiceNameOrServiceNetworkArn,
     TfArg<List<String>>? routeTableIds,
     TfArg<List<String>>? securityGroupIds,
-    TfArg<String>? serviceName,
-    TfArg<String>? serviceNetworkArn,
     TfArg<String>? serviceRegion,
     TfArg<List<String>>? subnetIds,
     TfArg<Map<String, String>>? tags,
@@ -142,13 +221,9 @@ final class AwsVpcEndpoint extends Resource {
            if (privateDnsEnabled != null)
              'private_dns_enabled': privateDnsEnabled,
            if (region != null) 'region': region,
-           if (resourceConfigurationArn != null)
-             'resource_configuration_arn': resourceConfigurationArn,
+           ...?resourceConfigurationArnOrServiceNameOrServiceNetworkArn?.argMap,
            if (routeTableIds != null) 'route_table_ids': routeTableIds,
            if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
-           if (serviceName != null) 'service_name': serviceName,
-           if (serviceNetworkArn != null)
-             'service_network_arn': serviceNetworkArn,
            if (serviceRegion != null) 'service_region': serviceRegion,
            if (subnetIds != null) 'subnet_ids': subnetIds,
            if (tags != null) 'tags': tags,

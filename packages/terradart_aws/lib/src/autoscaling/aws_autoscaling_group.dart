@@ -101,6 +101,118 @@ final class AutoscalingGroupMixedInstancesPolicyOption
   };
 }
 
+/// At most one of `availability_zones`, `vpc_zone_identifier` on `aws_autoscaling_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier {
+  const AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `availability_zones` (one of the [AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier] choices).
+final class AutoscalingGroupAvailabilityZonesOption
+    extends AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier {
+  const AutoscalingGroupAvailabilityZonesOption({
+    required this.availabilityZones,
+  });
+
+  final TfArg<List<String>> availabilityZones;
+
+  @override
+  String get blockKey => 'availability_zones';
+
+  @override
+  Map<String, Object?> encode() => {
+    'availability_zones': availabilityZones.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'availability_zones': availabilityZones,
+  };
+}
+
+/// Sets `vpc_zone_identifier` (one of the [AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier] choices).
+final class AutoscalingGroupVpcZoneIdentifierOption
+    extends AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier {
+  const AutoscalingGroupVpcZoneIdentifierOption({
+    required this.vpcZoneIdentifier,
+  });
+
+  final TfArg<List<String>> vpcZoneIdentifier;
+
+  @override
+  String get blockKey => 'vpc_zone_identifier';
+
+  @override
+  Map<String, Object?> encode() => {
+    'vpc_zone_identifier': vpcZoneIdentifier.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc_zone_identifier': vpcZoneIdentifier,
+  };
+}
+
+/// At most one of `name`, `name_prefix` on `aws_autoscaling_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AutoscalingGroupNameOrNamePrefix {
+  const AutoscalingGroupNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [AutoscalingGroupNameOrNamePrefix] choices).
+final class AutoscalingGroupNameOption
+    extends AutoscalingGroupNameOrNamePrefix {
+  const AutoscalingGroupNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [AutoscalingGroupNameOrNamePrefix] choices).
+final class AutoscalingGroupNamePrefixOption
+    extends AutoscalingGroupNameOrNamePrefix {
+  const AutoscalingGroupNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `availability_zone_distribution` block of
 /// `aws_autoscaling_group` (derived from provider schema).
 @immutable
@@ -181,20 +293,65 @@ enum AutoscalingGroupCapacityReservationSpecificationCapacityReservationPreferen
 @immutable
 final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget {
   const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget({
-    this.capacityReservationIds,
-    this.capacityReservationResourceGroupArns,
+    this.capacityReservationIdsOrCapacityReservationResourceGroupArns,
   });
 
-  final TfArg<List<Object?>>? capacityReservationIds;
-
-  final TfArg<List<Object?>>? capacityReservationResourceGroupArns;
+  final AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns?
+  capacityReservationIdsOrCapacityReservationResourceGroupArns;
 
   Map<String, Object?> encode() => {
-    if (capacityReservationIds != null)
-      'capacity_reservation_ids': capacityReservationIds!.toTfJson(),
-    if (capacityReservationResourceGroupArns != null)
-      'capacity_reservation_resource_group_arns':
-          capacityReservationResourceGroupArns!.toTfJson(),
+    ...?capacityReservationIdsOrCapacityReservationResourceGroupArns?.encode(),
+  };
+}
+
+/// At most one of `capacity_reservation_ids`, `capacity_reservation_resource_group_arns` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_autoscaling_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns {
+  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `capacity_reservation_ids` (one of the [AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns] choices).
+final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOption
+    extends
+        AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns {
+  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOption({
+    required this.capacityReservationIds,
+  });
+
+  final TfArg<List<Object?>> capacityReservationIds;
+
+  @override
+  String get blockKey => 'capacity_reservation_ids';
+
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_reservation_ids': capacityReservationIds.toTfJson(),
+  };
+}
+
+/// Sets `capacity_reservation_resource_group_arns` (one of the [AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns] choices).
+final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArnsOption
+    extends
+        AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns {
+  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArnsOption({
+    required this.capacityReservationResourceGroupArns,
+  });
+
+  final TfArg<List<Object?>> capacityReservationResourceGroupArns;
+
+  @override
+  String get blockKey => 'capacity_reservation_resource_group_arns';
+
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_reservation_resource_group_arns':
+        capacityReservationResourceGroupArns.toTfJson(),
   };
 }
 
@@ -474,19 +631,56 @@ final class AutoscalingGroupInstanceRefreshPreferencesAlarmSpecification {
 /// `aws_autoscaling_group` (derived from provider schema).
 @immutable
 final class AutoscalingGroupLaunchTemplate {
-  const AutoscalingGroupLaunchTemplate({this.id, this.name, this.version});
+  const AutoscalingGroupLaunchTemplate({this.idOrName, this.version});
 
-  final TfArg<String>? id;
-
-  final TfArg<String>? name;
+  final AutoscalingGroupLaunchTemplateIdOrName? idOrName;
 
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    ...?idOrName?.encode(),
     if (version != null) 'version': version!.toTfJson(),
   };
+}
+
+/// At most one of `id`, `name` on the `launch_template` block of `aws_autoscaling_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AutoscalingGroupLaunchTemplateIdOrName {
+  const AutoscalingGroupLaunchTemplateIdOrName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `id` (one of the [AutoscalingGroupLaunchTemplateIdOrName] choices).
+final class AutoscalingGroupLaunchTemplateIdOption
+    extends AutoscalingGroupLaunchTemplateIdOrName {
+  const AutoscalingGroupLaunchTemplateIdOption({required this.id});
+
+  final TfArg<String> id;
+
+  @override
+  String get blockKey => 'id';
+
+  @override
+  Map<String, Object?> encode() => {'id': id.toTfJson()};
+}
+
+/// Sets `name` (one of the [AutoscalingGroupLaunchTemplateIdOrName] choices).
+final class AutoscalingGroupLaunchTemplateNameOption
+    extends AutoscalingGroupLaunchTemplateIdOrName {
+  const AutoscalingGroupLaunchTemplateNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
 /// Typed helper for the `mixed_instances_policy` block of
@@ -1235,7 +1429,8 @@ final class AwsAutoscalingGroup extends Resource {
 
   AwsAutoscalingGroup({
     required super.localName,
-    TfArg<List<String>>? availabilityZones,
+    AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifier?
+    availabilityZonesOrVpcZoneIdentifier,
     TfArg<bool>? capacityRebalance,
     TfArg<String>? context,
     TfArg<num>? defaultCooldown,
@@ -1256,8 +1451,7 @@ final class AwsAutoscalingGroup extends Resource {
     TfArg<String>? metricsGranularity,
     TfArg<num>? minElbCapacity,
     required TfArg<num> minSize,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    AutoscalingGroupNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? placementGroup,
     TfArg<bool>? protectFromScaleIn,
     TfArg<String>? region,
@@ -1265,7 +1459,6 @@ final class AwsAutoscalingGroup extends Resource {
     TfArg<List<String>>? suspendedProcesses,
     TfArg<List<String>>? targetGroupArns,
     TfArg<List<String>>? terminationPolicies,
-    TfArg<List<String>>? vpcZoneIdentifier,
     TfArg<String>? waitForCapacityTimeout,
     TfArg<num>? waitForElbCapacity,
     AutoscalingGroupAvailabilityZoneDistribution? availabilityZoneDistribution,
@@ -1285,8 +1478,7 @@ final class AwsAutoscalingGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZones != null)
-             'availability_zones': availabilityZones,
+           ...?availabilityZonesOrVpcZoneIdentifier?.argMap,
            if (capacityRebalance != null)
              'capacity_rebalance': capacityRebalance,
            if (context != null) 'context': context,
@@ -1314,8 +1506,7 @@ final class AwsAutoscalingGroup extends Resource {
              'metrics_granularity': metricsGranularity,
            if (minElbCapacity != null) 'min_elb_capacity': minElbCapacity,
            'min_size': minSize,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (placementGroup != null) 'placement_group': placementGroup,
            if (protectFromScaleIn != null)
              'protect_from_scale_in': protectFromScaleIn,
@@ -1327,8 +1518,6 @@ final class AwsAutoscalingGroup extends Resource {
            if (targetGroupArns != null) 'target_group_arns': targetGroupArns,
            if (terminationPolicies != null)
              'termination_policies': terminationPolicies,
-           if (vpcZoneIdentifier != null)
-             'vpc_zone_identifier': vpcZoneIdentifier,
            if (waitForCapacityTimeout != null)
              'wait_for_capacity_timeout': waitForCapacityTimeout,
            if (waitForElbCapacity != null)

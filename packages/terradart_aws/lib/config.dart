@@ -27,7 +27,10 @@ export 'src/config/aws_config_configuration_aggregator.dart'
     show
         AwsConfigConfigurationAggregator,
         ConfigConfigurationAggregatorAccountAggregationSource,
-        ConfigConfigurationAggregatorOrganizationAggregationSource;
+        ConfigConfigurationAggregatorAccountAggregationSourceOption,
+        ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource,
+        ConfigConfigurationAggregatorOrganizationAggregationSource,
+        ConfigConfigurationAggregatorOrganizationAggregationSourceOption;
 export 'src/config/aws_config_configuration_recorder.dart'
     show
         AwsConfigConfigurationRecorder,
@@ -51,7 +54,10 @@ export 'src/config/aws_config_delivery_channel.dart'
 export 'src/config/aws_config_organization_conformance_pack.dart'
     show
         AwsConfigOrganizationConformancePack,
-        ConfigOrganizationConformancePackInputParameter;
+        ConfigOrganizationConformancePackInputParameter,
+        ConfigOrganizationConformancePackTemplateBodyOption,
+        ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri,
+        ConfigOrganizationConformancePackTemplateS3UriOption;
 export 'src/config/aws_config_organization_custom_policy_rule.dart'
     show
         AwsConfigOrganizationCustomPolicyRule,

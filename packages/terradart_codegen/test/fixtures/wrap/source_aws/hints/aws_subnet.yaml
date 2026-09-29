@@ -7,3 +7,6 @@ properties:
     enum_values:
       - "ip-name"
       - "resource-name"
+at_most_one_of_groups:
+  - ["availability_zone", "availability_zone_id"]
+  - ["ipv6_cidr_block", "ipv6_netmask_length"]

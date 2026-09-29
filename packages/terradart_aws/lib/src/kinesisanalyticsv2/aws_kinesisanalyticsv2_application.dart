@@ -141,20 +141,64 @@ enum Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigu
 @immutable
 final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent {
   const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent({
-    this.textContent,
-    this.s3ContentLocation,
+    this.s3ContentLocationOrTextContent,
   });
 
-  final TfArg<String>? textContent;
-
-  final Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocation?
-  s3ContentLocation;
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationOrTextContent?
+  s3ContentLocationOrTextContent;
 
   Map<String, Object?> encode() => {
-    if (textContent != null) 'text_content': textContent!.toTfJson(),
-    if (s3ContentLocation != null)
-      's3_content_location': s3ContentLocation!.encode(),
+    ...?s3ContentLocationOrTextContent?.encode(),
   };
+}
+
+/// At most one of `s3_content_location`, `text_content` on the `application_configuration.application_code_configuration.code_content` block of `aws_kinesisanalyticsv2_application`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationOrTextContent {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationOrTextContent();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `s3_content_location` (one of the [Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationOrTextContent] choices).
+final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationOption
+    extends
+        Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationOrTextContent {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationOption({
+    required this.s3ContentLocation,
+  });
+
+  final Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocation
+  s3ContentLocation;
+
+  @override
+  String get blockKey => 's3_content_location';
+
+  @override
+  Map<String, Object?> encode() => {
+    's3_content_location': s3ContentLocation.encode(),
+  };
+}
+
+/// Sets `text_content` (one of the [Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationOrTextContent] choices).
+final class Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentTextContentOption
+    extends
+        Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentS3ContentLocationOrTextContent {
+  const Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentTextContentOption({
+    required this.textContent,
+  });
+
+  final TfArg<String> textContent;
+
+  @override
+  String get blockKey => 'text_content';
+
+  @override
+  Map<String, Object?> encode() => {'text_content': textContent.toTfJson()};
 }
 
 /// Typed helper for the `application_configuration.application_code_configuration.code_content.s3_content_location` block of

@@ -11,3 +11,5 @@ properties:
     enum_values:
       - "RESEND"
       - "SUPPRESS"
+at_most_one_of_groups:
+  - ["password", "temporary_password"]

@@ -17,14 +17,70 @@ enum DmsReplicationTaskMigrationType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `cdc_start_position`, `cdc_start_time` on `aws_dms_replication_task`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DmsReplicationTaskCdcStartPositionOrCdcStartTime {
+  const DmsReplicationTaskCdcStartPositionOrCdcStartTime();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cdc_start_position` (one of the [DmsReplicationTaskCdcStartPositionOrCdcStartTime] choices).
+final class DmsReplicationTaskCdcStartPositionOption
+    extends DmsReplicationTaskCdcStartPositionOrCdcStartTime {
+  const DmsReplicationTaskCdcStartPositionOption({
+    required this.cdcStartPosition,
+  });
+
+  final TfArg<String> cdcStartPosition;
+
+  @override
+  String get blockKey => 'cdc_start_position';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cdc_start_position': cdcStartPosition.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cdc_start_position': cdcStartPosition,
+  };
+}
+
+/// Sets `cdc_start_time` (one of the [DmsReplicationTaskCdcStartPositionOrCdcStartTime] choices).
+final class DmsReplicationTaskCdcStartTimeOption
+    extends DmsReplicationTaskCdcStartPositionOrCdcStartTime {
+  const DmsReplicationTaskCdcStartTimeOption({required this.cdcStartTime});
+
+  final TfArg<String> cdcStartTime;
+
+  @override
+  String get blockKey => 'cdc_start_time';
+
+  @override
+  Map<String, Object?> encode() => {'cdc_start_time': cdcStartTime.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'cdc_start_time': cdcStartTime};
+}
+
 /// Factory wrapper for `aws_dms_replication_task`.
 final class AwsDmsReplicationTask extends Resource {
   static const String tfType = 'aws_dms_replication_task';
 
   AwsDmsReplicationTask({
     required super.localName,
-    TfArg<String>? cdcStartPosition,
-    TfArg<String>? cdcStartTime,
+    DmsReplicationTaskCdcStartPositionOrCdcStartTime?
+    cdcStartPositionOrCdcStartTime,
     required TfArg<DmsReplicationTaskMigrationType> migrationType,
     TfArg<String>? region,
     required TfArg<String> replicationInstanceArn,
@@ -43,8 +99,7 @@ final class AwsDmsReplicationTask extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cdcStartPosition != null) 'cdc_start_position': cdcStartPosition,
-           if (cdcStartTime != null) 'cdc_start_time': cdcStartTime,
+           ...?cdcStartPositionOrCdcStartTime?.argMap,
            'migration_type': migrationType,
            if (region != null) 'region': region,
            'replication_instance_arn': replicationInstanceArn,

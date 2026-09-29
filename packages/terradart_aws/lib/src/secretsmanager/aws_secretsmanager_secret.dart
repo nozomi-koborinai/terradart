@@ -7,6 +7,56 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_secretsmanager_secret`.
 const Set<String> _awsSecretsmanagerSecretSensitive = <String>{};
 
+/// At most one of `name`, `name_prefix` on `aws_secretsmanager_secret`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SecretsmanagerSecretNameOrNamePrefix {
+  const SecretsmanagerSecretNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [SecretsmanagerSecretNameOrNamePrefix] choices).
+final class SecretsmanagerSecretNameOption
+    extends SecretsmanagerSecretNameOrNamePrefix {
+  const SecretsmanagerSecretNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [SecretsmanagerSecretNameOrNamePrefix] choices).
+final class SecretsmanagerSecretNamePrefixOption
+    extends SecretsmanagerSecretNameOrNamePrefix {
+  const SecretsmanagerSecretNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `replica` block of
 /// `aws_secretsmanager_secret` (derived from provider schema).
 @immutable
@@ -32,8 +82,7 @@ final class AwsSecretsmanagerSecret extends Resource {
     TfArg<String>? description,
     TfArg<bool>? forceOverwriteReplicaSecret,
     TfArg<String>? kmsKeyId,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    SecretsmanagerSecretNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? policy,
     TfArg<num>? recoveryWindowInDays,
     TfArg<String>? region,
@@ -51,8 +100,7 @@ final class AwsSecretsmanagerSecret extends Resource {
            if (forceOverwriteReplicaSecret != null)
              'force_overwrite_replica_secret': forceOverwriteReplicaSecret,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (policy != null) 'policy': policy,
            if (recoveryWindowInDays != null)
              'recovery_window_in_days': recoveryWindowInDays,

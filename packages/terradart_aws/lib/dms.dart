@@ -83,7 +83,12 @@ export 'src/dms/aws_dms_replication_instance.dart'
 export 'src/dms/aws_dms_replication_subnet_group.dart'
     show AwsDmsReplicationSubnetGroup;
 export 'src/dms/aws_dms_replication_task.dart'
-    show AwsDmsReplicationTask, DmsReplicationTaskMigrationType;
+    show
+        AwsDmsReplicationTask,
+        DmsReplicationTaskCdcStartPositionOption,
+        DmsReplicationTaskCdcStartPositionOrCdcStartTime,
+        DmsReplicationTaskCdcStartTimeOption,
+        DmsReplicationTaskMigrationType;
 export 'src/dms/aws_dms_s3_endpoint.dart'
     show
         AwsDmsS3Endpoint,

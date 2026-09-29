@@ -17,6 +17,58 @@ enum AppsyncResolverKind implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `data_source`, `pipeline_config` on `aws_appsync_resolver`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AppsyncResolverDataSourceOrPipelineConfig {
+  const AppsyncResolverDataSourceOrPipelineConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `data_source` (one of the [AppsyncResolverDataSourceOrPipelineConfig] choices).
+final class AppsyncResolverDataSourceOption
+    extends AppsyncResolverDataSourceOrPipelineConfig {
+  const AppsyncResolverDataSourceOption({required this.dataSource});
+
+  final TfArg<String> dataSource;
+
+  @override
+  String get blockKey => 'data_source';
+
+  @override
+  Map<String, Object?> encode() => {'data_source': dataSource.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'data_source': dataSource};
+}
+
+/// Sets `pipeline_config` (one of the [AppsyncResolverDataSourceOrPipelineConfig] choices).
+final class AppsyncResolverPipelineConfigOption
+    extends AppsyncResolverDataSourceOrPipelineConfig {
+  const AppsyncResolverPipelineConfigOption({required this.pipelineConfig});
+
+  final AppsyncResolverPipelineConfig pipelineConfig;
+
+  @override
+  String get blockKey => 'pipeline_config';
+
+  @override
+  Map<String, Object?> encode() => {'pipeline_config': pipelineConfig.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'pipeline_config': TfArg.literal(pipelineConfig.encode()),
+  };
+}
+
 /// Typed helper for the `caching_config` block of
 /// `aws_appsync_resolver` (derived from provider schema).
 @immutable
@@ -147,7 +199,7 @@ final class AwsAppsyncResolver extends Resource {
     required super.localName,
     required TfArg<String> apiId,
     TfArg<String>? code,
-    TfArg<String>? dataSource,
+    AppsyncResolverDataSourceOrPipelineConfig? dataSourceOrPipelineConfig,
     required TfArg<String> field,
     TfArg<AppsyncResolverKind>? kind,
     TfArg<num>? maxBatchSize,
@@ -156,7 +208,6 @@ final class AwsAppsyncResolver extends Resource {
     TfArg<String>? responseTemplate,
     required TfArg<String> type,
     AppsyncResolverCachingConfig? cachingConfig,
-    AppsyncResolverPipelineConfig? pipelineConfig,
     AppsyncResolverRuntime? runtime,
     AppsyncResolverSyncConfig? syncConfig,
     super.lifecycle,
@@ -168,7 +219,7 @@ final class AwsAppsyncResolver extends Resource {
          argMap: {
            'api_id': apiId,
            if (code != null) 'code': code,
-           if (dataSource != null) 'data_source': dataSource,
+           ...?dataSourceOrPipelineConfig?.argMap,
            'field': field,
            if (kind != null) 'kind': kind,
            if (maxBatchSize != null) 'max_batch_size': maxBatchSize,
@@ -178,8 +229,6 @@ final class AwsAppsyncResolver extends Resource {
            'type': type,
            if (cachingConfig != null)
              'caching_config': TfArg.literal(cachingConfig.encode()),
-           if (pipelineConfig != null)
-             'pipeline_config': TfArg.literal(pipelineConfig.encode()),
            if (runtime != null) 'runtime': TfArg.literal(runtime.encode()),
            if (syncConfig != null)
              'sync_config': TfArg.literal(syncConfig.encode()),

@@ -17,6 +17,56 @@ enum Wafv2RegexPatternSetScope implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_wafv2_regex_pattern_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Wafv2RegexPatternSetNameOrNamePrefix {
+  const Wafv2RegexPatternSetNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [Wafv2RegexPatternSetNameOrNamePrefix] choices).
+final class Wafv2RegexPatternSetNameOption
+    extends Wafv2RegexPatternSetNameOrNamePrefix {
+  const Wafv2RegexPatternSetNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [Wafv2RegexPatternSetNameOrNamePrefix] choices).
+final class Wafv2RegexPatternSetNamePrefixOption
+    extends Wafv2RegexPatternSetNameOrNamePrefix {
+  const Wafv2RegexPatternSetNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `regular_expression` block of
 /// `aws_wafv2_regex_pattern_set` (derived from provider schema).
 @immutable
@@ -35,8 +85,7 @@ final class AwsWafv2RegexPatternSet extends Resource {
   AwsWafv2RegexPatternSet({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    Wafv2RegexPatternSetNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     required TfArg<Wafv2RegexPatternSetScope> scope,
     TfArg<Map<String, String>>? tags,
@@ -49,8 +98,7 @@ final class AwsWafv2RegexPatternSet extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            'scope': scope,
            if (tags != null) 'tags': tags,

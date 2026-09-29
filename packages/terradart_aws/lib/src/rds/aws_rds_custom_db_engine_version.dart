@@ -17,6 +17,56 @@ enum RdsCustomDbEngineVersionStatus implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `filename`, `manifest` on `aws_rds_custom_db_engine_version`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RdsCustomDbEngineVersionFilenameOrManifest {
+  const RdsCustomDbEngineVersionFilenameOrManifest();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `filename` (one of the [RdsCustomDbEngineVersionFilenameOrManifest] choices).
+final class RdsCustomDbEngineVersionFilenameOption
+    extends RdsCustomDbEngineVersionFilenameOrManifest {
+  const RdsCustomDbEngineVersionFilenameOption({required this.filename});
+
+  final TfArg<String> filename;
+
+  @override
+  String get blockKey => 'filename';
+
+  @override
+  Map<String, Object?> encode() => {'filename': filename.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'filename': filename};
+}
+
+/// Sets `manifest` (one of the [RdsCustomDbEngineVersionFilenameOrManifest] choices).
+final class RdsCustomDbEngineVersionManifestOption
+    extends RdsCustomDbEngineVersionFilenameOrManifest {
+  const RdsCustomDbEngineVersionManifestOption({required this.manifest});
+
+  final TfArg<String> manifest;
+
+  @override
+  String get blockKey => 'manifest';
+
+  @override
+  Map<String, Object?> encode() => {'manifest': manifest.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'manifest': manifest};
+}
+
 /// Factory wrapper for `aws_rds_custom_db_engine_version`.
 final class AwsRdsCustomDbEngineVersion extends Resource {
   static const String tfType = 'aws_rds_custom_db_engine_version';
@@ -28,9 +78,8 @@ final class AwsRdsCustomDbEngineVersion extends Resource {
     TfArg<String>? description,
     required TfArg<String> engine,
     required TfArg<String> engineVersion,
-    TfArg<String>? filename,
+    RdsCustomDbEngineVersionFilenameOrManifest? filenameOrManifest,
     TfArg<String>? kmsKeyId,
-    TfArg<String>? manifest,
     TfArg<String>? manifestHash,
     TfArg<String>? region,
     TfArg<String>? sourceImageId,
@@ -52,9 +101,8 @@ final class AwsRdsCustomDbEngineVersion extends Resource {
            if (description != null) 'description': description,
            'engine': engine,
            'engine_version': engineVersion,
-           if (filename != null) 'filename': filename,
+           ...?filenameOrManifest?.argMap,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
-           if (manifest != null) 'manifest': manifest,
            if (manifestHash != null) 'manifest_hash': manifestHash,
            if (region != null) 'region': region,
            if (sourceImageId != null) 'source_image_id': sourceImageId,

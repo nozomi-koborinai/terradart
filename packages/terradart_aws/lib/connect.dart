@@ -6,9 +6,18 @@ library;
 export 'src/connect/aws_connect_bot_association.dart'
     show AwsConnectBotAssociation, ConnectBotAssociationLexBot;
 export 'src/connect/aws_connect_contact_flow.dart'
-    show AwsConnectContactFlow, ConnectContactFlowType;
+    show
+        AwsConnectContactFlow,
+        ConnectContactFlowContentOption,
+        ConnectContactFlowContentOrFilename,
+        ConnectContactFlowFilenameOption,
+        ConnectContactFlowType;
 export 'src/connect/aws_connect_contact_flow_module.dart'
-    show AwsConnectContactFlowModule;
+    show
+        AwsConnectContactFlowModule,
+        ConnectContactFlowModuleContentOption,
+        ConnectContactFlowModuleContentOrFilename,
+        ConnectContactFlowModuleFilenameOption;
 export 'src/connect/aws_connect_hours_of_operation.dart'
     show
         AwsConnectHoursOfOperation,

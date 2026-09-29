@@ -14,3 +14,5 @@ properties:
     enum_values:
       - "standard"
       - "iopt1"
+at_most_one_of_groups:
+  - ["cluster_identifier", "cluster_identifier_prefix"]

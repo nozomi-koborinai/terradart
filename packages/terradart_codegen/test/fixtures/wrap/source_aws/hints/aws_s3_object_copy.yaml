@@ -80,3 +80,5 @@ properties:
     enum_values:
       - "COPY"
       - "REPLACE"
+at_most_one_of_groups:
+  - ["acl", "grant"]

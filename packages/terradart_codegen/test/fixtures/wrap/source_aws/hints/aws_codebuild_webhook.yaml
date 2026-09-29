@@ -55,3 +55,5 @@ properties:
           - "GITHUB_ORGANIZATION"
           - "GITHUB_GLOBAL"
           - "GITLAB_GROUP"
+at_most_one_of_groups:
+  - ["branch_filter", "filter_group"]

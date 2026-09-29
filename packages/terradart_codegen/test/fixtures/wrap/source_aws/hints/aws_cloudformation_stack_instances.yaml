@@ -17,3 +17,7 @@ properties:
         enum_values:
           - "SEQUENTIAL"
           - "PARALLEL"
+at_most_one_of_groups:
+  - ["accounts", "deployment_targets"]
+  - ["operation_preferences.failure_tolerance_count", "operation_preferences.failure_tolerance_percentage"]
+  - ["operation_preferences.max_concurrent_count", "operation_preferences.max_concurrent_percentage"]

@@ -14,3 +14,5 @@ properties:
             enum_values:
               - "GOVERNANCE"
               - "COMPLIANCE"
+at_most_one_of_groups:
+  - ["rule.default_retention.days", "rule.default_retention.years"]

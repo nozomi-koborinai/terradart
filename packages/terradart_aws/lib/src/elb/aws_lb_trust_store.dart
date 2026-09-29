@@ -6,6 +6,54 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lb_trust_store`.
 const Set<String> _awsLbTrustStoreSensitive = <String>{};
 
+/// At most one of `name`, `name_prefix` on `aws_lb_trust_store`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LbTrustStoreNameOrNamePrefix {
+  const LbTrustStoreNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [LbTrustStoreNameOrNamePrefix] choices).
+final class LbTrustStoreNameOption extends LbTrustStoreNameOrNamePrefix {
+  const LbTrustStoreNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [LbTrustStoreNameOrNamePrefix] choices).
+final class LbTrustStoreNamePrefixOption extends LbTrustStoreNameOrNamePrefix {
+  const LbTrustStoreNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Factory wrapper for `aws_lb_trust_store`.
 final class AwsLbTrustStore extends Resource {
   static const String tfType = 'aws_lb_trust_store';
@@ -15,8 +63,7 @@ final class AwsLbTrustStore extends Resource {
     required TfArg<String> caCertificatesBundleS3Bucket,
     required TfArg<String> caCertificatesBundleS3Key,
     TfArg<String>? caCertificatesBundleS3ObjectVersion,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    LbTrustStoreNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -31,8 +78,7 @@ final class AwsLbTrustStore extends Resource {
            if (caCertificatesBundleS3ObjectVersion != null)
              'ca_certificates_bundle_s3_object_version':
                  caCertificatesBundleS3ObjectVersion,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

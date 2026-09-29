@@ -12,3 +12,5 @@ properties:
       - "G.4X"
       - "G.8X"
       - "Z.2X"
+at_most_one_of_groups:
+  - ["public_key", "public_keys"]

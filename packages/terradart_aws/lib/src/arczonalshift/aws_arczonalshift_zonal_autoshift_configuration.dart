@@ -21,6 +21,66 @@ enum ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus
   final String terraformValue;
 }
 
+/// At most one of `allowed_windows`, `blocked_windows` on `aws_arczonalshift_zonal_autoshift_configuration`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows {
+  const ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `allowed_windows` (one of the [ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows] choices).
+final class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOption
+    extends
+        ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows {
+  const ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOption({
+    required this.allowedWindows,
+  });
+
+  final TfArg<List<String>> allowedWindows;
+
+  @override
+  String get blockKey => 'allowed_windows';
+
+  @override
+  Map<String, Object?> encode() => {
+    'allowed_windows': allowedWindows.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'allowed_windows': allowedWindows};
+}
+
+/// Sets `blocked_windows` (one of the [ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows] choices).
+final class ArczonalshiftZonalAutoshiftConfigurationBlockedWindowsOption
+    extends
+        ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows {
+  const ArczonalshiftZonalAutoshiftConfigurationBlockedWindowsOption({
+    required this.blockedWindows,
+  });
+
+  final TfArg<List<String>> blockedWindows;
+
+  @override
+  String get blockKey => 'blocked_windows';
+
+  @override
+  Map<String, Object?> encode() => {
+    'blocked_windows': blockedWindows.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'blocked_windows': blockedWindows};
+}
+
 /// Typed helper for the `blocking_alarms` block of
 /// `aws_arczonalshift_zonal_autoshift_configuration` (derived from provider schema).
 @immutable
@@ -90,9 +150,9 @@ final class AwsArczonalshiftZonalAutoshiftConfiguration extends Resource {
 
   AwsArczonalshiftZonalAutoshiftConfiguration({
     required super.localName,
-    TfArg<List<String>>? allowedWindows,
+    ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows?
+    allowedWindowsOrBlockedWindows,
     TfArg<List<String>>? blockedDates,
-    TfArg<List<String>>? blockedWindows,
     TfArg<String>? region,
     required TfArg<String> resourceArn,
     required TfArg<ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus>
@@ -107,9 +167,8 @@ final class AwsArczonalshiftZonalAutoshiftConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowedWindows != null) 'allowed_windows': allowedWindows,
+           ...?allowedWindowsOrBlockedWindows?.argMap,
            if (blockedDates != null) 'blocked_dates': blockedDates,
-           if (blockedWindows != null) 'blocked_windows': blockedWindows,
            if (region != null) 'region': region,
            'resource_arn': resourceArn,
            'zonal_autoshift_status': zonalAutoshiftStatus,

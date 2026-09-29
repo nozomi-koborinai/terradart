@@ -13,3 +13,6 @@ properties:
         enum_values:
           - "optional"
           - "required"
+at_most_one_of_groups:
+  - ["name", "name_prefix"]
+  - ["user_data", "user_data_base64"]

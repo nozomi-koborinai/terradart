@@ -9,6 +9,9 @@ export 'src/scheduler/aws_scheduler_schedule.dart'
         SchedulerScheduleActionAfterCompletion,
         SchedulerScheduleFlexibleTimeWindow,
         SchedulerScheduleFlexibleTimeWindowMode,
+        SchedulerScheduleNameOption,
+        SchedulerScheduleNameOrNamePrefix,
+        SchedulerScheduleNamePrefixOption,
         SchedulerScheduleState,
         SchedulerScheduleTarget,
         SchedulerScheduleTargetDeadLetterConfig,
@@ -28,4 +31,8 @@ export 'src/scheduler/aws_scheduler_schedule.dart'
         SchedulerScheduleTargetSagemakerPipelineParametersPipelineParameter,
         SchedulerScheduleTargetSqsParameters;
 export 'src/scheduler/aws_scheduler_schedule_group.dart'
-    show AwsSchedulerScheduleGroup;
+    show
+        AwsSchedulerScheduleGroup,
+        SchedulerScheduleGroupNameOption,
+        SchedulerScheduleGroupNameOrNamePrefix,
+        SchedulerScheduleGroupNamePrefixOption;

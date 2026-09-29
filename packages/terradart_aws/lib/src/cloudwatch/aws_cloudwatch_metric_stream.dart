@@ -18,6 +18,122 @@ enum CloudwatchMetricStreamOutputFormat implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `exclude_filter`, `include_filter` on `aws_cloudwatch_metric_stream`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
+  const CloudwatchMetricStreamExcludeFilterOrIncludeFilter();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `exclude_filter` (one of the [CloudwatchMetricStreamExcludeFilterOrIncludeFilter] choices).
+final class CloudwatchMetricStreamExcludeFilterOption
+    extends CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
+  const CloudwatchMetricStreamExcludeFilterOption({
+    required this.excludeFilter,
+  });
+
+  final List<CloudwatchMetricStreamExcludeFilter> excludeFilter;
+
+  @override
+  String get blockKey => 'exclude_filter';
+
+  @override
+  Map<String, Object?> encode() => {
+    'exclude_filter': [for (final e in excludeFilter) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'exclude_filter': TfArg.literal([
+      for (final e in excludeFilter) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `include_filter` (one of the [CloudwatchMetricStreamExcludeFilterOrIncludeFilter] choices).
+final class CloudwatchMetricStreamIncludeFilterOption
+    extends CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
+  const CloudwatchMetricStreamIncludeFilterOption({
+    required this.includeFilter,
+  });
+
+  final List<CloudwatchMetricStreamIncludeFilter> includeFilter;
+
+  @override
+  String get blockKey => 'include_filter';
+
+  @override
+  Map<String, Object?> encode() => {
+    'include_filter': [for (final e in includeFilter) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'include_filter': TfArg.literal([
+      for (final e in includeFilter) e.encode(),
+    ]),
+  };
+}
+
+/// At most one of `name`, `name_prefix` on `aws_cloudwatch_metric_stream`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudwatchMetricStreamNameOrNamePrefix {
+  const CloudwatchMetricStreamNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [CloudwatchMetricStreamNameOrNamePrefix] choices).
+final class CloudwatchMetricStreamNameOption
+    extends CloudwatchMetricStreamNameOrNamePrefix {
+  const CloudwatchMetricStreamNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [CloudwatchMetricStreamNameOrNamePrefix] choices).
+final class CloudwatchMetricStreamNamePrefixOption
+    extends CloudwatchMetricStreamNameOrNamePrefix {
+  const CloudwatchMetricStreamNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `exclude_filter` block of
 /// `aws_cloudwatch_metric_stream` (derived from provider schema).
 @immutable
@@ -103,14 +219,13 @@ final class AwsCloudwatchMetricStream extends Resource {
     required super.localName,
     required TfArg<String> firehoseArn,
     TfArg<bool>? includeLinkedAccountsMetrics,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    CloudwatchMetricStreamNameOrNamePrefix? nameOrNamePrefix,
     required TfArg<CloudwatchMetricStreamOutputFormat> outputFormat,
     TfArg<String>? region,
     required TfArg<String> roleArn,
     TfArg<Map<String, String>>? tags,
-    List<CloudwatchMetricStreamExcludeFilter>? excludeFilter,
-    List<CloudwatchMetricStreamIncludeFilter>? includeFilter,
+    CloudwatchMetricStreamExcludeFilterOrIncludeFilter?
+    excludeFilterOrIncludeFilter,
     List<CloudwatchMetricStreamStatisticsConfiguration>?
     statisticsConfiguration,
     super.lifecycle,
@@ -123,20 +238,12 @@ final class AwsCloudwatchMetricStream extends Resource {
            'firehose_arn': firehoseArn,
            if (includeLinkedAccountsMetrics != null)
              'include_linked_accounts_metrics': includeLinkedAccountsMetrics,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            'output_format': outputFormat,
            if (region != null) 'region': region,
            'role_arn': roleArn,
            if (tags != null) 'tags': tags,
-           if (excludeFilter != null)
-             'exclude_filter': TfArg.literal([
-               for (final e in excludeFilter) e.encode(),
-             ]),
-           if (includeFilter != null)
-             'include_filter': TfArg.literal([
-               for (final e in includeFilter) e.encode(),
-             ]),
+           ...?excludeFilterOrIncludeFilter?.argMap,
            if (statisticsConfiguration != null)
              'statistics_configuration': TfArg.literal([
                for (final e in statisticsConfiguration) e.encode(),

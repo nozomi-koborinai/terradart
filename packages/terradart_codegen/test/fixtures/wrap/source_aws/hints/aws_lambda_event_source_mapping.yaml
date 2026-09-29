@@ -80,3 +80,5 @@ properties:
       - "AT_TIMESTAMP"
 exactly_one_of_groups:
   - ["event_source_arn", "self_managed_event_source"]
+at_most_one_of_groups:
+  - ["amazon_managed_kafka_event_source_config", "self_managed_kafka_event_source_config"]

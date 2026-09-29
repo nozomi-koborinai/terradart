@@ -42,6 +42,9 @@ export 'src/servicecatalog/aws_servicecatalog_provisioned_product.dart'
     show
         AwsServicecatalogProvisionedProduct,
         ServicecatalogProvisionedProductAcceptLanguage,
+        ServicecatalogProvisionedProductPathIdOption,
+        ServicecatalogProvisionedProductPathIdOrPathName,
+        ServicecatalogProvisionedProductPathNameOption,
         ServicecatalogProvisionedProductProductIdOption,
         ServicecatalogProvisionedProductProductIdOrProductName,
         ServicecatalogProvisionedProductProductNameOption,

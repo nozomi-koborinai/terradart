@@ -28,3 +28,5 @@ properties:
     enum_values:
       - "tcp"
       - "udp"
+at_most_one_of_groups:
+  - ["transit_gateway_configuration.availability_zone_ids", "transit_gateway_configuration.availability_zones"]

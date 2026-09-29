@@ -62,3 +62,5 @@ properties:
       - "ip"
       - "lambda"
       - "alb"
+at_most_one_of_groups:
+  - ["name", "name_prefix"]

@@ -38,3 +38,5 @@ properties:
       - "ORGANIZATION_UNUSED_ACCESS"
       - "ACCOUNT_INTERNAL_ACCESS"
       - "ORGANIZATION_INTERNAL_ACCESS"
+at_most_one_of_groups:
+  - ["configuration.internal_access", "configuration.unused_access"]

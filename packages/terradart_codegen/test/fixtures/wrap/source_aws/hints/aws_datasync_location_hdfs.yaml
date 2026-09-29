@@ -21,3 +21,6 @@ properties:
           - "AUTHENTICATION"
           - "INTEGRITY"
           - "PRIVACY"
+at_most_one_of_groups:
+  - ["kerberos_keytab", "kerberos_keytab_base64"]
+  - ["kerberos_krb5_conf", "kerberos_krb5_conf_base64"]

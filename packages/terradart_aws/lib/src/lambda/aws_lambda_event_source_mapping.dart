@@ -88,6 +88,78 @@ final class LambdaEventSourceMappingSelfManagedEventSourceOption
   };
 }
 
+/// At most one of `amazon_managed_kafka_event_source_config`, `self_managed_kafka_event_source_config` on `aws_lambda_event_source_mapping`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig {
+  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `amazon_managed_kafka_event_source_config` (one of the [LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig] choices).
+final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOption
+    extends
+        LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig {
+  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOption({
+    required this.amazonManagedKafkaEventSourceConfig,
+  });
+
+  final LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfig
+  amazonManagedKafkaEventSourceConfig;
+
+  @override
+  String get blockKey => 'amazon_managed_kafka_event_source_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'amazon_managed_kafka_event_source_config':
+        amazonManagedKafkaEventSourceConfig.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'amazon_managed_kafka_event_source_config': TfArg.literal(
+      amazonManagedKafkaEventSourceConfig.encode(),
+    ),
+  };
+}
+
+/// Sets `self_managed_kafka_event_source_config` (one of the [LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig] choices).
+final class LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigOption
+    extends
+        LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig {
+  const LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigOption({
+    required this.selfManagedKafkaEventSourceConfig,
+  });
+
+  final LambdaEventSourceMappingSelfManagedKafkaEventSourceConfig
+  selfManagedKafkaEventSourceConfig;
+
+  @override
+  String get blockKey => 'self_managed_kafka_event_source_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'self_managed_kafka_event_source_config': selfManagedKafkaEventSourceConfig
+        .encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'self_managed_kafka_event_source_config': TfArg.literal(
+      selfManagedKafkaEventSourceConfig.encode(),
+    ),
+  };
+}
+
 /// Typed helper for the `amazon_managed_kafka_event_source_config` block of
 /// `aws_lambda_event_source_mapping` (derived from provider schema).
 @immutable
@@ -607,8 +679,8 @@ final class AwsLambdaEventSourceMapping extends Resource {
     TfArg<List<String>>? topics,
     TfArg<num>? tumblingWindowInSeconds,
     TfArg<bool>? useResourceTimeoutForPropagation,
-    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfig?
-    amazonManagedKafkaEventSourceConfig,
+    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig?
+    amazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig,
     LambdaEventSourceMappingDestinationConfig? destinationConfig,
     LambdaEventSourceMappingDocumentDbEventSourceConfig?
     documentDbEventSourceConfig,
@@ -616,8 +688,6 @@ final class AwsLambdaEventSourceMapping extends Resource {
     LambdaEventSourceMappingMetricsConfig? metricsConfig,
     LambdaEventSourceMappingProvisionedPollerConfig? provisionedPollerConfig,
     LambdaEventSourceMappingScalingConfig? scalingConfig,
-    LambdaEventSourceMappingSelfManagedKafkaEventSourceConfig?
-    selfManagedKafkaEventSourceConfig,
     List<LambdaEventSourceMappingSourceAccessConfiguration>?
     sourceAccessConfiguration,
     super.lifecycle,
@@ -659,10 +729,8 @@ final class AwsLambdaEventSourceMapping extends Resource {
            if (useResourceTimeoutForPropagation != null)
              'use_resource_timeout_for_propagation':
                  useResourceTimeoutForPropagation,
-           if (amazonManagedKafkaEventSourceConfig != null)
-             'amazon_managed_kafka_event_source_config': TfArg.literal(
-               amazonManagedKafkaEventSourceConfig.encode(),
-             ),
+           ...?amazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig
+               ?.argMap,
            if (destinationConfig != null)
              'destination_config': TfArg.literal(destinationConfig.encode()),
            if (documentDbEventSourceConfig != null)
@@ -679,10 +747,6 @@ final class AwsLambdaEventSourceMapping extends Resource {
              ),
            if (scalingConfig != null)
              'scaling_config': TfArg.literal(scalingConfig.encode()),
-           if (selfManagedKafkaEventSourceConfig != null)
-             'self_managed_kafka_event_source_config': TfArg.literal(
-               selfManagedKafkaEventSourceConfig.encode(),
-             ),
            if (sourceAccessConfiguration != null)
              'source_access_configuration': TfArg.literal([
                for (final e in sourceAccessConfiguration) e.encode(),

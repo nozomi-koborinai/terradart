@@ -28,28 +28,122 @@ enum Macie2ClassificationJobJobType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_macie2_classification_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Macie2ClassificationJobNameOrNamePrefix {
+  const Macie2ClassificationJobNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [Macie2ClassificationJobNameOrNamePrefix] choices).
+final class Macie2ClassificationJobNameOption
+    extends Macie2ClassificationJobNameOrNamePrefix {
+  const Macie2ClassificationJobNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [Macie2ClassificationJobNameOrNamePrefix] choices).
+final class Macie2ClassificationJobNamePrefixOption
+    extends Macie2ClassificationJobNameOrNamePrefix {
+  const Macie2ClassificationJobNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `s3_job_definition` block of
 /// `aws_macie2_classification_job` (derived from provider schema).
 @immutable
 final class Macie2ClassificationJobS3JobDefinition {
   const Macie2ClassificationJobS3JobDefinition({
-    this.bucketCriteria,
-    this.bucketDefinitions,
+    this.bucketCriteriaOrBucketDefinitions,
     this.scoping,
   });
 
-  final Macie2ClassificationJobS3JobDefinitionBucketCriteria? bucketCriteria;
-
-  final List<Macie2ClassificationJobS3JobDefinitionBucketDefinitions>?
-  bucketDefinitions;
+  final Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions?
+  bucketCriteriaOrBucketDefinitions;
 
   final Macie2ClassificationJobS3JobDefinitionScoping? scoping;
 
   Map<String, Object?> encode() => {
-    if (bucketCriteria != null) 'bucket_criteria': bucketCriteria!.encode(),
-    if (bucketDefinitions != null)
-      'bucket_definitions': [for (final e in bucketDefinitions!) e.encode()],
+    ...?bucketCriteriaOrBucketDefinitions?.encode(),
     if (scoping != null) 'scoping': scoping!.encode(),
+  };
+}
+
+/// At most one of `bucket_criteria`, `bucket_definitions` on the `s3_job_definition` block of `aws_macie2_classification_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions {
+  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `bucket_criteria` (one of the [Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions] choices).
+final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaOption
+    extends
+        Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions {
+  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaOption({
+    required this.bucketCriteria,
+  });
+
+  final Macie2ClassificationJobS3JobDefinitionBucketCriteria bucketCriteria;
+
+  @override
+  String get blockKey => 'bucket_criteria';
+
+  @override
+  Map<String, Object?> encode() => {'bucket_criteria': bucketCriteria.encode()};
+}
+
+/// Sets `bucket_definitions` (one of the [Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions] choices).
+final class Macie2ClassificationJobS3JobDefinitionBucketDefinitionsOption
+    extends
+        Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions {
+  const Macie2ClassificationJobS3JobDefinitionBucketDefinitionsOption({
+    required this.bucketDefinitions,
+  });
+
+  final List<Macie2ClassificationJobS3JobDefinitionBucketDefinitions>
+  bucketDefinitions;
+
+  @override
+  String get blockKey => 'bucket_definitions';
+
+  @override
+  Map<String, Object?> encode() => {
+    'bucket_definitions': [for (final e in bucketDefinitions) e.encode()],
   };
 }
 
@@ -743,22 +837,81 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTerm
 @immutable
 final class Macie2ClassificationJobScheduleFrequency {
   const Macie2ClassificationJobScheduleFrequency({
-    this.dailySchedule,
-    this.monthlySchedule,
-    this.weeklySchedule,
+    this.dailyScheduleOrMonthlyScheduleOrWeeklySchedule,
   });
 
-  final TfArg<bool>? dailySchedule;
-
-  final TfArg<num>? monthlySchedule;
-
-  final TfArg<String>? weeklySchedule;
+  final Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule?
+  dailyScheduleOrMonthlyScheduleOrWeeklySchedule;
 
   Map<String, Object?> encode() => {
-    if (dailySchedule != null) 'daily_schedule': dailySchedule!.toTfJson(),
-    if (monthlySchedule != null)
-      'monthly_schedule': monthlySchedule!.toTfJson(),
-    if (weeklySchedule != null) 'weekly_schedule': weeklySchedule!.toTfJson(),
+    ...?dailyScheduleOrMonthlyScheduleOrWeeklySchedule?.encode(),
+  };
+}
+
+/// At most one of `daily_schedule`, `monthly_schedule`, `weekly_schedule` on the `schedule_frequency` block of `aws_macie2_classification_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule {
+  const Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `daily_schedule` (one of the [Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule] choices).
+final class Macie2ClassificationJobScheduleFrequencyDailyScheduleOption
+    extends
+        Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule {
+  const Macie2ClassificationJobScheduleFrequencyDailyScheduleOption({
+    required this.dailySchedule,
+  });
+
+  final TfArg<bool> dailySchedule;
+
+  @override
+  String get blockKey => 'daily_schedule';
+
+  @override
+  Map<String, Object?> encode() => {'daily_schedule': dailySchedule.toTfJson()};
+}
+
+/// Sets `monthly_schedule` (one of the [Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule] choices).
+final class Macie2ClassificationJobScheduleFrequencyMonthlyScheduleOption
+    extends
+        Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule {
+  const Macie2ClassificationJobScheduleFrequencyMonthlyScheduleOption({
+    required this.monthlySchedule,
+  });
+
+  final TfArg<num> monthlySchedule;
+
+  @override
+  String get blockKey => 'monthly_schedule';
+
+  @override
+  Map<String, Object?> encode() => {
+    'monthly_schedule': monthlySchedule.toTfJson(),
+  };
+}
+
+/// Sets `weekly_schedule` (one of the [Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule] choices).
+final class Macie2ClassificationJobScheduleFrequencyWeeklyScheduleOption
+    extends
+        Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule {
+  const Macie2ClassificationJobScheduleFrequencyWeeklyScheduleOption({
+    required this.weeklySchedule,
+  });
+
+  final TfArg<String> weeklySchedule;
+
+  @override
+  String get blockKey => 'weekly_schedule';
+
+  @override
+  Map<String, Object?> encode() => {
+    'weekly_schedule': weeklySchedule.toTfJson(),
   };
 }
 
@@ -773,8 +926,7 @@ final class AwsMacie2ClassificationJob extends Resource {
     TfArg<bool>? initialRun,
     TfArg<Macie2ClassificationJobJobStatus>? jobStatus,
     required TfArg<Macie2ClassificationJobJobType> jobType,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    Macie2ClassificationJobNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     TfArg<num>? samplingPercentage,
     TfArg<Map<String, String>>? tags,
@@ -793,8 +945,7 @@ final class AwsMacie2ClassificationJob extends Resource {
            if (initialRun != null) 'initial_run': initialRun,
            if (jobStatus != null) 'job_status': jobStatus,
            'job_type': jobType,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            if (samplingPercentage != null)
              'sampling_percentage': samplingPercentage,

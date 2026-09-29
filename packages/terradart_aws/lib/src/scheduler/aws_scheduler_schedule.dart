@@ -27,6 +27,56 @@ enum SchedulerScheduleState implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_scheduler_schedule`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SchedulerScheduleNameOrNamePrefix {
+  const SchedulerScheduleNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [SchedulerScheduleNameOrNamePrefix] choices).
+final class SchedulerScheduleNameOption
+    extends SchedulerScheduleNameOrNamePrefix {
+  const SchedulerScheduleNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [SchedulerScheduleNameOrNamePrefix] choices).
+final class SchedulerScheduleNamePrefixOption
+    extends SchedulerScheduleNameOrNamePrefix {
+  const SchedulerScheduleNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `flexible_time_window` block of
 /// `aws_scheduler_schedule` (derived from provider schema).
 @immutable
@@ -452,8 +502,7 @@ final class AwsSchedulerSchedule extends Resource {
     TfArg<String>? endDate,
     TfArg<String>? groupName,
     TfArg<String>? kmsKeyArn,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    SchedulerScheduleNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     required TfArg<String> scheduleExpression,
     TfArg<String>? scheduleExpressionTimezone,
@@ -474,8 +523,7 @@ final class AwsSchedulerSchedule extends Resource {
            if (endDate != null) 'end_date': endDate,
            if (groupName != null) 'group_name': groupName,
            if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            'schedule_expression': scheduleExpression,
            if (scheduleExpressionTimezone != null)

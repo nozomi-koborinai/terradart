@@ -20,6 +20,94 @@ enum RedshiftserverlessNamespaceLogExports implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `admin_user_password`, `admin_user_password_wo`, `manage_admin_password` on `aws_redshiftserverless_namespace`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword {
+  const RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `admin_user_password` (one of the [RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword] choices).
+final class RedshiftserverlessNamespaceAdminUserPasswordOption
+    extends
+        RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword {
+  const RedshiftserverlessNamespaceAdminUserPasswordOption({
+    required this.adminUserPassword,
+  });
+
+  final TfArg<String> adminUserPassword;
+
+  @override
+  String get blockKey => 'admin_user_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'admin_user_password': adminUserPassword.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'admin_user_password': adminUserPassword,
+  };
+}
+
+/// Sets `admin_user_password_wo` (one of the [RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword] choices).
+final class RedshiftserverlessNamespaceAdminUserPasswordWoOption
+    extends
+        RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword {
+  const RedshiftserverlessNamespaceAdminUserPasswordWoOption({
+    required this.adminUserPasswordWo,
+  });
+
+  final TfArg<String> adminUserPasswordWo;
+
+  @override
+  String get blockKey => 'admin_user_password_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'admin_user_password_wo': adminUserPasswordWo.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'admin_user_password_wo': adminUserPasswordWo,
+  };
+}
+
+/// Sets `manage_admin_password` (one of the [RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword] choices).
+final class RedshiftserverlessNamespaceManageAdminPasswordOption
+    extends
+        RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword {
+  const RedshiftserverlessNamespaceManageAdminPasswordOption({
+    required this.manageAdminPassword,
+  });
+
+  final TfArg<bool> manageAdminPassword;
+
+  @override
+  String get blockKey => 'manage_admin_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'manage_admin_password': manageAdminPassword.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'manage_admin_password': manageAdminPassword,
+  };
+}
+
 /// Factory wrapper for `aws_redshiftserverless_namespace`.
 final class AwsRedshiftserverlessNamespace extends Resource {
   static const String tfType = 'aws_redshiftserverless_namespace';
@@ -27,8 +115,8 @@ final class AwsRedshiftserverlessNamespace extends Resource {
   AwsRedshiftserverlessNamespace({
     required super.localName,
     TfArg<String>? adminPasswordSecretKmsKeyId,
-    TfArg<String>? adminUserPassword,
-    TfArg<String>? adminUserPasswordWo,
+    RedshiftserverlessNamespaceAdminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword?
+    adminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword,
     TfArg<num>? adminUserPasswordWoVersion,
     TfArg<String>? adminUsername,
     TfArg<String>? dbName,
@@ -36,7 +124,6 @@ final class AwsRedshiftserverlessNamespace extends Resource {
     TfArg<List<String>>? iamRoles,
     TfArg<String>? kmsKeyId,
     List<TfArg<RedshiftserverlessNamespaceLogExports>>? logExports,
-    TfArg<bool>? manageAdminPassword,
     required TfArg<String> namespaceName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -49,10 +136,8 @@ final class AwsRedshiftserverlessNamespace extends Resource {
          argMap: {
            if (adminPasswordSecretKmsKeyId != null)
              'admin_password_secret_kms_key_id': adminPasswordSecretKmsKeyId,
-           if (adminUserPassword != null)
-             'admin_user_password': adminUserPassword,
-           if (adminUserPasswordWo != null)
-             'admin_user_password_wo': adminUserPasswordWo,
+           ...?adminUserPasswordOrAdminUserPasswordWoOrManageAdminPassword
+               ?.argMap,
            if (adminUserPasswordWoVersion != null)
              'admin_user_password_wo_version': adminUserPasswordWoVersion,
            if (adminUsername != null) 'admin_username': adminUsername,
@@ -65,8 +150,6 @@ final class AwsRedshiftserverlessNamespace extends Resource {
              'log_exports': TfArg.literal([
                for (final e in logExports) e.toTfJson(),
              ]),
-           if (manageAdminPassword != null)
-             'manage_admin_password': manageAdminPassword,
            'namespace_name': namespaceName,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

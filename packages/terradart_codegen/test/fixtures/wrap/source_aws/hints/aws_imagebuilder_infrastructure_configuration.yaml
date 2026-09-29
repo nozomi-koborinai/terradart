@@ -16,3 +16,5 @@ properties:
           - "default"
           - "dedicated"
           - "host"
+at_most_one_of_groups:
+  - ["placement.host_id", "placement.host_resource_group_arn"]

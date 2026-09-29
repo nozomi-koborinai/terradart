@@ -40,6 +40,110 @@ enum DynamodbTableTableClass implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `import_table`, `restore_backup_arn`, `restore_source_name`, `restore_source_table_arn` on `aws_dynamodb_table`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
+  const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `import_table` (one of the [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn] choices).
+final class DynamodbTableImportTableOption
+    extends
+        DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
+  const DynamodbTableImportTableOption({required this.importTable});
+
+  final DynamodbTableImportTable importTable;
+
+  @override
+  String get blockKey => 'import_table';
+
+  @override
+  Map<String, Object?> encode() => {'import_table': importTable.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'import_table': TfArg.literal(importTable.encode()),
+  };
+}
+
+/// Sets `restore_backup_arn` (one of the [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn] choices).
+final class DynamodbTableRestoreBackupArnOption
+    extends
+        DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
+  const DynamodbTableRestoreBackupArnOption({required this.restoreBackupArn});
+
+  final TfArg<String> restoreBackupArn;
+
+  @override
+  String get blockKey => 'restore_backup_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'restore_backup_arn': restoreBackupArn.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'restore_backup_arn': restoreBackupArn,
+  };
+}
+
+/// Sets `restore_source_name` (one of the [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn] choices).
+final class DynamodbTableRestoreSourceNameOption
+    extends
+        DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
+  const DynamodbTableRestoreSourceNameOption({required this.restoreSourceName});
+
+  final TfArg<String> restoreSourceName;
+
+  @override
+  String get blockKey => 'restore_source_name';
+
+  @override
+  Map<String, Object?> encode() => {
+    'restore_source_name': restoreSourceName.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'restore_source_name': restoreSourceName,
+  };
+}
+
+/// Sets `restore_source_table_arn` (one of the [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn] choices).
+final class DynamodbTableRestoreSourceTableArnOption
+    extends
+        DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
+  const DynamodbTableRestoreSourceTableArnOption({
+    required this.restoreSourceTableArn,
+  });
+
+  final TfArg<String> restoreSourceTableArn;
+
+  @override
+  String get blockKey => 'restore_source_table_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'restore_source_table_arn': restoreSourceTableArn.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'restore_source_table_arn': restoreSourceTableArn,
+  };
+}
+
 /// Typed helper for the `attribute` block of
 /// `aws_dynamodb_table` (derived from provider schema).
 @immutable
@@ -519,10 +623,9 @@ final class AwsDynamodbTable extends Resource {
     TfArg<String>? rangeKey,
     TfArg<num>? readCapacity,
     TfArg<String>? region,
-    TfArg<String>? restoreBackupArn,
+    DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn?
+    importTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn,
     TfArg<String>? restoreDateTime,
-    TfArg<String>? restoreSourceName,
-    TfArg<String>? restoreSourceTableArn,
     TfArg<bool>? restoreToLatestTime,
     TfArg<bool>? streamEnabled,
     TfArg<DynamodbTableStreamViewType>? streamViewType,
@@ -532,7 +635,6 @@ final class AwsDynamodbTable extends Resource {
     List<DynamodbTableAttribute>? attribute,
     List<DynamodbTableGlobalSecondaryIndex>? globalSecondaryIndex,
     DynamodbTableGlobalTableWitness? globalTableWitness,
-    DynamodbTableImportTable? importTable,
     List<DynamodbTableLocalSecondaryIndex>? localSecondaryIndex,
     DynamodbTableOnDemandThroughput? onDemandThroughput,
     DynamodbTablePointInTimeRecovery? pointInTimeRecovery,
@@ -555,12 +657,9 @@ final class AwsDynamodbTable extends Resource {
            if (rangeKey != null) 'range_key': rangeKey,
            if (readCapacity != null) 'read_capacity': readCapacity,
            if (region != null) 'region': region,
-           if (restoreBackupArn != null) 'restore_backup_arn': restoreBackupArn,
+           ...?importTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn
+               ?.argMap,
            if (restoreDateTime != null) 'restore_date_time': restoreDateTime,
-           if (restoreSourceName != null)
-             'restore_source_name': restoreSourceName,
-           if (restoreSourceTableArn != null)
-             'restore_source_table_arn': restoreSourceTableArn,
            if (restoreToLatestTime != null)
              'restore_to_latest_time': restoreToLatestTime,
            if (streamEnabled != null) 'stream_enabled': streamEnabled,
@@ -578,8 +677,6 @@ final class AwsDynamodbTable extends Resource {
              ]),
            if (globalTableWitness != null)
              'global_table_witness': TfArg.literal(globalTableWitness.encode()),
-           if (importTable != null)
-             'import_table': TfArg.literal(importTable.encode()),
            if (localSecondaryIndex != null)
              'local_secondary_index': TfArg.literal([
                for (final e in localSecondaryIndex) e.encode(),

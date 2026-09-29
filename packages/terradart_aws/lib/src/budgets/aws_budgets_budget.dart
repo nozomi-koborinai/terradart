@@ -50,6 +50,168 @@ enum BudgetsBudgetTimeUnit implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `cost_filter`, `filter_expression` on `aws_budgets_budget`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class BudgetsBudgetCostFilterOrFilterExpression {
+  const BudgetsBudgetCostFilterOrFilterExpression();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cost_filter` (one of the [BudgetsBudgetCostFilterOrFilterExpression] choices).
+final class BudgetsBudgetCostFilterOption
+    extends BudgetsBudgetCostFilterOrFilterExpression {
+  const BudgetsBudgetCostFilterOption({required this.costFilter});
+
+  final List<BudgetsBudgetCostFilter> costFilter;
+
+  @override
+  String get blockKey => 'cost_filter';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cost_filter': [for (final e in costFilter) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cost_filter': TfArg.literal([for (final e in costFilter) e.encode()]),
+  };
+}
+
+/// Sets `filter_expression` (one of the [BudgetsBudgetCostFilterOrFilterExpression] choices).
+final class BudgetsBudgetFilterExpressionOption
+    extends BudgetsBudgetCostFilterOrFilterExpression {
+  const BudgetsBudgetFilterExpressionOption({required this.filterExpression});
+
+  final BudgetsBudgetFilterExpression filterExpression;
+
+  @override
+  String get blockKey => 'filter_expression';
+
+  @override
+  Map<String, Object?> encode() => {
+    'filter_expression': filterExpression.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'filter_expression': TfArg.literal(filterExpression.encode()),
+  };
+}
+
+/// At most one of `cost_types`, `metrics` on `aws_budgets_budget`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class BudgetsBudgetCostTypesOrMetrics {
+  const BudgetsBudgetCostTypesOrMetrics();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cost_types` (one of the [BudgetsBudgetCostTypesOrMetrics] choices).
+final class BudgetsBudgetCostTypesOption
+    extends BudgetsBudgetCostTypesOrMetrics {
+  const BudgetsBudgetCostTypesOption({required this.costTypes});
+
+  final BudgetsBudgetCostTypes costTypes;
+
+  @override
+  String get blockKey => 'cost_types';
+
+  @override
+  Map<String, Object?> encode() => {'cost_types': costTypes.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cost_types': TfArg.literal(costTypes.encode()),
+  };
+}
+
+/// Sets `metrics` (one of the [BudgetsBudgetCostTypesOrMetrics] choices).
+final class BudgetsBudgetMetricsOption extends BudgetsBudgetCostTypesOrMetrics {
+  const BudgetsBudgetMetricsOption({required this.metrics});
+
+  final List<TfArg<BudgetsBudgetMetrics>> metrics;
+
+  @override
+  String get blockKey => 'metrics';
+
+  @override
+  Map<String, Object?> encode() => {
+    'metrics': [for (final e in metrics) e.toTfJson()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'metrics': TfArg.literal([for (final e in metrics) e.toTfJson()]),
+  };
+}
+
+/// At most one of `name`, `name_prefix` on `aws_budgets_budget`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class BudgetsBudgetNameOrNamePrefix {
+  const BudgetsBudgetNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [BudgetsBudgetNameOrNamePrefix] choices).
+final class BudgetsBudgetNameOption extends BudgetsBudgetNameOrNamePrefix {
+  const BudgetsBudgetNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [BudgetsBudgetNameOrNamePrefix] choices).
+final class BudgetsBudgetNamePrefixOption
+    extends BudgetsBudgetNameOrNamePrefix {
+  const BudgetsBudgetNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `auto_adjust_data` block of
 /// `aws_budgets_budget` (derived from provider schema).
 @immutable
@@ -1617,17 +1779,14 @@ final class AwsBudgetsBudget extends Resource {
     required TfArg<BudgetsBudgetBudgetType> budgetType,
     TfArg<String>? limitAmount,
     TfArg<String>? limitUnit,
-    List<TfArg<BudgetsBudgetMetrics>>? metrics,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    BudgetsBudgetCostTypesOrMetrics? costTypesOrMetrics,
+    BudgetsBudgetNameOrNamePrefix? nameOrNamePrefix,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? timePeriodEnd,
     TfArg<String>? timePeriodStart,
     required TfArg<BudgetsBudgetTimeUnit> timeUnit,
     BudgetsBudgetAutoAdjustData? autoAdjustData,
-    List<BudgetsBudgetCostFilter>? costFilter,
-    BudgetsBudgetCostTypes? costTypes,
-    BudgetsBudgetFilterExpression? filterExpression,
+    BudgetsBudgetCostFilterOrFilterExpression? costFilterOrFilterExpression,
     List<BudgetsBudgetNotification>? notification,
     List<BudgetsBudgetPlannedLimit>? plannedLimit,
     super.lifecycle,
@@ -1642,24 +1801,15 @@ final class AwsBudgetsBudget extends Resource {
            'budget_type': budgetType,
            if (limitAmount != null) 'limit_amount': limitAmount,
            if (limitUnit != null) 'limit_unit': limitUnit,
-           if (metrics != null)
-             'metrics': TfArg.literal([for (final e in metrics) e.toTfJson()]),
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?costTypesOrMetrics?.argMap,
+           ...?nameOrNamePrefix?.argMap,
            if (tags != null) 'tags': tags,
            if (timePeriodEnd != null) 'time_period_end': timePeriodEnd,
            if (timePeriodStart != null) 'time_period_start': timePeriodStart,
            'time_unit': timeUnit,
            if (autoAdjustData != null)
              'auto_adjust_data': TfArg.literal(autoAdjustData.encode()),
-           if (costFilter != null)
-             'cost_filter': TfArg.literal([
-               for (final e in costFilter) e.encode(),
-             ]),
-           if (costTypes != null)
-             'cost_types': TfArg.literal(costTypes.encode()),
-           if (filterExpression != null)
-             'filter_expression': TfArg.literal(filterExpression.encode()),
+           ...?costFilterOrFilterExpression?.argMap,
            if (notification != null)
              'notification': TfArg.literal([
                for (final e in notification) e.encode(),

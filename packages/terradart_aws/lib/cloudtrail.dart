@@ -9,9 +9,12 @@ export 'src/cloudtrail/aws_cloudtrail.dart'
         CloudtrailAdvancedEventSelector,
         CloudtrailAdvancedEventSelectorFieldSelector,
         CloudtrailAdvancedEventSelectorFieldSelectorField,
+        CloudtrailAdvancedEventSelectorOption,
+        CloudtrailAdvancedEventSelectorOrEventSelector,
         CloudtrailEventSelector,
         CloudtrailEventSelectorDataResource,
         CloudtrailEventSelectorDataResourceType,
+        CloudtrailEventSelectorOption,
         CloudtrailEventSelectorReadWriteType,
         CloudtrailInsightSelector,
         CloudtrailInsightSelectorInsightType;

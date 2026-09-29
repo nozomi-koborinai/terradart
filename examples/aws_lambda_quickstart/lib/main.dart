@@ -64,7 +64,9 @@ final class AwsLambdaStack extends Stack {
 
     final role = AwsIamRole(
       localName: 'hello',
-      name: TfArg.literal(_functionName),
+      nameOrNamePrefix: IamRoleNameOption(
+        name: TfArg.literal(_functionName),
+      ),
       assumeRolePolicy: TfArg.ref(trust.json),
     );
     add(role);
@@ -80,7 +82,9 @@ final class AwsLambdaStack extends Stack {
 
     final logs = AwsCloudwatchLogGroup(
       localName: 'hello',
-      name: TfArg.literal('/aws/lambda/$_functionName'),
+      nameOrNamePrefix: CloudwatchLogGroupNameOption(
+        name: TfArg.literal('/aws/lambda/$_functionName'),
+      ),
       retentionInDays: TfArg.literal(14),
     );
     add(logs);

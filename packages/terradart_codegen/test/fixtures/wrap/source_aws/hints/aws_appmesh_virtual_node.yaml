@@ -110,3 +110,5 @@ properties:
                 enum_values:
                   - "LOADBALANCER"
                   - "ENDPOINTS"
+at_most_one_of_groups:
+  - ["spec.service_discovery.aws_cloud_map", "spec.service_discovery.dns"]

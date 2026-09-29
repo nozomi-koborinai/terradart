@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "default"
       - "dedicated"
+at_most_one_of_groups:
+  - ["cidr_block", "ipv4_netmask_length"]

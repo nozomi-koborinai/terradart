@@ -17,3 +17,5 @@ properties:
     enum_values:
       - "ENABLED"
       - "DISABLED"
+at_most_one_of_groups:
+  - ["allowed_windows", "blocked_windows"]

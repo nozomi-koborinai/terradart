@@ -6,6 +6,56 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_memorydb_snapshot`.
 const Set<String> _awsMemorydbSnapshotSensitive = <String>{};
 
+/// At most one of `name`, `name_prefix` on `aws_memorydb_snapshot`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class MemorydbSnapshotNameOrNamePrefix {
+  const MemorydbSnapshotNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [MemorydbSnapshotNameOrNamePrefix] choices).
+final class MemorydbSnapshotNameOption
+    extends MemorydbSnapshotNameOrNamePrefix {
+  const MemorydbSnapshotNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [MemorydbSnapshotNameOrNamePrefix] choices).
+final class MemorydbSnapshotNamePrefixOption
+    extends MemorydbSnapshotNameOrNamePrefix {
+  const MemorydbSnapshotNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Factory wrapper for `aws_memorydb_snapshot`.
 final class AwsMemorydbSnapshot extends Resource {
   static const String tfType = 'aws_memorydb_snapshot';
@@ -14,8 +64,7 @@ final class AwsMemorydbSnapshot extends Resource {
     required super.localName,
     required TfArg<String> clusterName,
     TfArg<String>? kmsKeyArn,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    MemorydbSnapshotNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -27,8 +76,7 @@ final class AwsMemorydbSnapshot extends Resource {
          argMap: {
            'cluster_name': clusterName,
            if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },
