@@ -1038,6 +1038,70 @@ has no input for. Synth output is unchanged.
 |--------|-------|
 | `GoogleComputeRegionNetworkEndpointGroup(cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...), ...)` | `GoogleComputeRegionNetworkEndpointGroup(serverless: .cloudRun(ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...)), ...)` |
 
+### Compute nested blocks use derived helper types
+
+**Breaking (`terradart_google`)** — the Compute Engine factories below no
+longer carry hand-written helper classes or `TfArg<Map>` blocks; their
+nested blocks are derived from the provider schema like the rest of the
+catalog. That puts every Magic Modules exactly-one / at-most-one group
+inside them in a sealed type and every input that names another resource
+(network, subnetwork, KMS key, service account) on `RefTo<R>`.
+
+- Helper classes are named `<Resource><BlockPath>`, without the doubled
+  resource segment: `ComputeInstanceTemplateInstanceTemplateDisk` →
+  `ComputeInstanceTemplateDisk`,
+  `ComputeBackendServiceBackendServiceBackend` →
+  `ComputeBackendServiceBackend`, `ComputeUrlMapUrlMapPathMatcher` →
+  `ComputeUrlMapPathMatcher`, `ComputeInstanceInitializeParams` →
+  `ComputeInstanceBootDiskInitializeParams`,
+  `ComputeResourcePolicyRetentionPolicy` →
+  `ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy`. Each
+  helper's doc names the block it models.
+- List-block parameters take the Terraform block name: `backends` →
+  `backend` (`GoogleComputeBackendService`,
+  `GoogleComputeRegionBackendService`), `hostRules` / `pathMatchers` /
+  `tests` → `hostRule` / `pathMatcher` / `test` (`GoogleComputeUrlMap`,
+  `GoogleComputeRegionUrlMap`).
+- Helper fields are `TfArg<T>` (`TfArg<Enum>` for enums), so they take dot
+  shorthands: `balancingMode: .literal(.rate)`,
+  `image: .literal('debian-cloud/debian-12')`.
+- `GoogleComputeInstanceFromTemplate` and `GoogleComputeRegionInstanceTemplate`
+  take typed helpers instead of `TfArg<Map>` / `TfArg<List<Map>>` blocks.
+- `GoogleComputeResourcePolicy`: `snapshotSchedulePolicy`,
+  `groupPlacementPolicy`, `instanceSchedulePolicy` and
+  `diskConsistencyGroupPolicy` are one nullable sealed argument, `kind`; a
+  snapshot schedule's `schedule` is itself the hourly / daily / weekly sealed
+  type (`schedule: .dailySchedule(...)`).
+- `GoogleComputeRouter`: `network` and `nccGateway` are one sealed
+  argument, `network`.
+- Newly exposed inputs: encryption keys and `params` on `GoogleComputeDisk`,
+  `GoogleComputeRegionDisk`, `GoogleComputeImage`, `GoogleComputeSnapshot`,
+  `GoogleComputeStoragePool` and `GoogleComputeInterconnectAttachment`
+  (plus `l2Forwarding`); `asyncPrimaryDisk` on the disks;
+  `instanceEncryptionKey` and `workloadIdentityConfig` on
+  `GoogleComputeInstance`; `logConfig`, `rules`, `subnetwork` and
+  `nat64Subnetwork` on `GoogleComputeRouterNat`; `bfd`,
+  `md5AuthenticationKey`, `advertisedIpRanges` and `customLearnedIpRanges`
+  on `GoogleComputeRouterPeer`; `targetSecureTags` on
+  `GoogleComputeRegionNetworkFirewallPolicyRule`;
+  `defaultCustomErrorResponsePolicy` on `GoogleComputeUrlMap`.
+
+| Before | After |
+|--------|-------|
+| `ComputeInstanceBootDisk(initializeParams: ComputeInstanceInitializeParams(image: .literal('debian-cloud/debian-12')))` | `ComputeInstanceBootDisk(initializeParams: ComputeInstanceBootDiskInitializeParams(image: .literal('debian-cloud/debian-12')))` |
+| `ComputeInstanceNetworkInterface(subnetwork: .ref(subnet.selfLink))` | `ComputeInstanceNetworkInterface(subnetwork: subnet.ref)` |
+| `backends: [ComputeBackendServiceBackendServiceBackend(group: ..., balancingMode: BackendServiceBalancingMode.rate)]` | `backend: [ComputeBackendServiceBackend(group: ..., balancingMode: .literal(.rate))]` |
+| `disk: .literal([{'boot': true, 'source_image': 'debian-cloud/debian-12'}])` (`GoogleComputeRegionInstanceTemplate`) | `disk: [ComputeRegionInstanceTemplateDisk(boot: .literal(true), sourceImage: .literal('debian-cloud/debian-12'))]` |
+| `instanceSchedulePolicy: .literal({'time_zone': 'Asia/Tokyo', ...})` | `kind: .instanceSchedulePolicy(ComputeResourcePolicyInstanceSchedulePolicy(timeZone: .literal('Asia/Tokyo'), ...))` |
+| `snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(schedule: .daily(daysInCycle: .literal(1), startTime: .literal('04:00')), ...)` | `kind: .snapshotSchedulePolicy(ComputeResourcePolicySnapshotSchedulePolicy(schedule: .dailySchedule(ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(daysInCycle: .literal(1), startTime: .literal('04:00'))), ...))` |
+| `GoogleComputeRouter(network: vpc.ref, ...)` | `GoogleComputeRouter(network: .network(vpc.ref), ...)` |
+
+Synth output changes in two ways, both accepted by the provider: a
+`max_items = 1` block the hand helpers emitted as a one-element list
+(`boot_disk.initialize_params`, `network_performance_config`) is an object,
+and a network / subnetwork reference emits `id` where the examples passed
+`self_link`.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it

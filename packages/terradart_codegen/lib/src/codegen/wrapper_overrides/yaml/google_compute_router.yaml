@@ -4,6 +4,9 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
+sealedNames:
+  "ncc_gateway, network": network
+
 paramOrder:
   - name
   - network
@@ -14,6 +17,7 @@ paramOrder:
   - bgp
   - md5_authentication_keys
   - params
+  - ncc_gateway
 
 extraImports:
   - "import 'package:meta/meta.dart';"

@@ -3,6 +3,7 @@ outputDir: compute
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 paramOrder:
   - name
@@ -15,6 +16,11 @@ paramOrder:
   - labels
   - guest_os_features
   - project
+  - disk_encryption_key
+  - source_image_encryption_key
+  - source_snapshot_encryption_key
+  - async_primary_disk
+  - params
 
 extraGetters: |2
     /// Reference to `name` attribute.

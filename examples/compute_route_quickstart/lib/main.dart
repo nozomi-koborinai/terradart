@@ -94,7 +94,7 @@ final class NetworkRouteStack extends Stack {
       GoogleComputeRouter(
         localName: 'edge',
         name: .literal('terradart-route-router'),
-        network: vpc.ref,
+        network: .network(vpc.ref),
         region: .literal('us-central1'),
         description: .literal('Cloud Router for Named Set demo'),
         dependsOn: [ResourceDependency(vpc)],
@@ -220,14 +220,19 @@ final class NetworkRouteStack extends Stack {
         localName: 'daily_snapshots',
         name: .literal('terradart-daily-snapshots'),
         region: .literal('us-central1'),
-        snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(
-          schedule: .daily(
-            daysInCycle: .literal(1),
-            startTime: .literal('04:00'),
-          ),
-          retentionPolicy: ComputeResourcePolicyRetentionPolicy(
-            maxRetentionDays: .literal(7),
-            onSourceDiskDelete: .literal(.applyRetentionPolicy),
+        kind: .snapshotSchedulePolicy(
+          ComputeResourcePolicySnapshotSchedulePolicy(
+            schedule: .dailySchedule(
+              ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
+                daysInCycle: .literal(1),
+                startTime: .literal('04:00'),
+              ),
+            ),
+            retentionPolicy:
+                ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy(
+                  maxRetentionDays: .literal(7),
+                  onSourceDiskDelete: .literal(.applyRetentionPolicy),
+                ),
           ),
         ),
         dependsOn: [ResourceDependency(apiCompute)],

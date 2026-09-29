@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_compute_snapshot`.
 const Set<String> _googleComputeSnapshotSensitive = <String>{
   'snapshot_encryption_key.raw_key',
@@ -75,6 +77,73 @@ final class ComputeSnapshotInstantSource extends ComputeSnapshotSource {
   TfArg<String> get value => sourceInstantSnapshot;
 }
 
+/// Typed helper for the `params` block of
+/// `google_compute_snapshot` (derived from provider schema).
+@immutable
+final class ComputeSnapshotParams {
+  const ComputeSnapshotParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `snapshot_encryption_key` block of
+/// `google_compute_snapshot` (derived from provider schema).
+@immutable
+final class ComputeSnapshotSnapshotEncryptionKey {
+  const ComputeSnapshotSnapshotEncryptionKey({
+    this.kmsKeySelfLink,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `source_disk_encryption_key` block of
+/// `google_compute_snapshot` (derived from provider schema).
+@immutable
+final class ComputeSnapshotSourceDiskEncryptionKey {
+  const ComputeSnapshotSourceDiskEncryptionKey({
+    this.kmsKeySelfLink,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_snapshot`.
 ///
 /// Represents a Persistent Disk Snapshot resource.
@@ -110,6 +179,9 @@ final class GoogleComputeSnapshot extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<String>? zone,
     TfArg<String>? project,
+    ComputeSnapshotSnapshotEncryptionKey? snapshotEncryptionKey,
+    ComputeSnapshotSourceDiskEncryptionKey? sourceDiskEncryptionKey,
+    ComputeSnapshotParams? params,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -127,6 +199,15 @@ final class GoogleComputeSnapshot extends Resource {
            'zone': ?zone,
            'project': ?project,
            source.blockKey: source.value,
+           if (snapshotEncryptionKey != null)
+             'snapshot_encryption_key': TfArg.literal(
+               snapshotEncryptionKey.encode(),
+             ),
+           if (sourceDiskEncryptionKey != null)
+             'source_disk_encryption_key': TfArg.literal(
+               sourceDiskEncryptionKey.encode(),
+             ),
+           if (params != null) 'params': TfArg.literal(params.encode()),
          },
        );
 
