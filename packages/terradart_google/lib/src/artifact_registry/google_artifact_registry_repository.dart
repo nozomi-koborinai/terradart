@@ -130,580 +130,25 @@ enum ArtifactRegistryNpmPublicRepository implements TerraformEnum {
 // docker_config (max_items=1)
 // ===========================================================================
 
-/// `docker_config` block. Applies only when the parent repository's
-/// `format` is `DOCKER`; ignored for other formats.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryDockerConfig {
-  const ArtifactRegistryRepositoryArtifactRegistryDockerConfig({
-    this.immutableTags,
-  });
-
-  /// When `true`, prevents existing tags from being modified, moved, or
-  /// deleted -- new tags can still be created. Useful for build-pipeline
-  /// integrity (a tag, once published, can never be silently overwritten).
-  final TfArg<bool>? immutableTags;
-
-  Map<String, Object?> toArgMap() => {
-    if (immutableTags != null) 'immutable_tags': immutableTags!.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // maven_config (max_items=1)
 // ===========================================================================
-
-/// `maven_config` block. Applies only when the parent repository's
-/// `format` is `MAVEN`; ignored for other formats.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryMavenConfig {
-  const ArtifactRegistryRepositoryArtifactRegistryMavenConfig({
-    this.allowSnapshotOverwrites,
-    this.versionPolicy,
-  });
-
-  /// When `true`, allows publishing duplicate SNAPSHOT versions (i.e.
-  /// uploading `1.0-SNAPSHOT` more than once and overwriting the prior
-  /// upload). Ignored unless [versionPolicy] permits snapshots.
-  final TfArg<bool>? allowSnapshotOverwrites;
-
-  /// Version classes the repository accepts. Default
-  /// `VERSION_POLICY_UNSPECIFIED` (i.e. all versions).
-  final ArtifactRegistryMavenVersionPolicy? versionPolicy;
-
-  Map<String, Object?> toArgMap() => {
-    if (allowSnapshotOverwrites != null)
-      'allow_snapshot_overwrites': allowSnapshotOverwrites!.toTfJson(),
-    if (versionPolicy != null) 'version_policy': versionPolicy!.terraformValue,
-  };
-}
 
 // ===========================================================================
 // virtual_repository_config (max_items=1)
 // ===========================================================================
 
-/// `virtual_repository_config` block. Required when
-/// `mode == VIRTUAL_REPOSITORY`; mutually exclusive with
-/// [ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig].
-///
-/// A virtual repository forwards pulls to one or more upstream
-/// repositories in priority order -- pulls hit the highest-priority
-/// upstream first, falling back on miss.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig {
-  const ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig({
-    this.upstreamPolicies,
-  });
-
-  /// Upstream repositories this virtual repo proxies. Entries with a
-  /// greater [ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy.priority] are tried
-  /// first.
-  final List<ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy>?
-  upstreamPolicies;
-
-  Map<String, Object?> toArgMap() => {
-    if (upstreamPolicies != null)
-      'upstream_policies': upstreamPolicies!.map((p) => p.toArgMap()).toList(),
-  };
-}
-
-/// One `virtual_repository_config.upstream_policies` entry.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy {
-  const ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy({
-    this.id,
-    this.repository,
-    this.priority,
-  });
-
-  /// User-supplied policy id (free-form short string). Useful for
-  /// referencing a specific upstream in diagnostics.
-  final TfArg<String>? id;
-
-  /// Self-link to the upstream `google_artifact_registry_repository`,
-  /// e.g. `projects/<p>/locations/<l>/repositories/<repo>`. Pass
-  /// `TfArg.ref(upstreamRepo.id)` to keep it symbolic.
-  final TfArg<String>? repository;
-
-  /// Pull order: greater values are tried first.
-  final TfArg<int>? priority;
-
-  Map<String, Object?> toArgMap() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (repository != null) 'repository': repository!.toTfJson(),
-    if (priority != null) 'priority': priority!.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // remote_repository_config (max_items=1)
 // ===========================================================================
-
-/// `remote_repository_config` block. Required when
-/// `mode == REMOTE_REPOSITORY`; mutually exclusive with
-/// [ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig].
-///
-/// A remote repository acts as a pull-through cache: clients pull from
-/// it, and on cache miss it fetches from a configured upstream registry
-/// (Docker Hub, Maven Central, PyPI, npm, APT/YUM mirrors, or any
-/// "common" URI). The typed surface here covers the most common path
-/// -- a `common_repository` upstream + optional username/password
-/// credentials. Docker / Maven / npm / APT / YUM public-repository paths
-/// are typed on [dockerRepository] / [mavenRepository] / [npmRepository] /
-/// [aptRepository] / [yumRepository]; [pythonRepository] and other rare
-/// upstreams remain on [advancedExtra].
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig({
-    this.description,
-    this.commonRepository,
-    this.dockerRepository,
-    this.mavenRepository,
-    this.npmRepository,
-    this.aptRepository,
-    this.yumRepository,
-    this.upstreamCredentials,
-    this.disableUpstreamValidation,
-    this.advancedExtra,
-  });
-
-  /// Free-form description of the upstream this remote repo proxies.
-  final TfArg<String>? description;
-
-  /// Generic upstream-by-URI form. Accepts an Artifact Registry repo
-  /// path (`projects/.../locations/.../repositories/...`), a fully
-  /// qualified registry URI (`https://registry-1.docker.io`), or an
-  /// Artifact Registry HTTPS URI
-  /// (`https://<region>-docker.pkg.dev/<project>/<repo>`).
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository?
-  commonRepository;
-
-  /// Docker-format remote upstream (`format == DOCKER`,
-  /// `mode == REMOTE_REPOSITORY`). Mutually exclusive with
-  /// [commonRepository] and the other `*_repository` blocks.
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteDockerRepository?
-  dockerRepository;
-
-  /// Maven-format remote upstream (`format == MAVEN`,
-  /// `mode == REMOTE_REPOSITORY`).
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteMavenRepository?
-  mavenRepository;
-
-  /// npm-format remote upstream (`format == NPM`,
-  /// `mode == REMOTE_REPOSITORY`).
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteNpmRepository?
-  npmRepository;
-
-  /// APT-format remote upstream (`format == APT`, `mode == REMOTE_REPOSITORY`).
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteAptRepository?
-  aptRepository;
-
-  /// YUM-format remote upstream (`format == YUM`, `mode == REMOTE_REPOSITORY`).
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteYumRepository?
-  yumRepository;
-
-  /// Credentials used when pulling from a private upstream. Set this
-  /// when the upstream requires authentication (e.g. a private Docker
-  /// Hub org, a self-hosted Nexus).
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteUpstreamCredentials?
-  upstreamCredentials;
-
-  /// When `true`, skips upstream-reachability validation at create /
-  /// update time. This field is INPUT_ONLY -- the API does not return
-  /// it on read, so changes show as drift unless excluded from the read
-  /// path.
-  final TfArg<bool>? disableUpstreamValidation;
-
-  /// Escape hatch for format-specific upstream blocks not modeled as
-  /// typed fields (e.g. `python_repository` with `public_repository:
-  /// 'PYPI'`). Keys are Terraform block names; values are the block
-  /// payload (single block -> `[{...}]`, list of blocks -> list of
-  /// maps). The map is spread into the emitted Terraform args as-is and
-  /// is mutually exclusive with [commonRepository] at the API level
-  /// (`exactly_one_of` -- enforced by Terraform at plan time).
-  final Map<String, Object?>? advancedExtra;
-
-  Map<String, Object?> toArgMap() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (commonRepository != null)
-      'common_repository': [commonRepository!.toArgMap()],
-    if (dockerRepository != null)
-      'docker_repository': [dockerRepository!.toArgMap()],
-    if (mavenRepository != null)
-      'maven_repository': [mavenRepository!.toArgMap()],
-    if (npmRepository != null) 'npm_repository': [npmRepository!.toArgMap()],
-    if (aptRepository != null) 'apt_repository': [aptRepository!.toArgMap()],
-    if (yumRepository != null) 'yum_repository': [yumRepository!.toArgMap()],
-    if (upstreamCredentials != null)
-      'upstream_credentials': [upstreamCredentials!.toArgMap()],
-    if (disableUpstreamValidation != null)
-      'disable_upstream_validation': disableUpstreamValidation!.toTfJson(),
-    if (advancedExtra != null) ...advancedExtra!,
-  };
-}
-
-/// Deprecated `custom_repository` nested under docker / maven / npm
-/// remote blocks. Prefer [commonRepository] for new stacks.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository({
-    required this.uri,
-  });
-
-  final TfArg<String> uri;
-
-  Map<String, Object?> toArgMap() => {'uri': uri.toTfJson()};
-}
-
-/// `remote_repository_config.docker_repository` block.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteDockerRepository {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteDockerRepository({
-    this.publicRepository,
-    this.customRepository,
-  });
-
-  /// Public Docker Hub pull-through cache. Conflicts with
-  /// [customRepository].
-  final ArtifactRegistryDockerPublicRepository? publicRepository;
-
-  /// Deprecated custom URI upstream. Conflicts with [publicRepository].
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository?
-  customRepository;
-
-  Map<String, Object?> toArgMap() => {
-    if (publicRepository != null)
-      'public_repository': publicRepository!.terraformValue,
-    if (customRepository != null)
-      'custom_repository': [customRepository!.toArgMap()],
-  };
-}
-
-/// `remote_repository_config.maven_repository` block.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteMavenRepository {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteMavenRepository({
-    this.publicRepository,
-    this.customRepository,
-  });
-
-  final ArtifactRegistryMavenPublicRepository? publicRepository;
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository?
-  customRepository;
-
-  Map<String, Object?> toArgMap() => {
-    if (publicRepository != null)
-      'public_repository': publicRepository!.terraformValue,
-    if (customRepository != null)
-      'custom_repository': [customRepository!.toArgMap()],
-  };
-}
-
-/// `remote_repository_config.npm_repository` block.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteNpmRepository {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteNpmRepository({
-    this.publicRepository,
-    this.customRepository,
-  });
-
-  final ArtifactRegistryNpmPublicRepository? publicRepository;
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository?
-  customRepository;
-
-  Map<String, Object?> toArgMap() => {
-    if (publicRepository != null)
-      'public_repository': publicRepository!.terraformValue,
-    if (customRepository != null)
-      'custom_repository': [customRepository!.toArgMap()],
-  };
-}
-
-/// `remote_repository_config.apt_repository` block.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteAptRepository {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteAptRepository({
-    this.publicRepository,
-  });
-
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteAptPublicRepository?
-  publicRepository;
-
-  Map<String, Object?> toArgMap() => {
-    if (publicRepository != null)
-      'public_repository': [publicRepository!.toArgMap()],
-  };
-}
-
-/// `remote_repository_config.apt_repository.public_repository`.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteAptPublicRepository {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteAptPublicRepository({
-    this.repositoryBase,
-    this.repositoryPath,
-  });
-
-  final ArtifactRegistryAptRepositoryBase? repositoryBase;
-  final TfArg<String>? repositoryPath;
-
-  Map<String, Object?> toArgMap() => {
-    if (repositoryBase != null)
-      'repository_base': repositoryBase!.terraformValue,
-    if (repositoryPath != null) 'repository_path': repositoryPath!.toTfJson(),
-  };
-}
-
-/// `remote_repository_config.yum_repository` block.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteYumRepository {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteYumRepository({
-    this.publicRepository,
-  });
-
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteYumPublicRepository?
-  publicRepository;
-
-  Map<String, Object?> toArgMap() => {
-    if (publicRepository != null)
-      'public_repository': [publicRepository!.toArgMap()],
-  };
-}
-
-/// `remote_repository_config.yum_repository.public_repository`.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteYumPublicRepository {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteYumPublicRepository({
-    this.repositoryBase,
-    this.repositoryPath,
-  });
-
-  final ArtifactRegistryYumRepositoryBase? repositoryBase;
-  final TfArg<String>? repositoryPath;
-
-  Map<String, Object?> toArgMap() => {
-    if (repositoryBase != null)
-      'repository_base': repositoryBase!.terraformValue,
-    if (repositoryPath != null) 'repository_path': repositoryPath!.toTfJson(),
-  };
-}
-
-/// `remote_repository_config.common_repository` -- generic upstream by
-/// URI. Mutually exclusive with the format-specific
-/// `*_repository` blocks (see
-/// [ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig.advancedExtra]).
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository({
-    required this.uri,
-  });
-
-  /// Upstream URI. Accepts an Artifact Registry repo path
-  /// (`projects/<p>/locations/<l>/repositories/<repo>`), a registry URI
-  /// (`https://registry-1.docker.io`), or an Artifact Registry HTTPS URI
-  /// (`https://<region>-docker.pkg.dev/<project>/<repo>`).
-  final TfArg<String> uri;
-
-  Map<String, Object?> toArgMap() => {'uri': uri.toTfJson()};
-}
-
-/// `remote_repository_config.upstream_credentials` -- single helper for
-/// the only credential variant currently modeled by the schema
-/// (`username_password_credentials`).
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteUpstreamCredentials {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteUpstreamCredentials({
-    this.usernamePasswordCredentials,
-  });
-
-  /// Username + Secret-Manager password version pair.
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteUsernamePasswordCredentials?
-  usernamePasswordCredentials;
-
-  Map<String, Object?> toArgMap() => {
-    if (usernamePasswordCredentials != null)
-      'username_password_credentials': [
-        usernamePasswordCredentials!.toArgMap(),
-      ],
-  };
-}
-
-/// `remote_repository_config.upstream_credentials
-/// .username_password_credentials` block.
-///
-/// The actual password never appears here -- it lives in Secret Manager
-/// and Artifact Registry resolves [passwordSecretVersion] at fetch
-/// time.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryRemoteUsernamePasswordCredentials {
-  const ArtifactRegistryRepositoryArtifactRegistryRemoteUsernamePasswordCredentials({
-    this.username,
-    this.passwordSecretVersion,
-  });
-
-  /// Username used to authenticate against the upstream.
-  final TfArg<String>? username;
-
-  /// Secret Manager secret-version path
-  /// (`projects/<p>/secrets/<s>/versions/<v>`) holding the upstream
-  /// password. Pass `TfArg.ref(secretVersion.name)` to keep the wiring
-  /// symbolic.
-  final TfArg<String>? passwordSecretVersion;
-
-  Map<String, Object?> toArgMap() => {
-    if (username != null) 'username': username!.toTfJson(),
-    if (passwordSecretVersion != null)
-      'password_secret_version': passwordSecretVersion!.toTfJson(),
-  };
-}
 
 // ===========================================================================
 // cleanup_policies (set, unbounded, keyed by id)
 // ===========================================================================
 
-/// One `cleanup_policies` entry. Each policy pairs an [action]
-/// (`KEEP` / `DELETE`) with EXACTLY ONE of [condition] (tag/age/prefix
-/// match) or [mostRecentVersions] (retain top-N) -- mirrors the
-/// API-level `exactly_one_of` constraint between the two sub-blocks.
-///
-/// Combine with [GoogleArtifactRegistryRepository.cleanupPolicyDryRun]
-/// = `true` to dry-run the rule against existing artifacts before
-/// enabling deletion.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy {
-  const ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy({
-    required this.id,
-    this.action,
-    this.condition,
-    this.mostRecentVersions,
-  });
-
-  /// Policy id (also the map key). Free-form, unique within the
-  /// repository, under 128 chars.
-  final TfArg<String> id;
-
-  /// What this policy does to matching versions when its condition
-  /// fires. Optional in the schema, but a policy with no action is a
-  /// no-op.
-  final ArtifactRegistryCleanupAction? action;
-
-  /// Match versions by tag / age / prefix. Mutually exclusive with
-  /// [mostRecentVersions].
-  final ArtifactRegistryRepositoryArtifactRegistryCleanupCondition? condition;
-
-  /// Retain the N most recent versions matching [package name
-  /// prefixes][ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions.packageNamePrefixes].
-  /// May only be paired with `action == KEEP`. Mutually exclusive with
-  /// [condition].
-  final ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions?
-  mostRecentVersions;
-
-  Map<String, Object?> toArgMap() => {
-    'id': id.toTfJson(),
-    if (action != null) 'action': action!.terraformValue,
-    if (condition != null) 'condition': [condition!.toArgMap()],
-    if (mostRecentVersions != null)
-      'most_recent_versions': [mostRecentVersions!.toArgMap()],
-  };
-}
-
-/// `cleanup_policies.condition` -- match versions by tag / age / prefix.
-/// At least one of the predicate fields should be set for the condition
-/// to be meaningful.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryCleanupCondition {
-  const ArtifactRegistryRepositoryArtifactRegistryCleanupCondition({
-    this.tagState,
-    this.tagPrefixes,
-    this.versionNamePrefixes,
-    this.packageNamePrefixes,
-    this.olderThan,
-    this.newerThan,
-  });
-
-  /// Restrict the match to tagged / untagged / any versions. Default
-  /// `ANY`.
-  final ArtifactRegistryCleanupTagState? tagState;
-
-  /// Match versions whose tag starts with any of these prefixes.
-  final List<String>? tagPrefixes;
-
-  /// Match versions whose version name starts with any of these
-  /// prefixes.
-  final List<String>? versionNamePrefixes;
-
-  /// Match versions whose package name starts with any of these
-  /// prefixes.
-  final List<String>? packageNamePrefixes;
-
-  /// Match versions older than this duration. Use Go duration syntax
-  /// (`'168h'` for 7 days). The provider converts this to a seconds
-  /// suffix on the wire.
-  final TfArg<String>? olderThan;
-
-  /// Match versions newer than this duration (same syntax as
-  /// [olderThan]).
-  final TfArg<String>? newerThan;
-
-  Map<String, Object?> toArgMap() => {
-    if (tagState != null) 'tag_state': tagState!.terraformValue,
-    if (tagPrefixes != null) 'tag_prefixes': tagPrefixes,
-    if (versionNamePrefixes != null)
-      'version_name_prefixes': versionNamePrefixes,
-    if (packageNamePrefixes != null)
-      'package_name_prefixes': packageNamePrefixes,
-    if (olderThan != null) 'older_than': olderThan!.toTfJson(),
-    if (newerThan != null) 'newer_than': newerThan!.toTfJson(),
-  };
-}
-
-/// `cleanup_policies.most_recent_versions` -- retain the N most recent
-/// versions per matched package. Only valid paired with
-/// `action == KEEP`.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions {
-  const ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions({
-    this.packageNamePrefixes,
-    this.keepCount,
-  });
-
-  /// Scope the rule to packages whose name starts with any of these
-  /// prefixes. Empty / null means "all packages".
-  final List<String>? packageNamePrefixes;
-
-  /// Minimum number of versions to retain per package.
-  final TfArg<int>? keepCount;
-
-  Map<String, Object?> toArgMap() => {
-    if (packageNamePrefixes != null)
-      'package_name_prefixes': packageNamePrefixes,
-    if (keepCount != null) 'keep_count': keepCount!.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // vulnerability_scanning_config (max_items=1)
 // ===========================================================================
-
-/// `vulnerability_scanning_config` block. Controls whether the
-/// Container Analysis API auto-scans artifacts pushed to this repo.
-/// Only [enablementConfig] is user-settable; [enablementState] and
-/// [enablementStateReason] are returned by the API and surface as read
-/// getters on the parent class.
-@immutable
-class ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig {
-  const ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig({
-    this.enablementConfig,
-  });
-
-  /// User-set scanning toggle. `INHERITED` defers to the project-level
-  /// Container Analysis state; `DISABLED` opts this repo out
-  /// explicitly.
-  final ArtifactRegistryVulnerabilityEnablementConfig? enablementConfig;
-
-  Map<String, Object?> toArgMap() => {
-    if (enablementConfig != null)
-      'enablement_config': enablementConfig!.terraformValue,
-  };
-}
 
 /// At most one of `virtual_repository_config`, `remote_repository_config` on `google_artifact_registry_repository`: the provider rejects
 /// more than one, so each variant sets one of them and a
@@ -715,14 +160,12 @@ sealed class ArtifactRegistryRepositoryConfig {
 
   /// Sets `virtual_repository_config`.
   const factory ArtifactRegistryRepositoryConfig.virtualRepositoryConfig(
-    ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig
-    virtualRepositoryConfig,
+    ArtifactRegistryRepositoryVirtualRepositoryConfig virtualRepositoryConfig,
   ) = ArtifactRegistryRepositoryConfigVirtualRepositoryConfig;
 
   /// Sets `remote_repository_config`.
   const factory ArtifactRegistryRepositoryConfig.remoteRepositoryConfig(
-    ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig
-    remoteRepositoryConfig,
+    ArtifactRegistryRepositoryRemoteRepositoryConfig remoteRepositoryConfig,
   ) = ArtifactRegistryRepositoryConfigRemoteRepositoryConfig;
 
   /// The Terraform argument this choice sets.
@@ -742,7 +185,7 @@ final class ArtifactRegistryRepositoryConfigVirtualRepositoryConfig
     this.virtualRepositoryConfig,
   );
 
-  final ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig
+  final ArtifactRegistryRepositoryVirtualRepositoryConfig
   virtualRepositoryConfig;
 
   @override
@@ -750,14 +193,14 @@ final class ArtifactRegistryRepositoryConfigVirtualRepositoryConfig
 
   @override
   Map<String, Object?> encode() => {
-    'virtual_repository_config': [virtualRepositoryConfig.toArgMap()],
+    'virtual_repository_config': virtualRepositoryConfig.encode(),
   };
 
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'virtual_repository_config': TfArg.literal([
-      virtualRepositoryConfig.toArgMap(),
-    ]),
+    'virtual_repository_config': TfArg.literal(
+      virtualRepositoryConfig.encode(),
+    ),
   };
 }
 
@@ -768,22 +211,826 @@ final class ArtifactRegistryRepositoryConfigRemoteRepositoryConfig
     this.remoteRepositoryConfig,
   );
 
-  final ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig
-  remoteRepositoryConfig;
+  final ArtifactRegistryRepositoryRemoteRepositoryConfig remoteRepositoryConfig;
 
   @override
   String get blockKey => 'remote_repository_config';
 
   @override
   Map<String, Object?> encode() => {
-    'remote_repository_config': [remoteRepositoryConfig.toArgMap()],
+    'remote_repository_config': remoteRepositoryConfig.encode(),
   };
 
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'remote_repository_config': TfArg.literal([
-      remoteRepositoryConfig.toArgMap(),
-    ]),
+    'remote_repository_config': TfArg.literal(remoteRepositoryConfig.encode()),
+  };
+}
+
+/// Typed helper for the `cleanup_policies` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryCleanupPolicies {
+  const ArtifactRegistryRepositoryCleanupPolicies({
+    this.action,
+    required this.id,
+    this.condition,
+    this.mostRecentVersions,
+  });
+
+  final TfArg<ArtifactRegistryCleanupAction>? action;
+
+  final TfArg<String> id;
+
+  final ArtifactRegistryRepositoryCleanupPoliciesCondition? condition;
+
+  final ArtifactRegistryRepositoryCleanupPoliciesMostRecentVersions?
+  mostRecentVersions;
+
+  Map<String, Object?> encode() => {
+    'action': ?action?.toTfJson(),
+    'id': id.toTfJson(),
+    'condition': ?condition?.encode(),
+    'most_recent_versions': ?mostRecentVersions?.encode(),
+  };
+}
+
+/// Typed helper for the `cleanup_policies.condition` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryCleanupPoliciesCondition {
+  const ArtifactRegistryRepositoryCleanupPoliciesCondition({
+    this.newerThan,
+    this.olderThan,
+    this.packageNamePrefixes,
+    this.tagPrefixes,
+    this.tagState,
+    this.versionNamePrefixes,
+  });
+
+  final TfArg<String>? newerThan;
+
+  final TfArg<String>? olderThan;
+
+  final TfArg<List<Object?>>? packageNamePrefixes;
+
+  final TfArg<List<Object?>>? tagPrefixes;
+
+  final TfArg<ArtifactRegistryCleanupTagState>? tagState;
+
+  final TfArg<List<Object?>>? versionNamePrefixes;
+
+  Map<String, Object?> encode() => {
+    'newer_than': ?newerThan?.toTfJson(),
+    'older_than': ?olderThan?.toTfJson(),
+    'package_name_prefixes': ?packageNamePrefixes?.toTfJson(),
+    'tag_prefixes': ?tagPrefixes?.toTfJson(),
+    'tag_state': ?tagState?.toTfJson(),
+    'version_name_prefixes': ?versionNamePrefixes?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `cleanup_policies.most_recent_versions` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryCleanupPoliciesMostRecentVersions {
+  const ArtifactRegistryRepositoryCleanupPoliciesMostRecentVersions({
+    this.keepCount,
+    this.packageNamePrefixes,
+  });
+
+  final TfArg<num>? keepCount;
+
+  final TfArg<List<Object?>>? packageNamePrefixes;
+
+  Map<String, Object?> encode() => {
+    'keep_count': ?keepCount?.toTfJson(),
+    'package_name_prefixes': ?packageNamePrefixes?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `docker_config` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryDockerConfig {
+  const ArtifactRegistryRepositoryDockerConfig({this.immutableTags});
+
+  final TfArg<bool>? immutableTags;
+
+  Map<String, Object?> encode() => {
+    'immutable_tags': ?immutableTags?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `maven_config` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryMavenConfig {
+  const ArtifactRegistryRepositoryMavenConfig({
+    this.allowSnapshotOverwrites,
+    this.versionPolicy,
+  });
+
+  final TfArg<bool>? allowSnapshotOverwrites;
+
+  final TfArg<ArtifactRegistryMavenVersionPolicy>? versionPolicy;
+
+  Map<String, Object?> encode() => {
+    'allow_snapshot_overwrites': ?allowSnapshotOverwrites?.toTfJson(),
+    'version_policy': ?versionPolicy?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfig {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfig({
+    this.description,
+    this.disableUpstreamValidation,
+    required this.format,
+    this.noCache,
+    this.upstreamCredentials,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<bool>? disableUpstreamValidation;
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigFormat format;
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigNoCache? noCache;
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigUpstreamCredentials?
+  upstreamCredentials;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'disable_upstream_validation': ?disableUpstreamValidation?.toTfJson(),
+    ...format.encode(),
+    'no_cache': ?noCache?.encode(),
+    'upstream_credentials': ?upstreamCredentials?.encode(),
+  };
+}
+
+/// Exactly one of `apt_repository`, `docker_repository`, `maven_repository`, `npm_repository`, `python_repository`, `yum_repository`, `common_repository` on the `remote_repository_config` block of `google_artifact_registry_repository`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.aptRepository(...)`.
+sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigFormat {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigFormat();
+
+  /// Sets `apt_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.aptRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigAptRepository aptRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigFormatAptRepository;
+
+  /// Sets `docker_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.dockerRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository
+    dockerRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigFormatDockerRepository;
+
+  /// Sets `maven_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.mavenRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository
+    mavenRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigFormatMavenRepository;
+
+  /// Sets `npm_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.npmRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository npmRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigFormatNpmRepository;
+
+  /// Sets `python_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.pythonRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository
+    pythonRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigFormatPythonRepository;
+
+  /// Sets `yum_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.yumRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigYumRepository yumRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigFormatYumRepository;
+
+  /// Sets `common_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.commonRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigCommonRepository
+    commonRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigFormatCommonRepository;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.aptRepository] choice: sets `apt_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatAptRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigFormat {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigFormatAptRepository(
+    this.aptRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigAptRepository
+  aptRepository;
+
+  @override
+  String get blockKey => 'apt_repository';
+
+  @override
+  Map<String, Object?> encode() => {'apt_repository': aptRepository.encode()};
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.dockerRepository] choice: sets `docker_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatDockerRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigFormat {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigFormatDockerRepository(
+    this.dockerRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository
+  dockerRepository;
+
+  @override
+  String get blockKey => 'docker_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'docker_repository': dockerRepository.encode(),
+  };
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.mavenRepository] choice: sets `maven_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatMavenRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigFormat {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigFormatMavenRepository(
+    this.mavenRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository
+  mavenRepository;
+
+  @override
+  String get blockKey => 'maven_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'maven_repository': mavenRepository.encode(),
+  };
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.npmRepository] choice: sets `npm_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatNpmRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigFormat {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigFormatNpmRepository(
+    this.npmRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository
+  npmRepository;
+
+  @override
+  String get blockKey => 'npm_repository';
+
+  @override
+  Map<String, Object?> encode() => {'npm_repository': npmRepository.encode()};
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.pythonRepository] choice: sets `python_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatPythonRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigFormat {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigFormatPythonRepository(
+    this.pythonRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository
+  pythonRepository;
+
+  @override
+  String get blockKey => 'python_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'python_repository': pythonRepository.encode(),
+  };
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.yumRepository] choice: sets `yum_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatYumRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigFormat {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigFormatYumRepository(
+    this.yumRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigYumRepository
+  yumRepository;
+
+  @override
+  String get blockKey => 'yum_repository';
+
+  @override
+  Map<String, Object?> encode() => {'yum_repository': yumRepository.encode()};
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigFormat.commonRepository] choice: sets `common_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigFormatCommonRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigFormat {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigFormatCommonRepository(
+    this.commonRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigCommonRepository
+  commonRepository;
+
+  @override
+  String get blockKey => 'common_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'common_repository': commonRepository.encode(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config.apt_repository` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigAptRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigAptRepository({
+    this.publicRepository,
+  });
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigAptRepositoryPublicRepository?
+  publicRepository;
+
+  Map<String, Object?> encode() => {
+    'public_repository': ?publicRepository?.encode(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config.apt_repository.public_repository` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigAptRepositoryPublicRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigAptRepositoryPublicRepository({
+    required this.repositoryBase,
+    required this.repositoryPath,
+  });
+
+  final TfArg<ArtifactRegistryAptRepositoryBase> repositoryBase;
+
+  final TfArg<String> repositoryPath;
+
+  Map<String, Object?> encode() => {
+    'repository_base': repositoryBase.toTfJson(),
+    'repository_path': repositoryPath.toTfJson(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config.common_repository` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigCommonRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigCommonRepository({
+    required this.uri,
+  });
+
+  final TfArg<String> uri;
+
+  Map<String, Object?> encode() => {'uri': uri.toTfJson()};
+}
+
+/// At most one of `public_repository`, `custom_repository` on the `remote_repository_config.docker_repository` block of `google_artifact_registry_repository`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.publicRepository(...)`.
+sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository();
+
+  /// Sets `public_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository.publicRepository(
+    TfArg<ArtifactRegistryDockerPublicRepository> publicRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryPublicRepository;
+
+  /// Sets `custom_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository.customRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepository
+    customRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepositoryChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository.publicRepository] choice: sets `public_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryPublicRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryPublicRepository(
+    this.publicRepository,
+  );
+
+  final TfArg<ArtifactRegistryDockerPublicRepository> publicRepository;
+
+  @override
+  String get blockKey => 'public_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'public_repository': publicRepository.toTfJson(),
+  };
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository.customRepository] choice: sets `custom_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepositoryChoice
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepositoryChoice(
+    this.customRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepository
+  customRepository;
+
+  @override
+  String get blockKey => 'custom_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'custom_repository': customRepository.encode(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config.docker_repository.custom_repository` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepository({
+    this.uri,
+  });
+
+  final TfArg<String>? uri;
+
+  Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
+}
+
+/// At most one of `public_repository`, `custom_repository` on the `remote_repository_config.maven_repository` block of `google_artifact_registry_repository`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.publicRepository(...)`.
+sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository();
+
+  /// Sets `public_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository.publicRepository(
+    TfArg<ArtifactRegistryMavenPublicRepository> publicRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryPublicRepository;
+
+  /// Sets `custom_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository.customRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepository
+    customRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepositoryChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository.publicRepository] choice: sets `public_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryPublicRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryPublicRepository(
+    this.publicRepository,
+  );
+
+  final TfArg<ArtifactRegistryMavenPublicRepository> publicRepository;
+
+  @override
+  String get blockKey => 'public_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'public_repository': publicRepository.toTfJson(),
+  };
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository.customRepository] choice: sets `custom_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepositoryChoice
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepositoryChoice(
+    this.customRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepository
+  customRepository;
+
+  @override
+  String get blockKey => 'custom_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'custom_repository': customRepository.encode(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config.maven_repository.custom_repository` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepository({
+    this.uri,
+  });
+
+  final TfArg<String>? uri;
+
+  Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
+}
+
+/// Typed helper for the `remote_repository_config.no_cache` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigNoCache {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigNoCache();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// At most one of `public_repository`, `custom_repository` on the `remote_repository_config.npm_repository` block of `google_artifact_registry_repository`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.publicRepository(...)`.
+sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository();
+
+  /// Sets `public_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository.publicRepository(
+    TfArg<ArtifactRegistryNpmPublicRepository> publicRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryPublicRepository;
+
+  /// Sets `custom_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository.customRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepository
+    customRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepositoryChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository.publicRepository] choice: sets `public_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryPublicRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryPublicRepository(
+    this.publicRepository,
+  );
+
+  final TfArg<ArtifactRegistryNpmPublicRepository> publicRepository;
+
+  @override
+  String get blockKey => 'public_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'public_repository': publicRepository.toTfJson(),
+  };
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository.customRepository] choice: sets `custom_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepositoryChoice
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepositoryChoice(
+    this.customRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepository
+  customRepository;
+
+  @override
+  String get blockKey => 'custom_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'custom_repository': customRepository.encode(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config.npm_repository.custom_repository` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepository({
+    this.uri,
+  });
+
+  final TfArg<String>? uri;
+
+  Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
+}
+
+/// At most one of `public_repository`, `custom_repository` on the `remote_repository_config.python_repository` block of `google_artifact_registry_repository`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.publicRepository(...)`.
+sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository();
+
+  /// Sets `public_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository.publicRepository(
+    TfArg<String> publicRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryPublicRepository;
+
+  /// Sets `custom_repository`.
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository.customRepository(
+    ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepository
+    customRepository,
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepositoryChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository.publicRepository] choice: sets `public_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryPublicRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryPublicRepository(
+    this.publicRepository,
+  );
+
+  final TfArg<String> publicRepository;
+
+  @override
+  String get blockKey => 'public_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'public_repository': publicRepository.toTfJson(),
+  };
+}
+
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository.customRepository] choice: sets `custom_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepositoryChoice
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepositoryChoice(
+    this.customRepository,
+  );
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepository
+  customRepository;
+
+  @override
+  String get blockKey => 'custom_repository';
+
+  @override
+  Map<String, Object?> encode() => {
+    'custom_repository': customRepository.encode(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config.python_repository.custom_repository` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepository({
+    this.uri,
+  });
+
+  final TfArg<String>? uri;
+
+  Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
+}
+
+/// Typed helper for the `remote_repository_config.upstream_credentials` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigUpstreamCredentials {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigUpstreamCredentials({
+    this.usernamePasswordCredentials,
+  });
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigUpstreamCredentialsUsernamePasswordCredentials?
+  usernamePasswordCredentials;
+
+  Map<String, Object?> encode() => {
+    'username_password_credentials': ?usernamePasswordCredentials?.encode(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config.upstream_credentials.username_password_credentials` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigUpstreamCredentialsUsernamePasswordCredentials {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigUpstreamCredentialsUsernamePasswordCredentials({
+    this.passwordSecretVersion,
+    this.username,
+  });
+
+  final TfArg<String>? passwordSecretVersion;
+
+  final TfArg<String>? username;
+
+  Map<String, Object?> encode() => {
+    'password_secret_version': ?passwordSecretVersion?.toTfJson(),
+    'username': ?username?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config.yum_repository` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigYumRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigYumRepository({
+    this.publicRepository,
+  });
+
+  final ArtifactRegistryRepositoryRemoteRepositoryConfigYumRepositoryPublicRepository?
+  publicRepository;
+
+  Map<String, Object?> encode() => {
+    'public_repository': ?publicRepository?.encode(),
+  };
+}
+
+/// Typed helper for the `remote_repository_config.yum_repository.public_repository` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigYumRepositoryPublicRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigYumRepositoryPublicRepository({
+    required this.repositoryBase,
+    required this.repositoryPath,
+  });
+
+  final TfArg<ArtifactRegistryYumRepositoryBase> repositoryBase;
+
+  final TfArg<String> repositoryPath;
+
+  Map<String, Object?> encode() => {
+    'repository_base': repositoryBase.toTfJson(),
+    'repository_path': repositoryPath.toTfJson(),
+  };
+}
+
+/// Typed helper for the `virtual_repository_config` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryVirtualRepositoryConfig {
+  const ArtifactRegistryRepositoryVirtualRepositoryConfig({
+    this.upstreamPolicies,
+  });
+
+  final List<ArtifactRegistryRepositoryVirtualRepositoryConfigUpstreamPolicies>?
+  upstreamPolicies;
+
+  Map<String, Object?> encode() => {
+    if (upstreamPolicies != null)
+      'upstream_policies': [for (final e in upstreamPolicies!) e.encode()],
+  };
+}
+
+/// Typed helper for the `virtual_repository_config.upstream_policies` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryVirtualRepositoryConfigUpstreamPolicies {
+  const ArtifactRegistryRepositoryVirtualRepositoryConfigUpstreamPolicies({
+    this.id,
+    this.priority,
+    this.repository,
+  });
+
+  final TfArg<String>? id;
+
+  final TfArg<num>? priority;
+
+  final TfArg<String>? repository;
+
+  Map<String, Object?> encode() => {
+    'id': ?id?.toTfJson(),
+    'priority': ?priority?.toTfJson(),
+    'repository': ?repository?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `vulnerability_scanning_config` block of
+/// `google_artifact_registry_repository` (derived from provider schema).
+@immutable
+final class ArtifactRegistryRepositoryVulnerabilityScanningConfig {
+  const ArtifactRegistryRepositoryVulnerabilityScanningConfig({
+    this.enablementConfig,
+  });
+
+  final TfArg<ArtifactRegistryVulnerabilityEnablementConfig>? enablementConfig;
+
+  Map<String, Object?> encode() => {
+    'enablement_config': ?enablementConfig?.toTfJson(),
   };
 }
 
@@ -802,13 +1049,12 @@ final class GoogleArtifactRegistryRepository extends Resource {
     TfArg<String>? location,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<Map<String, String>>? labels,
-    ArtifactRegistryRepositoryArtifactRegistryDockerConfig? dockerConfig,
-    ArtifactRegistryRepositoryArtifactRegistryMavenConfig? mavenConfig,
+    ArtifactRegistryRepositoryDockerConfig? dockerConfig,
+    ArtifactRegistryRepositoryMavenConfig? mavenConfig,
     ArtifactRegistryRepositoryConfig? repositoryConfig,
-    List<ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy>?
-    cleanupPolicies,
+    List<ArtifactRegistryRepositoryCleanupPolicies>? cleanupPolicies,
     TfArg<bool>? cleanupPolicyDryRun,
-    ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig?
+    ArtifactRegistryRepositoryVulnerabilityScanningConfig?
     vulnerabilityScanningConfig,
     TfArg<String>? project,
     super.lifecycle,
@@ -826,19 +1072,19 @@ final class GoogleArtifactRegistryRepository extends Resource {
            'kms_key_name': ?kmsKeyName?.encodeAs('id'),
            'labels': ?labels,
            if (dockerConfig != null)
-             'docker_config': TfArg.literal([dockerConfig.toArgMap()]),
+             'docker_config': TfArg.literal(dockerConfig.encode()),
            if (mavenConfig != null)
-             'maven_config': TfArg.literal([mavenConfig.toArgMap()]),
+             'maven_config': TfArg.literal(mavenConfig.encode()),
            ...?repositoryConfig?.argMap,
            if (cleanupPolicies != null)
-             'cleanup_policies': TfArg.literal(
-               cleanupPolicies.map((p) => p.toArgMap()).toList(),
-             ),
+             'cleanup_policies': TfArg.literal([
+               for (final e in cleanupPolicies) e.encode(),
+             ]),
            'cleanup_policy_dry_run': ?cleanupPolicyDryRun,
            if (vulnerabilityScanningConfig != null)
-             'vulnerability_scanning_config': TfArg.literal([
-               vulnerabilityScanningConfig.toArgMap(),
-             ]),
+             'vulnerability_scanning_config': TfArg.literal(
+               vulnerabilityScanningConfig.encode(),
+             ),
            'project': ?project,
          },
        );

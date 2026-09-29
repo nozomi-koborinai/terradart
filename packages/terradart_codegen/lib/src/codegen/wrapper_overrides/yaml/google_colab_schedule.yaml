@@ -21,10 +21,6 @@ prelude: |
     final String terraformValue;
   }
 
-# Deep notebook_execution_job tree stays Map for this thin Wave.
-nestedTypeExcludes:
-  - create_notebook_execution_job_request
-
 curatedDoc: |-
   /// Colab Enterprise notebook execution schedule.
   ///
@@ -32,6 +28,11 @@ curatedDoc: |-
   /// Vertex Colab VMs. Enable `aiplatform.googleapis.com` before apply.
   /// [createNotebookExecutionJobRequest] is a nested-block Map
   /// (`notebook_execution_job` → GCS notebook source + template + output).
+
+sealedNames:
+  "create_notebook_execution_job_request, create_pipeline_job_request": request
+  "create_notebook_execution_job_request.notebook_execution_job.custom_environment_spec, create_notebook_execution_job_request.notebook_execution_job.notebook_runtime_template_resource_name": compute
+  "create_notebook_execution_job_request.notebook_execution_job.execution_user, create_notebook_execution_job_request.notebook_execution_job.service_account": identity
 
 paramOrder:
   - location
@@ -46,3 +47,5 @@ paramOrder:
   - end_time
   - deletion_policy
   - project
+  - max_concurrent_active_run_count
+  - create_pipeline_job_request

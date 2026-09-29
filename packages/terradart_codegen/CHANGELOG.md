@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Override axes `exactlyOneOf` / `atMostOneOf`: lists of comma-separated dotted member paths (`"template.volumes.gcs, template.volumes.secret"`) for an exclusive group no group source declares — an API rule the provider leaves to the service. `wrap` seals them like the source's groups (`sealedNames` names them) and fails (E406) on an entry that names no input or that the source already declares.
 - A reference input held by a hand-written prelude class at any depth (a hand-sealed variant or a hand helper declaring `final RefTo<Target> <input>;`) counts as typed in `inputs typed as references` and imports its target, instead of printing `reference input not typed`. Only top-level inputs of hand-sealed variants counted before.
 - `terradart wrap` drops each exclusive-group member the provider schema has no input for, and a group left with fewer than two members, printing `exclusive group names no schema input: <type> [<members>]` for the latter. Magic Modules YAML is shared by the GA and beta providers, so the GA lane read groups naming `min_version: beta` fields (`google_compute_region_network_endpoint_group` `serverless_deployment`) or fields at the wrong depth, which could never seal.
 - The Magic Modules parser lifts the fields of a `flatten_object` property into its parent, as Terraform does, in group paths and enum paths: `google_monitoring_slo`'s `service_level_indicator.basic_sli` groups are `basic_sli` groups now.

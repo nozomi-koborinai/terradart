@@ -2,14 +2,7 @@ outputDir: eventarc
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
-
-extraImports:
-  - "import 'package:terradart_google/src/eventarc/google_eventarc_message_bus.dart' show EventarcMessageBusLoggingConfig;"
-
-customSlots:
-  logging_config:
-    paramDeclaration: 'EventarcMessageBusLoggingConfig? loggingConfig'
-    argMapEntry: "if (loggingConfig != null) 'logging_config': TfArg.literal([loggingConfig.encode()]),"
+deriveNestedTypes: true
 
 paramOrder:
   - annotations

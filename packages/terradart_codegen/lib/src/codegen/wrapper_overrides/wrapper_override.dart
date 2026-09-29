@@ -294,6 +294,18 @@ final class WrapperOverride {
   /// collides with another slot or class.
   final Map<String, String>? sealedNames;
 
+  /// Groups of inputs the provider accepts exactly one of that no group
+  /// source declares (the API enforces them, or the provider checks them
+  /// outside its validators). Each entry lists the members as dotted paths
+  /// from the resource root, comma-separated, like a [sealedNames] key;
+  /// [deriveExactlyOne] seals them as it seals the source's groups. `wrap`
+  /// fails on an entry that names no input or that the source declares too.
+  final List<String>? exactlyOneOf;
+
+  /// The same as [exactlyOneOf] for inputs the provider accepts at most one
+  /// of: each becomes a nullable sealed slot or field.
+  final List<String>? atMostOneOf;
+
   /// Snake-case slot name → custom constructor / argMap snippets.
   ///
   /// Two use cases:
@@ -379,6 +391,8 @@ final class WrapperOverride {
     this.dedupeNestedTypes = false,
     this.deriveExactlyOne = false,
     this.sealedNames,
+    this.exactlyOneOf,
+    this.atMostOneOf,
   });
 
   /// This override with [dartTypeOverrides] replaced.
@@ -431,6 +445,8 @@ final class WrapperOverride {
     dedupeNestedTypes: dedupeNestedTypes,
     deriveExactlyOne: deriveExactlyOne,
     sealedNames: sealedNames,
+    exactlyOneOf: exactlyOneOf,
+    atMostOneOf: atMostOneOf,
   );
 }
 

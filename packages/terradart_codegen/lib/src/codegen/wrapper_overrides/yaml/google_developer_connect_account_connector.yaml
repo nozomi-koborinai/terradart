@@ -45,3 +45,6 @@ paramOrder:
   - annotations
   - deletion_policy
   - project
+  - etag
+  - custom_oauth_config
+  - proxy_config

@@ -68,9 +68,9 @@ final class RolloutPolicy extends TrafficChoice {
       expect(pByName['disabled']!.required, isFalse);
     });
 
-    test('parses google_cloud_scheduler_job.yaml prelude end-to-end', () {
+    test('parses google_vertex_ai_feature_online_store.yaml prelude end-to-end', () {
       final yaml = File(
-        'lib/src/codegen/wrapper_overrides/yaml/google_cloud_scheduler_job.yaml',
+        'lib/src/codegen/wrapper_overrides/yaml/google_vertex_ai_feature_online_store.yaml',
       ).readAsStringSync();
       // Crude prelude slice: from the `prelude:` key to the end of the yaml.
       // Component B-3 (Gate 6) parses yaml properly via the yaml package; this
@@ -83,18 +83,16 @@ final class RolloutPolicy extends TrafficChoice {
       final extracted = const SealedClassExtractor().extract(preludeText);
       expect(
         extracted.map((s) => s.name),
-        contains('CloudSchedulerJobSchedulerTarget'),
+        contains('VertexAiFeatureOnlineStoreStorage'),
       );
-      final scheduler = extracted.singleWhere(
-        (s) => s.name == 'CloudSchedulerJobSchedulerTarget',
+      final source = extracted.singleWhere(
+        (s) => s.name == 'VertexAiFeatureOnlineStoreStorage',
       );
-      // CloudSchedulerJobSchedulerTarget has 3 known members (v1.0 naming).
       expect(
-        scheduler.members.map((m) => m.name),
+        source.members.map((m) => m.name),
         containsAll([
-          'CloudSchedulerJobPubsubTarget',
-          'CloudSchedulerJobHttpTarget',
-          'CloudSchedulerJobAppEngineHttpTarget',
+          'VertexAiFeatureOnlineStoreBigtable',
+          'VertexAiFeatureOnlineStoreOptimized',
         ]),
       );
     });

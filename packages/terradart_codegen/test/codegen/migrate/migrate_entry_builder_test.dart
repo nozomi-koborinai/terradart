@@ -5,9 +5,11 @@ import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/cli/wrap_cli_common.dart';
 import 'package:terradart_codegen/src/codegen/data_source_wrapper_emitter.dart';
+import 'package:terradart_codegen/src/codegen/exactly_one_derivation.dart';
 import 'package:terradart_codegen/src/codegen/generated_file_header.dart';
 import 'package:terradart_codegen/src/codegen/migrate/migrate_entry_builder.dart';
 import 'package:terradart_codegen/src/codegen/migrate/migrate_manifest_data.dart';
+import 'package:terradart_codegen/src/codegen/provider_enums.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
@@ -50,16 +52,13 @@ final class _Fixture {
       providerVersion: readProviderVersion(_source),
     );
     final mmFile = File(p.join(_source, 'mm', '$tfType.yaml'));
-    final ir = mmFile.existsSync()
-        ? const IrMerger().merge(
-            base: base,
-            overrides: {
-              tfType: const MmYamlParser().parseString(
-                mmFile.readAsStringSync(),
-              ),
-            },
-          )
-        : base;
+    final mm = {
+      if (mmFile.existsSync())
+        tfType: const MmYamlParser().parseString(mmFile.readAsStringSync()),
+    };
+    final ir = mm.isEmpty
+        ? base
+        : const IrMerger().merge(base: base, overrides: mm);
     if (dataSource) {
       final override = loaded.dataSources[tfType]!;
       final def = ir.dataSources[tfType]!;
@@ -84,18 +83,34 @@ final class _Fixture {
         rawSchemaBlock: raw[tfType],
       );
     }
-    final override = loaded.resources[tfType]!;
     final def = ir.resources[tfType]!;
     final raw = <String, Map<String, dynamic>>{
-      if (override.deriveNestedTypes)
+      if (loaded.resources[tfType]!.deriveNestedTypes)
         tfType: rawBlock(tfType, schemasKey: 'resource_schemas'),
     };
+    // Mirrors `wrap --mm-groups`: MM exactly-one / at-most-one groups
+    // become the sealed slots the committed google lane emits.
+    final providerEnums = ProviderEnums.mmGroups(mm)
+        .withinSchema(ir.resources, dropped: (_) {})
+        .withOverrideGroups(
+          loaded.resources,
+          ir.resources,
+          error: (e) => throw StateError(e),
+        );
+    final overrides = deriveExactlyOneSlots(
+      providerEnums.typeDerivedEnums(loaded.resources, ir.resources),
+      ir.resources,
+      providerEnums: providerEnums,
+      rawSchemas: raw,
+    ).overrides;
+    final override = overrides[tfType]!;
     final src =
         generatedFileHeader +
         _formatter.format(
           WrapperEmitter(
-            overrides: loaded.resources,
+            overrides: overrides,
             rawResourceSchemas: raw,
+            providerEnums: providerEnums,
           ).emit(
             def,
             providerSource: 'hashicorp/google',
@@ -415,7 +430,10 @@ class Holder {
       expect(b.entry.className, 'GooglePubsubSubscription');
       expect(b.entry.kind, 'resource');
       expect(_slot(b, 'topic').kind, MigrateSlotKind.scalar);
-      final pushConfig = _slot(b, 'pushConfig');
+      final delivery = _slot(b, 'delivery');
+      expect(delivery.kind, MigrateSlotKind.sealed);
+      final push = _helper(b, delivery.variants!['push_config']!);
+      final pushConfig = push.slots.single;
       expect(pushConfig.kind, MigrateSlotKind.helper);
       expect(pushConfig.tfName, 'push_config');
       final helper = _helper(b, pushConfig.helper!);
@@ -428,7 +446,7 @@ class Holder {
       expect(b.entry.getters.map((g) => g.dartName), contains('nameRef'));
     });
 
-    test('google_cloud_scheduler_job: sealed virtual target slot', () {
+    test('google_cloud_scheduler_job: derived sealed target slot', () {
       final b = fixture.build('google_cloud_scheduler_job');
       final target = _slot(b, 'target');
       expect(target.kind, MigrateSlotKind.sealed);
@@ -437,7 +455,9 @@ class Holder {
       expect(target.required, isTrue);
       expect(target.variants, containsPair('pubsub_target', isA<String>()));
       expect(target.variants, containsPair('http_target', isA<String>()));
-      final pubsub = _helper(b, target.variants!['pubsub_target']!);
+      final variant = _helper(b, target.variants!['pubsub_target']!);
+      expect(variant.shorthand, 'pubsubTarget');
+      final pubsub = _helper(b, variant.slots.single.helper!);
       expect(pubsub.reason, isNull);
       expect(pubsub.slots.map((s) => s.tfName), contains('topic_name'));
     });
@@ -468,14 +488,14 @@ class Holder {
     );
 
     test(
-      'google_cloud_run_v2_service: custom slots and merged sealed fields',
+      'google_cloud_run_v2_service: derived helpers and merged sealed fields',
       () {
         final b = fixture.build('google_cloud_run_v2_service');
         final template = _slot(b, 'template');
         expect(template.kind, MigrateSlotKind.helper);
         expect(template.tfName, 'template');
         final volume = b.helpers.singleWhere(
-          (h) => h.className == 'CloudRunV2ServiceServiceVolume',
+          (h) => h.className == 'CloudRunV2ServiceTemplateVolumes',
         );
         expect(volume.reason, isNull);
         final source = volume.slots.singleWhere((s) => s.dartName == 'source');

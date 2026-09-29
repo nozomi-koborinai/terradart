@@ -90,14 +90,14 @@ final class ColabStack extends Stack {
         name: .literal('terradart-colab-rt'),
         displayName: .literal('TerraDart Colab runtime template'),
         location: .literal(location),
-        machineSpec: .literal(<String, Object?>{
-          'machine_type': 'e2-standard-4',
-        }),
-        networkSpec: .literal(<String, Object?>{
-          'enable_internet_access': true,
-          'network': network.id.interpolation,
-          'subnetwork': subnet.id.interpolation,
-        }),
+        machineSpec: ColabRuntimeTemplateMachineSpec(
+          machineType: .literal('e2-standard-4'),
+        ),
+        networkSpec: ColabRuntimeTemplateNetworkSpec(
+          enableInternetAccess: .literal(true),
+          network: .of(network),
+          subnetwork: .of(subnet),
+        ),
         dependsOn: [ResourceDependency(apiAi), ResourceDependency(subnet)],
       ),
     );
@@ -147,19 +147,29 @@ final class ColabStack extends Stack {
         cron: .literal('0 0 1 1 *'),
         maxConcurrentRunCount: .literal('1'),
         desiredState: .literal(.paused),
-        createNotebookExecutionJobRequest: .literal(<String, Object?>{
-          'notebook_execution_job': {
-            'display_name': 'TerraDart hello notebook',
-            'gcs_notebook_source': {
-              'uri':
-                  'gs://${bucket.nameRef.interpolation}/${notebook.nameRef.interpolation}',
-              'generation': notebook.generation.interpolation,
-            },
-            'notebook_runtime_template_resource_name': templateResourceName,
-            'gcs_output_uri': 'gs://${bucket.nameRef.interpolation}/out',
-            'service_account': runner.email.interpolation,
-          },
-        }),
+        request: .createNotebookExecutionJobRequest(
+          ColabScheduleCreateNotebookExecutionJobRequest(
+            notebookExecutionJob:
+                ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJob(
+                  displayName: .literal('TerraDart hello notebook'),
+                  source: .gcsNotebookSource(
+                    ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobGcsNotebookSource(
+                      uri: .literal(
+                        'gs://${bucket.nameRef.interpolation}/${notebook.nameRef.interpolation}',
+                      ),
+                      generation: .literal(notebook.generation.interpolation),
+                    ),
+                  ),
+                  compute: .notebookRuntimeTemplateResourceName(
+                    .literal(templateResourceName),
+                  ),
+                  gcsOutputUri: .literal(
+                    'gs://${bucket.nameRef.interpolation}/out',
+                  ),
+                  identity: .serviceAccount(.of(runner)),
+                ),
+          ),
+        ),
         dependsOn: [
           ResourceDependency(template),
           ResourceDependency(notebook),

@@ -428,14 +428,14 @@ hashicorp/google:
 hashicorp/google:
   - target: google_service_account
     attribute: email
-    slots: '(^|\\.)service_account_email\$'
+    slots: '(^|\\.)service_account\$'
 ''');
           final err = StringBuffer();
           final code = await IOOverrides.runZoned(
             () => buildCliRunner().run(
               wrapArgs(tmpOut, [
                 '--only',
-                'google_pubsub_subscription',
+                'google_container_cluster',
                 '--reference-targets',
                 ledger.path,
                 '--typed-references',
@@ -447,8 +447,8 @@ hashicorp/google:
           expect(
             err.toString(),
             contains(
-              'reference input not typed: google_pubsub_subscription'
-              '.push_config.oidc_token.service_account_email',
+              'reference input not typed: google_container_cluster'
+              '.node_config.service_account',
             ),
           );
         } finally {

@@ -37,14 +37,25 @@ export 'src/discovery_engine/google_discovery_engine_cmek_config.dart'
 export 'src/discovery_engine/google_discovery_engine_control.dart'
     show
         DiscoveryEngineControlAction,
+        DiscoveryEngineControlActionBoostAction,
+        DiscoveryEngineControlActionFilterAction,
+        DiscoveryEngineControlActionPromoteAction,
+        DiscoveryEngineControlActionRedirectAction,
+        DiscoveryEngineControlActionSynonymsAction,
         DiscoveryEngineControlBoostAction,
+        DiscoveryEngineControlBoostActionBoost,
+        DiscoveryEngineControlBoostActionBoostFixedBoost,
+        DiscoveryEngineControlBoostActionBoostInterpolationBoostSpec,
+        DiscoveryEngineControlBoostActionInterpolationBoostSpec,
+        DiscoveryEngineControlBoostActionInterpolationBoostSpecAttributeType,
+        DiscoveryEngineControlBoostActionInterpolationBoostSpecControlPoint,
+        DiscoveryEngineControlConditions,
+        DiscoveryEngineControlConditionsActiveTimeRange,
+        DiscoveryEngineControlConditionsQueryTerms,
         DiscoveryEngineControlFilterAction,
-        DiscoveryEngineControlInterpolationAttributeType,
-        DiscoveryEngineControlInterpolationBoostSpec,
-        DiscoveryEngineControlInterpolationType,
         DiscoveryEngineControlPromoteAction,
+        DiscoveryEngineControlPromoteActionSearchLinkPromotion,
         DiscoveryEngineControlRedirectAction,
-        DiscoveryEngineControlSearchLinkPromotion,
         DiscoveryEngineControlSolutionType,
         DiscoveryEngineControlSynonymsAction,
         GoogleDiscoveryEngineControl;
@@ -56,10 +67,25 @@ export 'src/discovery_engine/google_discovery_engine_data_connector.dart'
         DiscoveryEngineDataConnectorDestinationConfigsDestinations,
         DiscoveryEngineDataConnectorEntities,
         DiscoveryEngineDataConnectorMetadata,
+        DiscoveryEngineDataConnectorParams,
+        DiscoveryEngineDataConnectorParamsChoice,
+        DiscoveryEngineDataConnectorParamsJsonParams,
         GoogleDiscoveryEngineDataConnector;
 export 'src/discovery_engine/google_discovery_engine_data_store.dart'
     show
+        DiscoveryEngineDataStoreAdvancedSiteSearchConfig,
         DiscoveryEngineDataStoreContentConfig,
+        DiscoveryEngineDataStoreDocumentProcessingConfig,
+        DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfig,
+        DiscoveryEngineDataStoreDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig,
+        DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfig,
+        DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigDigitalParsingConfig,
+        DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigLayoutParsingConfig,
+        DiscoveryEngineDataStoreDocumentProcessingConfigDefaultParsingConfigOcrParsingConfig,
+        DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverrides,
+        DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesDigitalParsingConfig,
+        DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesLayoutParsingConfig,
+        DiscoveryEngineDataStoreDocumentProcessingConfigParsingConfigOverridesOcrParsingConfig,
         DiscoveryEngineDataStoreIndustryVertical,
         GoogleDiscoveryEngineDataStore;
 export 'src/discovery_engine/google_discovery_engine_license_config.dart'
@@ -84,8 +110,12 @@ export 'src/discovery_engine/google_discovery_engine_schema.dart'
     show GoogleDiscoveryEngineSchema;
 export 'src/discovery_engine/google_discovery_engine_search_engine.dart'
     show
+        DiscoveryEngineSearchEngineCommonConfig,
         DiscoveryEngineSearchEngineIndustryVertical,
+        DiscoveryEngineSearchEngineKnowledgeGraphConfig,
+        DiscoveryEngineSearchEngineKnowledgeGraphConfigFeatureConfig,
         DiscoveryEngineSearchEngineSearchEngineConfig,
+        DiscoveryEngineSearchEngineSearchEngineConfigRequiredSubscriptionTier,
         DiscoveryEngineSearchEngineSearchTier,
         GoogleDiscoveryEngineSearchEngine;
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_binding.dart'

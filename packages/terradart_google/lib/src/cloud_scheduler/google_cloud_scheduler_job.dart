@@ -4,233 +4,282 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_cloud_scheduler_job`.
 const Set<String> _googleCloudSchedulerJobSensitive = <String>{};
 
-// ===========================================================================
-// CloudSchedulerJobSchedulerTarget — sealed (Pubsub | Http | AppEngineHttp)
-// ===========================================================================
+/// Exactly one of `pubsub_target`, `http_target`, `app_engine_http_target` on `google_cloud_scheduler_job`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.pubsubTarget(...)`.
+sealed class CloudSchedulerJobTarget {
+  const CloudSchedulerJobTarget();
 
-/// Choice of scheduler target. Sealed to make the trichotomy exhaustive at
-/// the type level.
-sealed class CloudSchedulerJobSchedulerTarget {
-  const CloudSchedulerJobSchedulerTarget();
+  /// Sets `pubsub_target`.
+  const factory CloudSchedulerJobTarget.pubsubTarget(
+    CloudSchedulerJobPubsubTarget pubsubTarget,
+  ) = CloudSchedulerJobTargetPubsubTarget;
 
-  /// `pubsub_target` block.
-  const factory CloudSchedulerJobSchedulerTarget.pubsubTarget({
-    required TfArg<String> topicName,
-    TfArg<String>? data,
-    TfArg<Map<String, String>>? attributes,
-  }) = CloudSchedulerJobPubsubTarget;
+  /// Sets `http_target`.
+  const factory CloudSchedulerJobTarget.httpTarget(
+    CloudSchedulerJobHttpTarget httpTarget,
+  ) = CloudSchedulerJobTargetHttpTarget;
 
-  /// Generic webhook `http_target` block.
-  const factory CloudSchedulerJobSchedulerTarget.httpTarget({
-    required TfArg<String> uri,
-    TfArg<String>? httpMethod,
-    TfArg<String>? body,
-    TfArg<Map<String, String>>? headers,
-    CloudSchedulerJobHttpOauthToken? oauthToken,
-    CloudSchedulerJobHttpOidcToken? oidcToken,
-  }) = CloudSchedulerJobHttpTarget;
+  /// Sets `app_engine_http_target`.
+  const factory CloudSchedulerJobTarget.appEngineHttpTarget(
+    CloudSchedulerJobAppEngineHttpTarget appEngineHttpTarget,
+  ) = CloudSchedulerJobTargetAppEngineHttpTarget;
 
-  /// `app_engine_http_target` block — App Engine routing variant.
-  const factory CloudSchedulerJobSchedulerTarget.appEngineHttpTarget({
-    required TfArg<String> relativeUri,
-    TfArg<String>? httpMethod,
-    TfArg<String>? body,
-    TfArg<Map<String, String>>? headers,
-    CloudSchedulerJobAppEngineRouting? appEngineRouting,
-  }) = CloudSchedulerJobAppEngineHttpTarget;
-
-  /// argMap key under which this target is emitted (e.g. `pubsub_target`).
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
   Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `pubsub_target` block. Use [topicName] = `TfArg.ref(topic.id)` so the
-/// value resolves to the full `projects/{project}/topics/{name}` path
-/// — `topic.nameRef` (just the bare name) is **not** sufficient.
-@immutable
-final class CloudSchedulerJobPubsubTarget
-    extends CloudSchedulerJobSchedulerTarget {
-  const CloudSchedulerJobPubsubTarget({
-    required this.topicName,
-    this.data,
-    this.attributes,
-  });
+/// The [CloudSchedulerJobTarget.pubsubTarget] choice: sets `pubsub_target`.
+final class CloudSchedulerJobTargetPubsubTarget
+    extends CloudSchedulerJobTarget {
+  const CloudSchedulerJobTargetPubsubTarget(this.pubsubTarget);
 
-  /// **Important:** Pub/Sub Scheduler expects the *full resource path*
-  /// `projects/{project}/topics/{topic}`. Pass `TfArg.ref(topic.id)` —
-  /// **not** `topic.nameRef`. See `topic.id` getter on
-  /// [GooglePubsubTopic] (the runtime exposes `id` for exactly this case).
-  final TfArg<String> topicName;
-  final TfArg<String>? data;
-  final TfArg<Map<String, String>>? attributes;
+  final CloudSchedulerJobPubsubTarget pubsubTarget;
 
   @override
   String get blockKey => 'pubsub_target';
 
   @override
-  Map<String, Object?> encode() => {
-    'topic_name': topicName.toTfJson(),
-    if (data != null) 'data': data!.toTfJson(),
-    if (attributes != null) 'attributes': attributes!.toTfJson(),
+  Map<String, Object?> encode() => {'pubsub_target': pubsubTarget.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'pubsub_target': TfArg.literal(pubsubTarget.encode()),
   };
 }
 
-/// Generic webhook `http_target` block.
-@immutable
-final class CloudSchedulerJobHttpTarget
-    extends CloudSchedulerJobSchedulerTarget {
-  const CloudSchedulerJobHttpTarget({
-    required this.uri,
-    this.httpMethod,
-    this.body,
-    this.headers,
-    this.oauthToken,
-    this.oidcToken,
-  });
+/// The [CloudSchedulerJobTarget.httpTarget] choice: sets `http_target`.
+final class CloudSchedulerJobTargetHttpTarget extends CloudSchedulerJobTarget {
+  const CloudSchedulerJobTargetHttpTarget(this.httpTarget);
 
-  final TfArg<String> uri;
-  final TfArg<String>? httpMethod;
-  final TfArg<String>? body;
-  final TfArg<Map<String, String>>? headers;
-  final CloudSchedulerJobHttpOauthToken? oauthToken;
-  final CloudSchedulerJobHttpOidcToken? oidcToken;
+  final CloudSchedulerJobHttpTarget httpTarget;
 
   @override
   String get blockKey => 'http_target';
 
   @override
-  Map<String, Object?> encode() => {
-    'uri': uri.toTfJson(),
-    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
-    if (body != null) 'body': body!.toTfJson(),
-    if (headers != null) 'headers': headers!.toTfJson(),
-    if (oauthToken != null) 'oauth_token': oauthToken!.encode(),
-    if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
+  Map<String, Object?> encode() => {'http_target': httpTarget.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'http_target': TfArg.literal(httpTarget.encode()),
   };
 }
 
-/// `app_engine_http_target` block — App Engine routing variant.
-@immutable
-final class CloudSchedulerJobAppEngineHttpTarget
-    extends CloudSchedulerJobSchedulerTarget {
-  const CloudSchedulerJobAppEngineHttpTarget({
-    required this.relativeUri,
-    this.httpMethod,
-    this.body,
-    this.headers,
-    this.appEngineRouting,
-  });
+/// The [CloudSchedulerJobTarget.appEngineHttpTarget] choice: sets `app_engine_http_target`.
+final class CloudSchedulerJobTargetAppEngineHttpTarget
+    extends CloudSchedulerJobTarget {
+  const CloudSchedulerJobTargetAppEngineHttpTarget(this.appEngineHttpTarget);
 
-  final TfArg<String> relativeUri;
-  final TfArg<String>? httpMethod;
-  final TfArg<String>? body;
-  final TfArg<Map<String, String>>? headers;
-  final CloudSchedulerJobAppEngineRouting? appEngineRouting;
+  final CloudSchedulerJobAppEngineHttpTarget appEngineHttpTarget;
 
   @override
   String get blockKey => 'app_engine_http_target';
 
   @override
   Map<String, Object?> encode() => {
+    'app_engine_http_target': appEngineHttpTarget.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'app_engine_http_target': TfArg.literal(appEngineHttpTarget.encode()),
+  };
+}
+
+/// Typed helper for the `app_engine_http_target` block of
+/// `google_cloud_scheduler_job` (derived from provider schema).
+@immutable
+final class CloudSchedulerJobAppEngineHttpTarget {
+  const CloudSchedulerJobAppEngineHttpTarget({
+    this.body,
+    this.headers,
+    this.httpMethod,
+    required this.relativeUri,
+    this.appEngineRouting,
+  });
+
+  final TfArg<String>? body;
+
+  final TfArg<Map<String, String>>? headers;
+
+  final TfArg<String>? httpMethod;
+
+  final TfArg<String> relativeUri;
+
+  final CloudSchedulerJobAppEngineHttpTargetAppEngineRouting? appEngineRouting;
+
+  Map<String, Object?> encode() => {
+    'body': ?body?.toTfJson(),
+    'headers': ?headers?.toTfJson(),
+    'http_method': ?httpMethod?.toTfJson(),
     'relative_uri': relativeUri.toTfJson(),
-    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
-    if (body != null) 'body': body!.toTfJson(),
-    if (headers != null) 'headers': headers!.toTfJson(),
-    if (appEngineRouting != null)
-      'app_engine_routing': appEngineRouting!.encode(),
+    'app_engine_routing': ?appEngineRouting?.encode(),
   };
 }
 
-/// OAuth token for [CloudSchedulerJobHttpTarget].
+/// Typed helper for the `app_engine_http_target.app_engine_routing` block of
+/// `google_cloud_scheduler_job` (derived from provider schema).
 @immutable
-class CloudSchedulerJobHttpOauthToken {
-  const CloudSchedulerJobHttpOauthToken({
-    required this.serviceAccountEmail,
-    this.scope,
-  });
-
-  final TfArg<String> serviceAccountEmail;
-  final TfArg<String>? scope;
-
-  Map<String, Object?> encode() => {
-    'service_account_email': serviceAccountEmail.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-  };
-}
-
-/// OIDC token for [CloudSchedulerJobHttpTarget].
-@immutable
-class CloudSchedulerJobHttpOidcToken {
-  const CloudSchedulerJobHttpOidcToken({
-    required this.serviceAccountEmail,
-    this.audience,
-  });
-
-  final TfArg<String> serviceAccountEmail;
-  final TfArg<String>? audience;
-
-  Map<String, Object?> encode() => {
-    'service_account_email': serviceAccountEmail.toTfJson(),
-    if (audience != null) 'audience': audience!.toTfJson(),
-  };
-}
-
-/// `app_engine_routing` block under [CloudSchedulerJobAppEngineHttpTarget].
-@immutable
-class CloudSchedulerJobAppEngineRouting {
-  const CloudSchedulerJobAppEngineRouting({
+final class CloudSchedulerJobAppEngineHttpTargetAppEngineRouting {
+  const CloudSchedulerJobAppEngineHttpTargetAppEngineRouting({
+    this.instance,
     this.service,
     this.version,
-    this.instance,
   });
 
-  final TfArg<String>? service;
-  final TfArg<String>? version;
   final TfArg<String>? instance;
 
+  final TfArg<String>? service;
+
+  final TfArg<String>? version;
+
   Map<String, Object?> encode() => {
-    if (service != null) 'service': service!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (instance != null) 'instance': instance!.toTfJson(),
+    'instance': ?instance?.toTfJson(),
+    'service': ?service?.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
-/// `retry_config` block on a Scheduler job (distinct from Cloud Tasks).
+/// Typed helper for the `http_target` block of
+/// `google_cloud_scheduler_job` (derived from provider schema).
 @immutable
-class CloudSchedulerJobSchedulerRetryConfig {
-  const CloudSchedulerJobSchedulerRetryConfig({
-    this.retryCount,
-    this.maxRetryDuration,
-    this.minBackoffDuration,
-    this.maxBackoffDuration,
-    this.maxDoublings,
+final class CloudSchedulerJobHttpTarget {
+  const CloudSchedulerJobHttpTarget({
+    this.body,
+    this.headers,
+    this.httpMethod,
+    required this.uri,
+    this.oauthToken,
+    this.oidcToken,
   });
 
-  final TfArg<int>? retryCount;
-  final TfArg<String>? maxRetryDuration;
-  final TfArg<String>? minBackoffDuration;
-  final TfArg<String>? maxBackoffDuration;
-  final TfArg<int>? maxDoublings;
+  final TfArg<String>? body;
+
+  final TfArg<Map<String, String>>? headers;
+
+  final TfArg<String>? httpMethod;
+
+  final TfArg<String> uri;
+
+  final CloudSchedulerJobHttpTargetOauthToken? oauthToken;
+
+  final CloudSchedulerJobHttpTargetOidcToken? oidcToken;
 
   Map<String, Object?> encode() => {
-    if (retryCount != null) 'retry_count': retryCount!.toTfJson(),
-    if (maxRetryDuration != null)
-      'max_retry_duration': maxRetryDuration!.toTfJson(),
-    if (minBackoffDuration != null)
-      'min_backoff_duration': minBackoffDuration!.toTfJson(),
-    if (maxBackoffDuration != null)
-      'max_backoff_duration': maxBackoffDuration!.toTfJson(),
-    if (maxDoublings != null) 'max_doublings': maxDoublings!.toTfJson(),
+    'body': ?body?.toTfJson(),
+    'headers': ?headers?.toTfJson(),
+    'http_method': ?httpMethod?.toTfJson(),
+    'uri': uri.toTfJson(),
+    'oauth_token': ?oauthToken?.encode(),
+    'oidc_token': ?oidcToken?.encode(),
   };
 }
 
-// ===========================================================================
-// Factory
-// ===========================================================================
+/// Typed helper for the `http_target.oauth_token` block of
+/// `google_cloud_scheduler_job` (derived from provider schema).
+@immutable
+final class CloudSchedulerJobHttpTargetOauthToken {
+  const CloudSchedulerJobHttpTargetOauthToken({
+    this.scope,
+    required this.serviceAccountEmail,
+  });
+
+  final TfArg<String>? scope;
+
+  final RefTo<GoogleServiceAccount> serviceAccountEmail;
+
+  Map<String, Object?> encode() => {
+    'scope': ?scope?.toTfJson(),
+    'service_account_email': serviceAccountEmail.encodeAs('email').toTfJson(),
+  };
+}
+
+/// Typed helper for the `http_target.oidc_token` block of
+/// `google_cloud_scheduler_job` (derived from provider schema).
+@immutable
+final class CloudSchedulerJobHttpTargetOidcToken {
+  const CloudSchedulerJobHttpTargetOidcToken({
+    this.audience,
+    required this.serviceAccountEmail,
+  });
+
+  final TfArg<String>? audience;
+
+  final RefTo<GoogleServiceAccount> serviceAccountEmail;
+
+  Map<String, Object?> encode() => {
+    'audience': ?audience?.toTfJson(),
+    'service_account_email': serviceAccountEmail.encodeAs('email').toTfJson(),
+  };
+}
+
+/// Typed helper for the `pubsub_target` block of
+/// `google_cloud_scheduler_job` (derived from provider schema).
+@immutable
+final class CloudSchedulerJobPubsubTarget {
+  const CloudSchedulerJobPubsubTarget({
+    this.attributes,
+    this.data,
+    required this.topicName,
+  });
+
+  final TfArg<Map<String, String>>? attributes;
+
+  final TfArg<String>? data;
+
+  final RefTo<GooglePubsubTopic> topicName;
+
+  Map<String, Object?> encode() => {
+    'attributes': ?attributes?.toTfJson(),
+    'data': ?data?.toTfJson(),
+    'topic_name': topicName.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `retry_config` block of
+/// `google_cloud_scheduler_job` (derived from provider schema).
+@immutable
+final class CloudSchedulerJobRetryConfig {
+  const CloudSchedulerJobRetryConfig({
+    this.maxBackoffDuration,
+    this.maxDoublings,
+    this.maxRetryDuration,
+    this.minBackoffDuration,
+    this.retryCount,
+  });
+
+  final TfArg<String>? maxBackoffDuration;
+
+  final TfArg<num>? maxDoublings;
+
+  final TfArg<String>? maxRetryDuration;
+
+  final TfArg<String>? minBackoffDuration;
+
+  final TfArg<num>? retryCount;
+
+  Map<String, Object?> encode() => {
+    'max_backoff_duration': ?maxBackoffDuration?.toTfJson(),
+    'max_doublings': ?maxDoublings?.toTfJson(),
+    'max_retry_duration': ?maxRetryDuration?.toTfJson(),
+    'min_backoff_duration': ?minBackoffDuration?.toTfJson(),
+    'retry_count': ?retryCount?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_cloud_scheduler_job`.
 ///
@@ -242,25 +291,25 @@ class CloudSchedulerJobSchedulerRetryConfig {
 /// falls back to the provider default). This avoids subtle issues where a
 /// stack pinned to one region quietly schedules jobs in another.
 ///
-/// Choose exactly one [CloudSchedulerJobSchedulerTarget]:
-/// - [CloudSchedulerJobPubsubTarget] — note `topicName` MUST use `topic.id` (full path).
-/// - [CloudSchedulerJobHttpTarget] — generic HTTP webhook.
-/// - [CloudSchedulerJobAppEngineHttpTarget] — App Engine routing.
+/// Choose exactly one [CloudSchedulerJobTarget]:
+/// - `.pubsubTarget(...)` — its `topicName` takes the topic itself and
+///   emits `topic.id`, the full `projects/.../topics/...` path.
+/// - `.httpTarget(...)` — generic HTTP webhook.
+/// - `.appEngineHttpTarget(...)` — App Engine routing.
 ///
 /// Example:
 /// ```dart
 /// final orders = GooglePubsubTopic(
 ///   localName: 'orders',
-///   name: TfArg.literal('orders'),
+///   name: .literal('orders'),
 /// );
 /// final job = GoogleCloudSchedulerJob(
 ///   localName: 'nightly',
-///   name: TfArg.literal('nightly'),
-///   region: TfArg.literal('us-central1'),
-///   schedule: TfArg.literal('0 0 * * *'),
-///   target: CloudSchedulerJobPubsubTarget(
-///     // Correct: topic.id resolves to the full projects/.../topics/... path.
-///     topicName: TfArg.ref(orders.id),
+///   name: .literal('nightly'),
+///   region: .literal('us-central1'),
+///   schedule: .literal('0 0 * * *'),
+///   target: .pubsubTarget(
+///     CloudSchedulerJobPubsubTarget(topicName: .of(orders)),
 ///   ),
 /// );
 /// ```
@@ -271,13 +320,13 @@ final class GoogleCloudSchedulerJob extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> region,
-    required CloudSchedulerJobSchedulerTarget target,
+    required CloudSchedulerJobTarget target,
     TfArg<String>? description,
     TfArg<String>? schedule,
     TfArg<String>? timeZone,
     TfArg<bool>? paused,
     TfArg<String>? attemptDeadline,
-    CloudSchedulerJobSchedulerRetryConfig? retryConfig,
+    CloudSchedulerJobRetryConfig? retryConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -296,7 +345,7 @@ final class GoogleCloudSchedulerJob extends Resource {
            if (retryConfig != null)
              'retry_config': TfArg.literal(retryConfig.encode()),
            'project': ?project,
-           target.blockKey: TfArg.literal(target.encode()),
+           ...target.argMap,
          },
        );
 

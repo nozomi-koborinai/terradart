@@ -4,6 +4,7 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
 
 paramOrder:
   - location
@@ -14,6 +15,12 @@ paramOrder:
   - search_engine_config
   - industry_vertical
   - project
+  - app_type
+  - disable_analytics
+  - features
+  - kms_key_name
+  - common_config
+  - knowledge_graph_config
 
 extraGetters: |2
     /// Reference to `engine_id` attribute.
@@ -31,25 +38,10 @@ prelude: |
     final String terraformValue;
   }
 
-  /// `search_engine_config` block (required, max=1).
-  @immutable
-  class DiscoveryEngineSearchEngineSearchEngineConfig {
-    const DiscoveryEngineSearchEngineSearchEngineConfig({this.searchTier});
-
-    final TfArg<DiscoveryEngineSearchEngineSearchTier>? searchTier;
-
-    Map<String, Object?> toArgMap() => {
-          if (searchTier != null) 'search_tier': searchTier,
-        };
-  }
-
 dartTypeOverrides:
   industry_vertical: DiscoveryEngineSearchEngineIndustryVertical
+  search_engine_config.search_tier: DiscoveryEngineSearchEngineSearchTier
 
-customSlots:
-  search_engine_config:
-    paramDeclaration: 'required DiscoveryEngineSearchEngineSearchEngineConfig searchEngineConfig'
-    argMapEntry: "'search_engine_config': TfArg.literal([searchEngineConfig.toArgMap()]),"
 
 extraImports:
   - "import 'package:meta/meta.dart';"

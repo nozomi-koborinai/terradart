@@ -4,7 +4,12 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_cloudfunctions2_function`.
 const Set<String> _googleCloudfunctions2FunctionSensitive = <String>{};
@@ -64,467 +69,556 @@ enum VpcConnectorEgressSettings implements TerraformEnum {
   final String terraformValue;
 }
 
-// ===========================================================================
-// build_config + nested helpers
-// ===========================================================================
-
-/// `build_config` block (single, max_items=1). Carries the runtime
-/// declaration and source-archive reference for the Cloud Build step that
-/// produces the function's container image.
+/// Typed helper for the `build_config` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-class Cloudfunctions2FunctionBuildConfig {
+final class Cloudfunctions2FunctionBuildConfig {
   const Cloudfunctions2FunctionBuildConfig({
-    this.runtime,
-    this.entryPoint,
-    this.source,
-    this.environmentVariables,
-    this.serviceAccount,
     this.dockerRepository,
+    this.entryPoint,
+    this.environmentVariables,
+    this.runtime,
+    this.serviceAccount,
     this.workerPool,
-    this.updatePolicy,
+    required this.updatePolicy,
+    this.source,
   });
 
-  /// Runtime identifier, e.g. `'python311'`, `'nodejs20'`, `'go122'`. The
-  /// schema marks this optional (updates can omit it) but creating a new
-  /// function effectively requires it.
-  final TfArg<String>? runtime;
-
-  /// Entry point function name in the source code. Defaults to the
-  /// resource name suffix if unset.
-  final TfArg<String>? entryPoint;
-
-  /// Source archive reference. Pick exactly one of [StorageSource] (GCS
-  /// object) or [RepoSource] (Cloud Source Repositories ref).
-  final Cloudfunctions2FunctionSourceConfig? source;
-
-  /// Build-time environment variables (available to the build script, NOT
-  /// to the runtime — use [Cloudfunctions2FunctionServiceConfig.environmentVariables] for that).
-  final TfArg<Map<String, String>>? environmentVariables;
-
-  /// Service account email Cloud Build runs as. Defaults to the project
-  /// Cloud Build SA.
-  final TfArg<String>? serviceAccount;
-
-  /// User-managed Artifact Registry repository for the built image. When
-  /// unset, GCP uses the per-project default repo.
   final TfArg<String>? dockerRepository;
 
-  /// Cloud Build Custom Worker Pool resource path. Required when the build
-  /// must run inside a VPC perimeter.
+  final TfArg<String>? entryPoint;
+
+  final TfArg<Map<String, String>>? environmentVariables;
+
+  final TfArg<String>? runtime;
+
+  final RefTo<GoogleServiceAccount>? serviceAccount;
+
   final TfArg<String>? workerPool;
 
-  /// Runtime update policy. Pick [AutomaticUpdatePolicy] (the default --
-  /// pull patch-level runtime updates on every deploy) or
-  /// [OnDeployUpdatePolicy] (pin the runtime version at deploy time).
-  final Cloudfunctions2FunctionUpdatePolicy? updatePolicy;
+  final Cloudfunctions2FunctionBuildConfigUpdatePolicy updatePolicy;
+
+  final Cloudfunctions2FunctionBuildConfigSource? source;
 
   Map<String, Object?> encode() => {
-    if (runtime != null) 'runtime': runtime!.toTfJson(),
-    if (entryPoint != null) 'entry_point': entryPoint!.toTfJson(),
-    if (source != null) 'source': [source!.encode()],
-    if (environmentVariables != null)
-      'environment_variables': environmentVariables!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
-    if (dockerRepository != null)
-      'docker_repository': dockerRepository!.toTfJson(),
-    if (workerPool != null) 'worker_pool': workerPool!.toTfJson(),
-    if (updatePolicy != null) ...updatePolicy!.encode(),
+    'docker_repository': ?dockerRepository?.toTfJson(),
+    'entry_point': ?entryPoint?.toTfJson(),
+    'environment_variables': ?environmentVariables?.toTfJson(),
+    'runtime': ?runtime?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('name').toTfJson(),
+    'worker_pool': ?workerPool?.toTfJson(),
+    ...updatePolicy.encode(),
+    'source': ?source?.encode(),
   };
 }
 
-/// Sealed dispatch for [Cloudfunctions2FunctionBuildConfig.source]. Models the
-/// `storage_source` / `repo_source` exactly_one_of constraint at the type
-/// level: each [Cloudfunctions2FunctionSourceConfig] subclass encodes its own Terraform key.
-sealed class Cloudfunctions2FunctionSourceConfig {
-  const Cloudfunctions2FunctionSourceConfig();
+/// Exactly one of `automatic_update_policy`, `on_deploy_update_policy` on the `build_config` block of `google_cloudfunctions2_function`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.automaticUpdatePolicy(...)`.
+sealed class Cloudfunctions2FunctionBuildConfigUpdatePolicy {
+  const Cloudfunctions2FunctionBuildConfigUpdatePolicy();
 
-  /// GCS-backed source archive (`build_config.source.storage_source`).
-  const factory Cloudfunctions2FunctionSourceConfig.storageSource({
-    required TfArg<String> bucket,
-    required TfArg<String> object,
-    TfArg<int>? generation,
-  }) = StorageSource;
+  /// Sets `automatic_update_policy`.
+  const factory Cloudfunctions2FunctionBuildConfigUpdatePolicy.automaticUpdatePolicy(
+    Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy
+    automaticUpdatePolicy,
+  ) = Cloudfunctions2FunctionBuildConfigUpdatePolicyAutomaticUpdatePolicy;
 
-  /// Cloud Source Repositories-backed source (`build_config.source.repo_source`).
-  const factory Cloudfunctions2FunctionSourceConfig.repoSource({
-    required TfArg<String> repoName,
-    TfArg<String>? projectId,
-    TfArg<String>? dir,
-    TfArg<String>? branchName,
-    TfArg<String>? tagName,
-    TfArg<String>? commitSha,
-    TfArg<bool>? invertRegex,
-  }) = RepoSource;
+  /// Sets `on_deploy_update_policy`.
+  const factory Cloudfunctions2FunctionBuildConfigUpdatePolicy.onDeployUpdatePolicy(
+    Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy onDeployUpdatePolicy,
+  ) = Cloudfunctions2FunctionBuildConfigUpdatePolicyOnDeployUpdatePolicy;
 
-  /// Returns the JSON fragment to merge into the `source` block.
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
   Map<String, Object?> encode();
 }
 
-/// GCS-backed source archive (`build_config.source.storage_source`). The
-/// archive must be a single zip/tar.gz at `gs://{bucket}/{object}`.
-@immutable
-final class StorageSource extends Cloudfunctions2FunctionSourceConfig {
-  const StorageSource({
-    required this.bucket,
-    required this.object,
-    this.generation,
-  });
+/// The [Cloudfunctions2FunctionBuildConfigUpdatePolicy.automaticUpdatePolicy] choice: sets `automatic_update_policy`.
+final class Cloudfunctions2FunctionBuildConfigUpdatePolicyAutomaticUpdatePolicy
+    extends Cloudfunctions2FunctionBuildConfigUpdatePolicy {
+  const Cloudfunctions2FunctionBuildConfigUpdatePolicyAutomaticUpdatePolicy(
+    this.automaticUpdatePolicy,
+  );
 
-  /// GCS bucket name (no `gs://` prefix).
-  final TfArg<String> bucket;
+  final Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy
+  automaticUpdatePolicy;
 
-  /// GCS object key (path within the bucket).
-  final TfArg<String> object;
-
-  /// Object generation. Pin to a specific generation for deterministic
-  /// deploys; omit for "use latest".
-  final TfArg<int>? generation;
+  @override
+  String get blockKey => 'automatic_update_policy';
 
   @override
   Map<String, Object?> encode() => {
-    'storage_source': [
-      {
-        'bucket': bucket.toTfJson(),
-        'object': object.toTfJson(),
-        if (generation != null) 'generation': generation!.toTfJson(),
-      },
-    ],
+    'automatic_update_policy': automaticUpdatePolicy.encode(),
   };
 }
 
-/// Cloud Source Repositories-backed source
-/// (`build_config.source.repo_source`). Specify one of [branchName],
-/// [tagName], or [commitSha] (the schema does not enforce this but the
-/// API requires exactly one).
+/// The [Cloudfunctions2FunctionBuildConfigUpdatePolicy.onDeployUpdatePolicy] choice: sets `on_deploy_update_policy`.
+final class Cloudfunctions2FunctionBuildConfigUpdatePolicyOnDeployUpdatePolicy
+    extends Cloudfunctions2FunctionBuildConfigUpdatePolicy {
+  const Cloudfunctions2FunctionBuildConfigUpdatePolicyOnDeployUpdatePolicy(
+    this.onDeployUpdatePolicy,
+  );
+
+  final Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy
+  onDeployUpdatePolicy;
+
+  @override
+  String get blockKey => 'on_deploy_update_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'on_deploy_update_policy': onDeployUpdatePolicy.encode(),
+  };
+}
+
+/// Typed helper for the `build_config.automatic_update_policy` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class RepoSource extends Cloudfunctions2FunctionSourceConfig {
-  const RepoSource({
-    required this.repoName,
-    this.projectId,
+final class Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy {
+  const Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `build_config.on_deploy_update_policy` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
+@immutable
+final class Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy {
+  const Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Exactly one of `storage_source`, `repo_source` on the `build_config.source` block of `google_cloudfunctions2_function`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.storageSource(...)`.
+sealed class Cloudfunctions2FunctionBuildConfigSource {
+  const Cloudfunctions2FunctionBuildConfigSource();
+
+  /// Sets `storage_source`.
+  const factory Cloudfunctions2FunctionBuildConfigSource.storageSource(
+    Cloudfunctions2FunctionBuildConfigSourceStorageSource storageSource,
+  ) = Cloudfunctions2FunctionBuildConfigSourceStorageSourceChoice;
+
+  /// Sets `repo_source`.
+  const factory Cloudfunctions2FunctionBuildConfigSource.repoSource(
+    Cloudfunctions2FunctionBuildConfigSourceRepoSource repoSource,
+  ) = Cloudfunctions2FunctionBuildConfigSourceRepoSourceChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [Cloudfunctions2FunctionBuildConfigSource.storageSource] choice: sets `storage_source`.
+final class Cloudfunctions2FunctionBuildConfigSourceStorageSourceChoice
+    extends Cloudfunctions2FunctionBuildConfigSource {
+  const Cloudfunctions2FunctionBuildConfigSourceStorageSourceChoice(
+    this.storageSource,
+  );
+
+  final Cloudfunctions2FunctionBuildConfigSourceStorageSource storageSource;
+
+  @override
+  String get blockKey => 'storage_source';
+
+  @override
+  Map<String, Object?> encode() => {'storage_source': storageSource.encode()};
+}
+
+/// The [Cloudfunctions2FunctionBuildConfigSource.repoSource] choice: sets `repo_source`.
+final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceChoice
+    extends Cloudfunctions2FunctionBuildConfigSource {
+  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceChoice(
+    this.repoSource,
+  );
+
+  final Cloudfunctions2FunctionBuildConfigSourceRepoSource repoSource;
+
+  @override
+  String get blockKey => 'repo_source';
+
+  @override
+  Map<String, Object?> encode() => {'repo_source': repoSource.encode()};
+}
+
+/// Typed helper for the `build_config.source.repo_source` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
+@immutable
+final class Cloudfunctions2FunctionBuildConfigSourceRepoSource {
+  const Cloudfunctions2FunctionBuildConfigSourceRepoSource({
+    required this.revision,
     this.dir,
-    this.branchName,
-    this.tagName,
-    this.commitSha,
     this.invertRegex,
+    this.projectId,
+    this.repoName,
   });
 
-  /// Cloud Source Repository name.
-  final TfArg<String> repoName;
+  final Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision revision;
 
-  /// Project owning the repo. Defaults to the requesting project.
-  final TfArg<String>? projectId;
-
-  /// Sub-directory inside the repo to build from.
   final TfArg<String>? dir;
 
-  /// Branch regex.
-  final TfArg<String>? branchName;
-
-  /// Tag regex.
-  final TfArg<String>? tagName;
-
-  /// Specific commit SHA.
-  final TfArg<String>? commitSha;
-
-  /// When true, build only when the revision regex does NOT match.
   final TfArg<bool>? invertRegex;
 
-  @override
+  final TfArg<String>? projectId;
+
+  final TfArg<String>? repoName;
+
   Map<String, Object?> encode() => {
-    'repo_source': [
-      {
-        'repo_name': repoName.toTfJson(),
-        if (projectId != null) 'project_id': projectId!.toTfJson(),
-        if (dir != null) 'dir': dir!.toTfJson(),
-        if (branchName != null) 'branch_name': branchName!.toTfJson(),
-        if (tagName != null) 'tag_name': tagName!.toTfJson(),
-        if (commitSha != null) 'commit_sha': commitSha!.toTfJson(),
-        if (invertRegex != null) 'invert_regex': invertRegex!.toTfJson(),
-      },
-    ],
+    ...revision.encode(),
+    'dir': ?dir?.toTfJson(),
+    'invert_regex': ?invertRegex?.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
+    'repo_name': ?repoName?.toTfJson(),
   };
 }
 
-/// Sealed dispatch for [Cloudfunctions2FunctionBuildConfig.updatePolicy]. The schema exposes two
-/// mutually exclusive sub-blocks (`automatic_update_policy` --
-/// pull patch-level updates on every deploy, vs. `on_deploy_update_policy`
-/// -- pin runtime version at deploy time).
-sealed class Cloudfunctions2FunctionUpdatePolicy {
-  const Cloudfunctions2FunctionUpdatePolicy();
+/// Exactly one of `branch_name`, `tag_name`, `commit_sha` on the `build_config.source.repo_source` block of `google_cloudfunctions2_function`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.branchName(...)`.
+sealed class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision {
+  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision();
 
-  /// `automatic_update_policy` sub-block.
-  const factory Cloudfunctions2FunctionUpdatePolicy.automaticUpdatePolicy() =
-      AutomaticUpdatePolicy;
+  /// Sets `branch_name`.
+  const factory Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.branchName(
+    TfArg<String> branchName,
+  ) = Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionBranchName;
 
-  /// `on_deploy_update_policy` sub-block.
-  const factory Cloudfunctions2FunctionUpdatePolicy.onDeployUpdatePolicy() =
-      OnDeployUpdatePolicy;
+  /// Sets `tag_name`.
+  const factory Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.tagName(
+    TfArg<String> tagName,
+  ) = Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionTagName;
 
-  /// Returns the JSON fragment to merge into [Cloudfunctions2FunctionBuildConfig.encode].
+  /// Sets `commit_sha`.
+  const factory Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.commitSha(
+    TfArg<String> commitSha,
+  ) = Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionCommitSha;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
   Map<String, Object?> encode();
 }
 
-/// `automatic_update_policy` sub-block. Cloud Functions pulls the latest
-/// patch-level runtime release on every deploy. No tunable fields.
-@immutable
-final class AutomaticUpdatePolicy extends Cloudfunctions2FunctionUpdatePolicy {
-  const AutomaticUpdatePolicy();
+/// The [Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.branchName] choice: sets `branch_name`.
+final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionBranchName
+    extends Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision {
+  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionBranchName(
+    this.branchName,
+  );
+
+  final TfArg<String> branchName;
 
   @override
+  String get blockKey => 'branch_name';
+
+  @override
+  Map<String, Object?> encode() => {'branch_name': branchName.toTfJson()};
+}
+
+/// The [Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.tagName] choice: sets `tag_name`.
+final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionTagName
+    extends Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision {
+  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionTagName(
+    this.tagName,
+  );
+
+  final TfArg<String> tagName;
+
+  @override
+  String get blockKey => 'tag_name';
+
+  @override
+  Map<String, Object?> encode() => {'tag_name': tagName.toTfJson()};
+}
+
+/// The [Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision.commitSha] choice: sets `commit_sha`.
+final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionCommitSha
+    extends Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevision {
+  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceRevisionCommitSha(
+    this.commitSha,
+  );
+
+  final TfArg<String> commitSha;
+
+  @override
+  String get blockKey => 'commit_sha';
+
+  @override
+  Map<String, Object?> encode() => {'commit_sha': commitSha.toTfJson()};
+}
+
+/// Typed helper for the `build_config.source.storage_source` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
+@immutable
+final class Cloudfunctions2FunctionBuildConfigSourceStorageSource {
+  const Cloudfunctions2FunctionBuildConfigSourceStorageSource({
+    this.bucket,
+    this.generation,
+    this.object,
+  });
+
+  final RefTo<GoogleStorageBucket>? bucket;
+
+  final TfArg<num>? generation;
+
+  final TfArg<String>? object;
+
   Map<String, Object?> encode() => {
-    'automatic_update_policy': [<String, Object?>{}],
+    'bucket': ?bucket?.encodeAs('name').toTfJson(),
+    'generation': ?generation?.toTfJson(),
+    'object': ?object?.toTfJson(),
   };
 }
 
-/// `on_deploy_update_policy` sub-block. Pin the runtime version observed
-/// at deploy time -- patch-level updates are NOT pulled in on subsequent
-/// reconciles. No tunable fields on input; the server populates
-/// `runtime_version` on read.
+/// Typed helper for the `event_trigger` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-final class OnDeployUpdatePolicy extends Cloudfunctions2FunctionUpdatePolicy {
-  const OnDeployUpdatePolicy();
-
-  @override
-  Map<String, Object?> encode() => {
-    'on_deploy_update_policy': [<String, Object?>{}],
-  };
-}
-
-// ===========================================================================
-// event_trigger + nested helpers
-// ===========================================================================
-
-/// `event_trigger` block (single, max_items=1). Binds the function to an
-/// Eventarc trigger. Use [pubsubTopic] for Pub/Sub events, or
-/// [eventFilters] to subscribe to GCS / Firestore / Eventarc system events.
-@immutable
-class Cloudfunctions2FunctionEventTrigger {
+final class Cloudfunctions2FunctionEventTrigger {
   const Cloudfunctions2FunctionEventTrigger({
     required this.eventType,
     this.pubsubTopic,
-    this.serviceAccountEmail,
     this.retryPolicy,
+    this.serviceAccountEmail,
     this.triggerRegion,
     this.eventFilters,
   });
 
-  /// CloudEvents `type` attribute the trigger listens for. Examples:
-  /// `'google.cloud.pubsub.topic.v1.messagePublished'`,
-  /// `'google.cloud.storage.object.v1.finalized'`,
-  /// `'google.cloud.firestore.document.v1.created'`.
   final TfArg<String> eventType;
 
-  /// Pub/Sub topic resource path (`projects/{p}/topics/{t}`). Required
-  /// when [eventType] is a Pub/Sub event.
-  final TfArg<String>? pubsubTopic;
+  final RefTo<GooglePubsubTopic>? pubsubTopic;
 
-  /// Eventarc trigger service account. Must have permission to invoke the
-  /// underlying Cloud Run service.
-  final TfArg<String>? serviceAccountEmail;
-
-  /// Retry behaviour when the function returns an error.
   final TfArg<EventTriggerRetryPolicy>? retryPolicy;
 
-  /// Region the Eventarc trigger lives in. Defaults to the function
-  /// location; required for global-only event sources.
+  final RefTo<GoogleServiceAccount>? serviceAccountEmail;
+
   final TfArg<String>? triggerRegion;
 
-  /// CloudEvents attribute filters (e.g. GCS bucket name match,
-  /// Firestore document path match).
-  final List<Cloudfunctions2FunctionEventFilter>? eventFilters;
+  final List<Cloudfunctions2FunctionEventTriggerEventFilters>? eventFilters;
 
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
-    if (pubsubTopic != null) 'pubsub_topic': pubsubTopic!.toTfJson(),
-    if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!.toTfJson(),
-    if (retryPolicy != null) 'retry_policy': retryPolicy!.toTfJson(),
-    if (triggerRegion != null) 'trigger_region': triggerRegion!.toTfJson(),
+    'pubsub_topic': ?pubsubTopic?.encodeAs('id').toTfJson(),
+    'retry_policy': ?retryPolicy?.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
+    'trigger_region': ?triggerRegion?.toTfJson(),
     if (eventFilters != null)
-      'event_filters': eventFilters!.map((f) => f.encode()).toList(),
+      'event_filters': [for (final e in eventFilters!) e.encode()],
   };
 }
 
-/// One entry in `event_trigger.event_filters`. Matches a CloudEvents
-/// attribute against a literal [value] (or, when [operator] is
-/// `'match-path-pattern'`, a path pattern).
+/// Typed helper for the `event_trigger.event_filters` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-class Cloudfunctions2FunctionEventFilter {
-  const Cloudfunctions2FunctionEventFilter({
+final class Cloudfunctions2FunctionEventTriggerEventFilters {
+  const Cloudfunctions2FunctionEventTriggerEventFilters({
     required this.attribute,
-    required this.value,
     this.operator,
+    required this.value,
   });
 
-  /// CloudEvents attribute name (e.g. `'bucket'`, `'document'`).
   final TfArg<String> attribute;
 
-  /// Literal value or path pattern.
-  final TfArg<String> value;
-
-  /// Match operator. Omit for exact match; set to
-  /// `'match-path-pattern'` for wildcard matching.
   final TfArg<String>? operator;
+
+  final TfArg<String> value;
 
   Map<String, Object?> encode() => {
     'attribute': attribute.toTfJson(),
+    'operator': ?operator?.toTfJson(),
     'value': value.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
   };
 }
 
-// ===========================================================================
-// service_config + nested helpers
-// ===========================================================================
-
-/// `service_config` block (single, max_items=1). Configures the underlying
-/// Cloud Run service: memory, CPU, scaling, environment, VPC egress,
-/// secret refs.
+/// Typed helper for the `service_config` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-class Cloudfunctions2FunctionServiceConfig {
+final class Cloudfunctions2FunctionServiceConfig {
   const Cloudfunctions2FunctionServiceConfig({
-    this.availableMemory,
+    this.allTrafficOnLatestRevision,
     this.availableCpu,
-    this.timeoutSeconds,
-    this.minInstanceCount,
+    this.availableMemory,
+    this.binaryAuthorizationPolicy,
+    this.directVpcEgress,
+    this.environmentVariables,
+    this.ingressSettings,
     this.maxInstanceCount,
     this.maxInstanceRequestConcurrency,
-    this.environmentVariables,
+    this.minInstanceCount,
     this.serviceAccountEmail,
-    this.ingressSettings,
-    this.allTrafficOnLatestRevision,
-    this.vpcConnector,
+    this.timeoutSeconds,
+    this.connection,
     this.vpcConnectorEgressSettings,
-    this.directVpcEgress,
-    this.binaryAuthorizationPolicy,
     this.secretEnvironmentVariables,
     this.secretVolumes,
-    this.directVpcNetworkInterfaces,
   });
 
-  /// Memory limit. Accepts the schema's Kubernetes-Quantity form
-  /// (`'256M'`, `'1Gi'`). Defaults to `'256M'`.
-  final TfArg<String>? availableMemory;
-
-  /// CPU limit. Accepts the Cloud Run-style scalar (`'1'`, `'2'`, ...).
-  /// Server picks a default proportional to [availableMemory] when null.
-  final TfArg<String>? availableCpu;
-
-  /// Per-request timeout in seconds. Defaults to 60.
-  final TfArg<int>? timeoutSeconds;
-
-  /// Floor on serving instances. Defaults to 0 (cold starts allowed).
-  final TfArg<int>? minInstanceCount;
-
-  /// Ceiling on serving instances.
-  final TfArg<int>? maxInstanceCount;
-
-  /// Maximum concurrent requests per instance. Defaults to 1.
-  final TfArg<int>? maxInstanceRequestConcurrency;
-
-  /// Runtime environment variables (visible to the function code, NOT to
-  /// the build step -- use [Cloudfunctions2FunctionBuildConfig.environmentVariables] for that).
-  final TfArg<Map<String, String>>? environmentVariables;
-
-  /// Runtime service account email. Defaults to the project default
-  /// compute SA.
-  final TfArg<String>? serviceAccountEmail;
-
-  /// Which traffic sources can invoke the function.
-  final TfArg<IngressSettings>? ingressSettings;
-
-  /// When true (default), 100% of traffic targets the latest revision.
   final TfArg<bool>? allTrafficOnLatestRevision;
 
-  /// Serverless VPC Access connector path. Mutually exclusive (at the
-  /// provider level) with [directVpcNetworkInterfaces].
-  final TfArg<String>? vpcConnector;
+  final TfArg<String>? availableCpu;
 
-  /// Egress policy when [vpcConnector] is set.
-  final TfArg<VpcConnectorEgressSettings>? vpcConnectorEgressSettings;
+  final TfArg<String>? availableMemory;
 
-  /// Egress policy when [directVpcNetworkInterfaces] is set.
-  final TfArg<DirectVpcEgress>? directVpcEgress;
-
-  /// Binary Authorization policy resource name. Enforces image admission
-  /// on every deploy.
   final TfArg<String>? binaryAuthorizationPolicy;
 
-  /// Secret-Manager backed environment variables.
-  final List<Cloudfunctions2FunctionSecretEnvironmentVariable>?
+  final TfArg<DirectVpcEgress>? directVpcEgress;
+
+  final TfArg<Map<String, String>>? environmentVariables;
+
+  final TfArg<IngressSettings>? ingressSettings;
+
+  final TfArg<num>? maxInstanceCount;
+
+  final TfArg<num>? maxInstanceRequestConcurrency;
+
+  final TfArg<num>? minInstanceCount;
+
+  final RefTo<GoogleServiceAccount>? serviceAccountEmail;
+
+  final TfArg<num>? timeoutSeconds;
+
+  final Cloudfunctions2FunctionServiceConfigConnection? connection;
+
+  final TfArg<VpcConnectorEgressSettings>? vpcConnectorEgressSettings;
+
+  final List<Cloudfunctions2FunctionServiceConfigSecretEnvironmentVariables>?
   secretEnvironmentVariables;
 
-  /// Secret-Manager backed file mounts.
-  final List<Cloudfunctions2FunctionSecretVolume>? secretVolumes;
-
-  /// Direct VPC network interfaces. Mutually exclusive (at the provider
-  /// level) with [vpcConnector].
-  final List<Cloudfunctions2FunctionDirectVpcNetworkInterface>?
-  directVpcNetworkInterfaces;
+  final List<Cloudfunctions2FunctionServiceConfigSecretVolumes>? secretVolumes;
 
   Map<String, Object?> encode() => {
-    if (availableMemory != null)
-      'available_memory': availableMemory!.toTfJson(),
-    if (availableCpu != null) 'available_cpu': availableCpu!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (minInstanceCount != null)
-      'min_instance_count': minInstanceCount!.toTfJson(),
-    if (maxInstanceCount != null)
-      'max_instance_count': maxInstanceCount!.toTfJson(),
-    if (maxInstanceRequestConcurrency != null)
-      'max_instance_request_concurrency': maxInstanceRequestConcurrency!
-          .toTfJson(),
-    if (environmentVariables != null)
-      'environment_variables': environmentVariables!.toTfJson(),
-    if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!.toTfJson(),
-    if (ingressSettings != null)
-      'ingress_settings': ingressSettings!.toTfJson(),
-    if (allTrafficOnLatestRevision != null)
-      'all_traffic_on_latest_revision': allTrafficOnLatestRevision!.toTfJson(),
-    if (vpcConnector != null) 'vpc_connector': vpcConnector!.toTfJson(),
-    if (vpcConnectorEgressSettings != null)
-      'vpc_connector_egress_settings': vpcConnectorEgressSettings!.toTfJson(),
-    if (directVpcEgress != null)
-      'direct_vpc_egress': directVpcEgress!.toTfJson(),
-    if (binaryAuthorizationPolicy != null)
-      'binary_authorization_policy': binaryAuthorizationPolicy!.toTfJson(),
+    'all_traffic_on_latest_revision': ?allTrafficOnLatestRevision?.toTfJson(),
+    'available_cpu': ?availableCpu?.toTfJson(),
+    'available_memory': ?availableMemory?.toTfJson(),
+    'binary_authorization_policy': ?binaryAuthorizationPolicy?.toTfJson(),
+    'direct_vpc_egress': ?directVpcEgress?.toTfJson(),
+    'environment_variables': ?environmentVariables?.toTfJson(),
+    'ingress_settings': ?ingressSettings?.toTfJson(),
+    'max_instance_count': ?maxInstanceCount?.toTfJson(),
+    'max_instance_request_concurrency': ?maxInstanceRequestConcurrency
+        ?.toTfJson(),
+    'min_instance_count': ?minInstanceCount?.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.encodeAs('email').toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
+    ...?connection?.encode(),
+    'vpc_connector_egress_settings': ?vpcConnectorEgressSettings?.toTfJson(),
     if (secretEnvironmentVariables != null)
-      'secret_environment_variables': secretEnvironmentVariables!
-          .map((s) => s.encode())
-          .toList(),
+      'secret_environment_variables': [
+        for (final e in secretEnvironmentVariables!) e.encode(),
+      ],
     if (secretVolumes != null)
-      'secret_volumes': secretVolumes!.map((s) => s.encode()).toList(),
-    if (directVpcNetworkInterfaces != null)
-      'direct_vpc_network_interface': directVpcNetworkInterfaces!
-          .map((n) => n.encode())
-          .toList(),
+      'secret_volumes': [for (final e in secretVolumes!) e.encode()],
   };
 }
 
-/// One entry in `service_config.secret_environment_variables`. Each
-/// reference materializes as an env var whose value is the secret payload
-/// at runtime.
+/// At most one of `vpc_connector`, `direct_vpc_network_interface` on the `service_config` block of `google_cloudfunctions2_function`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.vpcConnector(...)`.
+sealed class Cloudfunctions2FunctionServiceConfigConnection {
+  const Cloudfunctions2FunctionServiceConfigConnection();
+
+  /// Sets `vpc_connector`.
+  const factory Cloudfunctions2FunctionServiceConfigConnection.vpcConnector(
+    TfArg<String> vpcConnector,
+  ) = Cloudfunctions2FunctionServiceConfigConnectionVpcConnector;
+
+  /// Sets `direct_vpc_network_interface`.
+  const factory Cloudfunctions2FunctionServiceConfigConnection.directVpcNetworkInterface(
+    List<Cloudfunctions2FunctionServiceConfigDirectVpcNetworkInterface>
+    directVpcNetworkInterface,
+  ) = Cloudfunctions2FunctionServiceConfigConnectionDirectVpcNetworkInterface;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [Cloudfunctions2FunctionServiceConfigConnection.vpcConnector] choice: sets `vpc_connector`.
+final class Cloudfunctions2FunctionServiceConfigConnectionVpcConnector
+    extends Cloudfunctions2FunctionServiceConfigConnection {
+  const Cloudfunctions2FunctionServiceConfigConnectionVpcConnector(
+    this.vpcConnector,
+  );
+
+  final TfArg<String> vpcConnector;
+
+  @override
+  String get blockKey => 'vpc_connector';
+
+  @override
+  Map<String, Object?> encode() => {'vpc_connector': vpcConnector.toTfJson()};
+}
+
+/// The [Cloudfunctions2FunctionServiceConfigConnection.directVpcNetworkInterface] choice: sets `direct_vpc_network_interface`.
+final class Cloudfunctions2FunctionServiceConfigConnectionDirectVpcNetworkInterface
+    extends Cloudfunctions2FunctionServiceConfigConnection {
+  const Cloudfunctions2FunctionServiceConfigConnectionDirectVpcNetworkInterface(
+    this.directVpcNetworkInterface,
+  );
+
+  final List<Cloudfunctions2FunctionServiceConfigDirectVpcNetworkInterface>
+  directVpcNetworkInterface;
+
+  @override
+  String get blockKey => 'direct_vpc_network_interface';
+
+  @override
+  Map<String, Object?> encode() => {
+    'direct_vpc_network_interface': [
+      for (final e in directVpcNetworkInterface) e.encode(),
+    ],
+  };
+}
+
+/// Typed helper for the `service_config.direct_vpc_network_interface` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-class Cloudfunctions2FunctionSecretEnvironmentVariable {
-  const Cloudfunctions2FunctionSecretEnvironmentVariable({
+final class Cloudfunctions2FunctionServiceConfigDirectVpcNetworkInterface {
+  const Cloudfunctions2FunctionServiceConfigDirectVpcNetworkInterface({
+    this.network,
+    this.subnetwork,
+    this.tags,
+  });
+
+  final RefTo<GoogleComputeNetwork>? network;
+
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
+
+  final TfArg<List<Object?>>? tags;
+
+  Map<String, Object?> encode() => {
+    'network': ?network?.encodeAs('name').toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('name').toTfJson(),
+    'tags': ?tags?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `service_config.secret_environment_variables` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
+@immutable
+final class Cloudfunctions2FunctionServiceConfigSecretEnvironmentVariables {
+  const Cloudfunctions2FunctionServiceConfigSecretEnvironmentVariables({
     required this.key,
     required this.projectId,
     required this.secret,
     required this.version,
   });
 
-  /// Environment variable name (C_IDENTIFIER).
   final TfArg<String> key;
 
-  /// Project containing the secret (project number or ID).
   final TfArg<String> projectId;
 
-  /// Secret name in Secret Manager (short form, not full resource path).
   final TfArg<String> secret;
 
-  /// Version (`'latest'` or numeric). Prefer numeric versions: rotation
-  /// requires a redeploy to pick up a new `'latest'`.
   final TfArg<String> version;
 
   Map<String, Object?> encode() => {
@@ -535,83 +629,50 @@ class Cloudfunctions2FunctionSecretEnvironmentVariable {
   };
 }
 
-/// One entry in `service_config.secret_volumes`. Mounts one or more
-/// secret versions as files under [mountPath].
+/// Typed helper for the `service_config.secret_volumes` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-class Cloudfunctions2FunctionSecretVolume {
-  const Cloudfunctions2FunctionSecretVolume({
+final class Cloudfunctions2FunctionServiceConfigSecretVolumes {
+  const Cloudfunctions2FunctionServiceConfigSecretVolumes({
     required this.mountPath,
     required this.projectId,
     required this.secret,
     this.versions,
   });
 
-  /// Mount path inside the container (e.g. `'/etc/secrets'`).
   final TfArg<String> mountPath;
 
-  /// Project containing the secret.
   final TfArg<String> projectId;
 
-  /// Secret name (short form).
   final TfArg<String> secret;
 
-  /// Per-version file mappings. When null, the secret's `'latest'`
-  /// version is mounted at `{mountPath}/{secret}`.
-  final List<Cloudfunctions2FunctionSecretVolumeVersion>? versions;
+  final List<Cloudfunctions2FunctionServiceConfigSecretVolumesVersions>?
+  versions;
 
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
     'project_id': projectId.toTfJson(),
     'secret': secret.toTfJson(),
-    if (versions != null) 'versions': versions!.map((v) => v.encode()).toList(),
+    if (versions != null) 'versions': [for (final e in versions!) e.encode()],
   };
 }
 
-/// One entry in `secret_volumes.versions`. Maps a specific secret version
-/// to a relative path under the volume mount.
+/// Typed helper for the `service_config.secret_volumes.versions` block of
+/// `google_cloudfunctions2_function` (derived from provider schema).
 @immutable
-class Cloudfunctions2FunctionSecretVolumeVersion {
-  const Cloudfunctions2FunctionSecretVolumeVersion({
+final class Cloudfunctions2FunctionServiceConfigSecretVolumesVersions {
+  const Cloudfunctions2FunctionServiceConfigSecretVolumesVersions({
     required this.path,
     required this.version,
   });
 
-  /// Relative path within the volume.
   final TfArg<String> path;
 
-  /// Secret version (`'latest'` or numeric).
   final TfArg<String> version;
 
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
     'version': version.toTfJson(),
-  };
-}
-
-/// One entry in `service_config.direct_vpc_network_interface`. Attaches
-/// the function instance to a VPC network without going through a
-/// Serverless VPC Access connector.
-@immutable
-class Cloudfunctions2FunctionDirectVpcNetworkInterface {
-  const Cloudfunctions2FunctionDirectVpcNetworkInterface({
-    this.network,
-    this.subnetwork,
-    this.tags,
-  });
-
-  /// VPC network self-link or short name.
-  final TfArg<String>? network;
-
-  /// VPC subnetwork self-link or short name.
-  final TfArg<String>? subnetwork;
-
-  /// Network tags applied to this Cloud Function.
-  final TfArg<List<String>>? tags;
-
-  Map<String, Object?> encode() => {
-    if (network != null) 'network': network!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
   };
 }
 
@@ -629,20 +690,25 @@ class Cloudfunctions2FunctionDirectVpcNetworkInterface {
 /// ```dart
 /// final fn = GoogleCloudfunctions2Function(
 ///   localName: 'http_fn',
-///   name: TfArg.literal('hello-http'),
-///   location: TfArg.literal('asia-northeast1'),
+///   name: .literal('hello-http'),
+///   location: .literal('asia-northeast1'),
 ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
-///     runtime: TfArg.literal('python311'),
-///     entryPoint: TfArg.literal('hello'),
-///     source: StorageSource(
-///       bucket: TfArg.literal('my-source-bucket'),
-///       object: TfArg.literal('hello-http.zip'),
+///     runtime: .literal('python311'),
+///     entryPoint: .literal('hello'),
+///     source: .storageSource(
+///       Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+///         bucket: .of(bucket),
+///         object: .literal('hello-http.zip'),
+///       ),
+///     ),
+///     updatePolicy: .automaticUpdatePolicy(
+///       Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy(),
 ///     ),
 ///   ),
 ///   serviceConfig: Cloudfunctions2FunctionServiceConfig(
-///     availableMemory: TfArg.literal('256M'),
-///     timeoutSeconds: TfArg.literal(60),
-///     ingressSettings: TfArg.literal(IngressSettings.allowAll),
+///     availableMemory: .literal('256M'),
+///     timeoutSeconds: .literal(60),
+///     ingressSettings: .literal(.allowAll),
 ///   ),
 /// );
 /// ```
@@ -651,20 +717,25 @@ class Cloudfunctions2FunctionDirectVpcNetworkInterface {
 /// ```dart
 /// final fn = GoogleCloudfunctions2Function(
 ///   localName: 'sub_fn',
-///   name: TfArg.literal('order-handler'),
-///   location: TfArg.literal('asia-northeast1'),
+///   name: .literal('order-handler'),
+///   location: .literal('asia-northeast1'),
 ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
-///     runtime: TfArg.literal('python311'),
-///     entryPoint: TfArg.literal('handle'),
-///     source: StorageSource(
-///       bucket: TfArg.literal('my-source-bucket'),
-///       object: TfArg.literal('order-handler.zip'),
+///     runtime: .literal('python311'),
+///     entryPoint: .literal('handle'),
+///     source: .storageSource(
+///       Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+///         bucket: .of(bucket),
+///         object: .literal('order-handler.zip'),
+///       ),
+///     ),
+///     updatePolicy: .automaticUpdatePolicy(
+///       Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy(),
 ///     ),
 ///   ),
 ///   eventTrigger: Cloudfunctions2FunctionEventTrigger(
-///     eventType: TfArg.literal('google.cloud.pubsub.topic.v1.messagePublished'),
-///     pubsubTopic: TfArg.literal('projects/p/topics/orders'),
-///     retryPolicy: TfArg.literal(EventTriggerRetryPolicy.retry),
+///     eventType: .literal('google.cloud.pubsub.topic.v1.messagePublished'),
+///     pubsubTopic: .of(orders),
+///     retryPolicy: .literal(.retry),
 ///   ),
 /// );
 /// ```
@@ -693,11 +764,11 @@ final class GoogleCloudfunctions2Function extends Resource {
            'location': location,
            'description': ?description,
            if (buildConfig != null)
-             'build_config': TfArg.literal([buildConfig.encode()]),
+             'build_config': TfArg.literal(buildConfig.encode()),
            if (serviceConfig != null)
-             'service_config': TfArg.literal([serviceConfig.encode()]),
+             'service_config': TfArg.literal(serviceConfig.encode()),
            if (eventTrigger != null)
-             'event_trigger': TfArg.literal([eventTrigger.encode()]),
+             'event_trigger': TfArg.literal(eventTrigger.encode()),
            'labels': ?labels,
            'kms_key_name': ?kmsKeyName?.encodeAs('id'),
            'project': ?project,

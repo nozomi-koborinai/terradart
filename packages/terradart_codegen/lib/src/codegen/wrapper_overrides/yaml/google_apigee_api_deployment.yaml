@@ -22,6 +22,7 @@ paramOrder:
   - environment
   - proxy_id
   - revision
+  - service_account
 
 extraGetters: |2
     /// Reference to `id` attribute.

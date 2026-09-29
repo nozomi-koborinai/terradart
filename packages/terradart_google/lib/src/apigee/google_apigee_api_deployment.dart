@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_apigee_api_deployment`.
 const Set<String> _googleApigeeApiDeploymentSensitive = <String>{};
 
@@ -29,6 +31,7 @@ final class GoogleApigeeApiDeployment extends Resource {
     required TfArg<String> environment,
     required TfArg<String> proxyId,
     required TfArg<String> revision,
+    RefTo<GoogleServiceAccount>? serviceAccount,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -40,6 +43,7 @@ final class GoogleApigeeApiDeployment extends Resource {
            'environment': environment,
            'proxy_id': proxyId,
            'revision': revision,
+           'service_account': ?serviceAccount?.encodeAs('email'),
          },
        );
 

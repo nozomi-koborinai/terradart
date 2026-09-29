@@ -662,6 +662,14 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
     TfArg<AppEngineFlexibleAppVersionServingStatus>? servingStatus,
     TfArg<List<String>>? inboundServices,
     TfArg<String>? project,
+    AppEngineFlexibleAppVersionApiConfig? apiConfig,
+    AppEngineFlexibleAppVersionDeployment? deployment,
+    AppEngineFlexibleAppVersionEndpointsApiService? endpointsApiService,
+    AppEngineFlexibleAppVersionEntrypoint? entrypoint,
+    AppEngineFlexibleAppVersionFlexibleRuntimeSettings? flexibleRuntimeSettings,
+    List<AppEngineFlexibleAppVersionHandlers>? handlers,
+    AppEngineFlexibleAppVersionNetwork? network,
+    AppEngineFlexibleAppVersionResources? resources,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -692,6 +700,25 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
            'serving_status': ?servingStatus,
            'inbound_services': ?inboundServices,
            'project': ?project,
+           if (apiConfig != null)
+             'api_config': TfArg.literal(apiConfig.encode()),
+           if (deployment != null)
+             'deployment': TfArg.literal(deployment.encode()),
+           if (endpointsApiService != null)
+             'endpoints_api_service': TfArg.literal(
+               endpointsApiService.encode(),
+             ),
+           if (entrypoint != null)
+             'entrypoint': TfArg.literal(entrypoint.encode()),
+           if (flexibleRuntimeSettings != null)
+             'flexible_runtime_settings': TfArg.literal(
+               flexibleRuntimeSettings.encode(),
+             ),
+           if (handlers != null)
+             'handlers': TfArg.literal([for (final e in handlers) e.encode()]),
+           if (network != null) 'network': TfArg.literal(network.encode()),
+           if (resources != null)
+             'resources': TfArg.literal(resources.encode()),
          },
        );
 

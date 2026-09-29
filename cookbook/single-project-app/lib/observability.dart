@@ -30,8 +30,8 @@ GooglePubsubSubscription buildOrderSubscription({
   delivery: .pushConfig(
     PubsubSubscriptionPushConfig(
       pushEndpoint: .ref(coffeeService.uri),
-      oidcToken: PubsubSubscriptionOidcToken(
-        serviceAccountEmail: .ref(runSa.email),
+      oidcToken: PubsubSubscriptionPushConfigOidcToken(
+        serviceAccountEmail: .of(runSa),
       ),
     ),
   ),

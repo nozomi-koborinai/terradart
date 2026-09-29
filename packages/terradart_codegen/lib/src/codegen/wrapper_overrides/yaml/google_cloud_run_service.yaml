@@ -57,6 +57,7 @@ paramOrder:
   - autogenerate_revision_name
   - deletion_policy
   - project
+  - metadata
 
 sealedNames:
   "template.spec.containers.liveness_probe.grpc, template.spec.containers.liveness_probe.http_get": check

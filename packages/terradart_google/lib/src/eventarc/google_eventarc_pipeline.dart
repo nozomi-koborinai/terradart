@@ -1,14 +1,340 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
-import 'package:terradart_google/src/eventarc/google_eventarc_message_bus.dart'
-    show EventarcMessageBusLoggingConfig;
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 
 /// Sensitive field paths for `google_eventarc_pipeline`.
 const Set<String> _googleEventarcPipelineSensitive = <String>{};
+
+/// Typed helper for the `destinations` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineDestinations {
+  const EventarcPipelineDestinations({
+    this.messageBus,
+    this.topic,
+    this.workflow,
+    this.authenticationConfig,
+    this.httpEndpoint,
+    this.networkConfig,
+    this.outputPayloadFormat,
+  });
+
+  final TfArg<String>? messageBus;
+
+  final RefTo<GooglePubsubTopic>? topic;
+
+  final TfArg<String>? workflow;
+
+  final EventarcPipelineDestinationsAuthenticationConfig? authenticationConfig;
+
+  final EventarcPipelineDestinationsHttpEndpoint? httpEndpoint;
+
+  final EventarcPipelineDestinationsNetworkConfig? networkConfig;
+
+  final EventarcPipelineDestinationsOutputPayloadFormat? outputPayloadFormat;
+
+  Map<String, Object?> encode() => {
+    'message_bus': ?messageBus?.toTfJson(),
+    'topic': ?topic?.encodeAs('id').toTfJson(),
+    'workflow': ?workflow?.toTfJson(),
+    'authentication_config': ?authenticationConfig?.encode(),
+    'http_endpoint': ?httpEndpoint?.encode(),
+    'network_config': ?networkConfig?.encode(),
+    'output_payload_format': ?outputPayloadFormat?.encode(),
+  };
+}
+
+/// Typed helper for the `destinations.authentication_config` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineDestinationsAuthenticationConfig {
+  const EventarcPipelineDestinationsAuthenticationConfig({
+    this.googleOidc,
+    this.oauthToken,
+  });
+
+  final EventarcPipelineDestinationsAuthenticationConfigGoogleOidc? googleOidc;
+
+  final EventarcPipelineDestinationsAuthenticationConfigOauthToken? oauthToken;
+
+  Map<String, Object?> encode() => {
+    'google_oidc': ?googleOidc?.encode(),
+    'oauth_token': ?oauthToken?.encode(),
+  };
+}
+
+/// Typed helper for the `destinations.authentication_config.google_oidc` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineDestinationsAuthenticationConfigGoogleOidc {
+  const EventarcPipelineDestinationsAuthenticationConfigGoogleOidc({
+    this.audience,
+    required this.serviceAccount,
+  });
+
+  final TfArg<String>? audience;
+
+  final RefTo<GoogleServiceAccount> serviceAccount;
+
+  Map<String, Object?> encode() => {
+    'audience': ?audience?.toTfJson(),
+    'service_account': serviceAccount.encodeAs('email').toTfJson(),
+  };
+}
+
+/// Typed helper for the `destinations.authentication_config.oauth_token` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineDestinationsAuthenticationConfigOauthToken {
+  const EventarcPipelineDestinationsAuthenticationConfigOauthToken({
+    this.scope,
+    required this.serviceAccount,
+  });
+
+  final TfArg<String>? scope;
+
+  final RefTo<GoogleServiceAccount> serviceAccount;
+
+  Map<String, Object?> encode() => {
+    'scope': ?scope?.toTfJson(),
+    'service_account': serviceAccount.encodeAs('email').toTfJson(),
+  };
+}
+
+/// Typed helper for the `destinations.http_endpoint` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineDestinationsHttpEndpoint {
+  const EventarcPipelineDestinationsHttpEndpoint({
+    this.messageBindingTemplate,
+    required this.uri,
+  });
+
+  final TfArg<String>? messageBindingTemplate;
+
+  final TfArg<String> uri;
+
+  Map<String, Object?> encode() => {
+    'message_binding_template': ?messageBindingTemplate?.toTfJson(),
+    'uri': uri.toTfJson(),
+  };
+}
+
+/// Typed helper for the `destinations.network_config` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineDestinationsNetworkConfig {
+  const EventarcPipelineDestinationsNetworkConfig({this.networkAttachment});
+
+  final TfArg<String>? networkAttachment;
+
+  Map<String, Object?> encode() => {
+    'network_attachment': ?networkAttachment?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `destinations.output_payload_format` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineDestinationsOutputPayloadFormat {
+  const EventarcPipelineDestinationsOutputPayloadFormat({
+    this.avro,
+    this.json,
+    this.protobuf,
+  });
+
+  final EventarcPipelineDestinationsOutputPayloadFormatAvro? avro;
+
+  final EventarcPipelineDestinationsOutputPayloadFormatJson? json;
+
+  final EventarcPipelineDestinationsOutputPayloadFormatProtobuf? protobuf;
+
+  Map<String, Object?> encode() => {
+    'avro': ?avro?.encode(),
+    'json': ?json?.encode(),
+    'protobuf': ?protobuf?.encode(),
+  };
+}
+
+/// Typed helper for the `destinations.output_payload_format.avro` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineDestinationsOutputPayloadFormatAvro {
+  const EventarcPipelineDestinationsOutputPayloadFormatAvro({
+    this.schemaDefinition,
+  });
+
+  final TfArg<String>? schemaDefinition;
+
+  Map<String, Object?> encode() => {
+    'schema_definition': ?schemaDefinition?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `destinations.output_payload_format.json` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineDestinationsOutputPayloadFormatJson {
+  const EventarcPipelineDestinationsOutputPayloadFormatJson();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `destinations.output_payload_format.protobuf` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineDestinationsOutputPayloadFormatProtobuf {
+  const EventarcPipelineDestinationsOutputPayloadFormatProtobuf({
+    this.schemaDefinition,
+  });
+
+  final TfArg<String>? schemaDefinition;
+
+  Map<String, Object?> encode() => {
+    'schema_definition': ?schemaDefinition?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `input_payload_format` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineInputPayloadFormat {
+  const EventarcPipelineInputPayloadFormat({
+    this.avro,
+    this.json,
+    this.protobuf,
+  });
+
+  final EventarcPipelineInputPayloadFormatAvro? avro;
+
+  final EventarcPipelineInputPayloadFormatJson? json;
+
+  final EventarcPipelineInputPayloadFormatProtobuf? protobuf;
+
+  Map<String, Object?> encode() => {
+    'avro': ?avro?.encode(),
+    'json': ?json?.encode(),
+    'protobuf': ?protobuf?.encode(),
+  };
+}
+
+/// Typed helper for the `input_payload_format.avro` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineInputPayloadFormatAvro {
+  const EventarcPipelineInputPayloadFormatAvro({this.schemaDefinition});
+
+  final TfArg<String>? schemaDefinition;
+
+  Map<String, Object?> encode() => {
+    'schema_definition': ?schemaDefinition?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `input_payload_format.json` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineInputPayloadFormatJson {
+  const EventarcPipelineInputPayloadFormatJson();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `input_payload_format.protobuf` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineInputPayloadFormatProtobuf {
+  const EventarcPipelineInputPayloadFormatProtobuf({this.schemaDefinition});
+
+  final TfArg<String>? schemaDefinition;
+
+  Map<String, Object?> encode() => {
+    'schema_definition': ?schemaDefinition?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `logging_config` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineLoggingConfig {
+  const EventarcPipelineLoggingConfig({this.logSeverity});
+
+  final TfArg<EventarcPipelineLoggingConfigLogSeverity>? logSeverity;
+
+  Map<String, Object?> encode() => {'log_severity': ?logSeverity?.toTfJson()};
+}
+
+/// `log_severity` — derived from the provider schema description.
+enum EventarcPipelineLoggingConfigLogSeverity implements TerraformEnum {
+  none('NONE'),
+  debug('DEBUG'),
+  info('INFO'),
+  notice('NOTICE'),
+  warning('WARNING'),
+  error('ERROR'),
+  critical('CRITICAL'),
+  alert('ALERT'),
+  emergency('EMERGENCY');
+
+  const EventarcPipelineLoggingConfigLogSeverity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `mediations` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineMediations {
+  const EventarcPipelineMediations({this.transformation});
+
+  final EventarcPipelineMediationsTransformation? transformation;
+
+  Map<String, Object?> encode() => {
+    'transformation': ?transformation?.encode(),
+  };
+}
+
+/// Typed helper for the `mediations.transformation` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineMediationsTransformation {
+  const EventarcPipelineMediationsTransformation({this.transformationTemplate});
+
+  final TfArg<String>? transformationTemplate;
+
+  Map<String, Object?> encode() => {
+    'transformation_template': ?transformationTemplate?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `retry_policy` block of
+/// `google_eventarc_pipeline` (derived from provider schema).
+@immutable
+final class EventarcPipelineRetryPolicy {
+  const EventarcPipelineRetryPolicy({
+    this.maxAttempts,
+    this.maxRetryDelay,
+    this.minRetryDelay,
+  });
+
+  final TfArg<num>? maxAttempts;
+
+  final TfArg<String>? maxRetryDelay;
+
+  final TfArg<String>? minRetryDelay;
+
+  Map<String, Object?> encode() => {
+    'max_attempts': ?maxAttempts?.toTfJson(),
+    'max_retry_delay': ?maxRetryDelay?.toTfJson(),
+    'min_retry_delay': ?minRetryDelay?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_eventarc_pipeline`.
 ///
@@ -25,11 +351,11 @@ final class GoogleEventarcPipeline extends Resource {
     required TfArg<String> location,
     required TfArg<String> pipelineId,
     TfArg<String>? project,
-    required TfArg<List<Map<String, dynamic>>> destinations,
-    TfArg<Map<String, dynamic>>? inputPayloadFormat,
-    EventarcMessageBusLoggingConfig? loggingConfig,
-    TfArg<List<Map<String, dynamic>>>? mediations,
-    TfArg<Map<String, dynamic>>? retryPolicy,
+    required List<EventarcPipelineDestinations> destinations,
+    EventarcPipelineInputPayloadFormat? inputPayloadFormat,
+    EventarcPipelineLoggingConfig? loggingConfig,
+    List<EventarcPipelineMediations>? mediations,
+    EventarcPipelineRetryPolicy? retryPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -44,12 +370,19 @@ final class GoogleEventarcPipeline extends Resource {
            'location': location,
            'pipeline_id': pipelineId,
            'project': ?project,
-           'destinations': destinations,
-           'input_payload_format': ?inputPayloadFormat,
+           'destinations': TfArg.literal([
+             for (final e in destinations) e.encode(),
+           ]),
+           if (inputPayloadFormat != null)
+             'input_payload_format': TfArg.literal(inputPayloadFormat.encode()),
            if (loggingConfig != null)
-             'logging_config': TfArg.literal([loggingConfig.encode()]),
-           'mediations': ?mediations,
-           'retry_policy': ?retryPolicy,
+             'logging_config': TfArg.literal(loggingConfig.encode()),
+           if (mediations != null)
+             'mediations': TfArg.literal([
+               for (final e in mediations) e.encode(),
+             ]),
+           if (retryPolicy != null)
+             'retry_policy': TfArg.literal(retryPolicy.encode()),
          },
        );
 

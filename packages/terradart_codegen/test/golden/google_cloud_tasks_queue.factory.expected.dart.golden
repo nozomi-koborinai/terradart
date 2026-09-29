@@ -17,148 +17,290 @@ enum CloudTasksQueueDesiredState implements TerraformEnum {
 // Nested-block helpers
 // ===========================================================================
 
-/// `rate_limits` block.
+// ===========================================================================
+// Factory
+// ===========================================================================
+
+/// Typed helper for the `app_engine_routing_override` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
 @immutable
-class CloudTasksQueueRateLimits {
+final class CloudTasksQueueAppEngineRoutingOverride {
+  const CloudTasksQueueAppEngineRoutingOverride({
+    this.instance,
+    this.service,
+    this.version,
+  });
+
+  final TfArg<String>? instance;
+
+  final TfArg<String>? service;
+
+  final TfArg<String>? version;
+
+  Map<String, Object?> encode() => {
+    'instance': ?instance?.toTfJson(),
+    'service': ?service?.toTfJson(),
+    'version': ?version?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `http_target` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
+@immutable
+final class CloudTasksQueueHttpTarget {
+  const CloudTasksQueueHttpTarget({
+    this.httpMethod,
+    this.headerOverrides,
+    this.oauthToken,
+    this.oidcToken,
+    this.uriOverride,
+  });
+
+  final TfArg<CloudTasksQueueHttpTargetHttpMethod>? httpMethod;
+
+  final List<CloudTasksQueueHttpTargetHeaderOverrides>? headerOverrides;
+
+  final CloudTasksQueueHttpTargetOauthToken? oauthToken;
+
+  final CloudTasksQueueHttpTargetOidcToken? oidcToken;
+
+  final CloudTasksQueueHttpTargetUriOverride? uriOverride;
+
+  Map<String, Object?> encode() => {
+    'http_method': ?httpMethod?.toTfJson(),
+    if (headerOverrides != null)
+      'header_overrides': [for (final e in headerOverrides!) e.encode()],
+    'oauth_token': ?oauthToken?.encode(),
+    'oidc_token': ?oidcToken?.encode(),
+    'uri_override': ?uriOverride?.encode(),
+  };
+}
+
+/// `http_method` — derived from the provider schema description.
+enum CloudTasksQueueHttpTargetHttpMethod implements TerraformEnum {
+  httpMethodUnspecified('HTTP_METHOD_UNSPECIFIED'),
+  post('POST'),
+  get('GET'),
+  head('HEAD'),
+  put('PUT'),
+  delete('DELETE'),
+  patch('PATCH'),
+  options('OPTIONS');
+
+  const CloudTasksQueueHttpTargetHttpMethod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `http_target.header_overrides` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
+@immutable
+final class CloudTasksQueueHttpTargetHeaderOverrides {
+  const CloudTasksQueueHttpTargetHeaderOverrides({required this.header});
+
+  final CloudTasksQueueHttpTargetHeaderOverridesHeader header;
+
+  Map<String, Object?> encode() => {'header': header.encode()};
+}
+
+/// Typed helper for the `http_target.header_overrides.header` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
+@immutable
+final class CloudTasksQueueHttpTargetHeaderOverridesHeader {
+  const CloudTasksQueueHttpTargetHeaderOverridesHeader({
+    required this.key,
+    required this.value,
+  });
+
+  final TfArg<String> key;
+
+  final TfArg<String> value;
+
+  Map<String, Object?> encode() => {
+    'key': key.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
+
+/// Typed helper for the `http_target.oauth_token` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
+@immutable
+final class CloudTasksQueueHttpTargetOauthToken {
+  const CloudTasksQueueHttpTargetOauthToken({
+    this.scope,
+    required this.serviceAccountEmail,
+  });
+
+  final TfArg<String>? scope;
+
+  final TfArg<String> serviceAccountEmail;
+
+  Map<String, Object?> encode() => {
+    'scope': ?scope?.toTfJson(),
+    'service_account_email': serviceAccountEmail.toTfJson(),
+  };
+}
+
+/// Typed helper for the `http_target.oidc_token` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
+@immutable
+final class CloudTasksQueueHttpTargetOidcToken {
+  const CloudTasksQueueHttpTargetOidcToken({
+    this.audience,
+    required this.serviceAccountEmail,
+  });
+
+  final TfArg<String>? audience;
+
+  final TfArg<String> serviceAccountEmail;
+
+  Map<String, Object?> encode() => {
+    'audience': ?audience?.toTfJson(),
+    'service_account_email': serviceAccountEmail.toTfJson(),
+  };
+}
+
+/// Typed helper for the `http_target.uri_override` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
+@immutable
+final class CloudTasksQueueHttpTargetUriOverride {
+  const CloudTasksQueueHttpTargetUriOverride({
+    this.host,
+    this.port,
+    this.scheme,
+    this.uriOverrideEnforceMode,
+    this.pathOverride,
+    this.queryOverride,
+  });
+
+  final TfArg<String>? host;
+
+  final TfArg<String>? port;
+
+  final TfArg<CloudTasksQueueHttpTargetUriOverrideScheme>? scheme;
+
+  final TfArg<CloudTasksQueueHttpTargetUriOverrideUriOverrideEnforceMode>?
+  uriOverrideEnforceMode;
+
+  final CloudTasksQueueHttpTargetUriOverridePathOverride? pathOverride;
+
+  final CloudTasksQueueHttpTargetUriOverrideQueryOverride? queryOverride;
+
+  Map<String, Object?> encode() => {
+    'host': ?host?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'scheme': ?scheme?.toTfJson(),
+    'uri_override_enforce_mode': ?uriOverrideEnforceMode?.toTfJson(),
+    'path_override': ?pathOverride?.encode(),
+    'query_override': ?queryOverride?.encode(),
+  };
+}
+
+/// `scheme` — derived from the provider schema description.
+enum CloudTasksQueueHttpTargetUriOverrideScheme implements TerraformEnum {
+  http('HTTP'),
+  https('HTTPS');
+
+  const CloudTasksQueueHttpTargetUriOverrideScheme(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `uri_override_enforce_mode` — derived from the provider schema description.
+enum CloudTasksQueueHttpTargetUriOverrideUriOverrideEnforceMode
+    implements TerraformEnum {
+  always('ALWAYS'),
+  ifNotExists('IF_NOT_EXISTS');
+
+  const CloudTasksQueueHttpTargetUriOverrideUriOverrideEnforceMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `http_target.uri_override.path_override` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
+@immutable
+final class CloudTasksQueueHttpTargetUriOverridePathOverride {
+  const CloudTasksQueueHttpTargetUriOverridePathOverride({this.path});
+
+  final TfArg<String>? path;
+
+  Map<String, Object?> encode() => {'path': ?path?.toTfJson()};
+}
+
+/// Typed helper for the `http_target.uri_override.query_override` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
+@immutable
+final class CloudTasksQueueHttpTargetUriOverrideQueryOverride {
+  const CloudTasksQueueHttpTargetUriOverrideQueryOverride({this.queryParams});
+
+  final TfArg<String>? queryParams;
+
+  Map<String, Object?> encode() => {'query_params': ?queryParams?.toTfJson()};
+}
+
+/// Typed helper for the `rate_limits` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
+@immutable
+final class CloudTasksQueueRateLimits {
   const CloudTasksQueueRateLimits({
     this.maxConcurrentDispatches,
     this.maxDispatchesPerSecond,
   });
 
-  final TfArg<int>? maxConcurrentDispatches;
+  final TfArg<num>? maxConcurrentDispatches;
+
   final TfArg<num>? maxDispatchesPerSecond;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentDispatches != null)
-      'max_concurrent_dispatches': maxConcurrentDispatches!.toTfJson(),
-    if (maxDispatchesPerSecond != null)
-      'max_dispatches_per_second': maxDispatchesPerSecond!.toTfJson(),
+    'max_concurrent_dispatches': ?maxConcurrentDispatches?.toTfJson(),
+    'max_dispatches_per_second': ?maxDispatchesPerSecond?.toTfJson(),
   };
 }
 
-/// `retry_config` block (Cloud Tasks queue-level retry policy).
+/// Typed helper for the `retry_config` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
 @immutable
-class CloudTasksQueueRetryConfig {
+final class CloudTasksQueueRetryConfig {
   const CloudTasksQueueRetryConfig({
     this.maxAttempts,
-    this.maxRetryDuration,
-    this.minBackoff,
     this.maxBackoff,
     this.maxDoublings,
+    this.maxRetryDuration,
+    this.minBackoff,
   });
 
-  final TfArg<int>? maxAttempts;
-  final TfArg<String>? maxRetryDuration;
-  final TfArg<String>? minBackoff;
+  final TfArg<num>? maxAttempts;
+
   final TfArg<String>? maxBackoff;
-  final TfArg<int>? maxDoublings;
+
+  final TfArg<num>? maxDoublings;
+
+  final TfArg<String>? maxRetryDuration;
+
+  final TfArg<String>? minBackoff;
 
   Map<String, Object?> encode() => {
-    if (maxAttempts != null) 'max_attempts': maxAttempts!.toTfJson(),
-    if (maxRetryDuration != null)
-      'max_retry_duration': maxRetryDuration!.toTfJson(),
-    if (minBackoff != null) 'min_backoff': minBackoff!.toTfJson(),
-    if (maxBackoff != null) 'max_backoff': maxBackoff!.toTfJson(),
-    if (maxDoublings != null) 'max_doublings': maxDoublings!.toTfJson(),
+    'max_attempts': ?maxAttempts?.toTfJson(),
+    'max_backoff': ?maxBackoff?.toTfJson(),
+    'max_doublings': ?maxDoublings?.toTfJson(),
+    'max_retry_duration': ?maxRetryDuration?.toTfJson(),
+    'min_backoff': ?minBackoff?.toTfJson(),
   };
 }
 
-/// `app_engine_routing_override` block (queue-level App Engine fallback).
+/// Typed helper for the `stackdriver_logging_config` block of
+/// `google_cloud_tasks_queue` (derived from provider schema).
 @immutable
-class CloudTasksQueueAppEngineRoutingOverride {
-  const CloudTasksQueueAppEngineRoutingOverride({
-    this.service,
-    this.version,
-    this.instance,
-  });
-
-  final TfArg<String>? service;
-  final TfArg<String>? version;
-  final TfArg<String>? instance;
-
-  Map<String, Object?> encode() => {
-    if (service != null) 'service': service!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (instance != null) 'instance': instance!.toTfJson(),
-  };
-}
-
-/// `stackdriver_logging_config` block — sampling ratio for queue logs.
-@immutable
-class CloudTasksQueueStackdriverLoggingConfig {
+final class CloudTasksQueueStackdriverLoggingConfig {
   const CloudTasksQueueStackdriverLoggingConfig({required this.samplingRatio});
 
   final TfArg<num> samplingRatio;
 
   Map<String, Object?> encode() => {'sampling_ratio': samplingRatio.toTfJson()};
 }
-
-/// `http_target` block on the queue (NOT on the per-task HTTP request — this
-/// is the queue-level URL override). Named `CloudTasksQueueQueueHttpTarget` to avoid
-/// colliding with `HttpTarget` in `cloud_scheduler/`.
-@immutable
-class CloudTasksQueueQueueHttpTarget {
-  const CloudTasksQueueQueueHttpTarget({
-    this.uriOverride,
-    this.httpMethod,
-    this.headerOverrides,
-    this.oauthToken,
-    this.oidcToken,
-  });
-
-  final TfArg<Map<String, dynamic>>? uriOverride;
-  final TfArg<String>? httpMethod;
-  final TfArg<List<Map<String, dynamic>>>? headerOverrides;
-  final CloudTasksQueueQueueOauthToken? oauthToken;
-  final CloudTasksQueueQueueOidcToken? oidcToken;
-
-  Map<String, Object?> encode() => {
-    if (uriOverride != null) 'uri_override': uriOverride!.toTfJson(),
-    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
-    if (headerOverrides != null)
-      'header_overrides': headerOverrides!.toTfJson(),
-    if (oauthToken != null) 'oauth_token': oauthToken!.encode(),
-    if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
-  };
-}
-
-/// OAuth token for queue-level HTTP target.
-@immutable
-class CloudTasksQueueQueueOauthToken {
-  const CloudTasksQueueQueueOauthToken({
-    required this.serviceAccountEmail,
-    this.scope,
-  });
-
-  final TfArg<String> serviceAccountEmail;
-  final TfArg<String>? scope;
-
-  Map<String, Object?> encode() => {
-    'service_account_email': serviceAccountEmail.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-  };
-}
-
-/// OIDC token for queue-level HTTP target.
-@immutable
-class CloudTasksQueueQueueOidcToken {
-  const CloudTasksQueueQueueOidcToken({
-    required this.serviceAccountEmail,
-    this.audience,
-  });
-
-  final TfArg<String> serviceAccountEmail;
-  final TfArg<String>? audience;
-
-  Map<String, Object?> encode() => {
-    'service_account_email': serviceAccountEmail.toTfJson(),
-    if (audience != null) 'audience': audience!.toTfJson(),
-  };
-}
-
-// ===========================================================================
-// Factory
-// ===========================================================================
 
 /// Factory wrapper for `google_cloud_tasks_queue`.
 final class GoogleCloudTasksQueue extends Resource {
@@ -172,7 +314,7 @@ final class GoogleCloudTasksQueue extends Resource {
     CloudTasksQueueRateLimits? rateLimits,
     CloudTasksQueueRetryConfig? retryConfig,
     CloudTasksQueueStackdriverLoggingConfig? stackdriverLoggingConfig,
-    CloudTasksQueueQueueHttpTarget? httpTarget,
+    CloudTasksQueueHttpTarget? httpTarget,
     TfArg<String>? project,
     TfArg<CloudTasksQueueDesiredState>? desiredState,
     super.lifecycle,

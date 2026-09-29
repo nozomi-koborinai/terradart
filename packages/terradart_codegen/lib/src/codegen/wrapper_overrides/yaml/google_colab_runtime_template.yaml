@@ -4,17 +4,6 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 
-# VM shape / network / software knobs stay Map for this thin Wave.
-nestedTypeExcludes:
-  - machine_spec
-  - network_spec
-  - data_persistent_disk_spec
-  - encryption_spec
-  - euc_config
-  - idle_shutdown_config
-  - shielded_vm_config
-  - software_config
-
 curatedDoc: |-
   /// Colab Enterprise runtime template — a reusable VM shape for notebook
   /// runtimes (machine type, network, disk, software).
@@ -36,3 +25,7 @@ paramOrder:
   - labels
   - deletion_policy
   - project
+  - network_tags
+  - encryption_spec
+  - euc_config
+  - shielded_vm_config

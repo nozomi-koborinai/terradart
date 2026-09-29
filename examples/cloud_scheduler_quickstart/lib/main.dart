@@ -1,9 +1,8 @@
 /// Cloud Scheduler quickstart -- scheduler job with a Pub/Sub target.
 ///
-/// Demonstrates the cross-resource reference pattern that trips up most
-/// first-time terradart users: `pubsub_target.topic_name` requires the
-/// **full topic resource path** (`projects/{project}/topics/{name}`),
-/// which the factory exposes as `topic.id` -- NOT `topic.nameRef`.
+/// `pubsub_target.topic_name` requires the **full topic resource path**
+/// (`projects/{project}/topics/{name}`): it takes the topic itself
+/// (`.of(topic)`), which emits `topic.id`, so the bare name cannot slip in.
 ///
 /// `NightlyCleanupStack` provisions a Pub/Sub topic and a scheduler job
 /// that publishes to it every night at 03:00 JST.
@@ -48,21 +47,22 @@ final class NightlyCleanupStack extends Stack {
         region: .literal('us-central1'),
         schedule: .literal('0 3 * * *'),
         timeZone: .literal('Asia/Tokyo'),
-        // IMPORTANT: Cloud Scheduler requires the full topic path
-        // (projects/.../topics/nightly-cleanup), which is `topic.id`.
-        // Using `topic.nameRef` would emit only the bare name and fail
-        // at apply time. The PubsubTarget's class doc spells this out.
+        // Cloud Scheduler requires the full topic path
+        // (projects/.../topics/nightly-cleanup); a topic reference emits
+        // `topic.id`, never the bare name.
         target: .pubsubTarget(
-          topicName: .ref(topic.id),
-          // Pub/Sub Scheduler accepts base64-encoded data here. The
-          // provider expects pre-encoded text; "Y2xlYW51cA==" is base64
-          // for "cleanup".
-          data: .literal('Y2xlYW51cA=='),
+          CloudSchedulerJobPubsubTarget(
+            topicName: .of(topic),
+            // Pub/Sub Scheduler accepts base64-encoded data here. The
+            // provider expects pre-encoded text; "Y2xlYW51cA==" is base64
+            // for "cleanup".
+            data: .literal('Y2xlYW51cA=='),
+          ),
         ),
-        retryConfig: CloudSchedulerJobSchedulerRetryConfig(
-          retryCount: TfArgLiteral<int>(3),
-          minBackoffDuration: TfArgLiteral<String>('5s'),
-          maxBackoffDuration: TfArgLiteral<String>('60s'),
+        retryConfig: CloudSchedulerJobRetryConfig(
+          retryCount: .literal(3),
+          minBackoffDuration: .literal('5s'),
+          maxBackoffDuration: .literal('60s'),
         ),
         dependsOn: apiDeps,
       ),

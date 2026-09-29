@@ -303,6 +303,34 @@ $names''');
         });
       });
 
+      group('exactlyOneOf / atMostOneOf', () {
+        late Directory tmp;
+        setUp(() => tmp = Directory.systemTemp.createTempSync('groups_'));
+        tearDown(() => tmp.deleteSync(recursive: true));
+
+        YamlOverrideLoader loaderFor(String body) {
+          File(
+            p.join(tmp.path, 'aws_thing.yaml'),
+          ).writeAsStringSync('outputDir: thing\n$body');
+          return YamlOverrideLoader(rootDir: tmp.path);
+        }
+
+        test('reads both group lists', () {
+          final o = loaderFor(
+            'exactlyOneOf:\n  - "a, b"\natMostOneOf:\n  - "settings.x, settings.y"\n',
+          ).load().resources['aws_thing']!;
+          expect(o.exactlyOneOf, ['a, b']);
+          expect(o.atMostOneOf, ['settings.x, settings.y']);
+        });
+
+        test('an entry with one member -> FormatException', () {
+          expect(
+            loaderFor('exactlyOneOf:\n  - a\n').load,
+            throwsFormatExceptionWith('must list two or more members'),
+          );
+        });
+      });
+
       test('classDocComment -> retired-axis FormatException with hint', () {
         // The axis was retired with the 2026-07 doc wave; the loader fails
         // loudly with the migration path so it cannot quietly come back.

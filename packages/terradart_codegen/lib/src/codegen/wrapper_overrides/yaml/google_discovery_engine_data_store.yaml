@@ -4,6 +4,7 @@ deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
 
 paramOrder:
   - location
@@ -14,6 +15,11 @@ paramOrder:
   - solution_types
   - skip_default_schema_creation
   - project
+  - acl_enabled
+  - create_advanced_site_search
+  - kms_key_name
+  - advanced_site_search_config
+  - document_processing_config
 
 extraGetters: |2
     /// Reference to `data_store_id` attribute.
