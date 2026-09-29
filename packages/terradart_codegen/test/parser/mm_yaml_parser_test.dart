@@ -256,6 +256,39 @@ properties:
       ]);
       expect(result.atMostOneOfPaths, isEmpty);
     });
+
+    test('adds the _wo sibling of a write_only member', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: sensitiveLabels
+    properties:
+      - name: authToken
+        write_only: true
+        exactly_one_of:
+          - sensitive_labels.0.auth_token
+          - sensitive_labels.0.password
+      - name: password
+        exactly_one_of:
+          - sensitive_labels.0.auth_token
+          - sensitive_labels.0.password
+  - name: sharedSecret
+    write_only: true
+  - name: privateKey
+    write_only: true
+    required: true
+''');
+      expect(result.exactlyOneOfPaths, [
+        [
+          'sensitive_labels.auth_token',
+          'sensitive_labels.auth_token_wo',
+          'sensitive_labels.password',
+        ],
+        ['private_key', 'private_key_wo'],
+      ]);
+      expect(result.atMostOneOfPaths, [
+        ['shared_secret', 'shared_secret_wo'],
+      ]);
+    });
   });
 
   test(

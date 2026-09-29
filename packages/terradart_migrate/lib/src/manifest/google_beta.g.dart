@@ -11113,18 +11113,18 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       className: 'FirebaseAiLogicConfigGenerativeLanguageConfig',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'api_key',
+          tfName: '',
           dartName: 'apiKey',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'api_key_wo',
-          dartName: 'apiKeyWo',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'api_key':
+                'FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyChoice',
+            'api_key_wo':
+                'FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyWo',
+          },
         ),
         MigrateSlot(
           tfName: 'api_key_wo_version',
@@ -11134,6 +11134,34 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyChoice': MigrateHelper(
+      className: 'FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyChoice',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'api_key',
+          dartName: 'apiKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'apiKey',
+    ),
+    'FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyWo': MigrateHelper(
+      className: 'FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyWo',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'api_key_wo',
+          dartName: 'apiKeyWo',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'apiKeyWo',
     ),
     'FirebaseAiLogicConfigTelemetryConfig': MigrateHelper(
       className: 'FirebaseAiLogicConfigTelemetryConfig',
