@@ -74,12 +74,12 @@ void main() {
           "true, r'query_string_length': 1024}]}",
         ),
       );
-      expect(r.stackSource, isNot(contains('advancedExtra: TfArg.literal(')));
+      expect(r.stackSource, isNot(contains('advancedExtra: .literal(')));
     });
 
     test('a TfArg<Map> parameter keeps TfArg.literal, from tf.json and HCL', () {
       const expected =
-          "condition: TfArg.literal({r'title': r'expires', r'expression': r'true'})";
+          "condition: .literal({r'title': r'expires', r'expression': r'true'})";
       final json = _migrateJson({
         'terraform': _google,
         'resource': {
@@ -184,14 +184,14 @@ resource "google_pubsub_topic_iam_member" "viewer" {
       );
       expect(src, contains("setRequiredVersion(r'>= 1.11.0');"));
       // Typed references, enum members, nested helpers, dependencies.
-      expect(src, contains('topic: TfArg.ref(orders.id)'));
-      expect(src, contains('TfArg.literal(PubsubSchemaType.protocolBuffer)'));
+      expect(src, contains('topic: .ref(orders.id)'));
+      expect(src, contains('.literal(.protocolBuffer)'));
       expect(src, contains('.pushConfig(PubsubSubscriptionPushConfig('));
-      expect(src, contains('ackDeadlineSeconds: TfArg.literal(60)'));
+      expect(src, contains('ackDeadlineSeconds: .literal(60)'));
       expect(
         src,
         contains(
-          'members: TfArg.literal([ordersPublisher.iamMember.interpolation])',
+          'members: .literal([ordersPublisher.iamMember.interpolation])',
         ),
       );
       expect(
@@ -430,7 +430,7 @@ resource "google_pubsub_topic_iam_member" "viewer" {
         expect(r.report.migratedAddresses, contains('google_x_thing.t'));
         expect(
           r.files['lib/demo_stack.dart'],
-          contains("contentOrData: .data(TfArg.literal(r'd'))"),
+          contains("contentOrData: .data(.literal(r'd'))"),
         );
       });
 
@@ -439,7 +439,7 @@ resource "google_pubsub_topic_iam_member" "viewer" {
         expect(
           r.files['lib/demo_stack.dart'],
           contains(
-            "contentOrData: XThingContentOption(content: TfArg.literal(r'c'))",
+            "contentOrData: XThingContentOption(content: .literal(r'c'))",
           ),
         );
       });
@@ -489,7 +489,7 @@ resource "google_pubsub_topic_iam_member" "viewer" {
         expect(r.report.migratedAddresses, contains('google_pubsub_schema.s'));
         expect(
           r.files['lib/demo_stack.dart'],
-          contains('PubsubSchemaType.avro'),
+          contains('type: .literal(.avro)'),
         );
         expect(
           r.report.warnings.single,
@@ -531,10 +531,7 @@ resource "google_pubsub_topic_iam_member" "viewer" {
         );
         expect(
           r.files['lib/demo_stack.dart'],
-          contains(
-            'selectedRegions: [MonitoringUptimeCheckRegion.usa, '
-            'MonitoringUptimeCheckRegion.europe]',
-          ),
+          contains('selectedRegions: [.usa, .europe]'),
         );
       });
 
@@ -598,12 +595,12 @@ resource "google_pubsub_topic_iam_member" "viewer" {
       final src = r2.stackSource;
       expect(
         src,
-        contains(r"ackDeadlineSeconds: TfArg.expression(r'${var.n * 2}')"),
+        contains(r"ackDeadlineSeconds: .expression(r'${var.n * 2}')"),
       );
       expect(
         src,
         contains(
-          "enableMessageOrdering: TfArg.expression(r'\${var.env == \"prod\"}')",
+          "enableMessageOrdering: .expression(r'\${var.env == \"prod\"}')",
         ),
       );
       // The variables inside the expressions are declared, like references.
@@ -627,7 +624,7 @@ resource "google_pubsub_topic_iam_member" "viewer" {
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
         r.stackSource,
-        contains(r"type: TfArg.expression(r'${upper(var.schema_type)}')"),
+        contains(r"type: .expression(r'${upper(var.schema_type)}')"),
       );
     });
 
@@ -648,7 +645,7 @@ resource "google_pubsub_topic_iam_member" "viewer" {
       expect(
         r.stackSource,
         contains(
-          r"password: TfArg.expression(r'${var.pw_prefix}-${random_id.suffix.hex}')",
+          r"password: .expression(r'${var.pw_prefix}-${random_id.suffix.hex}')",
         ),
       );
     });
@@ -745,9 +742,7 @@ resource "google_pubsub_topic" "x" {
       expect(r.report.kept.map((k) => k.address), ['google_pubsub_topic.x']);
       expect(
         r.stackSource,
-        contains(
-          r"name: TfArg.expression(r'${google_pubsub_topic.x.name}-copy')",
-        ),
+        contains(r"name: .expression(r'${google_pubsub_topic.x.name}-copy')"),
       );
     });
 
@@ -799,8 +794,8 @@ resource "google_pubsub_topic" "x" {
         r.stackSource,
         contains(
           "behaviors: {r'imp_travel': ZeroTrustRiskBehaviorBehaviors("
-          'enabled: TfArg.literal(true), riskLevel: '
-          'TfArg.literal(ZeroTrustRiskBehaviorBehaviorsRiskLevel.high)), '
+          'enabled: .literal(true), riskLevel: '
+          '.literal(.high)), '
           "r'high_dlp': ZeroTrustRiskBehaviorBehaviors(",
         ),
       );
@@ -844,7 +839,7 @@ resource "google_pubsub_topic" "x" {
         contains('cloudflare_pages_project.site'),
       );
       expect(r.stackSource, contains("envVars: {r'API_KEY': "));
-      expect(r.stackSource, contains("value: TfArg.variable(r'api_key')"));
+      expect(r.stackSource, contains("value: .variable(r'api_key')"));
     });
   });
 
@@ -1102,10 +1097,10 @@ resource "aws_cloudwatch_log_group" "fn" {
       );
       expect(r.stackSource, contains("addExternalVariable(r'checked');"));
       expect(r.stackSource, contains("addExternalVariable(r'other');"));
-      expect(r.stackSource, contains("name: TfArg.variable(r'project')"));
+      expect(r.stackSource, contains("name: .variable(r'project')"));
       expect(
         r.stackSource,
-        contains(r"labels: TfArg.literal({r'k': r'${var.other}'})"),
+        contains(r"labels: .literal({r'k': r'${var.other}'})"),
       );
       expect(r.report.kept.single.address, 'variable.checked');
       expect(r.report.warnings.single, contains('"other"'));
@@ -1222,12 +1217,12 @@ output "first" {
       expect(
         src,
         contains(
-          "GooglePubsubTopic(localName: r't_0', name: TfArg.literal(r't-0'), "
-          "labels: TfArg.literal({r'index': r'0'}))",
+          "GooglePubsubTopic(localName: r't_0', name: .literal(r't-0'), "
+          "labels: .literal({r'index': r'0'}))",
         ),
       );
-      expect(src, contains("localName: r't_1', name: TfArg.literal(r't-1')"));
-      expect(src, contains('topic: TfArg.ref(t1.nameRef)'));
+      expect(src, contains("localName: r't_1', name: .literal(r't-1')"));
+      expect(src, contains('topic: .ref(t1.nameRef)'));
       expect(
         src,
         contains('dependsOn: [ResourceDependency(t0), ResourceDependency(t1)]'),
@@ -1274,16 +1269,14 @@ output "first" {
       expect(
         src,
         contains(
-          "GooglePubsubTopic(localName: r't_eu', name: TfArg.literal(r'eu-topic'), "
-          "labels: TfArg.literal({r'region': r'europe-west1'}), "
-          "messageRetentionDuration: TfArg.expression(r'\${1 * 60}s'))",
+          "GooglePubsubTopic(localName: r't_eu', name: .literal(r'eu-topic'), "
+          "labels: .literal({r'region': r'europe-west1'}), "
+          "messageRetentionDuration: .expression(r'\${1 * 60}s'))",
         ),
       );
       expect(
         src,
-        contains(
-          "localName: r't_us-east', name: TfArg.literal(r'us-east-topic')",
-        ),
+        contains("localName: r't_us-east', name: .literal(r'us-east-topic')"),
       );
       expect(
         src,
@@ -1294,7 +1287,7 @@ output "first" {
       expect(
         src,
         contains(
-          "GooglePubsubTopic(localName: r'plain_a', name: TfArg.literal(r'a'))",
+          "GooglePubsubTopic(localName: r'plain_a', name: .literal(r'a'))",
         ),
       );
       expect(
@@ -1345,7 +1338,7 @@ output "count" {
       expect(
         src,
         contains(
-          r"messageStoragePolicy: TfArg.literal({r'allowed_persistence_regions': r'${[google_pubsub_topic.t_0, google_pubsub_topic.t_1][*].name}'})",
+          r"messageStoragePolicy: .literal({r'allowed_persistence_regions': r'${[google_pubsub_topic.t_0, google_pubsub_topic.t_1][*].name}'})",
         ),
       );
       // Outputs that are not one attribute stay in outputs.tf, rewritten.
@@ -1387,10 +1380,10 @@ output "count" {
       expect(
         src,
         contains(
-          "addData(GoogleProject(localName: r'p_0', projectId: TfArg.literal(r'proj-0')))",
+          "addData(GoogleProject(localName: r'p_0', projectId: .literal(r'proj-0')))",
         ),
       );
-      expect(src, contains('project: TfArg.ref(p1.projectIdRef)'));
+      expect(src, contains('project: .ref(p1.projectIdRef)'));
       expect(src, isNot(contains('addMoved')));
     });
 
@@ -1599,9 +1592,7 @@ resource "google_pubsub_subscription" "s" {
       // The subscription still references the block as written.
       expect(
         r.stackSource,
-        contains(
-          r"topic: TfArg.expression(r'${google_pubsub_topic.t[0].name}')",
-        ),
+        contains(r"topic: .expression(r'${google_pubsub_topic.t[0].name}')"),
       );
       expect(
         r.sidecar.files[leftoverFileName],
@@ -1651,11 +1642,11 @@ resource "google_pubsub_subscription" "s" {
           "lifecycle: LifecycleOptions(preventDestroy: true, ignoreChanges: [r'labels'])",
         ),
       );
-      expect(src, contains('topic: TfArg.ref(t.id)'));
+      expect(src, contains('topic: .ref(t.id)'));
       expect(
         src,
         contains(
-          "oidcToken: PubsubSubscriptionOidcToken(serviceAccountEmail: TfArg.literal(r'sa@x'))",
+          "oidcToken: PubsubSubscriptionOidcToken(serviceAccountEmail: .literal(r'sa@x'))",
         ),
       );
       expect(src, contains('dependsOn: [ResourceDependency(t)]'));
@@ -1672,7 +1663,7 @@ resource "google_pubsub_topic" "t" {
   name = "a-\$\${b}-%%{c}"
 }
 ''');
-      expect(r.stackSource, contains(r"name: TfArg.literal(r'a-$${b}-%%{c}')"));
+      expect(r.stackSource, contains(r"name: .literal(r'a-$${b}-%%{c}')"));
     });
   });
 
@@ -1794,9 +1785,7 @@ resource "google_pubsub_topic" "y" {
       // The default configuration stays implicit on `y`.
       expect(
         src,
-        contains(
-          "GooglePubsubTopic(localName: r'y', name: TfArg.literal(r'y'))",
-        ),
+        contains("GooglePubsubTopic(localName: r'y', name: .literal(r'y'))"),
       );
     });
 
@@ -1913,7 +1902,7 @@ resource "google_pubsub_topic" "x" {
       expect(
         src,
         contains(
-          "GoogleApiGatewayApi(localName: r'api', apiId: TfArg.literal(r'api'))",
+          "GoogleApiGatewayApi(localName: r'api', apiId: .literal(r'api'))",
         ),
       );
     });
@@ -1943,7 +1932,7 @@ resource "google_pubsub_topic" "x" {
       expect(
         src,
         contains(
-          "TimeSleep(localName: r'wait', createDuration: TfArg.literal(r'30s'))",
+          "TimeSleep(localName: r'wait', createDuration: .literal(r'30s'))",
         ),
       );
     });
@@ -2001,7 +1990,7 @@ resource "google_pubsub_topic" "x" {
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
         src,
-        contains("name: TfArg.ref(TfRef.attribute<String>(naming, r'topic'))"),
+        contains("name: .ref(TfRef.attribute<String>(naming, r'topic'))"),
       );
       expect(
         src.indexOf('addModule('),
@@ -2220,10 +2209,10 @@ resource "google_pubsub_topic" "x" {
         contains(
           "addModule(ServiceAccountModule(localName: r'sa', "
           "source: r'./modules/service_account', "
-          "accountId: TfArg.literal(r'app-bff')))",
+          "accountId: .literal(r'app-bff')))",
         ),
       );
-      expect(root, contains('name: TfArg.ref(sa.member)'));
+      expect(root, contains('name: .ref(sa.member)'));
       expect(project.keptCount, 0, reason: project.renderMarkdown());
     });
 
@@ -2344,10 +2333,10 @@ resource "google_pubsub_topic" "x" {
       });
     }
 
-    test('terraform.workspace becomes TfArg.workspace', () {
+    test('terraform.workspace becomes the .workspace() shorthand', () {
       final r = _migrateJson(_resource({'name': r'${terraform.workspace}'}));
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(r.stackSource, contains('name: TfArg.workspace<String>()'));
+      expect(r.stackSource, contains('name: .workspace()'));
     });
 
     test('workspace inside a larger template stays an expression', () {
@@ -2356,7 +2345,7 @@ resource "google_pubsub_topic" "x" {
       );
       expect(
         r.stackSource,
-        contains(r"name: TfArg.expression(r'app-${terraform.workspace}')"),
+        contains(r"name: .expression(r'app-${terraform.workspace}')"),
       );
     });
   });
@@ -2425,8 +2414,8 @@ resource "google_pubsub_topic" "x" {
       );
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(r.stackSource, contains('DemoStack({required String workspace})'));
-      expect(r.stackSource, contains('name: TfArg.literal(workspace)'));
-      expect(r.stackSource, isNot(contains('TfArg.workspace')));
+      expect(r.stackSource, contains('name: .literal(workspace)'));
+      expect(r.stackSource, isNot(contains('.workspace()')));
     });
 
     test('without the flag it stays a Terraform expression', () {
@@ -2436,7 +2425,7 @@ resource "google_pubsub_topic" "x" {
         '}\n',
         liftWorkspace: false,
       );
-      expect(r.stackSource, contains('name: TfArg.workspace<String>()'));
+      expect(r.stackSource, contains('name: .workspace()'));
       expect(r.stackSource, contains('DemoStack() :'));
     });
 
@@ -2447,10 +2436,7 @@ resource "google_pubsub_topic" "x" {
         '}\n',
       );
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(
-        r.stackSource,
-        contains(r"name: TfArg.literal('orders-$workspace')"),
-      );
+      expect(r.stackSource, contains(r"name: .literal('orders-$workspace')"));
     });
 
     test('a name running on from the workspace is braced', () {
@@ -2461,10 +2447,7 @@ resource "google_pubsub_topic" "x" {
         '}\n',
       );
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
-      expect(
-        r.stackSource,
-        contains(r"name: TfArg.literal('t-${workspace}_v2')"),
-      );
+      expect(r.stackSource, contains(r"name: .literal('t-${workspace}_v2')"));
     });
 
     test('a workspace reference inside a map lifts too', () {
@@ -2474,10 +2457,7 @@ resource "google_pubsub_topic" "x" {
         '  labels = { env = terraform.workspace }\n'
         '}\n',
       );
-      expect(
-        r.stackSource,
-        contains("labels: TfArg.literal({r'env': workspace})"),
-      );
+      expect(r.stackSource, contains("labels: .literal({r'env': workspace})"));
     });
 
     test(
@@ -2494,9 +2474,7 @@ resource "google_pubsub_topic" "x" {
         );
         expect(
           r.stackSource,
-          contains(
-            r"TfArg.expression(r't-${terraform.workspace}-${var.suffix}')",
-          ),
+          contains(r".expression(r't-${terraform.workspace}-${var.suffix}')"),
         );
         expect(
           r.report.warnings.join('\n'),

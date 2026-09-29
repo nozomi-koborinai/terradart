@@ -16,27 +16,27 @@ final class NetworkStack extends Stack {
     final vpc = add(
       GoogleComputeNetwork(
         localName: r'vpc',
-        name: TfArg.literal(r'example-vpc'),
-        autoCreateSubnetworks: TfArg.literal(false),
+        name: .literal(r'example-vpc'),
+        autoCreateSubnetworks: .literal(false),
       ),
     );
     add(
       GoogleComputeSubnetwork(
         localName: r'subnet',
-        name: TfArg.literal(r'example-subnet'),
-        region: TfArg.literal(r'us-central1'),
-        network: TfArg.ref(vpc.id),
-        ipCidrRange: TfArg.literal(r'10.0.0.0/24'),
+        name: .literal(r'example-subnet'),
+        region: .literal(r'us-central1'),
+        network: .ref(vpc.id),
+        ipCidrRange: .literal(r'10.0.0.0/24'),
       ),
     );
     add(
       GoogleComputeRoute(
         localName: r'egress',
-        name: TfArg.literal(r'example-egress'),
-        network: TfArg.ref(vpc.nameRef),
-        destRange: TfArg.literal(r'0.0.0.0/0'),
+        name: .literal(r'example-egress'),
+        network: .ref(vpc.nameRef),
+        destRange: .literal(r'0.0.0.0/0'),
         nextHop: .gateway(
-          nextHopGateway: TfArg.literal(r'default-internet-gateway'),
+          nextHopGateway: .literal(r'default-internet-gateway'),
         ),
       ),
     );

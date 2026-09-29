@@ -16,8 +16,8 @@ Per-package changelogs live alongside each package and are the system of record 
   against the lane's schema on every run (E406 on a stale entry), so the
   weekly bump keeps it current; `--typed-references` types what it
   matches. The migration manifest gains a `reference` slot kind, and the
-  migrator writes `x.ref`, `x.ref.pinned('id')`, `RefTo.literal(...)` or
-  `RefTo.variable(...)` for it. No lane types references yet, so generated
+  migrator writes `x.ref`, `x.ref.pinned('id')`, `.literal(...)` or
+  `.variable(...)` for it. No lane types references yet, so generated
   output is unchanged.
 - **Typed resource references, part 1** (`terradart_core`, `terradart_codegen`,
   every provider package) — `RefTo<R>`, a compile-time-only reference to a
@@ -48,6 +48,14 @@ Per-package changelogs live alongside each package and are the system of record 
   `terradart-migrate` emits the shorthand.
 
 ### Changed
+
+- **`terradart-migrate` writes dot shorthands** (`terradart_migrate`) —
+  wherever the argument has a static type, a migrated Stack reads like the
+  examples: `name: .literal('orders')`, `topic: .ref(orders.id)`,
+  `databaseVersion: .literal(.postgres15)`, `network: .variable('network')`,
+  `name: .workspace()`, and `.member` for an `Env` field typed as an enum.
+  A bare `ModuleCall`'s `inputs` map is `Object?`-valued, so its values keep
+  `TfArg.literal(...)`. Synth output is unchanged.
 
 - **Sealed variants are factory constructors** (**breaking**;
   `terradart_codegen`, `terradart_migrate`, every provider package) — a
