@@ -124,6 +124,80 @@ void main() {
     });
   });
 
+  group('withOverrideGroups', () {
+    final defs = {
+      'aws_thing': ResourceDef(
+        terraformType: 'aws_thing',
+        root: BlockDef(
+          attributes: [_attr('a'), _attr('b'), _attr('c'), _attr('d')],
+          nestedBlocks: [
+            NestedBlockDef(
+              name: 'settings',
+              nesting: NestingMode.list,
+              maxItems: 1,
+              constraints: const Constraints(optional: true),
+              block: BlockDef(attributes: [_attr('x'), _attr('y')]),
+            ),
+          ],
+        ),
+      ),
+    };
+
+    test('adds the override groups to the loaded ones', () {
+      final errors = <String>[];
+      final enums = _groups.withOverrideGroups(
+        {
+          'aws_thing': const WrapperOverride(
+            outputDir: 'thing',
+            exactlyOneOf: ['c, a'],
+            atMostOneOf: ['b, d'],
+          ),
+        },
+        defs,
+        error: errors.add,
+      );
+      expect(errors, isEmpty);
+      expect(enums.exactlyOneGroups['aws_thing'], hasLength(4));
+      expect(enums.exactlyOneGroups['aws_thing']!.last, ['a', 'c']);
+      expect(enums.atMostOneGroups['aws_thing'], [
+        ['b', 'd'],
+      ]);
+      expect(_groups.exactlyOneGroups['aws_thing'], hasLength(3));
+    });
+
+    test('rejects a member that names no input', () {
+      final errors = <String>[];
+      _groups.withOverrideGroups(
+        {
+          'aws_thing': const WrapperOverride(
+            outputDir: 'thing',
+            exactlyOneOf: ['a, z'],
+          ),
+        },
+        defs,
+        error: errors.add,
+      );
+      expect(errors, ['aws_thing [a, z]: z names no input']);
+    });
+
+    test('rejects a group the source already declares', () {
+      final errors = <String>[];
+      _groups.withOverrideGroups(
+        {
+          'aws_thing': const WrapperOverride(
+            outputDir: 'thing',
+            atMostOneOf: ['b, a'],
+          ),
+        },
+        defs,
+        error: errors.add,
+      );
+      expect(errors, [
+        'aws_thing [a, b]: the group source declares it; remove the entry',
+      ]);
+    });
+  });
+
   test('sealedNames keys go unjudged when no group source is loaded', () {
     final def = ResourceDef(
       terraformType: 'aws_thing',

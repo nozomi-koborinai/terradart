@@ -361,6 +361,18 @@ class WrapCommand extends Command<int> {
       stderr.writeln('terradart wrap: $e');
       return CliExitCodes.dataError;
     }
+    final groupErrors = <String>[];
+    providerEnums = providerEnums.withOverrideGroups(
+      loaded.resources,
+      mergedIr.resources,
+      error: groupErrors.add,
+    );
+    if (groupErrors.isNotEmpty) {
+      for (final e in groupErrors) {
+        stderr.writeln('[E406] terradart wrap: $e');
+      }
+      return CliExitCodes.dataError;
+    }
     final typedOverrides = providerEnums.typeDerivedEnums(
       loaded.resources,
       ir.resources,
