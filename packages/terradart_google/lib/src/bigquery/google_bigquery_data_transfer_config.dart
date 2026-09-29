@@ -211,7 +211,7 @@ final class BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyWo
 ///   'file_format': 'CSV',
 /// }),
 /// sensitiveParams: BigqueryDataTransferConfigSensitiveParams(
-///   secretAccessKeyWo: .literal(awsSecretAccessKey),
+///   secretAccessKey: .secretAccessKeyWo(.literal(awsSecretAccessKey)),
 ///   secretAccessKeyWoVersion: .literal('1'),
 /// ),
 /// ```
@@ -230,10 +230,11 @@ final class BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyWo
 /// `transferConfigs.startManualRuns`.
 ///
 /// Credentials handling: the S3 secret access key MUST be placed in
-/// [sensitiveParams] rather than [params], as exactly one of
-/// `secretAccessKeyWo` (Terraform 1.11+; keeps the key out of Terraform
-/// state, bump `secretAccessKeyWoVersion` to rotate) or `secretAccessKey`
-/// (schema-flagged sensitive, but stored in state).
+/// [sensitiveParams] rather than [params], as `secretAccessKey:`
+/// `.secretAccessKeyWo(...)` (Terraform 1.11+; keeps the key out of
+/// Terraform state, bump `secretAccessKeyWoVersion` to rotate) or
+/// `.secretAccessKey(...)` (schema-flagged sensitive, but stored in
+/// state).
 ///
 /// Example (daily GCS → BigQuery import):
 /// ```dart

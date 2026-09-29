@@ -1161,9 +1161,9 @@ bucket, topic) on `RefTo<R>`.
 
 - `BigqueryDataTransferConfigSensitiveParams` is derived too: the
   `BigqueryDataTransferConfigSecretAccessKey` sealed type and its
-  `WriteOnly` / `Plaintext` variants are gone, and the key is set with the
-  `secretAccessKeyWo` / `secretAccessKeyWoVersion` (or deprecated
-  `secretAccessKey`) fields directly.
+  `WriteOnly` / `Plaintext` variants are replaced by the derived
+  `secretAccessKey: .secretAccessKeyWo(...)` (or `.secretAccessKey(...)`),
+  with `secretAccessKeyWoVersion` beside it.
 - `GoogleBigqueryDataset` and `GoogleBigqueryDatasetAccess` keep their
   hand-written `access` grantee types; the `datasetId` of their view,
   dataset and routine references takes `RefTo<GoogleBigqueryDataset>`.
@@ -1349,7 +1349,9 @@ unchanged; what changes is the helper a sealed variant takes.
   `privateKey: .privateKey(...)` / `.privateKeyWo(...)`
   (`GoogleComputeSslCertificate`, `GoogleComputeRegionSslCertificate`, the
   Certificate Manager self-managed block), `credential: .authTokenWo(...)`
-  (`MonitoringNotificationChannelSensitiveLabels`). The provider rejects
+  (`MonitoringNotificationChannelSensitiveLabels`),
+  `secretAccessKey: .secretAccessKeyWo(...)`
+  (`BigqueryDataTransferConfigSensitiveParams`). The provider rejects
   setting both.
 - New sealed arguments (the variant is the member name):
 
