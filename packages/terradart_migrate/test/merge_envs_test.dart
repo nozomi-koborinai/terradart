@@ -341,20 +341,22 @@ ${_bucket('a')}
     });
 
     test('a lifted value the emitter cannot read explains itself', () {
-      // `message_storage_policy` is a passthrough argument: the factory takes
-      // its JSON verbatim, so there is no typed parameter to read a constant
-      // from, and the plan's lift goes unused. The refusal says so instead of
-      // reporting a bare difference.
+      // An IAM member's `condition` is a passthrough argument: the factory
+      // takes its JSON verbatim, so there is no typed parameter to read a
+      // constant from, and the plan's lift goes unused. The refusal says so
+      // instead of reporting a bare difference.
       String body(String value) =>
           '''
-resource "google_pubsub_topic" "t" {
-  name                   = "t"
-  message_storage_policy = "$value"
+resource "google_pubsub_topic_iam_member" "m" {
+  topic     = "t"
+  role      = "roles/viewer"
+  member    = "user:a@example.com"
+  condition = "$value"
 }
 ''';
       final m = _merge({'dev': body('a'), 'prod': body('b')});
       expect(m.isMerged, isFalse);
-      expect(m.refusal, contains('google_pubsub_topic.t'));
+      expect(m.refusal, contains('google_pubsub_topic_iam_member.m'));
       expect(m.refusal, contains('no plain argument to take it from the'));
     });
 
