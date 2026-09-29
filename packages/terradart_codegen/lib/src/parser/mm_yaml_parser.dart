@@ -29,11 +29,26 @@ class MmResourceOverrides {
   /// sealed-class skeletons in the prelude block.
   final List<List<String>> exactlyOneOfGroups;
 
+  /// The same groups as dotted Terraform paths from the resource root, the
+  /// shape `wrap --provider-enums` hints carry (`exactly_one_of_groups`):
+  /// list-index segments (`a.0.b`) dropped, camelCase names snake_cased, a
+  /// nested property's bare sibling names resolved against its parent.
+  /// Deduplicated (every member repeats its group); a group whose members
+  /// do not share one parent block is dropped.
+  final List<List<String>> exactlyOneOfPaths;
+
+  /// `enum_values` by dotted Terraform path, including the properties of
+  /// an `Array` of `NestedObject` (`item_type.properties`), which
+  /// [fieldOverrides] leaves out.
+  final Map<String, List<String>> enumValuesByPath;
+
   const MmResourceOverrides({
     required this.fieldOverrides,
     this.description,
     this.product,
     this.exactlyOneOfGroups = const [],
+    this.exactlyOneOfPaths = const [],
+    this.enumValuesByPath = const {},
   });
 }
 
@@ -48,15 +63,18 @@ class MmYamlParser {
     }
     final overrides = <String, Constraints>{};
     final groups = <List<String>>[];
+    final paths = <String, List<String>>{};
+    final enums = <String, List<String>>{};
 
     // Top-level exactly_one_of (applies to direct children).
     final topGroup = _readExactlyOneOf(doc, prefix: '');
     if (topGroup != null) groups.add(topGroup);
+    _addExactlyOnePaths(doc, '', paths);
 
     final props = doc['properties'];
     if (props is YamlList) {
       for (final p in props) {
-        _walkProperty(p as YamlMap, '', overrides, groups);
+        _walkProperty(p as YamlMap, '', overrides, groups, paths, enums);
       }
     }
     return MmResourceOverrides(
@@ -64,14 +82,51 @@ class MmYamlParser {
       description: doc['description'] as String?,
       product: doc['product'] as String?,
       exactlyOneOfGroups: groups,
+      exactlyOneOfPaths: paths.values.toList(),
+      enumValuesByPath: enums,
     );
   }
 
+  /// Adds [node]'s `exactly_one_of`, normalized, to [sink] (keyed by the
+  /// sorted members). [parent] is the dotted path of [node]'s parent block.
+  void _addExactlyOnePaths(
+    YamlMap node,
+    String parent,
+    Map<String, List<String>> sink,
+  ) {
+    final raw = node['exactly_one_of'];
+    if (raw is! YamlList) return;
+    final members = <String>[
+      for (final v in raw)
+        () {
+          final segments = [
+            for (final s in v.toString().split('.'))
+              if (int.tryParse(s) == null) _toSnakeCase(s),
+          ];
+          return segments.length == 1 && parent.isNotEmpty
+              ? '$parent.${segments.single}'
+              : segments.join('.');
+        }(),
+    ];
+    String parentOf(String m) =>
+        m.contains('.') ? m.substring(0, m.lastIndexOf('.')) : '';
+    if (members.toSet().length < 2 ||
+        members.map(parentOf).toSet().length != 1) {
+      return;
+    }
+    sink.putIfAbsent((List.of(members)..sort()).join(','), () => members);
+  }
+
+  /// [sink] and [groupSink] are null below an `item_type`: they keep
+  /// their historical scope (the google lane's merged IR and lint read
+  /// them), while [pathSink] and [enumSink] see every property.
   void _walkProperty(
     YamlMap prop,
     String prefix,
-    Map<String, Constraints> sink,
-    List<List<String>> groupSink,
+    Map<String, Constraints>? sink,
+    List<List<String>>? groupSink,
+    Map<String, List<String>> pathSink,
+    Map<String, List<String>> enumSink,
   ) {
     final apiName =
         (prop['api_name'] as String?) ?? _toSnakeCase(prop['name'] as String);
@@ -85,18 +140,34 @@ class MmYamlParser {
       enumValues: _enumValues(prop),
       deprecationMessage: prop['deprecation_message'] as String?,
     );
-    if (_isMeaningful(c)) {
+    if (sink != null && _isMeaningful(c)) {
       sink[fullKey] = c;
     }
+    if (c.enumValues case final values?) enumSink[fullKey] = values;
 
     // Per-property exactly_one_of (siblings of this property's nested kids).
     final propGroup = _readExactlyOneOf(prop, prefix: fullKey);
-    if (propGroup != null) groupSink.add(propGroup);
+    if (propGroup != null) groupSink?.add(propGroup);
+    _addExactlyOnePaths(prop, prefix, pathSink);
 
     final nested = prop['properties'];
     if (nested is YamlList) {
       for (final n in nested) {
-        _walkProperty(n as YamlMap, fullKey, sink, groupSink);
+        _walkProperty(
+          n as YamlMap,
+          fullKey,
+          sink,
+          groupSink,
+          pathSink,
+          enumSink,
+        );
+      }
+    }
+    final item = prop['item_type'];
+    final itemProps = item is YamlMap ? item['properties'] : null;
+    if (itemProps is YamlList) {
+      for (final n in itemProps) {
+        _walkProperty(n as YamlMap, fullKey, null, null, pathSink, enumSink);
       }
     }
   }

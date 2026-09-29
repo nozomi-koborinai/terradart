@@ -394,13 +394,17 @@ List<List<String>> canonicalExactlyOneOfGroups(List<List<String>> raw) {
 ///   more members listed in [WrapperOverride.paramOrder] (the escape hatch
 ///   when an override omits customSlots and relies on schema-default optional
 ///   nested blocks).
+///
+/// An override with `deriveExactlyOne` is never flagged.
 List<LintViolation> lintExactlyOneMutualExclusion(
   String tfType,
   WrapperOverride override, {
   MmResourceOverrides? mm,
   Set<String> exactlyOneOptionalFanoutDebt = const {},
 }) {
-  if (mm == null) return const [];
+  // `deriveExactlyOne` seals the groups at wrap time (wrap prints any it
+  // cannot), so the override has no slots of its own to lint.
+  if (mm == null || override.deriveExactlyOne) return const [];
 
   final violations = <LintViolation>[];
   final slots = override.customSlots ?? const {};

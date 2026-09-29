@@ -1272,6 +1272,136 @@ paramOrder: [name, mode, kind, regions, grants, settings]
       expect(err, contains('provider_version "1.0.0"'));
     });
   });
+
+  group('WrapCommand --mm-hints', () {
+    late Directory tmp;
+    late String source;
+    late String overrides;
+
+    setUp(() {
+      tmp = Directory.systemTemp.createTempSync('wrap_mm_hints_');
+      source = p.join(tmp.path, 'source');
+      overrides = p.join(tmp.path, 'overrides');
+      Directory(p.join(source, 'mm')).createSync(recursive: true);
+      Directory(overrides).createSync();
+      File(p.join(source, 'schema.json')).writeAsStringSync(jsonEncode({
+        'format_version': '1.0',
+        'provider_schemas': {
+          'registry.terraform.io/hashicorp/google-beta': {
+            'resource_schemas': {
+              'google_thing': {
+                'version': 0,
+                'block': {
+                  'attributes': {
+                    'name': {'type': 'string', 'required': true},
+                    'mode': {
+                      'type': 'string',
+                      'optional': true,
+                      'description': 'Available values: "a", "b".',
+                    },
+                    'uri': {'type': 'string', 'optional': true},
+                    'path': {'type': 'string', 'optional': true},
+                  },
+                  'block_types': {
+                    'rule': {
+                      'nesting_mode': 'list',
+                      'block': {
+                        'attributes': {
+                          'action': {'type': 'string', 'optional': true},
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      }));
+      File(p.join(source, 'mm', 'google_thing.yaml')).writeAsStringSync('''
+name: Thing
+properties:
+  - name: mode
+    type: Enum
+    enum_values: [FAST, SLOW]
+  - name: uri
+    type: String
+    exactly_one_of: [uri, path]
+  - name: path
+    type: String
+    exactly_one_of: [uri, path]
+  - name: rule
+    type: Array
+    item_type:
+      type: NestedObject
+      properties:
+        - name: action
+          type: Enum
+          enum_values: [ALLOW, DENY]
+''');
+      File(p.join(overrides, 'google_thing.yaml')).writeAsStringSync('''
+outputDir: thing
+deriveEnums: true
+deriveNestedTypes: true
+deriveExactlyOne: true
+''');
+    });
+    tearDown(() => tmp.deleteSync(recursive: true));
+
+    Future<(int, String)> wrap(List<String> flags) async {
+      final err = StringBuffer();
+      final code = await IOOverrides.runZoned(
+        () => buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google-beta',
+          '--source',
+          source,
+          '--output',
+          _libSrcOut(tmp),
+          '--overrides-root',
+          overrides,
+          '--only',
+          'google_thing',
+          ...flags,
+        ]),
+        stderr: () => _BufferSink(err),
+      );
+      return (code!, err.toString());
+    }
+
+    String emitted() =>
+        File(p.join(_libSrcOut(tmp), 'thing', 'google_thing.dart'))
+            .readAsStringSync();
+
+    test('off: MM enums are declared but inputs stay strings, no sealing',
+        () async {
+      final (code, _) = await wrap(const []);
+      expect(code, CliExitCodes.success);
+      final src = emitted();
+      expect(src, contains('TfArg<String>? mode'));
+      expect(src, contains('TfArg<String>? uri'));
+      expect(src, isNot(contains('sealed class')));
+    });
+
+    test('on: MM types enums at any depth and seals exactly_one_of', () async {
+      final (code, _) = await wrap(const ['--mm-hints']);
+      expect(code, CliExitCodes.success);
+      final src = emitted();
+      expect(src, contains('TfArg<ThingMode>? mode'));
+      expect(src, contains("fast('FAST')"));
+      expect(src, contains('TfArg<ThingRuleAction>? action'));
+      expect(src, contains('sealed class ThingUriOrPath'));
+      expect(src, contains('required ThingUriOrPath uriOrPath'));
+      expect(src, isNot(contains('TfArg<String>? uri,')));
+    });
+
+    test('is exclusive with --provider-enums', () async {
+      final (code, err) = await wrap(const ['--mm-hints', '--provider-enums']);
+      expect(code, CliExitCodes.dataError);
+      expect(err, contains('exclusive'));
+    });
+  });
 }
 
 /// Loads `resource_schemas[terraformType].block` straight from an

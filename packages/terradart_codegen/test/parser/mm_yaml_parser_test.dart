@@ -114,4 +114,75 @@ properties:
     final result = const MmYamlParser().parseString(yaml);
     expect(result.exactlyOneOfGroups, isEmpty);
   });
+
+  group('exactlyOneOfPaths', () {
+    test('normalizes top-level, indexed and bare nested members', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: httpTarget
+    exactly_one_of:
+      - http_target
+      - pubsub_target
+  - name: pubsubTarget
+    exactly_one_of:
+      - http_target
+      - pubsub_target
+  - name: schedule
+    properties:
+      - name: daily
+        exactly_one_of:
+          - schedule.0.daily
+          - schedule.0.weeklyRun
+  - name: rules
+    type: Array
+    item_type:
+      type: NestedObject
+      properties:
+        - name: allow
+          exactly_one_of:
+            - allow
+            - deny
+''');
+      expect(result.exactlyOneOfPaths, [
+        ['http_target', 'pubsub_target'],
+        ['schedule.daily', 'schedule.weekly_run'],
+        ['rules.allow', 'rules.deny'],
+      ]);
+      expect(result.exactlyOneOfGroups, hasLength(3));
+    });
+
+    test('drops a group whose members span parent blocks', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: a
+    exactly_one_of:
+      - a
+      - b.0.c
+''');
+      expect(result.exactlyOneOfPaths, isEmpty);
+    });
+  });
+
+  test('enumValuesByPath reaches Array item properties; fieldOverrides not',
+      () {
+    final result = const MmYamlParser().parseString('''
+properties:
+  - name: mode
+    type: Enum
+    enum_values: [A, B]
+  - name: rules
+    type: Array
+    item_type:
+      type: NestedObject
+      properties:
+        - name: action
+          type: Enum
+          enum_values: [ALLOW, DENY]
+''');
+    expect(result.enumValuesByPath, {
+      'mode': ['A', 'B'],
+      'rules.action': ['ALLOW', 'DENY'],
+    });
+    expect(result.fieldOverrides.keys, ['mode']);
+  });
 }

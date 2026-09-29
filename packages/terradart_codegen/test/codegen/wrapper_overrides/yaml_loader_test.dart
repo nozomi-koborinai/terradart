@@ -968,6 +968,38 @@ deriveClassDoc: true
     );
 
     test(
+      'every google_beta override opts into the gates its --mm-hints lane '
+      'feeds (typed helpers, enums, sealed exactly_one_of slots)',
+      () {
+        final loaded = loadWrapperOverrides(
+          rootDir: p.absolute(
+            'lib',
+            'src',
+            'codegen',
+            'wrapper_overrides',
+            'google_beta',
+            'yaml',
+          ),
+        );
+        final missing = [
+          for (final MapEntry(key: type, value: o) in loaded.resources.entries)
+            if (!o.deriveNestedTypes ||
+                !o.deriveOutputGetters ||
+                !o.deriveEnums ||
+                !o.deriveExactlyOne)
+              type,
+        ];
+        expect(
+          missing,
+          isEmpty,
+          reason: 'Set deriveNestedTypes, deriveOutputGetters, deriveEnums '
+              'and deriveExactlyOne (wrap-init --provider '
+              'hashicorp/google-beta fills them).',
+        );
+      },
+    );
+
+    test(
       'google_beta IAM binding/policy overrides document authoritative '
       'replace semantics',
       () {
