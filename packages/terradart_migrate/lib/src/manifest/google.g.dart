@@ -12695,9 +12695,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'sharing_environment_config',
           dartName: 'sharingEnvironmentConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig',
         ),
       ],
       getters: <MigrateGetter>[
@@ -13008,39 +13009,41 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'bigquery_dataset',
-          dartName: 'bigqueryDataset',
-          kind: MigrateSlotKind.passthrough,
-          required: false,
-          dartType: 'Map<String, dynamic>',
+          tfName: '',
+          dartName: 'pubsubTopicOrBigqueryDataset',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'pubsub_topic': 'BigqueryAnalyticsHubListingPubsubTopicOption',
+            'bigquery_dataset':
+                'BigqueryAnalyticsHubListingBigqueryDatasetOption',
+          },
         ),
         MigrateSlot(
           tfName: 'data_provider',
           dartName: 'dataProvider',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'BigqueryAnalyticsHubListingDataProvider',
         ),
         MigrateSlot(
           tfName: 'publisher',
           dartName: 'publisher',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
-        ),
-        MigrateSlot(
-          tfName: 'pubsub_topic',
-          dartName: 'pubsubTopic',
-          kind: MigrateSlotKind.passthrough,
-          required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'BigqueryAnalyticsHubListingPublisher',
         ),
         MigrateSlot(
           tfName: 'restricted_export_config',
           dartName: 'restrictedExportConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'BigqueryAnalyticsHubListingRestrictedExportConfig',
         ),
       ],
       getters: <MigrateGetter>[
@@ -14862,63 +14865,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'user_by_email',
-          dartName: 'userByEmail',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'group_by_email',
-          dartName: 'groupByEmail',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'domain',
-          dartName: 'domain',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'special_group',
-          dartName: 'specialGroup',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'BigqueryDatasetAccessPredefinedGroup',
-        ),
-        MigrateSlot(
-          tfName: 'iam_member',
-          dartName: 'iamMember',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'view',
-          dartName: 'view',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName:
+              'userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper: 'BigqueryDatasetAccessAuthorizedView',
-        ),
-        MigrateSlot(
-          tfName: 'routine',
-          dartName: 'routine',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'BigqueryDatasetAccessAuthorizedRoutine',
-        ),
-        MigrateSlot(
-          tfName: 'dataset',
-          dartName: 'authorizedDataset',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'BigqueryDatasetAccessAuthorizedDataset',
+          merged: true,
+          variants: <String, String>{
+            'user_by_email': 'BigqueryDatasetAccessUserByEmailOption',
+            'group_by_email': 'BigqueryDatasetAccessGroupByEmailOption',
+            'domain': 'BigqueryDatasetAccessDomainOption',
+            'special_group': 'BigqueryDatasetAccessSpecialGroupOption',
+            'iam_member': 'BigqueryDatasetAccessIamMemberOption',
+            'view': 'BigqueryDatasetAccessViewOption',
+            'dataset': 'BigqueryDatasetAccessDatasetOption',
+            'routine': 'BigqueryDatasetAccessRoutineOption',
+          },
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -57550,28 +57513,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'DatabaseMigrationServiceMigrationJobPostgresHomogeneousConfig',
         ),
         MigrateSlot(
-          tfName: 'reverse_ssh_connectivity',
-          dartName: 'reverseSshConnectivity',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName:
+              'staticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'DatabaseMigrationServiceMigrationJobReverseSshConnectivity',
-        ),
-        MigrateSlot(
-          tfName: 'static_ip_connectivity',
-          dartName: 'staticIpConnectivity',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatabaseMigrationServiceMigrationJobStaticIpConnectivity',
-        ),
-        MigrateSlot(
-          tfName: 'vpc_peering_connectivity',
-          dartName: 'vpcPeeringConnectivity',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity',
+          merged: true,
+          variants: <String, String>{
+            'static_ip_connectivity':
+                'DatabaseMigrationServiceMigrationJobStaticIpConnectivityOption',
+            'reverse_ssh_connectivity':
+                'DatabaseMigrationServiceMigrationJobReverseSshConnectivityOption',
+            'vpc_peering_connectivity':
+                'DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityOption',
+          },
         ),
       ],
       getters: <MigrateGetter>[
@@ -64726,12 +64682,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'forward_ssh_connectivity',
-          dartName: 'forwardSshConnectivity',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'forwardSshConnectivityOrPrivateConnectivity',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'DatastreamConnectionProfileForwardSshConnectivity',
+          merged: true,
+          variants: <String, String>{
+            'forward_ssh_connectivity':
+                'DatastreamConnectionProfileForwardSshConnectivityOption',
+            'private_connectivity':
+                'DatastreamConnectionProfilePrivateConnectivityOption',
+          },
         ),
         MigrateSlot(
           tfName: 'gcs_profile',
@@ -64740,14 +64702,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'DatastreamConnectionProfileGcsProfile',
-        ),
-        MigrateSlot(
-          tfName: 'private_connectivity',
-          dartName: 'privateConnectivity',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatastreamConnectionProfilePrivateConnectivity',
         ),
       ],
       getters: <MigrateGetter>[
@@ -80357,28 +80311,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'backfill_pipeline_job',
-          dartName: 'backfillPipelineJob',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName:
+              'mappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'HealthcarePipelineJobBackfillPipelineJob',
-        ),
-        MigrateSlot(
-          tfName: 'mapping_pipeline_job',
-          dartName: 'mappingPipelineJob',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'HealthcarePipelineJobMappingPipelineJob',
-        ),
-        MigrateSlot(
-          tfName: 'reconciliation_pipeline_job',
-          dartName: 'reconciliationPipelineJob',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'HealthcarePipelineJobReconciliationPipelineJob',
+          merged: true,
+          variants: <String, String>{
+            'mapping_pipeline_job':
+                'HealthcarePipelineJobMappingPipelineJobOption',
+            'reconciliation_pipeline_job':
+                'HealthcarePipelineJobReconciliationPipelineJobOption',
+            'backfill_pipeline_job':
+                'HealthcarePipelineJobBackfillPipelineJobOption',
+          },
         ),
       ],
       getters: <MigrateGetter>[
@@ -89954,20 +89901,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'logging_query',
-          dartName: 'loggingQuery',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'loggingQueryOrOpsAnalyticsQuery',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper: 'LoggingSavedQueryLoggingQuery',
-        ),
-        MigrateSlot(
-          tfName: 'ops_analytics_query',
-          dartName: 'opsAnalyticsQuery',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'LoggingSavedQueryOpsAnalyticsQuery',
+          merged: true,
+          variants: <String, String>{
+            'logging_query': 'LoggingSavedQueryLoggingQueryOption',
+            'ops_analytics_query': 'LoggingSavedQueryOpsAnalyticsQueryOption',
+          },
         ),
       ],
       getters: <MigrateGetter>[
@@ -91357,20 +91300,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'MemorystoreInstanceCrossInstanceReplicationConfig',
         ),
         MigrateSlot(
-          tfName: 'gcs_source',
-          dartName: 'gcsSource',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'gcsSourceOrManagedBackupSource',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'MemorystoreInstanceGcsSource',
-        ),
-        MigrateSlot(
-          tfName: 'managed_backup_source',
-          dartName: 'managedBackupSource',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'MemorystoreInstanceManagedBackupSource',
+          merged: true,
+          variants: <String, String>{
+            'gcs_source': 'MemorystoreInstanceGcsSourceOption',
+            'managed_backup_source':
+                'MemorystoreInstanceManagedBackupSourceOption',
+          },
         ),
         MigrateSlot(
           tfName: 'kms_key',
@@ -93616,18 +93556,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           },
         ),
         MigrateSlot(
-          tfName: 'calendar_period',
-          dartName: 'calendarPeriod',
-          kind: MigrateSlotKind.enumValue,
-          required: false,
-          dartType: 'MonitoringSloCalendarPeriod',
-        ),
-        MigrateSlot(
-          tfName: 'rolling_period_days',
-          dartName: 'rollingPeriodDays',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
+          tfName: '',
+          dartName: 'rollingPeriodDaysOrCalendarPeriod',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'rolling_period_days': 'MonitoringSloRollingPeriodDaysOption',
+            'calendar_period': 'MonitoringSloCalendarPeriodOption',
+          },
         ),
         MigrateSlot(
           tfName: 'slo_id',
@@ -109540,28 +109478,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateSlot(
-          tfName: 'bigquery_config',
-          dartName: 'bigqueryConfig',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'bigqueryConfigOrPushConfigOrCloudStorageConfig',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'PubsubSubscriptionBigQueryConfig',
-        ),
-        MigrateSlot(
-          tfName: 'cloud_storage_config',
-          dartName: 'cloudStorageConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PubsubSubscriptionCloudStorageConfig',
-        ),
-        MigrateSlot(
-          tfName: 'push_config',
-          dartName: 'pushConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'PubsubSubscriptionPushConfig',
+          merged: true,
+          variants: <String, String>{
+            'bigquery_config': 'PubsubSubscriptionBigqueryConfigOption',
+            'push_config': 'PubsubSubscriptionPushConfigOption',
+            'cloud_storage_config':
+                'PubsubSubscriptionCloudStorageConfigOption',
+          },
         ),
         MigrateSlot(
           tfName: 'ack_deadline_seconds',
@@ -118108,26 +118036,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'node_count',
-          dartName: 'nodeCount',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'processing_units',
-          dartName: 'processingUnits',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'autoscaling_config',
-          dartName: 'autoscalingConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'nodeCountOrProcessingUnitsOrAutoscalingConfig',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper: 'SpannerInstancePartitionAutoscalingConfig',
+          merged: true,
+          variants: <String, String>{
+            'node_count': 'SpannerInstancePartitionNodeCountOption',
+            'processing_units': 'SpannerInstancePartitionProcessingUnitsOption',
+            'autoscaling_config':
+                'SpannerInstancePartitionAutoscalingConfigOption',
+          },
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -120880,9 +120800,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'filter',
           dartName: 'filter',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'StorageControlProjectIntelligenceConfigFilter',
         ),
       ],
       getters: <MigrateGetter>[
@@ -140652,6 +140573,246 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig': MigrateHelper(
+      className: 'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: '',
+          dartName: 'defaultExchangeConfigOrDcrExchangeConfig',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'default_exchange_config':
+                'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOption',
+            'dcr_exchange_config':
+                'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfigOption',
+          },
+        ),
+      ],
+    ),
+    'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfig':
+        MigrateHelper(
+          className:
+              'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfig',
+          slots: <MigrateSlot>[],
+        ),
+    'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfigOption':
+        MigrateHelper(
+          className:
+              'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfigOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'dcr_exchange_config',
+              dartName: 'dcrExchangeConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfig',
+            ),
+          ],
+        ),
+    'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfig':
+        MigrateHelper(
+          className:
+              'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfig',
+          slots: <MigrateSlot>[],
+        ),
+    'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOption':
+        MigrateHelper(
+          className:
+              'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'default_exchange_config',
+              dartName: 'defaultExchangeConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfig',
+            ),
+          ],
+        ),
+    'BigqueryAnalyticsHubListingBigqueryDataset': MigrateHelper(
+      className: 'BigqueryAnalyticsHubListingBigqueryDataset',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dataset',
+          dartName: 'dataset',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'replica_locations',
+          dartName: 'replicaLocations',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'selected_resources',
+          dartName: 'selectedResources',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources',
+        ),
+      ],
+    ),
+    'BigqueryAnalyticsHubListingBigqueryDatasetOption': MigrateHelper(
+      className: 'BigqueryAnalyticsHubListingBigqueryDatasetOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'bigquery_dataset',
+          dartName: 'bigqueryDataset',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'BigqueryAnalyticsHubListingBigqueryDataset',
+        ),
+      ],
+    ),
+    'BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources': MigrateHelper(
+      className: 'BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: '',
+          dartName: 'tableOrRoutine',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'table':
+                'BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOption',
+            'routine':
+                'BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesRoutineOption',
+          },
+        ),
+      ],
+    ),
+    'BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesRoutineOption':
+        MigrateHelper(
+          className:
+              'BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesRoutineOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'routine',
+              dartName: 'routine',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOption':
+        MigrateHelper(
+          className:
+              'BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'table',
+              dartName: 'table',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'BigqueryAnalyticsHubListingDataProvider': MigrateHelper(
+      className: 'BigqueryAnalyticsHubListingDataProvider',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'primary_contact',
+          dartName: 'primaryContact',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'BigqueryAnalyticsHubListingPublisher': MigrateHelper(
+      className: 'BigqueryAnalyticsHubListingPublisher',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'primary_contact',
+          dartName: 'primaryContact',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'BigqueryAnalyticsHubListingPubsubTopic': MigrateHelper(
+      className: 'BigqueryAnalyticsHubListingPubsubTopic',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'data_affinity_regions',
+          dartName: 'dataAffinityRegions',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'topic',
+          dartName: 'topic',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'BigqueryAnalyticsHubListingPubsubTopicOption': MigrateHelper(
+      className: 'BigqueryAnalyticsHubListingPubsubTopicOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pubsub_topic',
+          dartName: 'pubsubTopic',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'BigqueryAnalyticsHubListingPubsubTopic',
+        ),
+      ],
+    ),
+    'BigqueryAnalyticsHubListingRestrictedExportConfig': MigrateHelper(
+      className: 'BigqueryAnalyticsHubListingRestrictedExportConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'restrict_query_result',
+          dartName: 'restrictQueryResult',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
     'BigqueryAnalyticsHubQueryTemplateRoutine': MigrateHelper(
       className: 'BigqueryAnalyticsHubQueryTemplateRoutine',
       slots: <MigrateSlot>[
@@ -141314,6 +141475,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BigqueryDatasetAccessDatasetOption': MigrateHelper(
+      className: 'BigqueryDatasetAccessDatasetOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dataset',
+          dartName: 'authorizedDataset',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'BigqueryDatasetAccessAuthorizedDataset',
+        ),
+      ],
+    ),
     'BigqueryDatasetAccessDomain': MigrateHelper(
       className: 'BigqueryDatasetAccessDomain',
       slots: <MigrateSlot>[
@@ -141338,6 +141512,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'BigqueryDatasetAccessCondition',
+        ),
+      ],
+    ),
+    'BigqueryDatasetAccessDomainOption': MigrateHelper(
+      className: 'BigqueryDatasetAccessDomainOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'domain',
+          dartName: 'domain',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
       ],
     ),
@@ -141368,6 +141554,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BigqueryDatasetAccessGroupByEmailOption': MigrateHelper(
+      className: 'BigqueryDatasetAccessGroupByEmailOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'group_by_email',
+          dartName: 'groupByEmail',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'BigqueryDatasetAccessIamMember': MigrateHelper(
       className: 'BigqueryDatasetAccessIamMember',
       slots: <MigrateSlot>[
@@ -141395,6 +141593,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BigqueryDatasetAccessIamMemberOption': MigrateHelper(
+      className: 'BigqueryDatasetAccessIamMemberOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'iam_member',
+          dartName: 'iamMember',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'BigqueryDatasetAccessRoutine': MigrateHelper(
       className: 'BigqueryDatasetAccessRoutine',
       slots: <MigrateSlot>[
@@ -141413,6 +141623,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'BigqueryDatasetAccessCondition',
+        ),
+      ],
+    ),
+    'BigqueryDatasetAccessRoutineOption': MigrateHelper(
+      className: 'BigqueryDatasetAccessRoutineOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'routine',
+          dartName: 'routine',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'BigqueryDatasetAccessAuthorizedRoutine',
         ),
       ],
     ),
@@ -141443,6 +141666,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BigqueryDatasetAccessSpecialGroupOption': MigrateHelper(
+      className: 'BigqueryDatasetAccessSpecialGroupOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'special_group',
+          dartName: 'specialGroup',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'BigqueryDatasetAccessPredefinedGroup',
+        ),
+      ],
+    ),
     'BigqueryDatasetAccessUserByEmail': MigrateHelper(
       className: 'BigqueryDatasetAccessUserByEmail',
       slots: <MigrateSlot>[
@@ -141470,6 +141705,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BigqueryDatasetAccessUserByEmailOption': MigrateHelper(
+      className: 'BigqueryDatasetAccessUserByEmailOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'user_by_email',
+          dartName: 'userByEmail',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'BigqueryDatasetAccessView': MigrateHelper(
       className: 'BigqueryDatasetAccessView',
       slots: <MigrateSlot>[
@@ -141488,6 +141735,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'BigqueryDatasetAccessCondition',
+        ),
+      ],
+    ),
+    'BigqueryDatasetAccessViewOption': MigrateHelper(
+      className: 'BigqueryDatasetAccessViewOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'view',
+          dartName: 'view',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'BigqueryDatasetAccessAuthorizedView',
         ),
       ],
     ),
@@ -178989,17 +179249,45 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters',
           slots: <MigrateSlot>[
             MigrateSlot(
+              tfName: '',
+              dartName: 'namespacedTagValueOrNamespacedTagKey',
+              kind: MigrateSlotKind.sealed,
+              required: false,
+              wrapped: false,
+              merged: true,
+              variants: <String, String>{
+                'namespaced_tag_value':
+                    'DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOption',
+                'namespaced_tag_key':
+                    'DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagKeyOption',
+              },
+            ),
+          ],
+        ),
+    'DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagKeyOption':
+        MigrateHelper(
+          className:
+              'DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagKeyOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
               tfName: 'namespaced_tag_key',
               dartName: 'namespacedTagKey',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
               dartType: 'String',
             ),
+          ],
+        ),
+    'DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOption':
+        MigrateHelper(
+          className:
+              'DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOption',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'namespaced_tag_value',
               dartName: 'namespacedTagValue',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
               dartType: 'String',
             ),
           ],
@@ -180206,11 +180494,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworks',
           slots: <MigrateSlot>[
             MigrateSlot(
-              tfName: 'expire_time',
-              dartName: 'expireTime',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
+              tfName: '',
+              dartName: 'expireTimeOrTtl',
+              kind: MigrateSlotKind.sealed,
+              required: true,
+              wrapped: false,
+              merged: true,
+              variants: <String, String>{
+                'expire_time':
+                    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOption',
+                'ttl':
+                    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksTtlOption',
+              },
             ),
             MigrateSlot(
               tfName: 'label',
@@ -180220,15 +180515,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               dartType: 'String',
             ),
             MigrateSlot(
-              tfName: 'ttl',
-              dartName: 'ttl',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
               tfName: 'value',
               dartName: 'value',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOption':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'expire_time',
+              dartName: 'expireTime',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksTtlOption':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksTtlOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'ttl',
+              dartName: 'ttl',
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'String',
@@ -180355,22 +180671,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'forward_ssh_connectivity',
-          dartName: 'forwardSshConnectivity',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName:
+              'staticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper:
-              'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity',
-        ),
-        MigrateSlot(
-          tfName: 'private_connectivity',
-          dartName: 'privateConnectivity',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivity',
+          merged: true,
+          variants: <String, String>{
+            'static_service_ip_connectivity':
+                'DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOption',
+            'forward_ssh_connectivity':
+                'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityOption',
+            'private_connectivity':
+                'DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivityOption',
+          },
         ),
         MigrateSlot(
           tfName: 'ssl',
@@ -180380,53 +180695,87 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           wrapped: false,
           helper: 'DatabaseMigrationServiceConnectionProfileOracleSsl',
         ),
+      ],
+    ),
+    'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity': MigrateHelper(
+      className:
+          'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity',
+      slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'static_service_ip_connectivity',
-          dartName: 'staticServiceIpConnectivity',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: 'hostname',
+          dartName: 'hostname',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: '',
+          dartName: 'passwordOrPrivateKey',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper:
-              'DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity',
+          merged: true,
+          variants: <String, String>{
+            'password':
+                'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOption',
+            'private_key':
+                'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPrivateKeyOption',
+          },
+        ),
+        MigrateSlot(
+          tfName: 'port',
+          dartName: 'port',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'username',
+          dartName: 'username',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
       ],
     ),
-    'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity':
+    'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityOption':
         MigrateHelper(
           className:
-              'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity',
+              'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityOption',
           slots: <MigrateSlot>[
             MigrateSlot(
-              tfName: 'hostname',
-              dartName: 'hostname',
-              kind: MigrateSlotKind.scalar,
+              tfName: 'forward_ssh_connectivity',
+              dartName: 'forwardSshConnectivity',
+              kind: MigrateSlotKind.helper,
               required: true,
-              dartType: 'String',
+              wrapped: false,
+              helper:
+                  'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity',
             ),
+          ],
+        ),
+    'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOption':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOption',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'password',
               dartName: 'password',
               kind: MigrateSlotKind.scalar,
-              required: false,
+              required: true,
               dartType: 'String',
             ),
-            MigrateSlot(
-              tfName: 'port',
-              dartName: 'port',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              dartType: 'num',
-            ),
+          ],
+        ),
+    'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPrivateKeyOption':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPrivateKeyOption',
+          slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'private_key',
               dartName: 'privateKey',
-              kind: MigrateSlotKind.scalar,
-              required: false,
-              dartType: 'String',
-            ),
-            MigrateSlot(
-              tfName: 'username',
-              dartName: 'username',
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'String',
@@ -180444,6 +180793,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'String',
+            ),
+          ],
+        ),
+    'DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivityOption':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivityOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'private_connectivity',
+              dartName: 'privateConnectivity',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivity',
             ),
           ],
         ),
@@ -180478,6 +180843,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           className:
               'DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity',
           slots: <MigrateSlot>[],
+        ),
+    'DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOption':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'static_service_ip_connectivity',
+              dartName: 'staticServiceIpConnectivity',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity',
+            ),
+          ],
         ),
     'DatabaseMigrationServiceConnectionProfilePostgresql': MigrateHelper(
       className: 'DatabaseMigrationServiceConnectionProfilePostgresql',
@@ -180788,10 +181169,42 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DatabaseMigrationServiceMigrationJobReverseSshConnectivityOption':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServiceMigrationJobReverseSshConnectivityOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'reverse_ssh_connectivity',
+              dartName: 'reverseSshConnectivity',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatabaseMigrationServiceMigrationJobReverseSshConnectivity',
+            ),
+          ],
+        ),
     'DatabaseMigrationServiceMigrationJobStaticIpConnectivity': MigrateHelper(
       className: 'DatabaseMigrationServiceMigrationJobStaticIpConnectivity',
       slots: <MigrateSlot>[],
     ),
+    'DatabaseMigrationServiceMigrationJobStaticIpConnectivityOption':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServiceMigrationJobStaticIpConnectivityOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'static_ip_connectivity',
+              dartName: 'staticIpConnectivity',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatabaseMigrationServiceMigrationJobStaticIpConnectivity',
+            ),
+          ],
+        ),
     'DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity': MigrateHelper(
       className: 'DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity',
       slots: <MigrateSlot>[
@@ -180804,6 +181217,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityOption':
+        MigrateHelper(
+          className:
+              'DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'vpc_peering_connectivity',
+              dartName: 'vpcPeeringConnectivity',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity',
+            ),
+          ],
+        ),
     'DatabaseMigrationServicePrivateConnectionPscInterfaceConfig':
         MigrateHelper(
           className:
@@ -180982,18 +181411,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'DataplexDatascanData',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'entity',
-          dartName: 'entity',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'resource',
-          dartName: 'resource',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'entityOrResource',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'entity': 'DataplexDatascanDataEntityOption',
+            'resource': 'DataplexDatascanDataResourceOption',
+          },
         ),
       ],
     ),
@@ -181019,6 +181446,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'DataplexDatascanDataDocumentationSpec': MigrateHelper(
       className: 'DataplexDatascanDataDocumentationSpec',
       slots: <MigrateSlot>[],
+    ),
+    'DataplexDatascanDataEntityOption': MigrateHelper(
+      className: 'DataplexDatascanDataEntityOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'entity',
+          dartName: 'entity',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
     ),
     'DataplexDatascanDataProfileSpec': MigrateHelper(
       className: 'DataplexDatascanDataProfileSpec',
@@ -181121,32 +181560,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataplexDatascanDataResourceOption': MigrateHelper(
+      className: 'DataplexDatascanDataResourceOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'resource',
+          dartName: 'resource',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'DataplexDatascanExecutionIdentity': MigrateHelper(
       className: 'DataplexDatascanExecutionIdentity',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'dataplex_service_agent',
-          dartName: 'dataplexServiceAgent',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'dataplexServiceAgentOrUserCredentialOrServiceAccount',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper: 'DataplexDatascanExecutionIdentityDataplexServiceAgent',
-        ),
-        MigrateSlot(
-          tfName: 'service_account',
-          dartName: 'serviceAccount',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DataplexDatascanExecutionIdentityServiceAccount',
-        ),
-        MigrateSlot(
-          tfName: 'user_credential',
-          dartName: 'userCredential',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DataplexDatascanExecutionIdentityUserCredential',
+          merged: true,
+          variants: <String, String>{
+            'dataplex_service_agent':
+                'DataplexDatascanExecutionIdentityDataplexServiceAgentOption',
+            'user_credential':
+                'DataplexDatascanExecutionIdentityUserCredentialOption',
+            'service_account':
+                'DataplexDatascanExecutionIdentityServiceAccountOption',
+          },
         ),
       ],
     ),
@@ -181154,6 +181597,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'DataplexDatascanExecutionIdentityDataplexServiceAgent',
       slots: <MigrateSlot>[],
     ),
+    'DataplexDatascanExecutionIdentityDataplexServiceAgentOption':
+        MigrateHelper(
+          className:
+              'DataplexDatascanExecutionIdentityDataplexServiceAgentOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'dataplex_service_agent',
+              dartName: 'dataplexServiceAgent',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper: 'DataplexDatascanExecutionIdentityDataplexServiceAgent',
+            ),
+          ],
+        ),
     'DataplexDatascanExecutionIdentityServiceAccount': MigrateHelper(
       className: 'DataplexDatascanExecutionIdentityServiceAccount',
       slots: <MigrateSlot>[
@@ -181166,9 +181624,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataplexDatascanExecutionIdentityServiceAccountOption': MigrateHelper(
+      className: 'DataplexDatascanExecutionIdentityServiceAccountOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'service_account',
+          dartName: 'serviceAccount',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DataplexDatascanExecutionIdentityServiceAccount',
+        ),
+      ],
+    ),
     'DataplexDatascanExecutionIdentityUserCredential': MigrateHelper(
       className: 'DataplexDatascanExecutionIdentityUserCredential',
       slots: <MigrateSlot>[],
+    ),
+    'DataplexDatascanExecutionIdentityUserCredentialOption': MigrateHelper(
+      className: 'DataplexDatascanExecutionIdentityUserCredentialOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'user_credential',
+          dartName: 'userCredential',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DataplexDatascanExecutionIdentityUserCredential',
+        ),
+      ],
     ),
     'DataplexDatascanExecutionSpec': MigrateHelper(
       className: 'DataplexDatascanExecutionSpec',
@@ -181194,34 +181678,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'DataplexDatascanExecutionSpecTrigger',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'on_demand',
-          dartName: 'onDemand',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'onDemandOrScheduleOrOneTime',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper: 'DataplexDatascanExecutionSpecTriggerOnDemand',
-        ),
-        MigrateSlot(
-          tfName: 'one_time',
-          dartName: 'oneTime',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DataplexDatascanExecutionSpecTriggerOneTime',
-        ),
-        MigrateSlot(
-          tfName: 'schedule',
-          dartName: 'schedule',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DataplexDatascanExecutionSpecTriggerSchedule',
+          merged: true,
+          variants: <String, String>{
+            'on_demand': 'DataplexDatascanExecutionSpecTriggerOnDemandOption',
+            'schedule': 'DataplexDatascanExecutionSpecTriggerScheduleOption',
+            'one_time': 'DataplexDatascanExecutionSpecTriggerOneTimeOption',
+          },
         ),
       ],
     ),
     'DataplexDatascanExecutionSpecTriggerOnDemand': MigrateHelper(
       className: 'DataplexDatascanExecutionSpecTriggerOnDemand',
       slots: <MigrateSlot>[],
+    ),
+    'DataplexDatascanExecutionSpecTriggerOnDemandOption': MigrateHelper(
+      className: 'DataplexDatascanExecutionSpecTriggerOnDemandOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'on_demand',
+          dartName: 'onDemand',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DataplexDatascanExecutionSpecTriggerOnDemand',
+        ),
+      ],
     ),
     'DataplexDatascanExecutionSpecTriggerOneTime': MigrateHelper(
       className: 'DataplexDatascanExecutionSpecTriggerOneTime',
@@ -181235,6 +181721,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DataplexDatascanExecutionSpecTriggerOneTimeOption': MigrateHelper(
+      className: 'DataplexDatascanExecutionSpecTriggerOneTimeOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'one_time',
+          dartName: 'oneTime',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DataplexDatascanExecutionSpecTriggerOneTime',
+        ),
+      ],
+    ),
     'DataplexDatascanExecutionSpecTriggerSchedule': MigrateHelper(
       className: 'DataplexDatascanExecutionSpecTriggerSchedule',
       slots: <MigrateSlot>[
@@ -181244,6 +181743,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'DataplexDatascanExecutionSpecTriggerScheduleOption': MigrateHelper(
+      className: 'DataplexDatascanExecutionSpecTriggerScheduleOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'schedule',
+          dartName: 'schedule',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DataplexDatascanExecutionSpecTriggerSchedule',
         ),
       ],
     ),
@@ -181795,11 +182307,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<Object?>',
         ),
         MigrateSlot(
-          tfName: 'network_uri',
-          dartName: 'networkUri',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'networkUriOrSubnetworkUri',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'network_uri':
+                'DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOption',
+            'subnetwork_uri':
+                'DataprocBatchEnvironmentConfigExecutionConfigSubnetworkUriOption',
+          },
         ),
         MigrateSlot(
           tfName: 'service_account',
@@ -181811,13 +182330,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'staging_bucket',
           dartName: 'stagingBucket',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'subnetwork_uri',
-          dartName: 'subnetworkUri',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -181852,6 +182364,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               required: false,
               dartType:
                   'DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfigUserWorkloadAuthenticationType',
+            ),
+          ],
+        ),
+    'DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOption':
+        MigrateHelper(
+          className:
+              'DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'network_uri',
+              dartName: 'networkUri',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'DataprocBatchEnvironmentConfigExecutionConfigSubnetworkUriOption':
+        MigrateHelper(
+          className:
+              'DataprocBatchEnvironmentConfigExecutionConfigSubnetworkUriOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'subnetwork_uri',
+              dartName: 'subnetworkUri',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
             ),
           ],
         ),
@@ -187473,11 +188013,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'password',
-          dartName: 'password',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'passwordOrPrivateKey',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'password':
+                'DatastreamConnectionProfileForwardSshConnectivityPasswordOption',
+            'private_key':
+                'DatastreamConnectionProfileForwardSshConnectivityPrivateKeyOption',
+          },
         ),
         MigrateSlot(
           tfName: 'port',
@@ -187485,13 +188032,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'private_key',
-          dartName: 'privateKey',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'username',
@@ -187502,6 +188042,47 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DatastreamConnectionProfileForwardSshConnectivityOption': MigrateHelper(
+      className: 'DatastreamConnectionProfileForwardSshConnectivityOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'forward_ssh_connectivity',
+          dartName: 'forwardSshConnectivity',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DatastreamConnectionProfileForwardSshConnectivity',
+        ),
+      ],
+    ),
+    'DatastreamConnectionProfileForwardSshConnectivityPasswordOption':
+        MigrateHelper(
+          className:
+              'DatastreamConnectionProfileForwardSshConnectivityPasswordOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'password',
+              dartName: 'password',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'DatastreamConnectionProfileForwardSshConnectivityPrivateKeyOption':
+        MigrateHelper(
+          className:
+              'DatastreamConnectionProfileForwardSshConnectivityPrivateKeyOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'private_key',
+              dartName: 'privateKey',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'DatastreamConnectionProfileGcsProfile': MigrateHelper(
       className: 'DatastreamConnectionProfileGcsProfile',
       slots: <MigrateSlot>[
@@ -187925,6 +188506,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'DatastreamConnectionProfilePrivateConnectivityOption': MigrateHelper(
+      className: 'DatastreamConnectionProfilePrivateConnectivityOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'private_connectivity',
+          dartName: 'privateConnectivity',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DatastreamConnectionProfilePrivateConnectivity',
         ),
       ],
     ),
@@ -188659,20 +189253,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'bigquery_destination_config',
-          dartName: 'bigqueryDestinationConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'gcsDestinationConfigOrBigqueryDestinationConfig',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper: 'DatastreamStreamDestinationConfigBigqueryDestinationConfig',
-        ),
-        MigrateSlot(
-          tfName: 'gcs_destination_config',
-          dartName: 'gcsDestinationConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatastreamStreamDestinationConfigGcsDestinationConfig',
+          merged: true,
+          variants: <String, String>{
+            'gcs_destination_config':
+                'DatastreamStreamDestinationConfigGcsDestinationConfigOption',
+            'bigquery_destination_config':
+                'DatastreamStreamDestinationConfigBigqueryDestinationConfigOption',
+          },
         ),
       ],
     ),
@@ -188687,13 +189279,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'append_only',
-          dartName: 'appendOnly',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'mergeOrAppendOnly',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly',
+          merged: true,
+          variants: <String, String>{
+            'merge':
+                'DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOption',
+            'append_only':
+                'DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnlyOption',
+          },
         ),
         MigrateSlot(
           tfName: 'blmt_config',
@@ -188705,31 +189302,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig',
         ),
         MigrateSlot(
-          tfName: 'merge',
-          dartName: 'merge',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'singleTargetDatasetOrSourceHierarchyDatasets',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper:
-              'DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge',
-        ),
-        MigrateSlot(
-          tfName: 'single_target_dataset',
-          dartName: 'singleTargetDataset',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset',
-        ),
-        MigrateSlot(
-          tfName: 'source_hierarchy_datasets',
-          dartName: 'sourceHierarchyDatasets',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasets',
+          merged: true,
+          variants: <String, String>{
+            'single_target_dataset':
+                'DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOption',
+            'source_hierarchy_datasets':
+                'DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasetsOption',
+          },
         ),
       ],
     ),
@@ -188738,6 +189322,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           className:
               'DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly',
           slots: <MigrateSlot>[],
+        ),
+    'DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnlyOption':
+        MigrateHelper(
+          className:
+              'DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnlyOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'append_only',
+              dartName: 'appendOnly',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly',
+            ),
+          ],
         ),
     'DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig':
         MigrateHelper(
@@ -188787,6 +189387,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge',
           slots: <MigrateSlot>[],
         ),
+    'DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOption':
+        MigrateHelper(
+          className:
+              'DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'merge',
+              dartName: 'merge',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge',
+            ),
+          ],
+        ),
+    'DatastreamStreamDestinationConfigBigqueryDestinationConfigOption':
+        MigrateHelper(
+          className:
+              'DatastreamStreamDestinationConfigBigqueryDestinationConfigOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'bigquery_destination_config',
+              dartName: 'bigqueryDestinationConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatastreamStreamDestinationConfigBigqueryDestinationConfig',
+            ),
+          ],
+        ),
     'DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset':
         MigrateHelper(
           className:
@@ -188798,6 +189430,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'String',
+            ),
+          ],
+        ),
+    'DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOption':
+        MigrateHelper(
+          className:
+              'DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDatasetOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'single_target_dataset',
+              dartName: 'singleTargetDataset',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset',
             ),
           ],
         ),
@@ -188852,6 +189500,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasetsOption':
+        MigrateHelper(
+          className:
+              'DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasetsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'source_hierarchy_datasets',
+              dartName: 'sourceHierarchyDatasets',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHierarchyDatasets',
+            ),
+          ],
+        ),
     'DatastreamStreamDestinationConfigGcsDestinationConfig': MigrateHelper(
       className: 'DatastreamStreamDestinationConfigGcsDestinationConfig',
       slots: <MigrateSlot>[
@@ -188877,22 +189541,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'avro_file_format',
-          dartName: 'avroFileFormat',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'avroFileFormatOrJsonFileFormat',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper:
-              'DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat',
-        ),
-        MigrateSlot(
-          tfName: 'json_file_format',
-          dartName: 'jsonFileFormat',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat',
+          merged: true,
+          variants: <String, String>{
+            'avro_file_format':
+                'DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOption',
+            'json_file_format':
+                'DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatOption',
+          },
         ),
       ],
     ),
@@ -188901,6 +189561,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           className:
               'DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat',
           slots: <MigrateSlot>[],
+        ),
+    'DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOption':
+        MigrateHelper(
+          className:
+              'DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormatOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'avro_file_format',
+              dartName: 'avroFileFormat',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat',
+            ),
+          ],
         ),
     'DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat': MigrateHelper(
       className:
@@ -188924,6 +189600,37 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatOption':
+        MigrateHelper(
+          className:
+              'DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormatOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'json_file_format',
+              dartName: 'jsonFileFormat',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat',
+            ),
+          ],
+        ),
+    'DatastreamStreamDestinationConfigGcsDestinationConfigOption':
+        MigrateHelper(
+          className:
+              'DatastreamStreamDestinationConfigGcsDestinationConfigOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcs_destination_config',
+              dartName: 'gcsDestinationConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper: 'DatastreamStreamDestinationConfigGcsDestinationConfig',
+            ),
+          ],
+        ),
     'DatastreamStreamRuleSets': MigrateHelper(
       className: 'DatastreamStreamRuleSets',
       slots: <MigrateSlot>[
@@ -189327,60 +190034,29 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'mongodb_source_config',
-          dartName: 'mongodbSourceConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName:
+              'mysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper: 'DatastreamStreamSourceConfigMongodbSourceConfig',
-        ),
-        MigrateSlot(
-          tfName: 'mysql_source_config',
-          dartName: 'mysqlSourceConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatastreamStreamSourceConfigMysqlSourceConfig',
-        ),
-        MigrateSlot(
-          tfName: 'oracle_source_config',
-          dartName: 'oracleSourceConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatastreamStreamSourceConfigOracleSourceConfig',
-        ),
-        MigrateSlot(
-          tfName: 'postgresql_source_config',
-          dartName: 'postgresqlSourceConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatastreamStreamSourceConfigPostgresqlSourceConfig',
-        ),
-        MigrateSlot(
-          tfName: 'salesforce_source_config',
-          dartName: 'salesforceSourceConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatastreamStreamSourceConfigSalesforceSourceConfig',
-        ),
-        MigrateSlot(
-          tfName: 'spanner_source_config',
-          dartName: 'spannerSourceConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatastreamStreamSourceConfigSpannerSourceConfig',
-        ),
-        MigrateSlot(
-          tfName: 'sql_server_source_config',
-          dartName: 'sqlServerSourceConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatastreamStreamSourceConfigSqlServerSourceConfig',
+          merged: true,
+          variants: <String, String>{
+            'mysql_source_config':
+                'DatastreamStreamSourceConfigMysqlSourceConfigOption',
+            'oracle_source_config':
+                'DatastreamStreamSourceConfigOracleSourceConfigOption',
+            'postgresql_source_config':
+                'DatastreamStreamSourceConfigPostgresqlSourceConfigOption',
+            'sql_server_source_config':
+                'DatastreamStreamSourceConfigSqlServerSourceConfigOption',
+            'salesforce_source_config':
+                'DatastreamStreamSourceConfigSalesforceSourceConfigOption',
+            'spanner_source_config':
+                'DatastreamStreamSourceConfigSpannerSourceConfigOption',
+            'mongodb_source_config':
+                'DatastreamStreamSourceConfigMongodbSourceConfigOption',
+          },
         ),
       ],
     ),
@@ -189570,6 +190246,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'DatastreamStreamSourceConfigMongodbSourceConfigOption': MigrateHelper(
+      className: 'DatastreamStreamSourceConfigMongodbSourceConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mongodb_source_config',
+          dartName: 'mongodbSourceConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DatastreamStreamSourceConfigMongodbSourceConfig',
+        ),
+      ],
+    ),
     'DatastreamStreamSourceConfigMysqlSourceConfig': MigrateHelper(
       className: 'DatastreamStreamSourceConfigMysqlSourceConfig',
       slots: <MigrateSlot>[
@@ -189588,13 +190277,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateSlot(
-          tfName: 'binary_log_position',
-          dartName: 'binaryLogPosition',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'binaryLogPositionOrGtid',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition',
+          merged: true,
+          variants: <String, String>{
+            'binary_log_position':
+                'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOption',
+            'gtid': 'DatastreamStreamSourceConfigMysqlSourceConfigGtidOption',
+          },
         ),
         MigrateSlot(
           tfName: 'exclude_objects',
@@ -189603,14 +190296,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjects',
-        ),
-        MigrateSlot(
-          tfName: 'gtid',
-          dartName: 'gtid',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'DatastreamStreamSourceConfigMysqlSourceConfigGtid',
         ),
         MigrateSlot(
           tfName: 'include_objects',
@@ -189627,6 +190312,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           className:
               'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition',
           slots: <MigrateSlot>[],
+        ),
+    'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOption':
+        MigrateHelper(
+          className:
+              'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'binary_log_position',
+              dartName: 'binaryLogPosition',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition',
+            ),
+          ],
         ),
     'DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjects': MigrateHelper(
       className: 'DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjects',
@@ -189744,6 +190445,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'DatastreamStreamSourceConfigMysqlSourceConfigGtid',
       slots: <MigrateSlot>[],
     ),
+    'DatastreamStreamSourceConfigMysqlSourceConfigGtidOption': MigrateHelper(
+      className: 'DatastreamStreamSourceConfigMysqlSourceConfigGtidOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gtid',
+          dartName: 'gtid',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DatastreamStreamSourceConfigMysqlSourceConfigGtid',
+        ),
+      ],
+    ),
     'DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjects': MigrateHelper(
       className: 'DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjects',
       slots: <MigrateSlot>[
@@ -189856,6 +190570,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'DatastreamStreamSourceConfigMysqlSourceConfigOption': MigrateHelper(
+      className: 'DatastreamStreamSourceConfigMysqlSourceConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mysql_source_config',
+          dartName: 'mysqlSourceConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DatastreamStreamSourceConfigMysqlSourceConfig',
+        ),
+      ],
+    ),
     'DatastreamStreamSourceConfigOracleSourceConfig': MigrateHelper(
       className: 'DatastreamStreamSourceConfigOracleSourceConfig',
       slots: <MigrateSlot>[
@@ -190085,6 +190812,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'DatastreamStreamSourceConfigOracleSourceConfigOption': MigrateHelper(
+      className: 'DatastreamStreamSourceConfigOracleSourceConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'oracle_source_config',
+          dartName: 'oracleSourceConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DatastreamStreamSourceConfigOracleSourceConfig',
+        ),
+      ],
+    ),
     'DatastreamStreamSourceConfigOracleSourceConfigStreamLargeObjects':
         MigrateHelper(
           className:
@@ -190349,6 +191089,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'DatastreamStreamSourceConfigPostgresqlSourceConfigOption': MigrateHelper(
+      className: 'DatastreamStreamSourceConfigPostgresqlSourceConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'postgresql_source_config',
+          dartName: 'postgresqlSourceConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DatastreamStreamSourceConfigPostgresqlSourceConfig',
+        ),
+      ],
+    ),
     'DatastreamStreamSourceConfigSalesforceSourceConfig': MigrateHelper(
       className: 'DatastreamStreamSourceConfigSalesforceSourceConfig',
       slots: <MigrateSlot>[
@@ -190489,6 +191242,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'DatastreamStreamSourceConfigSalesforceSourceConfigOption': MigrateHelper(
+      className: 'DatastreamStreamSourceConfigSalesforceSourceConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'salesforce_source_config',
+          dartName: 'salesforceSourceConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DatastreamStreamSourceConfigSalesforceSourceConfig',
+        ),
+      ],
+    ),
     'DatastreamStreamSourceConfigSpannerSourceConfig': MigrateHelper(
       className: 'DatastreamStreamSourceConfigSpannerSourceConfig',
       slots: <MigrateSlot>[
@@ -190711,6 +191477,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'DatastreamStreamSourceConfigSpannerSourceConfigOption': MigrateHelper(
+      className: 'DatastreamStreamSourceConfigSpannerSourceConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'spanner_source_config',
+          dartName: 'spannerSourceConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DatastreamStreamSourceConfigSpannerSourceConfig',
+        ),
+      ],
+    ),
     'DatastreamStreamSourceConfigSqlServerSourceConfig': MigrateHelper(
       className: 'DatastreamStreamSourceConfigSqlServerSourceConfig',
       slots: <MigrateSlot>[
@@ -190944,6 +191723,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'DatastreamStreamSourceConfigSqlServerSourceConfigOption': MigrateHelper(
+      className: 'DatastreamStreamSourceConfigSqlServerSourceConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'sql_server_source_config',
+          dartName: 'sqlServerSourceConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'DatastreamStreamSourceConfigSqlServerSourceConfig',
+        ),
+      ],
+    ),
     'DatastreamStreamSourceConfigSqlServerSourceConfigTransactionLogs':
         MigrateHelper(
           className:
@@ -204957,22 +205749,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'HealthcarePipelineJobBackfillPipelineJobOption': MigrateHelper(
+      className: 'HealthcarePipelineJobBackfillPipelineJobOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'backfill_pipeline_job',
+          dartName: 'backfillPipelineJob',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'HealthcarePipelineJobBackfillPipelineJob',
+        ),
+      ],
+    ),
     'HealthcarePipelineJobMappingPipelineJob': MigrateHelper(
       className: 'HealthcarePipelineJobMappingPipelineJob',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'fhir_store_destination',
-          dartName: 'fhirStoreDestination',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'fhirStoreDestinationOrReconciliationDestination',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'reconciliation_destination',
-          dartName: 'reconciliationDestination',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'fhir_store_destination':
+                'HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOption',
+            'reconciliation_destination':
+                'HealthcarePipelineJobMappingPipelineJobReconciliationDestinationOption',
+          },
         ),
         MigrateSlot(
           tfName: 'fhir_streaming_source',
@@ -204992,6 +205797,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOption':
+        MigrateHelper(
+          className:
+              'HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'fhir_store_destination',
+              dartName: 'fhirStoreDestination',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'HealthcarePipelineJobMappingPipelineJobFhirStreamingSource': MigrateHelper(
       className: 'HealthcarePipelineJobMappingPipelineJobFhirStreamingSource',
       slots: <MigrateSlot>[
@@ -205050,6 +205869,33 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'String',
+            ),
+          ],
+        ),
+    'HealthcarePipelineJobMappingPipelineJobOption': MigrateHelper(
+      className: 'HealthcarePipelineJobMappingPipelineJobOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mapping_pipeline_job',
+          dartName: 'mappingPipelineJob',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'HealthcarePipelineJobMappingPipelineJob',
+        ),
+      ],
+    ),
+    'HealthcarePipelineJobMappingPipelineJobReconciliationDestinationOption':
+        MigrateHelper(
+          className:
+              'HealthcarePipelineJobMappingPipelineJobReconciliationDestinationOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'reconciliation_destination',
+              dartName: 'reconciliationDestination',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
             ),
           ],
         ),
@@ -205122,6 +205968,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'HealthcarePipelineJobReconciliationPipelineJobOption': MigrateHelper(
+      className: 'HealthcarePipelineJobReconciliationPipelineJobOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'reconciliation_pipeline_job',
+          dartName: 'reconciliationPipelineJob',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'HealthcarePipelineJobReconciliationPipelineJob',
+        ),
+      ],
+    ),
     'HealthcareWorkspaceSettings': MigrateHelper(
       className: 'HealthcareWorkspaceSettings',
       slots: <MigrateSlot>[
@@ -209254,6 +210113,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'LoggingSavedQueryLoggingQueryOption': MigrateHelper(
+      className: 'LoggingSavedQueryLoggingQueryOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'logging_query',
+          dartName: 'loggingQuery',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'LoggingSavedQueryLoggingQuery',
+        ),
+      ],
+    ),
     'LoggingSavedQueryOpsAnalyticsQuery': MigrateHelper(
       className: 'LoggingSavedQueryOpsAnalyticsQuery',
       slots: <MigrateSlot>[
@@ -209263,6 +210135,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'LoggingSavedQueryOpsAnalyticsQueryOption': MigrateHelper(
+      className: 'LoggingSavedQueryOpsAnalyticsQueryOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'ops_analytics_query',
+          dartName: 'opsAnalyticsQuery',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'LoggingSavedQueryOpsAnalyticsQuery',
         ),
       ],
     ),
@@ -210204,6 +211089,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'MemorystoreInstanceGcsSourceOption': MigrateHelper(
+      className: 'MemorystoreInstanceGcsSourceOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gcs_source',
+          dartName: 'gcsSource',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'MemorystoreInstanceGcsSource',
+        ),
+      ],
+    ),
     'MemorystoreInstanceMaintenancePolicy': MigrateHelper(
       className: 'MemorystoreInstanceMaintenancePolicy',
       slots: <MigrateSlot>[
@@ -210284,6 +211182,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'MemorystoreInstanceManagedBackupSourceOption': MigrateHelper(
+      className: 'MemorystoreInstanceManagedBackupSourceOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'managed_backup_source',
+          dartName: 'managedBackupSource',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'MemorystoreInstanceManagedBackupSource',
         ),
       ],
     ),
@@ -211715,6 +212626,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'MonitoringSloCalendarPeriodOption': MigrateHelper(
+      className: 'MonitoringSloCalendarPeriodOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'calendar_period',
+          dartName: 'calendarPeriod',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          dartType: 'MonitoringSloCalendarPeriod',
+        ),
+      ],
+    ),
     'MonitoringSloGoodTotalRatio': MigrateHelper(
       className: 'MonitoringSloGoodTotalRatio',
       slots: <MigrateSlot>[
@@ -211751,6 +212674,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'MonitoringSloGoodTotalRatio',
+        ),
+      ],
+    ),
+    'MonitoringSloRollingPeriodDaysOption': MigrateHelper(
+      className: 'MonitoringSloRollingPeriodDaysOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rolling_period_days',
+          dartName: 'rollingPeriodDays',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
         ),
       ],
     ),
@@ -212597,17 +213532,40 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'NetappVolumeRestoreParameters',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: '',
+          dartName: 'sourceBackupOrSourceSnapshot',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'source_backup': 'NetappVolumeRestoreParametersSourceBackupOption',
+            'source_snapshot':
+                'NetappVolumeRestoreParametersSourceSnapshotOption',
+          },
+        ),
+      ],
+    ),
+    'NetappVolumeRestoreParametersSourceBackupOption': MigrateHelper(
+      className: 'NetappVolumeRestoreParametersSourceBackupOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'source_backup',
           dartName: 'sourceBackup',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
+      ],
+    ),
+    'NetappVolumeRestoreParametersSourceSnapshotOption': MigrateHelper(
+      className: 'NetappVolumeRestoreParametersSourceSnapshotOption',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'source_snapshot',
           dartName: 'sourceSnapshot',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
       ],
@@ -223778,6 +224736,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'PubsubSubscriptionBigqueryConfigOption': MigrateHelper(
+      className: 'PubsubSubscriptionBigqueryConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'bigquery_config',
+          dartName: 'bigqueryConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PubsubSubscriptionBigQueryConfig',
+        ),
+      ],
+    ),
     'PubsubSubscriptionCloudStorageConfig': MigrateHelper(
       className: 'PubsubSubscriptionCloudStorageConfig',
       slots: <MigrateSlot>[
@@ -223836,6 +224807,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'PubsubSubscriptionCloudStorageConfigOption': MigrateHelper(
+      className: 'PubsubSubscriptionCloudStorageConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cloud_storage_config',
+          dartName: 'cloudStorageConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PubsubSubscriptionCloudStorageConfig',
         ),
       ],
     ),
@@ -223933,6 +224917,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'PubsubSubscriptionNoWrapper',
+        ),
+      ],
+    ),
+    'PubsubSubscriptionPushConfigOption': MigrateHelper(
+      className: 'PubsubSubscriptionPushConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'push_config',
+          dartName: 'pushConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PubsubSubscriptionPushConfig',
         ),
       ],
     ),
@@ -226820,17 +227817,41 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'SpannerBackupScheduleEncryptionConfigEncryptionType',
         ),
         MigrateSlot(
+          tfName: '',
+          dartName: 'kmsKeyNameOrKmsKeyNames',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'kms_key_name':
+                'SpannerBackupScheduleEncryptionConfigKmsKeyNameOption',
+            'kms_key_names':
+                'SpannerBackupScheduleEncryptionConfigKmsKeyNamesOption',
+          },
+        ),
+      ],
+    ),
+    'SpannerBackupScheduleEncryptionConfigKmsKeyNameOption': MigrateHelper(
+      className: 'SpannerBackupScheduleEncryptionConfigKmsKeyNameOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'kms_key_name',
           dartName: 'kmsKeyName',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
+      ],
+    ),
+    'SpannerBackupScheduleEncryptionConfigKmsKeyNamesOption': MigrateHelper(
+      className: 'SpannerBackupScheduleEncryptionConfigKmsKeyNamesOption',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'kms_key_names',
           dartName: 'kmsKeyNames',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'List<Object?>',
         ),
       ],
@@ -226919,35 +227940,91 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'SpannerInstancePartitionAutoscalingConfigAutoscalingLimits',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'max_nodes',
-          dartName: 'maxNodes',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
+          tfName: '',
+          dartName: 'maxProcessingUnitsOrMaxNodes',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'max_processing_units':
+                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOption',
+            'max_nodes':
+                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxNodesOption',
+          },
         ),
         MigrateSlot(
-          tfName: 'max_processing_units',
-          dartName: 'maxProcessingUnits',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'min_nodes',
-          dartName: 'minNodes',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'min_processing_units',
-          dartName: 'minProcessingUnits',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
+          tfName: '',
+          dartName: 'minProcessingUnitsOrMinNodes',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'min_processing_units':
+                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOption',
+            'min_nodes':
+                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinNodesOption',
+          },
         ),
       ],
     ),
+    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxNodesOption':
+        MigrateHelper(
+          className:
+              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxNodesOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'max_nodes',
+              dartName: 'maxNodes',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOption':
+        MigrateHelper(
+          className:
+              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'max_processing_units',
+              dartName: 'maxProcessingUnits',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinNodesOption':
+        MigrateHelper(
+          className:
+              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinNodesOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'min_nodes',
+              dartName: 'minNodes',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOption':
+        MigrateHelper(
+          className:
+              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'min_processing_units',
+              dartName: 'minProcessingUnits',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
     'SpannerInstancePartitionAutoscalingConfigAutoscalingTargets':
         MigrateHelper(
           className:
@@ -226976,6 +228053,43 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'SpannerInstancePartitionAutoscalingConfigOption': MigrateHelper(
+      className: 'SpannerInstancePartitionAutoscalingConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'autoscaling_config',
+          dartName: 'autoscalingConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'SpannerInstancePartitionAutoscalingConfig',
+        ),
+      ],
+    ),
+    'SpannerInstancePartitionNodeCountOption': MigrateHelper(
+      className: 'SpannerInstancePartitionNodeCountOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_count',
+          dartName: 'nodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'SpannerInstancePartitionProcessingUnitsOption': MigrateHelper(
+      className: 'SpannerInstancePartitionProcessingUnitsOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'processing_units',
+          dartName: 'processingUnits',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
     'SqlDatabaseInstanceAuthorizedNetwork': MigrateHelper(
       className: 'SqlDatabaseInstanceAuthorizedNetwork',
       slots: <MigrateSlot>[
@@ -228213,40 +229327,33 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'StorageControlFolderIntelligenceConfigFilter',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'excluded_cloud_storage_buckets',
-          dartName: 'excludedCloudStorageBuckets',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'excludedCloudStorageBucketsOrIncludedCloudStorageBuckets',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageBuckets',
+          merged: true,
+          variants: <String, String>{
+            'excluded_cloud_storage_buckets':
+                'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageBucketsOption',
+            'included_cloud_storage_buckets':
+                'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageBucketsOption',
+          },
         ),
         MigrateSlot(
-          tfName: 'excluded_cloud_storage_locations',
-          dartName: 'excludedCloudStorageLocations',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName:
+              'excludedCloudStorageLocationsOrIncludedCloudStorageLocations',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageLocations',
-        ),
-        MigrateSlot(
-          tfName: 'included_cloud_storage_buckets',
-          dartName: 'includedCloudStorageBuckets',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageBuckets',
-        ),
-        MigrateSlot(
-          tfName: 'included_cloud_storage_locations',
-          dartName: 'includedCloudStorageLocations',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageLocations',
+          merged: true,
+          variants: <String, String>{
+            'excluded_cloud_storage_locations':
+                'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageLocationsOption',
+            'included_cloud_storage_locations':
+                'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageLocationsOption',
+          },
         ),
       ],
     ),
@@ -228264,6 +229371,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageBucketsOption':
+        MigrateHelper(
+          className:
+              'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageBucketsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'excluded_cloud_storage_buckets',
+              dartName: 'excludedCloudStorageBuckets',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageBuckets',
+            ),
+          ],
+        ),
     'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageLocations':
         MigrateHelper(
           className:
@@ -228275,6 +229398,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageLocationsOption':
+        MigrateHelper(
+          className:
+              'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageLocationsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'excluded_cloud_storage_locations',
+              dartName: 'excludedCloudStorageLocations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlFolderIntelligenceConfigFilterExcludedCloudStorageLocations',
             ),
           ],
         ),
@@ -228292,6 +229431,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageBucketsOption':
+        MigrateHelper(
+          className:
+              'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageBucketsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'included_cloud_storage_buckets',
+              dartName: 'includedCloudStorageBuckets',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageBuckets',
+            ),
+          ],
+        ),
     'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageLocations':
         MigrateHelper(
           className:
@@ -228306,44 +229461,53 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageLocationsOption':
+        MigrateHelper(
+          className:
+              'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageLocationsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'included_cloud_storage_locations',
+              dartName: 'includedCloudStorageLocations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlFolderIntelligenceConfigFilterIncludedCloudStorageLocations',
+            ),
+          ],
+        ),
     'StorageControlOrganizationIntelligenceConfigFilter': MigrateHelper(
       className: 'StorageControlOrganizationIntelligenceConfigFilter',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'excluded_cloud_storage_buckets',
-          dartName: 'excludedCloudStorageBuckets',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'excludedCloudStorageBucketsOrIncludedCloudStorageBuckets',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBuckets',
+          merged: true,
+          variants: <String, String>{
+            'excluded_cloud_storage_buckets':
+                'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOption',
+            'included_cloud_storage_buckets':
+                'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBucketsOption',
+          },
         ),
         MigrateSlot(
-          tfName: 'excluded_cloud_storage_locations',
-          dartName: 'excludedCloudStorageLocations',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName:
+              'excludedCloudStorageLocationsOrIncludedCloudStorageLocations',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocations',
-        ),
-        MigrateSlot(
-          tfName: 'included_cloud_storage_buckets',
-          dartName: 'includedCloudStorageBuckets',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBuckets',
-        ),
-        MigrateSlot(
-          tfName: 'included_cloud_storage_locations',
-          dartName: 'includedCloudStorageLocations',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocations',
+          merged: true,
+          variants: <String, String>{
+            'excluded_cloud_storage_locations':
+                'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOption',
+            'included_cloud_storage_locations':
+                'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocationsOption',
+          },
         ),
       ],
     ),
@@ -228361,6 +229525,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOption':
+        MigrateHelper(
+          className:
+              'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBucketsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'excluded_cloud_storage_buckets',
+              dartName: 'excludedCloudStorageBuckets',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageBuckets',
+            ),
+          ],
+        ),
     'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocations':
         MigrateHelper(
           className:
@@ -228372,6 +229552,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOption':
+        MigrateHelper(
+          className:
+              'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocationsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'excluded_cloud_storage_locations',
+              dartName: 'excludedCloudStorageLocations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlOrganizationIntelligenceConfigFilterExcludedCloudStorageLocations',
             ),
           ],
         ),
@@ -228389,6 +229585,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBucketsOption':
+        MigrateHelper(
+          className:
+              'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBucketsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'included_cloud_storage_buckets',
+              dartName: 'includedCloudStorageBuckets',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageBuckets',
+            ),
+          ],
+        ),
     'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocations':
         MigrateHelper(
           className:
@@ -228400,6 +229612,176 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocationsOption':
+        MigrateHelper(
+          className:
+              'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocationsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'included_cloud_storage_locations',
+              dartName: 'includedCloudStorageLocations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlOrganizationIntelligenceConfigFilterIncludedCloudStorageLocations',
+            ),
+          ],
+        ),
+    'StorageControlProjectIntelligenceConfigFilter': MigrateHelper(
+      className: 'StorageControlProjectIntelligenceConfigFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: '',
+          dartName: 'excludedCloudStorageBucketsOrIncludedCloudStorageBuckets',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'excluded_cloud_storage_buckets':
+                'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOption',
+            'included_cloud_storage_buckets':
+                'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBucketsOption',
+          },
+        ),
+        MigrateSlot(
+          tfName: '',
+          dartName:
+              'excludedCloudStorageLocationsOrIncludedCloudStorageLocations',
+          kind: MigrateSlotKind.sealed,
+          required: false,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'excluded_cloud_storage_locations':
+                'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOption',
+            'included_cloud_storage_locations':
+                'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocationsOption',
+          },
+        ),
+      ],
+    ),
+    'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBuckets':
+        MigrateHelper(
+          className:
+              'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBuckets',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'bucket_id_regexes',
+              dartName: 'bucketIdRegexes',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOption':
+        MigrateHelper(
+          className:
+              'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBucketsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'excluded_cloud_storage_buckets',
+              dartName: 'excludedCloudStorageBuckets',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageBuckets',
+            ),
+          ],
+        ),
+    'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocations':
+        MigrateHelper(
+          className:
+              'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocations',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'locations',
+              dartName: 'locations',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOption':
+        MigrateHelper(
+          className:
+              'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocationsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'excluded_cloud_storage_locations',
+              dartName: 'excludedCloudStorageLocations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlProjectIntelligenceConfigFilterExcludedCloudStorageLocations',
+            ),
+          ],
+        ),
+    'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBuckets':
+        MigrateHelper(
+          className:
+              'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBuckets',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'bucket_id_regexes',
+              dartName: 'bucketIdRegexes',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBucketsOption':
+        MigrateHelper(
+          className:
+              'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBucketsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'included_cloud_storage_buckets',
+              dartName: 'includedCloudStorageBuckets',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageBuckets',
+            ),
+          ],
+        ),
+    'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocations':
+        MigrateHelper(
+          className:
+              'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocations',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'locations',
+              dartName: 'locations',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocationsOption':
+        MigrateHelper(
+          className:
+              'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocationsOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'included_cloud_storage_locations',
+              dartName: 'includedCloudStorageLocations',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'StorageControlProjectIntelligenceConfigFilterIncludedCloudStorageLocations',
             ),
           ],
         ),

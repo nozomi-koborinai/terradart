@@ -176,10 +176,9 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
   const DataprocBatchEnvironmentConfigExecutionConfig({
     this.kmsKey,
     this.networkTags,
-    this.networkUri,
+    this.networkUriOrSubnetworkUri,
     this.serviceAccount,
     this.stagingBucket,
-    this.subnetworkUri,
     this.ttl,
     this.authenticationConfig,
   });
@@ -188,13 +187,12 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
 
   final TfArg<List<Object?>>? networkTags;
 
-  final TfArg<String>? networkUri;
+  final DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri?
+  networkUriOrSubnetworkUri;
 
   final TfArg<String>? serviceAccount;
 
   final TfArg<String>? stagingBucket;
-
-  final TfArg<String>? subnetworkUri;
 
   final TfArg<String>? ttl;
 
@@ -204,14 +202,59 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
   Map<String, Object?> encode() => {
     if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
     if (networkTags != null) 'network_tags': networkTags!.toTfJson(),
-    if (networkUri != null) 'network_uri': networkUri!.toTfJson(),
+    ...?networkUriOrSubnetworkUri?.encode(),
     if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
     if (stagingBucket != null) 'staging_bucket': stagingBucket!.toTfJson(),
-    if (subnetworkUri != null) 'subnetwork_uri': subnetworkUri!.toTfJson(),
     if (ttl != null) 'ttl': ttl!.toTfJson(),
     if (authenticationConfig != null)
       'authentication_config': authenticationConfig!.encode(),
   };
+}
+
+/// At most one of `network_uri`, `subnetwork_uri` on the `environment_config.execution_config` block of `google_dataproc_batch`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri {
+  const DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `network_uri` (one of the [DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri] choices).
+final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOption
+    extends
+        DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri {
+  const DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOption({
+    required this.networkUri,
+  });
+
+  final TfArg<String> networkUri;
+
+  @override
+  String get blockKey => 'network_uri';
+
+  @override
+  Map<String, Object?> encode() => {'network_uri': networkUri.toTfJson()};
+}
+
+/// Sets `subnetwork_uri` (one of the [DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri] choices).
+final class DataprocBatchEnvironmentConfigExecutionConfigSubnetworkUriOption
+    extends
+        DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri {
+  const DataprocBatchEnvironmentConfigExecutionConfigSubnetworkUriOption({
+    required this.subnetworkUri,
+  });
+
+  final TfArg<String> subnetworkUri;
+
+  @override
+  String get blockKey => 'subnetwork_uri';
+
+  @override
+  Map<String, Object?> encode() => {'subnetwork_uri': subnetworkUri.toTfJson()};
 }
 
 /// Typed helper for the `environment_config.execution_config.authentication_config` block of

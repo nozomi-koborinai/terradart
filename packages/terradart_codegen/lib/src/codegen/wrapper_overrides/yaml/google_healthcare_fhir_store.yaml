@@ -1,5 +1,6 @@
 outputDir: healthcare
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
 deriveNestedTypes: true

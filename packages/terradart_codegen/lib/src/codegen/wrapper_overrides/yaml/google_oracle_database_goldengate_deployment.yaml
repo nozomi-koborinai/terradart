@@ -1,6 +1,7 @@
 outputDir: oracle
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

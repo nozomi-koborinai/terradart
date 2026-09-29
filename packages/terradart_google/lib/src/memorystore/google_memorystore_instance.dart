@@ -29,6 +29,64 @@ enum MemorystoreInstanceServerCaMode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `gcs_source`, `managed_backup_source` on `google_memorystore_instance`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class MemorystoreInstanceGcsSourceOrManagedBackupSource {
+  const MemorystoreInstanceGcsSourceOrManagedBackupSource();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `gcs_source` (one of the [MemorystoreInstanceGcsSourceOrManagedBackupSource] choices).
+final class MemorystoreInstanceGcsSourceOption
+    extends MemorystoreInstanceGcsSourceOrManagedBackupSource {
+  const MemorystoreInstanceGcsSourceOption({required this.gcsSource});
+
+  final MemorystoreInstanceGcsSource gcsSource;
+
+  @override
+  String get blockKey => 'gcs_source';
+
+  @override
+  Map<String, Object?> encode() => {'gcs_source': gcsSource.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'gcs_source': TfArg.literal(gcsSource.encode()),
+  };
+}
+
+/// Sets `managed_backup_source` (one of the [MemorystoreInstanceGcsSourceOrManagedBackupSource] choices).
+final class MemorystoreInstanceManagedBackupSourceOption
+    extends MemorystoreInstanceGcsSourceOrManagedBackupSource {
+  const MemorystoreInstanceManagedBackupSourceOption({
+    required this.managedBackupSource,
+  });
+
+  final MemorystoreInstanceManagedBackupSource managedBackupSource;
+
+  @override
+  String get blockKey => 'managed_backup_source';
+
+  @override
+  Map<String, Object?> encode() => {
+    'managed_backup_source': managedBackupSource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'managed_backup_source': TfArg.literal(managedBackupSource.encode()),
+  };
+}
+
 /// Typed helper for the `automated_backup_config` block of
 /// `google_memorystore_instance` (derived from provider schema).
 @immutable
@@ -450,8 +508,8 @@ final class GoogleMemorystoreInstance extends Resource {
     MemorystoreInstanceAutomatedBackupConfig? automatedBackupConfig,
     MemorystoreInstanceCrossInstanceReplicationConfig?
     crossInstanceReplicationConfig,
-    MemorystoreInstanceGcsSource? gcsSource,
-    MemorystoreInstanceManagedBackupSource? managedBackupSource,
+    MemorystoreInstanceGcsSourceOrManagedBackupSource?
+    gcsSourceOrManagedBackupSource,
     TfArg<String>? kmsKey,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtectionEnabled,
@@ -499,12 +557,7 @@ final class GoogleMemorystoreInstance extends Resource {
              'cross_instance_replication_config': TfArg.literal(
                crossInstanceReplicationConfig.encode(),
              ),
-           if (gcsSource != null)
-             'gcs_source': TfArg.literal(gcsSource.encode()),
-           if (managedBackupSource != null)
-             'managed_backup_source': TfArg.literal(
-               managedBackupSource.encode(),
-             ),
+           ...?gcsSourceOrManagedBackupSource?.argMap,
            if (kmsKey != null) 'kms_key': kmsKey,
            if (labels != null) 'labels': labels,
            if (deletionProtectionEnabled != null)

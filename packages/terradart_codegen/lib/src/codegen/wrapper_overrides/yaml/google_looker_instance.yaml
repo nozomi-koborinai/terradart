@@ -1,6 +1,7 @@
 outputDir: looker
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true

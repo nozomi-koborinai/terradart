@@ -67,8 +67,11 @@ export 'src/monitoring/google_monitoring_slo.dart'
         MonitoringSloBasicSliAvailability,
         MonitoringSloBasicSliLatency,
         MonitoringSloCalendarPeriod,
+        MonitoringSloCalendarPeriodOption,
         MonitoringSloGoodTotalRatio,
         MonitoringSloRequestBasedSli,
+        MonitoringSloRollingPeriodDaysOption,
+        MonitoringSloRollingPeriodDaysOrCalendarPeriod,
         MonitoringSloSli,
         MonitoringSloWindowsBasedSli,
         MonitoringSloWindowsGoodTotalRatioThreshold;

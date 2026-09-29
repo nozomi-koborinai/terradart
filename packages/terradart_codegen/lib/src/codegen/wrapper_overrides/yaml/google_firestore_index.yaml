@@ -1,6 +1,7 @@
 outputDir: firestore
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

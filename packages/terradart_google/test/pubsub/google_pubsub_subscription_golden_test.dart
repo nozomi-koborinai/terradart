@@ -21,12 +21,17 @@ void main() {
         localName: 'orders_push',
         name: TfArg.literal('orders-push'),
         topic: TfArg.ref(orders.id),
-        pushConfig: const PubsubSubscriptionPushConfig(
-          pushEndpoint: TfArgLiteral<String>('https://app.example.com/push'),
-          attributes: TfArgLiteral<Map<String, String>>({
-            'x-goog-version': 'v1',
-          }),
-        ),
+        bigqueryConfigOrPushConfigOrCloudStorageConfig:
+            const PubsubSubscriptionPushConfigOption(
+              pushConfig: PubsubSubscriptionPushConfig(
+                pushEndpoint: TfArgLiteral<String>(
+                  'https://app.example.com/push',
+                ),
+                attributes: TfArgLiteral<Map<String, String>>({
+                  'x-goog-version': 'v1',
+                }),
+              ),
+            ),
       ),
     );
 

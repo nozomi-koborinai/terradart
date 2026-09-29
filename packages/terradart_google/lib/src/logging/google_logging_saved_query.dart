@@ -44,6 +44,65 @@ class LoggingSavedQueryOpsAnalyticsQuery {
   };
 }
 
+/// Exactly one of `logging_query`, `ops_analytics_query` on `google_logging_saved_query`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery {
+  const LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `logging_query` (one of the [LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery] choices).
+final class LoggingSavedQueryLoggingQueryOption
+    extends LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery {
+  const LoggingSavedQueryLoggingQueryOption({required this.loggingQuery});
+
+  final LoggingSavedQueryLoggingQuery loggingQuery;
+
+  @override
+  String get blockKey => 'logging_query';
+
+  @override
+  Map<String, Object?> encode() => {
+    'logging_query': [loggingQuery.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'logging_query': TfArg.literal([loggingQuery.toArgMap()]),
+  };
+}
+
+/// Sets `ops_analytics_query` (one of the [LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery] choices).
+final class LoggingSavedQueryOpsAnalyticsQueryOption
+    extends LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery {
+  const LoggingSavedQueryOpsAnalyticsQueryOption({
+    required this.opsAnalyticsQuery,
+  });
+
+  final LoggingSavedQueryOpsAnalyticsQuery opsAnalyticsQuery;
+
+  @override
+  String get blockKey => 'ops_analytics_query';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ops_analytics_query': [opsAnalyticsQuery.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'ops_analytics_query': TfArg.literal([opsAnalyticsQuery.toArgMap()]),
+  };
+}
+
 /// Factory wrapper for `google_logging_saved_query`.
 ///
 /// Describes a query that has been saved by a user.
@@ -79,8 +138,8 @@ final class GoogleLoggingSavedQuery extends Resource {
     required TfArg<String> location,
     required TfArg<LoggingSavedQueryVisibility> visibility,
     TfArg<String>? description,
-    LoggingSavedQueryLoggingQuery? loggingQuery,
-    LoggingSavedQueryOpsAnalyticsQuery? opsAnalyticsQuery,
+    required LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery
+    loggingQueryOrOpsAnalyticsQuery,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -94,12 +153,7 @@ final class GoogleLoggingSavedQuery extends Resource {
            'location': location,
            'visibility': visibility,
            if (description != null) 'description': description,
-           if (loggingQuery != null)
-             'logging_query': TfArg.literal([loggingQuery.toArgMap()]),
-           if (opsAnalyticsQuery != null)
-             'ops_analytics_query': TfArg.literal([
-               opsAnalyticsQuery.toArgMap(),
-             ]),
+           ...loggingQueryOrOpsAnalyticsQuery.argMap,
          },
        );
 

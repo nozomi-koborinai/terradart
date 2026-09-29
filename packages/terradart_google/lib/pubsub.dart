@@ -15,12 +15,16 @@ export 'src/pubsub/google_pubsub_subscription.dart'
     show
         GooglePubsubSubscription,
         PubsubSubscriptionBigQueryConfig,
+        PubsubSubscriptionBigqueryConfigOption,
+        PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig,
         PubsubSubscriptionCloudStorageConfig,
+        PubsubSubscriptionCloudStorageConfigOption,
         PubsubSubscriptionDeadLetterPolicy,
         PubsubSubscriptionExpirationPolicy,
         PubsubSubscriptionNoWrapper,
         PubsubSubscriptionOidcToken,
         PubsubSubscriptionPushConfig,
+        PubsubSubscriptionPushConfigOption,
         PubsubSubscriptionRetryPolicy;
 export 'src/pubsub/google_pubsub_subscription_iam_binding.dart'
     show GooglePubsubSubscriptionIamBinding;

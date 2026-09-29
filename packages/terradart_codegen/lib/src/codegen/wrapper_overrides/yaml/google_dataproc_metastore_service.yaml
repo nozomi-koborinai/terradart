@@ -1,6 +1,7 @@
 outputDir: dataproc
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 # Scaling conflicts with tier; autoscaling nested enums stay frozen until a Wave

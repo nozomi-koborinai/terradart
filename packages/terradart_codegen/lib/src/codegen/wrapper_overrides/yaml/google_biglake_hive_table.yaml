@@ -4,6 +4,7 @@
 outputDir: biglake
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveEnums: true
 deriveNestedTypes: true
 

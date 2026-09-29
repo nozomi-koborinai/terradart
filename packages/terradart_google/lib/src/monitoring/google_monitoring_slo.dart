@@ -117,6 +117,61 @@ final class MonitoringSloWindowsBasedSli extends MonitoringSloSli {
   ];
 }
 
+/// Exactly one of `rolling_period_days`, `calendar_period` on `google_monitoring_slo`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class MonitoringSloRollingPeriodDaysOrCalendarPeriod {
+  const MonitoringSloRollingPeriodDaysOrCalendarPeriod();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `rolling_period_days` (one of the [MonitoringSloRollingPeriodDaysOrCalendarPeriod] choices).
+final class MonitoringSloRollingPeriodDaysOption
+    extends MonitoringSloRollingPeriodDaysOrCalendarPeriod {
+  const MonitoringSloRollingPeriodDaysOption({required this.rollingPeriodDays});
+
+  final TfArg<num> rollingPeriodDays;
+
+  @override
+  String get blockKey => 'rolling_period_days';
+
+  @override
+  Map<String, Object?> encode() => {
+    'rolling_period_days': rollingPeriodDays.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'rolling_period_days': rollingPeriodDays,
+  };
+}
+
+/// Sets `calendar_period` (one of the [MonitoringSloRollingPeriodDaysOrCalendarPeriod] choices).
+final class MonitoringSloCalendarPeriodOption
+    extends MonitoringSloRollingPeriodDaysOrCalendarPeriod {
+  const MonitoringSloCalendarPeriodOption({required this.calendarPeriod});
+
+  final TfArg<MonitoringSloCalendarPeriod> calendarPeriod;
+
+  @override
+  String get blockKey => 'calendar_period';
+
+  @override
+  Map<String, Object?> encode() => {
+    'calendar_period': calendarPeriod.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'calendar_period': calendarPeriod};
+}
+
 /// Factory wrapper for `google_monitoring_slo`.
 ///
 /// A Service-Level Objective (SLO) describes the level of desired good service.
@@ -155,8 +210,8 @@ final class GoogleMonitoringSlo extends Resource {
     required TfArg<num> goal,
     TfArg<String>? displayName,
     required MonitoringSloSli sli,
-    TfArg<MonitoringSloCalendarPeriod>? calendarPeriod,
-    TfArg<num>? rollingPeriodDays,
+    required MonitoringSloRollingPeriodDaysOrCalendarPeriod
+    rollingPeriodDaysOrCalendarPeriod,
     TfArg<String>? sloId,
     TfArg<Map<String, String>>? userLabels,
     TfArg<String>? project,
@@ -170,9 +225,7 @@ final class GoogleMonitoringSlo extends Resource {
            'service': service,
            'goal': goal,
            if (displayName != null) 'display_name': displayName,
-           if (calendarPeriod != null) 'calendar_period': calendarPeriod,
-           if (rollingPeriodDays != null)
-             'rolling_period_days': rollingPeriodDays,
+           ...rollingPeriodDaysOrCalendarPeriod.argMap,
            if (sloId != null) 'slo_id': sloId,
            if (userLabels != null) 'user_labels': userLabels,
            if (project != null) 'project': project,
