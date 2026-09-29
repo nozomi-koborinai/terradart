@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_tunnel_cloudflared_routes`.
 const Set<String> _cloudflareZeroTrustTunnelCloudflaredRoutesSensitive =
@@ -19,7 +20,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredRoutes extends Data {
 
   DataCloudflareZeroTrustTunnelCloudflaredRoutes({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? comment,
     TfArg<String>? existedAt,
     TfArg<bool>? isDeleted,
@@ -35,7 +36,7 @@ final class DataCloudflareZeroTrustTunnelCloudflaredRoutes extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'comment': ?comment,
            'existed_at': ?existedAt,
            'is_deleted': ?isDeleted,

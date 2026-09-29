@@ -12,17 +12,17 @@ export 'src/colab/google_colab_notebook_execution.dart'
         ColabNotebookExecutionCustomCompute,
         ColabNotebookExecutionDataformSource,
         ColabNotebookExecutionDirectSource,
-        ColabNotebookExecutionExecutionUser,
         ColabNotebookExecutionGcsSource,
         ColabNotebookExecutionIdentity,
-        ColabNotebookExecutionServiceAccount,
+        ColabNotebookExecutionIdentityExecutionUser,
+        ColabNotebookExecutionIdentityServiceAccount,
         ColabNotebookExecutionSource,
         ColabNotebookExecutionTemplateCompute,
         ColabNotebookExecutionWorkbenchRuntime,
         ColabNotebookExecutionWorkbenchRuntimeVmImage,
-        ColabNotebookExecutionWorkbenchRuntimeVmImageImage,
-        ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily,
-        ColabNotebookExecutionWorkbenchRuntimeVmImageImageName,
+        ColabNotebookExecutionWorkbenchRuntimeVmImageSelector,
+        ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorFamily,
+        ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorName,
         GoogleColabNotebookExecution;
 export 'src/colab/google_colab_runtime.dart'
     show

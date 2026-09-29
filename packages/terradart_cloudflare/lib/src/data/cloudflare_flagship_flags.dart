@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_flagship_flags`.
 const Set<String> _cloudflareFlagshipFlagsSensitive = <String>{};
@@ -16,7 +17,7 @@ final class DataCloudflareFlagshipFlags extends Data {
 
   DataCloudflareFlagshipFlags({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> appId,
     TfArg<String>? limit,
     TfArg<num>? maxItems,
@@ -25,7 +26,7 @@ final class DataCloudflareFlagshipFlags extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'app_id': appId,
            'limit': ?limit,
            'max_items': ?maxItems,

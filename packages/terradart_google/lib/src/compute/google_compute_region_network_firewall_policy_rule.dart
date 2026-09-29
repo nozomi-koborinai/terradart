@@ -225,6 +225,8 @@ final class GoogleComputeRegionNetworkFirewallPolicyRule extends Resource {
     TfArg<bool>? enableLogging,
     TfArg<List<String>>? targetServiceAccounts,
     TfArg<String>? project,
+    List<ComputeRegionNetworkFirewallPolicyRuleTargetSecureTags>?
+    targetSecureTags,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -244,6 +246,10 @@ final class GoogleComputeRegionNetworkFirewallPolicyRule extends Resource {
            'enable_logging': ?enableLogging,
            'target_service_accounts': ?targetServiceAccounts,
            'project': ?project,
+           if (targetSecureTags != null)
+             'target_secure_tags': TfArg.literal([
+               for (final e in targetSecureTags) e.encode(),
+             ]),
          },
        );
 

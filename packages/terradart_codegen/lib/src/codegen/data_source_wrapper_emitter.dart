@@ -14,6 +14,8 @@ import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
 import 'provider_enums.dart';
+import 'references/reference_slots.dart';
+import 'references/reference_targets.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
@@ -58,7 +60,17 @@ class DataSourceWrapperEmitter {
     this.rawDataSourceSchemas = const {},
     this.providerEnums = ProviderEnums.off,
     this.resourceDirs = const {},
+    this.references = const {},
   });
+
+  /// `--typed-references`: data source type → dotted input path → the
+  /// resource that input references. A matched string input is typed
+  /// `RefTo<Target>` unless the override already types it.
+  final Map<String, Map<String, ResolvedReference>> references;
+
+  /// The inputs the last [emit] typed as references, as
+  /// `data.<type>.<path>`.
+  final List<String> typedReferences = [];
 
   /// The `--provider-enums` gate; supplies the nested helpers' enum values.
   final ProviderEnums providerEnums;
@@ -121,6 +133,7 @@ class DataSourceWrapperEmitter {
     // Plan 5.X: no `.schema.dart` import (data source Layer 1 retired
     // alongside the resource Layer 1) and no `package:terradart_annotations`
     // import (package deleted).
+    final refs = references[def.terraformType] ?? const {};
     final nestedTypeSpecs = override.deriveNestedTypes
         ? collectNestedTypes(
             resourceBlock: _requireRawSchema(def.terraformType),
@@ -130,12 +143,48 @@ class DataSourceWrapperEmitter {
                 .toSet(),
             shareIdenticalShapes: override.dedupeNestedTypes,
             enumValues: providerEnums.resolver(null),
+            references: (path) => refs[path.join('.')],
           )
         : const <NestedBlockSpec>[];
+    final dartTypeOverrides =
+        override.dartTypeOverrides ?? const <String, String>{};
+    final topLevelRefs = <String, ResolvedReference>{
+      for (final attr in def.root.attributes)
+        if (refs[attr.name] case final ref?)
+          if (!skipDataSourceAttribute(attr) &&
+              !dartTypeOverrides.containsKey(attr.name))
+            attr.name: ref,
+    };
+    final nestedRefs = <String, ResolvedReference>{};
+    void collectNestedRefs(NestedBlockSpec spec, List<String> at) {
+      for (final attr in spec.attrs) {
+        final ref = attr.reference;
+        if (ref != null) nestedRefs[[...at, attr.tfName].join('.')] = ref;
+      }
+      for (final child in spec.children) {
+        collectNestedRefs(child, [...at, child.tfName]);
+      }
+    }
+
+    for (final spec in nestedTypeSpecs) {
+      collectNestedRefs(spec, [spec.tfName]);
+    }
+    typedReferences
+      ..clear()
+      ..addAll([
+        for (final path in [...topLevelRefs.keys, ...nestedRefs.keys])
+          'data.${def.terraformType}.$path',
+      ]);
 
     final extraImports = override.extraImports ?? const <String>[];
+    final nestedTypes = nestedTypeSpecs.isEmpty
+        ? ''
+        : renderNestedTypes(
+            nestedTypeSpecs,
+            resourceTerraformType: def.terraformType,
+          );
     final needsMeta =
-        nestedTypeSpecs.isNotEmpty &&
+        nestedTypes.contains('@immutable') &&
         !extraImports.any((i) => i.contains('package:meta/meta.dart'));
     if (needsMeta) {
       buf.writeln("import 'package:meta/meta.dart';");
@@ -154,9 +203,14 @@ class DataSourceWrapperEmitter {
         !RegExp(
           r'\bget ref\b',
         ).hasMatch('$derivedGetters${override.extraGetters ?? ''}');
+    final refImports = {
+      for (final ref in [...topLevelRefs.values, ...nestedRefs.values])
+        if (!emitsRef || ref.target != def.terraformType) ref.import,
+    }.toList()..sort();
     if (emitsRef) {
       buf.writeln("import '../$twinDir/${def.terraformType}.dart';");
     }
+    refImports.forEach(buf.writeln);
     buf.writeln();
 
     // File-leading comment block: a verbatim narrative comment that lives
@@ -194,13 +248,8 @@ class DataSourceWrapperEmitter {
     );
     buf.writeln();
 
-    if (nestedTypeSpecs.isNotEmpty) {
-      buf.write(
-        renderNestedTypes(
-          nestedTypeSpecs,
-          resourceTerraformType: def.terraformType,
-        ),
-      );
+    if (nestedTypes.isNotEmpty) {
+      buf.write(nestedTypes);
       buf.writeln();
     }
 
@@ -231,14 +280,23 @@ class DataSourceWrapperEmitter {
       override.paramOrder,
     );
     final argMapOrder = override.argMapOrder ?? paramOrder;
-    final dartTypeOverrides =
-        override.dartTypeOverrides ?? const <String, String>{};
     final paramsByName = _paramsByName(
       def,
       requiredOverrides,
       dartTypeOverrides,
     );
     final argMapByName = _argMapEntriesByName(def, requiredOverrides);
+    for (final MapEntry(key: name, value: ref) in topLevelRefs.entries) {
+      final attr = def.root.attributes.firstWhere((a) => a.name == name);
+      final slot = referenceSlot(
+        tfName: name,
+        dartName: snakeToDartIdent(name),
+        reference: ref,
+        required: attr.constraints.required || requiredOverrides.contains(name),
+      );
+      paramsByName[name] = slot.param;
+      argMapByName[name] = slot.argMapEntry;
+    }
     for (final spec in nestedTypeSpecs) {
       final isRequired =
           spec.required || requiredOverrides.contains(spec.tfName);

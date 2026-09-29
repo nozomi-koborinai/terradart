@@ -21,10 +21,9 @@ export 'src/filestore/google_filestore_instance.dart'
         FilestoreInstanceNfsSquashMode,
         FilestoreInstancePerformanceConfig,
         FilestoreInstancePerformanceConfigFixedIops,
-        FilestoreInstancePerformanceConfigIops,
-        FilestoreInstancePerformanceConfigIopsFixedIops,
-        FilestoreInstancePerformanceConfigIopsIopsPerTb,
+        FilestoreInstancePerformanceConfigFixedIopsChoice,
         FilestoreInstancePerformanceConfigIopsPerTb,
+        FilestoreInstancePerformanceConfigIopsPerTbChoice,
         FilestoreInstanceReplicationRole,
         FilestoreInstanceTier,
         GoogleFilestoreInstance;

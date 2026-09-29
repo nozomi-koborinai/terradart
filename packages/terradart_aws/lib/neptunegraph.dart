@@ -6,9 +6,9 @@ library;
 export 'src/neptunegraph/aws_neptunegraph_graph.dart'
     show
         AwsNeptunegraphGraph,
-        NeptunegraphGraphGraphName,
-        NeptunegraphGraphGraphNameGraphName,
-        NeptunegraphGraphGraphNameGraphNamePrefix,
+        NeptunegraphGraphName,
+        NeptunegraphGraphNameChoice,
+        NeptunegraphGraphNamePrefix,
         NeptunegraphGraphVectorSearchConfiguration;
 export 'src/neptunegraph/aws_neptunegraph_private_graph_endpoint.dart'
     show AwsNeptunegraphPrivateGraphEndpoint;

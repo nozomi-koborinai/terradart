@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_cloudforce_one_requests`.
 const Set<String> _cloudflareCloudforceOneRequestsSensitive = <String>{};
@@ -16,7 +17,7 @@ final class DataCloudflareCloudforceOneRequests extends Data {
 
   DataCloudflareCloudforceOneRequests({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? completedAfter,
     TfArg<String>? completedBefore,
     TfArg<String>? createdAfter,
@@ -33,7 +34,7 @@ final class DataCloudflareCloudforceOneRequests extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'completed_after': ?completedAfter,
            'completed_before': ?completedBefore,
            'created_after': ?createdAfter,

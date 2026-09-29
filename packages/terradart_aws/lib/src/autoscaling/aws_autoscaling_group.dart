@@ -24,23 +24,23 @@ enum AutoscalingGroupDesiredCapacityType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.launchConfiguration(...)`.
-sealed class AutoscalingGroupLaunch {
-  const AutoscalingGroupLaunch();
+sealed class AutoscalingGroupInstanceSource {
+  const AutoscalingGroupInstanceSource();
 
   /// Sets `launch_configuration`.
-  const factory AutoscalingGroupLaunch.launchConfiguration(
+  const factory AutoscalingGroupInstanceSource.launchConfiguration(
     TfArg<String> launchConfiguration,
-  ) = AutoscalingGroupLaunchLaunchConfiguration;
+  ) = AutoscalingGroupInstanceSourceLaunchConfiguration;
 
   /// Sets `launch_template`.
-  const factory AutoscalingGroupLaunch.launchTemplate(
+  const factory AutoscalingGroupInstanceSource.launchTemplate(
     AutoscalingGroupLaunchTemplate launchTemplate,
-  ) = AutoscalingGroupLaunchLaunchTemplate;
+  ) = AutoscalingGroupInstanceSourceLaunchTemplate;
 
   /// Sets `mixed_instances_policy`.
-  const factory AutoscalingGroupLaunch.mixedInstancesPolicy(
+  const factory AutoscalingGroupInstanceSource.mixedInstancesPolicy(
     AutoscalingGroupMixedInstancesPolicy mixedInstancesPolicy,
-  ) = AutoscalingGroupLaunchMixedInstancesPolicy;
+  ) = AutoscalingGroupInstanceSourceMixedInstancesPolicy;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,10 +52,12 @@ sealed class AutoscalingGroupLaunch {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AutoscalingGroupLaunch.launchConfiguration] choice: sets `launch_configuration`.
-final class AutoscalingGroupLaunchLaunchConfiguration
-    extends AutoscalingGroupLaunch {
-  const AutoscalingGroupLaunchLaunchConfiguration(this.launchConfiguration);
+/// The [AutoscalingGroupInstanceSource.launchConfiguration] choice: sets `launch_configuration`.
+final class AutoscalingGroupInstanceSourceLaunchConfiguration
+    extends AutoscalingGroupInstanceSource {
+  const AutoscalingGroupInstanceSourceLaunchConfiguration(
+    this.launchConfiguration,
+  );
 
   final TfArg<String> launchConfiguration;
 
@@ -73,10 +75,10 @@ final class AutoscalingGroupLaunchLaunchConfiguration
   };
 }
 
-/// The [AutoscalingGroupLaunch.launchTemplate] choice: sets `launch_template`.
-final class AutoscalingGroupLaunchLaunchTemplate
-    extends AutoscalingGroupLaunch {
-  const AutoscalingGroupLaunchLaunchTemplate(this.launchTemplate);
+/// The [AutoscalingGroupInstanceSource.launchTemplate] choice: sets `launch_template`.
+final class AutoscalingGroupInstanceSourceLaunchTemplate
+    extends AutoscalingGroupInstanceSource {
+  const AutoscalingGroupInstanceSourceLaunchTemplate(this.launchTemplate);
 
   final AutoscalingGroupLaunchTemplate launchTemplate;
 
@@ -92,10 +94,12 @@ final class AutoscalingGroupLaunchLaunchTemplate
   };
 }
 
-/// The [AutoscalingGroupLaunch.mixedInstancesPolicy] choice: sets `mixed_instances_policy`.
-final class AutoscalingGroupLaunchMixedInstancesPolicy
-    extends AutoscalingGroupLaunch {
-  const AutoscalingGroupLaunchMixedInstancesPolicy(this.mixedInstancesPolicy);
+/// The [AutoscalingGroupInstanceSource.mixedInstancesPolicy] choice: sets `mixed_instances_policy`.
+final class AutoscalingGroupInstanceSourceMixedInstancesPolicy
+    extends AutoscalingGroupInstanceSource {
+  const AutoscalingGroupInstanceSourceMixedInstancesPolicy(
+    this.mixedInstancesPolicy,
+  );
 
   final AutoscalingGroupMixedInstancesPolicy mixedInstancesPolicy;
 
@@ -193,11 +197,11 @@ sealed class AutoscalingGroupName {
 
   /// Sets `name`.
   const factory AutoscalingGroupName.name(TfArg<String> name) =
-      AutoscalingGroupNameName;
+      AutoscalingGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory AutoscalingGroupName.namePrefix(TfArg<String> namePrefix) =
-      AutoscalingGroupNameNamePrefix;
+      AutoscalingGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -210,8 +214,8 @@ sealed class AutoscalingGroupName {
 }
 
 /// The [AutoscalingGroupName.name] choice: sets `name`.
-final class AutoscalingGroupNameName extends AutoscalingGroupName {
-  const AutoscalingGroupNameName(this.name);
+final class AutoscalingGroupNameChoice extends AutoscalingGroupName {
+  const AutoscalingGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -226,8 +230,8 @@ final class AutoscalingGroupNameName extends AutoscalingGroupName {
 }
 
 /// The [AutoscalingGroupName.namePrefix] choice: sets `name_prefix`.
-final class AutoscalingGroupNameNamePrefix extends AutoscalingGroupName {
-  const AutoscalingGroupNameNamePrefix(this.namePrefix);
+final class AutoscalingGroupNamePrefix extends AutoscalingGroupName {
+  const AutoscalingGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -312,37 +316,23 @@ enum AutoscalingGroupCapacityReservationSpecificationCapacityReservationPreferen
   final String terraformValue;
 }
 
-/// Typed helper for the `capacity_reservation_specification.capacity_reservation_target` block of
-/// `aws_autoscaling_group` (derived from provider schema).
-@immutable
-final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget {
-  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget({
-    this.capacityReservation,
-  });
-
-  final AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation?
-  capacityReservation;
-
-  Map<String, Object?> encode() => {...?capacityReservation?.encode()};
-}
-
 /// At most one of `capacity_reservation_ids`, `capacity_reservation_resource_group_arns` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_autoscaling_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.capacityReservationIds(...)`.
-sealed class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
-  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation();
+sealed class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget {
+  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget();
 
   /// Sets `capacity_reservation_ids`.
-  const factory AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationIds(
+  const factory AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget.capacityReservationIds(
     TfArg<List<Object?>> capacityReservationIds,
-  ) = AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationIds;
+  ) = AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIds;
 
   /// Sets `capacity_reservation_resource_group_arns`.
-  const factory AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationResourceGroupArns(
+  const factory AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget.capacityReservationResourceGroupArns(
     TfArg<List<Object?>> capacityReservationResourceGroupArns,
-  ) = AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArns;
+  ) = AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArns;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -350,11 +340,11 @@ sealed class AutoscalingGroupCapacityReservationSpecificationCapacityReservation
   Map<String, Object?> encode();
 }
 
-/// The [AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationIds] choice: sets `capacity_reservation_ids`.
-final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationIds
+/// The [AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget.capacityReservationIds] choice: sets `capacity_reservation_ids`.
+final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIds
     extends
-        AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
-  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationIds(
+        AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget {
+  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIds(
     this.capacityReservationIds,
   );
 
@@ -369,11 +359,11 @@ final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationT
   };
 }
 
-/// The [AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationResourceGroupArns] choice: sets `capacity_reservation_resource_group_arns`.
-final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArns
+/// The [AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget.capacityReservationResourceGroupArns] choice: sets `capacity_reservation_resource_group_arns`.
+final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArns
     extends
-        AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
-  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArns(
+        AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget {
+  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArns(
     this.capacityReservationResourceGroupArns,
   );
 
@@ -651,14 +641,14 @@ final class AutoscalingGroupInstanceRefreshPreferencesAlarmSpecification {
 /// `aws_autoscaling_group` (derived from provider schema).
 @immutable
 final class AutoscalingGroupLaunchTemplate {
-  const AutoscalingGroupLaunchTemplate({this.template, this.version});
+  const AutoscalingGroupLaunchTemplate({this.identifier, this.version});
 
-  final AutoscalingGroupLaunchTemplateTemplate? template;
+  final AutoscalingGroupLaunchTemplateIdentifier? identifier;
 
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    ...?template?.encode(),
+    ...?identifier?.encode(),
     'version': ?version?.toTfJson(),
   };
 }
@@ -668,17 +658,17 @@ final class AutoscalingGroupLaunchTemplate {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.id(...)`.
-sealed class AutoscalingGroupLaunchTemplateTemplate {
-  const AutoscalingGroupLaunchTemplateTemplate();
+sealed class AutoscalingGroupLaunchTemplateIdentifier {
+  const AutoscalingGroupLaunchTemplateIdentifier();
 
   /// Sets `id`.
-  const factory AutoscalingGroupLaunchTemplateTemplate.id(TfArg<String> id) =
-      AutoscalingGroupLaunchTemplateTemplateId;
+  const factory AutoscalingGroupLaunchTemplateIdentifier.id(TfArg<String> id) =
+      AutoscalingGroupLaunchTemplateIdentifierId;
 
   /// Sets `name`.
-  const factory AutoscalingGroupLaunchTemplateTemplate.name(
+  const factory AutoscalingGroupLaunchTemplateIdentifier.name(
     TfArg<String> name,
-  ) = AutoscalingGroupLaunchTemplateTemplateName;
+  ) = AutoscalingGroupLaunchTemplateIdentifierName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -686,10 +676,10 @@ sealed class AutoscalingGroupLaunchTemplateTemplate {
   Map<String, Object?> encode();
 }
 
-/// The [AutoscalingGroupLaunchTemplateTemplate.id] choice: sets `id`.
-final class AutoscalingGroupLaunchTemplateTemplateId
-    extends AutoscalingGroupLaunchTemplateTemplate {
-  const AutoscalingGroupLaunchTemplateTemplateId(this.id);
+/// The [AutoscalingGroupLaunchTemplateIdentifier.id] choice: sets `id`.
+final class AutoscalingGroupLaunchTemplateIdentifierId
+    extends AutoscalingGroupLaunchTemplateIdentifier {
+  const AutoscalingGroupLaunchTemplateIdentifierId(this.id);
 
   final TfArg<String> id;
 
@@ -700,10 +690,10 @@ final class AutoscalingGroupLaunchTemplateTemplateId
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// The [AutoscalingGroupLaunchTemplateTemplate.name] choice: sets `name`.
-final class AutoscalingGroupLaunchTemplateTemplateName
-    extends AutoscalingGroupLaunchTemplateTemplate {
-  const AutoscalingGroupLaunchTemplateTemplateName(this.name);
+/// The [AutoscalingGroupLaunchTemplateIdentifier.name] choice: sets `name`.
+final class AutoscalingGroupLaunchTemplateIdentifierName
+    extends AutoscalingGroupLaunchTemplateIdentifier {
+  const AutoscalingGroupLaunchTemplateIdentifierName(this.name);
 
   final TfArg<String> name;
 
@@ -1444,7 +1434,7 @@ final class AwsAutoscalingGroup extends Resource {
     TfArg<num>? healthCheckGracePeriod,
     TfArg<String>? healthCheckType,
     TfArg<bool>? ignoreFailedScalingActivities,
-    required AutoscalingGroupLaunch launch,
+    required AutoscalingGroupInstanceSource instanceSource,
     TfArg<List<String>>? loadBalancers,
     TfArg<num>? maxInstanceLifetime,
     required TfArg<num> maxSize,
@@ -1491,7 +1481,7 @@ final class AwsAutoscalingGroup extends Resource {
            'health_check_grace_period': ?healthCheckGracePeriod,
            'health_check_type': ?healthCheckType,
            'ignore_failed_scaling_activities': ?ignoreFailedScalingActivities,
-           ...launch.argMap,
+           ...instanceSource.argMap,
            'load_balancers': ?loadBalancers,
            'max_instance_lifetime': ?maxInstanceLifetime,
            'max_size': maxSize,

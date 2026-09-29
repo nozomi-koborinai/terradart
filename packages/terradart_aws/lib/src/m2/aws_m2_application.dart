@@ -1,7 +1,6 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
-import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/aws_iam_role.dart' show AwsIamRole;
@@ -20,33 +19,20 @@ enum M2ApplicationEngineType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Typed helper for the `definition` block of
-/// `aws_m2_application` (derived from provider schema).
-@immutable
-final class M2ApplicationDefinition {
-  const M2ApplicationDefinition({required this.definition});
-
-  final M2ApplicationDefinitionDefinition definition;
-
-  Map<String, Object?> encode() => {...definition.encode()};
-}
-
 /// Exactly one of `content`, `s3_location` on the `definition` block of `aws_m2_application`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.content(...)`.
-sealed class M2ApplicationDefinitionDefinition {
-  const M2ApplicationDefinitionDefinition();
+sealed class M2ApplicationDefinition {
+  const M2ApplicationDefinition();
 
   /// Sets `content`.
-  const factory M2ApplicationDefinitionDefinition.content(
-    TfArg<String> content,
-  ) = M2ApplicationDefinitionDefinitionContent;
+  const factory M2ApplicationDefinition.content(TfArg<String> content) =
+      M2ApplicationDefinitionContent;
 
   /// Sets `s3_location`.
-  const factory M2ApplicationDefinitionDefinition.s3Location(
-    TfArg<String> s3Location,
-  ) = M2ApplicationDefinitionDefinitionS3Location;
+  const factory M2ApplicationDefinition.s3Location(TfArg<String> s3Location) =
+      M2ApplicationDefinitionS3Location;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -54,10 +40,9 @@ sealed class M2ApplicationDefinitionDefinition {
   Map<String, Object?> encode();
 }
 
-/// The [M2ApplicationDefinitionDefinition.content] choice: sets `content`.
-final class M2ApplicationDefinitionDefinitionContent
-    extends M2ApplicationDefinitionDefinition {
-  const M2ApplicationDefinitionDefinitionContent(this.content);
+/// The [M2ApplicationDefinition.content] choice: sets `content`.
+final class M2ApplicationDefinitionContent extends M2ApplicationDefinition {
+  const M2ApplicationDefinitionContent(this.content);
 
   final TfArg<String> content;
 
@@ -68,10 +53,9 @@ final class M2ApplicationDefinitionDefinitionContent
   Map<String, Object?> encode() => {'content': content.toTfJson()};
 }
 
-/// The [M2ApplicationDefinitionDefinition.s3Location] choice: sets `s3_location`.
-final class M2ApplicationDefinitionDefinitionS3Location
-    extends M2ApplicationDefinitionDefinition {
-  const M2ApplicationDefinitionDefinitionS3Location(this.s3Location);
+/// The [M2ApplicationDefinition.s3Location] choice: sets `s3_location`.
+final class M2ApplicationDefinitionS3Location extends M2ApplicationDefinition {
+  const M2ApplicationDefinitionS3Location(this.s3Location);
 
   final TfArg<String> s3Location;
 

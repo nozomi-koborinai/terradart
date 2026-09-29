@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_gateway_certificate.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_gateway_certificate`.
 const Set<String> _cloudflareZeroTrustGatewayCertificateSensitive = <String>{};
@@ -13,13 +14,16 @@ final class DataCloudflareZeroTrustGatewayCertificate extends Data {
 
   DataCloudflareZeroTrustGatewayCertificate({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> certificateId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'certificate_id': certificateId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'certificate_id': certificateId,
+         },
        );
 
   @override

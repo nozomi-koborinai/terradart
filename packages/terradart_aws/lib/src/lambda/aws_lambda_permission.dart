@@ -29,12 +29,12 @@ sealed class LambdaPermissionStatementId {
   /// Sets `statement_id`.
   const factory LambdaPermissionStatementId.statementId(
     TfArg<String> statementId,
-  ) = LambdaPermissionStatementIdStatementId;
+  ) = LambdaPermissionStatementIdChoice;
 
   /// Sets `statement_id_prefix`.
   const factory LambdaPermissionStatementId.statementIdPrefix(
     TfArg<String> statementIdPrefix,
-  ) = LambdaPermissionStatementIdStatementIdPrefix;
+  ) = LambdaPermissionStatementIdPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,9 +47,9 @@ sealed class LambdaPermissionStatementId {
 }
 
 /// The [LambdaPermissionStatementId.statementId] choice: sets `statement_id`.
-final class LambdaPermissionStatementIdStatementId
+final class LambdaPermissionStatementIdChoice
     extends LambdaPermissionStatementId {
-  const LambdaPermissionStatementIdStatementId(this.statementId);
+  const LambdaPermissionStatementIdChoice(this.statementId);
 
   final TfArg<String> statementId;
 
@@ -64,9 +64,9 @@ final class LambdaPermissionStatementIdStatementId
 }
 
 /// The [LambdaPermissionStatementId.statementIdPrefix] choice: sets `statement_id_prefix`.
-final class LambdaPermissionStatementIdStatementIdPrefix
+final class LambdaPermissionStatementIdPrefix
     extends LambdaPermissionStatementId {
-  const LambdaPermissionStatementIdStatementIdPrefix(this.statementIdPrefix);
+  const LambdaPermissionStatementIdPrefix(this.statementIdPrefix);
 
   final TfArg<String> statementIdPrefix;
 

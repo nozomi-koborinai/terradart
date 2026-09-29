@@ -6,4 +6,4 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "db_cluster_identifier, db_instance_identifier": target
+  "db_cluster_identifier, db_instance_identifier": database

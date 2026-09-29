@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_token_validation_rules_list`.
 const Set<String> _cloudflareTokenValidationRulesListSensitive = <String>{};
@@ -24,7 +25,7 @@ final class DataCloudflareTokenValidationRulesList extends Data {
     TfArg<num>? maxItems,
     TfArg<String>? ruleId,
     TfArg<List<String>>? tokenConfiguration,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -37,7 +38,7 @@ final class DataCloudflareTokenValidationRulesList extends Data {
            'max_items': ?maxItems,
            'rule_id': ?ruleId,
            'token_configuration': ?tokenConfiguration,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

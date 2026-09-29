@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
 
 /// Sensitive field paths for `aws_kms_public_key`.
 const Set<String> _awsKmsPublicKeySensitive = <String>{};
@@ -13,7 +14,7 @@ final class DataAwsKmsPublicKey extends Data {
   DataAwsKmsPublicKey({
     required super.localName,
     TfArg<List<String>>? grantTokens,
-    required TfArg<String> keyId,
+    required RefTo<AwsKmsKey> keyId,
     TfArg<String>? region,
     super.provider,
     super.timeouts,
@@ -21,7 +22,7 @@ final class DataAwsKmsPublicKey extends Data {
          terraformType: tfType,
          argMap: {
            'grant_tokens': ?grantTokens,
-           'key_id': keyId,
+           'key_id': keyId.encodeAs('arn'),
            'region': ?region,
          },
        );

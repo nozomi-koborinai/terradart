@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_vpc.dart' show AwsVpc;
 
 /// Sensitive field paths for `aws_route_tables`.
 const Set<String> _awsRouteTablesSensitive = <String>{};
@@ -31,7 +32,7 @@ final class DataAwsRouteTables extends Data {
     required super.localName,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     List<DataRouteTablesFilter>? filter,
     super.provider,
     super.timeouts,
@@ -40,7 +41,7 @@ final class DataAwsRouteTables extends Data {
          argMap: {
            'region': ?region,
            'tags': ?tags,
-           'vpc_id': ?vpcId,
+           'vpc_id': ?vpcId?.encodeAs('id'),
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

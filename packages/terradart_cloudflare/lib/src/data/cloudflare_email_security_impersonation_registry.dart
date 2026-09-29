@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../email/cloudflare_email_security_impersonation_registry.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_email_security_impersonation_registry`.
 const Set<String> _cloudflareEmailSecurityImpersonationRegistrySensitive =
@@ -88,7 +89,7 @@ final class DataCloudflareEmailSecurityImpersonationRegistry extends Data {
 
   DataCloudflareEmailSecurityImpersonationRegistry({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? impersonationRegistryId,
     DataEmailSecurityImpersonationRegistryFilter? filter,
     super.provider,
@@ -96,7 +97,7 @@ final class DataCloudflareEmailSecurityImpersonationRegistry extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'impersonation_registry_id': ?impersonationRegistryId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

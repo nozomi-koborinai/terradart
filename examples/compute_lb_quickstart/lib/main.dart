@@ -130,12 +130,12 @@ final class ComputeLbStack extends Stack {
         machineType: .literal('e2-small'),
         zone: .literal(zone),
         bootDisk: ComputeInstanceBootDisk(
-          initializeParams: ComputeInstanceInitializeParams(
+          initializeParams: ComputeInstanceBootDiskInitializeParams(
             image: .literal('debian-cloud/debian-12'),
           ),
         ),
         networkInterface: [
-          ComputeInstanceNetworkInterface(subnetwork: .ref(lbSubnet.selfLink)),
+          ComputeInstanceNetworkInterface(subnetwork: lbSubnet.ref),
         ],
       ),
     );
@@ -456,10 +456,10 @@ final class ComputeLbStack extends Stack {
         protocol: .literal(.https),
         loadBalancingScheme: .literal(.externalManaged),
         timeoutSec: .literal(30),
-        backends: [
-          ComputeBackendServiceBackendServiceBackend(
+        backend: [
+          ComputeBackendServiceBackend(
             group: .ref(lbNeg.selfLink),
-            balancingMode: BackendServiceBalancingMode.rate,
+            balancingMode: .literal(.rate),
             maxRatePerEndpoint: .literal(100),
             capacityScaler: .literal(1.0),
           ),
@@ -603,10 +603,10 @@ final class ComputeLbStack extends Stack {
         protocol: .literal(.tcp),
         loadBalancingScheme: .literal(.internal),
         healthChecks: .literal([regionalHealthCheck.selfLink.interpolation]),
-        backends: [
-          ComputeRegionBackendServiceRegionBackendServiceBackend(
+        backend: [
+          ComputeRegionBackendServiceBackend(
             group: .ref(lbNeg.selfLink),
-            balancingMode: RegionBackendServiceBalancingMode.connection,
+            balancingMode: .literal(.connection),
           ),
         ],
         dependsOn: [ResourceDependency(regionalHealthCheck)],
@@ -739,24 +739,21 @@ final class ComputeLbStack extends Stack {
         namePrefix: .literal('app-web-'),
         machineType: .literal('e2-small'),
         disk: [
-          ComputeInstanceTemplateInstanceTemplateDisk(
+          ComputeInstanceTemplateDisk(
             boot: .literal(true),
             sourceImage: .literal('debian-cloud/debian-12'),
             autoDelete: .literal(true),
           ),
         ],
         networkInterface: [
-          ComputeInstanceTemplateInstanceTemplateNetworkInterface(
-            network: .ref(lbVpc.selfLink),
-            subnetwork: .ref(lbSubnet.selfLink),
+          ComputeInstanceTemplateNetworkInterface(
+            network: lbVpc.ref,
+            subnetwork: lbSubnet.ref,
           ),
         ],
-        networkPerformanceConfig:
-            const ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig(
-              totalEgressBandwidthTier:
-                  ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
-                      .tier1,
-            ),
+        networkPerformanceConfig: ComputeInstanceTemplateNetworkPerformanceConfig(
+          totalEgressBandwidthTier: .literal(.tier1),
+        ),
       ),
     );
 

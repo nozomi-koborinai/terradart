@@ -78,25 +78,30 @@ The examples changed in these places:
 `.literal` / `.variable` / `.expression` otherwise, so migrated stacks keep
 their synth output.
 
-A variant of a sealed argument (or of a sealed helper field) whose member
-names another resource takes the same `RefTo<Target>`:
+A sealed choice between such arguments takes the same `RefTo<Target>`,
+whether it is a top-level argument or a field of a nested helper. Synth
+output does not change: each variant emits the attribute the plain argument
+emits.
 
-| Before | After |
-|--------|-------|
-| `AwsRouteTableAssociation(target: .subnetId(TfArg.ref(subnet.id)), ...)` | `AwsRouteTableAssociation(target: .subnetId(subnet.ref), ...)` |
-| `AwsLb(subnet: .subnets(TfArg.literal([TfArg.ref(a.id)])), ...)` | `AwsLb(subnet: .subnets(.literal([a.ref])), ...)` |
-| `CloudflareRuleset(scope: .zoneId(TfArg.literal(zoneId)), ...)` | `CloudflareRuleset(scope: .zoneId(.literal(zoneId)), ...)` |
+| Resource | Before | After |
+|----------|--------|-------|
+| `cloudflare_ruleset` | `scope: .zoneId(TfArg.ref(zone.id))` | `scope: .zoneId(zone.ref)` |
+| `aws_lambda_function` | `code: .s3Bucket(TfArg.ref(bucket.id))` | `code: .s3Bucket(bucket.ref)` |
+| `aws_lb` / `aws_alb` | `subnet: .subnets(TfArg.literal([a.id.interpolation]))` | `subnet: .subnets(.literal([a.ref]))` |
+| `aws_flow_log` | `source: .vpcId(TfArg.ref(vpc.id))` | `source: .vpcId(vpc.ref)` |
 
-It covers `AwsCloudhsmV2Hsm` `placement`, `AwsFlowLog` `source`,
-`AwsRouteTableAssociation` `target`, `AwsVpcBlockPublicAccessExclusion`
-`target`, `AwsAlb` / `AwsLb` `subnet`, `AwsLambdaFunction` `code`
-(`.s3Bucket`), `AwsNetworkfirewallFirewall` `attachment`, `AwsS3Object` /
-`AwsS3BucketObject` `integrity` (`.kmsKeyId`), `AwsLaunchTemplate`
-`.vpcSecurityGroupIds`, `AwsEmrCluster` `ec2_attributes` `subnet`,
-`CloudflareRuleset` `scope`, `GoogleVertexAiIndexEndpoint` `.network`,
-`GoogleDataprocBatch` `environment_config.execution_config` `network`
-(`.networkUri` / `.subnetworkUri`) and `GoogleSpannerBackupSchedule`
-`encryption_config` (`.kmsKeyName`). Synth output is unchanged.
+The other sealed members typed this way: `aws_cloudhsm_v2_hsm`
+`subnet_id`, `aws_s3_object` / `aws_s3_bucket_object` `kms_key_id`,
+`aws_launch_template`, `aws_route_table_association`,
+`aws_vpc_block_public_access_exclusion`, `aws_emr_cluster`,
+`aws_networkfirewall_firewall`, `google_dataproc_batch`,
+`google_spanner_backup_schedule` and `google_vertex_ai_index_endpoint`.
+
+Data-source arguments that name a resource take `RefTo<Target>` the same
+way: `DataAwsNatGateway(vpcId: vpc.ref)`,
+`DataCloudflareZoneLockdowns(zoneId: zone.ref)`,
+`DataGoogleKmsCryptoKeyVersion(cryptoKey: key.ref)`. A string that is not a
+block of the Stack takes `.literal(...)`; synth output does not change.
 
 ### Sealed arguments are built with dot shorthands
 
@@ -109,8 +114,17 @@ choices. The `<Prefix><Member>Option` variant classes are gone: each
 variant is a class named `<SealedType><Member>` that you only need for
 pattern matching. The hand-written `terradart_google` sealed types
 (`source`, `payload`, health-check `protocol`, ...) gain the same
-factories; their variant classes keep their names, so existing call sites
-still compile.
+factories. Their variant classes keep their names, so existing call sites
+still compile, except the variants of five types whose names said a block
+segment twice:
+
+| Before (0.30) | After |
+|--------|-------|
+| `StorageBucketObjectBucketObjectContent` / `BucketObjectFromSource` / `BucketObjectFromContent` | `StorageBucketObjectBody` / `StorageBucketObjectBodySource` / `StorageBucketObjectBodyContent` |
+| `ColabNotebookExecutionExecutionUser` / `ColabNotebookExecutionServiceAccount` | `ColabNotebookExecutionIdentityExecutionUser` / `ColabNotebookExecutionIdentityServiceAccount` |
+| `ComputeImageDiskSource` / `ComputeImageImageSource` / `ComputeImageSnapshotSource` | `ComputeImageSourceDisk` / `ComputeImageSourceImage` / `ComputeImageSourceSnapshot` |
+| `ComputeRegionHealthCheckRegionHealthCheck<Protocol>Config` | `ComputeRegionHealthCheck<Protocol>HealthCheckConfig` |
+| `FirebaseAppHostingBuildAppHostingBuildSource` (+ `Codebase` / `Container`) | `FirebaseAppHostingBuildSource` (+ `Codebase` / `Container`) |
 
 | Before (0.30) | After |
 |--------|-------|
@@ -135,19 +149,37 @@ one, with no API change: `name: .literal('orders')`,
 **Breaking (every package with a derived sealed type)** — a derived sealed
 argument is named after the concept its members share, like a protobuf
 `oneof`, instead of its members joined by `Or`. The sealed type is
-`<ResourceStem><Concept>`, and each variant is `<SealedType><Member>`. The
-name comes from the lane's wrapper override (`sealedNames:`), else from the
-members' shared prefix or suffix, else from the enclosing block when the
-group is the whole block. Every group on every lane has a name in this
-release. The variant constructors keep their member names, so only the
-argument name and the type name change:
+`<ResourceStem><Concept>` (`<HelperClass><Concept>` inside a block), and
+each variant is `<SealedType><Member>`. The name comes from the lane's
+wrapper override (`sealedNames:`), else from the members' shared prefix or
+suffix. Every group on every lane has a name in this release. The variant
+constructors keep their member names, so only the argument name and the
+type name change:
 
 | Before (0.30) | After |
 |--------|-------|
 | `AwsLambdaFunction(filenameOrImageUriOrS3Bucket: ..., ...)` | `AwsLambdaFunction(code: .filename(...), ...)` |
 | `AwsRoute53Record(aliasOrRecords: ..., ...)` | `AwsRoute53Record(target: .records(...), ...)` |
 | `AwsAcmCertificate(domainNameOrPrivateKeyOrPrivateKeyWo: ..., ...)` | `AwsAcmCertificate(source: .domainName(...), ...)` |
-| `InstanceLaunchTemplate(idOrName: ...)` | `InstanceLaunchTemplate(template: .id(...))` |
+| `InstanceLaunchTemplate(idOrName: ...)` | `InstanceLaunchTemplate(identifier: .id(...))` |
+
+No type name says a block segment twice. A joined name drops the words the
+two halves share (`RdsCluster` + `cluster_identifier` →
+`RdsClusterIdentifier`); a variant whose name would still repeat a
+segment, or take a class the resource already declares (usually the
+member block's own helper), ends in `Choice`, `Option` or `Variant`
+instead (`DataplexDatascanExecutionSpecTriggerOnDemandChoice`).
+
+A block that holds nothing but one group — every input is a member of an
+exactly-one group, or of an at-most-one group on an optional block — gets
+no argument of its own: the block's class *is* the sealed type, and its
+parent passes the choice straight to the block's argument. Those rows read
+*the `<name>` block* in the tables below:
+
+| Before (0.30) | After |
+|--------|-------|
+| `amount: BillingBudgetAmount(lastPeriodAmount: TfArg.literal(true))` | `amount: .lastPeriodAmount(.literal(true))` |
+| `data: DataplexDatascanData(resource: TfArg.literal(uri))` | `data: .resource(.literal(uri))` |
 
 The 160 `terradart_aws` exactly-one groups released in 0.30 are the only
 derived sealed arguments that change name. Every one is listed here:
@@ -157,8 +189,8 @@ derived sealed arguments that change name. Every one is listed here:
 | Class | 0.30 argument | New argument | Sealed type |
 |---|---|---|---|
 | `AppmeshGatewayRouteSpec` | `grpcRouteOrHttp2RouteOrHttpRoute` | `route` | `AppmeshGatewayRouteSpecRoute` |
-| `AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate` | `fileOrSds` | `certificate` | `AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateCertificate` |
-| `AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust` | `acmOrFileOrSds` | `trust` | `AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustTrust` |
+| `AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate` | `fileOrSds` | *the `certificate` block* | `AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate` |
+| `AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust` | `acmOrFileOrSds` | *the `trust` block* | `AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrust` |
 | `ApprunnerServiceSourceConfiguration` | `codeRepositoryOrImageRepository` | `repository` | `ApprunnerServiceSourceConfigurationRepository` |
 | `AwsAcmCertificate` | `domainNameOrPrivateKeyOrPrivateKeyWo` | `source` | `AcmCertificateSource` |
 | `AwsAlb` | `subnetMappingOrSubnets` | `subnet` | `AlbSubnet` |
@@ -167,22 +199,22 @@ derived sealed arguments that change name. Every one is listed here:
 | `AwsAppsyncSourceApiAssociation` | `mergedApiArnOrMergedApiId` | `mergedApi` | `AppsyncSourceApiAssociationMergedApi` |
 | `AwsAppsyncSourceApiAssociation` | `sourceApiArnOrSourceApiId` | `sourceApi` | `AppsyncSourceApiAssociationSourceApi` |
 | `AwsAutoscalingAttachment` | `elbOrLbTargetGroupArn` | `target` | `AutoscalingAttachmentTarget` |
-| `AwsAutoscalingGroup` | `launchConfigurationOrLaunchTemplateOrMixedInstancesPolicy` | `launch` | `AutoscalingGroupLaunch` |
+| `AwsAutoscalingGroup` | `launchConfigurationOrLaunchTemplateOrMixedInstancesPolicy` | `instanceSource` | `AutoscalingGroupInstanceSource` |
 | `AwsBackupRestoreTestingSelection` | `protectedResourceArnsOrProtectedResourceConditions` | `protectedResource` | `BackupRestoreTestingSelectionProtectedResource` |
 | `AwsBedrockagentcoreApiKeyCredentialProvider` | `apiKeyOrApiKeySecretConfigOrApiKeyWo` | `apiKey` | `BedrockagentcoreApiKeyCredentialProviderApiKey` |
 | `AwsCloudhsmV2Hsm` | `availabilityZoneOrSubnetId` | `placement` | `CloudhsmV2HsmPlacement` |
 | `AwsCloudwatchLogResourcePolicy` | `policyNameOrResourceArn` | `scope` | `CloudwatchLogResourcePolicyScope` |
-| `AwsCloudwatchMetricAlarm` | `evaluationCriteriaOrMetricNameOrMetricQuery` | `metric` | `CloudwatchMetricAlarmMetric` |
+| `AwsCloudwatchMetricAlarm` | `evaluationCriteriaOrMetricNameOrMetricQuery` | `signal` | `CloudwatchMetricAlarmSignal` |
 | `AwsCognitoManagedLoginBranding` | `settingsOrUseCognitoProvidedValues` | `style` | `CognitoManagedLoginBrandingStyle` |
 | `AwsCognitoManagedUserPoolClient` | `namePatternOrNamePrefix` | `name` | `CognitoManagedUserPoolClientName` |
 | `AwsConfigAggregateAuthorization` | `authorizedAwsRegionOrRegion` | `region` | `ConfigAggregateAuthorizationRegion` |
-| `AwsDbProxyTarget` | `dbClusterIdentifierOrDbInstanceIdentifier` | `target` | `DbProxyTargetTarget` |
-| `AwsDmsCertificate` | `certificatePemOrCertificateWallet` | `certificate` | `DmsCertificateCertificate` |
+| `AwsDbProxyTarget` | `dbClusterIdentifierOrDbInstanceIdentifier` | `database` | `DbProxyTargetDatabase` |
+| `AwsDmsCertificate` | `certificatePemOrCertificateWallet` | `content` | `DmsCertificateContent` |
 | `AwsDxHostedPrivateVirtualInterfaceAccepter` | `dxGatewayIdOrVpnGatewayId` | `gatewayId` | `DxHostedPrivateVirtualInterfaceAccepterGatewayId` |
 | `AwsDxPrivateVirtualInterface` | `dxGatewayIdOrVpnGatewayId` | `gatewayId` | `DxPrivateVirtualInterfaceGatewayId` |
 | `AwsEc2ClientVpnAuthorizationRule` | `accessGroupIdOrAuthorizeAllGroups` | `audience` | `Ec2ClientVpnAuthorizationRuleAudience` |
 | `AwsEc2Host` | `instanceFamilyOrInstanceType` | `instance` | `Ec2HostInstance` |
-| `AwsEc2TrafficMirrorTarget` | `gatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn` | `target` | `Ec2TrafficMirrorTargetTarget` |
+| `AwsEc2TrafficMirrorTarget` | `gatewayLoadBalancerEndpointIdOrNetworkInterfaceIdOrNetworkLoadBalancerArn` | `destination` | `Ec2TrafficMirrorTargetDestination` |
 | `AwsEipAssociation` | `instanceIdOrNetworkInterfaceId` | `target` | `EipAssociationTarget` |
 | `AwsElasticacheCluster` | `engineOrReplicationGroupId` | `source` | `ElasticacheClusterSource` |
 | `AwsEmrStudioSessionMapping` | `identityIdOrIdentityName` | `identity` | `EmrStudioSessionMappingIdentity` |
@@ -209,17 +241,17 @@ derived sealed arguments that change name. Every one is listed here:
 | `AwsNetworkfirewallFirewall` | `transitGatewayIdOrVpcId` | `attachment` | `NetworkfirewallFirewallAttachment` |
 | `AwsOpensearchserverlessSecurityConfig` | `iamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions` | `options` | `OpensearchserverlessSecurityConfigOptions` |
 | `AwsPinpointGcmChannel` | `apiKeyOrServiceJson` | `credentials` | `PinpointGcmChannelCredentials` |
-| `AwsPinpointsmsvoicev2EventDestination` | `cloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination` | `destination` | `Pinpointsmsvoicev2EventDestinationDestination` |
+| `AwsPinpointsmsvoicev2EventDestination` | `cloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination` | `target` | `Pinpointsmsvoicev2EventDestinationTarget` |
 | `AwsRedshiftDataShareConsumerAssociation` | `associateEntireAccountOrConsumerArnOrConsumerRegion` | `consumer` | `RedshiftDataShareConsumerAssociationConsumer` |
 | `AwsRoute53Record` | `aliasOrRecords` | `target` | `Route53RecordTarget` |
 | `AwsRoute53recoverycontrolconfigSafetyRule` | `assertedControlsOrGatingControls` | `controls` | `Route53recoverycontrolconfigSafetyRuleControls` |
 | `AwsRouteTableAssociation` | `gatewayIdOrSubnetId` | `target` | `RouteTableAssociationTarget` |
 | `AwsRumAppMonitor` | `domainOrDomainList` | `domain` | `RumAppMonitorDomain` |
-| `AwsS3BucketAcl` | `accessControlPolicyOrAcl` | `access` | `S3BucketAclAccess` |
+| `AwsS3BucketAcl` | `accessControlPolicyOrAcl` | `policy` | `S3BucketAclPolicy` |
 | `AwsSagemakerApp` | `spaceNameOrUserProfileName` | `owner` | `SagemakerAppOwner` |
-| `AwsSagemakerPipeline` | `pipelineDefinitionOrPipelineDefinitionS3Location` | `pipelineDefinition` | `SagemakerPipelinePipelineDefinition` |
+| `AwsSagemakerPipeline` | `pipelineDefinitionOrPipelineDefinitionS3Location` | `pipelineDefinition` | `SagemakerPipelineDefinition` |
 | `AwsSagemakerWorkforce` | `cognitoConfigOrOidcConfig` | `identityProvider` | `SagemakerWorkforceIdentityProvider` |
-| `AwsServicecatalogProvisionedProduct` | `productIdOrProductName` | `product` | `ServicecatalogProvisionedProductProduct` |
+| `AwsServicecatalogProvisionedProduct` | `productIdOrProductName` | `identifier` | `ServicecatalogProvisionedProductIdentifier` |
 | `AwsServicecatalogProvisionedProduct` | `provisioningArtifactIdOrProvisioningArtifactName` | `provisioningArtifact` | `ServicecatalogProvisionedProductProvisioningArtifact` |
 | `AwsServicecatalogProvisioningArtifact` | `templatePhysicalIdOrTemplateUrl` | `template` | `ServicecatalogProvisioningArtifactTemplate` |
 | `AwsServicequotasTemplate` | `awsRegionOrRegion` | `region` | `ServicequotasTemplateRegion` |
@@ -229,93 +261,93 @@ derived sealed arguments that change name. Every one is listed here:
 | `AwsStoragegatewayUploadBuffer` | `diskIdOrDiskPath` | `disk` | `StoragegatewayUploadBufferDisk` |
 | `AwsTranscribeVocabulary` | `phrasesOrVocabularyFileUri` | `terms` | `TranscribeVocabularyTerms` |
 | `AwsTranscribeVocabularyFilter` | `vocabularyFilterFileUriOrWords` | `terms` | `TranscribeVocabularyFilterTerms` |
-| `AwsTransferHostKey` | `hostKeyBodyOrHostKeyBodyWo` | `hostKeyBody` | `TransferHostKeyHostKeyBody` |
+| `AwsTransferHostKey` | `hostKeyBodyOrHostKeyBodyWo` | `hostKeyBody` | `TransferHostKeyBody` |
 | `AwsVpcBlockPublicAccessExclusion` | `subnetIdOrVpcId` | `target` | `VpcBlockPublicAccessExclusionTarget` |
 | `AwsVpcEndpointConnectionNotification` | `vpcEndpointIdOrVpcEndpointServiceId` | `vpcEndpoint` | `VpcEndpointConnectionNotificationVpcEndpoint` |
-| `AwsVpclatticeResourceConfiguration` | `resourceConfigurationGroupIdOrResourceGatewayIdentifier` | `resource` | `VpclatticeResourceConfigurationResource` |
-| `AwsWafv2WebAclRuleGroupAssociation` | `managedRuleGroupOrRuleGroupReference` | `ruleGroup` | `Wafv2WebAclRuleGroupAssociationRuleGroup` |
-| `BedrockEvaluationJobEvaluationConfig` | `automatedOrHuman` | `evaluationConfig` | `BedrockEvaluationJobEvaluationConfigEvaluationConfig` |
-| `BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue` | `floatValueOrStringValue` | `value` | `BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValueValue` |
-| `BedrockEvaluationJobInferenceConfig` | `modelOrRagConfig` | `inferenceConfig` | `BedrockEvaluationJobInferenceConfigInferenceConfig` |
-| `BedrockEvaluationJobInferenceConfigModel` | `bedrockModelOrPrecomputedInferenceSource` | `model` | `BedrockEvaluationJobInferenceConfigModelModel` |
-| `BedrockEvaluationJobInferenceConfigRagConfig` | `knowledgeBaseConfigOrPrecomputedRagSourceConfig` | `ragConfig` | `BedrockEvaluationJobInferenceConfigRagConfigRagConfig` |
-| `BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig` | `retrieveAndGenerateConfigOrRetrieveConfig` | `retrieve` | `BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfigRetrieve` |
-| `BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig` | `retrieveAndGenerateSourceConfigOrRetrieveSourceConfig` | `retrieve` | `BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfigRetrieve` |
-| `BedrockagentFlowDefinitionConnectionConfiguration` | `conditionalOrData` | `configuration` | `BedrockagentFlowDefinitionConnectionConfigurationConfiguration` |
-| `BedrockagentFlowDefinitionNodeConfiguration` | `agentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage` | `configuration` | `BedrockagentFlowDefinitionNodeConfigurationConfiguration` |
-| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration` | `inlineOrResource` | `sourceConfiguration` | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationSourceConfiguration` |
-| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfiguration` | `chatOrText` | `templateConfiguration` | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationTemplateConfiguration` |
-| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContent` | `cachePointOrText` | `content` | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentContent` |
-| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystem` | `cachePointOrText` | `system` | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemSystem` |
-| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationTool` | `cachePointOrToolSpec` | `tool` | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolTool` |
-| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoice` | `anyOrAutoOrTool` | `toolChoice` | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceToolChoice` |
+| `AwsVpclatticeResourceConfiguration` | `resourceConfigurationGroupIdOrResourceGatewayIdentifier` | `parent` | `VpclatticeResourceConfigurationParent` |
+| `AwsWafv2WebAclRuleGroupAssociation` | `managedRuleGroupOrRuleGroupReference` | `source` | `Wafv2WebAclRuleGroupAssociationSource` |
+| `BedrockEvaluationJobEvaluationConfig` | `automatedOrHuman` | *the `evaluationConfig` block* | `BedrockEvaluationJobEvaluationConfig` |
+| `BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue` | `floatValueOrStringValue` | *the `value` block* | `BedrockEvaluationJobEvaluationConfigAutomatedCustomMetricConfigCustomMetricCustomMetricDefinitionRatingScaleValue` |
+| `BedrockEvaluationJobInferenceConfig` | `modelOrRagConfig` | *the `inferenceConfig` block* | `BedrockEvaluationJobInferenceConfig` |
+| `BedrockEvaluationJobInferenceConfigModel` | `bedrockModelOrPrecomputedInferenceSource` | *the `model` block* | `BedrockEvaluationJobInferenceConfigModel` |
+| `BedrockEvaluationJobInferenceConfigRagConfig` | `knowledgeBaseConfigOrPrecomputedRagSourceConfig` | *the `ragConfig` block* | `BedrockEvaluationJobInferenceConfigRagConfig` |
+| `BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig` | `retrieveAndGenerateConfigOrRetrieveConfig` | *the `knowledgeBaseConfig` block* | `BedrockEvaluationJobInferenceConfigRagConfigKnowledgeBaseConfig` |
+| `BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig` | `retrieveAndGenerateSourceConfigOrRetrieveSourceConfig` | *the `precomputedRagSourceConfig` block* | `BedrockEvaluationJobInferenceConfigRagConfigPrecomputedRagSourceConfig` |
+| `BedrockagentFlowDefinitionConnectionConfiguration` | `conditionalOrData` | *the `configuration` block* | `BedrockagentFlowDefinitionConnectionConfiguration` |
+| `BedrockagentFlowDefinitionNodeConfiguration` | `agentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage` | *the `configuration` block* | `BedrockagentFlowDefinitionNodeConfiguration` |
+| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration` | `inlineOrResource` | *the `sourceConfiguration` block* | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration` |
+| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfiguration` | `chatOrText` | *the `templateConfiguration` block* | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfiguration` |
+| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContent` | `cachePointOrText` | *the `content` block* | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContent` |
+| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystem` | `cachePointOrText` | *the `system` block* | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystem` |
+| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationTool` | `cachePointOrToolSpec` | *the `tool` block* | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationTool` |
+| `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoice` | `anyOrAutoOrTool` | *the `toolChoice` block* | `BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoice` |
 | `BedrockagentPromptVariant` | `genAiResourceOrModelId` | `model` | `BedrockagentPromptVariantModel` |
-| `BedrockagentPromptVariantTemplateConfiguration` | `chatOrText` | `templateConfiguration` | `BedrockagentPromptVariantTemplateConfigurationTemplateConfiguration` |
-| `BedrockagentPromptVariantTemplateConfigurationChatMessageContent` | `cachePointOrText` | `content` | `BedrockagentPromptVariantTemplateConfigurationChatMessageContentContent` |
-| `BedrockagentPromptVariantTemplateConfigurationChatSystem` | `cachePointOrText` | `system` | `BedrockagentPromptVariantTemplateConfigurationChatSystemSystem` |
-| `BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool` | `cachePointOrToolSpec` | `tool` | `BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolTool` |
-| `BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice` | `anyOrAutoOrTool` | `toolChoice` | `BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoiceToolChoice` |
-| `BedrockagentcoreEvaluatorEvaluatorConfig` | `codeBasedOrLlmAsAJudge` | `evaluatorConfig` | `BedrockagentcoreEvaluatorEvaluatorConfigEvaluatorConfig` |
-| `BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale` | `categoricalOrNumerical` | `ratingScale` | `BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScaleRatingScale` |
-| `BedrockagentcoreGatewayRuleAction` | `configurationBundleOrRouteToTarget` | `action` | `BedrockagentcoreGatewayRuleActionAction` |
-| `BedrockagentcoreGatewayRuleActionConfigurationBundle` | `staticOverrideOrWeightedOverride` | `override` | `BedrockagentcoreGatewayRuleActionConfigurationBundleOverride` |
-| `BedrockagentcoreGatewayRuleActionRouteToTarget` | `staticRouteOrWeightedRoute` | `route` | `BedrockagentcoreGatewayRuleActionRouteToTargetRoute` |
-| `BedrockagentcoreGatewayRuleCondition` | `matchPathsOrMatchPrincipals` | `match` | `BedrockagentcoreGatewayRuleConditionMatch` |
+| `BedrockagentPromptVariantTemplateConfiguration` | `chatOrText` | *the `templateConfiguration` block* | `BedrockagentPromptVariantTemplateConfiguration` |
+| `BedrockagentPromptVariantTemplateConfigurationChatMessageContent` | `cachePointOrText` | *the `content` block* | `BedrockagentPromptVariantTemplateConfigurationChatMessageContent` |
+| `BedrockagentPromptVariantTemplateConfigurationChatSystem` | `cachePointOrText` | *the `system` block* | `BedrockagentPromptVariantTemplateConfigurationChatSystem` |
+| `BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool` | `cachePointOrToolSpec` | *the `tool` block* | `BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationTool` |
+| `BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice` | `anyOrAutoOrTool` | *the `toolChoice` block* | `BedrockagentPromptVariantTemplateConfigurationChatToolConfigurationToolChoice` |
+| `BedrockagentcoreEvaluatorEvaluatorConfig` | `codeBasedOrLlmAsAJudge` | *the `evaluatorConfig` block* | `BedrockagentcoreEvaluatorEvaluatorConfig` |
+| `BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale` | `categoricalOrNumerical` | *the `ratingScale` block* | `BedrockagentcoreEvaluatorEvaluatorConfigLlmAsAJudgeRatingScale` |
+| `BedrockagentcoreGatewayRuleAction` | `configurationBundleOrRouteToTarget` | *the `action` block* | `BedrockagentcoreGatewayRuleAction` |
+| `BedrockagentcoreGatewayRuleActionConfigurationBundle` | `staticOverrideOrWeightedOverride` | *the `configurationBundle` block* | `BedrockagentcoreGatewayRuleActionConfigurationBundle` |
+| `BedrockagentcoreGatewayRuleActionRouteToTarget` | `staticRouteOrWeightedRoute` | *the `routeToTarget` block* | `BedrockagentcoreGatewayRuleActionRouteToTarget` |
+| `BedrockagentcoreGatewayRuleCondition` | `matchPathsOrMatchPrincipals` | *the `condition` block* | `BedrockagentcoreGatewayRuleCondition` |
 | `CloudwatchEventConnectionAuthParameters` | `apiKeyOrBasicOrOauth` | `auth` | `CloudwatchEventConnectionAuthParametersAuth` |
 | `CognitoManagedUserPoolClientAnalyticsConfiguration` | `applicationArnOrApplicationId` | `application` | `CognitoManagedUserPoolClientAnalyticsConfigurationApplication` |
 | `CognitoUserPoolClientAnalyticsConfiguration` | `applicationArnOrApplicationId` | `application` | `CognitoUserPoolClientAnalyticsConfigurationApplication` |
 | `ComprehendDocumentClassifierInputDataConfig` | `augmentedManifestsOrS3Uri` | `source` | `ComprehendDocumentClassifierInputDataConfigSource` |
 | `ComprehendEntityRecognizerInputDataConfig` | `annotationsOrEntityList` | `labels` | `ComprehendEntityRecognizerInputDataConfigLabels` |
 | `ComprehendEntityRecognizerInputDataConfig` | `augmentedManifestsOrDocuments` | `source` | `ComprehendEntityRecognizerInputDataConfigSource` |
-| `DatasyncLocationFsxOntapFileSystemProtocol` | `nfsOrSmb` | `protocol` | `DatasyncLocationFsxOntapFileSystemProtocolProtocol` |
+| `DatasyncLocationFsxOntapFileSystemProtocol` | `nfsOrSmb` | *the `protocol` block* | `DatasyncLocationFsxOntapFileSystemProtocol` |
 | `EbsSnapshotImportDiskContainer` | `urlOrUserBucket` | `source` | `EbsSnapshotImportDiskContainerSource` |
 | `EksNodeGroupUpdateConfig` | `maxUnavailableOrMaxUnavailablePercentage` | `maxUnavailable` | `EksNodeGroupUpdateConfigMaxUnavailable` |
-| `EmrcontainersJobTemplateJobTemplateDataJobDriver` | `sparkSqlJobDriverOrSparkSubmitJobDriver` | `spark` | `EmrcontainersJobTemplateJobTemplateDataJobDriverSpark` |
+| `EmrcontainersJobTemplateJobTemplateDataJobDriver` | `sparkSqlJobDriverOrSparkSubmitJobDriver` | *the `jobDriver` block* | `EmrcontainersJobTemplateJobTemplateDataJobDriver` |
 | `GlueCatalogTableStorageDescriptorSchemaReference` | `schemaIdOrSchemaVersionId` | `schema` | `GlueCatalogTableStorageDescriptorSchemaReferenceSchema` |
 | `GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId` | `schemaArnOrSchemaName` | `schema` | `GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema` |
-| `InstanceCapacityReservationSpecification` | `capacityReservationPreferenceOrCapacityReservationTarget` | `capacityReservation` | `InstanceCapacityReservationSpecificationCapacityReservation` |
-| `InstanceLaunchTemplate` | `idOrName` | `template` | `InstanceLaunchTemplateTemplate` |
-| `IvschatLoggingConfigurationDestinationConfiguration` | `cloudwatchLogsOrFirehoseOrS3` | `destinationConfiguration` | `IvschatLoggingConfigurationDestinationConfigurationDestinationConfiguration` |
-| `KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters` | `csvOrJson` | `mappingParameters` | `KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersMappingParameters` |
-| `KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters` | `csvOrJson` | `mappingParameters` | `KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersMappingParameters` |
+| `InstanceCapacityReservationSpecification` | `capacityReservationPreferenceOrCapacityReservationTarget` | *the `capacityReservationSpecification` block* | `InstanceCapacityReservationSpecification` |
+| `InstanceLaunchTemplate` | `idOrName` | `identifier` | `InstanceLaunchTemplateIdentifier` |
+| `IvschatLoggingConfigurationDestinationConfiguration` | `cloudwatchLogsOrFirehoseOrS3` | *the `destinationConfiguration` block* | `IvschatLoggingConfigurationDestinationConfiguration` |
+| `KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters` | `csvOrJson` | *the `mappingParameters` block* | `KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters` |
+| `KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters` | `csvOrJson` | *the `mappingParameters` block* | `KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParameters` |
 | `Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInput` | `kinesisFirehoseInputOrKinesisStreamsInput` | `kinesis` | `Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputKinesis` |
-| `Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters` | `csvMappingParametersOrJsonMappingParameters` | `mappingParameters` | `Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParametersMappingParameters` |
-| `Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters` | `csvMappingParametersOrJsonMappingParameters` | `mappingParameters` | `Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParametersMappingParameters` |
+| `Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters` | `csvMappingParametersOrJsonMappingParameters` | *the `mappingParameters` block* | `Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationInputInputSchemaRecordFormatMappingParameters` |
+| `Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters` | `csvMappingParametersOrJsonMappingParameters` | *the `mappingParameters` block* | `Kinesisanalyticsv2ApplicationApplicationConfigurationSqlApplicationConfigurationReferenceDataSourceReferenceSchemaRecordFormatMappingParameters` |
 | `LakeformationDataCellsFilterTableData` | `columnNamesOrColumnWildcard` | `column` | `LakeformationDataCellsFilterTableDataColumn` |
-| `LakeformationDataCellsFilterTableDataRowFilter` | `allRowsWildcardOrFilterExpression` | `rowFilter` | `LakeformationDataCellsFilterTableDataRowFilterRowFilter` |
-| `LakeformationOptInResourceData` | `catalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns` | `resourceData` | `LakeformationOptInResourceDataResourceData` |
-| `M2ApplicationDefinition` | `contentOrS3Location` | `definition` | `M2ApplicationDefinitionDefinition` |
-| `M2EnvironmentStorageConfiguration` | `efsOrFsx` | `storageConfiguration` | `M2EnvironmentStorageConfigurationStorageConfiguration` |
-| `MailmanagerRelayAuthentication` | `noAuthenticationOrSecretArn` | `authentication` | `MailmanagerRelayAuthenticationAuthentication` |
-| `MailmanagerRuleSetRuleConditionBooleanExpressionEvaluate` | `analysisOrAttributeOrIsInAddressList` | `evaluate` | `MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateEvaluate` |
-| `MailmanagerRuleSetRuleConditionStringExpressionEvaluate` | `analysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute` | `evaluate` | `MailmanagerRuleSetRuleConditionStringExpressionEvaluateEvaluate` |
-| `MailmanagerRuleSetRuleConditionVerdictExpressionEvaluate` | `analysisOrAttribute` | `evaluate` | `MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateEvaluate` |
-| `MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluate` | `analysisOrAttributeOrIsInAddressList` | `evaluate` | `MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateEvaluate` |
-| `MailmanagerRuleSetRuleUnlessStringExpressionEvaluate` | `analysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute` | `evaluate` | `MailmanagerRuleSetRuleUnlessStringExpressionEvaluateEvaluate` |
-| `MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluate` | `analysisOrAttribute` | `evaluate` | `MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateEvaluate` |
-| `MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluate` | `analysisOrAttribute` | `evaluate` | `MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluate` |
+| `LakeformationDataCellsFilterTableDataRowFilter` | `allRowsWildcardOrFilterExpression` | *the `rowFilter` block* | `LakeformationDataCellsFilterTableDataRowFilter` |
+| `LakeformationOptInResourceData` | `catalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns` | *the `resourceData` block* | `LakeformationOptInResourceData` |
+| `M2ApplicationDefinition` | `contentOrS3Location` | *the `definition` block* | `M2ApplicationDefinition` |
+| `M2EnvironmentStorageConfiguration` | `efsOrFsx` | *the `storageConfiguration` block* | `M2EnvironmentStorageConfiguration` |
+| `MailmanagerRelayAuthentication` | `noAuthenticationOrSecretArn` | *the `authentication` block* | `MailmanagerRelayAuthentication` |
+| `MailmanagerRuleSetRuleConditionBooleanExpressionEvaluate` | `analysisOrAttributeOrIsInAddressList` | *the `evaluate` block* | `MailmanagerRuleSetRuleConditionBooleanExpressionEvaluate` |
+| `MailmanagerRuleSetRuleConditionStringExpressionEvaluate` | `analysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute` | *the `evaluate` block* | `MailmanagerRuleSetRuleConditionStringExpressionEvaluate` |
+| `MailmanagerRuleSetRuleConditionVerdictExpressionEvaluate` | `analysisOrAttribute` | *the `evaluate` block* | `MailmanagerRuleSetRuleConditionVerdictExpressionEvaluate` |
+| `MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluate` | `analysisOrAttributeOrIsInAddressList` | *the `evaluate` block* | `MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluate` |
+| `MailmanagerRuleSetRuleUnlessStringExpressionEvaluate` | `analysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute` | *the `evaluate` block* | `MailmanagerRuleSetRuleUnlessStringExpressionEvaluate` |
+| `MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluate` | `analysisOrAttribute` | *the `evaluate` block* | `MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluate` |
+| `MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluate` | `analysisOrAttribute` | *the `evaluate` block* | `MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluate` |
 | `MskReplicatorReplicationInfoList` | `sourceKafkaClusterArnOrSourceKafkaClusterId` | `sourceKafkaCluster` | `MskReplicatorReplicationInfoListSourceKafkaCluster` |
 | `MskReplicatorReplicationInfoList` | `targetKafkaClusterArnOrTargetKafkaClusterId` | `targetKafkaCluster` | `MskReplicatorReplicationInfoListTargetKafkaCluster` |
-| `MskconnectConnectorCapacity` | `autoscalingOrProvisionedCapacity` | `capacity` | `MskconnectConnectorCapacityCapacity` |
-| `PrometheusAnomalyDetectorMissingDataAction` | `markAsAnomalyOrSkip` | `missingDataAction` | `PrometheusAnomalyDetectorMissingDataActionMissingDataAction` |
+| `MskconnectConnectorCapacity` | `autoscalingOrProvisionedCapacity` | *the `capacity` block* | `MskconnectConnectorCapacity` |
+| `PrometheusAnomalyDetectorMissingDataAction` | `markAsAnomalyOrSkip` | *the `missingDataAction` block* | `PrometheusAnomalyDetectorMissingDataAction` |
 | `RdsClusterRestoreToPointInTime` | `sourceClusterIdentifierOrSourceClusterResourceId` | `sourceCluster` | `RdsClusterRestoreToPointInTimeSourceCluster` |
-| `RdsClusterRestoreToPointInTime` | `restoreToTimeOrUseLatestRestorableTime` | `time` | `RdsClusterRestoreToPointInTimeTime` |
-| `RedshiftScheduledActionTargetAction` | `pauseClusterOrResizeClusterOrResumeCluster` | `action` | `RedshiftScheduledActionTargetActionAction` |
-| `S3BucketLoggingTargetObjectKeyFormat` | `partitionedPrefixOrSimplePrefix` | `prefix` | `S3BucketLoggingTargetObjectKeyFormatPrefix` |
+| `RdsClusterRestoreToPointInTime` | `restoreToTimeOrUseLatestRestorableTime` | `target` | `RdsClusterRestoreToPointInTimeTarget` |
+| `RedshiftScheduledActionTargetAction` | `pauseClusterOrResizeClusterOrResumeCluster` | *the `targetAction` block* | `RedshiftScheduledActionTargetAction` |
+| `S3BucketLoggingTargetObjectKeyFormat` | `partitionedPrefixOrSimplePrefix` | *the `targetObjectKeyFormat` block* | `S3BucketLoggingTargetObjectKeyFormat` |
 | `S3BucketWebsite` | `indexDocumentOrRedirectAllRequestsTo` | `mode` | `S3BucketWebsiteMode` |
 | `SagemakerEndpointDeploymentConfig` | `blueGreenUpdatePolicyOrRollingUpdatePolicy` | `updatePolicy` | `SagemakerEndpointDeploymentConfigUpdatePolicy` |
-| `SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints` | `sourceIpOrVpcSourceIp` | `iamPolicyConstraints` | `SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsIamPolicyConstraints` |
+| `SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints` | `sourceIpOrVpcSourceIp` | *the `iamPolicyConstraints` block* | `SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints` |
 | `SecretsmanagerSecretRotationRotationRules` | `automaticallyAfterDaysOrScheduleExpression` | `schedule` | `SecretsmanagerSecretRotationRotationRulesSchedule` |
-| `SecurityhubConnectorV2ConnectorProvider` | `jiraCloudOrServiceNow` | `connectorProvider` | `SecurityhubConnectorV2ConnectorProviderConnectorProvider` |
+| `SecurityhubConnectorV2ConnectorProvider` | `jiraCloudOrServiceNow` | *the `connectorProvider` block* | `SecurityhubConnectorV2ConnectorProvider` |
 | `ServicecatalogProductProvisioningArtifactParameters` | `templatePhysicalIdOrTemplateUrl` | `template` | `ServicecatalogProductProvisioningArtifactParametersTemplate` |
 | `ServicecatalogProvisionedProductStackSetProvisioningPreferences` | `failureToleranceCountOrFailureTolerancePercentage` | `failureTolerance` | `ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerance` |
 | `ServicecatalogProvisionedProductStackSetProvisioningPreferences` | `maxConcurrencyCountOrMaxConcurrencyPercentage` | `maxConcurrency` | `ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrency` |
-| `Sesv2ConfigurationSetEventDestinationEventDestination` | `cloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination` | `destination` | `Sesv2ConfigurationSetEventDestinationEventDestinationDestination` |
-| `SpotInstanceRequestCapacityReservationSpecification` | `capacityReservationPreferenceOrCapacityReservationTarget` | `capacityReservation` | `SpotInstanceRequestCapacityReservationSpecificationCapacityReservation` |
-| `SpotInstanceRequestLaunchTemplate` | `idOrName` | `template` | `SpotInstanceRequestLaunchTemplateTemplate` |
-| `VpclatticeListenerRuleAction` | `fixedResponseOrForward` | `action` | `VpclatticeListenerRuleActionAction` |
-| `VpclatticeResourceConfigurationResourceConfigurationDefinition` | `arnResourceOrDnsResourceOrIpResource` | `resource` | `VpclatticeResourceConfigurationResourceConfigurationDefinitionResource` |
-| `WorkspaceswebSessionLoggerEventFilter` | `allOrInclude` | `eventFilter` | `WorkspaceswebSessionLoggerEventFilterEventFilter` |
+| `Sesv2ConfigurationSetEventDestinationEventDestination` | `cloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination` | `target` | `Sesv2ConfigurationSetEventDestinationEventDestinationTarget` |
+| `SpotInstanceRequestCapacityReservationSpecification` | `capacityReservationPreferenceOrCapacityReservationTarget` | *the `capacityReservationSpecification` block* | `SpotInstanceRequestCapacityReservationSpecification` |
+| `SpotInstanceRequestLaunchTemplate` | `idOrName` | `identifier` | `SpotInstanceRequestLaunchTemplateIdentifier` |
+| `VpclatticeListenerRuleAction` | `fixedResponseOrForward` | *the `action` block* | `VpclatticeListenerRuleAction` |
+| `VpclatticeResourceConfigurationResourceConfigurationDefinition` | `arnResourceOrDnsResourceOrIpResource` | *the `resourceConfigurationDefinition` block* | `VpclatticeResourceConfigurationResourceConfigurationDefinition` |
+| `WorkspaceswebSessionLoggerEventFilter` | `allOrInclude` | *the `eventFilter` block* | `WorkspaceswebSessionLoggerEventFilter` |
 
 </details>
 
@@ -327,42 +359,42 @@ sections below). Each group, by class:
 
 | Class | Member arguments | Sealed argument | Sealed type |
 |---|---|---|---|
-| `AgentIdentityAuthProviderAuthProviderTypeParams` | `apiKey`, `threeLeggedOauth`, `twoLeggedOauth` | `authProviderTypeParams` | `AgentIdentityAuthProviderAuthProviderTypeParamsAuthProviderTypeParams` |
-| `BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig` | `dcrExchangeConfig`, `defaultExchangeConfig` | `exchangeConfig` | `BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig` |
-| `BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources` | `routine`, `table` | `selectedResources` | `BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources` |
-| `BillingBudgetAmount` | `lastPeriodAmount`, `specifiedAmount` | `amount` | `BillingBudgetAmountAmount` |
+| `AgentIdentityAuthProviderAuthProviderTypeParams` | `apiKey`, `threeLeggedOauth`, `twoLeggedOauth` | *the `authProviderTypeParams` block* | `AgentIdentityAuthProviderAuthProviderTypeParams` |
+| `BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig` | `dcrExchangeConfig`, `defaultExchangeConfig` | *the `sharingEnvironmentConfig` block* | `BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig` |
+| `BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources` | `routine`, `table` | *the `selectedResources` block* | `BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources` |
+| `BillingBudgetAmount` | `lastPeriodAmount`, `specifiedAmount` | *the `amount` block* | `BillingBudgetAmount` |
 | `CesToolDataStoreTool` | `dataStoreSource`, `engineSource` | `source` | `CesToolDataStoreToolSource` |
 | `ChronicleFeedDetails` | `amazonKinesisFirehoseSettings`, `amazonS3Settings`, `amazonS3V2Settings`, `amazonSqsSettings`, `amazonSqsV2Settings`, `anomaliSettings`, `awsEc2HostsSettings`, `awsEc2InstancesSettings`, `awsEc2VpcsSettings`, `awsIamSettings`, `azureAdAuditSettings`, `azureAdContextSettings`, `azureAdSettings`, `azureBlobStoreSettings`, `azureBlobStoreV2Settings`, `azureEventHubSettings`, `azureMdmIntuneSettings`, `cloudPassageSettings`, `cortexXdrSettings`, `crowdstrikeAlertsSettings`, `crowdstrikeDetectsSettings`, `dummyLogTypeSettings`, `duoAuthSettings`, `duoUserContextSettings`, `foxItStixSettings`, `gcsSettings`, `gcsV2Settings`, `googleCloudIdentityDeviceUsersSettings`, `googleCloudIdentityDevicesSettings`, `googleCloudStorageEventDrivenSettings`, `httpSettings`, `httpsPushAmazonKinesisFirehoseSettings`, `httpsPushGoogleCloudPubsubSettings`, `httpsPushWebhookSettings`, `impervaWafSettings`, `mandiantIocSettings`, `microsoftGraphAlertSettings`, `microsoftSecurityCenterAlertSettings`, `mimecastMailSettings`, `mimecastMailV2Settings`, `netskopeAlertSettings`, `netskopeAlertV2Settings`, `office365Settings`, `oktaSettings`, `oktaUserContextSettings`, `panIocSettings`, `panPrismaCloudSettings`, `proofpointMailSettings`, `proofpointOnDemandSettings`, `pubsubSettings`, `qualysScanSettings`, `qualysVmSettings`, `rapid7InsightSettings`, `recordedFutureIocSettings`, `rhIsacIocSettings`, `salesforceSettings`, `sentineloneAlertSettings`, `serviceNowCmdbSettings`, `sftpSettings`, `symantecEventExportSettings`, `thinkstCanarySettings`, `threatConnectIocSettings`, `threatConnectIocV3Settings`, `trellixHxAlertsSettings`, `trellixHxBulkAcqsSettings`, `trellixHxHostsSettings`, `webhookSettings`, `workdaySettings`, `workspaceActivitySettings`, `workspaceAlertsSettings`, `workspaceChromeOsSettings`, `workspaceGroupsSettings`, `workspaceMobileSettings`, `workspacePrivilegesSettings`, `workspaceUsersSettings` | `source` | `ChronicleFeedDetailsSource` |
 | `CloudRunServiceTemplateSpecContainersLivenessProbe` | `grpc`, `httpGet` | `check` | `CloudRunServiceTemplateSpecContainersLivenessProbeCheck` |
 | `CloudRunServiceTemplateSpecContainersReadinessProbe` | `grpc`, `httpGet` | `check` | `CloudRunServiceTemplateSpecContainersReadinessProbeCheck` |
 | `CloudRunServiceTemplateSpecContainersStartupProbe` | `grpc`, `httpGet`, `tcpSocket` | `check` | `CloudRunServiceTemplateSpecContainersStartupProbeCheck` |
 | `CloudRunV2WorkerPoolBinaryAuthorization` | `policy`, `useDefault` | `policy` | `CloudRunV2WorkerPoolBinaryAuthorizationPolicy` |
-| `CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig` | `existingTargetResource`, `targetResourceCreationConfig` | `targetResourceConfig` | `CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceConfig` |
-| `CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig` | `folderCreationConfig`, `projectCreationConfig` | `creationConfig` | `CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigCreationConfig` |
+| `CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig` | `existingTargetResource`, `targetResourceCreationConfig` | *the `targetResourceConfig` block* | `CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig` |
+| `CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig` | `folderCreationConfig`, `projectCreationConfig` | *the `targetResourceCreationConfig` block* | `CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig` |
 | `ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules` | `git`, `googleCloudBuildRepo`, `googleCloudStorage` | `source` | `ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource` |
-| `ColabNotebookExecutionWorkbenchRuntimeVmImage` | `family`, `name` | `image` | `ColabNotebookExecutionWorkbenchRuntimeVmImageImage` |
+| `ColabNotebookExecutionWorkbenchRuntimeVmImage` | `family`, `name` | `selector` | `ColabNotebookExecutionWorkbenchRuntimeVmImageSelector` |
 | `ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput` | `name`, `predefinedRolloutPlan` | `plan` | `ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan` |
 | `ComputeReservationSpecificReservation` | `instanceProperties`, `sourceInstanceTemplate` | `instanceSpec` | `ComputeReservationSpecificReservationInstanceSpec` |
-| `ContactCenterInsightsAssessmentRuleSampleRule` | `samplePercentage`, `sampleRow` | `sample` | `ContactCenterInsightsAssessmentRuleSampleRuleSample` |
-| `DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters` | `namespacedTagKey`, `namespacedTagValue` | `namespacedTag` | `DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTag` |
+| `ContactCenterInsightsAssessmentRuleSampleRule` | `samplePercentage`, `sampleRow` | `amount` | `ContactCenterInsightsAssessmentRuleSampleRuleAmount` |
+| `DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters` | `namespacedTagKey`, `namespacedTagValue` | *the `tagFilters` block* | `DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters` |
 | `DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworks` | `expireTime`, `ttl` | `expiration` | `DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpiration` |
 | `DatabaseMigrationServiceConnectionProfileOracle` | `forwardSshConnectivity`, `privateConnectivity`, `staticServiceIpConnectivity` | `connectivity` | `DatabaseMigrationServiceConnectionProfileOracleConnectivity` |
 | `DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity` | `password`, `privateKey` | `credential` | `DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredential` |
-| `DataplexDatascanData` | `entity`, `resource` | `data` | `DataplexDatascanDataData` |
-| `DataplexDatascanExecutionIdentity` | `dataplexServiceAgent`, `serviceAccount`, `userCredential` | `executionIdentity` | `DataplexDatascanExecutionIdentityExecutionIdentity` |
-| `DataplexDatascanExecutionSpecTrigger` | `onDemand`, `oneTime`, `schedule` | `trigger` | `DataplexDatascanExecutionSpecTriggerTrigger` |
+| `DataplexDatascanData` | `entity`, `resource` | *the `data` block* | `DataplexDatascanData` |
+| `DataplexDatascanExecutionIdentity` | `dataplexServiceAgent`, `serviceAccount`, `userCredential` | *the `executionIdentity` block* | `DataplexDatascanExecutionIdentity` |
+| `DataplexDatascanExecutionSpecTrigger` | `onDemand`, `oneTime`, `schedule` | *the `trigger` block* | `DataplexDatascanExecutionSpecTrigger` |
 | `DataprocBatchEnvironmentConfigExecutionConfig` | `networkUri`, `subnetworkUri` | `network` | `DataprocBatchEnvironmentConfigExecutionConfigNetwork` |
 | `DatastreamConnectionProfileForwardSshConnectivity` | `password`, `privateKey` | `credential` | `DatastreamConnectionProfileForwardSshConnectivityCredential` |
-| `DatastreamStreamDestinationConfig` | `bigqueryDestinationConfig`, `gcsDestinationConfig` | `destinationConfig` | `DatastreamStreamDestinationConfigDestinationConfig` |
+| `DatastreamStreamDestinationConfig` | `bigqueryDestinationConfig`, `gcsDestinationConfig` | `system` | `DatastreamStreamDestinationConfigSystem` |
 | `DatastreamStreamDestinationConfigBigqueryDestinationConfig` | `singleTargetDataset`, `sourceHierarchyDatasets` | `dataset` | `DatastreamStreamDestinationConfigBigqueryDestinationConfigDataset` |
 | `DatastreamStreamDestinationConfigBigqueryDestinationConfig` | `appendOnly`, `merge` | `writeMode` | `DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteMode` |
 | `DatastreamStreamDestinationConfigGcsDestinationConfig` | `avroFileFormat`, `jsonFileFormat` | `fileFormat` | `DatastreamStreamDestinationConfigGcsDestinationConfigFileFormat` |
-| `DatastreamStreamSourceConfig` | `mongodbSourceConfig`, `mysqlSourceConfig`, `oracleSourceConfig`, `postgresqlSourceConfig`, `salesforceSourceConfig`, `spannerSourceConfig`, `sqlServerSourceConfig` | `sourceConfig` | `DatastreamStreamSourceConfigSourceConfig` |
+| `DatastreamStreamSourceConfig` | `mongodbSourceConfig`, `mysqlSourceConfig`, `oracleSourceConfig`, `postgresqlSourceConfig`, `salesforceSourceConfig`, `spannerSourceConfig`, `sqlServerSourceConfig` | `system` | `DatastreamStreamSourceConfigSystem` |
 | `DatastreamStreamSourceConfigMysqlSourceConfig` | `binaryLogPosition`, `gtid` | `cdcMethod` | `DatastreamStreamSourceConfigMysqlSourceConfigCdcMethod` |
 | `DialogflowCxTestCaseTestConfig` | `flow`, `page` | `start` | `DialogflowCxTestCaseTestConfigStart` |
 | `DiscoveryEngineChatEngineChatEngineConfig` | `agentCreationConfig`, `dialogflowAgentToLink` | `agent` | `DiscoveryEngineChatEngineChatEngineConfigAgent` |
 | `GkeBackupBackupPlanBackupConfig` | `allNamespaces`, `selectedApplications`, `selectedNamespaceLabels`, `selectedNamespaces` | `scope` | `GkeBackupBackupPlanBackupConfigScope` |
-| `GkeHubScopeRbacRoleBindingRole` | `customRole`, `predefinedRole` | `role` | `GkeHubScopeRbacRoleBindingRoleRole` |
+| `GkeHubScopeRbacRoleBindingRole` | `customRole`, `predefinedRole` | *the `role` block* | `GkeHubScopeRbacRoleBindingRole` |
 | `GkeonpremBareMetalClusterLoadBalancer` | `bgpLbConfig`, `manualLbConfig`, `metalLbConfig` | `lbConfig` | `GkeonpremBareMetalClusterLoadBalancerLbConfig` |
 | `GkeonpremVmwareAdminClusterLoadBalancer` | `f5Config`, `manualLbConfig`, `metalLbConfig` | `lbConfig` | `GkeonpremVmwareAdminClusterLoadBalancerLbConfig` |
 | `GkeonpremVmwareAdminClusterNetworkConfig` | `dhcpIpConfig`, `staticIpConfig` | `ipConfig` | `GkeonpremVmwareAdminClusterNetworkConfigIpConfig` |
@@ -370,7 +402,7 @@ sections below). Each group, by class:
 | `GkeonpremVmwareClusterNetworkConfig` | `dhcpIpConfig`, `staticIpConfig` | `ipConfig` | `GkeonpremVmwareClusterNetworkConfigIpConfig` |
 | `GoogleAccessContextManagerAccessLevel` | `basic`, `custom` | `definition` | `AccessContextManagerAccessLevelDefinition` |
 | `GoogleApigeeSecurityAction` | `expireTime`, `ttl` | `expiration` | `ApigeeSecurityActionExpiration` |
-| `GoogleArtifactRegistryRepository` | `remoteRepositoryConfig`, `virtualRepositoryConfig` | `repositoryConfig` | `ArtifactRegistryRepositoryRepositoryConfig` |
+| `GoogleArtifactRegistryRepository` | `remoteRepositoryConfig`, `virtualRepositoryConfig` | `repositoryConfig` | `ArtifactRegistryRepositoryConfig` |
 | `GoogleBigqueryAnalyticsHubListing` | `bigqueryDataset`, `pubsubTopic` | `source` | `BigqueryAnalyticsHubListingSource` |
 | `GoogleBigqueryDatasetAccess` | `dataset`, `domain`, `groupByEmail`, `iamMember`, `routine`, `specialGroup`, `userByEmail`, `view` | `grantee` | `BigqueryDatasetAccessGrantee` |
 | `GoogleChronicleParserExtension` | `cbnSnippet`, `dynamicParsing`, `fieldExtractors` | `definition` | `ChronicleParserExtensionDefinition` |
@@ -386,12 +418,12 @@ sections below). Each group, by class:
 | `GoogleDatastreamConnectionProfile` | `forwardSshConnectivity`, `privateConnectivity` | `connectivity` | `DatastreamConnectionProfileConnectivity` |
 | `GoogleDialogflowCxSecuritySettings` | `retentionStrategy`, `retentionWindowDays` | `retention` | `DialogflowCxSecuritySettingsRetention` |
 | `GoogleFirebaseAppHostingTraffic` | `rolloutPolicy`, `target` | `routing` | `FirebaseAppHostingTrafficRouting` |
-| `GoogleHealthcarePipelineJob` | `backfillPipelineJob`, `mappingPipelineJob`, `reconciliationPipelineJob` | `pipelineJob` | `HealthcarePipelineJobPipelineJob` |
-| `GoogleLoggingSavedQuery` | `loggingQuery`, `opsAnalyticsQuery` | `query` | `LoggingSavedQueryQuery` |
+| `GoogleHealthcarePipelineJob` | `backfillPipelineJob`, `mappingPipelineJob`, `reconciliationPipelineJob` | `task` | `HealthcarePipelineJobTask` |
+| `GoogleLoggingSavedQuery` | `loggingQuery`, `opsAnalyticsQuery` | `definition` | `LoggingSavedQueryDefinition` |
 | `GoogleMemorystoreInstance` | `gcsSource`, `managedBackupSource` | `source` | `MemorystoreInstanceSource` |
 | `GoogleMonitoringSlo` | `calendarPeriod`, `rollingPeriodDays` | `period` | `MonitoringSloPeriod` |
 | `GoogleNetworkConnectivityPolicyBasedRoute` | `interconnectAttachment`, `virtualMachine` | `scope` | `NetworkConnectivityPolicyBasedRouteScope` |
-| `GoogleNetworkSecuritySecurityProfile` | `customInterceptProfile`, `customMirroringProfile`, `threatPreventionProfile`, `urlFilteringProfile` | `profile` | `NetworkSecuritySecurityProfileProfile` |
+| `GoogleNetworkSecuritySecurityProfile` | `customInterceptProfile`, `customMirroringProfile`, `threatPreventionProfile`, `urlFilteringProfile` | `settings` | `NetworkSecuritySecurityProfileSettings` |
 | `GoogleNetworkServicesGateway` | `allPorts`, `ports` | `ports` | `NetworkServicesGatewayPorts` |
 | `GooglePrivatecaCertificate` | `config`, `pemCsr` | `request` | `PrivatecaCertificateRequest` |
 | `GooglePubsubSubscription` | `bigqueryConfig`, `cloudStorageConfig`, `pushConfig` | `delivery` | `PubsubSubscriptionDelivery` |
@@ -401,10 +433,10 @@ sections below). Each group, by class:
 | `GoogleVpcAccessConnector` | `maxInstances`, `maxThroughput` | `maxCapacity` | `VpcAccessConnectorMaxCapacity` |
 | `GoogleVpcAccessConnector` | `minInstances`, `minThroughput` | `minCapacity` | `VpcAccessConnectorMinCapacity` |
 | `HealthcarePipelineJobMappingPipelineJob` | `fhirStoreDestination`, `reconciliationDestination` | `destination` | `HealthcarePipelineJobMappingPipelineJobDestination` |
-| `IntegrationsAuthConfigDecryptedCredential` | `authToken`, `jwt`, `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `oidcToken`, `serviceAccountCredentials`, `usernameAndPassword` | `credential` | `IntegrationsAuthConfigDecryptedCredentialCredential` |
-| `ModelArmorTemplateFilterConfigSdpSettings` | `advancedConfig`, `basicConfig` | `sdpSettings` | `ModelArmorTemplateFilterConfigSdpSettingsSdpSettings` |
-| `ModelArmorTemplateTemplateMetadataFilterVersionSelector` | `alias`, `version` | `filterVersionSelector` | `ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelector` |
-| `NetappVolumeRestoreParameters` | `sourceBackup`, `sourceSnapshot` | `source` | `NetappVolumeRestoreParametersSource` |
+| `IntegrationsAuthConfigDecryptedCredential` | `authToken`, `jwt`, `oauth2AuthorizationCode`, `oauth2ClientCredentials`, `oidcToken`, `serviceAccountCredentials`, `usernameAndPassword` | `secret` | `IntegrationsAuthConfigDecryptedCredentialSecret` |
+| `ModelArmorTemplateFilterConfigSdpSettings` | `advancedConfig`, `basicConfig` | *the `sdpSettings` block* | `ModelArmorTemplateFilterConfigSdpSettings` |
+| `ModelArmorTemplateTemplateMetadataFilterVersionSelector` | `alias`, `version` | *the `filterVersionSelector` block* | `ModelArmorTemplateTemplateMetadataFilterVersionSelector` |
+| `NetappVolumeRestoreParameters` | `sourceBackup`, `sourceSnapshot` | *the `restoreParameters` block* | `NetappVolumeRestoreParameters` |
 | `NetworkServicesHttpRouteRulesMatches` | `fullPathMatch`, `prefixMatch`, `regexMatch` | `match` | `NetworkServicesHttpRouteRulesMatchesMatch` |
 | `NetworkServicesHttpRouteRulesMatchesHeaders` | `exactMatch`, `prefixMatch`, `presentMatch`, `rangeMatch`, `regexMatch`, `suffixMatch` | `match` | `NetworkServicesHttpRouteRulesMatchesHeadersMatch` |
 | `NetworkServicesHttpRouteRulesMatchesQueryParameters` | `exactMatch`, `presentMatch`, `regexMatch` | `match` | `NetworkServicesHttpRouteRulesMatchesQueryParametersMatch` |
@@ -412,8 +444,8 @@ sections below). Each group, by class:
 | `OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig` | `gcsObject`, `localPath` | `script` | `OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScript` |
 | `OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfig` | `gcsObject`, `localPath` | `script` | `OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScript` |
 | `OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig` | `gcsObject`, `localPath` | `script` | `OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScript` |
-| `OsConfigPatchDeploymentRolloutDisruptionBudget` | `fixed`, `percentage` | `disruptionBudget` | `OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget` |
-| `PrivilegedAccessManagerEntitlementRequesterJustificationConfig` | `notMandatory`, `unstructured` | `requesterJustificationConfig` | `PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig` |
+| `OsConfigPatchDeploymentRolloutDisruptionBudget` | `fixed`, `percentage` | *the `disruptionBudget` block* | `OsConfigPatchDeploymentRolloutDisruptionBudget` |
+| `PrivilegedAccessManagerEntitlementRequesterJustificationConfig` | `notMandatory`, `unstructured` | `requirement` | `PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequirement` |
 | `SpannerBackupScheduleEncryptionConfig` | `kmsKeyName`, `kmsKeyNames` | `kmsKeyName` | `SpannerBackupScheduleEncryptionConfigKmsKeyName` |
 | `SpannerInstancePartitionAutoscalingConfigAutoscalingLimits` | `maxNodes`, `maxProcessingUnits` | `maxCapacity` | `SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacity` |
 | `SpannerInstancePartitionAutoscalingConfigAutoscalingLimits` | `minNodes`, `minProcessingUnits` | `minCapacity` | `SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacity` |
@@ -423,13 +455,13 @@ sections below). Each group, by class:
 | `StorageControlOrganizationIntelligenceConfigFilter` | `excludedCloudStorageLocations`, `includedCloudStorageLocations` | `cloudStorageLocations` | `StorageControlOrganizationIntelligenceConfigFilterCloudStorageLocations` |
 | `StorageControlProjectIntelligenceConfigFilter` | `excludedCloudStorageBuckets`, `includedCloudStorageBuckets` | `cloudStorageBuckets` | `StorageControlProjectIntelligenceConfigFilterCloudStorageBuckets` |
 | `StorageControlProjectIntelligenceConfigFilter` | `excludedCloudStorageLocations`, `includedCloudStorageLocations` | `cloudStorageLocations` | `StorageControlProjectIntelligenceConfigFilterCloudStorageLocations` |
-| `VertexAiFeaturestoreOnlineServingConfig` | `fixedNodeCount`, `scaling` | `onlineServingConfig` | `VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig` |
-| `VertexAiIndexMetadataConfigAlgorithmConfig` | `bruteForceConfig`, `treeAhConfig` | `algorithmConfig` | `VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig` |
+| `VertexAiFeaturestoreOnlineServingConfig` | `fixedNodeCount`, `scaling` | *the `onlineServingConfig` block* | `VertexAiFeaturestoreOnlineServingConfig` |
+| `VertexAiIndexMetadataConfigAlgorithmConfig` | `bruteForceConfig`, `treeAhConfig` | *the `algorithmConfig` block* | `VertexAiIndexMetadataConfigAlgorithmConfig` |
 | `VertexAiRagCorpusVectorDbConfig` | `pinecone`, `ragManagedDb`, `vertexVectorSearch` | `backend` | `VertexAiRagCorpusVectorDbConfigBackend` |
-| `VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfig` | `apiKeySecretVersion`, `apiKeyString` | `apiKey` | `VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey` |
-| `VertexAiRagCorpusVectorDbConfigRagManagedDb` | `ann`, `knn` | `ragManagedDb` | `VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb` |
-| `VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics` | `customMemoryTopic`, `managedMemoryTopic` | `memoryTopic` | `VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic` |
-| `VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig` | `defaultTtl`, `granularTtlConfig` | `ttl` | `VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl` |
+| `VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfig` | `apiKeySecretVersion`, `apiKeyString` | *the `apiKeyConfig` block* | `VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfig` |
+| `VertexAiRagCorpusVectorDbConfigRagManagedDb` | `ann`, `knn` | *the `ragManagedDb` block* | `VertexAiRagCorpusVectorDbConfigRagManagedDb` |
+| `VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics` | `customMemoryTopic`, `managedMemoryTopic` | *the `memoryTopics` block* | `VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics` |
+| `VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig` | `defaultTtl`, `granularTtlConfig` | `policy` | `VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigPolicy` |
 | `VertexAiReasoningEngineSpec` | `containerSpec`, `sourceCodeSpec` | `deployment` | `VertexAiReasoningEngineSpecDeployment` |
 | `VertexAiReasoningEngineSpecSourceCodeSpec` | `imageSpec`, `pythonSpec` | `runtime` | `VertexAiReasoningEngineSpecSourceCodeSpecRuntime` |
 | `WorkbenchInstanceGceSetup` | `containerImage`, `vmImage` | `image` | `WorkbenchInstanceGceSetupImage` |
@@ -445,7 +477,7 @@ sections below). Each group, by class:
 | `GoogleFirebaseHostingChannel` | `expireTime`, `ttl` | `expiration` | `FirebaseHostingChannelExpiration` |
 | `GoogleTpuV2Vm` | `acceleratorConfig`, `acceleratorType` | `accelerator` | `TpuV2VmAccelerator` |
 | `GoogleTpuV2Vm` | `networkConfig`, `networkConfigs` | `network` | `TpuV2VmNetwork` |
-| `PrivilegedAccessManagerSettingsEmailNotificationSettings` | `customNotificationBehavior`, `disableAllNotifications` | `emailNotificationSettings` | `PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings` |
+| `PrivilegedAccessManagerSettingsEmailNotificationSettings` | `customNotificationBehavior`, `disableAllNotifications` | *the `emailNotificationSettings` block* | `PrivilegedAccessManagerSettingsEmailNotificationSettings` |
 
 </details>
 
@@ -453,15 +485,15 @@ sections below). Each group, by class:
 
 | Class | Member arguments | Sealed argument | Sealed type |
 |---|---|---|---|
-| `AccessanalyzerAnalyzerConfiguration` | `internalAccess`, `unusedAccess` | `access` | `AccessanalyzerAnalyzerConfigurationAccess` |
+| `AccessanalyzerAnalyzerConfiguration` | `internalAccess`, `unusedAccess` | *the `configuration` block* | `AccessanalyzerAnalyzerConfiguration` |
 | `AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration` | `customizedMetricSpecification`, `predefinedMetricSpecification` | `metricSpecification` | `AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification` |
-| `AppmeshVirtualNodeSpecServiceDiscovery` | `awsCloudMap`, `dns` | `serviceDiscovery` | `AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscovery` |
-| `AppmeshVirtualServiceSpecProvider` | `virtualNode`, `virtualRouter` | `provider` | `AppmeshVirtualServiceSpecProviderProvider` |
-| `AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget` | `capacityReservationIds`, `capacityReservationResourceGroupArns` | `capacityReservation` | `AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation` |
-| `AutoscalingGroupLaunchTemplate` | `id`, `name` | `template` | `AutoscalingGroupLaunchTemplateTemplate` |
+| `AppmeshVirtualNodeSpecServiceDiscovery` | `awsCloudMap`, `dns` | *the `serviceDiscovery` block* | `AppmeshVirtualNodeSpecServiceDiscovery` |
+| `AppmeshVirtualServiceSpecProvider` | `virtualNode`, `virtualRouter` | *the `provider` block* | `AppmeshVirtualServiceSpecProvider` |
+| `AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget` | `capacityReservationIds`, `capacityReservationResourceGroupArns` | *the `capacityReservationTarget` block* | `AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget` |
+| `AutoscalingGroupLaunchTemplate` | `id`, `name` | `identifier` | `AutoscalingGroupLaunchTemplateIdentifier` |
 | `AutoscalingPolicyPredictiveScalingConfigurationMetricSpecification` | `customizedScalingMetricSpecification`, `predefinedScalingMetricSpecification` | `scalingMetricSpecification` | `AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecification` |
 | `AutoscalingPolicyTargetTrackingConfiguration` | `customizedMetricSpecification`, `predefinedMetricSpecification` | `metricSpecification` | `AutoscalingPolicyTargetTrackingConfigurationMetricSpecification` |
-| `AutoscalingplansScalingPlanApplicationSource` | `cloudformationStackArn`, `tagFilter` | `applicationSource` | `AutoscalingplansScalingPlanApplicationSourceApplicationSource` |
+| `AutoscalingplansScalingPlanApplicationSource` | `cloudformationStackArn`, `tagFilter` | `selector` | `AutoscalingplansScalingPlanApplicationSourceSelector` |
 | `AwsAlb` | `name`, `namePrefix` | `name` | `AlbName` |
 | `AwsAlbTargetGroup` | `name`, `namePrefix` | `name` | `AlbTargetGroupName` |
 | `AwsAppsyncResolver` | `dataSource`, `pipelineConfig` | `backend` | `AppsyncResolverBackend` |
@@ -472,13 +504,13 @@ sections below). Each group, by class:
 | `AwsBatchComputeEnvironment` | `name`, `namePrefix` | `name` | `BatchComputeEnvironmentName` |
 | `AwsBatchJobDefinition` | `containerProperties`, `ecsProperties`, `eksProperties`, `nodeProperties` | `properties` | `BatchJobDefinitionProperties` |
 | `AwsBedrockagentAgentActionGroup` | `description`, `parentActionGroupSignature` | `definition` | `BedrockagentAgentActionGroupDefinition` |
-| `AwsBudgetsBudget` | `costFilter`, `filterExpression` | `filter` | `BudgetsBudgetFilter` |
+| `AwsBudgetsBudget` | `costFilter`, `filterExpression` | `scope` | `BudgetsBudgetScope` |
 | `AwsBudgetsBudget` | `costTypes`, `metrics` | `measure` | `BudgetsBudgetMeasure` |
 | `AwsBudgetsBudget` | `name`, `namePrefix` | `name` | `BudgetsBudgetName` |
-| `AwsCeAnomalyMonitor` | `monitorDimension`, `monitorSpecification` | `monitor` | `CeAnomalyMonitorMonitor` |
+| `AwsCeAnomalyMonitor` | `monitorDimension`, `monitorSpecification` | `scope` | `CeAnomalyMonitorScope` |
 | `AwsCloudformationStackInstances` | `accounts`, `deploymentTargets` | `targets` | `CloudformationStackInstancesTargets` |
 | `AwsCloudformationStackSet` | `templateBody`, `templateUrl` | `template` | `CloudformationStackSetTemplate` |
-| `AwsCloudformationStackSetInstance` | `region`, `stackSetInstanceRegion` | `region` | `CloudformationStackSetInstanceRegion` |
+| `AwsCloudformationStackSetInstance` | `region`, `stackSetInstanceRegion` | `targetRegion` | `CloudformationStackSetInstanceTargetRegion` |
 | `AwsCloudformationStackSetInstance` | `accountId`, `deploymentTargets` | `target` | `CloudformationStackSetInstanceTarget` |
 | `AwsCloudfrontPublicKey` | `name`, `namePrefix` | `name` | `CloudfrontPublicKeyName` |
 | `AwsCloudtrail` | `advancedEventSelector`, `eventSelector` | `selectors` | `CloudtrailSelectors` |
@@ -490,7 +522,7 @@ sections below). Each group, by class:
 | `AwsCloudwatchMetricAlarm` | `threshold`, `thresholdMetricId` | `threshold` | `CloudwatchMetricAlarmThreshold` |
 | `AwsCloudwatchMetricStream` | `excludeFilter`, `includeFilter` | `filter` | `CloudwatchMetricStreamFilter` |
 | `AwsCloudwatchMetricStream` | `name`, `namePrefix` | `name` | `CloudwatchMetricStreamName` |
-| `AwsCodebuildWebhook` | `branchFilter`, `filterGroup` | `filter` | `CodebuildWebhookFilter` |
+| `AwsCodebuildWebhook` | `branchFilter`, `filterGroup` | `trigger` | `CodebuildWebhookTrigger` |
 | `AwsCodeconnectionsConnection` | `hostArn`, `providerType` | `host` | `CodeconnectionsConnectionHost` |
 | `AwsCodestarconnectionsConnection` | `hostArn`, `providerType` | `host` | `CodestarconnectionsConnectionHost` |
 | `AwsCognitoUser` | `password`, `temporaryPassword` | `password` | `CognitoUserPassword` |
@@ -511,7 +543,7 @@ sections below). Each group, by class:
 | `AwsDbParameterGroup` | `name`, `namePrefix` | `name` | `DbParameterGroupName` |
 | `AwsDbSubnetGroup` | `name`, `namePrefix` | `name` | `DbSubnetGroupName` |
 | `AwsDmsReplicationTask` | `cdcStartPosition`, `cdcStartTime` | `cdcStart` | `DmsReplicationTaskCdcStart` |
-| `AwsDocdbCluster` | `clusterIdentifier`, `clusterIdentifierPrefix` | `clusterIdentifier` | `DocdbClusterClusterIdentifier` |
+| `AwsDocdbCluster` | `clusterIdentifier`, `clusterIdentifierPrefix` | `clusterIdentifier` | `DocdbClusterIdentifier` |
 | `AwsDocdbCluster` | `manageMasterUserPassword`, `masterPassword`, `masterPasswordWo` | `masterPassword` | `DocdbClusterMasterPassword` |
 | `AwsDocdbCluster` | `restoreToPointInTime`, `snapshotIdentifier` | `restoreSource` | `DocdbClusterRestoreSource` |
 | `AwsDocdbClusterInstance` | `identifier`, `identifierPrefix` | `identifier` | `DocdbClusterInstanceIdentifier` |
@@ -521,8 +553,8 @@ sections below). Each group, by class:
 | `AwsDocdbSubnetGroup` | `name`, `namePrefix` | `name` | `DocdbSubnetGroupName` |
 | `AwsDynamodbTable` | `importTable`, `restoreBackupArn`, `restoreSourceName`, `restoreSourceTableArn` | `source` | `DynamodbTableSource` |
 | `AwsEc2SecondarySubnet` | `availabilityZone`, `availabilityZoneId` | `availabilityZone` | `Ec2SecondarySubnetAvailabilityZone` |
-| `AwsEcsTaskSet` | `capacityProviderStrategy`, `launchType` | `capacity` | `EcsTaskSetCapacity` |
-| `AwsEksNodeGroup` | `nodeGroupName`, `nodeGroupNamePrefix` | `nodeGroupName` | `EksNodeGroupNodeGroupName` |
+| `AwsEcsTaskSet` | `capacityProviderStrategy`, `launchType` | `compute` | `EcsTaskSetCompute` |
+| `AwsEksNodeGroup` | `nodeGroupName`, `nodeGroupNamePrefix` | `nodeGroupName` | `EksNodeGroupName` |
 | `AwsElasticBeanstalkEnvironment` | `platformArn`, `solutionStackName`, `templateName` | `platform` | `ElasticBeanstalkEnvironmentPlatform` |
 | `AwsElasticacheReplicationGroup` | `authToken`, `authTokenWo`, `userGroupIds` | `auth` | `ElasticacheReplicationGroupAuth` |
 | `AwsElasticacheReplicationGroup` | `nodeGroupConfiguration`, `preferredCacheClusterAzs` | `topology` | `ElasticacheReplicationGroupTopology` |
@@ -531,7 +563,7 @@ sections below). Each group, by class:
 | `AwsEmrSecurityConfiguration` | `name`, `namePrefix` | `name` | `EmrSecurityConfigurationName` |
 | `AwsFmsPolicy` | `resourceType`, `resourceTypeList` | `resourceType` | `FmsPolicyResourceType` |
 | `AwsFsxWindowsFileSystem` | `activeDirectoryId`, `selfManagedActiveDirectory` | `activeDirectory` | `FsxWindowsFileSystemActiveDirectory` |
-| `AwsGlueClassifier` | `csvClassifier`, `grokClassifier`, `jsonClassifier`, `xmlClassifier` | `classifier` | `GlueClassifierClassifier` |
+| `AwsGlueClassifier` | `csvClassifier`, `grokClassifier`, `jsonClassifier`, `xmlClassifier` | `format` | `GlueClassifierFormat` |
 | `AwsGlueDevEndpoint` | `publicKey`, `publicKeys` | `publicKey` | `GlueDevEndpointPublicKey` |
 | `AwsIamGroupPolicy` | `name`, `namePrefix` | `name` | `IamGroupPolicyName` |
 | `AwsIamInstanceProfile` | `name`, `namePrefix` | `name` | `IamInstanceProfileName` |
@@ -569,13 +601,13 @@ sections below). Each group, by class:
 | `AwsMemorydbSnapshot` | `name`, `namePrefix` | `name` | `MemorydbSnapshotName` |
 | `AwsMemorydbSubnetGroup` | `name`, `namePrefix` | `name` | `MemorydbSubnetGroupName` |
 | `AwsNatGateway` | `secondaryPrivateIpAddressCount`, `secondaryPrivateIpAddresses` | `secondaryPrivateIpAddress` | `NatGatewaySecondaryPrivateIpAddress` |
-| `AwsNeptuneCluster` | `clusterIdentifier`, `clusterIdentifierPrefix` | `clusterIdentifier` | `NeptuneClusterClusterIdentifier` |
+| `AwsNeptuneCluster` | `clusterIdentifier`, `clusterIdentifierPrefix` | `clusterIdentifier` | `NeptuneClusterIdentifier` |
 | `AwsNeptuneClusterInstance` | `identifier`, `identifierPrefix` | `identifier` | `NeptuneClusterInstanceIdentifier` |
 | `AwsNeptuneClusterParameterGroup` | `name`, `namePrefix` | `name` | `NeptuneClusterParameterGroupName` |
 | `AwsNeptuneEventSubscription` | `name`, `namePrefix` | `name` | `NeptuneEventSubscriptionName` |
 | `AwsNeptuneParameterGroup` | `name`, `namePrefix` | `name` | `NeptuneParameterGroupName` |
 | `AwsNeptuneSubnetGroup` | `name`, `namePrefix` | `name` | `NeptuneSubnetGroupName` |
-| `AwsNeptunegraphGraph` | `graphName`, `graphNamePrefix` | `graphName` | `NeptunegraphGraphGraphName` |
+| `AwsNeptunegraphGraph` | `graphName`, `graphNamePrefix` | `graphName` | `NeptunegraphGraphName` |
 | `AwsNetworkInterface` | `ipv4PrefixCount`, `ipv4Prefixes` | `ipv4Prefix` | `NetworkInterfaceIpv4Prefix` |
 | `AwsNetworkInterface` | `ipv6AddressCount`, `ipv6AddressList`, `ipv6Addresses` | `ipv6Address` | `NetworkInterfaceIpv6Address` |
 | `AwsNetworkInterface` | `ipv6PrefixCount`, `ipv6Prefixes` | `ipv6Prefix` | `NetworkInterfaceIpv6Prefix` |
@@ -583,7 +615,7 @@ sections below). Each group, by class:
 | `AwsPinpointApp` | `name`, `namePrefix` | `name` | `PinpointAppName` |
 | `AwsPipesPipe` | `name`, `namePrefix` | `name` | `PipesPipeName` |
 | `AwsRbinRule` | `excludeResourceTags`, `resourceTags` | `tagFilter` | `RbinRuleTagFilter` |
-| `AwsRdsCluster` | `clusterIdentifier`, `clusterIdentifierPrefix` | `clusterIdentifier` | `RdsClusterClusterIdentifier` |
+| `AwsRdsCluster` | `clusterIdentifier`, `clusterIdentifierPrefix` | `clusterIdentifier` | `RdsClusterIdentifier` |
 | `AwsRdsCluster` | `manageMasterUserPassword`, `masterPassword`, `masterPasswordWo` | `masterPassword` | `RdsClusterMasterPassword` |
 | `AwsRdsClusterEndpoint` | `excludedMembers`, `staticMembers` | `members` | `RdsClusterEndpointMembers` |
 | `AwsRdsClusterInstance` | `identifier`, `identifierPrefix` | `identifier` | `RdsClusterInstanceIdentifier` |
@@ -599,7 +631,7 @@ sections below). Each group, by class:
 | `AwsRoute53Record` | `cidrRoutingPolicy`, `failoverRoutingPolicy`, `geolocationRoutingPolicy`, `geoproximityRoutingPolicy`, `latencyRoutingPolicy`, `multivalueAnswerRoutingPolicy`, `weightedRoutingPolicy` | `routingPolicy` | `Route53RecordRoutingPolicy` |
 | `AwsRoute53Zone` | `delegationSetId`, `vpc` | `visibility` | `Route53ZoneVisibility` |
 | `AwsS3Bucket` | `acl`, `grant` | `access` | `S3BucketAccess` |
-| `AwsS3Bucket` | `bucket`, `bucketPrefix` | `bucket` | `S3BucketBucket` |
+| `AwsS3Bucket` | `bucket`, `bucketPrefix` | `name` | `S3BucketName` |
 | `AwsS3BucketObject` | `content`, `contentBase64`, `source` | `body` | `S3BucketObjectBody` |
 | `AwsS3BucketObject` | `etag`, `kmsKeyId` | `integrity` | `S3BucketObjectIntegrity` |
 | `AwsS3Object` | `content`, `contentBase64`, `source` | `body` | `S3ObjectBody` |
@@ -612,7 +644,7 @@ sections below). Each group, by class:
 | `AwsSecretsmanagerSecretVersion` | `secretBinary`, `secretString`, `secretStringWo` | `secret` | `SecretsmanagerSecretVersionSecret` |
 | `AwsSecurityGroup` | `name`, `namePrefix` | `name` | `SecurityGroupName` |
 | `AwsServicecatalogProvisionedProduct` | `pathId`, `pathName` | `path` | `ServicecatalogProvisionedProductPath` |
-| `AwsSesEventDestination` | `cloudwatchDestination`, `kinesisDestination`, `snsDestination` | `destination` | `SesEventDestinationDestination` |
+| `AwsSesEventDestination` | `cloudwatchDestination`, `kinesisDestination`, `snsDestination` | `target` | `SesEventDestinationTarget` |
 | `AwsSfnStateMachine` | `name`, `namePrefix` | `name` | `SfnStateMachineName` |
 | `AwsShieldProtectionGroup` | `members`, `resourceType` | `scope` | `ShieldProtectionGroupScope` |
 | `AwsSignerSigningProfile` | `name`, `namePrefix` | `name` | `SignerSigningProfileName` |
@@ -624,17 +656,17 @@ sections below). Each group, by class:
 | `AwsSwfDomain` | `name`, `namePrefix` | `name` | `SwfDomainName` |
 | `AwsVpc` | `cidrBlock`, `ipv4NetmaskLength` | `ipv4Cidr` | `VpcIpv4Cidr` |
 | `AwsVpcEndpoint` | `resourceConfigurationArn`, `serviceName`, `serviceNetworkArn` | `service` | `VpcEndpointService` |
-| `AwsVpcIpamPoolCidr` | `cidr`, `netmaskLength` | `cidr` | `VpcIpamPoolCidrCidr` |
+| `AwsVpcIpamPoolCidr` | `cidr`, `netmaskLength` | `range` | `VpcIpamPoolCidrRange` |
 | `AwsVpcIpamPoolCidrAllocation` | `cidr`, `netmaskLength` | `cidr` | `VpcIpamPoolCidrAllocationCidr` |
 | `AwsWafv2IpSet` | `name`, `namePrefix` | `name` | `Wafv2IpSetName` |
 | `AwsWafv2RegexPatternSet` | `name`, `namePrefix` | `name` | `Wafv2RegexPatternSetName` |
 | `AwsWafv2RuleGroup` | `name`, `namePrefix` | `name` | `Wafv2RuleGroupName` |
 | `AwsWafv2RuleGroup` | `rule`, `rulesJson` | `rules` | `Wafv2RuleGroupRules` |
 | `AwsWafv2WebAcl` | `name`, `namePrefix` | `name` | `Wafv2WebAclName` |
-| `AwsWafv2WebAclRule` | `action`, `overrideAction` | `ruleAction` | `Wafv2WebAclRuleRuleAction` |
-| `BatchComputeEnvironmentComputeResourcesLaunchTemplate` | `launchTemplateId`, `launchTemplateName` | `launchTemplate` | `BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate` |
-| `BedrockagentAgentActionGroupApiSchema` | `payload`, `s3` | `apiSchema` | `BedrockagentAgentActionGroupApiSchemaApiSchema` |
-| `BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration` | `fixedSizeChunkingConfiguration`, `hierarchicalChunkingConfiguration`, `semanticChunkingConfiguration` | `chunkingConfiguration` | `BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingConfiguration` |
+| `AwsWafv2WebAclRule` | `action`, `overrideAction` | `behavior` | `Wafv2WebAclRuleBehavior` |
+| `BatchComputeEnvironmentComputeResourcesLaunchTemplate` | `launchTemplateId`, `launchTemplateName` | `identifier` | `BatchComputeEnvironmentComputeResourcesLaunchTemplateIdentifier` |
+| `BedrockagentAgentActionGroupApiSchema` | `payload`, `s3` | *the `apiSchema` block* | `BedrockagentAgentActionGroupApiSchema` |
+| `BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration` | `fixedSizeChunkingConfiguration`, `hierarchicalChunkingConfiguration`, `semanticChunkingConfiguration` | `strategy` | `BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationStrategy` |
 | `BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfig` | `tenantId`, `tenantIdWo` | `tenantId` | `BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId` |
 | `CloudformationStackInstancesOperationPreferences` | `failureToleranceCount`, `failureTolerancePercentage` | `failureTolerance` | `CloudformationStackInstancesOperationPreferencesFailureTolerance` |
 | `CloudformationStackInstancesOperationPreferences` | `maxConcurrentCount`, `maxConcurrentPercentage` | `maxConcurrent` | `CloudformationStackInstancesOperationPreferencesMaxConcurrent` |
@@ -644,47 +676,47 @@ sections below). Each group, by class:
 | `CloudformationStackSetOperationPreferences` | `maxConcurrentCount`, `maxConcurrentPercentage` | `maxConcurrent` | `CloudformationStackSetOperationPreferencesMaxConcurrent` |
 | `CodedeployDeploymentConfigTrafficRoutingConfig` | `timeBasedCanary`, `timeBasedLinear` | `timeBased` | `CodedeployDeploymentConfigTrafficRoutingConfigTimeBased` |
 | `ComputeoptimizerRecommendationPreferencesPreferredResource` | `excludeList`, `includeList` | `filter` | `ComputeoptimizerRecommendationPreferencesPreferredResourceFilter` |
-| `DbInstanceRestoreToPointInTime` | `restoreTime`, `useLatestRestorableTime` | `time` | `DbInstanceRestoreToPointInTimeTime` |
-| `DocdbClusterRestoreToPointInTime` | `restoreToTime`, `useLatestRestorableTime` | `time` | `DocdbClusterRestoreToPointInTimeTime` |
+| `DbInstanceRestoreToPointInTime` | `restoreTime`, `useLatestRestorableTime` | `target` | `DbInstanceRestoreToPointInTimeTarget` |
+| `DocdbClusterRestoreToPointInTime` | `restoreToTime`, `useLatestRestorableTime` | `target` | `DocdbClusterRestoreToPointInTimeTarget` |
 | `Ec2ClientVpnEndpointTransitGatewayConfiguration` | `availabilityZoneIds`, `availabilityZones` | `availabilityZone` | `Ec2ClientVpnEndpointTransitGatewayConfigurationAvailabilityZone` |
-| `EksNodeGroupLaunchTemplate` | `id`, `name` | `template` | `EksNodeGroupLaunchTemplateTemplate` |
+| `EksNodeGroupLaunchTemplate` | `id`, `name` | `identifier` | `EksNodeGroupLaunchTemplateIdentifier` |
 | `EksNodeGroupNodeRepairConfig` | `maxParallelNodesRepairedCount`, `maxParallelNodesRepairedPercentage` | `maxParallelNodesRepaired` | `EksNodeGroupNodeRepairConfigMaxParallelNodesRepaired` |
 | `EksNodeGroupNodeRepairConfig` | `maxUnhealthyNodeThresholdCount`, `maxUnhealthyNodeThresholdPercentage` | `maxUnhealthyNodeThreshold` | `EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThreshold` |
 | `EmrClusterEc2Attributes` | `subnetId`, `subnetIds` | `subnet` | `EmrClusterEc2AttributesSubnet` |
-| `EvidentlyProjectDataDelivery` | `cloudwatchLogs`, `s3Destination` | `dataDelivery` | `EvidentlyProjectDataDeliveryDataDelivery` |
-| `GameliftGameServerGroupLaunchTemplate` | `id`, `name` | `template` | `GameliftGameServerGroupLaunchTemplateTemplate` |
+| `EvidentlyProjectDataDelivery` | `cloudwatchLogs`, `s3Destination` | *the `dataDelivery` block* | `EvidentlyProjectDataDelivery` |
+| `GameliftGameServerGroupLaunchTemplate` | `id`, `name` | `identifier` | `GameliftGameServerGroupLaunchTemplateIdentifier` |
 | `ImagebuilderInfrastructureConfigurationPlacement` | `hostId`, `hostResourceGroupArn` | `host` | `ImagebuilderInfrastructureConfigurationPlacementHost` |
-| `InstanceCapacityReservationSpecificationCapacityReservationTarget` | `capacityReservationId`, `capacityReservationResourceGroupArn` | `capacityReservation` | `InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation` |
+| `InstanceCapacityReservationSpecificationCapacityReservationTarget` | `capacityReservationId`, `capacityReservationResourceGroupArn` | *the `capacityReservationTarget` block* | `InstanceCapacityReservationSpecificationCapacityReservationTarget` |
 | `KinesisFirehoseDeliveryStreamElasticsearchConfiguration` | `clusterEndpoint`, `domainArn` | `domain` | `KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomain` |
 | `KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializer` | `hiveJsonSerDe`, `openXJsonSerDe` | `jsonSerDe` | `KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe` |
 | `KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializer` | `orcSerDe`, `parquetSerDe` | `serDe` | `KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe` |
 | `KinesisFirehoseDeliveryStreamOpensearchConfiguration` | `clusterEndpoint`, `domainArn` | `domain` | `KinesisFirehoseDeliveryStreamOpensearchConfigurationDomain` |
-| `Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent` | `s3ContentLocation`, `textContent` | `codeContent` | `Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContentCodeContent` |
-| `LaunchTemplateCapacityReservationSpecificationCapacityReservationTarget` | `capacityReservationId`, `capacityReservationResourceGroupArn` | `capacityReservation` | `LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation` |
-| `LaunchTemplateIamInstanceProfile` | `arn`, `name` | `iamInstanceProfile` | `LaunchTemplateIamInstanceProfileIamInstanceProfile` |
+| `Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent` | `s3ContentLocation`, `textContent` | *the `codeContent` block* | `Kinesisanalyticsv2ApplicationApplicationConfigurationApplicationCodeConfigurationCodeContent` |
+| `LaunchTemplateCapacityReservationSpecificationCapacityReservationTarget` | `capacityReservationId`, `capacityReservationResourceGroupArn` | *the `capacityReservationTarget` block* | `LaunchTemplateCapacityReservationSpecificationCapacityReservationTarget` |
+| `LaunchTemplateIamInstanceProfile` | `arn`, `name` | *the `iamInstanceProfile` block* | `LaunchTemplateIamInstanceProfile` |
 | `LaunchTemplateInstanceRequirements` | `allowedInstanceTypes`, `excludedInstanceTypes` | `instanceTypes` | `LaunchTemplateInstanceRequirementsInstanceTypes` |
 | `LaunchTemplateInstanceRequirements` | `maxSpotPriceAsPercentageOfOptimalOnDemandPrice`, `spotMaxPricePercentageOverLowestPrice` | `price` | `LaunchTemplateInstanceRequirementsPrice` |
 | `LaunchTemplatePlacement` | `groupId`, `groupName` | `group` | `LaunchTemplatePlacementGroup` |
 | `LaunchTemplatePlacement` | `hostId`, `hostResourceGroupArn` | `host` | `LaunchTemplatePlacementHost` |
 | `Macie2ClassificationJobS3JobDefinition` | `bucketCriteria`, `bucketDefinitions` | `bucket` | `Macie2ClassificationJobS3JobDefinitionBucket` |
-| `Macie2ClassificationJobScheduleFrequency` | `dailySchedule`, `monthlySchedule`, `weeklySchedule` | `schedule` | `Macie2ClassificationJobScheduleFrequencySchedule` |
-| `NetworkmanagerDeviceAwsLocation` | `subnetArn`, `zone` | `awsLocation` | `NetworkmanagerDeviceAwsLocationAwsLocation` |
-| `PipesPipeSourceParameters` | `activemqBrokerParameters`, `dynamodbStreamParameters`, `kinesisStreamParameters`, `managedStreamingKafkaParameters`, `rabbitmqBrokerParameters`, `selfManagedKafkaParameters`, `sqsQueueParameters` | `parameters` | `PipesPipeSourceParametersParameters` |
-| `PipesPipeTargetParameters` | `batchJobParameters`, `cloudwatchLogsParameters`, `ecsTaskParameters`, `eventbridgeEventBusParameters`, `httpParameters`, `kinesisStreamParameters`, `lambdaFunctionParameters`, `redshiftDataParameters`, `sagemakerPipelineParameters`, `sqsQueueParameters`, `stepFunctionStateMachineParameters` | `parameters` | `PipesPipeTargetParametersParameters` |
-| `PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAbove` | `amount`, `ratio` | `ignoreNearExpectedFromAbove` | `PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove` |
-| `PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelow` | `amount`, `ratio` | `ignoreNearExpectedFromBelow` | `PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow` |
-| `QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay` | `dayOfMonth`, `dayOfWeek` | `day` | `QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDay` |
-| `RekognitionStreamProcessorOutput` | `kinesisDataStream`, `s3Destination` | `output` | `RekognitionStreamProcessorOutputOutput` |
-| `RekognitionStreamProcessorRegionsOfInterest` | `boundingBox`, `polygon` | `regionsOfInterest` | `RekognitionStreamProcessorRegionsOfInterestRegionsOfInterest` |
-| `RekognitionStreamProcessorSettings` | `connectedHome`, `faceSearch` | `settings` | `RekognitionStreamProcessorSettingsSettings` |
-| `S3BucketInventoryDestinationBucketEncryption` | `sseKms`, `sseS3` | `sse` | `S3BucketInventoryDestinationBucketEncryptionSse` |
+| `Macie2ClassificationJobScheduleFrequency` | `dailySchedule`, `monthlySchedule`, `weeklySchedule` | *the `scheduleFrequency` block* | `Macie2ClassificationJobScheduleFrequency` |
+| `NetworkmanagerDeviceAwsLocation` | `subnetArn`, `zone` | *the `awsLocation` block* | `NetworkmanagerDeviceAwsLocation` |
+| `PipesPipeSourceParameters` | `activemqBrokerParameters`, `dynamodbStreamParameters`, `kinesisStreamParameters`, `managedStreamingKafkaParameters`, `rabbitmqBrokerParameters`, `selfManagedKafkaParameters`, `sqsQueueParameters` | `service` | `PipesPipeSourceParametersService` |
+| `PipesPipeTargetParameters` | `batchJobParameters`, `cloudwatchLogsParameters`, `ecsTaskParameters`, `eventbridgeEventBusParameters`, `httpParameters`, `kinesisStreamParameters`, `lambdaFunctionParameters`, `redshiftDataParameters`, `sagemakerPipelineParameters`, `sqsQueueParameters`, `stepFunctionStateMachineParameters` | `service` | `PipesPipeTargetParametersService` |
+| `PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAbove` | `amount`, `ratio` | *the `ignoreNearExpectedFromAbove` block* | `PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAbove` |
+| `PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelow` | `amount`, `ratio` | *the `ignoreNearExpectedFromBelow` block* | `PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelow` |
+| `QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay` | `dayOfMonth`, `dayOfWeek` | *the `refreshOnDay` block* | `QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay` |
+| `RekognitionStreamProcessorOutput` | `kinesisDataStream`, `s3Destination` | *the `output` block* | `RekognitionStreamProcessorOutput` |
+| `RekognitionStreamProcessorRegionsOfInterest` | `boundingBox`, `polygon` | *the `regionsOfInterest` block* | `RekognitionStreamProcessorRegionsOfInterest` |
+| `RekognitionStreamProcessorSettings` | `connectedHome`, `faceSearch` | *the `settings` block* | `RekognitionStreamProcessorSettings` |
+| `S3BucketInventoryDestinationBucketEncryption` | `sseKms`, `sseS3` | *the `encryption` block* | `S3BucketInventoryDestinationBucketEncryption` |
 | `S3BucketObjectLockConfigurationRuleDefaultRetention` | `days`, `years` | `period` | `S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod` |
 | `SagemakerHyperParameterTuningJobTrainingJobDefinition` | `hyperParameterTuningResourceConfig`, `resourceConfig` | `resources` | `SagemakerHyperParameterTuningJobTrainingJobDefinitionResources` |
 | `SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecification` | `algorithmName`, `trainingImage` | `algorithm` | `SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithm` |
 | `SagemakerHyperParameterTuningJobTrainingJobDefinitions` | `hyperParameterTuningResourceConfig`, `resourceConfig` | `resources` | `SagemakerHyperParameterTuningJobTrainingJobDefinitionsResources` |
 | `SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecification` | `algorithmName`, `trainingImage` | `algorithm` | `SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithm` |
 | `SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfiguration` | `disabledControlIdentifiers`, `enabledControlIdentifiers` | `controlIdentifiers` | `SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers` |
-| `SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget` | `capacityReservationId`, `capacityReservationResourceGroupArn` | `capacityReservation` | `SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservation` |
+| `SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget` | `capacityReservationId`, `capacityReservationResourceGroupArn` | *the `capacityReservationTarget` block* | `SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget` |
 
 </details>
 
@@ -703,19 +735,19 @@ sections below). Each group, by class:
 | `RulesetRulesActionParameters` | `assetName`, `content` | `body` | `RulesetRulesActionParametersBody` |
 | `RulesetRulesActionParameters` | `fromList`, `fromValue` | `source` | `RulesetRulesActionParametersSource` |
 | `RulesetRulesActionParameters` | `expression`, `values` | `value` | `RulesetRulesActionParametersValue` |
-| `RulesetRulesActionParametersCacheKeyCustomKeyQueryString` | `exclude`, `include` | `queryString` | `RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryString` |
-| `RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude` | `all`, `list` | `exclude` | `RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExclude` |
-| `RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude` | `all`, `list` | `include` | `RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeInclude` |
-| `RulesetRulesActionParametersEdgeTtlStatusCodeTtl` | `statusCode`, `statusCodeRange` | `statusCode` | `RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCode` |
-| `RulesetRulesActionParametersFromValueTargetUrl` | `expression`, `value` | `targetUrl` | `RulesetRulesActionParametersFromValueTargetUrlTargetUrl` |
+| `RulesetRulesActionParametersCacheKeyCustomKeyQueryString` | `exclude`, `include` | *the `queryString` block* | `RulesetRulesActionParametersCacheKeyCustomKeyQueryString` |
+| `RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude` | `all`, `list` | *the `exclude` block* | `RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude` |
+| `RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude` | `all`, `list` | *the `include` block* | `RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude` |
+| `RulesetRulesActionParametersEdgeTtlStatusCodeTtl` | `statusCode`, `statusCodeRange` | `match` | `RulesetRulesActionParametersEdgeTtlStatusCodeTtlMatch` |
+| `RulesetRulesActionParametersFromValueTargetUrl` | `expression`, `value` | *the `targetUrl` block* | `RulesetRulesActionParametersFromValueTargetUrl` |
 | `RulesetRulesActionParametersHeaders` | `expression`, `value` | `value` | `RulesetRulesActionParametersHeadersValue` |
-| `RulesetRulesActionParametersUriPath` | `expression`, `value` | `path` | `RulesetRulesActionParametersUriPathPath` |
-| `RulesetRulesActionParametersUriQuery` | `expression`, `value` | `query` | `RulesetRulesActionParametersUriQueryQuery` |
+| `RulesetRulesActionParametersUriPath` | `expression`, `value` | *the `path` block* | `RulesetRulesActionParametersUriPath` |
+| `RulesetRulesActionParametersUriQuery` | `expression`, `value` | *the `query` block* | `RulesetRulesActionParametersUriQuery` |
 | `WorkerVersionAssets` | `directory`, `jwt` | `source` | `WorkerVersionAssetsSource` |
 | `WorkerVersionModules` | `contentBase64`, `contentFile` | `content` | `WorkerVersionModulesContent` |
 | `WorkersScriptAssets` | `directory`, `jwt` | `source` | `WorkersScriptAssetsSource` |
 | `WorkersScriptFiles` | `contentBase64`, `contentFile` | `content` | `WorkersScriptFilesContent` |
-| `ZeroTrustAccessApplicationCorsHeaders` | `allowAllHeaders`, `allowedHeaders` | `headers` | `ZeroTrustAccessApplicationCorsHeadersHeaders` |
+| `ZeroTrustAccessApplicationCorsHeaders` | `allowAllHeaders`, `allowedHeaders` | `requestHeaders` | `ZeroTrustAccessApplicationCorsHeadersRequestHeaders` |
 | `ZeroTrustAccessApplicationCorsHeaders` | `allowAllMethods`, `allowedMethods` | `methods` | `ZeroTrustAccessApplicationCorsHeadersMethods` |
 | `ZeroTrustAccessApplicationCorsHeaders` | `allowAllOrigins`, `allowedOrigins` | `origins` | `ZeroTrustAccessApplicationCorsHeadersOrigins` |
 | `ZeroTrustAccessApplicationPolicies` | `id`, `include` | `policy` | `ZeroTrustAccessApplicationPoliciesPolicy` |
@@ -768,9 +800,9 @@ Data, storage, databases and observability (35 groups on 20 resources):
 | `GoogleBigqueryDatasetAccess(specialGroup: TfArg.literal(...), ...)` | `GoogleBigqueryDatasetAccess(grantee: .specialGroup(TfArg.literal(...)), ...)` |
 | `GoogleBigqueryAnalyticsHubListing(bigqueryDataset: TfArg.literal({'dataset': ...}), ...)` | `GoogleBigqueryAnalyticsHubListing(source: .bigqueryDataset(BigqueryAnalyticsHubListingBigqueryDataset(dataset: TfArg.literal(...))), ...)` |
 | `GoogleMonitoringSlo(rollingPeriodDays: TfArg.literal(30), ...)` | `GoogleMonitoringSlo(period: .rollingPeriodDays(TfArg.literal(30)), ...)` |
-| `GoogleLoggingSavedQuery(loggingQuery: LoggingSavedQueryLoggingQuery(...), ...)` | `GoogleLoggingSavedQuery(query: .loggingQuery(LoggingSavedQueryLoggingQuery(...)), ...)` |
-| `DataplexDatascanData(resource: TfArg.literal(...))` | `DataplexDatascanData(data: .resource(TfArg.literal(...)))` |
-| `DatastreamStreamSourceConfig(mysqlSourceConfig: ..., ...)` | `DatastreamStreamSourceConfig(sourceConfig: .mysqlSourceConfig(...), ...)` |
+| `GoogleLoggingSavedQuery(loggingQuery: LoggingSavedQueryLoggingQuery(...), ...)` | `GoogleLoggingSavedQuery(definition: .loggingQuery(LoggingSavedQueryLoggingQuery(...)), ...)` |
+| `data: DataplexDatascanData(resource: TfArg.literal(...))` | `data: .resource(TfArg.literal(...))` |
+| `DatastreamStreamSourceConfig(mysqlSourceConfig: ..., ...)` | `DatastreamStreamSourceConfig(system: .mysqlSourceConfig(...), ...)` |
 
 `GoogleBigqueryDatasetAccess`'s `view`, `dataset` and `routine` keep their
 helper classes (`BigqueryDatasetAccessView`, ...) inside the variants. The
@@ -800,10 +832,10 @@ AI / ML, serverless, containers and CI/CD (35 groups on 25 resources):
 |--------|-------|
 | `GoogleCloudbuildv2Connection(githubConfig: Cloudbuildv2ConnectionGithubConfig(...), ...)` | `GoogleCloudbuildv2Connection(host: .githubConfig(Cloudbuildv2ConnectionGithubConfig(...)), ...)` |
 | `GoogleFirebaseAppHostingTraffic(target: FirebaseAppHostingTrafficAppHostingTrafficTarget(...), ...)` | `GoogleFirebaseAppHostingTraffic(routing: .target(FirebaseAppHostingTrafficAppHostingTrafficTarget(...)), ...)` |
-| `GkeHubScopeRbacRoleBindingRole(predefinedRole: TfArg.literal(...))` | `GkeHubScopeRbacRoleBindingRole(role: .predefinedRole(TfArg.literal(...)))` |
+| `role: GkeHubScopeRbacRoleBindingRole(predefinedRole: TfArg.literal(...))` | `role: .predefinedRole(TfArg.literal(...))` |
 | `GoogleGkeBackupBackupPlan(backupConfig: TfArg.literal({'all_namespaces': ..., ...}), retentionPolicy: TfArg.literal({...}), ...)` | `GoogleGkeBackupBackupPlan(backupConfig: GkeBackupBackupPlanBackupConfig(scope: .allNamespaces(TfArg.literal(true)), ...), retentionPolicy: GkeBackupBackupPlanRetentionPolicy(...), ...)` |
 | `GoogleClouddeployCustomTargetType(customActions: TfArg.literal({...}), ...)` | `GoogleClouddeployCustomTargetType(actions: .customActions(ClouddeployCustomTargetTypeCustomActions(...)), ...)` |
-| `IntegrationsAuthConfigDecryptedCredential(usernameAndPassword: ..., ...)` | `IntegrationsAuthConfigDecryptedCredential(credential: .usernameAndPassword(...), ...)` |
+| `IntegrationsAuthConfigDecryptedCredential(usernameAndPassword: ..., ...)` | `IntegrationsAuthConfigDecryptedCredential(secret: .usernameAndPassword(...), ...)` |
 
 Four resources whose sealed groups sit in blocks that used to be untyped
 maps take typed nested helpers now: `GoogleGkeBackupBackupPlan`,
@@ -829,8 +861,8 @@ Security, identity, billing and operations (13 groups on 8 resources):
 |--------|-------|
 | `GoogleAccessContextManagerAccessLevel(basic: AccessContextManagerAccessLevelBasic(...), ...)` | `GoogleAccessContextManagerAccessLevel(definition: .basic(AccessContextManagerAccessLevelBasic(...)), ...)` |
 | `GooglePrivatecaCertificate(pemCsr: TfArg.literal(...), ...)` | `GooglePrivatecaCertificate(request: .pemCsr(TfArg.literal(...)), ...)` |
-| `BillingBudgetAmount(lastPeriodAmount: TfArg.literal(true))` | `BillingBudgetAmount(amount: .lastPeriodAmount(TfArg.literal(true)))` |
-| `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(unstructured: ...)` | `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(requesterJustificationConfig: .unstructured(...))` |
+| `amount: BillingBudgetAmount(lastPeriodAmount: TfArg.literal(true))` | `amount: .lastPeriodAmount(TfArg.literal(true))` |
+| `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(unstructured: ...)` | `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(requirement: .unstructured(...))` |
 
 `GooglePrivatecaCertificate`'s `config` keeps its helper class inside the
 `.config(...)` variant. The other groups:
@@ -863,7 +895,7 @@ concept name, and each member is a factory constructor on the sealed type
 | `CloudflareRuleset(zoneId: TfArg.literal(zoneId), ...)` | `CloudflareRuleset(scope: .zoneId(TfArg.literal(zoneId)), ...)` |
 | `CloudflareAccountMember(roles: TfArg.literal([roleId]), ...)` | `CloudflareAccountMember(access: .roles(TfArg.literal([roleId])), ...)` |
 | `WorkerVersionModules(contentFile: TfArg.literal('dist/index.js'), ...)` | `WorkerVersionModules(content: .contentFile(TfArg.literal('dist/index.js')), ...)` |
-| `RulesetRulesActionParametersUriPath(value: TfArg.literal('/new'))` | `RulesetRulesActionParametersUriPath(path: .value(TfArg.literal('/new')))` |
+| `path: RulesetRulesActionParametersUriPath(value: TfArg.literal('/new'))` | `path: .value(TfArg.literal('/new'))` |
 
 The other groups: `WorkersScriptFiles` (`content_base64` / `content_file`),
 the ruleset's `from_value.target_url` (`value` / `expression`), `uri.query`
@@ -927,7 +959,7 @@ output is unchanged.
 |--------|-------|
 | `AwsIamRole(name: TfArg.literal('hello'), ...)` | `AwsIamRole(name: .name(TfArg.literal('hello')), ...)` |
 | `AwsCloudwatchLogGroup(name: TfArg.literal('/aws/lambda/hello'), ...)` | `AwsCloudwatchLogGroup(name: .name(TfArg.literal('/aws/lambda/hello')), ...)` |
-| `AwsS3Bucket(bucketPrefix: TfArg.literal('site-'), ...)` | `AwsS3Bucket(bucket: .bucketPrefix(TfArg.literal('site-')), ...)` |
+| `AwsS3Bucket(bucketPrefix: TfArg.literal('site-'), ...)` | `AwsS3Bucket(name: .bucketPrefix(TfArg.literal('site-')), ...)` |
 | `AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration(predefinedMetricSpecification: spec, ...)` | `...(metricSpecification: .predefinedMetricSpecification(spec), ...)` |
 
 Three exactly-one groups are new too. `AwsDocdbGlobalCluster` gains a
@@ -935,9 +967,9 @@ required sealed argument: the provider requires at least one of `engine` /
 `source_db_cluster_identifier`, and they conflict, so exactly one is set:
 `AwsDocdbGlobalCluster(source: .engine(TfArg.literal(DocdbGlobalClusterEngine.docdb)), ...)`.
 `AwsPrometheusAnomalyDetector`'s `ignore_near_expected_from_above` and
-`ignore_near_expected_from_below` blocks each take one required sealed
-argument named after the block, with `.amount(...)` / `.ratio(...)` variants
-(a `float64validator.ExactlyOneOf` the extractor used to skip).
+`ignore_near_expected_from_below` blocks are sealed types themselves, with
+`.amount(...)` / `.ratio(...)` variants (a `float64validator.ExactlyOneOf`
+the extractor used to skip): `ignoreNearExpectedFromAbove: .ratio(...)`.
 
 Setting two members used to fail at `terraform validate`; now it doesn't
 compile. Two groups stay as separate arguments because one member has no
@@ -976,7 +1008,7 @@ unchanged, so no Terraform step is needed; fix the compile errors:
 | `GoogleGkeHubMembershipRbacRoleBinding(role: TfArg.literal({'predefined_role': 'ADMIN'}), ...)` | `...(role: GkeHubMembershipRbacRoleBindingRole(predefinedRole: TfArg.literal(GkeHubMembershipRbacRoleBindingRolePredefinedRole.admin)), ...)` |
 | `GoogleApiGatewayApiConfig(openapiDocuments: TfArg.literal([{'document': {'contents': c, 'path': 'openapi.yaml'}}]), ...)` | `GoogleApiGatewayApiConfig(spec: .openapiDocuments([ApiGatewayApiConfigOpenapiDocuments(document: ApiGatewayApiConfigOpenapiDocumentsDocument(contents: TfArg.literal(c), path: TfArg.literal('openapi.yaml')))]), ...)` |
 | `GoogleFirebaseHostingChannel(ttl: TfArg.literal('86400s'), ...)` | `GoogleFirebaseHostingChannel(expiration: .ttl(TfArg.literal('86400s')), ...)` |
-| `GooglePrivilegedAccessManagerSettings(emailNotificationSettings: TfArg.literal({'disable_all_notifications': {}}), ...)` | `...(emailNotificationSettings: PrivilegedAccessManagerSettingsEmailNotificationSettings(emailNotificationSettings: .disableAllNotifications(PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications())), ...)` |
+| `GooglePrivilegedAccessManagerSettings(emailNotificationSettings: TfArg.literal({'disable_all_notifications': {}}), ...)` | `...(emailNotificationSettings: .disableAllNotifications(PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications()), ...)` |
 
 `examples/beta_leftover_quickstart` shows the typed form of every beta
 factory. `terradart-migrate` emits the typed form for `google-beta`
@@ -993,6 +1025,70 @@ has no input for. Synth output is unchanged.
 | Before | After |
 |--------|-------|
 | `GoogleComputeRegionNetworkEndpointGroup(cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...), ...)` | `GoogleComputeRegionNetworkEndpointGroup(serverless: .cloudRun(ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...)), ...)` |
+
+### Compute nested blocks use derived helper types
+
+**Breaking (`terradart_google`)** — the Compute Engine factories below no
+longer carry hand-written helper classes or `TfArg<Map>` blocks; their
+nested blocks are derived from the provider schema like the rest of the
+catalog. That puts every Magic Modules exactly-one / at-most-one group
+inside them in a sealed type and every input that names another resource
+(network, subnetwork, KMS key, service account) on `RefTo<R>`.
+
+- Helper classes are named `<Resource><BlockPath>`, without the doubled
+  resource segment: `ComputeInstanceTemplateInstanceTemplateDisk` →
+  `ComputeInstanceTemplateDisk`,
+  `ComputeBackendServiceBackendServiceBackend` →
+  `ComputeBackendServiceBackend`, `ComputeUrlMapUrlMapPathMatcher` →
+  `ComputeUrlMapPathMatcher`, `ComputeInstanceInitializeParams` →
+  `ComputeInstanceBootDiskInitializeParams`,
+  `ComputeResourcePolicyRetentionPolicy` →
+  `ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy`. Each
+  helper's doc names the block it models.
+- List-block parameters take the Terraform block name: `backends` →
+  `backend` (`GoogleComputeBackendService`,
+  `GoogleComputeRegionBackendService`), `hostRules` / `pathMatchers` /
+  `tests` → `hostRule` / `pathMatcher` / `test` (`GoogleComputeUrlMap`,
+  `GoogleComputeRegionUrlMap`).
+- Helper fields are `TfArg<T>` (`TfArg<Enum>` for enums), so they take dot
+  shorthands: `balancingMode: .literal(.rate)`,
+  `image: .literal('debian-cloud/debian-12')`.
+- `GoogleComputeInstanceFromTemplate` and `GoogleComputeRegionInstanceTemplate`
+  take typed helpers instead of `TfArg<Map>` / `TfArg<List<Map>>` blocks.
+- `GoogleComputeResourcePolicy`: `snapshotSchedulePolicy`,
+  `groupPlacementPolicy`, `instanceSchedulePolicy` and
+  `diskConsistencyGroupPolicy` are one nullable sealed argument, `kind`; a
+  snapshot schedule's `schedule` is itself the hourly / daily / weekly sealed
+  type (`schedule: .dailySchedule(...)`).
+- `GoogleComputeRouter`: `network` and `nccGateway` are one sealed
+  argument, `network`.
+- Newly exposed inputs: encryption keys and `params` on `GoogleComputeDisk`,
+  `GoogleComputeRegionDisk`, `GoogleComputeImage`, `GoogleComputeSnapshot`,
+  `GoogleComputeStoragePool` and `GoogleComputeInterconnectAttachment`
+  (plus `l2Forwarding`); `asyncPrimaryDisk` on the disks;
+  `instanceEncryptionKey` and `workloadIdentityConfig` on
+  `GoogleComputeInstance`; `logConfig`, `rules`, `subnetwork` and
+  `nat64Subnetwork` on `GoogleComputeRouterNat`; `bfd`,
+  `md5AuthenticationKey`, `advertisedIpRanges` and `customLearnedIpRanges`
+  on `GoogleComputeRouterPeer`; `targetSecureTags` on
+  `GoogleComputeRegionNetworkFirewallPolicyRule`;
+  `defaultCustomErrorResponsePolicy` on `GoogleComputeUrlMap`.
+
+| Before | After |
+|--------|-------|
+| `ComputeInstanceBootDisk(initializeParams: ComputeInstanceInitializeParams(image: .literal('debian-cloud/debian-12')))` | `ComputeInstanceBootDisk(initializeParams: ComputeInstanceBootDiskInitializeParams(image: .literal('debian-cloud/debian-12')))` |
+| `ComputeInstanceNetworkInterface(subnetwork: .ref(subnet.selfLink))` | `ComputeInstanceNetworkInterface(subnetwork: subnet.ref)` |
+| `backends: [ComputeBackendServiceBackendServiceBackend(group: ..., balancingMode: BackendServiceBalancingMode.rate)]` | `backend: [ComputeBackendServiceBackend(group: ..., balancingMode: .literal(.rate))]` |
+| `disk: .literal([{'boot': true, 'source_image': 'debian-cloud/debian-12'}])` (`GoogleComputeRegionInstanceTemplate`) | `disk: [ComputeRegionInstanceTemplateDisk(boot: .literal(true), sourceImage: .literal('debian-cloud/debian-12'))]` |
+| `instanceSchedulePolicy: .literal({'time_zone': 'Asia/Tokyo', ...})` | `kind: .instanceSchedulePolicy(ComputeResourcePolicyInstanceSchedulePolicy(timeZone: .literal('Asia/Tokyo'), ...))` |
+| `snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(schedule: .daily(daysInCycle: .literal(1), startTime: .literal('04:00')), ...)` | `kind: .snapshotSchedulePolicy(ComputeResourcePolicySnapshotSchedulePolicy(schedule: .dailySchedule(ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(daysInCycle: .literal(1), startTime: .literal('04:00'))), ...))` |
+| `GoogleComputeRouter(network: vpc.ref, ...)` | `GoogleComputeRouter(network: .network(vpc.ref), ...)` |
+
+Synth output changes in two ways, both accepted by the provider: a
+`max_items = 1` block the hand helpers emitted as a one-element list
+(`boot_disk.initialize_params`, `network_performance_config`) is an object,
+and a network / subnetwork reference emits `id` where the examples passed
+`self_link`.
 
 ### Data and storage nested blocks use derived helper types
 
@@ -1035,16 +1131,16 @@ bucket, topic) on `RefTo<R>`.
   |---------|----------|---------|
   | `GoogleBigqueryJob` | `configuration` (was `jobConfiguration`) | `query`, `load`, `copy`, `extract` |
   | `GoogleBigqueryAnalyticsHubListingSubscription` | `destination` | `destinationDataset` |
-  | `GoogleBigqueryDatapolicyDataPolicy` data masking policy | `mask` | `predefinedExpression`, `routine` |
+  | `GoogleBigqueryDatapolicyDataPolicy` | `dataMaskingPolicy` (the block is the sealed type) | `predefinedExpression`, `routine` |
   | `GoogleDatabaseMigrationServiceConnectionProfile` | `engine` | `alloydb`, `cloudsql`, `mysql`, `oracle`, `postgresql` |
   | `GoogleDataformRepository` git remote settings | `authentication` | `authenticationTokenSecretVersion`, `sshAuthenticationConfig`, `gitRepositoryLink` |
   | `GoogleDataplexTask` | `workload` | `spark`, `notebook` (a spark task's `driver`: `mainClass`, `mainJarFileUri`, `pythonScriptFile`, `sqlScript`, `sqlScriptFile`) |
   | `GoogleDataprocGdcSparkApplication` | `workload` (was `sparkApplicationConfig`) | `sparkApplicationConfig`, `pysparkApplicationConfig`, `sparkRApplicationConfig`, `sparkSqlApplicationConfig` |
-  | `GoogleDataprocMetastoreService` | `capacity` (was `tier`) | `tier`, `scalingConfig` (its `size`: `instanceSize`, `scalingFactor`, `autoscalingConfig`) |
+  | `GoogleDataprocMetastoreService` | `capacity` (was `tier`) | `tier`, `scalingConfig` (itself sealed: `instanceSize`, `scalingFactor`, `autoscalingConfig`) |
   | `GoogleDatastreamConnectionProfile` | `endpoint` (was `gcsProfile` etc.) | the seven `*Profile` blocks |
   | `GoogleDatastreamPrivateConnection` | `connectivity` (was `vpcPeeringConfig`) | `vpcPeeringConfig`, `pscInterfaceConfig` |
   | `GoogleDatastreamStream` | `backfill` (was `backfillNone`) | `backfillNone`, `backfillAll` |
-  | `GoogleFilestoreInstance` performance config | `iops` | `fixedIops`, `iopsPerTb` |
+  | `GoogleFilestoreInstance` | `performanceConfig` (the block is the sealed type) | `fixedIops`, `iopsPerTb` |
   | `GoogleFirestoreField` index | `mode` | `order`, `arrayConfig` |
   | `GoogleStorageBatchOperationsJob` | `operation`; a bucket's `objects` | `putMetadata`, `putObjectHold`, `rewriteObject`, `deleteObject`; `prefixList`, `manifest` |
   | `GoogleStorageInsightsDatasetConfig` | `cloudStorageBuckets`, `cloudStorageLocations` (was `includeCloudStorageBuckets`) | include / exclude |

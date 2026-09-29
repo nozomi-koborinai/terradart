@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_tunnel_warp_connectors`.
 const Set<String> _cloudflareZeroTrustTunnelWarpConnectorsSensitive =
@@ -19,7 +20,7 @@ final class DataCloudflareZeroTrustTunnelWarpConnectors extends Data {
 
   DataCloudflareZeroTrustTunnelWarpConnectors({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? excludePrefix,
     TfArg<String>? existedAt,
     TfArg<String>? includePrefix,
@@ -35,7 +36,7 @@ final class DataCloudflareZeroTrustTunnelWarpConnectors extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'exclude_prefix': ?excludePrefix,
            'existed_at': ?existedAt,
            'include_prefix': ?includePrefix,

@@ -7,4 +7,4 @@ deriveExactlyOne: true
 
 sealedNames:
   "account_id, deployment_targets": target
-  "region, stack_set_instance_region": region
+  "region, stack_set_instance_region": target_region

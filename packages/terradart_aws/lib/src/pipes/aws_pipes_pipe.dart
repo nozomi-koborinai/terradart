@@ -33,11 +33,11 @@ sealed class PipesPipeName {
   const PipesPipeName();
 
   /// Sets `name`.
-  const factory PipesPipeName.name(TfArg<String> name) = PipesPipeNameName;
+  const factory PipesPipeName.name(TfArg<String> name) = PipesPipeNameChoice;
 
   /// Sets `name_prefix`.
   const factory PipesPipeName.namePrefix(TfArg<String> namePrefix) =
-      PipesPipeNameNamePrefix;
+      PipesPipeNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -50,8 +50,8 @@ sealed class PipesPipeName {
 }
 
 /// The [PipesPipeName.name] choice: sets `name`.
-final class PipesPipeNameName extends PipesPipeName {
-  const PipesPipeNameName(this.name);
+final class PipesPipeNameChoice extends PipesPipeName {
+  const PipesPipeNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -66,8 +66,8 @@ final class PipesPipeNameName extends PipesPipeName {
 }
 
 /// The [PipesPipeName.namePrefix] choice: sets `name_prefix`.
-final class PipesPipeNameNamePrefix extends PipesPipeName {
-  const PipesPipeNameNamePrefix(this.namePrefix);
+final class PipesPipeNamePrefix extends PipesPipeName {
+  const PipesPipeNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -256,14 +256,14 @@ enum PipesPipeLogConfigurationS3LogDestinationOutputFormat
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
 final class PipesPipeSourceParameters {
-  const PipesPipeSourceParameters({this.parameters, this.filterCriteria});
+  const PipesPipeSourceParameters({this.service, this.filterCriteria});
 
-  final PipesPipeSourceParametersParameters? parameters;
+  final PipesPipeSourceParametersService? service;
 
   final PipesPipeSourceParametersFilterCriteria? filterCriteria;
 
   Map<String, Object?> encode() => {
-    ...?parameters?.encode(),
+    ...?service?.encode(),
     'filter_criteria': ?filterCriteria?.encode(),
   };
 }
@@ -273,45 +273,45 @@ final class PipesPipeSourceParameters {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.activemqBrokerParameters(...)`.
-sealed class PipesPipeSourceParametersParameters {
-  const PipesPipeSourceParametersParameters();
+sealed class PipesPipeSourceParametersService {
+  const PipesPipeSourceParametersService();
 
   /// Sets `activemq_broker_parameters`.
-  const factory PipesPipeSourceParametersParameters.activemqBrokerParameters(
+  const factory PipesPipeSourceParametersService.activemqBrokerParameters(
     PipesPipeSourceParametersActivemqBrokerParameters activemqBrokerParameters,
-  ) = PipesPipeSourceParametersParametersActivemqBrokerParameters;
+  ) = PipesPipeSourceParametersServiceActivemqBrokerParameters;
 
   /// Sets `dynamodb_stream_parameters`.
-  const factory PipesPipeSourceParametersParameters.dynamodbStreamParameters(
+  const factory PipesPipeSourceParametersService.dynamodbStreamParameters(
     PipesPipeSourceParametersDynamodbStreamParameters dynamodbStreamParameters,
-  ) = PipesPipeSourceParametersParametersDynamodbStreamParameters;
+  ) = PipesPipeSourceParametersServiceDynamodbStreamParameters;
 
   /// Sets `kinesis_stream_parameters`.
-  const factory PipesPipeSourceParametersParameters.kinesisStreamParameters(
+  const factory PipesPipeSourceParametersService.kinesisStreamParameters(
     PipesPipeSourceParametersKinesisStreamParameters kinesisStreamParameters,
-  ) = PipesPipeSourceParametersParametersKinesisStreamParameters;
+  ) = PipesPipeSourceParametersServiceKinesisStreamParameters;
 
   /// Sets `managed_streaming_kafka_parameters`.
-  const factory PipesPipeSourceParametersParameters.managedStreamingKafkaParameters(
+  const factory PipesPipeSourceParametersService.managedStreamingKafkaParameters(
     PipesPipeSourceParametersManagedStreamingKafkaParameters
     managedStreamingKafkaParameters,
-  ) = PipesPipeSourceParametersParametersManagedStreamingKafkaParameters;
+  ) = PipesPipeSourceParametersServiceManagedStreamingKafkaParameters;
 
   /// Sets `rabbitmq_broker_parameters`.
-  const factory PipesPipeSourceParametersParameters.rabbitmqBrokerParameters(
+  const factory PipesPipeSourceParametersService.rabbitmqBrokerParameters(
     PipesPipeSourceParametersRabbitmqBrokerParameters rabbitmqBrokerParameters,
-  ) = PipesPipeSourceParametersParametersRabbitmqBrokerParameters;
+  ) = PipesPipeSourceParametersServiceRabbitmqBrokerParameters;
 
   /// Sets `self_managed_kafka_parameters`.
-  const factory PipesPipeSourceParametersParameters.selfManagedKafkaParameters(
+  const factory PipesPipeSourceParametersService.selfManagedKafkaParameters(
     PipesPipeSourceParametersSelfManagedKafkaParameters
     selfManagedKafkaParameters,
-  ) = PipesPipeSourceParametersParametersSelfManagedKafkaParameters;
+  ) = PipesPipeSourceParametersServiceSelfManagedKafkaParameters;
 
   /// Sets `sqs_queue_parameters`.
-  const factory PipesPipeSourceParametersParameters.sqsQueueParameters(
+  const factory PipesPipeSourceParametersService.sqsQueueParameters(
     PipesPipeSourceParametersSqsQueueParameters sqsQueueParameters,
-  ) = PipesPipeSourceParametersParametersSqsQueueParameters;
+  ) = PipesPipeSourceParametersServiceSqsQueueParameters;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -319,10 +319,10 @@ sealed class PipesPipeSourceParametersParameters {
   Map<String, Object?> encode();
 }
 
-/// The [PipesPipeSourceParametersParameters.activemqBrokerParameters] choice: sets `activemq_broker_parameters`.
-final class PipesPipeSourceParametersParametersActivemqBrokerParameters
-    extends PipesPipeSourceParametersParameters {
-  const PipesPipeSourceParametersParametersActivemqBrokerParameters(
+/// The [PipesPipeSourceParametersService.activemqBrokerParameters] choice: sets `activemq_broker_parameters`.
+final class PipesPipeSourceParametersServiceActivemqBrokerParameters
+    extends PipesPipeSourceParametersService {
+  const PipesPipeSourceParametersServiceActivemqBrokerParameters(
     this.activemqBrokerParameters,
   );
 
@@ -338,10 +338,10 @@ final class PipesPipeSourceParametersParametersActivemqBrokerParameters
   };
 }
 
-/// The [PipesPipeSourceParametersParameters.dynamodbStreamParameters] choice: sets `dynamodb_stream_parameters`.
-final class PipesPipeSourceParametersParametersDynamodbStreamParameters
-    extends PipesPipeSourceParametersParameters {
-  const PipesPipeSourceParametersParametersDynamodbStreamParameters(
+/// The [PipesPipeSourceParametersService.dynamodbStreamParameters] choice: sets `dynamodb_stream_parameters`.
+final class PipesPipeSourceParametersServiceDynamodbStreamParameters
+    extends PipesPipeSourceParametersService {
+  const PipesPipeSourceParametersServiceDynamodbStreamParameters(
     this.dynamodbStreamParameters,
   );
 
@@ -357,10 +357,10 @@ final class PipesPipeSourceParametersParametersDynamodbStreamParameters
   };
 }
 
-/// The [PipesPipeSourceParametersParameters.kinesisStreamParameters] choice: sets `kinesis_stream_parameters`.
-final class PipesPipeSourceParametersParametersKinesisStreamParameters
-    extends PipesPipeSourceParametersParameters {
-  const PipesPipeSourceParametersParametersKinesisStreamParameters(
+/// The [PipesPipeSourceParametersService.kinesisStreamParameters] choice: sets `kinesis_stream_parameters`.
+final class PipesPipeSourceParametersServiceKinesisStreamParameters
+    extends PipesPipeSourceParametersService {
+  const PipesPipeSourceParametersServiceKinesisStreamParameters(
     this.kinesisStreamParameters,
   );
 
@@ -376,10 +376,10 @@ final class PipesPipeSourceParametersParametersKinesisStreamParameters
   };
 }
 
-/// The [PipesPipeSourceParametersParameters.managedStreamingKafkaParameters] choice: sets `managed_streaming_kafka_parameters`.
-final class PipesPipeSourceParametersParametersManagedStreamingKafkaParameters
-    extends PipesPipeSourceParametersParameters {
-  const PipesPipeSourceParametersParametersManagedStreamingKafkaParameters(
+/// The [PipesPipeSourceParametersService.managedStreamingKafkaParameters] choice: sets `managed_streaming_kafka_parameters`.
+final class PipesPipeSourceParametersServiceManagedStreamingKafkaParameters
+    extends PipesPipeSourceParametersService {
+  const PipesPipeSourceParametersServiceManagedStreamingKafkaParameters(
     this.managedStreamingKafkaParameters,
   );
 
@@ -396,10 +396,10 @@ final class PipesPipeSourceParametersParametersManagedStreamingKafkaParameters
   };
 }
 
-/// The [PipesPipeSourceParametersParameters.rabbitmqBrokerParameters] choice: sets `rabbitmq_broker_parameters`.
-final class PipesPipeSourceParametersParametersRabbitmqBrokerParameters
-    extends PipesPipeSourceParametersParameters {
-  const PipesPipeSourceParametersParametersRabbitmqBrokerParameters(
+/// The [PipesPipeSourceParametersService.rabbitmqBrokerParameters] choice: sets `rabbitmq_broker_parameters`.
+final class PipesPipeSourceParametersServiceRabbitmqBrokerParameters
+    extends PipesPipeSourceParametersService {
+  const PipesPipeSourceParametersServiceRabbitmqBrokerParameters(
     this.rabbitmqBrokerParameters,
   );
 
@@ -415,10 +415,10 @@ final class PipesPipeSourceParametersParametersRabbitmqBrokerParameters
   };
 }
 
-/// The [PipesPipeSourceParametersParameters.selfManagedKafkaParameters] choice: sets `self_managed_kafka_parameters`.
-final class PipesPipeSourceParametersParametersSelfManagedKafkaParameters
-    extends PipesPipeSourceParametersParameters {
-  const PipesPipeSourceParametersParametersSelfManagedKafkaParameters(
+/// The [PipesPipeSourceParametersService.selfManagedKafkaParameters] choice: sets `self_managed_kafka_parameters`.
+final class PipesPipeSourceParametersServiceSelfManagedKafkaParameters
+    extends PipesPipeSourceParametersService {
+  const PipesPipeSourceParametersServiceSelfManagedKafkaParameters(
     this.selfManagedKafkaParameters,
   );
 
@@ -434,10 +434,10 @@ final class PipesPipeSourceParametersParametersSelfManagedKafkaParameters
   };
 }
 
-/// The [PipesPipeSourceParametersParameters.sqsQueueParameters] choice: sets `sqs_queue_parameters`.
-final class PipesPipeSourceParametersParametersSqsQueueParameters
-    extends PipesPipeSourceParametersParameters {
-  const PipesPipeSourceParametersParametersSqsQueueParameters(
+/// The [PipesPipeSourceParametersService.sqsQueueParameters] choice: sets `sqs_queue_parameters`.
+final class PipesPipeSourceParametersServiceSqsQueueParameters
+    extends PipesPipeSourceParametersService {
+  const PipesPipeSourceParametersServiceSqsQueueParameters(
     this.sqsQueueParameters,
   );
 
@@ -950,15 +950,15 @@ final class PipesPipeSourceParametersSqsQueueParameters {
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
 final class PipesPipeTargetParameters {
-  const PipesPipeTargetParameters({this.inputTemplate, this.parameters});
+  const PipesPipeTargetParameters({this.inputTemplate, this.service});
 
   final TfArg<String>? inputTemplate;
 
-  final PipesPipeTargetParametersParameters? parameters;
+  final PipesPipeTargetParametersService? service;
 
   Map<String, Object?> encode() => {
     'input_template': ?inputTemplate?.toTfJson(),
-    ...?parameters?.encode(),
+    ...?service?.encode(),
   };
 }
 
@@ -967,66 +967,66 @@ final class PipesPipeTargetParameters {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.batchJobParameters(...)`.
-sealed class PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParameters();
+sealed class PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersService();
 
   /// Sets `batch_job_parameters`.
-  const factory PipesPipeTargetParametersParameters.batchJobParameters(
+  const factory PipesPipeTargetParametersService.batchJobParameters(
     PipesPipeTargetParametersBatchJobParameters batchJobParameters,
-  ) = PipesPipeTargetParametersParametersBatchJobParameters;
+  ) = PipesPipeTargetParametersServiceBatchJobParameters;
 
   /// Sets `cloudwatch_logs_parameters`.
-  const factory PipesPipeTargetParametersParameters.cloudwatchLogsParameters(
+  const factory PipesPipeTargetParametersService.cloudwatchLogsParameters(
     PipesPipeTargetParametersCloudwatchLogsParameters cloudwatchLogsParameters,
-  ) = PipesPipeTargetParametersParametersCloudwatchLogsParameters;
+  ) = PipesPipeTargetParametersServiceCloudwatchLogsParameters;
 
   /// Sets `ecs_task_parameters`.
-  const factory PipesPipeTargetParametersParameters.ecsTaskParameters(
+  const factory PipesPipeTargetParametersService.ecsTaskParameters(
     PipesPipeTargetParametersEcsTaskParameters ecsTaskParameters,
-  ) = PipesPipeTargetParametersParametersEcsTaskParameters;
+  ) = PipesPipeTargetParametersServiceEcsTaskParameters;
 
   /// Sets `eventbridge_event_bus_parameters`.
-  const factory PipesPipeTargetParametersParameters.eventbridgeEventBusParameters(
+  const factory PipesPipeTargetParametersService.eventbridgeEventBusParameters(
     PipesPipeTargetParametersEventbridgeEventBusParameters
     eventbridgeEventBusParameters,
-  ) = PipesPipeTargetParametersParametersEventbridgeEventBusParameters;
+  ) = PipesPipeTargetParametersServiceEventbridgeEventBusParameters;
 
   /// Sets `http_parameters`.
-  const factory PipesPipeTargetParametersParameters.httpParameters(
+  const factory PipesPipeTargetParametersService.httpParameters(
     PipesPipeTargetParametersHttpParameters httpParameters,
-  ) = PipesPipeTargetParametersParametersHttpParameters;
+  ) = PipesPipeTargetParametersServiceHttpParameters;
 
   /// Sets `kinesis_stream_parameters`.
-  const factory PipesPipeTargetParametersParameters.kinesisStreamParameters(
+  const factory PipesPipeTargetParametersService.kinesisStreamParameters(
     PipesPipeTargetParametersKinesisStreamParameters kinesisStreamParameters,
-  ) = PipesPipeTargetParametersParametersKinesisStreamParameters;
+  ) = PipesPipeTargetParametersServiceKinesisStreamParameters;
 
   /// Sets `lambda_function_parameters`.
-  const factory PipesPipeTargetParametersParameters.lambdaFunctionParameters(
+  const factory PipesPipeTargetParametersService.lambdaFunctionParameters(
     PipesPipeTargetParametersLambdaFunctionParameters lambdaFunctionParameters,
-  ) = PipesPipeTargetParametersParametersLambdaFunctionParameters;
+  ) = PipesPipeTargetParametersServiceLambdaFunctionParameters;
 
   /// Sets `redshift_data_parameters`.
-  const factory PipesPipeTargetParametersParameters.redshiftDataParameters(
+  const factory PipesPipeTargetParametersService.redshiftDataParameters(
     PipesPipeTargetParametersRedshiftDataParameters redshiftDataParameters,
-  ) = PipesPipeTargetParametersParametersRedshiftDataParameters;
+  ) = PipesPipeTargetParametersServiceRedshiftDataParameters;
 
   /// Sets `sagemaker_pipeline_parameters`.
-  const factory PipesPipeTargetParametersParameters.sagemakerPipelineParameters(
+  const factory PipesPipeTargetParametersService.sagemakerPipelineParameters(
     PipesPipeTargetParametersSagemakerPipelineParameters
     sagemakerPipelineParameters,
-  ) = PipesPipeTargetParametersParametersSagemakerPipelineParameters;
+  ) = PipesPipeTargetParametersServiceSagemakerPipelineParameters;
 
   /// Sets `sqs_queue_parameters`.
-  const factory PipesPipeTargetParametersParameters.sqsQueueParameters(
+  const factory PipesPipeTargetParametersService.sqsQueueParameters(
     PipesPipeTargetParametersSqsQueueParameters sqsQueueParameters,
-  ) = PipesPipeTargetParametersParametersSqsQueueParameters;
+  ) = PipesPipeTargetParametersServiceSqsQueueParameters;
 
   /// Sets `step_function_state_machine_parameters`.
-  const factory PipesPipeTargetParametersParameters.stepFunctionStateMachineParameters(
+  const factory PipesPipeTargetParametersService.stepFunctionStateMachineParameters(
     PipesPipeTargetParametersStepFunctionStateMachineParameters
     stepFunctionStateMachineParameters,
-  ) = PipesPipeTargetParametersParametersStepFunctionStateMachineParameters;
+  ) = PipesPipeTargetParametersServiceStepFunctionStateMachineParameters;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1034,10 +1034,10 @@ sealed class PipesPipeTargetParametersParameters {
   Map<String, Object?> encode();
 }
 
-/// The [PipesPipeTargetParametersParameters.batchJobParameters] choice: sets `batch_job_parameters`.
-final class PipesPipeTargetParametersParametersBatchJobParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersBatchJobParameters(
+/// The [PipesPipeTargetParametersService.batchJobParameters] choice: sets `batch_job_parameters`.
+final class PipesPipeTargetParametersServiceBatchJobParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceBatchJobParameters(
     this.batchJobParameters,
   );
 
@@ -1052,10 +1052,10 @@ final class PipesPipeTargetParametersParametersBatchJobParameters
   };
 }
 
-/// The [PipesPipeTargetParametersParameters.cloudwatchLogsParameters] choice: sets `cloudwatch_logs_parameters`.
-final class PipesPipeTargetParametersParametersCloudwatchLogsParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersCloudwatchLogsParameters(
+/// The [PipesPipeTargetParametersService.cloudwatchLogsParameters] choice: sets `cloudwatch_logs_parameters`.
+final class PipesPipeTargetParametersServiceCloudwatchLogsParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceCloudwatchLogsParameters(
     this.cloudwatchLogsParameters,
   );
 
@@ -1071,10 +1071,10 @@ final class PipesPipeTargetParametersParametersCloudwatchLogsParameters
   };
 }
 
-/// The [PipesPipeTargetParametersParameters.ecsTaskParameters] choice: sets `ecs_task_parameters`.
-final class PipesPipeTargetParametersParametersEcsTaskParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersEcsTaskParameters(
+/// The [PipesPipeTargetParametersService.ecsTaskParameters] choice: sets `ecs_task_parameters`.
+final class PipesPipeTargetParametersServiceEcsTaskParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceEcsTaskParameters(
     this.ecsTaskParameters,
   );
 
@@ -1089,10 +1089,10 @@ final class PipesPipeTargetParametersParametersEcsTaskParameters
   };
 }
 
-/// The [PipesPipeTargetParametersParameters.eventbridgeEventBusParameters] choice: sets `eventbridge_event_bus_parameters`.
-final class PipesPipeTargetParametersParametersEventbridgeEventBusParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersEventbridgeEventBusParameters(
+/// The [PipesPipeTargetParametersService.eventbridgeEventBusParameters] choice: sets `eventbridge_event_bus_parameters`.
+final class PipesPipeTargetParametersServiceEventbridgeEventBusParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceEventbridgeEventBusParameters(
     this.eventbridgeEventBusParameters,
   );
 
@@ -1108,10 +1108,10 @@ final class PipesPipeTargetParametersParametersEventbridgeEventBusParameters
   };
 }
 
-/// The [PipesPipeTargetParametersParameters.httpParameters] choice: sets `http_parameters`.
-final class PipesPipeTargetParametersParametersHttpParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersHttpParameters(this.httpParameters);
+/// The [PipesPipeTargetParametersService.httpParameters] choice: sets `http_parameters`.
+final class PipesPipeTargetParametersServiceHttpParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceHttpParameters(this.httpParameters);
 
   final PipesPipeTargetParametersHttpParameters httpParameters;
 
@@ -1122,10 +1122,10 @@ final class PipesPipeTargetParametersParametersHttpParameters
   Map<String, Object?> encode() => {'http_parameters': httpParameters.encode()};
 }
 
-/// The [PipesPipeTargetParametersParameters.kinesisStreamParameters] choice: sets `kinesis_stream_parameters`.
-final class PipesPipeTargetParametersParametersKinesisStreamParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersKinesisStreamParameters(
+/// The [PipesPipeTargetParametersService.kinesisStreamParameters] choice: sets `kinesis_stream_parameters`.
+final class PipesPipeTargetParametersServiceKinesisStreamParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceKinesisStreamParameters(
     this.kinesisStreamParameters,
   );
 
@@ -1141,10 +1141,10 @@ final class PipesPipeTargetParametersParametersKinesisStreamParameters
   };
 }
 
-/// The [PipesPipeTargetParametersParameters.lambdaFunctionParameters] choice: sets `lambda_function_parameters`.
-final class PipesPipeTargetParametersParametersLambdaFunctionParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersLambdaFunctionParameters(
+/// The [PipesPipeTargetParametersService.lambdaFunctionParameters] choice: sets `lambda_function_parameters`.
+final class PipesPipeTargetParametersServiceLambdaFunctionParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceLambdaFunctionParameters(
     this.lambdaFunctionParameters,
   );
 
@@ -1160,10 +1160,10 @@ final class PipesPipeTargetParametersParametersLambdaFunctionParameters
   };
 }
 
-/// The [PipesPipeTargetParametersParameters.redshiftDataParameters] choice: sets `redshift_data_parameters`.
-final class PipesPipeTargetParametersParametersRedshiftDataParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersRedshiftDataParameters(
+/// The [PipesPipeTargetParametersService.redshiftDataParameters] choice: sets `redshift_data_parameters`.
+final class PipesPipeTargetParametersServiceRedshiftDataParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceRedshiftDataParameters(
     this.redshiftDataParameters,
   );
 
@@ -1178,10 +1178,10 @@ final class PipesPipeTargetParametersParametersRedshiftDataParameters
   };
 }
 
-/// The [PipesPipeTargetParametersParameters.sagemakerPipelineParameters] choice: sets `sagemaker_pipeline_parameters`.
-final class PipesPipeTargetParametersParametersSagemakerPipelineParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersSagemakerPipelineParameters(
+/// The [PipesPipeTargetParametersService.sagemakerPipelineParameters] choice: sets `sagemaker_pipeline_parameters`.
+final class PipesPipeTargetParametersServiceSagemakerPipelineParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceSagemakerPipelineParameters(
     this.sagemakerPipelineParameters,
   );
 
@@ -1197,10 +1197,10 @@ final class PipesPipeTargetParametersParametersSagemakerPipelineParameters
   };
 }
 
-/// The [PipesPipeTargetParametersParameters.sqsQueueParameters] choice: sets `sqs_queue_parameters`.
-final class PipesPipeTargetParametersParametersSqsQueueParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersSqsQueueParameters(
+/// The [PipesPipeTargetParametersService.sqsQueueParameters] choice: sets `sqs_queue_parameters`.
+final class PipesPipeTargetParametersServiceSqsQueueParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceSqsQueueParameters(
     this.sqsQueueParameters,
   );
 
@@ -1215,10 +1215,10 @@ final class PipesPipeTargetParametersParametersSqsQueueParameters
   };
 }
 
-/// The [PipesPipeTargetParametersParameters.stepFunctionStateMachineParameters] choice: sets `step_function_state_machine_parameters`.
-final class PipesPipeTargetParametersParametersStepFunctionStateMachineParameters
-    extends PipesPipeTargetParametersParameters {
-  const PipesPipeTargetParametersParametersStepFunctionStateMachineParameters(
+/// The [PipesPipeTargetParametersService.stepFunctionStateMachineParameters] choice: sets `step_function_state_machine_parameters`.
+final class PipesPipeTargetParametersServiceStepFunctionStateMachineParameters
+    extends PipesPipeTargetParametersService {
+  const PipesPipeTargetParametersServiceStepFunctionStateMachineParameters(
     this.stepFunctionStateMachineParameters,
   );
 

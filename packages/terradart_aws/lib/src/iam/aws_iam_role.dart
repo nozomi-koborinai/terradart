@@ -16,11 +16,11 @@ sealed class IamRoleName {
   const IamRoleName();
 
   /// Sets `name`.
-  const factory IamRoleName.name(TfArg<String> name) = IamRoleNameName;
+  const factory IamRoleName.name(TfArg<String> name) = IamRoleNameChoice;
 
   /// Sets `name_prefix`.
   const factory IamRoleName.namePrefix(TfArg<String> namePrefix) =
-      IamRoleNameNamePrefix;
+      IamRoleNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,8 +33,8 @@ sealed class IamRoleName {
 }
 
 /// The [IamRoleName.name] choice: sets `name`.
-final class IamRoleNameName extends IamRoleName {
-  const IamRoleNameName(this.name);
+final class IamRoleNameChoice extends IamRoleName {
+  const IamRoleNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -49,8 +49,8 @@ final class IamRoleNameName extends IamRoleName {
 }
 
 /// The [IamRoleName.namePrefix] choice: sets `name_prefix`.
-final class IamRoleNameNamePrefix extends IamRoleName {
-  const IamRoleNameNamePrefix(this.namePrefix);
+final class IamRoleNamePrefix extends IamRoleName {
+  const IamRoleNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -32,17 +32,6 @@ enum RegionUrlMapRedirectResponseCode implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `route_action.cache_policy.cache_mode` and nested cache policy blocks.
-enum RegionUrlMapCacheMode implements TerraformEnum {
-  useOriginHeaders('USE_ORIGIN_HEADERS'),
-  forceCacheAll('FORCE_CACHE_ALL'),
-  cacheAllStatic('CACHE_ALL_STATIC');
-
-  const RegionUrlMapCacheMode(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// `match_rules.metadata_filters.filter_match_criteria`.
 enum RegionUrlMapMetadataFilterMatchCriteria implements TerraformEnum {
   matchAll('MATCH_ALL'),
@@ -53,674 +42,25 @@ enum RegionUrlMapMetadataFilterMatchCriteria implements TerraformEnum {
   final String terraformValue;
 }
 
-@immutable
-class ComputeRegionUrlMapRegionUrlMapCachePolicy {
-  const ComputeRegionUrlMapRegionUrlMapCachePolicy({this.cacheMode});
-
-  final RegionUrlMapCacheMode? cacheMode;
-
-  Map<String, Object?> toArgMap() => {
-    if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
-  };
-}
-
-@immutable
-class ComputeRegionUrlMapRegionUrlMapRouteAction {
-  const ComputeRegionUrlMapRegionUrlMapRouteAction({this.cachePolicy});
-
-  final ComputeRegionUrlMapRegionUrlMapCachePolicy? cachePolicy;
-
-  Map<String, Object?> toArgMap() => {
-    if (cachePolicy != null) 'cache_policy': [cachePolicy!.toArgMap()],
-  };
-}
-
-@immutable
-class ComputeRegionUrlMapRegionUrlMapMetadataFilter {
-  const ComputeRegionUrlMapRegionUrlMapMetadataFilter({
-    this.filterMatchCriteria,
-  });
-
-  final RegionUrlMapMetadataFilterMatchCriteria? filterMatchCriteria;
-
-  Map<String, Object?> toArgMap() => {
-    if (filterMatchCriteria != null)
-      'filter_match_criteria': filterMatchCriteria!.terraformValue,
-  };
-}
-
 // ===========================================================================
 // host_rule (set, unbounded)
 // ===========================================================================
-
-/// One `host_rule` entry. Binds a set of `Host:` header values to a
-/// [ComputeRegionUrlMapRegionUrlMapPathMatcher] by name. Multiple `host_rule` entries can
-/// point at the same `pathMatcher`.
-///
-/// The schema models `host_rule` as a `set` of blocks; the wrapper still
-/// accepts a `List<ComputeRegionUrlMapRegionUrlMapHostRule>` -- duplicate entries are deduped
-/// by the Terraform engine on apply.
-@immutable
-class ComputeRegionUrlMapRegionUrlMapHostRule {
-  const ComputeRegionUrlMapRegionUrlMapHostRule({
-    required this.hosts,
-    required this.pathMatcher,
-    this.description,
-  });
-
-  /// `Host:` values to match. Each entry can be a literal hostname
-  /// (`'mysite.com'`) or a wildcard pattern (`'*.mysite.com'`). At least
-  /// one entry is required per the schema.
-  final List<String> hosts;
-
-  /// Local name of the [ComputeRegionUrlMapRegionUrlMapPathMatcher] this rule dispatches to.
-  /// Must match a [ComputeRegionUrlMapRegionUrlMapPathMatcher.name] within the same URL map --
-  /// this is NOT a `google_compute_*` resource address.
-  final TfArg<String> pathMatcher;
-
-  /// Free-form description.
-  final TfArg<String>? description;
-
-  Map<String, Object?> toArgMap() => {
-    'hosts': hosts,
-    'path_matcher': pathMatcher.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-  };
-}
 
 // ===========================================================================
 // path_matcher[] (list, unbounded)
 // ===========================================================================
 
-/// One `path_matcher` entry. Each path matcher is named (so
-/// [ComputeRegionUrlMapRegionUrlMapHostRule] can reference it) and carries a fallback
-/// [defaultService] plus the path-based routing rules.
-///
-/// Routing precedence inside a path matcher:
-/// 1. [routeRules] (priority-ordered, evaluated first if non-empty);
-/// 2. [pathRules] (longest-prefix wins);
-/// 3. fallback [defaultService] / [defaultUrlRedirect].
-///
-/// Exactly one of [defaultService] / [defaultUrlRedirect] must be set per
-/// path matcher. The advanced [advancedExtra] escape hatch covers the
-/// uncurated sub-blocks (`default_route_action`,
-/// `default_custom_error_response_policy`, `header_action`).
-@immutable
-class ComputeRegionUrlMapRegionUrlMapPathMatcher {
-  const ComputeRegionUrlMapRegionUrlMapPathMatcher({
-    required this.name,
-    this.defaultService,
-    this.description,
-    this.pathRules,
-    this.routeRules,
-    this.defaultUrlRedirect,
-    this.defaultRouteAction,
-    this.advancedExtra,
-  });
-
-  /// Local name used by [ComputeRegionUrlMapRegionUrlMapHostRule.pathMatcher]. NOT a self-link.
-  final TfArg<String> name;
-
-  /// Fallback backend self-link consulted when neither [pathRules] nor
-  /// [routeRules] match. Accepts either a `region_backend_service` or a
-  /// `backend_bucket` self-link (same union as
-  /// [GoogleComputeRegionUrlMap.defaultService]). Mutually exclusive with
-  /// [defaultUrlRedirect].
-  final TfArg<String>? defaultService;
-
-  /// Free-form description.
-  final TfArg<String>? description;
-
-  /// Path-based routing rules. Simple "match longest prefix, send to
-  /// service" semantics. Mutually exclusive on a per-path-rule basis with
-  /// [routeRules].
-  final List<ComputeRegionUrlMapRegionUrlMapPathRule>? pathRules;
-
-  /// Priority-ordered routing rules with header / query / regex matching.
-  /// More expressive than [pathRules]; required for traffic-director use
-  /// cases. When non-empty, evaluated BEFORE [pathRules].
-  final List<ComputeRegionUrlMapRegionUrlMapRouteRule>? routeRules;
-
-  /// Catch-all redirect when neither [pathRules] nor [routeRules] match.
-  /// Mutually exclusive with [defaultService].
-  final ComputeRegionUrlMapRegionUrlMapUrlRedirect? defaultUrlRedirect;
-
-  /// Fallback Envoy-style traffic policy for unmatched requests.
-  final ComputeRegionUrlMapRegionUrlMapRouteAction? defaultRouteAction;
-
-  /// Escape hatch for the uncurated nested blocks of `path_matcher`:
-  /// - `default_route_action` (Envoy-style traffic policy)
-  /// - `default_custom_error_response_policy`
-  /// - `header_action`
-  ///
-  /// Keys are Terraform block names; values are the block payload
-  /// (single block -> `[{...}]`, list of blocks -> list of maps).
-  final Map<String, Object?>? advancedExtra;
-
-  Map<String, Object?> toArgMap() => {
-    'name': name.toTfJson(),
-    if (defaultService != null) 'default_service': defaultService!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (pathRules != null)
-      'path_rule': pathRules!.map((r) => r.toArgMap()).toList(),
-    if (routeRules != null)
-      'route_rules': routeRules!.map((r) => r.toArgMap()).toList(),
-    if (defaultUrlRedirect != null)
-      'default_url_redirect': [defaultUrlRedirect!.toArgMap()],
-    if (defaultRouteAction != null)
-      'default_route_action': [defaultRouteAction!.toArgMap()],
-    if (advancedExtra != null) ...advancedExtra!,
-  };
-}
-
-/// One `path_matcher.path_rule[]` entry. Matches request paths against
-/// the [paths] glob list (e.g. `['/login', '/login/*']`) and dispatches to
-/// either a [service] OR an inline [urlRedirect] -- exactly one of the two
-/// must be set per the GCP API.
-///
-/// Typed [routeAction] covers cache policy; deeper Envoy sub-blocks remain
-/// on [advancedExtra].
-@immutable
-class ComputeRegionUrlMapRegionUrlMapPathRule {
-  const ComputeRegionUrlMapRegionUrlMapPathRule({
-    required this.paths,
-    this.service,
-    this.urlRedirect,
-    this.routeAction,
-    this.advancedExtra,
-  });
-
-  /// Path globs to match (e.g. `'/login'`, `'/static/*'`). At least one
-  /// entry required per the schema.
-  final List<String> paths;
-
-  /// Backend self-link (region backend service OR backend bucket).
-  /// Mutually exclusive with [urlRedirect].
-  final TfArg<String>? service;
-
-  /// Inline redirect for matching requests. Mutually exclusive with
-  /// [service].
-  final ComputeRegionUrlMapRegionUrlMapUrlRedirect? urlRedirect;
-
-  /// Envoy-style traffic policy for matching paths.
-  final ComputeRegionUrlMapRegionUrlMapRouteAction? routeAction;
-
-  /// Escape hatch for the uncurated nested blocks:
-  /// - `route_action` (Envoy-style traffic policy)
-  /// - `custom_error_response_policy`
-  final Map<String, Object?>? advancedExtra;
-
-  Map<String, Object?> toArgMap() => {
-    'paths': paths,
-    if (service != null) 'service': service!.toTfJson(),
-    if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
-    if (routeAction != null) 'route_action': [routeAction!.toArgMap()],
-    if (advancedExtra != null) ...advancedExtra!,
-  };
-}
-
-/// One `path_matcher.route_rules[]` entry. Priority-ordered routing with
-/// header / query / regex match support; the GCP equivalent of an Envoy
-/// `route_config`.
-///
-/// Exactly one of [service] / [urlRedirect] must be set (or alternatively
-/// the uncurated `route_action` sub-block via [advancedExtra]).
-@immutable
-class ComputeRegionUrlMapRegionUrlMapRouteRule {
-  const ComputeRegionUrlMapRegionUrlMapRouteRule({
-    required this.priority,
-    this.service,
-    this.matchRules,
-    this.headerAction,
-    this.urlRedirect,
-    this.routeAction,
-    this.advancedExtra,
-  });
-
-  /// Evaluation priority. Lower numbers evaluated first. Required by the
-  /// schema. Must be unique within a single
-  /// [ComputeRegionUrlMapRegionUrlMapPathMatcher.routeRules].
-  final TfArg<int> priority;
-
-  /// Backend self-link (region backend service OR backend bucket).
-  /// Mutually exclusive with [urlRedirect].
-  final TfArg<String>? service;
-
-  /// Per-rule match conditions (HTTP headers, query parameters, path
-  /// regex, ...). When empty, the rule matches every request that reaches
-  /// the parent path matcher.
-  final List<ComputeRegionUrlMapRegionUrlMapRouteRuleMatch>? matchRules;
-
-  /// Per-rule header mutation applied to forwarded requests / responses.
-  /// Layered on top of any path-matcher-level header action.
-  final ComputeRegionUrlMapRegionUrlMapHeaderAction? headerAction;
-
-  /// Inline redirect for matching requests. Mutually exclusive with
-  /// [service].
-  final ComputeRegionUrlMapRegionUrlMapUrlRedirect? urlRedirect;
-
-  /// Envoy-style traffic policy for matching requests.
-  final ComputeRegionUrlMapRegionUrlMapRouteAction? routeAction;
-
-  /// Escape hatch for the uncurated nested blocks:
-  /// - `route_action` (Envoy-style traffic policy)
-  /// - `custom_error_response_policy`
-  final Map<String, Object?>? advancedExtra;
-
-  Map<String, Object?> toArgMap() => {
-    'priority': priority.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
-    if (matchRules != null)
-      'match_rules': matchRules!.map((m) => m.toArgMap()).toList(),
-    if (headerAction != null) 'header_action': [headerAction!.toArgMap()],
-    if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
-    if (routeAction != null) 'route_action': [routeAction!.toArgMap()],
-    if (advancedExtra != null) ...advancedExtra!,
-  };
-}
-
-/// One `route_rules[].match_rules[]` entry. Carries the actual matching
-/// predicates (one or more of full path / prefix / regex / path template,
-/// optionally further refined by header / query / metadata filters).
-///
-/// The schema marks every field optional, but in practice at least one of
-/// the path matchers ([fullPathMatch] / [prefixMatch] / [regexMatch] /
-/// [pathTemplateMatch]) should be set for the rule to be meaningful.
-///
-/// The `metadata_filters` nested block (xDS / Traffic Director use cases)
-/// and any other uncurated sub-fields can be passed verbatim via
-/// [advancedExtra]; the map is spread into the emitted Terraform args as-is.
-@immutable
-class ComputeRegionUrlMapRegionUrlMapRouteRuleMatch {
-  const ComputeRegionUrlMapRegionUrlMapRouteRuleMatch({
-    this.fullPathMatch,
-    this.prefixMatch,
-    this.regexMatch,
-    this.pathTemplateMatch,
-    this.ignoreCase,
-    this.headerMatches,
-    this.queryParameterMatches,
-    this.metadataFilters,
-    this.advancedExtra,
-  });
-
-  /// Exact-string path match. Mutually exclusive with [prefixMatch],
-  /// [regexMatch], [pathTemplateMatch].
-  final TfArg<String>? fullPathMatch;
-
-  /// Path-prefix match. Mutually exclusive with the other path matchers.
-  final TfArg<String>? prefixMatch;
-
-  /// Regex path match (RE2 syntax). Mutually exclusive with the other
-  /// path matchers.
-  final TfArg<String>? regexMatch;
-
-  /// Path-template match (`/foo/{var}/...`). Mutually exclusive with the
-  /// other path matchers.
-  final TfArg<String>? pathTemplateMatch;
-
-  /// Case-insensitive match. Applies to [fullPathMatch] / [prefixMatch].
-  final TfArg<bool>? ignoreCase;
-
-  /// Per-header match predicates ANDed with the path predicate.
-  final List<ComputeRegionUrlMapRegionUrlMapHeaderMatch>? headerMatches;
-
-  /// Per-query-parameter match predicates.
-  final List<ComputeRegionUrlMapRegionUrlMapQueryParameterMatch>?
-  queryParameterMatches;
-
-  /// xDS / Traffic Director metadata match predicates.
-  final List<ComputeRegionUrlMapRegionUrlMapMetadataFilter>? metadataFilters;
-
-  /// Escape hatch for the uncurated nested blocks of `match_rules`:
-  /// - `metadata_filters` (xDS / Traffic Director match predicates)
-  ///
-  /// Keys are Terraform block names; values are the block payload
-  /// (single block -> `[{...}]`, list of blocks -> list of maps). The map
-  /// is spread into the emitted Terraform args verbatim.
-  final Map<String, Object?>? advancedExtra;
-
-  Map<String, Object?> toArgMap() => {
-    if (fullPathMatch != null) 'full_path_match': fullPathMatch!.toTfJson(),
-    if (prefixMatch != null) 'prefix_match': prefixMatch!.toTfJson(),
-    if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
-    if (pathTemplateMatch != null)
-      'path_template_match': pathTemplateMatch!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (headerMatches != null)
-      'header_matches': headerMatches!.map((h) => h.toArgMap()).toList(),
-    if (queryParameterMatches != null)
-      'query_parameter_matches': queryParameterMatches!
-          .map((q) => q.toArgMap())
-          .toList(),
-    if (metadataFilters != null)
-      'metadata_filters': metadataFilters!.map((f) => f.toArgMap()).toList(),
-    if (advancedExtra != null) ...advancedExtra!,
-  };
-}
-
-/// One `match_rules[].header_matches[]` entry. The schema permits one of
-/// [exactMatch] / [prefixMatch] / [suffixMatch] / [regexMatch] /
-/// [presentMatch] / [rangeMatch] per entry; [invertMatch] negates the
-/// outcome. Validation is left to the GCP API.
-@immutable
-class ComputeRegionUrlMapRegionUrlMapHeaderMatch {
-  const ComputeRegionUrlMapRegionUrlMapHeaderMatch({
-    required this.headerName,
-    this.exactMatch,
-    this.prefixMatch,
-    this.suffixMatch,
-    this.regexMatch,
-    this.presentMatch,
-    this.invertMatch,
-    this.rangeMatch,
-  });
-
-  /// HTTP header name to match. Case-insensitive on the wire.
-  final TfArg<String> headerName;
-
-  /// Exact value match.
-  final TfArg<String>? exactMatch;
-
-  /// Prefix value match.
-  final TfArg<String>? prefixMatch;
-
-  /// Suffix value match.
-  final TfArg<String>? suffixMatch;
-
-  /// Regex value match (RE2 syntax).
-  final TfArg<String>? regexMatch;
-
-  /// Match if the header is present (any value).
-  final TfArg<bool>? presentMatch;
-
-  /// Negate the match outcome.
-  final TfArg<bool>? invertMatch;
-
-  /// Numeric-range match for integer header values.
-  final ComputeRegionUrlMapRegionUrlMapHeaderMatchRange? rangeMatch;
-
-  Map<String, Object?> toArgMap() => {
-    'header_name': headerName.toTfJson(),
-    if (exactMatch != null) 'exact_match': exactMatch!.toTfJson(),
-    if (prefixMatch != null) 'prefix_match': prefixMatch!.toTfJson(),
-    if (suffixMatch != null) 'suffix_match': suffixMatch!.toTfJson(),
-    if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
-    if (presentMatch != null) 'present_match': presentMatch!.toTfJson(),
-    if (invertMatch != null) 'invert_match': invertMatch!.toTfJson(),
-    if (rangeMatch != null) 'range_match': [rangeMatch!.toArgMap()],
-  };
-}
-
-/// `header_matches.range_match` block. Both bounds required by the schema.
-@immutable
-class ComputeRegionUrlMapRegionUrlMapHeaderMatchRange {
-  const ComputeRegionUrlMapRegionUrlMapHeaderMatchRange({
-    required this.rangeStart,
-    required this.rangeEnd,
-  });
-
-  /// Inclusive lower bound.
-  final TfArg<int> rangeStart;
-
-  /// Exclusive upper bound.
-  final TfArg<int> rangeEnd;
-
-  Map<String, Object?> toArgMap() => {
-    'range_start': rangeStart.toTfJson(),
-    'range_end': rangeEnd.toTfJson(),
-  };
-}
-
-/// One `match_rules[].query_parameter_matches[]` entry. Matches a single
-/// query parameter by name with a chosen predicate.
-@immutable
-class ComputeRegionUrlMapRegionUrlMapQueryParameterMatch {
-  const ComputeRegionUrlMapRegionUrlMapQueryParameterMatch({
-    required this.name,
-    this.exactMatch,
-    this.regexMatch,
-    this.presentMatch,
-  });
-
-  /// Query parameter name.
-  final TfArg<String> name;
-
-  /// Exact value match.
-  final TfArg<String>? exactMatch;
-
-  /// Regex value match (RE2 syntax).
-  final TfArg<String>? regexMatch;
-
-  /// Match if the parameter is present (any value).
-  final TfArg<bool>? presentMatch;
-
-  Map<String, Object?> toArgMap() => {
-    'name': name.toTfJson(),
-    if (exactMatch != null) 'exact_match': exactMatch!.toTfJson(),
-    if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
-    if (presentMatch != null) 'present_match': presentMatch!.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // url_redirect block (max_items=1, reused at every level)
 // ===========================================================================
-
-/// `default_url_redirect` / `path_rule.url_redirect` /
-/// `route_rules.url_redirect` block. Returns an HTTP redirect to the client
-/// instead of forwarding to a backend.
-///
-/// At least one of [hostRedirect] / [pathRedirect] / [prefixRedirect] /
-/// [httpsRedirect] is typically set; the schema requires [stripQuery] at
-/// the top-level `default_url_redirect` slot (and accepts it as optional
-/// elsewhere -- the wrapper marks it required to keep the most common
-/// position safe by default).
-@immutable
-class ComputeRegionUrlMapRegionUrlMapUrlRedirect {
-  const ComputeRegionUrlMapRegionUrlMapUrlRedirect({
-    required this.stripQuery,
-    this.hostRedirect,
-    this.pathRedirect,
-    this.prefixRedirect,
-    this.httpsRedirect,
-    this.redirectResponseCode,
-  });
-
-  /// Whether to drop the request query string before redirecting.
-  /// Required by the schema at the URL-map-level `default_url_redirect`
-  /// slot.
-  final TfArg<bool> stripQuery;
-
-  /// Replacement `Host:` header for the redirect target. Mutually
-  /// exclusive with [prefixRedirect] when both would rewrite the host.
-  final TfArg<String>? hostRedirect;
-
-  /// Full replacement path. Mutually exclusive with [prefixRedirect].
-  final TfArg<String>? pathRedirect;
-
-  /// Replace the matched prefix with this value. Mutually exclusive with
-  /// [pathRedirect].
-  final TfArg<String>? prefixRedirect;
-
-  /// Force the redirected URL to https. Useful for HTTP -> HTTPS upgrade
-  /// URL maps fronting a `region_target_http_proxy`.
-  final TfArg<bool>? httpsRedirect;
-
-  /// HTTP redirect status code. Defaults to
-  /// [RegionUrlMapRedirectResponseCode.movedPermanentlyDefault] (HTTP 301)
-  /// on the API side when omitted.
-  final TfArg<RegionUrlMapRedirectResponseCode>? redirectResponseCode;
-
-  Map<String, Object?> toArgMap() => {
-    'strip_query': stripQuery.toTfJson(),
-    if (hostRedirect != null) 'host_redirect': hostRedirect!.toTfJson(),
-    if (pathRedirect != null) 'path_redirect': pathRedirect!.toTfJson(),
-    if (prefixRedirect != null) 'prefix_redirect': prefixRedirect!.toTfJson(),
-    if (httpsRedirect != null) 'https_redirect': httpsRedirect!.toTfJson(),
-    if (redirectResponseCode != null)
-      'redirect_response_code': redirectResponseCode!.toTfJson(),
-  };
-}
 
 // ===========================================================================
 // header_action block (max_items=1, reused at top-level and inside rules)
 // ===========================================================================
 
-/// `header_action` block. Adds / removes headers on requests forwarded to
-/// the backend and / or responses returned to the client. Used at the
-/// top-level URL-map slot and inside [ComputeRegionUrlMapRegionUrlMapRouteRule.headerAction].
-///
-/// Note: the nested [requestHeadersToAdd] / [responseHeadersToAdd] schema
-/// requires every field (`header_name`, `header_value`, `replace`) at the
-/// top-level `header_action` slot. The wrapper enforces that by making them
-/// `required` on [ComputeRegionUrlMapRegionUrlMapHeaderToAdd].
-@immutable
-class ComputeRegionUrlMapRegionUrlMapHeaderAction {
-  const ComputeRegionUrlMapRegionUrlMapHeaderAction({
-    this.requestHeadersToAdd,
-    this.requestHeadersToRemove,
-    this.responseHeadersToAdd,
-    this.responseHeadersToRemove,
-  });
-
-  /// Headers to add to forwarded requests.
-  final List<ComputeRegionUrlMapRegionUrlMapHeaderToAdd>? requestHeadersToAdd;
-
-  /// Header names (case-insensitive) to strip from forwarded requests.
-  final TfArg<List<String>>? requestHeadersToRemove;
-
-  /// Headers to add to returned responses.
-  final List<ComputeRegionUrlMapRegionUrlMapHeaderToAdd>? responseHeadersToAdd;
-
-  /// Header names (case-insensitive) to strip from returned responses.
-  final TfArg<List<String>>? responseHeadersToRemove;
-
-  Map<String, Object?> toArgMap() => {
-    if (requestHeadersToAdd != null)
-      'request_headers_to_add': requestHeadersToAdd!
-          .map((h) => h.toArgMap())
-          .toList(),
-    if (requestHeadersToRemove != null)
-      'request_headers_to_remove': requestHeadersToRemove!.toTfJson(),
-    if (responseHeadersToAdd != null)
-      'response_headers_to_add': responseHeadersToAdd!
-          .map((h) => h.toArgMap())
-          .toList(),
-    if (responseHeadersToRemove != null)
-      'response_headers_to_remove': responseHeadersToRemove!.toTfJson(),
-  };
-}
-
-/// One entry in [ComputeRegionUrlMapRegionUrlMapHeaderAction.requestHeadersToAdd] /
-/// [ComputeRegionUrlMapRegionUrlMapHeaderAction.responseHeadersToAdd]. All three fields are
-/// required by the schema at the top-level `header_action` slot.
-@immutable
-class ComputeRegionUrlMapRegionUrlMapHeaderToAdd {
-  const ComputeRegionUrlMapRegionUrlMapHeaderToAdd({
-    required this.headerName,
-    required this.headerValue,
-    required this.replace,
-  });
-
-  /// Header name (case-insensitive on the wire).
-  final TfArg<String> headerName;
-
-  /// Header value to set.
-  final TfArg<String> headerValue;
-
-  /// If `true`, an existing header with the same name is replaced; if
-  /// `false`, the new value is appended.
-  final TfArg<bool> replace;
-
-  Map<String, Object?> toArgMap() => {
-    'header_name': headerName.toTfJson(),
-    'header_value': headerValue.toTfJson(),
-    'replace': replace.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // test[] block (CI-friendly assertions)
 // ===========================================================================
-
-/// One `test[]` entry. Each test states "a request to [host]+[path] should
-/// resolve to [service]" and is evaluated by GCP **at apply time** -- if
-/// the routing pipeline produces a different service, the apply FAILS.
-/// Effectively a contract test for the URL map's routing table.
-///
-/// For redirect tests, set [expectedRedirectResponseCode] (and / or
-/// [expectedOutputUrl]) instead of (or in addition to) [service].
-@immutable
-class ComputeRegionUrlMapRegionUrlMapTest {
-  const ComputeRegionUrlMapRegionUrlMapTest({
-    required this.host,
-    required this.path,
-    this.service,
-    this.description,
-    this.expectedOutputUrl,
-    this.expectedRedirectResponseCode,
-    this.headers,
-  });
-
-  /// Request `Host:` header for the simulated request.
-  final TfArg<String> host;
-
-  /// Request path for the simulated request.
-  final TfArg<String> path;
-
-  /// Backend self-link the simulated request should resolve to. Optional
-  /// when [expectedRedirectResponseCode] is set (a redirect contract test
-  /// does not resolve to a backend).
-  final TfArg<String>? service;
-
-  /// Free-form description.
-  final TfArg<String>? description;
-
-  /// Expected redirected URL when the routing pipeline produces a
-  /// redirect.
-  final TfArg<String>? expectedOutputUrl;
-
-  /// Expected HTTP redirect status code (e.g. `301`, `302`).
-  final TfArg<int>? expectedRedirectResponseCode;
-
-  /// Extra request headers for header-aware route rules.
-  final List<ComputeRegionUrlMapRegionUrlMapTestHeader>? headers;
-
-  Map<String, Object?> toArgMap() => {
-    'host': host.toTfJson(),
-    'path': path.toTfJson(),
-    if (service != null) 'service': service!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (expectedOutputUrl != null)
-      'expected_output_url': expectedOutputUrl!.toTfJson(),
-    if (expectedRedirectResponseCode != null)
-      'expected_redirect_response_code': expectedRedirectResponseCode!
-          .toTfJson(),
-    if (headers != null) 'headers': headers!.map((h) => h.toArgMap()).toList(),
-  };
-}
-
-/// One entry in [ComputeRegionUrlMapRegionUrlMapTest.headers]. Both fields required by the
-/// schema.
-@immutable
-class ComputeRegionUrlMapRegionUrlMapTestHeader {
-  const ComputeRegionUrlMapRegionUrlMapTestHeader({
-    required this.name,
-    required this.value,
-  });
-
-  /// Header name.
-  final TfArg<String> name;
-
-  /// Header value.
-  final TfArg<String> value;
-
-  Map<String, Object?> toArgMap() => {
-    'name': name.toTfJson(),
-    'value': value.toTfJson(),
-  };
-}
 
 /// At most one of `default_url_redirect`, `default_route_action` on `google_compute_region_url_map`: the provider rejects
 /// more than one, so each variant sets one of them and a
@@ -732,12 +72,12 @@ sealed class ComputeRegionUrlMapDefaultAction {
 
   /// Sets `default_url_redirect`.
   const factory ComputeRegionUrlMapDefaultAction.defaultUrlRedirect(
-    ComputeRegionUrlMapRegionUrlMapUrlRedirect defaultUrlRedirect,
+    ComputeRegionUrlMapDefaultUrlRedirect defaultUrlRedirect,
   ) = ComputeRegionUrlMapDefaultActionDefaultUrlRedirect;
 
   /// Sets `default_route_action`.
   const factory ComputeRegionUrlMapDefaultAction.defaultRouteAction(
-    ComputeRegionUrlMapRegionUrlMapRouteAction defaultRouteAction,
+    ComputeRegionUrlMapDefaultRouteAction defaultRouteAction,
   ) = ComputeRegionUrlMapDefaultActionDefaultRouteAction;
 
   /// The Terraform argument this choice sets.
@@ -757,19 +97,19 @@ final class ComputeRegionUrlMapDefaultActionDefaultUrlRedirect
     this.defaultUrlRedirect,
   );
 
-  final ComputeRegionUrlMapRegionUrlMapUrlRedirect defaultUrlRedirect;
+  final ComputeRegionUrlMapDefaultUrlRedirect defaultUrlRedirect;
 
   @override
   String get blockKey => 'default_url_redirect';
 
   @override
   Map<String, Object?> encode() => {
-    'default_url_redirect': [defaultUrlRedirect.toArgMap()],
+    'default_url_redirect': defaultUrlRedirect.encode(),
   };
 
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'default_url_redirect': TfArg.literal([defaultUrlRedirect.toArgMap()]),
+    'default_url_redirect': TfArg.literal(defaultUrlRedirect.encode()),
   };
 }
 
@@ -780,19 +120,2276 @@ final class ComputeRegionUrlMapDefaultActionDefaultRouteAction
     this.defaultRouteAction,
   );
 
-  final ComputeRegionUrlMapRegionUrlMapRouteAction defaultRouteAction;
+  final ComputeRegionUrlMapDefaultRouteAction defaultRouteAction;
 
   @override
   String get blockKey => 'default_route_action';
 
   @override
   Map<String, Object?> encode() => {
-    'default_route_action': [defaultRouteAction.toArgMap()],
+    'default_route_action': defaultRouteAction.encode(),
   };
 
   @override
   Map<String, TfArg<Object?>> get argMap => {
-    'default_route_action': TfArg.literal([defaultRouteAction.toArgMap()]),
+    'default_route_action': TfArg.literal(defaultRouteAction.encode()),
+  };
+}
+
+/// Typed helper for the `default_route_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteAction {
+  const ComputeRegionUrlMapDefaultRouteAction({
+    this.corsPolicy,
+    this.faultInjectionPolicy,
+    this.requestMirrorPolicy,
+    this.retryPolicy,
+    this.timeout,
+    this.urlRewrite,
+    this.weightedBackendServices,
+  });
+
+  final ComputeRegionUrlMapDefaultRouteActionCorsPolicy? corsPolicy;
+
+  final ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicy?
+  faultInjectionPolicy;
+
+  final ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy?
+  requestMirrorPolicy;
+
+  final ComputeRegionUrlMapDefaultRouteActionRetryPolicy? retryPolicy;
+
+  final ComputeRegionUrlMapDefaultRouteActionTimeout? timeout;
+
+  final ComputeRegionUrlMapDefaultRouteActionUrlRewrite? urlRewrite;
+
+  final List<ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices>?
+  weightedBackendServices;
+
+  Map<String, Object?> encode() => {
+    'cors_policy': ?corsPolicy?.encode(),
+    'fault_injection_policy': ?faultInjectionPolicy?.encode(),
+    'request_mirror_policy': ?requestMirrorPolicy?.encode(),
+    'retry_policy': ?retryPolicy?.encode(),
+    'timeout': ?timeout?.encode(),
+    'url_rewrite': ?urlRewrite?.encode(),
+    if (weightedBackendServices != null)
+      'weighted_backend_services': [
+        for (final e in weightedBackendServices!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `default_route_action.cors_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionCorsPolicy {
+  const ComputeRegionUrlMapDefaultRouteActionCorsPolicy({
+    this.allowCredentials,
+    this.allowHeaders,
+    this.allowMethods,
+    this.allowOriginRegexes,
+    this.allowOrigins,
+    this.disabled,
+    this.exposeHeaders,
+    this.maxAge,
+  });
+
+  final TfArg<bool>? allowCredentials;
+
+  final TfArg<List<Object?>>? allowHeaders;
+
+  final TfArg<List<Object?>>? allowMethods;
+
+  final TfArg<List<Object?>>? allowOriginRegexes;
+
+  final TfArg<List<Object?>>? allowOrigins;
+
+  final TfArg<bool>? disabled;
+
+  final TfArg<List<Object?>>? exposeHeaders;
+
+  final TfArg<num>? maxAge;
+
+  Map<String, Object?> encode() => {
+    'allow_credentials': ?allowCredentials?.toTfJson(),
+    'allow_headers': ?allowHeaders?.toTfJson(),
+    'allow_methods': ?allowMethods?.toTfJson(),
+    'allow_origin_regexes': ?allowOriginRegexes?.toTfJson(),
+    'allow_origins': ?allowOrigins?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_route_action.fault_injection_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicy {
+  const ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicy({
+    this.abort,
+    this.delay,
+  });
+
+  final ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyAbort? abort;
+
+  final ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelay? delay;
+
+  Map<String, Object?> encode() => {
+    'abort': ?abort?.encode(),
+    'delay': ?delay?.encode(),
+  };
+}
+
+/// Typed helper for the `default_route_action.fault_injection_policy.abort` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyAbort {
+  const ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyAbort({
+    this.httpStatus,
+    this.percentage,
+  });
+
+  final TfArg<num>? httpStatus;
+
+  final TfArg<num>? percentage;
+
+  Map<String, Object?> encode() => {
+    'http_status': ?httpStatus?.toTfJson(),
+    'percentage': ?percentage?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_route_action.fault_injection_policy.delay` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelay {
+  const ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelay({
+    this.percentage,
+    this.fixedDelay,
+  });
+
+  final TfArg<num>? percentage;
+
+  final ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay?
+  fixedDelay;
+
+  Map<String, Object?> encode() => {
+    'percentage': ?percentage?.toTfJson(),
+    'fixed_delay': ?fixedDelay?.encode(),
+  };
+}
+
+/// Typed helper for the `default_route_action.fault_injection_policy.delay.fixed_delay` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay {
+  const ComputeRegionUrlMapDefaultRouteActionFaultInjectionPolicyDelayFixedDelay({
+    this.nanos,
+    this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String>? seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_route_action.request_mirror_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy {
+  const ComputeRegionUrlMapDefaultRouteActionRequestMirrorPolicy({
+    this.backendService,
+  });
+
+  final TfArg<String>? backendService;
+
+  Map<String, Object?> encode() => {
+    'backend_service': ?backendService?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_route_action.retry_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionRetryPolicy {
+  const ComputeRegionUrlMapDefaultRouteActionRetryPolicy({
+    this.numRetries,
+    this.retryConditions,
+    this.perTryTimeout,
+  });
+
+  final TfArg<num>? numRetries;
+
+  final TfArg<List<Object?>>? retryConditions;
+
+  final ComputeRegionUrlMapDefaultRouteActionRetryPolicyPerTryTimeout?
+  perTryTimeout;
+
+  Map<String, Object?> encode() => {
+    'num_retries': ?numRetries?.toTfJson(),
+    'retry_conditions': ?retryConditions?.toTfJson(),
+    'per_try_timeout': ?perTryTimeout?.encode(),
+  };
+}
+
+/// Typed helper for the `default_route_action.retry_policy.per_try_timeout` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionRetryPolicyPerTryTimeout {
+  const ComputeRegionUrlMapDefaultRouteActionRetryPolicyPerTryTimeout({
+    this.nanos,
+    this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String>? seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_route_action.timeout` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionTimeout {
+  const ComputeRegionUrlMapDefaultRouteActionTimeout({
+    this.nanos,
+    this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String>? seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_route_action.url_rewrite` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionUrlRewrite {
+  const ComputeRegionUrlMapDefaultRouteActionUrlRewrite({
+    this.hostRewrite,
+    this.pathPrefixRewrite,
+  });
+
+  final TfArg<String>? hostRewrite;
+
+  final TfArg<String>? pathPrefixRewrite;
+
+  Map<String, Object?> encode() => {
+    'host_rewrite': ?hostRewrite?.toTfJson(),
+    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_route_action.weighted_backend_services` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices {
+  const ComputeRegionUrlMapDefaultRouteActionWeightedBackendServices({
+    this.backendService,
+    this.weight,
+    this.headerAction,
+  });
+
+  final TfArg<String>? backendService;
+
+  final TfArg<num>? weight;
+
+  final ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction?
+  headerAction;
+
+  Map<String, Object?> encode() => {
+    'backend_service': ?backendService?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
+    'header_action': ?headerAction?.encode(),
+  };
+}
+
+/// Typed helper for the `default_route_action.weighted_backend_services.header_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction {
+  const ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderAction({
+    this.requestHeadersToRemove,
+    this.responseHeadersToRemove,
+    this.requestHeadersToAdd,
+    this.responseHeadersToAdd,
+  });
+
+  final TfArg<List<Object?>>? requestHeadersToRemove;
+
+  final TfArg<List<Object?>>? responseHeadersToRemove;
+
+  final List<
+    ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
+  >?
+  requestHeadersToAdd;
+
+  final List<
+    ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
+  >?
+  responseHeadersToAdd;
+
+  Map<String, Object?> encode() => {
+    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
+    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
+    if (requestHeadersToAdd != null)
+      'request_headers_to_add': [
+        for (final e in requestHeadersToAdd!) e.encode(),
+      ],
+    if (responseHeadersToAdd != null)
+      'response_headers_to_add': [
+        for (final e in responseHeadersToAdd!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `default_route_action.weighted_backend_services.header_action.request_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
+  const ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
+    this.headerName,
+    this.headerValue,
+    this.replace,
+  });
+
+  final TfArg<String>? headerName;
+
+  final TfArg<String>? headerValue;
+
+  final TfArg<bool>? replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': ?headerName?.toTfJson(),
+    'header_value': ?headerValue?.toTfJson(),
+    'replace': ?replace?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_route_action.weighted_backend_services.header_action.response_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
+  const ComputeRegionUrlMapDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
+    this.headerName,
+    this.headerValue,
+    this.replace,
+  });
+
+  final TfArg<String>? headerName;
+
+  final TfArg<String>? headerValue;
+
+  final TfArg<bool>? replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': ?headerName?.toTfJson(),
+    'header_value': ?headerValue?.toTfJson(),
+    'replace': ?replace?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `default_url_redirect` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapDefaultUrlRedirect {
+  const ComputeRegionUrlMapDefaultUrlRedirect({
+    this.hostRedirect,
+    this.httpsRedirect,
+    this.pathRedirect,
+    this.prefixRedirect,
+    this.redirectResponseCode,
+    required this.stripQuery,
+  });
+
+  final TfArg<String>? hostRedirect;
+
+  final TfArg<bool>? httpsRedirect;
+
+  final TfArg<String>? pathRedirect;
+
+  final TfArg<String>? prefixRedirect;
+
+  final TfArg<RegionUrlMapRedirectResponseCode>? redirectResponseCode;
+
+  final TfArg<bool> stripQuery;
+
+  Map<String, Object?> encode() => {
+    'host_redirect': ?hostRedirect?.toTfJson(),
+    'https_redirect': ?httpsRedirect?.toTfJson(),
+    'path_redirect': ?pathRedirect?.toTfJson(),
+    'prefix_redirect': ?prefixRedirect?.toTfJson(),
+    'redirect_response_code': ?redirectResponseCode?.toTfJson(),
+    'strip_query': stripQuery.toTfJson(),
+  };
+}
+
+/// Typed helper for the `header_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapHeaderAction {
+  const ComputeRegionUrlMapHeaderAction({
+    this.requestHeadersToRemove,
+    this.responseHeadersToRemove,
+    this.requestHeadersToAdd,
+    this.responseHeadersToAdd,
+  });
+
+  final TfArg<List<Object?>>? requestHeadersToRemove;
+
+  final TfArg<List<Object?>>? responseHeadersToRemove;
+
+  final List<ComputeRegionUrlMapHeaderActionRequestHeadersToAdd>?
+  requestHeadersToAdd;
+
+  final List<ComputeRegionUrlMapHeaderActionResponseHeadersToAdd>?
+  responseHeadersToAdd;
+
+  Map<String, Object?> encode() => {
+    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
+    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
+    if (requestHeadersToAdd != null)
+      'request_headers_to_add': [
+        for (final e in requestHeadersToAdd!) e.encode(),
+      ],
+    if (responseHeadersToAdd != null)
+      'response_headers_to_add': [
+        for (final e in responseHeadersToAdd!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `header_action.request_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapHeaderActionRequestHeadersToAdd {
+  const ComputeRegionUrlMapHeaderActionRequestHeadersToAdd({
+    this.headerName,
+    this.headerValue,
+    this.replace,
+  });
+
+  final TfArg<String>? headerName;
+
+  final TfArg<String>? headerValue;
+
+  final TfArg<bool>? replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': ?headerName?.toTfJson(),
+    'header_value': ?headerValue?.toTfJson(),
+    'replace': ?replace?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `header_action.response_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapHeaderActionResponseHeadersToAdd {
+  const ComputeRegionUrlMapHeaderActionResponseHeadersToAdd({
+    this.headerName,
+    this.headerValue,
+    this.replace,
+  });
+
+  final TfArg<String>? headerName;
+
+  final TfArg<String>? headerValue;
+
+  final TfArg<bool>? replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': ?headerName?.toTfJson(),
+    'header_value': ?headerValue?.toTfJson(),
+    'replace': ?replace?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `host_rule` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapHostRule {
+  const ComputeRegionUrlMapHostRule({
+    this.description,
+    required this.hosts,
+    required this.pathMatcher,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<List<Object?>> hosts;
+
+  final TfArg<String> pathMatcher;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'hosts': hosts.toTfJson(),
+    'path_matcher': pathMatcher.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcher {
+  const ComputeRegionUrlMapPathMatcher({
+    this.defaultService,
+    this.description,
+    required this.name,
+    this.defaultRouteAction,
+    this.defaultUrlRedirect,
+    this.headerAction,
+    this.pathRule,
+    this.routeRules,
+  });
+
+  final TfArg<String>? defaultService;
+
+  final TfArg<String>? description;
+
+  final TfArg<String> name;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteAction? defaultRouteAction;
+
+  final ComputeRegionUrlMapPathMatcherDefaultUrlRedirect? defaultUrlRedirect;
+
+  final ComputeRegionUrlMapPathMatcherHeaderAction? headerAction;
+
+  final List<ComputeRegionUrlMapPathMatcherPathRule>? pathRule;
+
+  final List<ComputeRegionUrlMapPathMatcherRouteRules>? routeRules;
+
+  Map<String, Object?> encode() => {
+    'default_service': ?defaultService?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'name': name.toTfJson(),
+    'default_route_action': ?defaultRouteAction?.encode(),
+    'default_url_redirect': ?defaultUrlRedirect?.encode(),
+    'header_action': ?headerAction?.encode(),
+    if (pathRule != null) 'path_rule': [for (final e in pathRule!) e.encode()],
+    if (routeRules != null)
+      'route_rules': [for (final e in routeRules!) e.encode()],
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteAction {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteAction({
+    this.corsPolicy,
+    this.faultInjectionPolicy,
+    this.maxStreamDuration,
+    this.requestMirrorPolicy,
+    this.retryPolicy,
+    this.timeout,
+    this.urlRewrite,
+    this.weightedBackendServices,
+  });
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionCorsPolicy? corsPolicy;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicy?
+  faultInjectionPolicy;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionMaxStreamDuration?
+  maxStreamDuration;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionRequestMirrorPolicy?
+  requestMirrorPolicy;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicy?
+  retryPolicy;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionTimeout? timeout;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionUrlRewrite? urlRewrite;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServices
+  >?
+  weightedBackendServices;
+
+  Map<String, Object?> encode() => {
+    'cors_policy': ?corsPolicy?.encode(),
+    'fault_injection_policy': ?faultInjectionPolicy?.encode(),
+    'max_stream_duration': ?maxStreamDuration?.encode(),
+    'request_mirror_policy': ?requestMirrorPolicy?.encode(),
+    'retry_policy': ?retryPolicy?.encode(),
+    'timeout': ?timeout?.encode(),
+    'url_rewrite': ?urlRewrite?.encode(),
+    if (weightedBackendServices != null)
+      'weighted_backend_services': [
+        for (final e in weightedBackendServices!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.cors_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionCorsPolicy {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionCorsPolicy({
+    this.allowCredentials,
+    this.allowHeaders,
+    this.allowMethods,
+    this.allowOriginRegexes,
+    this.allowOrigins,
+    this.disabled,
+    this.exposeHeaders,
+    this.maxAge,
+  });
+
+  final TfArg<bool>? allowCredentials;
+
+  final TfArg<List<Object?>>? allowHeaders;
+
+  final TfArg<List<Object?>>? allowMethods;
+
+  final TfArg<List<Object?>>? allowOriginRegexes;
+
+  final TfArg<List<Object?>>? allowOrigins;
+
+  final TfArg<bool>? disabled;
+
+  final TfArg<List<Object?>>? exposeHeaders;
+
+  final TfArg<num>? maxAge;
+
+  Map<String, Object?> encode() => {
+    'allow_credentials': ?allowCredentials?.toTfJson(),
+    'allow_headers': ?allowHeaders?.toTfJson(),
+    'allow_methods': ?allowMethods?.toTfJson(),
+    'allow_origin_regexes': ?allowOriginRegexes?.toTfJson(),
+    'allow_origins': ?allowOrigins?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicy {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicy({
+    this.abort,
+    this.delay,
+  });
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort?
+  abort;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay?
+  delay;
+
+  Map<String, Object?> encode() => {
+    'abort': ?abort?.encode(),
+    'delay': ?delay?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy.abort` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyAbort({
+    this.httpStatus,
+    this.percentage,
+  });
+
+  final TfArg<num>? httpStatus;
+
+  final TfArg<num>? percentage;
+
+  Map<String, Object?> encode() => {
+    'http_status': ?httpStatus?.toTfJson(),
+    'percentage': ?percentage?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy.delay` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelay({
+    this.percentage,
+    this.fixedDelay,
+  });
+
+  final TfArg<num>? percentage;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay?
+  fixedDelay;
+
+  Map<String, Object?> encode() => {
+    'percentage': ?percentage?.toTfJson(),
+    'fixed_delay': ?fixedDelay?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.fault_injection_policy.delay.fixed_delay` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionFaultInjectionPolicyDelayFixedDelay({
+    this.nanos,
+    this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String>? seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.max_stream_duration` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionMaxStreamDuration {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionMaxStreamDuration({
+    this.nanos,
+    required this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String> seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': seconds.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.request_mirror_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionRequestMirrorPolicy {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionRequestMirrorPolicy({
+    required this.backendService,
+  });
+
+  final TfArg<String> backendService;
+
+  Map<String, Object?> encode() => {
+    'backend_service': backendService.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.retry_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicy {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicy({
+    this.numRetries,
+    this.retryConditions,
+    this.perTryTimeout,
+  });
+
+  final TfArg<num>? numRetries;
+
+  final TfArg<List<Object?>>? retryConditions;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout?
+  perTryTimeout;
+
+  Map<String, Object?> encode() => {
+    'num_retries': ?numRetries?.toTfJson(),
+    'retry_conditions': ?retryConditions?.toTfJson(),
+    'per_try_timeout': ?perTryTimeout?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.retry_policy.per_try_timeout` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionRetryPolicyPerTryTimeout({
+    this.nanos,
+    this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String>? seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.timeout` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionTimeout {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionTimeout({
+    this.nanos,
+    this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String>? seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': ?seconds?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.url_rewrite` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionUrlRewrite {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionUrlRewrite({
+    this.hostRewrite,
+    this.pathPrefixRewrite,
+    this.pathTemplateRewrite,
+  });
+
+  final TfArg<String>? hostRewrite;
+
+  final TfArg<String>? pathPrefixRewrite;
+
+  final TfArg<String>? pathTemplateRewrite;
+
+  Map<String, Object?> encode() => {
+    'host_rewrite': ?hostRewrite?.toTfJson(),
+    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
+    'path_template_rewrite': ?pathTemplateRewrite?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServices {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServices({
+    this.backendService,
+    this.weight,
+    this.headerAction,
+  });
+
+  final TfArg<String>? backendService;
+
+  final TfArg<num>? weight;
+
+  final ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderAction?
+  headerAction;
+
+  Map<String, Object?> encode() => {
+    'backend_service': ?backendService?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
+    'header_action': ?headerAction?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services.header_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderAction {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderAction({
+    this.requestHeadersToRemove,
+    this.responseHeadersToRemove,
+    this.requestHeadersToAdd,
+    this.responseHeadersToAdd,
+  });
+
+  final TfArg<List<Object?>>? requestHeadersToRemove;
+
+  final TfArg<List<Object?>>? responseHeadersToRemove;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
+  >?
+  requestHeadersToAdd;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
+  >?
+  responseHeadersToAdd;
+
+  Map<String, Object?> encode() => {
+    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
+    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
+    if (requestHeadersToAdd != null)
+      'request_headers_to_add': [
+        for (final e in requestHeadersToAdd!) e.encode(),
+      ],
+    if (responseHeadersToAdd != null)
+      'response_headers_to_add': [
+        for (final e in responseHeadersToAdd!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services.header_action.request_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
+    this.headerName,
+    this.headerValue,
+    this.replace,
+  });
+
+  final TfArg<String>? headerName;
+
+  final TfArg<String>? headerValue;
+
+  final TfArg<bool>? replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': ?headerName?.toTfJson(),
+    'header_value': ?headerValue?.toTfJson(),
+    'replace': ?replace?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_route_action.weighted_backend_services.header_action.response_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
+  const ComputeRegionUrlMapPathMatcherDefaultRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
+    this.headerName,
+    this.headerValue,
+    this.replace,
+  });
+
+  final TfArg<String>? headerName;
+
+  final TfArg<String>? headerValue;
+
+  final TfArg<bool>? replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': ?headerName?.toTfJson(),
+    'header_value': ?headerValue?.toTfJson(),
+    'replace': ?replace?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.default_url_redirect` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherDefaultUrlRedirect {
+  const ComputeRegionUrlMapPathMatcherDefaultUrlRedirect({
+    this.hostRedirect,
+    this.httpsRedirect,
+    this.pathRedirect,
+    this.prefixRedirect,
+    this.redirectResponseCode,
+    required this.stripQuery,
+  });
+
+  final TfArg<String>? hostRedirect;
+
+  final TfArg<bool>? httpsRedirect;
+
+  final TfArg<String>? pathRedirect;
+
+  final TfArg<String>? prefixRedirect;
+
+  final TfArg<RegionUrlMapRedirectResponseCode>? redirectResponseCode;
+
+  final TfArg<bool> stripQuery;
+
+  Map<String, Object?> encode() => {
+    'host_redirect': ?hostRedirect?.toTfJson(),
+    'https_redirect': ?httpsRedirect?.toTfJson(),
+    'path_redirect': ?pathRedirect?.toTfJson(),
+    'prefix_redirect': ?prefixRedirect?.toTfJson(),
+    'redirect_response_code': ?redirectResponseCode?.toTfJson(),
+    'strip_query': stripQuery.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.header_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherHeaderAction {
+  const ComputeRegionUrlMapPathMatcherHeaderAction({
+    this.requestHeadersToRemove,
+    this.responseHeadersToRemove,
+    this.requestHeadersToAdd,
+    this.responseHeadersToAdd,
+  });
+
+  final TfArg<List<Object?>>? requestHeadersToRemove;
+
+  final TfArg<List<Object?>>? responseHeadersToRemove;
+
+  final List<ComputeRegionUrlMapPathMatcherHeaderActionRequestHeadersToAdd>?
+  requestHeadersToAdd;
+
+  final List<ComputeRegionUrlMapPathMatcherHeaderActionResponseHeadersToAdd>?
+  responseHeadersToAdd;
+
+  Map<String, Object?> encode() => {
+    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
+    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
+    if (requestHeadersToAdd != null)
+      'request_headers_to_add': [
+        for (final e in requestHeadersToAdd!) e.encode(),
+      ],
+    if (responseHeadersToAdd != null)
+      'response_headers_to_add': [
+        for (final e in responseHeadersToAdd!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `path_matcher.header_action.request_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherHeaderActionRequestHeadersToAdd {
+  const ComputeRegionUrlMapPathMatcherHeaderActionRequestHeadersToAdd({
+    this.headerName,
+    this.headerValue,
+    this.replace,
+  });
+
+  final TfArg<String>? headerName;
+
+  final TfArg<String>? headerValue;
+
+  final TfArg<bool>? replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': ?headerName?.toTfJson(),
+    'header_value': ?headerValue?.toTfJson(),
+    'replace': ?replace?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.header_action.response_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherHeaderActionResponseHeadersToAdd {
+  const ComputeRegionUrlMapPathMatcherHeaderActionResponseHeadersToAdd({
+    this.headerName,
+    this.headerValue,
+    this.replace,
+  });
+
+  final TfArg<String>? headerName;
+
+  final TfArg<String>? headerValue;
+
+  final TfArg<bool>? replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': ?headerName?.toTfJson(),
+    'header_value': ?headerValue?.toTfJson(),
+    'replace': ?replace?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRule {
+  const ComputeRegionUrlMapPathMatcherPathRule({
+    required this.paths,
+    this.service,
+    this.routeAction,
+    this.urlRedirect,
+  });
+
+  final TfArg<List<Object?>> paths;
+
+  final TfArg<String>? service;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteAction? routeAction;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleUrlRedirect? urlRedirect;
+
+  Map<String, Object?> encode() => {
+    'paths': paths.toTfJson(),
+    'service': ?service?.toTfJson(),
+    'route_action': ?routeAction?.encode(),
+    'url_redirect': ?urlRedirect?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteAction {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteAction({
+    this.corsPolicy,
+    this.faultInjectionPolicy,
+    this.requestMirrorPolicy,
+    this.retryPolicy,
+    this.timeout,
+    this.urlRewrite,
+    this.weightedBackendServices,
+  });
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy? corsPolicy;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy?
+  faultInjectionPolicy;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy?
+  requestMirrorPolicy;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy?
+  retryPolicy;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionTimeout? timeout;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite? urlRewrite;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices
+  >?
+  weightedBackendServices;
+
+  Map<String, Object?> encode() => {
+    'cors_policy': ?corsPolicy?.encode(),
+    'fault_injection_policy': ?faultInjectionPolicy?.encode(),
+    'request_mirror_policy': ?requestMirrorPolicy?.encode(),
+    'retry_policy': ?retryPolicy?.encode(),
+    'timeout': ?timeout?.encode(),
+    'url_rewrite': ?urlRewrite?.encode(),
+    if (weightedBackendServices != null)
+      'weighted_backend_services': [
+        for (final e in weightedBackendServices!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.cors_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionCorsPolicy({
+    this.allowCredentials,
+    this.allowHeaders,
+    this.allowMethods,
+    this.allowOriginRegexes,
+    this.allowOrigins,
+    required this.disabled,
+    this.exposeHeaders,
+    this.maxAge,
+  });
+
+  final TfArg<bool>? allowCredentials;
+
+  final TfArg<List<Object?>>? allowHeaders;
+
+  final TfArg<List<Object?>>? allowMethods;
+
+  final TfArg<List<Object?>>? allowOriginRegexes;
+
+  final TfArg<List<Object?>>? allowOrigins;
+
+  final TfArg<bool> disabled;
+
+  final TfArg<List<Object?>>? exposeHeaders;
+
+  final TfArg<num>? maxAge;
+
+  Map<String, Object?> encode() => {
+    'allow_credentials': ?allowCredentials?.toTfJson(),
+    'allow_headers': ?allowHeaders?.toTfJson(),
+    'allow_methods': ?allowMethods?.toTfJson(),
+    'allow_origin_regexes': ?allowOriginRegexes?.toTfJson(),
+    'allow_origins': ?allowOrigins?.toTfJson(),
+    'disabled': disabled.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicy({
+    this.abort,
+    this.delay,
+  });
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort?
+  abort;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay?
+  delay;
+
+  Map<String, Object?> encode() => {
+    'abort': ?abort?.encode(),
+    'delay': ?delay?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy.abort` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyAbort({
+    required this.httpStatus,
+    required this.percentage,
+  });
+
+  final TfArg<num> httpStatus;
+
+  final TfArg<num> percentage;
+
+  Map<String, Object?> encode() => {
+    'http_status': httpStatus.toTfJson(),
+    'percentage': percentage.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy.delay` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelay({
+    required this.percentage,
+    required this.fixedDelay,
+  });
+
+  final TfArg<num> percentage;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay
+  fixedDelay;
+
+  Map<String, Object?> encode() => {
+    'percentage': percentage.toTfJson(),
+    'fixed_delay': fixedDelay.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.fault_injection_policy.delay.fixed_delay` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionFaultInjectionPolicyDelayFixedDelay({
+    this.nanos,
+    required this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String> seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': seconds.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.request_mirror_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionRequestMirrorPolicy({
+    required this.backendService,
+  });
+
+  final TfArg<String> backendService;
+
+  Map<String, Object?> encode() => {
+    'backend_service': backendService.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.retry_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicy({
+    this.numRetries,
+    this.retryConditions,
+    this.perTryTimeout,
+  });
+
+  final TfArg<num>? numRetries;
+
+  final TfArg<List<Object?>>? retryConditions;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout?
+  perTryTimeout;
+
+  Map<String, Object?> encode() => {
+    'num_retries': ?numRetries?.toTfJson(),
+    'retry_conditions': ?retryConditions?.toTfJson(),
+    'per_try_timeout': ?perTryTimeout?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.retry_policy.per_try_timeout` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionRetryPolicyPerTryTimeout({
+    this.nanos,
+    required this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String> seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': seconds.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.timeout` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionTimeout {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionTimeout({
+    this.nanos,
+    required this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String> seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': seconds.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.url_rewrite` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionUrlRewrite({
+    this.hostRewrite,
+    this.pathPrefixRewrite,
+  });
+
+  final TfArg<String>? hostRewrite;
+
+  final TfArg<String>? pathPrefixRewrite;
+
+  Map<String, Object?> encode() => {
+    'host_rewrite': ?hostRewrite?.toTfJson(),
+    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServices({
+    required this.backendService,
+    required this.weight,
+    this.headerAction,
+  });
+
+  final TfArg<String> backendService;
+
+  final TfArg<num> weight;
+
+  final ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderAction?
+  headerAction;
+
+  Map<String, Object?> encode() => {
+    'backend_service': backendService.toTfJson(),
+    'weight': weight.toTfJson(),
+    'header_action': ?headerAction?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services.header_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderAction {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderAction({
+    this.requestHeadersToRemove,
+    this.responseHeadersToRemove,
+    this.requestHeadersToAdd,
+    this.responseHeadersToAdd,
+  });
+
+  final TfArg<List<Object?>>? requestHeadersToRemove;
+
+  final TfArg<List<Object?>>? responseHeadersToRemove;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
+  >?
+  requestHeadersToAdd;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
+  >?
+  responseHeadersToAdd;
+
+  Map<String, Object?> encode() => {
+    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
+    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
+    if (requestHeadersToAdd != null)
+      'request_headers_to_add': [
+        for (final e in requestHeadersToAdd!) e.encode(),
+      ],
+    if (responseHeadersToAdd != null)
+      'response_headers_to_add': [
+        for (final e in responseHeadersToAdd!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services.header_action.request_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
+    required this.headerName,
+    required this.headerValue,
+    required this.replace,
+  });
+
+  final TfArg<String> headerName;
+
+  final TfArg<String> headerValue;
+
+  final TfArg<bool> replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': headerName.toTfJson(),
+    'header_value': headerValue.toTfJson(),
+    'replace': replace.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.route_action.weighted_backend_services.header_action.response_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
+  const ComputeRegionUrlMapPathMatcherPathRuleRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
+    required this.headerName,
+    required this.headerValue,
+    required this.replace,
+  });
+
+  final TfArg<String> headerName;
+
+  final TfArg<String> headerValue;
+
+  final TfArg<bool> replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': headerName.toTfJson(),
+    'header_value': headerValue.toTfJson(),
+    'replace': replace.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.path_rule.url_redirect` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherPathRuleUrlRedirect {
+  const ComputeRegionUrlMapPathMatcherPathRuleUrlRedirect({
+    this.hostRedirect,
+    this.httpsRedirect,
+    this.pathRedirect,
+    this.prefixRedirect,
+    this.redirectResponseCode,
+    required this.stripQuery,
+  });
+
+  final TfArg<String>? hostRedirect;
+
+  final TfArg<bool>? httpsRedirect;
+
+  final TfArg<String>? pathRedirect;
+
+  final TfArg<String>? prefixRedirect;
+
+  final TfArg<RegionUrlMapRedirectResponseCode>? redirectResponseCode;
+
+  final TfArg<bool> stripQuery;
+
+  Map<String, Object?> encode() => {
+    'host_redirect': ?hostRedirect?.toTfJson(),
+    'https_redirect': ?httpsRedirect?.toTfJson(),
+    'path_redirect': ?pathRedirect?.toTfJson(),
+    'prefix_redirect': ?prefixRedirect?.toTfJson(),
+    'redirect_response_code': ?redirectResponseCode?.toTfJson(),
+    'strip_query': stripQuery.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRules {
+  const ComputeRegionUrlMapPathMatcherRouteRules({
+    required this.priority,
+    this.service,
+    this.headerAction,
+    this.matchRules,
+    this.routeAction,
+    this.urlRedirect,
+  });
+
+  final TfArg<num> priority;
+
+  final TfArg<String>? service;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesHeaderAction? headerAction;
+
+  final List<ComputeRegionUrlMapPathMatcherRouteRulesMatchRules>? matchRules;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteAction? routeAction;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesUrlRedirect? urlRedirect;
+
+  Map<String, Object?> encode() => {
+    'priority': priority.toTfJson(),
+    'service': ?service?.toTfJson(),
+    'header_action': ?headerAction?.encode(),
+    if (matchRules != null)
+      'match_rules': [for (final e in matchRules!) e.encode()],
+    'route_action': ?routeAction?.encode(),
+    'url_redirect': ?urlRedirect?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.header_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesHeaderAction {
+  const ComputeRegionUrlMapPathMatcherRouteRulesHeaderAction({
+    this.requestHeadersToRemove,
+    this.responseHeadersToRemove,
+    this.requestHeadersToAdd,
+    this.responseHeadersToAdd,
+  });
+
+  final TfArg<List<Object?>>? requestHeadersToRemove;
+
+  final TfArg<List<Object?>>? responseHeadersToRemove;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd
+  >?
+  requestHeadersToAdd;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionResponseHeadersToAdd
+  >?
+  responseHeadersToAdd;
+
+  Map<String, Object?> encode() => {
+    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
+    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
+    if (requestHeadersToAdd != null)
+      'request_headers_to_add': [
+        for (final e in requestHeadersToAdd!) e.encode(),
+      ],
+    if (responseHeadersToAdd != null)
+      'response_headers_to_add': [
+        for (final e in responseHeadersToAdd!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.header_action.request_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd {
+  const ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionRequestHeadersToAdd({
+    required this.headerName,
+    required this.headerValue,
+    required this.replace,
+  });
+
+  final TfArg<String> headerName;
+
+  final TfArg<String> headerValue;
+
+  final TfArg<bool> replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': headerName.toTfJson(),
+    'header_value': headerValue.toTfJson(),
+    'replace': replace.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.header_action.response_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionResponseHeadersToAdd {
+  const ComputeRegionUrlMapPathMatcherRouteRulesHeaderActionResponseHeadersToAdd({
+    required this.headerName,
+    required this.headerValue,
+    required this.replace,
+  });
+
+  final TfArg<String> headerName;
+
+  final TfArg<String> headerValue;
+
+  final TfArg<bool> replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': headerName.toTfJson(),
+    'header_value': headerValue.toTfJson(),
+    'replace': replace.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.match_rules` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRules {
+  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRules({
+    this.fullPathMatch,
+    this.ignoreCase,
+    this.pathTemplateMatch,
+    this.prefixMatch,
+    this.regexMatch,
+    this.headerMatches,
+    this.metadataFilters,
+    this.queryParameterMatches,
+  });
+
+  final TfArg<String>? fullPathMatch;
+
+  final TfArg<bool>? ignoreCase;
+
+  final TfArg<String>? pathTemplateMatch;
+
+  final TfArg<String>? prefixMatch;
+
+  final TfArg<String>? regexMatch;
+
+  final List<ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches>?
+  headerMatches;
+
+  final List<ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters>?
+  metadataFilters;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatches
+  >?
+  queryParameterMatches;
+
+  Map<String, Object?> encode() => {
+    'full_path_match': ?fullPathMatch?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'path_template_match': ?pathTemplateMatch?.toTfJson(),
+    'prefix_match': ?prefixMatch?.toTfJson(),
+    'regex_match': ?regexMatch?.toTfJson(),
+    if (headerMatches != null)
+      'header_matches': [for (final e in headerMatches!) e.encode()],
+    if (metadataFilters != null)
+      'metadata_filters': [for (final e in metadataFilters!) e.encode()],
+    if (queryParameterMatches != null)
+      'query_parameter_matches': [
+        for (final e in queryParameterMatches!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.match_rules.header_matches` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches {
+  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatches({
+    this.exactMatch,
+    required this.headerName,
+    this.invertMatch,
+    this.prefixMatch,
+    this.presentMatch,
+    this.regexMatch,
+    this.suffixMatch,
+    this.rangeMatch,
+  });
+
+  final TfArg<String>? exactMatch;
+
+  final TfArg<String> headerName;
+
+  final TfArg<bool>? invertMatch;
+
+  final TfArg<String>? prefixMatch;
+
+  final TfArg<bool>? presentMatch;
+
+  final TfArg<String>? regexMatch;
+
+  final TfArg<String>? suffixMatch;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRangeMatch?
+  rangeMatch;
+
+  Map<String, Object?> encode() => {
+    'exact_match': ?exactMatch?.toTfJson(),
+    'header_name': headerName.toTfJson(),
+    'invert_match': ?invertMatch?.toTfJson(),
+    'prefix_match': ?prefixMatch?.toTfJson(),
+    'present_match': ?presentMatch?.toTfJson(),
+    'regex_match': ?regexMatch?.toTfJson(),
+    'suffix_match': ?suffixMatch?.toTfJson(),
+    'range_match': ?rangeMatch?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.match_rules.header_matches.range_match` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRangeMatch {
+  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesHeaderMatchesRangeMatch({
+    required this.rangeEnd,
+    required this.rangeStart,
+  });
+
+  final TfArg<num> rangeEnd;
+
+  final TfArg<num> rangeStart;
+
+  Map<String, Object?> encode() => {
+    'range_end': rangeEnd.toTfJson(),
+    'range_start': rangeStart.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.match_rules.metadata_filters` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters {
+  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFilters({
+    required this.filterMatchCriteria,
+    required this.filterLabels,
+  });
+
+  final TfArg<RegionUrlMapMetadataFilterMatchCriteria> filterMatchCriteria;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFilterLabels
+  >
+  filterLabels;
+
+  Map<String, Object?> encode() => {
+    'filter_match_criteria': filterMatchCriteria.toTfJson(),
+    'filter_labels': [for (final e in filterLabels) e.encode()],
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.match_rules.metadata_filters.filter_labels` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFilterLabels {
+  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesMetadataFiltersFilterLabels({
+    required this.name,
+    required this.value,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<String> value;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.match_rules.query_parameter_matches` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatches {
+  const ComputeRegionUrlMapPathMatcherRouteRulesMatchRulesQueryParameterMatches({
+    this.exactMatch,
+    required this.name,
+    this.presentMatch,
+    this.regexMatch,
+  });
+
+  final TfArg<String>? exactMatch;
+
+  final TfArg<String> name;
+
+  final TfArg<bool>? presentMatch;
+
+  final TfArg<String>? regexMatch;
+
+  Map<String, Object?> encode() => {
+    'exact_match': ?exactMatch?.toTfJson(),
+    'name': name.toTfJson(),
+    'present_match': ?presentMatch?.toTfJson(),
+    'regex_match': ?regexMatch?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteAction {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteAction({
+    this.corsPolicy,
+    this.faultInjectionPolicy,
+    this.requestMirrorPolicy,
+    this.retryPolicy,
+    this.timeout,
+    this.urlRewrite,
+    this.weightedBackendServices,
+  });
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionCorsPolicy?
+  corsPolicy;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicy?
+  faultInjectionPolicy;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRequestMirrorPolicy?
+  requestMirrorPolicy;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicy?
+  retryPolicy;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionTimeout? timeout;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionUrlRewrite?
+  urlRewrite;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServices
+  >?
+  weightedBackendServices;
+
+  Map<String, Object?> encode() => {
+    'cors_policy': ?corsPolicy?.encode(),
+    'fault_injection_policy': ?faultInjectionPolicy?.encode(),
+    'request_mirror_policy': ?requestMirrorPolicy?.encode(),
+    'retry_policy': ?retryPolicy?.encode(),
+    'timeout': ?timeout?.encode(),
+    'url_rewrite': ?urlRewrite?.encode(),
+    if (weightedBackendServices != null)
+      'weighted_backend_services': [
+        for (final e in weightedBackendServices!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.cors_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionCorsPolicy {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionCorsPolicy({
+    this.allowCredentials,
+    this.allowHeaders,
+    this.allowMethods,
+    this.allowOriginRegexes,
+    this.allowOrigins,
+    this.disabled,
+    this.exposeHeaders,
+    this.maxAge,
+  });
+
+  final TfArg<bool>? allowCredentials;
+
+  final TfArg<List<Object?>>? allowHeaders;
+
+  final TfArg<List<Object?>>? allowMethods;
+
+  final TfArg<List<Object?>>? allowOriginRegexes;
+
+  final TfArg<List<Object?>>? allowOrigins;
+
+  final TfArg<bool>? disabled;
+
+  final TfArg<List<Object?>>? exposeHeaders;
+
+  final TfArg<num>? maxAge;
+
+  Map<String, Object?> encode() => {
+    'allow_credentials': ?allowCredentials?.toTfJson(),
+    'allow_headers': ?allowHeaders?.toTfJson(),
+    'allow_methods': ?allowMethods?.toTfJson(),
+    'allow_origin_regexes': ?allowOriginRegexes?.toTfJson(),
+    'allow_origins': ?allowOrigins?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'expose_headers': ?exposeHeaders?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicy {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicy({
+    this.abort,
+    this.delay,
+  });
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyAbort?
+  abort;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelay?
+  delay;
+
+  Map<String, Object?> encode() => {
+    'abort': ?abort?.encode(),
+    'delay': ?delay?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy.abort` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyAbort {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyAbort({
+    this.httpStatus,
+    this.percentage,
+  });
+
+  final TfArg<num>? httpStatus;
+
+  final TfArg<num>? percentage;
+
+  Map<String, Object?> encode() => {
+    'http_status': ?httpStatus?.toTfJson(),
+    'percentage': ?percentage?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy.delay` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelay {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelay({
+    this.percentage,
+    this.fixedDelay,
+  });
+
+  final TfArg<num>? percentage;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay?
+  fixedDelay;
+
+  Map<String, Object?> encode() => {
+    'percentage': ?percentage?.toTfJson(),
+    'fixed_delay': ?fixedDelay?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.fault_injection_policy.delay.fixed_delay` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionFaultInjectionPolicyDelayFixedDelay({
+    this.nanos,
+    required this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String> seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': seconds.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.request_mirror_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRequestMirrorPolicy {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRequestMirrorPolicy({
+    required this.backendService,
+  });
+
+  final TfArg<String> backendService;
+
+  Map<String, Object?> encode() => {
+    'backend_service': backendService.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.retry_policy` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicy {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicy({
+    required this.numRetries,
+    this.retryConditions,
+    this.perTryTimeout,
+  });
+
+  final TfArg<num> numRetries;
+
+  final TfArg<List<Object?>>? retryConditions;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout?
+  perTryTimeout;
+
+  Map<String, Object?> encode() => {
+    'num_retries': numRetries.toTfJson(),
+    'retry_conditions': ?retryConditions?.toTfJson(),
+    'per_try_timeout': ?perTryTimeout?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.retry_policy.per_try_timeout` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionRetryPolicyPerTryTimeout({
+    this.nanos,
+    required this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String> seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': seconds.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.timeout` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionTimeout {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionTimeout({
+    this.nanos,
+    required this.seconds,
+  });
+
+  final TfArg<num>? nanos;
+
+  final TfArg<String> seconds;
+
+  Map<String, Object?> encode() => {
+    'nanos': ?nanos?.toTfJson(),
+    'seconds': seconds.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.url_rewrite` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionUrlRewrite {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionUrlRewrite({
+    this.hostRewrite,
+    this.pathPrefixRewrite,
+    this.pathTemplateRewrite,
+  });
+
+  final TfArg<String>? hostRewrite;
+
+  final TfArg<String>? pathPrefixRewrite;
+
+  final TfArg<String>? pathTemplateRewrite;
+
+  Map<String, Object?> encode() => {
+    'host_rewrite': ?hostRewrite?.toTfJson(),
+    'path_prefix_rewrite': ?pathPrefixRewrite?.toTfJson(),
+    'path_template_rewrite': ?pathTemplateRewrite?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServices {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServices({
+    required this.backendService,
+    required this.weight,
+    this.headerAction,
+  });
+
+  final TfArg<String> backendService;
+
+  final TfArg<num> weight;
+
+  final ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderAction?
+  headerAction;
+
+  Map<String, Object?> encode() => {
+    'backend_service': backendService.toTfJson(),
+    'weight': weight.toTfJson(),
+    'header_action': ?headerAction?.encode(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services.header_action` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderAction {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderAction({
+    this.requestHeadersToRemove,
+    this.responseHeadersToRemove,
+    this.requestHeadersToAdd,
+    this.responseHeadersToAdd,
+  });
+
+  final TfArg<List<Object?>>? requestHeadersToRemove;
+
+  final TfArg<List<Object?>>? responseHeadersToRemove;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd
+  >?
+  requestHeadersToAdd;
+
+  final List<
+    ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd
+  >?
+  responseHeadersToAdd;
+
+  Map<String, Object?> encode() => {
+    'request_headers_to_remove': ?requestHeadersToRemove?.toTfJson(),
+    'response_headers_to_remove': ?responseHeadersToRemove?.toTfJson(),
+    if (requestHeadersToAdd != null)
+      'request_headers_to_add': [
+        for (final e in requestHeadersToAdd!) e.encode(),
+      ],
+    if (responseHeadersToAdd != null)
+      'response_headers_to_add': [
+        for (final e in responseHeadersToAdd!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services.header_action.request_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionRequestHeadersToAdd({
+    required this.headerName,
+    required this.headerValue,
+    required this.replace,
+  });
+
+  final TfArg<String> headerName;
+
+  final TfArg<String> headerValue;
+
+  final TfArg<bool> replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': headerName.toTfJson(),
+    'header_value': headerValue.toTfJson(),
+    'replace': replace.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.route_action.weighted_backend_services.header_action.response_headers_to_add` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd {
+  const ComputeRegionUrlMapPathMatcherRouteRulesRouteActionWeightedBackendServicesHeaderActionResponseHeadersToAdd({
+    required this.headerName,
+    required this.headerValue,
+    required this.replace,
+  });
+
+  final TfArg<String> headerName;
+
+  final TfArg<String> headerValue;
+
+  final TfArg<bool> replace;
+
+  Map<String, Object?> encode() => {
+    'header_name': headerName.toTfJson(),
+    'header_value': headerValue.toTfJson(),
+    'replace': replace.toTfJson(),
+  };
+}
+
+/// Typed helper for the `path_matcher.route_rules.url_redirect` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapPathMatcherRouteRulesUrlRedirect {
+  const ComputeRegionUrlMapPathMatcherRouteRulesUrlRedirect({
+    this.hostRedirect,
+    this.httpsRedirect,
+    this.pathRedirect,
+    this.prefixRedirect,
+    this.redirectResponseCode,
+    this.stripQuery,
+  });
+
+  final TfArg<String>? hostRedirect;
+
+  final TfArg<bool>? httpsRedirect;
+
+  final TfArg<String>? pathRedirect;
+
+  final TfArg<String>? prefixRedirect;
+
+  final TfArg<RegionUrlMapRedirectResponseCode>? redirectResponseCode;
+
+  final TfArg<bool>? stripQuery;
+
+  Map<String, Object?> encode() => {
+    'host_redirect': ?hostRedirect?.toTfJson(),
+    'https_redirect': ?httpsRedirect?.toTfJson(),
+    'path_redirect': ?pathRedirect?.toTfJson(),
+    'prefix_redirect': ?prefixRedirect?.toTfJson(),
+    'redirect_response_code': ?redirectResponseCode?.toTfJson(),
+    'strip_query': ?stripQuery?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `test` block of
+/// `google_compute_region_url_map` (derived from provider schema).
+@immutable
+final class ComputeRegionUrlMapTest {
+  const ComputeRegionUrlMapTest({
+    this.description,
+    required this.host,
+    required this.path,
+    required this.service,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> host;
+
+  final TfArg<String> path;
+
+  final TfArg<String> service;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'host': host.toTfJson(),
+    'path': path.toTfJson(),
+    'service': service.toTfJson(),
   };
 }
 
@@ -864,21 +2461,21 @@ final class ComputeRegionUrlMapDefaultActionDefaultRouteAction
 ///   region: TfArg.literal('us-central1'),
 ///   defaultService: TfArg.ref(login.selfLink),
 ///   hostRules: const [
-///     ComputeRegionUrlMapRegionUrlMapHostRule(
+///     ComputeRegionUrlMapHostRule(
 ///       hosts: ['mysite.com', 'myothersite.com'],
 ///       pathMatcher: 'allpaths',
 ///     ),
 ///   ],
 ///   pathMatchers: [
-///     ComputeRegionUrlMapRegionUrlMapPathMatcher(
+///     ComputeRegionUrlMapPathMatcher(
 ///       name: 'allpaths',
 ///       defaultService: TfArg.ref(login.selfLink),
 ///       pathRules: [
-///         ComputeRegionUrlMapRegionUrlMapPathRule(
+///         ComputeRegionUrlMapPathMatcherPathRule(
 ///           paths: const ['/home'],
 ///           service: TfArg.ref(login.selfLink),
 ///         ),
-///         ComputeRegionUrlMapRegionUrlMapPathRule(
+///         ComputeRegionUrlMapPathMatcherPathRule(
 ///           paths: const ['/static'],
 ///           service: TfArg.ref(staticBucket.selfLink),
 ///         ),
@@ -886,14 +2483,14 @@ final class ComputeRegionUrlMapDefaultActionDefaultRouteAction
 ///     ),
 ///   ],
 ///   tests: const [
-///     ComputeRegionUrlMapRegionUrlMapTest(host: 'mysite.com', path: '/home'),
+///     ComputeRegionUrlMapTest(host: 'mysite.com', path: '/home'),
 ///   ],
 /// );
 /// ```
 ///
 /// Naming convention: ALL nested helper types in this resource are prefixed
-/// `RegionUrlMap...` (e.g. [ComputeRegionUrlMapRegionUrlMapHostRule], [ComputeRegionUrlMapRegionUrlMapPathMatcher],
-/// [ComputeRegionUrlMapRegionUrlMapUrlRedirect]) to avoid colliding with the
+/// `RegionUrlMap...` (e.g. [ComputeRegionUrlMapHostRule], [ComputeRegionUrlMapPathMatcher],
+/// [ComputeRegionUrlMapDefaultUrlRedirect]) to avoid colliding with the
 /// similarly-shaped helpers in the global `google_compute_url_map` wrapper
 /// (which uses the `UrlMap...` prefix) and with other sibling
 /// load-balancer resources.
@@ -905,7 +2502,7 @@ final class ComputeRegionUrlMapDefaultActionDefaultRouteAction
 /// (cache_policy, cors_policy, fault_injection_policy, retry_policy,
 /// url_rewrite, weighted_backend_services, ...) that would dominate the
 /// curated surface for little common-case win. Pass a raw
-/// `Map<String, Object?>` via [ComputeRegionUrlMapRegionUrlMapPathMatcher.advancedExtra] etc.
+/// `Map<String, Object?>` via [ComputeRegionUrlMapPathMatcher.advancedExtra] etc.
 /// keyed by the Terraform block name when you need them; see the per-class
 /// doc for the exact escape-hatch key.
 ///
@@ -920,11 +2517,11 @@ final class GoogleComputeRegionUrlMap extends Resource {
     TfArg<String>? region,
     TfArg<String>? defaultService,
     TfArg<String>? description,
-    List<ComputeRegionUrlMapRegionUrlMapHostRule>? hostRules,
-    List<ComputeRegionUrlMapRegionUrlMapPathMatcher>? pathMatchers,
-    List<ComputeRegionUrlMapRegionUrlMapTest>? tests,
+    List<ComputeRegionUrlMapHostRule>? hostRule,
+    List<ComputeRegionUrlMapPathMatcher>? pathMatcher,
+    List<ComputeRegionUrlMapTest>? test,
     ComputeRegionUrlMapDefaultAction? defaultAction,
-    ComputeRegionUrlMapRegionUrlMapHeaderAction? headerAction,
+    ComputeRegionUrlMapHeaderAction? headerAction,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -937,19 +2534,17 @@ final class GoogleComputeRegionUrlMap extends Resource {
            'region': ?region,
            'default_service': ?defaultService,
            'description': ?description,
-           if (hostRules != null)
-             'host_rule': TfArg.literal(
-               hostRules.map((r) => r.toArgMap()).toList(),
-             ),
-           if (pathMatchers != null)
-             'path_matcher': TfArg.literal(
-               pathMatchers.map((p) => p.toArgMap()).toList(),
-             ),
-           if (tests != null)
-             'test': TfArg.literal(tests.map((t) => t.toArgMap()).toList()),
+           if (hostRule != null)
+             'host_rule': TfArg.literal([for (final e in hostRule) e.encode()]),
+           if (pathMatcher != null)
+             'path_matcher': TfArg.literal([
+               for (final e in pathMatcher) e.encode(),
+             ]),
+           if (test != null)
+             'test': TfArg.literal([for (final e in test) e.encode()]),
            ...?defaultAction?.argMap,
            if (headerAction != null)
-             'header_action': TfArg.literal([headerAction.toArgMap()]),
+             'header_action': TfArg.literal(headerAction.encode()),
            'project': ?project,
          },
        );

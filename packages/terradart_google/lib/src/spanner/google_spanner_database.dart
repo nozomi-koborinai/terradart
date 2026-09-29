@@ -1,7 +1,6 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
-import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
@@ -19,33 +18,22 @@ enum SpannerDatabaseDialect implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Typed helper for the `encryption_config` block of
-/// `google_spanner_database` (derived from provider schema).
-@immutable
-final class SpannerDatabaseEncryptionConfig {
-  const SpannerDatabaseEncryptionConfig({required this.kmsKeyName});
-
-  final SpannerDatabaseEncryptionConfigKmsKeyName kmsKeyName;
-
-  Map<String, Object?> encode() => {...kmsKeyName.encode()};
-}
-
 /// Exactly one of `kms_key_name`, `kms_key_names` on the `encryption_config` block of `google_spanner_database`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.kmsKeyName(...)`.
-sealed class SpannerDatabaseEncryptionConfigKmsKeyName {
-  const SpannerDatabaseEncryptionConfigKmsKeyName();
+sealed class SpannerDatabaseEncryptionConfig {
+  const SpannerDatabaseEncryptionConfig();
 
   /// Sets `kms_key_name`.
-  const factory SpannerDatabaseEncryptionConfigKmsKeyName.kmsKeyName(
+  const factory SpannerDatabaseEncryptionConfig.kmsKeyName(
     RefTo<GoogleKmsCryptoKey> kmsKeyName,
-  ) = SpannerDatabaseEncryptionConfigKmsKeyNameKmsKeyName;
+  ) = SpannerDatabaseEncryptionConfigKmsKeyName;
 
   /// Sets `kms_key_names`.
-  const factory SpannerDatabaseEncryptionConfigKmsKeyName.kmsKeyNames(
+  const factory SpannerDatabaseEncryptionConfig.kmsKeyNames(
     TfArg<List<Object?>> kmsKeyNames,
-  ) = SpannerDatabaseEncryptionConfigKmsKeyNameKmsKeyNames;
+  ) = SpannerDatabaseEncryptionConfigKmsKeyNames;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,10 +41,10 @@ sealed class SpannerDatabaseEncryptionConfigKmsKeyName {
   Map<String, Object?> encode();
 }
 
-/// The [SpannerDatabaseEncryptionConfigKmsKeyName.kmsKeyName] choice: sets `kms_key_name`.
-final class SpannerDatabaseEncryptionConfigKmsKeyNameKmsKeyName
-    extends SpannerDatabaseEncryptionConfigKmsKeyName {
-  const SpannerDatabaseEncryptionConfigKmsKeyNameKmsKeyName(this.kmsKeyName);
+/// The [SpannerDatabaseEncryptionConfig.kmsKeyName] choice: sets `kms_key_name`.
+final class SpannerDatabaseEncryptionConfigKmsKeyName
+    extends SpannerDatabaseEncryptionConfig {
+  const SpannerDatabaseEncryptionConfigKmsKeyName(this.kmsKeyName);
 
   final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
@@ -69,10 +57,10 @@ final class SpannerDatabaseEncryptionConfigKmsKeyNameKmsKeyName
   };
 }
 
-/// The [SpannerDatabaseEncryptionConfigKmsKeyName.kmsKeyNames] choice: sets `kms_key_names`.
-final class SpannerDatabaseEncryptionConfigKmsKeyNameKmsKeyNames
-    extends SpannerDatabaseEncryptionConfigKmsKeyName {
-  const SpannerDatabaseEncryptionConfigKmsKeyNameKmsKeyNames(this.kmsKeyNames);
+/// The [SpannerDatabaseEncryptionConfig.kmsKeyNames] choice: sets `kms_key_names`.
+final class SpannerDatabaseEncryptionConfigKmsKeyNames
+    extends SpannerDatabaseEncryptionConfig {
+  const SpannerDatabaseEncryptionConfigKmsKeyNames(this.kmsKeyNames);
 
   final TfArg<List<Object?>> kmsKeyNames;
 

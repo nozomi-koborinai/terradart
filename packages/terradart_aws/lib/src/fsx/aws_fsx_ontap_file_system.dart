@@ -56,12 +56,12 @@ sealed class FsxOntapFileSystemThroughputCapacity {
   /// Sets `throughput_capacity`.
   const factory FsxOntapFileSystemThroughputCapacity.throughputCapacity(
     TfArg<num> throughputCapacity,
-  ) = FsxOntapFileSystemThroughputCapacityThroughputCapacity;
+  ) = FsxOntapFileSystemThroughputCapacityChoice;
 
   /// Sets `throughput_capacity_per_ha_pair`.
   const factory FsxOntapFileSystemThroughputCapacity.throughputCapacityPerHaPair(
     TfArg<num> throughputCapacityPerHaPair,
-  ) = FsxOntapFileSystemThroughputCapacityThroughputCapacityPerHaPair;
+  ) = FsxOntapFileSystemThroughputCapacityPerHaPair;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -74,11 +74,9 @@ sealed class FsxOntapFileSystemThroughputCapacity {
 }
 
 /// The [FsxOntapFileSystemThroughputCapacity.throughputCapacity] choice: sets `throughput_capacity`.
-final class FsxOntapFileSystemThroughputCapacityThroughputCapacity
+final class FsxOntapFileSystemThroughputCapacityChoice
     extends FsxOntapFileSystemThroughputCapacity {
-  const FsxOntapFileSystemThroughputCapacityThroughputCapacity(
-    this.throughputCapacity,
-  );
+  const FsxOntapFileSystemThroughputCapacityChoice(this.throughputCapacity);
 
   final TfArg<num> throughputCapacity;
 
@@ -97,9 +95,9 @@ final class FsxOntapFileSystemThroughputCapacityThroughputCapacity
 }
 
 /// The [FsxOntapFileSystemThroughputCapacity.throughputCapacityPerHaPair] choice: sets `throughput_capacity_per_ha_pair`.
-final class FsxOntapFileSystemThroughputCapacityThroughputCapacityPerHaPair
+final class FsxOntapFileSystemThroughputCapacityPerHaPair
     extends FsxOntapFileSystemThroughputCapacity {
-  const FsxOntapFileSystemThroughputCapacityThroughputCapacityPerHaPair(
+  const FsxOntapFileSystemThroughputCapacityPerHaPair(
     this.throughputCapacityPerHaPair,
   );
 

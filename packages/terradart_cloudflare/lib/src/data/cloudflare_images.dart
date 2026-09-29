@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_images`.
 const Set<String> _cloudflareImagesSensitive = <String>{};
@@ -16,7 +17,7 @@ final class DataCloudflareImages extends Data {
 
   DataCloudflareImages({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? creator,
     TfArg<num>? maxItems,
     super.provider,
@@ -24,7 +25,7 @@ final class DataCloudflareImages extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'creator': ?creator,
            'max_items': ?maxItems,
          },

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_hostname_tls_settings`.
 const Set<String> _cloudflareHostnameTlsSettingsSensitive = <String>{};
@@ -18,7 +19,7 @@ final class DataCloudflareHostnameTlsSettings extends Data {
     required super.localName,
     TfArg<num>? maxItems,
     required TfArg<String> settingId,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -26,7 +27,7 @@ final class DataCloudflareHostnameTlsSettings extends Data {
          argMap: {
            'max_items': ?maxItems,
            'setting_id': settingId,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

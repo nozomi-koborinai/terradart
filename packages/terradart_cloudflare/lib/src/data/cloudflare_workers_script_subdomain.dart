@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../workers/cloudflare_workers_script_subdomain.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_workers_script_subdomain`.
 const Set<String> _cloudflareWorkersScriptSubdomainSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareWorkersScriptSubdomain extends Data {
 
   DataCloudflareWorkersScriptSubdomain({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> scriptName,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'script_name': scriptName},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'script_name': scriptName,
+         },
        );
 
   @override

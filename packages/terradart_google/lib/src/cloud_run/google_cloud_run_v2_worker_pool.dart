@@ -173,7 +173,7 @@ sealed class CloudRunV2WorkerPoolBinaryAuthorizationPolicy {
   /// Sets `policy`.
   const factory CloudRunV2WorkerPoolBinaryAuthorizationPolicy.policy(
     TfArg<String> policy,
-  ) = CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy;
+  ) = CloudRunV2WorkerPoolBinaryAuthorizationPolicyChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -198,9 +198,9 @@ final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault
 }
 
 /// The [CloudRunV2WorkerPoolBinaryAuthorizationPolicy.policy] choice: sets `policy`.
-final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy
+final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyChoice
     extends CloudRunV2WorkerPoolBinaryAuthorizationPolicy {
-  const CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy(this.policy);
+  const CloudRunV2WorkerPoolBinaryAuthorizationPolicyChoice(this.policy);
 
   final TfArg<String> policy;
 

@@ -7,7 +7,7 @@ export 'src/codeconnections/aws_codeconnections_connection.dart'
     show
         AwsCodeconnectionsConnection,
         CodeconnectionsConnectionHost,
-        CodeconnectionsConnectionHostHostArn,
+        CodeconnectionsConnectionHostArn,
         CodeconnectionsConnectionHostProviderType,
         CodeconnectionsConnectionProviderType;
 export 'src/codeconnections/aws_codeconnections_host.dart'

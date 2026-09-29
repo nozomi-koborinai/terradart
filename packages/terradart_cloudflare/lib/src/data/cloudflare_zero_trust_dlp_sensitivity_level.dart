@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_dlp_sensitivity_level.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_sensitivity_level`.
 const Set<String> _cloudflareZeroTrustDlpSensitivityLevelSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataCloudflareZeroTrustDlpSensitivityLevel extends Data {
 
   DataCloudflareZeroTrustDlpSensitivityLevel({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> sensitivityGroupId,
     required TfArg<String> sensitivityLevelId,
     super.provider,
@@ -25,7 +26,7 @@ final class DataCloudflareZeroTrustDlpSensitivityLevel extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'sensitivity_group_id': sensitivityGroupId,
            'sensitivity_level_id': sensitivityLevelId,
          },

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../ai/cloudflare_ai_gateway_dynamic_routing.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_ai_gateway_dynamic_routing`.
 const Set<String> _cloudflareAiGatewayDynamicRoutingSensitive = <String>{};
@@ -17,14 +18,18 @@ final class DataCloudflareAiGatewayDynamicRouting extends Data {
 
   DataCloudflareAiGatewayDynamicRouting({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> gatewayId,
     required TfArg<String> id,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'gateway_id': gatewayId, 'id': id},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'gateway_id': gatewayId,
+           'id': id,
+         },
        );
 
   @override

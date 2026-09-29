@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../ssl/cloudflare_certificate_authorities_hostname_associations.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_certificate_authorities_hostname_associations`.
 const Set<String>
@@ -21,14 +22,14 @@ final class DataCloudflareCertificateAuthoritiesHostnameAssociations
   DataCloudflareCertificateAuthoritiesHostnameAssociations({
     required super.localName,
     TfArg<String>? mtlsCertificateId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
            'mtls_certificate_id': ?mtlsCertificateId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../dns/cloudflare_dns_zone_transfers_incoming.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_dns_zone_transfers_incoming`.
 const Set<String> _cloudflareDnsZoneTransfersIncomingSensitive = <String>{};
@@ -18,10 +19,13 @@ final class DataCloudflareDnsZoneTransfersIncoming extends Data {
 
   DataCloudflareDnsZoneTransfersIncoming({
     required super.localName,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'zone_id': ?zoneId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'zone_id': ?zoneId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields =>

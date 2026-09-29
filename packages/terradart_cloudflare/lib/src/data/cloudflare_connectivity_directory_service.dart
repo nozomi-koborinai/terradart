@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../connectivity/cloudflare_connectivity_directory_service.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_connectivity_directory_service`.
 const Set<String> _cloudflareConnectivityDirectoryServiceSensitive = <String>{};
@@ -35,7 +36,7 @@ final class DataCloudflareConnectivityDirectoryService extends Data {
 
   DataCloudflareConnectivityDirectoryService({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? serviceId,
     DataConnectivityDirectoryServiceFilter? filter,
     super.provider,
@@ -43,7 +44,7 @@ final class DataCloudflareConnectivityDirectoryService extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'service_id': ?serviceId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

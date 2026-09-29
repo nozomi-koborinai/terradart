@@ -46,8 +46,8 @@ export 'src/fsx/aws_fsx_ontap_file_system.dart'
         FsxOntapFileSystemNetworkType,
         FsxOntapFileSystemStorageType,
         FsxOntapFileSystemThroughputCapacity,
-        FsxOntapFileSystemThroughputCapacityThroughputCapacity,
-        FsxOntapFileSystemThroughputCapacityThroughputCapacityPerHaPair;
+        FsxOntapFileSystemThroughputCapacityChoice,
+        FsxOntapFileSystemThroughputCapacityPerHaPair;
 export 'src/fsx/aws_fsx_ontap_storage_virtual_machine.dart'
     show
         AwsFsxOntapStorageVirtualMachine,
@@ -61,8 +61,8 @@ export 'src/fsx/aws_fsx_ontap_volume.dart'
         FsxOntapVolumeOntapVolumeType,
         FsxOntapVolumeSecurityStyle,
         FsxOntapVolumeSize,
-        FsxOntapVolumeSizeSizeInBytes,
-        FsxOntapVolumeSizeSizeInMegabytes,
+        FsxOntapVolumeSizeInBytes,
+        FsxOntapVolumeSizeInMegabytes,
         FsxOntapVolumeSnaplockConfiguration,
         FsxOntapVolumeSnaplockConfigurationAutocommitPeriod,
         FsxOntapVolumeSnaplockConfigurationAutocommitPeriodType,
@@ -123,7 +123,7 @@ export 'src/fsx/aws_fsx_windows_file_system.dart'
     show
         AwsFsxWindowsFileSystem,
         FsxWindowsFileSystemActiveDirectory,
-        FsxWindowsFileSystemActiveDirectoryActiveDirectoryId,
+        FsxWindowsFileSystemActiveDirectoryId,
         FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory,
         FsxWindowsFileSystemAuditLogConfiguration,
         FsxWindowsFileSystemAuditLogConfigurationFileAccessAuditLogLevel,

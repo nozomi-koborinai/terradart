@@ -150,7 +150,7 @@ final class AuditPipelineStack extends Stack {
         parent: .literal('projects/$projectId/locations/$location'),
         location: .literal(location),
         visibility: .literal(.private),
-        query: .loggingQuery(
+        definition: .loggingQuery(
           LoggingSavedQueryLoggingQuery(
             filter: .literal(
               'logName:"cloudaudit.googleapis.com" AND severity>=ERROR',

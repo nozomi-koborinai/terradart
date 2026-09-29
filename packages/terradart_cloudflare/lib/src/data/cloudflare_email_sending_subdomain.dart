@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../email/cloudflare_email_sending_subdomain.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_email_sending_subdomain`.
 const Set<String> _cloudflareEmailSendingSubdomainSensitive = <String>{};
@@ -14,12 +15,15 @@ final class DataCloudflareEmailSendingSubdomain extends Data {
   DataCloudflareEmailSendingSubdomain({
     required super.localName,
     required TfArg<String> subdomainId,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'subdomain_id': subdomainId, 'zone_id': zoneId},
+         argMap: {
+           'subdomain_id': subdomainId,
+           'zone_id': zoneId.encodeAs('id'),
+         },
        );
 
   @override

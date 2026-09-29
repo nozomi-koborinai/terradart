@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../cloud_connector/cloudflare_cloud_connector_rules.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_cloud_connector_rules`.
 const Set<String> _cloudflareCloudConnectorRulesSensitive = <String>{};
@@ -17,10 +18,10 @@ final class DataCloudflareCloudConnectorRules extends Data {
 
   DataCloudflareCloudConnectorRules({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'zone_id': zoneId});
+  }) : super(terraformType: tfType, argMap: {'zone_id': zoneId.encodeAs('id')});
 
   @override
   Set<String> get sensitiveFields => _cloudflareCloudConnectorRulesSensitive;

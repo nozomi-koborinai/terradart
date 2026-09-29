@@ -10,8 +10,8 @@ export 'src/scheduler/aws_scheduler_schedule.dart'
         SchedulerScheduleFlexibleTimeWindow,
         SchedulerScheduleFlexibleTimeWindowMode,
         SchedulerScheduleName,
-        SchedulerScheduleNameName,
-        SchedulerScheduleNameNamePrefix,
+        SchedulerScheduleNameChoice,
+        SchedulerScheduleNamePrefix,
         SchedulerScheduleState,
         SchedulerScheduleTarget,
         SchedulerScheduleTargetDeadLetterConfig,
@@ -34,5 +34,5 @@ export 'src/scheduler/aws_scheduler_schedule_group.dart'
     show
         AwsSchedulerScheduleGroup,
         SchedulerScheduleGroupName,
-        SchedulerScheduleGroupNameName,
-        SchedulerScheduleGroupNameNamePrefix;
+        SchedulerScheduleGroupNameChoice,
+        SchedulerScheduleGroupNamePrefix;

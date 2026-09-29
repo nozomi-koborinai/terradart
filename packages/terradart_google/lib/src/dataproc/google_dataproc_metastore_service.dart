@@ -324,38 +324,27 @@ final class DataprocMetastoreServiceNetworkConfigConsumers {
   };
 }
 
-/// Typed helper for the `scaling_config` block of
-/// `google_dataproc_metastore_service` (derived from provider schema).
-@immutable
-final class DataprocMetastoreServiceScalingConfig {
-  const DataprocMetastoreServiceScalingConfig({required this.size});
-
-  final DataprocMetastoreServiceScalingConfigSize size;
-
-  Map<String, Object?> encode() => {...size.encode()};
-}
-
 /// Exactly one of `instance_size`, `scaling_factor`, `autoscaling_config` on the `scaling_config` block of `google_dataproc_metastore_service`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.instanceSize(...)`.
-sealed class DataprocMetastoreServiceScalingConfigSize {
-  const DataprocMetastoreServiceScalingConfigSize();
+sealed class DataprocMetastoreServiceScalingConfig {
+  const DataprocMetastoreServiceScalingConfig();
 
   /// Sets `instance_size`.
-  const factory DataprocMetastoreServiceScalingConfigSize.instanceSize(
+  const factory DataprocMetastoreServiceScalingConfig.instanceSize(
     TfArg<DataprocMetastoreServiceScalingConfigInstanceSize> instanceSize,
-  ) = DataprocMetastoreServiceScalingConfigSizeInstanceSize;
+  ) = DataprocMetastoreServiceScalingConfigInstanceSizeChoice;
 
   /// Sets `scaling_factor`.
-  const factory DataprocMetastoreServiceScalingConfigSize.scalingFactor(
+  const factory DataprocMetastoreServiceScalingConfig.scalingFactor(
     TfArg<num> scalingFactor,
-  ) = DataprocMetastoreServiceScalingConfigSizeScalingFactor;
+  ) = DataprocMetastoreServiceScalingConfigScalingFactor;
 
   /// Sets `autoscaling_config`.
-  const factory DataprocMetastoreServiceScalingConfigSize.autoscalingConfig(
+  const factory DataprocMetastoreServiceScalingConfig.autoscalingConfig(
     DataprocMetastoreServiceScalingConfigAutoscalingConfig autoscalingConfig,
-  ) = DataprocMetastoreServiceScalingConfigSizeAutoscalingConfig;
+  ) = DataprocMetastoreServiceScalingConfigAutoscalingConfigChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -363,10 +352,10 @@ sealed class DataprocMetastoreServiceScalingConfigSize {
   Map<String, Object?> encode();
 }
 
-/// The [DataprocMetastoreServiceScalingConfigSize.instanceSize] choice: sets `instance_size`.
-final class DataprocMetastoreServiceScalingConfigSizeInstanceSize
-    extends DataprocMetastoreServiceScalingConfigSize {
-  const DataprocMetastoreServiceScalingConfigSizeInstanceSize(
+/// The [DataprocMetastoreServiceScalingConfig.instanceSize] choice: sets `instance_size`.
+final class DataprocMetastoreServiceScalingConfigInstanceSizeChoice
+    extends DataprocMetastoreServiceScalingConfig {
+  const DataprocMetastoreServiceScalingConfigInstanceSizeChoice(
     this.instanceSize,
   );
 
@@ -379,12 +368,10 @@ final class DataprocMetastoreServiceScalingConfigSizeInstanceSize
   Map<String, Object?> encode() => {'instance_size': instanceSize.toTfJson()};
 }
 
-/// The [DataprocMetastoreServiceScalingConfigSize.scalingFactor] choice: sets `scaling_factor`.
-final class DataprocMetastoreServiceScalingConfigSizeScalingFactor
-    extends DataprocMetastoreServiceScalingConfigSize {
-  const DataprocMetastoreServiceScalingConfigSizeScalingFactor(
-    this.scalingFactor,
-  );
+/// The [DataprocMetastoreServiceScalingConfig.scalingFactor] choice: sets `scaling_factor`.
+final class DataprocMetastoreServiceScalingConfigScalingFactor
+    extends DataprocMetastoreServiceScalingConfig {
+  const DataprocMetastoreServiceScalingConfigScalingFactor(this.scalingFactor);
 
   final TfArg<num> scalingFactor;
 
@@ -395,10 +382,10 @@ final class DataprocMetastoreServiceScalingConfigSizeScalingFactor
   Map<String, Object?> encode() => {'scaling_factor': scalingFactor.toTfJson()};
 }
 
-/// The [DataprocMetastoreServiceScalingConfigSize.autoscalingConfig] choice: sets `autoscaling_config`.
-final class DataprocMetastoreServiceScalingConfigSizeAutoscalingConfig
-    extends DataprocMetastoreServiceScalingConfigSize {
-  const DataprocMetastoreServiceScalingConfigSizeAutoscalingConfig(
+/// The [DataprocMetastoreServiceScalingConfig.autoscalingConfig] choice: sets `autoscaling_config`.
+final class DataprocMetastoreServiceScalingConfigAutoscalingConfigChoice
+    extends DataprocMetastoreServiceScalingConfig {
+  const DataprocMetastoreServiceScalingConfigAutoscalingConfigChoice(
     this.autoscalingConfig,
   );
 

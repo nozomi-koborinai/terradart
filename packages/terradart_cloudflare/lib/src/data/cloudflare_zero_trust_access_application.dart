@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_access_application.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_application`.
 const Set<String> _cloudflareZeroTrustAccessApplicationSensitive = <String>{
@@ -49,18 +51,18 @@ final class DataCloudflareZeroTrustAccessApplication extends Data {
 
   DataCloudflareZeroTrustAccessApplication({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? appId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataZeroTrustAccessApplicationFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'app_id': ?appId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

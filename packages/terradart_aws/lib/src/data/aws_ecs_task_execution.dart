@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
 
 /// Sensitive field paths for `aws_ecs_task_execution`.
 const Set<String> _awsEcsTaskExecutionSensitive = <String>{};
@@ -42,14 +45,14 @@ final class DataEcsTaskExecutionNetworkConfiguration {
 
   final TfArg<bool>? assignPublicIp;
 
-  final TfArg<List<Object?>>? securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
     'assign_public_ip': ?assignPublicIp?.toTfJson(),
-    'security_groups': ?securityGroups?.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
@@ -67,20 +70,20 @@ final class DataEcsTaskExecutionOverrides {
 
   final TfArg<String>? cpu;
 
-  final TfArg<String>? executionRoleArn;
+  final RefTo<AwsIamRole>? executionRoleArn;
 
   final TfArg<String>? memory;
 
-  final TfArg<String>? taskRoleArn;
+  final RefTo<AwsIamRole>? taskRoleArn;
 
   final List<DataEcsTaskExecutionOverridesContainerOverrides>?
   containerOverrides;
 
   Map<String, Object?> encode() => {
     'cpu': ?cpu?.toTfJson(),
-    'execution_role_arn': ?executionRoleArn?.toTfJson(),
+    'execution_role_arn': ?executionRoleArn?.encodeAs('arn').toTfJson(),
     'memory': ?memory?.toTfJson(),
-    'task_role_arn': ?taskRoleArn?.toTfJson(),
+    'task_role_arn': ?taskRoleArn?.encodeAs('arn').toTfJson(),
     if (containerOverrides != null)
       'container_overrides': [for (final e in containerOverrides!) e.encode()],
   };

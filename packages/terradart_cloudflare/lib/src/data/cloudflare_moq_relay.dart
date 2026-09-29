@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../moq/cloudflare_moq_relay.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_moq_relay`.
 const Set<String> _cloudflareMoqRelaySensitive = <String>{};
@@ -41,7 +42,7 @@ final class DataCloudflareMoqRelay extends Data {
 
   DataCloudflareMoqRelay({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? relayId,
     DataMoqRelayFilter? filter,
     super.provider,
@@ -49,7 +50,7 @@ final class DataCloudflareMoqRelay extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'relay_id': ?relayId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

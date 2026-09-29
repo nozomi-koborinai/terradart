@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_casb_policy.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_casb_policy`.
 const Set<String> _cloudflareZeroTrustCasbPolicySensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareZeroTrustCasbPolicy extends Data {
 
   DataCloudflareZeroTrustCasbPolicy({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> policyId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'policy_id': policyId},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'policy_id': policyId,
+         },
        );
 
   @override

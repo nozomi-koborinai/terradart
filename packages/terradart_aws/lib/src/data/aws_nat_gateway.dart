@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ec2/aws_nat_gateway.dart';
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
 
 /// Sensitive field paths for `aws_nat_gateway`.
 const Set<String> _awsNatGatewaySensitive = <String>{};
@@ -32,9 +34,9 @@ final class DataAwsNatGateway extends Data {
     required super.localName,
     TfArg<String>? region,
     TfArg<String>? state,
-    TfArg<String>? subnetId,
+    RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     List<DataNatGatewayFilter>? filter,
     super.provider,
     super.timeouts,
@@ -43,9 +45,9 @@ final class DataAwsNatGateway extends Data {
          argMap: {
            'region': ?region,
            'state': ?state,
-           'subnet_id': ?subnetId,
+           'subnet_id': ?subnetId?.encodeAs('id'),
            'tags': ?tags,
-           'vpc_id': ?vpcId,
+           'vpc_id': ?vpcId?.encodeAs('id'),
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

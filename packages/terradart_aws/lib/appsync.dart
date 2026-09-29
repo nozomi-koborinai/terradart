@@ -114,11 +114,11 @@ export 'src/appsync/aws_appsync_resolver.dart'
 export 'src/appsync/aws_appsync_source_api_association.dart'
     show
         AppsyncSourceApiAssociationMergedApi,
-        AppsyncSourceApiAssociationMergedApiMergedApiArn,
-        AppsyncSourceApiAssociationMergedApiMergedApiId,
+        AppsyncSourceApiAssociationMergedApiArn,
+        AppsyncSourceApiAssociationMergedApiId,
         AppsyncSourceApiAssociationSourceApi,
-        AppsyncSourceApiAssociationSourceApiSourceApiArn,
-        AppsyncSourceApiAssociationSourceApiSourceApiId,
+        AppsyncSourceApiAssociationSourceApiArn,
+        AppsyncSourceApiAssociationSourceApiId,
         AwsAppsyncSourceApiAssociation;
 export 'src/appsync/aws_appsync_type.dart'
     show AppsyncTypeFormat, AwsAppsyncType;

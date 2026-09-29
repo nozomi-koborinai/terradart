@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_lists`.
 const Set<String> _cloudflareZeroTrustListsSensitive = <String>{};
@@ -12,7 +13,7 @@ final class DataCloudflareZeroTrustLists extends Data {
 
   DataCloudflareZeroTrustLists({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<List<String>>? filter,
     TfArg<num>? maxItems,
@@ -24,7 +25,7 @@ final class DataCloudflareZeroTrustLists extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'direction': ?direction,
            'filter': ?filter,
            'max_items': ?maxItems,

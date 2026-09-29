@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_dns_records`.
 const Set<String> _cloudflareDnsRecordsSensitive = <String>{};
@@ -152,7 +153,7 @@ final class DataCloudflareDnsRecords extends Data {
     TfArg<String>? shadowingName,
     TfArg<String>? tagMatch,
     TfArg<String>? type,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataDnsRecordsComment? comment,
     DataDnsRecordsContent? content,
     DataDnsRecordsName? name,
@@ -173,7 +174,7 @@ final class DataCloudflareDnsRecords extends Data {
            'shadowing_name': ?shadowingName,
            'tag_match': ?tagMatch,
            'type': ?type,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (comment != null) 'comment': TfArg.literal(comment.encode()),
            if (content != null) 'content': TfArg.literal(content.encode()),
            if (name != null) 'name': TfArg.literal(name.encode()),

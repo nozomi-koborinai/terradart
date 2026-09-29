@@ -48,22 +48,22 @@ sealed class AlloydbClusterRestore {
   /// Sets `restore_backup_source`.
   const factory AlloydbClusterRestore.restoreBackupSource(
     AlloydbClusterRestoreBackupSource restoreBackupSource,
-  ) = AlloydbClusterRestoreRestoreBackupSource;
+  ) = AlloydbClusterRestoreBackupSourceChoice;
 
   /// Sets `restore_continuous_backup_source`.
   const factory AlloydbClusterRestore.restoreContinuousBackupSource(
     AlloydbClusterRestoreContinuousBackupSource restoreContinuousBackupSource,
-  ) = AlloydbClusterRestoreRestoreContinuousBackupSource;
+  ) = AlloydbClusterRestoreContinuousBackupSourceChoice;
 
   /// Sets `restore_backupdr_backup_source`.
   const factory AlloydbClusterRestore.restoreBackupdrBackupSource(
     AlloydbClusterRestoreBackupdrBackupSource restoreBackupdrBackupSource,
-  ) = AlloydbClusterRestoreRestoreBackupdrBackupSource;
+  ) = AlloydbClusterRestoreBackupdrBackupSourceChoice;
 
   /// Sets `restore_backupdr_pitr_source`.
   const factory AlloydbClusterRestore.restoreBackupdrPitrSource(
     AlloydbClusterRestoreBackupdrPitrSource restoreBackupdrPitrSource,
-  ) = AlloydbClusterRestoreRestoreBackupdrPitrSource;
+  ) = AlloydbClusterRestoreBackupdrPitrSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -76,9 +76,9 @@ sealed class AlloydbClusterRestore {
 }
 
 /// The [AlloydbClusterRestore.restoreBackupSource] choice: sets `restore_backup_source`.
-final class AlloydbClusterRestoreRestoreBackupSource
+final class AlloydbClusterRestoreBackupSourceChoice
     extends AlloydbClusterRestore {
-  const AlloydbClusterRestoreRestoreBackupSource(this.restoreBackupSource);
+  const AlloydbClusterRestoreBackupSourceChoice(this.restoreBackupSource);
 
   final AlloydbClusterRestoreBackupSource restoreBackupSource;
 
@@ -97,9 +97,9 @@ final class AlloydbClusterRestoreRestoreBackupSource
 }
 
 /// The [AlloydbClusterRestore.restoreContinuousBackupSource] choice: sets `restore_continuous_backup_source`.
-final class AlloydbClusterRestoreRestoreContinuousBackupSource
+final class AlloydbClusterRestoreContinuousBackupSourceChoice
     extends AlloydbClusterRestore {
-  const AlloydbClusterRestoreRestoreContinuousBackupSource(
+  const AlloydbClusterRestoreContinuousBackupSourceChoice(
     this.restoreContinuousBackupSource,
   );
 
@@ -123,9 +123,9 @@ final class AlloydbClusterRestoreRestoreContinuousBackupSource
 }
 
 /// The [AlloydbClusterRestore.restoreBackupdrBackupSource] choice: sets `restore_backupdr_backup_source`.
-final class AlloydbClusterRestoreRestoreBackupdrBackupSource
+final class AlloydbClusterRestoreBackupdrBackupSourceChoice
     extends AlloydbClusterRestore {
-  const AlloydbClusterRestoreRestoreBackupdrBackupSource(
+  const AlloydbClusterRestoreBackupdrBackupSourceChoice(
     this.restoreBackupdrBackupSource,
   );
 
@@ -148,9 +148,9 @@ final class AlloydbClusterRestoreRestoreBackupdrBackupSource
 }
 
 /// The [AlloydbClusterRestore.restoreBackupdrPitrSource] choice: sets `restore_backupdr_pitr_source`.
-final class AlloydbClusterRestoreRestoreBackupdrPitrSource
+final class AlloydbClusterRestoreBackupdrPitrSourceChoice
     extends AlloydbClusterRestore {
-  const AlloydbClusterRestoreRestoreBackupdrPitrSource(
+  const AlloydbClusterRestoreBackupdrPitrSourceChoice(
     this.restoreBackupdrPitrSource,
   );
 

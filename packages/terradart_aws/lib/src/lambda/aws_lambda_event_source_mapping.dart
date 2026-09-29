@@ -40,7 +40,7 @@ sealed class LambdaEventSourceMappingEventSource {
   /// Sets `event_source_arn`.
   const factory LambdaEventSourceMappingEventSource.eventSourceArn(
     TfArg<String> eventSourceArn,
-  ) = LambdaEventSourceMappingEventSourceEventSourceArn;
+  ) = LambdaEventSourceMappingEventSourceArn;
 
   /// Sets `self_managed_event_source`.
   const factory LambdaEventSourceMappingEventSource.selfManagedEventSource(
@@ -58,9 +58,9 @@ sealed class LambdaEventSourceMappingEventSource {
 }
 
 /// The [LambdaEventSourceMappingEventSource.eventSourceArn] choice: sets `event_source_arn`.
-final class LambdaEventSourceMappingEventSourceEventSourceArn
+final class LambdaEventSourceMappingEventSourceArn
     extends LambdaEventSourceMappingEventSource {
-  const LambdaEventSourceMappingEventSourceEventSourceArn(this.eventSourceArn);
+  const LambdaEventSourceMappingEventSourceArn(this.eventSourceArn);
 
   final TfArg<String> eventSourceArn;
 

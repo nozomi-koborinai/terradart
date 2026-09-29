@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../api_shield/cloudflare_token_validation_config.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_token_validation_config`.
 const Set<String> _cloudflareTokenValidationConfigSensitive = <String>{};
@@ -19,12 +20,12 @@ final class DataCloudflareTokenValidationConfig extends Data {
   DataCloudflareTokenValidationConfig({
     required super.localName,
     required TfArg<String> configId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'config_id': configId, 'zone_id': ?zoneId},
+         argMap: {'config_id': configId, 'zone_id': ?zoneId?.encodeAs('id')},
        );
 
   @override

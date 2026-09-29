@@ -819,12 +819,12 @@ sealed class WorkerVersionModulesContent {
   /// Sets `content_base64`.
   const factory WorkerVersionModulesContent.contentBase64(
     TfArg<String> contentBase64,
-  ) = WorkerVersionModulesContentContentBase64;
+  ) = WorkerVersionModulesContentBase64;
 
   /// Sets `content_file`.
   const factory WorkerVersionModulesContent.contentFile(
     TfArg<String> contentFile,
-  ) = WorkerVersionModulesContentContentFile;
+  ) = WorkerVersionModulesContentFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -833,9 +833,9 @@ sealed class WorkerVersionModulesContent {
 }
 
 /// The [WorkerVersionModulesContent.contentBase64] choice: sets `content_base64`.
-final class WorkerVersionModulesContentContentBase64
+final class WorkerVersionModulesContentBase64
     extends WorkerVersionModulesContent {
-  const WorkerVersionModulesContentContentBase64(this.contentBase64);
+  const WorkerVersionModulesContentBase64(this.contentBase64);
 
   final TfArg<String> contentBase64;
 
@@ -847,9 +847,9 @@ final class WorkerVersionModulesContentContentBase64
 }
 
 /// The [WorkerVersionModulesContent.contentFile] choice: sets `content_file`.
-final class WorkerVersionModulesContentContentFile
+final class WorkerVersionModulesContentFile
     extends WorkerVersionModulesContent {
-  const WorkerVersionModulesContentContentFile(this.contentFile);
+  const WorkerVersionModulesContentFile(this.contentFile);
 
   final TfArg<String> contentFile;
 

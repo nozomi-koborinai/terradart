@@ -24,3 +24,6 @@ paramOrder:
   - schedule_info
   - project
   - deletion_policy
+
+sealedNames:
+  "sample_rule.sample_percentage, sample_rule.sample_row": amount

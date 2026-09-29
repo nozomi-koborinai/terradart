@@ -26,7 +26,7 @@ sealed class VpcIpv4Cidr {
 
   /// Sets `cidr_block`.
   const factory VpcIpv4Cidr.cidrBlock(TfArg<String> cidrBlock) =
-      VpcIpv4CidrCidrBlock;
+      VpcIpv4CidrBlock;
 
   /// Sets `ipv4_netmask_length`.
   const factory VpcIpv4Cidr.ipv4NetmaskLength(TfArg<num> ipv4NetmaskLength) =
@@ -43,8 +43,8 @@ sealed class VpcIpv4Cidr {
 }
 
 /// The [VpcIpv4Cidr.cidrBlock] choice: sets `cidr_block`.
-final class VpcIpv4CidrCidrBlock extends VpcIpv4Cidr {
-  const VpcIpv4CidrCidrBlock(this.cidrBlock);
+final class VpcIpv4CidrBlock extends VpcIpv4Cidr {
+  const VpcIpv4CidrBlock(this.cidrBlock);
 
   final TfArg<String> cidrBlock;
 

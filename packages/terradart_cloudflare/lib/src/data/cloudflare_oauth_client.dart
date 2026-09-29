@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../account/cloudflare_oauth_client.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_oauth_client`.
 const Set<String> _cloudflareOauthClientSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareOauthClient extends Data {
 
   DataCloudflareOauthClient({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> oauthClientId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'oauth_client_id': oauthClientId},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'oauth_client_id': oauthClientId,
+         },
        );
 
   @override

@@ -10,10 +10,9 @@ export 'src/bigquery/google_bigquery_analytics_hub_data_exchange.dart'
         BigqueryAnalyticsHubDataExchangeDiscoveryType,
         BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig,
         BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfig,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfigChoice,
         BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfig,
-        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig,
-        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfigDcrExchangeConfig,
-        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfigDefaultExchangeConfig,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigChoice,
         GoogleBigqueryAnalyticsHubDataExchange;
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_binding.dart'
     show GoogleBigqueryAnalyticsHubDataExchangeIamBinding;
@@ -25,9 +24,8 @@ export 'src/bigquery/google_bigquery_analytics_hub_listing.dart'
     show
         BigqueryAnalyticsHubListingBigqueryDataset,
         BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources,
-        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources,
-        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesRoutine,
-        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesTable,
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesRoutine,
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTable,
         BigqueryAnalyticsHubListingDataProvider,
         BigqueryAnalyticsHubListingDiscoveryType,
         BigqueryAnalyticsHubListingPublisher,
@@ -47,10 +45,10 @@ export 'src/bigquery/google_bigquery_analytics_hub_listing_subscription.dart'
     show
         BigqueryAnalyticsHubListingSubscriptionDestination,
         BigqueryAnalyticsHubListingSubscriptionDestinationDataset,
+        BigqueryAnalyticsHubListingSubscriptionDestinationDatasetChoice,
         BigqueryAnalyticsHubListingSubscriptionDestinationDatasetDatasetReference,
-        BigqueryAnalyticsHubListingSubscriptionDestinationDestinationDataset,
-        BigqueryAnalyticsHubListingSubscriptionDestinationDestinationPubsubSubscription,
         BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription,
+        BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionChoice,
         BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscription,
         BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionBigqueryConfig,
         BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionPubsubSubscriptionCloudStorageConfig,
@@ -118,9 +116,8 @@ export 'src/bigquery/google_bigquery_data_transfer_data_source_enrollment.dart'
 export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
     show
         BigqueryDatapolicyDataPolicyDataMaskingPolicy,
-        BigqueryDatapolicyDataPolicyDataMaskingPolicyMask,
-        BigqueryDatapolicyDataPolicyDataMaskingPolicyMaskPredefinedExpression,
-        BigqueryDatapolicyDataPolicyDataMaskingPolicyMaskRoutine,
+        BigqueryDatapolicyDataPolicyDataMaskingPolicyPredefinedExpression,
+        BigqueryDatapolicyDataPolicyDataMaskingPolicyRoutine,
         BigqueryDatapolicyDataPolicyPredefinedExpression,
         BigqueryDatapolicyDataPolicyType,
         GoogleBigqueryDatapolicyDataPolicy;
@@ -204,9 +201,9 @@ export 'src/bigquery/google_bigquery_job.dart'
         BigqueryJobExtract,
         BigqueryJobExtractSource,
         BigqueryJobExtractSourceModel,
-        BigqueryJobExtractSourceSourceModel,
-        BigqueryJobExtractSourceSourceTable,
+        BigqueryJobExtractSourceModelChoice,
         BigqueryJobExtractSourceTable,
+        BigqueryJobExtractSourceTableChoice,
         BigqueryJobLoad,
         BigqueryJobLoadCreateDisposition,
         BigqueryJobLoadDestinationEncryptionConfiguration,
