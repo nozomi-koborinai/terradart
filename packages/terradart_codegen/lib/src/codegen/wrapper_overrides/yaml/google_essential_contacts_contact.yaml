@@ -1,5 +1,6 @@
 outputDir: essential_contacts
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 paramOrder:

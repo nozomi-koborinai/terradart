@@ -206,6 +206,59 @@ final class PrivatecaCertificateConfig {
   };
 }
 
+/// Exactly one of `pem_csr`, `config` on `google_privateca_certificate`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class PrivatecaCertificatePemCsrOrConfig {
+  const PrivatecaCertificatePemCsrOrConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `pem_csr` (one of the [PrivatecaCertificatePemCsrOrConfig] choices).
+final class PrivatecaCertificatePemCsrOption
+    extends PrivatecaCertificatePemCsrOrConfig {
+  const PrivatecaCertificatePemCsrOption({required this.pemCsr});
+
+  final TfArg<String> pemCsr;
+
+  @override
+  String get blockKey => 'pem_csr';
+
+  @override
+  Map<String, Object?> encode() => {'pem_csr': pemCsr.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'pem_csr': pemCsr};
+}
+
+/// Sets `config` (one of the [PrivatecaCertificatePemCsrOrConfig] choices).
+final class PrivatecaCertificateConfigOption
+    extends PrivatecaCertificatePemCsrOrConfig {
+  const PrivatecaCertificateConfigOption({required this.config});
+
+  final PrivatecaCertificateConfig config;
+
+  @override
+  String get blockKey => 'config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'config': [config.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'config': TfArg.literal([config.encode()]),
+  };
+}
+
 /// Factory wrapper for `google_privateca_certificate`.
 ///
 /// A Certificate corresponds to a signed X.509 certificate issued by a
@@ -250,8 +303,7 @@ final class GooglePrivatecaCertificate extends Resource {
     required TfArg<String> location,
     TfArg<String>? certificateAuthority,
     TfArg<String>? lifetime,
-    PrivatecaCertificateConfig? config,
-    TfArg<String>? pemCsr,
+    required PrivatecaCertificatePemCsrOrConfig pemCsrOrConfig,
     TfArg<String>? certificateTemplate,
     TfArg<Map<String, String>>? labels,
     super.lifecycle,
@@ -267,8 +319,7 @@ final class GooglePrivatecaCertificate extends Resource {
            if (certificateAuthority != null)
              'certificate_authority': certificateAuthority,
            if (lifetime != null) 'lifetime': lifetime,
-           if (config != null) 'config': TfArg.literal([config.encode()]),
-           if (pemCsr != null) 'pem_csr': pemCsr,
+           ...pemCsrOrConfig.argMap,
            if (certificateTemplate != null)
              'certificate_template': certificateTemplate,
            if (labels != null) 'labels': labels,

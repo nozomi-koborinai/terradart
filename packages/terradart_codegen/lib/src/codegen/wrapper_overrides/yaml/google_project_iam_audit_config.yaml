@@ -1,5 +1,6 @@
 outputDir: iam
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 # Schema docs say "Must be one of DATA_READ, DATA_WRITE, or ADMIN_READ" but

@@ -104,7 +104,12 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'billingbudget',
         billingAccount: TfArg.literal('billingAccounts/000000-000000-000000'),
         deletionPolicy: TfArg.literal('DELETE'),
-        amount: BillingBudgetAmount(lastPeriodAmount: TfArg.literal(true)),
+        amount: BillingBudgetAmount(
+          specifiedAmountOrLastPeriodAmount:
+              BillingBudgetAmountLastPeriodAmountOption(
+                lastPeriodAmount: TfArg.literal(true),
+              ),
+        ),
       ),
     );
 
@@ -238,7 +243,12 @@ final class DeferredLeftoverStack extends Stack {
         ),
         targetResourceConfig:
             CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig(
-              existingTargetResource: TfArg.literal('organizations/123456789'),
+              existingTargetResourceOrTargetResourceCreationConfig:
+                  CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExistingTargetResourceOption(
+                    existingTargetResource: TfArg.literal(
+                      'organizations/123456789',
+                    ),
+                  ),
             ),
       ),
     );

@@ -1,5 +1,6 @@
 outputDir: clouddomains
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 

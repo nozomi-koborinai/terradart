@@ -1,6 +1,7 @@
 outputDir: kms
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 paramOrder:
   - crypto_key_id

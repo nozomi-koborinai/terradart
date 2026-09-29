@@ -15,26 +15,70 @@ final class ContactCenterInsightsAssessmentRuleSampleRule {
   const ContactCenterInsightsAssessmentRuleSampleRule({
     this.conversationFilter,
     this.dimension,
-    this.samplePercentage,
-    this.sampleRow,
+    this.samplePercentageOrSampleRow,
   });
 
   final TfArg<String>? conversationFilter;
 
   final TfArg<String>? dimension;
 
-  final TfArg<num>? samplePercentage;
-
-  final TfArg<num>? sampleRow;
+  final ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOrSampleRow?
+  samplePercentageOrSampleRow;
 
   Map<String, Object?> encode() => {
     if (conversationFilter != null)
       'conversation_filter': conversationFilter!.toTfJson(),
     if (dimension != null) 'dimension': dimension!.toTfJson(),
-    if (samplePercentage != null)
-      'sample_percentage': samplePercentage!.toTfJson(),
-    if (sampleRow != null) 'sample_row': sampleRow!.toTfJson(),
+    ...?samplePercentageOrSampleRow?.encode(),
   };
+}
+
+/// At most one of `sample_percentage`, `sample_row` on the `sample_rule` block of `google_contact_center_insights_assessment_rule`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOrSampleRow {
+  const ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOrSampleRow();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `sample_percentage` (one of the [ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOrSampleRow] choices).
+final class ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOption
+    extends
+        ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOrSampleRow {
+  const ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOption({
+    required this.samplePercentage,
+  });
+
+  final TfArg<num> samplePercentage;
+
+  @override
+  String get blockKey => 'sample_percentage';
+
+  @override
+  Map<String, Object?> encode() => {
+    'sample_percentage': samplePercentage.toTfJson(),
+  };
+}
+
+/// Sets `sample_row` (one of the [ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOrSampleRow] choices).
+final class ContactCenterInsightsAssessmentRuleSampleRuleSampleRowOption
+    extends
+        ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOrSampleRow {
+  const ContactCenterInsightsAssessmentRuleSampleRuleSampleRowOption({
+    required this.sampleRow,
+  });
+
+  final TfArg<num> sampleRow;
+
+  @override
+  String get blockKey => 'sample_row';
+
+  @override
+  Map<String, Object?> encode() => {'sample_row': sampleRow.toTfJson()};
 }
 
 /// Typed helper for the `schedule_info` block of

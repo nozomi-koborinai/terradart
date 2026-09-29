@@ -58,16 +58,60 @@ final class BillingBudgetAllUpdatesRule {
 /// `google_billing_budget` (derived from provider schema).
 @immutable
 final class BillingBudgetAmount {
-  const BillingBudgetAmount({this.lastPeriodAmount, this.specifiedAmount});
+  const BillingBudgetAmount({required this.specifiedAmountOrLastPeriodAmount});
 
-  final TfArg<bool>? lastPeriodAmount;
-
-  final BillingBudgetAmountSpecifiedAmount? specifiedAmount;
+  final BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount
+  specifiedAmountOrLastPeriodAmount;
 
   Map<String, Object?> encode() => {
-    if (lastPeriodAmount != null)
-      'last_period_amount': lastPeriodAmount!.toTfJson(),
-    if (specifiedAmount != null) 'specified_amount': specifiedAmount!.encode(),
+    ...specifiedAmountOrLastPeriodAmount.encode(),
+  };
+}
+
+/// Exactly one of `specified_amount`, `last_period_amount` on the `amount` block of `google_billing_budget`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount {
+  const BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `specified_amount` (one of the [BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount] choices).
+final class BillingBudgetAmountSpecifiedAmountOption
+    extends BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount {
+  const BillingBudgetAmountSpecifiedAmountOption({
+    required this.specifiedAmount,
+  });
+
+  final BillingBudgetAmountSpecifiedAmount specifiedAmount;
+
+  @override
+  String get blockKey => 'specified_amount';
+
+  @override
+  Map<String, Object?> encode() => {
+    'specified_amount': specifiedAmount.encode(),
+  };
+}
+
+/// Sets `last_period_amount` (one of the [BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount] choices).
+final class BillingBudgetAmountLastPeriodAmountOption
+    extends BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount {
+  const BillingBudgetAmountLastPeriodAmountOption({
+    required this.lastPeriodAmount,
+  });
+
+  final TfArg<bool> lastPeriodAmount;
+
+  @override
+  String get blockKey => 'last_period_amount';
+
+  @override
+  Map<String, Object?> encode() => {
+    'last_period_amount': lastPeriodAmount.toTfJson(),
   };
 }
 

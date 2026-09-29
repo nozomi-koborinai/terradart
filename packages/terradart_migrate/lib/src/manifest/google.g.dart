@@ -113,20 +113,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'basic',
-          dartName: 'basic',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'basicOrCustom',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'AccessContextManagerAccessLevelBasic',
-        ),
-        MigrateSlot(
-          tfName: 'custom',
-          dartName: 'custom',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'AccessContextManagerAccessLevelCustom',
+          merged: true,
+          variants: <String, String>{
+            'basic': 'AccessContextManagerAccessLevelBasicOption',
+            'custom': 'AccessContextManagerAccessLevelCustomOption',
+          },
         ),
         MigrateSlot(
           tfName: 'deletion_policy',
@@ -21335,11 +21331,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'cbn_snippet',
-          dartName: 'cbnSnippet',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'cbnSnippetOrFieldExtractorsOrDynamicParsing',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'cbn_snippet': 'ChronicleParserExtensionCbnSnippetOption',
+            'field_extractors': 'ChronicleParserExtensionFieldExtractorsOption',
+            'dynamic_parsing': 'ChronicleParserExtensionDynamicParsingOption',
+          },
         ),
         MigrateSlot(
           tfName: 'log',
@@ -21347,22 +21349,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'field_extractors',
-          dartName: 'fieldExtractors',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ChronicleParserExtensionFieldExtractors',
-        ),
-        MigrateSlot(
-          tfName: 'dynamic_parsing',
-          dartName: 'dynamicParsing',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ChronicleParserExtensionDynamicParsing',
         ),
         MigrateSlot(
           tfName: 'validation_skipped',
@@ -107403,19 +107389,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'config',
-          dartName: 'config',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'pemCsrOrConfig',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper: 'PrivatecaCertificateConfig',
-        ),
-        MigrateSlot(
-          tfName: 'pem_csr',
-          dartName: 'pemCsr',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          merged: true,
+          variants: <String, String>{
+            'pem_csr': 'PrivatecaCertificatePemCsrOption',
+            'config': 'PrivatecaCertificateConfigOption',
+          },
         ),
         MigrateSlot(
           tfName: 'certificate_template',
@@ -129189,6 +129172,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'AccessContextManagerAccessLevelBasicOption': MigrateHelper(
+      className: 'AccessContextManagerAccessLevelBasicOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'basic',
+          dartName: 'basic',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'AccessContextManagerAccessLevelBasic',
+        ),
+      ],
+    ),
     'AccessContextManagerAccessLevelConditionDevicePolicy': MigrateHelper(
       className: 'AccessContextManagerAccessLevelConditionDevicePolicy',
       slots: <MigrateSlot>[
@@ -129343,6 +129339,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'AccessContextManagerAccessLevelCustomOption': MigrateHelper(
+      className: 'AccessContextManagerAccessLevelCustomOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'custom',
+          dartName: 'custom',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'AccessContextManagerAccessLevelCustom',
         ),
       ],
     ),
@@ -143551,19 +143560,28 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'BillingBudgetAmount',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: '',
+          dartName: 'specifiedAmountOrLastPeriodAmount',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'specified_amount': 'BillingBudgetAmountSpecifiedAmountOption',
+            'last_period_amount': 'BillingBudgetAmountLastPeriodAmountOption',
+          },
+        ),
+      ],
+    ),
+    'BillingBudgetAmountLastPeriodAmountOption': MigrateHelper(
+      className: 'BillingBudgetAmountLastPeriodAmountOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'last_period_amount',
           dartName: 'lastPeriodAmount',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'specified_amount',
-          dartName: 'specifiedAmount',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'BillingBudgetAmountSpecifiedAmount',
         ),
       ],
     ),
@@ -143590,6 +143608,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'BillingBudgetAmountSpecifiedAmountOption': MigrateHelper(
+      className: 'BillingBudgetAmountSpecifiedAmountOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'specified_amount',
+          dartName: 'specifiedAmount',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'BillingBudgetAmountSpecifiedAmount',
         ),
       ],
     ),
@@ -153972,6 +154003,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ChronicleParserExtensionCbnSnippetOption': MigrateHelper(
+      className: 'ChronicleParserExtensionCbnSnippetOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cbn_snippet',
+          dartName: 'cbnSnippet',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'ChronicleParserExtensionDynamicParsing': MigrateHelper(
       className: 'ChronicleParserExtensionDynamicParsing',
       slots: <MigrateSlot>[
@@ -154002,6 +154045,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'ChronicleParserExtensionDynamicParsingOption': MigrateHelper(
+      className: 'ChronicleParserExtensionDynamicParsingOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dynamic_parsing',
+          dartName: 'dynamicParsing',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ChronicleParserExtensionDynamicParsing',
         ),
       ],
     ),
@@ -154085,6 +154141,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'ChronicleParserExtensionFieldExtractorsOption': MigrateHelper(
+      className: 'ChronicleParserExtensionFieldExtractorsOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'field_extractors',
+          dartName: 'fieldExtractors',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ChronicleParserExtensionFieldExtractors',
         ),
       ],
     ),
@@ -160026,45 +160095,53 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'existing_target_resource',
-          dartName: 'existingTargetResource',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'target_resource_creation_config',
-          dartName: 'targetResourceCreationConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'existingTargetResourceOrTargetResourceCreationConfig',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper:
-              'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig',
+          merged: true,
+          variants: <String, String>{
+            'existing_target_resource':
+                'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExistingTargetResourceOption',
+            'target_resource_creation_config':
+                'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigOption',
+          },
         ),
       ],
     ),
+    'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExistingTargetResourceOption':
+        MigrateHelper(
+          className:
+              'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExistingTargetResourceOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'existing_target_resource',
+              dartName: 'existingTargetResource',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig':
         MigrateHelper(
           className:
               'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig',
           slots: <MigrateSlot>[
             MigrateSlot(
-              tfName: 'folder_creation_config',
-              dartName: 'folderCreationConfig',
-              kind: MigrateSlotKind.helper,
-              required: false,
+              tfName: '',
+              dartName: 'folderCreationConfigOrProjectCreationConfig',
+              kind: MigrateSlotKind.sealed,
+              required: true,
               wrapped: false,
-              helper:
-                  'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfig',
-            ),
-            MigrateSlot(
-              tfName: 'project_creation_config',
-              dartName: 'projectCreationConfig',
-              kind: MigrateSlotKind.helper,
-              required: false,
-              wrapped: false,
-              helper:
-                  'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfig',
+              merged: true,
+              variants: <String, String>{
+                'folder_creation_config':
+                    'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigOption',
+                'project_creation_config':
+                    'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfigOption',
+              },
             ),
           ],
         ),
@@ -160086,6 +160163,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'String',
+            ),
+          ],
+        ),
+    'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigOption':
+        MigrateHelper(
+          className:
+              'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'folder_creation_config',
+              dartName: 'folderCreationConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfig',
+            ),
+          ],
+        ),
+    'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigOption':
+        MigrateHelper(
+          className:
+              'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'target_resource_creation_config',
+              dartName: 'targetResourceCreationConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig',
             ),
           ],
         ),
@@ -160114,6 +160223,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'String',
+            ),
+          ],
+        ),
+    'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfigOption':
+        MigrateHelper(
+          className:
+              'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfigOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'project_creation_config',
+              dartName: 'projectCreationConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfig',
             ),
           ],
         ),
@@ -175670,21 +175795,49 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'sample_percentage',
-          dartName: 'samplePercentage',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'samplePercentageOrSampleRow',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'sample_row',
-          dartName: 'sampleRow',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'sample_percentage':
+                'ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOption',
+            'sample_row':
+                'ContactCenterInsightsAssessmentRuleSampleRuleSampleRowOption',
+          },
         ),
       ],
     ),
+    'ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOption':
+        MigrateHelper(
+          className:
+              'ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'sample_percentage',
+              dartName: 'samplePercentage',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContactCenterInsightsAssessmentRuleSampleRuleSampleRowOption':
+        MigrateHelper(
+          className:
+              'ContactCenterInsightsAssessmentRuleSampleRuleSampleRowOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'sample_row',
+              dartName: 'sampleRow',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
     'ContactCenterInsightsAssessmentRuleScheduleInfo': MigrateHelper(
       className: 'ContactCenterInsightsAssessmentRuleScheduleInfo',
       slots: <MigrateSlot>[
@@ -221067,20 +221220,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigInterpreter',
         ),
         MigrateSlot(
-          tfName: 'local_path',
-          dartName: 'localPath',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'gcs_object',
-          dartName: 'gcsObject',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'localPathOrGcsObject',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper:
-              'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject',
+          merged: true,
+          variants: <String, String>{
+            'local_path':
+                'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOption',
+            'gcs_object':
+                'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectOption',
+          },
         ),
       ],
     ),
@@ -221112,6 +221263,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectOption':
+        MigrateHelper(
+          className:
+              'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObjectOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcs_object',
+              dartName: 'gcsObject',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigGcsObject',
+            ),
+          ],
+        ),
+    'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOption':
+        MigrateHelper(
+          className:
+              'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'local_path',
+              dartName: 'localPath',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig': MigrateHelper(
       className:
           'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfig',
@@ -221132,20 +221313,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigInterpreter',
         ),
         MigrateSlot(
-          tfName: 'local_path',
-          dartName: 'localPath',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'gcs_object',
-          dartName: 'gcsObject',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'localPathOrGcsObject',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper:
-              'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject',
+          merged: true,
+          variants: <String, String>{
+            'local_path':
+                'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOption',
+            'gcs_object':
+                'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectOption',
+          },
         ),
       ],
     ),
@@ -221171,6 +221350,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'object',
               dartName: 'object',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectOption':
+        MigrateHelper(
+          className:
+              'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObjectOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcs_object',
+              dartName: 'gcsObject',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigGcsObject',
+            ),
+          ],
+        ),
+    'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOption':
+        MigrateHelper(
+          className:
+              'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'local_path',
+              dartName: 'localPath',
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'String',
@@ -221219,20 +221428,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigInterpreter',
         ),
         MigrateSlot(
-          tfName: 'local_path',
-          dartName: 'localPath',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'gcs_object',
-          dartName: 'gcsObject',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'localPathOrGcsObject',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper:
-              'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject',
+          merged: true,
+          variants: <String, String>{
+            'local_path':
+                'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOption',
+            'gcs_object':
+                'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectOption',
+          },
         ),
       ],
     ),
@@ -221264,6 +221471,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectOption':
+        MigrateHelper(
+          className:
+              'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObjectOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcs_object',
+              dartName: 'gcsObject',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigGcsObject',
+            ),
+          ],
+        ),
+    'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOption':
+        MigrateHelper(
+          className:
+              'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'local_path',
+              dartName: 'localPath',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig': MigrateHelper(
       className:
           'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfig',
@@ -221284,20 +221521,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigInterpreter',
         ),
         MigrateSlot(
-          tfName: 'local_path',
-          dartName: 'localPath',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'gcs_object',
-          dartName: 'gcsObject',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'localPathOrGcsObject',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper:
-              'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject',
+          merged: true,
+          variants: <String, String>{
+            'local_path':
+                'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOption',
+            'gcs_object':
+                'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectOption',
+          },
         ),
       ],
     ),
@@ -221323,6 +221558,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'object',
               dartName: 'object',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectOption':
+        MigrateHelper(
+          className:
+              'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObjectOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcs_object',
+              dartName: 'gcsObject',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigGcsObject',
+            ),
+          ],
+        ),
+    'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOption':
+        MigrateHelper(
+          className:
+              'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'local_path',
+              dartName: 'localPath',
               kind: MigrateSlotKind.scalar,
               required: true,
               dartType: 'String',
@@ -221603,21 +221868,47 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'OsConfigPatchDeploymentRolloutDisruptionBudget',
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: '',
+          dartName: 'fixedOrPercentage',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'fixed':
+                'OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOption',
+            'percentage':
+                'OsConfigPatchDeploymentRolloutDisruptionBudgetPercentageOption',
+          },
+        ),
+      ],
+    ),
+    'OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOption': MigrateHelper(
+      className: 'OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
           tfName: 'fixed',
           dartName: 'fixed',
           kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'percentage',
-          dartName: 'percentage',
-          kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'num',
         ),
       ],
     ),
+    'OsConfigPatchDeploymentRolloutDisruptionBudgetPercentageOption':
+        MigrateHelper(
+          className:
+              'OsConfigPatchDeploymentRolloutDisruptionBudgetPercentageOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'percentage',
+              dartName: 'percentage',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
     'OsConfigV2PolicyOrchestratorForFolderOrchestratedResource': MigrateHelper(
       className: 'OsConfigV2PolicyOrchestratorForFolderOrchestratedResource',
       slots: <MigrateSlot>[
@@ -225248,6 +225539,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'PrivatecaCertificateConfigOption': MigrateHelper(
+      className: 'PrivatecaCertificateConfigOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'config',
+          dartName: 'config',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'PrivatecaCertificateConfig',
+        ),
+      ],
+    ),
     'PrivatecaCertificateExtendedKeyUsage': MigrateHelper(
       className: 'PrivatecaCertificateExtendedKeyUsage',
       slots: <MigrateSlot>[
@@ -225285,6 +225589,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'PrivatecaCertificateExtendedKeyUsage',
+        ),
+      ],
+    ),
+    'PrivatecaCertificatePemCsrOption': MigrateHelper(
+      className: 'PrivatecaCertificatePemCsrOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pem_csr',
+          dartName: 'pemCsr',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
       ],
     ),
@@ -225692,22 +226008,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           'PrivilegedAccessManagerEntitlementRequesterJustificationConfig',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'not_mandatory',
-          dartName: 'notMandatory',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'notMandatoryOrUnstructured',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper:
-              'PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatory',
-        ),
-        MigrateSlot(
-          tfName: 'unstructured',
-          dartName: 'unstructured',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper:
-              'PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured',
+          merged: true,
+          variants: <String, String>{
+            'not_mandatory':
+                'PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOption',
+            'unstructured':
+                'PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructuredOption',
+          },
         ),
       ],
     ),
@@ -225717,11 +226029,43 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatory',
           slots: <MigrateSlot>[],
         ),
+    'PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOption':
+        MigrateHelper(
+          className:
+              'PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'not_mandatory',
+              dartName: 'notMandatory',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatory',
+            ),
+          ],
+        ),
     'PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured':
         MigrateHelper(
           className:
               'PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured',
           slots: <MigrateSlot>[],
+        ),
+    'PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructuredOption':
+        MigrateHelper(
+          className:
+              'PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructuredOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'unstructured',
+              dartName: 'unstructured',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured',
+            ),
+          ],
         ),
     'ProjectAccessApprovalSettingsEnrolledServices': MigrateHelper(
       className: 'ProjectAccessApprovalSettingsEnrolledServices',

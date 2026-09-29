@@ -8,6 +8,8 @@
 
 - **Breaking** — AI / ML, serverless, Firebase, container / GKE, CI/CD and API-platform input groups the Magic Modules YAML declares mutually exclusive are sealed types: 35 groups on 25 resources, e.g. `GoogleFirebaseAppHostingTraffic(rolloutPolicyOrTarget: FirebaseAppHostingTrafficTargetOption(...))`. `GoogleGkeBackupBackupPlan`, `GoogleClouddeployCustomTargetType`, `GoogleCloudRunV2WorkerPool` and `GoogleVertexAiRagCorpus` derive typed nested helpers (their groups sit in blocks that were map literals). 357 more overrides set `deriveExactlyOne`. See [MIGRATING.md](../../MIGRATING.md).
 
+- **Breaking** — security, identity, billing and operations input groups the Magic Modules YAML declares mutually exclusive are sealed types: 13 groups on 8 resources, e.g. `GoogleAccessContextManagerAccessLevel(basicOrCustom: AccessContextManagerAccessLevelBasicOption(...))` and `GooglePrivatecaCertificate(pemCsrOrConfig: ...)`. Every resource override now sets `deriveExactlyOne`. `GoogleChronicleFeed`'s 75-member `details` group stays unsealed. See [MIGRATING.md](../../MIGRATING.md).
+
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). The generated wrappers were already formatted in the Dart 3.7+ tall style, so the constraint now matches them (pub.dev static analysis no longer reports a formatter mismatch).
 
 ## 0.30.0 - 2026-09-28

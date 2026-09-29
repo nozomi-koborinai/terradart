@@ -7,6 +7,86 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_chronicle_parser_extension`.
 const Set<String> _googleChronicleParserExtensionSensitive = <String>{};
 
+/// At most one of `cbn_snippet`, `field_extractors`, `dynamic_parsing` on `google_chronicle_parser_extension`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing {
+  const ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cbn_snippet` (one of the [ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing] choices).
+final class ChronicleParserExtensionCbnSnippetOption
+    extends
+        ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing {
+  const ChronicleParserExtensionCbnSnippetOption({required this.cbnSnippet});
+
+  final TfArg<String> cbnSnippet;
+
+  @override
+  String get blockKey => 'cbn_snippet';
+
+  @override
+  Map<String, Object?> encode() => {'cbn_snippet': cbnSnippet.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'cbn_snippet': cbnSnippet};
+}
+
+/// Sets `field_extractors` (one of the [ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing] choices).
+final class ChronicleParserExtensionFieldExtractorsOption
+    extends
+        ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing {
+  const ChronicleParserExtensionFieldExtractorsOption({
+    required this.fieldExtractors,
+  });
+
+  final ChronicleParserExtensionFieldExtractors fieldExtractors;
+
+  @override
+  String get blockKey => 'field_extractors';
+
+  @override
+  Map<String, Object?> encode() => {
+    'field_extractors': fieldExtractors.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'field_extractors': TfArg.literal(fieldExtractors.encode()),
+  };
+}
+
+/// Sets `dynamic_parsing` (one of the [ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing] choices).
+final class ChronicleParserExtensionDynamicParsingOption
+    extends
+        ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing {
+  const ChronicleParserExtensionDynamicParsingOption({
+    required this.dynamicParsing,
+  });
+
+  final ChronicleParserExtensionDynamicParsing dynamicParsing;
+
+  @override
+  String get blockKey => 'dynamic_parsing';
+
+  @override
+  Map<String, Object?> encode() => {'dynamic_parsing': dynamicParsing.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'dynamic_parsing': TfArg.literal(dynamicParsing.encode()),
+  };
+}
+
 /// Typed helper for the `dynamic_parsing` block of
 /// `google_chronicle_parser_extension` (derived from provider schema).
 @immutable
@@ -154,10 +234,9 @@ final class GoogleChronicleParserExtension extends Resource {
     required TfArg<String> logType,
     required TfArg<String> location,
     required TfArg<String> instance,
-    TfArg<String>? cbnSnippet,
+    ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing?
+    cbnSnippetOrFieldExtractorsOrDynamicParsing,
     TfArg<String>? log,
-    ChronicleParserExtensionFieldExtractors? fieldExtractors,
-    ChronicleParserExtensionDynamicParsing? dynamicParsing,
     TfArg<bool>? validationSkipped,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -171,12 +250,8 @@ final class GoogleChronicleParserExtension extends Resource {
            'log_type': logType,
            'location': location,
            'instance': instance,
-           if (cbnSnippet != null) 'cbn_snippet': cbnSnippet,
+           ...?cbnSnippetOrFieldExtractorsOrDynamicParsing?.argMap,
            if (log != null) 'log': log,
-           if (fieldExtractors != null)
-             'field_extractors': TfArg.literal(fieldExtractors.encode()),
-           if (dynamicParsing != null)
-             'dynamic_parsing': TfArg.literal(dynamicParsing.encode()),
            if (validationSkipped != null)
              'validation_skipped': validationSkipped,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

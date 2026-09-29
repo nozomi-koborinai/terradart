@@ -19,8 +19,11 @@ export 'src/access_context_manager/google_access_context_manager_access_level.da
         AccessContextManagerAccessLevelBasicConditionsDevicePolicyOsConstraintsOsType,
         AccessContextManagerAccessLevelBasicConditionsVpcNetworkSources,
         AccessContextManagerAccessLevelBasicConditionsVpcNetworkSourcesVpcSubnetwork,
+        AccessContextManagerAccessLevelBasicOption,
+        AccessContextManagerAccessLevelBasicOrCustom,
         AccessContextManagerAccessLevelCustom,
         AccessContextManagerAccessLevelCustomExpr,
+        AccessContextManagerAccessLevelCustomOption,
         GoogleAccessContextManagerAccessLevel;
 export 'src/access_context_manager/google_access_context_manager_access_level_condition.dart'
     show

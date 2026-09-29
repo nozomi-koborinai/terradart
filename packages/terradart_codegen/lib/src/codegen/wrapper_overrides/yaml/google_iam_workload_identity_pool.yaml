@@ -1,6 +1,7 @@
 outputDir: iam
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// This wrapper covers the pool resource itself. Pair with

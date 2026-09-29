@@ -119,7 +119,10 @@ final class ContactCenterInsightsStack extends Stack {
         displayName: TfArg.literal('terradart-draft-assessment'),
         active: TfArg.literal(false),
         sampleRule: ContactCenterInsightsAssessmentRuleSampleRule(
-          samplePercentage: TfArg.literal(0),
+          samplePercentageOrSampleRow:
+              ContactCenterInsightsAssessmentRuleSampleRuleSamplePercentageOption(
+                samplePercentage: TfArg.literal(0),
+              ),
         ),
         scheduleInfo: ContactCenterInsightsAssessmentRuleScheduleInfo(
           schedule: TfArg.literal('every 1 hours'),
