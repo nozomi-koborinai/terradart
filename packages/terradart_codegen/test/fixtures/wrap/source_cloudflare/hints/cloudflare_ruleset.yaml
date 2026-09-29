@@ -305,3 +305,9 @@ exactly_one_of_groups:
   - ["rules.action_parameters.from_value.target_url.value", "rules.action_parameters.from_value.target_url.expression"]
   - ["rules.action_parameters.uri.path.value", "rules.action_parameters.uri.path.expression"]
   - ["rules.action_parameters.uri.query.value", "rules.action_parameters.uri.query.expression"]
+at_most_one_of_groups:
+  - ["rules.action_parameters.asset_name", "rules.action_parameters.content"]
+  - ["rules.action_parameters.cache_key.custom_key.query_string.include", "rules.action_parameters.cache_key.custom_key.query_string.exclude"]
+  - ["rules.action_parameters.from_list", "rules.action_parameters.from_value"]
+  - ["rules.action_parameters.headers.value", "rules.action_parameters.headers.expression"]
+  - ["rules.action_parameters.values", "rules.action_parameters.expression"]

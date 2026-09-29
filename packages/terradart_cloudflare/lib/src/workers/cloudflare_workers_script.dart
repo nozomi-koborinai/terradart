@@ -36,6 +36,56 @@ enum WorkersScriptUsageModel implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `content`, `content_file` on `cloudflare_workers_script`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class WorkersScriptContentOrContentFile {
+  const WorkersScriptContentOrContentFile();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `content` (one of the [WorkersScriptContentOrContentFile] choices).
+final class WorkersScriptContentOption
+    extends WorkersScriptContentOrContentFile {
+  const WorkersScriptContentOption({required this.content});
+
+  final TfArg<String> content;
+
+  @override
+  String get blockKey => 'content';
+
+  @override
+  Map<String, Object?> encode() => {'content': content.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'content': content};
+}
+
+/// Sets `content_file` (one of the [WorkersScriptContentOrContentFile] choices).
+final class WorkersScriptContentFileOption
+    extends WorkersScriptContentOrContentFile {
+  const WorkersScriptContentFileOption({required this.contentFile});
+
+  final TfArg<String> contentFile;
+
+  @override
+  String get blockKey => 'content_file';
+
+  @override
+  Map<String, Object?> encode() => {'content_file': contentFile.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'content_file': contentFile};
+}
+
 /// Typed helper for the `annotations` block of
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
@@ -56,19 +106,56 @@ final class WorkersScriptAnnotations {
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
 final class WorkersScriptAssets {
-  const WorkersScriptAssets({this.directory, this.jwt, this.config});
+  const WorkersScriptAssets({this.directoryOrJwt, this.config});
 
-  final TfArg<String>? directory;
-
-  final TfArg<String>? jwt;
+  final WorkersScriptAssetsDirectoryOrJwt? directoryOrJwt;
 
   final WorkersScriptAssetsConfig? config;
 
   Map<String, Object?> encode() => {
-    if (directory != null) 'directory': directory!.toTfJson(),
-    if (jwt != null) 'jwt': jwt!.toTfJson(),
+    ...?directoryOrJwt?.encode(),
     if (config != null) 'config': config!.encode(),
   };
+}
+
+/// At most one of `directory`, `jwt` on the `assets` block of `cloudflare_workers_script`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class WorkersScriptAssetsDirectoryOrJwt {
+  const WorkersScriptAssetsDirectoryOrJwt();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `directory` (one of the [WorkersScriptAssetsDirectoryOrJwt] choices).
+final class WorkersScriptAssetsDirectoryOption
+    extends WorkersScriptAssetsDirectoryOrJwt {
+  const WorkersScriptAssetsDirectoryOption({required this.directory});
+
+  final TfArg<String> directory;
+
+  @override
+  String get blockKey => 'directory';
+
+  @override
+  Map<String, Object?> encode() => {'directory': directory.toTfJson()};
+}
+
+/// Sets `jwt` (one of the [WorkersScriptAssetsDirectoryOrJwt] choices).
+final class WorkersScriptAssetsJwtOption
+    extends WorkersScriptAssetsDirectoryOrJwt {
+  const WorkersScriptAssetsJwtOption({required this.jwt});
+
+  final TfArg<String> jwt;
+
+  @override
+  String get blockKey => 'jwt';
+
+  @override
+  Map<String, Object?> encode() => {'jwt': jwt.toTfJson()};
 }
 
 /// Typed helper for the `assets.config` block of
@@ -939,8 +1026,7 @@ final class CloudflareWorkersScript extends Resource {
     TfArg<String>? bodyPart,
     TfArg<String>? compatibilityDate,
     TfArg<List<String>>? compatibilityFlags,
-    TfArg<String>? content,
-    TfArg<String>? contentFile,
+    WorkersScriptContentOrContentFile? contentOrContentFile,
     TfArg<String>? contentSha256,
     TfArg<WorkersScriptContentType>? contentType,
     TfArg<bool>? force,
@@ -975,8 +1061,7 @@ final class CloudflareWorkersScript extends Resource {
              'compatibility_date': compatibilityDate,
            if (compatibilityFlags != null)
              'compatibility_flags': compatibilityFlags,
-           if (content != null) 'content': content,
-           if (contentFile != null) 'content_file': contentFile,
+           ...?contentOrContentFile?.argMap,
            if (contentSha256 != null) 'content_sha256': contentSha256,
            if (contentType != null) 'content_type': contentType,
            if (force != null) 'force': force,

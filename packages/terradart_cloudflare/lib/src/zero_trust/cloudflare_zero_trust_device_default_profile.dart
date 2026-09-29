@@ -8,6 +8,64 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _cloudflareZeroTrustDeviceDefaultProfileSensitive =
     <String>{};
 
+/// At most one of `exclude`, `include` on `cloudflare_zero_trust_device_default_profile`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ZeroTrustDeviceDefaultProfileExcludeOrInclude {
+  const ZeroTrustDeviceDefaultProfileExcludeOrInclude();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `exclude` (one of the [ZeroTrustDeviceDefaultProfileExcludeOrInclude] choices).
+final class ZeroTrustDeviceDefaultProfileExcludeOption
+    extends ZeroTrustDeviceDefaultProfileExcludeOrInclude {
+  const ZeroTrustDeviceDefaultProfileExcludeOption({required this.exclude});
+
+  final List<ZeroTrustDeviceDefaultProfileExclude> exclude;
+
+  @override
+  String get blockKey => 'exclude';
+
+  @override
+  Map<String, Object?> encode() => {
+    'exclude': [for (final e in exclude) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'exclude': TfArg.literal([for (final e in exclude) e.encode()]),
+  };
+}
+
+/// Sets `include` (one of the [ZeroTrustDeviceDefaultProfileExcludeOrInclude] choices).
+final class ZeroTrustDeviceDefaultProfileIncludeOption
+    extends ZeroTrustDeviceDefaultProfileExcludeOrInclude {
+  const ZeroTrustDeviceDefaultProfileIncludeOption({required this.include});
+
+  final List<ZeroTrustDeviceDefaultProfileInclude> include;
+
+  @override
+  String get blockKey => 'include';
+
+  @override
+  Map<String, Object?> encode() => {
+    'include': [for (final e in include) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'include': TfArg.literal([for (final e in include) e.encode()]),
+  };
+}
+
 /// Typed helper for the `dns_search_suffixes` block of
 /// `cloudflare_zero_trust_device_default_profile` (derived from provider schema).
 @immutable
@@ -162,9 +220,8 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
     TfArg<String>? tunnelProtocol,
     TfArg<bool>? uninstallProtection,
     List<ZeroTrustDeviceDefaultProfileDnsSearchSuffixes>? dnsSearchSuffixes,
-    List<ZeroTrustDeviceDefaultProfileExclude>? exclude,
+    ZeroTrustDeviceDefaultProfileExcludeOrInclude? excludeOrInclude,
     ZeroTrustDeviceDefaultProfileGlobalAcceleration? globalAcceleration,
-    List<ZeroTrustDeviceDefaultProfileInclude>? include,
     ZeroTrustDeviceDefaultProfileServiceModeV2? serviceModeV2,
     ZeroTrustDeviceDefaultProfileVirtualNetworks? virtualNetworks,
     super.lifecycle,
@@ -199,12 +256,9 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
              'dns_search_suffixes': TfArg.literal([
                for (final e in dnsSearchSuffixes) e.encode(),
              ]),
-           if (exclude != null)
-             'exclude': TfArg.literal([for (final e in exclude) e.encode()]),
+           ...?excludeOrInclude?.argMap,
            if (globalAcceleration != null)
              'global_acceleration': TfArg.literal(globalAcceleration.encode()),
-           if (include != null)
-             'include': TfArg.literal([for (final e in include) e.encode()]),
            if (serviceModeV2 != null)
              'service_mode_v2': TfArg.literal(serviceModeV2.encode()),
            if (virtualNetworks != null)

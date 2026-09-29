@@ -36,3 +36,5 @@ properties:
       - "SVCB"
       - "TLSA"
       - "URI"
+at_most_one_of_groups:
+  - ["content", "data"]

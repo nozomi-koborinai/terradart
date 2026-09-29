@@ -9,3 +9,5 @@ properties:
       - "redirect"
       - "hostname"
       - "asn"
+at_most_one_of_groups:
+  - ["items.asn", "items.ip", "items.hostname", "items.redirect"]

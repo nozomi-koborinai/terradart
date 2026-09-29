@@ -13,3 +13,5 @@ properties:
     enum_values:
       - "warp"
       - "browser_extension"
+at_most_one_of_groups:
+  - ["exclude", "include"]

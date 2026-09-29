@@ -112,3 +112,6 @@ properties:
       - "unbound"
 exactly_one_of_groups:
   - ["files.content_base64", "files.content_file"]
+at_most_one_of_groups:
+  - ["assets.directory", "assets.jwt"]
+  - ["content", "content_file"]
