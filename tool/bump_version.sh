@@ -12,7 +12,7 @@
 #   - packages/terradart_core/pubspec.yaml        (version: line)
 #   - packages/terradart_codegen/pubspec.yaml     (version: + terradart_core caret)
 #   - packages/terradart_google/pubspec.yaml      (version: + terradart_{core,time} carets + terradart_codegen dev caret)
-#   - packages/terradart_google_beta/pubspec.yaml (version: + terradart_core caret)
+#   - packages/terradart_google_beta/pubspec.yaml (version: + terradart_{core,google} carets)
 #   - packages/terradart_appwrite/pubspec.yaml    (version: + terradart_core caret)
 #   - packages/terradart_cloudflare/pubspec.yaml  (version: + terradart_core caret)
 #   - packages/terradart_aws/pubspec.yaml         (version: + terradart_core caret)
@@ -120,7 +120,7 @@ for pkg in terradart_core terradart_codegen terradart_google terradart_google_be
   echo "    - packages/$pkg/pubspec.yaml -> $NEW"
 done
 
-# 2. Inter-package carets inside terradart_codegen + terradart_google.
+# 2. Inter-package carets between workspace packages.
 #    Matches `  terradart_<name>: ^X.Y.Z` (any indent, end-of-line).
 echo "  Inter-package carets:"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_codegen/pubspec.yaml
@@ -131,8 +131,8 @@ sed_inplace "s#^( *terradart_(core|time)): \\^${OLD_RE}\$#\\1: ^${NEW}#" package
 echo "    - terradart_google.dependencies.terradart_{core,time}: ^${NEW}"
 sed_inplace "s#^( *terradart_codegen): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
 echo "    - terradart_google.dev_dependencies.terradart_codegen: ^${NEW}"
-sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google_beta/pubspec.yaml
-echo "    - terradart_google_beta.dependencies.terradart_core: ^${NEW}"
+sed_inplace "s#^( *terradart_(core|google)): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google_beta/pubspec.yaml
+echo "    - terradart_google_beta.dependencies.terradart_{core,google}: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_appwrite/pubspec.yaml
 echo "    - terradart_appwrite.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_cloudflare/pubspec.yaml

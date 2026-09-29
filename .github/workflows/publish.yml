@@ -35,9 +35,10 @@ env:
 # and, in a parallel job, terradart_time (depends only on terradart_core).
 # Phase 3 waits again, then publishes terradart_google, which depends on
 # terradart_time for Apis.enable's propagation wait.
-# Phase 4 publishes terradart_google_beta (depends only on terradart_core,
+# Phase 4 waits again, then publishes terradart_google_beta, which depends
+# on terradart_google for the GA types its reference inputs name.
+# Phase 5 publishes terradart_appwrite (depends only on terradart_core,
 # which has been indexed since Phase 2's wait — no extra sleep needed).
-# Phase 5 publishes terradart_appwrite (same shape and rationale).
 # Phase 6 publishes terradart_cloudflare (same shape and rationale).
 # Phase 7 publishes terradart_aws (same shape and rationale).
 # Phase 8 waits again, then publishes terradart_migrate, which depends on
@@ -266,6 +267,11 @@ jobs:
     needs: publish-google
     runs-on: ubuntu-latest
     steps:
+      - name: Wait for pub.dev index propagation
+        run: |
+          echo "Waiting 5 minutes for pub.dev to index terradart_google before publishing terradart_google_beta..."
+          sleep 300
+
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
         with:

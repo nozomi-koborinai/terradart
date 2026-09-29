@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_compute_machine_image`.
 const Set<String> _googleComputeMachineImageSensitive = <String>{
   'machine_image_encryption_key.raw_key',
@@ -19,14 +21,14 @@ final class ComputeMachineImageMachineImageEncryptionKey {
     this.rawKey,
   });
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<String>? kmsKeyServiceAccount;
 
   final TfArg<String>? rawKey;
 
   Map<String, Object?> encode() => {
-    'kms_key_name': ?kmsKeyName?.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
     'raw_key': ?rawKey?.toTfJson(),
   };

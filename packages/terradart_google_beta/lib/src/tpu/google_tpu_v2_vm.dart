@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleComputeNetwork, GoogleComputeSubnetwork, GoogleServiceAccount;
+
 /// Sensitive field paths for `google_tpu_v2_vm`.
 const Set<String> _googleTpuV2VmSensitive = <String>{};
 
@@ -201,18 +204,18 @@ final class TpuV2VmNetworkConfig {
 
   final TfArg<bool>? enableExternalIps;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<num>? queueCount;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   Map<String, Object?> encode() => {
     'can_ip_forward': ?canIpForward?.toTfJson(),
     'enable_external_ips': ?enableExternalIps?.toTfJson(),
-    'network': ?network?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
     'queue_count': ?queueCount?.toTfJson(),
-    'subnetwork': ?subnetwork?.toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -232,18 +235,18 @@ final class TpuV2VmNetworkConfigs {
 
   final TfArg<bool>? enableExternalIps;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<num>? queueCount;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   Map<String, Object?> encode() => {
     'can_ip_forward': ?canIpForward?.toTfJson(),
     'enable_external_ips': ?enableExternalIps?.toTfJson(),
-    'network': ?network?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
     'queue_count': ?queueCount?.toTfJson(),
-    'subnetwork': ?subnetwork?.toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -272,12 +275,12 @@ final class TpuV2VmSchedulingConfig {
 final class TpuV2VmServiceAccount {
   const TpuV2VmServiceAccount({this.email, this.scope});
 
-  final TfArg<String>? email;
+  final RefTo<GoogleServiceAccount>? email;
 
   final TfArg<List<Object?>>? scope;
 
   Map<String, Object?> encode() => {
-    'email': ?email?.toTfJson(),
+    'email': ?email?.encodeAs('email').toTfJson(),
     'scope': ?scope?.toTfJson(),
   };
 }

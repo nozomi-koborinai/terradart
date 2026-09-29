@@ -19,6 +19,7 @@ resolution: workspace
 
 dependencies:
   terradart_core: ^0.30.0
+  terradart_google: ^0.30.0
   meta: ^1.15.0
 
 dev_dependencies:
