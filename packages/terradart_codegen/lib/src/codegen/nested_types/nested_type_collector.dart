@@ -135,6 +135,9 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 ///   `check_override_enum_gaps.dart`'s `_customSlotCoversBlock`; checking
 ///   the bare name at every depth reproduces its "any ancestor" semantics
 ///   for free, because a skipped node's children are never visited).
+///   Only keys naming a top-level schema field count: a virtual slot
+///   (a sealed `metric` over `metric_name` / `metric_query` / ...) owns no
+///   block, so a nested `metric` block elsewhere keeps its helper.
 /// - A block named `timeouts` is skipped entirely — Terraform's SDK-level
 ///   meta-argument, not a user-facing input (same rule as
 ///   `constructor_params.dart`'s `skipNestedBlock`).
@@ -175,11 +178,15 @@ List<NestedBlockSpec> collectNestedTypes({
   Map<String, List<List<String>>> atMostOneGroups = const {},
   Map<String, String>? sealedNames,
 }) {
+  final rootKeys = {
+    ..._optionalMap(resourceBlock['attributes'], context: 'attributes').keys,
+    ..._optionalMap(resourceBlock['block_types'], context: 'block_types').keys,
+  };
   final scan = _scanChildren(
     resourceBlock,
     path: const [],
     resourcePrefix: resourcePrefix,
-    customSlotKeys: customSlotKeys,
+    customSlotKeys: customSlotKeys.intersection(rootKeys),
     excludedPaths: excludedPaths,
     enumValues: enumValues,
     exactlyOneGroups: exactlyOneGroups,
