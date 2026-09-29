@@ -452,6 +452,18 @@ void main() {
       expect(deriveSealedConcept(['s3', 'gcs']), isNull);
     });
 
+    test('a fallback that clashes is an error, not a repeating name', () {
+      final resolved = resolveSealedName(
+        members: ['a', 'b'],
+        human: null,
+        derived: null,
+        clashes: (c) => 'the sealed type name repeats a segment of X',
+      );
+      expect(resolved.concept, 'a_or_b');
+      expect(resolved.error, contains('name it in sealedNames'));
+      expect(resolved.error, contains('repeats a segment'));
+    });
+
     test('a human name wins; a clash or a repeat is an error', () {
       String? none(String _) => null;
       expect(

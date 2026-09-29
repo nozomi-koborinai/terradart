@@ -515,6 +515,8 @@ _Layout _layout(NestedBlockSpec spec, Set<String> taken) {
       clashes: clashes,
     );
     final ident = safeDartIdentifier(snakeToCamel(resolved.concept));
+    // Only a group whose name reports an error (which fails `wrap`) reaches
+    // the plain concatenations: `clashes` vetted every name it resolves to.
     final type = typeOf(resolved.concept);
     final classes =
         exactlyOneVariantNames(type, group, {...taken, ...chosenTypes}) ??

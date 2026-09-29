@@ -333,6 +333,8 @@ WrapperOverride _derive(
     chosenSlots.add(slot);
     taken.addAll(group);
     group.forEach(slots.remove);
+    // Only a group whose name reports an error (which fails `wrap`) reaches
+    // the plain concatenations: `clashes` vetted every name it resolves to.
     final sealed = sealedTypeName(prefix, slot) ?? prefix + snakeToPascal(slot);
     final variantClasses =
         exactlyOneVariantNames(sealed, group, classesFor()) ??

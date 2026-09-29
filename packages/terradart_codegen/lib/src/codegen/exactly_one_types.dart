@@ -202,7 +202,9 @@ String _singular(String seg) {
 /// wins; otherwise the [derived] one; otherwise [sealedFallbackConcept].
 /// [clashes] says why a candidate cannot be used (its slot or a class name
 /// is taken), or null. A derived name that clashes falls back; a human name
-/// that clashes, or repeats the derived one, is an error.
+/// that clashes, or repeats the derived one, is an error, and so is a
+/// fallback that clashes (it would repeat a segment or take a class), which
+/// only a `sealedNames` entry can fix.
 ({String concept, SealedNameSource source, String? error}) resolveSealedName({
   required List<String> members,
   required String? human,
@@ -229,10 +231,15 @@ String _singular(String seg) {
   if (derived != null && clashes(derived) == null) {
     return (concept: derived, source: SealedNameSource.derived, error: null);
   }
+  final fallback = sealedFallbackConcept(members);
+  final clash = clashes(fallback);
   return (
-    concept: sealedFallbackConcept(members),
+    concept: fallback,
     source: SealedNameSource.fallback,
-    error: null,
+    error: clash == null
+        ? null
+        : 'no usable name for [${members.join(', ')}] ($fallback: $clash); '
+              'name it in sealedNames',
   );
 }
 
