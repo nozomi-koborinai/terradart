@@ -1,6 +1,7 @@
 outputDir: service_networking
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 paramOrder:

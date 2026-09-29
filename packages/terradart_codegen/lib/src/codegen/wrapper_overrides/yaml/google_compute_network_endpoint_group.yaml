@@ -1,6 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Dominant L7 LB pattern: zonal VM-IP+port endpoints in a single subnet,

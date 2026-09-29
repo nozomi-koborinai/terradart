@@ -40254,19 +40254,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'node_type',
-          dartName: 'nodeType',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'node_type_flexibility',
-          dartName: 'nodeTypeFlexibility',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'nodeTypeOrNodeTypeFlexibility',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'ComputeNodeTemplateNodeTypeFlexibility',
+          merged: true,
+          variants: <String, String>{
+            'node_type': 'ComputeNodeTemplateNodeTypeOption',
+            'node_type_flexibility':
+                'ComputeNodeTemplateNodeTypeFlexibilityOption',
+          },
         ),
         MigrateSlot(
           tfName: 'cpu_overcommit_type',
@@ -45689,18 +45687,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'ssl_certificates',
-          dartName: 'sslCertificates',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'certificateManagerCertificatesOrSslCertificates',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'List<String>',
-        ),
-        MigrateSlot(
-          tfName: 'certificate_manager_certificates',
-          dartName: 'certificateManagerCertificates',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'List<String>',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'certificate_manager_certificates':
+                'ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOption',
+            'ssl_certificates':
+                'ComputeRegionTargetHttpsProxySslCertificatesOption',
+          },
         ),
         MigrateSlot(
           tfName: 'ssl_policy',
@@ -45972,12 +45970,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'ComputeRegionUrlMapRegionUrlMapTest',
         ),
         MigrateSlot(
-          tfName: 'default_url_redirect',
-          dartName: 'defaultUrlRedirect',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'defaultUrlRedirectOrDefaultRouteAction',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'ComputeRegionUrlMapRegionUrlMapUrlRedirect',
+          merged: true,
+          variants: <String, String>{
+            'default_url_redirect':
+                'ComputeRegionUrlMapDefaultUrlRedirectOption',
+            'default_route_action':
+                'ComputeRegionUrlMapDefaultRouteActionOption',
+          },
         ),
         MigrateSlot(
           tfName: 'header_action',
@@ -45986,14 +45990,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'ComputeRegionUrlMapRegionUrlMapHeaderAction',
-        ),
-        MigrateSlot(
-          tfName: 'default_route_action',
-          dartName: 'defaultRouteAction',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ComputeRegionUrlMapRegionUrlMapRouteAction',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -50741,18 +50737,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'ssl_certificates',
-          dartName: 'sslCertificates',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'certificateManagerCertificatesOrSslCertificates',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'List<String>',
-        ),
-        MigrateSlot(
-          tfName: 'certificate_manager_certificates',
-          dartName: 'certificateManagerCertificates',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'List<String>',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'certificate_manager_certificates':
+                'ComputeTargetHttpsProxyCertificateManagerCertificatesOption',
+            'ssl_certificates': 'ComputeTargetHttpsProxySslCertificatesOption',
+          },
         ),
         MigrateSlot(
           tfName: 'certificate_map',
@@ -51298,12 +51293,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'ComputeUrlMapUrlMapTest',
         ),
         MigrateSlot(
-          tfName: 'default_url_redirect',
-          dartName: 'defaultUrlRedirect',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'defaultUrlRedirectOrDefaultRouteAction',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'ComputeUrlMapUrlMapUrlRedirect',
+          merged: true,
+          variants: <String, String>{
+            'default_url_redirect': 'ComputeUrlMapDefaultUrlRedirectOption',
+            'default_route_action': 'ComputeUrlMapDefaultRouteActionOption',
+          },
         ),
         MigrateSlot(
           tfName: 'header_action',
@@ -51312,14 +51311,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           wrapped: false,
           helper: 'ComputeUrlMapUrlMapHeaderAction',
-        ),
-        MigrateSlot(
-          tfName: 'default_route_action',
-          dartName: 'defaultRouteAction',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'ComputeUrlMapUrlMapRouteAction',
         ),
         MigrateSlot(
           tfName: 'project',
@@ -51516,18 +51507,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'peer_gcp_gateway',
-          dartName: 'peerGcpGateway',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'peerExternalGatewayOrPeerGcpGateway',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'peer_external_gateway',
-          dartName: 'peerExternalGateway',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'peer_external_gateway':
+                'ComputeVpnTunnelPeerExternalGatewayOption',
+            'peer_gcp_gateway': 'ComputeVpnTunnelPeerGcpGatewayOption',
+          },
         ),
         MigrateSlot(
           tfName: 'peer_external_gateway_interface',
@@ -96143,20 +96133,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           },
         ),
         MigrateSlot(
-          tfName: 'virtual_machine',
-          dartName: 'virtualMachine',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName: 'virtualMachineOrInterconnectAttachment',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'NetworkConnectivityPolicyBasedRouteVirtualMachine',
-        ),
-        MigrateSlot(
-          tfName: 'interconnect_attachment',
-          dartName: 'interconnectAttachment',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'NetworkConnectivityPolicyBasedRouteInterconnectAttachment',
+          merged: true,
+          variants: <String, String>{
+            'virtual_machine':
+                'NetworkConnectivityPolicyBasedRouteVirtualMachineOption',
+            'interconnect_attachment':
+                'NetworkConnectivityPolicyBasedRouteInterconnectAttachmentOption',
+          },
         ),
         MigrateSlot(
           tfName: 'priority',
@@ -99178,36 +99166,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'threat_prevention_profile',
-          dartName: 'threatPreventionProfile',
-          kind: MigrateSlotKind.helper,
+          tfName: '',
+          dartName:
+              'threatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile',
+          kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
-          helper: 'NetworkSecuritySecurityProfileThreatPreventionProfile',
-        ),
-        MigrateSlot(
-          tfName: 'url_filtering_profile',
-          dartName: 'urlFilteringProfile',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'NetworkSecuritySecurityProfileUrlFilteringProfile',
-        ),
-        MigrateSlot(
-          tfName: 'custom_intercept_profile',
-          dartName: 'customInterceptProfile',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'NetworkSecuritySecurityProfileCustomInterceptProfile',
-        ),
-        MigrateSlot(
-          tfName: 'custom_mirroring_profile',
-          dartName: 'customMirroringProfile',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'NetworkSecuritySecurityProfileCustomMirroringProfile',
+          merged: true,
+          variants: <String, String>{
+            'threat_prevention_profile':
+                'NetworkSecuritySecurityProfileThreatPreventionProfileOption',
+            'url_filtering_profile':
+                'NetworkSecuritySecurityProfileUrlFilteringProfileOption',
+            'custom_mirroring_profile':
+                'NetworkSecuritySecurityProfileCustomMirroringProfileOption',
+            'custom_intercept_profile':
+                'NetworkSecuritySecurityProfileCustomInterceptProfileOption',
+          },
         ),
         MigrateSlot(
           tfName: 'labels',
@@ -100683,18 +100658,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'ports',
-          dartName: 'ports',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'allPortsOrPorts',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'List<num>',
-        ),
-        MigrateSlot(
-          tfName: 'all_ports',
-          dartName: 'allPorts',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'all_ports': 'NetworkServicesGatewayAllPortsOption',
+            'ports': 'NetworkServicesGatewayPortsOption',
+          },
         ),
         MigrateSlot(
           tfName: 'certificate_urls',
@@ -127588,32 +127561,28 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'min_instances',
-          dartName: 'minInstances',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'minThroughputOrMinInstances',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'num',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'min_throughput': 'VpcAccessConnectorMinThroughputOption',
+            'min_instances': 'VpcAccessConnectorMinInstancesOption',
+          },
         ),
         MigrateSlot(
-          tfName: 'max_instances',
-          dartName: 'maxInstances',
-          kind: MigrateSlotKind.scalar,
+          tfName: '',
+          dartName: 'maxInstancesOrMaxThroughput',
+          kind: MigrateSlotKind.sealed,
           required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'min_throughput',
-          dartName: 'minThroughput',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
-        ),
-        MigrateSlot(
-          tfName: 'max_throughput',
-          dartName: 'maxThroughput',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'num',
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'max_instances': 'VpcAccessConnectorMaxInstancesOption',
+            'max_throughput': 'VpcAccessConnectorMaxThroughputOption',
+          },
         ),
         MigrateSlot(
           tfName: 'project',
@@ -165004,18 +164973,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'name',
-          dartName: 'name',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'predefined_rollout_plan',
-          dartName: 'predefinedRolloutPlan',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'nameOrPredefinedRolloutPlan',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'name':
+                'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption',
+            'predefined_rollout_plan':
+                'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPredefinedRolloutPlanOption',
+          },
         ),
         MigrateSlot(
           tfName: 'retry_uuid',
@@ -165026,6 +164995,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption':
+        MigrateHelper(
+          className:
+              'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'name',
+              dartName: 'name',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPredefinedRolloutPlanOption':
+        MigrateHelper(
+          className:
+              'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPredefinedRolloutPlanOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'predefined_rollout_plan',
+              dartName: 'predefinedRolloutPlan',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'ComputeHealthCheckGrpcHealthCheckConfig': MigrateHelper(
       className: 'ComputeHealthCheckGrpcHealthCheckConfig',
       slots: <MigrateSlot>[
@@ -167778,6 +167775,31 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'memory',
           kind: MigrateSlotKind.scalar,
           required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeNodeTemplateNodeTypeFlexibilityOption': MigrateHelper(
+      className: 'ComputeNodeTemplateNodeTypeFlexibilityOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_type_flexibility',
+          dartName: 'nodeTypeFlexibility',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeNodeTemplateNodeTypeFlexibility',
+        ),
+      ],
+    ),
+    'ComputeNodeTemplateNodeTypeOption': MigrateHelper(
+      className: 'ComputeNodeTemplateNodeTypeOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_type',
+          dartName: 'nodeType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
           dartType: 'String',
         ),
       ],
@@ -171393,6 +171415,58 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOption':
+        MigrateHelper(
+          className:
+              'ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'certificate_manager_certificates',
+              dartName: 'certificateManagerCertificates',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<String>',
+            ),
+          ],
+        ),
+    'ComputeRegionTargetHttpsProxySslCertificatesOption': MigrateHelper(
+      className: 'ComputeRegionTargetHttpsProxySslCertificatesOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'ssl_certificates',
+          dartName: 'sslCertificates',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<String>',
+        ),
+      ],
+    ),
+    'ComputeRegionUrlMapDefaultRouteActionOption': MigrateHelper(
+      className: 'ComputeRegionUrlMapDefaultRouteActionOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_route_action',
+          dartName: 'defaultRouteAction',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeRegionUrlMapRegionUrlMapRouteAction',
+        ),
+      ],
+    ),
+    'ComputeRegionUrlMapDefaultUrlRedirectOption': MigrateHelper(
+      className: 'ComputeRegionUrlMapDefaultUrlRedirectOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_url_redirect',
+          dartName: 'defaultUrlRedirect',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeRegionUrlMapRegionUrlMapUrlRedirect',
+        ),
+      ],
+    ),
     'ComputeRegionUrlMapRegionUrlMapCachePolicy': MigrateHelper(
       className: 'ComputeRegionUrlMapRegionUrlMapCachePolicy',
       slots: <MigrateSlot>[
@@ -172106,19 +172180,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
         MigrateSlot(
-          tfName: 'source_instance_template',
-          dartName: 'sourceInstanceTemplate',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'instance_properties',
-          dartName: 'instanceProperties',
-          kind: MigrateSlotKind.helper,
-          required: false,
+          tfName: '',
+          dartName: 'instancePropertiesOrSourceInstanceTemplate',
+          kind: MigrateSlotKind.sealed,
+          required: true,
           wrapped: false,
-          helper: 'ComputeReservationSpecificReservationInstanceProperties',
+          merged: true,
+          variants: <String, String>{
+            'instance_properties':
+                'ComputeReservationSpecificReservationInstancePropertiesOption',
+            'source_instance_template':
+                'ComputeReservationSpecificReservationSourceInstanceTemplateOption',
+          },
         ),
       ],
     ),
@@ -172201,6 +172274,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               required: false,
               dartType:
                   'ComputeReservationSpecificReservationInstancePropertiesLocalSsdsInterface',
+            ),
+          ],
+        ),
+    'ComputeReservationSpecificReservationInstancePropertiesOption':
+        MigrateHelper(
+          className:
+              'ComputeReservationSpecificReservationInstancePropertiesOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'instance_properties',
+              dartName: 'instanceProperties',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper: 'ComputeReservationSpecificReservationInstanceProperties',
+            ),
+          ],
+        ),
+    'ComputeReservationSpecificReservationSourceInstanceTemplateOption':
+        MigrateHelper(
+          className:
+              'ComputeReservationSpecificReservationSourceInstanceTemplateOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'source_instance_template',
+              dartName: 'sourceInstanceTemplate',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
             ),
           ],
         ),
@@ -173805,6 +173907,58 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ComputeTargetHttpsProxyCertificateManagerCertificatesOption':
+        MigrateHelper(
+          className:
+              'ComputeTargetHttpsProxyCertificateManagerCertificatesOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'certificate_manager_certificates',
+              dartName: 'certificateManagerCertificates',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<String>',
+            ),
+          ],
+        ),
+    'ComputeTargetHttpsProxySslCertificatesOption': MigrateHelper(
+      className: 'ComputeTargetHttpsProxySslCertificatesOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'ssl_certificates',
+          dartName: 'sslCertificates',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<String>',
+        ),
+      ],
+    ),
+    'ComputeUrlMapDefaultRouteActionOption': MigrateHelper(
+      className: 'ComputeUrlMapDefaultRouteActionOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_route_action',
+          dartName: 'defaultRouteAction',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeUrlMapUrlMapRouteAction',
+        ),
+      ],
+    ),
+    'ComputeUrlMapDefaultUrlRedirectOption': MigrateHelper(
+      className: 'ComputeUrlMapDefaultUrlRedirectOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_url_redirect',
+          dartName: 'defaultUrlRedirect',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ComputeUrlMapUrlMapUrlRedirect',
+        ),
+      ],
+    ),
     'ComputeUrlMapUrlMapCachePolicy': MigrateHelper(
       className: 'ComputeUrlMapUrlMapCachePolicy',
       slots: <MigrateSlot>[
@@ -174420,6 +174574,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.enumValue,
           required: false,
           dartType: 'UrlMapRedirectResponseCode',
+        ),
+      ],
+    ),
+    'ComputeVpnTunnelPeerExternalGatewayOption': MigrateHelper(
+      className: 'ComputeVpnTunnelPeerExternalGatewayOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'peer_external_gateway',
+          dartName: 'peerExternalGateway',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ComputeVpnTunnelPeerGcpGatewayOption': MigrateHelper(
+      className: 'ComputeVpnTunnelPeerGcpGatewayOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'peer_gcp_gateway',
+          dartName: 'peerGcpGateway',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
       ],
     ),
@@ -212722,6 +212900,22 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'NetworkConnectivityPolicyBasedRouteInterconnectAttachmentOption':
+        MigrateHelper(
+          className:
+              'NetworkConnectivityPolicyBasedRouteInterconnectAttachmentOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'interconnect_attachment',
+              dartName: 'interconnectAttachment',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'NetworkConnectivityPolicyBasedRouteInterconnectAttachment',
+            ),
+          ],
+        ),
     'NetworkConnectivityPolicyBasedRouteNextHopIlbIp': MigrateHelper(
       className: 'NetworkConnectivityPolicyBasedRouteNextHopIlbIp',
       slots: <MigrateSlot>[
@@ -212759,6 +212953,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'NetworkConnectivityPolicyBasedRouteVirtualMachineOption': MigrateHelper(
+      className: 'NetworkConnectivityPolicyBasedRouteVirtualMachineOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'virtual_machine',
+          dartName: 'virtualMachine',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'NetworkConnectivityPolicyBasedRouteVirtualMachine',
         ),
       ],
     ),
@@ -214648,6 +214855,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'NetworkSecuritySecurityProfileCustomInterceptProfileOption': MigrateHelper(
+      className: 'NetworkSecuritySecurityProfileCustomInterceptProfileOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'custom_intercept_profile',
+          dartName: 'customInterceptProfile',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'NetworkSecuritySecurityProfileCustomInterceptProfile',
+        ),
+      ],
+    ),
     'NetworkSecuritySecurityProfileCustomMirroringProfile': MigrateHelper(
       className: 'NetworkSecuritySecurityProfileCustomMirroringProfile',
       slots: <MigrateSlot>[
@@ -214664,6 +214884,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'NetworkSecuritySecurityProfileCustomMirroringProfileOption': MigrateHelper(
+      className: 'NetworkSecuritySecurityProfileCustomMirroringProfileOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'custom_mirroring_profile',
+          dartName: 'customMirroringProfile',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'NetworkSecuritySecurityProfileCustomMirroringProfile',
         ),
       ],
     ),
@@ -214725,6 +214958,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'NetworkSecuritySecurityProfileThreatPreventionProfileOption':
+        MigrateHelper(
+          className:
+              'NetworkSecuritySecurityProfileThreatPreventionProfileOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'threat_prevention_profile',
+              dartName: 'threatPreventionProfile',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper: 'NetworkSecuritySecurityProfileThreatPreventionProfile',
+            ),
+          ],
+        ),
     'NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverrides': MigrateHelper(
       className:
           'NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverrides',
@@ -214780,6 +215028,19 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           repeated: true,
           wrapped: false,
           helper: 'NetworkSecuritySecurityProfileUrlFilteringProfileUrlFilters',
+        ),
+      ],
+    ),
+    'NetworkSecuritySecurityProfileUrlFilteringProfileOption': MigrateHelper(
+      className: 'NetworkSecuritySecurityProfileUrlFilteringProfileOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'url_filtering_profile',
+          dartName: 'urlFilteringProfile',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'NetworkSecuritySecurityProfileUrlFilteringProfile',
         ),
       ],
     ),
@@ -216096,6 +216357,30 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'NetworkServicesGatewayAllPortsOption': MigrateHelper(
+      className: 'NetworkServicesGatewayAllPortsOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'all_ports',
+          dartName: 'allPorts',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'NetworkServicesGatewayPortsOption': MigrateHelper(
+      className: 'NetworkServicesGatewayPortsOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'ports',
+          dartName: 'ports',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<num>',
+        ),
+      ],
+    ),
     'NetworkServicesGrpcRouteRules': MigrateHelper(
       className: 'NetworkServicesGrpcRouteRules',
       slots: <MigrateSlot>[
@@ -216776,11 +217061,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'NetworkServicesHttpRouteRulesMatches',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'full_path_match',
-          dartName: 'fullPathMatch',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'fullPathMatchOrPrefixMatchOrRegexMatch',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'full_path_match':
+                'NetworkServicesHttpRouteRulesMatchesFullPathMatchOption',
+            'prefix_match':
+                'NetworkServicesHttpRouteRulesMatchesPrefixMatchOption',
+            'regex_match':
+                'NetworkServicesHttpRouteRulesMatchesRegexMatchOption',
+          },
         ),
         MigrateSlot(
           tfName: 'ignore_case',
@@ -216788,20 +217082,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'prefix_match',
-          dartName: 'prefixMatch',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'regex_match',
-          dartName: 'regexMatch',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'headers',
@@ -216823,15 +217103,43 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'NetworkServicesHttpRouteRulesMatchesFullPathMatchOption': MigrateHelper(
+      className: 'NetworkServicesHttpRouteRulesMatchesFullPathMatchOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'full_path_match',
+          dartName: 'fullPathMatch',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'NetworkServicesHttpRouteRulesMatchesHeaders': MigrateHelper(
       className: 'NetworkServicesHttpRouteRulesMatchesHeaders',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'exact_match',
-          dartName: 'exactMatch',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName:
+              'exactMatchOrRegexMatchOrPrefixMatchOrPresentMatchOrSuffixMatchOrRangeMatch',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'exact_match':
+                'NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOption',
+            'regex_match':
+                'NetworkServicesHttpRouteRulesMatchesHeadersRegexMatchOption',
+            'prefix_match':
+                'NetworkServicesHttpRouteRulesMatchesHeadersPrefixMatchOption',
+            'present_match':
+                'NetworkServicesHttpRouteRulesMatchesHeadersPresentMatchOption',
+            'suffix_match':
+                'NetworkServicesHttpRouteRulesMatchesHeadersSuffixMatchOption',
+            'range_match':
+                'NetworkServicesHttpRouteRulesMatchesHeadersRangeMatchOption',
+          },
         ),
         MigrateSlot(
           tfName: 'header',
@@ -216847,44 +217155,50 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           dartType: 'bool',
         ),
-        MigrateSlot(
-          tfName: 'prefix_match',
-          dartName: 'prefixMatch',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'present_match',
-          dartName: 'presentMatch',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
-        ),
-        MigrateSlot(
-          tfName: 'regex_match',
-          dartName: 'regexMatch',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'suffix_match',
-          dartName: 'suffixMatch',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'range_match',
-          dartName: 'rangeMatch',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch',
-        ),
       ],
     ),
+    'NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOption':
+        MigrateHelper(
+          className:
+              'NetworkServicesHttpRouteRulesMatchesHeadersExactMatchOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'exact_match',
+              dartName: 'exactMatch',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'NetworkServicesHttpRouteRulesMatchesHeadersPrefixMatchOption':
+        MigrateHelper(
+          className:
+              'NetworkServicesHttpRouteRulesMatchesHeadersPrefixMatchOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'prefix_match',
+              dartName: 'prefixMatch',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'NetworkServicesHttpRouteRulesMatchesHeadersPresentMatchOption':
+        MigrateHelper(
+          className:
+              'NetworkServicesHttpRouteRulesMatchesHeadersPresentMatchOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'present_match',
+              dartName: 'presentMatch',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
     'NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch': MigrateHelper(
       className: 'NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch',
       slots: <MigrateSlot>[
@@ -216904,22 +217218,79 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'NetworkServicesHttpRouteRulesMatchesHeadersRangeMatchOption':
+        MigrateHelper(
+          className:
+              'NetworkServicesHttpRouteRulesMatchesHeadersRangeMatchOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'range_match',
+              dartName: 'rangeMatch',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper: 'NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch',
+            ),
+          ],
+        ),
+    'NetworkServicesHttpRouteRulesMatchesHeadersRegexMatchOption':
+        MigrateHelper(
+          className:
+              'NetworkServicesHttpRouteRulesMatchesHeadersRegexMatchOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'regex_match',
+              dartName: 'regexMatch',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'NetworkServicesHttpRouteRulesMatchesHeadersSuffixMatchOption':
+        MigrateHelper(
+          className:
+              'NetworkServicesHttpRouteRulesMatchesHeadersSuffixMatchOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'suffix_match',
+              dartName: 'suffixMatch',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'NetworkServicesHttpRouteRulesMatchesPrefixMatchOption': MigrateHelper(
+      className: 'NetworkServicesHttpRouteRulesMatchesPrefixMatchOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'prefix_match',
+          dartName: 'prefixMatch',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
     'NetworkServicesHttpRouteRulesMatchesQueryParameters': MigrateHelper(
       className: 'NetworkServicesHttpRouteRulesMatchesQueryParameters',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'exact_match',
-          dartName: 'exactMatch',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'present_match',
-          dartName: 'presentMatch',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'bool',
+          tfName: '',
+          dartName: 'exactMatchOrRegexMatchOrPresentMatch',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'exact_match':
+                'NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOption',
+            'regex_match':
+                'NetworkServicesHttpRouteRulesMatchesQueryParametersRegexMatchOption',
+            'present_match':
+                'NetworkServicesHttpRouteRulesMatchesQueryParametersPresentMatchOption',
+          },
         ),
         MigrateSlot(
           tfName: 'query_parameter',
@@ -216928,11 +217299,58 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           dartType: 'String',
         ),
+      ],
+    ),
+    'NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOption':
+        MigrateHelper(
+          className:
+              'NetworkServicesHttpRouteRulesMatchesQueryParametersExactMatchOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'exact_match',
+              dartName: 'exactMatch',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'NetworkServicesHttpRouteRulesMatchesQueryParametersPresentMatchOption':
+        MigrateHelper(
+          className:
+              'NetworkServicesHttpRouteRulesMatchesQueryParametersPresentMatchOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'present_match',
+              dartName: 'presentMatch',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'NetworkServicesHttpRouteRulesMatchesQueryParametersRegexMatchOption':
+        MigrateHelper(
+          className:
+              'NetworkServicesHttpRouteRulesMatchesQueryParametersRegexMatchOption',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'regex_match',
+              dartName: 'regexMatch',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'NetworkServicesHttpRouteRulesMatchesRegexMatchOption': MigrateHelper(
+      className: 'NetworkServicesHttpRouteRulesMatchesRegexMatchOption',
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'regex_match',
           dartName: 'regexMatch',
           kind: MigrateSlotKind.scalar,
-          required: false,
+          required: true,
           dartType: 'String',
         ),
       ],
@@ -235294,6 +235712,54 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
+        ),
+      ],
+    ),
+    'VpcAccessConnectorMaxInstancesOption': MigrateHelper(
+      className: 'VpcAccessConnectorMaxInstancesOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_instances',
+          dartName: 'maxInstances',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'VpcAccessConnectorMaxThroughputOption': MigrateHelper(
+      className: 'VpcAccessConnectorMaxThroughputOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_throughput',
+          dartName: 'maxThroughput',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'VpcAccessConnectorMinInstancesOption': MigrateHelper(
+      className: 'VpcAccessConnectorMinInstancesOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'min_instances',
+          dartName: 'minInstances',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'VpcAccessConnectorMinThroughputOption': MigrateHelper(
+      className: 'VpcAccessConnectorMinThroughputOption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'min_throughput',
+          dartName: 'minThroughput',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
         ),
       ],
     ),

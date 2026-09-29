@@ -722,6 +722,68 @@ class ComputeRegionUrlMapRegionUrlMapTestHeader {
   };
 }
 
+/// At most one of `default_url_redirect`, `default_route_action` on `google_compute_region_url_map`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
+  const ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `default_url_redirect` (one of the [ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction] choices).
+final class ComputeRegionUrlMapDefaultUrlRedirectOption
+    extends ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
+  const ComputeRegionUrlMapDefaultUrlRedirectOption({
+    required this.defaultUrlRedirect,
+  });
+
+  final ComputeRegionUrlMapRegionUrlMapUrlRedirect defaultUrlRedirect;
+
+  @override
+  String get blockKey => 'default_url_redirect';
+
+  @override
+  Map<String, Object?> encode() => {
+    'default_url_redirect': [defaultUrlRedirect.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'default_url_redirect': TfArg.literal([defaultUrlRedirect.toArgMap()]),
+  };
+}
+
+/// Sets `default_route_action` (one of the [ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction] choices).
+final class ComputeRegionUrlMapDefaultRouteActionOption
+    extends ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
+  const ComputeRegionUrlMapDefaultRouteActionOption({
+    required this.defaultRouteAction,
+  });
+
+  final ComputeRegionUrlMapRegionUrlMapRouteAction defaultRouteAction;
+
+  @override
+  String get blockKey => 'default_route_action';
+
+  @override
+  Map<String, Object?> encode() => {
+    'default_route_action': [defaultRouteAction.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'default_route_action': TfArg.literal([defaultRouteAction.toArgMap()]),
+  };
+}
+
 /// Factory wrapper for `google_compute_region_url_map`.
 ///
 /// UrlMaps are used to route requests to a backend service based on rules that
@@ -849,9 +911,9 @@ final class GoogleComputeRegionUrlMap extends Resource {
     List<ComputeRegionUrlMapRegionUrlMapHostRule>? hostRules,
     List<ComputeRegionUrlMapRegionUrlMapPathMatcher>? pathMatchers,
     List<ComputeRegionUrlMapRegionUrlMapTest>? tests,
-    ComputeRegionUrlMapRegionUrlMapUrlRedirect? defaultUrlRedirect,
+    ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction?
+    defaultUrlRedirectOrDefaultRouteAction,
     ComputeRegionUrlMapRegionUrlMapHeaderAction? headerAction,
-    ComputeRegionUrlMapRegionUrlMapRouteAction? defaultRouteAction,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -874,16 +936,9 @@ final class GoogleComputeRegionUrlMap extends Resource {
              ),
            if (tests != null)
              'test': TfArg.literal(tests.map((t) => t.toArgMap()).toList()),
-           if (defaultUrlRedirect != null)
-             'default_url_redirect': TfArg.literal([
-               defaultUrlRedirect.toArgMap(),
-             ]),
+           ...?defaultUrlRedirectOrDefaultRouteAction?.argMap,
            if (headerAction != null)
              'header_action': TfArg.literal([headerAction.toArgMap()]),
-           if (defaultRouteAction != null)
-             'default_route_action': TfArg.literal([
-               defaultRouteAction.toArgMap(),
-             ]),
            if (project != null) 'project': project,
          },
        );

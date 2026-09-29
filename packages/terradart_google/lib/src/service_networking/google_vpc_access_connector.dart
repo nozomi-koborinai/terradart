@@ -25,6 +25,106 @@ class VpcAccessConnectorSubnet {
   };
 }
 
+/// At most one of `min_throughput`, `min_instances` on `google_vpc_access_connector`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class VpcAccessConnectorMinThroughputOrMinInstances {
+  const VpcAccessConnectorMinThroughputOrMinInstances();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `min_throughput` (one of the [VpcAccessConnectorMinThroughputOrMinInstances] choices).
+final class VpcAccessConnectorMinThroughputOption
+    extends VpcAccessConnectorMinThroughputOrMinInstances {
+  const VpcAccessConnectorMinThroughputOption({required this.minThroughput});
+
+  final TfArg<num> minThroughput;
+
+  @override
+  String get blockKey => 'min_throughput';
+
+  @override
+  Map<String, Object?> encode() => {'min_throughput': minThroughput.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'min_throughput': minThroughput};
+}
+
+/// Sets `min_instances` (one of the [VpcAccessConnectorMinThroughputOrMinInstances] choices).
+final class VpcAccessConnectorMinInstancesOption
+    extends VpcAccessConnectorMinThroughputOrMinInstances {
+  const VpcAccessConnectorMinInstancesOption({required this.minInstances});
+
+  final TfArg<num> minInstances;
+
+  @override
+  String get blockKey => 'min_instances';
+
+  @override
+  Map<String, Object?> encode() => {'min_instances': minInstances.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'min_instances': minInstances};
+}
+
+/// At most one of `max_instances`, `max_throughput` on `google_vpc_access_connector`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class VpcAccessConnectorMaxInstancesOrMaxThroughput {
+  const VpcAccessConnectorMaxInstancesOrMaxThroughput();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `max_instances` (one of the [VpcAccessConnectorMaxInstancesOrMaxThroughput] choices).
+final class VpcAccessConnectorMaxInstancesOption
+    extends VpcAccessConnectorMaxInstancesOrMaxThroughput {
+  const VpcAccessConnectorMaxInstancesOption({required this.maxInstances});
+
+  final TfArg<num> maxInstances;
+
+  @override
+  String get blockKey => 'max_instances';
+
+  @override
+  Map<String, Object?> encode() => {'max_instances': maxInstances.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'max_instances': maxInstances};
+}
+
+/// Sets `max_throughput` (one of the [VpcAccessConnectorMaxInstancesOrMaxThroughput] choices).
+final class VpcAccessConnectorMaxThroughputOption
+    extends VpcAccessConnectorMaxInstancesOrMaxThroughput {
+  const VpcAccessConnectorMaxThroughputOption({required this.maxThroughput});
+
+  final TfArg<num> maxThroughput;
+
+  @override
+  String get blockKey => 'max_throughput';
+
+  @override
+  Map<String, Object?> encode() => {'max_throughput': maxThroughput.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'max_throughput': maxThroughput};
+}
+
 /// Factory wrapper for `google_vpc_access_connector`.
 ///
 /// Serverless VPC Access connector resource.
@@ -71,10 +171,8 @@ final class GoogleVpcAccessConnector extends Resource {
     TfArg<String>? network,
     VpcAccessConnectorSubnet? subnet,
     TfArg<String>? machineType,
-    TfArg<num>? minInstances,
-    TfArg<num>? maxInstances,
-    TfArg<num>? minThroughput,
-    TfArg<num>? maxThroughput,
+    VpcAccessConnectorMinThroughputOrMinInstances? minThroughputOrMinInstances,
+    VpcAccessConnectorMaxInstancesOrMaxThroughput? maxInstancesOrMaxThroughput,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -89,10 +187,8 @@ final class GoogleVpcAccessConnector extends Resource {
            if (network != null) 'network': network,
            if (subnet != null) 'subnet': TfArg.literal([subnet.encode()]),
            if (machineType != null) 'machine_type': machineType,
-           if (minInstances != null) 'min_instances': minInstances,
-           if (maxInstances != null) 'max_instances': maxInstances,
-           if (minThroughput != null) 'min_throughput': minThroughput,
-           if (maxThroughput != null) 'max_throughput': maxThroughput,
+           ...?minThroughputOrMinInstances?.argMap,
+           ...?maxInstancesOrMaxThroughput?.argMap,
            if (project != null) 'project': project,
          },
        );

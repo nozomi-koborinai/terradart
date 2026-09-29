@@ -1,6 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// A **global** health check polls instances behind a load balancer at a

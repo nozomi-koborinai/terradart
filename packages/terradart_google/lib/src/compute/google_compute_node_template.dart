@@ -17,6 +17,62 @@ enum ComputeNodeTemplateCpuOvercommitType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `node_type`, `node_type_flexibility` on `google_compute_node_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
+  const ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `node_type` (one of the [ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility] choices).
+final class ComputeNodeTemplateNodeTypeOption
+    extends ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
+  const ComputeNodeTemplateNodeTypeOption({required this.nodeType});
+
+  final TfArg<String> nodeType;
+
+  @override
+  String get blockKey => 'node_type';
+
+  @override
+  Map<String, Object?> encode() => {'node_type': nodeType.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'node_type': nodeType};
+}
+
+/// Sets `node_type_flexibility` (one of the [ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility] choices).
+final class ComputeNodeTemplateNodeTypeFlexibilityOption
+    extends ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
+  const ComputeNodeTemplateNodeTypeFlexibilityOption({
+    required this.nodeTypeFlexibility,
+  });
+
+  final ComputeNodeTemplateNodeTypeFlexibility nodeTypeFlexibility;
+
+  @override
+  String get blockKey => 'node_type_flexibility';
+
+  @override
+  Map<String, Object?> encode() => {
+    'node_type_flexibility': nodeTypeFlexibility.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'node_type_flexibility': TfArg.literal(nodeTypeFlexibility.encode()),
+  };
+}
+
 /// Typed helper for the `accelerators` block of
 /// `google_compute_node_template` (derived from provider schema).
 @immutable
@@ -123,8 +179,8 @@ final class GoogleComputeNodeTemplate extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? nodeType,
-    ComputeNodeTemplateNodeTypeFlexibility? nodeTypeFlexibility,
+    ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility?
+    nodeTypeOrNodeTypeFlexibility,
     TfArg<ComputeNodeTemplateCpuOvercommitType>? cpuOvercommitType,
     TfArg<Map<String, String>>? nodeAffinityLabels,
     List<ComputeNodeTemplateAccelerators>? accelerators,
@@ -141,11 +197,7 @@ final class GoogleComputeNodeTemplate extends Resource {
          argMap: {
            'name': name,
            if (region != null) 'region': region,
-           if (nodeType != null) 'node_type': nodeType,
-           if (nodeTypeFlexibility != null)
-             'node_type_flexibility': TfArg.literal(
-               nodeTypeFlexibility.encode(),
-             ),
+           ...?nodeTypeOrNodeTypeFlexibility?.argMap,
            if (cpuOvercommitType != null)
              'cpu_overcommit_type': cpuOvercommitType,
            if (nodeAffinityLabels != null)

@@ -19,6 +19,123 @@ enum NetworkSecuritySecurityProfileType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `threat_prevention_profile`, `url_filtering_profile`, `custom_mirroring_profile`, `custom_intercept_profile` on `google_network_security_security_profile`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile {
+  const NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `threat_prevention_profile` (one of the [NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile] choices).
+final class NetworkSecuritySecurityProfileThreatPreventionProfileOption
+    extends
+        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile {
+  const NetworkSecuritySecurityProfileThreatPreventionProfileOption({
+    required this.threatPreventionProfile,
+  });
+
+  final NetworkSecuritySecurityProfileThreatPreventionProfile
+  threatPreventionProfile;
+
+  @override
+  String get blockKey => 'threat_prevention_profile';
+
+  @override
+  Map<String, Object?> encode() => {
+    'threat_prevention_profile': threatPreventionProfile.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'threat_prevention_profile': TfArg.literal(
+      threatPreventionProfile.encode(),
+    ),
+  };
+}
+
+/// Sets `url_filtering_profile` (one of the [NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile] choices).
+final class NetworkSecuritySecurityProfileUrlFilteringProfileOption
+    extends
+        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile {
+  const NetworkSecuritySecurityProfileUrlFilteringProfileOption({
+    required this.urlFilteringProfile,
+  });
+
+  final NetworkSecuritySecurityProfileUrlFilteringProfile urlFilteringProfile;
+
+  @override
+  String get blockKey => 'url_filtering_profile';
+
+  @override
+  Map<String, Object?> encode() => {
+    'url_filtering_profile': urlFilteringProfile.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'url_filtering_profile': TfArg.literal(urlFilteringProfile.encode()),
+  };
+}
+
+/// Sets `custom_mirroring_profile` (one of the [NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile] choices).
+final class NetworkSecuritySecurityProfileCustomMirroringProfileOption
+    extends
+        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile {
+  const NetworkSecuritySecurityProfileCustomMirroringProfileOption({
+    required this.customMirroringProfile,
+  });
+
+  final NetworkSecuritySecurityProfileCustomMirroringProfile
+  customMirroringProfile;
+
+  @override
+  String get blockKey => 'custom_mirroring_profile';
+
+  @override
+  Map<String, Object?> encode() => {
+    'custom_mirroring_profile': customMirroringProfile.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'custom_mirroring_profile': TfArg.literal(customMirroringProfile.encode()),
+  };
+}
+
+/// Sets `custom_intercept_profile` (one of the [NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile] choices).
+final class NetworkSecuritySecurityProfileCustomInterceptProfileOption
+    extends
+        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile {
+  const NetworkSecuritySecurityProfileCustomInterceptProfileOption({
+    required this.customInterceptProfile,
+  });
+
+  final NetworkSecuritySecurityProfileCustomInterceptProfile
+  customInterceptProfile;
+
+  @override
+  String get blockKey => 'custom_intercept_profile';
+
+  @override
+  Map<String, Object?> encode() => {
+    'custom_intercept_profile': customInterceptProfile.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'custom_intercept_profile': TfArg.literal(customInterceptProfile.encode()),
+  };
+}
+
 /// Typed helper for the `custom_intercept_profile` block of
 /// `google_network_security_security_profile` (derived from provider schema).
 @immutable
@@ -322,13 +439,8 @@ final class GoogleNetworkSecuritySecurityProfile extends Resource {
     TfArg<String>? location,
     TfArg<String>? parent,
     TfArg<String>? description,
-    NetworkSecuritySecurityProfileThreatPreventionProfile?
-    threatPreventionProfile,
-    NetworkSecuritySecurityProfileUrlFilteringProfile? urlFilteringProfile,
-    NetworkSecuritySecurityProfileCustomInterceptProfile?
-    customInterceptProfile,
-    NetworkSecuritySecurityProfileCustomMirroringProfile?
-    customMirroringProfile,
+    NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile?
+    threatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -343,22 +455,8 @@ final class GoogleNetworkSecuritySecurityProfile extends Resource {
            if (location != null) 'location': location,
            if (parent != null) 'parent': parent,
            if (description != null) 'description': description,
-           if (threatPreventionProfile != null)
-             'threat_prevention_profile': TfArg.literal(
-               threatPreventionProfile.encode(),
-             ),
-           if (urlFilteringProfile != null)
-             'url_filtering_profile': TfArg.literal(
-               urlFilteringProfile.encode(),
-             ),
-           if (customInterceptProfile != null)
-             'custom_intercept_profile': TfArg.literal(
-               customInterceptProfile.encode(),
-             ),
-           if (customMirroringProfile != null)
-             'custom_mirroring_profile': TfArg.literal(
-               customMirroringProfile.encode(),
-             ),
+           ...?threatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile
+               ?.argMap,
            if (labels != null) 'labels': labels,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
          },

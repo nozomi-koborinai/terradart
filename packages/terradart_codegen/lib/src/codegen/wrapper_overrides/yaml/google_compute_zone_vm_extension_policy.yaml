@@ -1,6 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: false
 
 paramOrder:

@@ -187,8 +187,12 @@ final class ApiServiceStack extends Stack {
       region: TfArg.literal('asia-northeast1'),
       ipCidrRange: TfArg.literal('10.8.0.0/28'),
       network: TfArg.ref(vpc.id),
-      minInstances: TfArg.literal(2),
-      maxInstances: TfArg.literal(3),
+      minThroughputOrMinInstances: VpcAccessConnectorMinInstancesOption(
+        minInstances: TfArg.literal(2),
+      ),
+      maxInstancesOrMaxThroughput: VpcAccessConnectorMaxInstancesOption(
+        maxInstances: TfArg.literal(3),
+      ),
       dependsOn: apiDeps,
     );
     add(runConnector);

@@ -1,6 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true

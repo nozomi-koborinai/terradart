@@ -1,5 +1,6 @@
 outputDir: compute
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 # WAF size enum values (`8KB` / `16KB`) are not legal Dart identifiers.

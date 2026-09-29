@@ -79,26 +79,69 @@ final class ComputeGlobalVmExtensionPolicyRolloutOperation {
 final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput {
   const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput({
     this.conflictBehavior,
-    this.name,
-    this.predefinedRolloutPlan,
+    required this.nameOrPredefinedRolloutPlan,
     this.retryUuid,
   });
 
   final TfArg<String>? conflictBehavior;
 
-  final TfArg<String>? name;
-
-  final TfArg<String>? predefinedRolloutPlan;
+  final ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan
+  nameOrPredefinedRolloutPlan;
 
   final TfArg<String>? retryUuid;
 
   Map<String, Object?> encode() => {
     if (conflictBehavior != null)
       'conflict_behavior': conflictBehavior!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (predefinedRolloutPlan != null)
-      'predefined_rollout_plan': predefinedRolloutPlan!.toTfJson(),
+    ...nameOrPredefinedRolloutPlan.encode(),
     if (retryUuid != null) 'retry_uuid': retryUuid!.toTfJson(),
+  };
+}
+
+/// Exactly one of `name`, `predefined_rollout_plan` on the `rollout_operation.rollout_input` block of `google_compute_global_vm_extension_policy`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan {
+  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `name` (one of the [ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan] choices).
+final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption
+    extends
+        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan {
+  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption({
+    required this.name,
+  });
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+}
+
+/// Sets `predefined_rollout_plan` (one of the [ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan] choices).
+final class ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPredefinedRolloutPlanOption
+    extends
+        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan {
+  const ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPredefinedRolloutPlanOption({
+    required this.predefinedRolloutPlan,
+  });
+
+  final TfArg<String> predefinedRolloutPlan;
+
+  @override
+  String get blockKey => 'predefined_rollout_plan';
+
+  @override
+  Map<String, Object?> encode() => {
+    'predefined_rollout_plan': predefinedRolloutPlan.toTfJson(),
   };
 }
 

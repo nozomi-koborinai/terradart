@@ -1,5 +1,6 @@
 outputDir: network
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 # The typed threat_detector_provider param is a HUMAN decision now, not a
